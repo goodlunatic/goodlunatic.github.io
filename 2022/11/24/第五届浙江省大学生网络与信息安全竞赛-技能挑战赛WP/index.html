@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>第五届浙江省大学生网络与信息安全竞赛-技能挑战赛WP | Lunatic&#39;s Workstation</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="本菜鸟第一次打省赛，浅浅混了个省三QAQ。。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="第五届浙江省大学生网络与信息安全竞赛-技能挑战赛WP">
+<meta property="og:url" content="https://goodlunatic.github.io/2022/11/24/%E7%AC%AC%E4%BA%94%E5%B1%8A%E6%B5%99%E6%B1%9F%E7%9C%81%E5%A4%A7%E5%AD%A6%E7%94%9F%E7%BD%91%E7%BB%9C%E4%B8%8E%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E7%AB%9E%E8%B5%9B-%E6%8A%80%E8%83%BD%E6%8C%91%E6%88%98%E8%B5%9BWP/index.html">
+<meta property="og:site_name" content="Lunatic&#39;s Workstation">
+<meta property="og:description" content="本菜鸟第一次打省赛，浅浅混了个省三QAQ。。">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/38334c35b07d453884ad50345b67cb12.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/b8039d0253e242468800d65a84b3918c.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/f0239fa45e414c9da23da64d4212525a.png">
+<meta property="article:published_time" content="2022-11-24T12:20:47.000Z">
+<meta property="article:modified_time" content="2022-11-24T12:30:25.435Z">
+<meta property="article:author" content="Lunatic">
+<meta property="article:tag" content="CTF">
+<meta property="article:tag" content="WriteUp">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/38334c35b07d453884ad50345b67cb12.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Lunatic&#39;s Workstation" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Lunatic&#39;s Workstation</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://goodlunatic.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-第五届浙江省大学生网络与信息安全竞赛-技能挑战赛WP" class="article article-type-post" itemscope
+  itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2022/11/24/%E7%AC%AC%E4%BA%94%E5%B1%8A%E6%B5%99%E6%B1%9F%E7%9C%81%E5%A4%A7%E5%AD%A6%E7%94%9F%E7%BD%91%E7%BB%9C%E4%B8%8E%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E7%AB%9E%E8%B5%9B-%E6%8A%80%E8%83%BD%E6%8C%91%E6%88%98%E8%B5%9BWP/" class="article-date">
+  <time datetime="2022-11-24T12:20:47.000Z" itemprop="datePublished">2022-11-24</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/WriteUp/">WriteUp</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+    <header class="article-header">
+      
+  
+    <h1 class="article-title" itemprop="name">
+      第五届浙江省大学生网络与信息安全竞赛-技能挑战赛WP
+    </h1>
+  
+
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      <div class="toc-parent">
+  <div id="toc" class="toc-article">
+    <div class="toc-title">目录</div>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Misc"><span class="toc-text">Misc</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%A5%BD%E6%80%AA%E5%93%A6"><span class="toc-text">一、好怪哦</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E7%A5%9E%E5%A5%87%E7%9A%84%E6%A3%8B%E7%9B%98"><span class="toc-text">二、神奇的棋盘</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81segmentFlow"><span class="toc-text">三、segmentFlow</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#reverse"><span class="toc-text">reverse</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81ManyCheck"><span class="toc-text">一、ManyCheck</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Web"><span class="toc-text">Web</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81nisc-easyweb"><span class="toc-text">一、nisc_easyweb</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81nisc-%E5%AD%A6%E6%A0%A1%E9%97%A8%E6%88%B7%E7%BD%91%E7%AB%99"><span class="toc-text">二、nisc_学校门户网站</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E5%90%83%E8%B1%86%E4%BA%BA%E5%90%83%E8%B1%86%E9%AD%82"><span class="toc-text">三、吃豆人吃豆魂</span></a></li></ol></li></ol>
+  </div>
+</div>
+      <p><strong>本菜鸟第一次打省赛，浅浅混了个省三QAQ。。</strong></p>
+<span id="more"></span>
+
+<h1 id="Misc"><a href="#Misc" class="headerlink" title="Misc"></a>Misc</h1><h2 id="一、好怪哦"><a href="#一、好怪哦" class="headerlink" title="一、好怪哦"></a>一、好怪哦</h2><p>下载下来得到一个数据逆置的压缩包，直接用逆置脚本</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">input</span> = <span class="built_in">open</span>(<span class="string">&#x27;fuck.zip&#x27;</span>, <span class="string">&#x27;rb&#x27;</span>)</span><br><span class="line">input_all = <span class="built_in">input</span>.read()</span><br><span class="line">ss = input_all[::-<span class="number">1</span>]</span><br><span class="line">output = <span class="built_in">open</span>(<span class="string">&#x27;flag.zip&#x27;</span>, <span class="string">&#x27;wb&#x27;</span>)</span><br><span class="line">output.write(ss)</span><br><span class="line"><span class="built_in">input</span>.close()</span><br><span class="line">output.close()</span><br></pre></td></tr></table></figure>
+
+<p>然后解压得到一个缺少png文件头的png文件，补上文件头：89 50 4e 47</p>
+<p>打开得到一张CRC有问题的图片，直接上脚本爆破即可拿到flag</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> binascii</span><br><span class="line"><span class="keyword">import</span> struct</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"></span><br><span class="line">file = <span class="built_in">input</span>(<span class="string">&quot;图片的地址&quot;</span>)</span><br><span class="line">fr = <span class="built_in">open</span>(file,<span class="string">&#x27;rb&#x27;</span>).read()</span><br><span class="line">data = <span class="built_in">bytearray</span>(fr[<span class="number">0x0c</span>:<span class="number">0x1d</span>])</span><br><span class="line">crc32key = <span class="built_in">eval</span>(<span class="string">&#x27;0x&#x27;</span>+<span class="built_in">str</span>(binascii.b2a_hex(fr[<span class="number">0x1d</span>:<span class="number">0x21</span>]))[<span class="number">2</span>:-<span class="number">1</span>])</span><br><span class="line"><span class="comment">#原来的代码: crc32key = eval(str(fr[29:33]).replace(&#x27;\\x&#x27;,&#x27;&#x27;).replace(&quot;b&#x27;&quot;,&#x27;0x&#x27;).replace(&quot;&#x27;&quot;,&#x27;&#x27;))</span></span><br><span class="line">n = <span class="number">4095</span></span><br><span class="line"><span class="keyword">for</span> w <span class="keyword">in</span> <span class="built_in">range</span>(n):</span><br><span class="line">    width = <span class="built_in">bytearray</span>(struct.pack(<span class="string">&#x27;&gt;i&#x27;</span>, w))</span><br><span class="line">    <span class="keyword">for</span> h <span class="keyword">in</span> <span class="built_in">range</span>(n):</span><br><span class="line">        height = <span class="built_in">bytearray</span>(struct.pack(<span class="string">&#x27;&gt;i&#x27;</span>, h))</span><br><span class="line">        <span class="keyword">for</span> x <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">4</span>):</span><br><span class="line">            data[x+<span class="number">4</span>] = width[x]</span><br><span class="line">            data[x+<span class="number">8</span>] = height[x]</span><br><span class="line">        crc32result = binascii.crc32(data) &amp; <span class="number">0xffffffff</span></span><br><span class="line">        <span class="keyword">if</span> crc32result == crc32key:</span><br><span class="line">            <span class="built_in">print</span>(width,height)</span><br><span class="line">            newpic = <span class="built_in">bytearray</span>(fr)</span><br><span class="line">            <span class="keyword">for</span> x <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">4</span>):</span><br><span class="line">                newpic[x+<span class="number">16</span>] = width[x]</span><br><span class="line">                newpic[x+<span class="number">20</span>] = height[x]</span><br><span class="line">            fw = <span class="built_in">open</span>(file+<span class="string">&#x27;.png&#x27;</span>,<span class="string">&#x27;wb&#x27;</span>)</span><br><span class="line">            fw.write(newpic)</span><br><span class="line">            fw.close</span><br><span class="line">            sys.exit()</span><br></pre></td></tr></table></figure>
+
+<h2 id="二、神奇的棋盘"><a href="#二、神奇的棋盘" class="headerlink" title="二、神奇的棋盘"></a>二、神奇的棋盘</h2><p>下载解压得到一张棋盘图片和一段棋盘加密后的密码：</p>
+<p>这段密码是古典密码中的Polybius密码，直接去除逗号拉入随波逐流解密</p>
+<p>得到密文：agaxxdaggvggvdvadavxdgadvgdvaaddddfxafafdgdvxxdggdggdxddfddxvgxadgvdfxvvaaddxdxxaddvgggxgxxxxgxxggxgdvvvgggagaaaagaaggagdddagagggaggagagaaavaaaxgxgggxggxgxgxxxv</p>
+<p>然后用zsteg跑那个board的图片，得到一串base32，解密得到位移key：</p>
+<p>JRQXG5CLMV4XWWLVONQXS6LEON6Q====</p>
+<p>LastKey{Yusayyds}</p>
+<p>然后直接输入棋盘中的字符开始解密：</p>
+<p><img src="https://img-blog.csdnimg.cn/38334c35b07d453884ad50345b67cb12.png" alt="ADFGX键盘密码解密"></p>
+<p>然后得到一串十六进制字符串 ，直接十六进制转字符串得到flag</p>
+<p>【因为省赛不能联网，只能用本地的工具，然后这个Hex好像有点问题】</p>
+<p>后来发现最新版的CyberChef_v9.46.5可以解出来</p>
+<h2 id="三、segmentFlow"><a href="#三、segmentFlow" class="headerlink" title="三、segmentFlow"></a>三、segmentFlow</h2><p>下载后得到一个压缩包，里面有一个流量文件和七个4字节的文本文件</p>
+<p>使用Github上的CRC爆破脚本进行爆破每个文本文件的CRC值，得到解压密码</p>
+<p><img src="https://img-blog.csdnimg.cn/b8039d0253e242468800d65a84b3918c.png" alt="CRC爆破"></p>
+<p><img src="https://img-blog.csdnimg.cn/f0239fa45e414c9da23da64d4212525a.png" alt="拼接得到解压密码"></p>
+<p>用tshark导出数据</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tshark -r segmentFlow.pcapng -Y <span class="string">&quot;http.request&quot;</span> -T fields -e http.file_data &gt; data1.txt</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">f = <span class="built_in">open</span>(<span class="string">&#x27;data.txt&#x27;</span>,<span class="string">&#x27;r&#x27;</span>)</span><br><span class="line">data=f.read()</span><br><span class="line">data=data.split(<span class="string">&#x27;&amp;sa066b32bfb3e7=&#x27;</span>)</span><br><span class="line"><span class="comment">#print(data.split(&#x27;&amp;sa066b32bfb3e7=&#x27;))</span></span><br><span class="line"><span class="comment">#以这个字符串为分隔符，后面八位就是我们要的数据</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,<span class="built_in">len</span>(data)):</span><br><span class="line">    <span class="comment">#从第一个到最后一个列表</span></span><br><span class="line">    <span class="built_in">print</span>(data[i][:<span class="number">8</span>],end=<span class="string">&#x27;&#x27;</span>)</span><br><span class="line">    <span class="comment">#一个列表元素的前八位</span></span><br></pre></td></tr></table></figure>
+
+<p>打开压缩包得到flag</p>
+<h1 id="reverse"><a href="#reverse" class="headerlink" title="reverse"></a>reverse</h1><h2 id="一、ManyCheck"><a href="#一、ManyCheck" class="headerlink" title="一、ManyCheck"></a>一、ManyCheck</h2><p>三层验证，前两层拉入ida看或者直接用计算器算出结果：77、55、49</p>
+<p>第三层根据ida里的算法，直接写个for循环就出来了：1198089844</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> v1 = <span class="number">0</span>; v1 &lt;= <span class="number">1718896489</span>; v1++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="type">int</span> v2 = <span class="number">16</span>;</span><br><span class="line">        <span class="type">int</span> v3 = (v1 &gt;&gt; (<span class="number">32</span> - v2)) | (v1 &lt;&lt; v2);</span><br><span class="line">        <span class="keyword">if</span> (v3 == <span class="number">1718896489</span>)</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;%d&quot;</span>, v1);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="Web"><a href="#Web" class="headerlink" title="Web"></a>Web</h1><h2 id="一、nisc-easyweb"><a href="#一、nisc-easyweb" class="headerlink" title="一、nisc_easyweb"></a>一、nisc_easyweb</h2><p>1.扫出 /api/record/文件 里面有个发送get请求功能的php,利用hackbar发送get请求即可得到flag</p>
+<h2 id="二、nisc-学校门户网站"><a href="#二、nisc-学校门户网站" class="headerlink" title="二、nisc_学校门户网站"></a>二、nisc_学校门户网站</h2><p>不知道是不是非预期，直接注册然后登录即可得到flag</p>
+<h2 id="三、吃豆人吃豆魂"><a href="#三、吃豆人吃豆魂" class="headerlink" title="三、吃豆人吃豆魂"></a>三、吃豆人吃豆魂</h2><p>进入web开发者工具，找到game的源码，在index.js中有对生命值和分数的定义，修改分数为10000000，再次请求页面，直接弹出flag</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://goodlunatic.github.io/2022/11/24/%E7%AC%AC%E4%BA%94%E5%B1%8A%E6%B5%99%E6%B1%9F%E7%9C%81%E5%A4%A7%E5%AD%A6%E7%94%9F%E7%BD%91%E7%BB%9C%E4%B8%8E%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E7%AB%9E%E8%B5%9B-%E6%8A%80%E8%83%BD%E6%8C%91%E6%88%98%E8%B5%9BWP/" data-id="clav1yzvm0000dov0hrz4g13i" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CTF/" rel="tag">CTF</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/WriteUp/" rel="tag">WriteUp</a></li></ul>
+
+    </footer>
+  </div>
+  
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2022/11/24/%E5%A4%A7%E4%B8%80%E4%B8%8A-%E5%AF%B9ACM%E7%9A%84%E5%B0%9D%E8%AF%95%E4%B8%8E%E5%8F%8D%E6%80%9D/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">大一上-对ACM的尝试与反思</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/ACM/">ACM</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CTF/">CTF</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/WriteUp/">WriteUp</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/ACM/" style="font-size: 10px;">ACM</a> <a href="/tags/CTF/" style="font-size: 20px;">CTF</a> <a href="/tags/Hexo/" style="font-size: 15px;">Hexo</a> <a href="/tags/Misc/" style="font-size: 10px;">Misc</a> <a href="/tags/Pwn/" style="font-size: 10px;">Pwn</a> <a href="/tags/WriteUp/" style="font-size: 10px;">WriteUp</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">November 2022</a><span class="archive-list-count">6</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/11/24/%E7%AC%AC%E4%BA%94%E5%B1%8A%E6%B5%99%E6%B1%9F%E7%9C%81%E5%A4%A7%E5%AD%A6%E7%94%9F%E7%BD%91%E7%BB%9C%E4%B8%8E%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E7%AB%9E%E8%B5%9B-%E6%8A%80%E8%83%BD%E6%8C%91%E6%88%98%E8%B5%9BWP/">第五届浙江省大学生网络与信息安全竞赛-技能挑战赛WP</a>
+          </li>
+        
+          <li>
+            <a href="/2022/11/24/%E5%A4%A7%E4%B8%80%E4%B8%8A-%E5%AF%B9ACM%E7%9A%84%E5%B0%9D%E8%AF%95%E4%B8%8E%E5%8F%8D%E6%80%9D/">大一上-对ACM的尝试与反思</a>
+          </li>
+        
+          <li>
+            <a href="/2022/11/24/CTF%E2%80%94%E2%80%94Misc%E6%8C%87%E5%8D%97/">CTF——Misc指南</a>
+          </li>
+        
+          <li>
+            <a href="/2022/11/24/Hexo%E6%8A%98%E8%85%BE%E6%97%A5%E8%AE%B0/">Hexo折腾日记</a>
+          </li>
+        
+          <li>
+            <a href="/2022/11/23/CTF%E2%80%94%E2%80%94Pwn%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/">CTF————Pwn学习记录</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    <div class="widget-wrap toc">
+  <h3 class="widget-title">Catalog</h3>
+  <div class="widget"></div>
+</div>
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2022 Lunatic<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+<!-- Toc -->
+
+<script src="/js/toc.js"></script>
+
+<!-- Toc -->
+  </div>
+</body>
+</html>
