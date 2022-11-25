@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Some automation scripts | Lunatic&#39;s Workstation</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="这些是本人无聊时写的一些自动化脚本 因为Python学的真的是实在太烂，就想通过写脚本来提升自己Python编程的能力">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Some automation scripts">
+<meta property="og:url" content="https://goodlunatic.github.io/2022/11/25/Some%20automation%20scripts/index.html">
+<meta property="og:site_name" content="Lunatic&#39;s Workstation">
+<meta property="og:description" content="这些是本人无聊时写的一些自动化脚本 因为Python学的真的是实在太烂，就想通过写脚本来提升自己Python编程的能力">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-11-25T08:07:19.000Z">
+<meta property="article:modified_time" content="2022-11-25T08:20:29.262Z">
+<meta property="article:author" content="Lunatic">
+<meta property="article:tag" content="Program">
+<meta property="article:tag" content="Scripts">
+<meta property="article:tag" content="Python">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Lunatic&#39;s Workstation" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Lunatic&#39;s Workstation</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://goodlunatic.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Some automation scripts" class="article article-type-post" itemscope
+  itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2022/11/25/Some%20automation%20scripts/" class="article-date">
+  <time datetime="2022-11-25T08:07:19.000Z" itemprop="datePublished">2022-11-25</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Program/">Program</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+    <header class="article-header">
+      
+  
+    <h1 class="article-title" itemprop="name">
+      Some automation scripts
+    </h1>
+  
+
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      <div class="toc-parent">
+  <div id="toc" class="toc-article">
+    <div class="toc-title">目录</div>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%97%AE%E5%8D%B7%E6%98%9F%E6%8A%A2%E5%BF%97%E6%84%BF%E8%80%85"><span class="toc-text">问卷星抢志愿者</span></a></li></ol>
+  </div>
+</div>
+      <p><strong>这些是本人无聊时写的一些自动化脚本</strong></p>
+<p><strong>因为Python学的真的是实在太烂，就想通过写脚本来提升自己Python编程的能力</strong></p>
+<span id="more"></span>
+
+<h2 id="问卷星抢志愿者"><a href="#问卷星抢志愿者" class="headerlink" title="问卷星抢志愿者"></a>问卷星抢志愿者</h2><p>注：有时候还是会有一些小问题，因为还没有加上selenuim防检测和字符串模糊匹配的功能</p>
+<p>​        然后也没有把各种志愿者封装成类，等有空再改进吧。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding: UTF-8 -*-</span></span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">from</span> selenium <span class="keyword">import</span> webdriver</span><br><span class="line"><span class="keyword">from</span> selenium.webdriver.common.by <span class="keyword">import</span> By</span><br><span class="line"><span class="keyword">from</span> selenium.webdriver.chrome.options <span class="keyword">import</span> Options</span><br><span class="line"><span class="keyword">from</span> selenium.webdriver.common.action_chains <span class="keyword">import</span> ActionChains</span><br><span class="line"><span class="keyword">from</span> selenium.webdriver.common.keys <span class="keyword">import</span> Keys</span><br><span class="line"><span class="keyword">from</span> selenium.webdriver.support.wait <span class="keyword">import</span> WebDriverWait</span><br><span class="line"><span class="keyword">from</span> selenium.webdriver.support <span class="keyword">import</span> expected_conditions <span class="keyword">as</span> EC</span><br><span class="line"><span class="keyword">from</span> selenium.webdriver.support.select <span class="keyword">import</span> Select</span><br><span class="line"></span><br><span class="line">chrome_options = webdriver.ChromeOptions()</span><br><span class="line"><span class="comment"># Chrome Options是一个配置chrome启动时属性的类</span></span><br><span class="line"><span class="comment">#使用option参数来防止浏览器闪退</span></span><br><span class="line">chrome_options.add_experimental_option(<span class="string">&quot;detach&quot;</span>, <span class="literal">True</span>)</span><br><span class="line"><span class="comment"># 忽略无用的日志</span></span><br><span class="line">chrome_options.add_experimental_option(<span class="string">&quot;excludeSwitches&quot;</span>,</span><br><span class="line">                                       [<span class="string">&#x27;enable-automation&#x27;</span>, <span class="string">&#x27;enable-logging&#x27;</span>])</span><br><span class="line">chrome_options.add_experimental_option(<span class="string">&#x27;useAutomationExtension&#x27;</span>, <span class="literal">False</span>)</span><br><span class="line"><span class="comment"># 添加实验性质的设置参数 (add_experimental_option)</span></span><br><span class="line">chrome_options.add_argument(<span class="string">&quot;disable-blink-features&quot;</span>)</span><br><span class="line">chrome_options.add_argument(<span class="string">&quot;disable-blink-features=AutomationControlled&quot;</span>)</span><br><span class="line"><span class="comment"># 添加启动参数 (add_argument)</span></span><br><span class="line">driver = webdriver.Chrome(chrome_options=chrome_options)</span><br><span class="line"><span class="comment"># 用webdriver启动Chrome浏览器</span></span><br><span class="line">timing = <span class="string">&#x27;2022-11-14  23:58:30&#x27;</span></span><br><span class="line"><span class="comment"># 定时模块，修改格式按照 &#x27;2020-12-14 19:25:20&#x27; 不要多任何字符</span></span><br><span class="line">t = time.mktime(time.strptime(timing, <span class="string">&quot;%Y-%m-%d %H:%M:%S&quot;</span>))</span><br><span class="line"><span class="comment">#  time.strptime() 函数根据指定的格式把一个时间字符串解析为时间元组。</span></span><br><span class="line"><span class="comment"># time.mktime()函数接收struct_time对象作为参数，返回用秒数来表示时间的浮点数</span></span><br><span class="line"><span class="keyword">while</span> time.time() &lt; t:</span><br><span class="line">    <span class="comment"># 当前时间未到指定时间</span></span><br><span class="line">    <span class="built_in">print</span>(time.time())</span><br><span class="line">    <span class="comment"># time.time()函数返回当前时间的时间戳（1970纪元后经过的浮点秒数）</span></span><br><span class="line">    <span class="comment"># time.sleep(1)</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    <span class="comment"># time.sleep(0.1)</span></span><br><span class="line">    driver.get(<span class="string">&#x27;https://www.wjx.top/vm/r6A81Cx.aspx&#x27;</span>)</span><br><span class="line">    <span class="keyword">if</span> <span class="string">&quot;志愿&quot;</span> <span class="keyword">in</span> driver.page_source:</span><br><span class="line">        <span class="comment"># selenium的page_source方法可以获取到页面源码</span></span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line"></span><br><span class="line">t = time.time()</span><br><span class="line">driver.find_element(By.ID, <span class="string">&quot;q1&quot;</span>).send_keys(<span class="string">&#x27;何同学&#x27;</span>)</span><br><span class="line">driver.find_element(By.ID, <span class="string">&#x27;select2-q2-container&#x27;</span>).click()</span><br><span class="line"><span class="comment"># time.sleep(1)</span></span><br><span class="line">driver.find_elements(By.CLASS_NAME,</span><br><span class="line">                     <span class="string">&#x27;select2-results__option&#x27;</span>)[-<span class="number">2</span>].click()  <span class="comment"># -1是女的，-2是男的</span></span><br><span class="line">driver.find_element(By.ID, <span class="string">&#x27;q3&#x27;</span>).send_keys(<span class="string">&#x27;某某学院&#x27;</span>)</span><br><span class="line">driver.find_element(By.ID, <span class="string">&#x27;q4&#x27;</span>).send_keys(<span class="string">&#x27;某某班级&#x27;</span>)</span><br><span class="line">driver.find_element(By.ID, <span class="string">&#x27;q5&#x27;</span>).send_keys(<span class="string">&#x27;19550587695&#x27;</span>)</span><br><span class="line">driver.find_elements(By.CLASS_NAME, <span class="string">&#x27;label&#x27;</span>)[<span class="number">1</span>].click()</span><br><span class="line">driver.find_elements(By.CLASS_NAME, <span class="string">&#x27;label&#x27;</span>)[<span class="number">3</span>].click()</span><br><span class="line">driver.find_elements(By.CLASS_NAME, <span class="string">&#x27;label&#x27;</span>)[<span class="number">5</span>].click()</span><br><span class="line"><span class="comment"># 这里选择时间；0-9分别对应周一上午、周一下午、周二上午、周二下午等，以此类推</span></span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    btn = driver.find_element(By.ID, <span class="string">&#x27;ctlNext&#x27;</span>)</span><br><span class="line">    ActionChains(driver).move_to_element(btn).perform()</span><br><span class="line">    ActionChains(driver).click(btn).perform()</span><br><span class="line">    ActionChains(driver).release(btn).perform()</span><br><span class="line">    <span class="comment">#模拟鼠标悬停</span></span><br><span class="line"><span class="keyword">except</span>:</span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># time.sleep(0.5)</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    btn = driver.find_element(By.CLASS_NAME, <span class="string">&#x27;mainColor&#x27;</span>)</span><br><span class="line">    ActionChains(driver).move_to_element(btn).perform()</span><br><span class="line">    ActionChains(driver).click(btn).perform()</span><br><span class="line">    ActionChains(driver).release(btn).perform()</span><br><span class="line"></span><br><span class="line"><span class="keyword">except</span>:</span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># time.sleep(0.5)</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    btn = driver.find_element(By.ID, <span class="string">&#x27;rectMask&#x27;</span>)</span><br><span class="line">    ActionChains(driver).move_to_element(btn).perform()</span><br><span class="line">    ActionChains(driver).click(btn).perform()</span><br><span class="line">    ActionChains(driver).release(btn).perform()</span><br><span class="line"></span><br><span class="line"><span class="keyword">except</span>:</span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    btn = driver.find_element(By.CLASS_NAME, <span class="string">&quot;layui-layer-btn0&quot;</span>)</span><br><span class="line">    ActionChains(driver).move_to_element(btn).perform()</span><br><span class="line">    ActionChains(driver).click(btn).perform()</span><br><span class="line">    ActionChains(driver).release(btn).perform()</span><br><span class="line"></span><br><span class="line"><span class="keyword">except</span>:</span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    btn = driver.find_element(By.CLASS_NAME, <span class="string">&quot;rect-bottom&quot;</span>)</span><br><span class="line">    ActionChains(driver).move_to_element(btn).perform()</span><br><span class="line">    ActionChains(driver).click(btn).perform()</span><br><span class="line">    ActionChains(driver).release(btn).perform()</span><br><span class="line"></span><br><span class="line"><span class="keyword">except</span>:</span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(time.time() - t)</span><br><span class="line"><span class="built_in">print</span>(driver.title)</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://goodlunatic.github.io/2022/11/25/Some%20automation%20scripts/" data-id="claw8hiri000bp8v00qmedk4z" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Program/" rel="tag">Program</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Scripts/" rel="tag">Scripts</a></li></ul>
+
+    </footer>
+  </div>
+  
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2022/11/25/CTF%E2%80%94%E2%80%94PWn%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">CTF——PWn刷题记录</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/ACM/">ACM</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CTF/">CTF</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Program/">Program</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/WriteUp/">WriteUp</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/ACM/" style="font-size: 10px;">ACM</a> <a href="/tags/CTF/" style="font-size: 20px;">CTF</a> <a href="/tags/Hexo/" style="font-size: 15px;">Hexo</a> <a href="/tags/Leetcode/" style="font-size: 10px;">Leetcode</a> <a href="/tags/Misc/" style="font-size: 15px;">Misc</a> <a href="/tags/Program/" style="font-size: 15px;">Program</a> <a href="/tags/Pwn/" style="font-size: 15px;">Pwn</a> <a href="/tags/Python/" style="font-size: 10px;">Python</a> <a href="/tags/Scripts/" style="font-size: 10px;">Scripts</a> <a href="/tags/WriteUp/" style="font-size: 10px;">WriteUp</a> <a href="/tags/forensics/" style="font-size: 10px;">forensics</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">November 2022</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">April 2022</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/11/25/Some%20automation%20scripts/">Some automation scripts</a>
+          </li>
+        
+          <li>
+            <a href="/2022/11/25/CTF%E2%80%94%E2%80%94PWn%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/">CTF——PWn刷题记录</a>
+          </li>
+        
+          <li>
+            <a href="/2022/11/25/2022-11-Leetcode%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/">2022.11-Leetcode每日一题</a>
+          </li>
+        
+          <li>
+            <a href="/2022/11/25/The-usage-of-Volatility/">The usage of Volatility</a>
+          </li>
+        
+          <li>
+            <a href="/2022/11/24/%E7%AC%AC%E4%BA%94%E5%B1%8A%E6%B5%99%E6%B1%9F%E7%9C%81%E5%A4%A7%E5%AD%A6%E7%94%9F%E7%BD%91%E7%BB%9C%E4%B8%8E%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E7%AB%9E%E8%B5%9B-%E6%8A%80%E8%83%BD%E6%8C%91%E6%88%98%E8%B5%9BWP/">第五届浙江省大学生网络与信息安全竞赛-技能挑战赛WP</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    <div class="widget-wrap toc">
+  <h3 class="widget-title">Catalog</h3>
+  <div class="widget"></div>
+</div>
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2022 Lunatic<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+<!-- Toc -->
+
+<script src="/js/toc.js"></script>
+
+<!-- Toc -->
+  </div>
+</body>
+</html>
