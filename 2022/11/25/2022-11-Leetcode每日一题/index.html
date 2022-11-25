@@ -7,15 +7,15 @@
   
   <title>2022.11-Leetcode每日一题 | Lunatic&#39;s Workstation</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="November——Leetcode每日一题 因为某些个人原因，Java课学的一团糟，然后也很久没有刷算法题了。于是为了升学和就业着想，就想通过刷Leetcode把算法这块重新拿起来。">
+  <meta name="description" content="November——Leetcode每日一题 因为某些个人原因，Java课学的一团糟，然后也很久没有刷算法题了。 于是为了升学和就业着想，就想通过刷Leetcode把算法这块重新拿起来。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="2022.11-Leetcode每日一题">
 <meta property="og:url" content="https://goodlunatic.github.io/2022/11/25/2022-11-Leetcode%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/index.html">
 <meta property="og:site_name" content="Lunatic&#39;s Workstation">
-<meta property="og:description" content="November——Leetcode每日一题 因为某些个人原因，Java课学的一团糟，然后也很久没有刷算法题了。于是为了升学和就业着想，就想通过刷Leetcode把算法这块重新拿起来。">
+<meta property="og:description" content="November——Leetcode每日一题 因为某些个人原因，Java课学的一团糟，然后也很久没有刷算法题了。 于是为了升学和就业着想，就想通过刷Leetcode把算法这块重新拿起来。">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-11-25T01:37:11.000Z">
-<meta property="article:modified_time" content="2022-11-25T02:27:21.962Z">
+<meta property="article:modified_time" content="2022-11-25T02:44:07.711Z">
 <meta property="article:author" content="Lunatic">
 <meta property="article:tag" content="Leetcode">
 <meta name="twitter:card" content="summary">
@@ -103,7 +103,8 @@
   </div>
 </div>
       <p><strong>November——Leetcode每日一题</strong></p>
-<p><strong>因为某些个人原因，Java课学的一团糟，然后也很久没有刷算法题了。于是为了升学和就业着想，就想通过刷Leetcode把算法这块重新拿起来。</strong></p>
+<p><strong>因为某些个人原因，Java课学的一团糟，然后也很久没有刷算法题了。</strong></p>
+<p><strong>于是为了升学和就业着想，就想通过刷Leetcode把算法这块重新拿起来。</strong></p>
 <span id="more"></span>
 
 <h1 id="1-两数之和"><a href="#1-两数之和" class="headerlink" title="1. 两数之和"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/two-sum/">1. 两数之和</a></h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">LC1TwoSum</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">Scanner</span> <span class="variable">sc</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Scanner</span>(System.in);</span><br><span class="line">        String[] str = sc.nextLine().replace(<span class="string">&quot;[&quot;</span>, <span class="string">&quot;&quot;</span>).replace(<span class="string">&quot;]&quot;</span>, <span class="string">&quot;&quot;</span>).split(<span class="string">&quot;,&quot;</span>);</span><br><span class="line"><span class="comment">//        从键盘输入的字符中定义一个字符串数组</span></span><br><span class="line"><span class="comment">//        next()方法读取到空白符就结束了；</span></span><br><span class="line"><span class="comment">//        nextLine()读取到回车结束也就是“\r”；</span></span><br><span class="line"><span class="comment">//        用replace方法将原字符串中的[]除去，再用split方法以,为分隔符</span></span><br><span class="line"><span class="comment">//        以下是输出数组的方法</span></span><br><span class="line"><span class="comment">//        for (int i = 0; i &lt; str.length; i++) &#123;</span></span><br><span class="line"><span class="comment">//            System.out.println(str[i]);</span></span><br><span class="line"><span class="comment">//        &#125;</span></span><br><span class="line"><span class="comment">//        定义一个int类型的数组</span></span><br><span class="line">        <span class="type">int</span>[] nums = <span class="keyword">new</span> <span class="title class_">int</span>[str.length];</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line">            nums[i] = Integer.parseInt(str[i]);</span><br><span class="line"><span class="comment">// 此方法将 String 参数解析为带符号的十进制整数对象。</span></span><br><span class="line"><span class="comment">// 字符串中的字符必须是十进制数字，除了字符串的第一个字符可以是 ASCII 减号 &#x27;-&#x27; 表示负值或 ASCII 加 &#x27;+&#x27; 符号表示正值。</span></span><br><span class="line"><span class="comment">// 它返回由十进制整数中的参数表示的整数值。</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">int</span> <span class="variable">target</span> <span class="operator">=</span> sc.nextInt();</span><br><span class="line">        <span class="type">int</span>[] result = twoSum(nums, target);</span><br><span class="line"><span class="comment">//        传入参数，第一个是int类型的数组，第二个是int类型的变量</span></span><br><span class="line">        System.out.println(<span class="string">&quot;[&quot;</span> + result[<span class="number">0</span>] + <span class="string">&quot;,&quot;</span> + result[<span class="number">1</span>] + <span class="string">&quot;]&quot;</span>);</span><br><span class="line">        sc.close();</span><br><span class="line"><span class="comment">//        Scanner 使用分隔符模式将其输入分解为标记，默认情况下该分隔符模式与空白匹配。</span></span><br><span class="line"><span class="comment">//        然后可以使用不同的 next 方法将得到的标记转换为不同类型的值</span></span><br><span class="line"><span class="comment">//        Scanner对象只能关闭一次（如果非得关闭的话）</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="type">int</span>[] twoSum(<span class="type">int</span>[] nums, <span class="type">int</span> target) &#123;</span><br><span class="line"><span class="comment">//        该方法返回类型是一个数组</span></span><br><span class="line">        <span class="type">int</span> <span class="variable">n</span> <span class="operator">=</span> nums.length;</span><br><span class="line"><span class="comment">//        n等于输入数组的长度</span></span><br><span class="line">        <span class="type">int</span>[] result = <span class="keyword">new</span> <span class="title class_">int</span>[<span class="number">2</span>];</span><br><span class="line"><span class="comment">//        新建一个长度为2的result数组</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; n - <span class="number">1</span>; i++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> i + <span class="number">1</span>; j &lt; n; j++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (nums[j] == target - nums[i]) &#123;</span><br><span class="line">                    result[<span class="number">0</span>] = i;</span><br><span class="line">                    result[<span class="number">1</span>] = j;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -112,7 +113,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://goodlunatic.github.io/2022/11/25/2022-11-Leetcode%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/" data-id="clavvwmym0001u8v0buvb2wgf" class="article-share-link">Share</a>
+      <a data-url="https://goodlunatic.github.io/2022/11/25/2022-11-Leetcode%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/" data-id="clavwiho40001ikv0e0vd88lt" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Leetcode/" rel="tag">Leetcode</a></li></ul>
@@ -161,7 +162,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">November 2022</a><span class="archive-list-count">8</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">November 2022</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">April 2022</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -186,11 +187,11 @@
           </li>
         
           <li>
-            <a href="/2022/11/24/%E5%A4%A7%E4%B8%80%E4%B8%8A-%E5%AF%B9ACM%E7%9A%84%E5%B0%9D%E8%AF%95%E4%B8%8E%E5%8F%8D%E6%80%9D/">大一上-对ACM的尝试与反思</a>
+            <a href="/2022/11/24/CTF%E2%80%94%E2%80%94Misc%E6%8C%87%E5%8D%97/">CTF——Misc指南</a>
           </li>
         
           <li>
-            <a href="/2022/11/24/CTF%E2%80%94%E2%80%94Misc%E6%8C%87%E5%8D%97/">CTF——Misc指南</a>
+            <a href="/2022/11/24/Hexo%E6%8A%98%E8%85%BE%E6%97%A5%E8%AE%B0/">Hexo折腾日记</a>
           </li>
         
       </ul>
