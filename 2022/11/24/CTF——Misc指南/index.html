@@ -14,17 +14,17 @@
 <meta property="og:site_name" content="Lunatic&#39;s Workstation">
 <meta property="og:description" content="最开始接触CTF时，学的最多的就是Misc，各种编码各种加密还有各种软件的使用… 但无奈MIsc涉及的范围实在太广了，于是就萌生了一边学习一边记录的想法，甚至还想为此写一本指南。">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://goodlunatic.github.io/2022/11/24/CTF%E2%80%94%E2%80%94Misc%E6%8C%87%E5%8D%97/image/clip_image002.jpg">
-<meta property="og:image" content="https://goodlunatic.github.io/2022/11/24/CTF%E2%80%94%E2%80%94Misc%E6%8C%87%E5%8D%97/image/clip_image004.gif">
-<meta property="og:image" content="https://goodlunatic.github.io/2022/11/24/CTF%E2%80%94%E2%80%94Misc%E6%8C%87%E5%8D%97/image/clip_image006.gif">
-<meta property="og:image" content="https://goodlunatic.github.io/2022/11/24/CTF%E2%80%94%E2%80%94Misc%E6%8C%87%E5%8D%97/image/clip_image008.gif">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/1746caad78104b2fa71c278abddcf637.jpeg">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/bbf2650a12c141e98af9265d1b92d031.gif">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/8d1e7e0148af4cdab6e9fcbfccc709f2.gif">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/f80df76244384c72a92cc13fd8e978e1.gif">
 <meta property="article:published_time" content="2022-11-24T11:23:08.000Z">
-<meta property="article:modified_time" content="2022-11-24T12:32:52.242Z">
+<meta property="article:modified_time" content="2022-11-25T01:18:03.095Z">
 <meta property="article:author" content="Lunatic">
 <meta property="article:tag" content="CTF">
 <meta property="article:tag" content="Misc">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://goodlunatic.github.io/2022/11/24/CTF%E2%80%94%E2%80%94Misc%E6%8C%87%E5%8D%97/image/clip_image002.jpg">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/1746caad78104b2fa71c278abddcf637.jpeg">
   
     <link rel="alternate" href="/atom.xml" title="Lunatic&#39;s Workstation" type="application/atom+xml">
   
@@ -149,7 +149,7 @@
 <h2 id="base64隐写："><a href="#base64隐写：" class="headerlink" title="base64隐写："></a>base64隐写：</h2><p>直接用CTFD中的脚本跑出答案就行</p>
 <h2 id="文本加密为音乐符号："><a href="#文本加密为音乐符号：" class="headerlink" title="文本加密为音乐符号："></a>文本加密为音乐符号：</h2><p>eg：♭♯♪‖¶♬♭♭♪♭‖‖♭♭♬‖♫♪‖♩♬‖♬♬♭♭♫‖♩♫‖♬♪♭♭♭‖¶∮‖‖‖‖♩♬‖♬♪‖♩♫♭♭♭♭♭§‖♩♩♭♭♫♭♭♭‖♬♭‖¶§♭♭♯‖♫∮‖♬¶‖¶∮‖♬♫‖♫♬‖♫♫§=</p>
 <p>直接用在线网站解密：<a target="_blank" rel="noopener" href="https://www.qqxiuzi.cn/bianma/wenbenjiami.php?s=yinyue">https://www.qqxiuzi.cn/bianma/wenbenjiami.php?s=yinyue</a></p>
-<p>敲击码：<img src="image/clip_image002.jpg" alt="descript">….. ../… ./… ./… ../ 5,2   3,1  3,1  3,2  W    L   L   M</p>
+<p>敲击码：<img src="https://img-blog.csdnimg.cn/1746caad78104b2fa71c278abddcf637.jpeg" alt="descript">….. ../… ./… ./… ../ 5,2   3,1  3,1  3,2  W    L   L   M</p>
 <h2 id="Polybius密码-详见CTFwiki"><a href="#Polybius密码-详见CTFwiki" class="headerlink" title="Polybius密码(详见CTFwiki)"></a>Polybius密码(详见CTFwiki)</h2><p>类似于11，22，11，24这样的</p>
 <p>去逗号改成空格，拉入随波逐流直接解密</p>
 <h2 id="AES加密（需要key）"><a href="#AES加密（需要key）" class="headerlink" title="AES加密（需要key）"></a>AES加密（需要key）</h2><p>将密文和key拉入CaptfEncoder-win-x64-1.3.0解密</p>
@@ -254,10 +254,10 @@
 <h3 id="15、-bmp宽高爆破："><a href="#15、-bmp宽高爆破：" class="headerlink" title="15、    bmp宽高爆破："></a>15、    bmp宽高爆破：</h3><p>删除文件头，并保存为文件名.data，然后用GIMP打开修改宽高（这个比较方便）</p>
 <p>或者直接用bmp爆破脚本跑</p>
 <h3 id="16、-可以试试用stegdectet看看是什么加密："><a href="#16、-可以试试用stegdectet看看是什么加密：" class="headerlink" title="16、    可以试试用stegdectet看看是什么加密："></a>16、    可以试试用stegdectet看看是什么加密：</h3><p>.\stegdetect.exe -t jopi -s 10.0 .\0.jpg</p>
-<p><img src="image/clip_image004.gif" alt="descript"></p>
+<p><img src="https://img-blog.csdnimg.cn/bbf2650a12c141e98af9265d1b92d031.gif" alt="descript"></p>
 <h3 id="17、-JPHS加密："><a href="#17、-JPHS加密：" class="headerlink" title="17、    JPHS加密："></a>17、    JPHS加密：</h3><p>有可能会有密码</p>
 <p>导出步骤 Select File –&gt; seek –&gt; demo.txt –&gt; Save the file</p>
-<h2 id="【二维码类】："><a href="#【二维码类】：" class="headerlink" title="【二维码类】："></a>【二维码类】：</h2><h3 id="1、-bmp转二维码"><a href="#1、-bmp转二维码" class="headerlink" title="1、     bmp转二维码"></a>1、     bmp转二维码</h3><h3 id="2、-16进制转pyc"><a href="#2、-16进制转pyc" class="headerlink" title="2、     16进制转pyc"></a>2、     16进制转pyc</h3><h3 id="3、-二维码制作二维码"><a href="#3、-二维码制作二维码" class="headerlink" title="3、     二维码制作二维码"></a>3、     二维码制作二维码</h3><h3 id="4、-四个TTL值转换一个字节的二进制数"><a href="#4、-四个TTL值转换一个字节的二进制数" class="headerlink" title="4、     四个TTL值转换一个字节的二进制数"></a>4、     四个TTL值转换一个字节的二进制数</h3><h3 id="5、-aztec-code"><a href="#5、-aztec-code" class="headerlink" title="5、     aztec code"></a>5、     aztec code</h3><p><img src="image/clip_image006.gif" alt="descript"><img src="image/clip_image008.gif" alt="descript"></p>
+<h2 id="【二维码类】："><a href="#【二维码类】：" class="headerlink" title="【二维码类】："></a>【二维码类】：</h2><h3 id="1、-bmp转二维码"><a href="#1、-bmp转二维码" class="headerlink" title="1、     bmp转二维码"></a>1、     bmp转二维码</h3><h3 id="2、-16进制转pyc"><a href="#2、-16进制转pyc" class="headerlink" title="2、     16进制转pyc"></a>2、     16进制转pyc</h3><h3 id="3、-二维码制作二维码"><a href="#3、-二维码制作二维码" class="headerlink" title="3、     二维码制作二维码"></a>3、     二维码制作二维码</h3><h3 id="4、-四个TTL值转换一个字节的二进制数"><a href="#4、-四个TTL值转换一个字节的二进制数" class="headerlink" title="4、     四个TTL值转换一个字节的二进制数"></a>4、     四个TTL值转换一个字节的二进制数</h3><h3 id="5、-aztec-code"><a href="#5、-aztec-code" class="headerlink" title="5、     aztec code"></a>5、     aztec code</h3><p><img src="https://img-blog.csdnimg.cn/8d1e7e0148af4cdab6e9fcbfccc709f2.gif" alt="descript"><img src="https://img-blog.csdnimg.cn/f80df76244384c72a92cc13fd8e978e1.gif" alt="descript"></p>
 <h1 id="MIsc——excel题思路："><a href="#MIsc——excel题思路：" class="headerlink" title="MIsc——excel题思路："></a>MIsc——excel题思路：</h1><p>1、拉入010或者记事本，查找flag</p>
 <h1 id="MIsc——PDF题思路："><a href="#MIsc——PDF题思路：" class="headerlink" title="MIsc——PDF题思路："></a>MIsc——PDF题思路：</h1><p>1、直接binwalk或者foremost解出隐藏文件</p>
 <h1 id="MIsc——txt题思路："><a href="#MIsc——txt题思路：" class="headerlink" title="MIsc——txt题思路："></a>MIsc——txt题思路：</h1><p>1、 有可能是ntfs，直接用NtfsStreamsEditor2扫描所在文件夹，然后导出可疑文件</p>
@@ -312,7 +312,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://goodlunatic.github.io/2022/11/24/CTF%E2%80%94%E2%80%94Misc%E6%8C%87%E5%8D%97/" data-id="clav2htle00019wv04728h05y" class="article-share-link">Share</a>
+      <a data-url="https://goodlunatic.github.io/2022/11/24/CTF%E2%80%94%E2%80%94Misc%E6%8C%87%E5%8D%97/" data-id="clavth3o20003skv05wz6f2n6" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CTF/" rel="tag">CTF</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Misc/" rel="tag">Misc</a></li></ul>
@@ -399,7 +399,7 @@
           </li>
         
           <li>
-            <a href="/2022/11/23/CTF%E2%80%94%E2%80%94Pwn%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/">CTF————Pwn学习记录</a>
+            <a href="/2022/11/23/CTF%E2%80%94%E2%80%94Pwn%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/">CTF——Pwn学习记录</a>
           </li>
         
       </ul>
