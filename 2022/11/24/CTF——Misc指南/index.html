@@ -19,7 +19,7 @@
 <meta property="og:image" content="https://img-blog.csdnimg.cn/8d1e7e0148af4cdab6e9fcbfccc709f2.gif">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/f80df76244384c72a92cc13fd8e978e1.gif">
 <meta property="article:published_time" content="2022-11-24T11:23:08.000Z">
-<meta property="article:modified_time" content="2022-11-25T01:18:03.095Z">
+<meta property="article:modified_time" content="2022-11-27T13:05:46.682Z">
 <meta property="article:author" content="Lunatic">
 <meta property="article:tag" content="CTF">
 <meta property="article:tag" content="Misc">
@@ -201,12 +201,8 @@
 <h3 id="8、-IDAT块隐写"><a href="#8、-IDAT块隐写" class="headerlink" title="8、     IDAT块隐写:"></a>8、     IDAT块隐写:</h3><p>拉到kali里用pngcheck -v 0.png检查IDAT，</p>
 <p>然后用010提取数据扔进zlib脚本解压获得原始数据</p>
 <p>将异常的IDAT数据块斩头去尾之后使用脚本解压，在python2代码如下：</p>
-<p>import zlib</p>
-<p>import binascii</p>
-<p>IDAT = “789C5D91011280400802BF04FFFF5C75294B5537738A21A27D1E49CFD17DB3937A92E7E603880A6D485100901FB0410153350DE83112EA2D51C54CE2E585B15A2FC78E8872F51C6FC1881882F93D372DEF78E665B0C36C529622A0A45588138833A170A2071DDCD18219DB8C0D465D8B6989719645ED9C11C36AE3ABDAEFCFC0ACF023E77C17C7897667”.decode(‘hex’)</p>
-<p>result = binascii.hexlify(zlib.decompress(IDAT))</p>
-<p>print (result.decode(‘hex’))</p>
-<p>print (len(result.decode(‘hex’)))</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> zlib</span><br><span class="line"><span class="keyword">import</span> binascii</span><br><span class="line">IDAT = <span class="string">&quot;789C5D91011280400802BF04FFFF5C75294B5537738A21A27D1E49CFD17DB3937A92E7E603880A6D485100901FB0410153350DE83112EA2D51C54CE2E585B15A2FC78E8872F51C6FC1881882F93D372DEF78E665B0C36C529622A0A45588138833A170A2071DDCD18219DB8C0D465D8B6989719645ED9C11C36AE3ABDAEFCFC0ACF023E77C17C7897667&quot;</span>.decode(<span class="string">&#x27;hex&#x27;</span>)</span><br><span class="line">result = binascii.hexlify(zlib.decompress(IDAT))</span><br><span class="line"><span class="built_in">print</span> (result.decode(<span class="string">&#x27;hex&#x27;</span>))</span><br><span class="line"><span class="built_in">print</span> (<span class="built_in">len</span>(result.decode(<span class="string">&#x27;hex&#x27;</span>)))</span><br></pre></td></tr></table></figure>
+
 <h3 id="9、-png数据末尾藏zip："><a href="#9、-png数据末尾藏zip：" class="headerlink" title="9、     png数据末尾藏zip："></a>9、     png数据末尾藏zip：</h3><p>补上压缩包的文件头，然后提取出来，解压(可用stegpy得到解压密码)。</p>
 <p>或者直接foremost提取</p>
 <h3 id="10、-图片的分离和拼接"><a href="#10、-图片的分离和拼接" class="headerlink" title="10、    图片的分离和拼接"></a>10、    图片的分离和拼接</h3><p>(1)可以用kali的convert分离和montage拼接命令</p>
@@ -312,7 +308,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://goodlunatic.github.io/2022/11/24/CTF%E2%80%94%E2%80%94Misc%E6%8C%87%E5%8D%97/" data-id="clayndv7b00018sv043lv9zkt" class="article-share-link">Share</a>
+      <a data-url="https://goodlunatic.github.io/2022/11/24/CTF%E2%80%94%E2%80%94Misc%E6%8C%87%E5%8D%97/" data-id="clb07qgxf0006lcv040hfbm4z" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CTF/" rel="tag">CTF</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Misc/" rel="tag">Misc</a></li></ul>
@@ -351,7 +347,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/ACM/">ACM</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CTF/">CTF</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Program/">Program</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Raspberry-Pi/">Raspberry-Pi</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/WriteUp/">WriteUp</a><span class="category-list-count">1</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/ACM/">ACM</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CTF/">CTF</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Program/">Program</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Raspberry-Pi/">Raspberry-Pi</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/WriteUp/">WriteUp</a><span class="category-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -361,7 +357,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/ACM/" style="font-size: 10px;">ACM</a> <a href="/tags/CTF/" style="font-size: 20px;">CTF</a> <a href="/tags/Hexo/" style="font-size: 13.33px;">Hexo</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Leetcode/" style="font-size: 10px;">Leetcode</a> <a href="/tags/Misc/" style="font-size: 13.33px;">Misc</a> <a href="/tags/Program/" style="font-size: 16.67px;">Program</a> <a href="/tags/Pwn/" style="font-size: 13.33px;">Pwn</a> <a href="/tags/Python/" style="font-size: 10px;">Python</a> <a href="/tags/Raspberry-Pi/" style="font-size: 10px;">Raspberry-Pi</a> <a href="/tags/Scripts/" style="font-size: 10px;">Scripts</a> <a href="/tags/WriteUp/" style="font-size: 10px;">WriteUp</a> <a href="/tags/forensics/" style="font-size: 10px;">forensics</a>
+      <a href="/tags/ACM/" style="font-size: 10px;">ACM</a> <a href="/tags/CTF/" style="font-size: 20px;">CTF</a> <a href="/tags/Crypto/" style="font-size: 10px;">Crypto</a> <a href="/tags/Hexo/" style="font-size: 13.33px;">Hexo</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Leetcode/" style="font-size: 10px;">Leetcode</a> <a href="/tags/Misc/" style="font-size: 16.67px;">Misc</a> <a href="/tags/Program/" style="font-size: 16.67px;">Program</a> <a href="/tags/Pwn/" style="font-size: 13.33px;">Pwn</a> <a href="/tags/Python/" style="font-size: 10px;">Python</a> <a href="/tags/Raspberry-Pi/" style="font-size: 10px;">Raspberry-Pi</a> <a href="/tags/Scripts/" style="font-size: 10px;">Scripts</a> <a href="/tags/WriteUp/" style="font-size: 10px;">WriteUp</a> <a href="/tags/forensics/" style="font-size: 10px;">forensics</a>
     </div>
   </div>
 
@@ -370,7 +366,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">November 2022</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">April 2022</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">November 2022</a><span class="archive-list-count">13</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">April 2022</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -383,6 +379,14 @@
       <ul>
         
           <li>
+            <a href="/2022/11/28/%E7%AC%AC%E4%BA%94%E5%B1%8A%E5%AE%89%E6%B4%B5%E6%9D%AF%E7%BD%91%E7%BB%9C%E6%8C%91%E6%88%98%E8%B5%9BWP/">第五届安洵杯网络挑战赛WP</a>
+          </li>
+        
+          <li>
+            <a href="/2022/11/27/Hashcat%E8%AF%A6%E8%A7%A3/">Hashcat详解</a>
+          </li>
+        
+          <li>
             <a href="/2022/11/25/Java%20Learning%20Record/">Java Learning Record</a>
           </li>
         
@@ -392,14 +396,6 @@
         
           <li>
             <a href="/2022/11/25/Some%20automation%20scripts/">Some automation scripts</a>
-          </li>
-        
-          <li>
-            <a href="/2022/11/25/CTF%E2%80%94%E2%80%94Pwn%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/">CTF——Pwn刷题记录</a>
-          </li>
-        
-          <li>
-            <a href="/2022/11/25/2022-11-Leetcode%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/">2022.11-Leetcode每日一题</a>
           </li>
         
       </ul>
