@@ -18,7 +18,7 @@
 <meta property="og:image" content="https://docimg2.docs.qq.com/image/AgAABcEmaDSLAM5ppipI3Y4hEu8ul-yY.png?w=964&h=1192">
 <meta property="og:image" content="c:/Users/GoodLunatic/AppData/Roaming/Typora/typora-user-images/image-20221128142602272.png">
 <meta property="article:published_time" content="2022-11-28T01:17:19.000Z">
-<meta property="article:modified_time" content="2022-11-28T08:26:56.493Z">
+<meta property="article:modified_time" content="2022-11-28T10:21:19.132Z">
 <meta property="article:author" content="Lunatic">
 <meta property="article:tag" content="CTF">
 <meta name="twitter:card" content="summary">
@@ -140,11 +140,16 @@
 <p>–&gt;key: 187J3X1&amp;DX3906@!</p>
 <p>解压后又得到一个都是十六进制的文本，可以先转为bytes看一下，</p>
 <p>得到一串base64，然后base64转图片就得到了一张图片</p>
+<p>拉入StegSolve中勾选全通道，仔细找一下就可以得到flag：</p>
+<p>D0g3{W3Lc0Me_T@_E4rth!!}</p>
+<p>也可以用zsteg扫描所有通道，发现有几个通道有特殊的可见文字</p>
+<p>用zsteg导出：zsteg -e b8,bgr,lsb,Xy 0.jfif &gt; flag.txt</p>
+<p>逆序输出一下，也可以得到flag:D0g3{W3Lc0Me_T@_E4rth!!}</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://goodlunatic.github.io/2022/11/28/%E7%AC%AC%E4%BA%94%E5%B1%8A%E5%AE%89%E6%B4%B5%E6%9D%AF%E7%BD%91%E7%BB%9C%E6%8C%91%E6%88%98%E8%B5%9BWP/" data-id="clb0j1sks0010eov0bze56t4h" class="article-share-link">Share</a>
+      <a data-url="https://goodlunatic.github.io/2022/11/28/%E7%AC%AC%E4%BA%94%E5%B1%8A%E5%AE%89%E6%B4%B5%E6%9D%AF%E7%BD%91%E7%BB%9C%E6%8C%91%E6%88%98%E8%B5%9BWP/" data-id="clb0n5qga001v0ov0ggzm3p1s" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CTF/" rel="tag">CTF</a></li></ul>
