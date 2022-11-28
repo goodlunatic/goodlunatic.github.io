@@ -16,8 +16,9 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="c:/Users/GoodLunatic/AppData/Roaming/Typora/typora-user-images/image-20221128092703926.png">
 <meta property="og:image" content="https://docimg2.docs.qq.com/image/AgAABcEmaDSLAM5ppipI3Y4hEu8ul-yY.png?w=964&h=1192">
+<meta property="og:image" content="c:/Users/GoodLunatic/AppData/Roaming/Typora/typora-user-images/image-20221128142602272.png">
 <meta property="article:published_time" content="2022-11-28T01:17:19.000Z">
-<meta property="article:modified_time" content="2022-11-28T02:06:45.752Z">
+<meta property="article:modified_time" content="2022-11-28T08:26:56.493Z">
 <meta property="article:author" content="Lunatic">
 <meta property="article:tag" content="CTF">
 <meta name="twitter:card" content="summary">
@@ -102,7 +103,7 @@
       <div class="toc-parent">
   <div id="toc" class="toc-article">
     <div class="toc-title">目录</div>
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Crypto"><span class="toc-text">Crypto</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Cry1"><span class="toc-text">Cry1</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Misc"><span class="toc-text">Misc</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#GumpKing"><span class="toc-text">GumpKing</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%B8%80"><span class="toc-text">方法一</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%BA%8C"><span class="toc-text">方法二</span></a></li></ol></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#REVERSE"><span class="toc-text">REVERSE</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Crypto"><span class="toc-text">Crypto</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Cry1"><span class="toc-text">Cry1</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Misc"><span class="toc-text">Misc</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#GumpKing"><span class="toc-text">GumpKing</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%B8%80"><span class="toc-text">方法一</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%BA%8C"><span class="toc-text">方法二</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RedCoast"><span class="toc-text">RedCoast</span></a></li></ol></li></ol>
   </div>
 </div>
       <p><strong>因为最近在忙别的东西，就有一段时间没有好好地打CTF比赛，</strong></p>
@@ -110,7 +111,7 @@
 <span id="more"></span>
 
 <p><strong>比赛的时候没有做出几道题，那就赛后复现一下吧</strong></p>
-<h1 id="Crypto"><a href="#Crypto" class="headerlink" title="Crypto"></a>Crypto</h1><h2 id="Cry1"><a href="#Cry1" class="headerlink" title="Cry1"></a>Cry1</h2><p>crypto签到题，就是先对SHA256的哈希值进行爆破，然后猜数字</p>
+<h1 id="REVERSE"><a href="#REVERSE" class="headerlink" title="REVERSE"></a>REVERSE</h1><h1 id="Crypto"><a href="#Crypto" class="headerlink" title="Crypto"></a>Crypto</h1><h2 id="Cry1"><a href="#Cry1" class="headerlink" title="Cry1"></a>Cry1</h2><p>crypto签到题，就是先对SHA256的哈希值进行爆破，然后猜数字</p>
 <p>用hashcat一条命令秒穿</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hashcat --custom-charset1 ?d?l?u -a 3 -m 1400 3075696ea46516c3a0a43930fab5a0f1c68ea4b315dd87a9cd123dac7f20f3a6 ?1?1?1?1GJWVMYlh5ApWLbFf</span><br></pre></td></tr></table></figure>
 
@@ -122,11 +123,28 @@
 <h3 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a>方法二</h3><p>直接拿Cheat Engine扫描内存，改参数</p>
 <p><img src="https://docimg2.docs.qq.com/image/AgAABcEmaDSLAM5ppipI3Y4hEu8ul-yY.png?w=964&h=1192" alt="img"></p>
 <p>当数值大于100时就可以得到flag：1145141919810</p>
+<h2 id="RedCoast"><a href="#RedCoast" class="headerlink" title="RedCoast"></a>RedCoast</h2><p>得到一个Signal文件，打开是一堆01</p>
+<p>用脚本转换一下</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;Signal&#x27;</span>, <span class="string">&#x27;r&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">    con = f.read()</span><br><span class="line"><span class="comment"># print(int(con,2))</span></span><br><span class="line"><span class="built_in">print</span>(long_to_bytes(<span class="built_in">int</span>(con,<span class="number">2</span>)))</span><br><span class="line"><span class="comment"># int()函数用于将一个字符串或数字转换为整型(转换为十进制)</span></span><br><span class="line"><span class="comment">#语法：class int(x, base=10) x是字符串或者数字	base是进制数，默认十进制</span></span><br><span class="line">&gt;&gt;&gt;<span class="built_in">int</span>(<span class="string">&#x27;12&#x27;</span>,<span class="number">16</span>)</span><br><span class="line"><span class="number">18</span></span><br><span class="line"><span class="comment">#long_to_bytes返回表示整数的字节数组，就是将正整数转化为byte类型字符串</span></span><br><span class="line"><span class="comment">#下面两个函数可以互相转换</span></span><br><span class="line"><span class="comment">#from Crypto.Util.number import *</span></span><br><span class="line"><span class="comment">#print (long_to_bytes(126943972912743))</span></span><br><span class="line"><span class="comment">#print (bytes_to_long(b&#x27;string&#x27;))</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="C:\Users\GoodLunatic\AppData\Roaming\Typora\typora-user-images\image-20221128142602272.png" alt="image-20221128142602272"></p>
+<p>发现压缩包的标志PK</p>
+<p>将二进制转换为为十进制，再转换为bytes，保存为zip文件：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;Signal&#x27;</span>, <span class="string">&#x27;r&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">    con = f.read()</span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;signal.zip&#x27;</span>, <span class="string">&#x27;wb&#x27;</span>) <span class="keyword">as</span> f2:</span><br><span class="line">    f2.write(long_to_bytes(<span class="built_in">int</span>(con,<span class="number">2</span>)))</span><br><span class="line"><span class="comment">#Tips：r、w、rb、wb的区别</span></span><br><span class="line"><span class="comment">#&quot;r&quot;   以读方式打开，只能读文件 ， 如果文件不存在，会发生异常      </span></span><br><span class="line"><span class="comment"># &quot;w&quot; 以写方式打开，只能写文件， 如果文件不存在，创建该文件；如果文件已存在，先清空，再打开文件</span></span><br><span class="line"><span class="comment"># &quot;rb&quot;   以二进制读方式打开，只能读文件 ， 如果文件不存在，会发生异常</span></span><br><span class="line"><span class="comment"># &quot;wb&quot; 以二进制写方式打开，只能写文件， 如果文件不存在，创建该文件；如果文件已存在，先清空，再打开文件</span></span><br></pre></td></tr></table></figure>
+
+<p>解压压缩包，得到625张黑白图片还有一个加密的压缩包</p>
+<p>将图片用脚本合成一张二维码</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"></span><br><span class="line">IMAGES_PATH = <span class="string">&#x27;signal~\\&#x27;</span>  <span class="comment"># 图片集地址</span></span><br><span class="line">IMAGES_FORMAT = [<span class="string">&#x27;.png&#x27;</span>, <span class="string">&#x27;.PNG&#x27;</span>]  <span class="comment"># 图片格式</span></span><br><span class="line">IMAGE_WIDTH = <span class="number">100</span>  <span class="comment"># 每张小图片的大小</span></span><br><span class="line">IMAGE_HEIGHT = <span class="number">100</span>  <span class="comment"># 每张小图片的大小</span></span><br><span class="line">IMAGE_ROW = <span class="number">25</span>  <span class="comment"># 图片间隔，也就是合并成一张图后，一共有几行</span></span><br><span class="line">IMAGE_COLUMN = <span class="number">25</span>  <span class="comment"># 图片间隔，也就是合并成一张图后，一共有几列</span></span><br><span class="line">IMAGE_SAVE_PATH = <span class="string">&#x27;final.jpg&#x27;</span>  <span class="comment"># 图片转换后的地址</span></span><br><span class="line"></span><br><span class="line">newimg = Image.new(<span class="string">&#x27;RGB&#x27;</span>,(IMAGE_COLUMN * IMAGE_HEIGHT, IMAGE_ROW * IMAGE_WIDTH))</span><br><span class="line"><span class="keyword">for</span> y <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">25</span>):</span><br><span class="line">    <span class="keyword">for</span> x <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">25</span>):</span><br><span class="line">        timg = Image.<span class="built_in">open</span>(IMAGES_PATH + <span class="built_in">str</span>(y*IMAGE_COLUMN + x) + <span class="string">&#x27;.png&#x27;</span>)</span><br><span class="line">        newimg.paste(timg, (x*IMAGE_WIDTH, y*IMAGE_HEIGHT))</span><br><span class="line">newimg.save(<span class="string">&#x27;new.png&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>扫描二维码得到压缩包密码：</p>
+<p>–&gt;key: 187J3X1&amp;DX3906@!</p>
+<p>解压后又得到一个都是十六进制的文本，可以先转为bytes看一下，</p>
+<p>得到一串base64，然后base64转图片就得到了一张图片</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://goodlunatic.github.io/2022/11/28/%E7%AC%AC%E4%BA%94%E5%B1%8A%E5%AE%89%E6%B4%B5%E6%9D%AF%E7%BD%91%E7%BB%9C%E6%8C%91%E6%88%98%E8%B5%9BWP/" data-id="clb07qgxn001clcv05jwq2ahv" class="article-share-link">Share</a>
+      <a data-url="https://goodlunatic.github.io/2022/11/28/%E7%AC%AC%E4%BA%94%E5%B1%8A%E5%AE%89%E6%B4%B5%E6%9D%AF%E7%BD%91%E7%BB%9C%E6%8C%91%E6%88%98%E8%B5%9BWP/" data-id="clb0j1sks0010eov0bze56t4h" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CTF/" rel="tag">CTF</a></li></ul>
@@ -136,6 +154,15 @@
   
   
 <nav id="article-nav">
+  
+    <a href="/2022/11/28/Python%20Learning%20Record/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Python Learning Record
+        
+      </div>
+    </a>
   
   
     <a href="/2022/11/27/Hashcat%E8%AF%A6%E8%A7%A3/" id="article-nav-older" class="article-nav-link-wrap">
@@ -156,7 +183,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/ACM/">ACM</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CTF/">CTF</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Program/">Program</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Raspberry-Pi/">Raspberry-Pi</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/WriteUp/">WriteUp</a><span class="category-list-count">1</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/ACM/">ACM</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CTF/">CTF</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Program/">Program</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Raspberry-Pi/">Raspberry-Pi</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/WriteUp/">WriteUp</a><span class="category-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -166,7 +193,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/ACM/" style="font-size: 10px;">ACM</a> <a href="/tags/CTF/" style="font-size: 20px;">CTF</a> <a href="/tags/Crypto/" style="font-size: 10px;">Crypto</a> <a href="/tags/Hexo/" style="font-size: 13.33px;">Hexo</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Leetcode/" style="font-size: 10px;">Leetcode</a> <a href="/tags/Misc/" style="font-size: 16.67px;">Misc</a> <a href="/tags/Program/" style="font-size: 16.67px;">Program</a> <a href="/tags/Pwn/" style="font-size: 13.33px;">Pwn</a> <a href="/tags/Python/" style="font-size: 10px;">Python</a> <a href="/tags/Raspberry-Pi/" style="font-size: 10px;">Raspberry-Pi</a> <a href="/tags/Scripts/" style="font-size: 10px;">Scripts</a> <a href="/tags/WriteUp/" style="font-size: 10px;">WriteUp</a> <a href="/tags/forensics/" style="font-size: 10px;">forensics</a>
+      <a href="/tags/ACM/" style="font-size: 10px;">ACM</a> <a href="/tags/CTF/" style="font-size: 20px;">CTF</a> <a href="/tags/Crypto/" style="font-size: 10px;">Crypto</a> <a href="/tags/Hexo/" style="font-size: 12.5px;">Hexo</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Leetcode/" style="font-size: 10px;">Leetcode</a> <a href="/tags/Misc/" style="font-size: 15px;">Misc</a> <a href="/tags/Program/" style="font-size: 17.5px;">Program</a> <a href="/tags/Pwn/" style="font-size: 12.5px;">Pwn</a> <a href="/tags/Python/" style="font-size: 12.5px;">Python</a> <a href="/tags/Raspberry-Pi/" style="font-size: 10px;">Raspberry-Pi</a> <a href="/tags/Scripts/" style="font-size: 10px;">Scripts</a> <a href="/tags/WriteUp/" style="font-size: 10px;">WriteUp</a> <a href="/tags/forensics/" style="font-size: 10px;">forensics</a>
     </div>
   </div>
 
@@ -175,7 +202,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">November 2022</a><span class="archive-list-count">13</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">April 2022</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">November 2022</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">April 2022</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -186,6 +213,10 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2022/11/28/Python%20Learning%20Record/">Python Learning Record</a>
+          </li>
         
           <li>
             <a href="/2022/11/28/%E7%AC%AC%E4%BA%94%E5%B1%8A%E5%AE%89%E6%B4%B5%E6%9D%AF%E7%BD%91%E7%BB%9C%E6%8C%91%E6%88%98%E8%B5%9BWP/">第五届安洵杯网络挑战赛WP</a>
@@ -201,10 +232,6 @@
         
           <li>
             <a href="/2022/11/25/Raspberry%20Pi%204B%20%E6%8A%98%E8%85%BE%E8%AE%B0%E5%BD%95/">Raspberry Pi 4B 折腾记录</a>
-          </li>
-        
-          <li>
-            <a href="/2022/11/25/Some%20automation%20scripts/">Some automation scripts</a>
           </li>
         
       </ul>

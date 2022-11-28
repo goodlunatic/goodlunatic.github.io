@@ -5,19 +5,20 @@
   
 
   
-  <title>Hello World | Lunatic&#39;s Workstation</title>
+  <title>Python Learning Record | Lunatic&#39;s Workstation</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.">
+  <meta name="description" content="Python Learning Record">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="https://goodlunatic.github.io/2022/11/22/hello-world/index.html">
+<meta property="og:title" content="Python Learning Record">
+<meta property="og:url" content="https://goodlunatic.github.io/2022/11/28/Python%20Learning%20Record/index.html">
 <meta property="og:site_name" content="Lunatic&#39;s Workstation">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.">
+<meta property="og:description" content="Python Learning Record">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2022-11-22T15:48:23.000Z">
-<meta property="article:modified_time" content="2022-11-24T11:24:09.918Z">
+<meta property="article:published_time" content="2022-11-28T06:53:04.000Z">
+<meta property="article:modified_time" content="2022-11-28T07:04:42.380Z">
 <meta property="article:author" content="Lunatic">
-<meta property="article:tag" content="Hexo">
+<meta property="article:tag" content="Program">
+<meta property="article:tag" content="Python">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternate" href="/atom.xml" title="Lunatic&#39;s Workstation" type="application/atom+xml">
@@ -69,15 +70,15 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-hello-world" class="article article-type-post" itemscope
+        <section id="main"><article id="post-Python Learning Record" class="article article-type-post" itemscope
   itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2022/11/22/hello-world/" class="article-date">
-  <time datetime="2022-11-22T15:48:23.000Z" itemprop="datePublished">2022-11-22</time>
+    <a href="/2022/11/28/Python%20Learning%20Record/" class="article-date">
+  <time datetime="2022-11-28T06:53:04.000Z" itemprop="datePublished">2022-11-28</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/Hexo/">Hexo</a>
+    <a class="article-category-link" href="/categories/Program/">Program</a>
   </div>
 
   </div>
@@ -88,7 +89,7 @@
       
   
     <h1 class="article-title" itemprop="name">
-      Hello World
+      Python Learning Record
     </h1>
   
 
@@ -99,32 +100,22 @@
       <div class="toc-parent">
   <div id="toc" class="toc-article">
     <div class="toc-title">目录</div>
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Quick-Start"><span class="toc-text">Quick Start</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Create-a-new-post"><span class="toc-text">Create a new post</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Run-server"><span class="toc-text">Run server</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Generate-static-files"><span class="toc-text">Generate static files</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Deploy-to-remote-sites"><span class="toc-text">Deploy to remote sites</span></a></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#PIL%E2%80%94%E2%80%94-Pillow-%E5%BA%93%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="toc-text">PIL——(Pillow)库的使用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BE%8B%E5%AD%90"><span class="toc-text">例子</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1%E3%80%81%E5%B0%86%E5%B0%8F%E5%9B%BE%E7%89%87%E5%90%88%E6%88%90%E4%B8%BA%E5%A4%A7%E5%9B%BE%E7%89%87-%E4%BA%8C%E7%BB%B4%E7%A0%81"><span class="toc-text">1、将小图片合成为大图片(二维码)</span></a></li></ol></li></ol></li></ol></li></ol>
   </div>
 </div>
-      <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+      <p><strong>Python Learning Record</strong></p>
 <span id="more"></span>
 
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+<h1 id="PIL——-Pillow-库的使用"><a href="#PIL——-Pillow-库的使用" class="headerlink" title="PIL——(Pillow)库的使用"></a>PIL——(Pillow)库的使用</h1><h3 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h3><h4 id="1、将小图片合成为大图片-二维码"><a href="#1、将小图片合成为大图片-二维码" class="headerlink" title="1、将小图片合成为大图片(二维码)"></a>1、将小图片合成为大图片(二维码)</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"></span><br><span class="line">IMAGES_PATH = <span class="string">&#x27;signal1\\&#x27;</span>  <span class="comment"># 图片集（文件夹）地址</span></span><br><span class="line">IMAGES_FORMAT = [<span class="string">&#x27;.png&#x27;</span>, <span class="string">&#x27;.PNG&#x27;</span>]  <span class="comment"># 图片格式</span></span><br><span class="line">IMAGE_WIDTH = <span class="number">100</span>  <span class="comment"># 每张小图片的宽</span></span><br><span class="line">IMAGE_HEIGHT = <span class="number">100</span>  <span class="comment"># 每张小图片的高</span></span><br><span class="line">IMAGE_ROW = <span class="number">25</span>  <span class="comment"># 大图片一共有几行</span></span><br><span class="line">IMAGE_COLUMN = <span class="number">25</span>  <span class="comment"># 大图片一共有几列</span></span><br><span class="line"><span class="comment"># IMAGE_SAVE_PATH = &#x27;final.jpg&#x27;  # 图片转换后的地址</span></span><br><span class="line"></span><br><span class="line">newimg = Image.new(<span class="string">&#x27;RGB&#x27;</span>,(IMAGE_COLUMN * IMAGE_HEIGHT, IMAGE_ROW * IMAGE_WIDTH))</span><br><span class="line"><span class="comment"># 新建一个2500x2500的图像</span></span><br><span class="line"><span class="keyword">for</span> y <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">25</span>):</span><br><span class="line">    <span class="keyword">for</span> x <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">25</span>):</span><br><span class="line">        timg = Image.<span class="built_in">open</span>(IMAGES_PATH + <span class="built_in">str</span>(y*IMAGE_COLUMN + x) + <span class="string">&#x27;.png&#x27;</span>)</span><br><span class="line">        <span class="comment"># 打开文件夹中的图片</span></span><br><span class="line">        newimg.paste(timg, (x*IMAGE_WIDTH, y*IMAGE_HEIGHT))</span><br><span class="line">        <span class="comment"># 将打开的图片粘贴到newimg的指定位置</span></span><br><span class="line">newimg.save(<span class="string">&#x27;new.png&#x27;</span>)</span><br><span class="line"><span class="comment"># 将图片保存new.png</span></span><br></pre></td></tr></table></figure>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://goodlunatic.github.io/2022/11/22/hello-world/" data-id="clb0j1skq000meov010y73uw6" class="article-share-link">Share</a>
+      <a data-url="https://goodlunatic.github.io/2022/11/28/Python%20Learning%20Record/" data-id="clb0j1skm0008eov0h48jayxl" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Program/" rel="tag">Program</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/" rel="tag">Python</a></li></ul>
 
     </footer>
   </div>
@@ -132,19 +123,10 @@
   
 <nav id="article-nav">
   
-    <a href="/2022/11/23/CTF%E2%80%94%E2%80%94Pwn%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          CTF——Pwn学习记录
-        
-      </div>
-    </a>
   
-  
-    <a href="/2022/04/27/%E5%A4%A7%E4%B8%80%E4%B8%8A-%E5%AF%B9ACM%E7%9A%84%E5%B0%9D%E8%AF%95%E4%B8%8E%E5%8F%8D%E6%80%9D/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2022/11/28/%E7%AC%AC%E4%BA%94%E5%B1%8A%E5%AE%89%E6%B4%B5%E6%9D%AF%E7%BD%91%E7%BB%9C%E6%8C%91%E6%88%98%E8%B5%9BWP/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">大一上-对ACM的尝试与反思</div>
+      <div class="article-nav-title">第五届安洵杯网络挑战赛WP</div>
     </a>
   
 </nav>
