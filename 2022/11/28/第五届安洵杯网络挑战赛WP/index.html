@@ -14,15 +14,15 @@
 <meta property="og:site_name" content="Lunatic&#39;s Workstation">
 <meta property="og:description" content="因为最近在忙别的东西，就有一段时间没有好好地打CTF比赛， 然后昨天刚刚好有一个安洵杯，就想着稍微打一打找找感觉。">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="c:/Users/GoodLunatic/AppData/Roaming/Typora/typora-user-images/image-20221128092703926.png">
-<meta property="og:image" content="https://docimg2.docs.qq.com/image/AgAABcEmaDSLAM5ppipI3Y4hEu8ul-yY.png?w=964&h=1192">
-<meta property="og:image" content="c:/Users/GoodLunatic/AppData/Roaming/Typora/typora-user-images/image-20221128142602272.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/820514ab6bac433fb8357f38016bd440.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/img_convert/2203b4328e57fc8975d7fd3cba65b6da.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/e18aa64525d7419fa6969ab1f1298ca0.png">
 <meta property="article:published_time" content="2022-11-28T01:17:19.000Z">
-<meta property="article:modified_time" content="2022-11-28T10:21:19.132Z">
+<meta property="article:modified_time" content="2022-11-28T10:30:43.866Z">
 <meta property="article:author" content="Lunatic">
 <meta property="article:tag" content="CTF">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="c:/Users/GoodLunatic/AppData/Roaming/Typora/typora-user-images/image-20221128092703926.png">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/820514ab6bac433fb8357f38016bd440.png">
   
     <link rel="alternate" href="/atom.xml" title="Lunatic&#39;s Workstation" type="application/atom+xml">
   
@@ -118,16 +118,16 @@
 <p>参数说明</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">--custom-charset1 ?d?l?u 自定义字符集1——?d?l?u 大小写字母加数字</span><br><span class="line">-a 3 使用暴力破解的攻击方法</span><br><span class="line">-m 1400 破解<span class="built_in">hash</span>的类型是sha256</span><br></pre></td></tr></table></figure>
 
-<p><img src="C:\Users\GoodLunatic\AppData\Roaming\Typora\typora-user-images\image-20221128092703926.png" alt="image-20221128092703926"></p>
+<p><img src="https://img-blog.csdnimg.cn/820514ab6bac433fb8357f38016bd440.png" alt="image-20221128092703926"></p>
 <h1 id="Misc"><a href="#Misc" class="headerlink" title="Misc"></a>Misc</h1><h2 id="GumpKing"><a href="#GumpKing" class="headerlink" title="GumpKing"></a>GumpKing</h2><h3 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h3><p>玩游戏跳到100分</p>
 <h3 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a>方法二</h3><p>直接拿Cheat Engine扫描内存，改参数</p>
-<p><img src="https://docimg2.docs.qq.com/image/AgAABcEmaDSLAM5ppipI3Y4hEu8ul-yY.png?w=964&h=1192" alt="img"></p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/2203b4328e57fc8975d7fd3cba65b6da.png" alt="img"></p>
 <p>当数值大于100时就可以得到flag：1145141919810</p>
 <h2 id="RedCoast"><a href="#RedCoast" class="headerlink" title="RedCoast"></a>RedCoast</h2><p>得到一个Signal文件，打开是一堆01</p>
 <p>用脚本转换一下</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;Signal&#x27;</span>, <span class="string">&#x27;r&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">    con = f.read()</span><br><span class="line"><span class="comment"># print(int(con,2))</span></span><br><span class="line"><span class="built_in">print</span>(long_to_bytes(<span class="built_in">int</span>(con,<span class="number">2</span>)))</span><br><span class="line"><span class="comment"># int()函数用于将一个字符串或数字转换为整型(转换为十进制)</span></span><br><span class="line"><span class="comment">#语法：class int(x, base=10) x是字符串或者数字	base是进制数，默认十进制</span></span><br><span class="line">&gt;&gt;&gt;<span class="built_in">int</span>(<span class="string">&#x27;12&#x27;</span>,<span class="number">16</span>)</span><br><span class="line"><span class="number">18</span></span><br><span class="line"><span class="comment">#long_to_bytes返回表示整数的字节数组，就是将正整数转化为byte类型字符串</span></span><br><span class="line"><span class="comment">#下面两个函数可以互相转换</span></span><br><span class="line"><span class="comment">#from Crypto.Util.number import *</span></span><br><span class="line"><span class="comment">#print (long_to_bytes(126943972912743))</span></span><br><span class="line"><span class="comment">#print (bytes_to_long(b&#x27;string&#x27;))</span></span><br></pre></td></tr></table></figure>
 
-<p><img src="C:\Users\GoodLunatic\AppData\Roaming\Typora\typora-user-images\image-20221128142602272.png" alt="image-20221128142602272"></p>
+<p><img src="https://img-blog.csdnimg.cn/e18aa64525d7419fa6969ab1f1298ca0.png" alt="image-20221128142602272"></p>
 <p>发现压缩包的标志PK</p>
 <p>将二进制转换为为十进制，再转换为bytes，保存为zip文件：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;Signal&#x27;</span>, <span class="string">&#x27;r&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">    con = f.read()</span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;signal.zip&#x27;</span>, <span class="string">&#x27;wb&#x27;</span>) <span class="keyword">as</span> f2:</span><br><span class="line">    f2.write(long_to_bytes(<span class="built_in">int</span>(con,<span class="number">2</span>)))</span><br><span class="line"><span class="comment">#Tips：r、w、rb、wb的区别</span></span><br><span class="line"><span class="comment">#&quot;r&quot;   以读方式打开，只能读文件 ， 如果文件不存在，会发生异常      </span></span><br><span class="line"><span class="comment"># &quot;w&quot; 以写方式打开，只能写文件， 如果文件不存在，创建该文件；如果文件已存在，先清空，再打开文件</span></span><br><span class="line"><span class="comment"># &quot;rb&quot;   以二进制读方式打开，只能读文件 ， 如果文件不存在，会发生异常</span></span><br><span class="line"><span class="comment"># &quot;wb&quot; 以二进制写方式打开，只能写文件， 如果文件不存在，创建该文件；如果文件已存在，先清空，再打开文件</span></span><br></pre></td></tr></table></figure>
@@ -149,7 +149,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://goodlunatic.github.io/2022/11/28/%E7%AC%AC%E4%BA%94%E5%B1%8A%E5%AE%89%E6%B4%B5%E6%9D%AF%E7%BD%91%E7%BB%9C%E6%8C%91%E6%88%98%E8%B5%9BWP/" data-id="clb0nej0x0024tkv05c1c0bdy" class="article-share-link">Share</a>
+      <a data-url="https://goodlunatic.github.io/2022/11/28/%E7%AC%AC%E4%BA%94%E5%B1%8A%E5%AE%89%E6%B4%B5%E6%9D%AF%E7%BD%91%E7%BB%9C%E6%8C%91%E6%88%98%E8%B5%9BWP/" data-id="clb0ngng7000tvkv0cg3b5b42" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CTF/" rel="tag">CTF</a></li></ul>
