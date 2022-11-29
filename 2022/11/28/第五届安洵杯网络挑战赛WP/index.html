@@ -18,7 +18,7 @@
 <meta property="og:image" content="https://img-blog.csdnimg.cn/img_convert/2203b4328e57fc8975d7fd3cba65b6da.png">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/e18aa64525d7419fa6969ab1f1298ca0.png">
 <meta property="article:published_time" content="2022-11-28T01:17:19.000Z">
-<meta property="article:modified_time" content="2022-11-28T10:30:43.866Z">
+<meta property="article:modified_time" content="2022-11-29T01:13:36.962Z">
 <meta property="article:author" content="Lunatic">
 <meta property="article:tag" content="CTF">
 <meta name="twitter:card" content="summary">
@@ -103,7 +103,7 @@
       <div class="toc-parent">
   <div id="toc" class="toc-article">
     <div class="toc-title">目录</div>
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#REVERSE"><span class="toc-text">REVERSE</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Crypto"><span class="toc-text">Crypto</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Cry1"><span class="toc-text">Cry1</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Misc"><span class="toc-text">Misc</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#GumpKing"><span class="toc-text">GumpKing</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%B8%80"><span class="toc-text">方法一</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%BA%8C"><span class="toc-text">方法二</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RedCoast"><span class="toc-text">RedCoast</span></a></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Crypto"><span class="toc-text">Crypto</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Cry1"><span class="toc-text">Cry1</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Misc"><span class="toc-text">Misc</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#GumpKing"><span class="toc-text">GumpKing</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%B8%80"><span class="toc-text">方法一</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%BA%8C"><span class="toc-text">方法二</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RedCoast"><span class="toc-text">RedCoast</span></a></li></ol></li></ol>
   </div>
 </div>
       <p><strong>因为最近在忙别的东西，就有一段时间没有好好地打CTF比赛，</strong></p>
@@ -111,7 +111,7 @@
 <span id="more"></span>
 
 <p><strong>比赛的时候没有做出几道题，那就赛后复现一下吧</strong></p>
-<h1 id="REVERSE"><a href="#REVERSE" class="headerlink" title="REVERSE"></a>REVERSE</h1><h1 id="Crypto"><a href="#Crypto" class="headerlink" title="Crypto"></a>Crypto</h1><h2 id="Cry1"><a href="#Cry1" class="headerlink" title="Cry1"></a>Cry1</h2><p>crypto签到题，就是先对SHA256的哈希值进行爆破，然后猜数字</p>
+<h1 id="Crypto"><a href="#Crypto" class="headerlink" title="Crypto"></a>Crypto</h1><h2 id="Cry1"><a href="#Cry1" class="headerlink" title="Cry1"></a>Cry1</h2><p>crypto签到题，就是先对SHA256的哈希值进行爆破，然后猜数字</p>
 <p>用hashcat一条命令秒穿</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hashcat --custom-charset1 ?d?l?u -a 3 -m 1400 3075696ea46516c3a0a43930fab5a0f1c68ea4b315dd87a9cd123dac7f20f3a6 ?1?1?1?1GJWVMYlh5ApWLbFf</span><br></pre></td></tr></table></figure>
 
@@ -149,7 +149,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://goodlunatic.github.io/2022/11/28/%E7%AC%AC%E4%BA%94%E5%B1%8A%E5%AE%89%E6%B4%B5%E6%9D%AF%E7%BD%91%E7%BB%9C%E6%8C%91%E6%88%98%E8%B5%9BWP/" data-id="clb0ngng7000tvkv0cg3b5b42" class="article-share-link">Share</a>
+      <a data-url="https://goodlunatic.github.io/2022/11/28/%E7%AC%AC%E4%BA%94%E5%B1%8A%E5%AE%89%E6%B4%B5%E6%9D%AF%E7%BD%91%E7%BB%9C%E6%8C%91%E6%88%98%E8%B5%9BWP/" data-id="clb23v75t0018jgv0f10mhgap" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CTF/" rel="tag">CTF</a></li></ul>
@@ -188,7 +188,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/ACM/">ACM</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CTF/">CTF</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Program/">Program</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Raspberry-Pi/">Raspberry-Pi</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/WriteUp/">WriteUp</a><span class="category-list-count">1</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/ACM/">ACM</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CTF/">CTF</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Program/">Program</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Raspberry-Pi/">Raspberry-Pi</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/WriteUp/">WriteUp</a><span class="category-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -198,7 +198,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/ACM/" style="font-size: 10px;">ACM</a> <a href="/tags/CTF/" style="font-size: 20px;">CTF</a> <a href="/tags/Crypto/" style="font-size: 10px;">Crypto</a> <a href="/tags/Hexo/" style="font-size: 12.5px;">Hexo</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Leetcode/" style="font-size: 10px;">Leetcode</a> <a href="/tags/Misc/" style="font-size: 15px;">Misc</a> <a href="/tags/Program/" style="font-size: 17.5px;">Program</a> <a href="/tags/Pwn/" style="font-size: 12.5px;">Pwn</a> <a href="/tags/Python/" style="font-size: 12.5px;">Python</a> <a href="/tags/Raspberry-Pi/" style="font-size: 10px;">Raspberry-Pi</a> <a href="/tags/Scripts/" style="font-size: 10px;">Scripts</a> <a href="/tags/WriteUp/" style="font-size: 10px;">WriteUp</a> <a href="/tags/forensics/" style="font-size: 10px;">forensics</a>
+      <a href="/tags/ACM/" style="font-size: 10px;">ACM</a> <a href="/tags/CTF/" style="font-size: 20px;">CTF</a> <a href="/tags/Crypto/" style="font-size: 10px;">Crypto</a> <a href="/tags/Hexo/" style="font-size: 13.33px;">Hexo</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Leetcode/" style="font-size: 10px;">Leetcode</a> <a href="/tags/Misc/" style="font-size: 16.67px;">Misc</a> <a href="/tags/Program/" style="font-size: 16.67px;">Program</a> <a href="/tags/Pwn/" style="font-size: 13.33px;">Pwn</a> <a href="/tags/Python/" style="font-size: 13.33px;">Python</a> <a href="/tags/Raspberry-Pi/" style="font-size: 10px;">Raspberry-Pi</a> <a href="/tags/Scripts/" style="font-size: 10px;">Scripts</a> <a href="/tags/WriteUp/" style="font-size: 10px;">WriteUp</a> <a href="/tags/forensics/" style="font-size: 10px;">forensics</a>
     </div>
   </div>
 
@@ -207,7 +207,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">November 2022</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">April 2022</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">November 2022</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">April 2022</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -218,6 +218,10 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2022/11/28/zsteg%E5%92%8CStegSolve%E8%AF%A6%E8%A7%A3/">隐写类工具详解</a>
+          </li>
         
           <li>
             <a href="/2022/11/28/Python%20Learning%20Record/">Python Learning Record</a>
@@ -233,10 +237,6 @@
         
           <li>
             <a href="/2022/11/25/Java%20Learning%20Record/">Java Learning Record</a>
-          </li>
-        
-          <li>
-            <a href="/2022/11/25/Raspberry%20Pi%204B%20%E6%8A%98%E8%85%BE%E8%AE%B0%E5%BD%95/">Raspberry Pi 4B 折腾记录</a>
           </li>
         
       </ul>
