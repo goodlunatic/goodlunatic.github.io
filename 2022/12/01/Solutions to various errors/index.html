@@ -15,7 +15,7 @@
 <meta property="og:description" content="平常在学习的过程中老是会遇到各种奇奇怪怪的报错，就想着给他整理记录下来QAQ。。">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-12-01T06:01:21.000Z">
-<meta property="article:modified_time" content="2022-12-01T10:16:35.990Z">
+<meta property="article:modified_time" content="2022-12-02T09:42:34.233Z">
 <meta property="article:author" content="Lunatic">
 <meta property="article:tag" content="Errors">
 <meta name="twitter:card" content="summary">
@@ -99,20 +99,22 @@
       <div class="toc-parent">
   <div id="toc" class="toc-article">
     <div class="toc-title">目录</div>
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#AttributeError-module-%E2%80%98lib%E2%80%98-has-no-attribute-%E2%80%98X509-V-FLAG-CB-ISSUER-CHECK%E2%80%98"><span class="toc-text">AttributeError: module ‘lib‘ has no attribute ‘X509_V_FLAG_CB_ISSUER_CHECK‘</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reason%EF%BC%9A"><span class="toc-text">Reason：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Solution%EF%BC%9A"><span class="toc-text">Solution：</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#AttributeError-module-%E2%80%98lib%E2%80%98-has-no-attribute-%E2%80%98X509-V-FLAG-CB-ISSUER-CHECK%E2%80%98"><span class="toc-text">AttributeError: module ‘lib‘ has no attribute ‘X509_V_FLAG_CB_ISSUER_CHECK‘</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Reason%EF%BC%9A"><span class="toc-text">Reason：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Solution%EF%BC%9A"><span class="toc-text">Solution：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E5%B0%86Ubuntu%E7%9A%84python%E9%BB%98%E8%AE%A4%E6%8C%87%E5%90%91python3"><span class="toc-text">如何将Ubuntu的python默认指向python3</span></a></li></ol>
   </div>
 </div>
       <p><strong>平常在学习的过程中老是会遇到各种奇奇怪怪的报错，就想着给他整理记录下来QAQ。。</strong></p>
 <span id="more"></span>
 
-<h2 id="AttributeError-module-‘lib‘-has-no-attribute-‘X509-V-FLAG-CB-ISSUER-CHECK‘"><a href="#AttributeError-module-‘lib‘-has-no-attribute-‘X509-V-FLAG-CB-ISSUER-CHECK‘" class="headerlink" title="AttributeError: module ‘lib‘ has no attribute ‘X509_V_FLAG_CB_ISSUER_CHECK‘"></a>AttributeError: module ‘lib‘ has no attribute ‘X509_V_FLAG_CB_ISSUER_CHECK‘</h2><h2 id="Reason："><a href="#Reason：" class="headerlink" title="Reason："></a>Reason：</h2><p>主要原因是系统当前的python和pyOpenSSL版本不对应</p>
-<h2 id="Solution："><a href="#Solution：" class="headerlink" title="Solution："></a>Solution：</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pip uninstall pyOpenSSL</span><br><span class="line">pip install pyOpenSSL</span><br></pre></td></tr></table></figure>
+<h2 id="AttributeError-module-‘lib‘-has-no-attribute-‘X509-V-FLAG-CB-ISSUER-CHECK‘"><a href="#AttributeError-module-‘lib‘-has-no-attribute-‘X509-V-FLAG-CB-ISSUER-CHECK‘" class="headerlink" title="AttributeError: module ‘lib‘ has no attribute ‘X509_V_FLAG_CB_ISSUER_CHECK‘"></a>AttributeError: module ‘lib‘ has no attribute ‘X509_V_FLAG_CB_ISSUER_CHECK‘</h2><h3 id="Reason："><a href="#Reason：" class="headerlink" title="Reason："></a>Reason：</h3><p>主要原因是系统当前的python和pyOpenSSL版本不对应</p>
+<h3 id="Solution："><a href="#Solution：" class="headerlink" title="Solution："></a>Solution：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pip uninstall pyOpenSSL</span><br><span class="line">pip install pyOpenSSL</span><br></pre></td></tr></table></figure>
+
+<h2 id="如何将Ubuntu的python默认指向python3"><a href="#如何将Ubuntu的python默认指向python3" class="headerlink" title="如何将Ubuntu的python默认指向python3"></a>如何将Ubuntu的python默认指向python3</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#设置python2为默认，优先级是100</span></span><br><span class="line">sudo update-alternatives --install /usr/bin/python python /usr/bin/python2 100</span><br><span class="line"><span class="comment">#设置python3为默认，优先级是150</span></span><br><span class="line">sudo update-alternatives --install /usr/bin/python python /usr/bin/python3 150</span><br></pre></td></tr></table></figure>
 
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://goodlunatic.github.io/2022/12/01/Solutions%20to%20various%20errors/" data-id="clb5z9ujl001jp0v0169lbjbo" class="article-share-link">Share</a>
+      <a data-url="https://goodlunatic.github.io/2022/12/01/Solutions%20to%20various%20errors/" data-id="clb7osqzr000we4v0bguh0fep" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Errors/" rel="tag">Errors</a></li></ul>
@@ -151,7 +153,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/ACM/">ACM</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/BlockChain/">BlockChain</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CTF/">CTF</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Errors/">Errors</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Language/">Language</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Raspberry-Pi/">Raspberry-Pi</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/WriteUp/">WriteUp</a><span class="category-list-count">2</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/ACM/">ACM</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/BlockChain/">BlockChain</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CTF/">CTF</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Errors/">Errors</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Language/">Language</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Raspberry-Pi/">Raspberry-Pi</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/WriteUp/">WriteUp</a><span class="category-list-count">2</span></li></ul>
     </div>
   </div>
 
@@ -161,7 +163,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/ACM/" style="font-size: 10px;">ACM</a> <a href="/tags/BlockChain/" style="font-size: 10px;">BlockChain</a> <a href="/tags/CTF/" style="font-size: 20px;">CTF</a> <a href="/tags/Crypto/" style="font-size: 10px;">Crypto</a> <a href="/tags/Errors/" style="font-size: 10px;">Errors</a> <a href="/tags/Hexo/" style="font-size: 13.33px;">Hexo</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Leetcode/" style="font-size: 10px;">Leetcode</a> <a href="/tags/Misc/" style="font-size: 16.67px;">Misc</a> <a href="/tags/Program/" style="font-size: 16.67px;">Program</a> <a href="/tags/Pwn/" style="font-size: 13.33px;">Pwn</a> <a href="/tags/Python/" style="font-size: 13.33px;">Python</a> <a href="/tags/Raspberry-Pi/" style="font-size: 10px;">Raspberry-Pi</a> <a href="/tags/Scripts/" style="font-size: 10px;">Scripts</a> <a href="/tags/WriteUp/" style="font-size: 10px;">WriteUp</a> <a href="/tags/forensics/" style="font-size: 10px;">forensics</a>
+      <a href="/tags/ACM/" style="font-size: 10px;">ACM</a> <a href="/tags/BlockChain/" style="font-size: 10px;">BlockChain</a> <a href="/tags/CTF/" style="font-size: 20px;">CTF</a> <a href="/tags/Crypto/" style="font-size: 10px;">Crypto</a> <a href="/tags/Errors/" style="font-size: 10px;">Errors</a> <a href="/tags/Hexo/" style="font-size: 13.33px;">Hexo</a> <a href="/tags/Java/" style="font-size: 13.33px;">Java</a> <a href="/tags/Leetcode/" style="font-size: 10px;">Leetcode</a> <a href="/tags/Misc/" style="font-size: 16.67px;">Misc</a> <a href="/tags/Program/" style="font-size: 16.67px;">Program</a> <a href="/tags/Pwn/" style="font-size: 13.33px;">Pwn</a> <a href="/tags/Python/" style="font-size: 13.33px;">Python</a> <a href="/tags/Raspberry-Pi/" style="font-size: 10px;">Raspberry-Pi</a> <a href="/tags/Scripts/" style="font-size: 10px;">Scripts</a> <a href="/tags/WriteUp/" style="font-size: 10px;">WriteUp</a> <a href="/tags/forensics/" style="font-size: 10px;">forensics</a>
     </div>
   </div>
 
@@ -170,7 +172,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">December 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">November 2022</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">April 2022</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">December 2022</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">November 2022</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">April 2022</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -181,6 +183,10 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2022/12/02/java/">object-oriented programming with Java</a>
+          </li>
         
           <li>
             <a href="/2022/12/02/BlockChain%20Learning%20Record/">BlockChain Learning Record</a>
@@ -196,10 +202,6 @@
         
           <li>
             <a href="/2022/11/28/Python%20Learning%20Record/">Python Learning Record</a>
-          </li>
-        
-          <li>
-            <a href="/2022/11/28/%E7%AC%AC%E4%BA%94%E5%B1%8A%E5%AE%89%E6%B4%B5%E6%9D%AF%E7%BD%91%E7%BB%9C%E6%8C%91%E6%88%98%E8%B5%9BWP/">第五届安洵杯网络挑战赛WP</a>
           </li>
         
       </ul>
