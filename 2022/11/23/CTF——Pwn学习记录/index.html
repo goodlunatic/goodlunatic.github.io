@@ -16,7 +16,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="d:/MD/Pwn学习记录/0.png">
 <meta property="article:published_time" content="2022-11-23T15:48:23.000Z">
-<meta property="article:modified_time" content="2022-12-03T10:31:37.504Z">
+<meta property="article:modified_time" content="2022-12-04T13:32:59.056Z">
 <meta property="article:author" content="Lunatic">
 <meta property="article:tag" content="CTF">
 <meta property="article:tag" content="Pwn">
@@ -146,6 +146,10 @@
 <h2 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h2><p><strong>Tips:rbp的下一行才是返回地址，所以要把rbp那一行也给覆盖了。</strong></p>
 <p><strong>x86同理，要把ebp那行也覆盖了。</strong></p>
 <p><strong>在IDA里就是要覆盖到r（r那行不被覆盖）</strong></p>
+<p>got表：包含函数的真实地址，包含libc函数的基址，用于泄露地址</p>
+<p>（Global offset Table）：全局偏移表</p>
+<p>plt表：不用知道libc函数真实地址，使用plt地址就可以调用函数</p>
+<p>（Procedure Linkage Table）：过程链接表</p>
 <h2 id="栈学习记录"><a href="#栈学习记录" class="headerlink" title="栈学习记录"></a>栈学习记录</h2><h3 id="一、有system-sh-不用传参的情况："><a href="#一、有system-sh-不用传参的情况：" class="headerlink" title="一、有system(sh)不用传参的情况："></a>一、有system(sh)不用传参的情况：</h3><p>直接填充垃圾数据覆盖，然后填上system函数地址即可</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="type">char</span> sh[]=<span class="string">&quot;/bin/sh&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">func</span><span class="params">(<span class="type">char</span> *cmd)</span>&#123;</span><br><span class="line">	system(sh);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">dofunc</span><span class="params">()</span>&#123;</span><br><span class="line">    <span class="type">char</span> b[<span class="number">8</span>] = &#123;&#125;;</span><br><span class="line">	<span class="built_in">puts</span>(<span class="string">&quot;input:&quot;</span>);</span><br><span class="line">	read(<span class="number">0</span>,b,<span class="number">0x100</span>);</span><br><span class="line">	<span class="comment">//printf(b);</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span>&#123;</span><br><span class="line">    dofunc();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -255,7 +259,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://goodlunatic.github.io/2022/11/23/CTF%E2%80%94%E2%80%94Pwn%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/" data-id="clb93eq200008dsv0h3uf7804" class="article-share-link">Share</a>
+      <a data-url="https://goodlunatic.github.io/2022/11/23/CTF%E2%80%94%E2%80%94Pwn%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/" data-id="clb9emxmq0008nwv08jgr6fbm" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CTF/" rel="tag">CTF</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Pwn/" rel="tag">Pwn</a></li></ul>
