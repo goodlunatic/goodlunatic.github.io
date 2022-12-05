@@ -15,7 +15,7 @@
 <meta property="og:description" content="平常在学习的过程中老是会遇到各种奇奇怪怪的报错，就想着给他整理记录下来QAQ。。">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-12-01T06:01:21.000Z">
-<meta property="article:modified_time" content="2022-12-02T09:42:34.233Z">
+<meta property="article:modified_time" content="2022-12-05T12:03:27.440Z">
 <meta property="article:author" content="Lunatic">
 <meta property="article:tag" content="Errors">
 <meta name="twitter:card" content="summary">
@@ -99,7 +99,7 @@
       <div class="toc-parent">
   <div id="toc" class="toc-article">
     <div class="toc-title">目录</div>
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#AttributeError-module-%E2%80%98lib%E2%80%98-has-no-attribute-%E2%80%98X509-V-FLAG-CB-ISSUER-CHECK%E2%80%98"><span class="toc-text">AttributeError: module ‘lib‘ has no attribute ‘X509_V_FLAG_CB_ISSUER_CHECK‘</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Reason%EF%BC%9A"><span class="toc-text">Reason：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Solution%EF%BC%9A"><span class="toc-text">Solution：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E5%B0%86Ubuntu%E7%9A%84python%E9%BB%98%E8%AE%A4%E6%8C%87%E5%90%91python3"><span class="toc-text">如何将Ubuntu的python默认指向python3</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#AttributeError-module-%E2%80%98lib%E2%80%98-has-no-attribute-%E2%80%98X509-V-FLAG-CB-ISSUER-CHECK%E2%80%98"><span class="toc-text">AttributeError: module ‘lib‘ has no attribute ‘X509_V_FLAG_CB_ISSUER_CHECK‘</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Reason%EF%BC%9A"><span class="toc-text">Reason：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Solution%EF%BC%9A"><span class="toc-text">Solution：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E5%B0%86Ubuntu%E7%9A%84python%E9%BB%98%E8%AE%A4%E6%8C%87%E5%90%91python3"><span class="toc-text">如何将Ubuntu的python默认指向python3</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Git%E6%8A%A5%E9%94%99%EF%BC%9AOpenSSL-SSL-read-Connection-was-reset-errno-10054"><span class="toc-text">Git报错：OpenSSL SSL_read: Connection was reset, errno 10054</span></a>
   </div>
 </div>
       <p><strong>平常在学习的过程中老是会遇到各种奇奇怪怪的报错，就想着给他整理记录下来QAQ。。</strong></p>
@@ -110,11 +110,14 @@
 
 <h2 id="如何将Ubuntu的python默认指向python3"><a href="#如何将Ubuntu的python默认指向python3" class="headerlink" title="如何将Ubuntu的python默认指向python3"></a>如何将Ubuntu的python默认指向python3</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#设置python2为默认，优先级是100</span></span><br><span class="line">sudo update-alternatives --install /usr/bin/python python /usr/bin/python2 100</span><br><span class="line"><span class="comment">#设置python3为默认，优先级是150</span></span><br><span class="line">sudo update-alternatives --install /usr/bin/python python /usr/bin/python3 150</span><br></pre></td></tr></table></figure>
 
+<h1 id="Git报错：OpenSSL-SSL-read-Connection-was-reset-errno-10054"><a href="#Git报错：OpenSSL-SSL-read-Connection-was-reset-errno-10054" class="headerlink" title="Git报错：OpenSSL SSL_read: Connection was reset, errno 10054"></a>Git报错：OpenSSL SSL_read: Connection was reset, errno 10054</h1><p><strong>Solution：</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global http.sslVerify <span class="string">&quot;false&quot;</span></span><br><span class="line">git config --global https.sslVerify <span class="string">&quot;false&quot;</span></span><br></pre></td></tr></table></figure>
+
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://goodlunatic.github.io/2022/12/01/Solutions%20to%20various%20errors/" data-id="clbaqrrtp001098v06ocrawpl" class="article-share-link">Share</a>
+      <a data-url="https://goodlunatic.github.io/2022/12/01/Solutions%20to%20various%20errors/" data-id="clbasgtb2001dssv0aybf30ru" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Errors/" rel="tag">Errors</a></li></ul>
