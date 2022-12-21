@@ -5,14 +5,19 @@
   
 
   
-  <title>Archives | Lunatic&#39;s Workstation</title>
+  <title>Raspberry Pi 4B 折腾记录 | Lunatic&#39;s Workstation</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Lunatic&#39;s Workstation">
-<meta property="og:url" content="https://goodlunatic.github.io/archives/page/2/index.html">
+  <meta name="description" content="很幸运的从导师那里拿到了Raspberry Pi 4B和一台苍穹四轴 DIY F450-4B 无人机 于是就有了以下的折腾记录">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Raspberry Pi 4B 折腾记录">
+<meta property="og:url" content="https://goodlunatic.github.io/2022/12/21/Raspberry%20Pi%204B%20%E6%8A%98%E8%85%BE%E8%AE%B0%E5%BD%95/index.html">
 <meta property="og:site_name" content="Lunatic&#39;s Workstation">
+<meta property="og:description" content="很幸运的从导师那里拿到了Raspberry Pi 4B和一台苍穹四轴 DIY F450-4B 无人机 于是就有了以下的折腾记录">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-12-21T08:25:59.000Z">
+<meta property="article:modified_time" content="2022-12-21T09:22:54.394Z">
 <meta property="article:author" content="Lunatic">
+<meta property="article:tag" content="Raspberry-Pi">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternate" href="/atom.xml" title="Lunatic&#39;s Workstation" type="application/atom+xml">
@@ -64,216 +69,76 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2022" class="archive-year">2022</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2022/11/28/%E7%AC%AC%E4%BA%94%E5%B1%8A%E5%AE%89%E6%B4%B5%E6%9D%AF%E7%BD%91%E7%BB%9C%E6%8C%91%E6%88%98%E8%B5%9BWP/" class="archive-article-date">
-  <time datetime="2022-11-28T01:17:19.000Z" itemprop="datePublished">Nov 28</time>
+        <section id="main"><article id="post-Raspberry Pi 4B 折腾记录" class="article article-type-post" itemscope
+  itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2022/12/21/Raspberry%20Pi%204B%20%E6%8A%98%E8%85%BE%E8%AE%B0%E5%BD%95/" class="article-date">
+  <time datetime="2022-12-21T08:25:59.000Z" itemprop="datePublished">2022-12-21</time>
 </a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Raspberry-Pi/">Raspberry-Pi</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+    <header class="article-header">
       
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/11/28/%E7%AC%AC%E4%BA%94%E5%B1%8A%E5%AE%89%E6%B4%B5%E6%9D%AF%E7%BD%91%E7%BB%9C%E6%8C%91%E6%88%98%E8%B5%9BWP/">第五届安洵杯网络挑战赛WP</a>
+    <h1 class="article-title" itemprop="name">
+      Raspberry Pi 4B 折腾记录
     </h1>
   
 
     </header>
-  </div>
-</article>
-  
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2022/11/27/Hashcat%E8%AF%A6%E8%A7%A3/" class="archive-article-date">
-  <time datetime="2022-11-27T13:11:55.000Z" itemprop="datePublished">Nov 27</time>
-</a>
+    <div class="article-entry" itemprop="articleBody">
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/11/27/Hashcat%E8%AF%A6%E8%A7%A3/">Hashcat详解</a>
-    </h1>
-  
-
-    </header>
+      <div class="toc-parent">
+  <div id="toc" class="toc-article">
+    <div class="toc-title">目录</div>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Tips"><span class="toc-text">Tips</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%94%82%E7%94%B5%E6%B1%A0%E7%9A%84%E5%85%85%E7%94%B5%E5%92%8C%E4%BD%BF%E7%94%A8"><span class="toc-text">锂电池的充电和使用</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%B0%86%E7%94%B5%E8%84%91%E8%BF%9E%E6%8E%A5%E5%88%B0Raspberry-Pi"><span class="toc-text">一、将电脑连接到Raspberry Pi</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1%E3%80%81%E7%94%A8%E7%BD%91%E7%BA%BF%E8%BF%9E%E6%8E%A5"><span class="toc-text">1、用网线连接</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%E3%80%81%E5%88%A9%E7%94%A8%E6%A0%91%E8%8E%93%E6%B4%BE%E8%87%AA%E8%BA%AB%E7%9A%84%E7%83%AD%E7%82%B9%E8%BF%9E%E6%8E%A5"><span class="toc-text">2、利用树莓派自身的热点连接</span></a></li></ol></li></ol>
   </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2022/11/25/Java%20Learning%20Record/" class="archive-article-date">
-  <time datetime="2022-11-25T11:48:06.000Z" itemprop="datePublished">Nov 25</time>
-</a>
+</div>
+      <p><strong>很幸运的从导师那里拿到了Raspberry Pi 4B和一台苍穹四轴 DIY F450-4B 无人机</strong></p>
+<p><strong>于是就有了以下的折腾记录</strong></p>
+<span id="more"></span>
+
+<h1 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h1><h2 id="锂电池的充电和使用"><a href="#锂电池的充电和使用" class="headerlink" title="锂电池的充电和使用"></a>锂电池的充电和使用</h2><p>锂电池单片电芯的电压是4.2V(单片电芯的一般电压)，一般放电到3.6V或者3.7V就要充电，充到3.9V左右</p>
+<p>5200MAH锂电池三片电芯的总电压是12.6V，一般放电到11V左右就要充电（可以用哔哔响报警器测）充到11.7V左右</p>
+<p>哔哔响警报器的最左边要对应电池上黑色的接线（负极）</p>
+<p>可以通过长按哔哔响警报器上的按钮来设置报警电压（一般设置为3.6V左右）</p>
+<p>充电时将电池的平衡线插到右边的接口，然后选择LiPo（可以通过中间的按钮选择）</p>
+<p>充电时要把电池放到平坦通风的地方，飞行完至少要等40分钟再充电(温度比较高)</p>
+<p>充电时最好有人值守，电池充满后不能长时间插着充电器</p>
+<h1 id="一、将电脑连接到Raspberry-Pi"><a href="#一、将电脑连接到Raspberry-Pi" class="headerlink" title="一、将电脑连接到Raspberry Pi"></a>一、将电脑连接到Raspberry Pi</h1><p>首先用Type-c的线连上树莓派给它供电</p>
+<h2 id="1、用网线连接"><a href="#1、用网线连接" class="headerlink" title="1、用网线连接"></a>1、用网线连接</h2><h2 id="2、利用树莓派自身的热点连接"><a href="#2、利用树莓派自身的热点连接" class="headerlink" title="2、利用树莓派自身的热点连接"></a>2、利用树莓派自身的热点连接</h2>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/11/25/Java%20Learning%20Record/">Java Learning Record</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2022/11/25/Some%20automation%20scripts/" class="archive-article-date">
-  <time datetime="2022-11-25T08:07:19.000Z" itemprop="datePublished">Nov 25</time>
-</a>
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://goodlunatic.github.io/2022/12/21/Raspberry%20Pi%204B%20%E6%8A%98%E8%85%BE%E8%AE%B0%E5%BD%95/" data-id="clbxg6ko0000o4kv0chmfg5el" class="article-share-link">Share</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/11/25/Some%20automation%20scripts/">Some automation scripts</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2022/11/25/2022-11-Leetcode%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/" class="archive-article-date">
-  <time datetime="2022-11-25T01:37:11.000Z" itemprop="datePublished">Nov 25</time>
-</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/11/25/2022-11-Leetcode%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/">2022.11-Leetcode每日一题</a>
-    </h1>
-  
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Raspberry-Pi/" rel="tag">Raspberry-Pi</a></li></ul>
 
-    </header>
+    </footer>
   </div>
+  
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2022/12/12/Docker%20Learning%20Record/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Docker Learning Record</div>
+    </a>
+  
+</nav>
+
+  
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2022/11/25/The-usage-of-Volatility/" class="archive-article-date">
-  <time datetime="2022-11-25T01:25:11.000Z" itemprop="datePublished">Nov 25</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/11/25/The-usage-of-Volatility/">The usage of Volatility</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2022/11/24/%E7%AC%AC%E4%BA%94%E5%B1%8A%E6%B5%99%E6%B1%9F%E7%9C%81%E5%A4%A7%E5%AD%A6%E7%94%9F%E7%BD%91%E7%BB%9C%E4%B8%8E%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E7%AB%9E%E8%B5%9B-%E6%8A%80%E8%83%BD%E6%8C%91%E6%88%98%E8%B5%9BWP/" class="archive-article-date">
-  <time datetime="2022-11-24T12:20:47.000Z" itemprop="datePublished">Nov 24</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/11/24/%E7%AC%AC%E4%BA%94%E5%B1%8A%E6%B5%99%E6%B1%9F%E7%9C%81%E5%A4%A7%E5%AD%A6%E7%94%9F%E7%BD%91%E7%BB%9C%E4%B8%8E%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E7%AB%9E%E8%B5%9B-%E6%8A%80%E8%83%BD%E6%8C%91%E6%88%98%E8%B5%9BWP/">第五届浙江省大学生网络与信息安全竞赛-技能挑战赛WP</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2022/11/24/CTF%E2%80%94%E2%80%94Misc%E6%8C%87%E5%8D%97/" class="archive-article-date">
-  <time datetime="2022-11-24T11:23:08.000Z" itemprop="datePublished">Nov 24</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/11/24/CTF%E2%80%94%E2%80%94Misc%E6%8C%87%E5%8D%97/">CTF——Misc指南</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2022/11/24/Hexo%E6%8A%98%E8%85%BE%E6%97%A5%E8%AE%B0/" class="archive-article-date">
-  <time datetime="2022-11-24T10:47:07.000Z" itemprop="datePublished">Nov 24</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/11/24/Hexo%E6%8A%98%E8%85%BE%E6%97%A5%E8%AE%B0/">Hexo折腾日记</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2022/11/23/CTF%E2%80%94%E2%80%94Pwn%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/" class="archive-article-date">
-  <time datetime="2022-11-23T15:48:23.000Z" itemprop="datePublished">Nov 23</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/11/23/CTF%E2%80%94%E2%80%94Pwn%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/">CTF——Pwn学习记录</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-
-  <nav id="page-nav">
-    
-    <a class="extend prev" rel="prev" href="/archives/">&amp;laquo; Prev</a><a class="page-number" href="/archives/">1</a><span class="page-number current">2</span><a class="page-number" href="/archives/page/3/">3</a><a class="extend next" rel="next" href="/archives/page/3/">Next &amp;raquo;</a>
-  </nav>
 
 </section>
         
