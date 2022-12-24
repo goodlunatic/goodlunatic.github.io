@@ -10,13 +10,13 @@
   <meta name="description" content="这是本菜鸡学Pwn的艰难历程@_@">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CTF——Pwn学习记录">
-<meta property="og:url" content="https://goodlunatic.github.io/2022/11/23/CTF%E2%80%94%E2%80%94Pwn%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/index.html">
+<meta property="og:url" content="https://goodlunatic.github.io/2022/12/24/CTF%E2%80%94%E2%80%94Pwn%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/index.html">
 <meta property="og:site_name" content="Lunatic&#39;s Workstation">
 <meta property="og:description" content="这是本菜鸡学Pwn的艰难历程@_@">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="d:/MD/Pwn学习记录/0.png">
-<meta property="article:published_time" content="2022-11-23T15:48:23.000Z">
-<meta property="article:modified_time" content="2022-12-08T08:03:54.427Z">
+<meta property="article:published_time" content="2022-12-24T15:48:23.000Z">
+<meta property="article:modified_time" content="2022-12-24T09:04:55.160Z">
 <meta property="article:author" content="Lunatic">
 <meta property="article:tag" content="CTF">
 <meta property="article:tag" content="Pwn">
@@ -75,8 +75,8 @@
         <section id="main"><article id="post-CTF——Pwn学习记录" class="article article-type-post" itemscope
   itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2022/11/23/CTF%E2%80%94%E2%80%94Pwn%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/" class="article-date">
-  <time datetime="2022-11-23T15:48:23.000Z" itemprop="datePublished">2022-11-23</time>
+    <a href="/2022/12/24/CTF%E2%80%94%E2%80%94Pwn%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/" class="article-date">
+  <time datetime="2022-12-24T15:48:23.000Z" itemprop="datePublished">2022-12-24</time>
 </a>
     
   <div class="article-category">
@@ -102,7 +102,7 @@
       <div class="toc-parent">
   <div id="toc" class="toc-article">
     <div class="toc-title">目录</div>
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86"><span class="toc-text">前置知识</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E9%83%A8%E7%BD%B2Pwn%E9%A2%98%EF%BC%9A"><span class="toc-text">如何部署Pwn题：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#pwntools%E5%90%84%E4%BD%BF%E7%94%A8%E6%A8%A1%E5%9D%97%E7%AE%80%E4%BB%8B"><span class="toc-text">pwntools各使用模块简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8pwngdb%E8%BF%9B%E8%A1%8C%E5%8A%A8%E6%80%81%E8%B0%83%E8%AF%95"><span class="toc-text">如何使用pwngdb进行动态调试</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BC%96%E8%AF%91%E6%8C%87%E4%BB%A4"><span class="toc-text">编译指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BC%96%E8%AF%91%E4%BF%9D%E6%8A%A4"><span class="toc-text">编译保护</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#ASLR%EF%BC%9A%E6%A0%88%E5%9C%B0%E5%9D%80%E9%9A%8F%E6%9C%BA%E5%8C%96%EF%BC%88%E5%BF%85%E5%AE%9A%E6%89%93%E5%BC%80%EF%BC%89"><span class="toc-text">ASLR：栈地址随机化（必定打开）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#NX%EF%BC%9A%E6%A0%88%E4%BF%9D%E6%8A%A4"><span class="toc-text">NX：栈保护</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Canary%EF%BC%88%E9%87%91%E4%B8%9D%E9%9B%80%EF%BC%89%EF%BC%9A%E9%98%B2%E6%AD%A2%E7%BC%93%E5%86%B2%E5%8C%BA%E6%BA%A2%E5%87%BA"><span class="toc-text">Canary（金丝雀）：防止缓冲区溢出</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%BB%95%E8%BF%87Canary%E7%9A%84%E6%96%B9%E6%B3%95%EF%BC%9A"><span class="toc-text">绕过Canary的方法：</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#1-%E6%B3%84%E9%9C%B2%E6%A0%88%E4%B8%AD%E7%9A%84Canary"><span class="toc-text">1 泄露栈中的Canary</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#2-one-by-one-%E7%88%86%E7%A0%B4-Canary"><span class="toc-text">2 one-by-one 爆破 Canary</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#3-%E5%8A%AB%E6%8C%81-stack-chk-fail-%E5%87%BD%E6%95%B0"><span class="toc-text">3 劫持__stack_chk_fail 函数</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#4-%E8%A6%86%E7%9B%96-TLS-%E4%B8%AD%E5%82%A8%E5%AD%98%E7%9A%84-Canary-%E5%80%BC"><span class="toc-text">4 覆盖 TLS 中储存的 Canary 值</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#PIE%EF%BC%9A%E5%9C%B0%E5%9D%80%E6%97%A0%E5%85%B3%E4%BB%A3%E7%A0%81%EF%BC%8C%E9%9A%8F%E5%8D%B3bss%E3%80%81data%E3%80%81text"><span class="toc-text">PIE：地址无关代码，随即bss、data、text</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E5%86%85%E5%AD%98%E7%9A%84%E5%85%B7%E4%BD%93%E6%83%85%E5%86%B5"><span class="toc-text">查看内存的具体情况</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E6%9B%B4%E6%94%B9%E6%9C%AC%E5%9C%B0glibc%E7%9A%84%E7%89%88%E6%9C%AC"><span class="toc-text">如何更改本地glibc的版本</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E7%9A%84%E4%B8%80%E4%BA%9B%E5%B7%A5%E5%85%B7"><span class="toc-text">常用的一些工具</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Ubuntu%E5%90%84%E7%89%88%E6%9C%AC%E5%AF%B9%E5%BA%94%E7%9A%84libc%E7%89%88%E6%9C%AC"><span class="toc-text">Ubuntu各版本对应的libc版本</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Tips"><span class="toc-text">Tips</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%88%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95"><span class="toc-text">栈学习记录</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E6%9C%89system-sh-%E4%B8%8D%E7%94%A8%E4%BC%A0%E5%8F%82%E7%9A%84%E6%83%85%E5%86%B5%EF%BC%9A"><span class="toc-text">一、有system(sh)不用传参的情况：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#exp%EF%BC%9A"><span class="toc-text">exp：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E6%9C%89system-cmd-%E4%BD%86%E8%A6%81%E4%BC%A0%E5%8F%82%E7%9A%84%E6%83%85%E5%86%B5%EF%BC%9A"><span class="toc-text">二、有system(cmd)但要传参的情况：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#exp"><span class="toc-text">exp:</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E3%80%81ret2libc"><span class="toc-text">三、ret2libc</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9B%E3%80%81ret2syscall"><span class="toc-text">四、ret2syscall</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%94%E3%80%81ret2shellcode"><span class="toc-text">五、ret2shellcode</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E8%BE%A8%E6%98%AF%E5%93%AA%E7%A7%8D%E7%B1%BB%E5%9E%8B%E6%BC%8F%E6%B4%9E%E7%9A%84%E6%96%B9%E6%B3%95%EF%BC%9A"><span class="toc-text">分辨是哪种类型漏洞的方法：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%BC%E5%BC%8F%E5%8C%96%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95"><span class="toc-text">格式化字符串学习记录</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#x86"><span class="toc-text">x86</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81%E8%8E%B7%E5%8F%96%E6%A0%88%E4%B8%8A%E5%8F%98%E9%87%8F%E7%9A%84%E6%95%B0%E5%80%BC"><span class="toc-text">1、获取栈上变量的数值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81%E6%B3%84%E9%9C%B2%E4%BB%BB%E6%84%8F%E5%9C%B0%E5%9D%80%E5%86%85%E5%AD%98"><span class="toc-text">2、泄露任意地址内存</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#exp%EF%BC%9A-1"><span class="toc-text">exp：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E3%80%81%E8%A6%86%E7%9B%96%E5%86%85%E5%AD%98"><span class="toc-text">3、覆盖内存</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#exp%EF%BC%9A-2"><span class="toc-text">exp：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#x64"><span class="toc-text">x64</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A0%86%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95"><span class="toc-text">堆学习记录</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86"><span class="toc-text">前置知识</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E9%83%A8%E7%BD%B2Pwn%E9%A2%98%EF%BC%9A"><span class="toc-text">如何部署Pwn题：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#pwntools%E5%90%84%E4%BD%BF%E7%94%A8%E6%A8%A1%E5%9D%97%E7%AE%80%E4%BB%8B"><span class="toc-text">pwntools各使用模块简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8pwngdb%E8%BF%9B%E8%A1%8C%E5%8A%A8%E6%80%81%E8%B0%83%E8%AF%95"><span class="toc-text">如何使用pwngdb进行动态调试</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BC%96%E8%AF%91%E6%8C%87%E4%BB%A4"><span class="toc-text">编译指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BC%96%E8%AF%91%E4%BF%9D%E6%8A%A4"><span class="toc-text">编译保护</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#ASLR%EF%BC%9A%E6%A0%88%E5%9C%B0%E5%9D%80%E9%9A%8F%E6%9C%BA%E5%8C%96%EF%BC%88%E5%BF%85%E5%AE%9A%E6%89%93%E5%BC%80%EF%BC%89"><span class="toc-text">ASLR：栈地址随机化（必定打开）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#NX%EF%BC%9A%E6%A0%88%E4%BF%9D%E6%8A%A4"><span class="toc-text">NX：栈保护</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Canary%EF%BC%88%E9%87%91%E4%B8%9D%E9%9B%80%EF%BC%89%EF%BC%9A%E9%98%B2%E6%AD%A2%E7%BC%93%E5%86%B2%E5%8C%BA%E6%BA%A2%E5%87%BA"><span class="toc-text">Canary（金丝雀）：防止缓冲区溢出</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%BB%95%E8%BF%87Canary%E7%9A%84%E6%96%B9%E6%B3%95%EF%BC%9A"><span class="toc-text">绕过Canary的方法：</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#1-%E6%B3%84%E9%9C%B2%E6%A0%88%E4%B8%AD%E7%9A%84Canary"><span class="toc-text">1 泄露栈中的Canary</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#2-one-by-one-%E7%88%86%E7%A0%B4-Canary"><span class="toc-text">2 one-by-one 爆破 Canary</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#3-%E5%8A%AB%E6%8C%81-stack-chk-fail-%E5%87%BD%E6%95%B0"><span class="toc-text">3 劫持__stack_chk_fail 函数</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#4-%E8%A6%86%E7%9B%96-TLS-%E4%B8%AD%E5%82%A8%E5%AD%98%E7%9A%84-Canary-%E5%80%BC"><span class="toc-text">4 覆盖 TLS 中储存的 Canary 值</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#PIE%EF%BC%9A%E5%9C%B0%E5%9D%80%E6%97%A0%E5%85%B3%E4%BB%A3%E7%A0%81%EF%BC%8C%E9%9A%8F%E5%8D%B3bss%E3%80%81data%E3%80%81text"><span class="toc-text">PIE：地址无关代码，随即bss、data、text</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E5%86%85%E5%AD%98%E7%9A%84%E5%85%B7%E4%BD%93%E6%83%85%E5%86%B5"><span class="toc-text">查看内存的具体情况</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E6%9B%B4%E6%94%B9%E6%9C%AC%E5%9C%B0glibc%E7%9A%84%E7%89%88%E6%9C%AC"><span class="toc-text">如何更改本地glibc的版本</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E7%9A%84%E4%B8%80%E4%BA%9B%E5%B7%A5%E5%85%B7"><span class="toc-text">常用的一些工具</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Ubuntu%E5%90%84%E7%89%88%E6%9C%AC%E5%AF%B9%E5%BA%94%E7%9A%84libc%E7%89%88%E6%9C%AC"><span class="toc-text">Ubuntu各版本对应的libc版本</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Tips"><span class="toc-text">Tips</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%88%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95"><span class="toc-text">栈学习记录</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E6%9C%89system-sh-%E4%B8%8D%E7%94%A8%E4%BC%A0%E5%8F%82%E7%9A%84%E6%83%85%E5%86%B5%EF%BC%9A"><span class="toc-text">一、有system(sh)不用传参的情况：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#exp%EF%BC%9A"><span class="toc-text">exp：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E6%9C%89system-cmd-%E4%BD%86%E8%A6%81%E4%BC%A0%E5%8F%82%E7%9A%84%E6%83%85%E5%86%B5%EF%BC%9A"><span class="toc-text">二、有system(cmd)但要传参的情况：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#exp"><span class="toc-text">exp:</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E3%80%81ret2libc"><span class="toc-text">三、ret2libc</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9B%E3%80%81ret2syscall"><span class="toc-text">四、ret2syscall</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%94%E3%80%81ret2shellcode"><span class="toc-text">五、ret2shellcode</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E8%BE%A8%E6%98%AF%E5%93%AA%E7%A7%8D%E7%B1%BB%E5%9E%8B%E6%BC%8F%E6%B4%9E%E7%9A%84%E6%96%B9%E6%B3%95%EF%BC%9A"><span class="toc-text">分辨是哪种类型漏洞的方法：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%A9%E7%94%A8system-0-%E6%9D%A5getshell"><span class="toc-text">利用system($0)来getshell</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%BC%E5%BC%8F%E5%8C%96%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95"><span class="toc-text">格式化字符串学习记录</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#x86"><span class="toc-text">x86</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81%E8%8E%B7%E5%8F%96%E6%A0%88%E4%B8%8A%E5%8F%98%E9%87%8F%E7%9A%84%E6%95%B0%E5%80%BC"><span class="toc-text">1、获取栈上变量的数值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81%E6%B3%84%E9%9C%B2%E4%BB%BB%E6%84%8F%E5%9C%B0%E5%9D%80%E5%86%85%E5%AD%98"><span class="toc-text">2、泄露任意地址内存</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#exp%EF%BC%9A-1"><span class="toc-text">exp：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E3%80%81%E8%A6%86%E7%9B%96%E5%86%85%E5%AD%98"><span class="toc-text">3、覆盖内存</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#exp%EF%BC%9A-2"><span class="toc-text">exp：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#x64"><span class="toc-text">x64</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A0%86%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95"><span class="toc-text">堆学习记录</span></a></li></ol>
   </div>
 </div>
       <p><strong>这是本菜鸡学Pwn的艰难历程@_@</strong></p>
@@ -233,6 +233,7 @@
 
 <h3 id="分辨是哪种类型漏洞的方法："><a href="#分辨是哪种类型漏洞的方法：" class="headerlink" title="分辨是哪种类型漏洞的方法："></a>分辨是哪种类型漏洞的方法：</h3><p>如果NX enabled（栈不可执行保护开启），则不能用ret2shellcode，只能使用ret2libc</p>
 <p>个人还是喜欢直接用ret2libc打</p>
+<h2 id="利用system-0-来getshell"><a href="#利用system-0-来getshell" class="headerlink" title="利用system($0)来getshell"></a>利用system($0)来getshell</h2><p>$0在机器码中为 \x24\x30</p>
 <h2 id="格式化字符串学习记录"><a href="#格式化字符串学习记录" class="headerlink" title="格式化字符串学习记录"></a>格式化字符串学习记录</h2><p>利用Pwngdb中的fmtarg来快速判断某个参数offset</p>
 <p>但需要注意的是我们必须 break 在 printf 处。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">gef➤  fmtarg 0x00007fffffffdb28</span><br><span class="line">The index of format argument : 10</span><br></pre></td></tr></table></figure>
@@ -276,7 +277,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://goodlunatic.github.io/2022/11/23/CTF%E2%80%94%E2%80%94Pwn%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/" data-id="clbxg6knw000c4kv0er5lbwb5" class="article-share-link">Share</a>
+      <a data-url="https://goodlunatic.github.io/2022/12/24/CTF%E2%80%94%E2%80%94Pwn%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/" data-id="clc1pujul000860v0ex7v6b3n" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CTF/" rel="tag">CTF</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Pwn/" rel="tag">Pwn</a></li></ul>
@@ -287,19 +288,10 @@
   
 <nav id="article-nav">
   
-    <a href="/2022/11/24/Hexo%E6%8A%98%E8%85%BE%E6%97%A5%E8%AE%B0/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          Hexo折腾日记
-        
-      </div>
-    </a>
   
-  
-    <a href="/2022/11/22/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2022/12/24/CTF%E2%80%94%E2%80%94Pwn%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Hello World</div>
+      <div class="article-nav-title">CTF——Pwn刷题记录</div>
     </a>
   
 </nav>
@@ -334,7 +326,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">December 2022</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">November 2022</a><span class="archive-list-count">13</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">April 2022</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">December 2022</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">November 2022</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">April 2022</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -347,6 +339,14 @@
       <ul>
         
           <li>
+            <a href="/2022/12/24/CTF%E2%80%94%E2%80%94Pwn%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/">CTF——Pwn学习记录</a>
+          </li>
+        
+          <li>
+            <a href="/2022/12/24/CTF%E2%80%94%E2%80%94Pwn%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/">CTF——Pwn刷题记录</a>
+          </li>
+        
+          <li>
             <a href="/2022/12/21/Raspberry%20Pi%204B%20%E6%8A%98%E8%85%BE%E8%AE%B0%E5%BD%95/">Raspberry Pi 4B 折腾记录</a>
           </li>
         
@@ -355,15 +355,7 @@
           </li>
         
           <li>
-            <a href="/2022/12/10/CTF%E2%80%94%E2%80%94Pwn%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/">CTF——Pwn刷题记录</a>
-          </li>
-        
-          <li>
             <a href="/2022/12/05/%E7%BD%91%E7%BB%9C%E7%88%AC%E8%99%AB%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/">网络爬虫学习记录</a>
-          </li>
-        
-          <li>
-            <a href="/2022/12/05/%E5%90%84%E5%A4%A7%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E%E7%9A%84%E5%A5%87%E6%8A%80%E6%B7%AB%E5%B7%A7/">各大搜索引擎的奇技淫巧</a>
           </li>
         
       </ul>
