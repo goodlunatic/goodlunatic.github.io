@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Nepnep x CatCTF Writeup | Lunatic&#39;s Workstation</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="跨年夜还在打的CTF比赛哈哈哈，新年快乐( •̀ ω •́ )y">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Nepnep x CatCTF Writeup">
+<meta property="og:url" content="https://goodlunatic.github.io/2023/01/03/Nepnep%20x%20CatCTF%20Writeup/index.html">
+<meta property="og:site_name" content="Lunatic&#39;s Workstation">
+<meta property="og:description" content="跨年夜还在打的CTF比赛哈哈哈，新年快乐( •̀ ω •́ )y">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://docimg7.docs.qq.com/image/AgAABcEmaDTA_0YXECxPSpoT7VTCJF2V.png?w=433&h=107">
+<meta property="og:image" content="https://docimg7.docs.qq.com/image/AgAABcEmaDSbbHH0J8lI_qYWv1jkVAnO.png?w=658&h=58">
+<meta property="og:image" content="https://docimg1.docs.qq.com/image/AgAABcEmaDTgcrzHBJFCz55CfYBYHHV1.png?w=2554&h=1363">
+<meta property="og:image" content="https://docimg4.docs.qq.com/image/AgAABcEmaDQPQEhNDR5GwbyJCuvKNwsm.png?w=842&h=579">
+<meta property="og:image" content="https://docimg2.docs.qq.com/image/AgAABcEmaDSMwXpMJR5IeLyQrMRffjyG.png?w=1052&h=1069">
+<meta property="og:image" content="https://docimg8.docs.qq.com/image/AgAABcEmaDSg7ZSq0zVNZ6A05ABaZjMK.png?w=1389&h=1061">
+<meta property="og:image" content="https://docimg10.docs.qq.com/image/AgAABcEmaDSauyeX4m1FBZS2PbIWp3XK.png?w=1200&h=742">
+<meta property="og:image" content="https://docimg6.docs.qq.com/image/AgAABcEmaDRFx_5QooFAg6UXhreeio3f.png?w=2312&h=971">
+<meta property="og:image" content="https://docimg8.docs.qq.com/image/AgAABcEmaDSjng4hH1JCqJ0X3fcZHcZD.png?w=333&h=688">
+<meta property="og:image" content="https://docimg1.docs.qq.com/image/AgAABcEmaDRU8n1ytU5BhZif3Tiia6Rl.png?w=288&h=72">
+<meta property="og:image" content="https://docimg1.docs.qq.com/image/AgAABcEmaDQmRcUKYIRMGbfeArl3nqDy.png?w=874&h=426">
+<meta property="article:published_time" content="2023-01-03T03:37:41.000Z">
+<meta property="article:modified_time" content="2023-01-03T03:43:25.481Z">
+<meta property="article:author" content="Lunatic">
+<meta property="article:tag" content="CTF">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://docimg7.docs.qq.com/image/AgAABcEmaDTA_0YXECxPSpoT7VTCJF2V.png?w=433&h=107">
+  
+    <link rel="alternate" href="/atom.xml" title="Lunatic&#39;s Workstation" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Lunatic&#39;s Workstation</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://goodlunatic.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Nepnep x CatCTF Writeup" class="article article-type-post" itemscope
+  itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2023/01/03/Nepnep%20x%20CatCTF%20Writeup/" class="article-date">
+  <time datetime="2023-01-03T03:37:41.000Z" itemprop="datePublished">2023-01-03</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/WriteUp/">WriteUp</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+    <header class="article-header">
+      
+  
+    <h1 class="article-title" itemprop="name">
+      Nepnep x CatCTF Writeup
+    </h1>
+  
+
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      <div class="toc-parent">
+  <div id="toc" class="toc-article">
+    <div class="toc-title">目录</div>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Web%EF%BC%9A"><span class="toc-text">Web：</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE%E5%90%8D%E7%A7%B0-ez-js"><span class="toc-text">题目名称  ez_js</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Reverse%EF%BC%9A"><span class="toc-text">Reverse：</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE%E5%90%8D%E7%A7%B0-The-cat-did-it"><span class="toc-text">题目名称 The cat did it</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Misc%EF%BC%9A"><span class="toc-text">Misc：</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE%E5%90%8D%E7%A7%B0-Peekaboo"><span class="toc-text">题目名称 Peekaboo</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE%E5%90%8D%E7%A7%B0-CatchCat"><span class="toc-text">题目名称 CatchCat</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE%E5%90%8D%E7%A7%B0-miao"><span class="toc-text">题目名称 miao~</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE%E5%90%8D%E7%A7%B0-MeowMeow"><span class="toc-text">题目名称 MeowMeow</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE%E5%90%8D%E7%A7%B0-CatCat"><span class="toc-text">题目名称 CatCat</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE%E5%90%8D%E7%A7%B0-Nepnep-%E7%A5%9D%E4%BD%A0%E6%96%B0%E5%B9%B4%E5%BF%AB%E4%B9%90%E5%95%A6%EF%BC%81"><span class="toc-text">题目名称 Nepnep 祝你新年快乐啦！</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE%E5%90%8D%E7%A7%B0-CatFlag"><span class="toc-text">题目名称 CatFlag</span></a></li></ol></li></ol>
+  </div>
+</div>
+      <p><strong>跨年夜还在打的CTF比赛哈哈哈，新年快乐( •̀ ω •́ )y</strong></p>
+<span id="more"></span>
+
+<h1 id="Web："><a href="#Web：" class="headerlink" title="Web："></a><strong>Web：</strong></h1><h2 id="题目名称-ez-js"><a href="#题目名称-ez-js" class="headerlink" title="题目名称  ez_js"></a><strong>题目名称</strong>  <strong>ez_js</strong></h2><p>直接查看网页源代码，查看game.js，进入该目录即可得到flag</p>
+<p><img src="https://docimg7.docs.qq.com/image/AgAABcEmaDTA_0YXECxPSpoT7VTCJF2V.png?w=433&h=107" alt="img"></p>
+<p><img src="https://docimg7.docs.qq.com/image/AgAABcEmaDSbbHH0J8lI_qYWv1jkVAnO.png?w=658&h=58" alt="img"></p>
+<h1 id="Reverse："><a href="#Reverse：" class="headerlink" title="Reverse："></a><strong>Reverse：</strong></h1><h2 id="题目名称-The-cat-did-it"><a href="#题目名称-The-cat-did-it" class="headerlink" title="题目名称 The cat did it"></a><strong>题目名称</strong> <strong>The cat did it</strong></h2><p><img src="https://docimg1.docs.qq.com/image/AgAABcEmaDTgcrzHBJFCz55CfYBYHHV1.png?w=2554&h=1363" alt="img"></p>
+<p>点进来看到一个看着很复杂的图像，离开的概率我猜是0%</p>
+<p><img src="https://docimg4.docs.qq.com/image/AgAABcEmaDQPQEhNDR5GwbyJCuvKNwsm.png?w=842&h=579" alt="img"></p>
+<p>MD5加密，第一个即为flag</p>
+<h1 id="Misc："><a href="#Misc：" class="headerlink" title="Misc："></a><strong>Misc：</strong></h1><h2 id="题目名称-Peekaboo"><a href="#题目名称-Peekaboo" class="headerlink" title="题目名称 Peekaboo"></a><strong>题目名称</strong> <strong>Peekaboo</strong></h2><p>图片右下角暴露了QQ号，进入该QQ的QQ空间，查到他的ID叫找不到flag</p>
+<p>然后进入王者营地直接看，得到英雄名字为百里玄策</p>
+<h2 id="题目名称-CatchCat"><a href="#题目名称-CatchCat" class="headerlink" title="题目名称 CatchCat"></a><strong>题目名称</strong> <strong>CatchCat</strong></h2><p>直接用这个网站梭哈<a target="_blank" rel="noopener" href="https://www.gpsvisualizer.com/map_input">https://www.gpsvisualizer.com/map_input</a></p>
+<p>得到flag：</p>
+<p><img src="https://docimg2.docs.qq.com/image/AgAABcEmaDSMwXpMJR5IeLyQrMRffjyG.png?w=1052&h=1069" alt="img"></p>
+<h2 id="题目名称-miao"><a href="#题目名称-miao" class="headerlink" title="题目名称 miao~"></a><strong>题目名称</strong> <strong>miao~</strong></h2><p>foremost图片得到wav文件，查看频谱图，得到password：CatCTF</p>
+<p><img src="https://docimg8.docs.qq.com/image/AgAABcEmaDSg7ZSq0zVNZ6A05ABaZjMK.png?w=1389&h=1061" alt="img"></p>
+<p><img src="https://docimg10.docs.qq.com/image/AgAABcEmaDSauyeX4m1FBZS2PbIWp3XK.png?w=1200&h=742" alt="img"></p>
+<p>拉入DeepSound解密，得到flag.txt，使用在线网站解密即可得到flag</p>
+<p><img src="https://docimg6.docs.qq.com/image/AgAABcEmaDRFx_5QooFAg6UXhreeio3f.png?w=2312&h=971" alt="img"></p>
+<h2 id="题目名称-MeowMeow"><a href="#题目名称-MeowMeow" class="headerlink" title="题目名称 MeowMeow"></a><strong>题目名称</strong> <strong>MeowMeow</strong></h2><p>拉入010直接看右侧即可得到flag</p>
+<p><img src="https://docimg8.docs.qq.com/image/AgAABcEmaDSjng4hH1JCqJ0X3fcZHcZD.png?w=333&h=688" alt="img"></p>
+<h2 id="题目名称-CatCat"><a href="#题目名称-CatCat" class="headerlink" title="题目名称 CatCat"></a><strong>题目名称</strong> <strong>CatCat</strong></h2><p>将图片拉入010，得到</p>
+<p><img src="https://docimg1.docs.qq.com/image/AgAABcEmaDRU8n1ytU5BhZif3Tiia6Rl.png?w=288&h=72" alt="img"></p>
+<p>根据提示，将密文进行rabbit解密（key就是catflag），然后进行base91转换</p>
+<p>得到一堆cat和!?.的密文，将cat替换为Ook，然后在线网站解密即可得到flag</p>
+<p><img src="https://docimg1.docs.qq.com/image/AgAABcEmaDQmRcUKYIRMGbfeArl3nqDy.png?w=874&h=426" alt="img"></p>
+<h2 id="题目名称-Nepnep-祝你新年快乐啦！"><a href="#题目名称-Nepnep-祝你新年快乐啦！" class="headerlink" title="题目名称 Nepnep 祝你新年快乐啦！"></a><strong>题目名称 Nepnep 祝你新年快乐啦！</strong></h2><p>b站评论区就有flag</p>
+<h2 id="题目名称-CatFlag"><a href="#题目名称-CatFlag" class="headerlink" title="题目名称 CatFlag"></a><strong>题目名称 CatFlag</strong></h2><p>下载文件到本地，然后在WSL中直接cat flag就能得到flag</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://goodlunatic.github.io/2023/01/03/Nepnep%20x%20CatCTF%20Writeup/" data-id="clcfos3dl000ytkv0cfczasc3" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CTF/" rel="tag">CTF</a></li></ul>
+
+    </footer>
+  </div>
+  
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2022/12/30/CTF%E2%80%94%E2%80%94Pwn%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">CTF——Pwn学习记录</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/ACM/">ACM</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/BlockChain/">BlockChain</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CTF/">CTF</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Errors/">Errors</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Language/">Language</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Raspberry-Pi/">Raspberry-Pi</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Skills/">Skills</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/WriteUp/">WriteUp</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%8A%80%E5%B7%A7/">技巧</a><span class="category-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/ACM/" style="font-size: 10px;">ACM</a> <a href="/tags/BlockChain/" style="font-size: 10px;">BlockChain</a> <a href="/tags/CTF/" style="font-size: 20px;">CTF</a> <a href="/tags/Crypto/" style="font-size: 10px;">Crypto</a> <a href="/tags/Docker/" style="font-size: 10px;">Docker</a> <a href="/tags/Errors/" style="font-size: 10px;">Errors</a> <a href="/tags/Hexo/" style="font-size: 12.5px;">Hexo</a> <a href="/tags/Java/" style="font-size: 12.5px;">Java</a> <a href="/tags/Leetcode/" style="font-size: 10px;">Leetcode</a> <a href="/tags/Misc/" style="font-size: 17.5px;">Misc</a> <a href="/tags/Program/" style="font-size: 17.5px;">Program</a> <a href="/tags/Pwn/" style="font-size: 12.5px;">Pwn</a> <a href="/tags/Python/" style="font-size: 15px;">Python</a> <a href="/tags/Raspberry-Pi/" style="font-size: 10px;">Raspberry-Pi</a> <a href="/tags/Scripts/" style="font-size: 10px;">Scripts</a> <a href="/tags/WriteUp/" style="font-size: 10px;">WriteUp</a> <a href="/tags/forensics/" style="font-size: 10px;">forensics</a> <a href="/tags/%E6%8A%80%E5%B7%A7/" style="font-size: 12.5px;">技巧</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/01/">January 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">December 2022</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">November 2022</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">April 2022</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2023/01/03/Nepnep%20x%20CatCTF%20Writeup/">Nepnep x CatCTF Writeup</a>
+          </li>
+        
+          <li>
+            <a href="/2022/12/30/CTF%E2%80%94%E2%80%94Pwn%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/">CTF——Pwn学习记录</a>
+          </li>
+        
+          <li>
+            <a href="/2022/12/30/CTF%E2%80%94%E2%80%94Pwn%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/">CTF——Pwn刷题记录</a>
+          </li>
+        
+          <li>
+            <a href="/2022/12/21/Raspberry%20Pi%204B%20%E6%8A%98%E8%85%BE%E8%AE%B0%E5%BD%95/">Raspberry Pi 4B 折腾记录</a>
+          </li>
+        
+          <li>
+            <a href="/2022/12/12/Docker%20Learning%20Record/">Docker Learning Record</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    <div class="widget-wrap toc">
+  <h3 class="widget-title">Catalog</h3>
+  <div class="widget"></div>
+</div>
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2023 Lunatic<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+<!-- Toc -->
+
+<script src="/js/toc.js"></script>
+
+<!-- Toc -->
+  </div>
+</body>
+</html>
