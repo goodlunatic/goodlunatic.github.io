@@ -15,7 +15,7 @@
 <meta property="og:description" content="Python Learning Record">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-11-28T06:53:04.000Z">
-<meta property="article:modified_time" content="2022-12-05T08:13:52.263Z">
+<meta property="article:modified_time" content="2023-02-15T02:20:27.533Z">
 <meta property="article:author" content="Lunatic">
 <meta property="article:tag" content="Program">
 <meta property="article:tag" content="Python">
@@ -114,7 +114,115 @@
 
 <h1 id="time模块的使用"><a href="#time模块的使用" class="headerlink" title="time模块的使用"></a>time模块的使用</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- encoding: utf-8 -*-</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">@File    :   time.py</span></span><br><span class="line"><span class="string">@Time    :   2022/11/14 17:55:10</span></span><br><span class="line"><span class="string">@Author  :   Lunatic </span></span><br><span class="line"><span class="string">@Version :   1.0</span></span><br><span class="line"><span class="string">@Contact :   goodlunatic0@gmail.com</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="comment"># 通常来说，时间戳表示的是从1970年1月1日00:00:00开始按秒计算的偏移量。</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(time.time())</span><br><span class="line"><span class="comment"># 返回当前时间的时间戳,是一个浮点数</span></span><br><span class="line"><span class="built_in">print</span>(time.localtime())</span><br><span class="line"><span class="comment"># 将一个时间戳转换为当前时区的struct_time。secs参数未提供，则以当前时间为准</span></span><br><span class="line"><span class="built_in">print</span>(time.gmtime())</span><br><span class="line"><span class="comment"># gmtime()方法是将一个时间戳转换为UTC时区（0时区）的struct_time</span></span><br><span class="line"><span class="built_in">print</span>(time.mktime(time.localtime()))</span><br><span class="line"><span class="comment">#time.mktime()接收struct_time对象转化用秒数来表示时间的浮点数</span></span><br><span class="line">time.sleep(<span class="number">1</span>)</span><br><span class="line"><span class="comment"># 线程推迟指定的时间运行。单位为秒</span></span><br><span class="line"><span class="comment"># time.clock()</span></span><br><span class="line"><span class="comment"># time.clock()在不同的系统上含义不同。在UNIX系统上，它返回的是“进程时间”，它是用秒表示的浮点数（时间戳）。而在WINDOWS中，第一次调用，返回的是进程运行的实际时间。而第二次之后的调用是自第一次调用以后到现在的运行时间。（实际上是以WIN32上QueryPerformanceCounter()为基础，它比毫秒表示更为精确）</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(time.asctime())</span><br><span class="line"><span class="comment">#把一个表示时间的元组或者struct_time表示为这种形式：&#x27;Sun Jun 20 23:21:05 1993&#x27;</span></span><br><span class="line"><span class="built_in">print</span>(time.ctime())</span><br><span class="line"><span class="comment"># 把一个时间戳（按秒计算的浮点数）转化为time.asctime()的形式</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># time.strptime(string[, format])：把一个格式化时间字符串转化为struct_time。实际上它和strftime()是逆操作</span></span><br><span class="line"><span class="built_in">print</span>(time.strptime(<span class="string">&#x27;2011-05-05 16:37:06&#x27;</span>, <span class="string">&#x27;%Y-%m-%d %X&#x27;</span>))</span><br></pre></td></tr></table></figure>
 
-<h1 id="re-正则表达式-模块的使用"><a href="#re-正则表达式-模块的使用" class="headerlink" title="re(正则表达式)模块的使用"></a>re(正则表达式)模块的使用</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- encoding: utf-8 -*-</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># *代表匹配零次或多次</span></span><br><span class="line"><span class="comment"># +代表匹配一次或多次</span></span><br><span class="line"><span class="comment"># ?代表匹配零次或一次</span></span><br><span class="line"><span class="comment"># $匹配输入字符串的结束位置</span></span><br><span class="line"><span class="comment"># \\.代表小数点</span></span><br><span class="line"><span class="comment"># \\s代表空格，则\\s*代表匹配多个空格</span></span><br><span class="line"><span class="comment"># \\d代表匹配一个数字字符，等价于[0-9]，则\\d+\\.\\d*可匹配1.或1.0等\\d*\\.\\d+可匹配.0或1.0等</span></span><br><span class="line"><span class="comment"># [+-]代表匹配包含的任一字符+或-，[+-]?则说明+或-可有可无</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line"><span class="built_in">str</span> = <span class="string">&#x27;aabbabaabbaa&#x27;</span></span><br><span class="line"><span class="comment">#一个&quot;.&quot;就是匹配除 \n (换行符)以外的任意一个字符</span></span><br><span class="line"><span class="built_in">print</span>(re.findall(<span class="string">r&#x27;a.b&#x27;</span>, <span class="built_in">str</span>))  <span class="comment">#[&#x27;aab&#x27;, &#x27;aab&#x27;]</span></span><br><span class="line"><span class="comment">#*前面的字符出现0次或以上</span></span><br><span class="line"><span class="built_in">print</span>(re.findall(<span class="string">r&#x27;a*b&#x27;</span>, <span class="built_in">str</span>))  <span class="comment">#[&#x27;aab&#x27;, &#x27;b&#x27;, &#x27;ab&#x27;, &#x27;aab&#x27;, &#x27;b&#x27;]</span></span><br><span class="line"><span class="comment">#贪婪，匹配从.*前面为开始到后面为结束的所有内容</span></span><br><span class="line"><span class="built_in">print</span>(re.findall(<span class="string">r&#x27;a.*b&#x27;</span>, <span class="built_in">str</span>))  <span class="comment">#[&#x27;aabbabaabb&#x27;]</span></span><br><span class="line"><span class="comment">#非贪婪，遇到开始和结束就进行截取，因此截取多次符合的结果，中间没有字符也会被截取</span></span><br><span class="line"><span class="built_in">print</span>(re.findall(<span class="string">r&#x27;a.*?b&#x27;</span>, <span class="built_in">str</span>))  <span class="comment">#[&#x27;aab&#x27;, &#x27;ab&#x27;, &#x27;aab&#x27;]</span></span><br><span class="line"><span class="comment">#非贪婪，与上面一样，只是与上面的相比多了一个括号，只保留括号的内容</span></span><br><span class="line"><span class="built_in">print</span>(re.findall(<span class="string">r&#x27;a(.*?)b&#x27;</span>, <span class="built_in">str</span>))  <span class="comment">#[&#x27;a&#x27;, &#x27;&#x27;, &#x27;a&#x27;]</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">str</span> = <span class="string">&#x27;&#x27;&#x27;aabbab</span></span><br><span class="line"><span class="string">         aabbaa</span></span><br><span class="line"><span class="string">         bb&#x27;&#x27;&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#后面多加了2个b</span></span><br><span class="line"><span class="comment">#没有把最后一个换行的aab算进来</span></span><br><span class="line"><span class="built_in">print</span>(re.findall(<span class="string">r&#x27;a.*?b&#x27;</span>, <span class="built_in">str</span>))  <span class="comment">#[&#x27;aab&#x27;, &#x27;ab&#x27;, &#x27;aab&#x27;]</span></span><br><span class="line"><span class="comment">#re.S不会对\n进行中断</span></span><br><span class="line"><span class="built_in">print</span>(re.findall(<span class="string">r&#x27;a.*?b&#x27;</span>, <span class="built_in">str</span>, re.S))  <span class="comment">#[&#x27;aab&#x27;, &#x27;ab&#x27;, &#x27;aab&#x27;, &#x27;aa\n         b&#x27;]</span></span><br></pre></td></tr></table></figure>
+<h1 id="re-正则表达式-模块的使用"><a href="#re-正则表达式-模块的使用" class="headerlink" title="re(正则表达式)模块的使用"></a>re(正则表达式)模块的使用</h1><table>
+<thead>
+<tr>
+<th align="center">字符</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">d</td>
+<td align="center">代表任意数字，就是阿拉伯数字 0-9 这些玩意。</td>
+</tr>
+<tr>
+<td align="center"><code>D</code></td>
+<td align="center">大写的就是和小写的唱反调，d 你代表的是任意数字是吧？那么我 D 就代表不是数字的。</td>
+</tr>
+<tr>
+<td align="center"><code>w</code></td>
+<td align="center">代表字母，数字，下划线。也就是 a-z、A-Z、0-9、_。</td>
+</tr>
+<tr>
+<td align="center"><code>W</code></td>
+<td align="center">跟 w 唱反调，代表不是字母，不是数字，不是下划线的。</td>
+</tr>
+<tr>
+<td align="center">n</td>
+<td align="center">代表一个换行。</td>
+</tr>
+<tr>
+<td align="center"><code>r</code></td>
+<td align="center">代表一个回车。</td>
+</tr>
+<tr>
+<td align="center"><code>f</code></td>
+<td align="center">代表换页。</td>
+</tr>
+<tr>
+<td align="center"><code>t</code></td>
+<td align="center">代表一个 Tab 。</td>
+</tr>
+<tr>
+<td align="center"><code>s</code></td>
+<td align="center">代表所有的空白字符，也就是上面这个：n、r、t、f。</td>
+</tr>
+<tr>
+<td align="center"><code>S</code></td>
+<td align="center">跟 s 唱反调，代表所有不是空白的字符。</td>
+</tr>
+<tr>
+<td align="center"><code>A</code></td>
+<td align="center">代表字符串的开始。</td>
+</tr>
+<tr>
+<td align="center"><code>Z</code></td>
+<td align="center">代表字符串的结束。</td>
+</tr>
+<tr>
+<td align="center">^</td>
+<td align="center">匹配字符串开始的位置。</td>
+</tr>
+<tr>
+<td align="center">$</td>
+<td align="center">匹配字符创结束的位置。</td>
+</tr>
+<tr>
+<td align="center">.</td>
+<td align="center">代表所有的单个字符，除了 n r</td>
+</tr>
+<tr>
+<td align="center"><code>[...]</code></td>
+<td align="center">代表在 [] 范围内的字符，比如 [a-z] 就代表 a到z的字母</td>
+</tr>
+<tr>
+<td align="center"><code>[^...]</code></td>
+<td align="center">跟 […] 唱反调，代表不在 [] 范围内的字符</td>
+</tr>
+<tr>
+<td align="center">{n}</td>
+<td align="center">匹配在 {n} 前面的东西，比如: o{2} 不能匹配 Bob 中的 o ，但是能匹配 food 中的两个o。</td>
+</tr>
+<tr>
+<td align="center"><code>&#123;n,m&#125;</code></td>
+<td align="center">匹配在 {n,m} 前面的东西，比如：o{1,3} 将匹配“fooooood”中的前三个o。</td>
+</tr>
+<tr>
+<td align="center"><code>&#123;n，&#125;</code></td>
+<td align="center">匹配在 {n,} 前面的东西，比如：o{2,} 不能匹配“Bob”中的“o”，但能匹配“foooood”中的所有o。</td>
+</tr>
+<tr>
+<td align="center"><code>*</code></td>
+<td align="center">和 {0,} 一个样，匹配 * 前面的 0 次或多次。 比如 zo* 能匹配“z”、“zo”以及“zoo”。</td>
+</tr>
+<tr>
+<td align="center"><code>+</code></td>
+<td align="center">和{1，} 一个样，匹配 + 前面 1 次或多次。 比如 zo+”能匹配“zo”以及“zoo”，但不能匹配“z”。</td>
+</tr>
+<tr>
+<td align="center"><code>？</code></td>
+<td align="center">和{0,1} 一个样，匹配 ？前面 0 次或 1 次。</td>
+</tr>
+<tr>
+<td align="center">a|b</td>
+<td align="center">匹配 a 或者 b。</td>
+</tr>
+<tr>
+<td align="center"><code>（）</code></td>
+<td align="center">匹配括号里面的内容。</td>
+</tr>
+</tbody></table>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- encoding: utf-8 -*-</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># *代表匹配零次或多次</span></span><br><span class="line"><span class="comment"># +代表匹配一次或多次</span></span><br><span class="line"><span class="comment"># ?代表匹配零次或一次</span></span><br><span class="line"><span class="comment"># $匹配输入字符串的结束位置</span></span><br><span class="line"><span class="comment"># \\.代表小数点</span></span><br><span class="line"><span class="comment"># \\s代表空格，则\\s*代表匹配多个空格</span></span><br><span class="line"><span class="comment"># \\d代表匹配一个数字字符，等价于[0-9]，则\\d+\\.\\d*可匹配1.或1.0等\\d*\\.\\d+可匹配.0或1.0等</span></span><br><span class="line"><span class="comment"># [+-]代表匹配包含的任一字符+或-，[+-]?则说明+或-可有可无</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line"><span class="built_in">str</span> = <span class="string">&#x27;aabbabaabbaa&#x27;</span></span><br><span class="line"><span class="comment">#一个&quot;.&quot;就是匹配除 \n (换行符)以外的任意一个字符</span></span><br><span class="line"><span class="built_in">print</span>(re.findall(<span class="string">r&#x27;a.b&#x27;</span>, <span class="built_in">str</span>))  <span class="comment">#[&#x27;aab&#x27;, &#x27;aab&#x27;]</span></span><br><span class="line"><span class="comment">#*前面的字符出现0次或以上</span></span><br><span class="line"><span class="built_in">print</span>(re.findall(<span class="string">r&#x27;a*b&#x27;</span>, <span class="built_in">str</span>))  <span class="comment">#[&#x27;aab&#x27;, &#x27;b&#x27;, &#x27;ab&#x27;, &#x27;aab&#x27;, &#x27;b&#x27;]</span></span><br><span class="line"><span class="comment">#贪婪，匹配从.*前面为开始到后面为结束的所有内容</span></span><br><span class="line"><span class="built_in">print</span>(re.findall(<span class="string">r&#x27;a.*b&#x27;</span>, <span class="built_in">str</span>))  <span class="comment">#[&#x27;aabbabaabb&#x27;]</span></span><br><span class="line"><span class="comment">#非贪婪，遇到开始和结束就进行截取，因此截取多次符合的结果，中间没有字符也会被截取</span></span><br><span class="line"><span class="built_in">print</span>(re.findall(<span class="string">r&#x27;a.*?b&#x27;</span>, <span class="built_in">str</span>))  <span class="comment">#[&#x27;aab&#x27;, &#x27;ab&#x27;, &#x27;aab&#x27;]</span></span><br><span class="line"><span class="comment">#非贪婪，与上面一样，只是与上面的相比多了一个括号，只保留括号的内容</span></span><br><span class="line"><span class="built_in">print</span>(re.findall(<span class="string">r&#x27;a(.*?)b&#x27;</span>, <span class="built_in">str</span>))  <span class="comment">#[&#x27;a&#x27;, &#x27;&#x27;, &#x27;a&#x27;]</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">str</span> = <span class="string">&#x27;&#x27;&#x27;aabbab</span></span><br><span class="line"><span class="string">         aabbaa</span></span><br><span class="line"><span class="string">         bb&#x27;&#x27;&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#后面多加了2个b</span></span><br><span class="line"><span class="comment">#没有把最后一个换行的aab算进来</span></span><br><span class="line"><span class="built_in">print</span>(re.findall(<span class="string">r&#x27;a.*?b&#x27;</span>, <span class="built_in">str</span>))  <span class="comment">#[&#x27;aab&#x27;, &#x27;ab&#x27;, &#x27;aab&#x27;]</span></span><br><span class="line"><span class="comment">#re.S不会对\n进行中断</span></span><br><span class="line"><span class="built_in">print</span>(re.findall(<span class="string">r&#x27;a.*?b&#x27;</span>, <span class="built_in">str</span>, re.S))  <span class="comment">#[&#x27;aab&#x27;, &#x27;ab&#x27;, &#x27;aab&#x27;, &#x27;aa\n         b&#x27;]</span></span><br></pre></td></tr></table></figure>
 
 <h1 id="Object-Oriented-Programe"><a href="#Object-Oriented-Programe" class="headerlink" title="Object-Oriented-Programe"></a>Object-Oriented-Programe</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#运算符重载</span></span><br><span class="line"><span class="comment"># -*- encoding: utf-8 -*-</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">@File    :   运算符重载.py</span></span><br><span class="line"><span class="string">@Time    :   2022/11/16 17:23:01</span></span><br><span class="line"><span class="string">@Author  :   Lunatic </span></span><br><span class="line"><span class="string">@Version :   1.0</span></span><br><span class="line"><span class="string">@Contact :   goodlunatic0@gmail.com</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Vector</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, a, b</span>):</span><br><span class="line">        self.a = a</span><br><span class="line">        self.b = b</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__str__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;Vector (%d, %d)&#x27;</span> % (self.a, self.b)</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__add__</span>(<span class="params">self, other</span>):</span><br><span class="line">        <span class="keyword">return</span> Vector(self.a + other.a, self.b + other.b)</span><br><span class="line"></span><br><span class="line">v1 = Vector(<span class="number">2</span>, <span class="number">10</span>)</span><br><span class="line">v2 = Vector(<span class="number">5</span>, -<span class="number">2</span>)</span><br><span class="line"><span class="built_in">print</span>(v1 + v2)</span><br></pre></td></tr></table></figure>
 
@@ -179,7 +287,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://goodlunatic.github.io/2022/11/28/Python%20Learning%20Record/" data-id="cle4zzchv000nqsv0df8j9wyc" class="article-share-link">Share</a>
+      <a data-url="https://goodlunatic.github.io/2022/11/28/Python%20Learning%20Record/" data-id="cle5jmjgb001tjwv07ottdqai" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Program/" rel="tag">Program</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/" rel="tag">Python</a></li></ul>
