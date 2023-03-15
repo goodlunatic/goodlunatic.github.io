@@ -19,7 +19,7 @@
 <meta property="og:image" content="https://img-blog.csdnimg.cn/8d1e7e0148af4cdab6e9fcbfccc709f2.gif">
 <meta property="og:image" content="https://image.3001.net/images/20201117/1605593956_5fb36b64db62588f96dcc.png!small">
 <meta property="article:published_time" content="2023-03-12T09:23:08.000Z">
-<meta property="article:modified_time" content="2023-03-13T07:12:06.724Z">
+<meta property="article:modified_time" content="2023-03-15T12:23:41.217Z">
 <meta property="article:author" content="Lunatic">
 <meta property="article:tag" content="CTF">
 <meta property="article:tag" content="Misc">
@@ -158,7 +158,7 @@
 <h2 id="AES加密（需要key）"><a href="#AES加密（需要key）" class="headerlink" title="AES加密（需要key）"></a>AES加密（需要key）</h2><p>将密文和key拉入CaptfEncoder-win-x64-1.3.0解密</p>
 <h2 id="埃特巴什码-Atbash"><a href="#埃特巴什码-Atbash" class="headerlink" title="埃特巴什码(Atbash)"></a>埃特巴什码(Atbash)</h2><p>类似于：(+w)v&amp;LdG_FhgKhdFfhgahJfKcgcKdc_eeIJ_gFN</p>
 <p>拉入厨子直接解密</p>
-<h1 id="各种文件头-尾："><a href="#各种文件头-尾：" class="headerlink" title="各种文件头/尾："></a>各种文件头/尾：</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">.zip的文件头：50 4B 03 04 </span><br><span class="line">.rar的文件头：52 61 72 21</span><br><span class="line">.rar的文件尾：C4 3D 7B 00 40 07 00</span><br><span class="line">.pyc的文件头：03 F3 0D 0A</span><br><span class="line">.jpg的文件头：FF　D8　FF</span><br><span class="line">.png的文件头：89 50 4e 47 0d 0a 1a 0a   文件尾：49 45 4E 44 AE 42 60 82</span><br><span class="line">.gif的文件头：47 49 46 38</span><br><span class="line">.gz的文件头：1F 8B 08 00</span><br><span class="line">TIFF (tif)，文件头：49492A00</span><br><span class="line">Windows [Bitmap](https://so.csdn.net/so/search?q=Bitmap&amp;spm=1001.2101.3001.7020) (bmp)，文件头：424D</span><br><span class="line">CAD (dwg)，文件头：41433130</span><br><span class="line">Adobe Photoshop (psd)，文件头：38425053</span><br><span class="line">Rich Text Format (rtf)，文件头：7B5C727466</span><br><span class="line">XML (xml)，文件头：3C3F786D6C</span><br><span class="line">HTML (html)，文件头：68746D6C3E</span><br><span class="line">Email [thorough only] (eml)，文件头：44656C69766572792D646174653A</span><br><span class="line">Outlook Express (dbx)，文件头：CFAD12FEC5FD746F</span><br><span class="line">Outlook (pst)，文件头：2142444E</span><br><span class="line">MS Word/Excel (xls.or.doc)，文件头：D0CF11E0</span><br><span class="line">MS Access (mdb)，文件头：5374616E64617264204A</span><br><span class="line">WordPerfect (wpd)，文件头：FF575043</span><br><span class="line">Postscript (eps.or.ps)，文件头：252150532D41646F6265</span><br><span class="line">Adobe Acrobat (pdf)，文件头：255044462D312E</span><br><span class="line">Quicken (qdf)，文件头：AC9EBD8F</span><br><span class="line">Windows Password (pwl)，文件头：E3828596</span><br><span class="line">Wave (wav)，文件头：57415645</span><br><span class="line">AVI (avi)，文件头：41564920</span><br><span class="line">Real Audio (ram)，文件头：2E7261FD</span><br><span class="line">Real Media (rm)，文件头：2E524D46</span><br><span class="line">MPEG (mpg)，文件头：000001BA</span><br><span class="line">MPEG (mpg)，文件头：000001B3</span><br><span class="line">Quicktime (mov)，文件头：6D6F6F76</span><br><span class="line">Windows Media (asf)，文件头：3026B2758E66CF11</span><br><span class="line">MIDI (mid)，文件头：4D546864</span><br><span class="line">M4a，文件头：00000018667479704D3441</span><br></pre></td></tr></table></figure>
+<h1 id="各种文件头-尾："><a href="#各种文件头-尾：" class="headerlink" title="各种文件头/尾："></a>各种文件头/尾：</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">.zip的文件头：50 4B 03 04 14 00 08 00</span><br><span class="line">.rar的文件头：52 61 72 21</span><br><span class="line">.rar的文件尾：C4 3D 7B 00 40 07 00</span><br><span class="line">.pyc的文件头：03 F3 0D 0A</span><br><span class="line">.jpg的文件头：FF　D8　FF</span><br><span class="line">.png的文件头：89 50 4e 47 0d 0a 1a 0a   文件尾：49 45 4E 44 AE 42 60 82</span><br><span class="line">.gif的文件头：47 49 46 38</span><br><span class="line">.gz的文件头：1F 8B 08 00</span><br><span class="line">TIFF (tif)，文件头：49492A00</span><br><span class="line">Windows [Bitmap](https://so.csdn.net/so/search?q=Bitmap&amp;spm=1001.2101.3001.7020) (bmp)，文件头：424D</span><br><span class="line">CAD (dwg)，文件头：41433130</span><br><span class="line">Adobe Photoshop (psd)，文件头：38425053</span><br><span class="line">Rich Text Format (rtf)，文件头：7B5C727466</span><br><span class="line">XML (xml)，文件头：3C3F786D6C</span><br><span class="line">HTML (html)，文件头：68746D6C3E</span><br><span class="line">Email [thorough only] (eml)，文件头：44656C69766572792D646174653A</span><br><span class="line">Outlook Express (dbx)，文件头：CFAD12FEC5FD746F</span><br><span class="line">Outlook (pst)，文件头：2142444E</span><br><span class="line">MS Word/Excel (xls.or.doc)，文件头：D0CF11E0</span><br><span class="line">MS Access (mdb)，文件头：5374616E64617264204A</span><br><span class="line">WordPerfect (wpd)，文件头：FF575043</span><br><span class="line">Postscript (eps.or.ps)，文件头：252150532D41646F6265</span><br><span class="line">Adobe Acrobat (pdf)，文件头：255044462D312E</span><br><span class="line">Quicken (qdf)，文件头：AC9EBD8F</span><br><span class="line">Windows Password (pwl)，文件头：E3828596</span><br><span class="line">Wave (wav)，文件头：57415645</span><br><span class="line">AVI (avi)，文件头：41564920</span><br><span class="line">Real Audio (ram)，文件头：2E7261FD</span><br><span class="line">Real Media (rm)，文件头：2E524D46</span><br><span class="line">MPEG (mpg)，文件头：000001BA</span><br><span class="line">MPEG (mpg)，文件头：000001B3</span><br><span class="line">Quicktime (mov)，文件头：6D6F6F76</span><br><span class="line">Windows Media (asf)，文件头：3026B2758E66CF11</span><br><span class="line">MIDI (mid)，文件头：4D546864</span><br><span class="line">M4a，文件头：00000018667479704D3441</span><br></pre></td></tr></table></figure>
 
 <h1 id="Misc——流量分析学习记录"><a href="#Misc——流量分析学习记录" class="headerlink" title="Misc——流量分析学习记录"></a>Misc——流量分析学习记录</h1><h2 id="1、wireshark提取数据流"><a href="#1、wireshark提取数据流" class="headerlink" title="1、wireshark提取数据流:"></a>1、wireshark提取数据流:</h2><p>可以用tcpxtract工具：tcpxtract -f 1.pcap</p>
 <p>strings webshell.pcapng | grep {</p>
@@ -388,7 +388,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://goodlunatic.github.io/2023/03/12/CTF%E2%80%94%E2%80%94Misc%E6%8C%87%E5%8D%97%E3%80%90%E9%95%BF%E6%9C%9F%E6%9B%B4%E6%96%B0%E3%80%91/" data-id="clf6hn5eu0007swv0h0lfdsu2" class="article-share-link">Share</a>
+      <a data-url="https://goodlunatic.github.io/2023/03/12/CTF%E2%80%94%E2%80%94Misc%E6%8C%87%E5%8D%97%E3%80%90%E9%95%BF%E6%9C%9F%E6%9B%B4%E6%96%B0%E3%80%91/" data-id="clf9ueln30008o4v0da4lahz3" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CTF/" rel="tag">CTF</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Misc/" rel="tag">Misc</a></li></ul>
@@ -409,9 +409,9 @@
     </a>
   
   
-    <a href="/2023/03/09/CTF%E2%80%94%E2%80%94Web%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2023/03/09/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E6%81%B6%E8%A1%A5%E8%AE%B0%E5%BD%95/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">CTF——Web学习记录</div>
+      <div class="article-nav-title">渗透测试恶补记录</div>
     </a>
   
 </nav>
@@ -459,15 +459,15 @@
       <ul>
         
           <li>
+            <a href="/2023/03/15/CTF%E2%80%94%E2%80%94Web%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/">CTF——Web学习记录</a>
+          </li>
+        
+          <li>
             <a href="/2023/03/13/Python%20Learning%20Record/">Python Learning Record</a>
           </li>
         
           <li>
             <a href="/2023/03/12/CTF%E2%80%94%E2%80%94Misc%E6%8C%87%E5%8D%97%E3%80%90%E9%95%BF%E6%9C%9F%E6%9B%B4%E6%96%B0%E3%80%91/">CTF——Misc指南【长期更新】</a>
-          </li>
-        
-          <li>
-            <a href="/2023/03/09/CTF%E2%80%94%E2%80%94Web%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/">CTF——Web学习记录</a>
           </li>
         
           <li>
