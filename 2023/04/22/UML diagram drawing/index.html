@@ -10,13 +10,14 @@
   <meta name="description" content="因为学校的好多课程中都涉及到了UML图，所以打算在这里对其做一个总结。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="UML diagram drawing">
-<meta property="og:url" content="https://goodlunatic.github.io/2023/04/19/UML%20diagram%20drawing/index.html">
+<meta property="og:url" content="https://goodlunatic.github.io/2023/04/22/UML%20diagram%20drawing/index.html">
 <meta property="og:site_name" content="Lunatic&#39;s Workstation">
 <meta property="og:description" content="因为学校的好多课程中都涉及到了UML图，所以打算在这里对其做一个总结。">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://goodlunatic.github.io/images/%E4%BE%8B1-%E6%9C%BA%E5%9C%BA.png">
-<meta property="article:published_time" content="2023-04-19T01:47:44.000Z">
-<meta property="article:modified_time" content="2023-04-19T03:26:57.324Z">
+<meta property="og:image" content="https://goodlunatic.github.io/images/class.png">
+<meta property="article:published_time" content="2023-04-22T11:47:44.000Z">
+<meta property="article:modified_time" content="2023-04-22T12:32:41.017Z">
 <meta property="article:author" content="Lunatic">
 <meta property="article:tag" content="Skills">
 <meta name="twitter:card" content="summary">
@@ -74,8 +75,8 @@
         <section id="main"><article id="post-UML diagram drawing" class="article article-type-post" itemscope
   itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2023/04/19/UML%20diagram%20drawing/" class="article-date">
-  <time datetime="2023-04-19T01:47:44.000Z" itemprop="datePublished">2023-04-19</time>
+    <a href="/2023/04/22/UML%20diagram%20drawing/" class="article-date">
+  <time datetime="2023-04-22T11:47:44.000Z" itemprop="datePublished">2023-04-22</time>
 </a>
     
   <div class="article-category">
@@ -101,7 +102,7 @@
       <div class="toc-parent">
   <div id="toc" class="toc-article">
     <div class="toc-title">目录</div>
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#DFD%E2%80%94%E2%80%94%E6%95%B0%E6%8D%AE%E6%B5%81%E5%9B%BE"><span class="toc-text">DFD——数据流图</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E7%BB%84%E6%88%90%E9%83%A8%E5%88%86"><span class="toc-text">一、组成部分</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%9F%BA%E6%9C%AC%E5%9B%BE%E5%BD%A2%E7%AC%A6%E5%8F%B7%EF%BC%88%E9%87%8D%E7%82%B9%EF%BC%89"><span class="toc-text">二、基本图形符号（重点）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BE%8B%E9%A2%98"><span class="toc-text">例题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BE%8B1-%E6%9C%BA%E5%9C%BA%E9%97%AE%E9%A2%98"><span class="toc-text">例1-机场问题</span></a></li></ol></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#DFD%E2%80%94%E2%80%94%E6%95%B0%E6%8D%AE%E6%B5%81%E5%9B%BE"><span class="toc-text">DFD——数据流图</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E7%BB%84%E6%88%90%E9%83%A8%E5%88%86"><span class="toc-text">一、组成部分</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%9F%BA%E6%9C%AC%E5%9B%BE%E5%BD%A2%E7%AC%A6%E5%8F%B7%EF%BC%88%E9%87%8D%E7%82%B9%EF%BC%89"><span class="toc-text">二、基本图形符号（重点）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BE%8B%E9%A2%98"><span class="toc-text">例题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BE%8B1-%E6%9C%BA%E5%9C%BA%E9%97%AE%E9%A2%98"><span class="toc-text">例1-机场问题</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#UML%E2%80%94%E2%80%94%E7%B1%BB%E5%9B%BE"><span class="toc-text">UML——类图</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9C%A8UML%E7%B1%BB%E5%9B%BE%E4%B8%AD%E8%A1%A8%E7%A4%BA%E5%85%B7%E4%BD%93%E7%B1%BB"><span class="toc-text">在UML类图中表示具体类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9C%A8UML%E7%B1%BB%E5%9B%BE%E4%B8%AD%E8%A1%A8%E7%A4%BA%E6%8A%BD%E8%B1%A1%E7%B1%BB"><span class="toc-text">在UML类图中表示抽象类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9C%A8UML%E7%B1%BB%E5%9B%BE%E4%B8%AD%E8%A1%A8%E7%A4%BA%E6%8E%A5%E5%8F%A3"><span class="toc-text">在UML类图中表示接口</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9C%A8UML%E7%B1%BB%E5%9B%BE%E4%B8%AD%E8%A1%A8%E7%A4%BA%E5%8C%85"><span class="toc-text">在UML类图中表示包</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9C%A8UML%E7%B1%BB%E5%9B%BE%E4%B8%AD%E8%A1%A8%E7%A4%BA%E5%85%B3%E7%B3%BB"><span class="toc-text">在UML类图中表示关系</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%AE%9E%E7%8E%B0%E5%85%B3%E7%B3%BB"><span class="toc-text">1.实现关系</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E6%B3%9B%E5%8C%96%E5%85%B3%E7%B3%BB"><span class="toc-text">2.泛化关系</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E5%85%B3%E8%81%94%E5%85%B3%E7%B3%BB"><span class="toc-text">3.关联关系</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E4%BE%9D%E8%B5%96%E5%85%B3%E7%B3%BB"><span class="toc-text">4.依赖关系</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E8%81%9A%E5%90%88%E5%85%B3%E7%B3%BB%E4%B8%8E%E7%BB%84%E5%90%88%E5%85%B3%E7%B3%BB"><span class="toc-text">5.聚合关系与组合关系</span></a></li></ol></li></ol></li></ol>
   </div>
 </div>
       <p><strong>因为学校的好多课程中都涉及到了UML图，所以打算在这里对其做一个总结。</strong></p>
@@ -116,11 +117,33 @@
 <h2 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h2><h3 id="例1-机场问题"><a href="#例1-机场问题" class="headerlink" title="例1-机场问题"></a>例1-机场问题</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">为了方便旅客，旅行平台拟开发一个机票预定系统。航空公司会根据航班信息来安排航班，并将航班信息存储在订票信息中；旅客订票时，旅客将旅客信息输入该系统，系统根据旅客信息在订票信息中查询合适的航班，并返回机票信息，然后系统根据机票信息打印机票，最后将机票信息返回给旅客。请根据上述描述完成相应的数据流图。</span><br></pre></td></tr></table></figure>
 
 <p><img src="/images/%E4%BE%8B1-%E6%9C%BA%E5%9C%BA.png" alt="例1-机场问题"></p>
+<h1 id="UML——类图"><a href="#UML——类图" class="headerlink" title="UML——类图"></a>UML——类图</h1><h2 id="在UML类图中表示具体类"><a href="#在UML类图中表示具体类" class="headerlink" title="在UML类图中表示具体类"></a>在UML类图中表示具体类</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">+”表示 public；</span><br><span class="line">“-”表示 private；</span><br><span class="line">“#”表示 protected；</span><br><span class="line">不带符号表示 default。</span><br></pre></td></tr></table></figure>
+
+<h2 id="在UML类图中表示抽象类"><a href="#在UML类图中表示抽象类" class="headerlink" title="在UML类图中表示抽象类"></a>在UML类图中表示抽象类</h2><p>抽象类的类名以及抽象方法的名字都用斜体字表示</p>
+<h2 id="在UML类图中表示接口"><a href="#在UML类图中表示接口" class="headerlink" title="在UML类图中表示接口"></a>在UML类图中表示接口</h2><p>接口在类图中的第一层顶端用构造型 &lt;<interface>&gt;表示，下面是接口的名字，第二层是方法</p>
+<h2 id="在UML类图中表示包"><a href="#在UML类图中表示包" class="headerlink" title="在UML类图中表示包"></a>在UML类图中表示包</h2><p>大矩形左上角有一个小矩形</p>
+<h2 id="在UML类图中表示关系"><a href="#在UML类图中表示关系" class="headerlink" title="在UML类图中表示关系"></a>在UML类图中表示关系</h2><h3 id="1-实现关系"><a href="#1-实现关系" class="headerlink" title="1.实现关系"></a>1.实现关系</h3><p>实现关系是指接口及其实现类之间的关系。在UML类图中，实现关系用空心三角和虚线组成的箭头来表示，从实现类指向接口</p>
+<p>在Java代码中，实现关系可以直接翻译为关键字 <code>implements</code></p>
+<h3 id="2-泛化关系"><a href="#2-泛化关系" class="headerlink" title="2.泛化关系"></a>2.泛化关系</h3><p>泛化关系（Generalization）是指对象与对象之间的继承关系</p>
+<p>在UML类图中，泛化关系用空心三角和实线组成的箭头表示，从子类指向父类</p>
+<h3 id="3-关联关系"><a href="#3-关联关系" class="headerlink" title="3.关联关系"></a>3.关联关系</h3><p>关联关系（Association）是指对象和对象之间的连接，它使一个对象知道另一个对象的属性和方法。</p>
+<p>关联关系有单向关联和双向关联。</p>
+<p>一个对象可以持有其它对象的数组或者集合。在UML中，通过放置多重性（multipicity）表达式在关联线的末端来表示。多重性表达式可以是一个数字、一段范围或者是它们的组合。多重性允许的表达式示例如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">数字：精确的数量</span><br><span class="line">*或者0..*：表示0到多个</span><br><span class="line">0..1：表示0或者1个，在Java中经常用一个空引用来实现</span><br><span class="line">1..*：表示1到多个</span><br></pre></td></tr></table></figure>
+
+<p>关联关系又分为依赖关联、聚合关联和组合关联三种类型。</p>
+<h3 id="4-依赖关系"><a href="#4-依赖关系" class="headerlink" title="4.依赖关系"></a>4.依赖关系</h3><p>依赖（Dependency）关系是一种弱关联关系</p>
+<p>在UML类图中，依赖关系用一个带虚线的箭头表示，由使用方指向被使用方，表示使用方对象持有被使用方对象的引用</p>
+<h3 id="5-聚合关系与组合关系"><a href="#5-聚合关系与组合关系" class="headerlink" title="5.聚合关系与组合关系"></a>5.聚合关系与组合关系</h3><p>聚合（Aggregation）是关联关系的一种特例，它体现的是整体与部分的拥有关系，即 “has a” 的关系</p>
+<p>在UML图中，聚合关系用空心菱形加实线箭头表示，空心菱形在整体一方，箭头指向部分一方</p>
+<p>组合（Composition）也是关联关系的一种特例，它同样体现整体与部分间的包含关系，即 “contains a” 的关系</p>
+<p>在UML图中，组合关系用实心菱形加实线箭头表示，实心菱形在整体一方，箭头指向部分一方</p>
+<p><img src="/images/class.png" alt="例1-机场问题"></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://goodlunatic.github.io/2023/04/19/UML%20diagram%20drawing/" data-id="clgqmceo2001tjw3zh8k0fxdz" class="article-share-link">Share</a>
+      <a data-url="https://goodlunatic.github.io/2023/04/22/UML%20diagram%20drawing/" data-id="clgrynzsh002dag3z4ojledh4" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Skills/" rel="tag">Skills</a></li></ul>
@@ -131,19 +154,10 @@
   
 <nav id="article-nav">
   
-    <a href="/2023/04/19/Software%20Testing%20Learning/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          Software Testing Learning
-        
-      </div>
-    </a>
   
-  
-    <a href="/2023/04/15/CTF%E2%80%94%E2%80%94Misc%E6%8C%87%E5%8D%97%E3%80%90%E9%95%BF%E6%9C%9F%E6%9B%B4%E6%96%B0%E3%80%91/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2023/04/22/CTF%E2%80%94%E2%80%94Pwn%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">CTF——Misc指南【长期更新】</div>
+      <div class="article-nav-title">CTF——Pwn学习记录</div>
     </a>
   
 </nav>
@@ -178,7 +192,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">April 2023</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">March 2023</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">February 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/01/">January 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">December 2022</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">November 2022</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">April 2022</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">April 2023</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">March 2023</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">February 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/01/">January 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">December 2022</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">November 2022</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">April 2022</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -191,6 +205,14 @@
       <ul>
         
           <li>
+            <a href="/2023/04/22/UML%20diagram%20drawing/">UML diagram drawing</a>
+          </li>
+        
+          <li>
+            <a href="/2023/04/22/CTF%E2%80%94%E2%80%94Pwn%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/">CTF——Pwn学习记录</a>
+          </li>
+        
+          <li>
             <a href="/2023/04/21/Java%20Learning%20Record/">Java Learning Record</a>
           </li>
         
@@ -200,14 +222,6 @@
         
           <li>
             <a href="/2023/04/20/Modern%20Systems%20Analysis%20and%20Design/">Modern Systems Analysis and Design</a>
-          </li>
-        
-          <li>
-            <a href="/2023/04/19/Software%20Testing%20Learning/">Software Testing Learning</a>
-          </li>
-        
-          <li>
-            <a href="/2023/04/19/UML%20diagram%20drawing/">UML diagram drawing</a>
           </li>
         
       </ul>

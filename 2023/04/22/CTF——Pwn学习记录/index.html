@@ -10,13 +10,13 @@
   <meta name="description" content="这是本菜鸡学Pwn的艰难历程@_@">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CTF——Pwn学习记录">
-<meta property="og:url" content="https://goodlunatic.github.io/2023/01/19/CTF%E2%80%94%E2%80%94Pwn%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/index.html">
+<meta property="og:url" content="https://goodlunatic.github.io/2023/04/22/CTF%E2%80%94%E2%80%94Pwn%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/index.html">
 <meta property="og:site_name" content="Lunatic&#39;s Workstation">
 <meta property="og:description" content="这是本菜鸡学Pwn的艰难历程@_@">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="d:/MD/Pwn学习记录/0.png">
-<meta property="article:published_time" content="2023-01-19T09:48:23.000Z">
-<meta property="article:modified_time" content="2023-01-20T05:41:48.330Z">
+<meta property="article:published_time" content="2023-04-22T01:48:23.000Z">
+<meta property="article:modified_time" content="2023-04-22T01:50:37.411Z">
 <meta property="article:author" content="Lunatic">
 <meta property="article:tag" content="CTF">
 <meta property="article:tag" content="Pwn">
@@ -75,8 +75,8 @@
         <section id="main"><article id="post-CTF——Pwn学习记录" class="article article-type-post" itemscope
   itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2023/01/19/CTF%E2%80%94%E2%80%94Pwn%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/" class="article-date">
-  <time datetime="2023-01-19T09:48:23.000Z" itemprop="datePublished">2023-01-19</time>
+    <a href="/2023/04/22/CTF%E2%80%94%E2%80%94Pwn%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/" class="article-date">
+  <time datetime="2023-04-22T01:48:23.000Z" itemprop="datePublished">2023-04-22</time>
 </a>
     
   <div class="article-category">
@@ -150,7 +150,7 @@
 
 <h3 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h3><p><strong>Tips:rbp的下一行才是返回地址，所以要把rbp那一行也给覆盖了。</strong></p>
 <p><strong>x86同理，要把ebp那行也覆盖了。</strong></p>
-<p><strong>在IDA里就是要覆盖到r（r那行不被覆盖）</strong></p>
+<p><strong>在IDA里就是要覆盖到r（r那行不被覆盖）(buf-s)</strong></p>
 <p>got表：包含函数的真实地址，包含libc函数的基址，用于泄露地址</p>
 <p>（Global offset Table）：全局偏移表</p>
 <p>plt表：不用知道libc函数真实地址，使用plt地址就可以调用函数</p>
@@ -326,7 +326,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://goodlunatic.github.io/2023/01/19/CTF%E2%80%94%E2%80%94Pwn%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/" data-id="clgqmcenn0007jw3zcgg29af0" class="article-share-link">Share</a>
+      <a data-url="https://goodlunatic.github.io/2023/04/22/CTF%E2%80%94%E2%80%94Pwn%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/" data-id="clgrynzs6000rag3zhfxbhfj9" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CTF/" rel="tag">CTF</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Pwn/" rel="tag">Pwn</a></li></ul>
@@ -337,19 +337,19 @@
   
 <nav id="article-nav">
   
-    <a href="/2023/01/20/2022%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2023/04/22/UML%20diagram%20drawing/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
-          2022年终总结
+          UML diagram drawing
         
       </div>
     </a>
   
   
-    <a href="/2023/01/08/CTF%E2%80%94%E2%80%94Pwn%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2023/04/21/Java%20Learning%20Record/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">CTF——Pwn刷题记录</div>
+      <div class="article-nav-title">Java Learning Record</div>
     </a>
   
 </nav>
@@ -384,7 +384,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">April 2023</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">March 2023</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">February 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/01/">January 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">December 2022</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">November 2022</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">April 2022</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">April 2023</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">March 2023</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">February 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/01/">January 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">December 2022</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">November 2022</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">April 2022</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -397,6 +397,14 @@
       <ul>
         
           <li>
+            <a href="/2023/04/22/UML%20diagram%20drawing/">UML diagram drawing</a>
+          </li>
+        
+          <li>
+            <a href="/2023/04/22/CTF%E2%80%94%E2%80%94Pwn%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/">CTF——Pwn学习记录</a>
+          </li>
+        
+          <li>
             <a href="/2023/04/21/Java%20Learning%20Record/">Java Learning Record</a>
           </li>
         
@@ -406,14 +414,6 @@
         
           <li>
             <a href="/2023/04/20/Modern%20Systems%20Analysis%20and%20Design/">Modern Systems Analysis and Design</a>
-          </li>
-        
-          <li>
-            <a href="/2023/04/19/Software%20Testing%20Learning/">Software Testing Learning</a>
-          </li>
-        
-          <li>
-            <a href="/2023/04/19/UML%20diagram%20drawing/">UML diagram drawing</a>
           </li>
         
       </ul>
