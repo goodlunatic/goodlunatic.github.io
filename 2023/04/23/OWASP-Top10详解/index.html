@@ -5,14 +5,20 @@
   
 
   
-  <title>Archives: 2023/4 | Lunatic&#39;s Workstation</title>
+  <title>OWASP-Top10详解 | Lunatic&#39;s Workstation</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Lunatic&#39;s Workstation">
-<meta property="og:url" content="https://goodlunatic.github.io/archives/2023/04/index.html">
+  <meta name="description" content="面试的要求中经常可以看到OWASP-Top10，于是打算好好学习一下。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="OWASP-Top10详解">
+<meta property="og:url" content="https://goodlunatic.github.io/2023/04/23/OWASP-Top10%E8%AF%A6%E8%A7%A3/index.html">
 <meta property="og:site_name" content="Lunatic&#39;s Workstation">
+<meta property="og:description" content="面试的要求中经常可以看到OWASP-Top10，于是打算好好学习一下。">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-04-23T11:11:14.000Z">
+<meta property="article:modified_time" content="2023-04-23T11:19:44.236Z">
 <meta property="article:author" content="Lunatic">
+<meta property="article:tag" content="Web">
+<meta property="article:tag" content="Skills">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternate" href="/atom.xml" title="Lunatic&#39;s Workstation" type="application/atom+xml">
@@ -64,211 +70,67 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2023" class="archive-year">2023</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2023/04/23/OWASP-Top10%E8%AF%A6%E8%A7%A3/" class="archive-article-date">
-  <time datetime="2023-04-23T11:11:14.000Z" itemprop="datePublished">Apr 23</time>
+        <section id="main"><article id="post-OWASP-Top10详解" class="article article-type-post" itemscope
+  itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2023/04/23/OWASP-Top10%E8%AF%A6%E8%A7%A3/" class="article-date">
+  <time datetime="2023-04-23T11:11:14.000Z" itemprop="datePublished">2023-04-23</time>
 </a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Skills/">Skills</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+    <header class="article-header">
       
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2023/04/23/OWASP-Top10%E8%AF%A6%E8%A7%A3/">OWASP-Top10详解</a>
+    <h1 class="article-title" itemprop="name">
+      OWASP-Top10详解
     </h1>
   
 
     </header>
-  </div>
-</article>
-  
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2023/04/22/UML%20diagram%20drawing/" class="archive-article-date">
-  <time datetime="2023-04-22T11:47:44.000Z" itemprop="datePublished">Apr 22</time>
-</a>
+    <div class="article-entry" itemprop="articleBody">
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2023/04/22/UML%20diagram%20drawing/">UML diagram drawing</a>
-    </h1>
-  
-
-    </header>
+      <div class="toc-parent">
+  <div id="toc" class="toc-article">
+    <div class="toc-title">目录</div>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#OWASP-Top10-2021"><span class="toc-text">OWASP-Top10[2021]</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%A4%B1%E6%95%88%E7%9A%84%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6Broken-Access-Control"><span class="toc-text">一、失效的访问控制Broken Access Control</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%8A%A0%E5%AF%86%E6%9C%BA%E5%88%B6%E5%A4%B1%E6%95%88Cryptographic-Failures"><span class="toc-text">二、加密机制失效Cryptographic Failures</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E6%B3%A8%E5%85%A5Injection"><span class="toc-text">三、注入Injection</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E5%AE%89%E5%85%A8%E8%AE%BE%E8%AE%A1Insecure-Design"><span class="toc-text">四、安全设计Insecure Design</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E5%AE%89%E5%85%A8%E9%85%8D%E7%BD%AE%E9%94%99%E8%AF%AFSecurity-Misconfiguration"><span class="toc-text">五、安全配置错误Security Misconfiguration</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E8%87%AA%E5%B8%A6%E7%BC%BA%E9%99%B7%E5%92%8C%E8%BF%87%E6%97%B6%E7%9A%84%E7%BB%84%E4%BB%B6Vulnerable-and-Outdated-Components"><span class="toc-text">六、自带缺陷和过时的组件Vulnerable and Outdated Components</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%83%E3%80%81%E8%BA%AB%E4%BB%BD%E8%AF%86%E5%88%AB%E5%92%8C%E8%BA%AB%E4%BB%BD%E9%AA%8C%E8%AF%81%E9%94%99%E8%AF%AFIdentification-and-Authentication-Failures"><span class="toc-text">七、身份识别和身份验证错误Identification and Authentication Failures</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AB%E3%80%81%E8%BD%AF%E4%BB%B6%E5%92%8C%E6%95%B0%E6%8D%AE%E5%AE%8C%E6%95%B4%E6%80%A7%E6%95%85%E9%9A%9CSoftware-and-Data-Integrity-Failures"><span class="toc-text">八、软件和数据完整性故障Software and Data Integrity Failures</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B9%9D%E3%80%81%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97%E5%92%8C%E7%9B%91%E6%8E%A7%E6%95%85%E9%9A%9CSecurity-Logging-and-Monitoring-Failures"><span class="toc-text">九、安全日志和监控故障Security Logging and Monitoring Failures</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%81%E3%80%81%E6%9C%8D%E5%8A%A1%E7%AB%AF%E8%AF%B7%E6%B1%82%E4%BC%AA%E9%80%A0Server-Side-Request-Forgery"><span class="toc-text">十、服务端请求伪造Server-Side Request Forgery</span></a></li></ol></li></ol>
   </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2023/04/22/CTF%E2%80%94%E2%80%94Pwn%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/" class="archive-article-date">
-  <time datetime="2023-04-22T01:48:23.000Z" itemprop="datePublished">Apr 22</time>
-</a>
+</div>
+      <p><strong>面试的要求中经常可以看到OWASP-Top10，于是打算好好学习一下。</strong></p>
+<span id="more"></span>
+
+<h1 id="OWASP-Top10-2021"><a href="#OWASP-Top10-2021" class="headerlink" title="OWASP-Top10[2021]"></a>OWASP-Top10[2021]</h1><h2 id="一、失效的访问控制Broken-Access-Control"><a href="#一、失效的访问控制Broken-Access-Control" class="headerlink" title="一、失效的访问控制Broken Access Control"></a>一、失效的访问控制Broken Access Control</h2><h2 id="二、加密机制失效Cryptographic-Failures"><a href="#二、加密机制失效Cryptographic-Failures" class="headerlink" title="二、加密机制失效Cryptographic Failures"></a>二、加密机制失效Cryptographic Failures</h2><h2 id="三、注入Injection"><a href="#三、注入Injection" class="headerlink" title="三、注入Injection"></a>三、注入Injection</h2><h2 id="四、安全设计Insecure-Design"><a href="#四、安全设计Insecure-Design" class="headerlink" title="四、安全设计Insecure Design"></a>四、安全设计Insecure Design</h2><h2 id="五、安全配置错误Security-Misconfiguration"><a href="#五、安全配置错误Security-Misconfiguration" class="headerlink" title="五、安全配置错误Security Misconfiguration"></a>五、安全配置错误Security Misconfiguration</h2><h2 id="六、自带缺陷和过时的组件Vulnerable-and-Outdated-Components"><a href="#六、自带缺陷和过时的组件Vulnerable-and-Outdated-Components" class="headerlink" title="六、自带缺陷和过时的组件Vulnerable and Outdated Components"></a>六、自带缺陷和过时的组件Vulnerable and Outdated Components</h2><h2 id="七、身份识别和身份验证错误Identification-and-Authentication-Failures"><a href="#七、身份识别和身份验证错误Identification-and-Authentication-Failures" class="headerlink" title="七、身份识别和身份验证错误Identification and Authentication Failures"></a>七、身份识别和身份验证错误Identification and Authentication Failures</h2><h2 id="八、软件和数据完整性故障Software-and-Data-Integrity-Failures"><a href="#八、软件和数据完整性故障Software-and-Data-Integrity-Failures" class="headerlink" title="八、软件和数据完整性故障Software and Data Integrity Failures"></a>八、软件和数据完整性故障Software and Data Integrity Failures</h2><h2 id="九、安全日志和监控故障Security-Logging-and-Monitoring-Failures"><a href="#九、安全日志和监控故障Security-Logging-and-Monitoring-Failures" class="headerlink" title="九、安全日志和监控故障Security Logging and Monitoring Failures"></a>九、安全日志和监控故障Security Logging and Monitoring Failures</h2><h2 id="十、服务端请求伪造Server-Side-Request-Forgery"><a href="#十、服务端请求伪造Server-Side-Request-Forgery" class="headerlink" title="十、服务端请求伪造Server-Side Request Forgery"></a>十、服务端请求伪造Server-Side Request Forgery</h2>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2023/04/22/CTF%E2%80%94%E2%80%94Pwn%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/">CTF——Pwn学习记录</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2023/04/22/CTF%E2%80%94%E2%80%94Misc%E6%8C%87%E5%8D%97%E3%80%90%E9%95%BF%E6%9C%9F%E6%9B%B4%E6%96%B0%E3%80%91/" class="archive-article-date">
-  <time datetime="2023-04-22T01:41:08.000Z" itemprop="datePublished">Apr 22</time>
-</a>
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://goodlunatic.github.io/2023/04/23/OWASP-Top10%E8%AF%A6%E8%A7%A3/" data-id="clgtbhzu400187o3z31fzg8hx" class="article-share-link">Share</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2023/04/22/CTF%E2%80%94%E2%80%94Misc%E6%8C%87%E5%8D%97%E3%80%90%E9%95%BF%E6%9C%9F%E6%9B%B4%E6%96%B0%E3%80%91/">CTF——Misc指南【长期更新】</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2023/04/21/Java%20Learning%20Record/" class="archive-article-date">
-  <time datetime="2023-04-21T13:10:06.000Z" itemprop="datePublished">Apr 21</time>
-</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2023/04/21/Java%20Learning%20Record/">Java Learning Record</a>
-    </h1>
-  
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Skills/" rel="tag">Skills</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Web/" rel="tag">Web</a></li></ul>
 
-    </header>
+    </footer>
   </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2023/04/21/Database%20Learning%20Record/" class="archive-article-date">
-  <time datetime="2023-04-21T06:45:41.000Z" itemprop="datePublished">Apr 21</time>
-</a>
-      
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2023/04/21/Database%20Learning%20Record/">Database Learning Record</a>
-    </h1>
+<nav id="article-nav">
   
+  
+    <a href="/2023/04/22/UML%20diagram%20drawing/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">UML diagram drawing</div>
+    </a>
+  
+</nav>
 
-    </header>
-  </div>
+  
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2023/04/20/Modern%20Systems%20Analysis%20and%20Design/" class="archive-article-date">
-  <time datetime="2023-04-20T09:29:45.000Z" itemprop="datePublished">Apr 20</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2023/04/20/Modern%20Systems%20Analysis%20and%20Design/">Modern Systems Analysis and Design</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2023/04/19/Software%20Testing%20Learning/" class="archive-article-date">
-  <time datetime="2023-04-19T01:56:35.000Z" itemprop="datePublished">Apr 19</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2023/04/19/Software%20Testing%20Learning/">Software Testing Learning</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2023/04/09/Hash%E7%88%86%E7%A0%B4%E6%80%BB%E7%BB%93/" class="archive-article-date">
-  <time datetime="2023-04-09T05:11:55.000Z" itemprop="datePublished">Apr 9</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2023/04/09/Hash%E7%88%86%E7%A0%B4%E6%80%BB%E7%BB%93/">Hash爆破总结</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2023/04/09/CTF%E2%80%94%E2%80%94Web%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%E3%80%90%E9%95%BF%E6%9C%9F%E6%9B%B4%E6%96%B0%E3%80%91/" class="archive-article-date">
-  <time datetime="2023-04-09T01:51:23.000Z" itemprop="datePublished">Apr 9</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2023/04/09/CTF%E2%80%94%E2%80%94Web%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%E3%80%90%E9%95%BF%E6%9C%9F%E6%9B%B4%E6%96%B0%E3%80%91/">CTF——Web学习记录【长期更新】</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
 
 </section>
         
