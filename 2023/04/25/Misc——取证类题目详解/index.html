@@ -5,22 +5,24 @@
   
 
   
-  <title>The usage of Volatility | Lunatic&#39;s Workstation</title>
+  <title>Misc——取证类题目详解 | Lunatic&#39;s Workstation</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="做Misc题的时候经常做到内存取证类的题目，于是就想对内存取证工具Volatility的使用做个简单的整理">
+  <meta name="description" content="做Misc题的时候经常做到内存取证类的题目，于是就想对此做个简单的整理">
 <meta property="og:type" content="article">
-<meta property="og:title" content="The usage of Volatility">
-<meta property="og:url" content="https://goodlunatic.github.io/2022/11/25/The-usage-of-Volatility/index.html">
+<meta property="og:title" content="Misc——取证类题目详解">
+<meta property="og:url" content="https://goodlunatic.github.io/2023/04/25/Misc%E2%80%94%E2%80%94%E5%8F%96%E8%AF%81%E7%B1%BB%E9%A2%98%E7%9B%AE%E8%AF%A6%E8%A7%A3/index.html">
 <meta property="og:site_name" content="Lunatic&#39;s Workstation">
-<meta property="og:description" content="做Misc题的时候经常做到内存取证类的题目，于是就想对内存取证工具Volatility的使用做个简单的整理">
+<meta property="og:description" content="做Misc题的时候经常做到内存取证类的题目，于是就想对此做个简单的整理">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2022-11-25T01:25:11.000Z">
-<meta property="article:modified_time" content="2022-11-25T01:35:09.013Z">
+<meta property="og:image" content="https://goodlunatic.github.io/images/VeraCrypt1.png">
+<meta property="article:published_time" content="2023-04-25T12:25:11.000Z">
+<meta property="article:modified_time" content="2023-04-25T12:42:39.856Z">
 <meta property="article:author" content="Lunatic">
 <meta property="article:tag" content="CTF">
 <meta property="article:tag" content="Misc">
 <meta property="article:tag" content="forensics">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://goodlunatic.github.io/images/VeraCrypt1.png">
   
     <link rel="alternate" href="/atom.xml" title="Lunatic&#39;s Workstation" type="application/atom+xml">
   
@@ -71,11 +73,11 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-The-usage-of-Volatility" class="article article-type-post" itemscope
+        <section id="main"><article id="post-Misc——取证类题目详解" class="article article-type-post" itemscope
   itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2022/11/25/The-usage-of-Volatility/" class="article-date">
-  <time datetime="2022-11-25T01:25:11.000Z" itemprop="datePublished">2022-11-25</time>
+    <a href="/2023/04/25/Misc%E2%80%94%E2%80%94%E5%8F%96%E8%AF%81%E7%B1%BB%E9%A2%98%E7%9B%AE%E8%AF%A6%E8%A7%A3/" class="article-date">
+  <time datetime="2023-04-25T12:25:11.000Z" itemprop="datePublished">2023-04-25</time>
 </a>
     
   <div class="article-category">
@@ -90,7 +92,7 @@
       
   
     <h1 class="article-title" itemprop="name">
-      The usage of Volatility
+      Misc——取证类题目详解
     </h1>
   
 
@@ -101,15 +103,15 @@
       <div class="toc-parent">
   <div id="toc" class="toc-article">
     <div class="toc-title">目录</div>
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Volatility2"><span class="toc-text">Volatility2</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%86%E5%88%AB%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BF%A1%E6%81%AF%EF%BC%9A"><span class="toc-text">识别操作系统的基本信息：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%AB%E6%8F%8F%E8%BF%9B%E7%A8%8B%EF%BC%9A"><span class="toc-text">扫描进程：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%AB%E6%8F%8F%E8%BF%9B%E7%A8%8B%E7%BC%93%E5%AD%98%E7%9A%84%E6%96%87%E4%BB%B6%EF%BC%9A"><span class="toc-text">扫描进程缓存的文件：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E6%89%BE%E7%89%B9%E5%AE%9A%E5%90%8E%E7%BC%80%E7%9A%84%E6%96%87%E4%BB%B6%EF%BC%9A"><span class="toc-text">查找特定后缀的文件：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E6%89%BE%E6%8C%87%E5%AE%9A%E6%96%87%E4%BB%B6%E5%A4%B9%E4%B8%8B%E7%9A%84%E6%96%87%E4%BB%B6%EF%BC%9A"><span class="toc-text">查找指定文件夹下的文件：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8dumpfiles%E7%88%86%E7%A0%B4%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B9%EF%BC%9A"><span class="toc-text">使用dumpfiles爆破文件内容：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%9A%E8%BF%87memdump%E7%88%86%E7%A0%B4%E5%87%BA%E8%BF%9B%E7%A8%8B%E5%AF%B9%E5%BA%94%E7%9A%84%E4%BF%A1%E6%81%AF"><span class="toc-text">通过memdump爆破出进程对应的信息:</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E8%BF%9B%E7%A8%8B%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%EF%BC%9A"><span class="toc-text">查看进程环境变量：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%AB%E6%8F%8F%E8%BF%9B%E7%A8%8B%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%8F%82%E6%95%B0%EF%BC%9A"><span class="toc-text">扫描进程命令行参数：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%AB%E6%8F%8F%E5%8A%A8%E6%80%81%E5%BA%93%E5%88%97%E8%A1%A8%EF%BC%9A"><span class="toc-text">扫描动态库列表：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%A8%E6%88%B7%E7%9A%84%E7%94%A8%E6%88%B7%E5%90%8D%E5%92%8C%E5%AF%86%E7%A0%81-hash%E5%80%BC-%EF%BC%9A"><span class="toc-text">用户的用户名和密码(hash值)：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%AB%E6%8F%8F%E6%B3%A8%E5%86%8C%E8%A1%A8%E9%A1%B9%EF%BC%9A"><span class="toc-text">扫描注册表项：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%AB%E6%8F%8F%E6%B3%A8%E5%86%8C%E8%A1%A8%E6%95%B0%E6%8D%AE-%E9%94%AE%E5%80%BC-%EF%BC%9A"><span class="toc-text">扫描注册表数据(键值)：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E7%BD%91%E7%BB%9C%E8%BF%9E%E6%8E%A5%E7%8A%B6%E6%80%81"><span class="toc-text">查看网络连接状态:</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E6%9C%8D%E5%8A%A1%E8%BF%90%E8%A1%8C%E7%8A%B6%E6%80%81%EF%BC%9A"><span class="toc-text">查看服务运行状态：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E6%B5%8F%E8%A7%88%E5%99%A8%E5%8E%86%E5%8F%B2%E8%AE%B0%E5%BD%95%EF%BC%9A"><span class="toc-text">查看浏览器历史记录：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E5%BD%93%E5%89%8D%E5%B1%95%E7%A4%BA%E7%9A%84notepad%E7%9A%84%E5%86%85%E5%AE%B9%EF%BC%9A"><span class="toc-text">查看当前展示的notepad的内容：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8F%90%E5%8F%96%E8%BF%9B%E7%A8%8B%EF%BC%9A"><span class="toc-text">提取进程：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%EF%BC%9A"><span class="toc-text">获取屏幕截图：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E8%BF%90%E8%A1%8C%E7%A8%8B%E5%BA%8F%E7%9B%B8%E5%85%B3%E7%9A%84%E8%AE%B0%E5%BD%95%EF%BC%8C%E6%AF%94%E5%A6%82%E6%9C%80%E5%90%8E%E4%B8%80%E6%AC%A1%E6%9B%B4%E6%96%B0%E6%97%B6%E9%97%B4%EF%BC%8C%E8%BF%90%E8%A1%8C%E8%BF%87%E7%9A%84%E6%AC%A1%E6%95%B0%E7%AD%89%EF%BC%9A"><span class="toc-text">查看运行程序相关的记录，比如最后一次更新时间，运行过的次数等：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%80%E5%A4%A7%E7%A8%8B%E5%BA%8F%E6%8F%90%E5%8F%96%E4%BF%A1%E6%81%AF%EF%BC%9A"><span class="toc-text">最大程序提取信息：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8mimikatz%E6%8F%92%E4%BB%B6%E5%BF%AB%E9%80%9F%E8%8E%B7%E5%8F%96%E7%94%A8%E6%88%B7%E5%AF%86%E7%A0%81%EF%BC%9A"><span class="toc-text">使用mimikatz插件快速获取用户密码：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8ndispktscan%E6%8F%92%E4%BB%B6%E6%90%9C%E7%B4%A2%E5%86%85%E6%A0%B8%E7%9A%84%E7%BD%91%E7%BB%9C%E6%B5%81%E9%87%8F%E5%8C%85%E4%BF%A1%E6%81%AF%EF%BC%9A"><span class="toc-text">使用ndispktscan插件搜索内核的网络流量包信息：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8VolDiff%E8%BF%9B%E8%A1%8C%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6%E6%A3%80%E6%B5%8B%EF%BC%88%E5%8D%95%E7%8B%AC%E4%BD%BF%E7%94%A8%EF%BC%89"><span class="toc-text">使用VolDiff进行恶意软件检测（单独使用）</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Volatility3"><span class="toc-text">Volatility3</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Volatility2"><span class="toc-text">Volatility2</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%86%E5%88%AB%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BF%A1%E6%81%AF%EF%BC%9A"><span class="toc-text">识别操作系统的基本信息：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%AB%E6%8F%8F%E8%BF%9B%E7%A8%8B%EF%BC%9A"><span class="toc-text">扫描进程：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%AB%E6%8F%8F%E8%BF%9B%E7%A8%8B%E7%BC%93%E5%AD%98%E7%9A%84%E6%96%87%E4%BB%B6%EF%BC%9A"><span class="toc-text">扫描进程缓存的文件：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E6%89%BE%E7%89%B9%E5%AE%9A%E5%90%8E%E7%BC%80%E7%9A%84%E6%96%87%E4%BB%B6%EF%BC%9A"><span class="toc-text">查找特定后缀的文件：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E6%89%BE%E6%8C%87%E5%AE%9A%E6%96%87%E4%BB%B6%E5%A4%B9%E4%B8%8B%E7%9A%84%E6%96%87%E4%BB%B6%EF%BC%9A"><span class="toc-text">查找指定文件夹下的文件：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8dumpfiles%E7%88%86%E7%A0%B4%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B9%EF%BC%9A"><span class="toc-text">使用dumpfiles爆破文件内容：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%9A%E8%BF%87memdump%E7%88%86%E7%A0%B4%E5%87%BA%E8%BF%9B%E7%A8%8B%E5%AF%B9%E5%BA%94%E7%9A%84%E4%BF%A1%E6%81%AF"><span class="toc-text">通过memdump爆破出进程对应的信息:</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E8%BF%9B%E7%A8%8B%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%EF%BC%9A"><span class="toc-text">查看进程环境变量：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%AB%E6%8F%8F%E8%BF%9B%E7%A8%8B%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%8F%82%E6%95%B0%EF%BC%9A"><span class="toc-text">扫描进程命令行参数：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%AB%E6%8F%8F%E5%8A%A8%E6%80%81%E5%BA%93%E5%88%97%E8%A1%A8%EF%BC%9A"><span class="toc-text">扫描动态库列表：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%A8%E6%88%B7%E7%9A%84%E7%94%A8%E6%88%B7%E5%90%8D%E5%92%8C%E5%AF%86%E7%A0%81-hash%E5%80%BC-%EF%BC%9A"><span class="toc-text">用户的用户名和密码(hash值)：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%AB%E6%8F%8F%E6%B3%A8%E5%86%8C%E8%A1%A8%E9%A1%B9%EF%BC%9A"><span class="toc-text">扫描注册表项：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%AB%E6%8F%8F%E6%B3%A8%E5%86%8C%E8%A1%A8%E6%95%B0%E6%8D%AE-%E9%94%AE%E5%80%BC-%EF%BC%9A"><span class="toc-text">扫描注册表数据(键值)：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E7%BD%91%E7%BB%9C%E8%BF%9E%E6%8E%A5%E7%8A%B6%E6%80%81"><span class="toc-text">查看网络连接状态:</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E6%9C%8D%E5%8A%A1%E8%BF%90%E8%A1%8C%E7%8A%B6%E6%80%81%EF%BC%9A"><span class="toc-text">查看服务运行状态：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E6%B5%8F%E8%A7%88%E5%99%A8%E5%8E%86%E5%8F%B2%E8%AE%B0%E5%BD%95%EF%BC%9A"><span class="toc-text">查看浏览器历史记录：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E5%BD%93%E5%89%8D%E5%B1%95%E7%A4%BA%E7%9A%84notepad%E7%9A%84%E5%86%85%E5%AE%B9%EF%BC%9A"><span class="toc-text">查看当前展示的notepad的内容：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8F%90%E5%8F%96%E8%BF%9B%E7%A8%8B%EF%BC%9A"><span class="toc-text">提取进程：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%EF%BC%9A"><span class="toc-text">获取屏幕截图：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E8%BF%90%E8%A1%8C%E7%A8%8B%E5%BA%8F%E7%9B%B8%E5%85%B3%E7%9A%84%E8%AE%B0%E5%BD%95%EF%BC%8C%E6%AF%94%E5%A6%82%E6%9C%80%E5%90%8E%E4%B8%80%E6%AC%A1%E6%9B%B4%E6%96%B0%E6%97%B6%E9%97%B4%EF%BC%8C%E8%BF%90%E8%A1%8C%E8%BF%87%E7%9A%84%E6%AC%A1%E6%95%B0%E7%AD%89%EF%BC%9A"><span class="toc-text">查看运行程序相关的记录，比如最后一次更新时间，运行过的次数等：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%80%E5%A4%A7%E7%A8%8B%E5%BA%8F%E6%8F%90%E5%8F%96%E4%BF%A1%E6%81%AF%EF%BC%9A"><span class="toc-text">最大程序提取信息：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8mimikatz%E6%8F%92%E4%BB%B6%E5%BF%AB%E9%80%9F%E8%8E%B7%E5%8F%96%E7%94%A8%E6%88%B7%E5%AF%86%E7%A0%81%EF%BC%9A"><span class="toc-text">使用mimikatz插件快速获取用户密码：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8ndispktscan%E6%8F%92%E4%BB%B6%E6%90%9C%E7%B4%A2%E5%86%85%E6%A0%B8%E7%9A%84%E7%BD%91%E7%BB%9C%E6%B5%81%E9%87%8F%E5%8C%85%E4%BF%A1%E6%81%AF%EF%BC%9A"><span class="toc-text">使用ndispktscan插件搜索内核的网络流量包信息：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8VolDiff%E8%BF%9B%E8%A1%8C%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6%E6%A3%80%E6%B5%8B%EF%BC%88%E5%8D%95%E7%8B%AC%E4%BD%BF%E7%94%A8%EF%BC%89"><span class="toc-text">使用VolDiff进行恶意软件检测（单独使用）</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Volatility3"><span class="toc-text">Volatility3</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#VeraCrypt"><span class="toc-text">VeraCrypt</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A3%E5%AF%86-amp-%E6%8C%82%E8%BD%BD%E7%A3%81%E7%9B%98%E7%9A%84%E6%AD%A5%E9%AA%A4%EF%BC%9A"><span class="toc-text">解密&amp;挂载磁盘的步骤：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%96%E8%AF%81%E5%A4%A7%E5%B8%88"><span class="toc-text">取证大师</span></a></li></ol></li></ol>
   </div>
 </div>
-      <p><strong>做Misc题的时候经常做到内存取证类的题目，于是就想对内存取证工具Volatility的使用做个简单的整理</strong></p>
+      <p><strong>做Misc题的时候经常做到内存取证类的题目，于是就想对此做个简单的整理</strong></p>
 <span id="more"></span>
 
-<p>Volatility有2和3两个版本，之前一直用版本2用的比较多，</p>
-<p>直到在祥云杯中遇到了一道Linux内存取证的题目，才开始真正地接触版本3</p>
-<h1 id="Volatility2"><a href="#Volatility2" class="headerlink" title="Volatility2"></a>Volatility2</h1><p>可以用的文件后缀：.vmem / .dump / .raw / .img</p>
+<h1 id="Volatility2"><a href="#Volatility2" class="headerlink" title="Volatility2"></a>Volatility2</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Volatility有2和3两个版本，之前一直用版本2用的比较多，</span><br><span class="line">直到在祥云杯中遇到了一道Linux内存取证的题目，才开始真正地接触版本3</span><br></pre></td></tr></table></figure>
+
+<p>可以用的文件后缀：.vmem / .dump / .raw / .img</p>
 <p>vol.py –info 可以查看插件</p>
 <h2 id="识别操作系统的基本信息："><a href="#识别操作系统的基本信息：" class="headerlink" title="识别操作系统的基本信息："></a>识别操作系统的基本信息：</h2><p>python2 vol.py mem.dump imageinfo</p>
 <h2 id="扫描进程："><a href="#扫描进程：" class="headerlink" title="扫描进程："></a>扫描进程：</h2><p>vol.py -f OtterCTF.vmem –profile=Win7SP1x64 pslist</p>
@@ -142,11 +144,16 @@
 <h2 id="使用mimikatz插件快速获取用户密码："><a href="#使用mimikatz插件快速获取用户密码：" class="headerlink" title="使用mimikatz插件快速获取用户密码："></a>使用mimikatz插件快速获取用户密码：</h2><p>vol.py –plugins=/home/kasm-user/Desktop/MD/volatility/volatility/plugins -f mem.dump –profile=Win7SP1x64 mimikatz</p>
 <h2 id="使用ndispktscan插件搜索内核的网络流量包信息："><a href="#使用ndispktscan插件搜索内核的网络流量包信息：" class="headerlink" title="使用ndispktscan插件搜索内核的网络流量包信息："></a>使用ndispktscan插件搜索内核的网络流量包信息：</h2><p>vol.py –plugins=/home/kasm-user/Desktop/MD/volatility/volatility/plugins -f OtterCTF.vmem –profile=Win7SP1x64 ndispktscan</p>
 <h2 id="使用VolDiff进行恶意软件检测（单独使用）"><a href="#使用VolDiff进行恶意软件检测（单独使用）" class="headerlink" title="使用VolDiff进行恶意软件检测（单独使用）"></a>使用VolDiff进行恶意软件检测（单独使用）</h2><h1 id="Volatility3"><a href="#Volatility3" class="headerlink" title="Volatility3"></a>Volatility3</h1><p>这个到时候再补充吧，还没有系统的学习过版本3的使用</p>
+<h1 id="VeraCrypt"><a href="#VeraCrypt" class="headerlink" title="VeraCrypt"></a>VeraCrypt</h1><h2 id="解密-amp-挂载磁盘的步骤："><a href="#解密-amp-挂载磁盘的步骤：" class="headerlink" title="解密&amp;挂载磁盘的步骤："></a>解密&amp;挂载磁盘的步骤：</h2><p>1.选择要挂载的加密盘，然后选择一个没有被占用的盘符再点击左下角的加载</p>
+<p><img src="/images/VeraCrypt1.png" alt="VeraCrypt1"></p>
+<p>2.输入加密盘的密钥，或者直接使用密钥文件(图片文件也可以)</p>
+<p>​    如果这里加载失败，可以点击下面的加密卷工具，把密钥给改了，然后使用自己更改后的密钥挂载</p>
+<h2 id="取证大师"><a href="#取证大师" class="headerlink" title="取证大师"></a>取证大师</h2><p>没啥好说的，直接把硬盘镜像文件拉进去梭就行</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://goodlunatic.github.io/2022/11/25/The-usage-of-Volatility/" data-id="clgtbhzua001s7o3zads40hnb" class="article-share-link">Share</a>
+      <a data-url="https://goodlunatic.github.io/2023/04/25/Misc%E2%80%94%E2%80%94%E5%8F%96%E8%AF%81%E7%B1%BB%E9%A2%98%E7%9B%AE%E8%AF%A6%E8%A7%A3/" data-id="clgw9j0ax000xr03z59w6dmiw" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CTF/" rel="tag">CTF</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Misc/" rel="tag">Misc</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/forensics/" rel="tag">forensics</a></li></ul>
@@ -157,19 +164,19 @@
   
 <nav id="article-nav">
   
-    <a href="/2022/11/25/2022-11-Leetcode%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2023/04/25/CTF%E2%80%94%E2%80%94Misc%E6%8C%87%E5%8D%97%E3%80%90%E9%95%BF%E6%9C%9F%E6%9B%B4%E6%96%B0%E3%80%91/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
-          2022.11-Leetcode每日一题
+          CTF——Misc指南【长期更新】
         
       </div>
     </a>
   
   
-    <a href="/2022/11/24/%E7%AC%AC%E4%BA%94%E5%B1%8A%E6%B5%99%E6%B1%9F%E7%9C%81%E5%A4%A7%E5%AD%A6%E7%94%9F%E7%BD%91%E7%BB%9C%E4%B8%8E%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E7%AB%9E%E8%B5%9B-%E6%8A%80%E8%83%BD%E6%8C%91%E6%88%98%E8%B5%9BWP/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2023/04/23/OWASP-Top10%E8%AF%A6%E8%A7%A3/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">第五届浙江省大学生网络与信息安全竞赛-技能挑战赛WP</div>
+      <div class="article-nav-title">OWASP-Top10详解</div>
     </a>
   
 </nav>
@@ -204,7 +211,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">April 2023</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">March 2023</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">February 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/01/">January 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">December 2022</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">November 2022</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">April 2022</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">April 2023</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">March 2023</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">February 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/01/">January 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">December 2022</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">November 2022</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">April 2022</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -217,6 +224,14 @@
       <ul>
         
           <li>
+            <a href="/2023/04/25/CTF%E2%80%94%E2%80%94Misc%E6%8C%87%E5%8D%97%E3%80%90%E9%95%BF%E6%9C%9F%E6%9B%B4%E6%96%B0%E3%80%91/">CTF——Misc指南【长期更新】</a>
+          </li>
+        
+          <li>
+            <a href="/2023/04/25/Misc%E2%80%94%E2%80%94%E5%8F%96%E8%AF%81%E7%B1%BB%E9%A2%98%E7%9B%AE%E8%AF%A6%E8%A7%A3/">Misc——取证类题目详解</a>
+          </li>
+        
+          <li>
             <a href="/2023/04/23/OWASP-Top10%E8%AF%A6%E8%A7%A3/">OWASP-Top10详解</a>
           </li>
         
@@ -226,14 +241,6 @@
         
           <li>
             <a href="/2023/04/22/CTF%E2%80%94%E2%80%94Pwn%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/">CTF——Pwn学习记录</a>
-          </li>
-        
-          <li>
-            <a href="/2023/04/22/CTF%E2%80%94%E2%80%94Misc%E6%8C%87%E5%8D%97%E3%80%90%E9%95%BF%E6%9C%9F%E6%9B%B4%E6%96%B0%E3%80%91/">CTF——Misc指南【长期更新】</a>
-          </li>
-        
-          <li>
-            <a href="/2023/04/21/Java%20Learning%20Record/">Java Learning Record</a>
           </li>
         
       </ul>
