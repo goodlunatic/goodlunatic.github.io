@@ -10,15 +10,15 @@
   <meta name="description" content="最开始接触CTF时，学的最多的就是Misc，各种编码各种加密还有各种软件的使用… 但无奈MIsc涉及的范围实在太广了，于是就萌生了一边学习一边记录的想法，甚至还想为此写一本指南。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CTF——Misc指南【长期更新】">
-<meta property="og:url" content="https://goodlunatic.github.io/2023/04/25/CTF%E2%80%94%E2%80%94Misc%E6%8C%87%E5%8D%97%E3%80%90%E9%95%BF%E6%9C%9F%E6%9B%B4%E6%96%B0%E3%80%91/index.html">
+<meta property="og:url" content="https://goodlunatic.github.io/2023/04/27/CTF%E2%80%94%E2%80%94Misc%E6%8C%87%E5%8D%97%E3%80%90%E9%95%BF%E6%9C%9F%E6%9B%B4%E6%96%B0%E3%80%91/index.html">
 <meta property="og:site_name" content="Lunatic&#39;s Workstation">
 <meta property="og:description" content="最开始接触CTF时，学的最多的就是Misc，各种编码各种加密还有各种软件的使用… 但无奈MIsc涉及的范围实在太广了，于是就萌生了一边学习一边记录的想法，甚至还想为此写一本指南。">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://goodlunatic.github.io/images/%E6%95%B2%E5%87%BB%E7%A0%81.jpeg">
 <meta property="og:image" content="https://goodlunatic.github.io/images/stegdectet.gif">
 <meta property="og:image" content="https://image.3001.net/images/20201117/1605593956_5fb36b64db62588f96dcc.png!small">
-<meta property="article:published_time" content="2023-04-25T12:41:08.000Z">
-<meta property="article:modified_time" content="2023-04-25T12:47:38.240Z">
+<meta property="article:published_time" content="2023-04-27T12:41:08.000Z">
+<meta property="article:modified_time" content="2023-04-27T13:58:59.814Z">
 <meta property="article:author" content="Lunatic">
 <meta property="article:tag" content="CTF">
 <meta property="article:tag" content="Misc">
@@ -77,8 +77,8 @@
         <section id="main"><article id="post-CTF——Misc指南【长期更新】" class="article article-type-post" itemscope
   itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2023/04/25/CTF%E2%80%94%E2%80%94Misc%E6%8C%87%E5%8D%97%E3%80%90%E9%95%BF%E6%9C%9F%E6%9B%B4%E6%96%B0%E3%80%91/" class="article-date">
-  <time datetime="2023-04-25T12:41:08.000Z" itemprop="datePublished">2023-04-25</time>
+    <a href="/2023/04/27/CTF%E2%80%94%E2%80%94Misc%E6%8C%87%E5%8D%97%E3%80%90%E9%95%BF%E6%9C%9F%E6%9B%B4%E6%96%B0%E3%80%91/" class="article-date">
+  <time datetime="2023-04-27T12:41:08.000Z" itemprop="datePublished">2023-04-27</time>
 </a>
     
   <div class="article-category">
@@ -351,6 +351,10 @@
 
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> -n <span class="string">&quot;flag.txt&quot;</span> &gt; plain1.txt <span class="comment">#-n参数避免换行，不然文件中会出现换行符，导致攻击失效</span></span><br><span class="line">time bkcrack -C test5.zip -c flag.zip -p plain1.txt -o 30  -x 0 504B0304 &gt;1.<span class="built_in">log</span>&amp;</span><br><span class="line"><span class="built_in">tail</span> -f 1.<span class="built_in">log</span></span><br><span class="line">bkcrack -C test5.zip -c flag.zip -k b21e5df4 ab9a9430 8c336475  -d flag.zip</span><br><span class="line"><span class="comment">#但若想解密2.png，由于是ZipCrypto deflate加密的</span></span><br><span class="line"><span class="comment">#使用deflate算法压缩的文件，解码出来的是Deflate的数据流</span></span><br><span class="line"><span class="comment">#所以解密后需要bkcrack/tool内的inflate.py脚本再次处理</span></span><br><span class="line">bkcrack -C test5.zip -c 2.png -k b21e5df4 ab9a9430 8c336475  -d 2.png</span><br><span class="line">python3 inflate.py &lt; 2.png &gt; 2_out.png</span><br></pre></td></tr></table></figure>
 
+<p>Tips：如果这里用”XXXXX.txt”作为plaint1.txt无法破解出密钥，可以试试直接去掉后缀再作为plaint1.txt</p>
+<p>例如：NKCTF2023——五年Misc，三年模拟</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#echo -n &quot;handsome.txt&quot; &gt; plain1.txt 破解失败</span></span><br><span class="line"><span class="built_in">echo</span> -n <span class="string">&quot;handsome&quot;</span> &gt; plain1.txt</span><br><span class="line">time bkcrack -C test5.zip -c handsome.zip -p plain1.txt -o 30  -x 0 504B0304 &gt;1.<span class="built_in">log</span>&amp;</span><br></pre></td></tr></table></figure>
+
 <h4 id="4-EXE文件格式破解"><a href="#4-EXE文件格式破解" class="headerlink" title="4)EXE文件格式破解"></a>4)EXE文件格式破解</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">EXE文件默认加密情况下，不太会以store方式被加密，但它文件格式中的的明文及其明显，长度足够。如果加密ZIP压缩包出现以store算法存储的EXE格式文件，很容易进行破解。</span><br><span class="line">大部分exe中都有这相同一段，且偏移固定为64：</span><br></pre></td></tr></table></figure>
 
 <p><img src="https://image.3001.net/images/20201117/1605593956_5fb36b64db62588f96dcc.png!small" alt="img"></p>
@@ -454,7 +458,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://goodlunatic.github.io/2023/04/25/CTF%E2%80%94%E2%80%94Misc%E6%8C%87%E5%8D%97%E3%80%90%E9%95%BF%E6%9C%9F%E6%9B%B4%E6%96%B0%E3%80%91/" data-id="clgykyrvs0007ws3zci2q9q5w" class="article-share-link">Share</a>
+      <a data-url="https://goodlunatic.github.io/2023/04/27/CTF%E2%80%94%E2%80%94Misc%E6%8C%87%E5%8D%97%E3%80%90%E9%95%BF%E6%9C%9F%E6%9B%B4%E6%96%B0%E3%80%91/" data-id="clgzbm14d000clk3zgvxzhrmr" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CTF/" rel="tag">CTF</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Misc/" rel="tag">Misc</a></li></ul>
@@ -465,19 +469,10 @@
   
 <nav id="article-nav">
   
-    <a href="/2023/04/26/Software%20Testing%20Learning/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          Software Testing Learning
-        
-      </div>
-    </a>
   
-  
-    <a href="/2023/04/25/Misc%E2%80%94%E2%80%94%E5%8F%96%E8%AF%81%E7%B1%BB%E9%A2%98%E7%9B%AE%E8%AF%A6%E8%A7%A3/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2023/04/27/Hash%E7%88%86%E7%A0%B4%E6%80%BB%E7%BB%93/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Misc——取证类题目详解</div>
+      <div class="article-nav-title">Hash爆破总结</div>
     </a>
   
 </nav>
@@ -525,6 +520,14 @@
       <ul>
         
           <li>
+            <a href="/2023/04/27/CTF%E2%80%94%E2%80%94Misc%E6%8C%87%E5%8D%97%E3%80%90%E9%95%BF%E6%9C%9F%E6%9B%B4%E6%96%B0%E3%80%91/">CTF——Misc指南【长期更新】</a>
+          </li>
+        
+          <li>
+            <a href="/2023/04/27/Hash%E7%88%86%E7%A0%B4%E6%80%BB%E7%BB%93/">Hash爆破总结</a>
+          </li>
+        
+          <li>
             <a href="/2023/04/27/PHP%20Learning%20Record/">PHP Learning Record</a>
           </li>
         
@@ -533,15 +536,7 @@
           </li>
         
           <li>
-            <a href="/2023/04/25/CTF%E2%80%94%E2%80%94Misc%E6%8C%87%E5%8D%97%E3%80%90%E9%95%BF%E6%9C%9F%E6%9B%B4%E6%96%B0%E3%80%91/">CTF——Misc指南【长期更新】</a>
-          </li>
-        
-          <li>
             <a href="/2023/04/25/Misc%E2%80%94%E2%80%94%E5%8F%96%E8%AF%81%E7%B1%BB%E9%A2%98%E7%9B%AE%E8%AF%A6%E8%A7%A3/">Misc——取证类题目详解</a>
-          </li>
-        
-          <li>
-            <a href="/2023/04/23/OWASP-Top10%E8%AF%A6%E8%A7%A3/">OWASP-Top10详解</a>
           </li>
         
       </ul>
