@@ -15,7 +15,7 @@
 <meta property="og:description" content="面试的要求中经常可以看到OWASP-Top10，于是打算好好学习一下。">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-05-02T11:11:14.000Z">
-<meta property="article:modified_time" content="2023-05-02T15:25:18.888Z">
+<meta property="article:modified_time" content="2023-05-03T10:52:12.166Z">
 <meta property="article:author" content="Lunatic">
 <meta property="article:tag" content="Skills">
 <meta property="article:tag" content="Web">
@@ -100,7 +100,7 @@
       <div class="toc-parent">
   <div id="toc" class="toc-article">
     <div class="toc-title">目录</div>
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#OWASP-Top10-2021"><span class="toc-text">OWASP-Top10[2021]</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%A4%B1%E6%95%88%E7%9A%84%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6Broken-Access-Control"><span class="toc-text">一、失效的访问控制Broken Access Control</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%8A%A0%E5%AF%86%E6%9C%BA%E5%88%B6%E5%A4%B1%E6%95%88Cryptographic-Failures"><span class="toc-text">二、加密机制失效Cryptographic Failures</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E6%B3%A8%E5%85%A5Injection"><span class="toc-text">三、注入Injection</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E5%AE%89%E5%85%A8%E8%AE%BE%E8%AE%A1Insecure-Design"><span class="toc-text">四、安全设计Insecure Design</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E5%AE%89%E5%85%A8%E9%85%8D%E7%BD%AE%E9%94%99%E8%AF%AFSecurity-Misconfiguration"><span class="toc-text">五、安全配置错误Security Misconfiguration</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E8%87%AA%E5%B8%A6%E7%BC%BA%E9%99%B7%E5%92%8C%E8%BF%87%E6%97%B6%E7%9A%84%E7%BB%84%E4%BB%B6Vulnerable-and-Outdated-Components"><span class="toc-text">六、自带缺陷和过时的组件Vulnerable and Outdated Components</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%83%E3%80%81%E8%BA%AB%E4%BB%BD%E8%AF%86%E5%88%AB%E5%92%8C%E8%BA%AB%E4%BB%BD%E9%AA%8C%E8%AF%81%E9%94%99%E8%AF%AFIdentification-and-Authentication-Failures"><span class="toc-text">七、身份识别和身份验证错误Identification and Authentication Failures</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AB%E3%80%81%E8%BD%AF%E4%BB%B6%E5%92%8C%E6%95%B0%E6%8D%AE%E5%AE%8C%E6%95%B4%E6%80%A7%E6%95%85%E9%9A%9CSoftware-and-Data-Integrity-Failures"><span class="toc-text">八、软件和数据完整性故障Software and Data Integrity Failures</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B9%9D%E3%80%81%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97%E5%92%8C%E7%9B%91%E6%8E%A7%E6%95%85%E9%9A%9CSecurity-Logging-and-Monitoring-Failures"><span class="toc-text">九、安全日志和监控故障Security Logging and Monitoring Failures</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%81%E3%80%81%E6%9C%8D%E5%8A%A1%E7%AB%AF%E8%AF%B7%E6%B1%82%E4%BC%AA%E9%80%A0Server-Side-Request-Forgery"><span class="toc-text">十、服务端请求伪造Server-Side Request Forgery</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#DVWA"><span class="toc-text">DVWA</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81Brute-Force"><span class="toc-text">一、Brute Force</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Medium"><span class="toc-text">Medium</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81Command-Injection"><span class="toc-text">二、Command Injection</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#DOS%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4"><span class="toc-text">DOS基础命令</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#amp-amp"><span class="toc-text">&amp;&amp;</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#amp"><span class="toc-text">&amp;</span></a></li><li class="toc-item toc-level-4"><a class="toc-link"><span class="toc-text">|</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#-1"><span class="toc-text">;</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CSRF"><span class="toc-text">CSRF</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#File-Inclusion"><span class="toc-text">File Inclusion</span></a></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#OWASP-Top10-2021"><span class="toc-text">OWASP-Top10[2021]</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%A4%B1%E6%95%88%E7%9A%84%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6Broken-Access-Control"><span class="toc-text">一、失效的访问控制Broken Access Control</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%8A%A0%E5%AF%86%E6%9C%BA%E5%88%B6%E5%A4%B1%E6%95%88Cryptographic-Failures"><span class="toc-text">二、加密机制失效Cryptographic Failures</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E6%B3%A8%E5%85%A5Injection"><span class="toc-text">三、注入Injection</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E5%AE%89%E5%85%A8%E8%AE%BE%E8%AE%A1Insecure-Design"><span class="toc-text">四、安全设计Insecure Design</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E5%AE%89%E5%85%A8%E9%85%8D%E7%BD%AE%E9%94%99%E8%AF%AFSecurity-Misconfiguration"><span class="toc-text">五、安全配置错误Security Misconfiguration</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E8%87%AA%E5%B8%A6%E7%BC%BA%E9%99%B7%E5%92%8C%E8%BF%87%E6%97%B6%E7%9A%84%E7%BB%84%E4%BB%B6Vulnerable-and-Outdated-Components"><span class="toc-text">六、自带缺陷和过时的组件Vulnerable and Outdated Components</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%83%E3%80%81%E8%BA%AB%E4%BB%BD%E8%AF%86%E5%88%AB%E5%92%8C%E8%BA%AB%E4%BB%BD%E9%AA%8C%E8%AF%81%E9%94%99%E8%AF%AFIdentification-and-Authentication-Failures"><span class="toc-text">七、身份识别和身份验证错误Identification and Authentication Failures</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AB%E3%80%81%E8%BD%AF%E4%BB%B6%E5%92%8C%E6%95%B0%E6%8D%AE%E5%AE%8C%E6%95%B4%E6%80%A7%E6%95%85%E9%9A%9CSoftware-and-Data-Integrity-Failures"><span class="toc-text">八、软件和数据完整性故障Software and Data Integrity Failures</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B9%9D%E3%80%81%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97%E5%92%8C%E7%9B%91%E6%8E%A7%E6%95%85%E9%9A%9CSecurity-Logging-and-Monitoring-Failures"><span class="toc-text">九、安全日志和监控故障Security Logging and Monitoring Failures</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%81%E3%80%81%E6%9C%8D%E5%8A%A1%E7%AB%AF%E8%AF%B7%E6%B1%82%E4%BC%AA%E9%80%A0Server-Side-Request-Forgery"><span class="toc-text">十、服务端请求伪造Server-Side Request Forgery</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#DVWA"><span class="toc-text">DVWA</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81Brute-Force"><span class="toc-text">一、Brute Force</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Medium"><span class="toc-text">Medium</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81Command-Injection"><span class="toc-text">二、Command Injection</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#DOS%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4"><span class="toc-text">DOS基础命令</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#amp-amp"><span class="toc-text">&amp;&amp;</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#amp"><span class="toc-text">&amp;</span></a></li><li class="toc-item toc-level-4"><a class="toc-link"><span class="toc-text">|</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#-1"><span class="toc-text">;</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CSRF"><span class="toc-text">CSRF</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#File-Inclusion"><span class="toc-text">File Inclusion</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Low"><span class="toc-text">Low</span></a></li></ol></li></ol></li></ol>
   </div>
 </div>
       <p><strong>面试的要求中经常可以看到OWASP-Top10，于是打算好好学习一下。</strong></p>
@@ -124,11 +124,26 @@
 
 
 
-<h2 id="File-Inclusion"><a href="#File-Inclusion" class="headerlink" title="File Inclusion"></a>File Inclusion</h2>
+<h2 id="File-Inclusion"><a href="#File-Inclusion" class="headerlink" title="File Inclusion"></a>File Inclusion</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">服务器包含文件时，不管文件后缀是否是php，都会尝试当做php文件执行，如果文件内容确为php，则会正常执行并返回结果，如果不是，则会原封不动地打印文件内容，所以文件包含漏洞常常会导致任意文件读取与任意命令执行</span><br></pre></td></tr></table></figure>
+
+<h3 id="Low"><a href="#Low" class="headerlink" title="Low"></a>Low</h3><p>BP抓包，直接修改?page=即可</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GET /vulnerabilities/fi/?page=D:\phpstudy_pro\WWW\DVWA\php.ini HTTP/1.1</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GET /vulnerabilities/fi/?page=D:\phpstudy_pro\WWW\DVWA\phpinfo.php HTTP/1.1</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://goodlunatic.github.io/2023/05/02/OWASP-Top10%E5%8F%8A%E9%9D%B6%E5%9C%BA%E9%80%9A%E5%85%B3%E8%AF%A6%E8%A7%A3/" data-id="clh6f8nch001bac3zgbvsdb34" class="article-share-link">Share</a>
+      <a data-url="https://goodlunatic.github.io/2023/05/02/OWASP-Top10%E5%8F%8A%E9%9D%B6%E5%9C%BA%E9%80%9A%E5%85%B3%E8%AF%A6%E8%A7%A3/" data-id="clh7nsd0v001akk3zh8vy8y02" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Skills/" rel="tag">Skills</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Web/" rel="tag">Web</a></li></ul>
@@ -138,6 +153,15 @@
   
   
 <nav id="article-nav">
+  
+    <a href="/2023/05/02/Misc%E2%80%94%E2%80%94%E5%8F%96%E8%AF%81%E7%B1%BB%E9%A2%98%E7%9B%AE%E8%AF%A6%E8%A7%A3/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Misc——取证类题目详解
+        
+      </div>
+    </a>
   
   
     <a href="/2023/04/30/Git%20Learning%20Record/" id="article-nav-older" class="article-nav-link-wrap">
@@ -177,7 +201,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">May 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">April 2023</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">March 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">February 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/01/">January 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">December 2022</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">November 2022</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">April 2022</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">May 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">April 2023</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">March 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">February 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/01/">January 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">December 2022</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">November 2022</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">April 2022</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -190,6 +214,14 @@
       <ul>
         
           <li>
+            <a href="/2023/05/03/CTF%E2%80%94%E2%80%94Misc%E6%8C%87%E5%8D%97%E3%80%90%E9%95%BF%E6%9C%9F%E6%9B%B4%E6%96%B0%E3%80%91/">CTF——Misc指南【长期更新】</a>
+          </li>
+        
+          <li>
+            <a href="/2023/05/02/Misc%E2%80%94%E2%80%94%E5%8F%96%E8%AF%81%E7%B1%BB%E9%A2%98%E7%9B%AE%E8%AF%A6%E8%A7%A3/">Misc——取证类题目详解</a>
+          </li>
+        
+          <li>
             <a href="/2023/05/02/OWASP-Top10%E5%8F%8A%E9%9D%B6%E5%9C%BA%E9%80%9A%E5%85%B3%E8%AF%A6%E8%A7%A3/">OWASP-Top10及靶场通关记录</a>
           </li>
         
@@ -198,15 +230,7 @@
           </li>
         
           <li>
-            <a href="/2023/04/28/CTF%E2%80%94%E2%80%94Misc%E6%8C%87%E5%8D%97%E3%80%90%E9%95%BF%E6%9C%9F%E6%9B%B4%E6%96%B0%E3%80%91/">CTF——Misc指南【长期更新】</a>
-          </li>
-        
-          <li>
             <a href="/2023/04/27/Hash%E7%88%86%E7%A0%B4%E6%80%BB%E7%BB%93/">Hash爆破总结</a>
-          </li>
-        
-          <li>
-            <a href="/2023/04/27/PHP%20Learning%20Record/">PHP Learning Record</a>
           </li>
         
       </ul>

@@ -10,15 +10,15 @@
   <meta name="description" content="最开始接触CTF时，学的最多的就是Misc，各种编码各种加密还有各种软件的使用… 但无奈MIsc涉及的范围实在太广了，于是就萌生了一边学习一边记录的想法，甚至还想为此写一本指南。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CTF——Misc指南【长期更新】">
-<meta property="og:url" content="https://goodlunatic.github.io/2023/04/28/CTF%E2%80%94%E2%80%94Misc%E6%8C%87%E5%8D%97%E3%80%90%E9%95%BF%E6%9C%9F%E6%9B%B4%E6%96%B0%E3%80%91/index.html">
+<meta property="og:url" content="https://goodlunatic.github.io/2023/05/03/CTF%E2%80%94%E2%80%94Misc%E6%8C%87%E5%8D%97%E3%80%90%E9%95%BF%E6%9C%9F%E6%9B%B4%E6%96%B0%E3%80%91/index.html">
 <meta property="og:site_name" content="Lunatic&#39;s Workstation">
 <meta property="og:description" content="最开始接触CTF时，学的最多的就是Misc，各种编码各种加密还有各种软件的使用… 但无奈MIsc涉及的范围实在太广了，于是就萌生了一边学习一边记录的想法，甚至还想为此写一本指南。">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://goodlunatic.github.io/images/%E6%95%B2%E5%87%BB%E7%A0%81.jpeg">
 <meta property="og:image" content="https://goodlunatic.github.io/images/stegdectet.gif">
 <meta property="og:image" content="https://image.3001.net/images/20201117/1605593956_5fb36b64db62588f96dcc.png!small">
-<meta property="article:published_time" content="2023-04-28T01:41:08.000Z">
-<meta property="article:modified_time" content="2023-04-28T02:04:30.835Z">
+<meta property="article:published_time" content="2023-05-03T01:41:08.000Z">
+<meta property="article:modified_time" content="2023-05-03T11:44:30.294Z">
 <meta property="article:author" content="Lunatic">
 <meta property="article:tag" content="CTF">
 <meta property="article:tag" content="Misc">
@@ -77,8 +77,8 @@
         <section id="main"><article id="post-CTF——Misc指南【长期更新】" class="article article-type-post" itemscope
   itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2023/04/28/CTF%E2%80%94%E2%80%94Misc%E6%8C%87%E5%8D%97%E3%80%90%E9%95%BF%E6%9C%9F%E6%9B%B4%E6%96%B0%E3%80%91/" class="article-date">
-  <time datetime="2023-04-28T01:41:08.000Z" itemprop="datePublished">2023-04-28</time>
+    <a href="/2023/05/03/CTF%E2%80%94%E2%80%94Misc%E6%8C%87%E5%8D%97%E3%80%90%E9%95%BF%E6%9C%9F%E6%9B%B4%E6%96%B0%E3%80%91/" class="article-date">
+  <time datetime="2023-05-03T01:41:08.000Z" itemprop="datePublished">2023-05-03</time>
 </a>
     
   <div class="article-category">
@@ -119,6 +119,9 @@
 <p>5、给你一个gpx文件，在线网站<a target="_blank" rel="noopener" href="https://www.gpsvisualizer.com/map_input%E8%A7%A3%E5%AF%86">https://www.gpsvisualizer.com/map_input解密</a></p>
 <p>然后地名的首字母连起来就是flag</p>
 <h1 id="Linux-kali-的各种命令："><a href="#Linux-kali-的各种命令：" class="headerlink" title="Linux(kali)的各种命令："></a>Linux(kali)的各种命令：</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">1、 fls +镜像文件       列出镜像中的文件和目录名并可以显示使用给定名称的目录最近              删除的文件的文件名</span><br><span class="line">2、file+文件名      查看文件类型</span><br><span class="line">3、binwalk+文件名  查看文件类型</span><br><span class="line">4、各种文件的解压命令</span><br><span class="line">	7z：7z x +filename.7z</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p> <strong>Linux如何配置环境变量</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/profile</span><br><span class="line"><span class="built_in">export</span> PATH=/usr/local/volatility:<span class="variable">$PATH</span></span><br><span class="line">or</span><br><span class="line"><span class="built_in">export</span> PATH=/usr/lib/python2.7/dist-packages/volatility:<span class="variable">$PATH</span></span><br></pre></td></tr></table></figure>
 
 <h1 id="各种加密-编码："><a href="#各种加密-编码：" class="headerlink" title="各种加密/编码："></a>各种加密/编码：</h1><p><strong>可以试试直接用ciphey或者CyberChef跑</strong></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#ciphey在windows和wsl里都可以用</span></span><br><span class="line">ciphey -t <span class="string">&quot;aGVsbG8gbXkgbmFtZSBpcyBiZWU=&quot;</span></span><br></pre></td></tr></table></figure>
@@ -463,7 +466,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://goodlunatic.github.io/2023/04/28/CTF%E2%80%94%E2%80%94Misc%E6%8C%87%E5%8D%97%E3%80%90%E9%95%BF%E6%9C%9F%E6%9B%B4%E6%96%B0%E3%80%91/" data-id="clh6f8nc70008ac3zfvdp4kmq" class="article-share-link">Share</a>
+      <a data-url="https://goodlunatic.github.io/2023/05/03/CTF%E2%80%94%E2%80%94Misc%E6%8C%87%E5%8D%97%E3%80%90%E9%95%BF%E6%9C%9F%E6%9B%B4%E6%96%B0%E3%80%91/" data-id="clh7nsd0l0008kk3zaazz5vu6" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CTF/" rel="tag">CTF</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Misc/" rel="tag">Misc</a></li></ul>
@@ -474,19 +477,10 @@
   
 <nav id="article-nav">
   
-    <a href="/2023/04/30/Git%20Learning%20Record/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          Git Learning Record
-        
-      </div>
-    </a>
   
-  
-    <a href="/2023/04/27/Hash%E7%88%86%E7%A0%B4%E6%80%BB%E7%BB%93/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2023/05/02/Misc%E2%80%94%E2%80%94%E5%8F%96%E8%AF%81%E7%B1%BB%E9%A2%98%E7%9B%AE%E8%AF%A6%E8%A7%A3/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Hash爆破总结</div>
+      <div class="article-nav-title">Misc——取证类题目详解</div>
     </a>
   
 </nav>
@@ -521,7 +515,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">May 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">April 2023</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">March 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">February 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/01/">January 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">December 2022</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">November 2022</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">April 2022</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">May 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">April 2023</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">March 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">February 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/01/">January 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">December 2022</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">November 2022</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">April 2022</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -534,6 +528,14 @@
       <ul>
         
           <li>
+            <a href="/2023/05/03/CTF%E2%80%94%E2%80%94Misc%E6%8C%87%E5%8D%97%E3%80%90%E9%95%BF%E6%9C%9F%E6%9B%B4%E6%96%B0%E3%80%91/">CTF——Misc指南【长期更新】</a>
+          </li>
+        
+          <li>
+            <a href="/2023/05/02/Misc%E2%80%94%E2%80%94%E5%8F%96%E8%AF%81%E7%B1%BB%E9%A2%98%E7%9B%AE%E8%AF%A6%E8%A7%A3/">Misc——取证类题目详解</a>
+          </li>
+        
+          <li>
             <a href="/2023/05/02/OWASP-Top10%E5%8F%8A%E9%9D%B6%E5%9C%BA%E9%80%9A%E5%85%B3%E8%AF%A6%E8%A7%A3/">OWASP-Top10及靶场通关记录</a>
           </li>
         
@@ -542,15 +544,7 @@
           </li>
         
           <li>
-            <a href="/2023/04/28/CTF%E2%80%94%E2%80%94Misc%E6%8C%87%E5%8D%97%E3%80%90%E9%95%BF%E6%9C%9F%E6%9B%B4%E6%96%B0%E3%80%91/">CTF——Misc指南【长期更新】</a>
-          </li>
-        
-          <li>
             <a href="/2023/04/27/Hash%E7%88%86%E7%A0%B4%E6%80%BB%E7%BB%93/">Hash爆破总结</a>
-          </li>
-        
-          <li>
-            <a href="/2023/04/27/PHP%20Learning%20Record/">PHP Learning Record</a>
           </li>
         
       </ul>
