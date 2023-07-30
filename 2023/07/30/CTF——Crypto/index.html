@@ -5,14 +5,20 @@
   
 
   
-  <title>Category: Skills | Lunatic&#39;s Workstation</title>
+  <title>CTF——Crypto | Lunatic&#39;s Workstation</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Lunatic&#39;s Workstation">
-<meta property="og:url" content="https://goodlunatic.github.io/categories/Skills/index.html">
+  <meta name="description" content="This is my learning record for Crypto ^_^">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CTF——Crypto">
+<meta property="og:url" content="https://goodlunatic.github.io/2023/07/30/CTF%E2%80%94%E2%80%94Crypto/index.html">
 <meta property="og:site_name" content="Lunatic&#39;s Workstation">
+<meta property="og:description" content="This is my learning record for Crypto ^_^">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-07-30T02:22:20.000Z">
+<meta property="article:modified_time" content="2023-07-30T03:35:41.427Z">
 <meta property="article:author" content="Lunatic">
+<meta property="article:tag" content="CTF">
+<meta property="article:tag" content="Crypto">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternate" href="/atom.xml" title="Lunatic&#39;s Workstation" type="application/atom+xml">
@@ -66,226 +72,88 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2023" class="archive-year">2023</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2023/05/11/OWASP-Top10%E5%8F%8A%E9%9D%B6%E5%9C%BA%E9%80%9A%E5%85%B3%E8%AF%A6%E8%A7%A3/" class="archive-article-date">
-  <time datetime="2023-05-11T06:11:14.000Z" itemprop="datePublished">May 11</time>
+        <section id="main"><article id="post-CTF——Crypto" class="article article-type-post" itemscope
+  itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2023/07/30/CTF%E2%80%94%E2%80%94Crypto/" class="article-date">
+  <time datetime="2023-07-30T02:22:20.000Z" itemprop="datePublished">2023-07-30</time>
 </a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/CTF/">CTF</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+    <header class="article-header">
       
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2023/05/11/OWASP-Top10%E5%8F%8A%E9%9D%B6%E5%9C%BA%E9%80%9A%E5%85%B3%E8%AF%A6%E8%A7%A3/">OWASP-Top10及靶场通关记录</a>
+    <h1 class="article-title" itemprop="name">
+      CTF——Crypto
     </h1>
   
 
     </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      <div class="toc-parent">
+  <div id="toc" class="toc-article">
+    <div class="toc-title">目录</div>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Hash%E9%95%BF%E5%BA%A6%E6%89%A9%E5%B1%95%E6%94%BB%E5%87%BB"><span class="toc-text">Hash长度扩展攻击</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B7%A5%E5%85%B7"><span class="toc-text">工具</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BE%8B%E9%A2%98"><span class="toc-text">例题</span></a></li></ol></li></ol>
   </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2023/04/30/Git%20Learning%20Record/" class="archive-article-date">
-  <time datetime="2023-04-30T09:29:59.000Z" itemprop="datePublished">Apr 30</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2023/04/30/Git%20Learning%20Record/">Git Learning Record</a>
-    </h1>
-  
+</div>
+      <p><strong>This is my learning record for Crypto ^_^</strong></p>
+<span id="more"></span>
 
-    </header>
+<h1 id="Hash长度扩展攻击"><a href="#Hash长度扩展攻击" class="headerlink" title="Hash长度扩展攻击"></a>Hash长度扩展攻击</h1><p>原理简单来说就是：</p>
+<p>已知：1.secret的长度</p>
+<p>​           2.data的值</p>
+<p>​           3.secret+data的MD5值</p>
+<p>我们就能求出 secret+data+任意值的MD5</p>
+<h2 id="工具"><a href="#工具" class="headerlink" title="工具"></a>工具</h2><p>1.Hashpump(已在WSL中安装)</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#用法如下</span></span><br><span class="line"><span class="built_in">cd</span> HashPump &amp;&amp; ./hashpump</span><br><span class="line"><span class="comment">#签名就是我们之前说的secret</span></span><br><span class="line">Input Signature: 571580b26c65f306376d4f64e53cb5c7</span><br><span class="line">Input Data: adminadmin</span><br><span class="line">Input Key Length: 15</span><br><span class="line">Input Data to Add: 123</span><br><span class="line">961a38ded0b8553041ca20dd34e8e189</span><br><span class="line">adminadmin\x80\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\xc8\x00\x00\x00\x00\x00\x00\x00123</span><br><span class="line"><span class="comment">#这里要注意，最后输出的是两部分拼接后的data</span></span><br><span class="line"><span class="comment">#发送时要两部分分开来发，比如username=admin，password=admin\x80\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\xc8\x00\x00\x00\x00\x00\x00\x00123</span></span><br><span class="line"><span class="comment">#并且最后BP发包的时候，要把\x替换为%</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h2><p>1.<a target="_blank" rel="noopener" href="http://ctf5.shiyanbar.com/web/kzhan.php">http://ctf5.shiyanbar.com/web/kzhan.php</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#payload</span></span><br><span class="line">POST /web/kzhan.php HTTP/1.1</span><br><span class="line">Host: ctf5.shiyanbar.com</span><br><span class="line">User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/115.0</span><br><span class="line">Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8</span><br><span class="line">Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2</span><br><span class="line">Accept-Encoding: gzip, deflate</span><br><span class="line">Referer: http://ctf5.shiyanbar.com/web/kzhan.php</span><br><span class="line">Content-Type: application/x-www-form-urlencoded</span><br><span class="line">Content-Length: 149</span><br><span class="line">Origin: http://ctf5.shiyanbar.com</span><br><span class="line">Connection: close</span><br><span class="line">Cookie: sample-hash=571580b26c65f306376d4f64e53cb5c7; <span class="built_in">source</span>=1; getmein=961a38ded0b8553041ca20dd34e8e189</span><br><span class="line">Upgrade-Insecure-Requests: 1</span><br><span class="line"></span><br><span class="line">username=admin&amp;password=admin%80%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%c8%00%00%00%00%00%00%00123</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://goodlunatic.github.io/2023/07/30/CTF%E2%80%94%E2%80%94Crypto/" data-id="clkowvepq0009j03z3u7m4dj6" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CTF/" rel="tag">CTF</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Crypto/" rel="tag">Crypto</a></li></ul>
+
+    </footer>
   </div>
+  
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2023/07/29/CTF%E2%80%94%E2%80%94Web%E3%80%90%E9%95%BF%E6%9C%9F%E6%9B%B4%E6%96%B0%E3%80%91/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">CTF——Web【长期更新】</div>
+    </a>
+  
+</nav>
+
+  
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2023/04/22/UML%20diagram%20drawing/" class="archive-article-date">
-  <time datetime="2023-04-22T11:47:44.000Z" itemprop="datePublished">Apr 22</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2023/04/22/UML%20diagram%20drawing/">UML diagram drawing</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2023/03/29/Mathematical%20Modeling/" class="archive-article-date">
-  <time datetime="2023-03-29T06:54:35.000Z" itemprop="datePublished">Mar 29</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2023/03/29/Mathematical%20Modeling/">Mathematical Modeling</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2023/03/23/Docker%20Learning%20Record/" class="archive-article-date">
-  <time datetime="2023-03-23T02:31:16.000Z" itemprop="datePublished">Mar 23</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2023/03/23/Docker%20Learning%20Record/">Docker Learning Record</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2023/03/09/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E6%81%B6%E8%A1%A5%E8%AE%B0%E5%BD%95/" class="archive-article-date">
-  <time datetime="2023-03-09T01:53:02.000Z" itemprop="datePublished">Mar 9</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2023/03/09/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E6%81%B6%E8%A1%A5%E8%AE%B0%E5%BD%95/">渗透测试恶补记录</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2023/02/19/Redis%20Learning%20record/" class="archive-article-date">
-  <time datetime="2023-02-19T02:00:45.000Z" itemprop="datePublished">Feb 19</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2023/02/19/Redis%20Learning%20record/">Redis Learning record</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2023/02/17/%E7%BD%91%E7%BB%9C%E7%88%AC%E8%99%AB%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/" class="archive-article-date">
-  <time datetime="2023-02-17T06:33:25.000Z" itemprop="datePublished">Feb 17</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2023/02/17/%E7%BD%91%E7%BB%9C%E7%88%AC%E8%99%AB%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/">网络爬虫学习记录</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2023/02/01/vscode%E4%BD%BF%E7%94%A8%E5%B0%8Ftips/" class="archive-article-date">
-  <time datetime="2023-02-01T02:15:45.000Z" itemprop="datePublished">Feb 1</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2023/02/01/vscode%E4%BD%BF%E7%94%A8%E5%B0%8Ftips/">vscode使用小tips</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-      
-        </div></section>
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2022" class="archive-year">2022</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2022/12/05/%E5%90%84%E5%A4%A7%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E%E7%9A%84%E5%A5%87%E6%8A%80%E6%B7%AB%E5%B7%A7/" class="archive-article-date">
-  <time datetime="2022-12-05T05:13:30.000Z" itemprop="datePublished">Dec 5</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/12/05/%E5%90%84%E5%A4%A7%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E%E7%9A%84%E5%A5%87%E6%8A%80%E6%B7%AB%E5%B7%A7/">各大搜索引擎的奇技淫巧</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-
-  <nav id="page-nav">
-    
-    <span class="page-number current">1</span><a class="page-number" href="/categories/Skills/page/2/">2</a><a class="extend next" rel="next" href="/categories/Skills/page/2/">Next &amp;raquo;</a>
-  </nav>
 
 </section>
         
