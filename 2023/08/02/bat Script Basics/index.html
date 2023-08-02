@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>bat Script Basics.md | Lunatic&#39;s Workstation</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="This is my learning record for bat script">
+<meta property="og:type" content="article">
+<meta property="og:title" content="bat Script Basics.md">
+<meta property="og:url" content="https://goodlunatic.github.io/2023/08/02/bat%20Script%20Basics/index.html">
+<meta property="og:site_name" content="Lunatic&#39;s Workstation">
+<meta property="og:description" content="This is my learning record for bat script">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-08-02T08:19:35.000Z">
+<meta property="article:modified_time" content="2023-08-02T12:24:12.352Z">
+<meta property="article:author" content="Lunatic">
+<meta property="article:tag" content="Skills">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Lunatic&#39;s Workstation" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Lunatic&#39;s Workstation</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+          <a class="main-nav-link" href="/Friends">Friends</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://goodlunatic.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-bat Script Basics" class="article article-type-post" itemscope
+  itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2023/08/02/bat%20Script%20Basics/" class="article-date">
+  <time datetime="2023-08-02T08:19:35.000Z" itemprop="datePublished">2023-08-02</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Skills/">Skills</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+    <header class="article-header">
+      
+  
+    <h1 class="article-title" itemprop="name">
+      bat Script Basics.md
+    </h1>
+  
+
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      <div class="toc-parent">
+  <div id="toc" class="toc-article">
+    <div class="toc-title">目录</div>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%98%E9%87%8F%E7%9A%84%E8%AE%BE%E7%BD%AE%E4%B8%8E%E8%AF%BB%E5%8F%96"><span class="toc-text">变量的设置与读取</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E7%9A%84%E7%B3%BB%E7%BB%9F%E5%8F%98%E9%87%8F"><span class="toc-text">常用的系统变量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%98%E9%87%8F%E7%9A%84%E8%AF%BB%E5%8F%96"><span class="toc-text">变量的读取</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%98%E9%87%8F%E7%9A%84%E8%AE%BE%E7%BD%AE"><span class="toc-text">变量的设置</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C"><span class="toc-text">字符串的基本操作</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%88%AA%E5%8F%96"><span class="toc-text">字符串截取</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%9B%BF%E6%8D%A2"><span class="toc-text">字符串替换</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#DOS%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4"><span class="toc-text">DOS基本命令</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#rem"><span class="toc-text">rem</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#echo"><span class="toc-text">echo</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#pause"><span class="toc-text">pause</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#errorlevel"><span class="toc-text">errorlevel</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#start"><span class="toc-text">start</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#exit"><span class="toc-text">exit</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#cls"><span class="toc-text">cls</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#help"><span class="toc-text">help</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C"><span class="toc-text">文件操作</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#copy%E6%96%87%E4%BB%B6%E5%A4%8D%E5%88%B6%E5%91%BD%E4%BB%A4"><span class="toc-text">copy文件复制命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#xcopy%E7%9B%AE%E5%BD%95%E5%A4%8D%E5%88%B6"><span class="toc-text">xcopy目录复制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#type%E6%98%BE%E7%A4%BA%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B9%E5%91%BD%E4%BB%A4"><span class="toc-text">type显示文件内容命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ren%E9%87%8D%E5%91%BD%E5%90%8D%E6%96%87%E4%BB%B6%E5%91%BD%E4%BB%A4"><span class="toc-text">ren重命名文件命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#del%E5%88%A0%E9%99%A4%E6%96%87%E4%BB%B6%E5%91%BD%E4%BB%A4"><span class="toc-text">del删除文件命令</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%9B%AE%E5%BD%95%E6%93%8D%E4%BD%9C%E5%91%BD%E4%BB%A4"><span class="toc-text">目录操作命令</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#cd"><span class="toc-text">cd</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#mkdir"><span class="toc-text">mkdir</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#rmdir"><span class="toc-text">rmdir</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#dir"><span class="toc-text">dir</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#if-else%E5%88%A4%E6%96%AD%E8%AF%AD%E5%8F%A5%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="toc-text">if&#x2F;else判断语句的使用</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#for%E5%BE%AA%E7%8E%AF%E8%AF%AD%E5%8F%A5%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="toc-text">for循环语句的使用</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%93%E5%8D%B010%E4%BB%A5%E5%86%85%E7%9A%84%E5%A5%87%E6%95%B0"><span class="toc-text">打印10以内的奇数</span></a></li></ol></li></ol>
+  </div>
+</div>
+      <p><strong>This is my learning record for bat script</strong></p>
+<span id="more"></span>
+
+<p>Tips:1.bat脚本要在cmd中运行</p>
+<p>​        2.查看某个命令帮助，可以使用例如“set /?”或者“help set”查看</p>
+<p>​        3.bat脚本不区分大小写</p>
+<h1 id="变量的设置与读取"><a href="#变量的设置与读取" class="headerlink" title="变量的设置与读取"></a>变量的设置与读取</h1><h2 id="常用的系统变量"><a href="#常用的系统变量" class="headerlink" title="常用的系统变量"></a>常用的系统变量</h2><figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">%CD%</span>  获取当前目录</span><br><span class="line"><span class="variable">%PATH%</span>  获取命令搜索路径</span><br><span class="line"><span class="variable">%DATE%</span>  获取当前日期。</span><br><span class="line"><span class="variable">%TIME%</span>  获取当前时间。</span><br><span class="line"><span class="variable">%RANDOM%</span> 获取 <span class="number">0</span> 和 <span class="number">32767</span> 之间的任意十进制数字。</span><br><span class="line"><span class="variable">%ERRORLEVEL%</span> 获取上一命令执行结果码</span><br></pre></td></tr></table></figure>
+
+<h2 id="变量的读取"><a href="#变量的读取" class="headerlink" title="变量的读取"></a>变量的读取</h2><figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">使用<span class="variable">%variable%</span>既可获取变量值</span><br><span class="line"><span class="built_in">echo</span> <span class="variable">%RANDOM%</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="变量的设置"><a href="#变量的设置" class="headerlink" title="变量的设置"></a>变量的设置</h2><figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">set</span> var1 = &quot;HelloWorld!&quot;</span><br></pre></td></tr></table></figure>
+
+<h1 id="字符串的基本操作"><a href="#字符串的基本操作" class="headerlink" title="字符串的基本操作"></a>字符串的基本操作</h1><h2 id="字符串截取"><a href="#字符串截取" class="headerlink" title="字符串截取"></a>字符串截取</h2><p>使用%var:<del>n,k%命令，其中%var表示待截取的字符串，</del>是取字符标志符，n表示起始位置，k表示结束位置(不包含)</p>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">@<span class="built_in">echo</span> off </span><br><span class="line"><span class="built_in">set</span> str=superhero</span><br><span class="line"><span class="built_in">echo</span> str=<span class="variable">%str%</span> </span><br><span class="line"><span class="built_in">echo</span> str:~<span class="number">0</span>,<span class="number">5</span>=<span class="variable">%str:~0,5%</span></span><br><span class="line"><span class="built_in">echo</span> str:~<span class="number">3</span>=<span class="variable">%str:~3%</span></span><br><span class="line"><span class="built_in">echo</span> str:~-<span class="number">3</span>=<span class="variable">%str:~-3%</span> </span><br><span class="line"><span class="built_in">echo</span> str:~<span class="number">0</span>,-<span class="number">3</span>=<span class="variable">%str:~0,-3%</span> </span><br><span class="line"><span class="built_in">pause</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="字符串替换"><a href="#字符串替换" class="headerlink" title="字符串替换"></a>字符串替换</h2><p>使用%var:old_str=new_str%命令</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">@echo off </span><br><span class="line">set str=hello world!</span><br><span class="line">set temp=%str:hello=good%</span><br><span class="line">echo %temp%</span><br></pre></td></tr></table></figure>
+
+<h1 id="DOS基本命令"><a href="#DOS基本命令" class="headerlink" title="DOS基本命令"></a>DOS基本命令</h1><h2 id="rem"><a href="#rem" class="headerlink" title="rem"></a>rem</h2><p>rem注释符，也可以用两个冒号代替(::)</p>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">REM [comment]</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="echo"><a href="#echo" class="headerlink" title="echo"></a>echo</h2><p>显示信息，或启用或关闭命令回显。@字符放在命令前将关闭该命令回显，无论此时echo是否为打开状态</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">echo on 批处理命令在执行时显示自身命令行</span><br><span class="line">echo off 批处理命令在执行时不显示自身命令行</span><br><span class="line">@echo off 关闭echo off命令行自身的显示</span><br><span class="line">echo Hello World 打印Hello World</span><br><span class="line">echo. 输出空行,&quot;.&quot;可以用，：；”／[\]＋等任一符号替代</span><br><span class="line">echo test &gt; file.txt 创建包含字符test的file.txt文件</span><br><span class="line">echo y | del d:\temp\*.txt 输入y确认删除</span><br></pre></td></tr></table></figure>
+
+<h2 id="pause"><a href="#pause" class="headerlink" title="pause"></a>pause</h2><p>暂停并输出“请按任意键继续. . .”</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">pause 等待并提示&quot;请按任意键继续. . .&quot;</span><br><span class="line">pause &gt; nul 等待但不出现提示语</span><br><span class="line">echo wait a moment.. &amp; pause &gt; nul 输出指定输出语&quot;wait a moment..&quot;并等待操作</span><br></pre></td></tr></table></figure>
+
+<h2 id="errorlevel"><a href="#errorlevel" class="headerlink" title="errorlevel"></a>errorlevel</h2><p>程序执行结果返回码，执行成功返回0，失败返回1</p>
+<h2 id="start"><a href="#start" class="headerlink" title="start"></a>start</h2><p> 启动一个单独的窗口以运行指定的程序或命令</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">START [command/program] [parameters]</span><br></pre></td></tr></table></figure>
+
+<h2 id="exit"><a href="#exit" class="headerlink" title="exit"></a>exit</h2><p>退出CMD.EXE程序或当前批处理脚本</p>
+<h2 id="cls"><a href="#cls" class="headerlink" title="cls"></a>cls</h2><p>清屏</p>
+<h2 id="help"><a href="#help" class="headerlink" title="help"></a>help</h2><p>显示帮助页面</p>
+<h1 id="文件操作"><a href="#文件操作" class="headerlink" title="文件操作"></a>文件操作</h1><h2 id="copy文件复制命令"><a href="#copy文件复制命令" class="headerlink" title="copy文件复制命令"></a>copy文件复制命令</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">copy d:\temp1\file1.txt d:\temp2 将文件file1.txt复制到temp2目录，有相同文件提示</span><br><span class="line">copy d:\temp1\file1.txt d:\temp2 /y 将文件file1.txt复制到temp2目录,有相同文件覆盖原文件，不提示</span><br><span class="line">copy d:\temp1\* d:\temp2 /y 将temp1目录下的所有文件复制到temp2目录,有相同文件覆盖原文件，不提示</span><br></pre></td></tr></table></figure>
+
+<h2 id="xcopy目录复制"><a href="#xcopy目录复制" class="headerlink" title="xcopy目录复制"></a>xcopy目录复制</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">xcopy temp1 d:\temp2 /y 将temp1目录下的文件复制到temp2目录，不包括temp1子目录下的文件。</span><br><span class="line">xcopy temp1 d:\temp2 /s /e /y 将temp1目录下的文件复制到temp2目录，包括temp1子目录下的文件</span><br></pre></td></tr></table></figure>
+
+<h2 id="type显示文件内容命令"><a href="#type显示文件内容命令" class="headerlink" title="type显示文件内容命令"></a>type显示文件内容命令</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">type file1.txt 查看file1文件内容</span><br><span class="line">type file1.txt file2.txt  #查看file1和file2文件内容</span><br><span class="line">type file1.txt &gt; file2.txt  #将file1.txt文件内容重定向到file2.txt</span><br><span class="line">type nul &gt; file1.txt #创建文件</span><br></pre></td></tr></table></figure>
+
+<h2 id="ren重命名文件命令"><a href="#ren重命名文件命令" class="headerlink" title="ren重命名文件命令"></a>ren重命名文件命令</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ren d:\temp1\file1.txt file2.txt 修改temp目录下的file1.txt文件名为file2.txt</span><br></pre></td></tr></table></figure>
+
+<h2 id="del删除文件命令"><a href="#del删除文件命令" class="headerlink" title="del删除文件命令"></a>del删除文件命令</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">del d:\temp1\file1.txt 删除temp目录下的file1.txt文件</span><br><span class="line">del d:\temp\*.txt  删除temp目录下的后缀为.txt的文件</span><br></pre></td></tr></table></figure>
+
+<h1 id="目录操作命令"><a href="#目录操作命令" class="headerlink" title="目录操作命令"></a>目录操作命令</h1><h2 id="cd"><a href="#cd" class="headerlink" title="cd"></a>cd</h2><p>显示当前目录或切换目录</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd d:\temp1 切换到temp1目录，当前目录是d盘</span><br><span class="line">cd /d d:\temp1 切换到temp1目录，当前目录非d盘</span><br><span class="line">cd .. 切换到上一级目录</span><br></pre></td></tr></table></figure>
+
+<h2 id="mkdir"><a href="#mkdir" class="headerlink" title="mkdir"></a>mkdir</h2><p>创建目录</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mkdir test 在当前目录下创建test目录</span><br><span class="line">mkdir d:\temp1\test 在temp1目录下创建test目录，如果temp1目录不存在，自动创建</span><br></pre></td></tr></table></figure>
+
+<h2 id="rmdir"><a href="#rmdir" class="headerlink" title="rmdir"></a>rmdir</h2><p>删除目录</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">rmdir d:\temp1 删除空目录temp1，非空则删除失败</span><br><span class="line">rmdir d:\temp1 /s /q 删除temp1目录，包括子目录(/s)，并且删除时不提示(/q)</span><br></pre></td></tr></table></figure>
+
+<h2 id="dir"><a href="#dir" class="headerlink" title="dir"></a>dir</h2><p>显示目录下的子目录和文件</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">dir d:\temp1 显示temp1目录下的文件和目录信息，显示信息包含日期、时间、文件类型和文件名</span><br><span class="line">dir d:\temp1 /a:a /b 只显示temp1目录下（不包括子目录）的文件的绝对路径，不显示日期、时间、文件类型和文件名</span><br><span class="line">dir d:\temp1 /b /s /o:n /a:a  显示temp1路径下（包括子目录）的所有文件的绝对路径。输出文件按照文件名数字顺序排序</span><br><span class="line">dir d:\temp1\*.txt /a:a /b /o:n 显示.txt后缀文件，并且按照文件名顺序排序(/on),其他排序方法查看help dir</span><br></pre></td></tr></table></figure>
+
+<h1 id="if-else判断语句的使用"><a href="#if-else判断语句的使用" class="headerlink" title="if/else判断语句的使用"></a>if/else判断语句的使用</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">IF [NOT] ERRORLEVEL number command</span><br><span class="line">IF [NOT] string1==string2 command</span><br><span class="line">IF [NOT] EXIST filename command</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">NOT：指定只有条件为 false 的情况下，Windows 才应该执行该命令。</span><br><span class="line">ERRORLEVEL number：如果最后运行的程序返回一个等于或大于指定数字的退出代码，指定条件为 true。</span><br><span class="line">string1==string2：如果指定的文字字符串匹配，指定条件为 true。</span><br><span class="line">EXIST filename：如果指定的文件名存在，指定条件为 true。</span><br><span class="line">command：如果符合条件，指定要执行的命令。如果指定的条件为 FALSE，命令后可跟 ELSE 命令，该命令将在 ELSE 关键字之后执行该命令。</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">IF EXIST filename. (</span><br><span class="line">    del filename.</span><br><span class="line">) ELSE (</span><br><span class="line">        echo filename. missing.</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<h1 id="for循环语句的使用"><a href="#for循环语句的使用" class="headerlink" title="for循环语句的使用"></a>for循环语句的使用</h1><h2 id="打印10以内的奇数"><a href="#打印10以内的奇数" class="headerlink" title="打印10以内的奇数"></a>打印10以内的奇数</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">@echo off</span><br><span class="line">for /l %%i in (1,2,10) do (</span><br><span class="line">  echo %%i</span><br><span class="line">)</span><br><span class="line">pause</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://goodlunatic.github.io/2023/08/02/bat%20Script%20Basics/" data-id="clktpaxav002qyo3zbwwg41dr" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Skills/" rel="tag">Skills</a></li></ul>
+
+    </footer>
+  </div>
+  
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2023/08/01/Python%20Learning%20Record/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Python Learning Record</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/ACM/">ACM</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/BlockChain/">BlockChain</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CTF/">CTF</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Courses/">Courses</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Database/">Database</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Language/">Language</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Raspberry-Pi/">Raspberry-Pi</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Skills/">Skills</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/WriteUp/">WriteUp</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/">年终总结</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/ACM/" style="font-size: 10px;">ACM</a> <a href="/tags/BlockChain/" style="font-size: 10px;">BlockChain</a> <a href="/tags/CTF/" style="font-size: 18px;">CTF</a> <a href="/tags/Courses/" style="font-size: 14px;">Courses</a> <a href="/tags/Crypto/" style="font-size: 12px;">Crypto</a> <a href="/tags/Docker/" style="font-size: 10px;">Docker</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/Hexo/" style="font-size: 12px;">Hexo</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/Leetcode/" style="font-size: 10px;">Leetcode</a> <a href="/tags/Misc/" style="font-size: 16px;">Misc</a> <a href="/tags/Mysql/" style="font-size: 10px;">Mysql</a> <a href="/tags/PHP/" style="font-size: 10px;">PHP</a> <a href="/tags/Program/" style="font-size: 10px;">Program</a> <a href="/tags/Pwn/" style="font-size: 12px;">Pwn</a> <a href="/tags/Python/" style="font-size: 12px;">Python</a> <a href="/tags/Raspberry-Pi/" style="font-size: 10px;">Raspberry-Pi</a> <a href="/tags/SQL%E6%B3%A8%E5%85%A5/" style="font-size: 10px;">SQL注入</a> <a href="/tags/Skills/" style="font-size: 20px;">Skills</a> <a href="/tags/Web/" style="font-size: 16px;">Web</a> <a href="/tags/WriteUp/" style="font-size: 10px;">WriteUp</a> <a href="/tags/forensics/" style="font-size: 10px;">forensics</a> <a href="/tags/%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/" style="font-size: 10px;">年终总结</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">August 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/07/">July 2023</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/06/">June 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">May 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">April 2023</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">March 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">February 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/01/">January 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">December 2022</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">November 2022</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/07/">July 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">April 2022</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2023/08/02/bat%20Script%20Basics/">bat Script Basics.md</a>
+          </li>
+        
+          <li>
+            <a href="/2023/08/01/Python%20Learning%20Record/">Python Learning Record</a>
+          </li>
+        
+          <li>
+            <a href="/2023/07/30/CTF%E2%80%94%E2%80%94Crypto/">CTF——Crypto</a>
+          </li>
+        
+          <li>
+            <a href="/2023/07/29/CTF%E2%80%94%E2%80%94Web%E3%80%90%E9%95%BF%E6%9C%9F%E6%9B%B4%E6%96%B0%E3%80%91/">CTF——Web【长期更新】</a>
+          </li>
+        
+          <li>
+            <a href="/2023/07/04/Quine%20Injection/">Quine Injection</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    <div class="widget-wrap toc">
+  <h3 class="widget-title">Catalog</h3>
+  <div class="widget"></div>
+</div>
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2023 Lunatic<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+    <a href="/Friends" class="mobile-nav-link">Friends</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+<!-- Toc -->
+
+<script src="/js/toc.js"></script>
+
+<!-- Toc -->
+  </div>
+</body>
+</html>
