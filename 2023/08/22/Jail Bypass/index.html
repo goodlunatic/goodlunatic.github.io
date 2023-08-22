@@ -15,7 +15,7 @@
 <meta property="og:description" content="Record for Jail Bypass:-)   Before All获取常用的unicode碰撞字符 12345678910111213from unicodedata import normalizefrom string import ascii_lowercasefrom collections import defaultdictlst &#x3D; list(ascii_lowerca">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-08-22T10:13:04.000Z">
-<meta property="article:modified_time" content="2023-08-22T10:17:04.616Z">
+<meta property="article:modified_time" content="2023-08-22T10:19:18.515Z">
 <meta property="article:author" content="Lunatic">
 <meta property="article:tag" content="CTF">
 <meta name="twitter:card" content="summary">
@@ -126,7 +126,7 @@
 
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#使用breakpoint()函数下断点进入Pdb，然后再输入命令</span></span><br></pre></td></tr></table></figure>
 
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#输入help()</span></span><br><span class="line"><span class="comment">#再输入sys</span></span><br><span class="line"><span class="comment">#然后输入!cat flag获取flag</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#输入help()</span></span><br><span class="line"><span class="comment">#再输入sys</span></span><br><span class="line"><span class="comment">#然后输入!cat flag获取flag</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#在help()中可以输入__main__或者__dict__查看是否有信息泄露</span></span><br></pre></td></tr></table></figure>
 
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#使用bytes([]).decode()来绕过chr的decode</span></span><br><span class="line"><span class="built_in">open</span>((<span class="built_in">bytes</span>([<span class="number">102</span>])+<span class="built_in">bytes</span>([<span class="number">108</span>])+<span class="built_in">bytes</span>([<span class="number">97</span>])+<span class="built_in">bytes</span>([<span class="number">103</span>])).decode()).read()</span><br></pre></td></tr></table></figure>
 
@@ -155,7 +155,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://goodlunatic.github.io/2023/08/22/Jail%20Bypass/" data-id="cllm5jfu20019i83z27yf8nay" class="article-share-link">Share</a>
+      <a data-url="https://goodlunatic.github.io/2023/08/22/Jail%20Bypass/" data-id="cllm5mae800131g3zebx43oo9" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CTF/" rel="tag">CTF</a></li></ul>
