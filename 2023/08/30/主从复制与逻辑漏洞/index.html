@@ -5,14 +5,19 @@
   
 
   
-  <title>Lunatic&#39;s Workstation</title>
+  <title>主从复制与逻辑漏洞 | Lunatic&#39;s Workstation</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Lunatic&#39;s Workstation">
-<meta property="og:url" content="https://goodlunatic.github.io/page/5/index.html">
+  <meta name="description" content="#主从复制##Redis主从复制 12345678910111213141516171819#启动一个主redis实例，并启用持久化docker run --name redis-master -d redis:latest redis-server --appendonly yes#启动一个从redis实例，并连接到先前启动的主实例，6379是redis默认的端口号docker run --na">
+<meta property="og:type" content="article">
+<meta property="og:title" content="主从复制与逻辑漏洞">
+<meta property="og:url" content="https://goodlunatic.github.io/2023/08/30/%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6%E4%B8%8E%E9%80%BB%E8%BE%91%E6%BC%8F%E6%B4%9E/index.html">
 <meta property="og:site_name" content="Lunatic&#39;s Workstation">
+<meta property="og:description" content="#主从复制##Redis主从复制 12345678910111213141516171819#启动一个主redis实例，并启用持久化docker run --name redis-master -d redis:latest redis-server --appendonly yes#启动一个从redis实例，并连接到先前启动的主实例，6379是redis默认的端口号docker run --na">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-08-30T06:25:52.000Z">
+<meta property="article:modified_time" content="2023-08-30T07:02:44.592Z">
 <meta property="article:author" content="Lunatic">
+<meta property="article:tag" content="CTF">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternate" href="/atom.xml" title="Lunatic&#39;s Workstation" type="application/atom+xml">
@@ -66,17 +71,15 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-Hexo折腾日记" class="article article-type-post" itemscope
+        <section id="main"><article id="post-主从复制与逻辑漏洞" class="article article-type-post" itemscope
   itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2022/11/24/Hexo%E6%8A%98%E8%85%BE%E6%97%A5%E8%AE%B0/" class="article-date">
-  <time datetime="2022-11-24T10:47:07.000Z" itemprop="datePublished">2022-11-24</time>
+    <a href="/2023/08/30/%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6%E4%B8%8E%E9%80%BB%E8%BE%91%E6%BC%8F%E6%B4%9E/" class="article-date">
+  <time datetime="2023-08-30T06:25:52.000Z" itemprop="datePublished">2023-08-30</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/Hexo/">Hexo</a>
+    <a class="article-category-link" href="/categories/CTF/">CTF</a>
   </div>
 
   </div>
@@ -86,8 +89,8 @@
     <header class="article-header">
       
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/11/24/Hexo%E6%8A%98%E8%85%BE%E6%97%A5%E8%AE%B0/">Hexo折腾日记</a>
+    <h1 class="article-title" itemprop="name">
+      主从复制与逻辑漏洞
     </h1>
   
 
@@ -95,177 +98,52 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-      <p><strong>突然想重新整一个个人博客来记录自己每天的学习过程，以此来督促自己多去学一些新的东西，然后因为自己原来的云服务器快过期了，于是就想利用Hexo+Gitpage来搭建一个简单一点的个人博客(之前那个太花里胡哨了…)</strong></p>
-      
-      <p class="article-more-link">
-        <a href="/2022/11/24/Hexo%E6%8A%98%E8%85%BE%E6%97%A5%E8%AE%B0/#more">Read More</a>
-      </p>
-      
+      <div class="toc-parent">
+  <div id="toc" class="toc-article">
+    <div class="toc-title">目录</div>
+    
+  </div>
+</div>
+      <p>#主从复制<br>##Redis主从复制</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#启动一个主redis实例，并启用持久化</span></span><br><span class="line">docker run --name redis-master -d redis:latest redis-server --appendonly <span class="built_in">yes</span></span><br><span class="line"><span class="comment">#启动一个从redis实例，并连接到先前启动的主实例，6379是redis默认的端口号</span></span><br><span class="line">docker run --name redis-slave -d --<span class="built_in">link</span> redis-master:master redis:latest redis-server --slaveof master 6379</span><br><span class="line"><span class="comment">#进入redis-master容器</span></span><br><span class="line"><span class="comment"># redis-cli 是 Redis 的命令行接口 (CLI)，它允许用户与 Redis 服务器交互</span></span><br><span class="line">docker <span class="built_in">exec</span> -it redis-master redis-cli</span><br><span class="line"><span class="comment">#添加一些测试数据</span></span><br><span class="line"><span class="built_in">set</span> test_key <span class="string">&quot;This is a test value&quot;</span></span><br><span class="line"><span class="comment">#退出cli</span></span><br><span class="line"><span class="built_in">exit</span></span><br><span class="line"><span class="comment">#进入从实例</span></span><br><span class="line">docker <span class="built_in">exec</span> -it redis-slave redis-cli</span><br><span class="line"><span class="comment">#获取之前写入的数据</span></span><br><span class="line">get test_key</span><br><span class="line"><span class="comment">#手动将从服务器晋升为主服务器</span></span><br><span class="line">slaveof no one </span><br><span class="line"><span class="comment">#使用keys *命令请求数据库中的所有键名</span></span><br><span class="line">keys *</span><br></pre></td></tr></table></figure>
+
+
+<p>#逻辑漏洞</p>
+<p>##条件竞争</p>
+<p>如何根据功能点发现逻辑漏洞<br>注册</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">短信轰炸</span><br><span class="line">验证码安全问题</span><br><span class="line">密码爆破</span><br><span class="line">邮箱轰炸</span><br><span class="line">用户任意/批量注册</span><br><span class="line">用户名枚举</span><br></pre></td></tr></table></figure>
+<p>登录</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">短信轰炸、验证码安全问题、密码爆破、邮箱轰炸</span><br><span class="line">SQL注入</span><br><span class="line">撞库</span><br><span class="line">抓包把password字段改为空值发送</span><br><span class="line">认证凭证替换：比如返回的数据包中包含账号，修改账号就能登录到其他账号</span><br><span class="line">Cookie仿冒</span><br><span class="line">修改返回包的相关数据，可能会登录到其他账户</span><br><span class="line">部分网站的身份验证放在了前端，因此只需要将response包中的相关字段进行修改，比如0改成1，false改成true,就可以登录任意用户账号</span><br><span class="line">XSS</span><br></pre></td></tr></table></figure>
+<p>找回密码</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">短信邮箱轰炸、短信邮箱劫持</span><br><span class="line">重置任意用户账户密码、验证码手机用户未统一认证</span><br><span class="line">直接跳过验证步骤</span><br></pre></td></tr></table></figure>
+<p>短信轰炸</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">一直重放</span><br><span class="line">删除修改cook ie,重放数据包</span><br><span class="line">遍历参数发送数据包</span><br><span class="line">手机号后面加空格或者前面加其他的比如+86或者逗号分号等，然后重发数据包</span><br><span class="line">请求参数修改大小写，或者添加请求参数比如&amp;id=1</span><br><span class="line">一个站的登录处可能做了防护，但是再找回密码处可能没有安全防护，或者在注册流程中没有安全防护，所以说多测试接口</span><br></pre></td></tr></table></figure>
+<p>验证码问题</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">万能验证码</span><br><span class="line">返回包中存在验证码</span><br><span class="line">删除验证码或者cookie中的值可以爆破账号密码</span><br></pre></td></tr></table></figure>
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://goodlunatic.github.io/2022/11/24/Hexo%E6%8A%98%E8%85%BE%E6%97%A5%E8%AE%B0/" data-id="cllxh040r000whk3z1gsfflhn" class="article-share-link">Share</a>
+      <a data-url="https://goodlunatic.github.io/2023/08/30/%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6%E4%B8%8E%E9%80%BB%E8%BE%91%E6%BC%8F%E6%B4%9E/" data-id="cllxh041c003lhk3z47qyh4jh" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CTF/" rel="tag">CTF</a></li></ul>
 
     </footer>
   </div>
   
-</article>
-
-
   
-    <article id="post-hello-world" class="article article-type-post" itemscope
-  itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2022/11/22/hello-world/" class="article-date">
-  <time datetime="2022-11-22T15:48:23.000Z" itemprop="datePublished">2022-11-22</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Hexo/">Hexo</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-    <header class="article-header">
-      
+<nav id="article-nav">
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/11/22/hello-world/">Hello World</a>
-    </h1>
   
+    <a href="/2023/08/29/AWD%20Basic/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">AWD Basic</div>
+    </a>
+  
+</nav>
 
-    </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-      
-      <p class="article-more-link">
-        <a href="/2022/11/22/hello-world/#more">Read More</a>
-      </p>
-      
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://goodlunatic.github.io/2022/11/22/hello-world/" data-id="cllxh041a003ahk3z31xf9zxi" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a></li></ul>
-
-    </footer>
-  </div>
   
 </article>
-
-
-  
-    <article id="post-Solutions to various errors" class="article article-type-post" itemscope
-  itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2022/08/11/Solutions%20to%20various%20errors/" class="article-date">
-  <time datetime="2022-08-11T06:01:21.000Z" itemprop="datePublished">2022-08-11</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Skills/">Skills</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-    <header class="article-header">
-      
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/08/11/Solutions%20to%20various%20errors/">Solutions to various errors</a>
-    </h1>
-  
-
-    </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      <p><strong>平常在学习的过程中老是会遇到各种奇奇怪怪的报错，就想着给他整理记录下来QAQ。。</strong></p>
-      
-      <p class="article-more-link">
-        <a href="/2022/08/11/Solutions%20to%20various%20errors/#more">Read More</a>
-      </p>
-      
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://goodlunatic.github.io/2022/08/11/Solutions%20to%20various%20errors/" data-id="cllxh04180030hk3z9hwu1wwb" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Skills/" rel="tag">Skills</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-大一上-对ACM的尝试与反思" class="article article-type-post" itemscope
-  itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2022/04/27/%E5%A4%A7%E4%B8%80%E4%B8%8A-%E5%AF%B9ACM%E7%9A%84%E5%B0%9D%E8%AF%95%E4%B8%8E%E5%8F%8D%E6%80%9D/" class="article-date">
-  <time datetime="2022-04-27T09:34:59.000Z" itemprop="datePublished">2022-04-27</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/ACM/">ACM</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-    <header class="article-header">
-      
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/04/27/%E5%A4%A7%E4%B8%80%E4%B8%8A-%E5%AF%B9ACM%E7%9A%84%E5%B0%9D%E8%AF%95%E4%B8%8E%E5%8F%8D%E6%80%9D/">大一上-对ACM的尝试与反思</a>
-    </h1>
-  
-
-    </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      <p><strong>虽然经过了一学期的努力（摸鱼）很遗憾地被OUT了，没有进入ACM集训队，但是这也给我了一次自我反思的机会。自己是否真的适合这类竞赛？ 经过仔细地思考，自己还是觉得这类竞赛确实不适合自己，可能自己在数理方面的知识，还有在一些想法（训练不到位）上面确实不如别人，但是经过这一学期的尝试，自己也收获颇丰。至少也是一次成功的试错，接下来我要重新振作，去尝试更多的领域，希望能以此找到自己的用武之地。</strong></p>
-      
-      <p class="article-more-link">
-        <a href="/2022/04/27/%E5%A4%A7%E4%B8%80%E4%B8%8A-%E5%AF%B9ACM%E7%9A%84%E5%B0%9D%E8%AF%95%E4%B8%8E%E5%8F%8D%E6%80%9D/#more">Read More</a>
-      </p>
-      
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://goodlunatic.github.io/2022/04/27/%E5%A4%A7%E4%B8%80%E4%B8%8A-%E5%AF%B9ACM%E7%9A%84%E5%B0%9D%E8%AF%95%E4%B8%8E%E5%8F%8D%E6%80%9D/" data-id="cllxh041a003dhk3zhfqdhyjr" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ACM/" rel="tag">ACM</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-
-
-  <nav id="page-nav">
-    
-    <a class="extend prev" rel="prev" href="/page/4/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span>
-  </nav>
 
 </section>
         
