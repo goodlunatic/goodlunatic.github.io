@@ -98,16 +98,16 @@
       <div class="toc-parent">
   <div id="toc" class="toc-article">
     <div class="toc-title">目录</div>
-    
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%80%BB%E8%BE%91%E6%BC%8F%E6%B4%9E"><span class="toc-text">逻辑漏洞</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9D%A1%E4%BB%B6%E7%AB%9E%E4%BA%89"><span class="toc-text">条件竞争</span></a></li></ol></li></ol>
   </div>
 </div>
-      <p>#主从复制<br>##Redis主从复制</p>
+      <span id="more"></span>
+
+<p>#主从复制</p>
+<p>##Redis主从复制</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#启动一个主redis实例，并启用持久化</span></span><br><span class="line">docker run --name redis-master -d redis:latest redis-server --appendonly <span class="built_in">yes</span></span><br><span class="line"><span class="comment">#启动一个从redis实例，并连接到先前启动的主实例，6379是redis默认的端口号</span></span><br><span class="line">docker run --name redis-slave -d --<span class="built_in">link</span> redis-master:master redis:latest redis-server --slaveof master 6379</span><br><span class="line"><span class="comment">#进入redis-master容器</span></span><br><span class="line"><span class="comment"># redis-cli 是 Redis 的命令行接口 (CLI)，它允许用户与 Redis 服务器交互</span></span><br><span class="line">docker <span class="built_in">exec</span> -it redis-master redis-cli</span><br><span class="line"><span class="comment">#添加一些测试数据</span></span><br><span class="line"><span class="built_in">set</span> test_key <span class="string">&quot;This is a test value&quot;</span></span><br><span class="line"><span class="comment">#退出cli</span></span><br><span class="line"><span class="built_in">exit</span></span><br><span class="line"><span class="comment">#进入从实例</span></span><br><span class="line">docker <span class="built_in">exec</span> -it redis-slave redis-cli</span><br><span class="line"><span class="comment">#获取之前写入的数据</span></span><br><span class="line">get test_key</span><br><span class="line"><span class="comment">#手动将从服务器晋升为主服务器</span></span><br><span class="line">slaveof no one </span><br><span class="line"><span class="comment">#使用keys *命令请求数据库中的所有键名</span></span><br><span class="line">keys *</span><br></pre></td></tr></table></figure>
 
-
-<p>#逻辑漏洞</p>
-<p>##条件竞争</p>
-<p>如何根据功能点发现逻辑漏洞<br>注册</p>
+<h1 id="逻辑漏洞"><a href="#逻辑漏洞" class="headerlink" title="逻辑漏洞"></a>逻辑漏洞</h1><h2 id="条件竞争"><a href="#条件竞争" class="headerlink" title="条件竞争"></a>条件竞争</h2><p>如何根据功能点发现逻辑漏洞<br>注册</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">短信轰炸</span><br><span class="line">验证码安全问题</span><br><span class="line">密码爆破</span><br><span class="line">邮箱轰炸</span><br><span class="line">用户任意/批量注册</span><br><span class="line">用户名枚举</span><br></pre></td></tr></table></figure>
 <p>登录</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">短信轰炸、验证码安全问题、密码爆破、邮箱轰炸</span><br><span class="line">SQL注入</span><br><span class="line">撞库</span><br><span class="line">抓包把password字段改为空值发送</span><br><span class="line">认证凭证替换：比如返回的数据包中包含账号，修改账号就能登录到其他账号</span><br><span class="line">Cookie仿冒</span><br><span class="line">修改返回包的相关数据，可能会登录到其他账户</span><br><span class="line">部分网站的身份验证放在了前端，因此只需要将response包中的相关字段进行修改，比如0改成1，false改成true,就可以登录任意用户账号</span><br><span class="line">XSS</span><br></pre></td></tr></table></figure>
@@ -120,7 +120,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://goodlunatic.github.io/2023/08/30/%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6%E4%B8%8E%E9%80%BB%E8%BE%91%E6%BC%8F%E6%B4%9E/" data-id="cllxi2lu1003ehw3zbsvb3hki" class="article-share-link">Share</a>
+      <a data-url="https://goodlunatic.github.io/2023/08/30/%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6%E4%B8%8E%E9%80%BB%E8%BE%91%E6%BC%8F%E6%B4%9E/" data-id="cllyx6z3p003hs83z8lz7cafq" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CTF/" rel="tag">CTF</a></li></ul>
@@ -168,7 +168,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://goodlunatic.github.io/2023/08/29/AWD%20Basic/" data-id="cllxi2ltg0003hw3zai0nfgpf" class="article-share-link">Share</a>
+      <a data-url="https://goodlunatic.github.io/2023/08/29/AWD%20Basic/" data-id="cllyx6z350007s83z79kj5lc2" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/AWD/" rel="tag">AWD</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CTF/" rel="tag">CTF</a></li></ul>
@@ -216,7 +216,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://goodlunatic.github.io/2023/08/28/Misc%E2%80%94%E2%80%94Forensics/" data-id="cllxi2lts001jhw3z3aa6e69i" class="article-share-link">Share</a>
+      <a data-url="https://goodlunatic.github.io/2023/08/28/Misc%E2%80%94%E2%80%94Forensics/" data-id="cllyx6z3g001ks83z54x33snb" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CTF/" rel="tag">CTF</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Misc/" rel="tag">Misc</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/forensics/" rel="tag">forensics</a></li></ul>
@@ -264,7 +264,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://goodlunatic.github.io/2023/08/22/Jail%20Bypass/" data-id="cllxi2ltr0016hw3zhft3diun" class="article-share-link">Share</a>
+      <a data-url="https://goodlunatic.github.io/2023/08/22/Jail%20Bypass/" data-id="cllyx6z3e0013s83z95v817rt" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CTF/" rel="tag">CTF</a></li></ul>
@@ -312,7 +312,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://goodlunatic.github.io/2023/08/21/Injection%20Attack/" data-id="cllxi2ltq0014hw3z08kf6skf" class="article-share-link">Share</a>
+      <a data-url="https://goodlunatic.github.io/2023/08/21/Injection%20Attack/" data-id="cllyx6z3f001as83za93l5k7c" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CTF/" rel="tag">CTF</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Web/" rel="tag">Web</a></li></ul>
@@ -360,7 +360,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://goodlunatic.github.io/2023/08/17/CTF%E2%80%94%E2%80%94Pwn%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/" data-id="cllxi2ltm000jhw3zei535cr6" class="article-share-link">Share</a>
+      <a data-url="https://goodlunatic.github.io/2023/08/17/CTF%E2%80%94%E2%80%94Pwn%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/" data-id="cllyx6z3c000ts83zagqd46uw" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CTF/" rel="tag">CTF</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Pwn/" rel="tag">Pwn</a></li></ul>
@@ -408,7 +408,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://goodlunatic.github.io/2023/08/16/Penetration%20Testing%20Knowledge/" data-id="cllxi2ltv0024hw3zcodl5udx" class="article-share-link">Share</a>
+      <a data-url="https://goodlunatic.github.io/2023/08/16/Penetration%20Testing%20Knowledge/" data-id="cllyx6z3j0026s83zd0o5fili" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Skills/" rel="tag">Skills</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Web/" rel="tag">Web</a></li></ul>
@@ -456,7 +456,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://goodlunatic.github.io/2023/08/10/Nodejs%20Basci%20and%20Vulnerability/" data-id="cllxi2ltu001xhw3zba9nd2f2" class="article-share-link">Share</a>
+      <a data-url="https://goodlunatic.github.io/2023/08/10/Nodejs%20Basci%20and%20Vulnerability/" data-id="cllyx6z3h001rs83z2oy21ar8" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CTF/" rel="tag">CTF</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Nodejs/" rel="tag">Nodejs</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Web/" rel="tag">Web</a></li></ul>
@@ -504,7 +504,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://goodlunatic.github.io/2023/08/10/PHP%20Basic%20and%20Vulnerability/" data-id="cllxi2ltw002chw3z17rv0huv" class="article-share-link">Share</a>
+      <a data-url="https://goodlunatic.github.io/2023/08/10/PHP%20Basic%20and%20Vulnerability/" data-id="cllyx6z3l002hs83z42xhhn75" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CTF/" rel="tag">CTF</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PHP/" rel="tag">PHP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Web/" rel="tag">Web</a></li></ul>
@@ -552,7 +552,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://goodlunatic.github.io/2023/08/07/Python%20Learning%20Record/" data-id="cllxi2lu1003bhw3zgzh81hzg" class="article-share-link">Share</a>
+      <a data-url="https://goodlunatic.github.io/2023/08/07/Python%20Learning%20Record/" data-id="cllyx6z3n002xs83zhz6ia43l" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Program/" rel="tag">Program</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/" rel="tag">Python</a></li></ul>
