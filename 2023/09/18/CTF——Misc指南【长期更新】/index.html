@@ -18,7 +18,7 @@
 <meta property="og:image" content="https://goodlunatic.github.io/images/stegdectet.gif">
 <meta property="og:image" content="https://image.3001.net/images/20201117/1605593956_5fb36b64db62588f96dcc.png!small">
 <meta property="article:published_time" content="2023-09-18T04:41:08.000Z">
-<meta property="article:modified_time" content="2023-09-18T05:58:46.232Z">
+<meta property="article:modified_time" content="2023-09-19T09:05:14.587Z">
 <meta property="article:author" content="Lunatic">
 <meta property="article:tag" content="CTF">
 <meta property="article:tag" content="Misc">
@@ -346,7 +346,7 @@
 <h2 id="【二维码类】："><a href="#【二维码类】：" class="headerlink" title="【二维码类】："></a>【二维码类】：</h2><h3 id="1、-bmp转二维码"><a href="#1、-bmp转二维码" class="headerlink" title="1、     bmp转二维码"></a>1、     bmp转二维码</h3><h3 id="2、-16进制转pyc"><a href="#2、-16进制转pyc" class="headerlink" title="2、     16进制转pyc"></a>2、     16进制转pyc</h3><h3 id="3、-字符串制作二维码"><a href="#3、-字符串制作二维码" class="headerlink" title="3、     字符串制作二维码"></a>3、     字符串制作二维码</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">直接右键使用B神的脚本制作二维码，制作前注意要把字符串的长度手动修正为平方数</span><br><span class="line">1.0 1制作二维码</span><br><span class="line">2.00 11制作二维码</span><br></pre></td></tr></table></figure>
 
 <h3 id="4、-四个TTL值转换一个字节的二进制数"><a href="#4、-四个TTL值转换一个字节的二进制数" class="headerlink" title="4、     四个TTL值转换一个字节的二进制数"></a>4、     四个TTL值转换一个字节的二进制数</h3><h3 id="5、-aztec-code"><a href="#5、-aztec-code" class="headerlink" title="5、     aztec code"></a>5、     aztec code</h3><p>![aztec code](/images/aztec code.gif)</p>
-<h1 id="Misc——excel题思路："><a href="#Misc——excel题思路：" class="headerlink" title="Misc——excel题思路："></a>Misc——excel题思路：</h1><p>1、拉入010或者记事本，查找flag<br>2、取消隐藏先前隐藏的行和列<br>3、条件格式里设置突出显示某些单元格(黑白后可能会有图案)</p>
+<h1 id="Misc——excel题思路："><a href="#Misc——excel题思路：" class="headerlink" title="Misc——excel题思路："></a>Misc——excel题思路：</h1><p>1、拉入010或者记事本，查找flag<br>2、取消隐藏先前隐藏的行和列<br>3、条件格式里设置突出显示某些单元格(黑白后可能会有图案)<br>4、要先将数据按照行列排序后再进行处理</p>
 <h1 id="Misc——PDF题思路："><a href="#Misc——PDF题思路：" class="headerlink" title="Misc——PDF题思路："></a>Misc——PDF题思路：</h1><p>1、直接binwalk或者foremost解出隐藏文件</p>
 <p>2、可能是wbStego4open隐写，用wbStego4open直接decode</p>
 <p>3、PDF中可能携带了什么文件，可以在Firefox或者别的PDF软件中打开并提取</p>
@@ -731,7 +731,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://goodlunatic.github.io/2023/09/18/CTF%E2%80%94%E2%80%94Misc%E6%8C%87%E5%8D%97%E3%80%90%E9%95%BF%E6%9C%9F%E6%9B%B4%E6%96%B0%E3%80%91/" data-id="clmohovfa005dpg3z2h972g3k" class="article-share-link">Share</a>
+      <a data-url="https://goodlunatic.github.io/2023/09/18/CTF%E2%80%94%E2%80%94Misc%E6%8C%87%E5%8D%97%E3%80%90%E9%95%BF%E6%9C%9F%E6%9B%B4%E6%96%B0%E3%80%91/" data-id="clmqdkogv0053uc3z5nvlhmxz" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CTF/" rel="tag">CTF</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Misc/" rel="tag">Misc</a></li></ul>
@@ -741,6 +741,15 @@
   
   
 <nav id="article-nav">
+  
+    <a href="/2023/09/18/%E4%BE%A7%E4%BF%A1%E9%81%93%E6%94%BB%E5%87%BB%E5%9C%A8Web%E5%AE%89%E5%85%A8%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          侧信道攻击在Web安全中的应用
+        
+      </div>
+    </a>
   
   
     <a href="/2023/09/14/Misc%E2%80%94%E2%80%94Forensics/" id="article-nav-older" class="article-nav-link-wrap">
@@ -761,7 +770,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/ACM/">ACM</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/BlockChain/">BlockChain</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CTF/">CTF</a><span class="category-list-count">16</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Courses/">Courses</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Database/">Database</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Language/">Language</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Raspberry-Pi/">Raspberry-Pi</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Skills/">Skills</a><span class="category-list-count">14</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/WriteUp/">WriteUp</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/">年终总结</a><span class="category-list-count">1</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/ACM/">ACM</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/BlockChain/">BlockChain</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CTF/">CTF</a><span class="category-list-count">17</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Courses/">Courses</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Database/">Database</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Language/">Language</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Raspberry-Pi/">Raspberry-Pi</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Skills/">Skills</a><span class="category-list-count">14</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/WriteUp/">WriteUp</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/">年终总结</a><span class="category-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -780,7 +789,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">September 2023</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">August 2023</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/07/">July 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/06/">June 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">May 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">April 2023</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">March 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">February 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/01/">January 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">December 2022</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">November 2022</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">August 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">April 2022</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">September 2023</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">August 2023</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/07/">July 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/06/">June 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">May 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">April 2023</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">March 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">February 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/01/">January 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">December 2022</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">November 2022</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">August 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">April 2022</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -793,6 +802,14 @@
       <ul>
         
           <li>
+            <a href="/2023/09/19/Penetration%20Testing%20Knowledge/">Penetration Testing Knowledge</a>
+          </li>
+        
+          <li>
+            <a href="/2023/09/18/%E4%BE%A7%E4%BF%A1%E9%81%93%E6%94%BB%E5%87%BB%E5%9C%A8Web%E5%AE%89%E5%85%A8%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8/">侧信道攻击在Web安全中的应用</a>
+          </li>
+        
+          <li>
             <a href="/2023/09/18/CTF%E2%80%94%E2%80%94Misc%E6%8C%87%E5%8D%97%E3%80%90%E9%95%BF%E6%9C%9F%E6%9B%B4%E6%96%B0%E3%80%91/">CTF——Misc指南【长期更新】</a>
           </li>
         
@@ -802,14 +819,6 @@
         
           <li>
             <a href="/2023/09/12/Vue-Basic/">Vue-Basic</a>
-          </li>
-        
-          <li>
-            <a href="/2023/09/11/Webshell%20Bypass/">Webshell Bypass</a>
-          </li>
-        
-          <li>
-            <a href="/2023/09/03/Python%20Learning%20Record/">Python Learning Record</a>
           </li>
         
       </ul>
