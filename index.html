@@ -105,7 +105,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://goodlunatic.github.io/2023/09/21/CTF%E2%80%94%E2%80%94Misc%E6%8C%87%E5%8D%97%E3%80%90%E9%95%BF%E6%9C%9F%E6%9B%B4%E6%96%B0%E3%80%91/" data-id="clmsj8r6z005bis3z2x37gw5q" class="article-share-link">Share</a>
+      <a data-url="https://goodlunatic.github.io/2023/09/21/CTF%E2%80%94%E2%80%94Misc%E6%8C%87%E5%8D%97%E3%80%90%E9%95%BF%E6%9C%9F%E6%9B%B4%E6%96%B0%E3%80%91/" data-id="clmskekax0055jw3z4wae1bwy" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CTF/" rel="tag">CTF</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Misc/" rel="tag">Misc</a></li></ul>
@@ -147,7 +147,7 @@
       <div class="toc-parent">
   <div id="toc" class="toc-article">
     <div class="toc-title">目录</div>
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#WireShark%E5%9F%BA%E7%A1%80"><span class="toc-text">WireShark基础</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#tshark%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B"><span class="toc-text">tshark使用教程</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80%E8%80%83%E7%82%B9"><span class="toc-text">流量分析基础考点</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1%E3%80%81wireshark%E6%8F%90%E5%8F%96%E6%95%B0%E6%8D%AE%E6%B5%81"><span class="toc-text">1、wireshark提取数据流:</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%E3%80%81%E5%8D%8F%E8%AE%AE%E5%88%86%E7%BA%A7-%E5%AF%BC%E5%87%BAHTTP%E5%AF%B9%E8%B1%A1"><span class="toc-text">2、协议分级+导出HTTP对象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%E3%80%81%E6%B5%81%E9%87%8F%E5%8C%85%E7%AB%AF%E5%8F%A3%E9%9A%90%E5%86%99%EF%BC%88%E5%8F%AF%E8%83%BD%E4%BC%9A%E6%9C%8901%E4%BA%92%E6%8D%A2%EF%BC%89"><span class="toc-text">2、流量包端口隐写（可能会有01互换）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3%E3%80%81TCP-FTP%E5%8D%8F%E8%AE%AE%E4%BC%A0%E8%BE%93%E6%96%87%E4%BB%B6-binwalk%E5%92%8Cforemost%E9%83%BD%E6%B2%A1%E7%94%A8-%EF%BC%9A"><span class="toc-text">3、TCP&#x2F;FTP协议传输文件(binwalk和foremost都没用)：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4%E3%80%81%E6%9C%89%E6%97%B6%E5%80%99%E5%8F%AF%E8%83%BD%E9%9C%80%E8%A6%81%E5%88%86%E7%89%88%E6%9C%AC%E5%88%86%E5%88%AB%E5%AF%BC%E5%87%BA"><span class="toc-text">4、有时候可能需要分版本分别导出</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#USB%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90"><span class="toc-text">USB流量分析</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%94%AE%E7%9B%98%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90"><span class="toc-text">键盘流量分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%BC%A0%E6%A0%87%E6%B5%81%E9%87%8F"><span class="toc-text">鼠标流量</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E7%BB%93%E4%B8%80%E4%B8%8B%E6%88%91%E7%9A%84%E5%81%9A%E9%A2%98%E6%AD%A5%E9%AA%A4%EF%BC%88WSL%EF%BC%89%EF%BC%9A"><span class="toc-text">总结一下我的做题步骤（WSL）：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E4%BD%8D%E6%9D%BF%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90%EF%BC%9A"><span class="toc-text">数位板流量分析：</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Webshell%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90"><span class="toc-text">Webshell流量分析</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%93%A5%E6%96%AF%E6%8B%89%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90"><span class="toc-text">哥斯拉流量分析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-03%E7%89%88%E6%9C%AC"><span class="toc-text">3.03版本</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CobalStrike%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90"><span class="toc-text">CobalStrike流量分析</span></a></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#WireShark%E5%9F%BA%E7%A1%80"><span class="toc-text">WireShark基础</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#tshark%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B"><span class="toc-text">tshark使用教程</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80%E8%80%83%E7%82%B9"><span class="toc-text">流量分析基础考点</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1%E3%80%81wireshark%E6%8F%90%E5%8F%96%E6%95%B0%E6%8D%AE%E6%B5%81"><span class="toc-text">1、wireshark提取数据流:</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%E3%80%81%E5%8D%8F%E8%AE%AE%E5%88%86%E7%BA%A7-%E5%AF%BC%E5%87%BAHTTP%E5%AF%B9%E8%B1%A1"><span class="toc-text">2、协议分级+导出HTTP对象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%E3%80%81%E6%B5%81%E9%87%8F%E5%8C%85%E7%AB%AF%E5%8F%A3%E9%9A%90%E5%86%99%EF%BC%88%E5%8F%AF%E8%83%BD%E4%BC%9A%E6%9C%8901%E4%BA%92%E6%8D%A2%EF%BC%89"><span class="toc-text">2、流量包端口隐写（可能会有01互换）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3%E3%80%81TCP-FTP%E5%8D%8F%E8%AE%AE%E4%BC%A0%E8%BE%93%E6%96%87%E4%BB%B6-binwalk%E5%92%8Cforemost%E9%83%BD%E6%B2%A1%E7%94%A8-%EF%BC%9A"><span class="toc-text">3、TCP&#x2F;FTP协议传输文件(binwalk和foremost都没用)：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4%E3%80%81%E6%9C%89%E6%97%B6%E5%80%99%E5%8F%AF%E8%83%BD%E9%9C%80%E8%A6%81%E5%88%86%E7%89%88%E6%9C%AC%E5%88%86%E5%88%AB%E5%AF%BC%E5%87%BA"><span class="toc-text">4、有时候可能需要分版本分别导出</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#USB%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90"><span class="toc-text">USB流量分析</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%94%AE%E7%9B%98%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90"><span class="toc-text">键盘流量分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%BC%A0%E6%A0%87%E6%B5%81%E9%87%8F"><span class="toc-text">鼠标流量</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E7%BB%93%E4%B8%80%E4%B8%8B%E6%88%91%E7%9A%84%E5%81%9A%E9%A2%98%E6%AD%A5%E9%AA%A4%EF%BC%88WSL%EF%BC%89%EF%BC%9A"><span class="toc-text">总结一下我的做题步骤（WSL）：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E4%BD%8D%E6%9D%BF%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90%EF%BC%9A"><span class="toc-text">数位板流量分析：</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Webshell%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90"><span class="toc-text">Webshell流量分析</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%93%A5%E6%96%AF%E6%8B%89%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90"><span class="toc-text">哥斯拉流量分析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-03%E7%89%88%E6%9C%AC"><span class="toc-text">3.03版本</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%B0%E8%9D%8E%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90"><span class="toc-text">冰蝎流量分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CobalStrike%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90"><span class="toc-text">CobalStrike流量分析</span></a></li></ol></li></ol>
   </div>
 </div>
       <h1 id="WireShark基础"><a href="#WireShark基础" class="headerlink" title="WireShark基础"></a>WireShark基础</h1><p>http contains “shell” </p>
@@ -221,6 +221,11 @@
 <p>Response解密</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">echo</span> <span class="title function_ invoke__">gzdecode</span>(<span class="title function_ invoke__">encode</span>(<span class="title function_ invoke__">base64_decode</span>(<span class="title function_ invoke__">urldecode</span>(<span class="string">&#x27;fL1tMGI4YTljMn75e3i2GMoehBqscKzwshr9GtI2YQRVyPwjYjhh&#x27;</span>)), <span class="variable">$key</span>));</span><br><span class="line"><span class="comment">//flag.txt shell.php</span></span><br></pre></td></tr></table></figure>
 
+<h2 id="冰蝎流量分析"><a href="#冰蝎流量分析" class="headerlink" title="冰蝎流量分析"></a>冰蝎流量分析</h2><p>简要加密过程（请求）</p>
+<p>base64 -&gt; AES(key IV=0123456789abcdef) -&gt; base64</p>
+<p>简要解密过程（响应）</p>
+<p>加密过程反过来即可</p>
+<p><img src="/images/Network%20Traffic%20Analysis_2023-09-21-10-38-02.png" alt="冰蝎流量数据解密"></p>
 <h2 id="CobalStrike流量分析"><a href="#CobalStrike流量分析" class="headerlink" title="CobalStrike流量分析"></a>CobalStrike流量分析</h2><p>先从流量包中导出key文件</p>
 <p>然后在 cs-scripts中运行 python3 parse_beacon_keys.py 得到私钥</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">-----BEGIN PRIVATE KEY-----</span><br><span class="line">MIICdwIBADANBgkqhkiG9w0BAQEFAASCAmEwggJdAgEAAoGBAIzAss/1Vcd49UN5XT+pVELCnX1r</span><br><span class="line">To4LhSzcP7sPOrIOQg0onSpKO1tzOVX+2DqtZsSFoFrAmrEV+gZCbFfhYR9vs5DGLUg9aa0i5Gqh</span><br><span class="line">Pz/s4v5wcmgUgfnvjh4oK7yPQ5BMcqESCjEim9MXs70by1U7ZN+wOYZEorInV9gPkCJdAgMBAAEC</span><br><span class="line">gYAJbRpMjQyamEIsq6MQEWIAOpJbhOU05BaeI33tJB71L7lCslacL258OGI9nRyUCWrZfG15xm5V</span><br><span class="line">r7gX1Tj2RbTAUZmGigY1X2rCyz00DFjj5iIQVWsl8eSI1EmjFmQ+rYnCezQcrt4V3c7BZtW9RjFW</span><br><span class="line">vHh09PF808Yl4/+++vrMoQJBAKhCa/adRGEFqiVcSZG2FdlUG4bPMfwRkYMERZG5D6fjVHOVNEyL</span><br><span class="line">3MK+EtafnYIDD1IS+97K0cbg922RKXNdv+kCQQDWJk0kNe8ePBpwJU4slig1Y+4VWuwTRz6r+MNp</span><br><span class="line">v+WrVMzo/LHzAKYn87pyAdxLaZyKAFKs86WpJ2n93ZslC9pVAkA0KMMHJCF6YiMoib9UqDmFsYkG</span><br><span class="line">9VvtZBTTpJNcZR3xUYtweSRJRmIdDIcSeVB+aSxqqO/jVMRK/po1IPbUiI9hAkEAi93wPFpNlv3C</span><br><span class="line">dsSmzlA0asqd0azUy7KYqFGNsB/5rXFxdCq3PvOJkkaJ27SDYW3VI/0aAoQQCu8HNxvqHMQlEQJB</span><br><span class="line">AIFIkfpeSfksLu8NgiFvZsTV8EWF9PfF2VLyqeSGtmySujqb0HbxGnM9SDc0k48wOvIn5YGJPyY2</span><br><span class="line">ddsyNI6XbCU=</span><br><span class="line">-----END PRIVATE KEY-----</span><br></pre></td></tr></table></figure>
@@ -236,7 +241,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://goodlunatic.github.io/2023/09/21/Network%20Traffic%20Analysis/" data-id="clmsj8r5w001cis3zfzx0f2co" class="article-share-link">Share</a>
+      <a data-url="https://goodlunatic.github.io/2023/09/21/Network%20Traffic%20Analysis/" data-id="clmskekaa001ajw3z0roxe1w4" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Misc/" rel="tag">Misc</a></li></ul>
@@ -284,7 +289,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://goodlunatic.github.io/2023/09/20/%E4%BE%A7%E4%BF%A1%E9%81%93%E6%94%BB%E5%87%BB%E5%9C%A8Web%E5%AE%89%E5%85%A8%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8/" data-id="clmsj8r66002ois3z9fla66fi" class="article-share-link">Share</a>
+      <a data-url="https://goodlunatic.github.io/2023/09/20/%E4%BE%A7%E4%BF%A1%E9%81%93%E6%94%BB%E5%87%BB%E5%9C%A8Web%E5%AE%89%E5%85%A8%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8/" data-id="clmskekak0030jw3zelut1ybe" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Web/" rel="tag">Web</a></li></ul>
@@ -332,7 +337,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://goodlunatic.github.io/2023/09/20/Penetration%20Testing%20Knowledge/" data-id="clmsj8r6t004sis3z7vwbcqwn" class="article-share-link">Share</a>
+      <a data-url="https://goodlunatic.github.io/2023/09/20/Penetration%20Testing%20Knowledge/" data-id="clmskekat004mjw3z6xrmdvuv" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Skills/" rel="tag">Skills</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Web/" rel="tag">Web</a></li></ul>
@@ -380,7 +385,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://goodlunatic.github.io/2023/09/20/PHP%20Basic%20and%20Vulnerability/" data-id="clmsj8r73005ris3z7tik6ec5" class="article-share-link">Share</a>
+      <a data-url="https://goodlunatic.github.io/2023/09/20/PHP%20Basic%20and%20Vulnerability/" data-id="clmskekb1005pjw3z9hv4hc0k" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CTF/" rel="tag">CTF</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PHP/" rel="tag">PHP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Web/" rel="tag">Web</a></li></ul>
@@ -428,7 +433,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://goodlunatic.github.io/2023/09/14/Misc%E2%80%94%E2%80%94Forensics/" data-id="clmsj8r5t0017is3zd8n1bt5g" class="article-share-link">Share</a>
+      <a data-url="https://goodlunatic.github.io/2023/09/14/Misc%E2%80%94%E2%80%94Forensics/" data-id="clmskeka4000xjw3z83io4d8d" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CTF/" rel="tag">CTF</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Misc/" rel="tag">Misc</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/forensics/" rel="tag">forensics</a></li></ul>
@@ -476,7 +481,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://goodlunatic.github.io/2023/09/12/Vue-Basic/" data-id="clmsj8r630028is3zghoohmxx" class="article-share-link">Share</a>
+      <a data-url="https://goodlunatic.github.io/2023/09/12/Vue-Basic/" data-id="clmskekaf0027jw3ze6vx1pq4" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Skills/" rel="tag">Skills</a></li></ul>
@@ -524,7 +529,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://goodlunatic.github.io/2023/09/11/Webshell%20Bypass/" data-id="clmsj8r63002ais3z8x4r8akx" class="article-share-link">Share</a>
+      <a data-url="https://goodlunatic.github.io/2023/09/11/Webshell%20Bypass/" data-id="clmskekag002ajw3z4o9w3f3d" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CTF/" rel="tag">CTF</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Web/" rel="tag">Web</a></li></ul>
@@ -572,7 +577,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://goodlunatic.github.io/2023/09/03/Python%20Learning%20Record/" data-id="clmsj8r770066is3zbagfdeux" class="article-share-link">Share</a>
+      <a data-url="https://goodlunatic.github.io/2023/09/03/Python%20Learning%20Record/" data-id="clmskekb30064jw3z6lv0bu0c" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Program/" rel="tag">Program</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/" rel="tag">Python</a></li></ul>
@@ -620,7 +625,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://goodlunatic.github.io/2023/09/01/Nodejs%20Basic%20and%20Vulnerability/" data-id="clmsj8r5x001fis3z9eub6s7v" class="article-share-link">Share</a>
+      <a data-url="https://goodlunatic.github.io/2023/09/01/Nodejs%20Basic%20and%20Vulnerability/" data-id="clmskekaa001djw3z93lb2jfw" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CTF/" rel="tag">CTF</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Nodejs/" rel="tag">Nodejs</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Web/" rel="tag">Web</a></li></ul>
