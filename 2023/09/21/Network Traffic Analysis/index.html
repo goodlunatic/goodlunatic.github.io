@@ -7,16 +7,16 @@
   
   <title>Network Traffic Analysis | Lunatic&#39;s Workstation</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="WireShark基础http contains “shell”  tshark使用教程导出流量包中所有POST数据包的data数据 12345tshark -r 1.pcapng -Y &quot;http.request.method &#x3D;&#x3D; POST&quot; -T fields -e data.data &gt; data.txt# -r [输入的pcap文件路径]: 指定要分析的pcap">
+  <meta name="description" content="Network Traffic Analysis">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Network Traffic Analysis">
 <meta property="og:url" content="https://goodlunatic.github.io/2023/09/21/Network%20Traffic%20Analysis/index.html">
 <meta property="og:site_name" content="Lunatic&#39;s Workstation">
-<meta property="og:description" content="WireShark基础http contains “shell”  tshark使用教程导出流量包中所有POST数据包的data数据 12345tshark -r 1.pcapng -Y &quot;http.request.method &#x3D;&#x3D; POST&quot; -T fields -e data.data &gt; data.txt# -r [输入的pcap文件路径]: 指定要分析的pcap">
+<meta property="og:description" content="Network Traffic Analysis">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://goodlunatic.github.io/images/Network%20Traffic%20Analysis_2023-09-21-10-38-02.png">
 <meta property="article:published_time" content="2023-09-21T02:03:08.000Z">
-<meta property="article:modified_time" content="2023-09-21T02:39:10.788Z">
+<meta property="article:modified_time" content="2023-09-21T06:10:14.911Z">
 <meta property="article:author" content="Lunatic">
 <meta property="article:tag" content="Misc">
 <meta name="twitter:card" content="summary">
@@ -106,7 +106,10 @@
     <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#WireShark%E5%9F%BA%E7%A1%80"><span class="toc-text">WireShark基础</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#tshark%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B"><span class="toc-text">tshark使用教程</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80%E8%80%83%E7%82%B9"><span class="toc-text">流量分析基础考点</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1%E3%80%81wireshark%E6%8F%90%E5%8F%96%E6%95%B0%E6%8D%AE%E6%B5%81"><span class="toc-text">1、wireshark提取数据流:</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%E3%80%81%E5%8D%8F%E8%AE%AE%E5%88%86%E7%BA%A7-%E5%AF%BC%E5%87%BAHTTP%E5%AF%B9%E8%B1%A1"><span class="toc-text">2、协议分级+导出HTTP对象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%E3%80%81%E6%B5%81%E9%87%8F%E5%8C%85%E7%AB%AF%E5%8F%A3%E9%9A%90%E5%86%99%EF%BC%88%E5%8F%AF%E8%83%BD%E4%BC%9A%E6%9C%8901%E4%BA%92%E6%8D%A2%EF%BC%89"><span class="toc-text">2、流量包端口隐写（可能会有01互换）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3%E3%80%81TCP-FTP%E5%8D%8F%E8%AE%AE%E4%BC%A0%E8%BE%93%E6%96%87%E4%BB%B6-binwalk%E5%92%8Cforemost%E9%83%BD%E6%B2%A1%E7%94%A8-%EF%BC%9A"><span class="toc-text">3、TCP&#x2F;FTP协议传输文件(binwalk和foremost都没用)：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4%E3%80%81%E6%9C%89%E6%97%B6%E5%80%99%E5%8F%AF%E8%83%BD%E9%9C%80%E8%A6%81%E5%88%86%E7%89%88%E6%9C%AC%E5%88%86%E5%88%AB%E5%AF%BC%E5%87%BA"><span class="toc-text">4、有时候可能需要分版本分别导出</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#USB%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90"><span class="toc-text">USB流量分析</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%94%AE%E7%9B%98%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90"><span class="toc-text">键盘流量分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%BC%A0%E6%A0%87%E6%B5%81%E9%87%8F"><span class="toc-text">鼠标流量</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E7%BB%93%E4%B8%80%E4%B8%8B%E6%88%91%E7%9A%84%E5%81%9A%E9%A2%98%E6%AD%A5%E9%AA%A4%EF%BC%88WSL%EF%BC%89%EF%BC%9A"><span class="toc-text">总结一下我的做题步骤（WSL）：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E4%BD%8D%E6%9D%BF%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90%EF%BC%9A"><span class="toc-text">数位板流量分析：</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Webshell%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90"><span class="toc-text">Webshell流量分析</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%93%A5%E6%96%AF%E6%8B%89%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90"><span class="toc-text">哥斯拉流量分析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-03%E7%89%88%E6%9C%AC"><span class="toc-text">3.03版本</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%B0%E8%9D%8E%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90"><span class="toc-text">冰蝎流量分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CobalStrike%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90"><span class="toc-text">CobalStrike流量分析</span></a></li></ol></li></ol>
   </div>
 </div>
-      <h1 id="WireShark基础"><a href="#WireShark基础" class="headerlink" title="WireShark基础"></a>WireShark基础</h1><p>http contains “shell” </p>
+      <p><strong>Network Traffic Analysis</strong> </p>
+<span id="more"></span>
+
+<h1 id="WireShark基础"><a href="#WireShark基础" class="headerlink" title="WireShark基础"></a>WireShark基础</h1><p>http contains “shell” </p>
 <h1 id="tshark使用教程"><a href="#tshark使用教程" class="headerlink" title="tshark使用教程"></a>tshark使用教程</h1><p>导出流量包中所有POST数据包的data数据</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">tshark -r 1.pcapng -Y <span class="string">&quot;http.request.method == POST&quot;</span> -T fields -e data.data &gt; data.txt</span><br><span class="line"><span class="comment"># -r [输入的pcap文件路径]: 指定要分析的pcap文件。</span></span><br><span class="line"><span class="comment"># -Y &quot;http.request.method == POST&quot;: 使用一个显示过滤器只显示POST请求。</span></span><br><span class="line"><span class="comment"># -T fields: 输出指定的字段数据。</span></span><br><span class="line"><span class="comment"># -e http.file_data: 输出HTTP负载的数据。</span></span><br></pre></td></tr></table></figure>
 
@@ -178,9 +181,10 @@
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">echo</span> <span class="title function_ invoke__">gzdecode</span>(<span class="title function_ invoke__">encode</span>(<span class="title function_ invoke__">base64_decode</span>(<span class="title function_ invoke__">urldecode</span>(<span class="string">&#x27;fL1tMGI4YTljMn75e3i2GMoehBqscKzwshr9GtI2YQRVyPwjYjhh&#x27;</span>)), <span class="variable">$key</span>));</span><br><span class="line"><span class="comment">//flag.txt shell.php</span></span><br></pre></td></tr></table></figure>
 
 <h2 id="冰蝎流量分析"><a href="#冰蝎流量分析" class="headerlink" title="冰蝎流量分析"></a>冰蝎流量分析</h2><p>简要加密过程（请求）</p>
-<p>base64 -&gt; AES(key IV=0123456789abcdef) -&gt; base64</p>
+<p>base64 -&gt; AES(key = ？？？ IV = 0123456789abcdef) -&gt; base64</p>
 <p>简要解密过程（响应）</p>
-<p>加密过程反过来即可</p>
+<p>解密过程反过来即可</p>
+<p>从流量包中的HTTP数据包中获取key和data，然后用CyberChef解密即可</p>
 <p><img src="/images/Network%20Traffic%20Analysis_2023-09-21-10-38-02.png" alt="冰蝎流量数据解密"></p>
 <h2 id="CobalStrike流量分析"><a href="#CobalStrike流量分析" class="headerlink" title="CobalStrike流量分析"></a>CobalStrike流量分析</h2><p>先从流量包中导出key文件</p>
 <p>然后在 cs-scripts中运行 python3 parse_beacon_keys.py 得到私钥</p>
@@ -197,7 +201,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://goodlunatic.github.io/2023/09/21/Network%20Traffic%20Analysis/" data-id="clmskfeej001ctc3zdoljfpix" class="article-share-link">Share</a>
+      <a data-url="https://goodlunatic.github.io/2023/09/21/Network%20Traffic%20Analysis/" data-id="clmsrxjuv0017u43zhsg52t1e" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Misc/" rel="tag">Misc</a></li></ul>
