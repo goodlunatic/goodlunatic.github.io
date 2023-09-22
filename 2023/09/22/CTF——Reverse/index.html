@@ -5,14 +5,19 @@
   
 
   
-  <title>Archives: 2023/9 | Lunatic&#39;s Workstation</title>
+  <title>CTF——Reverse | Lunatic&#39;s Workstation</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Lunatic&#39;s Workstation">
-<meta property="og:url" content="https://goodlunatic.github.io/archives/2023/09/page/2/index.html">
+  <meta name="description" content="Reverse Learning Record">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CTF——Reverse">
+<meta property="og:url" content="https://goodlunatic.github.io/2023/09/22/CTF%E2%80%94%E2%80%94Reverse/index.html">
 <meta property="og:site_name" content="Lunatic&#39;s Workstation">
+<meta property="og:description" content="Reverse Learning Record">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-09-22T05:44:42.000Z">
+<meta property="article:modified_time" content="2023-09-22T05:46:11.749Z">
 <meta property="article:author" content="Lunatic">
+<meta property="article:tag" content="Reverse">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternate" href="/atom.xml" title="Lunatic&#39;s Workstation" type="application/atom+xml">
@@ -66,83 +71,68 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2023" class="archive-year">2023</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2023/09/01/Nodejs%20Basic%20and%20Vulnerability/" class="archive-article-date">
-  <time datetime="2023-09-01T10:49:01.000Z" itemprop="datePublished">Sep 1</time>
+        <section id="main"><article id="post-CTF——Reverse" class="article article-type-post" itemscope
+  itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2023/09/22/CTF%E2%80%94%E2%80%94Reverse/" class="article-date">
+  <time datetime="2023-09-22T05:44:42.000Z" itemprop="datePublished">2023-09-22</time>
 </a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/CTF/">CTF</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+    <header class="article-header">
       
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2023/09/01/Nodejs%20Basic%20and%20Vulnerability/">Nodejs Basic and Vulnerability</a>
+    <h1 class="article-title" itemprop="name">
+      CTF——Reverse
     </h1>
   
 
     </header>
-  </div>
-</article>
-  
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2023/09/01/Sandbox%20Escape/" class="archive-article-date">
-  <time datetime="2023-09-01T10:15:10.000Z" itemprop="datePublished">Sep 1</time>
-</a>
+    <div class="article-entry" itemprop="articleBody">
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2023/09/01/Sandbox%20Escape/">Sandbox Escape</a>
-    </h1>
-  
-
-    </header>
+      <div class="toc-parent">
+  <div id="toc" class="toc-article">
+    <div class="toc-title">目录</div>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#IDA%E5%B8%B8%E7%94%A8%E5%BF%AB%E6%8D%B7%E9%94%AE"><span class="toc-text">IDA常用快捷键</span></a></li></ol>
   </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2023/09/01/Web%20Security%20Basic/" class="archive-article-date">
-  <time datetime="2023-09-01T07:51:23.000Z" itemprop="datePublished">Sep 1</time>
-</a>
+</div>
+      <p><strong>Reverse Learning Record</strong></p>
+<span id="more"></span>
+
+<h2 id="IDA常用快捷键"><a href="#IDA常用快捷键" class="headerlink" title="IDA常用快捷键"></a>IDA常用快捷键</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">静态调试：</span><br><span class="line"></span><br><span class="line">F5:反编译成伪代码</span><br><span class="line">Shift+f12:打开字符串窗口</span><br><span class="line">空格:切换反汇编窗口(列表视图&amp;图形视图)</span><br><span class="line">Tab:返回栈视图</span><br><span class="line">X:交叉引用</span><br><span class="line">R:将ascii转换成字符</span><br><span class="line">V:快速将当前函数修改成void类型(插件提供的功能)</span><br><span class="line">*D:把汇编代码转成数据</span><br><span class="line">*C:把数据转成汇编代码</span><br><span class="line">*U:表示当前指令为未知,显示16进制原始硬编码</span><br><span class="line">*P:从当前地址处解析成函数（一般和u一起用）</span><br><span class="line">*G:跳到函数地址</span><br><span class="line"></span><br><span class="line">动态调试：</span><br><span class="line"></span><br><span class="line">F2:下断点</span><br><span class="line">F4:运行</span><br><span class="line">F7:进入函数</span><br><span class="line">F8:单步调试</span><br><span class="line">F9:跳到下一个断点</span><br><span class="line">G:跳到函数地址</span><br></pre></td></tr></table></figure>
+
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2023/09/01/Web%20Security%20Basic/">Web Security Basic</a>
-    </h1>
-  
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://goodlunatic.github.io/2023/09/22/CTF%E2%80%94%E2%80%94Reverse/" data-id="clmu7l641000dag3zenuu0wzt" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Reverse/" rel="tag">Reverse</a></li></ul>
 
-    </header>
+    </footer>
   </div>
+  
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2023/09/21/CTF%E2%80%94%E2%80%94Misc%E6%8C%87%E5%8D%97%E3%80%90%E9%95%BF%E6%9C%9F%E6%9B%B4%E6%96%B0%E3%80%91/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">CTF——Misc指南【长期更新】</div>
+    </a>
+  
+</nav>
+
+  
 </article>
-  
-  
-    </div></section>
-  
-
-
-  <nav id="page-nav">
-    
-    <a class="extend prev" rel="prev" href="/archives/2023/09/">&amp;laquo; Prev</a><a class="page-number" href="/archives/2023/09/">1</a><span class="page-number current">2</span>
-  </nav>
 
 </section>
         
