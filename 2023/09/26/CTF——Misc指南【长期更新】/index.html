@@ -10,15 +10,15 @@
   <meta name="description" content="最开始接触CTF时，学的最多的就是Misc，各种编码各种加密还有各种软件的使用… 但无奈MIsc涉及的范围实在太广了，于是就萌生了一边学习一边记录的想法，甚至还想为此写一本指南。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CTF——Misc指南【长期更新】">
-<meta property="og:url" content="https://goodlunatic.github.io/2023/09/21/CTF%E2%80%94%E2%80%94Misc%E6%8C%87%E5%8D%97%E3%80%90%E9%95%BF%E6%9C%9F%E6%9B%B4%E6%96%B0%E3%80%91/index.html">
+<meta property="og:url" content="https://goodlunatic.github.io/2023/09/26/CTF%E2%80%94%E2%80%94Misc%E6%8C%87%E5%8D%97%E3%80%90%E9%95%BF%E6%9C%9F%E6%9B%B4%E6%96%B0%E3%80%91/index.html">
 <meta property="og:site_name" content="Lunatic&#39;s Workstation">
 <meta property="og:description" content="最开始接触CTF时，学的最多的就是Misc，各种编码各种加密还有各种软件的使用… 但无奈MIsc涉及的范围实在太广了，于是就萌生了一边学习一边记录的想法，甚至还想为此写一本指南。">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://goodlunatic.github.io/images/%E6%95%B2%E5%87%BB%E7%A0%81.jpeg">
 <meta property="og:image" content="https://goodlunatic.github.io/images/stegdectet.gif">
 <meta property="og:image" content="https://image.3001.net/images/20201117/1605593956_5fb36b64db62588f96dcc.png!small">
-<meta property="article:published_time" content="2023-09-21T04:41:08.000Z">
-<meta property="article:modified_time" content="2023-09-21T02:36:04.923Z">
+<meta property="article:published_time" content="2023-09-26T04:41:08.000Z">
+<meta property="article:modified_time" content="2023-09-26T08:25:02.168Z">
 <meta property="article:author" content="Lunatic">
 <meta property="article:tag" content="CTF">
 <meta property="article:tag" content="Misc">
@@ -79,8 +79,8 @@
         <section id="main"><article id="post-CTF——Misc指南【长期更新】" class="article article-type-post" itemscope
   itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2023/09/21/CTF%E2%80%94%E2%80%94Misc%E6%8C%87%E5%8D%97%E3%80%90%E9%95%BF%E6%9C%9F%E6%9B%B4%E6%96%B0%E3%80%91/" class="article-date">
-  <time datetime="2023-09-21T04:41:08.000Z" itemprop="datePublished">2023-09-21</time>
+    <a href="/2023/09/26/CTF%E2%80%94%E2%80%94Misc%E6%8C%87%E5%8D%97%E3%80%90%E9%95%BF%E6%9C%9F%E6%9B%B4%E6%96%B0%E3%80%91/" class="article-date">
+  <time datetime="2023-09-26T04:41:08.000Z" itemprop="datePublished">2023-09-26</time>
 </a>
     
   <div class="article-category">
@@ -660,6 +660,9 @@
 
 <h3 id="为何要有字节序"><a href="#为何要有字节序" class="headerlink" title="为何要有字节序"></a><strong>为何要有字节序</strong></h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">因为计算机电路先处理低位字节，效率比较高，因为计算都是从低位开始的。所以，计算机的内部处理都是小端字节序。在计算机内部，小端序被广泛应用于现代 CPU 内部存储数据；而在其他场景，比如网络传输和文件存储则使用大端序。</span><br></pre></td></tr></table></figure>
 
+<p><strong>使用Python中的struct模块来处理大小端序</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> struct</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">display_binary</span>(<span class="params">data</span>):</span><br><span class="line">    <span class="comment">#将字节数据转化为十六进制表示形式</span></span><br><span class="line">    <span class="comment"># return &#x27; &#x27;.join([&#x27;&#123;:02x&#125;&#x27;.format(byte) for byte in data])</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27; &#x27;</span>.join([<span class="string">f&quot;<span class="subst">&#123;byte:02x&#125;</span>&quot;</span> <span class="keyword">for</span> byte <span class="keyword">in</span> data])</span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义要打包的数据</span></span><br><span class="line">int_data = <span class="number">10240099</span></span><br><span class="line">float_data = <span class="number">123.456</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用默认端序（小端序）打包</span></span><br><span class="line">packed_int_little = struct.pack(<span class="string">&#x27;I&#x27;</span>, int_data)</span><br><span class="line">packed_float_little = struct.pack(<span class="string">&#x27;f&#x27;</span>, float_data)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用大端序打包</span></span><br><span class="line">packed_int_big = struct.pack(<span class="string">&#x27;&gt;I&#x27;</span>, int_data)</span><br><span class="line">packed_float_big = struct.pack(<span class="string">&#x27;&gt;f&#x27;</span>, float_data)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 打印打包的结果,display_binary()是以十六进制的形式显示</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Packed data (Little Endian):&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(packed_int_little)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Int:&quot;</span>, display_binary(packed_int_little))</span><br><span class="line"><span class="built_in">print</span>(packed_float_little)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Float:&quot;</span>, display_binary(packed_float_little))</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;\nPacked data (Big Endian):&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(packed_int_big)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Int:&quot;</span>, display_binary(packed_int_big))</span><br><span class="line"><span class="built_in">print</span>(packed_float_big)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Float:&quot;</span>, display_binary(packed_float_big))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 解包数据,由于返回的是一个元组，所以需要[0]</span></span><br><span class="line">unpacked_int_little = struct.unpack(<span class="string">&#x27;I&#x27;</span>, packed_int_little)[<span class="number">0</span>]</span><br><span class="line">unpacked_float_little = struct.unpack(<span class="string">&#x27;f&#x27;</span>, packed_float_little)[<span class="number">0</span>]</span><br><span class="line"></span><br><span class="line">unpacked_int_big = struct.unpack(<span class="string">&#x27;&gt;I&#x27;</span>, packed_int_big)[<span class="number">0</span>]</span><br><span class="line">unpacked_float_big = struct.unpack(<span class="string">&#x27;&gt;f&#x27;</span>, packed_float_big)[<span class="number">0</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 打印解包的结果</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;\nUnpacked data (Little Endian):&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Int:&quot;</span>, unpacked_int_little)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Float:&quot;</span>, unpacked_float_little)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;\nUnpacked data (Big Endian):&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Int:&quot;</span>, unpacked_int_big)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Float:&quot;</span>, unpacked_float_big)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 验证打包和解包是否保持数据的完整性(float类型的数据先打包再解包后可能会有误差)</span></span><br><span class="line"><span class="keyword">assert</span> int_data == unpacked_int_little</span><br><span class="line"><span class="comment"># assert float_data == unpacked_float_little</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">assert</span> int_data == unpacked_int_big</span><br><span class="line"><span class="comment"># assert float_data == unpacked_float_big</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;\nData integrity maintained!&quot;</span>)</span><br></pre></td></tr></table></figure>
+
 <h2 id="Linux-tar命令"><a href="#Linux-tar命令" class="headerlink" title="Linux tar命令"></a>Linux tar命令</h2><h3 id="打包压缩"><a href="#打包压缩" class="headerlink" title="打包压缩"></a>打包压缩</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#打包单独的文件</span></span><br><span class="line">tar -cvf target.tar filename.txt</span><br><span class="line"><span class="comment">#打包整个目录</span></span><br><span class="line">tar -cvf target.tar directory</span><br><span class="line"><span class="comment">#-c 表示创建新的tar包</span></span><br><span class="line"><span class="comment">#-v 表示显示详细信息</span></span><br><span class="line"><span class="comment">#-f 表示指定目标文件名</span></span><br></pre></td></tr></table></figure>
 
 <h3 id="解压提取"><a href="#解压提取" class="headerlink" title="解压提取"></a>解压提取</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#把压缩包中的所有文件解压到当前目录</span></span><br><span class="line">tar -xvf target.tar</span><br><span class="line"><span class="comment">#把压缩包解压到指定目录</span></span><br><span class="line">tar -xvf target.tar -C path</span><br></pre></td></tr></table></figure>
@@ -668,7 +671,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://goodlunatic.github.io/2023/09/21/CTF%E2%80%94%E2%80%94Misc%E6%8C%87%E5%8D%97%E3%80%90%E9%95%BF%E6%9C%9F%E6%9B%B4%E6%96%B0%E3%80%91/" data-id="clmu7l651005eag3za6196chh" class="article-share-link">Share</a>
+      <a data-url="https://goodlunatic.github.io/2023/09/26/CTF%E2%80%94%E2%80%94Misc%E6%8C%87%E5%8D%97%E3%80%90%E9%95%BF%E6%9C%9F%E6%9B%B4%E6%96%B0%E3%80%91/" data-id="cln01zwtw000d643z2ge7ah73" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CTF/" rel="tag">CTF</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Misc/" rel="tag">Misc</a></li></ul>
@@ -679,19 +682,10 @@
   
 <nav id="article-nav">
   
-    <a href="/2023/09/22/CTF%E2%80%94%E2%80%94Reverse/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          CTF——Reverse
-        
-      </div>
-    </a>
   
-  
-    <a href="/2023/09/21/Network%20Traffic%20Analysis/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2023/09/26/Python%20Learning%20Record/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Network Traffic Analysis</div>
+      <div class="article-nav-title">Python Learning Record</div>
     </a>
   
 </nav>
@@ -739,11 +733,15 @@
       <ul>
         
           <li>
-            <a href="/2023/09/22/CTF%E2%80%94%E2%80%94Reverse/">CTF——Reverse</a>
+            <a href="/2023/09/26/CTF%E2%80%94%E2%80%94Misc%E6%8C%87%E5%8D%97%E3%80%90%E9%95%BF%E6%9C%9F%E6%9B%B4%E6%96%B0%E3%80%91/">CTF——Misc指南【长期更新】</a>
           </li>
         
           <li>
-            <a href="/2023/09/21/CTF%E2%80%94%E2%80%94Misc%E6%8C%87%E5%8D%97%E3%80%90%E9%95%BF%E6%9C%9F%E6%9B%B4%E6%96%B0%E3%80%91/">CTF——Misc指南【长期更新】</a>
+            <a href="/2023/09/26/Python%20Learning%20Record/">Python Learning Record</a>
+          </li>
+        
+          <li>
+            <a href="/2023/09/22/CTF%E2%80%94%E2%80%94Reverse/">CTF——Reverse</a>
           </li>
         
           <li>
@@ -752,10 +750,6 @@
         
           <li>
             <a href="/2023/09/20/%E4%BE%A7%E4%BF%A1%E9%81%93%E6%94%BB%E5%87%BB%E5%9C%A8Web%E5%AE%89%E5%85%A8%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8/">侧信道攻击在Web安全中的应用</a>
-          </li>
-        
-          <li>
-            <a href="/2023/09/20/Penetration%20Testing%20Knowledge/">Penetration Testing Knowledge</a>
           </li>
         
       </ul>
