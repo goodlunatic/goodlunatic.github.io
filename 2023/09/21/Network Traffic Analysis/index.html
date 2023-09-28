@@ -15,8 +15,10 @@
 <meta property="og:description" content="Network Traffic Analysis">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://goodlunatic.github.io/images/Network%20Traffic%20Analysis_2023-09-21-10-38-02.png">
+<meta property="og:image" content="https://goodlunatic.github.io/images/Network%20Traffic%20Analysis_2023-09-28-09-07-43.png">
+<meta property="og:image" content="https://goodlunatic.github.io/images/Network%20Traffic%20Analysis_2023-09-28-09-13-12.png">
 <meta property="article:published_time" content="2023-09-21T02:03:08.000Z">
-<meta property="article:modified_time" content="2023-09-22T06:09:00.864Z">
+<meta property="article:modified_time" content="2023-09-28T01:13:30.543Z">
 <meta property="article:author" content="Lunatic">
 <meta property="article:tag" content="Misc">
 <meta name="twitter:card" content="summary">
@@ -186,11 +188,12 @@
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">echo</span> <span class="title function_ invoke__">gzdecode</span>(<span class="title function_ invoke__">encode</span>(<span class="title function_ invoke__">base64_decode</span>(<span class="title function_ invoke__">urldecode</span>(<span class="string">&#x27;fL1tMGI4YTljMn75e3i2GMoehBqscKzwshr9GtI2YQRVyPwjYjhh&#x27;</span>)), <span class="variable">$key</span>));</span><br><span class="line"><span class="comment">//flag.txt shell.php</span></span><br></pre></td></tr></table></figure>
 
 <h2 id="冰蝎流量分析"><a href="#冰蝎流量分析" class="headerlink" title="冰蝎流量分析"></a>冰蝎流量分析</h2><p>简要加密过程（请求）</p>
-<p>base64 -&gt; AES(key = ？？？ IV = 0123456789abcdef) -&gt; base64</p>
-<p>简要解密过程（响应）</p>
+<p>base64 -&gt; AES(key = ？？？ IV = 0123456789abcdef) -&gt; base64<br>有时候 IV = \x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00<br>简要解密过程（响应）</p>
 <p>解密过程反过来即可</p>
 <p>从流量包中的HTTP数据包中获取key和data，然后用CyberChef解密即可</p>
 <p><img src="/images/Network%20Traffic%20Analysis_2023-09-21-10-38-02.png" alt="冰蝎流量数据解密"></p>
+<p><img src="/images/Network%20Traffic%20Analysis_2023-09-28-09-07-43.png" alt="冰蝎流量请求包解密"></p>
+<p><img src="/images/Network%20Traffic%20Analysis_2023-09-28-09-13-12.png" alt="冰蝎流量响应包解密"></p>
 <h2 id="CobalStrike流量分析"><a href="#CobalStrike流量分析" class="headerlink" title="CobalStrike流量分析"></a>CobalStrike流量分析</h2><p>先从流量包中导出key文件</p>
 <p>然后在 cs-scripts中运行 python3 parse_beacon_keys.py 得到私钥</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">-----BEGIN PRIVATE KEY-----</span><br><span class="line">MIICdwIBADANBgkqhkiG9w0BAQEFAASCAmEwggJdAgEAAoGBAIzAss/1Vcd49UN5XT+pVELCnX1r</span><br><span class="line">To4LhSzcP7sPOrIOQg0onSpKO1tzOVX+2DqtZsSFoFrAmrEV+gZCbFfhYR9vs5DGLUg9aa0i5Gqh</span><br><span class="line">Pz/s4v5wcmgUgfnvjh4oK7yPQ5BMcqESCjEim9MXs70by1U7ZN+wOYZEorInV9gPkCJdAgMBAAEC</span><br><span class="line">gYAJbRpMjQyamEIsq6MQEWIAOpJbhOU05BaeI33tJB71L7lCslacL258OGI9nRyUCWrZfG15xm5V</span><br><span class="line">r7gX1Tj2RbTAUZmGigY1X2rCyz00DFjj5iIQVWsl8eSI1EmjFmQ+rYnCezQcrt4V3c7BZtW9RjFW</span><br><span class="line">vHh09PF808Yl4/+++vrMoQJBAKhCa/adRGEFqiVcSZG2FdlUG4bPMfwRkYMERZG5D6fjVHOVNEyL</span><br><span class="line">3MK+EtafnYIDD1IS+97K0cbg922RKXNdv+kCQQDWJk0kNe8ePBpwJU4slig1Y+4VWuwTRz6r+MNp</span><br><span class="line">v+WrVMzo/LHzAKYn87pyAdxLaZyKAFKs86WpJ2n93ZslC9pVAkA0KMMHJCF6YiMoib9UqDmFsYkG</span><br><span class="line">9VvtZBTTpJNcZR3xUYtweSRJRmIdDIcSeVB+aSxqqO/jVMRK/po1IPbUiI9hAkEAi93wPFpNlv3C</span><br><span class="line">dsSmzlA0asqd0azUy7KYqFGNsB/5rXFxdCq3PvOJkkaJ27SDYW3VI/0aAoQQCu8HNxvqHMQlEQJB</span><br><span class="line">AIFIkfpeSfksLu8NgiFvZsTV8EWF9PfF2VLyqeSGtmySujqb0HbxGnM9SDc0k48wOvIn5YGJPyY2</span><br><span class="line">ddsyNI6XbCU=</span><br><span class="line">-----END PRIVATE KEY-----</span><br></pre></td></tr></table></figure>
@@ -210,7 +213,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://goodlunatic.github.io/2023/09/21/Network%20Traffic%20Analysis/" data-id="cln0cs1jp0026uw3z8mw23rqi" class="article-share-link">Share</a>
+      <a data-url="https://goodlunatic.github.io/2023/09/21/Network%20Traffic%20Analysis/" data-id="cln2lisnx00368w3z29bl1cr3" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Misc/" rel="tag">Misc</a></li></ul>
