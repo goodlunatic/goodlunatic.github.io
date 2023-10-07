@@ -5,14 +5,19 @@
   
 
   
-  <title>Tag: CTF | Lunatic&#39;s Workstation</title>
+  <title>Fastjson Deserialization Vulnerability | Lunatic&#39;s Workstation</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Lunatic&#39;s Workstation">
-<meta property="og:url" content="https://goodlunatic.github.io/tags/CTF/page/2/index.html">
+  <meta name="description" content="最近在看企业面经的时候经常看到 fastjson 反序列化漏洞，故想详细学习一下。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Fastjson Deserialization Vulnerability">
+<meta property="og:url" content="https://goodlunatic.github.io/2023/10/07/FastJSON/index.html">
 <meta property="og:site_name" content="Lunatic&#39;s Workstation">
+<meta property="og:description" content="最近在看企业面经的时候经常看到 fastjson 反序列化漏洞，故想详细学习一下。">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-10-07T09:32:48.000Z">
+<meta property="article:modified_time" content="2023-10-07T09:48:52.145Z">
 <meta property="article:author" content="Lunatic">
+<meta property="article:tag" content="Web">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternate" href="/atom.xml" title="Lunatic&#39;s Workstation" type="application/atom+xml">
@@ -66,207 +71,86 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2023" class="archive-year">2023</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2023/08/21/Injection%20Attack/" class="archive-article-date">
-  <time datetime="2023-08-21T00:13:53.000Z" itemprop="datePublished">Aug 21</time>
+        <section id="main"><article id="post-FastJSON" class="article article-type-post" itemscope
+  itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2023/10/07/FastJSON/" class="article-date">
+  <time datetime="2023-10-07T09:32:48.000Z" itemprop="datePublished">2023-10-07</time>
 </a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/CTF/">CTF</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+    <header class="article-header">
       
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2023/08/21/Injection%20Attack/">Injection Attack</a>
+    <h1 class="article-title" itemprop="name">
+      Fastjson Deserialization Vulnerability
     </h1>
   
 
     </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      <div class="toc-parent">
+  <div id="toc" class="toc-article">
+    <div class="toc-title">目录</div>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#fastjson%E7%AE%80%E4%BB%8B"><span class="toc-text">fastjson简介</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%BC%8F%E6%B4%9E%E6%88%90%E5%9B%A0"><span class="toc-text">漏洞成因</span></a></li></ol>
   </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2023/08/17/CTF%E2%80%94%E2%80%94Pwn%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/" class="archive-article-date">
-  <time datetime="2023-08-17T01:48:23.000Z" itemprop="datePublished">Aug 17</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2023/08/17/CTF%E2%80%94%E2%80%94Pwn%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/">CTF——Pwn学习记录</a>
-    </h1>
-  
+</div>
+      <p><strong>最近在看企业面经的时候经常看到 fastjson 反序列化漏洞，故想详细学习一下。</strong></p>
+<span id="more"></span>
 
-    </header>
+<h1 id="fastjson简介"><a href="#fastjson简介" class="headerlink" title="fastjson简介"></a>fastjson简介</h1><p>fastjson 是一个由阿里开发的一个开源Java 类库，可以将 Java 对象转换为 JSON 格式(序列化)，当然它也可以将 JSON 字符串转换为 Java 对象（反序列化）</p>
+<h1 id="漏洞成因"><a href="#漏洞成因" class="headerlink" title="漏洞成因"></a>漏洞成因</h1><p>fastjson漏洞的本质还是一个反序列化漏洞</p>
+<p>对于JSON框架来说，要序列化一个对象，通常有以下两种方法：</p>
+<ol>
+<li>基于setter/getter</li>
+<li>基于属性(AutoType)</li>
+</ol>
+<p>现在假设有如下两个类，假设苹果对象的price为0.5，iphone对象的price为5000</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Apple</span> <span class="keyword">implements</span> <span class="title class_">Fruit</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> Big_Decimal price;</span><br><span class="line">    <span class="comment">//省略 setter/getter、toString等</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">iphone</span> <span class="keyword">implements</span> <span class="title class_">Fruit</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> Big_Decimal price;</span><br><span class="line">    <span class="comment">//省略 setter/getter、toString等</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>基于setter/getter</strong></p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 序列化后的json</span></span><br><span class="line"><span class="punctuation">&#123;</span><span class="attr">&quot;Fruit&quot;</span><span class="punctuation">:</span><span class="punctuation">&#123;</span><span class="attr">&quot;price&quot;</span><span class="punctuation">:</span><span class="number">0.5</span><span class="punctuation">&#125;</span><span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#123;</span><span class="attr">&quot;Fruit&quot;</span><span class="punctuation">:</span><span class="punctuation">&#123;</span><span class="attr">&quot;price&quot;</span><span class="punctuation">:</span><span class="number">5000</span><span class="punctuation">&#125;</span><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>当一个类只有一个接口的时候，将这个类的对象序列化的时候，就会将子类抹去（apple/iphone）只保留接口的类型(Fruit)，最后导致反序列化时无法得到原始类型，从而导致无法区分原始类是apple还是iphone</p>
+<p><strong>基于属性(AutoType)</strong></p>
+<p>为了解决上述问题： fastjson引入了基于属性（AutoType），即在序列化的时候，先把原始类型记录下来，并使用@type的键记录原始类型。</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//序列化后的json</span></span><br><span class="line"><span class="punctuation">&#123;</span> <span class="attr">&quot;fruit&quot;</span><span class="punctuation">:</span><span class="punctuation">&#123;</span> <span class="attr">&quot;@type&quot;</span><span class="punctuation">:</span><span class="string">&quot;com.hollis.lab.fastjson.test.Apple&quot;</span><span class="punctuation">,</span> <span class="attr">&quot;price&quot;</span><span class="punctuation">:</span><span class="number">0.5</span> <span class="punctuation">&#125;</span> <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#123;</span> <span class="attr">&quot;fruit&quot;</span><span class="punctuation">:</span><span class="punctuation">&#123;</span> <span class="attr">&quot;@type&quot;</span><span class="punctuation">:</span><span class="string">&quot;com.hollis.lab.fastjson.test.iphone&quot;</span><span class="punctuation">,</span> <span class="attr">&quot;price&quot;</span><span class="punctuation">:</span><span class="number">5000</span> <span class="punctuation">&#125;</span> <span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>因此@type的类有可能被恶意构造，只需要合理构造一个JSON，使用@type指定一个想要的攻击类库就可以实现攻击</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://goodlunatic.github.io/2023/10/07/FastJSON/" data-id="clnfusbj00010io3z557jas85" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Web/" rel="tag">Web</a></li></ul>
+
+    </footer>
   </div>
+  
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2023/10/06/Python%20Learning%20Record/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Python Learning Record</div>
+    </a>
+  
+</nav>
+
+  
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2023/07/30/CTF%E2%80%94%E2%80%94Crypto/" class="archive-article-date">
-  <time datetime="2023-07-30T02:22:20.000Z" itemprop="datePublished">Jul 30</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2023/07/30/CTF%E2%80%94%E2%80%94Crypto/">CTF——Crypto</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2023/04/27/Hash%E7%88%86%E7%A0%B4%E6%80%BB%E7%BB%93/" class="archive-article-date">
-  <time datetime="2023-04-27T05:11:55.000Z" itemprop="datePublished">Apr 27</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2023/04/27/Hash%E7%88%86%E7%A0%B4%E6%80%BB%E7%BB%93/">Hash爆破总结</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2023/01/08/CTF%E2%80%94%E2%80%94Pwn%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/" class="archive-article-date">
-  <time datetime="2023-01-08T09:48:23.000Z" itemprop="datePublished">Jan 8</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2023/01/08/CTF%E2%80%94%E2%80%94Pwn%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/">CTF——Pwn刷题记录</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2023/01/03/Nepnep%20x%20CatCTF%20Writeup/" class="archive-article-date">
-  <time datetime="2023-01-03T04:37:41.000Z" itemprop="datePublished">Jan 3</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2023/01/03/Nepnep%20x%20CatCTF%20Writeup/">Nepnep x CatCTF Writeup</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-      
-        </div></section>
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2022" class="archive-year">2022</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2022/11/28/%E9%9A%90%E5%86%99%E7%B1%BB%E5%B7%A5%E5%85%B7%E8%AF%A6%E8%A7%A3/" class="archive-article-date">
-  <time datetime="2022-11-28T10:34:31.000Z" itemprop="datePublished">Nov 28</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/11/28/%E9%9A%90%E5%86%99%E7%B1%BB%E5%B7%A5%E5%85%B7%E8%AF%A6%E8%A7%A3/">隐写类工具详解</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2022/11/28/%E7%AC%AC%E4%BA%94%E5%B1%8A%E5%AE%89%E6%B4%B5%E6%9D%AF%E7%BD%91%E7%BB%9C%E6%8C%91%E6%88%98%E8%B5%9BWP/" class="archive-article-date">
-  <time datetime="2022-11-28T01:17:19.000Z" itemprop="datePublished">Nov 28</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/11/28/%E7%AC%AC%E4%BA%94%E5%B1%8A%E5%AE%89%E6%B4%B5%E6%9D%AF%E7%BD%91%E7%BB%9C%E6%8C%91%E6%88%98%E8%B5%9BWP/">第五届安洵杯网络挑战赛WP</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2022/11/24/%E7%AC%AC%E4%BA%94%E5%B1%8A%E6%B5%99%E6%B1%9F%E7%9C%81%E5%A4%A7%E5%AD%A6%E7%94%9F%E7%BD%91%E7%BB%9C%E4%B8%8E%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E7%AB%9E%E8%B5%9B-%E6%8A%80%E8%83%BD%E6%8C%91%E6%88%98%E8%B5%9BWP/" class="archive-article-date">
-  <time datetime="2022-11-24T12:20:47.000Z" itemprop="datePublished">Nov 24</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/11/24/%E7%AC%AC%E4%BA%94%E5%B1%8A%E6%B5%99%E6%B1%9F%E7%9C%81%E5%A4%A7%E5%AD%A6%E7%94%9F%E7%BD%91%E7%BB%9C%E4%B8%8E%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E7%AB%9E%E8%B5%9B-%E6%8A%80%E8%83%BD%E6%8C%91%E6%88%98%E8%B5%9BWP/">第五届浙江省大学生网络与信息安全竞赛-技能挑战赛WP</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-
-  <nav id="page-nav">
-    
-    <a class="extend prev" rel="prev" href="/tags/CTF/">&amp;laquo; Prev</a><a class="page-number" href="/tags/CTF/">1</a><span class="page-number current">2</span>
-  </nav>
 
 </section>
         
