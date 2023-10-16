@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>2023-香山杯Misc-pintu详解.md | Lunatic&#39;s Workstation</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="香山杯的Misc爆零了，那天被这道 pintu 狠狠折磨了一天，于是打算详细分析一下这道题目。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2023-香山杯Misc-pintu详解.md">
+<meta property="og:url" content="https://goodlunatic.github.io/2023/10/17/2023-%E9%A6%99%E5%B1%B1%E6%9D%AFMisc-pintu%E8%AF%A6%E8%A7%A3/index.html">
+<meta property="og:site_name" content="Lunatic&#39;s Workstation">
+<meta property="og:description" content="香山杯的Misc爆零了，那天被这道 pintu 狠狠折磨了一天，于是打算详细分析一下这道题目。">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://goodlunatic.github.io/images/2023-%E9%A6%99%E5%B1%B1%E6%9D%AFMisc-pintu%E8%AF%A6%E8%A7%A3_2023-10-17-00-31-54.png">
+<meta property="og:image" content="https://goodlunatic.github.io/images/2023-%E9%A6%99%E5%B1%B1%E6%9D%AFMisc-pintu%E8%AF%A6%E8%A7%A3_2023-10-17-00-31-11.png">
+<meta property="article:published_time" content="2023-10-16T16:21:17.000Z">
+<meta property="article:modified_time" content="2023-10-16T16:33:29.536Z">
+<meta property="article:author" content="Lunatic">
+<meta property="article:tag" content="CTF">
+<meta property="article:tag" content="Misc">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://goodlunatic.github.io/images/2023-%E9%A6%99%E5%B1%B1%E6%9D%AFMisc-pintu%E8%AF%A6%E8%A7%A3_2023-10-17-00-31-54.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Lunatic&#39;s Workstation" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Lunatic&#39;s Workstation</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+          <a class="main-nav-link" href="/Friends">Friends</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://goodlunatic.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-2023-香山杯Misc-pintu详解" class="article article-type-post" itemscope
+  itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2023/10/17/2023-%E9%A6%99%E5%B1%B1%E6%9D%AFMisc-pintu%E8%AF%A6%E8%A7%A3/" class="article-date">
+  <time datetime="2023-10-16T16:21:17.000Z" itemprop="datePublished">2023-10-17</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/CTF/">CTF</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+    <header class="article-header">
+      
+  
+    <h1 class="article-title" itemprop="name">
+      2023-香山杯Misc-pintu详解.md
+    </h1>
+  
+
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      <div class="toc-parent">
+  <div id="toc" class="toc-article">
+    <div class="toc-title">目录</div>
+    
+  </div>
+</div>
+      <p><strong>香山杯的Misc爆零了，那天被这道 pintu 狠狠折磨了一天，于是打算详细分析一下这道题目。</strong></p>
+<span id="more"></span>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br><span class="line"><span class="keyword">import</span> base64</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">get_image_dimensions</span>(<span class="params">image_path</span>):</span><br><span class="line">    <span class="keyword">with</span> Image.<span class="built_in">open</span>(image_path) <span class="keyword">as</span> img:</span><br><span class="line">        <span class="keyword">return</span> img.width, img.height</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">get_Image_Pixel</span>(<span class="params">image_path</span>):</span><br><span class="line">    <span class="keyword">with</span> Image.<span class="built_in">open</span>(image_path) <span class="keyword">as</span> img:</span><br><span class="line">        pixel_data = img.getpixel((<span class="number">0</span>,<span class="number">0</span>))[<span class="number">0</span>]</span><br><span class="line">        <span class="keyword">return</span> pixel_data</span><br><span class="line">    </span><br><span class="line"><span class="keyword">def</span> <span class="title function_">height_Steg</span>():</span><br><span class="line">    heights = []</span><br><span class="line">    current_directory = os.getcwd()</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, <span class="number">4704</span>):</span><br><span class="line">        image_name = <span class="string">f&quot;<span class="subst">&#123;i&#125;</span>.png&quot;</span></span><br><span class="line">        image_path = os.path.join(current_directory, image_name)</span><br><span class="line">        <span class="keyword">if</span> os.path.exists(image_path):</span><br><span class="line">            width, height = get_image_dimensions(image_path)</span><br><span class="line">            heights.append(height)</span><br><span class="line">            <span class="comment"># print(f&quot;&#123;image_name&#125;: Width = &#123;width&#125;, Height = &#123;height&#125;&quot;)</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">f&quot;<span class="subst">&#123;image_name&#125;</span> does not exist.&quot;</span>)</span><br><span class="line">    res = <span class="string">&#x27;&#x27;</span></span><br><span class="line">    data = <span class="string">&#x27;&#x27;</span></span><br><span class="line">    <span class="keyword">for</span> item <span class="keyword">in</span> heights:</span><br><span class="line">        decimal_heights = <span class="built_in">int</span>(<span class="built_in">str</span>(item),<span class="number">8</span>)</span><br><span class="line">        res+=<span class="built_in">chr</span>(decimal_heights)</span><br><span class="line">    res = res.split(<span class="string">&#x27; &#x27;</span>)</span><br><span class="line">    <span class="keyword">for</span> item <span class="keyword">in</span> res:</span><br><span class="line">        data +=<span class="built_in">chr</span>(<span class="built_in">int</span>(item))</span><br><span class="line">    data = base64.b32decode(data)</span><br><span class="line">    <span class="built_in">print</span>(data)</span><br><span class="line">    </span><br><span class="line"><span class="keyword">def</span> <span class="title function_">translate_pixel</span>():</span><br><span class="line">    res = <span class="string">&#x27;&#x27;</span></span><br><span class="line">    output = []</span><br><span class="line">    current_directory = os.getcwd()</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, <span class="number">4704</span>):</span><br><span class="line">        image_name = <span class="string">f&quot;<span class="subst">&#123;i&#125;</span>.png&quot;</span></span><br><span class="line">        image_path = os.path.join(current_directory, image_name)</span><br><span class="line">        <span class="keyword">if</span> os.path.exists(image_path):</span><br><span class="line">            pixel_data = get_Image_Pixel(image_path)</span><br><span class="line">            <span class="keyword">if</span> pixel_data == <span class="number">255</span>:</span><br><span class="line">                res += <span class="string">&#x27;1&#x27;</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                res += <span class="string">&#x27;0&#x27;</span></span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">len</span>(res) % <span class="number">8</span>!=<span class="number">0</span>:</span><br><span class="line">        <span class="comment"># 这里一定要注意是在前面补零还是在后面补零，一般都是在前面补零对齐</span></span><br><span class="line">        <span class="comment"># res+=&#x27;0&#x27;*(8-len(res)%8)</span></span><br><span class="line">        res = <span class="string">&#x27;0&#x27;</span>*(<span class="number">8</span>-<span class="built_in">len</span>(res)%<span class="number">8</span>) + res</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>,<span class="built_in">len</span>(res),<span class="number">8</span>):</span><br><span class="line">        binary_segment = res[i:i+<span class="number">8</span>]</span><br><span class="line">        int_value = <span class="built_in">int</span>(binary_segment,<span class="number">2</span>)</span><br><span class="line">        char_value = <span class="built_in">chr</span>(int_value)</span><br><span class="line">        output += [char_value]</span><br><span class="line">    <span class="comment"># print(output)</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;&#x27;</span>.join([<span class="built_in">str</span>(x) <span class="keyword">for</span> x <span class="keyword">in</span> output]))</span><br><span class="line">    </span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    height_Steg()</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;=&#x27;</span>*<span class="number">50</span>)</span><br><span class="line">    translate_pixel()</span><br></pre></td></tr></table></figure>
+
+<p>base64解码为图片后得到以下图片，一眼npiet。<br><img src="/images/2023-%E9%A6%99%E5%B1%B1%E6%9D%AFMisc-pintu%E8%AF%A6%E8%A7%A3_2023-10-17-00-31-54.png" alt="base64转图片"></p>
+<p>最后直接用 <a target="_blank" rel="noopener" href="https://www.bertnase.de/npiet/npiet-execute.php">npiet</a> 在线网站解密即可得到flag。<br>flag{4b6c1737-27e5-41c4-95e3-f70ad196063e}<br><img src="/images/2023-%E9%A6%99%E5%B1%B1%E6%9D%AFMisc-pintu%E8%AF%A6%E8%A7%A3_2023-10-17-00-31-11.png" alt="npiet解密"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://goodlunatic.github.io/2023/10/17/2023-%E9%A6%99%E5%B1%B1%E6%9D%AFMisc-pintu%E8%AF%A6%E8%A7%A3/" data-id="clnt47x2v0007d83zelq5asvc" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CTF/" rel="tag">CTF</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Misc/" rel="tag">Misc</a></li></ul>
+
+    </footer>
+  </div>
+  
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2023/10/13/Java%20Learning%20Record/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Java Learning Record</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/ACM/">ACM</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/BlockChain/">BlockChain</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CTF/">CTF</a><span class="category-list-count">22</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Courses/">Courses</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Database/">Database</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Language/">Language</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Raspberry-Pi/">Raspberry-Pi</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Skills/">Skills</a><span class="category-list-count">14</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/WriteUp/">WriteUp</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/">年终总结</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/ACM/" style="font-size: 10px;">ACM</a> <a href="/tags/AWD/" style="font-size: 10px;">AWD</a> <a href="/tags/BlockChain/" style="font-size: 10px;">BlockChain</a> <a href="/tags/CTF/" style="font-size: 20px;">CTF</a> <a href="/tags/Courses/" style="font-size: 13.33px;">Courses</a> <a href="/tags/Crypto/" style="font-size: 11.67px;">Crypto</a> <a href="/tags/Docker/" style="font-size: 10px;">Docker</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/Hexo/" style="font-size: 11.67px;">Hexo</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/Leetcode/" style="font-size: 10px;">Leetcode</a> <a href="/tags/Misc/" style="font-size: 15px;">Misc</a> <a href="/tags/Mysql/" style="font-size: 10px;">Mysql</a> <a href="/tags/Nodejs/" style="font-size: 10px;">Nodejs</a> <a href="/tags/PHP/" style="font-size: 10px;">PHP</a> <a href="/tags/Program/" style="font-size: 10px;">Program</a> <a href="/tags/Pwn/" style="font-size: 11.67px;">Pwn</a> <a href="/tags/Python/" style="font-size: 11.67px;">Python</a> <a href="/tags/Raspberry-Pi/" style="font-size: 10px;">Raspberry-Pi</a> <a href="/tags/Reverse/" style="font-size: 10px;">Reverse</a> <a href="/tags/SQL%E6%B3%A8%E5%85%A5/" style="font-size: 10px;">SQL注入</a> <a href="/tags/Skills/" style="font-size: 18.33px;">Skills</a> <a href="/tags/Web/" style="font-size: 16.67px;">Web</a> <a href="/tags/WriteUp/" style="font-size: 10px;">WriteUp</a> <a href="/tags/forensics/" style="font-size: 10px;">forensics</a> <a href="/tags/%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/" style="font-size: 10px;">年终总结</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/10/">October 2023</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">September 2023</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">August 2023</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/07/">July 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/06/">June 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">May 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">April 2023</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">March 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">February 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/01/">January 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">December 2022</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">November 2022</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">August 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">April 2022</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2023/10/17/2023-%E9%A6%99%E5%B1%B1%E6%9D%AFMisc-pintu%E8%AF%A6%E8%A7%A3/">2023-香山杯Misc-pintu详解.md</a>
+          </li>
+        
+          <li>
+            <a href="/2023/10/13/Java%20Learning%20Record/">Java Learning Record</a>
+          </li>
+        
+          <li>
+            <a href="/2023/10/09/Conditional%20competition%20vulnerability/">Conditional competition vulnerability</a>
+          </li>
+        
+          <li>
+            <a href="/2023/10/08/Fastjson%20Deserialization%20Vulnerability/">Fastjson Deserialization Vulnerability</a>
+          </li>
+        
+          <li>
+            <a href="/2023/10/06/Python%20Learning%20Record/">Python Learning Record</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    <div class="widget-wrap toc">
+  <h3 class="widget-title">Catalog</h3>
+  <div class="widget"></div>
+</div>
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2023 Lunatic<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+    <a href="/Friends" class="mobile-nav-link">Friends</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+<!-- Toc -->
+
+<script src="/js/toc.js"></script>
+
+<!-- Toc -->
+  </div>
+</body>
+</html>
