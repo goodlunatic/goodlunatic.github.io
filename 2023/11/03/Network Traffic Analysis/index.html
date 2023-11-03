@@ -10,15 +10,15 @@
   <meta name="description" content="Network Traffic Analysis">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Network Traffic Analysis">
-<meta property="og:url" content="https://goodlunatic.github.io/2023/09/28/Network%20Traffic%20Analysis/index.html">
+<meta property="og:url" content="https://goodlunatic.github.io/2023/11/03/Network%20Traffic%20Analysis/index.html">
 <meta property="og:site_name" content="Lunatic&#39;s Workstation">
 <meta property="og:description" content="Network Traffic Analysis">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://goodlunatic.github.io/images/Network%20Traffic%20Analysis_2023-09-21-10-38-02.png">
 <meta property="og:image" content="https://goodlunatic.github.io/images/Network%20Traffic%20Analysis_2023-09-28-09-07-43.png">
 <meta property="og:image" content="https://goodlunatic.github.io/images/Network%20Traffic%20Analysis_2023-09-28-09-13-12.png">
-<meta property="article:published_time" content="2023-09-28T02:03:08.000Z">
-<meta property="article:modified_time" content="2023-09-28T03:19:31.075Z">
+<meta property="article:published_time" content="2023-11-03T02:03:08.000Z">
+<meta property="article:modified_time" content="2023-11-03T12:05:47.581Z">
 <meta property="article:author" content="Lunatic">
 <meta property="article:tag" content="Misc">
 <meta name="twitter:card" content="summary">
@@ -78,8 +78,8 @@
         <section id="main"><article id="post-Network Traffic Analysis" class="article article-type-post" itemscope
   itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2023/09/28/Network%20Traffic%20Analysis/" class="article-date">
-  <time datetime="2023-09-28T02:03:08.000Z" itemprop="datePublished">2023-09-28</time>
+    <a href="/2023/11/03/Network%20Traffic%20Analysis/" class="article-date">
+  <time datetime="2023-11-03T02:03:08.000Z" itemprop="datePublished">2023-11-03</time>
 </a>
     
   <div class="article-category">
@@ -170,8 +170,11 @@
 <p>坐标分析直接说结论，第5-8位是x轴坐标，第9-12位是y轴坐标，并且是小端序储存方法。</p>
 <p>例如：</p>
 <p>08803708951e000000000000这个数据，0x3708是x坐标信息，0x951e是y坐标信息，但是由于数据为小端序储存，实际x坐标为0x0837，y坐标为0x1e95。</p>
-<p>分析数据，分为压感和低压感的数据，直接用CTFD中的脚本跑出坐标</p>
-<p>然后用kali中的gunplot画图</p>
+<p>分析数据，分为压感和低压感的数据，直接用CTFD中的脚本跑出坐标并画图</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#数位板压感数据分析.py</span></span><br><span class="line">nums = []</span><br><span class="line">keys = <span class="built_in">open</span>(<span class="string">&#x27;out.txt&#x27;</span>, <span class="string">&#x27;r&#x27;</span>)</span><br><span class="line">result = <span class="built_in">open</span>(<span class="string">&#x27;result.txt&#x27;</span>, <span class="string">&#x27;w&#x27;</span>)</span><br><span class="line"><span class="keyword">for</span> line <span class="keyword">in</span> keys:</span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">int</span>(line[<span class="number">12</span>:<span class="number">16</span>], <span class="number">16</span>) == <span class="number">0</span>:</span><br><span class="line">        <span class="keyword">continue</span></span><br><span class="line">    x = <span class="built_in">int</span>(line[<span class="number">4</span>:<span class="number">6</span>], <span class="number">16</span>) + <span class="built_in">int</span>(line[<span class="number">6</span>:<span class="number">8</span>], <span class="number">16</span>) * <span class="number">0xff</span></span><br><span class="line">    y = <span class="built_in">int</span>(line[<span class="number">8</span>:<span class="number">10</span>], <span class="number">16</span>) + <span class="built_in">int</span>(line[<span class="number">10</span>:<span class="number">12</span>], <span class="number">16</span>) * <span class="number">0xff</span></span><br><span class="line">    result.write(<span class="built_in">str</span>(x)+<span class="string">&#x27; &#x27;</span>+<span class="built_in">str</span>(-y)+<span class="string">&#x27;\n&#x27;</span>)</span><br><span class="line">keys.close()</span><br><span class="line">result.close()</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#数位板低压感数据分析.py</span></span><br><span class="line">nums = []</span><br><span class="line">keys = <span class="built_in">open</span>(<span class="string">&#x27;out.txt&#x27;</span>, <span class="string">&#x27;r&#x27;</span>)</span><br><span class="line">result = <span class="built_in">open</span>(<span class="string">&#x27;xy.txt&#x27;</span>, <span class="string">&#x27;w&#x27;</span>)</span><br><span class="line"><span class="keyword">for</span> line <span class="keyword">in</span> keys:</span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">int</span>(line[<span class="number">12</span>:<span class="number">16</span>], <span class="number">16</span>) == <span class="number">0</span>:</span><br><span class="line">        <span class="keyword">continue</span></span><br><span class="line">    x = <span class="built_in">int</span>(line[<span class="number">4</span>:<span class="number">6</span>], <span class="number">16</span>) + <span class="built_in">int</span>(line[<span class="number">6</span>:<span class="number">8</span>], <span class="number">16</span>) * <span class="number">0xff</span></span><br><span class="line">    y = <span class="built_in">int</span>(line[<span class="number">8</span>:<span class="number">10</span>], <span class="number">16</span>) + <span class="built_in">int</span>(line[<span class="number">10</span>:<span class="number">12</span>], <span class="number">16</span>) * <span class="number">0xff</span></span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">int</span>(line[<span class="number">12</span>:<span class="number">16</span>], <span class="number">16</span>) &lt; <span class="number">0xf000</span>:</span><br><span class="line">        result.write(<span class="built_in">str</span>(x)+<span class="string">&#x27; &#x27;</span>+<span class="built_in">str</span>(-y)+<span class="string">&#x27;\n&#x27;</span>)</span><br><span class="line">keys.close()</span><br><span class="line">result.close()</span><br></pre></td></tr></table></figure>
+
 <h1 id="Webshell流量分析"><a href="#Webshell流量分析" class="headerlink" title="Webshell流量分析"></a>Webshell流量分析</h1><h2 id="菜刀流量分析"><a href="#菜刀流量分析" class="headerlink" title="菜刀流量分析"></a>菜刀流量分析</h2><p>在TCP和HTTP协议中寻找线索，找返回包中一大串的数据，并根据标志位判断文件类型<br>如果是加密了的压缩包，看看是不是伪加密</p>
 <h2 id="哥斯拉流量分析"><a href="#哥斯拉流量分析" class="headerlink" title="哥斯拉流量分析"></a>哥斯拉流量分析</h2><h3 id="3-03版本"><a href="#3-03版本" class="headerlink" title="3.03版本"></a>3.03版本</h3><p>哥斯拉的连接需要填写密码和密钥，加密过程中使用的是密钥MD5的前16位</p>
 <p><strong>Request解密脚本</strong></p>
@@ -213,7 +216,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://goodlunatic.github.io/2023/09/28/Network%20Traffic%20Analysis/" data-id="clof0m1hv002oeg3zeme4ae6r" class="article-share-link">Share</a>
+      <a data-url="https://goodlunatic.github.io/2023/11/03/Network%20Traffic%20Analysis/" data-id="cloikkobc002xyc3zhqw78850" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Misc/" rel="tag">Misc</a></li></ul>
@@ -224,19 +227,10 @@
   
 <nav id="article-nav">
   
-    <a href="/2023/10/01/Misc%E2%80%94%E2%80%94Forensics/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          Misc——Forensics
-        
-      </div>
-    </a>
   
-  
-    <a href="/2023/09/22/CTF%E2%80%94%E2%80%94Reverse/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2023/11/03/CTF%E2%80%94%E2%80%94Misc%20Guide/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">CTF——Reverse</div>
+      <div class="article-nav-title">CTF——Misc Guide</div>
     </a>
   
 </nav>
@@ -271,7 +265,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/11/">November 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/10/">October 2023</a><span class="archive-list-count">13</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">September 2023</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">August 2023</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/07/">July 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/06/">June 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">May 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">April 2023</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">March 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">February 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/01/">January 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">December 2022</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">November 2022</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">August 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">April 2022</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/11/">November 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/10/">October 2023</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">September 2023</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">August 2023</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/07/">July 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/06/">June 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">May 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">April 2023</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">March 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">February 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/01/">January 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">December 2022</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">November 2022</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">August 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">April 2022</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -284,11 +278,15 @@
       <ul>
         
           <li>
-            <a href="/2023/11/01/Cyber%20Security/">Cyber Security</a>
+            <a href="/2023/11/03/Network%20Traffic%20Analysis/">Network Traffic Analysis</a>
           </li>
         
           <li>
-            <a href="/2023/10/26/CTF%E2%80%94%E2%80%94Misc%20Guide/">CTF——Misc Guide</a>
+            <a href="/2023/11/03/CTF%E2%80%94%E2%80%94Misc%20Guide/">CTF——Misc Guide</a>
+          </li>
+        
+          <li>
+            <a href="/2023/11/01/Cyber%20Security/">Cyber Security</a>
           </li>
         
           <li>
@@ -297,10 +295,6 @@
         
           <li>
             <a href="/2023/10/23/PTA%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/">PTA刷题记录</a>
-          </li>
-        
-          <li>
-            <a href="/2023/10/19/Artificial%20Intelligence/">Artificial Intelligence</a>
           </li>
         
       </ul>
