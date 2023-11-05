@@ -5,17 +5,17 @@
   
 
   
-  <title>第六届浙江省大学生网络与信息安全竞赛——复盘 | Lunatic&#39;s Workstation</title>
+  <title>第六届浙江省大学生网络与信息安全竞赛-复盘 | Lunatic&#39;s Workstation</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="对比赛中没有做出来的题目进行一个简答的复盘">
 <meta property="og:type" content="article">
-<meta property="og:title" content="第六届浙江省大学生网络与信息安全竞赛——复盘">
+<meta property="og:title" content="第六届浙江省大学生网络与信息安全竞赛-复盘">
 <meta property="og:url" content="https://goodlunatic.github.io/2023/11/05/%E7%AC%AC%E5%85%AD%E5%B1%8A%E6%B5%99%E6%B1%9F%E7%9C%81%E5%A4%A7%E5%AD%A6%E7%94%9F%E7%BD%91%E7%BB%9C%E4%B8%8E%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E7%AB%9E%E8%B5%9B(%E5%A4%8D%E7%9B%98)/index.html">
 <meta property="og:site_name" content="Lunatic&#39;s Workstation">
 <meta property="og:description" content="对比赛中没有做出来的题目进行一个简答的复盘">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-11-05T12:46:33.000Z">
-<meta property="article:modified_time" content="2023-11-05T13:23:02.837Z">
+<meta property="article:modified_time" content="2023-11-05T13:24:25.935Z">
 <meta property="article:author" content="Lunatic">
 <meta property="article:tag" content="CTF">
 <meta name="twitter:card" content="summary">
@@ -90,7 +90,7 @@
       
   
     <h1 class="article-title" itemprop="name">
-      第六届浙江省大学生网络与信息安全竞赛——复盘
+      第六届浙江省大学生网络与信息安全竞赛-复盘
     </h1>
   
 
@@ -117,11 +117,10 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> base64</span><br><span class="line"><span class="keyword">from</span> Crypto.Cipher <span class="keyword">import</span> AES</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">aes_decrypt</span>(<span class="params">data, key</span>):</span><br><span class="line">    key = key.encode(<span class="string">&#x27;utf-8&#x27;</span>)+<span class="string">b&#x27;\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00&#x27;</span></span><br><span class="line">    <span class="comment"># print(key)</span></span><br><span class="line">    cipher = AES.new(key, AES.MODE_ECB)</span><br><span class="line">    decrypted = cipher.decrypt(base64.b64decode(data))</span><br><span class="line">    <span class="keyword">return</span> decrypted</span><br><span class="line">    </span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    data = <span class="string">&#x27;Kln/qZwlOsux+b/Gv0WsxkOec5E70dNhvczSLFs+0pkHaovEOBqUApBGBDBUrH08&#x27;</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">100000</span>,<span class="number">999999</span>):</span><br><span class="line">        key = <span class="built_in">str</span>(i)</span><br><span class="line">        res = aes_decrypt(data=data,key=key)</span><br><span class="line">        res = <span class="built_in">str</span>(res)</span><br><span class="line">        <span class="keyword">if</span> <span class="string">&#x27;flag&#x27;</span> <span class="keyword">in</span> res <span class="keyword">or</span> <span class="string">&#x27;DASCTF&#x27;</span> <span class="keyword">in</span> res:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">f&quot;key:<span class="subst">&#123;key&#125;</span>&quot;</span>)</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">f&quot;flag:<span class="subst">&#123;res&#125;</span>&quot;</span>)</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line"><span class="comment">#key:515764</span></span><br><span class="line"><span class="comment">#flag:b&#x27;DASCTF&#123;W0w_Y0u_Succ3s5ful1y_Cr4ck_Th1s_C1ph3r&#125;\x00\x00&#x27;</span></span><br></pre></td></tr></table></figure>
 
 
-
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://goodlunatic.github.io/2023/11/05/%E7%AC%AC%E5%85%AD%E5%B1%8A%E6%B5%99%E6%B1%9F%E7%9C%81%E5%A4%A7%E5%AD%A6%E7%94%9F%E7%BD%91%E7%BB%9C%E4%B8%8E%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E7%AB%9E%E8%B5%9B(%E5%A4%8D%E7%9B%98)/" data-id="cloli7grf006fbo3z37xegxru" class="article-share-link">Share</a>
+      <a data-url="https://goodlunatic.github.io/2023/11/05/%E7%AC%AC%E5%85%AD%E5%B1%8A%E6%B5%99%E6%B1%9F%E7%9C%81%E5%A4%A7%E5%AD%A6%E7%94%9F%E7%BD%91%E7%BB%9C%E4%B8%8E%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E7%AB%9E%E8%B5%9B(%E5%A4%8D%E7%9B%98)/" data-id="cloli9a7e0070203z9sug7t7m" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CTF/" rel="tag">CTF</a></li></ul>
@@ -183,7 +182,7 @@
       <ul>
         
           <li>
-            <a href="/2023/11/05/%E7%AC%AC%E5%85%AD%E5%B1%8A%E6%B5%99%E6%B1%9F%E7%9C%81%E5%A4%A7%E5%AD%A6%E7%94%9F%E7%BD%91%E7%BB%9C%E4%B8%8E%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E7%AB%9E%E8%B5%9B(%E5%A4%8D%E7%9B%98)/">第六届浙江省大学生网络与信息安全竞赛——复盘</a>
+            <a href="/2023/11/05/%E7%AC%AC%E5%85%AD%E5%B1%8A%E6%B5%99%E6%B1%9F%E7%9C%81%E5%A4%A7%E5%AD%A6%E7%94%9F%E7%BD%91%E7%BB%9C%E4%B8%8E%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E7%AB%9E%E8%B5%9B(%E5%A4%8D%E7%9B%98)/">第六届浙江省大学生网络与信息安全竞赛-复盘</a>
           </li>
         
           <li>
