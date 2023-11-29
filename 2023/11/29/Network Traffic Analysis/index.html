@@ -10,7 +10,7 @@
   <meta name="description" content="Network Traffic Analysis">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Network Traffic Analysis">
-<meta property="og:url" content="https://goodlunatic.github.io/2023/11/26/Network%20Traffic%20Analysis/index.html">
+<meta property="og:url" content="https://goodlunatic.github.io/2023/11/29/Network%20Traffic%20Analysis/index.html">
 <meta property="og:site_name" content="Lunatic&#39;s Workstation">
 <meta property="og:description" content="Network Traffic Analysis">
 <meta property="og:locale" content="en_US">
@@ -18,8 +18,8 @@
 <meta property="og:image" content="https://goodlunatic.github.io/images/Network%20Traffic%20Analysis_2023-09-28-09-07-43.png">
 <meta property="og:image" content="https://goodlunatic.github.io/images/Network%20Traffic%20Analysis_2023-09-28-09-13-12.png">
 <meta property="og:image" content="https://goodlunatic.github.io/images/Network%20Traffic%20Analysis_2023-11-29-09-59-54.png">
-<meta property="article:published_time" content="2023-11-26T02:03:08.000Z">
-<meta property="article:modified_time" content="2023-11-29T02:01:45.382Z">
+<meta property="article:published_time" content="2023-11-29T02:03:08.000Z">
+<meta property="article:modified_time" content="2023-11-29T02:05:11.861Z">
 <meta property="article:author" content="Lunatic">
 <meta property="article:tag" content="Misc">
 <meta name="twitter:card" content="summary">
@@ -79,8 +79,8 @@
         <section id="main"><article id="post-Network Traffic Analysis" class="article article-type-post" itemscope
   itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2023/11/26/Network%20Traffic%20Analysis/" class="article-date">
-  <time datetime="2023-11-26T02:03:08.000Z" itemprop="datePublished">2023-11-26</time>
+    <a href="/2023/11/29/Network%20Traffic%20Analysis/" class="article-date">
+  <time datetime="2023-11-29T02:03:08.000Z" itemprop="datePublished">2023-11-29</time>
 </a>
     
   <div class="article-category">
@@ -229,7 +229,8 @@
 
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jack::WIDGETLLC:2af71b5ca7246268:2d1d24572b15fe544043431c59965d30:0101000000000000040d962b02edd901e6994147d6a34af200000000020012005700490044004700450054004c004c004300010008004400430030003100040024005700690064006700650074004c004c0043002e0049006e007400650072006e0061006c0003002e0044004300300031002e005700690064006700650074004c004c0043002e0049006e007400650072006e0061006c00050024005700690064006700650074004c004c0043002e0049006e007400650072006e0061006c0007000800040d962b02edd90106000400020000000800300030000000000000000000000000300000078cdc520910762267e40488b60032835c6a37604d1e9be3ecee58802fb5f9150a001000000000000000000000000000000000000900200048005400540050002f003100390032002e003100360038002e0030002e0031000000000000000000</span><br></pre></td></tr></table></figure>
 
-<h2 id="提取-NTLMv2-哈希值并破解（SMTP协议）"><a href="#提取-NTLMv2-哈希值并破解（SMTP协议）" class="headerlink" title="提取 NTLMv2 哈希值并破解（SMTP协议）"></a>提取 NTLMv2 哈希值并破解（SMTP协议）</h2><p>这里的NTLM流量信息可能base64编码过了，所以分析前需要base64解码：<br><img src="/images/Network%20Traffic%20Analysis_2023-11-29-09-59-54.png" alt="base64解码"></p>
+<h2 id="提取-NTLMv2-哈希值并破解（SMTP协议）"><a href="#提取-NTLMv2-哈希值并破解（SMTP协议）" class="headerlink" title="提取 NTLMv2 哈希值并破解（SMTP协议）"></a>提取 NTLMv2 哈希值并破解（SMTP协议）</h2><p>这里的NTLM流量信息可能base64编码过了，所以分析前需要base64解码：</p>
+<p><img src="/images/Network%20Traffic%20Analysis_2023-11-29-09-59-54.png" alt="base64解码"></p>
 <p>后续步骤就和之前一样了，提取信息然后用 hashcat 爆破</p>
 <h1 id="工业协议流量分析"><a href="#工业协议流量分析" class="headerlink" title="工业协议流量分析"></a>工业协议流量分析</h1><p>将流量按长度降序排列，然后在各层寻找线索，<br>显示分组字节，从base64后开始，然后解码看文件类型，最后显示成该类型</p>
 <h1 id="蓝牙-OBEX-流量分析"><a href="#蓝牙-OBEX-流量分析" class="headerlink" title="蓝牙(OBEX)流量分析"></a>蓝牙(OBEX)流量分析</h1><p>在统计的协议分级中选中OBEX协议<br>然后查找pin的分组详情，获得压缩包的密码</p>
@@ -239,7 +240,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://goodlunatic.github.io/2023/11/26/Network%20Traffic%20Analysis/" data-id="clpj4gfc7003hwo3zet6k3bt7" class="article-share-link">Share</a>
+      <a data-url="https://goodlunatic.github.io/2023/11/29/Network%20Traffic%20Analysis/" data-id="clpj54tmw002j3o3zasewcx6q" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Misc/" rel="tag">Misc</a></li></ul>
@@ -250,19 +251,10 @@
   
 <nav id="article-nav">
   
-    <a href="/2023/11/27/CTF%E2%80%94%E2%80%94Misc%20Guide/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          CTF——Misc Guide
-        
-      </div>
-    </a>
   
-  
-    <a href="/2023/11/20/Nodejs%20Basic%20and%20Vulnerability/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2023/11/27/CTF%E2%80%94%E2%80%94Misc%20Guide/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Nodejs Basic and Vulnerability</div>
+      <div class="article-nav-title">CTF——Misc Guide</div>
     </a>
   
 </nav>
@@ -310,11 +302,11 @@
       <ul>
         
           <li>
-            <a href="/2023/11/27/CTF%E2%80%94%E2%80%94Misc%20Guide/">CTF——Misc Guide</a>
+            <a href="/2023/11/29/Network%20Traffic%20Analysis/">Network Traffic Analysis</a>
           </li>
         
           <li>
-            <a href="/2023/11/26/Network%20Traffic%20Analysis/">Network Traffic Analysis</a>
+            <a href="/2023/11/27/CTF%E2%80%94%E2%80%94Misc%20Guide/">CTF——Misc Guide</a>
           </li>
         
           <li>
