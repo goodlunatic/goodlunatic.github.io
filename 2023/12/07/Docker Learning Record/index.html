@@ -10,12 +10,12 @@
   <meta name="description" content="因为部署环境经常要用到Docker，所以就专门花点时间学习和整理一下">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Docker Learning Record">
-<meta property="og:url" content="https://goodlunatic.github.io/2023/10/01/Docker%20Learning%20Record/index.html">
+<meta property="og:url" content="https://goodlunatic.github.io/2023/12/07/Docker%20Learning%20Record/index.html">
 <meta property="og:site_name" content="Lunatic&#39;s Workstation">
 <meta property="og:description" content="因为部署环境经常要用到Docker，所以就专门花点时间学习和整理一下">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2023-10-01T02:31:16.000Z">
-<meta property="article:modified_time" content="2023-10-01T12:58:24.908Z">
+<meta property="article:published_time" content="2023-12-07T02:31:16.000Z">
+<meta property="article:modified_time" content="2023-12-07T12:41:11.306Z">
 <meta property="article:author" content="Lunatic">
 <meta property="article:tag" content="Docker">
 <meta name="twitter:card" content="summary">
@@ -74,8 +74,8 @@
         <section id="main"><article id="post-Docker Learning Record" class="article article-type-post" itemscope
   itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2023/10/01/Docker%20Learning%20Record/" class="article-date">
-  <time datetime="2023-10-01T02:31:16.000Z" itemprop="datePublished">2023-10-01</time>
+    <a href="/2023/12/07/Docker%20Learning%20Record/" class="article-date">
+  <time datetime="2023-12-07T02:31:16.000Z" itemprop="datePublished">2023-12-07</time>
 </a>
     
   <div class="article-category">
@@ -199,6 +199,9 @@
 
 <h1 id="Dockerfile的编写"><a href="#Dockerfile的编写" class="headerlink" title="Dockerfile的编写"></a>Dockerfile的编写</h1><figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Version 1.0</span></span><br><span class="line"><span class="keyword">From</span> postgres:latest</span><br><span class="line"><span class="comment"># 添加作者信息</span></span><br><span class="line"><span class="keyword">LABEL</span><span class="language-bash"> maintainer=<span class="string">&quot;goodlunatic0@gmail.com&quot;</span></span></span><br><span class="line"><span class="comment"># 镜像操作命令</span></span><br><span class="line"><span class="keyword">RUN</span><span class="language-bash"> apt-get update &amp;&amp; apt-get install vim -y</span></span><br><span class="line"><span class="comment"># 设置环境变量</span></span><br><span class="line"><span class="keyword">ENV</span> POSTGRES_PASSWORD <span class="number">123456</span></span><br><span class="line"><span class="comment"># 设置暴露端口</span></span><br><span class="line"><span class="keyword">EXPOSE</span> <span class="number">5432</span></span><br></pre></td></tr></table></figure>
 
+<p>Dockerfile 构建出的镜像 REPOSITORY和TAG为&lt;none&gt;的解决方案</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">使用如下命令进行构建</span><br><span class="line">docker build --tag REPOSITORY:TAG .</span><br></pre></td></tr></table></figure>
+
 <h1 id="Docker-build"><a href="#Docker-build" class="headerlink" title="Docker-build"></a>Docker-build</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">docker build -t pgsql:v1 -f Dockerfile .</span><br><span class="line"><span class="comment"># -t 后跟image的名字和版本号</span></span><br><span class="line"><span class="comment"># -f 后跟dockerfile的路径</span></span><br></pre></td></tr></table></figure>
 
 <h1 id="出题使用记录"><a href="#出题使用记录" class="headerlink" title="出题使用记录"></a>出题使用记录</h1><figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Version 1.0</span></span><br><span class="line"><span class="keyword">From</span> ctftraining/base_image_nginx_mysql_php_56</span><br><span class="line"><span class="comment"># 添加作者信息</span></span><br><span class="line"><span class="keyword">LABEL</span><span class="language-bash"> maintainer=<span class="string">&quot;goodlunatic0@gmail.com&quot;</span></span></span><br><span class="line"><span class="keyword">ENV</span> FLAG=flag&#123;no_flag&#125;</span><br><span class="line"><span class="keyword">COPY</span><span class="language-bash"> file /var/www/html</span></span><br><span class="line"><span class="keyword">COPY</span><span class="language-bash"> flag.sh /flag.sh</span></span><br><span class="line"><span class="comment"># 使该目录及其子目录对所有用户可读可写</span></span><br><span class="line"><span class="keyword">RUN</span><span class="language-bash"> <span class="built_in">chmod</span> -R 777 /var/www/html</span></span><br><span class="line"><span class="keyword">EXPOSE</span> <span class="number">8</span></span><br></pre></td></tr></table></figure>
@@ -209,7 +212,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://goodlunatic.github.io/2023/10/01/Docker%20Learning%20Record/" data-id="clpv6i7iw001jnk3zgcd40cc6" class="article-share-link">Share</a>
+      <a data-url="https://goodlunatic.github.io/2023/12/07/Docker%20Learning%20Record/" data-id="clpv6t3h0001aek3zd0gy7wpq" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Docker/" rel="tag">Docker</a></li></ul>
@@ -220,19 +223,19 @@
   
 <nav id="article-nav">
   
-    <a href="/2023/10/05/PHP%20Basic%20and%20Vulnerability/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2023/12/07/Misc%E2%80%94%E2%80%94Forensics/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
-          PHP Basic and Vulnerability
+          Misc——Forensics
         
       </div>
     </a>
   
   
-    <a href="/2023/09/22/CTF%E2%80%94%E2%80%94Reverse/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2023/12/04/Penetration%20Testing/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">CTF——Reverse</div>
+      <div class="article-nav-title">Penetration Testing</div>
     </a>
   
 </nav>
@@ -267,7 +270,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">December 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/11/">November 2023</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/10/">October 2023</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">September 2023</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">August 2023</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/07/">July 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/06/">June 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">May 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">April 2023</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">March 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">February 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/01/">January 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">December 2022</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">November 2022</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">August 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">April 2022</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">December 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/11/">November 2023</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/10/">October 2023</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">September 2023</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">August 2023</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/07/">July 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/06/">June 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">May 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">April 2023</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">March 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">February 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/01/">January 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">December 2022</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">November 2022</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">August 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">April 2022</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -284,6 +287,10 @@
           </li>
         
           <li>
+            <a href="/2023/12/07/Docker%20Learning%20Record/">Docker Learning Record</a>
+          </li>
+        
+          <li>
             <a href="/2023/12/04/Penetration%20Testing/">Penetration Testing</a>
           </li>
         
@@ -293,10 +300,6 @@
         
           <li>
             <a href="/2023/11/29/CTF%E2%80%94%E2%80%94Misc%20Guide/">CTF——Misc Guide</a>
-          </li>
-        
-          <li>
-            <a href="/2023/11/29/CTF%E2%80%94%E2%80%94Crypto/">CTF——Crypto</a>
           </li>
         
       </ul>
