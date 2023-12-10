@@ -14,8 +14,8 @@
 <meta property="og:site_name" content="Lunatic&#39;s Workstation">
 <meta property="og:description" content="由于之后经常要用到Git，所以就打算系统学习一下。">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2023-12-08T09:29:59.000Z">
-<meta property="article:modified_time" content="2023-12-09T06:34:32.365Z">
+<meta property="article:published_time" content="2023-12-08T07:29:59.000Z">
+<meta property="article:modified_time" content="2023-12-09T07:39:41.256Z">
 <meta property="article:author" content="Lunatic">
 <meta property="article:tag" content="Skills">
 <meta property="article:tag" content="Git">
@@ -76,7 +76,7 @@
   itemprop="blogPost">
   <div class="article-meta">
     <a href="/2023/12/08/Git%20Learning%20Record/" class="article-date">
-  <time datetime="2023-12-08T09:29:59.000Z" itemprop="datePublished">2023-12-08</time>
+  <time datetime="2023-12-08T07:29:59.000Z" itemprop="datePublished">2023-12-08</time>
 </a>
     
   <div class="article-category">
@@ -102,7 +102,7 @@
       <div class="toc-parent">
   <div id="toc" class="toc-article">
     <div class="toc-title">目录</div>
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Git%E8%AE%BF%E9%97%AE%E5%BE%88%E6%85%A2%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="toc-text">Git访问很慢的解决方案</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E9%85%8D%E7%BD%AE%E4%BB%A3%E7%90%86%EF%BC%88%E4%B8%8D%E5%A4%AA%E5%A5%BD%E7%94%A8%EF%BC%89"><span class="toc-text">一、配置代理（不太好用）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E4%BD%BF%E7%94%A8%E9%95%9C%E5%83%8F%E6%BA%90"><span class="toc-text">二、使用镜像源</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E4%B8%AA%E7%89%88%E6%9C%AC%E5%BA%93"><span class="toc-text">第一个版本库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%B0%E5%BD%95%E4%BF%AE%E6%94%B9"><span class="toc-text">记录修改</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9E%E5%88%B0%E4%BB%8E%E5%89%8D"><span class="toc-text">回到从前</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E6%96%87%E4%BB%B6"><span class="toc-text">删除文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%A8%E9%80%81%E5%88%B0%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93"><span class="toc-text">推送到远程仓库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%8B%E9%9A%86%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93"><span class="toc-text">克隆远程仓库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E4%B8%8E%E5%90%88%E5%B9%B6%E5%88%86%E6%94%AF"><span class="toc-text">创建与合并分支</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E7%9A%84%E6%AD%A5%E9%AA%A4"><span class="toc-text">常用的步骤</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Git%E4%B8%8A%E4%BC%A0%E6%96%87%E4%BB%B6%E5%88%B0Github%E7%9A%84%E8%AF%A6%E7%BB%86%E6%AD%A5%E9%AA%A4"><span class="toc-text">Git上传文件到Github的详细步骤</span></a>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Git%E8%AE%BF%E9%97%AE%E5%BE%88%E6%85%A2%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="toc-text">Git访问很慢的解决方案</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E9%85%8D%E7%BD%AE%E4%BB%A3%E7%90%86%EF%BC%88%E4%B8%8D%E5%A4%AA%E5%A5%BD%E7%94%A8%EF%BC%89"><span class="toc-text">一、配置代理（不太好用）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E4%BD%BF%E7%94%A8%E9%95%9C%E5%83%8F%E6%BA%90"><span class="toc-text">二、使用镜像源</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E4%B8%AA%E7%89%88%E6%9C%AC%E5%BA%93"><span class="toc-text">第一个版本库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%B0%E5%BD%95%E4%BF%AE%E6%94%B9"><span class="toc-text">记录修改</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9E%E5%88%B0%E4%BB%8E%E5%89%8D"><span class="toc-text">回到从前</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E6%96%87%E4%BB%B6"><span class="toc-text">删除文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%A8%E9%80%81%E5%88%B0%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93"><span class="toc-text">推送到远程仓库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%8B%E9%9A%86%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93"><span class="toc-text">克隆远程仓库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E4%B8%8E%E5%90%88%E5%B9%B6%E5%88%86%E6%94%AF"><span class="toc-text">创建与合并分支</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E7%9A%84%E6%AD%A5%E9%AA%A4"><span class="toc-text">常用的步骤</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Git%E4%B8%8A%E4%BC%A0%E6%96%87%E4%BB%B6%E5%88%B0Github%E7%9A%84%E8%AF%A6%E7%BB%86%E6%AD%A5%E9%AA%A4"><span class="toc-text">Git上传文件到Github的详细步骤</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80%E4%BA%9B%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF%E7%9A%84%E8%A7%A3%E5%86%B3"><span class="toc-text">一些常见错误的解决</span></a>
   </div>
 </div>
       <p><strong>由于之后经常要用到Git，所以就打算系统学习一下。</strong></p>
@@ -141,7 +141,7 @@
 </li>
 <li><p>将待上传的文件复制到这个文件夹中</p>
 </li>
-<li><p>如果上传的是大文件(&gt;100M)，需要执行 git lfs install 和 git track * 以及 git add .gitattributes</p>
+<li><p>如果上传的是大文件(&gt;100M)，需要执行 git lfs install 和 git lfs track * 以及 git add .gitattributes</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.gitattributes 是 Git 的一个配置文件，用于指定特定文件或文件类型的属性和处理方式。它可以用于定义 Git 在处理文件时的行为，例如在版本控制、合并和检出文件时的属性设置。</span><br></pre></td></tr></table></figure></li>
 <li><p>在 git bash 中输入 git add . 将项目添加到暂存区</p>
 </li>
@@ -159,11 +159,18 @@
 </ul>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push -u origin main</span><br></pre></td></tr></table></figure>
 
+<h1 id="一些常见错误的解决"><a href="#一些常见错误的解决" class="headerlink" title="一些常见错误的解决"></a>一些常见错误的解决</h1><ul>
+<li><p>上传的文件夹里有别的开源项目(子模块) ，上传上去是个空文件夹</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">warning: adding embedded git repository: volatility/profiles</span><br><span class="line">hint: You<span class="string">&#x27;ve added another git repository inside your current repository.</span></span><br><span class="line"><span class="string">hint: Clones of the outer repository will not contain the contents of</span></span><br><span class="line"><span class="string">hint: the embedded repository and will not know how to obtain it.</span></span><br><span class="line"><span class="string">hint: If you meant to add a submodule, use:</span></span><br><span class="line"><span class="string">hint:</span></span><br><span class="line"><span class="string">hint:   git submodule add &lt;url&gt; volatility/profiles</span></span><br><span class="line"><span class="string">hint:</span></span><br><span class="line"><span class="string">hint: If you added this path by mistake, you can remove it from the</span></span><br><span class="line"><span class="string">hint: index with:</span></span><br><span class="line"><span class="string">hint:</span></span><br><span class="line"><span class="string">hint:   git rm --cached volatility/profiles</span></span><br><span class="line"><span class="string">hint:</span></span><br><span class="line"><span class="string">hint: See &quot;git help submodule&quot; for more information.</span></span><br></pre></td></tr></table></figure>
+
+<p>解决方案：到指定子模块中把和 git 有关的文件全删了</p>
+</li>
+</ul>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://goodlunatic.github.io/2023/12/08/Git%20Learning%20Record/" data-id="clpxom1gg002a1w3z8u2lhg3u" class="article-share-link">Share</a>
+      <a data-url="https://goodlunatic.github.io/2023/12/08/Git%20Learning%20Record/" data-id="clpyxmelz001hwg3zdqx0es12" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Git/" rel="tag">Git</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Skills/" rel="tag">Skills</a></li></ul>
