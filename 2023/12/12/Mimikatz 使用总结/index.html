@@ -14,12 +14,14 @@
 <meta property="og:site_name" content="Lunatic&#39;s Workstation">
 <meta property="og:description" content="最近做题目的时候发现 Mimikatz 经常会被考察到，所以这里对 MImikatz 的用法做一个详细的总结">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://goodlunatic.github.io/images/Mimikatz%20%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93_2023-12-13-16-15-48.png">
 <meta property="article:published_time" content="2023-12-12T07:50:15.000Z">
-<meta property="article:modified_time" content="2023-12-12T07:54:04.132Z">
+<meta property="article:modified_time" content="2023-12-13T08:16:40.568Z">
 <meta property="article:author" content="Lunatic">
 <meta property="article:tag" content="CTF">
 <meta property="article:tag" content="Misc">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://goodlunatic.github.io/images/Mimikatz%20%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93_2023-12-13-16-15-48.png">
   
     <link rel="alternate" href="/atom.xml" title="Lunatic&#39;s Workstation" type="application/atom+xml">
   
@@ -102,20 +104,56 @@
       <div class="toc-parent">
   <div id="toc" class="toc-article">
     <div class="toc-title">目录</div>
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Mimikatz"><span class="toc-text">Mimikatz</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#pypykatz"><span class="toc-text">pypykatz</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Mimikatz"><span class="toc-text">Mimikatz</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Privilege"><span class="toc-text">Privilege</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Crypto"><span class="toc-text">Crypto</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Sekurlsa"><span class="toc-text">Sekurlsa</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Process"><span class="toc-text">Process</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#lsadump"><span class="toc-text">lsadump</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#DPAPI"><span class="toc-text">DPAPI</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#service"><span class="toc-text">service</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ts"><span class="toc-text">ts</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#event"><span class="toc-text">event</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#token"><span class="toc-text">token</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#vault"><span class="toc-text">vault</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#misc"><span class="toc-text">misc</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BE%8B%E9%A2%98"><span class="toc-text">例题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2023-%E5%8F%A4%E5%89%91%E5%B1%B1-%E5%B9%B8%E8%BF%90%E9%A5%BC%E5%B9%B2"><span class="toc-text">[2023 古剑山] 幸运饼干</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2023-WMCTF-overshared"><span class="toc-text">[2023 WMCTF] overshared</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#pypykatz"><span class="toc-text">pypykatz</span></a></li></ol>
   </div>
 </div>
       <p><strong>最近做题目的时候发现 Mimikatz 经常会被考察到，所以这里对 MImikatz 的用法做一个详细的总结</strong></p>
 <span id="more"></span>
 
-<h1 id="Mimikatz"><a href="#Mimikatz" class="headerlink" title="Mimikatz"></a>Mimikatz</h1><p>TODO</p>
+<h1 id="Mimikatz"><a href="#Mimikatz" class="headerlink" title="Mimikatz"></a>Mimikatz</h1><p>Tips：把Mimikatz的安装路径加到环境变量后，就可以在任意文件夹下直接使用了</p>
+<h2 id="Privilege"><a href="#Privilege" class="headerlink" title="Privilege"></a>Privilege</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 提升到 debug 权限</span></span><br><span class="line">mimikatz <span class="comment"># privilege::debug</span></span><br><span class="line">Privilege <span class="string">&#x27;20&#x27;</span> OK</span><br></pre></td></tr></table></figure>
+
+<h2 id="Crypto"><a href="#Crypto" class="headerlink" title="Crypto"></a>Crypto</h2><h2 id="Sekurlsa"><a href="#Sekurlsa" class="headerlink" title="Sekurlsa"></a>Sekurlsa</h2><h2 id="Process"><a href="#Process" class="headerlink" title="Process"></a>Process</h2><h2 id="lsadump"><a href="#lsadump" class="headerlink" title="lsadump"></a>lsadump</h2><h2 id="DPAPI"><a href="#DPAPI" class="headerlink" title="DPAPI"></a>DPAPI</h2><p>在 Mimikatz 中，DPAPI（Data Protection Application Programming Interface）模块用于操作 Windows 中的 DPAPI，这是一组用于在用户和系统级别上保护数据的 API。DPAPI 的主要目的是允许程序使用用户的凭据（例如密码）来加密和解密敏感数据，而无需直接处理用户的密码。</p>
+<h2 id="service"><a href="#service" class="headerlink" title="service"></a>service</h2><h2 id="ts"><a href="#ts" class="headerlink" title="ts"></a>ts</h2><h2 id="event"><a href="#event" class="headerlink" title="event"></a>event</h2><h2 id="token"><a href="#token" class="headerlink" title="token"></a>token</h2><h2 id="vault"><a href="#vault" class="headerlink" title="vault"></a>vault</h2><h2 id="misc"><a href="#misc" class="headerlink" title="misc"></a>misc</h2><h1 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h1><h3 id="2023-古剑山-幸运饼干"><a href="#2023-古剑山-幸运饼干" class="headerlink" title="[2023 古剑山] 幸运饼干"></a>[2023 古剑山] 幸运饼干</h3><p>题目给了一个加密压缩包和压缩包里的一张图片，直接用明文攻击解开压缩包</p>
+<p>压缩包里有如下这几个文件</p>
+<ul>
+<li><p>admin.txt    这个是mimikatz的运行结果，没有明文密码，只有NTLM，直接使用在线网站或者Hashcat爆破即可</p>
+</li>
+<li><p>Cookies      根据文件头 SQLite format 3 很明显可以知道是Cookie文件</p>
+</li>
+<li><p>hint.jpg        用于明文攻击的图片</p>
+</li>
+<li><p>S-1-5-21-726299542-2485387390-1117163988-1001.zip –&gt; e5f8e386-7041-4f16-b02d-304c71040126</p>
+<p>Master Key 文件，可用用户登录密码对它进行解密，获得Master Key</p>
+</li>
+</ul>
+<p>所以这道题的思路大概就是：NTLM爆破登录的密码 –》利用用户登录密码破解 Master Key –》利用Master Key破解Cookie文件获得flag</p>
+<p>利用爆破NTLM获取登录密码</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hashcat -m 1000 -a 0 NTLM的Hash值 rockyou.txt</span><br><span class="line"><span class="comment"># hashcat -m 1000 -a 0 786515ed10d6b79e74c1739f72a158cc rockyou.txt</span></span><br><span class="line"><span class="comment"># 786515ed10d6b79e74c1739f72a158cc:54231</span></span><br></pre></td></tr></table></figure>
+
+<p>利用用户登录密码破解 Master Key</p>
+<p>从压缩包文件名中可以知道 User SID 是 S-1-5-21-726299542-2485387390-1117163988-1001</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dpapi::masterkey /in:C:\Users\GoodLunatic\Desktop\1\out\e5f8e386-7041-4f16-b02d-304c71040126 /sid:S-1-5-21-726299542-2485387390-1117163988-1001 /password:54231 /protected</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[masterkey] with password: 54231 (protected user)</span><br><span class="line">  key : 7a4d2ffbb42d0a1ab46f0351260aef16cae699e03e9d6514b3bf10e2977c5d228fda4a48e39b7b8a06a443c39653c2a3c3656596e7edc84e1c9682511c8343ac</span><br><span class="line">  sha1: 0da593d6efa52b90e548a703de74359cf355703a</span><br></pre></td></tr></table></figure>
+
+<p>利用Master Key破解Cookie文件获得flag</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dpapi::chrome /in:Cookies /masterkey:7a4d2ffbb42d0a1ab46f0351260aef16cae699e03e9d6514b3bf10e2977c5d228fda4a48e39b7b8a06a443c39653c2a3c3656596e7edc84e1c9682511c8343ac</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Host  : www.baidu.com ( / )</span><br><span class="line">Name  : flag</span><br><span class="line">Dates : 2020/8/27 20:59:06 -&gt; 2030/1/1 8:00:01</span><br><span class="line"> * volatile cache: GUID:&#123;e5f8e386-7041-4f16-b02d-304c71040126&#125;;KeyHash:0da593d6efa52b90e548a703de74359cf355703a;Key:available</span><br><span class="line"> * masterkey     : 7a4d2ffbb42d0a1ab46f0351260aef16cae699e03e9d6514b3bf10e2977c5d228fda4a48e39b7b8a06a443c39653c2a3c3656596e7edc84e1c9682511c8343ac</span><br><span class="line">Cookie: flag&#123;mimikatz_is_bravo_xzjc72&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2023-WMCTF-overshared"><a href="#2023-WMCTF-overshared" class="headerlink" title="[2023 WMCTF] overshared"></a>[2023 WMCTF] overshared</h3><p>从流量包中导出了一个lsass.DMP文件</p>
+<p>用 mimikatz 提取出SSH的用户名和密码，然后连上服务器即可得到flag</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mimikatz.exe &quot;sekurlsa::minidump lsass.DMP&quot; &quot;sekurlsa::logonPasswords full&quot; exit</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/Mimikatz%20%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93_2023-12-13-16-15-48.png" alt="mimikatz.png"></p>
 <h1 id="pypykatz"><a href="#pypykatz" class="headerlink" title="pypykatz"></a>pypykatz</h1><p>pypykatz 是 Mimikatz 的纯Python实现</p>
 <p>TODO</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://goodlunatic.github.io/2023/12/12/Mimikatz%20%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/" data-id="clq37y0k4003a7k3z6drl81on" class="article-share-link">Share</a>
+      <a data-url="https://goodlunatic.github.io/2023/12/12/Mimikatz%20%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/" data-id="clq3i1x5g002dss3z72284p80" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CTF/" rel="tag">CTF</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Misc/" rel="tag">Misc</a></li></ul>
