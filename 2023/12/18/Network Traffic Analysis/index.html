@@ -10,7 +10,7 @@
   <meta name="description" content="Network Traffic Analysis">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Network Traffic Analysis">
-<meta property="og:url" content="https://goodlunatic.github.io/2023/12/04/Network%20Traffic%20Analysis/index.html">
+<meta property="og:url" content="https://goodlunatic.github.io/2023/12/18/Network%20Traffic%20Analysis/index.html">
 <meta property="og:site_name" content="Lunatic&#39;s Workstation">
 <meta property="og:description" content="Network Traffic Analysis">
 <meta property="og:locale" content="en_US">
@@ -18,8 +18,8 @@
 <meta property="og:image" content="https://goodlunatic.github.io/images/Network%20Traffic%20Analysis_2023-09-28-09-07-43.png">
 <meta property="og:image" content="https://goodlunatic.github.io/images/Network%20Traffic%20Analysis_2023-09-28-09-13-12.png">
 <meta property="og:image" content="https://goodlunatic.github.io/images/Network%20Traffic%20Analysis_2023-11-29-09-59-54.png">
-<meta property="article:published_time" content="2023-12-04T02:03:08.000Z">
-<meta property="article:modified_time" content="2023-12-04T03:53:38.034Z">
+<meta property="article:published_time" content="2023-12-18T02:03:08.000Z">
+<meta property="article:modified_time" content="2023-12-18T02:50:16.667Z">
 <meta property="article:author" content="Lunatic">
 <meta property="article:tag" content="Misc">
 <meta property="article:tag" content="流量分析">
@@ -80,8 +80,8 @@
         <section id="main"><article id="post-Network Traffic Analysis" class="article article-type-post" itemscope
   itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2023/12/04/Network%20Traffic%20Analysis/" class="article-date">
-  <time datetime="2023-12-04T02:03:08.000Z" itemprop="datePublished">2023-12-04</time>
+    <a href="/2023/12/18/Network%20Traffic%20Analysis/" class="article-date">
+  <time datetime="2023-12-18T02:03:08.000Z" itemprop="datePublished">2023-12-18</time>
 </a>
     
   <div class="article-category">
@@ -107,7 +107,7 @@
       <div class="toc-parent">
   <div id="toc" class="toc-article">
     <div class="toc-title">目录</div>
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#WireShark%E5%9F%BA%E7%A1%80"><span class="toc-text">WireShark基础</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#tshark%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B"><span class="toc-text">tshark使用教程</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80%E8%80%83%E7%82%B9"><span class="toc-text">流量分析基础考点</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1%E3%80%81wireshark%E6%8F%90%E5%8F%96%E6%95%B0%E6%8D%AE%E6%B5%81"><span class="toc-text">1、wireshark提取数据流:</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%E3%80%81%E5%8D%8F%E8%AE%AE%E5%88%86%E7%BA%A7-%E5%AF%BC%E5%87%BAHTTP%E5%AF%B9%E8%B1%A1"><span class="toc-text">2、协议分级+导出HTTP对象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%E3%80%81%E6%B5%81%E9%87%8F%E5%8C%85%E7%AB%AF%E5%8F%A3%E9%9A%90%E5%86%99%EF%BC%88%E5%8F%AF%E8%83%BD%E4%BC%9A%E6%9C%8901%E4%BA%92%E6%8D%A2%EF%BC%89"><span class="toc-text">2、流量包端口隐写（可能会有01互换）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3%E3%80%81TCP-FTP%E5%8D%8F%E8%AE%AE%E4%BC%A0%E8%BE%93%E6%96%87%E4%BB%B6-binwalk%E5%92%8Cforemost%E9%83%BD%E6%B2%A1%E7%94%A8-%EF%BC%9A"><span class="toc-text">3、TCP&#x2F;FTP协议传输文件(binwalk和foremost都没用)：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4%E3%80%81%E6%9C%89%E6%97%B6%E5%80%99%E5%8F%AF%E8%83%BD%E9%9C%80%E8%A6%81%E5%88%86%E7%89%88%E6%9C%AC%E5%88%86%E5%88%AB%E5%AF%BC%E5%87%BA"><span class="toc-text">4、有时候可能需要分版本分别导出</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5%E3%80%81%E5%8F%AF%E8%83%BD%E5%8F%AF%E4%BB%A5%E7%9B%B4%E6%8E%A5%E6%90%9C%E7%B4%A2flag%E6%98%8E%E6%96%87%E6%88%96%E8%80%85%E7%BC%96%E7%A0%81%E5%8A%A0%E5%AF%86%E8%BF%87%E7%9A%84flag"><span class="toc-text">5、可能可以直接搜索flag明文或者编码加密过的flag</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#USB%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90"><span class="toc-text">USB流量分析</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%94%AE%E7%9B%98%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90"><span class="toc-text">键盘流量分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%BC%A0%E6%A0%87%E6%B5%81%E9%87%8F"><span class="toc-text">鼠标流量</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E7%BB%93%E4%B8%80%E4%B8%8B%E6%88%91%E7%9A%84%E5%81%9A%E9%A2%98%E6%AD%A5%E9%AA%A4%EF%BC%88WSL%EF%BC%89%EF%BC%9A"><span class="toc-text">总结一下我的做题步骤（WSL）：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E4%BD%8D%E6%9D%BF%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90%EF%BC%9A"><span class="toc-text">数位板流量分析：</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Webshell%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90"><span class="toc-text">Webshell流量分析</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%8F%9C%E5%88%80%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90"><span class="toc-text">菜刀流量分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%93%A5%E6%96%AF%E6%8B%89%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90"><span class="toc-text">哥斯拉流量分析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-03%E7%89%88%E6%9C%AC"><span class="toc-text">3.03版本</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%B0%E8%9D%8E%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90"><span class="toc-text">冰蝎流量分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%9A%81%E5%89%91%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90"><span class="toc-text">蚁剑流量分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CobalStrike%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90"><span class="toc-text">CobalStrike流量分析</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#NTLM%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90"><span class="toc-text">NTLM流量分析</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8F%90%E5%8F%96-NTLMv2-%E5%93%88%E5%B8%8C%E5%80%BC%E5%B9%B6%E7%A0%B4%E8%A7%A3%EF%BC%88SMB%E5%8D%8F%E8%AE%AE%EF%BC%89"><span class="toc-text">提取 NTLMv2 哈希值并破解（SMB协议）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8F%90%E5%8F%96-NTLMv2-%E5%93%88%E5%B8%8C%E5%80%BC%E5%B9%B6%E7%A0%B4%E8%A7%A3%EF%BC%88HTTP%E5%8D%8F%E8%AE%AE%EF%BC%89"><span class="toc-text">提取 NTLMv2 哈希值并破解（HTTP协议）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8F%90%E5%8F%96-NTLMv2-%E5%93%88%E5%B8%8C%E5%80%BC%E5%B9%B6%E7%A0%B4%E8%A7%A3%EF%BC%88SMTP%E5%8D%8F%E8%AE%AE%EF%BC%89"><span class="toc-text">提取 NTLMv2 哈希值并破解（SMTP协议）</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B7%A5%E4%B8%9A%E5%8D%8F%E8%AE%AE%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90"><span class="toc-text">工业协议流量分析</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%93%9D%E7%89%99-OBEX-%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90"><span class="toc-text">蓝牙(OBEX)流量分析</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%97%A0%E7%BA%BF%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90"><span class="toc-text">无线流量分析</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#SLL%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90"><span class="toc-text">SLL流量分析</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#WireShark%E5%9F%BA%E7%A1%80"><span class="toc-text">WireShark基础</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#tshark%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B"><span class="toc-text">tshark使用教程</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80%E8%80%83%E7%82%B9"><span class="toc-text">流量分析基础考点</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1%E3%80%81wireshark%E6%8F%90%E5%8F%96%E6%95%B0%E6%8D%AE%E6%B5%81"><span class="toc-text">1、wireshark提取数据流:</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%E3%80%81%E5%8D%8F%E8%AE%AE%E5%88%86%E7%BA%A7-%E5%AF%BC%E5%87%BAHTTP%E5%AF%B9%E8%B1%A1"><span class="toc-text">2、协议分级+导出HTTP对象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%E3%80%81%E6%B5%81%E9%87%8F%E5%8C%85%E7%AB%AF%E5%8F%A3%E9%9A%90%E5%86%99%EF%BC%88%E5%8F%AF%E8%83%BD%E4%BC%9A%E6%9C%8901%E4%BA%92%E6%8D%A2%EF%BC%89"><span class="toc-text">2、流量包端口隐写（可能会有01互换）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3%E3%80%81TCP-FTP%E5%8D%8F%E8%AE%AE%E4%BC%A0%E8%BE%93%E6%96%87%E4%BB%B6-binwalk%E5%92%8Cforemost%E9%83%BD%E6%B2%A1%E7%94%A8-%EF%BC%9A"><span class="toc-text">3、TCP&#x2F;FTP协议传输文件(binwalk和foremost都没用)：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4%E3%80%81%E6%9C%89%E6%97%B6%E5%80%99%E5%8F%AF%E8%83%BD%E9%9C%80%E8%A6%81%E5%88%86%E7%89%88%E6%9C%AC%E5%88%86%E5%88%AB%E5%AF%BC%E5%87%BA"><span class="toc-text">4、有时候可能需要分版本分别导出</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5%E3%80%81%E5%8F%AF%E8%83%BD%E5%8F%AF%E4%BB%A5%E7%9B%B4%E6%8E%A5%E6%90%9C%E7%B4%A2flag%E6%98%8E%E6%96%87%E6%88%96%E8%80%85%E7%BC%96%E7%A0%81%E5%8A%A0%E5%AF%86%E8%BF%87%E7%9A%84flag"><span class="toc-text">5、可能可以直接搜索flag明文或者编码加密过的flag</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#USB%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90"><span class="toc-text">USB流量分析</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%94%AE%E7%9B%98%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90"><span class="toc-text">键盘流量分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%BC%A0%E6%A0%87%E6%B5%81%E9%87%8F"><span class="toc-text">鼠标流量</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E7%BB%93%E4%B8%80%E4%B8%8B%E6%88%91%E7%9A%84%E5%81%9A%E9%A2%98%E6%AD%A5%E9%AA%A4%EF%BC%88WSL%EF%BC%89%EF%BC%9A"><span class="toc-text">总结一下我的做题步骤（WSL）：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E4%BD%8D%E6%9D%BF%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90%EF%BC%9A"><span class="toc-text">数位板流量分析：</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Webshell%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90"><span class="toc-text">Webshell流量分析</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%8F%9C%E5%88%80%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90"><span class="toc-text">菜刀流量分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%93%A5%E6%96%AF%E6%8B%89%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90"><span class="toc-text">哥斯拉流量分析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-03%E7%89%88%E6%9C%AC"><span class="toc-text">3.03版本</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%B0%E8%9D%8E%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90"><span class="toc-text">冰蝎流量分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%9A%81%E5%89%91%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90"><span class="toc-text">蚁剑流量分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CobalStrike%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90"><span class="toc-text">CobalStrike流量分析</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#NTLM%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90"><span class="toc-text">NTLM流量分析</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8F%90%E5%8F%96-NTLMv2-%E5%93%88%E5%B8%8C%E5%80%BC%E5%B9%B6%E7%A0%B4%E8%A7%A3%EF%BC%88SMB%E5%8D%8F%E8%AE%AE%EF%BC%89"><span class="toc-text">提取 NTLMv2 哈希值并破解（SMB协议）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8F%90%E5%8F%96-NTLMv2-%E5%93%88%E5%B8%8C%E5%80%BC%E5%B9%B6%E7%A0%B4%E8%A7%A3%EF%BC%88HTTP%E5%8D%8F%E8%AE%AE%EF%BC%89"><span class="toc-text">提取 NTLMv2 哈希值并破解（HTTP协议）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8F%90%E5%8F%96-NTLMv2-%E5%93%88%E5%B8%8C%E5%80%BC%E5%B9%B6%E7%A0%B4%E8%A7%A3%EF%BC%88SMTP%E5%8D%8F%E8%AE%AE%EF%BC%89"><span class="toc-text">提取 NTLMv2 哈希值并破解（SMTP协议）</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B7%A5%E4%B8%9A%E5%8D%8F%E8%AE%AE%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90"><span class="toc-text">工业协议流量分析</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%93%9D%E7%89%99-OBEX-%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90"><span class="toc-text">蓝牙(OBEX)流量分析</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%97%A0%E7%BA%BF%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90"><span class="toc-text">无线流量分析</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#SLL%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90"><span class="toc-text">SLL流量分析</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ADS-B%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90"><span class="toc-text">ADS-B流量分析</span></a></li></ol>
   </div>
 </div>
       <p><strong>Network Traffic Analysis</strong> </p>
@@ -252,11 +252,24 @@
 <h1 id="蓝牙-OBEX-流量分析"><a href="#蓝牙-OBEX-流量分析" class="headerlink" title="蓝牙(OBEX)流量分析"></a>蓝牙(OBEX)流量分析</h1><p>在统计的协议分级中选中OBEX协议<br>然后查找pin的分组详情，获得压缩包的密码</p>
 <h1 id="无线流量分析"><a href="#无线流量分析" class="headerlink" title="无线流量分析"></a>无线流量分析</h1><p>在kali中用弱口令密码爆破出WIFI密码<br>执行命令：aircrack-ng ctf.pcap -w rockyou.txt<br>执行命令解码：airdecap-ng -p password1 ctf.pcap -e ctf -o 1.pcap<br>然后打开解码后的文件，查找flag</p>
 <h1 id="SLL流量分析"><a href="#SLL流量分析" class="headerlink" title="SLL流量分析"></a>SLL流量分析</h1><p>在编辑——首选项——协议——TLS中加载密钥log文件<br>然后再过滤http协议查找flag</p>
+<h1 id="ADS-B流量分析"><a href="#ADS-B流量分析" class="headerlink" title="ADS-B流量分析"></a>ADS-B流量分析</h1><p>飞机/航空器流量，找到流量数据，用pyModeS模块分析即可</p>
+<p>例题</p>
+<p><strong>[2023 强网杯] 谍影重重2.0</strong></p>
+<p>下载附件得到一个只有TCP流量的流量包<br>题目需要我们分析流量包找到飞机的飞机速度和飞机的 ICAO CODE<br>问了GPT得知飞机常见的协议中有ADS-B，然后在网上找到pyModeS这个模块<br>在参考链接：<a target="_blank" rel="noopener" href="https://gitee.com/wangmin-gf/ads-b">https://gitee.com/wangmin-gf/ads-b</a> 看到了与tcp.payload中相似的数据<br>使用tshark提取出流量包中的数据，然后使用这个脚本批量解密找speed最快的即可</p>
+<p>tshark -r attach.pcapng -T fields -e “tcp.payload” | sed ‘/^\s*$/d’ &gt; tshark.txt</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pyModeS</span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;tshark.txt&quot;</span>) <span class="keyword">as</span> f:</span><br><span class="line">    data = f.readlines()</span><br><span class="line">    <span class="keyword">for</span> item <span class="keyword">in</span> data:</span><br><span class="line">        <span class="comment"># print(item.strip())</span></span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">len</span>(item.strip()) != <span class="number">46</span>:</span><br><span class="line">            <span class="keyword">continue</span></span><br><span class="line">        res = pyModeS.tell(item.strip()[<span class="number">18</span>:<span class="number">46</span>])</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;===========================================================================&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">===========================================================================</span><br><span class="line">                     Message: 8d79a05e990ccda6f80886dd9544</span><br><span class="line">                ICAO address: 79a05e</span><br><span class="line">             Downlink Format: 17</span><br><span class="line">                    Protocol: Mode-S Extended Squitter (ADS-B)</span><br><span class="line">                        Type: Airborne velocity</span><br><span class="line">                       Speed: 371 knots</span><br><span class="line">                       Track: 213.3474959459136 degrees</span><br><span class="line">               Vertical rate: -64 feet/minute</span><br><span class="line">                        Type: Ground speed</span><br><span class="line">===========================================================================</span><br></pre></td></tr></table></figure>
+
+
+
+
+
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://goodlunatic.github.io/2023/12/04/Network%20Traffic%20Analysis/" data-id="clq3i1x5i002sss3z0cih2h70" class="article-share-link">Share</a>
+      <a data-url="https://goodlunatic.github.io/2023/12/18/Network%20Traffic%20Analysis/" data-id="clqacnskp003j1c3zalma56hw" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Misc/" rel="tag">Misc</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90/" rel="tag">流量分析</a></li></ul>
@@ -267,19 +280,19 @@
   
 <nav id="article-nav">
   
-    <a href="/2023/12/04/Penetration%20Testing/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2023/12/18/CTF%E2%80%94%E2%80%94Misc%20Guide/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
-          Penetration Testing
+          CTF——Misc Guide
         
       </div>
     </a>
   
   
-    <a href="/2023/11/29/CTF%E2%80%94%E2%80%94Crypto/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2023/12/12/Mimikatz%20%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">CTF——Crypto</div>
+      <div class="article-nav-title">Mimikatz 使用总结</div>
     </a>
   
 </nav>
@@ -327,11 +340,15 @@
       <ul>
         
           <li>
-            <a href="/2023/12/12/Mimikatz%20%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/">Mimikatz 使用总结</a>
+            <a href="/2023/12/18/CTF%E2%80%94%E2%80%94Misc%20Guide/">CTF——Misc Guide</a>
           </li>
         
           <li>
-            <a href="/2023/12/12/CTF%E2%80%94%E2%80%94Misc%20Guide/">CTF——Misc Guide</a>
+            <a href="/2023/12/18/Network%20Traffic%20Analysis/">Network Traffic Analysis</a>
+          </li>
+        
+          <li>
+            <a href="/2023/12/12/Mimikatz%20%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/">Mimikatz 使用总结</a>
           </li>
         
           <li>
@@ -340,10 +357,6 @@
         
           <li>
             <a href="/2023/12/08/Git%20Learning%20Record/">Git Learning Record</a>
-          </li>
-        
-          <li>
-            <a href="/2023/12/07/Misc%E2%80%94%E2%80%94Forensics/">Misc——Forensics</a>
           </li>
         
       </ul>
