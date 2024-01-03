@@ -10,12 +10,12 @@
   <meta name="description" content="This is my learning record for Crypto ^_^">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CTF——Crypto">
-<meta property="og:url" content="https://goodlunatic.github.io/2023/11/29/CTF%E2%80%94%E2%80%94Crypto/index.html">
+<meta property="og:url" content="https://goodlunatic.github.io/2024/01/03/CTF%E2%80%94%E2%80%94Crypto/index.html">
 <meta property="og:site_name" content="Lunatic&#39;s Workstation">
 <meta property="og:description" content="This is my learning record for Crypto ^_^">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2023-11-29T02:22:20.000Z">
-<meta property="article:modified_time" content="2023-11-29T07:02:56.333Z">
+<meta property="article:published_time" content="2024-01-03T02:22:20.000Z">
+<meta property="article:modified_time" content="2024-01-03T07:03:24.781Z">
 <meta property="article:author" content="Lunatic">
 <meta property="article:tag" content="CTF">
 <meta property="article:tag" content="Crypto">
@@ -75,8 +75,8 @@
         <section id="main"><article id="post-CTF——Crypto" class="article article-type-post" itemscope
   itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2023/11/29/CTF%E2%80%94%E2%80%94Crypto/" class="article-date">
-  <time datetime="2023-11-29T02:22:20.000Z" itemprop="datePublished">2023-11-29</time>
+    <a href="/2024/01/03/CTF%E2%80%94%E2%80%94Crypto/" class="article-date">
+  <time datetime="2024-01-03T02:22:20.000Z" itemprop="datePublished">2024-01-03</time>
 </a>
     
   <div class="article-category">
@@ -102,11 +102,15 @@
       <div class="toc-parent">
   <div id="toc" class="toc-article">
     <div class="toc-title">目录</div>
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#RSA"><span class="toc-text">RSA</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86"><span class="toc-text">基础知识</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%80%E7%AE%80%E5%8D%95%E7%9A%84RSA%E5%8A%A0%E5%AF%86%E8%BF%87%E7%A8%8B%EF%BC%9A"><span class="toc-text">最简单的RSA加密过程：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81%E9%80%89%E6%8B%A9%E4%B8%80%E5%AF%B9%E4%B8%8D%E7%9B%B8%E7%AD%89%E4%B8%94%E8%B6%B3%E5%A4%9F%E5%A4%A7%E7%9A%84%E8%B4%A8%E6%95%B0-p%E3%80%81q"><span class="toc-text">1、选择一对不相等且足够大的质数 p、q</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81%E8%AE%A1%E7%AE%97p%E3%80%81q%E7%9A%84%E4%B9%98%E7%A7%AFn"><span class="toc-text">2、计算p、q的乘积n</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E3%80%81%E8%AE%A1%E7%AE%97n%E7%9A%84%E6%AC%A7%E6%8B%89%E5%87%BD%E6%95%B0%EF%BC%9A%E7%9A%84%E2%88%AE-n-p-1-q-1"><span class="toc-text">3、计算n的欧拉函数：的∮(n)&#x3D;(p-1)*(q-1)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4%E3%80%81%E9%80%89%E4%B8%80%E4%B8%AA%E4%B8%8E%E2%88%AE-n-%E4%BA%92%E8%B4%A8%E7%9A%84%E6%95%B4%E6%95%B0e-%EF%BC%9A1-lt-e-lt-%E2%88%AE-n"><span class="toc-text">4、选一个与∮(n)互质的整数e ：1&lt;e&lt;∮(n)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5%E3%80%81%E8%AE%A1%E7%AE%97%E5%87%BAe%E5%AF%B9%E4%BA%8E%E2%88%AE-n-%E7%9A%84%E6%A8%A1%E5%8F%8D%E5%85%83%E7%B4%A0%EF%BC%9Aed-mod-%E2%88%AE-n-1"><span class="toc-text">5、计算出e对于∮(n)的模反元素：ed mod ∮(n)&#x3D;1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6%E3%80%81%E5%85%AC%E9%92%A5%EF%BC%9AKU-e-n"><span class="toc-text">6、公钥：KU(e,n)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7%E3%80%81%E7%A7%81%E9%92%A5%EF%BC%9AKR-d-n"><span class="toc-text">7、私钥：KR(d,n)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BE%8B%E5%AD%90%EF%BC%9A"><span class="toc-text">例子：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E4%BA%9B%E8%84%9A%E6%9C%AC%EF%BC%9A"><span class="toc-text">一些脚本：</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Hash%E9%95%BF%E5%BA%A6%E6%89%A9%E5%B1%95%E6%94%BB%E5%87%BB"><span class="toc-text">Hash长度扩展攻击</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B7%A5%E5%85%B7"><span class="toc-text">工具</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BE%8B%E9%A2%98"><span class="toc-text">例题</span></a></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%A4%E5%85%B8%E5%AF%86%E7%A0%81"><span class="toc-text">古典密码</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%87%AF%E6%92%92%E5%AF%86%E7%A0%81-Caesar-Cipher"><span class="toc-text">凯撒密码(Caesar Cipher)</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#RSA"><span class="toc-text">RSA</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86"><span class="toc-text">基础知识</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%80%E7%AE%80%E5%8D%95%E7%9A%84RSA%E5%8A%A0%E5%AF%86%E8%BF%87%E7%A8%8B%EF%BC%9A"><span class="toc-text">最简单的RSA加密过程：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81%E9%80%89%E6%8B%A9%E4%B8%80%E5%AF%B9%E4%B8%8D%E7%9B%B8%E7%AD%89%E4%B8%94%E8%B6%B3%E5%A4%9F%E5%A4%A7%E7%9A%84%E8%B4%A8%E6%95%B0-p%E3%80%81q"><span class="toc-text">1、选择一对不相等且足够大的质数 p、q</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81%E8%AE%A1%E7%AE%97p%E3%80%81q%E7%9A%84%E4%B9%98%E7%A7%AFn"><span class="toc-text">2、计算p、q的乘积n</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E3%80%81%E8%AE%A1%E7%AE%97n%E7%9A%84%E6%AC%A7%E6%8B%89%E5%87%BD%E6%95%B0%EF%BC%9A%E7%9A%84%E2%88%AE-n-p-1-q-1"><span class="toc-text">3、计算n的欧拉函数：的∮(n)&#x3D;(p-1)*(q-1)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4%E3%80%81%E9%80%89%E4%B8%80%E4%B8%AA%E4%B8%8E%E2%88%AE-n-%E4%BA%92%E8%B4%A8%E7%9A%84%E6%95%B4%E6%95%B0e-%EF%BC%9A1-lt-e-lt-%E2%88%AE-n"><span class="toc-text">4、选一个与∮(n)互质的整数e ：1&lt;e&lt;∮(n)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5%E3%80%81%E8%AE%A1%E7%AE%97%E5%87%BAe%E5%AF%B9%E4%BA%8E%E2%88%AE-n-%E7%9A%84%E6%A8%A1%E5%8F%8D%E5%85%83%E7%B4%A0%EF%BC%9Aed-mod-%E2%88%AE-n-1"><span class="toc-text">5、计算出e对于∮(n)的模反元素：ed mod ∮(n)&#x3D;1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6%E3%80%81%E5%85%AC%E9%92%A5%EF%BC%9AKU-e-n"><span class="toc-text">6、公钥：KU(e,n)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7%E3%80%81%E7%A7%81%E9%92%A5%EF%BC%9AKR-d-n"><span class="toc-text">7、私钥：KR(d,n)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BE%8B%E5%AD%90%EF%BC%9A"><span class="toc-text">例子：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E4%BA%9B%E8%84%9A%E6%9C%AC%EF%BC%9A"><span class="toc-text">一些脚本：</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Hash%E9%95%BF%E5%BA%A6%E6%89%A9%E5%B1%95%E6%94%BB%E5%87%BB"><span class="toc-text">Hash长度扩展攻击</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B7%A5%E5%85%B7"><span class="toc-text">工具</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BE%8B%E9%A2%98"><span class="toc-text">例题</span></a></li></ol></li></ol>
   </div>
 </div>
       <p><strong>This is my learning record for Crypto ^_^</strong></p>
 <span id="more"></span>
+
+<h1 id="古典密码"><a href="#古典密码" class="headerlink" title="古典密码"></a>古典密码</h1><h2 id="凯撒密码-Caesar-Cipher"><a href="#凯撒密码-Caesar-Cipher" class="headerlink" title="凯撒密码(Caesar Cipher)"></a>凯撒密码(Caesar Cipher)</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 自己编写的凯撒爆破脚本</span></span><br><span class="line">chars = <span class="string">&quot;abcdefghijklmnopqrstuvwxyz&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">caesarBurp</span>(<span class="params">ciphertext</span>):</span><br><span class="line">    <span class="comment"># 遍历1-26的各种情况</span></span><br><span class="line">    <span class="keyword">for</span> offset <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, <span class="number">27</span>):</span><br><span class="line">        <span class="keyword">for</span> char <span class="keyword">in</span> ciphertext:</span><br><span class="line">            upper_flag = <span class="number">0</span></span><br><span class="line">            <span class="keyword">if</span> char.isupper():</span><br><span class="line">                char = char.lower()</span><br><span class="line">                upper_flag = <span class="number">1</span></span><br><span class="line">            <span class="comment"># 判断是否能转换为小写字母，如果转换不了就直接输出</span></span><br><span class="line">            <span class="keyword">if</span> char <span class="keyword">not</span> <span class="keyword">in</span> chars:</span><br><span class="line">                <span class="built_in">print</span>(char, end=<span class="string">&#x27;&#x27;</span>)</span><br><span class="line">                <span class="keyword">continue</span></span><br><span class="line">            caesar_char = <span class="built_in">chr</span>((<span class="built_in">ord</span>(char)+offset-<span class="built_in">ord</span>(<span class="string">&#x27;a&#x27;</span>)) % <span class="number">26</span>+<span class="built_in">ord</span>(<span class="string">&#x27;a&#x27;</span>))</span><br><span class="line">            <span class="keyword">if</span> upper_flag:</span><br><span class="line">                <span class="built_in">print</span>(caesar_char.upper(), end=<span class="string">&#x27;&#x27;</span>)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="built_in">print</span>(caesar_char, end=<span class="string">&#x27;&#x27;</span>)</span><br><span class="line">        <span class="built_in">print</span>()</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    ciphertext = <span class="built_in">input</span>(<span class="string">&quot;Please input caesar_cipher:\n&quot;</span>)</span><br><span class="line">    caesarBurp(ciphertext)</span><br></pre></td></tr></table></figure>
+
+
 
 <h1 id="RSA"><a href="#RSA" class="headerlink" title="RSA"></a>RSA</h1><h2 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h2><figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">素数：一个数如果除了1与它本身之外没有其他的因数，那么这个数就被称为素数。</span><br><span class="line">合数：如果一个数大于1，且该数本身不是素数，那么这个数就是一个合数。</span><br><span class="line">互质数：如果两个整数a,b的最大公因数gcb(a,b)=1，那么称a,b两数互质。</span><br><span class="line">欧拉函数值:设m为正整数，则1,2,3,4…….,m中与m互素的整数的个数记为φ(m)叫做欧拉函数，欧拉函数的值叫做欧拉函数值。如果m为素数，那么φ(m)=n-1；如果m=pq，且p和q互素，那么φ(m)=(p-1)*(q-1)</span><br><span class="line">取模运算与同余的概念:如果存在一个正整数m与两个整数a,b，如果a-b能够被m整除，也就是说m|(a-b),那么a和b模m同余  记做：a=b mod m</span><br><span class="line">模指数运算:模指数运算即先进行指数运算，之后再进行取模运算。记做：a=b^e  mod m</span><br><span class="line">逆元：如果 gcd(a,b)=1 且 a * x ≡ 1(mod b) ，那么 x 为 a 的逆元。可以说 x 为 a 的倒数(a^-1) （或模反元素）</span><br><span class="line">模运算重要定理:若a≡b (mod p)，则对于任意的正整数c，都有(a * c) ≡ (b * c) (mod p)；</span><br></pre></td></tr></table></figure>
 
@@ -160,7 +164,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://goodlunatic.github.io/2023/11/29/CTF%E2%80%94%E2%80%94Crypto/" data-id="clqxe9y48000rbg3z3ts86fcc" class="article-share-link">Share</a>
+      <a data-url="https://goodlunatic.github.io/2024/01/03/CTF%E2%80%94%E2%80%94Crypto/" data-id="clqxfmtnu000oxo3z887b8els" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CTF/" rel="tag">CTF</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Crypto/" rel="tag">Crypto</a></li></ul>
@@ -171,19 +175,10 @@
   
 <nav id="article-nav">
   
-    <a href="/2023/12/04/Penetration%20Testing/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          Penetration Testing
-        
-      </div>
-    </a>
   
-  
-    <a href="/2023/11/20/Nodejs%20Basic%20and%20Vulnerability/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2024/01/03/PTA%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Nodejs Basic and Vulnerability</div>
+      <div class="article-nav-title">PTA刷题记录</div>
     </a>
   
 </nav>
@@ -218,7 +213,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">December 2023</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/11/">November 2023</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/10/">October 2023</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">September 2023</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">August 2023</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/07/">July 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/06/">June 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">May 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">April 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">March 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">February 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/01/">January 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">December 2022</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">November 2022</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">August 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">April 2022</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">January 2024</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">December 2023</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/11/">November 2023</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/10/">October 2023</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">September 2023</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">August 2023</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/07/">July 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/06/">June 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">May 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">April 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">March 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">February 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/01/">January 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">December 2022</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">November 2022</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">August 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">April 2022</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -231,6 +226,14 @@
       <ul>
         
           <li>
+            <a href="/2024/01/03/CTF%E2%80%94%E2%80%94Crypto/">CTF——Crypto</a>
+          </li>
+        
+          <li>
+            <a href="/2024/01/03/PTA%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/">PTA刷题记录</a>
+          </li>
+        
+          <li>
             <a href="/2023/12/26/CTF%E2%80%94%E2%80%94Misc%20Guide/">CTF——Misc Guide</a>
           </li>
         
@@ -240,14 +243,6 @@
         
           <li>
             <a href="/2023/12/19/2023-%E5%BC%BA%E7%BD%91%E6%9D%AFMisc%E5%A4%8D%E7%9B%98/">2023-强网杯Misc复盘</a>
-          </li>
-        
-          <li>
-            <a href="/2023/12/18/Network%20Traffic%20Analysis/">Network Traffic Analysis</a>
-          </li>
-        
-          <li>
-            <a href="/2023/12/12/Mimikatz%20%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/">Mimikatz 使用总结</a>
           </li>
         
       </ul>
