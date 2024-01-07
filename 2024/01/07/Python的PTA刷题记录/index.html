@@ -14,8 +14,8 @@
 <meta property="og:site_name" content="Lunatic&#39;s Workstation">
 <meta property="og:description" content="学校Python与数据分析课程布置的PTA上的编程题">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2024-01-07T00:06:38.000Z">
-<meta property="article:modified_time" content="2024-01-07T02:08:02.569Z">
+<meta property="article:published_time" content="2024-01-07T12:06:38.000Z">
+<meta property="article:modified_time" content="2024-01-07T15:02:38.878Z">
 <meta property="article:author" content="Lunatic">
 <meta property="article:tag" content="Skills">
 <meta name="twitter:card" content="summary">
@@ -75,7 +75,7 @@
   itemprop="blogPost">
   <div class="article-meta">
     <a href="/2024/01/07/Python%E7%9A%84PTA%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/" class="article-date">
-  <time datetime="2024-01-07T00:06:38.000Z" itemprop="datePublished">2024-01-07</time>
+  <time datetime="2024-01-07T12:06:38.000Z" itemprop="datePublished">2024-01-07</time>
 </a>
     
   <div class="article-category">
@@ -351,13 +351,17 @@
 <p><strong>求嵌套列表中所有数字元素的和</strong></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">flatten</span>(<span class="params">items</span>):</span><br><span class="line">    lst = []</span><br><span class="line">    <span class="keyword">for</span> x <span class="keyword">in</span> items:</span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">isinstance</span>(x, (<span class="built_in">list</span>, <span class="built_in">tuple</span>)) <span class="keyword">and</span> <span class="keyword">not</span> <span class="built_in">isinstance</span>(x, <span class="built_in">str</span>):</span><br><span class="line">            <span class="keyword">for</span> element <span class="keyword">in</span> flatten(x):</span><br><span class="line">                lst.append(element)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">if</span> <span class="built_in">type</span>(x) != <span class="built_in">str</span>:</span><br><span class="line">                lst.append(x)</span><br><span class="line">    <span class="keyword">return</span> lst</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">items = [<span class="number">11</span>, <span class="number">2</span>, [<span class="number">3</span>, <span class="number">7</span>], (<span class="number">68</span>, -<span class="number">1</span>), <span class="string">&quot;123&quot;</span>, <span class="number">9</span>]</span><br><span class="line">l = [i <span class="keyword">for</span> i <span class="keyword">in</span> flatten(items)]</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">sum</span>(l))</span><br></pre></td></tr></table></figure>
 
+<p><strong>Python中的可变长参数</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">fun</span>(<span class="params">x1, x2, x3, *x4</span>):</span><br><span class="line">    <span class="built_in">print</span>(x1, x2, x3, x4)</span><br><span class="line">fun(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>)</span><br><span class="line"><span class="comment"># 最后一个参数会以元组的形式保存</span></span><br><span class="line"><span class="comment"># 1 2 3 (4, 5, 6)</span></span><br></pre></td></tr></table></figure>
 
+<p><strong>合并字典+字典排序</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">d1 = <span class="built_in">eval</span>(<span class="built_in">input</span>())</span><br><span class="line">d2 = <span class="built_in">eval</span>(<span class="built_in">input</span>())</span><br><span class="line">d3 = &#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> key <span class="keyword">in</span> d1.keys():</span><br><span class="line">    <span class="keyword">if</span> key <span class="keyword">in</span> d3:</span><br><span class="line">        d3[key] += d1[key]</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        d3[key] = d1[key]</span><br><span class="line"><span class="keyword">for</span> key <span class="keyword">in</span> d2.keys():</span><br><span class="line">    <span class="keyword">if</span> key <span class="keyword">in</span> d3:</span><br><span class="line">        d3[key] += d2[key]</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        d3[key] = d2[key]</span><br><span class="line"></span><br><span class="line">d3 = <span class="built_in">dict</span>(<span class="built_in">sorted</span>(d3.items(), key=<span class="keyword">lambda</span> x: x[<span class="number">0</span>]))</span><br><span class="line"><span class="built_in">print</span>(d3)</span><br></pre></td></tr></table></figure>
 
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://goodlunatic.github.io/2024/01/07/Python%E7%9A%84PTA%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/" data-id="clr2uu8fz005gt43zd2xa084p" class="article-share-link">Share</a>
+      <a data-url="https://goodlunatic.github.io/2024/01/07/Python%E7%9A%84PTA%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/" data-id="clr3mi8qc004rng3z2kin72v3" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Skills/" rel="tag">Skills</a></li></ul>
