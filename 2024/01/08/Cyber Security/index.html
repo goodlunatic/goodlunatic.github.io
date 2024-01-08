@@ -10,12 +10,12 @@
   <meta name="description" content="总结了一下学校里外教讲授的网络安全课程的知识点">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Cyber Security">
-<meta property="og:url" content="https://goodlunatic.github.io/2023/11/01/Cyber%20Security/index.html">
+<meta property="og:url" content="https://goodlunatic.github.io/2024/01/08/Cyber%20Security/index.html">
 <meta property="og:site_name" content="Lunatic&#39;s Workstation">
 <meta property="og:description" content="总结了一下学校里外教讲授的网络安全课程的知识点">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2023-10-31T23:26:12.000Z">
-<meta property="article:modified_time" content="2024-01-06T07:24:25.830Z">
+<meta property="article:published_time" content="2024-01-07T23:26:12.000Z">
+<meta property="article:modified_time" content="2024-01-08T15:15:08.209Z">
 <meta property="article:author" content="Lunatic">
 <meta property="article:tag" content="Course">
 <meta name="twitter:card" content="summary">
@@ -74,8 +74,8 @@
         <section id="main"><article id="post-Cyber Security" class="article article-type-post" itemscope
   itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2023/11/01/Cyber%20Security/" class="article-date">
-  <time datetime="2023-10-31T23:26:12.000Z" itemprop="datePublished">2023-11-01</time>
+    <a href="/2024/01/08/Cyber%20Security/" class="article-date">
+  <time datetime="2024-01-07T23:26:12.000Z" itemprop="datePublished">2024-01-08</time>
 </a>
     
   <div class="article-category">
@@ -257,11 +257,40 @@
 </li>
 </ol>
 <h1 id="期末考试重点"><a href="#期末考试重点" class="headerlink" title="期末考试重点"></a>期末考试重点</h1><p>1、What is the difference between IDS and IPS? What is a Firewall and why is it used?  </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">The main difference between IDS (Intrusion Detection System) and IPS (Intrusion Prevention System) lies in their roles in network security. IDS is used to detect abnormal activities or potential intrusions in a network and generates alerts when anomalies are detected. On the other hand, IPS not only detects abnormal behavior but can also take proactive measures to prevent potential intrusions, such as blocking malicious traffic or shutting down attacked system ports.</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">A firewall is a network security device used to monitor and control the incoming and outgoing traffic in a network. It determines, based on predefined rule sets, whether to allow or block data packets. The primary purpose of a firewall is to protect a network from unauthorized access and various types of network attacks by enforcing access control, isolating networks, and providing monitoring capabilities to enhance overall network security.</span><br></pre></td></tr></table></figure>
+
+<p>2、What is a three-way handshake? <strong>Define firewall. What is the need of using firewall?</strong>  </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">The &quot;three-way handshake&quot; refers to the three-step process that takes place when establishing a TCP connection. Initially, the client sends a connection request (SYN) to the server. Upon receiving the request, the server responds with an acknowledgment (ACK) and simultaneously sends its own connection request (SYN). Finally, the client acknowledges (ACK) the server&#x27;s request, completing the establishment of the connection.</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">A **firewall** is a network security device used to monitor and control the incoming and outgoing traffic in a network. It determines, based on predefined rule sets, whether to allow or block data packets. The primary purpose of a firewall is to protect a network from unauthorized access and various types of network attacks by enforcing access control, isolating networks, and providing monitoring capabilities to enhance overall network security.</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">The **need for using a firewall** includes:</span><br><span class="line"></span><br><span class="line">1. **Access Control:** Firewalls can restrict which network traffic is allowed, providing access control to network resources.</span><br><span class="line">2. **Network Security:** Firewalls prevent unauthorized access and network attacks, enhancing overall network security.</span><br><span class="line">3. **Network Isolation:** Firewalls help isolate internal and external networks, reducing potential risks and the impact of intrusions.</span><br><span class="line">4. **Logging and Monitoring:** Firewalls can log network traffic, offering monitoring and auditing capabilities to track potential security events.</span><br></pre></td></tr></table></figure>
+
+<p>3、How to secure your information explain in detail.  </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">Securing your information involves implementing various security measures. Here&#x27;s a detailed explanation:</span><br><span class="line"></span><br><span class="line">1. **Strong Passwords:** Use complex passwords containing letters, numbers, and symbols, avoiding easily guessable information like birthdays or names. Change passwords regularly, using different ones for different websites.</span><br><span class="line"></span><br><span class="line">2. **Two-Factor Authentication (2FA):** Enable 2FA whenever possible. This adds a second authentication factor, such as a mobile verification code or biometric information, enhancing account security.</span><br><span class="line"></span><br><span class="line">3. **Software Updates:** Keep your operating system, applications, and security software up to date. This helps fix known vulnerabilities and enhances overall system security.</span><br><span class="line"></span><br><span class="line">4. **Antivirus Software:** Install and regularly update antivirus software to promptly detect and remove potential malware, protecting your computer from malicious attacks.</span><br><span class="line"></span><br><span class="line">5. **Firewall Settings:** Enable firewalls on both the operating system and router to restrict network traffic and prevent unauthorized access. Regularly review firewall rules.</span><br><span class="line"></span><br><span class="line">6. **Device Protection:** Ensure the security of not only your computer but also mobile devices. Use passwords or biometric locks on phones and stay away from unknown Wi-Fi networks.</span><br><span class="line"></span><br><span class="line">7. **Safe Browsing Habits:** Exercise caution when clicking on unknown links and avoid downloading files from untrusted sources. Use HTTPS to browse websites, ensuring secure encrypted communication.</span><br><span class="line"></span><br><span class="line">8. **Regular Data Backups:** Back up important data regularly, storing backups in offline locations to prevent data loss due to factors such as hardware failures or ransomware attacks.</span><br><span class="line"></span><br><span class="line">9. **Education and Training:** Increase awareness of cybersecurity, understand common online scams and attack methods to avoid falling victim to cybercrime.</span><br><span class="line"></span><br><span class="line">10. **Privacy Settings:** Regularly review privacy settings on social media and online services, only sharing necessary personal information and avoiding overexposure of sensitive details.</span><br><span class="line"></span><br><span class="line">11. **Secure Connections:** Use a Virtual Private Network (VPN) when on public Wi-Fi networks to encrypt data transmission, preventing potential interception of sensitive information.</span><br><span class="line"></span><br><span class="line">12. **Monitor Account Activity:** Regularly review bank accounts, credit reports, and other online account activities to promptly identify anomalies and take appropriate action.</span><br><span class="line"></span><br><span class="line">Implementing these security measures collectively helps maximize the protection of personal information against potential threats and attacks.</span><br></pre></td></tr></table></figure>
+
+<p>4、What steps will you take to secure a server?  </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">Securing a server involves a series of steps to safeguard it from potential threats. Here are key measures to enhance server security:</span><br><span class="line"></span><br><span class="line">1. **Keep Software Updated:** Regularly update the operating system, server software, and applications to patch vulnerabilities and ensure the latest security features are in place.</span><br><span class="line"></span><br><span class="line">2. **Configure Firewalls:** Implement firewalls to control incoming and outgoing network traffic. Set up rules to allow only necessary connections and regularly review firewall configurations.</span><br><span class="line"></span><br><span class="line">3. **Enable Intrusion Detection/Prevention Systems (IDS/IPS):** Use IDS/IPS to monitor and respond to potential security threats. This includes detecting and blocking malicious activities in real-time.</span><br><span class="line"></span><br><span class="line">4. **Secure Remote Access:** Limit and secure remote access to the server. Use strong authentication methods, like SSH keys, and consider using a Virtual Private Network (VPN) for secure connections.</span><br><span class="line"></span><br><span class="line">5. **Apply Security Patches Promptly:** Regularly check for security patches and apply them promptly to address vulnerabilities and protect against known exploits.</span><br><span class="line"></span><br><span class="line">6. **Use Strong Authentication:** Implement multi-factor authentication (MFA) to add an extra layer of security, requiring users to provide multiple forms of identification.</span><br><span class="line"></span><br><span class="line">7. **Encrypt Data:** Utilize encryption protocols to secure sensitive data during transmission and storage. This includes using HTTPS for web applications and encrypting databases.</span><br><span class="line"></span><br><span class="line">8. **Regular Backups:** Conduct regular backups of critical data and server configurations. Store backups in secure, offsite locations to ensure data recovery in case of a security incident.</span><br><span class="line"></span><br><span class="line">9. **Monitor Server Logs:** Regularly review server logs to identify suspicious activities or potential security breaches. Implement log rotation and retention policies.</span><br><span class="line"></span><br><span class="line">10. **Limit User Access:** Grant minimal necessary privileges to users. Regularly review and update user permissions to ensure they align with job responsibilities.</span><br><span class="line"></span><br><span class="line">11. **Implement Security Policies:** Establish and enforce security policies for server usage, password management, and data handling. Educate users on security best practices.</span><br><span class="line"></span><br><span class="line">12. **Use Security Software:** Employ antivirus and anti-malware solutions to detect and remove malicious software. Keep these security tools updated for optimal effectiveness.</span><br><span class="line"></span><br><span class="line">13. **Physical Security:** Ensure physical security by restricting access to server rooms and data centers. Implement measures like biometric access controls and surveillance.</span><br><span class="line"></span><br><span class="line">14. **Regular Security Audits:** Conduct periodic security audits to assess the effectiveness of security measures, identify vulnerabilities, and make necessary improvements.</span><br><span class="line"></span><br><span class="line">By implementing these steps, one can significantly enhance the security posture of a server, protecting it from a range of potential threats and vulnerabilities.</span><br></pre></td></tr></table></figure>
+
+<p>5、What is information integrity and cyber-crime? What do you understand by copyright law?  </p>
+<p>6、What are the different layers of the OSI model?  </p>
+<p>7、What is cyber security? How to secure your information explain in detail.  </p>
+<p>8、What is Cognitive Cybersecurity? <strong>Discuss VPNs.</strong>  </p>
+<p>9、What are the seven layers of the OSI model? Draw the diagram</p>
+<p>10、Explain different tools used for conducting forensic analysis and examination.  </p>
+<p>11、Which type of attacks is possible on a packet filtering firewall? How does a traditional packet filtermake filtering decision?</p>
+<p>12、What is the difference between a packet filtering firewall and a stateful inspection firewall? Whatis the difference between a gateway and a firewall?</p>
+<p>13、What are the differences between an IDS, an IPS, and a firewall? What is stack smashing and stackframe?</p>
+<p>14、Define defensive programming. When does a buffer overflow occur?  </p>
+<p>15、Define the Internet of things. What is the IoT security framework?  </p>
+<p>16、List and briefly define the three broad classes of controls and the three categories each can include.  </p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://goodlunatic.github.io/2023/11/01/Cyber%20Security/" data-id="clr3mi8pz001ing3zgbyp9s7a" class="article-share-link">Share</a>
+      <a data-url="https://goodlunatic.github.io/2024/01/08/Cyber%20Security/" data-id="clr530fca002a503z4q8w1xd7" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Course/" rel="tag">Course</a></li></ul>
@@ -272,19 +301,10 @@
   
 <nav id="article-nav">
   
-    <a href="/2023/11/07/%E7%AC%AC%E5%85%AD%E5%B1%8A%E6%B5%99%E6%B1%9F%E7%9C%81%E8%B5%9BMisc%E5%A4%8D%E7%9B%98/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          第六届浙江省赛初赛Misc复盘
-        
-      </div>
-    </a>
   
-  
-    <a href="/2023/10/23/2023-ciscn%E5%88%9D%E8%B5%9BMisc-%E5%9B%BD%E7%B2%B9/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2024/01/07/Python%E7%9A%84PTA%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">2023-ciscn初赛Misc-国粹</div>
+      <div class="article-nav-title">Python的PTA刷题记录</div>
     </a>
   
 </nav>
@@ -319,7 +339,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">January 2024</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">December 2023</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/11/">November 2023</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/10/">October 2023</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">September 2023</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">August 2023</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/07/">July 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/06/">June 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">May 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">April 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">March 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">February 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/01/">January 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">December 2022</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">November 2022</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">August 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">April 2022</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">January 2024</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">December 2023</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/11/">November 2023</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/10/">October 2023</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">September 2023</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">August 2023</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/07/">July 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/06/">June 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">May 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">April 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">March 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">February 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/01/">January 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">December 2022</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">November 2022</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">August 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">April 2022</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -330,6 +350,10 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2024/01/08/Cyber%20Security/">Cyber Security</a>
+          </li>
         
           <li>
             <a href="/2024/01/07/Python%E7%9A%84PTA%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/">Python的PTA刷题记录</a>
@@ -345,10 +369,6 @@
         
           <li>
             <a href="/2024/01/03/2023-%E5%AE%89%E6%B4%B5%E6%9D%AFMisc%E5%A4%8D%E7%9B%98/">2023-安洵杯Misc复盘</a>
-          </li>
-        
-          <li>
-            <a href="/2024/01/03/CTF%E2%80%94%E2%80%94Crypto/">CTF——Crypto</a>
           </li>
         
       </ul>
