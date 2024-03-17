@@ -107,33 +107,19 @@
 </div>
       <p><strong>由于之后经常要用到Git，所以就打算系统学习一下。</strong></p>
 <span id="more"></span>
-
 <h2 id="Git访问很慢的解决方案"><a href="#Git访问很慢的解决方案" class="headerlink" title="Git访问很慢的解决方案"></a>Git访问很慢的解决方案</h2><h3 id="一、配置代理（不太好用）"><a href="#一、配置代理（不太好用）" class="headerlink" title="一、配置代理（不太好用）"></a>一、配置代理（不太好用）</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global http.proxy <span class="string">&#x27;http://127.0.0.1:7890&#x27;</span></span><br><span class="line">git config --global https.proxy <span class="string">&#x27;https://127.0.0.1:7890&#x27;</span></span><br></pre></td></tr></table></figure>
-
 <h3 id="二、使用镜像源"><a href="#二、使用镜像源" class="headerlink" title="二、使用镜像源"></a>二、使用镜像源</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#git clone https://github.com/facontidavide/LeGO-LOAM-BOR.git</span></span><br><span class="line">git <span class="built_in">clone</span> https://hub.fastgit.org/facontidavide/LeGO-LOAM-BOR.git</span><br></pre></td></tr></table></figure>
-
 <h2 id="第一个版本库"><a href="#第一个版本库" class="headerlink" title="第一个版本库"></a>第一个版本库</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#通过命令 git init 把这个目录变成git可以管理的仓库</span></span><br><span class="line">git config --global user.name <span class="string">&quot;Lunatic&quot;</span></span><br><span class="line">git config --global user.email <span class="string">&quot;goodlunatic0@gmail.com&quot;</span></span><br><span class="line"><span class="built_in">touch</span> 1.py</span><br><span class="line">git add 1.py</span><br><span class="line">git status</span><br><span class="line">git commit -m <span class="string">&quot;create 1.py&quot;</span></span><br></pre></td></tr></table></figure>
-
 <h2 id="记录修改"><a href="#记录修改" class="headerlink" title="记录修改"></a>记录修改</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">log</span></span><br><span class="line"><span class="comment">#然后修改文件</span></span><br><span class="line">git status</span><br><span class="line">git add 1.py</span><br><span class="line">git commit -m <span class="string">&quot;change 1&quot;</span></span><br><span class="line"><span class="comment">#再次修改文件</span></span><br><span class="line">git status -s</span><br><span class="line">git diff<span class="comment">#查看文件的改动</span></span><br><span class="line">git add .</span><br><span class="line">git diff --cached</span><br></pre></td></tr></table></figure>
-
 <h2 id="回到从前"><a href="#回到从前" class="headerlink" title="回到从前"></a>回到从前</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">log</span> --oneline</span><br><span class="line">git commit --amend --no-edit</span><br><span class="line">git reset 1.py</span><br><span class="line">git reset --hard HEAD</span><br><span class="line">git reset --hard HEAD~2</span><br><span class="line">git reset --hard 68ebbe1</span><br><span class="line">git reflog</span><br><span class="line">git reset --hard HEAD@&#123;4&#125;</span><br></pre></td></tr></table></figure>
-
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout -- 1.py</span><br></pre></td></tr></table></figure>
-
 <h2 id="删除文件"><a href="#删除文件" class="headerlink" title="删除文件"></a>删除文件</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">rm</span> filename<span class="comment">#删除文件</span></span><br><span class="line">git checkout -- filename<span class="comment">#恢复文件</span></span><br></pre></td></tr></table></figure>
-
 <h2 id="推送到远程仓库"><a href="#推送到远程仓库" class="headerlink" title="推送到远程仓库"></a>推送到远程仓库</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">git remote add origin https://github.com/goodlunatic/gitTest.git</span><br><span class="line">git push -u origin master</span><br><span class="line"><span class="comment">#将本地master分支和远程合并</span></span><br><span class="line">git push origin master</span><br><span class="line"><span class="comment">#远程分支和本地分支冲突的解决方法</span></span><br><span class="line">git pull --set-upstream dev origin/dev</span><br><span class="line">git pull</span><br><span class="line"><span class="comment">#然后手动修改冲突的内容</span></span><br><span class="line">git add filename</span><br><span class="line">git commit -m <span class="string">&quot;Message&quot;</span></span><br><span class="line">git push origin branchname</span><br></pre></td></tr></table></figure>
-
 <h2 id="克隆远程仓库"><a href="#克隆远程仓库" class="headerlink" title="克隆远程仓库"></a>克隆远程仓库</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/goodlunatic/testgit2.git</span><br></pre></td></tr></table></figure>
-
 <h2 id="创建与合并分支"><a href="#创建与合并分支" class="headerlink" title="创建与合并分支"></a>创建与合并分支</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#新建并切换到dev分支</span></span><br><span class="line">git checkout -b dev</span><br><span class="line"><span class="comment">#查看分支</span></span><br><span class="line">git branch</span><br><span class="line"><span class="comment">#git checkout 命令加上 –b参数表示创建并切换，相当于如下2条命令</span></span><br><span class="line"><span class="comment">#新建deb分支</span></span><br><span class="line">git branch dev</span><br><span class="line"><span class="comment">#切换到dev分支</span></span><br><span class="line">git checkout dev</span><br><span class="line"><span class="comment">#用git merge合并分支</span></span><br><span class="line">git merge dev</span><br><span class="line"><span class="comment">#删除分支</span></span><br><span class="line">git branch -d dev</span><br></pre></td></tr></table></figure>
-
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#解决分支冲突（两个分支上都git add了并且内容不同）</span></span><br><span class="line">&lt;&lt;&lt;&lt;&lt;&lt;&lt; <span class="string">HEAD</span></span><br><span class="line"><span class="string">9999</span></span><br><span class="line"><span class="string">=======</span></span><br><span class="line"><span class="string">888888</span></span><br><span class="line"><span class="string">&gt;&gt;&gt;&gt;&gt;&gt;&gt; fenzhi1</span></span><br><span class="line"><span class="string">#将内容修改成和主分支一样就行</span></span><br></pre></td></tr></table></figure>
-
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#分支管理策略</span></span><br><span class="line"><span class="comment">#合并dev分支，--no-ff表示禁用fast forword</span></span><br><span class="line">git merge --no-ff -m <span class="string">&#x27;merge with no-ff&#x27;</span> dev</span><br></pre></td></tr></table></figure>
-
 <h2 id="常用的步骤"><a href="#常用的步骤" class="headerlink" title="常用的步骤"></a>常用的步骤</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">git init</span><br><span class="line"><span class="built_in">touch</span> filename</span><br><span class="line">git add filename</span><br><span class="line">git commit -m <span class="string">&quot;filename的第n次提交&quot;</span></span><br><span class="line">git status</span><br><span class="line">git diff readme.txt</span><br><span class="line">git <span class="built_in">log</span></span><br><span class="line">git <span class="built_in">log</span> --oneline</span><br><span class="line">git reset --hard HEAD~1</span><br><span class="line">git reflog</span><br><span class="line">git reset --hard 6fcfc89</span><br><span class="line">git checkout -- filename<span class="comment">#要特别注意--后面的空格</span></span><br></pre></td></tr></table></figure>
-
 <h1 id="Git上传文件到Github的详细步骤"><a href="#Git上传文件到Github的详细步骤" class="headerlink" title="Git上传文件到Github的详细步骤"></a>Git上传文件到Github的详细步骤</h1><ul>
 <li><p>新建一个空文件夹，用于上传文件</p>
 </li>
@@ -142,7 +128,8 @@
 <li><p>将待上传的文件复制到这个文件夹中</p>
 </li>
 <li><p>如果上传的是大文件(&gt;100M)，需要执行 git lfs install 和 git lfs track * 以及 git add .gitattributes</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.gitattributes 是 Git 的一个配置文件，用于指定特定文件或文件类型的属性和处理方式。它可以用于定义 Git 在处理文件时的行为，例如在版本控制、合并和检出文件时的属性设置。</span><br></pre></td></tr></table></figure></li>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.gitattributes 是 Git 的一个配置文件，用于指定特定文件或文件类型的属性和处理方式。它可以用于定义 Git 在处理文件时的行为，例如在版本控制、合并和检出文件时的属性设置。</span><br></pre></td></tr></table></figure>
+</li>
 <li><p>在 git bash 中输入 git add . 将项目添加到暂存区</p>
 </li>
 <li><p>输入 git commit -m “提交的注释” 给提交打上注释</p>
@@ -153,16 +140,13 @@
 </li>
 </ul>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote add origin https://github.com/xxxxx/test.git</span><br></pre></td></tr></table></figure>
-
 <ul>
 <li>将本地项目推送到远程仓库</li>
 </ul>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push -u origin main</span><br></pre></td></tr></table></figure>
-
 <h1 id="一些常见错误的解决"><a href="#一些常见错误的解决" class="headerlink" title="一些常见错误的解决"></a>一些常见错误的解决</h1><ul>
 <li><p>上传的文件夹里有别的开源项目(子模块) ，上传上去是个空文件夹</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">warning: adding embedded git repository: volatility/profiles</span><br><span class="line">hint: You<span class="string">&#x27;ve added another git repository inside your current repository.</span></span><br><span class="line"><span class="string">hint: Clones of the outer repository will not contain the contents of</span></span><br><span class="line"><span class="string">hint: the embedded repository and will not know how to obtain it.</span></span><br><span class="line"><span class="string">hint: If you meant to add a submodule, use:</span></span><br><span class="line"><span class="string">hint:</span></span><br><span class="line"><span class="string">hint:   git submodule add &lt;url&gt; volatility/profiles</span></span><br><span class="line"><span class="string">hint:</span></span><br><span class="line"><span class="string">hint: If you added this path by mistake, you can remove it from the</span></span><br><span class="line"><span class="string">hint: index with:</span></span><br><span class="line"><span class="string">hint:</span></span><br><span class="line"><span class="string">hint:   git rm --cached volatility/profiles</span></span><br><span class="line"><span class="string">hint:</span></span><br><span class="line"><span class="string">hint: See &quot;git help submodule&quot; for more information.</span></span><br></pre></td></tr></table></figure>
-
 <p>解决方案：到指定子模块中把和 git 有关的文件全删了</p>
 </li>
 </ul>
@@ -170,7 +154,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://goodlunatic.github.io/2023/12/08/Git%20Learning%20Record/" data-id="cltux1tuq001wos3zfg22cfll" class="article-share-link">Share</a>
+      <a data-url="https://goodlunatic.github.io/2023/12/08/Git%20Learning%20Record/" data-id="cltv84kbw002l343z2qri8psg" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Git/" rel="tag">Git</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Skills/" rel="tag">Skills</a></li></ul>
@@ -228,7 +212,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">March 2024</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">February 2024</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">January 2024</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">December 2023</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/11/">November 2023</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/10/">October 2023</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">September 2023</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">August 2023</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/07/">July 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/06/">June 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">May 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">April 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">March 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">February 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/01/">January 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">December 2022</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">November 2022</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">August 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">April 2022</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">March 2024</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">February 2024</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">January 2024</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">December 2023</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/11/">November 2023</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/10/">October 2023</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">September 2023</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">August 2023</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/07/">July 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/06/">June 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">May 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">April 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">March 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">February 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/01/">January 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">December 2022</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">November 2022</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">August 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">April 2022</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -239,6 +223,10 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2024/03/17/CTF%E2%80%94%E2%80%94Crypto/">CTF——Crypto</a>
+          </li>
         
           <li>
             <a href="/2024/03/17/2024-VCTF-Misc-Writeup/">2024-VCTF-Misc-Writeup</a>
@@ -254,10 +242,6 @@
         
           <li>
             <a href="/2024/02/17/%E4%B8%80%E6%96%87%E5%B8%A6%E4%BD%A0%E6%B7%B1%E5%85%A5%E4%BA%86%E8%A7%A3%E9%85%8D%E9%95%9C%E8%A1%8C%E4%B8%9A/">一文带你深入了解配镜行业</a>
-          </li>
-        
-          <li>
-            <a href="/2024/02/10/CTF%E2%80%94%E2%80%94Misc%20Guide/">CTF——Misc Guide</a>
           </li>
         
       </ul>
@@ -318,5 +302,20 @@
 
 <!-- Toc -->
   </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="//cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 </body>
 </html>

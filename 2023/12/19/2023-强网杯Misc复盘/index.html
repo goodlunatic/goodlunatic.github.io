@@ -14,20 +14,20 @@
 <meta property="og:site_name" content="Lunatic&#39;s Workstation">
 <meta property="og:description" content="只能说有点可惜吧，本来Misc还能再多出几道题的，无奈比赛时脑子秀逗了">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://goodlunatic.github.io/images/2023-%E5%BC%BA%E7%BD%91%E6%9D%AFMisc%E5%A4%8D%E7%9B%98_2023-12-19-12-06-30.png">
-<meta property="og:image" content="https://goodlunatic.github.io/images/2023-%E5%BC%BA%E7%BD%91%E6%9D%AFMisc%E5%A4%8D%E7%9B%98_2023-12-19-12-07-07.png">
-<meta property="og:image" content="https://goodlunatic.github.io/images/2023-%E5%BC%BA%E7%BD%91%E6%9D%AFMisc%E5%A4%8D%E7%9B%98_2023-12-19-12-07-26.png">
-<meta property="og:image" content="https://goodlunatic.github.io/images/2023-%E5%BC%BA%E7%BD%91%E6%9D%AFMisc%E5%A4%8D%E7%9B%98_2023-12-19-12-07-58.png">
-<meta property="og:image" content="https://goodlunatic.github.io/images/2023-%E5%BC%BA%E7%BD%91%E6%9D%AFMisc%E5%A4%8D%E7%9B%98_2023-12-19-12-08-16.png">
-<meta property="og:image" content="https://goodlunatic.github.io/images/2023-%E5%BC%BA%E7%BD%91%E6%9D%AFMisc%E5%A4%8D%E7%9B%98_2023-12-19-12-08-36.png">
-<meta property="og:image" content="https://goodlunatic.github.io/images/2023-%E5%BC%BA%E7%BD%91%E6%9D%AFMisc%E5%A4%8D%E7%9B%98_2023-12-19-12-08-56.png">
-<meta property="og:image" content="https://goodlunatic.github.io/images/2023-%E5%BC%BA%E7%BD%91%E6%9D%AFMisc%E5%A4%8D%E7%9B%98_2023-12-19-12-09-15.png">
+<meta property="og:image" content="https://goodlunatic.github.io/images/2023-强网杯Misc复盘_2023-12-19-12-06-30.png">
+<meta property="og:image" content="https://goodlunatic.github.io/images/2023-强网杯Misc复盘_2023-12-19-12-07-07.png">
+<meta property="og:image" content="https://goodlunatic.github.io/images/2023-强网杯Misc复盘_2023-12-19-12-07-26.png">
+<meta property="og:image" content="https://goodlunatic.github.io/images/2023-强网杯Misc复盘_2023-12-19-12-07-58.png">
+<meta property="og:image" content="https://goodlunatic.github.io/images/2023-强网杯Misc复盘_2023-12-19-12-08-16.png">
+<meta property="og:image" content="https://goodlunatic.github.io/images/2023-强网杯Misc复盘_2023-12-19-12-08-36.png">
+<meta property="og:image" content="https://goodlunatic.github.io/images/2023-强网杯Misc复盘_2023-12-19-12-08-56.png">
+<meta property="og:image" content="https://goodlunatic.github.io/images/2023-强网杯Misc复盘_2023-12-19-12-09-15.png">
 <meta property="article:published_time" content="2023-12-19T03:55:35.000Z">
 <meta property="article:modified_time" content="2023-12-19T04:12:25.934Z">
 <meta property="article:author" content="Lunatic">
 <meta property="article:tag" content="CTF">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://goodlunatic.github.io/images/2023-%E5%BC%BA%E7%BD%91%E6%9D%AFMisc%E5%A4%8D%E7%9B%98_2023-12-19-12-06-30.png">
+<meta name="twitter:image" content="https://goodlunatic.github.io/images/2023-强网杯Misc复盘_2023-12-19-12-06-30.png">
   
     <link rel="alternate" href="/atom.xml" title="Lunatic&#39;s Workstation" type="application/atom+xml">
   
@@ -115,42 +115,39 @@
 </div>
       <p><strong>只能说有点可惜吧，本来Misc还能再多出几道题的，无奈比赛时脑子秀逗了</strong></p>
 <span id="more"></span>
-
 <h1 id="碟影重重2-0"><a href="#碟影重重2-0" class="headerlink" title="碟影重重2.0"></a>碟影重重2.0</h1><p>下载附件得到一个只有TCP流量的流量包<br>题目需要我们分析流量包找到飞机的飞机速度和飞机的 ICAO CODE<br>问了GPT得知飞机常见的协议中有ADS-B，然后在网上找到pyModeS这个模块<br>在 <a target="_blank" rel="noopener" href="https://gitee.com/wangmin-gf/ads-b">参考链接</a> 看到了与tcp.payload中相似的数据<br>使用 tshark 提取出流量包中的数据，然后使用这个脚本批量解密找speed最快的即可</p>
 <p>tshark -r attach.pcapng -T fields -e “tcp.payload” | sed ‘/^\s*$/d’ &gt; tshark.txt</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pyModeS</span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;tshark.txt&quot;</span>) <span class="keyword">as</span> f:</span><br><span class="line">    data = f.readlines()</span><br><span class="line">    <span class="keyword">for</span> item <span class="keyword">in</span> data:</span><br><span class="line">        <span class="comment"># print(item.strip())</span></span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">len</span>(item.strip()) != <span class="number">46</span>:</span><br><span class="line">            <span class="keyword">continue</span></span><br><span class="line">        res = pyModeS.tell(item.strip()[<span class="number">18</span>:<span class="number">46</span>])</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;===========================================================================&quot;</span>)</span><br></pre></td></tr></table></figure>
-
-<p><img src="/images/2023-%E5%BC%BA%E7%BD%91%E6%9D%AFMisc%E5%A4%8D%E7%9B%98_2023-12-19-12-06-30.png" alt="碟影重重2.0"><br>Tips：这里的 ICAO CODE 需要大写：79A05E<br>然后MD5加密一下即可得到：flag{4cf6729b9bc05686a79c1620b0b1967b}</p>
+<p><img src="/images/2023-强网杯Misc复盘_2023-12-19-12-06-30.png" alt="碟影重重2.0"><br>Tips：这里的 ICAO CODE 需要大写：79A05E<br>然后MD5加密一下即可得到：flag{4cf6729b9bc05686a79c1620b0b1967b}</p>
 <h1 id="Wabby-Wabbo-Radio"><a href="#Wabby-Wabbo-Radio" class="headerlink" title="Wabby Wabbo Radio"></a>Wabby Wabbo Radio</h1><p>题目给的容器是一个网页版的播放器，通过抓包，得到了以下几个wav文件<br>xh1.wav、xh2.wav、xh3.wav、xh4.wav、xh5.wav、hint1.wav、hin2.wav、flag.wav<br>除了flag.wav以外，别的几个wav的左声道都是有摩斯电码的</p>
-<p><strong>第一段：</strong><br>- …. . .– . .- - …. . .-. .. … .-. . .- .-.. .-.. -.– -. .. -.-. . - — -.. .- -.– .-.-.- .. - .—-. … .- –. .-. . .- - -.. .- -.– - — .-.. .. … - . -. - — - …. . .– .- -… -… -.– .– .- -… -… — .-. .- -.. .. —<br>THE WEATHER IS REALLY NICE TODAY. IT’S A GREAT DAY TO LISTEN TO THE WABBY WABBO RADIO</p>
-<p><strong>第二段</strong><br>–. . -. … …. .. -. .. – .–. .- -.-. - … - .- .-. - …<br>GENSHIN IMPACT STARTS</p>
-<p><strong>第三段</strong><br>-.. — -.– — ..- .– .- -. - .- ..-. .-.. .- –. ..–.. .-.. . - .—-. … .-.. .. … - . -. .- .-.. .. - - .-..  . .-.. — -. –. . .-.<br>DO YOU WANT A FLAG ?LET’S LISTEN A LITTLE LONGER</p>
-<p><strong>第四段</strong><br>-.. — -.– — ..- .– .- -. - .- …. .. -. - ..–.. .-.. . - .—-. … .-.. .. … - . -. .- .-.. .. - - .-.. . .-.. — -. –. . .-.<br>DO YOU WANT A HINT?LET’S LISTEN A LITTLE LONGER</p>
-<p><strong>第五段</strong><br>.. ..-. -.– — ..- -.. — -. .—-. - -.- -. — .– …. — .– - — -.. — .. - –..– -.– — ..- -.-. .- -. –. — .- …. . .- -.. .- -. -.. -.. — … — – . - …. .. -. –. . .-.. … . ..-. .. .-. … -<br>IF YOU DON’T KNOW HOW TO DO IT,YOU CAN GO AHEAD AND DO SOME THING ELSE FIRST</p>
-<p><strong>Hint1</strong><br>-.. — -.– — ..- -.- -. — .– –.- .- – ..–..<br>DO YOU KNOW QAM(正交振幅调制)?</p>
-<p><strong>Hint2</strong><br>– .- -.– -… . ..-. .-.. .- –. .. … .–. -. –. .–. .. -.-. - ..- .-. .<br>MAYBE FLAG IS PNG PICTURE</p>
+<p><strong>第一段：</strong><br>- …. . .— . .- - …. . .-. .. … .-. . .- .-.. .-.. -.— -. .. -.-. . - —- -.. .- -.— .-.-.- .. - .——. … .- —. .-. . .- - -.. .- -.— - —- .-.. .. … - . -. - —- - …. . .— .- -… -… -.— .— .- -… -… —- .-. .- -.. .. —-<br>THE WEATHER IS REALLY NICE TODAY. IT’S A GREAT DAY TO LISTEN TO THE WABBY WABBO RADIO</p>
+<p><strong>第二段</strong><br>—. . -. … …. .. -. .. — .—. .- -.-. - … - .- .-. - …<br>GENSHIN IMPACT STARTS</p>
+<p><strong>第三段</strong><br>-.. —- -.— —- ..- .— .- -. - .- ..-. .-.. .- —. ..—.. .-.. . - .——. … .-.. .. … - . -. .- .-.. .. - - .-..  . .-.. —- -. —. . .-.<br>DO YOU WANT A FLAG ?LET’S LISTEN A LITTLE LONGER</p>
+<p><strong>第四段</strong><br>-.. —- -.— —- ..- .— .- -. - .- …. .. -. - ..—.. .-.. . - .——. … .-.. .. … - . -. .- .-.. .. - - .-.. . .-.. —- -. —. . .-.<br>DO YOU WANT A HINT?LET’S LISTEN A LITTLE LONGER</p>
+<p><strong>第五段</strong><br>.. ..-. -.— —- ..- -.. —- -. .——. - -.- -. —- .— …. —- .— - —- -.. —- .. - —..— -.— —- ..- -.-. .- -. —. —- .- …. . .- -.. .- -. -.. -.. —- … —- — . - …. .. -. —. . .-.. … . ..-. .. .-. … -<br>IF YOU DON’T KNOW HOW TO DO IT,YOU CAN GO AHEAD AND DO SOME THING ELSE FIRST</p>
+<p><strong>Hint1</strong><br>-.. —- -.— —- ..- -.- -. —- .— —.- .- — ..—..<br>DO YOU KNOW QAM(正交振幅调制)?</p>
+<p><strong>Hint2</strong><br>— .- -.— -… . ..-. .-.. .- —. .. … .—. -. —. .—. .. -.-. - ..- .-. .<br>MAYBE FLAG IS PNG PICTURE</p>
 <p><strong>flag.wav</strong></p>
 <p>读取wav的数据用plot画个图，发现数据的分布其实是十分规则的，明显就是16QAM</p>
-<p><img src="/images/2023-%E5%BC%BA%E7%BD%91%E6%9D%AFMisc%E5%A4%8D%E7%9B%98_2023-12-19-12-07-07.png" alt="16QAM"></p>
+<p><img src="/images/2023-强网杯Misc复盘_2023-12-19-12-07-07.png" alt="16QAM"></p>
 <p>根据PNG的文件头89504E47找到16QAM的对应关系，然后写脚本读取数据转换就行</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> scipy.io.wavfile <span class="keyword">as</span> wav</span><br><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">read_wav_file</span>(<span class="params">file_path</span>):</span><br><span class="line">    sample_rate, data = wav.read(file_path)</span><br><span class="line">    <span class="keyword">return</span> sample_rate, data</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">dic = &#123;</span><br><span class="line">    <span class="number">1</span>: <span class="string">&#x27;10&#x27;</span>,</span><br><span class="line">    -<span class="number">1</span>: <span class="string">&#x27;01&#x27;</span>,</span><br><span class="line">    <span class="number">3</span>: <span class="string">&#x27;11&#x27;</span>,</span><br><span class="line">    -<span class="number">3</span>: <span class="string">&#x27;00&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    res = <span class="string">&#x27;&#x27;</span></span><br><span class="line">    wav_file_path = <span class="string">&quot;flag.wav&quot;</span></span><br><span class="line">    sample_rate, data = read_wav_file(wav_file_path)</span><br><span class="line">    <span class="keyword">for</span> item <span class="keyword">in</span> data:</span><br><span class="line">        x = <span class="built_in">round</span>(item[<span class="number">0</span>])</span><br><span class="line">        y = <span class="built_in">round</span>(item[<span class="number">1</span>])</span><br><span class="line">        res += dic[x]+dic[y]</span><br><span class="line">    <span class="comment"># print(res)</span></span><br><span class="line">    data = long_to_bytes(<span class="built_in">int</span>(res, <span class="number">2</span>))</span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;flag.png&#x27;</span>, <span class="string">&#x27;wb&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">        f.write(data)</span><br></pre></td></tr></table></figure>
-
-<p><img src="/images/2023-%E5%BC%BA%E7%BD%91%E6%9D%AFMisc%E5%A4%8D%E7%9B%98_2023-12-19-12-07-26.png" alt="flag.png"></p>
+<p><img src="/images/2023-强网杯Misc复盘_2023-12-19-12-07-26.png" alt="flag.png"></p>
 <h1 id="找到PNG了吗"><a href="#找到PNG了吗" class="headerlink" title="找到PNG了吗"></a>找到PNG了吗</h1><p>Linux内存取证，内核版本如下：</p>
 <p>Linux version 5.4.0-100-generic (buildd@lcy02-amd64-002) (gcc version 9.3.0 (Ubuntu 9.3.0-17ubuntu1~20.04)) #113-Ubuntu SMP Thu Feb 3 18:43:29 UTC 2022 (Ubuntu 5.4.0-100.113-generic 5.4.166)</p>
 <p>根据我博客里 LInux内存取证 的那篇文章制作vol2的Profile即可</p>
 <p>查看桌面，发现有 have_your_fun.jocker 这个文件</p>
-<p><img src="/images/2023-%E5%BC%BA%E7%BD%91%E6%9D%AFMisc%E5%A4%8D%E7%9B%98_2023-12-19-12-07-58.png" alt="Desktop.png"></p>
-<p>然后在010中搜索这个文件名，得到一串RC4加密的代码<br><img src="/images/2023-%E5%BC%BA%E7%BD%91%E6%9D%AFMisc%E5%A4%8D%E7%9B%98_2023-12-19-12-08-16.png" alt="010-1.png"></p>
-<p>用那两个KEY去加密PNG头，然后用010去找<br><img src="/images/2023-%E5%BC%BA%E7%BD%91%E6%9D%AFMisc%E5%A4%8D%E7%9B%98_2023-12-19-12-08-36.png" alt="RC4"></p>
+<p><img src="/images/2023-强网杯Misc复盘_2023-12-19-12-07-58.png" alt="Desktop.png"></p>
+<p>然后在010中搜索这个文件名，得到一串RC4加密的代码<br><img src="/images/2023-强网杯Misc复盘_2023-12-19-12-08-16.png" alt="010-1.png"></p>
+<p>用那两个KEY去加密PNG头，然后用010去找<br><img src="/images/2023-强网杯Misc复盘_2023-12-19-12-08-36.png" alt="RC4"></p>
 <p>定位到文件，往下随便复制一大段十六进制值，CyberChef一把梭即可得到flag</p>
-<p><img src="/images/2023-%E5%BC%BA%E7%BD%91%E6%9D%AFMisc%E5%A4%8D%E7%9B%98_2023-12-19-12-08-56.png" alt="010-2.png"></p>
-<p><img src="/images/2023-%E5%BC%BA%E7%BD%91%E6%9D%AFMisc%E5%A4%8D%E7%9B%98_2023-12-19-12-09-15.png" alt="flag.png"></p>
+<p><img src="/images/2023-强网杯Misc复盘_2023-12-19-12-08-56.png" alt="010-2.png"></p>
+<p><img src="/images/2023-强网杯Misc复盘_2023-12-19-12-09-15.png" alt="flag.png"></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://goodlunatic.github.io/2023/12/19/2023-%E5%BC%BA%E7%BD%91%E6%9D%AFMisc%E5%A4%8D%E7%9B%98/" data-id="cltux1tuf000cos3zb2qn6m1x" class="article-share-link">Share</a>
+      <a data-url="https://goodlunatic.github.io/2023/12/19/2023-%E5%BC%BA%E7%BD%91%E6%9D%AFMisc%E5%A4%8D%E7%9B%98/" data-id="cltv84kbd0008343zgrij0xg0" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CTF/" rel="tag">CTF</a></li></ul>
@@ -161,11 +158,11 @@
   
 <nav id="article-nav">
   
-    <a href="/2024/01/03/CTF%E2%80%94%E2%80%94Crypto/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2024/01/03/2023-%E5%AE%89%E6%B4%B5%E6%9D%AFMisc%E5%A4%8D%E7%9B%98/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
-          CTF——Crypto
+          2023-安洵杯Misc复盘
         
       </div>
     </a>
@@ -208,7 +205,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">March 2024</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">February 2024</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">January 2024</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">December 2023</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/11/">November 2023</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/10/">October 2023</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">September 2023</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">August 2023</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/07/">July 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/06/">June 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">May 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">April 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">March 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">February 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/01/">January 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">December 2022</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">November 2022</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">August 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">April 2022</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">March 2024</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">February 2024</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">January 2024</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">December 2023</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/11/">November 2023</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/10/">October 2023</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">September 2023</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">August 2023</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/07/">July 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/06/">June 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">May 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">April 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">March 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">February 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/01/">January 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">December 2022</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">November 2022</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">August 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">April 2022</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -219,6 +216,10 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2024/03/17/CTF%E2%80%94%E2%80%94Crypto/">CTF——Crypto</a>
+          </li>
         
           <li>
             <a href="/2024/03/17/2024-VCTF-Misc-Writeup/">2024-VCTF-Misc-Writeup</a>
@@ -234,10 +235,6 @@
         
           <li>
             <a href="/2024/02/17/%E4%B8%80%E6%96%87%E5%B8%A6%E4%BD%A0%E6%B7%B1%E5%85%A5%E4%BA%86%E8%A7%A3%E9%85%8D%E9%95%9C%E8%A1%8C%E4%B8%9A/">一文带你深入了解配镜行业</a>
-          </li>
-        
-          <li>
-            <a href="/2024/02/10/CTF%E2%80%94%E2%80%94Misc%20Guide/">CTF——Misc Guide</a>
           </li>
         
       </ul>
@@ -298,5 +295,20 @@
 
 <!-- Toc -->
   </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="//cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 </body>
 </html>

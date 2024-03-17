@@ -126,7 +126,6 @@
 </div>
       <p><strong>发现自己有段时间没有打比赛了，手有点生疏，于是打了 2024VCTF 来找找感觉</strong></p>
 <span id="more"></span>
-
 <h2 id="题目名称-checkin"><a href="#题目名称-checkin" class="headerlink" title="题目名称 checkin"></a>题目名称 checkin</h2><p><strong>不愧是山海关-ChaMd5（查MD5获得flag）</strong><br><strong>flag{We1c0m3_VCTF_2024}</strong><br><img src="/images/2024-VCTF-Misc-Writeup_2024-03-17-10-28-23.png" alt="md5.png"></p>
 <h2 id="题目名称-f0rensicmaster"><a href="#题目名称-f0rensicmaster" class="headerlink" title="题目名称 f0rensicmaster"></a>题目名称 f0rensicmaster</h2><p><strong>下载得到一个 e01磁盘镜像文件，bitlocker加密了，尝试找密钥</strong><br><strong>用FTK打开part0，可以看到有一个hint.zip，里面有logo.png和key.txt</strong><br><strong>这里需要直接把root整个文件夹都导出，要不然图片会无法正常显示</strong></p>
 <p><img src="/images/2024-VCTF-Misc-Writeup_2024-03-17-10-28-41.png" alt="1.png"><br><img src="/images/2024-VCTF-Misc-Writeup_2024-03-17-10-28-50.png" alt="2.png"><br><strong>压缩包也有一个logo.png猜测是需要明文攻击了</strong></p>
@@ -137,7 +136,7 @@
 <p><img src="/images/2024-VCTF-Misc-Writeup_2024-03-17-10-29-44.png" alt="7.png"><br><strong>发现根目录下有一个flag.txt</strong></p>
 <p><img src="/images/2024-VCTF-Misc-Writeup_2024-03-17-10-29-53.png" alt="8.png"><br><strong>打开，用CyberChef识别发现是摩斯电码，找在线网站解密可以得到一个奶牛快传的链接</strong></p>
 <p><img src="/images/2024-VCTF-Misc-Writeup_2024-03-17-10-30-02.png" alt="9.png"><br><img src="/images/2024-VCTF-Misc-Writeup_2024-03-17-10-30-11.png" alt="10.png"><br><strong>访问链接，发现奶牛快传里也是一个flag.txt，打开发现是乱码的</strong></p>
-<p><img src="/images/2024-VCTF-Misc-Writeup_2024-03-17-10-30-24.png" alt="11.png"><br><img src="/images/2024-VCTF-Misc-Writeup_2024-03-17-10-30-36.png" alt="12.png"><br><em><em>用VeraCrypt解密并挂载flag.txt，密钥是平台给的Hint：RtTNZ&amp;n</em>$GKaKuehKO3+</em>*</p>
+<p><img src="/images/2024-VCTF-Misc-Writeup_2024-03-17-10-30-24.png" alt="11.png"><br><img src="/images/2024-VCTF-Misc-Writeup_2024-03-17-10-30-36.png" alt="12.png"><br><strong>用VeraCrypt解密并挂载flag.txt，密钥是平台给的Hint：RtTNZ&amp;n*$GKaKuehKO3+</strong></p>
 <p><img src="/images/2024-VCTF-Misc-Writeup_2024-03-17-10-30-46.png" alt="13.png"><br><strong>挂载好后得到一个无间道.docx，改后缀为zip打开，得到四张图片</strong></p>
 <p><img src="/images/2024-VCTF-Misc-Writeup_2024-03-17-10-30-56.png" alt="14.png"><br><strong>image2和opposite末尾有逆置的压缩包数据，尝试还原并提取出来</strong></p>
 <p><img src="/images/2024-VCTF-Misc-Writeup_2024-03-17-10-31-04.png" alt="15.png"><br><img src="/images/2024-VCTF-Misc-Writeup_2024-03-17-10-31-13.png" alt="16.png"><br><strong>不会真有人去查校庆日吧，懒惰的人都是直接开爆的</strong></p>
@@ -148,7 +147,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://goodlunatic.github.io/2024/03/17/2024-VCTF-Misc-Writeup/" data-id="cltux1tuf000dos3zegffgdp2" class="article-share-link">Share</a>
+      <a data-url="https://goodlunatic.github.io/2024/03/17/2024-VCTF-Misc-Writeup/" data-id="cltv84kbf000d343z6dn8gcvs" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CTF/" rel="tag">CTF</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/WriteUp/" rel="tag">WriteUp</a></li></ul>
@@ -158,6 +157,15 @@
   
   
 <nav id="article-nav">
+  
+    <a href="/2024/03/17/CTF%E2%80%94%E2%80%94Crypto/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          CTF——Crypto
+        
+      </div>
+    </a>
   
   
     <a href="/2024/03/16/Misc%E2%80%94%E2%80%94Forensics/" id="article-nav-older" class="article-nav-link-wrap">
@@ -197,7 +205,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">March 2024</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">February 2024</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">January 2024</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">December 2023</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/11/">November 2023</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/10/">October 2023</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">September 2023</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">August 2023</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/07/">July 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/06/">June 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">May 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">April 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">March 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">February 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/01/">January 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">December 2022</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">November 2022</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">August 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">April 2022</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">March 2024</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">February 2024</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">January 2024</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">December 2023</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/11/">November 2023</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/10/">October 2023</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">September 2023</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">August 2023</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/07/">July 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/06/">June 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">May 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">April 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">March 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">February 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/01/">January 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">December 2022</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">November 2022</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">August 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">April 2022</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -208,6 +216,10 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2024/03/17/CTF%E2%80%94%E2%80%94Crypto/">CTF——Crypto</a>
+          </li>
         
           <li>
             <a href="/2024/03/17/2024-VCTF-Misc-Writeup/">2024-VCTF-Misc-Writeup</a>
@@ -223,10 +235,6 @@
         
           <li>
             <a href="/2024/02/17/%E4%B8%80%E6%96%87%E5%B8%A6%E4%BD%A0%E6%B7%B1%E5%85%A5%E4%BA%86%E8%A7%A3%E9%85%8D%E9%95%9C%E8%A1%8C%E4%B8%9A/">一文带你深入了解配镜行业</a>
-          </li>
-        
-          <li>
-            <a href="/2024/02/10/CTF%E2%80%94%E2%80%94Misc%20Guide/">CTF——Misc Guide</a>
           </li>
         
       </ul>
@@ -287,5 +295,20 @@
 
 <!-- Toc -->
   </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="//cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 </body>
 </html>

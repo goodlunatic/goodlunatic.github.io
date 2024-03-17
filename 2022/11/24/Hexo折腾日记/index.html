@@ -106,37 +106,29 @@
 </div>
       <p><strong>突然想重新整一个个人博客来记录自己每天的学习过程，以此来督促自己多去学一些新的东西，然后因为自己原来的云服务器快过期了，于是就想利用Hexo+Gitpage来搭建一个简单一点的个人博客(之前那个太花里胡哨了…)</strong></p>
 <span id="more"></span>
-
 <h2 id="一、初始化"><a href="#一、初始化" class="headerlink" title="一、初始化"></a>一、初始化</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#首先先生成一个初始化的文件夹</span></span><br><span class="line">hexo init Hexo</span><br><span class="line"><span class="comment">#安装必要的moudle</span></span><br><span class="line">npm install</span><br><span class="line"><span class="comment">#在本地编译运行</span></span><br><span class="line">hexo g</span><br><span class="line">hexo s</span><br><span class="line"><span class="comment">#访问localhost:4000</span></span><br></pre></td></tr></table></figure>
-
 <h2 id="二、对主题进行个性化的修改"><a href="#二、对主题进行个性化的修改" class="headerlink" title="二、对主题进行个性化的修改"></a>二、对主题进行个性化的修改</h2><h3 id="对根目录下的-config-yml文件进行修改"><a href="#对根目录下的-config-yml文件进行修改" class="headerlink" title="对根目录下的_config.yml文件进行修改"></a>对根目录下的_config.yml文件进行修改</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># Site</span><br><span class="line">title: Hexo #标题</span><br><span class="line">subtitle:   #副标题</span><br><span class="line">author: John Doe  #作者</span><br></pre></td></tr></table></figure>
-
 <h3 id="对themes-landscape-config-yml文件进行修改"><a href="#对themes-landscape-config-yml文件进行修改" class="headerlink" title="对themes/landscape/_config.yml文件进行修改"></a>对themes/landscape/_config.yml文件进行修改</h3><p>分类、标签显示文章数：将show_count的参数设成true</p>
 <h2 id="三、其他"><a href="#三、其他" class="headerlink" title="三、其他"></a>三、其他</h2><h3 id="给首页文件增加阅读全文"><a href="#给首页文件增加阅读全文" class="headerlink" title="给首页文件增加阅读全文"></a>给首页文件增加阅读全文</h3><p>使用<code>&lt;!--more--&gt;</code> 标记，例如：</p>
 <figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Welcome to [<span class="string">Hexo</span>](<span class="link">https://hexo.io/</span>)! This is your very first post. Check [<span class="string">documentation</span>](<span class="link">https://hexo.io/docs/</span>) for more info. If you get any problems when using Hexo, you can find the answer in [<span class="string">troubleshooting</span>](<span class="link">https://hexo.io/docs/troubleshooting.html</span>) or you can ask me on [<span class="string">GitHub</span>](<span class="link">https://github.com/hexojs/hexo/issues</span>).</span><br><span class="line">&lt;!-- more --&gt;</span><br><span class="line"><span class="section">## Quick Start</span></span><br><span class="line"><span class="section">### Create a new post</span></span><br></pre></td></tr></table></figure>
-
 <h3 id="修改新建文章的模板"><a href="#修改新建文章的模板" class="headerlink" title="修改新建文章的模板"></a>修改新建文章的模板</h3><p>将scaffolds/post.md文件修改为：</p>
 <p>这里一定要注意空格等格式，要不然会报错！！！</p>
 <figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">title: &#123;&#123; title &#125;&#125;</span><br><span class="line">date: &#123;&#123; date &#125;&#125;</span><br><span class="line">categories: </span><br><span class="line">tags: </span><br><span class="line"><span class="bullet">-</span> </span><br></pre></td></tr></table></figure>
-
 <h3 id="给文章添加目录"><a href="#给文章添加目录" class="headerlink" title="给文章添加目录"></a>给文章添加目录</h3><p>可以参考下面这篇博客，亲测有用 @v@</p>
 <p><a target="_blank" rel="noopener" href="https://mrcuijt.github.io/2019/06/04/hexo/hexo-customer/#%E6%B7%BB%E5%8A%A0-ICON">https://mrcuijt.github.io/2019/06/04/hexo/hexo-customer/#%E6%B7%BB%E5%8A%A0-ICON</a></p>
 <h3 id="给网页加icon"><a href="#给网页加icon" class="headerlink" title="给网页加icon"></a>给网页加icon</h3><p>修改themes/landscape/_config.yml 文件</p>
 <p>将其中的favicon的参数设置为 /favicon.ico</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">favicon: /favicon.ico</span><br></pre></td></tr></table></figure>
-
 <p>然后将自己的 <strong>favicon.ico</strong> 放到 <strong>themes/landscape/source</strong> 目录下即可</p>
 <h3 id="上传到github"><a href="#上传到github" class="headerlink" title="上传到github"></a>上传到github</h3><p>第一次使用git的话要先输入你github的用户名和密码</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo d</span><br></pre></td></tr></table></figure>
-
 <p>可能会有报错，我解决方案如下：</p>
 <figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">##进入站点根目录</span></span><br><span class="line"><span class="section">##删除git提交内容文件夹</span></span><br><span class="line">rm -rf .deploy<span class="emphasis">_git/</span></span><br><span class="line"><span class="emphasis"></span></span><br><span class="line"><span class="emphasis">##执行</span></span><br><span class="line"><span class="emphasis">git config --global core.autocrlf false</span></span><br><span class="line"><span class="emphasis"></span></span><br><span class="line"><span class="emphasis">##最后</span></span><br><span class="line"><span class="emphasis">hexo clean &amp;&amp; hexo g &amp;&amp; hexo d</span></span><br></pre></td></tr></table></figure>
-
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://goodlunatic.github.io/2022/11/24/Hexo%E6%8A%98%E8%85%BE%E6%97%A5%E8%AE%B0/" data-id="cltux1tur0022os3zg8dq9zz0" class="article-share-link">Share</a>
+      <a data-url="https://goodlunatic.github.io/2022/11/24/Hexo%E6%8A%98%E8%85%BE%E6%97%A5%E8%AE%B0/" data-id="cltv84kbx002s343z30u4876o" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a></li></ul>
@@ -194,7 +186,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">March 2024</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">February 2024</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">January 2024</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">December 2023</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/11/">November 2023</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/10/">October 2023</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">September 2023</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">August 2023</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/07/">July 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/06/">June 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">May 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">April 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">March 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">February 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/01/">January 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">December 2022</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">November 2022</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">August 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">April 2022</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">March 2024</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">February 2024</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">January 2024</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">December 2023</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/11/">November 2023</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/10/">October 2023</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">September 2023</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">August 2023</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/07/">July 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/06/">June 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">May 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">April 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">March 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">February 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/01/">January 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">December 2022</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">November 2022</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">August 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">April 2022</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -205,6 +197,10 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2024/03/17/CTF%E2%80%94%E2%80%94Crypto/">CTF——Crypto</a>
+          </li>
         
           <li>
             <a href="/2024/03/17/2024-VCTF-Misc-Writeup/">2024-VCTF-Misc-Writeup</a>
@@ -220,10 +216,6 @@
         
           <li>
             <a href="/2024/02/17/%E4%B8%80%E6%96%87%E5%B8%A6%E4%BD%A0%E6%B7%B1%E5%85%A5%E4%BA%86%E8%A7%A3%E9%85%8D%E9%95%9C%E8%A1%8C%E4%B8%9A/">一文带你深入了解配镜行业</a>
-          </li>
-        
-          <li>
-            <a href="/2024/02/10/CTF%E2%80%94%E2%80%94Misc%20Guide/">CTF——Misc Guide</a>
           </li>
         
       </ul>
@@ -284,5 +276,20 @@
 
 <!-- Toc -->
   </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="//cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 </body>
 </html>

@@ -14,15 +14,15 @@
 <meta property="og:site_name" content="Lunatic&#39;s Workstation">
 <meta property="og:description" content="因为学校的好多课程中都涉及到了UML图，所以打算在这里对其做一个总结。">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://goodlunatic.github.io/images/%E7%94%A8%E4%BE%8B%E5%9B%BE.png">
-<meta property="og:image" content="https://goodlunatic.github.io/images/%E4%BE%8B1-%E6%9C%BA%E5%9C%BA.png">
+<meta property="og:image" content="https://goodlunatic.github.io/images/用例图.png">
+<meta property="og:image" content="https://goodlunatic.github.io/images/例1-机场.png">
 <meta property="og:image" content="https://goodlunatic.github.io/images/class.png">
 <meta property="article:published_time" content="2023-04-22T11:47:44.000Z">
 <meta property="article:modified_time" content="2023-04-22T14:10:14.736Z">
 <meta property="article:author" content="Lunatic">
 <meta property="article:tag" content="Skills">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://goodlunatic.github.io/images/%E7%94%A8%E4%BE%8B%E5%9B%BE.png">
+<meta name="twitter:image" content="https://goodlunatic.github.io/images/用例图.png">
   
     <link rel="alternate" href="/atom.xml" title="Lunatic&#39;s Workstation" type="application/atom+xml">
   
@@ -110,26 +110,20 @@
 </div>
       <p><strong>因为学校的好多课程中都涉及到了UML图，所以打算在这里对其做一个总结。</strong></p>
 <span id="more"></span>
-
 <h1 id="UML——用例图"><a href="#UML——用例图" class="headerlink" title="UML——用例图"></a>UML——用例图</h1><h2 id="用例图建模流程"><a href="#用例图建模流程" class="headerlink" title="用例图建模流程"></a>用例图建模流程</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1.识别参与者（必须）</span><br><span class="line">2.合并需求获得用例（必须）</span><br><span class="line">3.细化用力描述（必须）</span><br><span class="line">4.调整用例模型（可选）</span><br></pre></td></tr></table></figure>
-
 <h2 id="用例之间的关系"><a href="#用例之间的关系" class="headerlink" title="用例之间的关系"></a>用例之间的关系</h2><p>包含关系（&lt;<include>&gt;）</p>
 <p>扩展关系（&lt;<extend>&gt;）</p>
 <p>泛化关系</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">如何区别包含和扩展</span><br><span class="line">包含是必然的，扩展是可选的</span><br><span class="line">除此之外，泛化关系必须要体现出父子关系</span><br></pre></td></tr></table></figure>
-
-<p><img src="/images/%E7%94%A8%E4%BE%8B%E5%9B%BE.png" alt="用例图"></p>
+<p><img src="/images/用例图.png" alt="用例图"></p>
 <h1 id="DFD——数据流图"><a href="#DFD——数据流图" class="headerlink" title="DFD——数据流图"></a>DFD——数据流图</h1><h2 id="一、组成部分"><a href="#一、组成部分" class="headerlink" title="一、组成部分"></a>一、组成部分</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1.数据流</span><br><span class="line">2.加工</span><br><span class="line">3.数据存储</span><br><span class="line">4.外部实体</span><br></pre></td></tr></table></figure>
-
 <h2 id="二、基本图形符号（重点）"><a href="#二、基本图形符号（重点）" class="headerlink" title="二、基本图形符号（重点）"></a>二、基本图形符号（重点）</h2><p>方框：表示数据的源点或终点</p>
 <p>圆或椭圆：表示加工</p>
 <p>箭头：表示数据流</p>
 <p>双杠：表示数据存储</p>
 <h2 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h2><h3 id="例1-机场问题"><a href="#例1-机场问题" class="headerlink" title="例1-机场问题"></a>例1-机场问题</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">为了方便旅客，旅行平台拟开发一个机票预定系统。航空公司会根据航班信息来安排航班，并将航班信息存储在订票信息中；旅客订票时，旅客将旅客信息输入该系统，系统根据旅客信息在订票信息中查询合适的航班，并返回机票信息，然后系统根据机票信息打印机票，最后将机票信息返回给旅客。请根据上述描述完成相应的数据流图。</span><br></pre></td></tr></table></figure>
-
-<p><img src="/images/%E4%BE%8B1-%E6%9C%BA%E5%9C%BA.png" alt="例1-机场问题"></p>
+<p><img src="/images/例1-机场.png" alt="例1-机场问题"></p>
 <h1 id="UML——类图"><a href="#UML——类图" class="headerlink" title="UML——类图"></a>UML——类图</h1><h2 id="在UML类图中表示具体类"><a href="#在UML类图中表示具体类" class="headerlink" title="在UML类图中表示具体类"></a>在UML类图中表示具体类</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">+”表示 public；</span><br><span class="line">“-”表示 private；</span><br><span class="line">“#”表示 protected；</span><br><span class="line">不带符号表示 default。</span><br></pre></td></tr></table></figure>
-
 <h2 id="在UML类图中表示抽象类"><a href="#在UML类图中表示抽象类" class="headerlink" title="在UML类图中表示抽象类"></a>在UML类图中表示抽象类</h2><p>抽象类的类名以及抽象方法的名字都用斜体字表示</p>
 <h2 id="在UML类图中表示接口"><a href="#在UML类图中表示接口" class="headerlink" title="在UML类图中表示接口"></a>在UML类图中表示接口</h2><p>接口在类图中的第一层顶端用构造型 &lt;<interface>&gt;表示，下面是接口的名字，第二层是方法</p>
 <h2 id="在UML类图中表示包"><a href="#在UML类图中表示包" class="headerlink" title="在UML类图中表示包"></a>在UML类图中表示包</h2><p>大矩形左上角有一个小矩形</p>
@@ -141,7 +135,6 @@
 <p>关联关系有单向关联和双向关联。</p>
 <p>一个对象可以持有其它对象的数组或者集合。在UML中，通过放置多重性（multipicity）表达式在关联线的末端来表示。多重性表达式可以是一个数字、一段范围或者是它们的组合。多重性允许的表达式示例如下：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">数字：精确的数量</span><br><span class="line">*或者0..*：表示0到多个</span><br><span class="line">0..1：表示0或者1个，在Java中经常用一个空引用来实现</span><br><span class="line">1..*：表示1到多个</span><br></pre></td></tr></table></figure>
-
 <p>关联关系又分为依赖关联、聚合关联和组合关联三种类型。</p>
 <h3 id="4-依赖关系"><a href="#4-依赖关系" class="headerlink" title="4.依赖关系"></a>4.依赖关系</h3><p>依赖（Dependency）关系是一种弱关联关系</p>
 <p>在UML类图中，依赖关系用一个带虚线的箭头表示，由使用方指向被使用方，表示使用方对象持有被使用方对象的引用</p>
@@ -154,7 +147,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://goodlunatic.github.io/2023/04/22/UML%20diagram%20drawing/" data-id="cltux1tv30049os3za93g0dn1" class="article-share-link">Share</a>
+      <a data-url="https://goodlunatic.github.io/2023/04/22/UML%20diagram%20drawing/" data-id="cltv84kc8004y343z6fan0qxd" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Skills/" rel="tag">Skills</a></li></ul>
@@ -212,7 +205,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">March 2024</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">February 2024</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">January 2024</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">December 2023</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/11/">November 2023</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/10/">October 2023</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">September 2023</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">August 2023</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/07/">July 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/06/">June 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">May 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">April 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">March 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">February 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/01/">January 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">December 2022</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">November 2022</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">August 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">April 2022</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">March 2024</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">February 2024</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">January 2024</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">December 2023</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/11/">November 2023</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/10/">October 2023</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">September 2023</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">August 2023</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/07/">July 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/06/">June 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">May 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">April 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">March 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">February 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/01/">January 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">December 2022</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">November 2022</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">August 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">April 2022</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -223,6 +216,10 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2024/03/17/CTF%E2%80%94%E2%80%94Crypto/">CTF——Crypto</a>
+          </li>
         
           <li>
             <a href="/2024/03/17/2024-VCTF-Misc-Writeup/">2024-VCTF-Misc-Writeup</a>
@@ -238,10 +235,6 @@
         
           <li>
             <a href="/2024/02/17/%E4%B8%80%E6%96%87%E5%B8%A6%E4%BD%A0%E6%B7%B1%E5%85%A5%E4%BA%86%E8%A7%A3%E9%85%8D%E9%95%9C%E8%A1%8C%E4%B8%9A/">一文带你深入了解配镜行业</a>
-          </li>
-        
-          <li>
-            <a href="/2024/02/10/CTF%E2%80%94%E2%80%94Misc%20Guide/">CTF——Misc Guide</a>
           </li>
         
       </ul>
@@ -302,5 +295,20 @@
 
 <!-- Toc -->
   </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="//cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 </body>
 </html>

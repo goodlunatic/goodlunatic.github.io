@@ -14,21 +14,21 @@
 <meta property="og:site_name" content="Lunatic&#39;s Workstation">
 <meta property="og:description" content="本周六和队友一起打了一下安洵杯，这里对比赛中卡住的一些题目做一个简单的复盘">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://goodlunatic.github.io/images/2023-%E5%AE%89%E6%B4%B5%E6%9D%AFMisc%E5%A4%8D%E7%9B%98_2023-12-24-10-20-16.png">
-<meta property="og:image" content="https://goodlunatic.github.io/images/2023-%E5%AE%89%E6%B4%B5%E6%9D%AFMisc%E5%A4%8D%E7%9B%98_2023-12-24-10-20-36.png">
-<meta property="og:image" content="https://goodlunatic.github.io/images/2023-%E5%AE%89%E6%B4%B5%E6%9D%AFMisc%E5%A4%8D%E7%9B%98_2023-12-24-10-21-29.png">
-<meta property="og:image" content="https://goodlunatic.github.io/images/2023-%E5%AE%89%E6%B4%B5%E6%9D%AFMisc%E5%A4%8D%E7%9B%98_2024-01-03-15-56-06.png">
-<meta property="og:image" content="https://goodlunatic.github.io/images/2023-%E5%AE%89%E6%B4%B5%E6%9D%AFMisc%E5%A4%8D%E7%9B%98_2024-01-03-15-56-34.png">
-<meta property="og:image" content="https://goodlunatic.github.io/images/2023-%E5%AE%89%E6%B4%B5%E6%9D%AFMisc%E5%A4%8D%E7%9B%98_2024-01-03-15-56-45.png">
-<meta property="og:image" content="https://goodlunatic.github.io/images/2023-%E5%AE%89%E6%B4%B5%E6%9D%AFMisc%E5%A4%8D%E7%9B%98_2024-01-03-15-56-57.png">
-<meta property="og:image" content="https://goodlunatic.github.io/images/2023-%E5%AE%89%E6%B4%B5%E6%9D%AFMisc%E5%A4%8D%E7%9B%98_2024-01-03-15-57-14.png">
+<meta property="og:image" content="https://goodlunatic.github.io/images/2023-安洵杯Misc复盘_2023-12-24-10-20-16.png">
+<meta property="og:image" content="https://goodlunatic.github.io/images/2023-安洵杯Misc复盘_2023-12-24-10-20-36.png">
+<meta property="og:image" content="https://goodlunatic.github.io/images/2023-安洵杯Misc复盘_2023-12-24-10-21-29.png">
+<meta property="og:image" content="https://goodlunatic.github.io/images/2023-安洵杯Misc复盘_2024-01-03-15-56-06.png">
+<meta property="og:image" content="https://goodlunatic.github.io/images/2023-安洵杯Misc复盘_2024-01-03-15-56-34.png">
+<meta property="og:image" content="https://goodlunatic.github.io/images/2023-安洵杯Misc复盘_2024-01-03-15-56-45.png">
+<meta property="og:image" content="https://goodlunatic.github.io/images/2023-安洵杯Misc复盘_2024-01-03-15-56-57.png">
+<meta property="og:image" content="https://goodlunatic.github.io/images/2023-安洵杯Misc复盘_2024-01-03-15-57-14.png">
 <meta property="article:published_time" content="2024-01-03T07:49:12.000Z">
 <meta property="article:modified_time" content="2024-01-03T08:00:34.467Z">
 <meta property="article:author" content="Lunatic">
 <meta property="article:tag" content="CTF">
 <meta property="article:tag" content="Misc">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://goodlunatic.github.io/images/2023-%E5%AE%89%E6%B4%B5%E6%9D%AFMisc%E5%A4%8D%E7%9B%98_2023-12-24-10-20-16.png">
+<meta name="twitter:image" content="https://goodlunatic.github.io/images/2023-安洵杯Misc复盘_2023-12-24-10-20-16.png">
   
     <link rel="alternate" href="/atom.xml" title="Lunatic&#39;s Workstation" type="application/atom+xml">
   
@@ -116,24 +116,23 @@
 </div>
       <p><strong>本周六和队友一起打了一下安洵杯，这里对比赛中卡住的一些题目做一个简单的复盘</strong></p>
 <span id="more"></span>
-
 <h1 id="疯狂的麦克斯"><a href="#疯狂的麦克斯" class="headerlink" title="疯狂的麦克斯"></a>疯狂的麦克斯</h1><p>打开麦克斯的称号文件，发现有零宽，零宽解密即可得到：mks007<br>然而题目告知了这个称号本题用不到</p>
-<p><img src="/images/2023-%E5%AE%89%E6%B4%B5%E6%9D%AFMisc%E5%A4%8D%E7%9B%98_2023-12-24-10-20-16.png" alt="mks007"><br>之后把那个 嗨.docx 后缀改为zip，解压可以得到一个文本文件，里面有一个列表和一串未知的编码</p>
-<p><img src="/images/2023-%E5%AE%89%E6%B4%B5%E6%9D%AFMisc%E5%A4%8D%E7%9B%98_2023-12-24-10-20-36.png" alt="MKS IM麦克斯"><br>末尾的那串：XLMWMWQOWHSCSYORSAALSEQM，凯撒解密后可以得到如下内容：<br>THISISMKSDOYOUKNOWWHOAMI<br>THIS IS MKS DO YOU KNOW WHOAMI<br>比赛的时候一直卡在MKS和麦克斯是什么东西，就在找题目和《疯狂的麦克斯》之间的关系<br>然后这个数据又十分的有特征，都是数字+字母（最后一位是字母)，以为是什么特殊的编码<br>赛后看了别的师傅的WP才知道，这个列表其实就相当于一个字典，把列表里面的元素凯撒解密+Base64编码即可<br>然后用这个列表里的元素生成一个字典，直接爆破压缩包密码即可得到flag</p>
-<p><img src="/images/2023-%E5%AE%89%E6%B4%B5%E6%9D%AFMisc%E5%A4%8D%E7%9B%98_2023-12-24-10-21-29.png" alt="爆破压缩包密码"><br>D0g3{Th1s_REA11Y_MAX_F1A4_GGB0ND}<br>总结就是这道题目感觉和《疯狂的麦克斯》一点关系都没有 -_-||</p>
+<p><img src="/images/2023-安洵杯Misc复盘_2023-12-24-10-20-16.png" alt="mks007"><br>之后把那个 嗨.docx 后缀改为zip，解压可以得到一个文本文件，里面有一个列表和一串未知的编码</p>
+<p><img src="/images/2023-安洵杯Misc复盘_2023-12-24-10-20-36.png" alt="MKS IM麦克斯"><br>末尾的那串：XLMWMWQOWHSCSYORSAALSEQM，凯撒解密后可以得到如下内容：<br>THISISMKSDOYOUKNOWWHOAMI<br>THIS IS MKS DO YOU KNOW WHOAMI<br>比赛的时候一直卡在MKS和麦克斯是什么东西，就在找题目和《疯狂的麦克斯》之间的关系<br>然后这个数据又十分的有特征，都是数字+字母（最后一位是字母)，以为是什么特殊的编码<br>赛后看了别的师傅的WP才知道，这个列表其实就相当于一个字典，把列表里面的元素凯撒解密+Base64编码即可<br>然后用这个列表里的元素生成一个字典，直接爆破压缩包密码即可得到flag</p>
+<p><img src="/images/2023-安洵杯Misc复盘_2023-12-24-10-21-29.png" alt="爆破压缩包密码"><br>D0g3{Th1s_REA11Y_MAX_F1A4_GGB0ND}<br>总结就是这道题目感觉和《疯狂的麦克斯》一点关系都没有 -_-||</p>
 <h1 id="dacongのsecret"><a href="#dacongのsecret" class="headerlink" title="dacongのsecret"></a>dacongのsecret</h1><p>用隐形水印工具提取dacong1hao.png中的水印<br>得到第一个压缩包密码：d@C0ng 1s cUt3!!!</p>
-<p><img src="/images/2023-%E5%AE%89%E6%B4%B5%E6%9D%AFMisc%E5%A4%8D%E7%9B%98_2024-01-03-15-56-06.png" alt="水印"><br>解压压缩包得到第二张图片：dacong2hao.jpg<br>发现图片末尾有逆序后的压缩包数据，用cyberchef提取出来，发现需要密码<br>赛后看了WP知道了是IDAT块隐写<br>查看图片1的IDAT块，很明显问题就出在chunk19和chunk20上</p>
-<p><img src="/images/2023-%E5%AE%89%E6%B4%B5%E6%9D%AFMisc%E5%A4%8D%E7%9B%98_2024-01-03-15-56-34.png" alt="IDAT"></p>
+<p><img src="/images/2023-安洵杯Misc复盘_2024-01-03-15-56-06.png" alt="水印"><br>解压压缩包得到第二张图片：dacong2hao.jpg<br>发现图片末尾有逆序后的压缩包数据，用cyberchef提取出来，发现需要密码<br>赛后看了WP知道了是IDAT块隐写<br>查看图片1的IDAT块，很明显问题就出在chunk19和chunk20上</p>
+<p><img src="/images/2023-安洵杯Misc复盘_2024-01-03-15-56-34.png" alt="IDAT"></p>
 <p>尝试把这两块数据提取出来，然后加上文件头，经过尝试发现chunk20是我们需要的</p>
-<p><img src="/images/2023-%E5%AE%89%E6%B4%B5%E6%9D%AFMisc%E5%A4%8D%E7%9B%98_2024-01-03-15-56-45.png" alt="chunk20"></p>
+<p><img src="/images/2023-安洵杯Misc复盘_2024-01-03-15-56-45.png" alt="chunk20"></p>
 <p>然后爆破一下图片的CRC，得到正确的宽高即可得到压缩包密码</p>
-<p><img src="/images/2023-%E5%AE%89%E6%B4%B5%E6%9D%AFMisc%E5%A4%8D%E7%9B%98_2024-01-03-15-56-57.png" alt="key"><br>解压压缩包得到一个xiaohongmao.txt，一眼base64隐写<br>用脚本解密即可得到 pass{m1ku_1s_sha_fufu123}<br>然后用JPHS解密jpg图片即可得到flag：flag{d@C0ng_1s_r3@lIy_Re@iLY_Cute}</p>
-<p><img src="/images/2023-%E5%AE%89%E6%B4%B5%E6%9D%AFMisc%E5%A4%8D%E7%9B%98_2024-01-03-15-57-14.png" alt="JPHS"></p>
+<p><img src="/images/2023-安洵杯Misc复盘_2024-01-03-15-56-57.png" alt="key"><br>解压压缩包得到一个xiaohongmao.txt，一眼base64隐写<br>用脚本解密即可得到 pass{m1ku_1s_sha_fufu123}<br>然后用JPHS解密jpg图片即可得到flag：flag{d@C0ng_1s_r3@lIy_Re@iLY_Cute}</p>
+<p><img src="/images/2023-安洵杯Misc复盘_2024-01-03-15-57-14.png" alt="JPHS"></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://goodlunatic.github.io/2024/01/03/2023-%E5%AE%89%E6%B4%B5%E6%9D%AFMisc%E5%A4%8D%E7%9B%98/" data-id="cltux1tue0007os3z8vmr99in" class="article-share-link">Share</a>
+      <a data-url="https://goodlunatic.github.io/2024/01/03/2023-%E5%AE%89%E6%B4%B5%E6%9D%AFMisc%E5%A4%8D%E7%9B%98/" data-id="cltv84kbc0006343zephg3t44" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CTF/" rel="tag">CTF</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Misc/" rel="tag">Misc</a></li></ul>
@@ -154,9 +153,9 @@
     </a>
   
   
-    <a href="/2024/01/03/CTF%E2%80%94%E2%80%94Crypto/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2023/12/19/2023-%E5%BC%BA%E7%BD%91%E6%9D%AFMisc%E5%A4%8D%E7%9B%98/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">CTF——Crypto</div>
+      <div class="article-nav-title">2023-强网杯Misc复盘</div>
     </a>
   
 </nav>
@@ -191,7 +190,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">March 2024</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">February 2024</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">January 2024</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">December 2023</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/11/">November 2023</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/10/">October 2023</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">September 2023</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">August 2023</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/07/">July 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/06/">June 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">May 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">April 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">March 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">February 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/01/">January 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">December 2022</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">November 2022</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">August 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">April 2022</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">March 2024</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">February 2024</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">January 2024</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">December 2023</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/11/">November 2023</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/10/">October 2023</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">September 2023</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">August 2023</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/07/">July 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/06/">June 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">May 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">April 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">March 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">February 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/01/">January 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">December 2022</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">November 2022</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">August 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">April 2022</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -202,6 +201,10 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2024/03/17/CTF%E2%80%94%E2%80%94Crypto/">CTF——Crypto</a>
+          </li>
         
           <li>
             <a href="/2024/03/17/2024-VCTF-Misc-Writeup/">2024-VCTF-Misc-Writeup</a>
@@ -217,10 +220,6 @@
         
           <li>
             <a href="/2024/02/17/%E4%B8%80%E6%96%87%E5%B8%A6%E4%BD%A0%E6%B7%B1%E5%85%A5%E4%BA%86%E8%A7%A3%E9%85%8D%E9%95%9C%E8%A1%8C%E4%B8%9A/">一文带你深入了解配镜行业</a>
-          </li>
-        
-          <li>
-            <a href="/2024/02/10/CTF%E2%80%94%E2%80%94Misc%20Guide/">CTF——Misc Guide</a>
           </li>
         
       </ul>
@@ -281,5 +280,20 @@
 
 <!-- Toc -->
   </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="//cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 </body>
 </html>
