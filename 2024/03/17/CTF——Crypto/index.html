@@ -15,7 +15,7 @@
 <meta property="og:description" content="This is my learning record for Crypto ^_^">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2024-03-17T05:22:20.000Z">
-<meta property="article:modified_time" content="2024-03-17T07:56:18.267Z">
+<meta property="article:modified_time" content="2024-03-17T15:02:24.283Z">
 <meta property="article:author" content="Lunatic">
 <meta property="article:tag" content="CTF">
 <meta property="article:tag" content="Crypto">
@@ -214,7 +214,7 @@ mjx-container[display="true"] + br {
       <div class="toc-parent">
   <div id="toc" class="toc-article">
     <div class="toc-title">目录</div>
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%A4%E5%85%B8%E5%AF%86%E7%A0%81"><span class="toc-text">古典密码</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%8E%B0%E4%BB%A3%E5%AF%86%E7%A0%81"><span class="toc-text">现代密码</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86"><span class="toc-text">前置知识</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A8%A1%E8%BF%90%E7%AE%97%E7%9A%84%E5%9F%BA%E6%9C%AC%E8%A7%84%E5%88%99"><span class="toc-text">模运算的基本规则</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RSA"><span class="toc-text">RSA</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86"><span class="toc-text">基础知识</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%80%E7%AE%80%E5%8D%95%E7%9A%84RSA%E5%8A%A0%E5%AF%86%E8%BF%87%E7%A8%8B%EF%BC%9A"><span class="toc-text">最简单的RSA加密过程：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BE%8B%E5%AD%90%EF%BC%9A"><span class="toc-text">例子：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E4%BA%9B%E8%84%9A%E6%9C%AC%EF%BC%9A"><span class="toc-text">一些脚本：</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Hash%E9%95%BF%E5%BA%A6%E6%89%A9%E5%B1%95%E6%94%BB%E5%87%BB"><span class="toc-text">Hash长度扩展攻击</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B7%A5%E5%85%B7"><span class="toc-text">工具</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BE%8B%E9%A2%98"><span class="toc-text">例题</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95"><span class="toc-text">刷题记录</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#buuoj-RSA1"><span class="toc-text">buuoj-RSA1</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#buuoj-rsarsa"><span class="toc-text">buuoj-rsarsa</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#buuoj-RSA1-dp-amp-dq%E6%B3%84%E9%9C%B2"><span class="toc-text">buuoj-RSA1(dp&amp;dq泄露)</span></a></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%A4%E5%85%B8%E5%AF%86%E7%A0%81"><span class="toc-text">古典密码</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%8E%B0%E4%BB%A3%E5%AF%86%E7%A0%81"><span class="toc-text">现代密码</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86"><span class="toc-text">前置知识</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A8%A1%E8%BF%90%E7%AE%97%E7%9A%84%E5%9F%BA%E6%9C%AC%E8%A7%84%E5%88%99"><span class="toc-text">模运算的基本规则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B4%B9%E9%A9%AC%E5%B0%8F%E5%AE%9A%E7%90%86"><span class="toc-text">费马小定理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%89%A9%E5%B1%95%E6%AC%A7%E5%87%A0%E9%87%8C%E5%BE%97%E7%AE%97%E6%B3%95"><span class="toc-text">扩展欧几里得算法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RSA"><span class="toc-text">RSA</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86"><span class="toc-text">基础知识</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%80%E7%AE%80%E5%8D%95%E7%9A%84RSA%E5%8A%A0%E5%AF%86%E8%BF%87%E7%A8%8B%EF%BC%9A"><span class="toc-text">最简单的RSA加密过程：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BE%8B%E5%AD%90%EF%BC%9A"><span class="toc-text">例子：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E4%BA%9B%E8%84%9A%E6%9C%AC%EF%BC%9A"><span class="toc-text">一些脚本：</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Hash%E9%95%BF%E5%BA%A6%E6%89%A9%E5%B1%95%E6%94%BB%E5%87%BB"><span class="toc-text">Hash长度扩展攻击</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B7%A5%E5%85%B7"><span class="toc-text">工具</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BE%8B%E9%A2%98"><span class="toc-text">例题</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95"><span class="toc-text">刷题记录</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#buuoj-RSA1"><span class="toc-text">buuoj-RSA1</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#buuoj-rsarsa"><span class="toc-text">buuoj-rsarsa</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#buuoj-RSA1-dp-amp-dq%E6%B3%84%E9%9C%B2"><span class="toc-text">buuoj-RSA1(dp&amp;dq泄露)</span></a></li></ol></li></ol>
   </div>
 </div>
       <p><strong>This is my learning record for Crypto ^_^</strong></p>
@@ -224,10 +224,9 @@ mjx-container[display="true"] + br {
 <script type="math/tex; mode=display">
 (a+b)\mod p=(a\mod p+b\mod p)\mod p\\(a*b)\mod p=(a\mod p*b\mod p)\mod p\\a^b\mod p=((a\mod p)^b)\mod p</script><p><strong>结合律</strong></p>
 <script type="math/tex; mode=display">
-((a+b)\mod p+c)\mod p=(a+(b+c)\mod p)\mod p\\((a*b)\mod p*c)\mod p=(a*(b*c)\mod p)\mod p</script><p><strong>重要定理</strong></p>
-<script type="math/tex; mode=display">
-若a\equiv b\mod p，对于任意的c，都有(a+c)\equiv (b+c)\mod p\\若a\equiv b\mod p，对于任意的c，都有(a*c)\equiv (b*c)\mod p\\若a\equiv b\mod p，对于任意的c，有c\equiv d\mod p，\\则(a+c)\equiv (b+d)\mod p\\(a*c)\equiv(b*d)\mod p</script><script type="math/tex; mode=display">
-费马小定理：\\对于任意素数q和任意整数a，其a不是p的倍数，则\\a^{p-1}\mod p=1</script><h2 id="RSA"><a href="#RSA" class="headerlink" title="RSA"></a>RSA</h2><h3 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h3><figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">素数：一个数如果除了1与它本身之外没有其他的因数，那么这个数就被称为素数。</span><br><span class="line">合数：如果一个数大于1，且该数本身不是素数，那么这个数就是一个合数。</span><br><span class="line">互质数：如果两个整数a,b的最大公因数gcb(a,b)=1，那么称a,b两数互质。</span><br><span class="line">欧拉函数值:设m为正整数，则1,2,3,4…….,m中与m互素的整数的个数记为φ(m)叫做欧拉函数，欧拉函数的值叫做欧拉函数值。如果m为素数，那么φ(m)=n-1；如果m=pq，且p和q互素，那么φ(m)=(p-1)*(q-1)</span><br><span class="line">取模运算与同余的概念:如果存在一个正整数m与两个整数a,b，如果a-b能够被m整除，也就是说m|(a-b),那么a和b模m同余  记做：a=b mod m</span><br><span class="line">模指数运算:模指数运算即先进行指数运算，之后再进行取模运算。记做：a=b^e  mod m</span><br><span class="line">逆元：如果 gcd(a,b)=1 且 a * x ≡ 1(mod b) ，那么 x 为 a 的逆元。可以说 x 为 a 的倒数(a^-1) （或模反元素）</span><br><span class="line">模运算重要定理:若a≡b (mod p)，则对于任意的正整数c，都有(a * c) ≡ (b * c) (mod p)；</span><br></pre></td></tr></table></figure>
+((a+b)\mod p+c)\mod p=(a+(b+c)\mod p)\mod p\\((a*b)\mod p*c)\mod p=(a*(b*c)\mod p)\mod p</script><script type="math/tex; mode=display">
+若a\equiv b\mod p，对于任意的c，都有(a+c)\equiv (b+c)\mod p\\若a\equiv b\mod p，对于任意的c，都有(a*c)\equiv (b*c)\mod p\\若a\equiv b\mod p，对于任意的c，有c\equiv d\mod p，\\则(a+c)\equiv (b+d)\mod p\\(a*c)\equiv(b*d)\mod p</script><h3 id="费马小定理"><a href="#费马小定理" class="headerlink" title="费马小定理"></a>费马小定理</h3><script type="math/tex; mode=display">
+对于任意素数q和任意整数a，其a不是p的倍数，则\\a^{p-1}\mod p=1</script><h3 id="扩展欧几里得算法"><a href="#扩展欧几里得算法" class="headerlink" title="扩展欧几里得算法"></a>扩展欧几里得算法</h3><h2 id="RSA"><a href="#RSA" class="headerlink" title="RSA"></a>RSA</h2><h3 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h3><figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">素数：一个数如果除了1与它本身之外没有其他的因数，那么这个数就被称为素数。</span><br><span class="line">合数：如果一个数大于1，且该数本身不是素数，那么这个数就是一个合数。</span><br><span class="line">互质数：如果两个整数a,b的最大公因数gcb(a,b)=1，那么称a,b两数互质。</span><br><span class="line">欧拉函数值:设m为正整数，则1,2,3,4…….,m中与m互素的整数的个数记为φ(m)叫做欧拉函数，欧拉函数的值叫做欧拉函数值。如果m为素数，那么φ(m)=n-1；如果m=pq，且p和q互素，那么φ(m)=(p-1)*(q-1)</span><br><span class="line">取模运算与同余的概念:如果存在一个正整数m与两个整数a,b，如果a-b能够被m整除，也就是说m|(a-b),那么a和b模m同余  记做：a=b mod m</span><br><span class="line">模指数运算:模指数运算即先进行指数运算，之后再进行取模运算。记做：a=b^e  mod m</span><br><span class="line">逆元：如果 gcd(a,b)=1 且 a * x ≡ 1(mod b) ，那么 x 为 a 的逆元。可以说 x 为 a 的倒数(a^-1) （或模反元素）</span><br><span class="line">模运算重要定理:若a≡b (mod p)，则对于任意的正整数c，都有(a * c) ≡ (b * c) (mod p)；</span><br></pre></td></tr></table></figure>
 <h3 id="最简单的RSA加密过程："><a href="#最简单的RSA加密过程：" class="headerlink" title="最简单的RSA加密过程："></a>最简单的RSA加密过程：</h3><p>1、选择一对不相等且足够大的质数 p、q</p>
 <p>2、计算p、q的乘积n</p>
 <p>3、计算n的欧拉函数：的∮(n)=(p-1)*(q-1)</p>
@@ -267,7 +266,7 @@ c^d=m_p+k_1*p\\k_1*p=mq-mp-k_2*q\\p*i\equiv1+k_3*q\\c^d=mp+i*p*(mq-mp)-(k_1k_2+k
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://goodlunatic.github.io/2024/03/17/CTF%E2%80%94%E2%80%94Crypto/" data-id="cltvbkoz200154c3zfa5e9q3s" class="article-share-link">Share</a>
+      <a data-url="https://goodlunatic.github.io/2024/03/17/CTF%E2%80%94%E2%80%94Crypto/" data-id="cltvpmloc000svs3z9zys7v8o" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CTF/" rel="tag">CTF</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Crypto/" rel="tag">Crypto</a></li></ul>
@@ -277,6 +276,15 @@ c^d=m_p+k_1*p\\k_1*p=mq-mp-k_2*q\\p*i\equiv1+k_3*q\\c^d=mp+i*p*(mq-mp)-(k_1k_2+k
   
   
 <nav id="article-nav">
+  
+    <a href="/2024/03/17/Network%20Traffic%20Analysis/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Network Traffic Analysis
+        
+      </div>
+    </a>
   
   
     <a href="/2024/03/17/2024-VCTF-Misc-Writeup/" id="article-nav-older" class="article-nav-link-wrap">
@@ -329,6 +337,10 @@ c^d=m_p+k_1*p\\k_1*p=mq-mp-k_2*q\\p*i\equiv1+k_3*q\\c^d=mp+i*p*(mq-mp)-(k_1k_2+k
       <ul>
         
           <li>
+            <a href="/2024/03/17/Network%20Traffic%20Analysis/">Network Traffic Analysis</a>
+          </li>
+        
+          <li>
             <a href="/2024/03/17/CTF%E2%80%94%E2%80%94Crypto/">CTF——Crypto</a>
           </li>
         
@@ -338,10 +350,6 @@ c^d=m_p+k_1*p\\k_1*p=mq-mp-k_2*q\\p*i\equiv1+k_3*q\\c^d=mp+i*p*(mq-mp)-(k_1k_2+k
         
           <li>
             <a href="/2024/03/16/Misc%E2%80%94%E2%80%94Forensics/">Misc——Forensics</a>
-          </li>
-        
-          <li>
-            <a href="/2024/03/12/Network%20Traffic%20Analysis/">Network Traffic Analysis</a>
           </li>
         
           <li>
