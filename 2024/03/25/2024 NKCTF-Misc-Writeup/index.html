@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>2024 NKCTF-Misc-Writeup | Lunatic&#39;s Workstation</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="从这场比赛可以看出自己还是有很多东西需要去学感觉Misc很大程度上还是看经验，自己见过的东西还是太少了">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2024 NKCTF-Misc-Writeup">
+<meta property="og:url" content="https://goodlunatic.github.io/2024/03/25/2024%20NKCTF-Misc-Writeup/index.html">
+<meta property="og:site_name" content="Lunatic&#39;s Workstation">
+<meta property="og:description" content="从这场比赛可以看出自己还是有很多东西需要去学感觉Misc很大程度上还是看经验，自己见过的东西还是太少了">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://goodlunatic.github.io/images/2024%20NKCTF-Misc-Writeup_2024-03-25-11-01-39.png">
+<meta property="og:image" content="https://goodlunatic.github.io/images/2024%20NKCTF-Misc-Writeup_2024-03-25-11-02-05.png">
+<meta property="og:image" content="https://goodlunatic.github.io/images/2024%20NKCTF-Misc-Writeup_2024-03-25-11-02-18.png">
+<meta property="og:image" content="https://goodlunatic.github.io/images/2024%20NKCTF-Misc-Writeup_2024-03-25-11-02-58.png">
+<meta property="og:image" content="https://goodlunatic.github.io/images/2024%20NKCTF-Misc-Writeup_2024-03-25-11-03-18.png">
+<meta property="og:image" content="https://goodlunatic.github.io/images/2024%20NKCTF-Misc-Writeup_2024-03-25-11-03-30.png">
+<meta property="og:image" content="https://goodlunatic.github.io/images/2024%20NKCTF-Misc-Writeup_2024-03-25-11-03-50.png">
+<meta property="og:image" content="https://goodlunatic.github.io/images/2024%20NKCTF-Misc-Writeup_2024-03-25-11-04-13.png">
+<meta property="og:image" content="https://goodlunatic.github.io/images/2024%20NKCTF-Misc-Writeup_2024-03-25-11-04-40.png">
+<meta property="og:image" content="https://goodlunatic.github.io/images/2024%20NKCTF-Misc-Writeup_2024-03-25-11-04-52.png">
+<meta property="og:image" content="https://goodlunatic.github.io/images/2024%20NKCTF-Misc-Writeup_2024-03-25-11-05-00.png">
+<meta property="og:image" content="https://goodlunatic.github.io/images/2024%20NKCTF-Misc-Writeup_2024-03-25-11-05-19.png">
+<meta property="og:image" content="https://goodlunatic.github.io/images/2024%20NKCTF-Misc-Writeup_2024-03-25-11-05-44.png">
+<meta property="og:image" content="https://goodlunatic.github.io/images/2024%20NKCTF-Misc-Writeup_2024-03-25-11-05-57.png">
+<meta property="og:image" content="https://goodlunatic.github.io/images/2024%20NKCTF-Misc-Writeup_2024-03-25-11-06-18.png">
+<meta property="og:image" content="https://goodlunatic.github.io/images/2024%20NKCTF-Misc-Writeup_2024-03-25-11-06-34.png">
+<meta property="og:image" content="https://goodlunatic.github.io/images/2024%20NKCTF-Misc-Writeup_2024-03-25-11-06-48.png">
+<meta property="og:image" content="https://goodlunatic.github.io/images/2024%20NKCTF-Misc-Writeup_2024-03-25-11-07-17.png">
+<meta property="og:image" content="https://goodlunatic.github.io/images/2024%20NKCTF-Misc-Writeup_2024-03-25-11-07-28.png">
+<meta property="og:image" content="https://goodlunatic.github.io/images/2024%20NKCTF-Misc-Writeup_2024-03-25-11-07-38.png">
+<meta property="og:image" content="https://goodlunatic.github.io/images/2024%20NKCTF-Misc-Writeup_2024-03-25-11-07-53.png">
+<meta property="og:image" content="https://goodlunatic.github.io/images/2024%20NKCTF-Misc-Writeup_2024-03-25-11-08-08.png">
+<meta property="og:image" content="https://goodlunatic.github.io/images/2024%20NKCTF-Misc-Writeup_2024-03-25-11-12-18.png">
+<meta property="og:image" content="https://goodlunatic.github.io/images/2024%20NKCTF-Misc-Writeup_2024-03-25-11-08-40.png">
+<meta property="og:image" content="https://goodlunatic.github.io/images/2024%20NKCTF-Misc-Writeup_2024-03-25-11-09-04.png">
+<meta property="og:image" content="https://goodlunatic.github.io/images/2024%20NKCTF-Misc-Writeup_2024-03-25-11-09-16.png">
+<meta property="og:image" content="https://goodlunatic.github.io/images/2024%20NKCTF-Misc-Writeup_2024-03-25-11-09-33.png">
+<meta property="og:image" content="https://goodlunatic.github.io/images/2024%20NKCTF-Misc-Writeup_2024-03-25-11-09-44.png">
+<meta property="article:published_time" content="2024-03-25T02:49:54.000Z">
+<meta property="article:modified_time" content="2024-03-25T03:12:24.758Z">
+<meta property="article:author" content="Lunatic">
+<meta property="article:tag" content="CTF">
+<meta property="article:tag" content="Misc">
+<meta property="article:tag" content="WriteUp">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://goodlunatic.github.io/images/2024%20NKCTF-Misc-Writeup_2024-03-25-11-01-39.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Lunatic&#39;s Workstation" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Lunatic&#39;s Workstation</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+          <a class="main-nav-link" href="/Friends">Friends</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://goodlunatic.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-2024 NKCTF-Misc-Writeup" class="article article-type-post" itemscope
+  itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2024/03/25/2024%20NKCTF-Misc-Writeup/" class="article-date">
+  <time datetime="2024-03-25T02:49:54.000Z" itemprop="datePublished">2024-03-25</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/CTF/">CTF</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+    <header class="article-header">
+      
+  
+    <h1 class="article-title" itemprop="name">
+      2024 NKCTF-Misc-Writeup
+    </h1>
+  
+
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      <div class="toc-parent">
+  <div id="toc" class="toc-article">
+    <div class="toc-title">目录</div>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Misc"><span class="toc-text">Misc</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Webshell-pro"><span class="toc-text">Webshell_pro</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Minecraft-SEED"><span class="toc-text">Minecraft:SEED</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Forensic"><span class="toc-text">Forensic</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#cain-is-hacker"><span class="toc-text">cain_is_hacker</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1z-F0r3ns1c5"><span class="toc-text">1z_F0r3ns1c5</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HackMyCQL"><span class="toc-text">HackMyCQL</span></a></li></ol></li></ol>
+  </div>
+</div>
+      <p><strong>从这场比赛可以看出自己还是有很多东西需要去学</strong><br><strong>感觉Misc很大程度上还是看经验，自己见过的东西还是太少了</strong></p>
+<span id="more"></span>
+<h1 id="Misc"><a href="#Misc" class="headerlink" title="Misc"></a>Misc</h1><h2 id="Webshell-pro"><a href="#Webshell-pro" class="headerlink" title="Webshell_pro"></a>Webshell_pro</h2><p><strong>打开流量包，追踪TCP流，可以很明显的看出是一个webshell流量</strong><br><strong>用base64解码响应中的数据，一个个试过去，发现存在hint.py和小明的日记.txt</strong><br><strong>以及后面才出现的flag.txt</strong></p>
+<p><img src="/images/2024%20NKCTF-Misc-Writeup_2024-03-25-11-01-39.png" alt="0.png"><br><img src="/images/2024%20NKCTF-Misc-Writeup_2024-03-25-11-02-05.png" alt="1.png"><br><strong>先base64解码，再去除换行符，最后再base64解码，即可得到请求中shell的加密代码——hint.py</strong></p>
+<p><img src="/images/2024%20NKCTF-Misc-Writeup_2024-03-25-11-02-18.png" alt="2.png"><br><strong>叫ChatGPT写一个解密的代码，开头加上一个urldecode即可</strong><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> base64</span><br><span class="line"><span class="keyword">import</span> libnum</span><br><span class="line"><span class="keyword">from</span> Crypto.PublicKey <span class="keyword">import</span> RSA</span><br><span class="line"><span class="keyword">from</span> urllib.parse <span class="keyword">import</span> unquote</span><br><span class="line"></span><br><span class="line">pubkey_str = <span class="string">&quot;&quot;&quot;-----BEGIN PUBLIC KEY-----</span></span><br><span class="line"><span class="string">MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCK/qv5P8ixWjoFI2rzF62tm6sDFnRsKsGhVSCuxQIxuehMWQLmv6TPxyTQPefIKufzfUFaca/YHkIVIC19ohmE5X738TtxGbOgiGef4bvd9sU6M42k8vMlCPJp1woDFDOFoBQpr4YzH4ZTR6Ps+HP8VEIJMG5uiLQOLxdKdxi41QIDAQAB</span></span><br><span class="line"><span class="string">-----END PUBLIC KEY-----</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">prikey_str = <span class="string">&quot;&quot;&quot;-----BEGIN PRIVATE KEY-----</span></span><br><span class="line"><span class="string">MIICdgIBADANBgkqhkiG9w0BAQEFAASCAmAwggJcAgEAAoGBAIr+q/k/yLFaOgUjavMXra2bqwMWdGwqwaFVIK7FAjG56ExZAua/pM/HJNA958gq5/N9QVpxr9geQhUgLX2iGYTlfvfxO3EZs6CIZ5/hu932xTozjaTy8yUI8mnXCgMUM4WgFCmvhjMfhlNHo+z4c/xUQgkwbm6ItA4vF0p3GLjVAgMBAAECgYBDsqawT5DAUOHRft6oZ+//jsJMTrOFu41ztrKkbPAUqCesh+4R1WXAjY4wnvY1WDCBN5CNLLIo4RPuli2R81HZ4OpZuiHv81sNMccauhrJrioDdbxhxbM7/jQ6M9YajwdNisL5zClXCOs1/y01+9vDiMDk0kX8hiIYlpPKDwjqQQJBAL6Y0fuoJng57GGhdwvN2c656tLDPj9GRi0sfeeMqavRTMz6/qea1LdAuzDhRoS2Wb8ArhOkYns0GMazzc1q428CQQC6sM9OiVR4EV/ewGnBnF+0p3alcYr//Gp1wZ6fKIrFJQpbHTzf27AhKgOJ1qB6A7P/mQS6JvYDPsgrVkPLRnX7AkEAr/xpfyXfB4nsUqWFR3f2UiRmx98RfdlEePeo9YFzNTvX3zkuo9GZ8e8qKNMJiwbYzT0yft59NGeBLQ/eynqUrwJAE6Nxy0Mq/Y5mVVpMRa+babeMBY9SHeeBk22QsBFlt6NT2Y3Tz4CeoH547NEFBJDLKIICO0rJ6kF6cQScERASbQJAZy088sVY6DJtGRLPuysv3NiyfEvikmczCEkDPex4shvFLddwNUlmhzml5pscIie44mBOJ0uX37y+co3q6UoRQg==</span></span><br><span class="line"><span class="string">-----END PRIVATE KEY-----</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">pubkey = RSA.import_key(pubkey_str)</span><br><span class="line">prikey = RSA.import_key(prikey_str)</span><br><span class="line">n = pubkey.n</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">dec_replace</span>(<span class="params">base64_str: <span class="built_in">str</span></span>):</span><br><span class="line">    base64_str = base64_str.replace(<span class="string">&quot;e5Lg^FM5EQYe5!yF&amp;62%V$UG*B*RfQeM&quot;</span>, <span class="string">&quot;/&quot;</span>)</span><br><span class="line">    base64_str = base64_str.replace(<span class="string">&quot;n6&amp;B8G6nE@2tt4UR6h3QBt*5&amp;C&amp;pVu8W&quot;</span>, <span class="string">&quot;+&quot;</span>)</span><br><span class="line">    base64_str = base64_str.replace(<span class="string">&quot;JXWUDuLUgwRLKD9fD6&amp;VY2aFeE&amp;r@Ff2&quot;</span>, <span class="string">&quot;=&quot;</span>)</span><br><span class="line">    <span class="keyword">return</span> base64_str</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">decrypt</span>(<span class="params">cipher_text</span>):</span><br><span class="line">    <span class="comment"># 使用公钥解密</span></span><br><span class="line">    plain_text = <span class="string">b&quot;&quot;</span></span><br><span class="line">    cipher_text = base64.b64decode(dec_replace(cipher_text))</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, <span class="built_in">len</span>(cipher_text), <span class="number">128</span>):</span><br><span class="line">        part = cipher_text[i:i+<span class="number">128</span>]</span><br><span class="line">        dec = libnum.n2s(<span class="built_in">pow</span>(libnum.s2n(part), pubkey.e, n))</span><br><span class="line">        plain_text += dec</span><br><span class="line">    <span class="keyword">return</span> plain_text.decode()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    cipher_text = <span class="built_in">input</span>(<span class="string">&quot;请输入要解密的密文: &quot;</span>)</span><br><span class="line">    cipher_text = unquote(cipher_text)</span><br><span class="line">    decrypted_text = decrypt(cipher_text)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;解密后的明文为:&quot;</span>, decrypted_text)</span><br></pre></td></tr></table></figure></p>
+<p><strong>然后就可以很清楚的知道shell命令都干了啥</strong></p>
+<p><img src="/images/2024%20NKCTF-Misc-Writeup_2024-03-25-11-02-58.png" alt="3.png"><br><strong>去除换行符然后base64解码小明的日记.txt，可以得到解密的密钥</strong></p>
+<p><img src="/images/2024%20NKCTF-Misc-Writeup_2024-03-25-11-03-18.png" alt="4.png"><br><strong>然后用这个密钥去AES解密上面得到的密文即可得到flag</strong></p>
+<p><img src="/images/2024%20NKCTF-Misc-Writeup_2024-03-25-11-03-30.png" alt="5.png"></p>
+<h2 id="Minecraft-SEED"><a href="#Minecraft-SEED" class="headerlink" title="Minecraft:SEED"></a>Minecraft:SEED</h2><h1 id="Forensic"><a href="#Forensic" class="headerlink" title="Forensic"></a>Forensic</h1><h2 id="cain-is-hacker"><a href="#cain-is-hacker" class="headerlink" title="cain_is_hacker"></a>cain_is_hacker</h2><p><strong>内存取证，经典开头用 vol_all_in_one 梭一把</strong></p>
+<p><img src="/images/2024%20NKCTF-Misc-Writeup_2024-03-25-11-03-50.png" alt="c1.png"><br><strong>然后在 filescan 的结果中找到一个h4re.zip，尝试导出</strong><br><strong>桌面上那个 raw 文件应该就是题目附件给我们的 raw 文件</strong><br><strong>所以这里也没必要导出，当然也是无法导出的</strong></p>
+<p><img src="/images/2024%20NKCTF-Misc-Writeup_2024-03-25-11-04-13.png" alt="c2.png"><br><img src="/images/2024%20NKCTF-Misc-Writeup_2024-03-25-11-04-40.png" alt="c3.png"><br><strong>解压这个压缩包，得到两个奇怪的文件，查看其中的importfile后可以知道这个是用Encfs加密后的加密卷</strong></p>
+<p><img src="/images/2024%20NKCTF-Misc-Writeup_2024-03-25-11-04-52.png" alt="c4.png"><br><img src="/images/2024%20NKCTF-Misc-Writeup_2024-03-25-11-05-00.png" alt="c5.png"><br><strong>根据<a target="_blank" rel="noopener" href="https://www.cnblogs.com/truthmaster/p/15776610.html">参考文章</a>可知，我们可以在Windows下用 Encfs4win 来挂载这个加密卷</strong><br><strong>但是解密这个加密卷，需要 .encfs6.xml（即文件夹中的importfile），以及解密的密码</strong><br><strong>因此接下来我们就需要去寻找解密的密码</strong><br><strong>查看 psscan 命令的结果，可以发现存在 StikyNot 进程，这个是Windows自带的便签软件</strong></p>
+<p><img src="/images/2024%20NKCTF-Misc-Writeup_2024-03-25-11-05-19.png" alt="c6.png"><br><strong>参考<a target="_blank" rel="noopener" href="https://lazzzaro.github.io/2020/06/20/misc-取证/">Lazzaro大佬的博客</a>可知</strong><br><strong>StikyNot 的文件会保存在C:\Users\XXX\AppData\Roaming\Microsoft\Sticky Notes\目录下</strong></p>
+<p><img src="/images/2024%20NKCTF-Misc-Writeup_2024-03-25-11-05-44.png" alt="c7.png"><br><strong>因此在文件中搜索 Sticky Notes ，发现有一个StickyNotes.snt文件，尝试导出</strong></p>
+<p><img src="/images/2024%20NKCTF-Misc-Writeup_2024-03-25-11-05-57.png" alt="c8.png"><br><strong>比赛的时候就是卡在了这里，因为这个文件需要用Windows7的便签或记事本打开，然后Win11下是无法直接查看的</strong><br><strong>官方的wp说的是这个东西需要用 WIndows7 的虚拟机打开，我本地还没装这个，就先贴一张打开的截图</strong></p>
+<p><img src="/images/2024%20NKCTF-Misc-Writeup_2024-03-25-11-06-18.png" alt="c9.png"><br><strong>将得到的字符串base58解码后即可得到解密的密码：welcome_to_NkCTF_and_this_is_the_enkey</strong><br><strong>然后将importfile重命名为.encfs6.xml然后用Encfs MP直接挂载即可</strong></p>
+<p><img src="/images/2024%20NKCTF-Misc-Writeup_2024-03-25-11-06-34.png" alt="c10.png"><br><img src="/images/2024%20NKCTF-Misc-Writeup_2024-03-25-11-06-48.png" alt="c11.png"><br><strong>挂载后打开挂载的磁盘，得到一个ez.xlsx</strong><br><strong>无法使用Excel直接打开，于是我们使用010打开，发现vba字符，因此猜测存在宏</strong></p>
+<p><img src="/images/2024%20NKCTF-Misc-Writeup_2024-03-25-11-07-17.png" alt="c12.png"><br><strong>因此我们直接使用olevba分析文件中的vba代码，发现存在base64解码的操作</strong></p>
+<p><img src="/images/2024%20NKCTF-Misc-Writeup_2024-03-25-11-07-28.png" alt="c13.png"><br><img src="/images/2024%20NKCTF-Misc-Writeup_2024-03-25-11-07-38.png" alt="c14.png"><br><strong>用CyberChef解码后得到一些未知的Hex值</strong><br><strong>联系题面猜测这个就是被勒索病毒加密后的flag文件</strong></p>
+<p><em>在fault的配合下，cain宝成功入侵了我的电脑，她使用勒索软件加密了flag文件并将其隐藏了起来。当我发现的时候，cain早已将她使用的勒索软件和密钥删除了，但是匆忙下她还是留下了一些信息，你能在内存中获取并解密flag文件吗？</em></p>
+<p><img src="/images/2024%20NKCTF-Misc-Writeup_2024-03-25-11-07-53.png" alt="c15.png"><br><strong>因此，我接下来要去寻找那个勒索病毒的信息，看看是哪种勒索病毒并尝试寻找它的解密方式</strong><br><strong>在Console命令的结果中发现hidden-tear.exe文件</strong></p>
+<p><img src="/images/2024%20NKCTF-Misc-Writeup_2024-03-25-11-08-08.png" alt="c16.png"><br><strong>网上一搜，发现这个程序就是我们要找的勒索病毒</strong></p>
+<p><img src="/images/2024%20NKCTF-Misc-Writeup_2024-03-25-11-12-18.png" alt="c17.png"><br><strong>已知它是完全开源的，因此我们在github中搜索，发现它连解密的软件一起开源了</strong><br><strong>但是这个解密软件好像不是很好用，这里贴一个<a target="_blank" rel="noopener" href="https://www.bleepingcomputer.com/download/hidden-tear-decrypter/">更好用的解密软件</a></strong></p>
+<p><img src="/images/2024%20NKCTF-Misc-Writeup_2024-03-25-11-08-40.png" alt="c18.png"><br><strong>运行 HiddenTearDecrypter.exe ，发现解密需要解密密钥</strong><br><strong>根据题面可知，密钥被删除了，因此我们需要尝试使用vol的mftparser命令去恢复密钥</strong></p>
+<p><img src="/images/2024%20NKCTF-Misc-Writeup_2024-03-25-11-09-04.png" alt="c19.png"><br><strong>然后在mftparser命令的结果中发现了key，删去空格即可得到恢复密钥：nT0<em>Xo</em>HBA2!Uc?</strong><br><img src="/images/2024%20NKCTF-Misc-Writeup_2024-03-25-11-09-16.png" alt="c20.png"><br><strong>其实这里如果用vol没找到的话，可以使用R-stdio找这个密钥</strong><br><strong>个人感觉用R-stdio找起来更方便，直接在$Recycle.bin中翻就行</strong></p>
+<p><img src="/images/2024%20NKCTF-Misc-Writeup_2024-03-25-11-09-33.png" alt="c21.png"><br><strong>最后将之前保存的加密文件后缀改为.locked，输入密钥用HiddenTearDecrypter.exe解密即可得到flag</strong></p>
+<p><img src="/images/2024%20NKCTF-Misc-Writeup_2024-03-25-11-09-44.png" alt="c22.png"><br><strong>NKCTF{C0ngr@tu1atiOns_On_coMpleting_t3e_Fo3eNs1cs_Ch41lenge_I_wi1l_giv4_y0u_A_cain!!!!}</strong></p>
+<h2 id="1z-F0r3ns1c5"><a href="#1z-F0r3ns1c5" class="headerlink" title="1z_F0r3ns1c5"></a>1z_F0r3ns1c5</h2><h2 id="HackMyCQL"><a href="#HackMyCQL" class="headerlink" title="HackMyCQL"></a>HackMyCQL</h2>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://goodlunatic.github.io/2024/03/25/2024%20NKCTF-Misc-Writeup/" data-id="clu6dhguw000utc3z3is46v04" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CTF/" rel="tag">CTF</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Misc/" rel="tag">Misc</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/WriteUp/" rel="tag">WriteUp</a></li></ul>
+
+    </footer>
+  </div>
+  
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2024/03/20/2024%20DubheCTF-authenticated%20mess%20&%20unauthenticated%20less%E8%AF%A6%E8%A7%A3/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">2024 DubheCTF-authenticated mess &amp; unauthenticated less详解</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/ACM/">ACM</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/BlockChain/">BlockChain</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CTF/">CTF</a><span class="category-list-count">31</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Course/">Course</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Courses/">Courses</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Database/">Database</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Language/">Language</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Misc/">Misc</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Raspberry-Pi/">Raspberry-Pi</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Skills/">Skills</a><span class="category-list-count">18</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/WriteUp/">WriteUp</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/">年终总结</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/ACM/" style="font-size: 10px;">ACM</a> <a href="/tags/AI/" style="font-size: 10px;">AI</a> <a href="/tags/AWD/" style="font-size: 10px;">AWD</a> <a href="/tags/BlockChain/" style="font-size: 10px;">BlockChain</a> <a href="/tags/CTF/" style="font-size: 20px;">CTF</a> <a href="/tags/Course/" style="font-size: 11.67px;">Course</a> <a href="/tags/Courses/" style="font-size: 13.33px;">Courses</a> <a href="/tags/Crypto/" style="font-size: 11.67px;">Crypto</a> <a href="/tags/Deep-Learning/" style="font-size: 10px;">Deep Learning</a> <a href="/tags/Docker/" style="font-size: 10px;">Docker</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/Hexo/" style="font-size: 11.67px;">Hexo</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/Leetcode/" style="font-size: 10px;">Leetcode</a> <a href="/tags/MIsc/" style="font-size: 10px;">MIsc</a> <a href="/tags/Machine-Learning/" style="font-size: 10px;">Machine Learning</a> <a href="/tags/Misc/" style="font-size: 16.67px;">Misc</a> <a href="/tags/Mysql/" style="font-size: 10px;">Mysql</a> <a href="/tags/Nodejs/" style="font-size: 10px;">Nodejs</a> <a href="/tags/PHP/" style="font-size: 10px;">PHP</a> <a href="/tags/Program/" style="font-size: 10px;">Program</a> <a href="/tags/Pwn/" style="font-size: 11.67px;">Pwn</a> <a href="/tags/Python/" style="font-size: 11.67px;">Python</a> <a href="/tags/Raspberry-Pi/" style="font-size: 10px;">Raspberry-Pi</a> <a href="/tags/Reverse/" style="font-size: 10px;">Reverse</a> <a href="/tags/SQL%E6%B3%A8%E5%85%A5/" style="font-size: 10px;">SQL注入</a> <a href="/tags/Skills/" style="font-size: 18.33px;">Skills</a> <a href="/tags/Web/" style="font-size: 15px;">Web</a> <a href="/tags/WriteUp/" style="font-size: 13.33px;">WriteUp</a> <a href="/tags/forensics/" style="font-size: 10px;">forensics</a> <a href="/tags/%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/" style="font-size: 10px;">年终总结</a> <a href="/tags/%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90/" style="font-size: 10px;">流量分析</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">March 2024</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">February 2024</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">January 2024</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">December 2023</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/11/">November 2023</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/10/">October 2023</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">September 2023</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">August 2023</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/07/">July 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/06/">June 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">May 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">April 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">March 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">February 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/01/">January 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">December 2022</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">November 2022</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">August 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">April 2022</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/03/25/2024%20NKCTF-Misc-Writeup/">2024 NKCTF-Misc-Writeup</a>
+          </li>
+        
+          <li>
+            <a href="/2024/03/20/2024%20DubheCTF-authenticated%20mess%20&%20unauthenticated%20less%E8%AF%A6%E8%A7%A3/">2024 DubheCTF-authenticated mess &amp; unauthenticated less详解</a>
+          </li>
+        
+          <li>
+            <a href="/2024/03/20/Network%20Traffic%20Analysis/">Network Traffic Analysis</a>
+          </li>
+        
+          <li>
+            <a href="/2024/03/19/CTF%E2%80%94%E2%80%94Misc%20Guide/">CTF——Misc Guide</a>
+          </li>
+        
+          <li>
+            <a href="/2024/03/19/2024%20DubheCTF-Cipher%E8%AF%A6%E8%A7%A3/">2024 DubheCTF-Cipher详解</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    <div class="widget-wrap toc">
+  <h3 class="widget-title">Catalog</h3>
+  <div class="widget"></div>
+</div>
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2024 Lunatic<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+    <a href="/Friends" class="mobile-nav-link">Friends</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+<!-- Toc -->
+
+<script src="/js/toc.js"></script>
+
+<!-- Toc -->
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="//cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+</body>
+</html>
