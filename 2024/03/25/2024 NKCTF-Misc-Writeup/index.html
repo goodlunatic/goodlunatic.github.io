@@ -20,6 +20,8 @@
 <meta property="og:image" content="https://goodlunatic.github.io/images/2024%20NKCTF-Misc-Writeup_2024-03-25-11-02-58.png">
 <meta property="og:image" content="https://goodlunatic.github.io/images/2024%20NKCTF-Misc-Writeup_2024-03-25-11-03-18.png">
 <meta property="og:image" content="https://goodlunatic.github.io/images/2024%20NKCTF-Misc-Writeup_2024-03-25-11-03-30.png">
+<meta property="og:image" content="https://goodlunatic.github.io/images/2024%20NKCTF-Misc-Writeup_2024-03-25-11-15-45.png">
+<meta property="og:image" content="https://goodlunatic.github.io/images/2024%20NKCTF-Misc-Writeup_2024-03-25-11-16-01.png">
 <meta property="og:image" content="https://goodlunatic.github.io/images/2024%20NKCTF-Misc-Writeup_2024-03-25-11-03-50.png">
 <meta property="og:image" content="https://goodlunatic.github.io/images/2024%20NKCTF-Misc-Writeup_2024-03-25-11-04-13.png">
 <meta property="og:image" content="https://goodlunatic.github.io/images/2024%20NKCTF-Misc-Writeup_2024-03-25-11-04-40.png">
@@ -43,7 +45,7 @@
 <meta property="og:image" content="https://goodlunatic.github.io/images/2024%20NKCTF-Misc-Writeup_2024-03-25-11-09-33.png">
 <meta property="og:image" content="https://goodlunatic.github.io/images/2024%20NKCTF-Misc-Writeup_2024-03-25-11-09-44.png">
 <meta property="article:published_time" content="2024-03-25T02:49:54.000Z">
-<meta property="article:modified_time" content="2024-03-25T03:12:24.758Z">
+<meta property="article:modified_time" content="2024-03-25T03:16:05.248Z">
 <meta property="article:author" content="Lunatic">
 <meta property="article:tag" content="CTF">
 <meta property="article:tag" content="Misc">
@@ -144,7 +146,10 @@
 <p><img src="/images/2024%20NKCTF-Misc-Writeup_2024-03-25-11-02-58.png" alt="3.png"><br><strong>去除换行符然后base64解码小明的日记.txt，可以得到解密的密钥</strong></p>
 <p><img src="/images/2024%20NKCTF-Misc-Writeup_2024-03-25-11-03-18.png" alt="4.png"><br><strong>然后用这个密钥去AES解密上面得到的密文即可得到flag</strong></p>
 <p><img src="/images/2024%20NKCTF-Misc-Writeup_2024-03-25-11-03-30.png" alt="5.png"></p>
-<h2 id="Minecraft-SEED"><a href="#Minecraft-SEED" class="headerlink" title="Minecraft:SEED"></a>Minecraft:SEED</h2><h1 id="Forensic"><a href="#Forensic" class="headerlink" title="Forensic"></a>Forensic</h1><h2 id="cain-is-hacker"><a href="#cain-is-hacker" class="headerlink" title="cain_is_hacker"></a>cain_is_hacker</h2><p><strong>内存取证，经典开头用 vol_all_in_one 梭一把</strong></p>
+<h2 id="Minecraft-SEED"><a href="#Minecraft-SEED" class="headerlink" title="Minecraft:SEED"></a>Minecraft:SEED</h2><p>服务器IP: nkctf-mc-01.shenghuo2.cn / nkctf-mc-02.shenghuo2.cn / nkctf-mc-03.shenghuo2.cn<br>装一个 <a target="_blank" rel="noopener" href="https://github.com/19MisterX98/SeedcrackerX">SeedCrackerX</a> 和一个 <a target="_blank" rel="noopener" href="https://www.wurstclient.net/">Wurst</a> 加速飞行跑图<br>然后找到5个沉船就行，mod会自己开始爆破seed</p>
+<p><img src="/images/2024%20NKCTF-Misc-Writeup_2024-03-25-11-15-45.png" alt=""><br>Seed: 2150463978431929967<br>然后输入/getflag 2150463978431929967即可得到flag</p>
+<p><img src="/images/2024%20NKCTF-Misc-Writeup_2024-03-25-11-16-01.png" alt=""></p>
+<h1 id="Forensic"><a href="#Forensic" class="headerlink" title="Forensic"></a>Forensic</h1><h2 id="cain-is-hacker"><a href="#cain-is-hacker" class="headerlink" title="cain_is_hacker"></a>cain_is_hacker</h2><p><strong>内存取证，经典开头用 vol_all_in_one 梭一把</strong></p>
 <p><img src="/images/2024%20NKCTF-Misc-Writeup_2024-03-25-11-03-50.png" alt="c1.png"><br><strong>然后在 filescan 的结果中找到一个h4re.zip，尝试导出</strong><br><strong>桌面上那个 raw 文件应该就是题目附件给我们的 raw 文件</strong><br><strong>所以这里也没必要导出，当然也是无法导出的</strong></p>
 <p><img src="/images/2024%20NKCTF-Misc-Writeup_2024-03-25-11-04-13.png" alt="c2.png"><br><img src="/images/2024%20NKCTF-Misc-Writeup_2024-03-25-11-04-40.png" alt="c3.png"><br><strong>解压这个压缩包，得到两个奇怪的文件，查看其中的importfile后可以知道这个是用Encfs加密后的加密卷</strong></p>
 <p><img src="/images/2024%20NKCTF-Misc-Writeup_2024-03-25-11-04-52.png" alt="c4.png"><br><img src="/images/2024%20NKCTF-Misc-Writeup_2024-03-25-11-05-00.png" alt="c5.png"><br><strong>根据<a target="_blank" rel="noopener" href="https://www.cnblogs.com/truthmaster/p/15776610.html">参考文章</a>可知，我们可以在Windows下用 Encfs4win 来挂载这个加密卷</strong><br><strong>但是解密这个加密卷，需要 .encfs6.xml（即文件夹中的importfile），以及解密的密码</strong><br><strong>因此接下来我们就需要去寻找解密的密码</strong><br><strong>查看 psscan 命令的结果，可以发现存在 StikyNot 进程，这个是Windows自带的便签软件</strong></p>
@@ -167,7 +172,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://goodlunatic.github.io/2024/03/25/2024%20NKCTF-Misc-Writeup/" data-id="clu6dhguw000utc3z3is46v04" class="article-share-link">Share</a>
+      <a data-url="https://goodlunatic.github.io/2024/03/25/2024%20NKCTF-Misc-Writeup/" data-id="clu6dp6t1000l203zeq8ydzct" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CTF/" rel="tag">CTF</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Misc/" rel="tag">Misc</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/WriteUp/" rel="tag">WriteUp</a></li></ul>
