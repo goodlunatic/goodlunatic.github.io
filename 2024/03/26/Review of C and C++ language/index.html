@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Review of C and C++ language | Lunatic&#39;s Workstation</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="在大三的这个学期，我又重新学习了数据结构这门课，发现自己当初学的很多东西都忘了 在学习了很多别的语言后，再来看大一的C语言，感觉又有了很多不一样的理解和体会">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Review of C and C++ language">
+<meta property="og:url" content="https://goodlunatic.github.io/2024/03/26/Review%20of%20C%20and%20C++%20language/index.html">
+<meta property="og:site_name" content="Lunatic&#39;s Workstation">
+<meta property="og:description" content="在大三的这个学期，我又重新学习了数据结构这门课，发现自己当初学的很多东西都忘了 在学习了很多别的语言后，再来看大一的C语言，感觉又有了很多不一样的理解和体会">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-03-26T10:12:58.000Z">
+<meta property="article:modified_time" content="2024-03-26T11:18:38.132Z">
+<meta property="article:author" content="Lunatic">
+<meta property="article:tag" content="C">
+<meta property="article:tag" content="C++">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Lunatic&#39;s Workstation" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Lunatic&#39;s Workstation</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+          <a class="main-nav-link" href="/Friends">Friends</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://goodlunatic.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Review of C and C++ language" class="article article-type-post" itemscope
+  itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2024/03/26/Review%20of%20C%20and%20C++%20language/" class="article-date">
+  <time datetime="2024-03-26T10:12:58.000Z" itemprop="datePublished">2024-03-26</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Language/">Language</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+    <header class="article-header">
+      
+  
+    <h1 class="article-title" itemprop="name">
+      Review of C and C++ language
+    </h1>
+  
+
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      <div class="toc-parent">
+  <div id="toc" class="toc-article">
+    <div class="toc-title">目录</div>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%BE%93%E5%85%A5%E5%92%8C%E8%BE%93%E5%87%BA"><span class="toc-text">输入和输出</span></a></li></ol>
+  </div>
+</div>
+      <p><strong>在大三的这个学期，我又重新学习了数据结构这门课，发现自己当初学的很多东西都忘了</strong></p>
+<p><strong>在学习了很多别的语言后，再来看大一的C语言，感觉又有了很多不一样的理解和体会</strong></p>
+<span id="more"></span>
+<h1 id="输入和输出"><a href="#输入和输出" class="headerlink" title="输入和输出"></a>输入和输出</h1><p>虽然输入和输出是C或C++的基础或者说是敲门砖，但是实际上很多人都没有彻底的搞清楚这个知识点</p>
+<p><strong>scanf()函数</strong></p>
+<p>scanf()函数默认是以空白字符（空格、制表符、换行符）为分隔</p>
+<p>但是如果使用 %d %s 等格式制表符，scanf()就会忽略输入中的空白字符，并将它们作为分隔符</p>
+<p>scanf()不会读取末尾的 ‘\n’ 换行符</p>
+<p>Tips：这里要特别注意输入时，变量前的&amp;符号什么时候要什么时候不要</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="type">int</span> num1,num2;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>,&amp;num1,&amp;num2);</span><br><span class="line"><span class="comment">//	1 2</span></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%d %d&quot;</span>,num1,num2);</span><br><span class="line"><span class="comment">//	1 2</span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="type">char</span> s[<span class="number">100</span>];</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">&quot;%s&quot;</span>, s);</span><br><span class="line"><span class="comment">//	这里不用&amp;符号的原因是：数组本身就是指向数组首元素的指针</span></span><br><span class="line"><span class="comment">//	因此不用取地址运算符&amp;</span></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%s&quot;</span>,s);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>printf()函数</strong></p>
+<p>printf()是C语言中标准的输出函数，因此要注意的就是格式化输出时的参数</p>
+<p>常见的格式说明符有以下这些</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">%d: 用于输出十进制整数。</span><br><span class="line">%u: 用于输出无符号十进制整数。</span><br><span class="line">%x, %X: 用于输出十六进制整数，小写或大写字母表示。</span><br><span class="line">%o: 用于输出八进制整数。</span><br><span class="line">%f: 用于输出浮点数。</span><br><span class="line">%e, %E: 用于输出科学计数法表示的浮点数，小写或大写字母表示。</span><br><span class="line">%g, %G: 根据实际情况自动选择 %f 或 %e（%E）格式进行输出。</span><br><span class="line">%c: 用于输出字符。</span><br><span class="line">%s: 用于输出字符串。</span><br><span class="line">%p: 用于输出指针地址。</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="type">float</span> num = <span class="number">3.14159</span>;</span><br><span class="line">	<span class="comment">// 保留小数点后两位，右对齐输出,字段宽度为10</span></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%10.2f\n&quot;</span>, num);</span><br><span class="line">	<span class="comment">// 保留小数点后两位，左对齐输出,字段宽度为10</span></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%-10.2f\n&quot;</span>, num);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//		3.14</span></span><br><span class="line"><span class="comment">//3.14</span></span><br></pre></td></tr></table></figure>
+<p><strong>getchar()函数</strong></p>
+<p>从标准输入流中读取一个字符，常用来处理上一行末尾留下的换行符</p>
+<p><strong>gets()函数</strong></p>
+<p>从标准输入流读取字符串，但是因为没有限制读入长度，所以是非常危险的函数，可以选择使用 fgets() 替代</p>
+<p>gets()会把末尾的换行符一起读取了，但是之后会将其从输入中删除</p>
+<p><strong>puts()函数</strong></p>
+<p>只能用于输出字符串，无法使用格式控制符，并且末尾会自动输出一个换行符</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="type">char</span> str[<span class="number">100</span>];</span><br><span class="line">	<span class="built_in">gets</span>(str);</span><br><span class="line">	<span class="built_in">puts</span>(str);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>fgetls()函数</strong></p>
+<p>用于从输入流中读取一整行的文本，并将其存储到指定字符串中</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="type">char</span> str[<span class="number">5</span>];</span><br><span class="line">	<span class="built_in">fgets</span>(str, <span class="built_in">sizeof</span>(str), stdin);</span><br><span class="line"><span class="comment">//	 从标准输入读取一行文本</span></span><br><span class="line">	<span class="built_in">puts</span>(str);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//因为设定的缓存区大小是5,所以只会读取前四个字符,然后加上一个结束符&#x27;\0&#x27;</span></span><br><span class="line"><span class="comment">//123456789</span></span><br><span class="line"><span class="comment">//1234&#x27;\0&#x27;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="type">char</span> str[<span class="number">5</span>];</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">&quot;%s&quot;</span>,str);</span><br><span class="line">	<span class="built_in">puts</span>(str);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//scanf()输入不受缓冲区大小的限制</span></span><br><span class="line"><span class="comment">//直到遇到空白字符才会停止读取</span></span><br><span class="line"><span class="comment">//123456789</span></span><br><span class="line"><span class="comment">//123456789</span></span><br></pre></td></tr></table></figure>
+<p><strong>cin()函数</strong></p>
+<p>cin()是C++中的标准输入函数，完整的用法是 std::cin</p>
+<p>但是我们平常使用的时候都会提前在开头使用 using namespace std;</p>
+<p>这样就可以直接使用 cin 了</p>
+<p><strong>cout()函数</strong></p>
+<p>cout()是C++中的标准输出函数</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="type">double</span> num = <span class="number">3.14159</span>;</span><br><span class="line">	cout &lt;&lt; <span class="built_in">setw</span>(<span class="number">10</span>) &lt;&lt; <span class="built_in">setprecision</span>(<span class="number">4</span>) &lt;&lt; right &lt;&lt; num &lt;&lt; endl;</span><br><span class="line"><span class="comment">//	保留小数点后4位，宽度为10右对齐输出</span></span><br><span class="line"><span class="comment">//	     3.142</span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>sprintf()函数</strong></p>
+<p>sprintf()函数用于将格式化的数据写入到一个字符串中，而不是输出到标准输出流</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="type">char</span> buffer[<span class="number">50</span>];</span><br><span class="line">	<span class="type">int</span> num = <span class="number">123</span>;</span><br><span class="line">	<span class="type">float</span> fnum = <span class="number">3.14159</span>;</span><br><span class="line">	<span class="comment">// 将格式化的数据写入到buffer数组中</span></span><br><span class="line">	<span class="built_in">sprintf</span>(buffer, <span class="string">&quot;Integer: %d, Float: %.2f&quot;</span>, num, fnum);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%s\n&quot;</span>, buffer);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://goodlunatic.github.io/2024/03/26/Review%20of%20C%20and%20C++%20language/" data-id="clu8aanz8005cbg3z7ih3blp1" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/" rel="tag">C</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/" rel="tag">C++</a></li></ul>
+
+    </footer>
+  </div>
+  
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2024/03/26/2024%20NKCTF-Misc-Writeup/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">2024 NKCTF-Misc-Writeup</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/ACM/">ACM</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/BlockChain/">BlockChain</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CTF/">CTF</a><span class="category-list-count">32</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Course/">Course</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Courses/">Courses</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Database/">Database</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Language/">Language</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Misc/">Misc</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Raspberry-Pi/">Raspberry-Pi</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Skills/">Skills</a><span class="category-list-count">18</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/WriteUp/">WriteUp</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/">年终总结</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/ACM/" style="font-size: 10px;">ACM</a> <a href="/tags/AI/" style="font-size: 10px;">AI</a> <a href="/tags/AWD/" style="font-size: 10px;">AWD</a> <a href="/tags/BlockChain/" style="font-size: 10px;">BlockChain</a> <a href="/tags/C/" style="font-size: 10px;">C</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/CTF/" style="font-size: 20px;">CTF</a> <a href="/tags/Course/" style="font-size: 11.67px;">Course</a> <a href="/tags/Courses/" style="font-size: 13.33px;">Courses</a> <a href="/tags/Crypto/" style="font-size: 11.67px;">Crypto</a> <a href="/tags/Deep-Learning/" style="font-size: 10px;">Deep Learning</a> <a href="/tags/Docker/" style="font-size: 10px;">Docker</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/Hexo/" style="font-size: 11.67px;">Hexo</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/Leetcode/" style="font-size: 10px;">Leetcode</a> <a href="/tags/MIsc/" style="font-size: 10px;">MIsc</a> <a href="/tags/Machine-Learning/" style="font-size: 10px;">Machine Learning</a> <a href="/tags/Misc/" style="font-size: 16.67px;">Misc</a> <a href="/tags/Mysql/" style="font-size: 10px;">Mysql</a> <a href="/tags/Nodejs/" style="font-size: 10px;">Nodejs</a> <a href="/tags/PHP/" style="font-size: 10px;">PHP</a> <a href="/tags/Program/" style="font-size: 10px;">Program</a> <a href="/tags/Pwn/" style="font-size: 11.67px;">Pwn</a> <a href="/tags/Python/" style="font-size: 11.67px;">Python</a> <a href="/tags/Raspberry-Pi/" style="font-size: 10px;">Raspberry-Pi</a> <a href="/tags/Reverse/" style="font-size: 10px;">Reverse</a> <a href="/tags/SQL%E6%B3%A8%E5%85%A5/" style="font-size: 10px;">SQL注入</a> <a href="/tags/Skills/" style="font-size: 18.33px;">Skills</a> <a href="/tags/Virus/" style="font-size: 10px;">Virus</a> <a href="/tags/Web/" style="font-size: 15px;">Web</a> <a href="/tags/WriteUp/" style="font-size: 13.33px;">WriteUp</a> <a href="/tags/forensics/" style="font-size: 10px;">forensics</a> <a href="/tags/%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/" style="font-size: 10px;">年终总结</a> <a href="/tags/%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90/" style="font-size: 10px;">流量分析</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">March 2024</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">February 2024</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">January 2024</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">December 2023</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/11/">November 2023</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/10/">October 2023</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">September 2023</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">August 2023</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/07/">July 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/06/">June 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">May 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">April 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">March 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">February 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/01/">January 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">December 2022</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">November 2022</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">August 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">April 2022</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/03/26/Review%20of%20C%20and%20C++%20language/">Review of C and C++ language</a>
+          </li>
+        
+          <li>
+            <a href="/2024/03/26/2024%20NKCTF-Misc-Writeup/">2024 NKCTF-Misc-Writeup</a>
+          </li>
+        
+          <li>
+            <a href="/2024/03/26/%E7%94%B1%E6%B5%85%E5%85%A5%E6%B7%B1%E4%BA%86%E8%A7%A3%E5%B9%B6%E5%88%86%E6%9E%90%E5%8B%92%E7%B4%A2%E7%97%85%E6%AF%92/">由浅入深了解并分析勒索病毒</a>
+          </li>
+        
+          <li>
+            <a href="/2024/03/20/2024%20DubheCTF-authenticated%20mess%20&%20unauthenticated%20less%E8%AF%A6%E8%A7%A3/">2024 DubheCTF-authenticated mess &amp; unauthenticated less详解</a>
+          </li>
+        
+          <li>
+            <a href="/2024/03/20/Network%20Traffic%20Analysis/">Network Traffic Analysis</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    <div class="widget-wrap toc">
+  <h3 class="widget-title">Catalog</h3>
+  <div class="widget"></div>
+</div>
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2024 Lunatic<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+    <a href="/Friends" class="mobile-nav-link">Friends</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+<!-- Toc -->
+
+<script src="/js/toc.js"></script>
+
+<!-- Toc -->
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="//cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+</body>
+</html>
