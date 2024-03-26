@@ -10,10 +10,11 @@
   <meta name="description" content="最开始接触CTF时，学的最多的就是Misc，各种编码各种加密还有各种软件的使用… 但无奈MIsc涉及的范围实在太广了，于是就萌生了一边学习一边记录的想法，甚至还想为此写一本指南。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CTF——Misc Guide">
-<meta property="og:url" content="https://goodlunatic.github.io/2024/03/19/CTF%E2%80%94%E2%80%94Misc%20Guide/index.html">
+<meta property="og:url" content="https://goodlunatic.github.io/2024/03/26/CTF%E2%80%94%E2%80%94Misc%20Guide/index.html">
 <meta property="og:site_name" content="Lunatic&#39;s Workstation">
 <meta property="og:description" content="最开始接触CTF时，学的最多的就是Misc，各种编码各种加密还有各种软件的使用… 但无奈MIsc涉及的范围实在太广了，于是就萌生了一边学习一边记录的想法，甚至还想为此写一本指南。">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://goodlunatic.github.io/images/CTF——Misc%20Guide_2024-03-26-23-42-22.png">
 <meta property="og:image" content="https://goodlunatic.github.io/images/CTF——Misc%20Guide_2024-03-19-20-05-18.png">
 <meta property="og:image" content="https://goodlunatic.github.io/images/敲击码.jpeg">
 <meta property="og:image" content="https://goodlunatic.github.io/images/CTF——Misc%20Guide_2023-11-03-20-02-41.png">
@@ -31,13 +32,13 @@
 <meta property="og:image" content="https://image.3001.net/images/20201117/1605593956_5fb36b64db62588f96dcc.png!small">
 <meta property="og:image" content="https://goodlunatic.github.io/images/CTF——Misc%20Guide_2023-10-25-18-14-59.png">
 <meta property="og:image" content="https://goodlunatic.github.io/images/CTF——Misc%20Guide_2023-10-25-11-29-22.png">
-<meta property="article:published_time" content="2024-03-19T11:41:08.000Z">
-<meta property="article:modified_time" content="2024-03-19T12:05:50.302Z">
+<meta property="article:published_time" content="2024-03-26T11:41:08.000Z">
+<meta property="article:modified_time" content="2024-03-26T15:43:02.528Z">
 <meta property="article:author" content="Lunatic">
 <meta property="article:tag" content="CTF">
 <meta property="article:tag" content="Misc">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://goodlunatic.github.io/images/CTF——Misc%20Guide_2024-03-19-20-05-18.png">
+<meta name="twitter:image" content="https://goodlunatic.github.io/images/CTF——Misc%20Guide_2024-03-26-23-42-22.png">
   
     <link rel="alternate" href="/atom.xml" title="Lunatic&#39;s Workstation" type="application/atom+xml">
   
@@ -93,8 +94,8 @@
         <section id="main"><article id="post-CTF——Misc Guide" class="article article-type-post" itemscope
   itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2024/03/19/CTF%E2%80%94%E2%80%94Misc%20Guide/" class="article-date">
-  <time datetime="2024-03-19T11:41:08.000Z" itemprop="datePublished">2024-03-19</time>
+    <a href="/2024/03/26/CTF%E2%80%94%E2%80%94Misc%20Guide/" class="article-date">
+  <time datetime="2024-03-26T11:41:08.000Z" itemprop="datePublished">2024-03-26</time>
 </a>
     
   <div class="article-category">
@@ -141,7 +142,8 @@
 <h2 id="base家族"><a href="#base家族" class="headerlink" title="base家族"></a>base家族</h2><p>详细请看：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/0yst3r-2046/p/11962942.html">https://www.cnblogs.com/0yst3r-2046/p/11962942.html</a></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">1、base16                       flag         666C6167</span><br><span class="line">2、base32[A-Z2-7]               flag         MZWGCZY=</span><br><span class="line">3、base36                       flag         727432</span><br><span class="line">4、base58                       flag         3cr9Ae</span><br><span class="line">5、base64                       flag         Zmxh</span><br><span class="line">6、base85                       flag         Ao(mg</span><br><span class="line">7、base91                       flag         @iH&lt;Z</span><br><span class="line">8、base92                       flag         F#S&lt;I</span><br></pre></td></tr></table></figure>
 <p>base64还可以换表(表中的字符要求不重复)编码，例如<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sQ+3ja02RchXLUFmNSZoYPlr8e/HVqxwfWtd7pnTADK15Evi9kGOMgbuIzyB64CJ</span><br><span class="line">SjaoNgS0xgagUTpwe3QwHn4MrbkD/OUwqOQG/bpveg6Mqa4WH0k46</span><br><span class="line">第一行是表，第二行是编码后的密文</span><br><span class="line">cyberchef解密即可得到flag</span><br></pre></td></tr></table></figure></p>
-<p>Tips：base64可以与其他文件格式互相转换（比如图片[会有很多行的base64]），使用在线网站或者随波逐流转换即可</p>
+<p>Tips：base64可以与其他文件格式互相转换（比如图片[会有很多行的base64]），使用在线网站或者随波逐流转换即可<br>如果出现了很多层乱七八糟的base编码，连CyberChef都识别不出来的话，可以试试用BaseCrack这个开源工具<br>输入 python basecrack.py -m 运行即可</p>
+<p><img src="/images/CTF——Misc%20Guide_2024-03-26-23-42-22.png" alt=""></p>
 <h2 id="MD5加密"><a href="#MD5加密" class="headerlink" title="MD5加密"></a>MD5加密</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">明文：admin</span><br><span class="line">32位小写21232f297a57a5a743894a0e4a801fc3 </span><br><span class="line">32位大写21232F297A57A5A743894A0E4A801FC3 </span><br><span class="line">16位小写7a57a5a743894a0e </span><br><span class="line">16位大写7A57A5A743894A0E </span><br><span class="line">Tips：十六位其实就是取32位的8-24位</span><br></pre></td></tr></table></figure>
 <h2 id="python中str类型和byte类型："><a href="#python中str类型和byte类型：" class="headerlink" title="python中str类型和byte类型："></a>python中str类型和byte类型：</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">\&gt;&gt;&gt; a = <span class="string">&#x27;寒鸦小站&#x27;</span></span><br><span class="line">\&gt;&gt;&gt; <span class="built_in">type</span>(a)</span><br><span class="line">&lt;class <span class="string">&#x27;str&#x27;</span>&gt;</span><br><span class="line">\&gt;&gt;&gt; b = a.encode()</span><br><span class="line">\&gt;&gt;&gt; b</span><br><span class="line">b<span class="string">&#x27;\xe5\xaf\x92\xe9\xb8\xa6\xe5\xb0\x8f\xe7\xab\x99&#x27;</span></span><br><span class="line">\&gt;&gt;&gt; <span class="built_in">type</span>(b)</span><br><span class="line">&lt;class <span class="string">&#x27;bytes&#x27;</span>&gt;</span><br></pre></td></tr></table></figure>
 <h2 id="emoji-aes编码："><a href="#emoji-aes编码：" class="headerlink" title="emoji-aes编码："></a>emoji-aes编码：</h2><p><a target="_blank" rel="noopener" href="https://aghorler.github.io/emoji-aes/">https://aghorler.github.io/emoji-aes/</a></p>
@@ -716,7 +718,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://goodlunatic.github.io/2024/03/19/CTF%E2%80%94%E2%80%94Misc%20Guide/" data-id="clu8aanyr0020bg3zdt8s4v2g" class="article-share-link">Share</a>
+      <a data-url="https://goodlunatic.github.io/2024/03/26/CTF%E2%80%94%E2%80%94Misc%20Guide/" data-id="clu8jqjrl001d2o3zazfmfw85" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CTF/" rel="tag">CTF</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Misc/" rel="tag">Misc</a></li></ul>
@@ -727,19 +729,10 @@
   
 <nav id="article-nav">
   
-    <a href="/2024/03/20/Network%20Traffic%20Analysis/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          Network Traffic Analysis
-        
-      </div>
-    </a>
   
-  
-    <a href="/2024/03/19/2024%20DubheCTF-Cipher%E8%AF%A6%E8%A7%A3/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2024/03/26/Review%20of%20C%20and%20C++%20language/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">2024 DubheCTF-Cipher详解</div>
+      <div class="article-nav-title">Review of C and C++ language</div>
     </a>
   
 </nav>
@@ -787,6 +780,10 @@
       <ul>
         
           <li>
+            <a href="/2024/03/26/CTF%E2%80%94%E2%80%94Misc%20Guide/">CTF——Misc Guide</a>
+          </li>
+        
+          <li>
             <a href="/2024/03/26/Review%20of%20C%20and%20C++%20language/">Review of C and C++ language</a>
           </li>
         
@@ -800,10 +797,6 @@
         
           <li>
             <a href="/2024/03/20/2024%20DubheCTF-authenticated%20mess%20&%20unauthenticated%20less%E8%AF%A6%E8%A7%A3/">2024 DubheCTF-authenticated mess &amp; unauthenticated less详解</a>
-          </li>
-        
-          <li>
-            <a href="/2024/03/20/Network%20Traffic%20Analysis/">Network Traffic Analysis</a>
           </li>
         
       </ul>
