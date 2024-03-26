@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>由浅入深了解并分析勒索病毒 | Lunatic&#39;s Workstation</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="最近有一个比赛让我接触到了勒索病毒，于是就想着趁这个机会稍微学习一下">
+<meta property="og:type" content="article">
+<meta property="og:title" content="由浅入深了解并分析勒索病毒">
+<meta property="og:url" content="https://goodlunatic.github.io/2024/03/26/%E7%94%B1%E6%B5%85%E5%85%A5%E6%B7%B1%E4%BA%86%E8%A7%A3%E5%B9%B6%E5%88%86%E6%9E%90%E5%8B%92%E7%B4%A2%E7%97%85%E6%AF%92/index.html">
+<meta property="og:site_name" content="Lunatic&#39;s Workstation">
+<meta property="og:description" content="最近有一个比赛让我接触到了勒索病毒，于是就想着趁这个机会稍微学习一下">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://goodlunatic.github.io/images/由浅入深了解并分析勒索病毒_2024-03-26-09-28-21.png">
+<meta property="og:image" content="https://goodlunatic.github.io/images/由浅入深了解并分析勒索病毒_2024-03-26-09-28-35.png">
+<meta property="og:image" content="https://goodlunatic.github.io/images/由浅入深了解并分析勒索病毒_2024-03-26-09-28-49.png">
+<meta property="og:image" content="https://goodlunatic.github.io/images/由浅入深了解并分析勒索病毒_2024-03-26-09-28-55.png">
+<meta property="og:image" content="https://goodlunatic.github.io/images/由浅入深了解并分析勒索病毒_2024-03-26-09-29-33.png">
+<meta property="article:published_time" content="2024-03-26T01:05:43.000Z">
+<meta property="article:modified_time" content="2024-03-26T01:30:39.825Z">
+<meta property="article:author" content="Lunatic">
+<meta property="article:tag" content="Skills">
+<meta property="article:tag" content="Virus">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://goodlunatic.github.io/images/由浅入深了解并分析勒索病毒_2024-03-26-09-28-21.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Lunatic&#39;s Workstation" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Lunatic&#39;s Workstation</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+          <a class="main-nav-link" href="/Friends">Friends</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://goodlunatic.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-由浅入深了解并分析勒索病毒" class="article article-type-post" itemscope
+  itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2024/03/26/%E7%94%B1%E6%B5%85%E5%85%A5%E6%B7%B1%E4%BA%86%E8%A7%A3%E5%B9%B6%E5%88%86%E6%9E%90%E5%8B%92%E7%B4%A2%E7%97%85%E6%AF%92/" class="article-date">
+  <time datetime="2024-03-26T01:05:43.000Z" itemprop="datePublished">2024-03-26</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/CTF/">CTF</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+    <header class="article-header">
+      
+  
+    <h1 class="article-title" itemprop="name">
+      由浅入深了解并分析勒索病毒
+    </h1>
+  
+
+    </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      <div class="toc-parent">
+  <div id="toc" class="toc-article">
+    <div class="toc-title">目录</div>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Hidden-Tear"><span class="toc-text">Hidden-Tear</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E7%94%9F%E6%88%90%E4%B8%80%E4%B8%AA%E5%8B%92%E7%B4%A2%E7%97%85%E6%AF%92%E7%9A%84%E6%96%B9%E6%B3%95"><span class="toc-text">自定义生成一个勒索病毒的方法</span></a></li></ol></li></ol>
+  </div>
+</div>
+      <p><strong>最近有一个比赛让我接触到了勒索病毒，于是就想着趁这个机会稍微学习一下</strong></p>
+<span id="more"></span>
+<h1 id="Hidden-Tear"><a href="#Hidden-Tear" class="headerlink" title="Hidden-Tear"></a>Hidden-Tear</h1><p><strong><a target="_blank" rel="noopener" href="https://github.com/goliate/hidden-tear">Hidden-Tear</a>是全球首款开源的勒索病毒，因此我们就从它入手</strong></p>
+<p><strong>首先是将开源的代码下载到本地，发现里面不仅包含了勒索的加密程序，也附带了解密的程序</strong></p>
+<p><strong>但是个人感觉这个解密程序感觉没有<a target="_blank" rel="noopener" href="https://www.bleepingcomputer.com/download/hidden-tear-decrypter/">这个程序</a>好用</strong></p>
+<h2 id="自定义生成一个勒索病毒的方法"><a href="#自定义生成一个勒索病毒的方法" class="headerlink" title="自定义生成一个勒索病毒的方法"></a>自定义生成一个勒索病毒的方法</h2><p><strong>首先使用 VIsual Studio 打开源代码中的 hidden-tear.sln，它会自动识别 .NET Framework 并更新成新的框架</strong></p>
+<p><strong>然后会自动识别这个解决方案，点开右侧栏中的 Form1 文件，就可以开始编辑源代码了</strong></p>
+<p><img src="/images/由浅入深了解并分析勒索病毒_2024-03-26-09-28-21.png" alt=""><br><strong>这里的 targetURL 参数就是程序发送解密密钥的服务器地址，它默认是通过一个GET请求发送的</strong></p>
+<p><img src="/images/由浅入深了解并分析勒索病毒_2024-03-26-09-28-35.png" alt=""><br><strong>然后下面 encryptDirectory 函数中的 validExtensions 变量指定了会锁定的文件类型（后缀），这里可以自行修改</strong></p>
+<p><img src="/images/由浅入深了解并分析勒索病毒_2024-03-26-09-28-49.png" alt=""><br><strong>下图中的两个 path 变量就分别代表着锁定文件的路径以及 READ_IT.txt 文件的生成路径</strong></p>
+<p><strong>lines 变量则定义了 READ_IT 文件中的的内容，目的就是提醒受害者文件已经被勒索了</strong></p>
+<p><img src="/images/由浅入深了解并分析勒索病毒_2024-03-26-09-28-55.png" alt=""></p>
+<p><strong>以上变量都定义好后就可以通过右键点击解决方案-重新生成解决方案来生成一个勒索病毒了</strong></p>
+<p><strong>等程序运行完，病毒就会生成在 hidden-tear\bin\Debug\hidden-tear.exe 路径下</strong></p>
+<p><img src="/images/由浅入深了解并分析勒索病毒_2024-03-26-09-29-33.png" alt=""></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://goodlunatic.github.io/2024/03/26/%E7%94%B1%E6%B5%85%E5%85%A5%E6%B7%B1%E4%BA%86%E8%A7%A3%E5%B9%B6%E5%88%86%E6%9E%90%E5%8B%92%E7%B4%A2%E7%97%85%E6%AF%92/" data-id="clu7pac7z006wog3z2773g73x" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Skills/" rel="tag">Skills</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Virus/" rel="tag">Virus</a></li></ul>
+
+    </footer>
+  </div>
+  
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2024/03/25/2024%20NKCTF-Misc-Writeup/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">2024 NKCTF-Misc-Writeup</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/ACM/">ACM</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/BlockChain/">BlockChain</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CTF/">CTF</a><span class="category-list-count">32</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Course/">Course</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Courses/">Courses</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Database/">Database</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Language/">Language</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Misc/">Misc</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Raspberry-Pi/">Raspberry-Pi</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Skills/">Skills</a><span class="category-list-count">18</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/WriteUp/">WriteUp</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/">年终总结</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/ACM/" style="font-size: 10px;">ACM</a> <a href="/tags/AI/" style="font-size: 10px;">AI</a> <a href="/tags/AWD/" style="font-size: 10px;">AWD</a> <a href="/tags/BlockChain/" style="font-size: 10px;">BlockChain</a> <a href="/tags/CTF/" style="font-size: 20px;">CTF</a> <a href="/tags/Course/" style="font-size: 11.67px;">Course</a> <a href="/tags/Courses/" style="font-size: 13.33px;">Courses</a> <a href="/tags/Crypto/" style="font-size: 11.67px;">Crypto</a> <a href="/tags/Deep-Learning/" style="font-size: 10px;">Deep Learning</a> <a href="/tags/Docker/" style="font-size: 10px;">Docker</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/Hexo/" style="font-size: 11.67px;">Hexo</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/Leetcode/" style="font-size: 10px;">Leetcode</a> <a href="/tags/MIsc/" style="font-size: 10px;">MIsc</a> <a href="/tags/Machine-Learning/" style="font-size: 10px;">Machine Learning</a> <a href="/tags/Misc/" style="font-size: 16.67px;">Misc</a> <a href="/tags/Mysql/" style="font-size: 10px;">Mysql</a> <a href="/tags/Nodejs/" style="font-size: 10px;">Nodejs</a> <a href="/tags/PHP/" style="font-size: 10px;">PHP</a> <a href="/tags/Program/" style="font-size: 10px;">Program</a> <a href="/tags/Pwn/" style="font-size: 11.67px;">Pwn</a> <a href="/tags/Python/" style="font-size: 11.67px;">Python</a> <a href="/tags/Raspberry-Pi/" style="font-size: 10px;">Raspberry-Pi</a> <a href="/tags/Reverse/" style="font-size: 10px;">Reverse</a> <a href="/tags/SQL%E6%B3%A8%E5%85%A5/" style="font-size: 10px;">SQL注入</a> <a href="/tags/Skills/" style="font-size: 18.33px;">Skills</a> <a href="/tags/Virus/" style="font-size: 10px;">Virus</a> <a href="/tags/Web/" style="font-size: 15px;">Web</a> <a href="/tags/WriteUp/" style="font-size: 13.33px;">WriteUp</a> <a href="/tags/forensics/" style="font-size: 10px;">forensics</a> <a href="/tags/%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/" style="font-size: 10px;">年终总结</a> <a href="/tags/%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90/" style="font-size: 10px;">流量分析</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">March 2024</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">February 2024</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">January 2024</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">December 2023</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/11/">November 2023</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/10/">October 2023</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">September 2023</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">August 2023</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/07/">July 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/06/">June 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">May 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">April 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">March 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">February 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/01/">January 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">December 2022</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">November 2022</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">August 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">April 2022</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/03/26/%E7%94%B1%E6%B5%85%E5%85%A5%E6%B7%B1%E4%BA%86%E8%A7%A3%E5%B9%B6%E5%88%86%E6%9E%90%E5%8B%92%E7%B4%A2%E7%97%85%E6%AF%92/">由浅入深了解并分析勒索病毒</a>
+          </li>
+        
+          <li>
+            <a href="/2024/03/25/2024%20NKCTF-Misc-Writeup/">2024 NKCTF-Misc-Writeup</a>
+          </li>
+        
+          <li>
+            <a href="/2024/03/20/2024%20DubheCTF-authenticated%20mess%20&%20unauthenticated%20less%E8%AF%A6%E8%A7%A3/">2024 DubheCTF-authenticated mess &amp; unauthenticated less详解</a>
+          </li>
+        
+          <li>
+            <a href="/2024/03/20/Network%20Traffic%20Analysis/">Network Traffic Analysis</a>
+          </li>
+        
+          <li>
+            <a href="/2024/03/19/CTF%E2%80%94%E2%80%94Misc%20Guide/">CTF——Misc Guide</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    <div class="widget-wrap toc">
+  <h3 class="widget-title">Catalog</h3>
+  <div class="widget"></div>
+</div>
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2024 Lunatic<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+    <a href="/Friends" class="mobile-nav-link">Friends</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+<!-- Toc -->
+
+<script src="/js/toc.js"></script>
+
+<!-- Toc -->
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="//cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+</body>
+</html>
