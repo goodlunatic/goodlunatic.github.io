@@ -1,6 +1,8 @@
 # 2024 帕鲁杯 Misc Writeup
 
 
+**2024 帕鲁杯 Misc Writeup**
+
 &lt;!--more--&gt;
 
 ## 题目名称 签到
