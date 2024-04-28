@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title>Draft - Category - ⚡Lunatic BLOG⚡</title>
+    <link>http://localhost:1313/categories/draft/</link>
+    <description>Draft - Category | ⚡Lunatic BLOG⚡</description>
+    <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>goodlunatic0@gmail.com (Lunatic)</managingEditor>
+      <webMaster>goodlunatic0@gmail.com (Lunatic)</webMaster><lastBuildDate>Sun, 28 Apr 2024 10:37:17 &#43;0800</lastBuildDate><atom:link href="http://localhost:1313/categories/draft/" rel="self" type="application/rss+xml" /><item>
+  <title>temple</title>
+  <link>http://localhost:1313/posts/1ad9200/</link>
+  <pubDate>Sun, 28 Apr 2024 10:37:17 &#43;0800</pubDate>
+  <author>Lunatic</author>
+  <guid>http://localhost:1313/posts/1ad9200/</guid>
+  <description><![CDATA[]]></description>
+</item>
+</channel>
+</rss>

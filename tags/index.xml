@@ -1,0 +1,15 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title>Tags - 标签 - My New Hugo Site</title>
+    <link>http://localhost:1313/tags/</link>
+    <description>Tags - 标签 | My New Hugo Site</description>
+    <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Tue, 23 Apr 2024 09:13:51 &#43;0800</lastBuildDate><atom:link href="http://localhost:1313/tags/" rel="self" type="application/rss+xml" /><item>
+  <title>Draft</title>
+  <link>http://localhost:1313/tags/draft/</link>
+  <pubDate>Tue, 23 Apr 2024 09:13:51 &#43;0800</pubDate>
+  <author>作者</author>
+  <guid>http://localhost:1313/tags/draft/</guid>
+  <description><![CDATA[]]></description>
+</item>
+</channel>
+</rss>
