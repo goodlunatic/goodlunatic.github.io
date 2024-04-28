@@ -150,6 +150,6 @@ bwm1.extract(&#39;33.png&#39;, wm_shape=(350, 350),
 
 ---
 
-> Author:   
+> Author: [Lunatic](https://goodlunatic.github.io)  
 > URL: http://localhost:1313/posts/a907e2b/  
 
