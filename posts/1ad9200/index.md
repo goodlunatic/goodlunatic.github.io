@@ -2114,5 +2114,5 @@ Colemak
 ---
 
 > Author: [Lunatic](https://goodlunatic.github.io)  
-> URL: https://lunatic.github.io/posts/1ad9200/  
+> URL: http://localhost:1313/posts/1ad9200/  
 
