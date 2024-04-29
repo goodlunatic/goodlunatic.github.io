@@ -2,7 +2,9 @@
   xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml"
   ><url>
-      <loc>http://localhost:1313/</loc><lastmod>2024-04-28T16:34:12&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+      <loc>http://localhost:1313/</loc><lastmod>2024-04-29T09:10:30&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+      <loc>http://localhost:1313/about/</loc><lastmod>2024-04-29T09:10:30&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+      <loc>http://localhost:1313/friends/</loc><lastmod>2024-04-28T20:29:56&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
       <loc>http://localhost:1313/categories/</loc><lastmod>2024-04-28T16:34:12&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
       <loc>http://localhost:1313/tags/ctf/</loc><lastmod>2024-04-28T16:34:12&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
       <loc>http://localhost:1313/categories/ctf/</loc><lastmod>2024-04-28T16:34:12&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
