@@ -19,7 +19,7 @@
 
 &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;![Wechat](imgs/Wechat.jpg)&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;![Alipay](imgs/Alipay.jpg)
 
-GitHub Profile Trophy 🏆
+**GitHub Profile Trophy 🏆**
 
   &lt;img width=800 src=&#34;https://github-profile-trophy.vercel.app/?username=goodlunatic&amp;column=8&amp;theme=gruvbox&amp;no-frame=true&#34;/&gt;
 
