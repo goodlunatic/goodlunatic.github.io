@@ -286,7 +286,7 @@ for n in nums:
 print(&#39;output :\n&#39; &#43; output)
 ```
 
-提取出来的数据如果有&lt;SPACE&gt;&lt;DEL&gt;&lt;RET&gt;,我们可以用vscode中的正则匹配来替换他们
+提取出来的数据如果有\&lt;SPACE\&gt;\&lt;DEL\&gt;\&lt;RET\&gt;,我们可以用vscode中的正则匹配来替换他们
 
 ### 鼠标流量
 
@@ -785,10 +785,53 @@ jack::WIDGETLLC:2af71b5ca7246268:2d1d24572b15fe544043431c59965d30:01010000000000
 
 后续步骤就和之前一样了，提取信息然后用 hashcat 爆破
 
-## 工业协议流量分析
+## 工控流量分析
 
 将流量按长度降序排列，然后在各层寻找线索，
 显示分组字节，从base64后开始，然后解码看文件类型，最后显示成该类型
+
+### Modbus 协议分析
+
+
+
+
+
+
+### S7comm 协议分析
+&gt; 西门子设备的工控协议，基于 COTP 实现，是COTP的上层协议
+&gt; 主要有三种类型：Job(1)、Ack_Data(3)/Ack(2)、Userdata(7)
+&gt; Job：下发任务/指令
+&gt; Ack_Data：带有返回数据
+&gt; Ack：单纯确认，含有数据
+&gt; Userdata：用户自定义数据区，也包含功能指令
+
+#### 例题1-2020ICSC湖州站—工控协议数据分析
+
+首先过滤出S7协议的数据包，发现在一些Ack_Data的数据包中传输了二进制数据
+![](imgs/image-20240430111822297.png)
+因此，我们将所有带有二进制数据的数据包都过滤出来，发现一些Job的数据包中也有二进制数据
+![](imgs/image-20240430112312109.png)
+然后我们尝试将所有带有二进制数据的Job数据包都过滤出来并导出特定分组，过滤器代码如下
+```bash
+((s7comm) &amp;&amp; (s7comm.resp.data)) &amp;&amp; (s7comm.param.func == 0x05)
+```
+
+![](imgs/image-20240430112740044.png)
+
+然后使用 tshark 提取数据
+```tshark
+tshark -r 1.pcap -T fields -e s7comm.resp.data | uniq
+```
+![](imgs/image-20240430112936680.png)
+
+最后 CyberChef 解码二进制即可得到 flag
+![](imgs/image-20240430113016466.png)
+#### 例题2-2020ICSC济南站—被篡改的数据
+
+
+
+
+
 
 ## 蓝牙(OBEX)流量分析
 
