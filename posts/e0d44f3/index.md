@@ -75,37 +75,46 @@ Seed: 2150463978431929967
 ## cain_is_hacker
 内存取证，经典开头用 vol_all_in_one 梭一把
 ![](imgs/image-20240430191057005.png)
+
 然后在 filescan 的结果中找到一个h4re.zip，尝试导出
 桌面上那个 raw 文件应该就是题目附件给我们的 raw 文件
 所以这里也没必要导出，当然也是无法导出的
 ![](imgs/image-20240430191104016.png)
 ![](imgs/image-20240430191107942.png)
+
 解压这个压缩包，得到两个奇怪的文件，查看其中的importfile后可以知道这个是用Encfs加密后的加密卷
 ![](imgs/image-20240430191117376.png)
 ![](imgs/image-20240430191120037.png)
+
 根据[参考文章](https://www.cnblogs.com/truthmaster/p/15776610.html)可知，我们可以在Windows下用 Encfs4win 来挂载这个加密卷  
 但是解密这个加密卷，需要 .encfs6.xml（即文件夹中的importfile)，以及解密的密码  
 因此接下来我们就需要去寻找解密的密码  
 比赛的时候一直在找破解这个密码的方法，找到了一个 CVE-2014-3462，但是没有能用的exp  
 查看 psscan 命令的结果，可以发现存在 StikyNot 进程，这个是Windows自带的便签软件
 ![](imgs/image-20240430191134602.png)
+
 参考[Lazzaro大佬的博客](https://lazzzaro.github.io/2020/06/20/misc-取证/)可知  
 StikyNot 的文件会保存在C:\Users\XXX\AppData\Roaming\Microsoft\Sticky Notes\目录下
 ![](imgs/image-20240430191146138.png)
+
 因此在文件中搜索 Sticky Notes ，发现有一个StickyNotes.snt文件，尝试导出
 ![](imgs/image-20240430191152930.png)
+
 比赛的时候就是卡在了这里，因为这个文件需要用Windows7的便签或记事本打开，然后Win11下是无法直接查看的
 官方的wp说的是这个东西需要用 WIndows7 的虚拟机打开，这里真的很坑，要专业版的Win7才有
 这里需要将这个.snt文件放到C:\Users\XXX\AppData\Roaming\Microsoft\Sticky Notes\\路径下
 最后再打开便签即可看到下面这样的一串字符串
 ![](imgs/image-20240430191201976.png)
+
 将得到的字符串base58解码后即可得到解密的密码：welcome_to_NkCTF_and_this_is_the_enkey
 然后将importfile重命名为.encfs6.xml然后用Encfs MP直接挂载即可
 ![](imgs/image-20240430191210101.png)
 ![](imgs/image-20240430191213926.png)
+
 挂载后打开挂载的磁盘，得到一个ez.xlsx
 无法使用Excel直接打开，于是我们使用010打开，发现vba字符，因此猜测存在宏
 ![](imgs/image-20240430191221687.png)
+
 因此我们直接使用olevba分析文件中的vba代码，发现存在base64解码的操作
 ![](imgs/image-20240430191231780.png)
 ![](imgs/image-20240430191234934.png)
@@ -115,32 +124,41 @@ StikyNot 的文件会保存在C:\Users\XXX\AppData\Roaming\Microsoft\Sticky Note
 &gt;_在fault的配合下，cain宝成功入侵了我的电脑，她使用勒索软件加密了flag文件并将其隐藏了起来。当我发现的时候，cain早已将她使用的勒索软件和密钥删除了，但是匆忙下她还是留下了一些信息，你能在内存中获取并解密flag文件吗？_
 
 ![](imgs/image-20240430191254553.png)
+
 因此，我接下来要去寻找那个勒索病毒的信息，看看是哪种勒索病毒并尝试寻找它的解密方式
 在Console命令的结果中发现hidden-tear.exe文件
 ![](imgs/image-20240430191304205.png)
-**网上一搜，发现这个程序就是我们要找的勒索病毒**
+
+网上一搜，发现这个程序就是我们要找的勒索病毒
 
 ![](imgs/image-20240430191315352.png)
+
 已知它是完全开源的，因此我们在github中搜索，发现它连解密的软件一起开源了  
 但是这个解密软件好像不是很好用，这里贴一个[更好用的解密软件](https://www.bleepingcomputer.com/download/hidden-tear-decrypter/)
 ![](imgs/image-20240430191326585.png)
+
 运行 HiddenTearDecrypter.exe ，发现解密需要解密密钥
 根据题面可知，密钥被删除了，因此我们需要尝试使用vol的mftparser命令去恢复密钥
 ![](imgs/image-20240430191336367.png)
+
 然后在mftparser命令的结果中发现了key，删去空格即可得到恢复密钥：nT0XoHBA2!Uc?
 ![](imgs/image-20240430191343578.png)
+
 其实这里如果用vol没找到的话，可以使用R-stdio找这个密钥
 个人感觉用R-stdio找起来更方便，直接在$Recycle.bin中翻就行
 ![](imgs/image-20240430191351185.png)
+
 最后将之前保存的加密文件后缀改为.locked，输入密钥用HiddenTearDecrypter.exe解密即可得到flag
 ![](imgs/image-20240430191358504.png)
 NKCTF{C0ngr@tu1atiOns_On_coMpleting_t3e_Fo3eNs1cs_Ch41lenge_I_wi1l_giv4_y0u_A_cain!!!!}
 ## 1z_F0r3ns1c5
 给了一个1.raw内存镜像文件，直接 all_in_one 脚本开扫
 ![](imgs/image-20240430191420441.png)
+
 查看镜像的环境变量，发现有好多个叫做nowayback的变量
 
 ![](imgs/image-20240430191426322.png)
+
 随波逐流一键解码（XXencode解密）即可得到第一段flag：nkctf{39c429eb-2faf
 ![](imgs/image-20240430191432559.png)
 
@@ -157,13 +175,17 @@ flag1：nkctf{39c429eb-2faf
 flag2：-49a0-bd24-
 之后在consoles命令的记录中看到出题人git了一个项目的源码
 ![](imgs/image-20240430191513036.png)
+
 我们这里也将源码 git clone 到本地，查看README发现源码被删了，提示我们恢复源码
 
 ![](imgs/image-20240430191522097.png)
+
 使用 git log 命令查看历史 commit 记录，发现前面有一个 9eb2 开头的版本
 ![](imgs/image-20240430191624918.png)
+
 我们使用 git reset —hard 命令恢复到之前的版本，然后目录下就可以看到源码了
 ![](imgs/image-20240430191634223.png)
+
 根据之前README文件中的提示，我们只能使用 Docker 或者 Python3.7.2 部署这项目
 于是我们这里使用 docker-compose 部署，到源码 docker 目录下运行 docker-compose up 即可
 然后我们访问 8080 端口，可以看到下面这个界面，要求我们输入加密信息并上传字体
@@ -186,6 +208,7 @@ def mosaic_img(img, L, H, R, D):
     mosaic = Image.new(&#39;RGB&#39;, (w, h), tuple(b))  
     img.paste(mosaic, (L, H, R, D))
 ```
+
 分析源码中的加密函数可知，这个加密是直接通过图像处理来实现的
 因此我们就需要去找到和出题人一模一样的字体，结合题目附件中 readme.txt 中的信息：
 本鼠鼠的flag总共分为三段捏，flag为nkctf{uuid}形式，另外鼠鼠最喜欢等宽字体了，快快去找吧。
@@ -194,6 +217,7 @@ def mosaic_img(img, L, H, R, D):
 C:\Users\XXX\AppData\Roaming\Code\User\settings.json
 我们使用 R-Stdio 来提取镜像中 vscode 的配置文件
 ![](imgs/image-20240430191746373.png)
+
 恢复完后，配置文件中的内容如下，对比我们自己的 vscode 可以发现 Fira Code 这个非默认的等宽字体
 ```json
 {  
@@ -206,11 +230,13 @@ C:\Users\XXX\AppData\Roaming\Code\User\settings.json
 因此我们直接去下载 [FiraCode](https://github.com/tonsky/FiraCode) 即可，下载完后选择 FiraCode-Regular.ttf 上传即可
 为了破解这个加密，我们就需要进行打表，获取每个字符加密后的图片
 ![](imgs/image-20240430191836523.png)
+
 从代码逻辑中可以看出，代码没有对前5个字符(pass)和最后一个字符(即上图中字符串末尾的 9)进行加密
 ![](imgs/image-20240430191845508.png)
 
 因此，我需要在字符串末尾多输入一个 9，然后保存加密后的图片
 ![](imgs/image-20240430191853550.png)
+
 将两张图片放到同一目录下，并分别命名为 table.png 和 pass.png
 然后写脚本切割两张图片，通过计算并比较图片的md5值来获得下一步的密钥：b143a6268e2a233
 ```python
@@ -293,6 +319,7 @@ if __name__ == &#34;__main__&#34;:
     crop_pass()  
     get_pass()
 ```
+
 VeraCrypt 用得到的密钥挂载附件中的 secret 文件即可得到flag3：c4f222879312
 最终的flag：nkctf{39c429eb-2faf-49a0-bd24-c4f222879312}
 ## HackMyCQL
