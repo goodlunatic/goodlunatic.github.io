@@ -153,6 +153,7 @@ StikyNot 的文件会保存在C:\Users\XXX\AppData\Roaming\Microsoft\Sticky Note
 NKCTF{C0ngr@tu1atiOns_On_coMpleting_t3e_Fo3eNs1cs_Ch41lenge_I_wi1l_giv4_y0u_A_cain!!!!}
 ## 1z_F0r3ns1c5
 给了一个1.raw内存镜像文件，直接 all_in_one 脚本开扫
+
 ![](imgs/image-20240430191420441.png)
 
 查看镜像的环境变量，发现有好多个叫做nowayback的变量
@@ -160,6 +161,7 @@ NKCTF{C0ngr@tu1atiOns_On_coMpleting_t3e_Fo3eNs1cs_Ch41lenge_I_wi1l_giv4_y0u_A_ca
 ![](imgs/image-20240430191426322.png)
 
 随波逐流一键解码（XXencode解密）即可得到第一段flag：nkctf{39c429eb-2faf
+
 ![](imgs/image-20240430191432559.png)
 
 flag1：nkctf{39c429eb-2faf
@@ -189,6 +191,7 @@ flag2：-49a0-bd24-
 根据之前README文件中的提示，我们只能使用 Docker 或者 Python3.7.2 部署这项目
 于是我们这里使用 docker-compose 部署，到源码 docker 目录下运行 docker-compose up 即可
 然后我们访问 8080 端口，可以看到下面这个界面，要求我们输入加密信息并上传字体
+
 ![](imgs/image-20240430191645542.png)
 我们随便上传一个 tff 字体文件，然后输入一段文本，网页都会返回一张加密(类似于马赛克)后的图片
 因此结合附件中某段 flag.zip 中的 pass.png，可以猜测题目的意思就是让我们通过马赛克图片还原 pass
