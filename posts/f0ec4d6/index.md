@@ -6,7 +6,7 @@
 本文的参考链接如下：
 https://hasegawaazusa.github.io/blind-water-mark-note.html
 https://github.com/guofei9987/blind_watermark
-
+https://github.com/chishaxie/BlindWaterMark
 
 
 ## 一张图片的盲水印
@@ -16,17 +16,27 @@ https://github.com/guofei9987/blind_watermark
 
 图片加盲水印的流程大致如下所示：
 
-![](imgs/image-20240504144826568.png)
 
-要了解盲水印，我们首先需要了解傅里叶变换
 
-傅里叶变换是将信号再时域或空域的函数转变为频域表示
 
 
 
 
 ### 频域盲水印
 
+频域盲水印的流程大致如下所示：
+
+![](imgs/image-20240504144826568.png)
+
+####  [开源项目1](https://github.com/chishaxie/BlindWaterMark)
+TIps：该项目需要提供原图才能提取盲水印
+使用流程如下
+```bash
+# 添加盲水印
+python bwmforpy3.py encode lena.png wm.png lena_with_wm.png
+# 提取盲水印
+python bwmforpy3.py decode lena.png wm.png lena_with_wm.png
+```
 
 ---
 
