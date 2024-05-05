@@ -503,6 +503,21 @@ flag{QAZIJCV}
 直接网上查找福尔摩斯密码对照表即可
  flag{RRRRRRE}
 
+### 手机九宫格键盘密码
+
+参考链接：[https://blog.csdn.net/qq_55011640/article/details/123626280](https://blog.csdn.net/qq_55011640/article/details/123626280)
+
+下面举个栗子就理解了：
+82  73  42  31  22  31  33  41  32
+U     R    H   D    B     D   F    G    E
+
+### 利用编程代码画图
+
+1. LOGO编程语言【例题-\[RCTF2019\]draw 】
+	在线编译器：https://www.calormen.com/jslogo/
+2. CFRS编程语言【例题-2024宁波市赛初赛 Misc2】
+	在线画图网站：https://susam.net/cfrs.html
+
 ## 各种文件头/尾：
 
 这里要注意，出题人可能会把文件头的小写字母偷偷改成大写，例如：Rar -&gt; RAR

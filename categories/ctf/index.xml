@@ -4,7 +4,15 @@
     <link>http://localhost:1313/categories/ctf/</link>
     <description>CTF - Category | ⚡Lunatic BLOG⚡</description>
     <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>goodlunatic0@gmail.com (Lunatic)</managingEditor>
-      <webMaster>goodlunatic0@gmail.com (Lunatic)</webMaster><lastBuildDate>Sat, 04 May 2024 14:35:57 &#43;0800</lastBuildDate><atom:link href="http://localhost:1313/categories/ctf/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>goodlunatic0@gmail.com (Lunatic)</webMaster><lastBuildDate>Sun, 05 May 2024 10:37:17 &#43;0800</lastBuildDate><atom:link href="http://localhost:1313/categories/ctf/" rel="self" type="application/rss+xml" /><item>
+  <title>CTF-Misc Guide</title>
+  <link>http://localhost:1313/posts/1ad9200/</link>
+  <pubDate>Sun, 05 May 2024 10:37:17 &#43;0800</pubDate>
+  <author>Lunatic</author>
+  <guid>http://localhost:1313/posts/1ad9200/</guid>
+  <description><![CDATA[<p><strong>This is a simple Guide for CTF in Misc Area.</strong></p>]]></description>
+</item>
+<item>
   <title>Misc-Blind WaterMark</title>
   <link>http://localhost:1313/posts/f0ec4d6/</link>
   <pubDate>Sat, 04 May 2024 14:35:57 &#43;0800</pubDate>
@@ -20,14 +28,6 @@
   <author>Lunatic</author>
   <guid>http://localhost:1313/posts/761da51/</guid>
   <description><![CDATA[<p><strong>This is a simple summary of digital forensics .</strong></p>]]></description>
-</item>
-<item>
-  <title>CTF-Misc Guide</title>
-  <link>http://localhost:1313/posts/1ad9200/</link>
-  <pubDate>Sun, 28 Apr 2024 10:37:17 &#43;0800</pubDate>
-  <author>Lunatic</author>
-  <guid>http://localhost:1313/posts/1ad9200/</guid>
-  <description><![CDATA[<p><strong>This is a simple Guide for CTF in Misc Area.</strong></p>]]></description>
 </item>
 <item>
   <title>Network Traffic Analysis</title>
