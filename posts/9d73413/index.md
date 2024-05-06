@@ -76,7 +76,54 @@ https://susam.net/cfrs.html
 
 ![](imgs/image-20240505190911601.png)
 
+## 题目名称 grid&#39;s Secret
 
+题目附件给了一个 secret.txt 打开发现有很多奇怪的数据，然后在末尾发现了零宽隐写
+
+解零宽后可以得到一个提示：4invaild
+
+![](imgs/image-20240506151217495.png)
+
+![](imgs/image-20240506151250668.png)
+
+赛后和其他师傅交流了才知道，这个提示指的是前四个字符是无效的，因此可以直接删去
+
+由题目 grid（网格）可以联想到坐标系，因此我们需要把数据划分为6个字符一组
+
+然后用最后两个字符作为横纵坐标画图
+
+```python
+import pandas as pd
+import libnum
+
+
+data = []
+with open(&#34;1.txt&#34;, &#39;r&#39;) as f:
+    text = f.read()
+
+for i in range(0, len(text), 6):
+    pos = text[i&#43;4:i&#43;6]
+    data.append(pos)
+print(data)
+
+df = pd.DataFrame(0, index=range(24), columns=range(24), dtype=int)
+
+for point in data:
+    x = ord(point[0]) - ord(&#39;A&#39;)
+    y = ord(point[1]) - ord(&#39;A&#39;)
+    df.iloc[x, y] = 1
+print(df)
+
+flag = &#39;&#39;
+for y in range(23, 0, -1):
+    for x in range(24):
+        flag &#43;= str(df.iloc[x, y])
+print(libnum.b2s(flag))
+```
+
+![](imgs/image-20240506151653836.png)
+
+flag{M4idenh3ad_4nd_VHF}
 
 ---
 
