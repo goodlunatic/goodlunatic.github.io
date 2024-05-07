@@ -14,7 +14,7 @@
 还是太菜了，赛中只做出了一道 Misc">
   <meta itemprop="datePublished" content="2024-05-06T14:53:14+08:00">
   <meta itemprop="dateModified" content="2024-05-06T14:53:14+08:00">
-  <meta itemprop="wordCount" content="154">
+  <meta itemprop="wordCount" content="155">
   <meta itemprop="keywords" content="CTF,Misc,Writeup"><meta property="og:url" content="http://localhost:1313/posts/9d73413/">
   <meta property="og:site_name" content="⚡Lunatic BLOG⚡">
   <meta property="og:title" content="2024 “天一永安杯”宁波市赛初赛 Misc Writeup">
@@ -45,7 +45,7 @@
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": "http:\/\/localhost:1313\/posts\/9d73413\/"
-    },"genre": "posts","keywords": "CTF, Misc, Writeup","wordcount":  154 ,
+    },"genre": "posts","keywords": "CTF, Misc, Writeup","wordcount":  155 ,
     "url": "http:\/\/localhost:1313\/posts\/9d73413\/","datePublished": "2024-05-06T14:53:14+08:00","dateModified": "2024-05-06T14:53:14+08:00","publisher": {
       "@type": "Organization",
       "name": ""},"author": {
@@ -149,7 +149,7 @@
   <article class="page single">
     <div class="header"><h1 class="single-title animate__animated animate__flipInX"><span>2024 “天一永安杯”宁波市赛初赛 Misc Writeup</span>
       </h1></div><div class="post-meta">
-      <div class="post-meta-line"><span class="post-author"><a href="https://goodlunatic.github.io" title="Author"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><img loading="lazy" src="https://www.nssctf.cn/files/2024/4/28/7f130a1387.png" alt="Lunatic" data-title="Lunatic" class="avatar" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>&nbsp;Lunatic</a></span><span class="post-included-in">&nbsp;included in <a href="/categories/writeup/" class="post-category" title="Category - Writeup"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> Writeup</a></span></div><div class="post-meta-line"><span title="published on 2024-05-06 14:53:14"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden="true"></i><time datetime="2024-05-06">2024-05-06</time></span>&nbsp;<span title="154 words"><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>About 200 words</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>One minute</span>&nbsp;</div>
+      <div class="post-meta-line"><span class="post-author"><a href="https://goodlunatic.github.io" title="Author"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><img loading="lazy" src="https://www.nssctf.cn/files/2024/4/28/7f130a1387.png" alt="Lunatic" data-title="Lunatic" class="avatar" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>&nbsp;Lunatic</a></span><span class="post-included-in">&nbsp;included in <a href="/categories/writeup/" class="post-category" title="Category - Writeup"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> Writeup</a></span></div><div class="post-meta-line"><span title="published on 2024-05-06 14:53:14"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden="true"></i><time datetime="2024-05-06">2024-05-06</time></span>&nbsp;<span title="155 words"><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>About 200 words</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>One minute</span>&nbsp;</div>
     </div><div class="details toc" id="toc-static" data-kept="false">
         <div class="details-summary toc-title">
           <span>Contents</span>
@@ -207,7 +207,8 @@
 <p><img loading="lazy" src="/posts/9d73413/imgs/image-20240506151250668.png" alt="/posts/9d73413/imgs/image-20240506151250668.png" srcset="/posts/9d73413/imgs/image-20240506151250668.png?size=small, /posts/9d73413/imgs/image-20240506151250668.png?size=medium 1.5x, /posts/9d73413/imgs/image-20240506151250668.png?size=large 2x" data-title="/posts/9d73413/imgs/image-20240506151250668.png" style="--width: 1504px;--aspect-ratio: 1504 / 859;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>赛后和其他师傅交流了才知道，这个提示指的是前四个字符是无效的，因此可以直接删去</p>
 <p>由题目 grid（网格）可以联想到坐标系，因此我们需要把数据划分为6个字符一组</p>
-<p>然后用最后两个字符作为横纵坐标画图</p>
+<p>然后用最后两个字符作为横纵坐标对表格进行填充，有数据的地方填上1，没有数据的地方都初始化为0</p>
+<p>一开始以为是二维码，经过尝试后发现直接把二进制数据从最后一列开始连起来就行</p>
 <div class="highlight" id="id-1"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
