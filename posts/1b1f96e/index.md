@@ -187,7 +187,9 @@ with open(&#39;flag.zip&#39;, &#39;wb&#39;) as f:
 ```
 解压压缩包得到一个.b文件，里面内容如下
 
- &gt; r()J$nEA&#39;r!!#;^5u:HM1&#34;&#39;W(Mc*q[&lt;_/-H(eBQ_&#43;@m$P8kMf4a[h&gt;1:e3=VX?9p=!\&gt;H[_9!-P!Q!d_;F&#43;/NMc([U69Id&gt;ct7iR(^gBUKlR.n!/lA`!!!!iKtqeC8-.(6Mb&#34;[QMa/CV!RTk-8H6e&#43;1!)_&gt;1l&#43;[&#39;ejqO2X?j\E%7($238erL9ERs6#Xpc$FkBeaMa/OZ!RPFEM[W-EMa/7R!RO,j&#34;Gf?G6!.Ga!ROtQ6!-EU6!?g3ll\Sls57!F=^&#34;@S&#39;&#39;W&#39;hs8Q@r^3=WR?SaG;!&#39;sXWM&lt;7?[m%=@Z!(i%/8\&gt;*)&#43;T!Ns8F&amp;Q@8VuM%M=EmC9Qqfgs4&#39;f&#34;l=^2!!!$.f\g`/F!&lt;:Sa$:.up:e`[d9ejFSs1h0^_FX^B8;Y/K]&#39;9g`i;_=uM8s?B6!-g;i^eq%6&#43;WJ\FCG4&#34;Ktqd;8cR(Yjlhm.!!#QBlju^Ei_;/LC&#39;6h)8;[..\cUR&#43;?iSZ/p],bC8;&#34;i&#39;?A\Aj5XAOd!&#34;],16!-[7njkLW6&#43;U0o;s&#34;&amp;08;Y5UM8r=Fa[q?Y8;Z%kM&gt;9HK!nkY%s4)bs!.?7t6!%3&amp;!&#39;gMa6!.k%&gt;!]_-0&#43;Tc:eQ5m&gt;\ohmb@K4kLs3Bjks8W*i!Q.GW`^kgWFgOI7k?)I!=hET4.LJIugAf\
+```
+r()J$nEA&#39;r!!#;^5u:HM1&#34;&#39;W(Mc*q[&lt;_/-H(eBQ_&#43;@m$P8kMf4a[h&gt;1:e3=VX?9p=!\&gt;H[_9!-P!Q!d_;F&#43;/NMc([U69Id&gt;ct7iR(^gBUKlR.n!/lA`!!!!iKtqeC8-.(6Mb&#34;[QMa/CV!RTk-8H6e&#43;1!)_&gt;1l&#43;[&#39;ejqO2X?j\E%7($238erL9ERs6#Xpc$FkBeaMa/OZ!RPFEM[W-EMa/7R!RO,j&#34;Gf?G6!.Ga!ROtQ6!-EU6!?g3ll\Sls57!F=^&#34;@S&#39;&#39;W&#39;hs8Q@r^3=WR?SaG;!&#39;sXWM&lt;7?[m%=@Z!(i%/8\&gt;*)&#43;T!Ns8F&amp;Q@8VuM%M=EmC9Qqfgs4&#39;f&#34;l=^2!!!$.f\g`/F!&lt;:Sa$:.up:e`[d9ejFSs1h0^_FX^B8;Y/K]&#39;9g`i;_=uM8s?B6!-g;i^eq%6&#43;WJ\FCG4&#34;Ktqd;8cR(Yjlhm.!!#QBlju^Ei_;/LC&#39;6h)8;[..\cUR&#43;?iSZ/p],bC8;&#34;i&#39;?A\Aj5XAOd!&#34;],16!-[7njkLW6&#43;U0o;s&#34;&amp;08;Y5UM8r=Fa[q?Y8;Z%kM&gt;9HK!nkY%s4)bs!.?7t6!%3&amp;!&#39;gMa6!.k%&gt;!]_-0&#43;Tc:eQ5m&gt;\ohmb@K4kLs3Bjks8W*i!Q.GW`^kgWFgOI7k?)I!=hET4.LJIugAf\
+```
  
  然后 CyberChef base85解码一下
 
