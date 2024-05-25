@@ -260,6 +260,9 @@ winhack.com39.100.72.235
 
 **flag{2467ce26-fff9-4008-8d55-17df83ecbfc2}**
 
+### 题目名称 Tough_DNS
+
+
 ---
 
 > Author: [Lunatic](https://goodlunatic.github.io)  

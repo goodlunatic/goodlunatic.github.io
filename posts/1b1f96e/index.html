@@ -12,7 +12,7 @@
   <meta itemprop="description" content="又是一年国赛，这次纯纯是被队友带飞了！！！">
   <meta itemprop="datePublished" content="2024-05-19T21:10:44+08:00">
   <meta itemprop="dateModified" content="2024-05-19T21:10:44+08:00">
-  <meta itemprop="wordCount" content="384">
+  <meta itemprop="wordCount" content="386">
   <meta itemprop="keywords" content="CTF,Writeup"><meta property="og:url" content="http://localhost:1313/posts/1b1f96e/">
   <meta property="og:site_name" content="⚡Lunatic BLOG⚡">
   <meta property="og:title" content="2024 CISCN初赛 Misc Writeup">
@@ -40,7 +40,7 @@
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": "http:\/\/localhost:1313\/posts\/1b1f96e\/"
-    },"genre": "posts","keywords": "CTF, Writeup","wordcount":  384 ,
+    },"genre": "posts","keywords": "CTF, Writeup","wordcount":  386 ,
     "url": "http:\/\/localhost:1313\/posts\/1b1f96e\/","datePublished": "2024-05-19T21:10:44+08:00","dateModified": "2024-05-19T21:10:44+08:00","publisher": {
       "@type": "Organization",
       "name": ""},"author": {
@@ -144,7 +144,7 @@
   <article class="page single">
     <div class="header"><h1 class="single-title animate__animated animate__flipInX"><span>2024 CISCN初赛 Misc Writeup</span>
       </h1></div><div class="post-meta">
-      <div class="post-meta-line"><span class="post-author"><a href="https://goodlunatic.github.io" title="Author"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><img loading="lazy" src="https://www.nssctf.cn/files/2024/4/28/7f130a1387.png" alt="Lunatic" data-title="Lunatic" class="avatar" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>&nbsp;Lunatic</a></span><span class="post-included-in">&nbsp;included in <a href="/categories/writeup/" class="post-category" title="Category - Writeup"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> Writeup</a></span></div><div class="post-meta-line"><span title="published on 2024-05-19 21:10:44"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden="true"></i><time datetime="2024-05-19">2024-05-19</time></span>&nbsp;<span title="384 words"><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>About 400 words</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>2 minutes</span>&nbsp;</div>
+      <div class="post-meta-line"><span class="post-author"><a href="https://goodlunatic.github.io" title="Author"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><img loading="lazy" src="https://www.nssctf.cn/files/2024/4/28/7f130a1387.png" alt="Lunatic" data-title="Lunatic" class="avatar" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>&nbsp;Lunatic</a></span><span class="post-included-in">&nbsp;included in <a href="/categories/writeup/" class="post-category" title="Category - Writeup"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> Writeup</a></span></div><div class="post-meta-line"><span title="published on 2024-05-19 21:10:44"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden="true"></i><time datetime="2024-05-19">2024-05-19</time></span>&nbsp;<span title="386 words"><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>About 400 words</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>2 minutes</span>&nbsp;</div>
     </div><div class="details toc" id="toc-static" data-kept="false">
         <div class="details-summary toc-title">
           <span>Contents</span>
@@ -156,7 +156,11 @@
     <li><a href="#题目名称-power-trajectory-diagram">题目名称 Power Trajectory Diagram</a></li>
     <li><a href="#题目名称-神秘文件">题目名称 神秘文件</a></li>
     <li><a href="#题目名称-盗版软件">题目名称 盗版软件</a></li>
-    <li><a href="#题目名称-通风机">题目名称 通风机</a></li>
+    <li><a href="#题目名称-通风机">题目名称 通风机</a>
+      <ul>
+        <li><a href="#题目名称-tough_dns">题目名称 Tough_DNS</a></li>
+      </ul>
+    </li>
   </ul>
 </nav></div>
       </div><div class="content" id="content"><p>又是一年国赛，这次纯纯是被队友带飞了！！！</p>
@@ -360,7 +364,9 @@ Remove All
 <p>然后在 symbol table 中发现 base64 编码后的 flag，CyberChef 解码即可得到 flag</p>
 <p><img loading="lazy" src="imgs/image-20240519212545935.png" alt="imgs/image-20240519212545935.png" srcset="imgs/image-20240519212545935.png?size=small, imgs/image-20240519212545935.png?size=medium 1.5x, imgs/image-20240519212545935.png?size=large 2x" data-title="imgs/image-20240519212545935.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p><img loading="lazy" src="imgs/image-20240519212551458.png" alt="imgs/image-20240519212551458.png" srcset="imgs/image-20240519212551458.png?size=small, imgs/image-20240519212551458.png?size=medium 1.5x, imgs/image-20240519212551458.png?size=large 2x" data-title="imgs/image-20240519212551458.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
-<p><strong>flag{2467ce26-fff9-4008-8d55-17df83ecbfc2}</strong></p></div><div class="post-footer" id="post-footer">
+<p><strong>flag{2467ce26-fff9-4008-8d55-17df83ecbfc2}</strong></p>
+<h3 id="题目名称-tough_dns" class="heading-element">
+  <a href="#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-tough_dns" class="heading-mark"></a>题目名称 Tough_DNS</h3></div><div class="post-footer" id="post-footer">
   <div class="post-info">
     <div class="post-info-line">
       <div class="post-info-mod">
