@@ -260,7 +260,84 @@ winhack.com39.100.72.235
 
 **flag{2467ce26-fff9-4008-8d55-17df83ecbfc2}**
 
-### 题目名称 Tough_DNS
+## 题目名称 Tough_DNS
+
+题面信息如下
+
+![](imgs/image-20240526085935378.png)
+
+解压压缩包可以得到一个流量包，发现是都是 DNS 流量
+
+首先我们用 tshark 把 OPT 解析记录中的二进制数据都提取出来
+```shell
+tshark -r 1.pcapng -T fields -e dns.qry.name | sed &#39;/^\s*$/d&#39; | uniq &gt; 1.txt
+```
+
+删除重复的数据，然后转二维码，可以得到如下二维码，扫码后得到：15f9792dba5c
+
+![](imgs/image-20240526094755643.png)
+然后查看 TXT 解析记录，发现根据 dns.id 的不同可以分为两类：0x4500 和 0x6421，使用如下命令把其中的数据分别提取出来
+
+```shell
+tshark -r 1.pcapng -T fields -e dns.txt -Y &#34;(dns.txt.length == 1) &amp;&amp; (dns.id == 0x4500)&#34;|tr -d &#34;\n&#34;
+tshark -r 1.pcapng -T fields -e dns.txt -Y &#34;(dns.txt.length == 1) &amp;&amp; (dns.id == 0x6421)&#34;|tr -d &#34;\n&#34;
+```
+
+查看提取出来的数据，结合文件头发现有一个 zip 压缩包和一段未知数据
+
+![](imgs/image-20240526102314071.png)
+
+![](imgs/image-20240526102330561.png)
+用 CyberChef 提取压缩包，打开发现需要密码，使用之前扫码得到的密码解压压缩包，得到一个 secret.gpg
+
+所以猜测另一个未知数据应该就是 gpg 加密的内容，使用 CyberChef from hex 然后下载到本地
+
+![](imgs/image-20240526102931778.png)
+
+解密 gpg 加密文件需要私钥导入口令，因此猜测题面中给我们的那段数据就是私钥导入口令
+
+发现那段数据中有 d2 ，因此猜测是十六进制数据，但是转为 Ascii 后发现不是所有都是可打印字符
+
+但是把十六进制数据先逆置一下，然后十六进制转 Ascii 就可以得到全都是可打印字符的字符串
+
+尝试使用得到的字符串：eab9f5ae-0b9e 解密 GPG，发现就是我们需要的私钥导入口令
+
+```python
+from string import printable
+
+# for item in printable:
+#     print(ord(item), end=&#39; &#39;)
+# 48 49 50 51 52 53 54 55 56 57 97 98 99 100 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116 117 118 119 120 121 122 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 58 59 60 61 62 63 64 91 92 93 94 95 96 123 124 125 126 32 9 10 13 11 12
+
+
+def solve():
+    passwd = &#39;&#39;
+    enc_passwds = [&#39;56&#39;, &#39;16&#39;, &#39;26&#39;, &#39;93&#39;, &#39;66&#39;, &#39;53&#39;,
+                   &#39;16&#39;, &#39;56&#39;, &#39;d2&#39;, &#39;03&#39;, &#39;26&#39;, &#39;93&#39;, &#39;56&#39;]
+    # for item in enc_passwds:
+    #     print(int(item, 16), end=&#34; &#34;)
+    # # 86 22 38 147 102 83 22 86 210 3 38 147 86
+    for item in enc_passwds:
+        item = item[::-1]
+        # print(int(item,16),end=&#34; &#34;)
+        # 101 97 98 57 102 53 97 101 45 48 98 57 101
+        passwd &#43;= chr(int(item, 16))
+    return passwd
+
+
+if __name__ == &#34;__main__&#34;:
+    passwd = solve()
+    print(passwd)
+# eab9f5ae-0b9e
+```
+
+最后在 WSL 中按照以下步骤解密即可得到flag：flag{79830a47-faf7-4067-b585-145776f833cd}
+
+![](imgs/image-20240526103109588.png)
+
+当然，这里也可以在 Windows 下使用 Kleopatra 解密
+
+![](imgs/image-20240526103713939.png)
 
 
 

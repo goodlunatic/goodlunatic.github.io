@@ -12,7 +12,7 @@
   <meta itemprop="description" content="This is a simple summary of digital forensics .">
   <meta itemprop="datePublished" content="2024-04-28T16:34:12+08:00">
   <meta itemprop="dateModified" content="2024-04-28T16:34:12+08:00">
-  <meta itemprop="wordCount" content="2065">
+  <meta itemprop="wordCount" content="2067">
   <meta itemprop="keywords" content="CTF,Misc,Forensics"><meta property="og:url" content="http://localhost:1313/posts/761da51/">
   <meta property="og:site_name" content="⚡Lunatic BLOG⚡">
   <meta property="og:title" content="Misc-Forensics">
@@ -41,7 +41,7 @@
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": "http:\/\/localhost:1313\/posts\/761da51\/"
-    },"genre": "posts","keywords": "CTF, Misc, Forensics","wordcount":  2065 ,
+    },"genre": "posts","keywords": "CTF, Misc, Forensics","wordcount":  2067 ,
     "url": "http:\/\/localhost:1313\/posts\/761da51\/","datePublished": "2024-04-28T16:34:12+08:00","dateModified": "2024-04-28T16:34:12+08:00","publisher": {
       "@type": "Organization",
       "name": ""},"author": {
@@ -145,7 +145,7 @@
   <article class="page single">
     <div class="header"><h1 class="single-title animate__animated animate__flipInX"><span>Misc-Forensics</span>
       </h1></div><div class="post-meta">
-      <div class="post-meta-line"><span class="post-author"><a href="https://goodlunatic.github.io" title="Author"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><img loading="lazy" src="https://www.nssctf.cn/files/2024/4/28/7f130a1387.png" alt="Lunatic" data-title="Lunatic" class="avatar" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>&nbsp;Lunatic</a></span><span class="post-included-in">&nbsp;included in <a href="/categories/ctf/" class="post-category" title="Category - CTF"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> CTF</a></span></div><div class="post-meta-line"><span title="published on 2024-04-28 16:34:12"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden="true"></i><time datetime="2024-04-28">2024-04-28</time></span>&nbsp;<span title="2065 words"><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>About 2100 words</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>10 minutes</span>&nbsp;</div>
+      <div class="post-meta-line"><span class="post-author"><a href="https://goodlunatic.github.io" title="Author"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><img loading="lazy" src="https://www.nssctf.cn/files/2024/4/28/7f130a1387.png" alt="Lunatic" data-title="Lunatic" class="avatar" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>&nbsp;Lunatic</a></span><span class="post-included-in">&nbsp;included in <a href="/categories/ctf/" class="post-category" title="Category - CTF"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> CTF</a></span></div><div class="post-meta-line"><span title="published on 2024-04-28 16:34:12"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden="true"></i><time datetime="2024-04-28">2024-04-28</time></span>&nbsp;<span title="2067 words"><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>About 2100 words</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>10 minutes</span>&nbsp;</div>
     </div><div class="details toc" id="toc-static" data-kept="false">
         <div class="details-summary toc-title">
           <span>Contents</span>
@@ -1157,8 +1157,7 @@
   <a href="#6encfs%e5%8a%a0%e5%af%86" class="heading-mark"></a>6、Encfs加密</h3><p>在windows下用 Encfs4win 来挂载即可，解密这个加密卷，需要 .encfs6.xml和解密的密码</p>
 <p>例题-2024 NKCTF cain_is_hacker</p>
 <h3 id="7gpg--pgp-加密" class="heading-element">
-  <a href="#7gpg--pgp-%e5%8a%a0%e5%af%86" class="heading-mark"></a>7、GPG / PGP 加密</h3><p>例题-i春秋 Pretty Good Privacy</p>
-<p>这个加密可以使用 Linux 下的 GPG 解密，也可以使用 Windows 下的 PGP Desktop 解密</p>
+  <a href="#7gpg--pgp-%e5%8a%a0%e5%af%86" class="heading-mark"></a>7、GPG / PGP 加密</h3><p>这个加密可以使用 Linux 下的 GPG 解密，也可以使用 Windows 下的 Kleopatra 解密</p>
 <p>Linux 下解密的流程如下</p>
 <div class="highlight" id="id-29"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -1189,7 +1188,9 @@
 </span></span><span class="line"><span class="cl"><span class="c1">#删除公钥</span>
 </span></span><span class="line"><span class="cl">gpg --delete-keys CISCN2016@gmail.com</span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="8cipher加密" class="heading-element">
+</div><p>例题1-i春秋 Pretty Good Privacy</p>
+<p>例题2-2024 CISCN初赛 Tough-DNS</p>
+<h3 id="8cipher加密" class="heading-element">
   <a href="#8cipher%e5%8a%a0%e5%af%86" class="heading-mark"></a>8、Cipher加密</h3><p>Windows自带的 Cipher 加密（EFS加密算法）</p>
 <p>直接使用 Advanced efs data recovery 解密即可，解密需要密钥和密码</p>
 <p>例题-2024 DubheCTF Cipher</p></div><div class="post-footer" id="post-footer">
