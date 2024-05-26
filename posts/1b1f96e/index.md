@@ -238,6 +238,10 @@ Users\ctf\AppData\Roaming\Mozilla\Firefox\Profiles_gcqzno5i\palce.sqlite
 
 经过尝试，发现 winhack 那个是正确答案
 
+赛后和别的师傅交流后发现，这里直接把 dmp 文件后缀改成 .data 然后拖入 Gimp 调位移和宽高就能直接得到
+
+![](imgs/image-20240526181944495.png)
+
 winhack.com39.100.72.235
 
 **flag{096e8b0f9daf10869f013c1b7efda3fd}**
