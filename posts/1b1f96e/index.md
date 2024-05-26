@@ -276,6 +276,7 @@ tshark -r 1.pcapng -T fields -e dns.qry.name | sed &#39;/^\s*$/d&#39; | uniq &gt
 删除重复的数据，然后转二维码，可以得到如下二维码，扫码后得到：15f9792dba5c
 
 ![](imgs/image-20240526094755643.png)
+
 然后查看 TXT 解析记录，发现根据 dns.id 的不同可以分为两类：0x4500 和 0x6421，使用如下命令把其中的数据分别提取出来
 
 ```shell
