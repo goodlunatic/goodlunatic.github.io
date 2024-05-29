@@ -2212,8 +2212,6 @@ Colemak
 
 
 
-
-
 ---
 
 > Author: [Lunatic](https://goodlunatic.github.io)  
