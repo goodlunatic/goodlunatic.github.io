@@ -189,8 +189,11 @@ https://aghorler.github.io/emoji-aes/
 例题1 2016CISCN-传感器1
 
 &gt; 5555555595555A65556AA696AA6666666955
+&gt; 
 &gt; 这是某压力传感器无线数据包解调后但未解码的报文(hex)
+&gt; 
 &gt; 已知其ID为0xFED31F，请继续将报文完整解码，提交hex。
+&gt; 
 &gt; 提示1：曼联
 
 ```python
@@ -263,6 +266,7 @@ print(hex(int(flag, 2))[2:].upper())
 
 &gt; 已知ID为0x8893CA58的温度传感器未解码报文为：3EAAAAA56A69AA55A95995A569AA95565556  
 &gt; 为伪造该类型传感器的报文ID（其他报文内容不变），请给出ID为0xDEADBEEF的传感器1的报文校验位（解码后hex）
+&gt; 
 &gt; 以及ID为0xBAADA555的传感器2的报文校验位（解码后hex），并组合作为flag提交。  
 &gt; 例如，若传感器1的校验位为0x123456，传感器2的校验位为0xABCDEF，则flag为flag{123456ABCDEF}。
 

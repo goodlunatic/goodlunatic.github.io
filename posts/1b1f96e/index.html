@@ -369,7 +369,7 @@ Remove All
 <p><img loading="lazy" src="imgs/image-20240526085935378.png" alt="imgs/image-20240526085935378.png" srcset="imgs/image-20240526085935378.png?size=small, imgs/image-20240526085935378.png?size=medium 1.5x, imgs/image-20240526085935378.png?size=large 2x" data-title="imgs/image-20240526085935378.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>解压压缩包可以得到一个流量包，发现是都是 DNS 流量</p>
 <p>首先我们用 tshark 把 OPT 解析记录中的二进制数据都提取出来</p>
-<div class="highlight" id="id-4"><div class="chroma">
+<div class="highlight" id="id-1"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
@@ -379,7 +379,7 @@ Remove All
 </div><p>删除重复的数据，然后转二维码，可以得到如下二维码，扫码后得到：15f9792dba5c</p>
 <p><img loading="lazy" src="imgs/image-20240526094755643.png" alt="imgs/image-20240526094755643.png" srcset="imgs/image-20240526094755643.png?size=small, imgs/image-20240526094755643.png?size=medium 1.5x, imgs/image-20240526094755643.png?size=large 2x" data-title="imgs/image-20240526094755643.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>然后查看 TXT 解析记录，发现根据 dns.id 的不同可以分为两类：0x4500 和 0x6421，使用如下命令把其中的数据分别提取出来</p>
-<div class="highlight" id="id-5"><div class="chroma">
+<div class="highlight" id="id-2"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -398,7 +398,7 @@ Remove All
 <p>发现那段数据中有 d2 ，因此猜测是十六进制数据，但是转为 Ascii 后发现不是所有都是可打印字符</p>
 <p>但是把十六进制数据先逆置一下，然后十六进制转 Ascii 就可以得到全都是可打印字符的字符串</p>
 <p>尝试使用得到的字符串：eab9f5ae-0b9e 解密 GPG，发现就是我们需要的私钥导入口令</p>
-<div class="highlight" id="id-6"><div class="chroma">
+<div class="highlight" id="id-3"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
