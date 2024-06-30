@@ -4,7 +4,16 @@
     <link>http://localhost:1313/tags/ctf/</link>
     <description>CTF - Tag | ⚡Lunatic BLOG⚡</description>
     <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>goodlunatic0@gmail.com (Lunatic)</managingEditor>
-      <webMaster>goodlunatic0@gmail.com (Lunatic)</webMaster><lastBuildDate>Wed, 12 Jun 2024 14:33:39 &#43;0800</lastBuildDate><atom:link href="http://localhost:1313/tags/ctf/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>goodlunatic0@gmail.com (Lunatic)</webMaster><lastBuildDate>Mon, 01 Jul 2024 00:43:10 &#43;0800</lastBuildDate><atom:link href="http://localhost:1313/tags/ctf/" rel="self" type="application/rss+xml" /><item>
+  <title>Misc-QRcode小记</title>
+  <link>http://localhost:1313/posts/1e26f78/</link>
+  <pubDate>Mon, 01 Jul 2024 00:43:10 &#43;0800</pubDate>
+  <author>Lunatic</author>
+  <guid>http://localhost:1313/posts/1e26f78/</guid>
+  <description><![CDATA[<p>这几天在群里看到一道非常有意思的关于二维码的题目</p>
+<p>于是打算稍微深入总结并巩固一下QRcode的知识点</p>]]></description>
+</item>
+<item>
   <title>Misc-LSB 小记</title>
   <link>http://localhost:1313/posts/aded309/</link>
   <pubDate>Wed, 12 Jun 2024 14:33:39 &#43;0800</pubDate>
@@ -79,14 +88,6 @@
   <author>Lunatic</author>
   <guid>http://localhost:1313/posts/a907e2b/</guid>
   <description><![CDATA[<p><strong>2024 帕鲁杯 Misc Writeup</strong></p>]]></description>
-</item>
-<item>
-  <title>2023&amp;2024 红明谷初赛 Misc Writeup</title>
-  <link>http://localhost:1313/posts/e49ecc5/</link>
-  <pubDate>Sun, 07 Apr 2024 19:52:15 &#43;0800</pubDate>
-  <author>Lunatic</author>
-  <guid>http://localhost:1313/posts/e49ecc5/</guid>
-  <description><![CDATA[<p><strong>连续打了两年的红明谷了，两次都没进决赛，红明谷的Misc题也是一如既往的抽象。</strong></p>]]></description>
 </item>
 </channel>
 </rss>
