@@ -48,7 +48,8 @@ zsteg -e b1,rgb,lsb,xy XQR.png &gt; 1.zip
 
 #### 解法二：手搓得到足够的pattern
 
-TODO
+TODO。。。
+
 
 ---
 
