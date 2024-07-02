@@ -3,11 +3,12 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml"
   ><url>
       <loc>http://localhost:1313/</loc><lastmod>2024-07-01T21:39:43&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+      <loc>http://localhost:1313/categories/</loc><lastmod>2024-07-01T21:39:43&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
       <loc>http://localhost:1313/posts/</loc><lastmod>2024-07-01T21:39:43&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
       <loc>http://localhost:1313/tags/research/</loc><lastmod>2024-07-01T21:39:43&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+      <loc>http://localhost:1313/categories/research/</loc><lastmod>2024-07-01T21:39:43&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
       <loc>http://localhost:1313/posts/325c9cf/</loc><lastmod>2024-07-01T21:39:43&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
       <loc>http://localhost:1313/tags/</loc><lastmod>2024-07-01T21:39:43&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-      <loc>http://localhost:1313/categories/</loc><lastmod>2024-07-01T00:43:10&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
       <loc>http://localhost:1313/tags/ctf/</loc><lastmod>2024-07-01T00:43:10&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
       <loc>http://localhost:1313/categories/ctf/</loc><lastmod>2024-07-01T00:43:10&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
       <loc>http://localhost:1313/posts/1e26f78/</loc><lastmod>2024-07-01T00:43:10&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>

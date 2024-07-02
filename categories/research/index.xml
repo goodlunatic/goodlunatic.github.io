@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title>Research - Category - ⚡Lunatic BLOG⚡</title>
+    <link>http://localhost:1313/categories/research/</link>
+    <description>Research - Category | ⚡Lunatic BLOG⚡</description>
+    <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>goodlunatic0@gmail.com (Lunatic)</managingEditor>
+      <webMaster>goodlunatic0@gmail.com (Lunatic)</webMaster><lastBuildDate>Mon, 01 Jul 2024 21:39:43 &#43;0800</lastBuildDate><atom:link href="http://localhost:1313/categories/research/" rel="self" type="application/rss+xml" /><item>
+  <title>Research  of Mixture of Experts(MoE)</title>
+  <link>http://localhost:1313/posts/325c9cf/</link>
+  <pubDate>Mon, 01 Jul 2024 21:39:43 &#43;0800</pubDate>
+  <author>Lunatic</author>
+  <guid>http://localhost:1313/posts/325c9cf/</guid>
+  <description><![CDATA[<p>This is a simple research of MoE.</p>]]></description>
+</item>
+</channel>
+</rss>
