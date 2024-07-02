@@ -56,6 +56,14 @@
   <description><![CDATA[<p><strong>This is a simple summary of digital forensics .</strong></p>]]></description>
 </item>
 <item>
+  <title>攻防世界 Misc pyHAHA 题目详解</title>
+  <link>http://localhost:1313/posts/bc64ef8/</link>
+  <pubDate>Thu, 18 Apr 2024 16:47:25 &#43;0800</pubDate>
+  <author>Lunatic</author>
+  <guid>http://localhost:1313/posts/bc64ef8/</guid>
+  <description><![CDATA[<p><strong>这两天刷题的时候做到了这道比较有意思的题目，于是就打算稍微总结一下。</strong></p>]]></description>
+</item>
+<item>
   <title>Network Traffic Analysis</title>
   <link>http://localhost:1313/posts/5422d65/</link>
   <pubDate>Tue, 02 Apr 2024 18:15:27 &#43;0800</pubDate>
@@ -64,20 +72,20 @@
   <description><![CDATA[<p><strong>This is a Simple Guide for Network Traffic Analysis.</strong></p>]]></description>
 </item>
 <item>
-  <title>CTF-Pwn学习记录</title>
-  <link>http://localhost:1313/posts/5e91e89/</link>
-  <pubDate>Mon, 07 Aug 2023 08:57:29 &#43;0800</pubDate>
+  <title>2024 DubheCTF-Cipher 赛题详解</title>
+  <link>http://localhost:1313/posts/10f4f96/</link>
+  <pubDate>Tue, 19 Mar 2024 16:58:01 &#43;0800</pubDate>
   <author>Lunatic</author>
-  <guid>http://localhost:1313/posts/5e91e89/</guid>
-  <description><![CDATA[<p><strong>Record of Pwn-Learning.</strong></p>]]></description>
+  <guid>http://localhost:1313/posts/10f4f96/</guid>
+  <description><![CDATA[<p><strong>从这道题入手，由浅入深学习一下Windows自带的 Cipher 加密（EFS加密算法）</strong></p>]]></description>
 </item>
 <item>
-  <title>CTF-Pwn刷题记录</title>
-  <link>http://localhost:1313/posts/d7eced5/</link>
-  <pubDate>Sun, 08 Jan 2023 08:57:33 &#43;0800</pubDate>
+  <title>2020b01lers Misc image_adjustments 赛题详解</title>
+  <link>http://localhost:1313/posts/00658ee/</link>
+  <pubDate>Sun, 10 Dec 2023 17:12:41 &#43;0800</pubDate>
   <author>Lunatic</author>
-  <guid>http://localhost:1313/posts/d7eced5/</guid>
-  <description><![CDATA[<p><strong>Pwn题做得还是太少了，希望真的能做到每日一Pwn吧@_@</strong></p>]]></description>
+  <guid>http://localhost:1313/posts/00658ee/</guid>
+  <description><![CDATA[<p><strong>在群里偶然看到了这道题，当初刷题的时候没有刷到过，感觉挺有意思的，就打算深入分析一下。</strong></p>]]></description>
 </item>
 </channel>
 </rss>
