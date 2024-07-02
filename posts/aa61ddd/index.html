@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="en">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <title>2024 VCTF Misc Writeup - ⚡Lunatic BLOG⚡</title><meta name="author" content="Lunatic">
+<meta name="author-link" content="https://goodlunatic.github.io">
+<meta name="description" content="发现自己有段时间没有打比赛了，手有点生疏，于是打了 2024VCTF 来找找感觉" /><meta name="keywords" content='CTF, Writeup, Misc' />
+  <meta itemprop="name" content="2024 VCTF Misc Writeup">
+  <meta itemprop="description" content="发现自己有段时间没有打比赛了，手有点生疏，于是打了 2024VCTF 来找找感觉">
+  <meta itemprop="datePublished" content="2024-03-17T18:17:29+08:00">
+  <meta itemprop="dateModified" content="2024-03-17T18:17:29+08:00">
+  <meta itemprop="wordCount" content="226">
+  <meta itemprop="keywords" content="CTF,Writeup,Misc"><meta property="og:url" content="http://localhost:1313/posts/aa61ddd/">
+  <meta property="og:site_name" content="⚡Lunatic BLOG⚡">
+  <meta property="og:title" content="2024 VCTF Misc Writeup">
+  <meta property="og:description" content="发现自己有段时间没有打比赛了，手有点生疏，于是打了 2024VCTF 来找找感觉
+">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+  <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2024-03-17T18:17:29+08:00">
+    <meta property="article:modified_time" content="2024-03-17T18:17:29+08:00">
+    <meta property="article:tag" content="CTF">
+    <meta property="article:tag" content="Writeup">
+    <meta property="article:tag" content="Misc">
+<meta name="twitter:card" content="summary"><meta name="twitter:title" content="2024 VCTF Misc Writeup">
+<meta name="twitter:description" content="发现自己有段时间没有打比赛了，手有点生疏，于是打了 2024VCTF 来找找感觉">
+      <meta name="twitter:site" content="@https://twitter.com/goodlunatic007">
+<meta name="application-name" content="FixIt">
+<meta name="apple-mobile-web-app-title" content="FixIt"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="https://www.nssctf.cn/files/2024/4/28/8fdad6c6ee.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="http://localhost:1313/posts/aa61ddd/" /><link rel="prev" href="http://localhost:1313/posts/4b500cc/" /><link rel="next" href="http://localhost:1313/posts/10f4f96/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "2024 VCTF Misc Writeup",
+    "inLanguage": "en",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "http:\/\/localhost:1313\/posts\/aa61ddd\/"
+    },"genre": "posts","keywords": "CTF, Writeup, Misc","wordcount":  226 ,
+    "url": "http:\/\/localhost:1313\/posts\/aa61ddd\/","datePublished": "2024-03-17T18:17:29+08:00","dateModified": "2024-03-17T18:17:29+08:00","publisher": {
+      "@type": "Organization",
+      "name": ""},"author": {
+        "@type": "Person",
+        "name": "Lunatic"
+      },"description": ""
+  }
+  </script></head>
+  <body data-header-desktop="sticky" data-header-mobile="auto"><script>(window.localStorage?.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper" data-page-style="normal"><header class="desktop animate__faster" id="header-desktop">
+  <div class="header-wrapper">
+    <div class="header-title">
+      <a href="/" title="⚡Lunatic BLOG⚡"><span class="header-title-pre">⚡</span><span id="typeit-header-desktop" class="typeit"></span></a><span id="typeit-header-subtitle-desktop" class="typeit header-subtitle"></span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/archives/"
+                
+                
+              ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> Archives</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/categories/"
+                
+                
+              ><i class="fa-solid fa-folder-tree fa-fw fa-sm" aria-hidden="true"></i> Categories</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/tags/"
+                
+                
+              ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> Tags</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/friends/"
+                
+                
+              ><i class="fa-solid fa-chain fa-fw fa-sm" aria-hidden="true"></i> Friends</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/about/"
+                
+                
+              ><i class="fa-solid fa-graduation-cap fa-fw fa-sm" aria-hidden="true"></i> About</a></li><li class="menu-item delimiter"></li><li class="menu-item theme-switch" title="Switch Theme">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li></ul>
+    </nav>
+  </div>
+</header><header class="mobile animate__faster" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="⚡Lunatic BLOG⚡"><span class="header-title-pre">⚡</span><span id="typeit-header-title-mobile" class="typeit"></span></a><span id="typeit-header-subtitle-mobile" class="typeit header-subtitle"></span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/archives/"
+                  
+                  
+                ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> Archives</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/categories/"
+                  
+                  
+                ><i class="fa-solid fa-folder-tree fa-fw fa-sm" aria-hidden="true"></i> Categories</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/tags/"
+                  
+                  
+                ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> Tags</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/friends/"
+                  
+                  
+                ><i class="fa-solid fa-chain fa-fw fa-sm" aria-hidden="true"></i> Friends</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/about/"
+                  
+                  
+                ><i class="fa-solid fa-graduation-cap fa-fw fa-sm" aria-hidden="true"></i> About</a></li><li class="menu-item menu-system">
+          <span class="menu-system-item theme-switch" title="Switch Theme"><i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i></span></li>
+      </ul>
+    </nav>
+  </div>
+</header><main class="container"><aside class="aside-collection animate__animated animate__fadeIn animate__faster" aria-label="Collections"></aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX"><span>2024 VCTF Misc Writeup</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><a href="https://goodlunatic.github.io" title="Author"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><img loading="lazy" src="https://www.nssctf.cn/files/2024/4/28/7f130a1387.png" alt="Lunatic" data-title="Lunatic" class="avatar" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>&nbsp;Lunatic</a></span><span class="post-included-in">&nbsp;included in <a href="/categories/writeup/" class="post-category" title="Category - Writeup"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> Writeup</a></span></div><div class="post-meta-line"><span title="published on 2024-03-17 18:17:29"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden="true"></i><time datetime="2024-03-17">2024-03-17</time></span>&nbsp;<span title="226 words"><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>About 300 words</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>2 minutes</span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="false">
+        <div class="details-summary toc-title">
+          <span>Contents</span>
+          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#题目名称-checkin">题目名称 checkin</a></li>
+    <li><a href="#题目名称-f0rensicmaster">题目名称 f0rensicmaster</a></li>
+    <li><a href="#题目名称-ezmisc-todo">题目名称 ezmisc｜ TODO</a></li>
+    <li><a href="#题目名称-狂飙">题目名称 狂飙</a></li>
+  </ul>
+</nav></div>
+      </div><div class="content" id="content"><p><strong>发现自己有段时间没有打比赛了，手有点生疏，于是打了 2024VCTF 来找找感觉</strong></p>
+<h2 id="题目名称-checkin" class="heading-element">
+  <a href="#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-checkin" class="heading-mark"></a>题目名称 checkin</h2><p><strong>不愧是山海关-ChaMd5（查MD5获得flag）</strong>
+<strong>flag{We1c0m3_VCTF_2024}</strong></p>
+<p><img loading="lazy" src="/posts/aa61ddd/imgs/image-20240702182142614.png" alt="/posts/aa61ddd/imgs/image-20240702182142614.png" srcset="/posts/aa61ddd/imgs/image-20240702182142614.png?size=small, /posts/aa61ddd/imgs/image-20240702182142614.png?size=medium 1.5x, /posts/aa61ddd/imgs/image-20240702182142614.png?size=large 2x" data-title="/posts/aa61ddd/imgs/image-20240702182142614.png" style="--width: 2538px;--aspect-ratio: 2538 / 1007;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<h2 id="题目名称-f0rensicmaster" class="heading-element">
+  <a href="#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-f0rensicmaster" class="heading-mark"></a>题目名称 f0rensicmaster</h2><p><strong>下载得到一个 e01磁盘镜像文件，bitlocker加密了，尝试找密钥</strong>
+<strong>用FTK打开part0，可以看到有一个hint.zip，里面有logo.png和key.txt</strong>
+<strong>这里需要直接把root整个文件夹都导出，要不然图片会无法正常显示</strong></p>
+<p><img loading="lazy" src="/posts/aa61ddd/imgs/image-20240702182200091.png" alt="/posts/aa61ddd/imgs/image-20240702182200091.png" srcset="/posts/aa61ddd/imgs/image-20240702182200091.png?size=small, /posts/aa61ddd/imgs/image-20240702182200091.png?size=medium 1.5x, /posts/aa61ddd/imgs/image-20240702182200091.png?size=large 2x" data-title="/posts/aa61ddd/imgs/image-20240702182200091.png" style="--width: 1410px;--aspect-ratio: 1410 / 580;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><img loading="lazy" src="/posts/aa61ddd/imgs/image-20240702182207831.png" alt="/posts/aa61ddd/imgs/image-20240702182207831.png" srcset="/posts/aa61ddd/imgs/image-20240702182207831.png?size=small, /posts/aa61ddd/imgs/image-20240702182207831.png?size=medium 1.5x, /posts/aa61ddd/imgs/image-20240702182207831.png?size=large 2x" data-title="/posts/aa61ddd/imgs/image-20240702182207831.png" style="--width: 1255px;--aspect-ratio: 1255 / 885;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><strong>压缩包也有一个logo.png猜测是需要明文攻击了</strong></p>
+<p><img loading="lazy" src="/posts/aa61ddd/imgs/image-20240702182224629.png" alt="/posts/aa61ddd/imgs/image-20240702182224629.png" srcset="/posts/aa61ddd/imgs/image-20240702182224629.png?size=small, /posts/aa61ddd/imgs/image-20240702182224629.png?size=medium 1.5x, /posts/aa61ddd/imgs/image-20240702182224629.png?size=large 2x" data-title="/posts/aa61ddd/imgs/image-20240702182224629.png" style="--width: 1376px;--aspect-ratio: 1376 / 761;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><strong>成功获得加密密钥，解压压缩包即可得到bitlocker的恢复密钥</strong>
+<strong>428560-250679-278762-263923-677336-652740-614834-399795</strong></p>
+<p><img loading="lazy" src="/posts/aa61ddd/imgs/image-20240702182236243.png" alt="/posts/aa61ddd/imgs/image-20240702182236243.png" srcset="/posts/aa61ddd/imgs/image-20240702182236243.png?size=small, /posts/aa61ddd/imgs/image-20240702182236243.png?size=medium 1.5x, /posts/aa61ddd/imgs/image-20240702182236243.png?size=large 2x" data-title="/posts/aa61ddd/imgs/image-20240702182236243.png" style="--width: 1698px;--aspect-ratio: 1698 / 759;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><strong>用 Passware kit 填上得到的密钥恢复即可得到一个后缀为 DD 的文件</strong></p>
+<p><img loading="lazy" src="/posts/aa61ddd/imgs/image-20240702182244638.png" alt="/posts/aa61ddd/imgs/image-20240702182244638.png" srcset="/posts/aa61ddd/imgs/image-20240702182244638.png?size=small, /posts/aa61ddd/imgs/image-20240702182244638.png?size=medium 1.5x, /posts/aa61ddd/imgs/image-20240702182244638.png?size=large 2x" data-title="/posts/aa61ddd/imgs/image-20240702182244638.png" style="--width: 1818px;--aspect-ratio: 1818 / 1330;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><strong>用FTK打开后缀为 DD 的磁盘镜像文件</strong>
+<strong>成功加载，然后发现用户ccpc桌面上有一个钓鱼木马的文件夹，尝试直接导出发现里面没东西</strong></p>
+<p><img loading="lazy" src="/posts/aa61ddd/imgs/image-20240702182253398.png" alt="/posts/aa61ddd/imgs/image-20240702182253398.png" srcset="/posts/aa61ddd/imgs/image-20240702182253398.png?size=small, /posts/aa61ddd/imgs/image-20240702182253398.png?size=medium 1.5x, /posts/aa61ddd/imgs/image-20240702182253398.png?size=large 2x" data-title="/posts/aa61ddd/imgs/image-20240702182253398.png" style="--width: 1276px;--aspect-ratio: 1276 / 924;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><strong>尝试用FTK直接挂载到本地</strong></p>
+<p><img loading="lazy" src="/posts/aa61ddd/imgs/image-20240702182300694.png" alt="/posts/aa61ddd/imgs/image-20240702182300694.png" srcset="/posts/aa61ddd/imgs/image-20240702182300694.png?size=small, /posts/aa61ddd/imgs/image-20240702182300694.png?size=medium 1.5x, /posts/aa61ddd/imgs/image-20240702182300694.png?size=large 2x" data-title="/posts/aa61ddd/imgs/image-20240702182300694.png" style="--width: 875px;--aspect-ratio: 875 / 839;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><strong>发现根目录下有一个flag.txt</strong></p>
+<p><img loading="lazy" src="/posts/aa61ddd/imgs/image-20240702182308495.png" alt="/posts/aa61ddd/imgs/image-20240702182308495.png" srcset="/posts/aa61ddd/imgs/image-20240702182308495.png?size=small, /posts/aa61ddd/imgs/image-20240702182308495.png?size=medium 1.5x, /posts/aa61ddd/imgs/image-20240702182308495.png?size=large 2x" data-title="/posts/aa61ddd/imgs/image-20240702182308495.png" style="--width: 1233px;--aspect-ratio: 1233 / 1250;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><strong>打开，用CyberChef识别发现是摩斯电码，找在线网站解密可以得到一个奶牛快传的链接</strong></p>
+<p><img loading="lazy" src="/posts/aa61ddd/imgs/image-20240702182314844.png" alt="/posts/aa61ddd/imgs/image-20240702182314844.png" srcset="/posts/aa61ddd/imgs/image-20240702182314844.png?size=small, /posts/aa61ddd/imgs/image-20240702182314844.png?size=medium 1.5x, /posts/aa61ddd/imgs/image-20240702182314844.png?size=large 2x" data-title="/posts/aa61ddd/imgs/image-20240702182314844.png" style="--width: 2061px;--aspect-ratio: 2061 / 915;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><img loading="lazy" src="/posts/aa61ddd/imgs/image-20240702182321563.png" alt="/posts/aa61ddd/imgs/image-20240702182321563.png" srcset="/posts/aa61ddd/imgs/image-20240702182321563.png?size=small, /posts/aa61ddd/imgs/image-20240702182321563.png?size=medium 1.5x, /posts/aa61ddd/imgs/image-20240702182321563.png?size=large 2x" data-title="/posts/aa61ddd/imgs/image-20240702182321563.png" style="--width: 1740px;--aspect-ratio: 1740 / 801;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><strong>访问链接，发现奶牛快传里也是一个flag.txt，打开发现是乱码的</strong></p>
+<p><img loading="lazy" src="/posts/aa61ddd/imgs/image-20240702182330861.png" alt="/posts/aa61ddd/imgs/image-20240702182330861.png" srcset="/posts/aa61ddd/imgs/image-20240702182330861.png?size=small, /posts/aa61ddd/imgs/image-20240702182330861.png?size=medium 1.5x, /posts/aa61ddd/imgs/image-20240702182330861.png?size=large 2x" data-title="/posts/aa61ddd/imgs/image-20240702182330861.png" style="--width: 2560px;--aspect-ratio: 2560 / 1600;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><img loading="lazy" src="/posts/aa61ddd/imgs/image-20240702182337253.png" alt="/posts/aa61ddd/imgs/image-20240702182337253.png" srcset="/posts/aa61ddd/imgs/image-20240702182337253.png?size=small, /posts/aa61ddd/imgs/image-20240702182337253.png?size=medium 1.5x, /posts/aa61ddd/imgs/image-20240702182337253.png?size=large 2x" data-title="/posts/aa61ddd/imgs/image-20240702182337253.png" style="--width: 2560px;--aspect-ratio: 2560 / 1600;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><em><em>用VeraCrypt解密并挂载flag.txt，密钥是平台给的Hint：RtTNZ&amp;n</em>$GKaKuehKO3+</em>*</p>
+<p><img loading="lazy" src="/posts/aa61ddd/imgs/image-20240702182345330.png" alt="/posts/aa61ddd/imgs/image-20240702182345330.png" srcset="/posts/aa61ddd/imgs/image-20240702182345330.png?size=small, /posts/aa61ddd/imgs/image-20240702182345330.png?size=medium 1.5x, /posts/aa61ddd/imgs/image-20240702182345330.png?size=large 2x" data-title="/posts/aa61ddd/imgs/image-20240702182345330.png" style="--width: 848px;--aspect-ratio: 848 / 715;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><strong>挂载好后得到一个无间道.docx，改后缀为zip打开，得到四张图片</strong></p>
+<p><img loading="lazy" src="/posts/aa61ddd/imgs/image-20240702182352125.png" alt="/posts/aa61ddd/imgs/image-20240702182352125.png" srcset="/posts/aa61ddd/imgs/image-20240702182352125.png?size=small, /posts/aa61ddd/imgs/image-20240702182352125.png?size=medium 1.5x, /posts/aa61ddd/imgs/image-20240702182352125.png?size=large 2x" data-title="/posts/aa61ddd/imgs/image-20240702182352125.png" style="--width: 806px;--aspect-ratio: 806 / 343;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><strong>image2和opposite末尾有逆置的压缩包数据，尝试还原并提取出来</strong></p>
+<p><img loading="lazy" src="/posts/aa61ddd/imgs/image-20240702182358542.png" alt="/posts/aa61ddd/imgs/image-20240702182358542.png" srcset="/posts/aa61ddd/imgs/image-20240702182358542.png?size=small, /posts/aa61ddd/imgs/image-20240702182358542.png?size=medium 1.5x, /posts/aa61ddd/imgs/image-20240702182358542.png?size=large 2x" data-title="/posts/aa61ddd/imgs/image-20240702182358542.png" style="--width: 2560px;--aspect-ratio: 2560 / 1600;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><img loading="lazy" src="/posts/aa61ddd/imgs/image-20240702182406454.png" alt="/posts/aa61ddd/imgs/image-20240702182406454.png" srcset="/posts/aa61ddd/imgs/image-20240702182406454.png?size=small, /posts/aa61ddd/imgs/image-20240702182406454.png?size=medium 1.5x, /posts/aa61ddd/imgs/image-20240702182406454.png?size=large 2x" data-title="/posts/aa61ddd/imgs/image-20240702182406454.png" style="--width: 1598px;--aspect-ratio: 1598 / 951;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><strong>不会真有人去查校庆日吧，懒惰的人都是直接开爆的</strong></p>
+<p><img loading="lazy" src="/posts/aa61ddd/imgs/image-20240702182414900.png" alt="/posts/aa61ddd/imgs/image-20240702182414900.png" srcset="/posts/aa61ddd/imgs/image-20240702182414900.png?size=small, /posts/aa61ddd/imgs/image-20240702182414900.png?size=medium 1.5x, /posts/aa61ddd/imgs/image-20240702182414900.png?size=large 2x" data-title="/posts/aa61ddd/imgs/image-20240702182414900.png" style="--width: 714px;--aspect-ratio: 714 / 693;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><strong>解压最后一个压缩包即可得到flag：flag{ba93d8e998e5522c7d800f94125907dc}</strong></p>
+<h2 id="题目名称-ezmisc-todo" class="heading-element">
+  <a href="#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-ezmisc-todo" class="heading-mark"></a>题目名称 ezmisc｜ TODO</h2><p><strong>很早之前看到过这种，但是没有自己亲自动手实现过</strong></p>
+<p><strong>参考链接：https://github.com/ggerganov/kbd-audio</strong></p>
+<h2 id="题目名称-狂飙" class="heading-element">
+  <a href="#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-%e7%8b%82%e9%a3%99" class="heading-mark"></a>题目名称 狂飙</h2><p>题目附件如下</p>
+<div class="highlight" id="id-1"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">os</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">flag</span> <span class="kn">import</span> <span class="n">flag</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">Crypto.Util.number</span> <span class="kn">import</span> <span class="o">*</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">Crypto.Cipher</span> <span class="kn">import</span> <span class="n">AES</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">m</span> <span class="o">=</span> <span class="mi">88007513702424243702066490849596817304827839547007641526433597788800212065249</span>
+</span></span><span class="line"><span class="cl"><span class="n">key</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">urandom</span><span class="p">(</span><span class="mi">24</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">key</span> <span class="o">=</span> <span class="n">bytes_to_long</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">n</span> <span class="o">=</span> <span class="n">m</span> <span class="o">%</span> <span class="n">key</span>
+</span></span><span class="line"><span class="cl"><span class="n">flag</span> <span class="o">+=</span> <span class="p">(</span><span class="mi">16</span> <span class="o">-</span> <span class="nb">len</span><span class="p">(</span><span class="n">flag</span><span class="p">)</span> <span class="o">%</span> <span class="mi">16</span><span class="p">)</span> <span class="o">*</span> <span class="sa">b</span><span class="s1">&#39;</span><span class="se">\x00</span><span class="s1">&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="n">iv</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">urandom</span><span class="p">(</span><span class="mi">16</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">aes</span> <span class="o">=</span> <span class="n">AES</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">AES</span><span class="o">.</span><span class="n">MODE_CBC</span><span class="p">,</span> <span class="n">iv</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">enc_flag</span> <span class="o">=</span> <span class="n">aes</span><span class="o">.</span><span class="n">encrypt</span><span class="p">(</span><span class="n">flag</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">enc_flag</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">iv</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 103560843006078708944833658339172896192389513625588</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># b&#39;\xfc\x87\xcb\x8e\x9d\x1a\x17\x86\xd9~\x16)\xbfU\x98D\xfe\x8f\xde\x9c\xb0\xd1\x9e\xe7\xa7\xefiY\x95C\x14\x13C@j1\x9d\x08\xd9\xe7W&gt;F2\x96cm\xeb&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># b&#39;UN\x1d\xe2r&lt;\x1db\x00\xdb\x9a\x84\x1e\x82\xf0\x86&#39;</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>因为key是随机生成的24字节 byte 类型的字符串，n倍的key 等于 m-n，因此我们可以分解 m-n ，然后根据因数和 key 的长度来爆破 key</p>
+<p><img loading="lazy" src="/images/2024-VCTF-Misc-Writeup_2024-03-17-17-33-00.png" alt="factor.png" srcset="/images/2024-VCTF-Misc-Writeup_2024-03-17-17-33-00.png?size=small, /images/2024-VCTF-Misc-Writeup_2024-03-17-17-33-00.png?size=medium 1.5x, /images/2024-VCTF-Misc-Writeup_2024-03-17-17-33-00.png?size=large 2x" data-title="factor.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<div class="highlight" id="id-2"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">Crypto.Util.number</span> <span class="kn">import</span> <span class="o">*</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">Crypto.Cipher</span> <span class="kn">import</span> <span class="n">AES</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">itertools</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="o">*</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">m</span> <span class="o">=</span> <span class="mi">88007513702424243702066490849596817304827839547007641526433597788800212065249</span>
+</span></span><span class="line"><span class="cl"><span class="n">n</span> <span class="o">=</span> <span class="mi">103560843006078708944833658339172896192389513625588</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># print(m-n)</span>
+</span></span><span class="line"><span class="cl"><span class="n">c</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">&#39;</span><span class="se">\xfc\x87\xcb\x8e\x9d\x1a\x17\x86\xd9</span><span class="s1">~</span><span class="se">\x16</span><span class="s1">)</span><span class="se">\xbf</span><span class="s1">U</span><span class="se">\x98</span><span class="s1">D</span><span class="se">\xfe\x8f\xde\x9c\xb0\xd1\x9e\xe7\xa7\xef</span><span class="s1">iY</span><span class="se">\x95</span><span class="s1">C</span><span class="se">\x14\x13</span><span class="s1">C@j1</span><span class="se">\x9d\x08\xd9\xe7</span><span class="s1">W&gt;F2</span><span class="se">\x96</span><span class="s1">cm</span><span class="se">\xeb</span><span class="s1">&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="n">iv</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">&#39;UN</span><span class="se">\x1d\xe2</span><span class="s1">r&lt;</span><span class="se">\x1d</span><span class="s1">b</span><span class="se">\x00\xdb\x9a\x84\x1e\x82\xf0\x86</span><span class="s1">&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">fac</span> <span class="o">=</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">37</span><span class="p">,</span> <span class="mi">439</span><span class="p">,</span> <span class="mi">3939851</span><span class="p">,</span> <span class="mi">265898280367</span><span class="p">,</span> <span class="mi">5036645362649</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">       <span class="mi">342291058100503482469327892079792475478873</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">itertools</span><span class="o">.</span><span class="n">product</span><span class="p">(</span><span class="n">fac</span><span class="p">,</span> <span class="n">repeat</span><span class="o">=</span><span class="mi">4</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 从列表中抽4个元素的所有情况</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># print(f)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">key</span> <span class="o">=</span> <span class="n">prod</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 计算可迭代对象中所有元素的乘积</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="mi">188</span> <span class="o">&lt;=</span> <span class="n">key</span><span class="o">.</span><span class="n">bit_length</span><span class="p">()</span> <span class="o">&lt;=</span> <span class="mi">192</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># [23.5*8,24*8]</span>
+</span></span><span class="line"><span class="cl">        <span class="n">aes</span> <span class="o">=</span> <span class="n">AES</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">long_to_bytes</span><span class="p">(</span><span class="n">key</span><span class="p">),</span> <span class="n">AES</span><span class="o">.</span><span class="n">MODE_CBC</span><span class="p">,</span> <span class="n">iv</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">flag</span> <span class="o">=</span> <span class="n">aes</span><span class="o">.</span><span class="n">decrypt</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="sa">b</span><span class="s1">&#39;flag&#39;</span> <span class="ow">in</span> <span class="n">flag</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="nb">print</span><span class="p">(</span><span class="n">flag</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># flag{cf735a4d-f9d9-5110-8a73-5017fc39b1b0}</span></span></span></code></pre></td></tr></table>
+</div>
+</div></div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title="Updated on 2024-03-17 18:17:29">Updated on 2024-03-17&nbsp;</span>
+      </div></div><div class="post-info-line">
+        <div class="post-info-md"><span><a href="/posts/aa61ddd/index.md" title="Read Markdown" class="link-to-markdown">Read Markdown</a></span></div>
+        <div class="post-info-share">
+          <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="http://localhost:1313/posts/aa61ddd/" data-title="2024 VCTF Misc Writeup" data-via="https://twitter.com/goodlunatic007" data-hashtags="CTF,Writeup,Misc"><i class="fa-brands fa-twitter fa-fw" aria-hidden="true"></i></a>
+  <a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="http://localhost:1313/posts/aa61ddd/" data-hashtag="CTF"><i class="fa-brands fa-facebook-square fa-fw" aria-hidden="true"></i></a>
+  <a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="http://localhost:1313/posts/aa61ddd/" data-title="2024 VCTF Misc Writeup"><i class="fa-brands fa-weibo fa-fw" aria-hidden="true"></i></a>
+  </span>
+        </div>
+      </div></div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href="/tags/ctf/" class="post-tag" title="Tags - CTF">CTF</a><a href="/tags/writeup/" class="post-tag" title="Tags - Writeup">Writeup</a><a href="/tags/misc/" class="post-tag" title="Tags - Misc">Misc</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+    </section>
+  </div>
+
+  <div class="post-nav"><a href="/posts/4b500cc/" class="post-nav-item" rel="prev" title="线切割-Windows98&amp;WindowsXP折腾记录"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>线切割-Windows98&amp;WindowsXP折腾记录</a>
+      <a href="/posts/10f4f96/" class="post-nav-item" rel="next" title="2024 DubheCTF-Cipher 赛题详解">2024 DubheCTF-Cipher 赛题详解<i class="fa-solid fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+</article>
+
+  <aside class="toc" id="toc-auto" aria-label="Contents"><h2 class="toc-title">Contents&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+      <div class="toc-content" id="toc-content-auto"></div></aside></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line powered">Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreferrer" title="Hugo 0.125.3">Hugo</a> | Theme - <a href="https://github.com/hugo-fixit/FixIt" target="_blank" rel="external" title="FixIt v0.3.2">FixIt</a>
+        </div><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
+            <span itemprop="copyrightYear">2024</span><span class="author" itemprop="copyrightHolder">
+              <a href="https://goodlunatic.github.io"target="_blank" rel="external nofollow noopener noreferrer">Lunatic</a></span></div></div>
+  </footer></div><div class="widgets"><div class="fixed-buttons animate__faster d-none"><div class="fixed-button back-to-top" role="button" aria-label="Back to Top"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i><span class="variant-numeric d-none">0%</span>
+        </div></div><div id="mask"></div><noscript>
+    <div class="noscript-warning">Theme FixIt works best with JavaScript enabled.</div>
+  </noscript>
+</div><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><script src="/lib/sharer/sharer.min.js" async defer></script><script src="/lib/typeit/index.umd.js" defer></script><script src="/lib/cookieconsent/cookieconsent.min.js" defer></script><script>window.config={"code":{"copyTitle":"Copy to clipboard","editLockTitle":"Lock editable code block","editUnLockTitle":"Unlock editable code block","editable":true,"maxShownLines":10},"comment":{"enable":false},"cookieconsent":{"content":{"dismiss":"Got it!","link":"Learn more","message":"This website uses Cookies to improve your experience."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"data":{"typeit-header-desktop":"Lunatic BLOG","typeit-header-title-mobile":"Lunatic BLOG"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"typeit-header-desktop":["typeit-header-desktop"],"typeit-header-subtitle-desktop":["typeit-header-subtitle-desktop"],"typeit-header-subtitle-mobile":["typeit-header-subtitle-mobile"],"typeit-header-title-mobile":["typeit-header-title-mobile"]},"duration":-1,"loop":false,"speed":100}};</script><script src="/js/theme.min.js" defer></script></body>
+</html>

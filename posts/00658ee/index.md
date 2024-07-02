@@ -4,7 +4,9 @@
 
 &lt;!--more--&gt;
 
-这个题目在 [BUUOJ](https://buuoj.cn/challenges) 上可以搜到 [题目来源](https://github.com/b01lers/b01lers-ctf-2020/tree/master/misc/image_adjustments)
+这个题目在 [BUUOJ](https://buuoj.cn/challenges) 上可以搜到
+
+[题目来源](https://github.com/b01lers/b01lers-ctf-2020/tree/master/misc/image_adjustments)
 
 题目附件首先是给了这样一张杂乱的图片，比较明显的是有大量的红色和黑色的像素
 
@@ -15,6 +17,7 @@
 ![](imgs/image-20240702171421634.png)
 
 于是猜想要从红色的像素段入手解题，把每一列的像素都根据红色像素段平移，直到对齐所有的红色像素段
+
 脚本的思路就是：爆破偏移量，然后判断四个像素值即可，其中两个是白色，其中两个是红色，简单来说就是判断红色和白色相接的位置
 
 解题脚本如下
