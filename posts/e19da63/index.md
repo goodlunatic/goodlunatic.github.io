@@ -1545,7 +1545,7 @@ print(np.concatenate((a, b), axis=1))
 
 ####  scipy模块的使用
 
-#经常要导入csv数据
+\#经常要导入csv数据
 
 ```python
 import numpy as np

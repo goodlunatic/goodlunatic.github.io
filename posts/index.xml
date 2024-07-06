@@ -4,13 +4,37 @@
     <link>http://localhost:1313/posts/</link>
     <description>All Posts | ⚡Lunatic BLOG⚡</description>
     <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>goodlunatic0@gmail.com (Lunatic)</managingEditor>
-      <webMaster>goodlunatic0@gmail.com (Lunatic)</webMaster><lastBuildDate>Mon, 01 Jul 2024 21:39:43 &#43;0800</lastBuildDate><atom:link href="http://localhost:1313/posts/" rel="self" type="application/rss+xml" /><item>
-  <title>Research  of Mixture of Experts(MoE)</title>
-  <link>http://localhost:1313/posts/325c9cf/</link>
-  <pubDate>Mon, 01 Jul 2024 21:39:43 &#43;0800</pubDate>
+      <webMaster>goodlunatic0@gmail.com (Lunatic)</webMaster><lastBuildDate>Sat, 06 Jul 2024 20:30:17 &#43;0800</lastBuildDate><atom:link href="http://localhost:1313/posts/" rel="self" type="application/rss+xml" /><item>
+  <title>CTF-Misc Guide</title>
+  <link>http://localhost:1313/posts/1ad9200/</link>
+  <pubDate>Sat, 06 Jul 2024 20:30:17 &#43;0800</pubDate>
   <author>Lunatic</author>
-  <guid>http://localhost:1313/posts/325c9cf/</guid>
-  <description><![CDATA[<p>This is a simple research of MoE.</p>]]></description>
+  <guid>http://localhost:1313/posts/1ad9200/</guid>
+  <description><![CDATA[<p><strong>This is a simple Guide for CTF in Misc Area.</strong></p>]]></description>
+</item>
+<item>
+  <title>Network Traffic Analysis</title>
+  <link>http://localhost:1313/posts/5422d65/</link>
+  <pubDate>Sat, 06 Jul 2024 18:15:27 &#43;0800</pubDate>
+  <author>Lunatic</author>
+  <guid>http://localhost:1313/posts/5422d65/</guid>
+  <description><![CDATA[<p><strong>This is a Simple Guide for Network Traffic Analysis.</strong></p>]]></description>
+</item>
+<item>
+  <title>Misc-Forensics</title>
+  <link>http://localhost:1313/posts/761da51/</link>
+  <pubDate>Sat, 06 Jul 2024 16:34:12 &#43;0800</pubDate>
+  <author>Lunatic</author>
+  <guid>http://localhost:1313/posts/761da51/</guid>
+  <description><![CDATA[<p><strong>This is a simple summary of digital forensics .</strong></p>]]></description>
+</item>
+<item>
+  <title>PTA Practice Record</title>
+  <link>http://localhost:1313/posts/552060f/</link>
+  <pubDate>Thu, 04 Jul 2024 16:37:29 &#43;0800</pubDate>
+  <author>Lunatic</author>
+  <guid>http://localhost:1313/posts/552060f/</guid>
+  <description><![CDATA[<p>PTA Practice Record</p>]]></description>
 </item>
 <item>
   <title>Misc-QRcode小记</title>
@@ -62,32 +86,6 @@
   <guid>http://localhost:1313/posts/9d73413/</guid>
   <description><![CDATA[<p>宁波市赛的 Misc 还是一如既往的抽象 @_@</p>
 <p>还是太菜了，赛中只做出了一道 Misc</p>]]></description>
-</item>
-<item>
-  <title>CTF-Misc Guide</title>
-  <link>http://localhost:1313/posts/1ad9200/</link>
-  <pubDate>Sun, 05 May 2024 10:37:17 &#43;0800</pubDate>
-  <author>Lunatic</author>
-  <guid>http://localhost:1313/posts/1ad9200/</guid>
-  <description><![CDATA[<p><strong>This is a simple Guide for CTF in Misc Area.</strong></p>]]></description>
-</item>
-<item>
-  <title>Misc-Blind WaterMark</title>
-  <link>http://localhost:1313/posts/f0ec4d6/</link>
-  <pubDate>Sat, 04 May 2024 14:35:57 &#43;0800</pubDate>
-  <author>Lunatic</author>
-  <guid>http://localhost:1313/posts/f0ec4d6/</guid>
-  <description><![CDATA[<p>最近做 Misc 题的时候经常碰到盲水印的题目，虽然可以使用B神的 Puzzle Solver 一把梭
-但是还是打算深入学习一下</p>]]></description>
-</item>
-<item>
-  <title>2024 NKCTF Misc Writeup</title>
-  <link>http://localhost:1313/posts/e0d44f3/</link>
-  <pubDate>Tue, 30 Apr 2024 19:07:38 &#43;0800</pubDate>
-  <author>Lunatic</author>
-  <guid>http://localhost:1313/posts/e0d44f3/</guid>
-  <description><![CDATA[<p><strong>从这场比赛可以看出自己还是有很多东西需要去学</strong><br>
-<strong>感觉 Misc 很大程度上还是看经验，自己见过的东西还是太少了</strong></p>]]></description>
 </item>
 </channel>
 </rss>
