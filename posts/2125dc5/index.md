@@ -4,6 +4,7 @@
 &lt;!--more--&gt;
 ## Signin
 附件就给了一段密文，后面给了提示才知道是 twin hex 编码
+
 直接使用在线网站解密：https://www.dcode.fr/twin-hex-cipher
 
 ![](imgs/image-20240717112049518.png)
@@ -21,6 +22,9 @@ WKCTF{hello_2024}
 ## ⼩z的社交⽹络
 
 题面信息提示了这是一张由 AES-ECB 算法加密的 ppm 图片：
+
+![](imgs/image-20240717120606168.png)
+
 赛后知道了有这个项目：https://doegox.github.io/ElectronicColoringBook/
 原理大概就是：相同的明文块被加密成相同的密文块
 直接使用这个项目还原一下这张图片，得到id：M3moryyy
@@ -31,12 +35,15 @@ python .\ElectronicColoringBook.py .\id.ppm
 ![](imgs/image-20240717112800381.png)
 
 然后去各大社交平台搜索这个id，在微博中可以搜到这个用户
+
 ![](imgs/image-20240717113509260.png)
 
-在他的关注列表里可以搜到另一个头像中有 CTF 字样人
+在他的关注列表里可以搜到另一个头像中有 CTF 字样的人
+
 ![](imgs/image-20240717113540878.png)
 
 然后发现他的博客地址，base64解码一下得到：www.zimablue.life
+
 ![](imgs/image-20240717113624462.png)
 
 翻阅博客，发现一篇加密的文章
@@ -74,6 +81,7 @@ base58解码后可以得到一串数字，猜测是QQ号
 ![](imgs/image-20240717115336693.png)
 
 使用以下命令回退到之前的版本，得到FLAG.zip
+
 ```
 git reset --hard ed8d79ebf1af3eaea037ca6c500b9aba64726894
 ```
