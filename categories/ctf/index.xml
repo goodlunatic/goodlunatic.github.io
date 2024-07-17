@@ -4,7 +4,15 @@
     <link>http://localhost:1313/categories/ctf/</link>
     <description>CTF - Category | ⚡Lunatic BLOG⚡</description>
     <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>goodlunatic0@gmail.com (Lunatic)</managingEditor>
-      <webMaster>goodlunatic0@gmail.com (Lunatic)</webMaster><lastBuildDate>Wed, 17 Jul 2024 11:17:04 &#43;0800</lastBuildDate><atom:link href="http://localhost:1313/categories/ctf/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>goodlunatic0@gmail.com (Lunatic)</webMaster><lastBuildDate>Wed, 17 Jul 2024 20:31:08 &#43;0800</lastBuildDate><atom:link href="http://localhost:1313/categories/ctf/" rel="self" type="application/rss+xml" /><item>
+  <title>2023 春秋杯冬季赛 Misc Writeup</title>
+  <link>http://localhost:1313/posts/5de0d7e/</link>
+  <pubDate>Wed, 17 Jul 2024 20:31:08 &#43;0800</pubDate>
+  <author>Lunatic</author>
+  <guid>http://localhost:1313/posts/5de0d7e/</guid>
+  <description><![CDATA[<p>后来再回头看自己当初没做出来的题，也是感触颇深</p>]]></description>
+</item>
+<item>
   <title>2024 WKCTF Misc Writeup</title>
   <link>http://localhost:1313/posts/2125dc5/</link>
   <pubDate>Wed, 17 Jul 2024 11:17:04 &#43;0800</pubDate>
@@ -78,14 +86,6 @@
   <author>Lunatic</author>
   <guid>http://localhost:1313/posts/bc64ef8/</guid>
   <description><![CDATA[<p><strong>这两天刷题的时候做到了这道比较有意思的题目，于是就打算稍微总结一下。</strong></p>]]></description>
-</item>
-<item>
-  <title>2024 DubheCTF-Cipher 赛题详解</title>
-  <link>http://localhost:1313/posts/10f4f96/</link>
-  <pubDate>Tue, 19 Mar 2024 16:58:01 &#43;0800</pubDate>
-  <author>Lunatic</author>
-  <guid>http://localhost:1313/posts/10f4f96/</guid>
-  <description><![CDATA[<p><strong>从这道题入手，由浅入深学习一下Windows自带的 Cipher 加密（EFS加密算法）</strong></p>]]></description>
 </item>
 </channel>
 </rss>

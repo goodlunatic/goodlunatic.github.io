@@ -4,7 +4,15 @@
     <link>http://localhost:1313/posts/</link>
     <description>All Posts | ⚡Lunatic BLOG⚡</description>
     <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>goodlunatic0@gmail.com (Lunatic)</managingEditor>
-      <webMaster>goodlunatic0@gmail.com (Lunatic)</webMaster><lastBuildDate>Wed, 17 Jul 2024 11:17:04 &#43;0800</lastBuildDate><atom:link href="http://localhost:1313/posts/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>goodlunatic0@gmail.com (Lunatic)</webMaster><lastBuildDate>Wed, 17 Jul 2024 20:31:08 &#43;0800</lastBuildDate><atom:link href="http://localhost:1313/posts/" rel="self" type="application/rss+xml" /><item>
+  <title>2023 春秋杯冬季赛 Misc Writeup</title>
+  <link>http://localhost:1313/posts/5de0d7e/</link>
+  <pubDate>Wed, 17 Jul 2024 20:31:08 &#43;0800</pubDate>
+  <author>Lunatic</author>
+  <guid>http://localhost:1313/posts/5de0d7e/</guid>
+  <description><![CDATA[<p>后来再回头看自己当初没做出来的题，也是感触颇深</p>]]></description>
+</item>
+<item>
   <title>2024 WKCTF Misc Writeup</title>
   <link>http://localhost:1313/posts/2125dc5/</link>
   <pubDate>Wed, 17 Jul 2024 11:17:04 &#43;0800</pubDate>
@@ -77,14 +85,6 @@
   <author>Lunatic</author>
   <guid>http://localhost:1313/posts/a4ba07e/</guid>
   <description><![CDATA[<p>This a simple record of Crypto in CTF.</p>]]></description>
-</item>
-<item>
-  <title>2024 CISCN初赛 Misc Writeup</title>
-  <link>http://localhost:1313/posts/1b1f96e/</link>
-  <pubDate>Sun, 19 May 2024 21:10:44 &#43;0800</pubDate>
-  <author>Lunatic</author>
-  <guid>http://localhost:1313/posts/1b1f96e/</guid>
-  <description><![CDATA[<p>又是一年国赛，这次纯纯是被队友带飞了！！！</p>]]></description>
 </item>
 </channel>
 </rss>
