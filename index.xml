@@ -4,9 +4,17 @@
     <link>http://localhost:1313/</link>
     <description>This is Lunatic BLOG @_@</description>
     <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>goodlunatic0@gmail.com (Lunatic)</managingEditor>
-      <webMaster>goodlunatic0@gmail.com (Lunatic)</webMaster><lastBuildDate>Sat, 06 Jul 2024 20:30:17 &#43;0800</lastBuildDate>
+      <webMaster>goodlunatic0@gmail.com (Lunatic)</webMaster><lastBuildDate>Wed, 17 Jul 2024 11:17:04 &#43;0800</lastBuildDate>
       <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
     <item>
+  <title>2024 WKCTF Misc Writeup</title>
+  <link>http://localhost:1313/posts/2125dc5/</link>
+  <pubDate>Wed, 17 Jul 2024 11:17:04 &#43;0800</pubDate>
+  <author>Lunatic</author>
+  <guid>http://localhost:1313/posts/2125dc5/</guid>
+  <description><![CDATA[<p>忙里偷闲，稍微打了一下 2024WKCTF 练练手</p>]]></description>
+</item>
+<item>
   <title>CTF-Misc Guide</title>
   <link>http://localhost:1313/posts/1ad9200/</link>
   <pubDate>Sat, 06 Jul 2024 20:30:17 &#43;0800</pubDate>
@@ -79,15 +87,6 @@
   <author>Lunatic</author>
   <guid>http://localhost:1313/posts/1b1f96e/</guid>
   <description><![CDATA[<p>又是一年国赛，这次纯纯是被队友带飞了！！！</p>]]></description>
-</item>
-<item>
-  <title>2024 “天一永安杯”宁波市赛初赛 Misc Writeup</title>
-  <link>http://localhost:1313/posts/9d73413/</link>
-  <pubDate>Mon, 06 May 2024 14:53:14 &#43;0800</pubDate>
-  <author>Lunatic</author>
-  <guid>http://localhost:1313/posts/9d73413/</guid>
-  <description><![CDATA[<p>宁波市赛的 Misc 还是一如既往的抽象 @_@</p>
-<p>还是太菜了，赛中只做出了一道 Misc</p>]]></description>
 </item>
 </channel>
 </rss>

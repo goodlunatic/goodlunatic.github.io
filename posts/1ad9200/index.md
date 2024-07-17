@@ -510,7 +510,7 @@ print(secret)
 
 随波逐流直接解密即可 [2023 浙江省赛决赛]
 
-### 无字天书(whitespace)&amp;snow隐写
+### 无字天书(whitespace)或者snow隐写
 
 一个文件打开都是空白字符
 
@@ -622,6 +622,7 @@ U     R    H   D    B     D   F    G    E
 .zip的文件头：50 4B 03 04 14 00 08 00
 .rar的文件头：52 61 72 21
 .rar的文件尾：C4 3D 7B 00 40 07 00
+.7z的文件头：37 7A BC AF 27 1C
 .pyc的文件头：03 F3 0D 0A
 .jpg的文件头：FF　D8　FF
 .png的文件头：89 50 4e 47 0d 0a 1a 0a   文件尾：49 45 4E 44 AE 42 60 82

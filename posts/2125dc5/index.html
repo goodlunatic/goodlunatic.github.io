@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="en">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <title>2024 WKCTF Misc Writeup - ⚡Lunatic BLOG⚡</title><meta name="author" content="Lunatic">
+<meta name="author-link" content="https://goodlunatic.github.io">
+<meta name="description" content="忙里偷闲，稍微打了一下 2024WKCTF 练练手" /><meta name="keywords" content='CTF' />
+  <meta itemprop="name" content="2024 WKCTF Misc Writeup">
+  <meta itemprop="description" content="忙里偷闲，稍微打了一下 2024WKCTF 练练手">
+  <meta itemprop="datePublished" content="2024-07-17T11:17:04+08:00">
+  <meta itemprop="dateModified" content="2024-07-17T11:17:04+08:00">
+  <meta itemprop="wordCount" content="49">
+  <meta itemprop="keywords" content="CTF"><meta property="og:url" content="http://localhost:1313/posts/2125dc5/">
+  <meta property="og:site_name" content="⚡Lunatic BLOG⚡">
+  <meta property="og:title" content="2024 WKCTF Misc Writeup">
+  <meta property="og:description" content="忙里偷闲，稍微打了一下 2024WKCTF 练练手
+">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+  <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2024-07-17T11:17:04+08:00">
+    <meta property="article:modified_time" content="2024-07-17T11:17:04+08:00">
+    <meta property="article:tag" content="CTF">
+<meta name="twitter:card" content="summary"><meta name="twitter:title" content="2024 WKCTF Misc Writeup">
+<meta name="twitter:description" content="忙里偷闲，稍微打了一下 2024WKCTF 练练手">
+      <meta name="twitter:site" content="@https://twitter.com/goodlunatic007">
+<meta name="application-name" content="FixIt">
+<meta name="apple-mobile-web-app-title" content="FixIt"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="https://www.nssctf.cn/files/2024/4/28/8fdad6c6ee.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="http://localhost:1313/posts/2125dc5/" /><link rel="prev" href="http://localhost:1313/posts/1ad9200/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "2024 WKCTF Misc Writeup",
+    "inLanguage": "en",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "http:\/\/localhost:1313\/posts\/2125dc5\/"
+    },"genre": "posts","keywords": "CTF","wordcount":  49 ,
+    "url": "http:\/\/localhost:1313\/posts\/2125dc5\/","datePublished": "2024-07-17T11:17:04+08:00","dateModified": "2024-07-17T11:17:04+08:00","publisher": {
+      "@type": "Organization",
+      "name": ""},"author": {
+        "@type": "Person",
+        "name": "Lunatic"
+      },"description": ""
+  }
+  </script></head>
+  <body data-header-desktop="sticky" data-header-mobile="auto"><script>(window.localStorage?.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper" data-page-style="normal"><header class="desktop animate__faster" id="header-desktop">
+  <div class="header-wrapper">
+    <div class="header-title">
+      <a href="/" title="⚡Lunatic BLOG⚡"><span class="header-title-pre">⚡</span><span id="typeit-header-desktop" class="typeit"></span></a><span id="typeit-header-subtitle-desktop" class="typeit header-subtitle"></span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/archives/"
+                
+                
+              ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> Archives</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/categories/"
+                
+                
+              ><i class="fa-solid fa-folder-tree fa-fw fa-sm" aria-hidden="true"></i> Categories</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/tags/"
+                
+                
+              ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> Tags</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/friends/"
+                
+                
+              ><i class="fa-solid fa-chain fa-fw fa-sm" aria-hidden="true"></i> Friends</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/about/"
+                
+                
+              ><i class="fa-solid fa-graduation-cap fa-fw fa-sm" aria-hidden="true"></i> About</a></li><li class="menu-item delimiter"></li><li class="menu-item theme-switch" title="Switch Theme">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li></ul>
+    </nav>
+  </div>
+</header><header class="mobile animate__faster" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="⚡Lunatic BLOG⚡"><span class="header-title-pre">⚡</span><span id="typeit-header-title-mobile" class="typeit"></span></a><span id="typeit-header-subtitle-mobile" class="typeit header-subtitle"></span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/archives/"
+                  
+                  
+                ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> Archives</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/categories/"
+                  
+                  
+                ><i class="fa-solid fa-folder-tree fa-fw fa-sm" aria-hidden="true"></i> Categories</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/tags/"
+                  
+                  
+                ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> Tags</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/friends/"
+                  
+                  
+                ><i class="fa-solid fa-chain fa-fw fa-sm" aria-hidden="true"></i> Friends</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/about/"
+                  
+                  
+                ><i class="fa-solid fa-graduation-cap fa-fw fa-sm" aria-hidden="true"></i> About</a></li><li class="menu-item menu-system">
+          <span class="menu-system-item theme-switch" title="Switch Theme"><i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i></span></li>
+      </ul>
+    </nav>
+  </div>
+</header><main class="container"><aside class="aside-collection animate__animated animate__fadeIn animate__faster" aria-label="Collections"></aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX"><span>2024 WKCTF Misc Writeup</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><a href="https://goodlunatic.github.io" title="Author"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><img loading="lazy" src="https://www.nssctf.cn/files/2024/4/28/7f130a1387.png" alt="Lunatic" data-title="Lunatic" class="avatar" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>&nbsp;Lunatic</a></span><span class="post-included-in">&nbsp;included in <a href="/categories/ctf/" class="post-category" title="Category - CTF"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> CTF</a></span></div><div class="post-meta-line"><span title="published on 2024-07-17 11:17:04"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden="true"></i><time datetime="2024-07-17">2024-07-17</time></span>&nbsp;<span title="49 words"><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>About 100 words</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>One minute</span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="false">
+        <div class="details-summary toc-title">
+          <span>Contents</span>
+          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#signin">Signin</a></li>
+    <li><a href="#不套是你的谎言">不套是你的谎言</a></li>
+    <li><a href="#z的社交络">⼩z的社交⽹络</a></li>
+  </ul>
+</nav></div>
+      </div><div class="content" id="content"><p>忙里偷闲，稍微打了一下 2024WKCTF 练练手</p>
+<h2 id="signin" class="heading-element">
+  <a href="#signin" class="heading-mark"></a>Signin</h2><p>附件就给了一段密文，后面给了提示才知道是 twin hex 编码
+直接使用在线网站解密：https://www.dcode.fr/twin-hex-cipher</p>
+<p><img loading="lazy" src="imgs/image-20240717112049518.png" alt="imgs/image-20240717112049518.png" srcset="imgs/image-20240717112049518.png?size=small, imgs/image-20240717112049518.png?size=medium 1.5x, imgs/image-20240717112049518.png?size=large 2x" data-title="imgs/image-20240717112049518.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>解密后得到一张base64编码后的图片，CyberChef 解码发现是张二维码，识别一下</p>
+<p><img loading="lazy" src="imgs/image-20240717112232037.png" alt="imgs/image-20240717112232037.png" srcset="imgs/image-20240717112232037.png?size=small, imgs/image-20240717112232037.png?size=medium 1.5x, imgs/image-20240717112232037.png?size=large 2x" data-title="imgs/image-20240717112232037.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>WKCTF{hello_2024}</p>
+<h2 id="不套是你的谎言" class="heading-element">
+  <a href="#%e4%b8%8d%e5%a5%97%e6%98%af%e4%bd%a0%e7%9a%84%e8%b0%8e%e8%a8%80" class="heading-mark"></a>不套是你的谎言</h2><h2 id="z的社交络" class="heading-element">
+  <a href="#z%e7%9a%84%e7%a4%be%e4%ba%a4%e7%bb%9c" class="heading-mark"></a>⼩z的社交⽹络</h2><p>题面信息提示了这是一张由 AES-ECB 算法加密的 ppm 图片：
+赛后知道了有这个项目：https://doegox.github.io/ElectronicColoringBook/
+原理大概就是：相同的明文块被加密成相同的密文块
+直接使用这个项目还原一下这张图片，得到id：M3moryyy</p>
+<div class="highlight" id="id-1"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">python .<span class="se">\E</span>lectronicColoringBook.py .<span class="se">\i</span>d.ppm</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img loading="lazy" src="imgs/image-20240717112800381.png" alt="imgs/image-20240717112800381.png" srcset="imgs/image-20240717112800381.png?size=small, imgs/image-20240717112800381.png?size=medium 1.5x, imgs/image-20240717112800381.png?size=large 2x" data-title="imgs/image-20240717112800381.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>然后去各大社交平台搜索这个id，在微博中可以搜到这个用户
+<img loading="lazy" src="imgs/image-20240717113509260.png" alt="imgs/image-20240717113509260.png" srcset="imgs/image-20240717113509260.png?size=small, imgs/image-20240717113509260.png?size=medium 1.5x, imgs/image-20240717113509260.png?size=large 2x" data-title="imgs/image-20240717113509260.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>在他的关注列表里可以搜到另一个头像中有 CTF 字样人
+<img loading="lazy" src="imgs/image-20240717113540878.png" alt="imgs/image-20240717113540878.png" srcset="imgs/image-20240717113540878.png?size=small, imgs/image-20240717113540878.png?size=medium 1.5x, imgs/image-20240717113540878.png?size=large 2x" data-title="imgs/image-20240717113540878.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>然后发现他的博客地址，base64解码一下得到：www.zimablue.life
+<img loading="lazy" src="imgs/image-20240717113624462.png" alt="imgs/image-20240717113624462.png" srcset="imgs/image-20240717113624462.png?size=small, imgs/image-20240717113624462.png?size=medium 1.5x, imgs/image-20240717113624462.png?size=large 2x" data-title="imgs/image-20240717113624462.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>翻阅博客，发现一篇加密的文章</p>
+<p><img loading="lazy" src="imgs/image-20240717113828411.png" alt="imgs/image-20240717113828411.png" srcset="imgs/image-20240717113828411.png?size=small, imgs/image-20240717113828411.png?size=medium 1.5x, imgs/image-20240717113828411.png?size=large 2x" data-title="imgs/image-20240717113828411.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>在微博中发现密码的线索：密码是女朋友的生日</p>
+<p><img loading="lazy" src="imgs/image-20240717114038493.png" alt="imgs/image-20240717114038493.png" srcset="imgs/image-20240717114038493.png?size=small, imgs/image-20240717114038493.png?size=medium 1.5x, imgs/image-20240717114038493.png?size=large 2x" data-title="imgs/image-20240717114038493.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>通过上一篇博文中小红书的id去搜索</p>
+<p><img loading="lazy" src="imgs/image-20240717114116702.png" alt="imgs/image-20240717114116702.png" srcset="imgs/image-20240717114116702.png?size=small, imgs/image-20240717114116702.png?size=medium 1.5x, imgs/image-20240717114116702.png?size=large 2x" data-title="imgs/image-20240717114116702.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><img loading="lazy" src="imgs/image-20240717114226804.png" alt="imgs/image-20240717114226804.png" srcset="imgs/image-20240717114226804.png?size=small, imgs/image-20240717114226804.png?size=medium 1.5x, imgs/image-20240717114226804.png?size=large 2x" data-title="imgs/image-20240717114226804.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>base58解码后可以得到一串数字，猜测是QQ号</p>
+<p><img loading="lazy" src="imgs/image-20240717114430348.png" alt="imgs/image-20240717114430348.png" srcset="imgs/image-20240717114430348.png?size=small, imgs/image-20240717114430348.png?size=medium 1.5x, imgs/image-20240717114430348.png?size=large 2x" data-title="imgs/image-20240717114430348.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>去QQ搜索这个QQ号就可以看到出生日期了，所以密码就是20000917</p>
+<p><img loading="lazy" src="imgs/image-20240717114500687.png" alt="imgs/image-20240717114500687.png" srcset="imgs/image-20240717114500687.png?size=small, imgs/image-20240717114500687.png?size=medium 1.5x, imgs/image-20240717114500687.png?size=large 2x" data-title="imgs/image-20240717114500687.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>解开那篇文章后发现需要去Github上找</p>
+<p><img loading="lazy" src="imgs/image-20240717114615542.png" alt="imgs/image-20240717114615542.png" srcset="imgs/image-20240717114615542.png?size=small, imgs/image-20240717114615542.png?size=medium 1.5x, imgs/image-20240717114615542.png?size=large 2x" data-title="imgs/image-20240717114615542.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>在Github上找到下面这个仓库</p>
+<p><img loading="lazy" src="imgs/image-20240717114755401.png" alt="imgs/image-20240717114755401.png" srcset="imgs/image-20240717114755401.png?size=small, imgs/image-20240717114755401.png?size=medium 1.5x, imgs/image-20240717114755401.png?size=large 2x" data-title="imgs/image-20240717114755401.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>把这个项目 clone 到本地，查看历史版本，发现删除了flag</p>
+<p><img loading="lazy" src="imgs/image-20240717115336693.png" alt="imgs/image-20240717115336693.png" srcset="imgs/image-20240717115336693.png?size=small, imgs/image-20240717115336693.png?size=medium 1.5x, imgs/image-20240717115336693.png?size=large 2x" data-title="imgs/image-20240717115336693.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>使用以下命令回退到之前的版本，得到FLAG.zip</p>
+<div class="highlight" id="id-2"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">git reset --hard ed8d79ebf1af3eaea037ca6c500b9aba64726894</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img loading="lazy" src="imgs/image-20240717115203319.png" alt="imgs/image-20240717115203319.png" srcset="imgs/image-20240717115203319.png?size=small, imgs/image-20240717115203319.png?size=medium 1.5x, imgs/image-20240717115203319.png?size=large 2x" data-title="imgs/image-20240717115203319.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>解压压缩包后得到 .FLAG.swp ，在里面找到flag</p>
+<p><img loading="lazy" src="imgs/image-20240717115416989.png" alt="imgs/image-20240717115416989.png" srcset="imgs/image-20240717115416989.png?size=small, imgs/image-20240717115416989.png?size=medium 1.5x, imgs/image-20240717115416989.png?size=large 2x" data-title="imgs/image-20240717115416989.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>WKCTF{1111_2222_3333_4444_hhhh}</p></div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title="Updated on 2024-07-17 11:17:04">Updated on 2024-07-17&nbsp;</span>
+      </div></div><div class="post-info-line">
+        <div class="post-info-md"><span><a href="/posts/2125dc5/index.md" title="Read Markdown" class="link-to-markdown">Read Markdown</a></span></div>
+        <div class="post-info-share">
+          <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="http://localhost:1313/posts/2125dc5/" data-title="2024 WKCTF Misc Writeup" data-via="https://twitter.com/goodlunatic007" data-hashtags="CTF"><i class="fa-brands fa-twitter fa-fw" aria-hidden="true"></i></a>
+  <a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="http://localhost:1313/posts/2125dc5/" data-hashtag="CTF"><i class="fa-brands fa-facebook-square fa-fw" aria-hidden="true"></i></a>
+  <a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="http://localhost:1313/posts/2125dc5/" data-title="2024 WKCTF Misc Writeup"><i class="fa-brands fa-weibo fa-fw" aria-hidden="true"></i></a>
+  </span>
+        </div>
+      </div></div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href="/tags/ctf/" class="post-tag" title="Tags - CTF">CTF</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+    </section>
+  </div>
+
+  <div class="post-nav"><a href="/posts/1ad9200/" class="post-nav-item" rel="prev" title="CTF-Misc Guide"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>CTF-Misc Guide</a></div>
+</div>
+</article>
+
+  <aside class="toc" id="toc-auto" aria-label="Contents"><h2 class="toc-title">Contents&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+      <div class="toc-content" id="toc-content-auto"></div></aside></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line powered">Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreferrer" title="Hugo 0.125.3">Hugo</a> | Theme - <a href="https://github.com/hugo-fixit/FixIt" target="_blank" rel="external" title="FixIt v0.3.2">FixIt</a>
+        </div><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
+            <span itemprop="copyrightYear">2024</span><span class="author" itemprop="copyrightHolder">
+              <a href="https://goodlunatic.github.io"target="_blank" rel="external nofollow noopener noreferrer">Lunatic</a></span></div></div>
+  </footer></div><div class="widgets"><div class="fixed-buttons animate__faster d-none"><div class="fixed-button back-to-top" role="button" aria-label="Back to Top"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i><span class="variant-numeric d-none">0%</span>
+        </div></div><div id="mask"></div><noscript>
+    <div class="noscript-warning">Theme FixIt works best with JavaScript enabled.</div>
+  </noscript>
+</div><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><script src="/lib/sharer/sharer.min.js" async defer></script><script src="/lib/typeit/index.umd.js" defer></script><script src="/lib/cookieconsent/cookieconsent.min.js" defer></script><script>window.config={"code":{"copyTitle":"Copy to clipboard","editLockTitle":"Lock editable code block","editUnLockTitle":"Unlock editable code block","editable":true,"maxShownLines":10},"comment":{"enable":false},"cookieconsent":{"content":{"dismiss":"Got it!","link":"Learn more","message":"This website uses Cookies to improve your experience."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"data":{"typeit-header-desktop":"Lunatic BLOG","typeit-header-title-mobile":"Lunatic BLOG"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"typeit-header-desktop":["typeit-header-desktop"],"typeit-header-subtitle-desktop":["typeit-header-subtitle-desktop"],"typeit-header-subtitle-mobile":["typeit-header-subtitle-mobile"],"typeit-header-title-mobile":["typeit-header-title-mobile"]},"duration":-1,"loop":false,"speed":100}};</script><script src="/js/theme.min.js" defer></script></body>
+</html>
