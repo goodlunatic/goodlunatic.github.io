@@ -17,7 +17,163 @@ WKCTF{hello_2024}
 
 ## 不套是你的谎言
 
+题目附件给了一个 magic.txt，大致内容如下
 
+```
+0x450c0d0a
+0x480d0d0a
+0x90c0d0a
+0x300d0d0a
+0xe40c0d0a
+0xf80c0d0a
+0xc20b0d0a
+0x600d0d0a
+0x420d0d0a
+0x4f0c0d0a
+```
+
+赛后知道了这个每一行都是不同 Python 版本 pyc 的 magic 头
+
+因此根据网上的magic头与Python版本的对照表，编写以下脚本提取数据即可得到一个压缩包
+
+```python
+from Crypto.Util.number import *
+
+def reverse_magic(magic_number):
+    tmp = int(magic_number[2:],16)
+    # long_to_bytes()默认是大端序
+    # 将十进制的长整型转换为 bytes 数据
+    tmp = long_to_bytes(tmp)
+    # 将 bytes 数据按照小端序转换为int类型
+    number = int.from_bytes(tmp[:2],&#39;little&#39;)
+    return number
+
+PYTHON_MAGIC = {
+    # Python 3
+    3000: (3, 0),
+    3010: (3, 0),
+    3020: (3, 0),
+    3030: (3, 0),
+    3040: (3, 0),
+    3050: (3, 0),
+    3060: (3, 0),
+    3061: (3, 0),
+    3071: (3, 0),
+    3081: (3, 0),
+    3091: (3, 0),
+    3101: (3, 0),
+    3103: (3, 0),
+    3111: (3, 0),  # a4
+    3131: (3, 0),  # a5
+
+    # Python 3.1
+    3141: (3, 1),  # a0
+    3151: (3, 1),  # a0
+
+    # Python 3.2
+    3160: (3, 2),  # a0
+    3170: (3, 2),  # a1
+    3180: (3, 2),  # a2
+
+    # Python 3.3
+    3190: (3, 3),  # a0
+    3200: (3, 3),  # a0
+    3220: (3, 3),  # a1
+    3230: (3, 3),  # a4
+
+    # Python 3.4
+    3250: (3, 4),  # a1
+    3260: (3, 4),  # a1
+    3270: (3, 4),  # a1
+    3280: (3, 4),  # a1
+    3290: (3, 4),  # a4
+    3300: (3, 4),  # a4
+    3310: (3, 4),  # rc2
+
+    # Python 3.5
+    3320: (3, 5),  # a0
+    3330: (3, 5),  # b1
+    3340: (3, 5),  # b2
+    3350: (3, 5),  # b2
+    3351: (3, 5),  # 3.5.2
+
+    # Python 3.6
+    3360: (3, 6),  # a0
+    3361: (3, 6),  # a0
+    3370: (3, 6),  # a1
+    3371: (3, 6),  # a1
+    3372: (3, 6),  # a1
+    3373: (3, 6),  # b1
+    3375: (3, 6),  # b1
+    3376: (3, 6),  # b1
+    3377: (3, 6),  # b1
+    3378: (3, 6),  # b2
+    3379: (3, 6),  # rc1
+
+    # Python 3.7
+    3390: (3, 7),  # a1
+    3391: (3, 7),  # a2
+    3392: (3, 7),  # a4
+    3393: (3, 7),  # b1
+    3394: (3, 7),  # b5
+
+    # Python 3.8
+    3400: (3, 8),  # a1
+    3401: (3, 8),  # a1
+    3410: (3, 8),  # a1
+    3411: (3, 8),  # b2
+    3412: (3, 8),  # b2
+    3413: (3, 8),  # b4
+
+    # Python 3.9
+    3420: (3, 9),  # a0
+    3421: (3, 9),  # a0
+    3422: (3, 9),  # a0
+    3423: (3, 9),  # a2
+    3424: (3, 9),  # a2
+    3425: (3, 9),  # a2
+}
+
+res = &#39;&#39;
+with open(&#39;magic.txt&#39;,&#39;r&#39;) as f:
+    data = f.read().split()
+    for magic_number in data:
+        number = reverse_magic(magic_number)
+        res = res &#43; str(PYTHON_MAGIC[number][1])
+# print(res)
+zip_data = long_to_bytes(int(res))
+with open(&#39;flag.zip&#39;,&#39;wb&#39;) as f:
+    f.write(zip_data)
+print(&#34;[&#43;] 转换成功&#34;)
+```
+
+得到的压缩包发现存在伪加密，解除伪加密后可以得到一个 secret.txt，内容如下：
+
+```
+Please decrypt the flask-session, the password is weak.
+Data:eyJhbGdvcml0aG0iOiJkZXMiLCJmbGFnIjoiVW5BbVBWWTRhdCt2bkJqellPNytUZEZSMmZEYnhScytqQzdsMWt2b2hUMFp4clBDOEJUTWJBPT0ifQ.ZkyTwA.KPlAnhfBH8qMClLyoP6yboafHyw
+```
+
+发现需要爆破 flask-session 的密钥
+
+因此我们基于 [flask-session-cookie-manager](https://github.com/noraj/flask-session-cookie-manager) 写个 bash 爆破脚本，就是爆破的速度有点感人。。
+
+```bash
+#!/bin/bash
+while read line; do
+    output=$(python3 /home/kali/flask-session-cookie-manager/flask_session_cookie_manager3.py decode -s $line -c &#39;eyJhbGdvcml0aG0iOiJkZXMiLCJmbGFnIjoiVW5BbVBWWTRhdCt2bkJqellPNytUZEZSMmZEYnhScytqQzdsMWt2b2hUMFp4clBDOEJUTWJBPT0ifQ.ZkyTwA.KPlAnhfBH8qMClLyoP6yboafHyw&#39;)
+    if [[ $output != *&#34;error&#34;* ]]; then
+        echo $line
+        echo $output
+    fi
+done &lt;/home/kali/wordlists/dic.txt
+```
+
+最后爆破出密钥：12312312，然后再用这个密钥去解密DES即可
+
+![](imgs/image-20240717135933924.png)
+
+WKCTF{N0w_u_Know_th3_fl4sk_Sess1on}
 
 ## ⼩z的社交⽹络
 
