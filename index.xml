@@ -4,9 +4,17 @@
     <link>http://localhost:1313/</link>
     <description>This is Lunatic BLOG @_@</description>
     <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>goodlunatic0@gmail.com (Lunatic)</managingEditor>
-      <webMaster>goodlunatic0@gmail.com (Lunatic)</webMaster><lastBuildDate>Wed, 17 Jul 2024 20:31:08 &#43;0800</lastBuildDate>
+      <webMaster>goodlunatic0@gmail.com (Lunatic)</webMaster><lastBuildDate>Thu, 18 Jul 2024 19:57:39 &#43;0800</lastBuildDate>
       <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
     <item>
+  <title>CTF-ICS Learning Record</title>
+  <link>http://localhost:1313/posts/01ebd40/</link>
+  <pubDate>Thu, 18 Jul 2024 19:57:39 &#43;0800</pubDate>
+  <author>Lunatic</author>
+  <guid>http://localhost:1313/posts/01ebd40/</guid>
+  <description><![CDATA[<p>越来越多的比赛中出现工控相关的赛题，因此打算借这个机会学习一下。</p>]]></description>
+</item>
+<item>
   <title>2023 春秋杯冬季赛 Misc Writeup</title>
   <link>http://localhost:1313/posts/5de0d7e/</link>
   <pubDate>Wed, 17 Jul 2024 20:31:08 &#43;0800</pubDate>
@@ -79,14 +87,6 @@
   <guid>http://localhost:1313/posts/aded309/</guid>
   <description><![CDATA[<p>前几天在 PuzzleSolver 群里看到了这样一道题目，题目主要考察了 LSB 隐写</p>
 <p>从这道题中发现自己的基础并不扎实，于是打算以这道题为契机，好好学习一下LSB隐写</p>]]></description>
-</item>
-<item>
-  <title>CTF-Crypto Record</title>
-  <link>http://localhost:1313/posts/a4ba07e/</link>
-  <pubDate>Fri, 31 May 2024 11:04:14 &#43;0800</pubDate>
-  <author>Lunatic</author>
-  <guid>http://localhost:1313/posts/a4ba07e/</guid>
-  <description><![CDATA[<p>This a simple record of Crypto in CTF.</p>]]></description>
 </item>
 </channel>
 </rss>

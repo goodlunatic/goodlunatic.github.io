@@ -4,7 +4,15 @@
     <link>http://localhost:1313/tags/ctf/</link>
     <description>CTF - Tag | ⚡Lunatic BLOG⚡</description>
     <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>goodlunatic0@gmail.com (Lunatic)</managingEditor>
-      <webMaster>goodlunatic0@gmail.com (Lunatic)</webMaster><lastBuildDate>Wed, 17 Jul 2024 20:31:08 &#43;0800</lastBuildDate><atom:link href="http://localhost:1313/tags/ctf/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>goodlunatic0@gmail.com (Lunatic)</webMaster><lastBuildDate>Thu, 18 Jul 2024 19:57:39 &#43;0800</lastBuildDate><atom:link href="http://localhost:1313/tags/ctf/" rel="self" type="application/rss+xml" /><item>
+  <title>CTF-ICS Learning Record</title>
+  <link>http://localhost:1313/posts/01ebd40/</link>
+  <pubDate>Thu, 18 Jul 2024 19:57:39 &#43;0800</pubDate>
+  <author>Lunatic</author>
+  <guid>http://localhost:1313/posts/01ebd40/</guid>
+  <description><![CDATA[<p>越来越多的比赛中出现工控相关的赛题，因此打算借这个机会学习一下。</p>]]></description>
+</item>
+<item>
   <title>2023 春秋杯冬季赛 Misc Writeup</title>
   <link>http://localhost:1313/posts/5de0d7e/</link>
   <pubDate>Wed, 17 Jul 2024 20:31:08 &#43;0800</pubDate>
@@ -77,15 +85,6 @@
   <author>Lunatic</author>
   <guid>http://localhost:1313/posts/1b1f96e/</guid>
   <description><![CDATA[<p>又是一年国赛，这次纯纯是被队友带飞了！！！</p>]]></description>
-</item>
-<item>
-  <title>2024 “天一永安杯”宁波市赛初赛 Misc Writeup</title>
-  <link>http://localhost:1313/posts/9d73413/</link>
-  <pubDate>Mon, 06 May 2024 14:53:14 &#43;0800</pubDate>
-  <author>Lunatic</author>
-  <guid>http://localhost:1313/posts/9d73413/</guid>
-  <description><![CDATA[<p>宁波市赛的 Misc 还是一如既往的抽象 @_@</p>
-<p>还是太菜了，赛中只做出了一道 Misc</p>]]></description>
 </item>
 </channel>
 </rss>

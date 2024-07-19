@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="en">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <title>CTF-ICS Learning Record - ⚡Lunatic BLOG⚡</title><meta name="author" content="Lunatic">
+<meta name="author-link" content="https://goodlunatic.github.io">
+<meta name="description" content="越来越多的比赛中出现工控相关的赛题，因此打算借这个机会学习一下。" /><meta name="keywords" content='CTF' />
+  <meta itemprop="name" content="CTF-ICS Learning Record">
+  <meta itemprop="description" content="越来越多的比赛中出现工控相关的赛题，因此打算借这个机会学习一下。">
+  <meta itemprop="datePublished" content="2024-07-18T19:57:39+08:00">
+  <meta itemprop="dateModified" content="2024-07-18T19:57:39+08:00">
+  <meta itemprop="wordCount" content="167">
+  <meta itemprop="keywords" content="CTF"><meta property="og:url" content="http://localhost:1313/posts/01ebd40/">
+  <meta property="og:site_name" content="⚡Lunatic BLOG⚡">
+  <meta property="og:title" content="CTF-ICS Learning Record">
+  <meta property="og:description" content="越来越多的比赛中出现工控相关的赛题，因此打算借这个机会学习一下。
+">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+  <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2024-07-18T19:57:39+08:00">
+    <meta property="article:modified_time" content="2024-07-18T19:57:39+08:00">
+    <meta property="article:tag" content="CTF">
+<meta name="twitter:card" content="summary"><meta name="twitter:title" content="CTF-ICS Learning Record">
+<meta name="twitter:description" content="越来越多的比赛中出现工控相关的赛题，因此打算借这个机会学习一下。">
+      <meta name="twitter:site" content="@https://twitter.com/goodlunatic007">
+<meta name="application-name" content="FixIt">
+<meta name="apple-mobile-web-app-title" content="FixIt"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="https://www.nssctf.cn/files/2024/4/28/8fdad6c6ee.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="http://localhost:1313/posts/01ebd40/" /><link rel="prev" href="http://localhost:1313/posts/5de0d7e/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "CTF-ICS Learning Record",
+    "inLanguage": "en",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "http:\/\/localhost:1313\/posts\/01ebd40\/"
+    },"genre": "posts","keywords": "CTF","wordcount":  167 ,
+    "url": "http:\/\/localhost:1313\/posts\/01ebd40\/","datePublished": "2024-07-18T19:57:39+08:00","dateModified": "2024-07-18T19:57:39+08:00","publisher": {
+      "@type": "Organization",
+      "name": ""},"author": {
+        "@type": "Person",
+        "name": "Lunatic"
+      },"description": ""
+  }
+  </script></head>
+  <body data-header-desktop="sticky" data-header-mobile="auto"><script>(window.localStorage?.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper" data-page-style="normal"><header class="desktop animate__faster" id="header-desktop">
+  <div class="header-wrapper">
+    <div class="header-title">
+      <a href="/" title="⚡Lunatic BLOG⚡"><span class="header-title-pre">⚡</span><span id="typeit-header-desktop" class="typeit"></span></a><span id="typeit-header-subtitle-desktop" class="typeit header-subtitle"></span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/archives/"
+                
+                
+              ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> Archives</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/categories/"
+                
+                
+              ><i class="fa-solid fa-folder-tree fa-fw fa-sm" aria-hidden="true"></i> Categories</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/tags/"
+                
+                
+              ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> Tags</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/friends/"
+                
+                
+              ><i class="fa-solid fa-chain fa-fw fa-sm" aria-hidden="true"></i> Friends</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/about/"
+                
+                
+              ><i class="fa-solid fa-graduation-cap fa-fw fa-sm" aria-hidden="true"></i> About</a></li><li class="menu-item delimiter"></li><li class="menu-item theme-switch" title="Switch Theme">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li></ul>
+    </nav>
+  </div>
+</header><header class="mobile animate__faster" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="⚡Lunatic BLOG⚡"><span class="header-title-pre">⚡</span><span id="typeit-header-title-mobile" class="typeit"></span></a><span id="typeit-header-subtitle-mobile" class="typeit header-subtitle"></span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/archives/"
+                  
+                  
+                ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> Archives</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/categories/"
+                  
+                  
+                ><i class="fa-solid fa-folder-tree fa-fw fa-sm" aria-hidden="true"></i> Categories</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/tags/"
+                  
+                  
+                ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> Tags</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/friends/"
+                  
+                  
+                ><i class="fa-solid fa-chain fa-fw fa-sm" aria-hidden="true"></i> Friends</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/about/"
+                  
+                  
+                ><i class="fa-solid fa-graduation-cap fa-fw fa-sm" aria-hidden="true"></i> About</a></li><li class="menu-item menu-system">
+          <span class="menu-system-item theme-switch" title="Switch Theme"><i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i></span></li>
+      </ul>
+    </nav>
+  </div>
+</header><main class="container"><aside class="aside-collection animate__animated animate__fadeIn animate__faster" aria-label="Collections"></aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX"><span>CTF-ICS Learning Record</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><a href="https://goodlunatic.github.io" title="Author"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><img loading="lazy" src="https://www.nssctf.cn/files/2024/4/28/7f130a1387.png" alt="Lunatic" data-title="Lunatic" class="avatar" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>&nbsp;Lunatic</a></span><span class="post-included-in">&nbsp;included in <a href="/categories/ctf/" class="post-category" title="Category - CTF"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> CTF</a></span></div><div class="post-meta-line"><span title="published on 2024-07-18 19:57:39"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden="true"></i><time datetime="2024-07-18">2024-07-18</time></span>&nbsp;<span title="167 words"><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>About 200 words</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>One minute</span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="false">
+        <div class="details-summary toc-title">
+          <span>Contents</span>
+          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#工控流量分析">工控流量分析</a>
+      <ul>
+        <li><a href="#modbus-协议分析">Modbus 协议分析</a>
+          <ul>
+            <li><a href="#例题1-hngk-modbus流量分析">例题1 HNGK-Modbus流量分析</a></li>
+          </ul>
+        </li>
+        <li><a href="#s7comm-协议分析">S7comm 协议分析</a>
+          <ul>
+            <li><a href="#例题1-2020icsc湖州站工控协议数据分析">例题1 2020ICSC湖州站—工控协议数据分析</a></li>
+            <li><a href="#例题2-2020icsc济南站被篡改的数据">例题2 2020ICSC济南站—被篡改的数据</a></li>
+            <li><a href="#例题3-枢网智盾2021异常流分析">例题3 枢网智盾2021—异常流分析</a></li>
+            <li><a href="#例题4-枢网智盾2021工控协议分析">例题4 枢网智盾2021—工控协议分析</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+      </div><div class="content" id="content"><p>越来越多的比赛中出现工控相关的赛题，因此打算借这个机会学习一下。</p>
+<h1 id="工控协议分析" class="heading-element">
+  <a href="#%e5%b7%a5%e6%8e%a7%e5%8d%8f%e8%ae%ae%e5%88%86%e6%9e%90" class="heading-mark"></a>工控协议分析</h1><h2 id="工控流量分析" class="heading-element">
+  <a href="#%e5%b7%a5%e6%8e%a7%e6%b5%81%e9%87%8f%e5%88%86%e6%9e%90" class="heading-mark"></a>工控流量分析</h2><p>参考连接：https://blog.csdn.net/song123sh/article/details/128387982</p>
+<p>将流量按长度降序排列，然后在各层寻找线索，
+显示分组字节，从base64后开始，然后解码看文件类型，最后显示成该类型</p>
+<h3 id="modbus-协议分析" class="heading-element">
+  <a href="#modbus-%e5%8d%8f%e8%ae%ae%e5%88%86%e6%9e%90" class="heading-mark"></a>Modbus 协议分析</h3><p>Modbus 流量主要有三类：Modbus/RTU、Modbus/ASCII、Modbus/TCP</p>
+<p><strong>Modbus/RTU</strong></p>
+<blockquote>
+<p>从机地址1B+功能码1B+数据字段xB+CRC值2B
+最大长度256B，所以数据字段最大长度252B</p>
+</blockquote>
+<p><strong>Modbus/ASCII</strong></p>
+<blockquote>
+<p>由Modbus/RTU衍生，采用0123456789ABCDEF 表示原本的从机地址、功能码、数据字段，并添加开始结束标记，所以长度翻倍
+开始标记:（0x3A）1B+从机地址2B+功能码2B+数据字段xB+LRC值2B+结束标记\r\n2B
+最大长度513B，因为数据字段在RTU中是最大252B，所以在ASCII中最大504B</p>
+</blockquote>
+<p><strong>Modbus/TCP</strong></p>
+<blockquote>
+<p>不再需要从机地址，改用UnitID；不再需要CRC/LRC，因为TCP自带校验
+传输标识符2B+协议标识符2B+长度2B+从机ID 1B+功能码1B+数据字段xB</p>
+</blockquote>
+<p>一般题目考察 Modbus/TCP 比较多，然后主要考察的就是下面这种功能码（这里只列了部分）
+因此解题的时候配合过滤器一个个功能码看过去就行</p>
+<blockquote>
+<p>1：读线圈
+2：读离散输入
+3：读保持
+4：读输入
+5：写单个线圈
+6：写单个保持
+15：写多个线圈
+16：写多个保持</p>
+</blockquote>
+<h4 id="例题1-hngk-modbus流量分析" class="heading-element">
+  <a href="#%e4%be%8b%e9%a2%981-hngk-modbus%e6%b5%81%e9%87%8f%e5%88%86%e6%9e%90" class="heading-mark"></a>例题1 HNGK-Modbus流量分析</h4><p>使用下面这个过滤器命令即可得到 flag</p>
+<div class="highlight" id="id-1"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">(((_ws.col.protocol == &#34;Modbus/TCP&#34;) ) &amp;&amp; (modbus.byte_cnt)) &amp;&amp; (modbus.func_code == 16)</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img loading="lazy" src="imgs/image-20240430142133329.png" alt="imgs/image-20240430142133329.png" srcset="imgs/image-20240430142133329.png?size=small, imgs/image-20240430142133329.png?size=medium 1.5x, imgs/image-20240430142133329.png?size=large 2x" data-title="imgs/image-20240430142133329.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>
+flag{TheModbusProtocolIsFunny!}</p>
+<h3 id="s7comm-协议分析" class="heading-element">
+  <a href="#s7comm-%e5%8d%8f%e8%ae%ae%e5%88%86%e6%9e%90" class="heading-mark"></a>S7comm 协议分析</h3><blockquote>
+<p>西门子设备的工控协议，基于 COTP 实现，是COTP的上层协议
+主要有三种类型：Job(1)、Ack_Data(3)/Ack(2)、Userdata(7)
+Job：下发任务/指令
+Ack_Data：带有返回数据
+Ack：单纯确认，含有数据
+Userdata：用户自定义数据区，也包含功能指令</p>
+</blockquote>
+<h4 id="例题1-2020icsc湖州站工控协议数据分析" class="heading-element">
+  <a href="#%e4%be%8b%e9%a2%981-2020icsc%e6%b9%96%e5%b7%9e%e7%ab%99%e5%b7%a5%e6%8e%a7%e5%8d%8f%e8%ae%ae%e6%95%b0%e6%8d%ae%e5%88%86%e6%9e%90" class="heading-mark"></a>例题1 2020ICSC湖州站—工控协议数据分析</h4><p>首先过滤出S7协议的数据包，发现在一些Ack_Data的数据包中传输了二进制数据
+<img loading="lazy" src="imgs/image-20240430111822297.png" alt="imgs/image-20240430111822297.png" srcset="imgs/image-20240430111822297.png?size=small, imgs/image-20240430111822297.png?size=medium 1.5x, imgs/image-20240430111822297.png?size=large 2x" data-title="imgs/image-20240430111822297.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>
+因此，我们将所有带有二进制数据的数据包都过滤出来，发现一些Job的数据包中也有二进制数据
+<img loading="lazy" src="imgs/image-20240430112312109.png" alt="imgs/image-20240430112312109.png" srcset="imgs/image-20240430112312109.png?size=small, imgs/image-20240430112312109.png?size=medium 1.5x, imgs/image-20240430112312109.png?size=large 2x" data-title="imgs/image-20240430112312109.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>
+然后我们尝试将所有带有二进制数据的Job数据包都过滤出来并导出特定分组，过滤器代码如下</p>
+<div class="highlight" id="id-2"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="o">((</span>s7comm<span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="o">(</span>s7comm.resp.data<span class="o">))</span> <span class="o">&amp;&amp;</span> <span class="o">(</span>s7comm.param.func <span class="o">==</span> 0x05<span class="o">)</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><img loading="lazy" src="imgs/image-20240430112740044.png" alt="imgs/image-20240430112740044.png" srcset="imgs/image-20240430112740044.png?size=small, imgs/image-20240430112740044.png?size=medium 1.5x, imgs/image-20240430112740044.png?size=large 2x" data-title="imgs/image-20240430112740044.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>然后使用 tshark 提取数据</p>
+<div class="highlight" id="id-3"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">tshark -r 1.pcap -T fields -e s7comm.resp.data | uniq</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img loading="lazy" src="imgs/image-20240430112936680.png" alt="imgs/image-20240430112936680.png" srcset="imgs/image-20240430112936680.png?size=small, imgs/image-20240430112936680.png?size=medium 1.5x, imgs/image-20240430112936680.png?size=large 2x" data-title="imgs/image-20240430112936680.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>最后 CyberChef 解码二进制即可得到 flag
+<img loading="lazy" src="imgs/image-20240430113016466.png" alt="imgs/image-20240430113016466.png" srcset="imgs/image-20240430113016466.png?size=small, imgs/image-20240430113016466.png?size=medium 1.5x, imgs/image-20240430113016466.png?size=large 2x" data-title="imgs/image-20240430113016466.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<h4 id="例题2-2020icsc济南站被篡改的数据" class="heading-element">
+  <a href="#%e4%be%8b%e9%a2%982-2020icsc%e6%b5%8e%e5%8d%97%e7%ab%99%e8%a2%ab%e7%af%a1%e6%94%b9%e7%9a%84%e6%95%b0%e6%8d%ae" class="heading-mark"></a>例题2 2020ICSC济南站—被篡改的数据</h4><p>翻看流量包，发现很多 S7COMM 数据包，使用过滤器过滤，发现 s7comm.resp.data 字段传了很多 66 数据
+使用过滤器过滤出传了 s7comm.resp.data 字段数据但数据不是 66 的 S7 数据包
+发现了疑似 flag 的数据，为了防止 flag 中含有 f 字符而被过滤
+因此我们使用下面这个过滤命令进行过滤，然后导出特定分组</p>
+<div class="highlight" id="id-4"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="p">(((</span><span class="n">frame</span><span class="o">.</span><span class="n">number</span> <span class="o">&gt;=</span> <span class="mi">19987</span> <span class="o">&amp;&amp;</span> <span class="n">frame</span><span class="o">.</span><span class="n">number</span> <span class="o">&lt;=</span><span class="mi">20032</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">_ws</span><span class="o">.</span><span class="n">col</span><span class="o">.</span><span class="n">protocol</span> <span class="o">==</span> <span class="s2">&#34;S7COMM&#34;</span><span class="p">))</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">s7comm</span><span class="o">.</span><span class="n">param</span><span class="o">.</span><span class="k">func</span> <span class="o">==</span> <span class="mh">0x05</span><span class="p">))</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">s7comm</span><span class="o">.</span><span class="n">resp</span><span class="o">.</span><span class="n">data</span><span class="p">)</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>最后 tshark 提取出数据，然后十六进制解码即可得到 flag：flag{93137ad4a}</p>
+<h4 id="例题3-枢网智盾2021异常流分析" class="heading-element">
+  <a href="#%e4%be%8b%e9%a2%983-%e6%9e%a2%e7%bd%91%e6%99%ba%e7%9b%be2021%e5%bc%82%e5%b8%b8%e6%b5%81%e5%88%86%e6%9e%90" class="heading-mark"></a>例题3 枢网智盾2021—异常流分析</h4><p>打开流量包，发现很多 S7comm 流量，然后稍微过滤一下，发现是写入数据的流量
+然后写入的数据几乎都是 ffff 开头的，因此我们直接查看不是 ffff 开头的数据</p>
+<div class="highlight" id="id-5"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="p">((</span><span class="n">_ws</span><span class="o">.</span><span class="n">col</span><span class="o">.</span><span class="n">protocol</span> <span class="o">==</span> <span class="s2">&#34;S7COMM&#34;</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">s7comm</span><span class="o">.</span><span class="n">param</span><span class="o">.</span><span class="k">func</span> <span class="o">==</span> <span class="mh">0x05</span><span class="p">))</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">s7comm</span><span class="o">.</span><span class="n">resp</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">]</span> <span class="o">!=</span> <span class="n">ff</span><span class="p">:</span><span class="n">ff</span><span class="p">)</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>即可得到 flag：flag{ffad28a0ce69db34751f}</p>
+<h4 id="例题4-枢网智盾2021工控协议分析" class="heading-element">
+  <a href="#%e4%be%8b%e9%a2%984-%e6%9e%a2%e7%bd%91%e6%99%ba%e7%9b%be2021%e5%b7%a5%e6%8e%a7%e5%8d%8f%e8%ae%ae%e5%88%86%e6%9e%90" class="heading-mark"></a>例题4 枢网智盾2021—工控协议分析</h4><div class="highlight" id="id-6"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">(_ws.col.protocol == &#34;S7COMM&#34;) &amp;&amp; (frame.number == 418)</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img loading="lazy" src="imgs/image-20240430135813366.png" alt="imgs/image-20240430135813366.png" srcset="imgs/image-20240430135813366.png?size=small, imgs/image-20240430135813366.png?size=medium 1.5x, imgs/image-20240430135813366.png?size=large 2x" data-title="imgs/image-20240430135813366.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>
+然后直接把明文传输的数据 base64 解码即可
+<img loading="lazy" src="imgs/image-20240430135958048.png" alt="imgs/image-20240430135958048.png" srcset="imgs/image-20240430135958048.png?size=small, imgs/image-20240430135958048.png?size=medium 1.5x, imgs/image-20240430135958048.png?size=large 2x" data-title="imgs/image-20240430135958048.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>
+flag{hncome66!}</p></div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title="Updated on 2024-07-18 19:57:39">Updated on 2024-07-18&nbsp;</span>
+      </div></div><div class="post-info-line">
+        <div class="post-info-md"><span><a href="/posts/01ebd40/index.md" title="Read Markdown" class="link-to-markdown">Read Markdown</a></span></div>
+        <div class="post-info-share">
+          <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="http://localhost:1313/posts/01ebd40/" data-title="CTF-ICS Learning Record" data-via="https://twitter.com/goodlunatic007" data-hashtags="CTF"><i class="fa-brands fa-twitter fa-fw" aria-hidden="true"></i></a>
+  <a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="http://localhost:1313/posts/01ebd40/" data-hashtag="CTF"><i class="fa-brands fa-facebook-square fa-fw" aria-hidden="true"></i></a>
+  <a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="http://localhost:1313/posts/01ebd40/" data-title="CTF-ICS Learning Record"><i class="fa-brands fa-weibo fa-fw" aria-hidden="true"></i></a>
+  </span>
+        </div>
+      </div></div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href="/tags/ctf/" class="post-tag" title="Tags - CTF">CTF</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+    </section>
+  </div>
+
+  <div class="post-nav"><a href="/posts/5de0d7e/" class="post-nav-item" rel="prev" title="2023 春秋杯冬季赛 Misc Writeup"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>2023 春秋杯冬季赛 Misc Writeup</a></div>
+</div>
+</article>
+
+  <aside class="toc" id="toc-auto" aria-label="Contents"><h2 class="toc-title">Contents&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+      <div class="toc-content" id="toc-content-auto"></div></aside></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line powered">Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreferrer" title="Hugo 0.125.3">Hugo</a> | Theme - <a href="https://github.com/hugo-fixit/FixIt" target="_blank" rel="external" title="FixIt v0.3.2">FixIt</a>
+        </div><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
+            <span itemprop="copyrightYear">2024</span><span class="author" itemprop="copyrightHolder">
+              <a href="https://goodlunatic.github.io"target="_blank" rel="external nofollow noopener noreferrer">Lunatic</a></span></div></div>
+  </footer></div><div class="widgets"><div class="fixed-buttons animate__faster d-none"><div class="fixed-button back-to-top" role="button" aria-label="Back to Top"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i><span class="variant-numeric d-none">0%</span>
+        </div></div><div id="mask"></div><noscript>
+    <div class="noscript-warning">Theme FixIt works best with JavaScript enabled.</div>
+  </noscript>
+</div><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><script src="/lib/sharer/sharer.min.js" async defer></script><script src="/lib/typeit/index.umd.js" defer></script><script src="/lib/cookieconsent/cookieconsent.min.js" defer></script><script>window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":1000},"comment":{"enable":false},"cookieconsent":{"content":{"dismiss":"Got it!","link":"Learn more","message":"This website uses Cookies to improve your experience."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"data":{"typeit-header-desktop":"Lunatic BLOG","typeit-header-title-mobile":"Lunatic BLOG"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"typeit-header-desktop":["typeit-header-desktop"],"typeit-header-subtitle-desktop":["typeit-header-subtitle-desktop"],"typeit-header-subtitle-mobile":["typeit-header-subtitle-mobile"],"typeit-header-title-mobile":["typeit-header-title-mobile"]},"duration":-1,"loop":false,"speed":100}};</script><script src="/js/theme.min.js" defer></script></body>
+</html>
