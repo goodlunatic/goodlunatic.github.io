@@ -786,11 +786,12 @@ jack::WIDGETLLC:2af71b5ca7246268:2d1d24572b15fe544043431c59965d30:01010000000000
 后续步骤就和之前一样了，提取信息然后用 hashcat 爆破
 
 ## 工控流量分析
+
 参考连接：https://blog.csdn.net/song123sh/article/details/128387982
 
 将流量按长度降序排列，然后在各层寻找线索，
-显示分组字节，从base64后开始，然后解码看文件类型，最后显示成该类型
 
+显示分组字节，从base64后开始，然后解码看文件类型，最后显示成该类型
 ### Modbus 协议分析
 
 Modbus 流量主要有三类：Modbus/RTU、Modbus/ASCII、Modbus/TCP

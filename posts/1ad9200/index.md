@@ -858,7 +858,7 @@ exiftool 3.jpg
 
 #### 2、LSB(最低有效位)隐写:
 
-#### **没有密钥的情况**
+**没有密钥的情况**
 
 ```bash
 # 用zsteg快速查看
@@ -869,7 +869,7 @@ zsteg -a (文件名)  #查看各个通道的lsb
 
 信息藏在图片中有时候会看不出来，所以还是要用stegsolve.jar过一遍
 
-####  **有密钥的情况（cloacked-pixel）**
+ **有密钥的情况（cloacked-pixel）**
 
 lsb隐写的可能是加密后的数据，i春秋最喜欢的**cloacked-pixel**
 
@@ -887,9 +887,7 @@ python2 cloacked-pixel-master/lsb.py extract 0.png out.data f78dcd383f1b574b
 
 #### 4、IDAT块隐写
 
-拉到kali里用pngcheck -v 0.png检查IDAT
-
-#### (1) 解压zlib获得原始数据
+**(1) 解压zlib获得原始数据**
 
 然后用010提取数据扔进zlib脚本解压获得原始数据
 
@@ -904,13 +902,33 @@ print (result.decode(&#39;hex&#39;))
 print (len(result.decode(&#39;hex&#39;)))
 ```
 
-#### (2) 加上文件头爆破宽高得到新的图片（2023安洵杯-dacongのsecret）
+**(2) 加上文件头爆破宽高得到新的图片**
 
 一般出问题的 IDAT Chunk 大小都是比正常的小的，很可能在图片末尾
 
 如果不确定是哪一个有问题，可以尝试都提取出来，一个一个分析
 
-可以使用 tweakpng 辅助分析，但是一般用010的模板提取分析就够了
+可以使用 tweakpng 辅助分析，但是一般用 010 的模板提取分析就够了
+
+我们可用 WSL 中的 pngcheck -v 0.png 检查 IDAT
+
+如下图，最后一个和倒数第二个IDAT明显有问题，因此可以对这两部分进行尝试
+
+![](imgs/image-20240724171411362.png)
+
+借助 010 的模板功能把IDAT块提取出来，加上文件头尾并爆破CRC即可得到另一张图片
+
+![](imgs/image-20240724171723828.png)
+
+Tips：这里有时候也可以不用补文件尾
+
+![](imgs/image-20240724171731445.png)
+
+把文件头尾补完整后直接CRC爆破一下即可
+
+例题1-2023安洵杯-dacongのsecret
+
+例题2-DASCTF2024 暑期挑战赛-png_master
 
 #### 5、png数据末尾藏zip
 
@@ -1248,6 +1266,7 @@ snow隐写，到snowdos32工具目录下运行 SNOW.EXE -C -p password flag.txt 
 ## Misc——压缩包思路：
 
 Tips：压缩包的密码可以是中英文字符和符号
+
 ​没有思路时可以直接纯数字/字母暴力爆破一下
 
 ### zip文件结构
@@ -1285,6 +1304,16 @@ Tips：压缩包的密码可以是中英文字符和符号
 | ----------- | ------------------ | ------------------------ |
 | 00 00       | 当前磁盘编号       | ushort elDiskNumber      |
 | 00 00       | 目录区开始磁盘编号 | ushort elStartDiskNumber |
+
+#### 常见报错及对应解决方法（借助010的模板功能）
+
+1. 该文件已损坏-源数据区和目录区的文件名长度被修改了
+
+![](imgs/image-20240724172656435.png)
+
+2. CRC校验错误-源数据区或目录区的压缩方法被修改了
+
+![](imgs/image-20240724172708418.png)
 
 ### rar文件结构
 

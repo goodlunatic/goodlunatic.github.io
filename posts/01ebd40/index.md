@@ -6,9 +6,11 @@
 # 工控协议分析
 
 ## 工控流量分析
+
 参考连接：https://blog.csdn.net/song123sh/article/details/128387982
 
 将流量按长度降序排列，然后在各层寻找线索，
+
 显示分组字节，从base64后开始，然后解码看文件类型，最后显示成该类型
 
 ### Modbus 协议分析
@@ -39,6 +41,17 @@ Modbus 流量主要有三类：Modbus/RTU、Modbus/ASCII、Modbus/TCP
 15：写多个线圈
 16：写多个保持
 
+如果题目考察的是查找异常流量，那么我们只要依次查看每个 func_code，然后根据字段排除正常流量
+
+因为大部分的流量都是正常，异常的流量肯定是小部分
+
+例如 
+
+先查看 (modbus) &amp;&amp; (modbus.func_code == 17)，发现有很多 modbus.data == 06:00:00 的流量
+
+因此过滤 modbus.data == 06:00:00 的流量：((modbus) &amp;&amp; (modbus.func_code == 17)) &amp;&amp; !(modbus.data == 06:00:00)
+
+就是依次过滤正常流量，最后剩下来的就是异常流量了
 #### 例题1 HNGK-Modbus流量分析
 使用下面这个过滤器命令即可得到 flag
 ```
@@ -46,6 +59,31 @@ Modbus 流量主要有三类：Modbus/RTU、Modbus/ASCII、Modbus/TCP
 ```
 ![](imgs/image-20240430142133329.png)
 flag{TheModbusProtocolIsFunny!}
+
+#### 例题1 HNGK-Modbus协议分析
+
+题目附件给了一个流量包，稍微翻一下，发现 modbus.func_code 只有四种情况：2、3、4、16
+
+2和16的情况中没有发现什么异常，但是3和4的流量包中寄存器的值存在异常
+
+modbus.func_code == 3 的情况中寄存器的值一直在增加，直到变成下图中的内容
+
+![](imgs/image-20240718212848008.png)
+
+而 modbus.func_code == 4 的情况则是一直在读寄存器的内容，寄存器中的内容和上面是一样的
+
+![](imgs/image-20240718213033248.png)
+
+因此猜测题目逻辑大概就是，3先写入寄存器的值，然后由4读取并发送
+
+接下来我们就重点分析这段数据的内容，因为有不可见字符，所以我们复制为 Hex 格式
+
+
+
+(((modbus) &amp;&amp; (modbus.func_code == 3)) &amp;&amp; (ip.src == 192.168.161.2)) &amp;&amp; (modbus.byte_cnt)
+
+
+
 ### S7comm 协议分析
 &gt; 西门子设备的工控协议，基于 COTP 实现，是COTP的上层协议
 &gt; 主要有三种类型：Job(1)、Ack_Data(3)/Ack(2)、Userdata(7)
