@@ -16,45 +16,26 @@
 
 1、一段字符串，用base64异或脚本跑，找正常的字符串
 
-2、rockstar 编程语言，在github上面可以找到，然后在本地用pip安装库
-
-​	把rock文件转换为py文件，运行即可得到flag
+2、rockstar 编程语言，在github上面可以找到，然后在本地用pip安装库，把rock文件转换为py文件，运行即可得到flag
 
 3、给你一个.exe安装包文件，flag藏在安装之前的一大串协议中
 
 4、实在做不出来的时候，可以把flag的格式转其他的编码和题目中的信息比对找规律
 
-5、给你一个gpx文件，在线网站https://www.gpsvisualizer.com/map_input解密
+5、给你一个gpx文件，在线网站https://www.gpsvisualizer.com/map_input解密，然后地名的首字母连起来就是flag
 
-然后地名的首字母连起来就是flag
+## CTF中的常用关键词
 
-## Linux(kali)的各种命令：
-
-```
-1、 fls &#43;镜像文件       列出镜像中的文件和目录名并可以显示使用给定名称的目录最近              删除的文件的文件名
-2、file&#43;文件名      查看文件类型
-3、binwalk&#43;文件名  查看文件类型
-4、各种文件的解压命令
-	7z：7z x &#43;filename.7z
-```
-
- **Linux如何配置环境变量**
-
-```bash
-sudo vim /etc/profile
-export PATH=/usr/local/volatility:$PATH
-or
-export PATH=/usr/lib/python2.7/dist-packages/volatility:$PATH
+```python
+# 要搜索的字符列表
+search_terms = [
+    &#34;key&#34;, &#34;password&#34;, &#34;dasctf&#34;, &#34;k3y&#34;, &#34;p@ssword&#34;, &#34;passw0rd&#34;,
+    &#34;p@ssw0rd&#34;, &#34;secret&#34;, &#34;s3cret&#34;, &#34;s3cr3t&#34;, &#34;s3cre4&#34;,&#34;F14ggg&#34;
+    # 遇到⼀个加⼀个，CTFer的好习惯
+]
 ```
 
 ## 各种加密/编码：
-
-**可以试试直接用ciphey或者CyberChef跑**
-
-```bash
-#ciphey在windows和wsl里都可以用
-ciphey -t &#34;aGVsbG8gbXkgbmFtZSBpcyBiZWU=&#34;
-```
 
 ### base家族
 
