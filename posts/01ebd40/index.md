@@ -139,6 +139,16 @@ tshark -r 1.pcap -T fields -e s7comm.resp.data | uniq
 ![](imgs/image-20240430135958048.png)
 flag{hncome66!}
 
+## 工控编程与组态分析
+
+需要用到的软件：
+1. McgsPro
+2. 组态王
+3. 西门子-博图软件
+4. STEP7 MicroWIN V4.0 SP9
+
+TODO
+
 ---
 
 > Author: [Lunatic](https://goodlunatic.github.io)  

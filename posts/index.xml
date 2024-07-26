@@ -4,7 +4,16 @@
     <link>http://localhost:1313/posts/</link>
     <description>All Posts | ⚡Lunatic BLOG⚡</description>
     <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>goodlunatic0@gmail.com (Lunatic)</managingEditor>
-      <webMaster>goodlunatic0@gmail.com (Lunatic)</webMaster><lastBuildDate>Tue, 23 Jul 2024 20:30:17 &#43;0800</lastBuildDate><atom:link href="http://localhost:1313/posts/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>goodlunatic0@gmail.com (Lunatic)</webMaster><lastBuildDate>Fri, 26 Jul 2024 14:57:40 &#43;0800</lastBuildDate><atom:link href="http://localhost:1313/posts/" rel="self" type="application/rss+xml" /><item>
+  <title>2024 DASCTF 暑期挑战赛 Misc Writeup</title>
+  <link>http://localhost:1313/posts/067cfbd/</link>
+  <pubDate>Fri, 26 Jul 2024 14:57:40 &#43;0800</pubDate>
+  <author>Lunatic</author>
+  <guid>http://localhost:1313/posts/067cfbd/</guid>
+  <description><![CDATA[<p>这场比赛开始的时候去成都线下打国赛决赛了</p>
+<p>现在才有时间回来复现，发现这场比赛的Misc题出的挺好的</p>]]></description>
+</item>
+<item>
   <title>CTF-Misc Guide</title>
   <link>http://localhost:1313/posts/1ad9200/</link>
   <pubDate>Tue, 23 Jul 2024 20:30:17 &#43;0800</pubDate>
@@ -76,15 +85,6 @@
   <author>Lunatic</author>
   <guid>http://localhost:1313/posts/0434e3f/</guid>
   <description><![CDATA[<p>学校里的《软件质量保证与测试》课程</p>]]></description>
-</item>
-<item>
-  <title>Misc-LSB 小记</title>
-  <link>http://localhost:1313/posts/aded309/</link>
-  <pubDate>Wed, 12 Jun 2024 14:33:39 &#43;0800</pubDate>
-  <author>Lunatic</author>
-  <guid>http://localhost:1313/posts/aded309/</guid>
-  <description><![CDATA[<p>前几天在 PuzzleSolver 群里看到了这样一道题目，题目主要考察了 LSB 隐写</p>
-<p>从这道题中发现自己的基础并不扎实，于是打算以这道题为契机，好好学习一下LSB隐写</p>]]></description>
 </item>
 </channel>
 </rss>

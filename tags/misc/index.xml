@@ -4,13 +4,30 @@
     <link>http://localhost:1313/tags/misc/</link>
     <description>Misc - Tag | ⚡Lunatic BLOG⚡</description>
     <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>goodlunatic0@gmail.com (Lunatic)</managingEditor>
-      <webMaster>goodlunatic0@gmail.com (Lunatic)</webMaster><lastBuildDate>Tue, 23 Jul 2024 20:30:17 &#43;0800</lastBuildDate><atom:link href="http://localhost:1313/tags/misc/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>goodlunatic0@gmail.com (Lunatic)</webMaster><lastBuildDate>Fri, 26 Jul 2024 14:57:40 &#43;0800</lastBuildDate><atom:link href="http://localhost:1313/tags/misc/" rel="self" type="application/rss+xml" /><item>
+  <title>2024 DASCTF 暑期挑战赛 Misc Writeup</title>
+  <link>http://localhost:1313/posts/067cfbd/</link>
+  <pubDate>Fri, 26 Jul 2024 14:57:40 &#43;0800</pubDate>
+  <author>Lunatic</author>
+  <guid>http://localhost:1313/posts/067cfbd/</guid>
+  <description><![CDATA[<p>这场比赛开始的时候去成都线下打国赛决赛了</p>
+<p>现在才有时间回来复现，发现这场比赛的Misc题出的挺好的</p>]]></description>
+</item>
+<item>
   <title>CTF-Misc Guide</title>
   <link>http://localhost:1313/posts/1ad9200/</link>
   <pubDate>Tue, 23 Jul 2024 20:30:17 &#43;0800</pubDate>
   <author>Lunatic</author>
   <guid>http://localhost:1313/posts/1ad9200/</guid>
   <description><![CDATA[<p><strong>This is a simple Guide for CTF in Misc Area.</strong></p>]]></description>
+</item>
+<item>
+  <title>2024 WKCTF Misc Writeup</title>
+  <link>http://localhost:1313/posts/2125dc5/</link>
+  <pubDate>Wed, 17 Jul 2024 11:17:04 &#43;0800</pubDate>
+  <author>Lunatic</author>
+  <guid>http://localhost:1313/posts/2125dc5/</guid>
+  <description><![CDATA[<p>忙里偷闲，稍微打了一下 2024WKCTF 练练手</p>]]></description>
 </item>
 <item>
   <title>Network Traffic Analysis</title>
@@ -70,22 +87,6 @@
   <author>Lunatic</author>
   <guid>http://localhost:1313/posts/bc64ef8/</guid>
   <description><![CDATA[<p><strong>这两天刷题的时候做到了这道比较有意思的题目，于是就打算稍微总结一下。</strong></p>]]></description>
-</item>
-<item>
-  <title>2023&amp;2024 红明谷初赛 Misc Writeup</title>
-  <link>http://localhost:1313/posts/e49ecc5/</link>
-  <pubDate>Sun, 07 Apr 2024 19:52:15 &#43;0800</pubDate>
-  <author>Lunatic</author>
-  <guid>http://localhost:1313/posts/e49ecc5/</guid>
-  <description><![CDATA[<p><strong>连续打了两年的红明谷了，两次都没进决赛，红明谷的Misc题也是一如既往的抽象。</strong></p>]]></description>
-</item>
-<item>
-  <title>2024 长城杯信息安全铁人三项赛 Misc Writeup</title>
-  <link>http://localhost:1313/posts/bd957c3/</link>
-  <pubDate>Mon, 01 Apr 2024 19:18:07 &#43;0800</pubDate>
-  <author>Lunatic</author>
-  <guid>http://localhost:1313/posts/bd957c3/</guid>
-  <description><![CDATA[<p><strong>不愧是竞速长城杯，时间这么短，只能说强度很高</strong>。</p>]]></description>
 </item>
 </channel>
 </rss>

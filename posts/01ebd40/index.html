@@ -12,7 +12,7 @@
   <meta itemprop="description" content="越来越多的比赛中出现工控相关的赛题，因此打算借这个机会学习一下。">
   <meta itemprop="datePublished" content="2024-07-18T19:57:39+08:00">
   <meta itemprop="dateModified" content="2024-07-18T19:57:39+08:00">
-  <meta itemprop="wordCount" content="224">
+  <meta itemprop="wordCount" content="233">
   <meta itemprop="keywords" content="CTF"><meta property="og:url" content="http://localhost:1313/posts/01ebd40/">
   <meta property="og:site_name" content="⚡Lunatic BLOG⚡">
   <meta property="og:title" content="CTF-ICS Learning Record">
@@ -39,7 +39,7 @@
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": "http:\/\/localhost:1313\/posts\/01ebd40\/"
-    },"genre": "posts","keywords": "CTF","wordcount":  224 ,
+    },"genre": "posts","keywords": "CTF","wordcount":  233 ,
     "url": "http:\/\/localhost:1313\/posts\/01ebd40\/","datePublished": "2024-07-18T19:57:39+08:00","dateModified": "2024-07-18T19:57:39+08:00","publisher": {
       "@type": "Organization",
       "name": ""},"author": {
@@ -143,7 +143,7 @@
   <article class="page single">
     <div class="header"><h1 class="single-title animate__animated animate__flipInX"><span>CTF-ICS Learning Record</span>
       </h1></div><div class="post-meta">
-      <div class="post-meta-line"><span class="post-author"><a href="https://goodlunatic.github.io" title="Author"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><img loading="lazy" src="https://www.nssctf.cn/files/2024/4/28/7f130a1387.png" alt="Lunatic" data-title="Lunatic" class="avatar" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>&nbsp;Lunatic</a></span><span class="post-included-in">&nbsp;included in <a href="/categories/ctf/" class="post-category" title="Category - CTF"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> CTF</a></span></div><div class="post-meta-line"><span title="published on 2024-07-18 19:57:39"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden="true"></i><time datetime="2024-07-18">2024-07-18</time></span>&nbsp;<span title="224 words"><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>About 300 words</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>2 minutes</span>&nbsp;</div>
+      <div class="post-meta-line"><span class="post-author"><a href="https://goodlunatic.github.io" title="Author"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><img loading="lazy" src="https://www.nssctf.cn/files/2024/4/28/7f130a1387.png" alt="Lunatic" data-title="Lunatic" class="avatar" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>&nbsp;Lunatic</a></span><span class="post-included-in">&nbsp;included in <a href="/categories/ctf/" class="post-category" title="Category - CTF"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> CTF</a></span></div><div class="post-meta-line"><span title="published on 2024-07-18 19:57:39"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden="true"></i><time datetime="2024-07-18">2024-07-18</time></span>&nbsp;<span title="233 words"><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>About 300 words</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>2 minutes</span>&nbsp;</div>
     </div><div class="details toc" id="toc-static" data-kept="false">
         <div class="details-summary toc-title">
           <span>Contents</span>
@@ -169,6 +169,7 @@
         </li>
       </ul>
     </li>
+    <li><a href="#工控编程与组态分析">工控编程与组态分析</a></li>
   </ul>
 </nav></div>
       </div><div class="content" id="content"><p>越来越多的比赛中出现工控相关的赛题，因此打算借这个机会学习一下。</p>
@@ -303,7 +304,16 @@ Userdata：用户自定义数据区，也包含功能指令</p>
 </div><p><img loading="lazy" src="/posts/01ebd40/imgs/image-20240430135813366.png" alt="/posts/01ebd40/imgs/image-20240430135813366.png" srcset="/posts/01ebd40/imgs/image-20240430135813366.png?size=small, /posts/01ebd40/imgs/image-20240430135813366.png?size=medium 1.5x, /posts/01ebd40/imgs/image-20240430135813366.png?size=large 2x" data-title="/posts/01ebd40/imgs/image-20240430135813366.png" style="--width: 2560px;--aspect-ratio: 2560 / 1600;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>
 然后直接把明文传输的数据 base64 解码即可
 <img loading="lazy" src="/posts/01ebd40/imgs/image-20240430135958048.png" alt="/posts/01ebd40/imgs/image-20240430135958048.png" srcset="/posts/01ebd40/imgs/image-20240430135958048.png?size=small, /posts/01ebd40/imgs/image-20240430135958048.png?size=medium 1.5x, /posts/01ebd40/imgs/image-20240430135958048.png?size=large 2x" data-title="/posts/01ebd40/imgs/image-20240430135958048.png" style="--width: 2292px;--aspect-ratio: 2292 / 1225;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>
-flag{hncome66!}</p></div><div class="post-footer" id="post-footer">
+flag{hncome66!}</p>
+<h2 id="工控编程与组态分析" class="heading-element">
+  <a href="#%e5%b7%a5%e6%8e%a7%e7%bc%96%e7%a8%8b%e4%b8%8e%e7%bb%84%e6%80%81%e5%88%86%e6%9e%90" class="heading-mark"></a>工控编程与组态分析</h2><p>需要用到的软件：</p>
+<ol>
+<li>McgsPro</li>
+<li>组态王</li>
+<li>西门子-博图软件</li>
+<li>STEP7 MicroWIN V4.0 SP9</li>
+</ol>
+<p>TODO</p></div><div class="post-footer" id="post-footer">
   <div class="post-info">
     <div class="post-info-line">
       <div class="post-info-mod">

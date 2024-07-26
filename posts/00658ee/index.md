@@ -1,4 +1,4 @@
-# 2020b01lers Misc image_adjustments 赛题详解
+# 2020 b01lers Misc image_adjustments 赛题详解
 
 **在群里偶然看到了这道题，当初刷题的时候没有刷到过，感觉挺有意思的，就打算深入分析一下。**
 
