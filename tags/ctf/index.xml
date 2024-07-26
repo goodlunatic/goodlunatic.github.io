@@ -4,14 +4,23 @@
     <link>http://localhost:1313/tags/ctf/</link>
     <description>CTF - Tag | ⚡Lunatic BLOG⚡</description>
     <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>goodlunatic0@gmail.com (Lunatic)</managingEditor>
-      <webMaster>goodlunatic0@gmail.com (Lunatic)</webMaster><lastBuildDate>Fri, 26 Jul 2024 14:57:40 &#43;0800</lastBuildDate><atom:link href="http://localhost:1313/tags/ctf/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>goodlunatic0@gmail.com (Lunatic)</webMaster><lastBuildDate>Fri, 26 Jul 2024 15:12:02 &#43;0800</lastBuildDate><atom:link href="http://localhost:1313/tags/ctf/" rel="self" type="application/rss+xml" /><item>
+  <title>Pentesting Learning Record</title>
+  <link>http://localhost:1313/posts/417c7ba/</link>
+  <pubDate>Fri, 26 Jul 2024 15:12:02 &#43;0800</pubDate>
+  <author>Lunatic</author>
+  <guid>http://localhost:1313/posts/417c7ba/</guid>
+  <description><![CDATA[<p>越来越多的线下赛开始考察实战渗透了，一直想学渗透来着</p>
+<p>但无奈一直被耽搁，回过头来的时候发现自己已经要退役了</p>]]></description>
+</item>
+<item>
   <title>2024 DASCTF 暑期挑战赛 Misc Writeup</title>
   <link>http://localhost:1313/posts/067cfbd/</link>
   <pubDate>Fri, 26 Jul 2024 14:57:40 &#43;0800</pubDate>
   <author>Lunatic</author>
   <guid>http://localhost:1313/posts/067cfbd/</guid>
   <description><![CDATA[<p>这场比赛开始的时候去成都线下打国赛决赛了</p>
-<p>现在才有时间回来复现，发现这场比赛的Misc题出的挺好的</p>]]></description>
+<p>现在才有时间回来复现，发现这场比赛的Misc题出的都挺好的</p>]]></description>
 </item>
 <item>
   <title>CTF-Misc Guide</title>
@@ -78,14 +87,6 @@
   <guid>http://localhost:1313/posts/aded309/</guid>
   <description><![CDATA[<p>前几天在 PuzzleSolver 群里看到了这样一道题目，题目主要考察了 LSB 隐写</p>
 <p>从这道题中发现自己的基础并不扎实，于是打算以这道题为契机，好好学习一下LSB隐写</p>]]></description>
-</item>
-<item>
-  <title>CTF-Crypto Record</title>
-  <link>http://localhost:1313/posts/a4ba07e/</link>
-  <pubDate>Fri, 31 May 2024 11:04:14 &#43;0800</pubDate>
-  <author>Lunatic</author>
-  <guid>http://localhost:1313/posts/a4ba07e/</guid>
-  <description><![CDATA[<p>This a simple record of Crypto in CTF.</p>]]></description>
 </item>
 </channel>
 </rss>
