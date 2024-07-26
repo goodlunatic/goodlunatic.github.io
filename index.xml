@@ -4,9 +4,17 @@
     <link>http://localhost:1313/</link>
     <description>This is Lunatic BLOG @_@</description>
     <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>goodlunatic0@gmail.com (Lunatic)</managingEditor>
-      <webMaster>goodlunatic0@gmail.com (Lunatic)</webMaster><lastBuildDate>Fri, 26 Jul 2024 15:12:02 &#43;0800</lastBuildDate>
+      <webMaster>goodlunatic0@gmail.com (Lunatic)</webMaster><lastBuildDate>Fri, 26 Jul 2024 15:35:29 &#43;0800</lastBuildDate>
       <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
     <item>
+  <title>Preparation For Programming Proficiency Exam</title>
+  <link>http://localhost:1313/posts/552060f/</link>
+  <pubDate>Fri, 26 Jul 2024 15:35:29 &#43;0800</pubDate>
+  <author>Lunatic</author>
+  <guid>http://localhost:1313/posts/552060f/</guid>
+  <description><![CDATA[<p>PTA Practice Record</p>]]></description>
+</item>
+<item>
   <title>Pentesting Learning Record</title>
   <link>http://localhost:1313/posts/417c7ba/</link>
   <pubDate>Fri, 26 Jul 2024 15:12:02 &#43;0800</pubDate>
@@ -71,14 +79,6 @@
   <author>Lunatic</author>
   <guid>http://localhost:1313/posts/761da51/</guid>
   <description><![CDATA[<p><strong>This is a simple summary of digital forensics .</strong></p>]]></description>
-</item>
-<item>
-  <title>PTA Practice Record</title>
-  <link>http://localhost:1313/posts/552060f/</link>
-  <pubDate>Thu, 04 Jul 2024 16:37:29 &#43;0800</pubDate>
-  <author>Lunatic</author>
-  <guid>http://localhost:1313/posts/552060f/</guid>
-  <description><![CDATA[<p>PTA Practice Record</p>]]></description>
 </item>
 <item>
   <title>Misc-QRcode小记</title>
