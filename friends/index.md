@@ -10,7 +10,7 @@
 |                                                              |                                                              |
 | :----------------------------------------------------------: | :----------------------------------------------------------: |
 |        **[Bi0x](https://blog.bi0x.com/) - ByteDance**        | &lt;img src=&#34;https://www.nssctf.cn/files/2024/4/29/5f96fd427d.jpeg&#34; width=&#34;150px&#34; height=&#34;150px&#34;&gt; |
-|      **[Peco](https://www.p3co.xyz/) - Misc &amp;Tencent**       | &lt;img src=&#34;https://www.nssctf.cn/files/2024/6/27/4240da92dd.jpeg&#34; width=&#34;150pxpx&#34; height=&#34;150pxpx&#34;&gt; |
+|      **[Peco](https://www.p3co.xyz/) - Misc &amp; Tencent**      | &lt;img src=&#34;https://www.nssctf.cn/files/2024/6/27/4240da92dd.jpeg&#34; width=&#34;150pxpx&#34; height=&#34;150pxpx&#34;&gt; |
 |           **[W4ke](http://www.w4ke.cn/) - Police**           | &lt;img src=&#34;http://www.w4ke.cn/img/friend_404.gif&#34; width=&#34;150pxpx&#34; height=&#34;150pxpx&#34;&gt; |
 |            **[Niyah](http://niyah.cn/) - Pwn神**             | &lt;img src=&#34;https://www.nssctf.cn/files/2024/6/27/8e3396617c.jpeg&#34; width=&#34;150pxpx&#34; height=&#34;150pxpx&#34;&gt; |
 |    **[Bmth](http://www.bmth666.cn/) - 传奇学长 &amp; Web佬**     | &lt;img src=&#34;https://www.nssctf.cn/files/2024/1/16/043508faa7.png&#34; width=&#34;150pxpx&#34; height=&#34;150pxpx&#34;&gt; |
