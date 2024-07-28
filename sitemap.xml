@@ -2,13 +2,13 @@
   xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml"
   ><url>
-      <loc>http://localhost:1313/</loc><lastmod>2024-07-26T15:35:29&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-      <loc>http://localhost:1313/categories/</loc><lastmod>2024-07-26T15:35:29&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-      <loc>http://localhost:1313/posts/</loc><lastmod>2024-07-26T15:35:29&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-      <loc>http://localhost:1313/posts/552060f/</loc><lastmod>2024-07-26T15:35:29&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-      <loc>http://localhost:1313/tags/skills/</loc><lastmod>2024-07-26T15:35:29&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-      <loc>http://localhost:1313/categories/skills/</loc><lastmod>2024-07-26T15:35:29&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-      <loc>http://localhost:1313/tags/</loc><lastmod>2024-07-26T15:35:29&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+      <loc>http://localhost:1313/</loc><lastmod>2024-07-28T15:35:29&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+      <loc>http://localhost:1313/categories/</loc><lastmod>2024-07-28T15:35:29&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+      <loc>http://localhost:1313/posts/</loc><lastmod>2024-07-28T15:35:29&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+      <loc>http://localhost:1313/posts/552060f/</loc><lastmod>2024-07-28T15:35:29&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+      <loc>http://localhost:1313/tags/skills/</loc><lastmod>2024-07-28T15:35:29&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+      <loc>http://localhost:1313/categories/skills/</loc><lastmod>2024-07-28T15:35:29&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+      <loc>http://localhost:1313/tags/</loc><lastmod>2024-07-28T15:35:29&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
       <loc>http://localhost:1313/tags/ctf/</loc><lastmod>2024-07-26T15:12:02&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
       <loc>http://localhost:1313/categories/ctf/</loc><lastmod>2024-07-26T15:12:02&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
       <loc>http://localhost:1313/posts/417c7ba/</loc><lastmod>2024-07-26T15:12:02&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
@@ -20,9 +20,9 @@
       <loc>http://localhost:1313/posts/01ebd40/</loc><lastmod>2024-07-18T19:57:39&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url><url>
       <loc>http://localhost:1313/posts/5de0d7e/</loc><lastmod>2024-07-17T20:31:08&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url><url>
       <loc>http://localhost:1313/posts/2125dc5/</loc><lastmod>2024-07-17T11:17:04&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url><url>
-      <loc>http://localhost:1313/posts/5422d65/</loc><lastmod>2024-07-06T18:15:27&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url><url>
-      <loc>http://localhost:1313/tags/forensics/</loc><lastmod>2024-07-06T16:34:12&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url><url>
-      <loc>http://localhost:1313/posts/761da51/</loc><lastmod>2024-07-06T16:34:12&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url><url>
+      <loc>http://localhost:1313/posts/5422d65/</loc><lastmod>2024-07-06T18:15:27&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
+      <loc>http://localhost:1313/tags/forensics/</loc><lastmod>2024-07-06T16:34:12&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
+      <loc>http://localhost:1313/posts/761da51/</loc><lastmod>2024-07-06T16:34:12&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
       <loc>http://localhost:1313/posts/1e26f78/</loc><lastmod>2024-07-01T00:43:10&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
       <loc>http://localhost:1313/tags/course/</loc><lastmod>2024-06-21T10:52:37&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
       <loc>http://localhost:1313/categories/course/</loc><lastmod>2024-06-21T10:52:37&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
@@ -34,7 +34,6 @@
       <loc>http://localhost:1313/posts/f0ec4d6/</loc><lastmod>2024-05-04T14:35:57&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
       <loc>http://localhost:1313/posts/e0d44f3/</loc><lastmod>2024-04-30T19:07:38&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
       <loc>http://localhost:1313/about/</loc><lastmod>2024-04-29T09:10:30&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-      <loc>http://localhost:1313/friends/</loc><lastmod>2024-04-28T20:29:56&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
       <loc>http://localhost:1313/posts/a907e2b/</loc><lastmod>2024-04-28T15:59:10&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
       <loc>http://localhost:1313/posts/bc64ef8/</loc><lastmod>2024-04-18T16:47:25&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
       <loc>http://localhost:1313/posts/e49ecc5/</loc><lastmod>2024-04-07T19:52:15&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
