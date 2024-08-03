@@ -44,7 +44,49 @@ int main() {
 }
 ```
 
+### 查找
 
+```c&#43;&#43;
+#include &lt;bits/stdc&#43;&#43;.h&gt;
+using namespace std;
+typedef long long ll;
+#define MAXN 100005
+
+int a[MAXN];
+
+// 顺序查找
+int linearSearch(int a[], int n, int target) {
+	for (int i = 0; i &lt; n; i&#43;&#43;) {
+		if (a[i] == target) return i;
+	}
+	return -1;
+}
+
+// 二分查找-适用于有序的情况
+int binarySearch(int a[], int n, int target) {
+	int left = 0, right = n - 1, mid;
+	while (left &lt;= right) {
+		mid = left &#43; (right - left) / 2;
+		printf(&#34;%d\n&#34;, mid);
+		if (a[mid] == target) return mid;
+		else if (a[mid] &lt; target) left = mid &#43; 1;
+		else right = mid - 1;
+	}
+	return -1;
+}
+
+int main() {
+	freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
+	int n;scanf(&#34;%d&#34;, &amp;n);
+	for (int i = 0; i &lt; n; i&#43;&#43;) scanf(&#34;%d&#34;, &amp;a[i]);
+	int target;scanf(&#34;%d&#34;, &amp;target);
+	int pos = linearSearch(a, n, target);
+//	int pos = binarySearch(a,n,target);
+	if (pos != -1) printf(&#34;%d&#34;, pos &#43; 1);
+	else printf(&#34;NO&#34;);
+	return 0;
+}
+```
 
 ### 排序算法
 #### 冒泡排序
