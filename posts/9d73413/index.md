@@ -4,6 +4,9 @@
 
 还是太菜了，赛中只做出了一道 Misc
 &lt;!--more--&gt;
+
+![](imgs/image-20240803102239947.png)
+
 ## 题目名称 babypng
 
 题目附件给了一张 sakiko.png，用 stegsolve 查看，发现在 红色通道7 绿色通道7 蓝色通道7 中存在 LSB 隐写

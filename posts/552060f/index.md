@@ -26,9 +26,28 @@
 | `strcat(s1,s2)`        | 将字符串`s2`拼接到`s1`后面           |
 | `strcpy(s1,s2)`        | 将字符串s2复制到字符串s1中             |
 |                        |                             |
+## 常用算法
+### 快速幂
 
-## 排序算法
-### 冒泡排序
+```c&#43;&#43;
+#include &lt;bits/stdc&#43;&#43;.h&gt;
+using namespace std;
+typedef long long ll;
+
+int main() {
+	freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
+	int n;scanf(&#34;%d&#34;, &amp;n);
+	int res = 1;
+	for (int i = 0; i &lt; n; i&#43;&#43;) res = (res * 2) % 1007;
+	printf(&#34;%d&#34;, res);
+	return 0;
+}
+```
+
+
+
+### 排序算法
+#### 冒泡排序
 
 ```c&#43;&#43;
 //冒泡排序的基本思想是，将数组划分为尚未有序的部分（左边）和已经有序的部分（右边），

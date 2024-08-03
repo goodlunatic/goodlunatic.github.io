@@ -4,6 +4,8 @@
 
 &lt;!--more--&gt;
 
+![](imgs/image-20240803101810273.png)
+
 ## 题目名称 checkin
 
 **不愧是山海关-ChaMd5（查MD5获得flag）**
