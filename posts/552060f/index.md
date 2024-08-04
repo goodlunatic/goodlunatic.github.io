@@ -44,6 +44,72 @@ int main() {
 }
 ```
 
+### 筛法
+
+#### 素数筛
+
+&gt; 暴力枚举法，时间复杂度为O(n\*sqrt(n))
+
+```c&#43;&#43;
+vector&lt;int&gt;prime;
+void findPrime(int start, int end) {
+	for (int i = start; i &lt;= end; i&#43;&#43;) {
+		bool flag = false;
+		for (int j = 2; j &lt;= sqrt(i); j&#43;&#43;) {
+			if (i % j == 0) {
+				flag = true;
+				break;
+			}
+		}
+		if (!flag) prime.push_back(i);
+	}
+}
+```
+
+&gt; 埃氏筛，时间复杂度为O(n log n)
+
+```c&#43;&#43;
+bool isPrime[MAXN];
+vector&lt;int&gt;prime;
+
+void findPrime(int n) {
+	memset(isPrime, true, sizeof(isPrime));
+	isPrime[0] = isPrime[1] = false;
+	for (int i = 2; i &lt;= n; i&#43;&#43;) {
+		if (isPrime[i]) {
+			prime.push_back(i);
+//			因素只要筛到sqrt(n)即可，这里要用longlong来避免溢出
+			if ((ll) i * i &gt; n) continue;
+//			因为较小的倍数 i * 2, ..., i * (i-1) 在处理比 i 小的素数时就被筛除了
+			for (int j = i * i; j &lt;= n; j &#43;= i) {
+				isPrime[j] = false;
+			}
+		}
+	}
+}
+```
+
+&gt; 线性筛（欧拉筛），时间复杂度为O(n)，但是对空间的占用要求比较高
+
+```c&#43;&#43;
+vector&lt;ll&gt;prime;
+// 在堆上使用动态内存分配，防止栈溢出
+bool* isPrime = new bool[MAXN];
+void findPrime(ll n) {
+	memset(isPrime, true, sizeof(bool)*n);
+	for (ll i = 2; i &lt;= n; &#43;&#43;i) {
+		if (isPrime[i]) prime.push_back(i);
+		for (int prime_j : prime) {
+			if (i * prime_j &gt; n) break;
+			isPrime[i * prime_j] = false;
+//			关键步骤-防止一个合数被多次标记
+//			prime_j是i的最小因子，直接退出这次循环
+			if (i % prime_j == 0) break;
+		}
+	}
+}
+```
+
 ### 查找
 
 ```c&#43;&#43;
@@ -202,6 +268,89 @@ int main() {
     return 0;  
 }
 ```
+
+## 晴问-2022浙大考研机试模拟（1）
+
+### 库洛值
+
+```c&#43;&#43;
+#include&lt;bits/stdc&#43;&#43;.h&gt;
+using namespace std;
+#define MAXN 1005
+
+char s[MAXN];
+bool isExist[128];
+int main(){
+	// freopen(&#34;input.txt&#34;,&#34;r&#34;,stdin);
+	int n,len,sum=0;scanf(&#34;%d&#34;,&amp;n);
+	while(n--){
+		memset(isExist,false,sizeof(isExist));
+		scanf(&#34;%s&#34;,&amp;s);
+		len = strlen(s);
+		 // 存储时会自动转换为Ascii值作为下标来进行存储
+		for(int i=0;i&lt;len;i&#43;&#43;) isExist[s[i]] = true;
+		for(char c = &#39;A&#39;;c&lt;=&#39;Z&#39;;c&#43;&#43;) sum&#43;=isExist[c];
+		for(char c = &#39;a&#39;;c&lt;=&#39;z&#39;;c&#43;&#43;) sum&#43;=isExist[c];
+	}
+	printf(&#34;%d&#34;,sum);
+	return 0;
+}
+```
+
+### 平衡素数
+```c&#43;&#43;
+#include &lt;bits/stdc&#43;&#43;.h&gt;
+using namespace std;
+#define MAXN 11000000
+typedef long long ll;
+
+int nextbalance_prime[MAXN];
+vector&lt;ll&gt;prime;
+bool* isPrime = new bool[MAXN];
+
+// 使用欧拉筛打出素数表
+void findPrime(ll n) {
+	memset(isPrime, true, sizeof(bool)*n);
+	for (ll i = 2; i &lt;= n; i&#43;&#43;) {
+		if (isPrime[i]) prime.push_back(i);
+		for (ll prime_j : prime) {
+			if (i * prime_j &gt; n) break;
+			isPrime[i * prime_j] = false;
+			if (i % prime_j == 0) break;
+		}
+	}
+}
+
+void find_nextbalance_prime() {
+	int lastbalance_prime = 0;
+//	2 没有上一个素数，所以它不可能是平衡素数
+	for (int i = 1; i &lt; prime.size() - 1; i&#43;&#43;) {
+		if (prime[i] * 2 == prime[i - 1] &#43; prime[i &#43; 1]) {
+//			从上一个平衡素数的下一个开始，全部置为当前的平衡素数
+			for (int j = lastbalance_prime &#43; 1; j &lt;= prime[i]; j&#43;&#43;) {
+				nextbalance_prime[j] = prime[i];
+			}
+			lastbalance_prime = prime[i];
+		}
+	}
+}
+
+int main() {
+	findPrime(MAXN);
+	find_nextbalance_prime();
+	freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
+	int n, num;
+	scanf(&#34;%d&#34;, &amp;n);
+	while (n--) {
+		scanf(&#34;%d&#34;, &amp;num);
+		if (num == nextbalance_prime[num]) printf(&#34;Yes\n&#34;);
+		else printf(&#34;No %d\n&#34;, nextbalance_prime[num]);
+	}
+	return 0;
+}
+```
+
+
 
 ## 牛客-浙大考研复试上机题
 
