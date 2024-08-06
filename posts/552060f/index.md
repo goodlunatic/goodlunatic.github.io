@@ -13,6 +13,7 @@
 | getchar()     | 从标准输入流中读取一个字符，常用来处理上一行末尾留下的换行符                                                       |
 | fgets()       | `fgets(a,MAX_LEN,stdin);`读取一整行的文本，末尾会多一个换行符；可使用`str[strcspn(str, &#34;\n&#34;)] = &#39;\0&#39;;`进行处理 |
 | cin.getline() | `cin.getline(str, MAXN);`读取一整行的文本，末尾没有换行符                                            |
+| getline()     | `getline(cin,str)`其中str是`string str`                                                 |
 | sprintf()     | `sprintf(s, &#34;Integer: %d, Float: %.2f&#34;, num, fnum);`用于将格式化的数据写入到一个字符串中               |
 
 ## 一些函数
@@ -30,17 +31,14 @@
 ### 快速幂
 
 ```c&#43;&#43;
-#include &lt;bits/stdc&#43;&#43;.h&gt;
-using namespace std;
-typedef long long ll;
-
-int main() {
-	freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
-	int n;scanf(&#34;%d&#34;, &amp;n);
-	int res = 1;
-	for (int i = 0; i &lt; n; i&#43;&#43;) res = (res * 2) % 1007;
-	printf(&#34;%d&#34;, res);
-	return 0;
+ll binPow(ll base, ll exp) {
+	ll res = 1;
+	while (exp) {
+		if (exp &amp; 1) res *= base;
+		base *= base;
+		exp &gt;&gt;= 1;
+	}
+	return res;
 }
 ```
 
@@ -189,6 +187,30 @@ int main() {
 }
 ```
 
+## 数据结构
+
+### 树
+
+#### 二叉查找树（BST）
+
+```
+
+```
+
+## 遇到的一些问题
+
+### 获取C&#43;&#43;中动态数组的长度
+
+&gt; 可以使用 `.size()` 这个成员函数来获取 `vector` 或者 `map` 等的长度
+
+### 获取C&#43;&#43;中 `string` 类型的长度
+
+&gt; 可以使用 `.length()` 这个成员函数来获取 `string` 的长度
+
+### 字符串输入问题
+
+&gt; C&#43;&#43;中可能无法使用C语言的字符数组，如 `char str[1005]` 这种
+&gt; 因此我们可以使用读取 `string str` 来替代，需要使用 `getline(cin,str)` 或者 `cin &gt;&gt; str` 来读取输入
 
 ## PAT(Basic Level) Practice（中文）
 
@@ -350,7 +372,128 @@ int main() {
 }
 ```
 
+### 进击的二叉查找树
 
+```c&#43;&#43;
+#include &lt;bits/stdc&#43;&#43;.h&gt;
+using namespace std;
+typedef int elemType;
+#define MAXN 100005
+
+vector&lt;int&gt;pre1, pre2, post, layer;
+
+// BitTree 相当于 BitNode*
+typedef struct BitNode {
+	elemType data;
+	BitNode* lchild;
+	BitNode* rchild;
+} BitNode, *BitTree;
+
+// pos用来确定插入结点的位置
+// 如果遍历到的结点没有孩子，就返回双亲的位置
+bool BST_Search(BitTree T, elemType key, BitTree parent, BitTree &amp;pos) {
+	if (!T) {
+		pos = parent;
+		return false;
+	} else if (T-&gt;data == key) {
+		pos = T;
+		return true;
+	} else if (T-&gt;data &lt; key) {
+		return BST_Search(T-&gt;rchild, key, T, pos);
+	} else {
+		return BST_Search(T-&gt;lchild, key, T, pos);
+	}
+}
+
+bool BST_Inseart(BitTree &amp;T, elemType data) {
+	BitTree pos = NULL;
+	if (!BST_Search(T, data, NULL, pos)) {
+		BitNode* s = new BitNode;
+		s-&gt;data = data;
+		s-&gt;lchild = s-&gt;rchild = NULL;
+		if (!pos) {
+			T = s;
+		} else if (data &lt; pos-&gt;data) {
+			pos-&gt;lchild = s;
+		} else {
+			pos-&gt;rchild = s;
+		}
+		return true;
+	} else {
+		return false;
+	}
+}
+
+void PreOrder(vector&lt;int&gt;&amp;pre, BitTree T) {
+	if (T) {
+		pre.push_back(T-&gt;data);
+		PreOrder(pre, T-&gt;lchild);
+		PreOrder(pre, T-&gt;rchild);
+	}
+}
+
+void PostOrder(vector&lt;int&gt;&amp;post, BitTree T) {
+	if (T) {
+		PostOrder(post, T-&gt;lchild);
+		PostOrder(post, T-&gt;rchild);
+		post.push_back(T-&gt;data);
+	}
+}
+
+// 使用队列来实现二叉树的层序遍历
+void LayerOrder(vector&lt;int&gt;&amp;layer, BitTree T) {
+	if (T) {
+		queue&lt;BitTree&gt;q;
+		q.push(T);
+		while (!q.empty()) {
+			BitTree current = q.front();
+			q.pop();
+			layer.push_back(current-&gt;data);
+			if (current-&gt;lchild) q.push(current-&gt;lchild);
+			if (current-&gt;rchild) q.push(current-&gt;rchild);
+		}
+	}
+}
+
+int main() {
+	freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
+	int n;scanf(&#34;%d&#34;, &amp;n);
+	bool flag = true;
+	BitTree T1 = NULL;
+	BitTree T2 = NULL;
+	elemType e;
+	for (int i = 0; i &lt; n; i&#43;&#43;) {
+		scanf(&#34;%d&#34;, &amp;e);
+		BST_Inseart(T1, e);
+	}
+	for (int i = 0; i &lt; n; i&#43;&#43;) {
+		scanf(&#34;%d&#34;, &amp;e);
+		BST_Inseart(T2, e);
+	}
+	PreOrder(pre1, T1);
+	PreOrder(pre2, T2);
+	for (int i = 0; i &lt; n; i&#43;&#43;) {
+		if (pre1[i] != pre2[i]) {
+			flag = false;
+			break;
+		}
+	}
+	if (flag) printf(&#34;YES\n&#34;);
+	else printf(&#34;NO\n&#34;);
+	PostOrder(post, T1);
+	for (int i = 0; i &lt; n; i&#43;&#43;) {
+		printf(&#34;%d&#34;, post[i]);
+		if (i &lt; n - 1) printf(&#34; &#34;);
+	}
+	printf(&#34;\n&#34;);
+	LayerOrder(layer, T1);
+	for (int i = 0; i &lt; n; i&#43;&#43;) {
+		printf(&#34;%d&#34;, layer[i]);
+		if (i &lt; n - 1) printf(&#34; &#34;);
+	}
+	return 0;
+}
+```
 
 ## 牛客-浙大考研复试上机题
 
@@ -431,6 +574,248 @@ int main() {
 	return 0;
 }
 ```
+
+### 统计同成绩学生人数
+
+```c&#43;&#43;
+#include &lt;bits/stdc&#43;&#43;.h&gt;
+using namespace std;
+#define MAXN 1100
+
+int a[MAXN];
+int main() {
+	freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
+	memset(a, 0, sizeof(a));
+	int n, tmp, target;
+	while (scanf(&#34;%d&#34;, &amp;n) != EOF) {
+		if (n == 0) break;
+		while (n--) {
+			scanf(&#34;%d&#34;, &amp;tmp);
+			a[tmp]&#43;&#43;;
+		}
+		scanf(&#34;%d&#34;, &amp;target);
+		printf(&#34;%d\n&#34;, a[target]);
+	}
+	return 0;
+}
+```
+
+**使用 `map` 的做法**
+
+```c&#43;&#43;
+#include &lt;bits/stdc&#43;&#43;.h&gt;
+using namespace std;
+
+map&lt;int, int&gt;stu;
+int main() {
+	freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
+	int n, tmp, target;
+	while (scanf(&#34;%d&#34;, &amp;n) != EOF) {
+		if (n == 0) break;
+		while (n--) {
+			scanf(&#34;%d&#34;, &amp;tmp);
+			stu[tmp]&#43;&#43;;
+		}
+		scanf(&#34;%d&#34;, &amp;target);
+//		使用count()方法检查map中是否存在target键，返回值是0或1
+		if (stu.count(target))printf(&#34;%d\n&#34;, stu[target]);
+		else printf(&#34;0\n&#34;);
+	}
+	return 0;
+}
+```
+
+### xxx定律
+```c&#43;&#43;
+#include &lt;bits/stdc&#43;&#43;.h&gt;  
+using namespace std;  
+  
+int main() {  
+    freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);  
+    int n;  
+    while (scanf(&#34;%d&#34;, &amp;n) != EOF) {  
+        int cnt = 0;  
+        while (n != 1) {  
+            if (n &amp; 1) {  
+                n = (3 * n &#43; 1) / 2;  
+                cnt&#43;&#43;;  
+            } else {  
+                n /= 2;  
+                cnt&#43;&#43;;  
+            }  
+        }  
+        printf(&#34;%d\n&#34;, cnt);  
+    }  
+    return 0;  
+}
+```
+
+### A&#43;B for Matrices
+
+```c&#43;&#43;
+#include &lt;bits/stdc&#43;&#43;.h&gt;
+using namespace std;
+
+int a[100][100], b[100][100];
+int main() {
+	freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
+	memset(a, 0, sizeof(a));
+	int m, n;
+	while (scanf(&#34;%d&#34;, &amp;m) != EOF) {
+		scanf(&#34;%d&#34;, &amp;n);
+		if (m == 0) break;
+		int cnt = 0;
+		for (int i = 0; i &lt; m; i&#43;&#43;) for (int j = 0; j &lt; n; j&#43;&#43;) scanf(&#34;%d&#34;, &amp;a[i][j]);
+		for (int i = 0; i &lt; m; i&#43;&#43;) for (int j = 0; j &lt; n; j&#43;&#43;) scanf(&#34;%d&#34;, &amp;b[i][j]);
+		for (int i = 0; i &lt; m; i&#43;&#43;) for (int j = 0; j &lt; n; j&#43;&#43;) a[i][j] &#43;= b[i][j];
+		for (int i = 0; i &lt; m; i&#43;&#43;) {
+			bool flag = true;
+			for (int j = 0; j &lt; n; j&#43;&#43;) {
+				if (a[i][j] != 0) {
+					flag = false;
+					break;
+				}
+			}
+			if (flag) cnt&#43;&#43;;
+		}
+		for (int j = 0; j &lt; n; j&#43;&#43;) {
+			bool flag = true;
+			for (int i = 0; i &lt; m; i&#43;&#43;) {
+				if (a[i][j] != 0) {
+					flag = false;
+					break;
+				}
+			}
+			if (flag) cnt&#43;&#43;;
+		}
+		printf(&#34;%d\n&#34;, cnt);
+	}
+	return 0;
+}
+```
+
+### ZOJ
+
+```c&#43;&#43;
+#include &lt;bits/stdc&#43;&#43;.h&gt;
+using namespace std;
+
+map&lt;char, int&gt; m ;
+int main() {
+	freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
+	string s;
+	cin &gt;&gt; s;
+	int len = s.length();
+	for (int i = 0; i &lt; len; &#43;&#43;i) m[s[i]]&#43;&#43;;
+	while (m[&#39;Z&#39;] &gt; 0 || m[&#39;O&#39;] &gt; 0 || m[&#39;J&#39;] &gt; 0) {
+		if (m[&#39;Z&#39;] &gt; 0){
+			printf(&#34;Z&#34;);
+			m[&#39;Z&#39;]--;
+		}
+		if (m[&#39;O&#39;] &gt; 0){
+			printf(&#34;O&#34;);
+			m[&#39;O&#39;]--;
+		}
+		if (m[&#39;J&#39;] &gt; 0){
+			printf(&#34;J&#34;);
+			m[&#39;J&#39;]--;
+		}
+	}
+	return 0;
+}
+```
+
+### 开门人和关门人
+
+```c&#43;&#43;
+#include &lt;bits/stdc&#43;&#43;.h&gt;
+using namespace std;
+
+int main() {
+	freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
+	int n;scanf(&#34;%d&#34;, &amp;n);
+	string id, sign_time, signout_time, open_id, close_id;
+	string opentime = &#34;24:00:00&#34;;
+	string closetime = &#34;00:00:00&#34;;
+	while (n--) {
+		cin &gt;&gt; id &gt;&gt; sign_time &gt;&gt; signout_time;
+		if (sign_time &lt; opentime) {
+			opentime = sign_time;
+			open_id = id;
+		}
+		if (signout_time &gt; closetime) {
+			closetime = signout_time;
+			close_id = id;
+		}
+	}
+	cout &lt;&lt; open_id &lt;&lt; &#34; &#34; &lt;&lt; close_id ;
+	return 0;
+}
+```
+
+**使用 `map` 的做法**
+
+&gt;  `std::map` 是一个有序的关联容器，它会根据键自动进行排序。`std::map` 的迭代器可以用来遍历容器中的元素
+&gt;  `.begin()` 成员函数返回容器中的第一个元素，`--map.end()` 返回容器中的最后一个元素
+&gt;   在 `std::map` 中，`first` 和 `second` 是 `std::pair` 类型的成员，分别用来访问键和值
+
+```c&#43;&#43;
+#include &lt;bits/stdc&#43;&#43;.h&gt;
+using namespace std;
+
+
+map&lt;string, string&gt;signin;
+map&lt;string, string&gt;signout;
+int main() {
+	freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
+	int n;scanf(&#34;%d&#34;, &amp;n);
+	string id, signin_time, signout_time;
+	while (n--) {
+		cin &gt;&gt; id &gt;&gt; signin_time &gt;&gt; signout_time;
+		signin[signin_time] = id ;
+		signout[signout_time] = id;
+	}
+	//	迭代器可以&#43;&#43;、--，但不支持&#43;1
+	cout &lt;&lt; (signin.begin()-&gt;second) &lt;&lt; &#34; &#34; &lt;&lt; ((--signout.end())-&gt;second);
+	return 0;
+}
+```
+
+
+
+### 最小长方形
+
+**使用 `vector` &#43; `sort()` 的做法**
+
+```c&#43;&#43;
+#include &lt;bits/stdc&#43;&#43;.h&gt;
+using namespace std;
+
+
+vector&lt;int&gt; x, y;
+int main() {
+	freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
+	int a, b;
+	while (scanf(&#34;%d%d&#34;, &amp;a, &amp;b) != EOF) {
+		if (a == 0 &amp;&amp; b == 0) {
+			if (x.size() == 0) continue;
+			sort(x.begin(), x.end());
+			sort(y.begin(), y.end());
+//			在 C&#43;&#43; 中，* 符号是解引用运算符，用于访问指针或迭代器指向的对象或元素的值。
+			cout &lt;&lt; x[0] &lt;&lt; &#34; &#34; &lt;&lt; y[0] &lt;&lt; &#34; &#34; &lt;&lt; *(x.end() - 1) &lt;&lt; &#34; &#34; &lt;&lt; *(y.end() - 1) &lt;&lt; &#34;\n&#34;;
+//			清空动态数组
+			x.clear();
+			y.clear();
+		} else {
+			x.push_back(a);
+			y.push_back(b);
+		}
+
+	}
+	return 0;
+}
+```
+
 
 ---
 
