@@ -187,6 +187,61 @@ int main() {
 }
 ```
 
+### 并查集
+
+```c&#43;&#43;
+#include &lt;bits/stdc&#43;&#43;.h&gt;  
+using namespace std;  
+  
+const int MAXN = 100005;  
+vector&lt;int&gt;v(MAXN &#43; 1), num(MAXN &#43; 1);  
+  
+void initt(int n) {  
+    for (int i = 1; i &lt;= n; &#43;&#43;i) {  
+        v[i] = i;  
+        num[i] = 1;  
+    }  
+}  
+  
+int findd(int x) {  
+    if (v[x] != x) v[x] = findd(v[x]);  
+    return v[x];  
+}  
+  
+void unionn(int x, int y) {  
+    int a = findd(x);  
+    int b = findd(y);  
+    if (a != b) {  
+        v[b] = a;  
+        num[a] &#43;= num[b];  
+    }  
+}  
+  
+int main() {  
+    freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);  
+    int n, m, a, b, c;  
+    scanf(&#34;%d%d&#34;, &amp;n, &amp;m);  
+    getchar();  
+    initt(n);  
+    char opcode;  
+    while (m--) {  
+        scanf(&#34;%c&#34;, &amp;opcode);  
+        if (opcode == &#39;M&#39;) {  
+            scanf(&#34;%d%d&#34;, &amp;a, &amp;b);  
+            getchar();  
+            unionn(a, b);  
+        } else if (opcode == &#39;Q&#39;) {  
+            scanf(&#34;%d&#34;, &amp;c);  
+            getchar();  
+            printf(&#34;%d\n&#34;, num[findd(c)]);  
+        }  
+    }  
+    return 0;  
+}
+```
+
+例题1-ZJNUOJ-亲戚——高级
+
 ## 数据结构
 
 ### 树
@@ -816,6 +871,60 @@ int main() {
 }
 ```
 
+**直接记录最大值和最小值的做法，这里break不会导致多组样例出错**
+
+```c&#43;&#43;
+#include &lt;bits/stdc&#43;&#43;.h&gt;
+using namespace std;
+typedef long long ll;
+#define MAXN 1e18
+
+int main() {
+	freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
+	ll x, y, x_min, y_min, x_max, y_max;
+	x_min = y_min = MAXN;
+	x_max = y_max = 0;
+	while (scanf(&#34;%lld%lld&#34;, &amp;x, &amp;y) != EOF) {
+		if (x == 0 &amp;&amp; y == 0) break;
+		if (x &lt; x_min) x_min = x;
+		if (x &gt; x_max) x_max = x;
+		if (y &lt; y_min) y_min = y;
+		if (y &gt; y_max) y_max = y;
+	}
+	printf(&#34;%lld %lld %lld %lld\n&#34;, x_min, y_min, x_max, y_max);
+	return 0;
+}
+```
+
+### 畅通工程
+
+```c&#43;&#43;
+#include &amp;lt;bits/stdc&#43;&#43;.h&amp;gt;
+using namespace std;
+
+const int MAXN = 1100;
+
+int main() {
+    int n, m, t;
+    while (scanf(&#34;%d&#34;, &amp;amp;n) != EOF) {
+        if (n == 0) break;
+        scanf(&#34;%d&#34;, &amp;amp;m);
+        t = n - 1;
+        vector&amp;lt;int&amp;gt;v(MAXN, -1);
+        while (m--) {
+            int a, b;
+            scanf(&#34;%d%d&#34;, &amp;amp;a, &amp;amp;b);
+            while (v[a] != -1)a = v[a];
+            while (v[b] != -1)b = v[b];
+            if (a == b)continue;
+            else v[b] = a, t -= 1;
+        }
+        v.clear();
+        printf(&#34;%d\n&#34;, t);
+    }
+    return 0;
+}
+```
 
 ---
 
