@@ -187,6 +187,125 @@ int main() {
 }
 ```
 
+#### 快速排序
+
+分治思想，时间复杂度为O(nlogn)，不稳定
+
+```c&#43;&#43;
+void quick_sort(int a[], int l, int r) {
+	if (l &gt;= r) return;
+	int x = a[l], i = l - 1, j = r &#43; 1;
+	while (i &lt; j) {
+		while (a[&#43;&#43;i] &lt; x);
+		while (a[--j] &gt; x);
+		if (i &lt; j) swap(a[i], a[j]);
+	}
+	quick_sort(a, l, j);
+	quick_sort(a, j &#43; 1, r);
+}
+```
+
+#### 归并排序
+
+分治思想，时间复杂度为O(nlogn)，稳定
+
+```c&#43;&#43;
+const int N = 1e6 &#43; 10;
+int a[N], tmp[N];
+
+void merge_sort(int a[], int l, int r) {
+	if (l &gt;= r) return ;
+	int mid = l &#43; r &gt;&gt; 1;
+	merge_sort(a, l, mid);
+	merge_sort(a, mid &#43; 1, r);
+	int cnt = 0, i = l, j = mid &#43; 1 ;
+	while (i &lt;= mid &amp;&amp; j &lt;= r) {
+		if (a[i] &lt;= a[j]) tmp[cnt&#43;&#43;] = a[i&#43;&#43;];
+		else tmp[cnt&#43;&#43;] = a[j&#43;&#43;];
+	}
+	while (i &lt;= mid) tmp[cnt&#43;&#43;] = a[i&#43;&#43;];
+	while (j &lt;= r) tmp[cnt&#43;&#43;] = a[j&#43;&#43;];
+	for (int i = l, j = 0; i &lt;= r; i&#43;&#43;, j&#43;&#43;) a[i] = tmp[j];
+}
+```
+
+#### 二分查找
+
+**整数二分**
+
+```c&#43;&#43;
+#include &lt;bits/stdc&#43;&#43;.h&gt;
+using namespace std;
+
+const int N = 100010;
+int a[N];
+
+// 找左边界
+int binsearch_left(int l, int r, int x) {
+	while (l &lt; r) {
+		int mid = l &#43; r &gt;&gt; 1;
+		if (a[mid] &gt;= x) r = mid;
+		else l = mid &#43; 1;
+	}
+	return l;
+}
+
+// 找右边界
+int binsearch_right(int l, int r, int x) {
+	while (l &lt; r) {
+		int mid = l &#43; r &#43; 1 &gt;&gt; 1;
+		if (a[mid] &lt;= x) l = mid;
+		else r = mid - 1;
+	}
+	return l;
+}
+
+int main() {
+	freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
+	int n, m, x, mid;
+	scanf(&#34;%d%d&#34;, &amp;n, &amp;m);
+	for (int i = 0; i &lt; n; i&#43;&#43;) scanf(&#34;%d&#34;, &amp;a[i]);
+	while (m--) {
+		scanf(&#34;%d&#34;, &amp;x);
+		int l = 0, r = n - 1;
+		l = binsearch_left(l, r, x);
+		if (a[l] != x) printf(&#34;-1 -1\n&#34;);
+		else {
+			printf(&#34;%d &#34;, l);
+			l = 0, r = n - 1;
+			l = binsearch_right(l, r, x);
+			printf(&#34;%d\n&#34;, l);
+		}
+	}
+	return 0;
+}
+```
+
+例题1-Acwing789-数的范围
+
+**浮点数二分**
+
+```c&#43;&#43;
+#include &lt;bits/stdc&#43;&#43;.h&gt;
+using namespace std;
+
+int main() {
+	freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
+	double x;
+	while (scanf(&#34;%lf&#34;, &amp;x) != EOF) {
+		double l = 0, r = x, mid;
+		while (r - l &gt; 1e-8) {
+			mid = (l &#43; r) / 2;
+			if (mid * mid &gt;= x) r = mid;
+			else l = mid;
+		}
+		printf(&#34;%lf\n&#34;, l);
+	}
+	return 0;
+}
+```
+
+
 ### 并查集
 
 ```c&#43;&#43;
@@ -267,9 +386,77 @@ int main() {
 &gt; C&#43;&#43;中可能无法使用C语言的字符数组，如 `char str[1005]` 这种
 &gt; 因此我们可以使用读取 `string str` 来替代，需要使用 `getline(cin,str)` 或者 `cin &gt;&gt; str` 来读取输入
 
-## PAT(Basic Level) Practice（中文）
+## 刷题记录
 
-### 1001 害死人不偿命的(3n&#43;1)猜想
+### AcWing算法基础课-课后习题
+
+#### 快速排序
+
+**789.快速排序**
+```c&#43;&#43;
+#include &lt;bits/stdc&#43;&#43;.h&gt;
+using namespace std;
+
+const int N = 100010;
+int a[N];
+
+void quick_sort(int a[], int l, int r) {
+	if (l &gt;= r) return;
+	int x = a[l], i = l - 1, j = r &#43; 1;
+	while (i &lt; j) {
+		while (a[&#43;&#43;i] &lt; x);
+		while (a[--j] &gt; x);
+		if (i &lt; j) swap(a[i], a[j]);
+	}
+	quick_sort(a, l, j);
+	quick_sort(a, j &#43; 1, r);
+}
+
+int main() {
+	freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
+	int n;
+	scanf(&#34;%d&#34;, &amp;n);
+	for (int i = 0; i &lt; n; i&#43;&#43;) scanf(&#34;%d&#34;, &amp;a[i]);
+	quick_sort(a, 0, n - 1);
+	for (int i = 0; i &lt; n; i&#43;&#43;) printf(&#34;%d &#34;, a[i]);
+	return 0;
+}
+```
+
+**786.第k个数**
+```c&#43;&#43;
+#include &lt;bits/stdc&#43;&#43;.h&gt;
+using namespace std;
+
+const int N = 100010;
+int a[N];
+
+int  quick_select(int a[], int l, int r, int k) {
+	if (l &gt;= r) return a[l] ;
+	int x = a[l], i = l - 1, j = r &#43; 1;
+	while (i &lt; j) {
+		while (a[&#43;&#43;i] &lt; x);
+		while (a[--j] &gt; x);
+		if (i &lt; j) swap(a[i], a[j]);
+	}
+	int sl = j - l &#43; 1;
+	if (k &lt;= sl) return quick_select(a, l, j, k);
+	else return quick_select(a, j &#43; 1, r, k - sl);
+}
+
+int main() {
+	freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
+	int n, k, res;
+	scanf(&#34;%d%d&#34;, &amp;n, &amp;k);
+	for (int i = 0; i &lt; n; i&#43;&#43;) scanf(&#34;%d&#34;, &amp;a[i]);
+	res = quick_select(a, 0, n - 1, k);
+	printf(&#34;%d\n&#34;, res);
+	return 0;
+}
+```
+### PAT(Basic Level) Practice（中文）
+
+#### 1001 害死人不偿命的(3n&#43;1)猜想
 ```c&#43;&#43;
 #include &lt;bits/stdc&#43;&#43;.h&gt;
 using namespace std;
@@ -287,7 +474,7 @@ int main() {
 }
 ```
 
-### 1002 写出这个数
+#### 1002 写出这个数
 ```c&#43;&#43;
 #include &lt;bits/stdc&#43;&#43;.h&gt;  
 using namespace std;  
@@ -317,7 +504,7 @@ int main() {
 ```
 
 
-### 1003 我要通过！
+#### 1003 我要通过！
 
 ```c&#43;&#43;
 #include &lt;bits/stdc&#43;&#43;.h&gt;  
@@ -346,9 +533,9 @@ int main() {
 }
 ```
 
-## 晴问-2022浙大考研机试模拟（1）
+### 晴问-2022浙大考研机试模拟（1）
 
-### 库洛值
+#### 库洛值
 
 ```c&#43;&#43;
 #include&lt;bits/stdc&#43;&#43;.h&gt;
@@ -374,7 +561,7 @@ int main(){
 }
 ```
 
-### 平衡素数
+#### 平衡素数
 ```c&#43;&#43;
 #include &lt;bits/stdc&#43;&#43;.h&gt;
 using namespace std;
@@ -427,7 +614,7 @@ int main() {
 }
 ```
 
-### 进击的二叉查找树
+#### 进击的二叉查找树
 
 ```c&#43;&#43;
 #include &lt;bits/stdc&#43;&#43;.h&gt;
@@ -550,9 +737,9 @@ int main() {
 }
 ```
 
-## 牛客-浙大考研复试上机题
+### 牛客-浙大考研复试上机题
 
-### 火星A&#43;B
+#### 火星A&#43;B
 
 ```c&#43;&#43;
 #include &lt;bits/stdc&#43;&#43;.h&gt;
@@ -630,7 +817,7 @@ int main() {
 }
 ```
 
-### 统计同成绩学生人数
+#### 统计同成绩学生人数
 
 ```c&#43;&#43;
 #include &lt;bits/stdc&#43;&#43;.h&gt;
@@ -705,7 +892,7 @@ int main() {
 }
 ```
 
-### A&#43;B for Matrices
+#### A&#43;B for Matrices
 
 ```c&#43;&#43;
 #include &lt;bits/stdc&#43;&#43;.h&gt;
@@ -749,7 +936,7 @@ int main() {
 }
 ```
 
-### ZOJ
+#### ZOJ
 
 ```c&#43;&#43;
 #include &lt;bits/stdc&#43;&#43;.h&gt;
@@ -780,7 +967,7 @@ int main() {
 }
 ```
 
-### 开门人和关门人
+#### 开门人和关门人
 
 ```c&#43;&#43;
 #include &lt;bits/stdc&#43;&#43;.h&gt;
@@ -838,7 +1025,7 @@ int main() {
 
 
 
-### 最小长方形
+#### 最小长方形
 
 **使用 `vector` &#43; `sort()` 的做法**
 
@@ -896,7 +1083,7 @@ int main() {
 }
 ```
 
-### 畅通工程
+#### 畅通工程
 
 ```c&#43;&#43;
 #include &amp;lt;bits/stdc&#43;&#43;.h&amp;gt;
