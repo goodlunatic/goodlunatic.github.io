@@ -454,6 +454,114 @@ int main() {
 	return 0;
 }
 ```
+
+#### 归并排序
+
+**787.归并排序**
+```c&#43;&#43;
+#include &lt;bits/stdc&#43;&#43;.h&gt;
+using namespace std;
+
+const int N = 100010;
+int a[N], tmp[N];
+
+void merge_sort(int a[], int l, int r) {
+	if (l &gt;= r) return;
+	int mid = l &#43; r &gt;&gt; 1;
+	merge_sort(a, l, mid);
+	merge_sort(a, mid &#43; 1, r);
+	int cnt = 0, i = l, j = mid &#43; 1;
+	while (i &lt;= mid &amp;&amp; j &lt;= r) {
+		if (a[i] &lt; a[j]) tmp[cnt&#43;&#43;] = a[i&#43;&#43;];
+		else tmp[cnt&#43;&#43;] = a[j&#43;&#43;];
+	}
+	while (i &lt;= mid) tmp[cnt&#43;&#43;] = a[i&#43;&#43;];
+	while (j &lt;= r) tmp[cnt&#43;&#43;] = a[j&#43;&#43;];
+	for (int i = l, j = 0; i &lt;= r; i&#43;&#43;, j&#43;&#43;) a[i] = tmp[j];
+}
+
+int main() {
+	freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
+	int n; scanf(&#34;%d&#34;, &amp;n);
+	for (int i = 0; i &lt; n; i&#43;&#43;) scanf(&#34;%d&#34;, &amp;a[i]);
+	merge_sort(a, 0, n - 1);
+	for (int i = 0; i &lt; n; i&#43;&#43;) printf(&#34;%d &#34;, a[i]);
+	return 0;
+}
+```
+
+**788.逆序对的数量**
+
+暴力的做法（只能过部分样例）
+
+```c&#43;&#43;
+#include &lt;bits/stdc&#43;&#43;.h&gt;
+using namespace std;
+typedef long long ll;
+
+const int N = 1e6 &#43; 10;
+int a[N];
+
+
+int main() {
+	freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
+	int n;
+	scanf(&#34;%d&#34;, &amp;n);
+	ll cnt = 0;
+	for (int i = 0; i &lt; n; i&#43;&#43;) scanf(&#34;%d&#34;, &amp;a[i]);
+	for (int i = 0; i &lt; n; i&#43;&#43;) {
+		for (int j = i &#43; 1 ; j &lt; n; j&#43;&#43;) {
+			if (a[j] &lt; a[i]) cnt&#43;&#43;;
+		}
+	}
+	printf(&#34;%lld\n&#34;, cnt);
+	return 0;
+}
+```
+
+使用归并排序的做法
+
+&gt; 这个方法可能稍微有点不太好理解，可以对着样例模拟一下
+&gt; 就是利用分治思想，把每次递归中的结果加起来
+&gt; 考虑的其实只有一种情况，就是逆序对的两个元素分布在mid两边的情况
+
+```c&#43;&#43;
+#include &lt;bits/stdc&#43;&#43;.h&gt;
+using namespace std;
+typedef long long ll;
+
+const int N = 5e5 &#43; 10;
+int a[N], tmp[N];
+
+ll merge_sort(int l, int r) {
+	if (l &gt;= r) return 0;
+	int mid = l &#43; r &gt;&gt; 1;
+	ll res = merge_sort(l, mid) &#43; merge_sort(mid &#43; 1, r);
+	int cnt = 0, i = l, j = mid &#43; 1;
+	while (i &lt;= mid &amp;&amp; j &lt;= r) {
+		if (a[i] &lt;= a[j]) tmp[cnt&#43;&#43;] = a[i&#43;&#43;];
+		else {
+			tmp[cnt&#43;&#43;] = a[j&#43;&#43;];
+//			**算法的关键点**
+			res &#43;= mid - i &#43; 1;
+		}
+	}
+	while (i &lt;= mid) tmp[cnt&#43;&#43;] = a[i&#43;&#43;];
+	while (j &lt;= r) tmp[cnt&#43;&#43;] = a[j&#43;&#43;];
+	for (int i = l, j = 0; i &lt;= r; i&#43;&#43;, j&#43;&#43;) a[i] = tmp[j];
+	return res;
+}
+
+int main() {
+	freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
+	int n;scanf(&#34;%d&#34;, &amp;n);
+	for (int i = 0; i &lt; n; i&#43;&#43;) scanf(&#34;%d&#34;, &amp;a[i]);
+	ll res = merge_sort(0, n - 1);
+	printf(&#34;%lld&#34;, res);
+	return 0;
+}
+```
+
 ### PAT(Basic Level) Practice（中文）
 
 #### 1001 害死人不偿命的(3n&#43;1)猜想
