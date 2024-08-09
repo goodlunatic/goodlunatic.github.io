@@ -13,20 +13,22 @@
 | getchar()     | 从标准输入流中读取一个字符，常用来处理上一行末尾留下的换行符                                                       |
 | fgets()       | `fgets(a,MAX_LEN,stdin);`读取一整行的文本，末尾会多一个换行符；可使用`str[strcspn(str, &#34;\n&#34;)] = &#39;\0&#39;;`进行处理 |
 | cin.getline() | `cin.getline(str, MAXN);`读取一整行的文本，末尾没有换行符                                            |
-| getline()     | `getline(cin,str)`其中str是`string str`                                                 |
+| getline()     | `getline(cin,str)`其中str是`string str`，读取一整行的文本，末尾没有换行符                                |
 | sprintf()     | `sprintf(s, &#34;Integer: %d, Float: %.2f&#34;, num, fnum);`用于将格式化的数据写入到一个字符串中               |
 
 ## 一些函数
 
-| 函数                     | 用法                          |
-| ---------------------- | --------------------------- |
-| `sprintf(字符数组,格式串,变量)` | 将变量按格式字符串的格式写入到字符数组         |
-| `sscanf(字符数组,格式串,&amp;变量)` | 从字符数组中按格式串提取变量，返回成功提取的变量数量  |
-| `strcspn(str,&#34;\\n&#34;)`   | 返回字符串 str 中第一个出现的字符 \\n 的位置 |
-| `strcmp(s1,s2)`        | 比较两个字符串的字典序大小               |
-| `strcat(s1,s2)`        | 将字符串`s2`拼接到`s1`后面           |
-| `strcpy(s1,s2)`        | 将字符串s2复制到字符串s1中             |
-|                        |                             |
+| 函数                      | 用法                                                                          |
+| ----------------------- | --------------------------------------------------------------------------- |
+| `sprintf(字符数组,格式串,变量)`  | 将变量按格式字符串的格式写入到字符数组                                                         |
+| `sscanf(字符数组,格式串,&amp;变量)`  | 从字符数组中按格式串提取变量，返回成功提取的变量数量                                                  |
+| `strcspn(str,&#34;\\n&#34;)`    | 返回字符串 str 中第一个出现的字符 \\n 的位置                                                 |
+| `strcmp(s1,s2)`         | 比较两个字符串的字典序大小                                                               |
+| `strcat(s1,s2)`         | 将字符串`s2`拼接到`s1`后面                                                           |
+| `strcpy(s1,s2)`         | 将字符串s2复制到字符串s1中                                                             |
+| `string.erase(pos,len)` | `.erase()` 是 `string` 类型的成员函数,用于删除从 `pos` 开始长度为 `len` 的字符串                  |
+| `stoi(str)`             | 将 `string` 类型的字符串转换为 `int` 类型，并且`stoi` 会隐式地将 `char` 数组转换为 `string`，然后再转换为整数 |
+|                         |                                                                             |
 ## 常用算法
 ### 快速幂
 
@@ -108,50 +110,6 @@ void findPrime(ll n) {
 }
 ```
 
-### 查找
-
-```c&#43;&#43;
-#include &lt;bits/stdc&#43;&#43;.h&gt;
-using namespace std;
-typedef long long ll;
-#define MAXN 100005
-
-int a[MAXN];
-
-// 顺序查找
-int linearSearch(int a[], int n, int target) {
-	for (int i = 0; i &lt; n; i&#43;&#43;) {
-		if (a[i] == target) return i;
-	}
-	return -1;
-}
-
-// 二分查找-适用于有序的情况
-int binarySearch(int a[], int n, int target) {
-	int left = 0, right = n - 1, mid;
-	while (left &lt;= right) {
-		mid = left &#43; (right - left) / 2;
-		printf(&#34;%d\n&#34;, mid);
-		if (a[mid] == target) return mid;
-		else if (a[mid] &lt; target) left = mid &#43; 1;
-		else right = mid - 1;
-	}
-	return -1;
-}
-
-int main() {
-	freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
-	int n;scanf(&#34;%d&#34;, &amp;n);
-	for (int i = 0; i &lt; n; i&#43;&#43;) scanf(&#34;%d&#34;, &amp;a[i]);
-	int target;scanf(&#34;%d&#34;, &amp;target);
-	int pos = linearSearch(a, n, target);
-//	int pos = binarySearch(a,n,target);
-	if (pos != -1) printf(&#34;%d&#34;, pos &#43; 1);
-	else printf(&#34;NO&#34;);
-	return 0;
-}
-```
-
 ### 排序算法
 #### 冒泡排序
 
@@ -226,6 +184,50 @@ void merge_sort(int a[], int l, int r) {
 	while (i &lt;= mid) tmp[cnt&#43;&#43;] = a[i&#43;&#43;];
 	while (j &lt;= r) tmp[cnt&#43;&#43;] = a[j&#43;&#43;];
 	for (int i = l, j = 0; i &lt;= r; i&#43;&#43;, j&#43;&#43;) a[i] = tmp[j];
+}
+```
+
+### 查找
+
+```c&#43;&#43;
+#include &lt;bits/stdc&#43;&#43;.h&gt;
+using namespace std;
+typedef long long ll;
+#define MAXN 100005
+
+int a[MAXN];
+
+// 顺序查找
+int linearSearch(int a[], int n, int target) {
+	for (int i = 0; i &lt; n; i&#43;&#43;) {
+		if (a[i] == target) return i;
+	}
+	return -1;
+}
+
+// 二分查找-适用于有序的情况
+int binarySearch(int a[], int n, int target) {
+	int left = 0, right = n - 1, mid;
+	while (left &lt;= right) {
+		mid = left &#43; (right - left) / 2;
+		printf(&#34;%d\n&#34;, mid);
+		if (a[mid] == target) return mid;
+		else if (a[mid] &lt; target) left = mid &#43; 1;
+		else right = mid - 1;
+	}
+	return -1;
+}
+
+int main() {
+	freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
+	int n;scanf(&#34;%d&#34;, &amp;n);
+	for (int i = 0; i &lt; n; i&#43;&#43;) scanf(&#34;%d&#34;, &amp;a[i]);
+	int target;scanf(&#34;%d&#34;, &amp;target);
+	int pos = linearSearch(a, n, target);
+//	int pos = binarySearch(a,n,target);
+	if (pos != -1) printf(&#34;%d&#34;, pos &#43; 1);
+	else printf(&#34;NO&#34;);
+	return 0;
 }
 ```
 
@@ -361,6 +363,35 @@ int main() {
 
 例题1-ZJNUOJ-亲戚——高级
 
+
+### 高精度
+
+#### 高精度加法
+
+```c&#43;&#43;
+vector&lt;int&gt; add(vector&lt;int&gt;&amp;A, vector&lt;int&gt;&amp;B) {  
+    vector&lt;int&gt;C;  
+    int tmp = 0;  
+    for (int i = 0; i &lt; A.size() || i &lt; B.size(); i&#43;&#43;) {  
+        if (i &lt; A.size()) tmp &#43;= A[i];  
+        if (i &lt; B.size()) tmp &#43;= B[i];  
+        C.push_back(tmp % 10);  
+        tmp /= 10;  
+    }  
+    if (tmp != 0) C.push_back(1);  
+    return C;  
+}
+```
+
+#### 高精度减法
+
+#### 高精度乘法
+
+#### 高精度除法
+
+
+
+
 ## 数据结构
 
 ### 树
@@ -379,7 +410,7 @@ int main() {
 
 ### 获取C&#43;&#43;中 `string` 类型的长度
 
-&gt; 可以使用 `.length()` 这个成员函数来获取 `string` 的长度
+&gt; 可以使用 `.length()` 或者 `.size()` 成员函数来获取 `string` 的长度
 
 ### 字符串输入问题
 
@@ -522,7 +553,9 @@ int main() {
 使用归并排序的做法
 
 &gt; 这个方法可能稍微有点不太好理解，可以对着样例模拟一下
+&gt; 
 &gt; 就是利用分治思想，把每次递归中的结果加起来
+&gt; 
 &gt; 考虑的其实只有一种情况，就是逆序对的两个元素分布在mid两边的情况
 
 ```c&#43;&#43;
@@ -561,6 +594,175 @@ int main() {
 	return 0;
 }
 ```
+
+####  二分
+
+**789.数的范围**
+```c&#43;&#43;
+#include &lt;bits/stdc&#43;&#43;.h&gt;
+using namespace std;
+
+const int N = 1e5 &#43; 10;
+int a[N];
+
+int binsearch_left(int l, int r, int x) {
+	while (l &lt; r) {
+		int mid = l &#43; r &gt;&gt; 1;
+		if (a[mid] &gt;= x) r = mid;
+		else l = mid &#43; 1;
+	}
+	return l;
+}
+
+
+int binsearch_right(int l, int r, int x) {
+	while (l &lt; r) {
+		int mid = l &#43; r &#43; 1 &gt;&gt; 1 ;
+		if (a[mid] &lt;= x) l = mid;
+		else r  = mid - 1;
+	}
+	return l;
+}
+
+int main() {
+	freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
+	int n, m, k, res;scanf(&#34;%d%d&#34;, &amp;n, &amp;m);
+	for (int i = 0; i &lt; n; i&#43;&#43;) scanf(&#34;%d&#34;, &amp;a[i]);
+	while (m--) {
+		scanf(&#34;%d&#34;, &amp;k);
+		res = binsearch_left(0, n - 1, k);
+		if (a[res] != k) printf(&#34;-1 -1\n&#34;);
+		else {
+			printf(&#34;%d &#34;, res);
+			res = binsearch_right(0, n - 1, k);
+			printf(&#34;%d\n&#34;, res);
+		}
+	}
+	return 0;
+}
+```
+
+**790.数的三次方根**
+```c&#43;&#43;
+#include&lt;bits/stdc&#43;&#43;.h&gt;
+using namespace std;
+
+const double eps = 1e-8;
+
+int main(){
+	freopen(&#34;input.txt&#34;,&#34;r&#34;,stdin);
+	double n,mid;scanf(&#34;%lf&#34;,&amp;n);
+	double l=-100000,r=100000;
+	while(r-l&gt;eps){
+		mid = (l&#43;r)/2;
+		if(mid*mid*mid&gt;n) r = mid;
+		else l = mid;
+	}
+	printf(&#34;%.6lf\n&#34;,l);
+	return 0;
+}
+```
+
+#### 高精度
+
+**高精度比较**
+
+例题1-ZJNUOJ1125-A == B ?——中级
+
+&gt; 这道题主要考察了高精度的比较,以及 前导零 后导零 小数 负数 的判断及处理
+
+```c&#43;&#43;
+#include &lt;bits/stdc&#43;&#43;.h&gt;
+using namespace std;
+
+bool process(string &amp;s) {
+	bool is_negative = false;
+	int cnt1, cnt2, len;
+//	判断是否是负数
+	if (s[0] == &#39;-&#39;) is_negative = true, s.erase(0, 1);
+//	去除后导零和小数点
+	int dot_pos = s.find(&#39;.&#39;);
+	if (dot_pos != string::npos) {
+		int k;
+		for (k = s.size() - 1; k &gt; dot_pos &amp;&amp; s[k] == &#39;0&#39;; k--) s.erase(k, 1);
+		if (s[k] == &#39;.&#39;) s.erase(k, 1);
+	}
+//	去除前导零
+	cnt2 = 0, len = s.size();
+	while (s[cnt2] == &#39;0&#39;) cnt2&#43;&#43;;
+	s.erase(0, cnt2);
+	if (s.empty()) s = &#34;0&#34;;
+	return is_negative;
+}
+
+void compare(string a, string b, bool a_flag, bool b_flag) {
+	if (a == b) {
+		if (a == &#34;0&#34;) cout &lt;&lt; &#34;YES&#34; &lt;&lt; &#39;\n&#39;;
+		else if (a_flag == b_flag) cout &lt;&lt; &#34;YES&#34; &lt;&lt; &#39;\n&#39;;
+		else cout &lt;&lt; &#34;NO&#34; &lt;&lt; &#39;\n&#39;;
+	} else cout &lt;&lt; &#34;NO&#34; &lt;&lt; &#39;\n&#39;;
+}
+
+int main() {
+	freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
+	string a, b;
+	bool a_flag, b_flag;
+	while (cin &gt;&gt; a &gt;&gt; b) {
+		a_flag = process(a);
+		b_flag = process(b);
+		compare(a, b, a_flag, b_flag);
+	}
+	return 0;
+}
+```
+
+
+
+**高精度加法**
+
+```c&#43;&#43;
+#include &lt;bits/stdc&#43;&#43;.h&gt;
+using namespace std;
+
+vector&lt;int&gt;A, B, res;
+
+// 高精度加法
+vector&lt;int&gt; add(vector&lt;int&gt;&amp;A, vector&lt;int&gt;&amp;B) {
+	vector&lt;int&gt;C;
+	int tmp = 0;
+	for (int i = 0; i &lt; A.size() || i &lt; B.size(); i&#43;&#43;) {
+		if (i &lt; A.size()) tmp &#43;= A[i];
+		if (i &lt; B.size()) tmp &#43;= B[i];
+		C.push_back(tmp % 10);
+		tmp /= 10;
+	}
+	if (tmp != 0) C.push_back(1);
+	return C;
+}
+
+// 处理前导零
+vector&lt;int&gt; clean_Leadingzero(vector&lt;int&gt;&amp;res) {
+	vector&lt;int&gt;tmp;
+	int start = res.size() - 1;
+	while (start &gt; 0 &amp;&amp; res[start] == 0) start--;
+	for (int i = start; i &gt;= 0; i--) tmp.push_back(res[i]);
+	return tmp;
+}
+
+int main() {
+	freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
+	string a, b;cin &gt;&gt; a &gt;&gt; b;
+	for (int i = a.size() - 1; i &gt;= 0; i--) A.push_back(a[i] - &#39;0&#39;);
+	for (int i = b.size() - 1; i &gt;= 0; i--) B.push_back(b[i] - &#39;0&#39;);
+	res = add(A, B);
+	res = clean_Leadingzero(res);
+	for (int i = 0; i &lt; res.size(); i&#43;&#43;) printf(&#34;%d&#34;, res[i]);
+	return 0;
+}
+```
+
+
+
 
 ### PAT(Basic Level) Practice（中文）
 
@@ -1194,7 +1396,7 @@ int main() {
 #### 畅通工程
 
 ```c&#43;&#43;
-#include &amp;lt;bits/stdc&#43;&#43;.h&amp;gt;
+#include &lt;bits/stdc&#43;&#43;.h&gt;
 using namespace std;
 
 const int MAXN = 1100;
@@ -1218,6 +1420,158 @@ int main() {
         printf(&#34;%d\n&#34;, t);
     }
     return 0;
+}
+```
+
+#### A&#43;B
+
+```c&#43;&#43;
+#include &lt;bits/stdc&#43;&#43;.h&gt;
+using namespace std;
+typedef long long ll;
+
+string dot_clear(string &amp;s) {
+	string tmp;
+	for (int i = 0; i &lt; s.size(); i&#43;&#43;) {
+		if (s[i] != &#39;,&#39;) tmp &#43;= s[i];
+	}
+	return tmp;
+}
+
+int main() {
+	freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
+	string a, b;cin &gt;&gt; a &gt;&gt; b;
+	ll A, B;
+	A = stoi(dot_clear(a));
+	B = stoi(dot_clear(b));
+	cout &lt;&lt; A &#43; B &lt;&lt; &#39;\n&#39;;
+	return 0;
+}
+```
+
+#### 还是A&#43;B
+```c&#43;&#43;
+#include &lt;bits/stdc&#43;&#43;.h&gt;
+using namespace std;
+
+bool check(int a, int b, int k) {
+	int num1, num2;
+	while (k--) {
+		num1 = a % 10, a /= 10;
+		num2 = b % 10, b /= 10;
+		if (num1 != num2) return false;
+	}
+	return true;
+}
+
+
+int main() {
+	freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
+	int a, b, k;
+	while (cin &gt;&gt; a &gt;&gt; b &gt;&gt; k) {
+		if (a == 0 &amp;&amp; b == 0)break;
+		if (check(a, b, k)) cout &lt;&lt; &#34;-1&#34; &lt;&lt; &#39;\n&#39;;
+		else cout &lt;&lt; a &#43; b &lt;&lt; &#39;\n&#39;;
+	}
+	return 0;
+}
+```
+
+#### 统计字符
+
+```c&#43;&#43;
+#include &lt;bits/stdc&#43;&#43;.h&gt;
+using namespace std;
+
+map&lt;char, int&gt;m;
+int main() {
+	freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
+	string s1, s2;
+	while (getline(cin, s1)) {
+		if (s1[0] == &#39;#&#39;) break;
+		getline(cin, s2);
+		for (int i = 0; i &lt; s2.size(); i&#43;&#43;) m[s2[i]]&#43;&#43;;
+		for (int i = 0; i &lt; s1.size(); i&#43;&#43;) cout &lt;&lt; s1[i] &lt;&lt; &#34; &#34; &lt;&lt; m[s1[i]] &lt;&lt; &#39;\n&#39;;
+		m.clear();
+	}
+	return 0;
+}
+```
+#### A&#43;B
+
+&gt; 这道题明确说了A和B是小于100的正整数，所以一共就两种情况，A和B是一位数或者两位数
+&gt; 
+&gt; 所以这道题直接判断一下位数，然后把运算符读掉再判断一下A&#43;B的结果是否为0，然后输出A&#43;B的结果即可
+
+```c&#43;&#43;
+#include &lt;bits/stdc&#43;&#43;.h&gt;
+using namespace std;
+
+int str2num(string s) {
+	if (s == &#34;zero&#34;) return 0;
+	else if (s == &#34;one&#34;) return 1;
+	else if (s == &#34;two&#34;) return 2;
+	else if (s == &#34;three&#34;) return 3;
+	else if (s == &#34;four&#34;) return 4;
+	else if (s == &#34;five&#34;) return 5;
+	else if (s == &#34;six&#34;) return 6;
+	else if (s == &#34;seven&#34;) return 7;
+	else if (s == &#34;eight&#34;) return 8;
+	else return 9;
+}
+
+int main() {
+	freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
+	int a, b, res;
+	string str;
+	while (cin &gt;&gt; str) {
+		a = str2num(str);
+		cin &gt;&gt; str;
+		if (str != &#34;&#43;&#34;) {
+			a *= 10;
+			a &#43;= str2num(str);
+			cin &gt;&gt; str;
+		}
+		cin &gt;&gt; str;
+		b = str2num(str);
+		cin &gt;&gt; str;
+		if (str != &#34;=&#34;) {
+			b *= 10;
+			b &#43;= str2num(str);
+			cin &gt;&gt; str;
+		}
+		res = a &#43; b;
+		if (res != 0) cout &lt;&lt; a &#43; b &lt;&lt; &#39;\n&#39;;
+	}
+	return 0;
+}
+```
+
+#### Median
+
+```c&#43;&#43;
+#include &lt;bits/stdc&#43;&#43;.h&gt;
+using namespace std;
+typedef long long ll;
+
+vector&lt;ll&gt;v1, v2;
+int main() {
+	freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
+	int n, m, tmp, target;
+	ll ans;
+	while (cin &gt;&gt; n) {
+		for (int i = 0; i &lt; n; i&#43;&#43;) cin &gt;&gt; tmp, v1.push_back(tmp);
+		cin &gt;&gt; m;
+		for (int i = 0; i &lt; m; i&#43;&#43;) cin &gt;&gt; tmp, v2.push_back(tmp);
+		target = n &#43; m &#43; 1 &gt;&gt; 1;
+		int i = 0, j = 0;
+		for (int k = 0; k != target; k&#43;&#43;) {
+			if (v1[i] &lt;= v2[j]) ans = v1[i&#43;&#43;];
+			else ans = v2[j&#43;&#43;];
+		}
+		cout &lt;&lt; ans &lt;&lt; &#39;\n&#39;;
+	}
+	return 0;
 }
 ```
 
