@@ -385,7 +385,74 @@ vector&lt;int&gt; add(vector&lt;int&gt;&amp;A, vector&lt;int&gt;&amp;B) {
 
 #### 高精度减法
 
+```c&#43;&#43;
+// 判断A &gt;= B ?
+bool cmp(vector&lt;int&gt;&amp;A, vector&lt;int&gt;&amp;B) {
+	if (A.size() != B.size()) return A.size() &gt; B.size();
+	for (int i = A.size() - 1; i &gt;= 0; i--) {
+		if (A[i] != B[i]) return A[i] &gt; B[i];
+	}
+	return true;
+}
+
+vector&lt;int&gt; sub(vector&lt;int&gt;&amp;A, vector&lt;int&gt;&amp;B) {
+	vector&lt;int&gt;C;
+	int tmp = 0;
+	for (int i = 0; i &lt; A.size(); i&#43;&#43;) {
+		tmp = A[i] - tmp;
+		if (i &lt; B.size()) tmp -= B[i];
+		C.push_back((tmp &#43; 10) % 10);
+		if (tmp &lt; 0) tmp = 1;
+		else tmp = 0;
+	}
+//	处理前导零，如果C的长度大于1，并且最后一位是0
+	while (C.size() &gt; 1 &amp;&amp; C.back() == 0) C.pop_back();
+	return C;
+}
+```
+
 #### 高精度乘法
+
+**A \* b的情况**
+
+```c&#43;&#43;
+vector&lt;int&gt; mul(vector&lt;int&gt;&amp;A, int b) {
+	vector&lt;int&gt;C;
+	int tmp = 0;
+//	这里要注意，i结束了但是tmp还没处理完的情况
+	for (int i = 0; i &lt; A.size() || tmp != 0; i&#43;&#43;) {
+		if (i &lt; A.size()) tmp &#43;= A[i] * b;
+		C.push_back(tmp % 10);
+		tmp /= 10;
+	}
+//	处理前导零
+	while (C.size() &gt; 1 &amp;&amp; C.back() == 0)C.pop_back();
+	return C;
+}
+```
+
+**A \* B 的情况**
+
+```c&#43;&#43;
+vector&lt;int&gt; mul(vector&lt;int&gt;&amp;A, vector&lt;int&gt;&amp;B) {
+	int len = A.size() &#43; B.size();
+	vector&lt;int&gt;C(len &#43; 1);
+	for (int i = 0; i &lt; A.size(); i&#43;&#43;) {
+		for (int j = 0; j &lt; B.size(); j&#43;&#43;) {
+//			注意这里的下标是 i&#43;j , 并且每一位可能由多次结果相加得到
+			C[i &#43; j] &#43;= A[i] * B[j];
+		}
+	}
+	for (int i = 0; i &lt; len; i&#43;&#43;) {
+		if (C[i] &gt; 9) {
+			C[i &#43; 1] &#43;= C[i] / 10;
+			C[i] = C[i] % 10;
+		}
+	}
+	while (C.size() &gt; 1 &amp;&amp; C.back() == 0) C.pop_back();
+	return C;
+}
+```
 
 #### 高精度除法
 
@@ -716,8 +783,6 @@ int main() {
 }
 ```
 
-
-
 **高精度加法**
 
 ```c&#43;&#43;
@@ -761,8 +826,131 @@ int main() {
 }
 ```
 
+**高精度减法**
+```c&#43;&#43;
+#include &lt;bits/stdc&#43;&#43;.h&gt;  
+using namespace std;  
+  
+vector&lt;int&gt;A, B, res;  
+  
+// 判断A &gt;= B ?  
+bool cmp(vector&lt;int&gt;&amp;A, vector&lt;int&gt;&amp;B) {  
+    if (A.size() != B.size()) return A.size() &gt; B.size();  
+    for (int i = A.size() - 1; i &gt;= 0; i--) {  
+        if (A[i] != B[i]) return A[i] &gt; B[i];  
+    }  
+    return true;  
+}  
+  
+vector&lt;int&gt; sub(vector&lt;int&gt;&amp;A, vector&lt;int&gt;&amp;B) {  
+    vector&lt;int&gt;C;  
+    int tmp = 0;  
+    for (int i = 0; i &lt; A.size(); i&#43;&#43;) {  
+        tmp = A[i] - tmp;  
+        if (i &lt; B.size()) tmp -= B[i];  
+        C.push_back((tmp &#43; 10) % 10);  
+        if (tmp &lt; 0) tmp = 1;  
+        else tmp = 0;  
+    }  
+//    处理前导零,如果C的长度大于1，并且最后一位是0  
+    while (C.size() &gt; 1 &amp;&amp; C.back() == 0) C.pop_back();  
+    return C;  
+}  
+  
+int main() {  
+    freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);  
+    string a, b;  
+    cin &gt;&gt; a &gt;&gt; b;  
+//    这里要特别注意，string输入的是字符格式，需要先转换为int  
+    for (int i = a.size() - 1; i &gt;= 0; i--) A.push_back(a[i] - &#39;0&#39;);  
+    for (int i = b.size() - 1; i &gt;= 0; i--) B.push_back(b[i] - &#39;0&#39;);  
+    if (cmp(A, B)) {  
+        res = sub(A, B);  
+        for (int i = res.size() - 1; i &gt;= 0; i--) cout &lt;&lt; res[i];  
+    } else {  
+        res = sub(B, A);  
+        cout &lt;&lt; &#34;-&#34;;  
+        for (int i = res.size() - 1; i &gt;= 0; i--) cout &lt;&lt; res[i];  
+    }  
+    return 0;  
+}
+```
+
+**高精度乘法**
+
+**A \* b 的情况**
+```c&#43;&#43;
+#include &lt;bits/stdc&#43;&#43;.h&gt;
+using namespace std;
+
+vector&lt;int&gt;A, res;
+
+vector&lt;int&gt; mul(vector&lt;int&gt;&amp;A, int b) {
+	vector&lt;int&gt;C;
+	int tmp = 0;
+//	这里要注意，i结束了但是tmp还没处理完的情况
+	for (int i = 0; i &lt; A.size() || tmp != 0; i&#43;&#43;) {
+		if (i &lt; A.size()) tmp &#43;= A[i] * b;
+		C.push_back(tmp % 10);
+		tmp /= 10;
+	}
+//	处理前导零
+	while (C.size() &gt; 1 &amp;&amp; C.back() == 0)C.pop_back();
+	return C;
+}
 
 
+int main() {
+	freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
+	string a;
+	int b;
+	cin &gt;&gt; a &gt;&gt; b;
+	for (int i = a.size() - 1; i &gt;= 0; i--) A.push_back(a[i] - &#39;0&#39;);
+	res = mul(A, b);
+	for (int i = res.size() - 1; i &gt;= 0; i--) cout &lt;&lt; res[i];
+	return 0;
+}
+```
+
+**A \* B 的情况**
+
+例题1-ZJNUOJ-1174：大整数乘法
+```c&#43;&#43;
+#include &lt;bits/stdc&#43;&#43;.h&gt;
+using namespace std;
+
+vector&lt;int&gt;A, B, res;
+
+vector&lt;int&gt; mul(vector&lt;int&gt;&amp;A, vector&lt;int&gt;&amp;B) {
+	int len = A.size() &#43; B.size();
+	vector&lt;int&gt;C(len &#43; 1);
+	for (int i = 0; i &lt; A.size(); i&#43;&#43;) {
+		for (int j = 0; j &lt; B.size(); j&#43;&#43;) {
+//			注意这里的下标是 i&#43;j , 并且每一位可能由多次结果相加得到
+			C[i &#43; j] &#43;= A[i] * B[j];
+		}
+	}
+	for (int i = 0; i &lt; len; i&#43;&#43;) {
+		if (C[i] &gt; 9) {
+			C[i &#43; 1] &#43;= C[i] / 10;
+			C[i] = C[i] % 10;
+		}
+	}
+	while (C.size() &gt; 1 &amp;&amp; C.back() == 0) C.pop_back();
+	return C;
+}
+
+int main() {
+	freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
+	string a, b;
+	cin &gt;&gt; a &gt;&gt; b;
+	for (int i = a.size() - 1; i &gt;= 0; i--) A.push_back(a[i] - &#39;0&#39;);
+	for (int i = b.size() - 1; i &gt;= 0; i--) B.push_back(b[i] - &#39;0&#39;);
+	res = mul(A, B);
+	for (int i = res.size() - 1; i &gt;= 0; i--) cout &lt;&lt; res[i];
+	return 0;
+}
+```
 
 ### PAT(Basic Level) Practice（中文）
 
