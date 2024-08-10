@@ -12,8 +12,8 @@
 | scanf()       | 默认是以空白字符（空格、制表符、换行符）为分隔，当有多组样例的时候，可以使用`while(scanf(&#34;%d&#34;,&amp;a)!=EOF)`来进行多组样例的输入         |
 | getchar()     | 从标准输入流中读取一个字符，常用来处理上一行末尾留下的换行符                                                       |
 | fgets()       | `fgets(a,MAX_LEN,stdin);`读取一整行的文本，末尾会多一个换行符；可使用`str[strcspn(str, &#34;\n&#34;)] = &#39;\0&#39;;`进行处理 |
-| cin.getline() | `cin.getline(str, MAXN);`读取一整行的文本，末尾没有换行符                                            |
-| getline()     | `getline(cin,str)`其中str是`string str`，读取一整行的文本，末尾没有换行符                                |
+| cin.getline() | `cin.getline(str, MAXN);` 其中 str 是 `char[]`，读取一整行的文本，末尾没有换行符                         |
+| getline()     | `getline(cin,str)`其中 str 是 `string str`，读取一整行的文本，末尾没有换行符                             |
 | sprintf()     | `sprintf(s, &#34;Integer: %d, Float: %.2f&#34;, num, fnum);`用于将格式化的数据写入到一个字符串中               |
 
 ## 一些函数
@@ -551,7 +551,7 @@ int main() {
 &gt; 
 &gt; 只要修改差分数组中 l 和 r 位置的两个值，就可以很方便的修改前缀和中 l 到 r 区间所有的值
 &gt; 
-&gt; 差分常用于批量修改某一区间的值的情况
+&gt; 差分常用于批量修改某一区间的值的情况，核心就是 `insert()` 函数
 
 **一维差分**
 
@@ -590,11 +590,85 @@ int main() {
 }
 ```
 
-**二维差分**
+**二维差分（差分矩阵）**
 
 ```c&#43;&#43;
+#include &lt;bits/stdc&#43;&#43;.h&gt;
+using namespace std;
+
+const int N = 1010;
+int a[N][N], b[N][N];
+
+void insert(int x1, int y1, int x2, int y2, int c) {
+	b[x1][y1] &#43;= c;
+	b[x2 &#43; 1][y1] -= c;
+	b[x1][y2 &#43; 1] -= c;
+	b[x2 &#43; 1][y2 &#43; 1] &#43;= c;
+}
+
+int main() {
+	freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
+	int n, m, q, x1, y1, x2, y2, c;
+	cin &gt;&gt; n &gt;&gt; m &gt;&gt; q;
+	memset(a, 0, sizeof(a));
+	memset(b, 0, sizeof(b));
+	for (int i = 1; i &lt;= n; i&#43;&#43;) {
+		for (int j = 1; j &lt;= m; j&#43;&#43;) {
+			scanf(&#34;%d&#34;, &amp;a[i][j]);
+			insert(i, j, i, j, a[i][j]);
+		}
+	}
+	while (q--) {
+		scanf(&#34;%d%d%d%d%d&#34;, &amp;x1, &amp;y1, &amp;x2, &amp;y2, &amp;c);
+		insert(x1, y1, x2, y2, c);
+	}
+	for (int i = 1; i &lt;= n; i&#43;&#43;) {
+		for (int j = 1; j &lt;= m; j&#43;&#43;) {
+			a[i][j] = a[i][j - 1] &#43; a[i - 1][j] - a[i - 1][j - 1] &#43; b[i][j];
+			printf(&#34;%d &#34;, a[i][j]);
+		}
+		printf(&#34;\n&#34;);
+	}
+	return 0;
+}
+```
+
+### 双指针
+
+&gt; 双指针算法可以把时间复杂度为`O(n^2)`的算法优化到`O(n)`
+
+**最简单的分隔字符串的情况**
+
+```c&#43;&#43;
+#include &lt;bits/stdc&#43;&#43;.h&gt;  
+using namespace std;  
+  
+const int MAXN = 100010;  
+char s[MAXN];  
+  
+int main() {  
+    freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);  
+    cin.getline(s, MAXN);  
+    int len = strlen(s);  
+    for (int i = 0; i &lt; len; i&#43;&#43;) {  
+        int j = i;  
+        while (j &lt; len &amp;&amp; s[j] != &#39; &#39;) j&#43;&#43;;  
+        for (int k = i; k &lt; j; k&#43;&#43;) cout &lt;&lt; s[k];  
+        cout &lt;&lt; &#39;\n&#39;;  
+        i =  j;  
+    }  
+    return 0;  
+}
+```
+
+**例题-AcWing-799.最长连续不重复子序列**
 
 ```
+
+ ```
+
+
+
 
 
 
