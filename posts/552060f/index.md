@@ -456,11 +456,150 @@ vector&lt;int&gt; mul(vector&lt;int&gt;&amp;A, vector&lt;int&gt;&amp;B) {
 
 #### 高精度除法
 
+**A / b** 商是C, 余数是 tmp 的情况
+
+```c&#43;&#43;
+vector&lt;int&gt; div(vector&lt;int&gt;&amp;A, int b, int &amp;tmp) {
+	tmp = 0;
+	vector&lt;int&gt;C;
+	for (int i = A.size() - 1; i &gt;= 0; i--) {
+		tmp = tmp * 10 &#43; A[i];
+		C.push_back(tmp / b);
+		tmp %= b;
+	}
+	reverse(C.begin(), C.end());
+	while (C.size() &gt; 1 &amp;&amp; C.back() == 0) C.pop_back();
+	return C;
+}
+```
+
+### 前缀和与差分
+
+#### 前缀和
+
+**一维前缀和**
+
+```c&#43;&#43;
+#include &lt;bits/stdc&#43;&#43;.h&gt;
+using namespace std;
+
+const int N = 1e5 &#43; 10;
+int a[N], s[N];
+
+int main() {
+	freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
+	int n, m, l, r;
+	cin &gt;&gt; n &gt;&gt; m;
+	memset(a, 0, sizeof(a));
+	memset(s, 0, sizeof(s));
+	for (int i = 1; i &lt;= n; i&#43;&#43;) {
+		cin &gt;&gt; a[i];
+		s[i] = s[i - 1] &#43; a[i];
+	}
+	while (m--) {
+		scanf(&#34;%d%d&#34;, &amp;l, &amp;r);
+		printf(&#34;%d\n&#34;, s[r] - s[l - 1]);
+	}
+	return 0;
+}
+```
+
+**二维前缀和**
+
+&gt; 二维的情况很容易出错，建议还是画个表格辅助分析
+&gt; 
+&gt; 这里要特别注意，横轴是 y，竖轴是 x
+
+
+![](imgs/image-20240810171006938.png)
+
+
+
+```c&#43;&#43;
+#include &lt;bits/stdc&#43;&#43;.h&gt;
+using namespace std;
+
+const int N = 1010;
+int a[N][N], s[N][N];
+
+
+int main() {
+	freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
+	memset(a, 0, sizeof(a));
+	memset(s, 0, sizeof(s));
+	int n, m, q, x1, x2, y1, y2, res;
+	cin &gt;&gt; n &gt;&gt; m &gt;&gt; q;
+	for (int i = 1; i &lt;= n; i&#43;&#43;) {
+		for (int j = 1; j &lt;= m; j&#43;&#43;) {
+			scanf(&#34;%d&#34;, &amp;a[i][j]);
+			s[i][j] = s[i - 1][j] &#43; s[i][j - 1] - s[i - 1][j - 1] &#43; a[i][j];
+		}
+	}
+	while (q--) {
+		scanf(&#34;%d%d%d%d&#34;, &amp;x1, &amp;y1, &amp;x2, &amp;y2);
+		res = s[x2][y2] - s[x2][y1 - 1] - s[x1 - 1][y2] &#43; s[x1 - 1][y1 - 1];
+		printf(&#34;%d\n&#34;, res);
+	}
+	return 0;
+}
+```
+
+
+#### 差分
+
+&gt; 差分其实就是前缀和的逆运算，比如下面的代码中，b 数组就是差分数组，a 数组是前缀和数组
+&gt; 
+&gt; 只要修改差分数组中 l 和 r 位置的两个值，就可以很方便的修改前缀和中 l 到 r 区间所有的值
+&gt; 
+&gt; 差分常用于批量修改某一区间的值的情况
+
+**一维差分**
+
+```c&#43;&#43;
+#include &lt;bits/stdc&#43;&#43;.h&gt;
+using namespace std;
+
+const int N = 1010;
+int a[N], b[N];
+
+void insert(int l, int r, int c) {
+	b[l] &#43;= c;
+	b[r &#43; 1] -= c;
+}
+
+int main() {
+	freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
+	memset(a, 0, sizeof(a));
+	memset(b, 0, sizeof(b));
+	int n, m, l, r, c;
+	cin &gt;&gt; n &gt;&gt; m;
+	for (int i = 1; i &lt;= n; i&#43;&#43;) {
+		scanf(&#34;%d&#34;, &amp;a[i]);
+//		差分数组的初始化
+		insert(i, i, a[i]);
+	}
+	while (m--) {
+		scanf(&#34;%d%d%d&#34;, &amp;l, &amp;r, &amp;c);
+		insert(l, r, c);
+	}
+	for (int i = 1; i &lt;= n; i&#43;&#43;) {
+		a[i] = a[i - 1] &#43; b[i];
+		printf(&#34;%d &#34;, a[i]);
+	}
+	return 0;
+}
+```
+
+**二维差分**
+
+```c&#43;&#43;
+
+```
 
 
 
 ## 数据结构
-
+ 
 ### 树
 
 #### 二叉查找树（BST）
@@ -952,6 +1091,50 @@ int main() {
 }
 ```
 
+**高精度除法**
+
+**A / b** 商是C, 余数是 tmp 的情况
+
+```c&#43;&#43;
+#include &lt;bits/stdc&#43;&#43;.h&gt;
+using namespace std;
+
+vector&lt;int&gt;A, res;
+
+vector&lt;int&gt; div(vector&lt;int&gt;&amp;A, int b, int &amp;tmp) {
+	tmp = 0;
+	vector&lt;int&gt;C;
+	for (int i = A.size() - 1; i &gt;= 0; i--) {
+		tmp = tmp * 10 &#43; A[i];
+		C.push_back(tmp / b);
+		tmp %= b;
+	}
+	reverse(C.begin(), C.end());
+	while (C.size() &gt; 1 &amp;&amp; C.back() == 0) C.pop_back();
+	return C;
+}
+
+int main() {
+	freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
+	string a;
+	int b, tmp;
+	cin &gt;&gt; a &gt;&gt; b;
+	for (int i = a.size() - 1; i &gt;= 0; i--) A.push_back(a[i] - &#39;0&#39;);
+	res = div(A, b, tmp);
+	for (int i = res.size() - 1; i &gt;= 0; i--) cout &lt;&lt; res[i];
+	cout &lt;&lt; &#39;\n&#39; &lt;&lt; tmp;
+	return 0;
+}
+```
+
+#### 前缀和与差分
+
+
+
+
+
+
+
 ### PAT(Basic Level) Practice（中文）
 
 #### 1001 害死人不偿命的(3n&#43;1)猜想
@@ -1365,7 +1548,7 @@ int main() {
 }
 ```
 
-### xxx定律
+#### xxx定律
 ```c&#43;&#43;
 #include &lt;bits/stdc&#43;&#43;.h&gt;  
 using namespace std;  
