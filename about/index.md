@@ -10,7 +10,7 @@
 
 ## Contact Me
 
-**Email：goodlunatic0@gmail,com**
+**Email：goodlunatic0@gmail.com**
 
 **Github：https://github.com/goodlunatic**
 

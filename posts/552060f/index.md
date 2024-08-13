@@ -663,12 +663,92 @@ int main() {
 
 **例题-AcWing-799.最长连续不重复子序列**
 
-```
+```c&#43;&#43;
+#include &lt;bits/stdc&#43;&#43;.h&gt;
+using namespace std;
 
+const int N = 1e5 &#43; 10;
+int a[N], s[N];
+
+int main() {
+	freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
+	int n, res = 0;
+	cin &gt;&gt; n;
+	for (int i = 0; i &lt; n; i&#43;&#43;) scanf(&#34;%d&#34;, &amp;a[i]);
+	for (int i = 0, j = 0; i &lt; n; i&#43;&#43;) {
+		s[a[i]]&#43;&#43;;
+		while (s[a[i]] &gt; 1) {
+//			关键部分,这里s[a[j]--的目的是确保i,j区间内每个元素出现的次数都为1
+			s[a[j]]--;
+			j&#43;&#43;;
+		}
+		res = max(res, i - j &#43; 1);
+	}
+	cout &lt;&lt; res;
+	return 0;
+}
  ```
 
+### 位运算
+**n的二进制表示中第k位是几**
+
+`lowbit(X)` 返回x的最后一位1,相当于 `x&amp;-x` 或者 `x&amp;(~x&#43;1)`
+
+`lowbit(1010)` 返回 `10`
+
+`lowbit(1011000)` 返回 `1000`
+
+例题1-AcWing801.求二进制中1的个数
+
+```c&#43;&#43;
+#include &lt;bits/stdc&#43;&#43;.h&gt;  
+using namespace std;  
+  
+int lowbitt(int x) {  
+    return x &amp; -x;  
+}  
+  
+int main() {  
+    freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);  
+    int n, x;  
+    cin &gt;&gt; n;  
+    for (int i = 0; i &lt; n; i&#43;&#43;) {  
+        scanf(&#34;%d&#34;, &amp;x);  
+        int res = 0;  
+        while (x) {  
+            x -= lowbitt(x);  
+            res&#43;&#43;;  
+        }  
+        printf(&#34;%d &#34;, res);  
+    }  
+    return 0;  
+}
+```
+
+&gt; 原码、反码、补码之间的关系，假设二进制表示的 `x=1010`
+&gt; 
+&gt; 原码：0...01010
+&gt; 
+&gt; 反码：1...10101
+&gt; 
+&gt; 补码(`~x&#43;1`)：1...10110，计算机中负数是用补码来表示的
+
+```c&#43;&#43;
+	int n = 10,x = -n;
+	for (int i = 31; i &gt;= 0; i--) cout &lt;&lt; (n &gt;&gt; i &amp; 1);
+//	00000000000000000000000000001010
+	for (int i = 31; i &gt;= 0; i--) cout &lt;&lt; (x &gt;&gt; i &amp; 1);
+//	11111111111111111111111111110110
+```
+
+### 离散化
+&gt; 整个值域的跨度很大, 但是分布很稀疏
+
+例题1-AcWing802.区间和
+```c&#43;&#43;
 
 
+```
 
 
 
