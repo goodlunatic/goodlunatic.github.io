@@ -18,6 +18,8 @@
 
 ## 一些函数
 
+### 字符串相关的一些函数
+
 | 函数                      | 用法                                                                          |
 | ----------------------- | --------------------------------------------------------------------------- |
 | `sprintf(字符数组,格式串,变量)`  | 将变量按格式字符串的格式写入到字符数组                                                         |
@@ -29,6 +31,18 @@
 | `string.erase(pos,len)` | `.erase()` 是 `string` 类型的成员函数,用于删除从 `pos` 开始长度为 `len` 的字符串                  |
 | `stoi(str)`             | 将 `string` 类型的字符串转换为 `int` 类型，并且`stoi` 会隐式地将 `char` 数组转换为 `string`，然后再转换为整数 |
 |                         |                                                                             |
+### C&#43;&#43;的STL中一些常用的库函数
+
+| 函数                                                              | 用法                                                                                                     |
+| --------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ |
+| `find(iterator first, iterator last, const T&amp; value);`          | 在范围内**线性查找**第一个等于给定值的元素, 并返回迭代器                                                                        |
+| `binary_search(iterator first, iterator last, const T&amp; value);` | 检查一个值是否存在于一个已排序的范围中, 并返回 `bool` 类型的结果                                                                  |
+| `lower_bound(iterator first, iterator last, const T&amp; value);`   | 用于在有序序列中查找第一个不小于 `value` 的元素, 并返回迭代器, 获取具体下标需要减去 `begin()`                                             |
+| `upper_bound(iterator first, iterator last, const T&amp; value);`   | 用于在有序序列中查找第一个严格大于 `value` 的元素, 并返回迭代器, 获取具体下标需要减去 `begin()`                                            |
+| `equal_range(iterator first, iterator last, const T&amp; value);`   | 查找范围 `[first, last)` 中所有等于给定值的元素的区间, 返回一个 `pair` , `first` 指向第一个等于值的元素, `second`指向最后一个等于值的元素的**后一个位置** |
+|                                                                 |                                                                                                        |
+
+
 ## 常用算法
 ### 快速幂
 
@@ -233,7 +247,23 @@ int main() {
 
 #### 二分查找
 
-**整数二分**
+**整数查找**
+
+```c&#43;&#43;
+int bin_searchh(int a[], int len, int x, int &amp;cnt) {
+	int l = 0, r = len - 1, mid;
+	while (l &lt;= r) {
+		cnt&#43;&#43;;
+		mid = l &#43; r &gt;&gt; 1;
+		if (a[mid] &lt; x) l = mid &#43; 1;
+		else if (a[mid] &gt; x) r = mid - 1;
+		else return mid;
+	}
+	return -1;
+}
+```
+
+**整数左右边界二分**
 
 ```c&#43;&#43;
 #include &lt;bits/stdc&#43;&#43;.h&gt;
@@ -741,15 +771,337 @@ int main() {
 //	11111111111111111111111111110110
 ```
 
-### 离散化
+### 离散化(TODO)
 &gt; 整个值域的跨度很大, 但是分布很稀疏
+
+#### 整数离散化-数组离散化
+
+```c&#43;&#43;
+#include &lt;bits/stdc&#43;&#43;.h&gt;
+using namespace std;
+
+const int N = 1e6 &#43; 10;
+int a[N];
+
+int main() {
+	freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
+	int n;
+	cin &gt;&gt; n;
+	for (int i = 1; i &lt;= n; i&#43;&#43;) cin &gt;&gt; a[i];
+	sort(a &#43; 1, a &#43; n &#43; 1);
+	int len = unique(a &#43; 1, a &#43; n &#43; 1) - (a &#43; 1);
+	for (int i = 1; i &lt;= len; i&#43;&#43;) cout &lt;&lt; a[i] &lt;&lt; &#34; &#34; &lt;&lt; i &lt;&lt; &#39;\n&#39;;
+	return 0;
+}
+```
 
 例题1-AcWing802.区间和
 ```c&#43;&#43;
+#include &lt;bits/stdc&#43;&#43;.h&gt;
+using namespace std;
+typedef pair&lt;int, int&gt;PII;
 
+const int N = 3e5 &#43; 10;
+int a[N], s[N];
+vector&lt;int&gt;alls;
+vector&lt;PII&gt;add, query;
 
+// 二分查找第一个不小于x的数
+int find(int x) {
+	int l = 0, r = alls.size();
+	while (l &lt; r) {
+		int mid = l &#43; r &gt;&gt; 1;
+		if (alls[mid] &gt;= x) r = mid;
+		else l = mid &#43; 1;
+	}
+//	这里便于后续的前缀和，映射到下标从1开始的数组
+	return r &#43; 1;
+}
+
+int main() {
+	freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
+	int n, m, x, c, l, r;
+	cin &gt;&gt; n &gt;&gt; m;
+	for (int i = 0; i &lt; n; i&#43;&#43;) {
+		scanf(&#34;%d%d&#34;, &amp;x, &amp;c);
+		add.push_back({x, c});
+	}
+	for (int i = 0; i &lt; m; i&#43;&#43;) {
+		scanf(&#34;%d%d&#34;, &amp;l, &amp;r);
+		query.push_back({l, r});
+//*******************************************************
+		alls.push_back(l);
+		alls.push_back(r);
+//*******************************************************
+	}
+//	排序&#43;去重
+	sort(alls.begin(), alls.end());
+//	把所有不重复元素放到开头，返回第一个重复元素的位置
+	alls.erase(unique(alls.begin(), alls.end()), alls.end());
+	for (int i = 0; i &lt; add.size(); i&#43;&#43;) {
+		int x = find(add[i].first);
+		a[x] &#43;= add[i].second;
+	}
+//	前缀和
+	for (int i = 1; i &lt;= alls.size(); i&#43;&#43;) s[i] = s[i - 1] &#43; a[i];
+//	处理query
+	for (int i = 0; i &lt; query.size(); i&#43;&#43;) {
+		int l = find(query[i].first), r = find(query[i].second);
+		cout &lt;&lt; s[r] - s[l - 1] &lt;&lt; &#39;\n&#39;;
+	}
+	return 0;
+}
 ```
 
+### 区间合并
+
+&gt; 区间合并算法的基本思路就是：
+&gt; 
+&gt; 1.先按左端点进行升序排序
+&gt; 
+&gt; 2.比较下一区间左端点和当前维护区间右端点的大小
+&gt; 
+&gt; 3.大于则将上一区间加入数组并更新当前区间的右端点，小则更新当前区间右端点为大的值
+
+例题1-AcWing803.区间合并
+```c&#43;&#43;
+#include &lt;bits/stdc&#43;&#43;.h&gt;
+using namespace std;
+typedef pair&lt;int, int&gt; PII;
+
+vector&lt;PII&gt;segs;
+
+// 区间合并的关键代码
+void merge(vector&lt;PII&gt;&amp;segs) {
+	vector&lt;PII&gt;res;
+	if (!segs.size()) return;
+	sort(segs.begin(), segs.end());
+	int st = segs[0].first, ed = segs[0].second;
+	for (int i = 1; i &lt; segs.size(); i&#43;&#43;) {
+		if (segs[i].first &gt; ed) {
+			res.push_back({st, ed});
+			ed = segs[i].second;
+		} else {
+			ed = max(ed, segs[i].second);
+		}
+	}
+//	将最后一个区间也放入数组
+	res.push_back({st, ed});
+	segs = res;
+}
+
+int main() {
+	freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
+	int n, l, r;
+	cin &gt;&gt; n;
+	for (int i = 0; i &lt; n; i&#43;&#43;) {
+		scanf(&#34;%d%d&#34;, &amp;l, &amp;r);
+		segs.push_back({l, r});
+	}
+	merge(segs);
+	cout &lt;&lt; segs.size() &lt;&lt; &#39;\n&#39;;
+	return 0;
+}
+```
+
+### 贪心算法
+
+#### 区间贪心
+
+&gt; 区间贪心的算法可以尝试按照区间的某个端点进行排序
+
+**例题1-AcWing905.区间选点**
+
+**例题2-AcWing908.最大不相交区间数量**
+
+这两道题方法和代码是一模一样的，可能会有一点不好理解，可以参考一下[这篇文章](https://www.cnblogs.com/littlehb/p/15469211.html)
+
+```c&#43;&#43;
+#include &lt;bits/stdc&#43;&#43;.h&gt;
+using namespace std;
+typedef pair&lt;int, int&gt;PII;
+
+const int N = 1e5 &#43; 10;
+vector&lt;PII&gt;a;
+
+int main() {
+	freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
+	int n, l, r, res = 1;
+	cin &gt;&gt; n;
+	for (int i = 0; i &lt; n; i&#43;&#43;) {
+		scanf(&#34;%d%d&#34;, &amp;l, &amp;r);
+		a.push_back({r, l});
+	}
+	sort(a.begin(), a.end());
+	int ed = a[0].first;
+	for (int i = 1; i &lt; n; i&#43;&#43;) {
+		if (a[i].second &gt; ed) {
+			res&#43;&#43;;
+			ed = a[i].first;
+		}
+	}
+	cout &lt;&lt; res &lt;&lt; &#39;\n&#39;;
+	return 0;
+}
+```
+
+**例题3-AcWing906.区间分组**
+
+解法一
+
+&gt; Dilworth 定理：最小不相交分组数等于最大相交组的元素个数
+
+因此求区间分组的问题就可以与下面的问题进行类比
+
+&gt; 有若干个活动，第i个活动开始时间和结束时间是 `[Si,Ei]` ，同一个教室安排的活动之间不能交叠，求要安排所有活动，至少需要几个教室？
+
+```c&#43;&#43;
+#include &lt;bits/stdc&#43;&#43;.h&gt;
+using namespace std;
+
+const int N = 1e5 &#43; 10;
+vector&lt;int&gt;v;
+
+int main() {
+	freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
+	int n, l, r, res = 1, cnt = 0;
+	cin &gt;&gt; n;
+	for (int i = 0; i &lt; n; i&#43;&#43;) {
+		scanf(&#34;%d%d&#34;, &amp;l, &amp;r);
+//		通过奇偶性来标记左右端点
+		v.push_back(l * 2);
+		v.push_back(r * 2 &#43; 1);
+	}
+	sort(v.begin(), v.end());
+	for (int i = 0; i &lt; v.size(); i&#43;&#43;) {
+		if (v[i] % 2 == 0) cnt&#43;&#43;;
+		else cnt--;
+//		记录冲突最大的时刻
+		res = max(res, cnt);
+	}
+	cout &lt;&lt; res &lt;&lt; &#39;\n&#39;;
+	return 0;
+}
+```
+
+解法二(使用小根堆的做法) TODO
+
+[参考文章](https://www.cnblogs.com/littlehb/p/15470606.html)
+
+```c&#43;&#43;
+#include &lt;bits/stdc&#43;&#43;.h&gt;
+using namespace std;
+
+const int N = 1e5 &#43; 10;
+
+struct Node {
+	int l, r;
+//	重载运算符
+	const bool operator&lt; (const Node &amp;b) const {
+		return l &lt; b.l;
+	}
+} range[N];
+
+int main() {
+	freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
+	int n;
+	cin &gt;&gt; n;
+	for (int i = 0; i &lt; n; i&#43;&#43; ) cin &gt;&gt; range[i].l &gt;&gt; range[i].r;
+	sort(range, range &#43; n);
+//	创建小根堆
+	priority_queue&lt;int, vector&lt;int&gt;, greater&lt;int&gt; &gt;heap;
+	for (int i = 0; i &lt; n; i&#43;&#43;) {
+		Node t = range[i];
+// 	如果当前队列为空，或者区间的端点小于小根堆的根（当前组的最小右端点）
+//	新建一个组
+		if (heap.empty() || heap.top() &gt;= t.l) heap.push(t.r);
+//	加入当前的组中
+		else heap.pop(), heap.push(t.r);
+	}
+	cout &lt;&lt; heap.size() &lt;&lt; &#39;\n&#39;;
+	return 0;
+}
+```
+
+**例题3-AcWing907.区间覆盖**
+
+```c&#43;&#43;
+#include &lt;bits/stdc&#43;&#43;.h&gt;
+using namespace std;
+
+const int N = 1e5 &#43; 10;
+struct Node {
+	int l, r;
+	const bool operator&lt; (const Node &amp;b) const {
+		return l &lt; b.l;
+	}
+} range[N];
+
+int main() {
+	freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
+	int n, l, r, st, ed, res = 0;
+	bool flag = false;
+	cin &gt;&gt; st &gt;&gt; ed &gt;&gt; n;
+	for (int i = 0; i &lt; n; i&#43;&#43;) {
+		scanf(&#34;%d%d&#34;, &amp;l, &amp;r);
+		range[i] = {l, r};
+	}
+	sort(range, range &#43; n);
+	for (int i = 0; i &lt; n;) {
+		int j = i, r = -2e9;
+		while (j &lt; n &amp;&amp; range[j].l &lt;= st) {
+			r = max(r, range[j].r);
+			j&#43;&#43;;
+		}
+		if (r &lt; st) {//找不到能覆盖st的区间
+			cout &lt;&lt; &#34;-1&#34; &lt;&lt; &#39;\n&#39;;
+			break;
+		}
+		res&#43;&#43;;
+		if (r &gt;= ed) {//已经完全覆盖目标区间
+			flag = true;
+			cout &lt;&lt; res &lt;&lt; &#39;\n&#39;;
+			break;
+		}
+		st = r;
+		i = j;
+	}
+	if (!flag) cout &lt;&lt; &#34;-1&#34; &lt;&lt; &#39;\n&#39;;
+	return 0;
+}
+```
+
+#### 哈夫曼树
+
+**例题1-AcWing148.合并果子**
+
+```c&#43;&#43;
+#include &lt;bits/stdc&#43;&#43;.h&gt;
+using namespace std;
+
+//升序队列、小顶堆
+priority_queue&lt;int, vector&lt;int&gt;, greater&lt;int&gt; &gt; q;
+
+int main() {
+	freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
+	int n, x, a, b, res = 0;
+	cin &gt;&gt; n;
+	for (int i = 0; i &lt; n; i&#43;&#43;) {
+		scanf(&#34;%d&#34;, &amp;x);
+		q.push(x);
+	}
+	while (q.size() &gt; 1) {
+		a = q.top();
+		q.pop();
+		b = q.top();
+		q.pop();
+		res &#43;= a &#43; b;
+		q.push(a &#43; b);
+	}
+	cout &lt;&lt; res &lt;&lt; &#39;\n&#39;;
+	return 0;
+}
+```
 
 
 ## 数据结构
@@ -957,7 +1309,40 @@ int main() {
 
 ####  二分
 
-**789.数的范围**
+**ZJNUOJ-二分查找**
+
+```c&#43;&#43;
+#include &lt;bits/stdc&#43;&#43;.h&gt;
+using namespace std;
+
+const int N = 1e3 &#43; 10;
+int a[N];
+
+int bin_searchh(int a[], int len, int x, int &amp;cnt) {
+	int l = 0, r = len - 1, mid;
+	while (l &lt;= r) {
+		cnt&#43;&#43;;
+		mid = l &#43; r &gt;&gt; 1;
+		if (a[mid] &lt; x) l = mid &#43; 1;
+		else if (a[mid] &gt; x) r = mid - 1;
+		else return mid;
+	}
+	return -1;
+}
+
+int main() {
+	freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
+	int n, x, res, cnt = 0;
+	cin &gt;&gt; n;
+	for (int i = 0; i &lt; n; i&#43;&#43;) cin &gt;&gt; a[i];
+	cin &gt;&gt; x;
+	res =  bin_searchh(a, n, x, cnt);
+	cout &lt;&lt; res &lt;&lt; &#39;\n&#39; &lt;&lt; cnt;
+	return 0;
+}
+```
+
+**AcWing-789.数的范围**
 ```c&#43;&#43;
 #include &lt;bits/stdc&#43;&#43;.h&gt;
 using namespace std;
@@ -1002,7 +1387,7 @@ int main() {
 }
 ```
 
-**790.数的三次方根**
+**AcWing-790.数的三次方根**
 ```c&#43;&#43;
 #include&lt;bits/stdc&#43;&#43;.h&gt;
 using namespace std;
@@ -2099,6 +2484,37 @@ int main() {
 	return 0;
 }
 ```
+
+#### Sharing
+```c&#43;&#43;
+#include&lt;bits/stdc&#43;&#43;.h&gt;
+using namespace std;
+
+const int N = 1e6 &#43; 10;
+int hashh[N];
+int main() {
+    int s1, s2, n, start, next;
+    char c;
+    while (scanf(&#34;%d%d%d&#34;, &amp;s1, &amp;s2, &amp;n) != EOF) {
+        memset(hashh, 0, sizeof(hashh));
+        int flag = 0;
+        for (int i = 0; i &lt; n; i&#43;&#43;) {
+            scanf(&#34;%d %c %d&#34;, &amp;start, &amp;c, &amp;next);
+            if (next != -1) hashh[next]&#43;&#43;;
+        }
+        for (int i = 0; i &lt; N; i&#43;&#43;) {
+            if (hashh[i] &gt; 1) {
+                printf(&#34;%05d\n&#34;, i);
+                flag = 1;
+                break;
+            }
+        }
+        if (!flag)printf(&#34;-1\n&#34;);
+    }
+    return 0;
+}
+```
+
 
 ---
 
