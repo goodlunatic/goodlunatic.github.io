@@ -1467,7 +1467,7 @@ int main(){
 
 #### 高精度
 
-**高精度比较**
+##### 高精度比较
 
 例题1-ZJNUOJ1125-A == B ?——中级
 
@@ -1518,7 +1518,7 @@ int main() {
 }
 ```
 
-**高精度加法**
+##### 高精度加法
 
 ```c&#43;&#43;
 #include &lt;bits/stdc&#43;&#43;.h&gt;
@@ -1561,7 +1561,7 @@ int main() {
 }
 ```
 
-**高精度减法**
+##### 高精度减法
 ```c&#43;&#43;
 #include &lt;bits/stdc&#43;&#43;.h&gt;  
 using namespace std;  
@@ -1611,7 +1611,7 @@ int main() {
 }
 ```
 
-**高精度乘法**
+##### 高精度乘法
 
 **A \* b 的情况**
 ```c&#43;&#43;
@@ -1687,7 +1687,7 @@ int main() {
 }
 ```
 
-**高精度除法**
+##### 高精度除法
 
 **A / b** 商是C, 余数是 tmp 的情况
 
@@ -1725,6 +1725,57 @@ int main() {
 ```
 
 #### 前缀和与差分
+
+
+
+#### 数学基础
+
+##### 组合数
+
+**例题1-ZJNUOJ-RPG的错排（组合数&#43;错排）**
+```c&#43;&#43;
+#include &lt;bits/stdc&#43;&#43;.h&gt;
+using namespace std;
+typedef long long ll;
+
+const int N = 25;
+// 这里把a[0]设为1,是为了应对i=1的情况, 即全部猜对的情况
+ll a[30] = {1, 0, 1};
+
+//	错排公式：D(n) = (n-1) * ( D(n-1) &#43; D(n-2) )
+void derange(ll a[]) {
+	for (int i = 3; i &lt;= N; i&#43;&#43;) {
+		a[i] = (i - 1) * (a[i - 1] &#43; a[i - 2]);
+	}
+}
+
+// 求组合数
+ll combination(int m, int n) {
+	if (m == 0) return 1;
+	ll up = 1, down = 1, res;
+	for (int i = 0; i &lt; n; i&#43;&#43;) {
+		up *= m - i;
+		down *= i &#43; 1;
+	}
+	res = up / down;
+	return res;
+}
+
+int main() {
+	freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
+	derange(a);
+	int n;
+	while (cin &gt;&gt; n &amp;&amp; n) {
+		ll sum = 0;
+		for (int i = 0; i &lt;= (n &gt;&gt; 1); i&#43;&#43;) {
+			sum &#43;= combination(n, i) * a[i];
+		}
+		cout &lt;&lt; sum &lt;&lt; &#39;\n&#39;;
+	}
+	return 0;
+}
+```
+
 
 #### 贪心
 
