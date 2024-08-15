@@ -393,8 +393,22 @@ int main() {
 
 例题1-ZJNUOJ-亲戚——高级
 
-
 ### 高精度
+
+#### 高精度比较
+
+```c&#43;&#43;
+// 高精度比较
+vector&lt;int&gt; max_vec(vector&lt;int&gt;A, vector&lt;int&gt;B) {
+	if (A.size() &gt; B.size()) return A;
+	if (A.size() &lt; B.size()) return B;
+	for (int i = A.size() - 1; i &gt;= 0; i&#43;&#43;) {
+		if (A[i] &gt; B[i]) return A;
+		if (A[i] &lt; B[i]) return B;
+	}
+	return A;
+}
+```
 
 #### 高精度加法
 
@@ -772,6 +786,7 @@ int main() {
 ```
 
 ### 离散化(TODO)
+
 &gt; 整个值域的跨度很大, 但是分布很稀疏
 
 #### 整数离散化-数组离散化
@@ -903,6 +918,48 @@ int main() {
 	return 0;
 }
 ```
+
+### 动态规划(Dynamic Programming, dp)
+
+#### 背包问题
+
+##### 01背包
+
+&gt; 每件物品最多用一次
+
+
+
+
+##### 完全背包
+
+&gt; 每件物品个数无限
+
+##### 多重背包
+
+&gt; 每件物品的个数有限
+
+##### 分组背包
+
+
+
+
+#### 线性dp
+
+#### 区间dp
+
+#### 计数类dp
+
+#### 数位统计dp
+
+#### 状态压缩dp
+
+#### 树形dp
+
+#### 记忆化搜索
+
+
+
+
 
 ### 贪心算法
 
@@ -1648,6 +1705,7 @@ vector&lt;int&gt; div(vector&lt;int&gt;&amp;A, int b, int &amp;tmp) {
 		C.push_back(tmp / b);
 		tmp %= b;
 	}
+	// 因为除法情况下的前导零在前面，所以这里需要reverse一下便于去除前导零
 	reverse(C.begin(), C.end());
 	while (C.size() &gt; 1 &amp;&amp; C.back() == 0) C.pop_back();
 	return C;
@@ -1668,10 +1726,154 @@ int main() {
 
 #### 前缀和与差分
 
+#### 贪心
 
+**AcWing 913.排队打水**
 
+```c&#43;&#43;
+#include &lt;bits/stdc&#43;&#43;.h&gt;
+using namespace std;
+typedef long long ll;
 
+const int N = 1e5 &#43; 10;
+int a[N];
 
+int main() {
+	freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
+	int n ;
+	cin &gt;&gt; n;
+	ll res = 0;
+	for (int i = 0; i &lt; n; i&#43;&#43;) scanf(&#34;%d&#34;, &amp;a[i]);
+	sort(a, a &#43; n);
+	for (int i = 0; i &lt; n; i&#43;&#43;) res &#43;= a[i] * (n - i - 1);
+	cout &lt;&lt; res &lt;&lt; &#39;\n&#39;;
+	return 0;
+}
+```
+
+**AcWing 104.货仓选址**
+
+```c&#43;&#43;
+#include &lt;bits/stdc&#43;&#43;.h&gt;
+using namespace std;
+
+const int N = 1e5 &#43; 10;
+int a[N];
+
+int main() {
+	freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
+	int n, res = 0;
+	cin &gt;&gt; n;
+	for (int i = 0; i &lt; n; i&#43;&#43;) scanf(&#34;%d&#34;, &amp;a[i]);
+	sort(a, a &#43; n);
+//	仓库选址在中位数或者中间两个数之间即可
+	for (int i = 0; i &lt; n; i&#43;&#43;) res &#43;= abs(a[i] - a[n / 2]);
+	cout &lt;&lt; res &lt;&lt; &#39;\n&#39;;
+	return 0;
+}
+```
+
+**AcWing 125.耍杂技的牛 **
+
+```c&#43;&#43;
+#include &lt;bits/stdc&#43;&#43;.h&gt;
+using namespace std;
+
+const int N = 5e4 &#43; 10;
+typedef pair&lt;int, int&gt;PII;
+PII cow[N];
+
+int main() {
+	freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
+	int n, w, s, res, sum;
+	cin &gt;&gt; n;
+	for (int i = 0; i &lt; n; i&#43;&#43;) {
+		scanf(&#34;%d%d&#34;, &amp;w, &amp;s);
+		cow[i] = {w &#43; s, w};
+	}
+	sort(cow, cow &#43; n);
+	res = -2e9, sum = 0; // sum 表示这头牛需要承受的重量总和
+	for (int i = 0; i &lt; n; i&#43;&#43;) {
+		int w = cow[i].second, s = cow[i].first - w;
+		res = max(res, sum - s);
+		sum &#43;= w;
+	}
+	cout &lt;&lt; res &lt;&lt; &#39;\n&#39;;
+	return 0;
+}
+```
+
+**洛谷P1080-国王游戏（贪心&#43;高精度）**
+
+```c&#43;&#43;
+#include &lt;bits/stdc&#43;&#43;.h&gt;
+using namespace std;
+
+vector&lt;int&gt;mul_res, res;
+const int N = 1010;
+
+struct Person {
+	int l, r;
+// 重载运算符
+	bool operator &lt; (const Person &amp;w) const {
+		return l * r &lt; w.l * w.r;
+	}
+} person[N];
+
+// 高精度乘法
+vector&lt;int&gt; mul(vector&lt;int&gt;&amp;A, int &amp;b) {
+	vector&lt;int&gt;C;
+	int tmp = 0;
+	for (int i = 0; i &lt; A.size() || tmp != 0; i&#43;&#43;) {
+		if (i &lt; A.size()) tmp &#43;= A[i] * b;
+		C.push_back(tmp % 10);
+		tmp /= 10;
+	}
+	while (C.size() &gt; 1 &amp;&amp; C.back() == 0) C.pop_back();
+	return C;
+}
+
+// 高精度除法
+vector&lt;int&gt; div(vector&lt;int&gt;&amp;A, int b, int &amp;tmp) {
+	vector&lt;int&gt;C;
+	tmp = 0;
+	for (int i = A.size() - 1; i &gt;= 0; i--) {
+		tmp = 10 * tmp &#43; A[i];
+		C.push_back(tmp / b);
+		tmp %= b;
+	}
+	reverse(C.begin(), C.end());
+	while (C.size() &gt; 1 &amp;&amp; C.back() == 0) C.pop_back();
+	return C;
+}
+
+// 高精度比较
+vector&lt;int&gt; max_vec(vector&lt;int&gt;A, vector&lt;int&gt;B) {
+	if (A.size() &gt; B.size()) return A;
+	if (A.size() &lt; B.size()) return B;
+	for (int i = A.size() - 1; i &gt;= 0; i&#43;&#43;) {
+		if (A[i] &gt; B[i]) return A;
+		if (A[i] &lt; B[i]) return B;
+	}
+	return A;
+}
+
+int main() {
+	freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
+	int n, tmp;
+	cin &gt;&gt; n;
+	for (int i = 0; i &lt;= n; i&#43;&#43;) scanf(&#34;%d%d&#34;, &amp;person[i].l, &amp;person[i].r);
+	sort(person &#43; 1, person &#43; n &#43; 1);
+	mul_res.push_back(person[0].l);
+	res.push_back(0);
+	for (int i = 1; i &lt;= n; i&#43;&#43;) {
+		res = max_vec(res, div(mul_res, person[i].r, tmp));
+		mul_res = mul(mul_res, person[i].l);
+	}
+	for (int i = res.size() - 1; i &gt;= 0; i--) cout &lt;&lt; res[i];
+	return 0;
+}
+```
 
 
 ### PAT(Basic Level) Practice（中文）
