@@ -1824,7 +1824,7 @@ int main() {
 }
 ```
 
-**AcWing 125.耍杂技的牛 **
+**AcWing 125.耍杂技的牛**
 
 ```c&#43;&#43;
 #include &lt;bits/stdc&#43;&#43;.h&gt;
