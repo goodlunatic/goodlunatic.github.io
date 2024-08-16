@@ -921,27 +921,344 @@ int main() {
 
 ### 动态规划(Dynamic Programming, dp)
 
-#### 背包问题
+#### 背包问题(TODO)
+&gt; Tips: 只有在01背包和分组背包问题中, 降维时需要考虑 j(容量) 的逆序遍历, 因为限制了每个或者每组物品只能用一次
+&gt; 
+&gt; 逆序遍历是为了确保物品只被使用一次
 
 ##### 01背包
 
 &gt; 每件物品最多用一次
 
+**二维数组法**
+```c&#43;&#43;
+#include &lt;bits/stdc&#43;&#43;.h&gt;
+using namespace std;
 
+const int N = 10010;
+int f[N][N];
 
+int main() {
+	freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
+	int n, m, w, v; // n是物品数量, m是背包容量, w是物品的价值, v是物品的体积
+	while (cin &gt;&gt; n &gt;&gt; m) {
+		for (int i = 1; i &lt;= n; i&#43;&#43;) {
+			scanf(&#34;%d%d&#34;, &amp;v, &amp;w);
+			for (int j = 1; j &lt;= m; j&#43;&#43;) {
+				f[i][j] = f[i - 1][j]; // 默认初始化为不选第i个物品
+//				将问题转化为不选当前物品和选当前物品两种情况
+//				选取当前物品后, 当前物品的价值要加上之前f[i-1][j-v]情况的最优解
+				if (j &gt;= v) f[i][j] = max(f[i][j], f[i - 1][j - v] &#43; w);
+			}
+		}
+		cout &lt;&lt; f[n][m] &lt;&lt; &#39;\n&#39;;
+	}
+	return 0;
+}
+```
+
+**一维数组法(可以画个图辅助理解)**
+```c&#43;&#43;
+#include &lt;bits/stdc&#43;&#43;.h&gt;
+using namespace std;
+
+const int N = 10010;
+int f[N];
+
+int main() {
+	freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
+	int n, m, w, v;
+	while (cin &gt;&gt; n &gt;&gt; m) {
+		for (int i = 1; i &lt;= n; i&#43;&#43;) {
+			scanf(&#34;%d%d&#34;, &amp;v, &amp;w);
+//			这里需要从大到小逆序遍历
+//			因为用的是一维数组, 更新当前数据需要用到前面的数据
+//			如果逆序遍历, 前面的数据会被我们修改
+			for (int j = m; j &gt;= v; j--) {
+				f[j] = max(f[j], f[j - v] &#43; w);
+			}
+		}
+		cout &lt;&lt; f[m] &lt;&lt; &#39;\n&#39;;
+	}
+	return 0;
+}
+```
 
 ##### 完全背包
 
 &gt; 每件物品个数无限
 
+**二维数组法**
+```c&#43;&#43;
+#include &lt;bits/stdc&#43;&#43;.h&gt;
+using namespace std;
+
+const int N = 10010;
+int f[N][N];
+
+int main() {
+	freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
+	int n, m, v, w;
+	while (cin &gt;&gt; n &gt;&gt; m) {
+		for (int i = 1; i &lt;= n; i&#43;&#43;) {
+			scanf(&#34;%d%d&#34;, &amp;v, &amp;w);
+			for (int j = 1; j &lt;= m; j&#43;&#43;) {
+				f[i][j] = f[i - 1][j];
+				if (j &gt;= v) f[i][j] = max(f[i][j], f[i][j - v] &#43; w);//状态转移方程
+			}
+		}
+		cout &lt;&lt; f[n][m] &lt;&lt; &#39;\n&#39;;
+	}
+	return 0;
+}
+```
+
+**一维数组法**
+```c&#43;&#43;
+#include &lt;bits/stdc&#43;&#43;.h&gt;
+using namespace std;
+
+const int N = 10010;
+int f[N];
+
+int main() {
+	freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
+	int n, m, v, w;
+	while (cin &gt;&gt; n &gt;&gt; m) {
+		for (int i = 1; i &lt;= n; i&#43;&#43;) {
+			scanf(&#34;%d%d&#34;, &amp;v, &amp;w);
+//			完全背包问题是在同一行内更新,所以顺序遍历即可
+			for (int j = v; j &lt;= m; j&#43;&#43;) {
+				f[j] = max(f[j], f[j - v] &#43; w);
+			}
+		}
+		cout &lt;&lt; f[m] &lt;&lt; &#39;\n&#39;;
+	}
+	return 0;
+}
+```
+
 ##### 多重背包
 
 &gt; 每件物品的个数有限
 
+**暴力解法**
+
+首先列出状态转移方程 `f[i][j] = max(f[i - 1][j - v * k] &#43; w * k)`
+
+**二维朴素做法**
+```c&#43;&#43;
+#include &lt;bits/stdc&#43;&#43;.h&gt;
+using namespace std;
+
+const int N = 1010;
+int f[N][N];
+int main() {
+	freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
+	int n, m, v, w, s;
+	while (cin &gt;&gt; n &gt;&gt; m) {
+		for (int i = 1; i &lt;= n; i&#43;&#43;) {
+			scanf(&#34;%d%d%d&#34;, &amp;v, &amp;w, &amp;s);
+			for (int j = 1; j &lt;= m; j&#43;&#43;) {
+				for (int k = 0; k &lt;= s &amp;&amp; v * k &lt;= j; k&#43;&#43;) {
+//					这里要注意的是, 当前的f[i][j]取得是与状态转移方程结果的最大值
+					f[i][j] = max(f[i][j], f[i - 1][j - k * v] &#43; k * w);
+				}
+			}
+		}
+		cout &lt;&lt; f[n][m] &lt;&lt; &#39;\n&#39;;
+	}
+	return 0;
+}
+```
+
+**一维朴素做法**
+```c&#43;&#43;
+#include &lt;bits/stdc&#43;&#43;.h&gt;
+using namespace std;
+
+const int N = 1010;
+int f[N];
+int main() {
+	freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
+	int n, m, v, w, s;
+	while (cin &gt;&gt; n &gt;&gt; m) {
+		for (int i = 1; i &lt;= n; i&#43;&#43;) {
+			scanf(&#34;%d%d%d&#34;, &amp;v, &amp;w, &amp;s);
+			for (int j = 1; j &lt;= m; j&#43;&#43;) {
+				for (int k = 0; k &lt;= s &amp;&amp; v * k &lt;= j; k&#43;&#43;) {
+					f[j] = max(f[j], f[j - k * v] &#43; k * w);
+				}
+			}
+		}
+		cout &lt;&lt; f[m] &lt;&lt; &#39;\n&#39;;
+	}
+	return 0;
+}
+```
+
+**二进制优化**
+
+**二维版本**
+```c&#43;&#43;
+#include &lt;bits/stdc&#43;&#43;.h&gt;
+
+using namespace std;
+const int N = 12010, M = 2010;
+
+int n, m;
+int v[N], w[N];
+int f[N][M]; //二维数组版本，AcWing 5. 多重背包问题 II 内存限制是64MB
+//只能通过滚动数组或者变形版本的一维数组，直接二维数组版本MLE
+
+//多重背包的二进制优化
+int main() {
+    scanf(&#34;%d %d&#34;, &amp;n, &amp;m);
+
+    int idx = 0;
+    for (int i = 1; i &lt;= n; i&#43;&#43;) {
+        int a, b, s;
+        scanf(&#34;%d %d %d&#34;, &amp;a, &amp;b, &amp;s);
+        //二进制优化,能打包则打包之，1,2,4,8,16,...
+        int k = 1;
+        while (k &lt;= s) {
+            idx&#43;&#43;;
+            v[idx] = a * k;
+            w[idx] = b * k;
+            s -= k;
+            k *= 2;
+        }
+        //剩下的
+        if (s &gt; 0) {
+            idx&#43;&#43;;
+            v[idx] = a * s;
+            w[idx] = b * s;
+        }
+    }
+    n = idx; //数量减少啦
+    // 01背包
+    for (int i = 1; i &lt;= n; i&#43;&#43;)
+        for (int j = 1; j &lt;= m; j&#43;&#43;) {
+            f[i][j] = f[i - 1][j];
+            if (j &gt;= v[i]) f[i][j] = max(f[i][j], f[i - 1][j - v[i]] &#43; w[i]);
+        }
+
+    printf(&#34;%d\n&#34;, f[n][m]);
+    return 0;
+}
+
+```
+
+**一维版本**
+```c&#43;&#43;
+#include &lt;bits/stdc&#43;&#43;.h&gt;
+
+using namespace std;
+const int N = 12010, M = 2010;
+
+int n, m;
+int v[N], w[N];
+int f[M];
+
+//多重背包的二进制优化
+int main() {
+    scanf(&#34;%d %d&#34;, &amp;n, &amp;m);
+
+    int cnt = 0;
+    for (int i = 1; i &lt;= n; i&#43;&#43;) {
+        int a, b, s;
+        scanf(&#34;%d %d %d&#34;, &amp;a, &amp;b, &amp;s);
+        //二进制优化,能打包则打包之，1,2,4,8,16,...
+        int k = 1;
+        while (k &lt;= s) {
+            cnt&#43;&#43;;
+            v[cnt] = a * k;
+            w[cnt] = b * k;
+            s -= k;
+            k *= 2;
+        }
+        //剩下的
+        if (s &gt; 0) {
+            cnt&#43;&#43;;
+            v[cnt] = a * s;
+            w[cnt] = b * s;
+        }
+    }
+    n = cnt; //数量减少啦
+    // 01背包
+    for (int i = 1; i &lt;= n; i&#43;&#43;)
+        for (int j = m; j &gt;= v[i]; j--)
+            f[j] = max(f[j], f[j - v[i]] &#43; w[i]);
+
+    printf(&#34;%d\n&#34;, f[m]);
+    return 0;
+}
+
+```
+
 ##### 分组背包
 
+**二维数组做法**
+```c&#43;&#43;
+#include &lt;bits/stdc&#43;&#43;.h&gt;
 
+using namespace std;
 
+const int N = 110;
+int n, m;
+int f[N][N], v[N][N], w[N][N], s[N];
+
+int main() {
+    cin &gt;&gt; n &gt;&gt; m;
+    for (int i = 1; i &lt;= n; i&#43;&#43;) {
+        cin &gt;&gt; s[i]; // 第i个分组中物品个数
+        for (int j = 1; j &lt;= s[i]; j&#43;&#43;)
+            cin &gt;&gt; v[i][j] &gt;&gt; w[i][j]; // 第i个分组中物品的体积和价值
+    }
+
+    for (int i = 1; i &lt;= n; i&#43;&#43;)
+        for (int j = 0; j &lt;= m; j&#43;&#43;) {
+            for (int k = 0; k &lt;= s[i]; k&#43;&#43;)
+                if (j &gt;= v[i][k])
+                    f[i][j] = max(f[i][j], f[i - 1][j - v[i][k]] &#43; w[i][k]); // 枚举每一个PK一下大小
+        }
+    // 输出打表结果
+    printf(&#34;%d&#34;, f[n][m]);
+    return 0;
+}
+
+```
+
+**一维数组做法**
+```c&#43;&#43;
+#include &lt;bits/stdc&#43;&#43;.h&gt;
+
+using namespace std;
+const int N = 110;
+
+int n, m;
+int v[N][N], w[N][N], s[N];
+int f[N];
+
+int main() {
+    cin &gt;&gt; n &gt;&gt; m;
+
+    for (int i = 1; i &lt;= n; i&#43;&#43;) {
+        cin &gt;&gt; s[i];
+        for (int j = 1; j &lt;= s[i]; j&#43;&#43;)
+            cin &gt;&gt; v[i][j] &gt;&gt; w[i][j];
+    }
+
+    for (int i = 1; i &lt;= n; i&#43;&#43;)
+        for (int j = m; j &gt;= 0; j--)
+            for (int k = 1; k &lt;= s[i]; k&#43;&#43;)
+                if (j &gt;= v[i][k])
+                    f[j] = max(f[j], f[j - v[i][k]] &#43; w[i][k]);
+
+    printf(&#34;%d\n&#34;, f[m]);
+    return 0;
+}
+```
 
 #### 线性dp
 
@@ -1730,7 +2047,43 @@ int main() {
 
 #### 数学基础
 
-##### 组合数
+##### 排列与组合
+
+排列公式如下
+$$
+A^n_m = \frac{m!}{(m-n)!} = m\ \cdot\ (m-1)\ \cdot \ ... \ \cdot (\ m-(n-1)\ ) 
+$$
+
+```c&#43;&#43;
+ll Permutation(int m, int n) {
+	if (n &gt; m) return 0;
+	if (n == 0) return 1;
+	ll up = 1, down = 1;
+	for (int i = 1; i &lt;= m; i&#43;&#43;) up *= i;
+	for (int i = 1; i &lt;= (m - n); i&#43;&#43;) down *= i;
+	return up / down;
+}
+```
+
+组合公式如下
+
+$$
+C^n_m = \frac{m!}{n!\cdot(m-n)!} = \frac{m\cdot(m-1)\cdot\ ...\ \cdot (\ m-(n-1)\ )}{1\ \cdot \ 2\ \cdot\  ...\ \cdot (n-1)\ \cdot n}
+$$
+
+```c&#43;&#43;
+ll combination(int m, int n) {
+	if (m == 0) return 1;
+	if (n &gt; m) return 0;
+	ll up = 1, down = 1, res;
+	for (int i = 0; i &lt; n; i&#43;&#43;) {
+		up *= m - i;
+		down *= i &#43; 1;
+	}
+	return  up / down;
+}
+```
+
 
 **例题1-ZJNUOJ-RPG的错排（组合数&#43;错排）**
 ```c&#43;&#43;
@@ -1775,6 +2128,34 @@ int main() {
 	return 0;
 }
 ```
+
+#### 动态规划
+例题1-ZJNUOJ-1270：【例9.14】混合背包
+```c&#43;&#43;
+#include &lt;bits/stdc&#43;&#43;.h&gt;
+using namespace std;
+
+const int N = 205;
+int f[N][N];
+
+int main() {
+	freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
+	int m, n, v, w, s;
+	while (cin &gt;&gt; m &gt;&gt; n) {
+		for (int i = 1; i &lt;= n; i&#43;&#43;) {
+			scanf(&#34;%d%d%d&#34;, &amp;v, &amp;w, &amp;s);
+			for (int j = 1; j &lt;= m; j&#43;&#43;) {
+				for (int k = 0; k &lt;= j / v &amp;&amp; (k &lt;= s || s == 0); k&#43;&#43;) {
+					f[i][j] = max(f[i][j], f[i - 1][j - k * v] &#43; k * w);
+				}
+			}
+		}
+		cout &lt;&lt; f[n][m] &lt;&lt; &#39;\n&#39;;
+	}
+	return 0;
+}
+```
+
 
 
 #### 贪心
