@@ -32,6 +32,112 @@
 | `stoi(str)`             | 将 `string` 类型的字符串转换为 `int` 类型，并且`stoi` 会隐式地将 `char` 数组转换为 `string`，然后再转换为整数 |
 |                         |                                                                             |
 ### C&#43;&#43;的STL中一些常用的库函数
+#### vector 数组
+
+| 成员函数             | 用法                                   |
+| ---------------- | ------------------------------------ |
+| `size()`         | 返回数组当前包含的元素数量                        |
+| `empty()`        | 检查当前的数组是否为空, 是则返回`true`, 否则返回`false` |
+| `push_back()`    | 在数组末尾添加一个元素                          |
+| `pop_back()`     | 删除数组末尾最后一个元素                         |
+| `erase(pos,len)` | 删除数组从下标`pos`开始长度为`len`的元素            |
+| `front()`        | 返回数组第一个元素的引用                         |
+| `back()`         | 返回数组最后一个元素的引用                        |
+| `begin()`        | 返回数组第一个元素的迭代器                        |
+| `end()`          | 返回数组最后一个元素后一个位置的迭代器                  |
+
+#### map 关联容器
+&gt; `map`会自动按照键值排序
+
+| 成员函数      | 用法                                   |
+| --------- | ------------------------------------ |
+| `size()`  | 返回容器当前包含元素的数量                        |
+| `empty()` | 检查当前的数组是否为空, 是则返回`true`, 否则返回`false` |
+| `begin()` | 返回数组第一个元素的迭代器                        |
+| `end()`   | 返回数组最后一个元素后一个位置的迭代器                  |
+
+#### pair 模板类
+```c&#43;&#43;
+using namespace std;
+typedef pair&lt;int, int&gt; PII;
+vector&lt;PII&gt; v;
+
+cout &lt;&lt; v[i].first &lt;&lt; &#34; &#34; &lt;&lt; v[i].second &lt;&lt; &#39;\n&#39;;
+```
+
+#### queue 队列
+```c&#43;&#43;
+queue&lt;int&gt; q;// 循环队列
+
+struct Person {
+	int l, r;
+	// 结构体rec中必须重载小于号
+	bool operator &lt; (const Person &amp;w) const {
+		return l * r &lt; w.l * w.r;
+	}
+};
+
+priority_queue&lt;int&gt; q;// 大根堆
+priority_queue&lt;int, vector&lt;int&gt;, greater&lt;int&gt; q;// 小根堆
+priority_queue&lt;pair&lt;int, int&gt;&gt;q;
+```
+
+```c&#43;&#43;
+priority_queue&lt;int&gt; maxHeap;
+int main() {
+	maxHeap.push(10);
+	maxHeap.push(20);
+	maxHeap.push(5);
+	maxHeap.push(30);
+	while (!maxHeap.empty()) {
+		cout &lt;&lt; maxHeap.top() &lt;&lt; &#39;\n&#39;;
+		maxHeap.pop();
+	}
+	return 0;
+}
+```
+
+```c&#43;&#43;
+priority_queue&lt;int, vector&lt;int&gt;, greater&lt;int&gt; &gt;minHeap;
+int main() {
+	minHeap.push(10);
+	minHeap.push(20);
+	minHeap.push(5);
+	minHeap.push(30);
+	while (!minHeap.empty()) {
+		cout &lt;&lt; minHeap.top() &lt;&lt; &#39;\n&#39;;
+		minHeap.pop();
+	}
+	return 0;
+}
+```
+
+#### stack 适配器容器
+&gt; 栈是一种 $LIFO(后进先出)$ 的数据结构
+&gt; 
+&gt; `stack&lt;int&gt; stk;`
+
+| 成员函数      | 用法        |
+| --------- | --------- |
+| `push()`  | 将元素压入栈顶   |
+| `pop()`   | 移除栈顶元素    |
+| `top()`   | 访问栈顶元素    |
+| `empty()` | 判断栈是否为空   |
+| `size()`  | 返回栈中的元素数量 |
+
+#### set 关联容器
+&gt; 集合的元素具有唯一性
+&gt; `set&lt;int&gt; s;`
+
+| 成员函数       | 用法                                                           |
+| ---------- | ------------------------------------------------------------ |
+| `insert()` | 将元素插入到集合中                                                    |
+| `erase()`  | 删除指定元素, 比如                                                   |
+| `find()`   | 查找指定元素, 并返回指向该元素的迭代器, 如果找不到则返回 `set.end()`, 可以通过 `*it` 来访问元素 |
+| `size()`   | 返回集合中的元素数量                                                   |
+| `count()`  | 判断某个元素是否存在, 返回0或1                                            |
+
+#### 查找相关的函数
 
 | 函数                                                              | 用法                                                                                                     |
 | --------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ |
@@ -1261,10 +1367,167 @@ int main() {
 ```
 
 #### 线性dp
+**例题1-AcWing898. 数字三角形**
+```c&#43;&#43;
+#include &lt;bits/stdc&#43;&#43;.h&gt;
+using namespace std;
+
+const int N = 510, INF = 1e9;
+int a[N][N], f[N][N];
+
+
+int main() {
+	freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
+	int n;
+	cin &gt;&gt; n;;
+	for (int i = 1; i &lt;= n; i&#43;&#43;) {
+		for (int j = 1; j &lt;= i; j&#43;&#43;) {
+			scanf(&#34;%d&#34;, &amp;a[i][j]);
+		}
+	}
+	for (int i = 0; i &lt;= n; i&#43;&#43;) {
+		for (int j = 0; j &lt;= i &#43; 1; j&#43;&#43;) {
+			f[i][j] = -INF;
+		}
+	}
+	f[1][1] = a[1][1];// f[1][1]需要手动初始化
+	for (int i = 2; i &lt;= n; i&#43;&#43;) {
+		for (int j = 1; j &lt;= i; j&#43;&#43;) {
+			f[i][j] = max(f[i - 1][j - 1], f[i - 1][j]) &#43; a[i][j];
+		}
+	}
+	int res = -INF;
+	for (int i = 1; i &lt;= n; i&#43;&#43;) res = max(res, f[n][i]);
+	cout &lt;&lt; res &lt;&lt; &#39;\n&#39;;
+	return 0;
+}
+```
+
+**例题2-AcWing895. 最长上升子序列** 
+```c&#43;&#43;
+#include &lt;bits/stdc&#43;&#43;.h&gt;
+using namespace std;
+
+const int N = 1010;
+int a[N], f[N];
+
+int main() {
+	freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
+	int n, res = 0;
+	cin &gt;&gt; n;
+	for (int i = 1; i &lt;= n; i&#43;&#43;) scanf(&#34;%d&#34;, &amp;a[i]);
+	for (int i = 1; i &lt;= n; i&#43;&#43;) {
+		f[i] = 1;
+		for (int j = 1; j &lt; i; j&#43;&#43;) {
+			if (a[j] &lt; a[i]) {
+				f[i] = max(f[i], f[j] &#43; 1);
+			}
+			res = max(res, f[i]);
+		}
+	}
+	cout &lt;&lt; res &lt;&lt; &#39;\n&#39;;
+	return 0;
+}
+```
+
+可以使用下面的代码, 记录并输出状态转移路径
+```c&#43;&#43;
+#include &lt;bits/stdc&#43;&#43;.h&gt;
+using namespace std;
+
+const int N = 1010;
+int a[N], f[N], g[N];
+
+int main() {
+	freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
+	int n, res = 0;
+	cin &gt;&gt; n;
+	for (int i = 1; i &lt;= n; i&#43;&#43;) scanf(&#34;%d&#34;, &amp;a[i]);
+	for (int i = 1; i &lt;= n; i&#43;&#43;) {
+		f[i] = 1;
+		g[i] = 0;
+		for (int j = 1; j &lt; i; j&#43;&#43;) {
+			if (a[j] &lt; a[i]) {
+				if (f[i] &lt; f[j] &#43; 1) {
+					f[i] = f[j] &#43; 1;
+					g[i] = j;
+				}
+			}
+		}
+	}
+	int k = 1;
+	for (int i = 1; i &lt;= n; i&#43;&#43;) {
+		if (f[k] &lt; f[i]) k = i;
+	}
+	cout &lt;&lt; f[k] &lt;&lt; &#39;\n&#39;;
+	int len = f[k];
+	for (int i = 1; i &lt;= len; i&#43;&#43;) {
+		cout &lt;&lt; a[k] &lt;&lt; &#39; &#39;;
+		k = g[k];
+	}
+	return 0;
+}
+```
+
+**例题3-AcWing897. 最长公共子序列 **
+```c&#43;&#43;
+#include &lt;bits/stdc&#43;&#43;.h&gt;
+using namespace std;
+
+const int N = 1010;
+int f[N][N];
+char a[N], b[N];
+
+int main() {
+	freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
+	int n, m;
+	cin &gt;&gt; n &gt;&gt; m;
+	scanf(&#34;%s%s&#34;, a &#43; 1, b &#43; 1);
+	for (int i = 1; i &lt;= n; i&#43;&#43;) {
+		for (int j = 1; j &lt;= m; j&#43;&#43;) {
+			f[i][j] = max(f[i - 1][j], f[i][j - 1]);
+			if (a[i] == b[j]) f[i][j] = max(f[i][j], f[i - 1][j - 1] &#43; 1);
+//			cout &lt;&lt; i &lt;&lt; &#34; &#34; &lt;&lt; j &lt;&lt; &#34; &#34; &lt;&lt; f[i][j] &lt;&lt; &#39;\n&#39;;
+		}
+	}
+	cout &lt;&lt; f[n][m] &lt;&lt; &#39;\n&#39;;
+	return 0;
+}
+```
 
 #### 区间dp
+**例题1-AcWing282. 石子合并**
+
+```c&#43;&#43;
+#include &lt;bits/stdc&#43;&#43;.h&gt;
+using namespace std;
+
+const int N = 1010;
+int f[N][N], s[N];
+int main() {
+	freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
+	int n; cin &gt;&gt; n;
+	memset(f, 0x3f, sizeof(f));
+	for (int i = 1; i &lt;= n; i&#43;&#43;) scanf(&#34;%d&#34;, s &#43; i);
+	for (int i = 1; i &lt;= n; i&#43;&#43;) s[i] &#43;= s[i - 1];
+	for (int i = 1; i &lt;= n; i&#43;&#43;) f[i][i] = 0;// 自己和自己合并不需要代价
+	for (int len = 2; len &lt;= n; len&#43;&#43;) {// 从2开始枚举长度
+		for (int i = 1; i &#43; len - 1 &lt;= n; i&#43;&#43;) {// 枚举起点
+			int l = i, r = i &#43; len - 1;
+			for (int k = l; k &lt; r; k&#43;&#43;) {// 枚举分隔点
+				f[l][r] = min(f[l][r], f[l][k] &#43; f[k &#43; 1][r] &#43; s[r] - s[l - 1]);
+			}
+		}
+	}
+	cout &lt;&lt; f[1][n] &lt;&lt; &#39;\n&#39;;
+	return 0;
+}
+```
 
 #### 计数类dp
+
+
+
 
 #### 数位统计dp
 
@@ -3149,6 +3412,341 @@ int main() {
 }
 ```
 
+#### 最大连续子序列(dp)
+```c&#43;&#43;
+#include &lt;bits/stdc&#43;&#43;.h&gt;
+using namespace std;
+
+int main() {
+	freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
+	int k;
+	while (cin &gt;&gt; k &amp;&amp; k) {
+		vector&lt;int&gt;arr(k, 0), f(k, 0);
+		int maxx = -1e9, head = 0, tail = -1;
+		for (int i = 0; i &lt; k; i&#43;&#43;) {
+			cin &gt;&gt; arr[i];
+			if (i &gt; 0) f[i] = max(arr[i], f[i - 1] &#43; arr[i]);
+			else f[i] = arr[i];
+			if (f[i] &gt; maxx) maxx = f[i], tail = i;
+		}
+		if (tail == -1) cout &lt;&lt; &#34;0&#34; &lt;&lt; arr[0] &lt;&lt; &#34; &#34; &lt;&lt; arr[k - 1] &lt;&lt; &#39;\n&#39;;
+		else {
+			for (int i = tail; i &gt;= 0; i--) {
+				if (f[i] &lt; 0) {
+					head = i &#43; 1;
+					break;
+				}
+			}
+		}
+		cout &lt;&lt; maxx &lt;&lt; &#34; &#34; &lt;&lt; arr[head] &lt;&lt; &#34; &#34; &lt;&lt; arr[tail] &lt;&lt; &#39;\n&#39;;
+	}
+	return 0;
+}
+```
+
+#### 排名
+```c&#43;&#43;
+#include &lt;bits/stdc&#43;&#43;.h&gt;
+using namespace std;
+
+struct Student {
+	string id;
+	int m, sum = 0;
+	bool operator &lt;(const Student &amp;w) const {
+		if (sum != w.sum) return sum &gt; w.sum; // 降序排序
+		else return id &lt; w.id;
+	}
+} stu[1010];
+
+int score[20];
+
+int main() {
+	freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
+	int n, m, g, tmp;
+	while (cin &gt;&gt; n &gt;&gt; m &gt;&gt; g &amp;&amp; n) {
+		int cnt = 0;
+		for (int i = 1; i &lt;= m; i&#43;&#43;) cin &gt;&gt; score[i];
+		for (int i = 0; i &lt; n; i&#43;&#43;) {
+			cin &gt;&gt; stu[i].id &gt;&gt; stu[i].m;
+			stu[i].sum = 0;
+			for (int j = 0; j &lt; stu[i].m; j&#43;&#43;) {
+				cin &gt;&gt; tmp;
+				stu[i].sum &#43;= score[tmp];
+			}
+		}
+		sort(stu, stu &#43; n);
+		for (int i = 0; i &lt; n; i&#43;&#43;) {
+			if (stu[i].sum &gt;= g ) cnt &#43;&#43; ;
+		}
+		cout &lt;&lt; cnt &lt;&lt; &#39;\n&#39;;
+		if (cnt &gt; 0) {
+			for (int i = 0; i &lt; cnt; i&#43;&#43;) {
+				cout &lt;&lt; stu[i].id &lt;&lt; &#34; &#34; &lt;&lt; stu[i].sum &lt;&lt; &#39;\n&#39;;
+			}
+		}
+	}
+	return 0;
+}
+```
+
+#### Grading
+```c&#43;&#43;
+#include &lt;bits/stdc&#43;&#43;.h&gt;
+using namespace std;
+
+int max_func(int a, int b, int c) {
+	int tmp = max(a, b);
+	return max(tmp, c);
+}
+
+int main() {
+	freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
+	int p, t, g1, g2, g3, gj, tmp, tmp1, tmp2;
+	double res;
+	cin &gt;&gt; p &gt;&gt; t &gt;&gt; g1 &gt;&gt; g2 &gt;&gt; g3 &gt;&gt; gj;
+	tmp = abs(g1 - g2);
+	if (tmp &lt;= t) res = ((g1 * 1.0) &#43; g2) / 2;
+	else {
+		tmp1 = abs(g3 - g1);
+		tmp2 = abs(g3 - g2);
+		if ( tmp1 &lt;= t &amp;&amp; tmp2 &lt;= t) res = max_func(g1, g2, g3) * 1.0;
+		else if (tmp1 &gt; t &amp;&amp; tmp &gt; t) res = gj * 0.1;
+		if (tmp1 &lt;= t) res = ((0.1 * g1) &#43; g3) / 2;
+		if (tmp2 &lt;= t ) res = ((0.1 * g1) &#43; g3) / 2;
+	}
+	printf(&#34;%.1lf\n&#34;, res);
+	return 0;
+}
+```
+
+#### ZOJ问题
+```c&#43;&#43;
+#include &lt;bits/stdc&#43;&#43;.h&gt;
+using namespace std;
+
+int main() {
+	freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
+	string s;
+	while (cin &gt;&gt; s) {
+		int left = 0, middle = 0, right = 0;
+		int len = s.size();
+		int pos_z = s.find(&#39;z&#39;);
+		int pos_j = s.find(&#39;j&#39;);
+		left = pos_z;
+		middle = pos_j - pos_z - 1;
+		right = len - pos_j - 1;
+		if (left == right &amp;&amp; middle &gt;= 1) cout &lt;&lt; &#34;Accepted&#34; &lt;&lt; &#39;\n&#39;;
+		else if (left &gt; 0 &amp;&amp; right &gt; 0 &amp;&amp; left * middle == right) cout &lt;&lt; &#34;Accepted&#34; &lt;&lt; &#39;\n&#39;;
+		else cout &lt;&lt; &#34;Wrong Answer&#34; &lt;&lt; &#39;\n&#39;;
+	}
+	return 0;
+}
+```
+
+#### 游船出租
+```c&#43;&#43;
+#include &lt;bits/stdc&#43;&#43;.h&gt;
+using namespace std;
+
+const int N = 1010;
+struct ship {
+	int time;
+	bool condition = false;
+};
+
+int main() {
+	freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
+	int a, c, d, time, cnt = 0, sum = 0;
+	char b;
+	vector&lt;ship&gt;s(110);
+	while (scanf(&#34;%d %c %d:%d&#34;, &amp;a, &amp;b, &amp;c, &amp;d) != EOF) {
+		if (a == 0) {
+			if (cnt == 0) {
+				cout &lt;&lt; 0 &lt;&lt; &#34; &#34; &lt;&lt; 0 &lt;&lt; &#39;\n&#39;;
+			} else {
+//				强制类型转换向上取整
+				cout &lt;&lt; cnt &lt;&lt; &#34; &#34; &lt;&lt; int(double(sum) / double (cnt) &#43; 0.5) &lt;&lt; &#39;\n&#39;;
+			}
+			cnt = 0, sum = 0;
+			s.clear();
+		} else {
+			time = 60 * c &#43; d;
+			if (b == &#39;S&#39;) {
+				s[a].time = time;
+				s[a].condition = true;
+			} else if (s[a].condition == true) {
+				cnt &#43;&#43;;
+				sum &#43;= time - s[a].time;
+//				s[a].time = 0;
+//				s[a].condition = false;
+			}
+		}
+	}
+	return 0;
+}
+```
+
+#### 寻找大富翁 
+```c&#43;&#43;
+#include &lt;bits/stdc&#43;&#43;.h&gt;
+using namespace std;
+
+const int N = 1e5 &#43; 10;
+int a[N];
+
+bool cmp(int a, int b) {
+	return a &gt; b;
+}
+
+int main() {
+	freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
+	int n, m;
+	while (cin &gt;&gt; n &gt;&gt; m &amp;&amp; n) {
+		for (int i = 0; i &lt; n; i&#43;&#43;) scanf(&#34;%d&#34;, &amp;a[i]);
+		sort(a, a &#43; n, cmp);
+		if (n &gt;= m) {
+			for (int i = 0; i &lt; m; i&#43;&#43;) printf(&#34;%d &#34;, a[i]);
+		} else {
+			for (int i = 0; i &lt; n; i&#43;&#43;) printf(&#34;%d &#34;, a[i]);
+		}
+		printf(&#34;\n&#34;);
+	}
+	return 0;
+}
+```
+
+#### 毕业bg(dp)
+```c&#43;&#43;
+#include &lt;bits/stdc&#43;&#43;.h&gt;
+using namespace std;
+
+const int N = 50;
+int f[N];
+
+struct BG {
+	int h, l, t;
+	bool operator &lt; (const BG &amp;w) const {
+		return t &lt; w.t;
+	}
+} bg[50];
+
+int main() {
+	freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
+	int n;
+	while (cin &gt;&gt; n &amp;&amp; n != -1) {
+		for (int i = 0; i &lt; n; i&#43;&#43;) scanf(&#34;%d%d%d&#34;, &amp;bg[i].h, &amp;bg[i].l, &amp;bg[i].t);
+		sort(bg, bg &#43; n);
+		int max_happy = 0;
+		for (int i = 0; i &lt; n; i&#43;&#43;) {
+			for (int j = bg[i].t; j &gt;= bg[i].l; j--) {
+				f[j] = max(f[j], f[j - bg[i].l] &#43; bg[i].h);
+				if (f[j] &gt; max_happy) max_happy = f[j];
+			}
+		}
+		printf(&#34;%d\n&#34;, max_happy);
+	}
+	return 0;
+}
+```
+
+#### 又一版 A&#43;B 
+```c&#43;&#43;
+#include &lt;bits/stdc&#43;&#43;.h&gt;
+using namespace std;
+typedef long long ll;
+int res[1010];
+
+int main() {
+	freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
+	int m, a, b;
+	ll tmp;
+	while (cin &gt;&gt; m &gt;&gt; a &gt;&gt; b &amp;&amp; m ) {
+		memset(res, 0, sizeof(res));
+		int top = 0;
+		tmp = a &#43; b;
+		if (tmp == 0) res[top&#43;&#43;] = 0;
+		while (tmp != 0) {
+			res[top&#43;&#43;] = tmp % m;
+			tmp /= m;
+		}
+		for (int i = top - 1; i &gt;= 0; i--) cout &lt;&lt; res[i];
+		cout &lt;&lt; &#39;\n&#39;;
+	}
+	return 0;
+}
+```
+
+####  Hello World for U 
+```c&#43;&#43;
+#include &lt;bits/stdc&#43;&#43;.h&gt;
+using namespace std;
+
+const int N = 80;
+
+char arr[N][N];
+
+int main() {
+	freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
+	int len, pos, n1, n2, n3;
+	string s;
+	while (cin &gt;&gt; s) {
+//		初始化数组
+		for (int i = 0; i &lt; N; i&#43;&#43;) {
+			for (int j = 0; j &lt; N; j&#43;&#43;) {
+				arr[i][j] = &#39; &#39;;
+			}
+		}
+		len = s.size();
+		n1  = n3 = (len &#43; 2) / 3;
+		n2 = len - n1 * 2;
+//		cout &lt;&lt; len &lt;&lt; &#39;\n&#39;;
+//		cout &lt;&lt; n1 &lt;&lt; &#34; &#34; &lt;&lt; n2 &lt;&lt; &#34; &#34; &lt;&lt; n3 &lt;&lt; &#39;\n&#39;;
+		pos = 0;
+		for (int i = 0; i &lt; n1; i&#43;&#43;) arr[i][0] = s[pos&#43;&#43;];
+		for (int j = 1; j &lt; n2 &#43; 1; j&#43;&#43;) arr[n1 - 1][j] = s[pos&#43;&#43;];
+		for (int k = n1 - 1; k &gt;= 0; k--) arr[k][n2 &#43; 1] = s[pos&#43;&#43;];
+		for (int i = 0; i &lt; n1; i&#43;&#43;) {
+			for (int j = 0; j &lt; n2 &#43; 2; j&#43;&#43;) {
+				cout &lt;&lt; arr[i][j];
+			}
+			cout &lt;&lt; &#39;\n&#39;;
+		}
+		cout &lt;&lt; &#39;\n&#39;;
+	}
+	return 0;
+}
+```
+
+#### 继续xxx定律
+```c&#43;&#43;
+#include &lt;bits/stdc&#43;&#43;.h&gt;
+using namespace std;
+
+int main() {
+	freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
+	int n, num;
+	while (cin &gt;&gt; n &amp;&amp; n) {
+		set&lt;int&gt;coverr;
+		stack&lt;int&gt;keyy;
+		for (int i = 0; i &lt; n; i&#43;&#43;) {
+			cin &gt;&gt; num;
+			if (coverr.count(num)) continue;
+			keyy.push(num);
+			while (num != 1) {
+				if (num &amp; 1) num = 3 * num &#43; 1 &gt;&gt; 1;
+				else num &gt;&gt;= 1;
+				coverr.insert(num);
+			}
+		}
+		while (keyy.size()) {
+			if (!coverr.count(keyy.top())) cout &lt;&lt; keyy.top() &lt;&lt; &#34; &#34;;
+			keyy.pop();
+		}
+		puts(&#34;&#34;);
+	}
+	return 0;
+}
+```
 
 ---
 
