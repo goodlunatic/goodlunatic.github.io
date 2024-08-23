@@ -22,6 +22,7 @@
 
 | 函数                      | 用法                                                                          |
 | ----------------------- | --------------------------------------------------------------------------- |
+| `substr(pos,len)`       | `s.substr(pos,len)`返回从字符串的 `pos` 位置开始，长度为 `len` 的子字符串                       |
 | `sprintf(字符数组,格式串,变量)`  | 将变量按格式字符串的格式写入到字符数组                                                         |
 | `sscanf(字符数组,格式串,&amp;变量)`  | 从字符数组中按格式串提取变量，返回成功提取的变量数量                                                  |
 | `strcspn(str,&#34;\\n&#34;)`    | 返回字符串 str 中第一个出现的字符 \\n 的位置                                                 |
@@ -1024,6 +1025,385 @@ int main() {
 	return 0;
 }
 ```
+
+### 搜索
+#### 深度优先搜索(DFS)
+
+**例题1-AcWing 842. 排列数字 **
+
+```c&#43;&#43;
+#include &lt;bits/stdc&#43;&#43;.h&gt;
+using namespace std;
+
+const int N = 10;
+int n, path[N];
+bool st[N];
+
+void dfs(int u) {
+	if (u == n) {
+		for (int i = 0; i &lt; n; i&#43;&#43;) printf(&#34;%d &#34;, path[i]);
+		puts(&#34;&#34;);
+		return;
+	}
+	for (int i = 1; i &lt;= n; i&#43;&#43;) {// 这里的i表示待选数字
+		if (!st[i]) {
+			path[u] = i;
+			st[i] = true;
+			dfs(u &#43; 1);
+			st[i] = false;
+		}
+	}
+}
+
+int main() {
+	freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
+	cin &gt;&gt; n;
+	dfs(0);
+	return 0;
+}
+```
+
+**例题2-AcWing 843. n-皇后问题**
+
+优化后的搜索方法
+```c&#43;&#43;
+#include &lt;iostream&gt;
+#include &lt;cstring&gt;
+using namespace std;
+
+const int N = 20;
+char g[N][N];
+int n;
+bool col[N], dg[N], udg[N];
+
+void dfs(int u) {
+	if (u == n) {
+		for (int i = 0; i &lt; n; i&#43;&#43;) puts(g[i]);
+		puts(&#34;&#34;);
+		return;
+	}
+	for (int i = 0; i &lt; n; i&#43;&#43;) {
+		if (!col[i] &amp;&amp; !dg[u &#43; i] &amp;&amp; !udg[n - u &#43; i]) {
+			g[u][i] = &#39;Q&#39;;
+//			这里dg和udg下标的确定和直线的截距有关
+			col[i] = dg[u &#43; i] = udg[n - u &#43; i] = true;
+			dfs(u &#43; 1);
+			col[i] = dg[u &#43; i] = udg[n - u &#43; i] = false;
+			g[u][i] = &#39;.&#39;;
+		}
+	}
+}
+
+int main() {
+	freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
+	cin &gt;&gt; n;
+	for (int i = 0; i &lt; n; i&#43;&#43;) {
+		for (int j = 0; j &lt; n; j&#43;&#43;) g[i][j] = &#39;.&#39;;
+	}
+	dfs(0);
+	return 0;
+}
+```
+
+朴素的搜索方法
+```c&#43;&#43;
+#include &lt;iostream&gt;
+#include &lt;cstring&gt;
+using namespace std;
+
+const int N = 20;
+char g[N][N];
+int n;
+bool row[N], col[N], dg[N], udg[N];
+
+void dfs(int x, int y, int s) {
+	if (y == n) y = 0, x&#43;&#43;;
+	if (x == n) {
+		if (s == n) {
+			for (int i = 0; i &lt; n; i&#43;&#43;) puts(g[i]);
+			puts(&#34;&#34;);
+		}
+		return;
+	}
+//	不放皇后
+	dfs(x, y &#43; 1, s);
+//	放皇后
+	if (!row[x] &amp;&amp; !col[y] &amp;&amp; !dg[x &#43; y] &amp;&amp; !udg[x - y &#43; n]) {
+		g[x][y] = &#39;Q&#39;;
+		row[x] = col[y] = dg[x &#43; y] = udg[x - y &#43; n] = true;
+		dfs(x, y &#43; 1, s &#43; 1);
+		row[x] = col[y] = dg[x &#43; y] = udg[x - y &#43; n] = false;
+		g[x][y] = &#39;.&#39;;
+	}
+}
+
+int main() {
+	freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
+	cin &gt;&gt; n;
+	for (int i = 0; i &lt; n; i&#43;&#43;) {
+		for (int j = 0; j &lt; n; j&#43;&#43;) g[i][j] = &#39;.&#39;;
+	}
+	dfs(0, 0, 0);
+	return 0;
+}
+```
+
+
+#### 宽度优先搜索(BFS)
+
+**例题1-AcWing 844. 走迷宫**
+
+手动模拟队列的方法
+```c&#43;&#43;
+#include &lt;iostream&gt;
+#include &lt;cstring&gt;
+
+using namespace std;
+
+typedef pair&lt;int, int&gt;PII;
+const int N = 110;
+int n, m;
+int g[N][N];// 存储图
+int d[N][N];// 存储每个点到起点的距离
+PII q[N * N];// 手动模拟队列
+
+int bfs() {
+	int hh = 0, tt = 0;// 队头和队尾
+	q[0] = {0, 0};// 第一个点入队
+	memset(d, -1, sizeof(d));// 初始化, -1表示没有遍历到
+	d[0][0] = 0;
+	int dx[4] = {-1, 0, 1, 0}, dy[4] = {0, 1, 0, -1};// 向量
+	while (hh &lt;= tt) {
+		PII t = q[hh&#43;&#43;];// 取出队头元素
+		for (int i = 0; i &lt; 4; i&#43;&#43;) {// 向四个方向移动
+			int x = t.first &#43; dx[i], y = t.second &#43; dy[i];
+			if (x &gt;= 0 &amp;&amp; x &lt; n &amp;&amp; y &gt;= 0 &amp;&amp; y &lt; m &amp;&amp; g[x][y] == 0 &amp;&amp; d[x][y] == -1) {
+				d[x][y] = d[t.first][t.second] &#43; 1;// 更新距离数组
+				q[&#43;&#43;tt] = {x, y};// 当前遍历到的元素入队
+			}
+		}
+	}
+	return d[n - 1][m - 1];// 输出终点的距离
+}
+
+
+int main() {
+	freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
+	cin &gt;&gt; n &gt;&gt; m;
+	for (int i = 0; i &lt; n; i&#43;&#43;) {
+		for (int j = 0; j &lt; m; j&#43;&#43;) {
+			cin &gt;&gt; g[i][j];
+		}
+	}
+	cout &lt;&lt; bfs() &lt;&lt; &#39;\n&#39;;
+	return 0;
+}
+```
+
+使用STL库中的`queue`实现
+```c&#43;&#43;
+#include &lt;iostream&gt;
+#include &lt;cstring&gt;
+#include &lt;queue&gt;
+using namespace std;
+
+typedef pair&lt;int, int&gt;PII;
+const int N = 110;
+int n, m, g[N][N], d[N][N];
+int dx[] = {-1, 0, 1, 0};
+int dy[] = {0, 1, 0, -1};
+queue&lt;PII&gt;q;
+
+int bfs() {
+	q.push({0, 0});
+	memset(d, -1, sizeof(d));
+	d[0][0] = 0;
+	while (!q.empty()) {
+		if (~d[n - 1][m - 1]) break; // 如果已经找到最短路径, 就跳出循环, 剪枝
+		auto tmp = q.front();// 取出队头元素
+		q.pop();
+		for (int i = 0; i &lt; 4; i&#43;&#43;) {
+			int x = tmp.first &#43; dx[i], y = tmp.second &#43; dy[i];
+			if (x &gt;= 0 &amp;&amp; x &lt; n &amp;&amp; y &gt;= 0 &amp;&amp; y &lt; m &amp;&amp; g[x][y] == 0 &amp;&amp; d[x][y] == -1) {
+				d[x][y] = d[tmp.first][tmp.second] &#43; 1;
+				q.push({x, y});
+			}
+		}
+	}
+	return d[n - 1][m - 1];
+}
+
+
+int main() {
+	freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
+	cin &gt;&gt; n &gt;&gt; m;
+	for (int i = 0; i &lt; n; i&#43;&#43;) {
+		for (int j = 0; j &lt; m; j&#43;&#43;) {
+			cin &gt;&gt; g[i][j];
+		}
+	}
+	cout &lt;&lt; bfs() &lt;&lt; &#39;\n&#39;;
+	return 0;
+}
+```
+
+### 树与图的存储与遍历
+
+##### 深度优先遍历
+
+**例题1-AcWing 846. 树的重心(TODO)**
+```c&#43;&#43;
+#include &lt;iostream&gt;
+#include &lt;cstring&gt;
+
+using namespace std;
+const int N = 100010, M = 200010, INF = 0x3f3f3f3f;
+int n, a, b, ans = INF;
+int h[N], e[M], ne[M], idx;
+bool st[N];
+
+void add(int a, int b) {
+	e[idx] = b, ne[idx] = h[a], h[a] = idx&#43;&#43;;
+}
+
+// 以u为根的子树中点的数量
+int dfs(int u) {
+	st[u] = true;
+	int sum = 1, res = 0;
+	for (int i = h[u]; i != -1; i = ne[i]) {
+		int j = e[i];
+		if (!st[j]) {
+			int s = dfs(j);
+			res = max(res, s);
+			sum &#43;= s;
+		}
+	}
+	res = max(res, n - sum);
+	ans = min(ans, res);
+	return sum;
+}
+
+int main() {
+	freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
+	cin &gt;&gt; n;
+	memset(h, -1, sizeof h);
+	for (int i = 0; i &lt; n - 1; i&#43;&#43;) { // 有n-1条边
+		cin &gt;&gt; a &gt;&gt; b;
+		add(a, b);
+		add(b, a);
+	}
+	dfs(1);
+	cout &lt;&lt; ans &lt;&lt; &#39;\n&#39;;
+	return 0;
+
+}
+```
+
+##### 宽度优先遍历
+
+**例题2-AcWing 847. 图中点的层次(TODO)**
+```c&#43;&#43;
+#include &lt;iostream&gt;
+#include &lt;cstring&gt;
+using namespace std;
+
+const int N = 1e5 &#43; 10, M = 2e5 &#43; 10;
+int h[N], e[M], ne[M], idx;
+int d[N], q[N];
+int n, m;
+
+void add(int a, int b) {
+	e[idx] = b, ne[idx] = h[a], h[a] = idx&#43;&#43;;
+}
+
+int bfs() {
+	int hh = 0, tt = 0;
+	q[0] = 1;
+	memset(d, -1, sizeof d);
+	d[1] = 0;
+	while (hh &lt;= tt) {
+		int t = q[hh&#43;&#43;];
+		for (int i = h[t]; i != -1; i = ne[i]) {
+			int j = e[i];
+			if (d[j] == -1) {
+				d[j] = d[t] &#43; 1;
+				q[&#43;&#43;tt] = j;
+			}
+		}
+	}
+	return d[n];
+}
+
+int main() {
+	freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
+	cin &gt;&gt; n &gt;&gt; m;
+	memset(h, -1, sizeof h);
+	for (int i = 0; i &lt; m; i&#43;&#43;) {
+		int a, b;
+		cin &gt;&gt; a &gt;&gt; b;
+		add(a, b);
+	}
+	cout &lt;&lt; bfs() &lt;&lt; &#39;\n&#39;;
+	return 0;
+}
+```
+#### 拓扑排序
+
+**例题1-AcWing 847. 图中点的层次**
+```c&#43;&#43;
+#include &lt;iostream&gt;
+#include &lt;cstring&gt;
+using namespace std;
+const int N = 1e5 &#43; 10;
+int n, m;
+int h[N], e[N], ne[N], idx;
+int q[N], d[N];
+
+void add(int a, int b) {
+	e[idx] = b, ne[idx] = h[a], h[a] = idx&#43;&#43;;
+}
+
+bool topsort() {
+	int hh = 0, tt = -1;
+	for (int i = 1; i &lt;= n; i&#43;&#43;) {
+		if (!d[i]) {
+			q[&#43;&#43;tt] = i;
+		}
+	}
+	while (hh &lt;= tt) {
+		int t = q[hh&#43;&#43;];
+		for (int i = h[t]; i != -1; i = ne[i]) {
+			int j = e[i];
+			d[j]--;
+			if (d[j] == 0) q[&#43;&#43;tt] = j;
+		}
+	}
+	return tt == n - 1;
+}
+
+int main() {
+	freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
+	memset(h, -1, sizeof h);
+	cin &gt;&gt; n &gt;&gt; m;
+	for (int i = 0; i &lt; m; i&#43;&#43;) {
+		int a, b;
+		cin &gt;&gt; a &gt;&gt; b;
+		add(a, b);
+		d[b]&#43;&#43;;
+	}
+	if (topsort()) {
+		for (int i = 0; i &lt; n; i&#43;&#43;) {
+			cout &lt;&lt; q[i] &lt;&lt; &#39; &#39;;
+		}
+		puts(&#34;&#34;);
+	} else {
+		cout &lt;&lt; &#34;-1&#34; &lt;&lt; &#39;\n&#39;;
+	}
+	return 0;
+}
+```
+
+
 
 ### 动态规划(Dynamic Programming, dp)
 
@@ -3741,6 +4121,219 @@ int main() {
 		while (keyy.size()) {
 			if (!coverr.count(keyy.top())) cout &lt;&lt; keyy.top() &lt;&lt; &#34; &#34;;
 			keyy.pop();
+		}
+		puts(&#34;&#34;);
+	}
+	return 0;
+}
+```
+
+#### 魔咒词典
+```c&#43;&#43;
+#include &lt;bits/stdc&#43;&#43;.h&gt;
+using namespace std;
+
+map&lt;string, string&gt; m;
+
+int main() {
+	freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
+	string s, ans;
+	int pos, n;
+	while (1) {
+		getline(cin, s);
+		if (s == &#34;@END@&#34;) break;
+		pos = s.find(&#39;]&#39;);
+		m[s.substr(0, pos &#43; 1)] = s.substr(pos &#43; 2);
+		m[s.substr(pos &#43; 2)] = s.substr(0, pos &#43; 1);
+	}
+	cin &gt;&gt; n;
+	getchar();
+	for (int i = 0; i &lt; n; i&#43;&#43;) {
+		getline(cin, s);
+		ans = m[s];
+		if (ans == &#34;&#34;) cout &lt;&lt; &#34;what?&#34; &lt;&lt; &#39;\n&#39;;
+		else if (ans[0] == &#39;[&#39;) cout &lt;&lt; ans.substr(1, ans.size() - 2) &lt;&lt; &#39;\n&#39;;
+		else cout &lt;&lt; ans &lt;&lt; &#39;\n&#39;;
+	}
+	return 0;
+}
+```
+
+#### Graduate Admission
+```c&#43;&#43;
+#include &lt;bits/stdc&#43;&#43;.h&gt;
+using namespace std;
+
+priority_queue&lt;int, vector&lt;int&gt;, greater&lt;int&gt; &gt; output;
+const int N = 40010;
+int quota[110];
+
+struct Applicant {
+	int id, Ge, Gi, rank, select[10];
+	double final; // 这里要注意把final定义为double类型，要不然会出错
+	bool operator &lt;(const Applicant &amp;w) const {
+		if (final != w.final) return final &gt; w.final;
+		else if (Ge != w.Ge) return Ge &gt; w.Ge;
+		else return Gi &gt; w.Gi;
+	}
+} app[N];
+
+struct RES {
+	vector&lt;int&gt;applicant;
+} res[110];
+
+int main() {
+	freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
+	int n, m, k;
+	cin &gt;&gt; n &gt;&gt; m &gt;&gt; k;
+	for (int i = 0; i &lt; m; i&#43;&#43;) scanf(&#34;%d&#34;, &amp;quota[i]);
+	for (int i = 0; i &lt; n; i&#43;&#43;) {
+		scanf(&#34;%d %d&#34;, &amp;app[i].Ge, &amp;app[i].Gi);
+		app[i].final = (app[i].Ge &#43; app[i].Gi) * 0.1 / 2;
+		app[i].id = i;
+		for (int j = 0; j &lt; k; j&#43;&#43;) scanf(&#34;%d&#34;, &amp;app[i].select[j]);
+	}
+	sort(app, app &#43; n);
+	app[0].rank = 1;
+	int cnt = 1;
+	for (int i = 1; i &lt; n; i&#43;&#43;) {
+		cnt&#43;&#43;;
+		if (app[i].final &lt; app[i - 1].final) {
+			app[i].rank = cnt;
+		} else {
+			if (app[i].Ge &lt; app[i - 1].Ge) {
+				app[i].rank = cnt;
+			} else {
+				if (app[i].Gi &lt; app[i - 1].Gi) {
+					app[i].rank = cnt;
+				} else {
+					app[i].rank = app[i - 1].rank;
+				}
+			}
+		}
+	}
+
+	for (int i = 0; i &lt; n; i&#43;&#43;) {
+		for (int j = 0; j &lt; k; j&#43;&#43;) {
+			int choice = app[i].select[j]; // choice表示选择学校的编号
+			if (quota[choice] &gt; 0) {
+				quota[choice]--;
+				res[choice].applicant.push_back(i);
+				break;
+			} else {
+				int target_rank = app[res[choice].applicant.back()].rank;
+				if (app[i].rank == target_rank) {
+					res[choice].applicant.push_back(i);
+					break;
+				}
+			}
+		}
+	}
+
+	for (int i = 0; i &lt; m; i&#43;&#43;) {
+		for (auto x : res[i].applicant) {
+			output.push(app[x].id);
+		}
+		while (!output.empty()) {
+			cout &lt;&lt; output.top() &lt;&lt; &#34; &#34;;
+			output.pop();
+		}
+		puts(&#34;&#34;);
+	}
+	return 0;
+}
+```
+
+#### EXCEL排序
+```c&#43;&#43;
+#include &lt;bits/stdc&#43;&#43;.h&gt;
+using namespace std;
+
+const int N = 1e5 &#43; 10;
+
+struct Student {
+	int id, score;
+	string name;
+} stu[N];
+
+bool cmp1(Student s1, Student s2) {
+	return s1.id &lt; s2.id;
+}
+
+bool cmp2(Student s1, Student s2) {
+	if (s1.name == s2.name) {
+		return s1.id &lt; s2.id;
+	}
+	return s1.name &lt; s2.name;
+}
+
+bool cmp3(Student s1, Student s2) {
+	if (s1.score == s2.score) {
+		return s1.id &lt; s2.id;
+	}
+	return  s1.score &lt; s2.score;
+}
+
+int main() {
+	freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
+	int n, c ;
+	while (cin &gt;&gt; n &gt;&gt; c &amp;&amp; n) {
+		for (int i = 0; i &lt; n; i&#43;&#43;) {
+			cin &gt;&gt; stu[i].id &gt;&gt; stu[i].name &gt;&gt; stu[i].score;
+		}
+		if (c == 1) sort(stu, stu &#43; n, cmp1);
+		else if (c == 2) sort(stu, stu &#43; n, cmp2);
+		else sort(stu, stu &#43; n, cmp3);
+		cout &lt;&lt; &#34;Case:&#34; &lt;&lt; &#39;\n&#39;;
+		for (int i = 0; i &lt; n; i&#43;&#43;) {
+			printf(&#34;%06d &#34;, stu[i].id);
+			cout &lt;&lt; stu[i].name &lt;&lt; &#34; &#34; &lt;&lt; stu[i].score &lt;&lt; &#39;\n&#39;;
+		}
+	}
+	return 0;
+}
+```
+
+#### 奥运排序问题
+```c&#43;&#43;
+#include &lt;bits/stdc&#43;&#43;.h&gt;
+using namespace std;
+
+const int N = 10;
+int tmp [N][3]; // 金牌数 奖牌数 人口/百万
+float res[N][4]; // 金牌数 奖牌数 金牌人口比例 奖牌人口比例
+int rankk[N][4]; // 四种比较方法对应的排名
+
+int main() {
+	freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
+	int n, m, id;
+	while (cin &gt;&gt; n &gt;&gt; m &amp;&amp; n) {
+		memset(rankk, 0, sizeof(rankk));
+		for (int i = 0; i &lt; n; i&#43;&#43;) cin &gt;&gt; tmp[i][0] &gt;&gt; tmp[i][1] &gt;&gt; tmp[i][2];
+		for (int i = 0; i &lt; m; i&#43;&#43;) {
+			cin &gt;&gt; id;
+			res[i][0] = tmp[id][0];
+			res[i][1] = tmp[id][1];
+			res[i][2] = tmp[id][0] ? tmp[id][0] * 1.0 / tmp[id][2] : 0;
+			res[i][3] = tmp[id][1] ? tmp[id][1] * 1.0 / tmp[id][2] : 0;
+		}
+		for (int i = 0; i &lt; m; i&#43;&#43;) { // m表示需要比较的国家数
+			for (int j = 0; j &lt; m; j&#43;&#43;) {
+				for (int k = 0; k &lt; 4; k&#43;&#43;) {
+					if (res[j][k] &gt; res[i][k]) { //就是判断有多少个j在i的前面
+						rankk[i][k]&#43;&#43;;
+					}
+				}
+			}
+		}
+		for (int i = 0; i &lt; m; i&#43;&#43;) {
+			int minn = 0;
+			for (int j = 1; j &lt; 4; j&#43;&#43;) {
+				if (rankk[i][j] &lt; rankk[i][minn]) {
+					minn = j;
+				}
+			}
+			cout &lt;&lt; rankk[i][minn] &#43; 1 &lt;&lt; &#34;:&#34; &lt;&lt; minn &#43; 1 &lt;&lt; &#39;\n&#39;;
 		}
 		puts(&#34;&#34;);
 	}
