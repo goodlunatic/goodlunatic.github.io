@@ -165,72 +165,6 @@ ll binPow(ll base, ll exp) {
 }
 ```
 
-### 筛法
-
-#### 素数筛
-
-&gt; 暴力枚举法，时间复杂度为O(n\*sqrt(n))
-
-```c&#43;&#43;
-vector&lt;int&gt;prime;
-void findPrime(int start, int end) {
-	for (int i = start; i &lt;= end; i&#43;&#43;) {
-		bool flag = false;
-		for (int j = 2; j &lt;= sqrt(i); j&#43;&#43;) {
-			if (i % j == 0) {
-				flag = true;
-				break;
-			}
-		}
-		if (!flag) prime.push_back(i);
-	}
-}
-```
-
-&gt; 埃氏筛，时间复杂度为O(n log n)
-
-```c&#43;&#43;
-bool isPrime[MAXN];
-vector&lt;int&gt;prime;
-
-void findPrime(int n) {
-	memset(isPrime, true, sizeof(isPrime));
-	isPrime[0] = isPrime[1] = false;
-	for (int i = 2; i &lt;= n; i&#43;&#43;) {
-		if (isPrime[i]) {
-			prime.push_back(i);
-//			因素只要筛到sqrt(n)即可，这里要用longlong来避免溢出
-			if ((ll) i * i &gt; n) continue;
-//			因为较小的倍数 i * 2, ..., i * (i-1) 在处理比 i 小的素数时就被筛除了
-			for (int j = i * i; j &lt;= n; j &#43;= i) {
-				isPrime[j] = false;
-			}
-		}
-	}
-}
-```
-
-&gt; 线性筛（欧拉筛），时间复杂度为O(n)，但是对空间的占用要求比较高
-
-```c&#43;&#43;
-vector&lt;ll&gt;prime;
-// 在堆上使用动态内存分配，防止栈溢出
-bool* isPrime = new bool[MAXN];
-void findPrime(ll n) {
-	memset(isPrime, true, sizeof(bool)*n);
-	for (ll i = 2; i &lt;= n; &#43;&#43;i) {
-		if (isPrime[i]) prime.push_back(i);
-		for (int prime_j : prime) {
-			if (i * prime_j &gt; n) break;
-			isPrime[i * prime_j] = false;
-//			关键步骤-防止一个合数被多次标记
-//			prime_j是i的最小因子，直接退出这次循环
-			if (i % prime_j == 0) break;
-		}
-	}
-}
-```
-
 ### 排序算法
 #### 冒泡排序
 
@@ -1349,7 +1283,7 @@ int main() {
 ```
 #### 拓扑排序
 
-**例题1-AcWing 847. 图中点的层次**
+**例题1-AcWing 848. 有向图的拓扑序列**
 ```c&#43;&#43;
 #include &lt;iostream&gt;
 #include &lt;cstring&gt;
@@ -1402,6 +1336,62 @@ int main() {
 	return 0;
 }
 ```
+
+### 数学基础
+#### 质素相关
+##### 试除法判定质数
+```c&#43;&#43;
+bool is_prime(int n) {
+	if (n &lt; 2) return false;
+	for (int i = 2; i &lt;= n / i; i&#43;&#43;) {
+		if (n % i == 0) return false;
+	}
+	return true;
+}
+```
+
+##### 试除法分解质因数
+```c&#43;&#43;
+void divide(int n) {
+	for (int i = 2; i &lt;= n / i; i&#43;&#43;) {
+		if (n % i == 0) {
+			int s = 0;
+			while (n % i == 0) {
+				n /= i;
+				s&#43;&#43;;
+			}
+			cout &lt;&lt; i &lt;&lt; &#34; &#34; &lt;&lt; s &lt;&lt; &#39;\n&#39;;
+		}
+	}
+	if (n &gt; 1) cout &lt;&lt; n &lt;&lt; &#34; &#34; &lt;&lt; &#34;1&#34; &lt;&lt; &#39;\n&#39;;
+}
+```
+
+##### 埃氏筛($O(nlogn)$)
+```c&#43;&#43;
+void get_primes(int n) {
+	for (int i = 2; i &lt;= n; i&#43;&#43;) {
+		if (!st[i]) {
+			primes[cnt&#43;&#43;] = i;
+			for (int j = i &#43; i; j &lt;= n; j &#43;= i) st[j] = true;
+		}
+	}
+}
+```
+
+##### 线性筛($O(nloglogn)$)
+```c&#43;&#43;
+void get_primes(int n) {
+	for (int i = 2; i &lt;= n; i&#43;&#43;) {
+		if (!st[i]) primes[cnt&#43;&#43;] = i;
+		for (int j = 0; primes[j] &lt;= n / i; j&#43;&#43;) {
+			st[primes[j] * i] = true;
+			if (i % primes[j] == 0) break;// primes[j]一定是i的最小质因子
+		}
+	}
+}
+```
+
 
 
 
