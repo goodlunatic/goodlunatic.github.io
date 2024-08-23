@@ -151,19 +151,6 @@ int main() {
 
 
 ## 常用算法
-### 快速幂
-
-```c&#43;&#43;
-ll binPow(ll base, ll exp) {
-	ll res = 1;
-	while (exp) {
-		if (exp &amp; 1) res *= base;
-		base *= base;
-		exp &gt;&gt;= 1;
-	}
-	return res;
-}
-```
 
 ### 排序算法
 #### 冒泡排序
@@ -1391,7 +1378,200 @@ void get_primes(int n) {
 	}
 }
 ```
+#### 约数相关
+##### 试除法求约数
+```c&#43;&#43;
+vector&lt;int&gt; get_divisors(int n) {
+	vector&lt;int&gt; res;
+	for (int i = 1; i &lt;= n / i; i&#43;&#43;) {
+		if (n % i == 0) {
+			res.push_back(i);
+			if (n / i != i) res.push_back(n / i);
+		}
+	}
+	sort(res.begin(), res.end(),cmp);
+	return res;
+}
+```
 
+##### 求约数个数
+
+![](imgs/image-20240823200607945.png)
+
+```c&#43;&#43;
+#include &lt;iostream&gt;
+#include &lt;map&gt;
+using namespace std;
+typedef long long ll;
+const int MOD = 1e9 &#43; 7;
+
+int main() {
+	freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
+	int n, x;
+	cin &gt;&gt; n;
+	map&lt;int, int&gt;primes;
+	while (n--) {
+		cin &gt;&gt; x;
+		for (int i = 2; i &lt;= x / i; i&#43;&#43;) {
+			while (x % i == 0) {
+				x /= i;
+				primes[i]&#43;&#43;;
+			}
+		}
+		if (x &gt; 1) primes[x]&#43;&#43;;
+	}
+	ll res = 1;
+	for (auto prime : primes) res = res * (prime.second &#43; 1) % MOD;
+	cout &lt;&lt; res &lt;&lt; &#39;\n&#39;;
+	return 0;
+}
+```
+
+##### 求约数之和
+
+![](imgs/image-20240823200639160.png)
+
+```c&#43;&#43;
+#include &lt;iostream&gt;
+#include &lt;map&gt;
+using namespace std;
+typedef long long ll;
+const int MOD = 1e9 &#43; 7;
+
+int main() {
+	freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
+	int n, x;
+	cin &gt;&gt; n;
+	map&lt;int, int&gt;primes;
+	while (n--) {
+		cin &gt;&gt; x;
+		for (int i = 2; i &lt;= x / i; i&#43;&#43;) {
+			while (x % i == 0) {
+				x /= i;
+				primes[i]&#43;&#43;;
+			}
+		}
+		if (x &gt; 1) primes[x]&#43;&#43;;
+	}
+	ll res = 1;
+	for (auto prime : primes) {
+		int a = prime.first, b = prime.second;
+		int t = 1;
+		while (b--) t = (t * a &#43; 1) % MOD;
+		res = res * t % MOD;// 每次累计res
+	}
+	cout &lt;&lt; res &lt;&lt; &#39;\n&#39;;
+	return 0;
+}
+```
+
+#### 欧几里得算法(辗转相除法)
+
+&gt; GCD(a,b) = GCD(b,a % b)
+
+```c&#43;&#43;
+int gcd(int a, int b) {
+	return b ? gcd(b, a % b) : a;
+}
+```
+
+
+#### 欧拉函数
+
+![](imgs/image-20240823204244353.png)
+
+**例题1-AcWing 873. 欧拉函数**
+```c&#43;&#43;
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+	freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
+	int n;
+	cin &gt;&gt; n;
+	while (n--) {
+		int a;
+		cin &gt;&gt; a;
+		int res = a;
+		for (int i = 2; i &lt;= a / i; i&#43;&#43;) {
+			if (a % i == 0) {
+				res = res / i * (i - 1);
+				while (a % i == 0) a /= i;
+			}
+		}
+		if (a &gt; 1) res  = res / a * (a - 1);
+		cout &lt;&lt; res &lt;&lt; &#39;\n&#39;;
+	}
+	return 0;
+}
+```
+
+**例题2-AcWing874. 筛法求欧拉函数**
+```c&#43;&#43;
+#include &lt;iostream&gt;
+using namespace std;
+typedef long long ll;
+
+const int N = 1e6 &#43; 10;
+int cnt, primes[N], phi[N];
+bool st[N];
+
+ll get_eulers(int n) {
+	phi[1] = 1;
+	for (int i = 2; i &lt; n; i&#43;&#43;) {
+		if (!st[i]) {
+			primes[cnt&#43;&#43;] = i;
+			phi[i] = i - 1;
+		}
+		for (int j = 0; primes[j] &lt;= n / i; j&#43;&#43;) {
+			st[primes[j]*i]  = true;
+			if (i % primes[j] == 0) {
+				phi[primes[j]*i] = phi[i] * primes[j];
+				break;
+			}
+			phi[primes[j]*i] = phi[i] * (primes[j] - 1);
+		}
+	}
+	ll res = 0;
+	for (int i = 1; i &lt;= n; i&#43;&#43;) res &#43;= phi[i];
+	return res;
+}
+
+int main() {
+	freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
+	int n;
+	cin &gt;&gt; n;
+	cout &lt;&lt; get_eulers(n) &lt;&lt; &#39;\n&#39;;
+	return 0;
+}
+```
+
+#### 快速幂
+##### 简单的快速幂
+```c&#43;&#43;
+int qmi(int a, int k) {
+	int res = 1;
+	while (k) {
+		if (k &amp; 1) res = res * a;
+		k &gt;&gt;= 1;
+		a = a * a;
+	}
+	return res;
+}
+```
+
+##### 带取模的快速幂
+```c&#43;&#43;
+ll qmi(int a, int k, int p) {
+	ll res = 1;
+	while (k) {
+		if (k &amp; 1) res = res * a % p;
+		k &gt;&gt;= 1;
+		a = (ll)a * a % p;
+	}
+	return res;
+}
+```
 
 
 
