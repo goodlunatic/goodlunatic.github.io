@@ -1573,6 +1573,344 @@ ll qmi(int a, int k, int p) {
 }
 ```
 
+##### 快速幂求逆元
+
+![](imgs/image-20240824100411661.png)
+
+&gt; 当 $p$ 为质数时, 由费马小定理可得:
+$$a^{p-1} \equiv 1 \pmod{p}$$
+ 当 $p$ 为质数时，可以用费马小定理 &#43; 快速幂求逆元：
+
+$$\because\ a^{p-1} \equiv 1 \pmod{p}$$
+$$\therefore\ a \times a^{p-2} \equiv 1 \pmod{p}$$
+$$\therefore\ a^{p-2} \text{ 就是 } a \text{ 的逆元。}$$
+
+```c&#43;&#43;
+#include &lt;iostream&gt;
+using namespace std;
+typedef long long ll;
+
+ll qmi(int a, int k, int p) {
+	ll res = 1;
+	while (k) {
+		if (k &amp; 1) res = res * a % p;
+		k &gt;&gt;= 1;
+		a = a * a % p;
+	}
+	return res;
+}
+
+int main() {
+	freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
+	int n;
+	cin &gt;&gt; n;
+	while (n--) {
+		int b, m;
+		cin &gt;&gt; b &gt;&gt; m;
+		if (b % m != 0) cout &lt;&lt; qmi(b, m - 2, m) &lt;&lt; &#39;\n&#39;;
+		else puts(&#34;impossible&#34;);
+	}
+	return 0;
+}
+```
+
+#### 扩展欧几里得算法
+
+&gt; 裴蜀定理：
+&gt; 
+&gt; 对于任意两个整数 a 和 b，它们的最大公约数 gcd(a, b) 可以表示为 a 和 b 的线性组合，即存在整数 x 和 y，使得：
+$$ax &#43; by = \gcd(a, b)$$
+
+```c&#43;&#43;
+int exgcd(int a, int b, int &amp;x, int &amp;y) {
+	if (!b) {
+		x = 1, y = 0;
+		return a;
+	}
+	int d = exgcd(b, a % b, y, x);
+	y = y - a / b * x;
+	return d;
+}
+```
+
+**例题1-AcWing 878. 线性同余方程**
+
+$$\begin{cases} a \cdot x &#43; m \cdot y = b \\ a \cdot x_0 &#43; m \cdot y_0 = \gcd(a, m) \end{cases}$$
+```c&#43;&#43;
+#include &lt;iostream&gt;
+using namespace std;
+typedef long long ll;
+
+int exgcd(int a, int b, int &amp;x, int &amp;y) {
+	if (!b) {
+		x = 1, y = 0;
+		return a;
+	}
+	int d = exgcd(b, a % b, y, x);
+	y = y - a / b * x;
+	return d;
+}
+
+int main() {
+	freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
+	int n, a, b, m, x, y;
+	cin &gt;&gt; n;
+	while (n--) {
+		cin &gt;&gt; a &gt;&gt; b &gt;&gt; m;
+		int d = exgcd(a, m, x, y);
+		if (b % d == 0) {
+			cout &lt;&lt; (ll) b / d * x % m &lt;&lt; &#39;\n&#39;;
+		} else {
+			puts(&#34;impossible&#34;);
+		}
+	}
+	return 0;
+}
+```
+
+#### 中国剩余定理(TODO)
+
+&gt; 设 $n_1, n_2, \dots, n_k$ 是两两互质的正整数，且 $N = n_1​ × n_2 ​× ⋯ × n_k$。如果我们有如下同余方程组：
+
+$$
+\begin{cases}
+x \equiv a_1 \pmod{n_1} \\
+x \equiv a_2 \pmod{n_2} \\
+\vdots \\
+x \equiv a_k \pmod{n_k}
+\end{cases}
+$$
+
+那么这个方程组在模 N 下有唯一解 x ：
+$$x \equiv \sum_{i=1}^{k} a_i \cdot M_i \cdot y_i \pmod{N}$$
+
+其中，$M_i = \frac{N}{n_i}$，而 $y_i$ 是 $M_i$ 在模 $n_i$ 下的逆元，即：
+$$M_i \cdot y_i \equiv 1 \pmod{n_i}$$
+
+&gt; 最终解的表达式可以写为：
+
+$$x = \left(\sum_{i=1}^{k} a_i \cdot M_i \cdot y_i\right) \mod N$$
+
+#### 高斯消元
+**例题1-AcWing 883. 高斯消元解线性方程组**
+```c&#43;&#43;
+#include &lt;iostream&gt;
+#include &lt;cmath&gt;
+using namespace std;
+
+const int N = 110, eps = 1e-8;
+int n;
+double a[N][N];
+
+void out() {
+	for (int i = 1; i &lt;= n; i&#43;&#43;) {
+		for (int j = 1; j &lt;= n &#43; 1; j&#43;&#43;) printf(&#34;%10.2lf&#34;, a[i][j]);
+		puts(&#34;&#34;);
+	}
+	puts(&#34;&#34;);
+}
+
+
+int gauss() {
+	int r = 1;
+	for (int c = 1; c &lt;= n; c&#43;&#43;) { // 枚举每一列
+		int t = r;
+		for (int i = r; i &lt;= n; i&#43;&#43;) {
+			if (fabs(a[i][c]) &gt; fabs(a[t][c])) t = i;// 找出该列中绝对值最大的行
+		}
+		if (fabs(a[t][c]) &lt; eps) continue; // 若该行c列为0, 那么处理下一列
+		for (int i = c; i &lt;= n &#43; 1; i&#43;&#43;) swap(a[t][i], a[r][i]);// 将绝对值最大的行与当前行互换
+		for (int i = n &#43; 1; i &gt;= c; i--) a[r][i] /= a[r][c]; // 将行首系数化为1
+		for (int i = r &#43; 1; i &lt;= n; i&#43;&#43;) {
+			for (int j = n &#43; 1; j &gt;= c; j--) {
+				a[i][j] -= a[r][j] * a[i][c];// 将该行行首元素化为0
+			}
+		}
+//		out();
+		r&#43;&#43;;// 处理下一行
+	}
+	if (r &lt;= n) { // 在某次执行过程中存在剩下的某列的系数全为0
+		for (int i = r; i &lt;= n; i&#43;&#43;) {
+			if (fabs(a[i][n &#43; 1]) &gt; eps) return 0;// 若方程右边不为0, 则无解
+		}
+		return 2;// 若方程右边全为0, 则多解
+	}
+	for (int i = n - 1; i &gt;= 1; i--) { // 末行已处理好, 因此从倒数第二行开始倒着处理每行
+		for (int j = i &#43; 1; j &lt;= n; j&#43;&#43;) {
+			a[i][n &#43; 1] -= a[i][j] * a[j][n &#43; 1];
+		}
+	}
+	return 1;
+}
+
+int main() {
+	freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
+	cin &gt;&gt; n;
+	for (int i = 1; i &lt;= n; i&#43;&#43;) {
+		for (int j = 1; j &lt;= n &#43; 1; j&#43;&#43;) cin &gt;&gt; a[i][j];
+	}
+	int t = gauss();
+	if (t == 0) puts(&#34;No solution&#34;);
+	else if (t == 2) puts(&#34;Infinite group solutions&#34;);
+	else {
+		for (int i = 1; i &lt;= n; i&#43;&#43;) printf(&#34;%.2lf\n&#34;, a[i][n &#43; 1]);
+	}
+	return 0;
+}
+```
+
+#### 组合数
+
+##### 排列与组合
+
+排列公式如下
+$$
+A^n_m = \frac{m!}{(m-n)!} = m\ \cdot\ (m-1)\ \cdot \ ... \ \cdot (\ m-(n-1)\ ) 
+$$
+
+```c&#43;&#43;
+ll Permutation(int m, int n) {
+	if (n &gt; m) return 0;
+	if (n == 0) return 1;
+	ll up = 1, down = 1;
+	for (int i = 1; i &lt;= m; i&#43;&#43;) up *= i;
+	for (int i = 1; i &lt;= (m - n); i&#43;&#43;) down *= i;
+	return up / down;
+}
+```
+
+组合公式如下
+
+$$
+C^n_m = \frac{m!}{n!\cdot(m-n)!} = \frac{m\cdot(m-1)\cdot\ ...\ \cdot (\ m-(n-1)\ )}{1\ \cdot \ 2\ \cdot\  ...\ \cdot (n-1)\ \cdot n}
+$$
+
+```c&#43;&#43;
+ll combination(int m, int n) {
+	if (m == 0) return 1;
+	if (n &gt; m) return 0;
+	ll up = 1, down = 1, res;
+	for (int i = 0; i &lt; n; i&#43;&#43;) {
+		up *= m - i;
+		down *= i &#43; 1;
+	}
+	return  up / down;
+}
+```
+
+##### $C_a^b$在多重场景下的求法
+**例题1-AcWing885.求组合数1**
+这道题因为 $1&lt;=a,b&lt;=2000$, 所以可以使用递推的方法初始化, 递推公式如下
+$$
+C_a^b\ = \ C_{a-1}^{b-1} \ &#43; \ C_{a-1}^b
+$$
+```c&#43;&#43;
+void init() {
+	for (int i = 0; i &lt; N; i&#43;&#43;) {
+		for (int j = 0; j &lt;= i; j&#43;&#43;) {
+			if (!j) c[i][j] = 1;
+			else c[i][j] = (c[i - 1][j - 1] &#43; c[i - 1][j]) % mod;
+		}
+	}
+}
+```
+
+**例题2-AcWing886.求组合数2**
+这题因为$1&lt;=a,b&lt;=10^5$, 直接递推打表会$MLE$，因此我们可以使用费马小定理&#43;快速幂求逆元的方法来递推求解
+```c&#43;&#43;
+#include &lt;iostream&gt;
+using namespace std;
+typedef long long ll;
+const int N = 1e5 &#43; 10, mod = 1e9 &#43; 7;
+
+int fact[N], infact[N];
+
+ll qmi(int a, int k, int p) {
+	ll res = 1;
+	while (k) {
+		if (k &amp; 1) res = res * a % p;
+		k &gt;&gt;= 1;
+		a = (ll) a * a % p;
+	}
+	return res;
+}
+
+int main() {
+	freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
+	fact[0] = infact[0] = 1;
+	for (int i = 1; i &lt; N; i&#43;&#43;) {
+		fact[i] = (ll) fact[i - 1] * i % mod;
+		infact[i] = (ll) infact[i - 1] * qmi(i, mod - 2, mod) % mod;// 逆元累乘
+	}
+	int n, a, b;
+	cin &gt;&gt; n;
+	while (n--) {
+		cin &gt;&gt; a &gt;&gt; b;
+		cout &lt;&lt; (ll) fact[a] * infact[b] % mod * infact[a - b] % mod &lt;&lt; &#39;\n&#39;;
+	}
+	return 0;
+}
+```
+**例题3-AcWing887.求组合数3**
+因为$1&lt;=a,b&lt;=10^{18}$, 所以这里需要用到下面这个卢卡斯定理
+&gt; Lucas定理
+$$
+C_a^b\ = \ C_{a\%p}^{b\%p}\ *\  C_{a\div p}^{b\div p}\ (mod\ p)
+$$
+```c&#43;&#43;
+#include &lt;iostream&gt;
+using namespace std;
+typedef long long ll;
+
+int qmi(int a, int k, int p) {
+	int res = 1;
+	while (k) {
+		if (k &amp; 1) res = (ll)res * a % p;
+		k &gt;&gt;= 1;
+		a = (ll)a * a % p;
+	}
+	return res;
+}
+
+int C(int a, int b, int p) {
+	int res = 1;
+	if (a &lt; b) return 0;
+	for (int i = 1, j = a; i &lt;= b; i&#43;&#43;, j--) {
+		res = (ll) res * j % p;
+		res = (ll) res * qmi(i, p - 2, p) % p;
+	}
+	return res;
+}
+
+int lucas(ll a, ll b, int p) {
+	if (a &lt; p &amp;&amp; b &lt; p) return C(a, b, p);
+	return (ll) C(a % p, b % p, p) * lucas(a / p, b / p, p) % p;
+}
+
+int main() {
+	freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
+	int n, a, b, c, p;
+	cin &gt;&gt; n;
+	while (n--) {
+		cin &gt;&gt; a &gt;&gt; b &gt;&gt; p;
+		cout &lt;&lt; lucas(a, b, p) &lt;&lt; &#39;\n&#39;;
+	}
+	return 0;
+}
+```
+
+
+
+
+**例题4-AcWing888.求组合数4**
+
+
+
+#### 容斥原理
+
+#### 博弈论
+
+
 
 
 ### 动态规划(Dynamic Programming, dp)
@@ -2861,42 +3199,6 @@ int main() {
 #### 数学基础
 
 ##### 排列与组合
-
-排列公式如下
-$$
-A^n_m = \frac{m!}{(m-n)!} = m\ \cdot\ (m-1)\ \cdot \ ... \ \cdot (\ m-(n-1)\ ) 
-$$
-
-```c&#43;&#43;
-ll Permutation(int m, int n) {
-	if (n &gt; m) return 0;
-	if (n == 0) return 1;
-	ll up = 1, down = 1;
-	for (int i = 1; i &lt;= m; i&#43;&#43;) up *= i;
-	for (int i = 1; i &lt;= (m - n); i&#43;&#43;) down *= i;
-	return up / down;
-}
-```
-
-组合公式如下
-
-$$
-C^n_m = \frac{m!}{n!\cdot(m-n)!} = \frac{m\cdot(m-1)\cdot\ ...\ \cdot (\ m-(n-1)\ )}{1\ \cdot \ 2\ \cdot\  ...\ \cdot (n-1)\ \cdot n}
-$$
-
-```c&#43;&#43;
-ll combination(int m, int n) {
-	if (m == 0) return 1;
-	if (n &gt; m) return 0;
-	ll up = 1, down = 1, res;
-	for (int i = 0; i &lt; n; i&#43;&#43;) {
-		up *= m - i;
-		down *= i &#43; 1;
-	}
-	return  up / down;
-}
-```
-
 
 **例题1-ZJNUOJ-RPG的错排（组合数&#43;错排）**
 ```c&#43;&#43;
