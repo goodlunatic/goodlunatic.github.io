@@ -1899,16 +1899,173 @@ int main() {
 }
 ```
 
-
-
-
 **例题4-AcWing888.求组合数4**
+这道题要求我们计算 $C_a^b$ 的精确数值, 不进行取模, 并且 $1&lt;=a,b&lt;=500$ ,因此我们这里需要用到分解质因数&#43;高精度乘法的方法
 
+这里还需要用到下面这个定理来提高效率
+![](imgs/image-20240824191901858.png)
 
+![](imgs/image-20240824192012316.png)
 
-#### 容斥原理
+```c&#43;&#43;
+#include &lt;iostream&gt;
+#include &lt;vector&gt;
+using namespace std;
+
+const int N = 5010;
+int primes[N], sum[N], cnt;
+bool st[N];
+
+void get_primes(int n) {
+	for (int i = 2; i &lt;= n; i&#43;&#43;) {
+		if (!st[i]) primes[cnt&#43;&#43;] = i;
+		for (int j = 0; primes[j] &lt;= n / i; j&#43;&#43;) {
+			st[primes[j]*i] = true;
+			if (i % primes[j] == 0) break;
+		}
+	}
+}
+
+vector&lt;int&gt; mul(vector&lt;int&gt;&amp;A, int b) {
+	vector&lt;int&gt;C;
+	int t = 0;
+	for (int i = 0; i &lt; A.size(); i&#43;&#43;) {
+		t &#43;= A[i] * b;
+		C.push_back(t % 10);
+		t /= 10;
+	}
+	while (t) {
+		C.push_back(t % 10);
+		t /= 10;
+	}
+	return C;
+}
+
+int get(int n, int p) {
+	int cnt2 = 0;
+	while (n) {
+		cnt2 &#43;= n / p;
+		n /= p;
+	}
+	return cnt2;
+}
+
+int main() {
+	freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
+	int a, b;
+	cin &gt;&gt; a &gt;&gt; b;
+	get_primes(a);
+	for (int i = 0; i &lt; cnt; i&#43;&#43;) {
+		int p = primes[i];
+		sum[i] = get(a, p) - get(b, p) - get(a - b, p);// 根据定理和公式分解质因数
+	}
+	vector&lt;int&gt;res;
+	res.push_back(1);
+	for (int i = 0; i &lt; cnt; i&#43;&#43;) {
+		for (int j = 0; j &lt; sum[i]; j&#43;&#43;) {// 根据每个素数出现的次数将素数相乘
+			res = mul(res, primes[i]);
+		}
+	}
+	for (int i = res.size() - 1; i &gt;= 0; i--) cout &lt;&lt; res[i];
+	puts(&#34;&#34;);
+	return 0;
+}
+```
+#### 卡特兰数
+$$
+C_{2n}^{n}-C_{2n}^{n-1}\ = \ \frac{1}{n&#43;1} \cdot
+ C_{2n}^n$$
+**例题1-AcWing 889. 满足条件的01序列**
+```c&#43;&#43;
+#include &lt;iostream&gt;
+using namespace std;
+typedef long long ll;
+
+const int mod = 1e9 &#43; 7;
+
+ll qmi(int a, int k, int p) {
+	int res = 1;
+	while (k) {
+		if (k &amp; 1) res = (ll)res * a % p;
+		k &gt;&gt;= 1;
+		a = (ll)a * a % p;
+	}
+	return res;
+}
+
+int main() {
+	freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
+	int n;
+	cin &gt;&gt; n;
+	int res = 1;
+	for (int i = 2 * n; i &gt; n; i--) res = (ll)res * i % mod;// 组合数的分子
+	for (int i = 1; i &lt;= n; i&#43;&#43;) res = (ll)res * qmi(i, mod - 2, mod) % mod;// 组合数的分母的逆元
+	res = (ll) res * qmi(n &#43; 1, mod - 2, mod) % mod;
+	cout &lt;&lt; res &lt;&lt; &#39;\n&#39;;
+	return 0;
+}
+```
+
+#### 容斥原理(TODO)
+**例题1-AcWing 890. 能被整除的数**
+```c&#43;&#43;
+#include &lt;iostream&gt;
+using namespace std;
+typedef long long ll;
+
+const int N = 20;
+int p[N];
+
+int main() {
+	freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
+	int n, m;
+	cin &gt;&gt; n &gt;&gt; m;
+	for (int i = 0; i &lt; m; i&#43;&#43;) cin &gt;&gt; p[i];
+	int res = 0;
+	for (int i = 1; i &lt; 1 &lt;&lt; m; i&#43;&#43;) {// 枚举1到2^m-1每个数
+		int t = 1, cnt = 0;
+		for (int j = 0; j &lt; m; j&#43;&#43;) {
+			if (i &gt;&gt; j &amp; 1) {
+				cnt&#43;&#43;;
+				if ((ll)t * p[j] &gt; n) {
+					t -= 1;
+					break;
+				}
+				t *= p[j];
+			}
+		}
+		if (t != -1) {
+			if (cnt &amp; 1) res &#43;= n / t;
+			else res -= n / t;
+		}
+	}
+	cout &lt;&lt; res &lt;&lt; &#39;\n&#39;;
+	return 0;
+}
+```
 
 #### 博弈论
+
+**例题1-AcWing 891. Nim游戏**
+```c&#43;&#43;
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+	freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
+	int n, x, res = 0;
+	cin &gt;&gt; n;
+	while (n--) {
+		cin &gt;&gt; x;
+		res ^= x;
+	}
+	if (res) cout &lt;&lt; &#34;Yes&#34; &lt;&lt; &#39;\n&#39;;
+	else cout &lt;&lt; &#34;No&#34; &lt;&lt; &#39;\n&#39;;
+	return 0;
+}
+```
+
+
 
 
 
