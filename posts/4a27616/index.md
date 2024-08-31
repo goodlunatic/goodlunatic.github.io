@@ -157,7 +157,9 @@ hint文件中提示了天琴座，天琴座的英文是 lyra
 解压后得到一张定位块丢失的二维码，修复定位块
 
 ![](imgs/image-20240828172237519.png)
+
 扫码可以得到以下内容
+
 &gt; NRF@WQUKTQ12345&amp;WWWF@WWWFX#WWQXNWXNU
 
 rot13解密一下得到：AES@JDHXGD12345&amp;JJJS@JJJSK#JJDKAJKAH
