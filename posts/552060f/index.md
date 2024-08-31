@@ -7,14 +7,16 @@
 
 ## 输入与输出
 
-| 函数            | 用法                                                                                   |
-| ------------- | ------------------------------------------------------------------------------------ |
-| scanf()       | 默认是以空白字符（空格、制表符、换行符）为分隔，当有多组样例的时候，可以使用`while(scanf(&#34;%d&#34;,&amp;a)!=EOF)`来进行多组样例的输入         |
-| getchar()     | 从标准输入流中读取一个字符，常用来处理上一行末尾留下的换行符                                                       |
-| fgets()       | `fgets(a,MAX_LEN,stdin);`读取一整行的文本，末尾会多一个换行符；可使用`str[strcspn(str, &#34;\n&#34;)] = &#39;\0&#39;;`进行处理 |
-| cin.getline() | `cin.getline(str, MAXN);` 其中 str 是 `char[]`，读取一整行的文本，末尾没有换行符                         |
-| getline()     | `getline(cin,str)`其中 str 是 `string str`，读取一整行的文本，末尾没有换行符                             |
-| sprintf()     | `sprintf(s, &#34;Integer: %d, Float: %.2f&#34;, num, fnum);`用于将格式化的数据写入到一个字符串中               |
+| 函数                       | 用法                                                                                   |
+| ------------------------ | ------------------------------------------------------------------------------------ |
+| `scanf()`                | 默认是以空白字符（空格、制表符、换行符）为分隔，当有多组样例的时候，可以使用`while(scanf(&#34;%d&#34;,&amp;a)!=EOF)`来进行多组样例的输入         |
+| `getchar()`              | 从标准输入流中读取一个字符，常用来处理上一行末尾留下的换行符                                                       |
+| `fgets()`                | `fgets(a,MAX_LEN,stdin);`读取一整行的文本，末尾会多一个换行符；可使用`str[strcspn(str, &#34;\n&#34;)] = &#39;\0&#39;;`进行处理 |
+| `cin.getline()`          | `cin.getline(str, MAXN);` 其中 str 是 `char[]`，读取一整行的文本，末尾没有换行符                         |
+| `getline()`              | `getline(cin,str)`其中 str 是 `string str`，读取一整行的文本，末尾没有换行符                             |
+| `sprintf()`              | `sprintf(s, &#34;Integer: %d, Float: %.2f&#34;, num, fnum);`用于将格式化的数据写入到一个字符串中               |
+| `istringstream iss(str)` | 流化一个字符串，从一个字符串中读取数据，包含在`#include &lt;sstream&gt;` 文件头中                                     |
+|                          |                                                                                      |
 
 ## 一些函数
 
@@ -26,12 +28,13 @@
 | `sprintf(字符数组,格式串,变量)`  | 将变量按格式字符串的格式写入到字符数组                                                         |
 | `sscanf(字符数组,格式串,&amp;变量)`  | 从字符数组中按格式串提取变量，返回成功提取的变量数量                                                  |
 | `strcspn(str,&#34;\\n&#34;)`    | 返回字符串 str 中第一个出现的字符 \\n 的位置                                                 |
-| `strcmp(s1,s2)`         | 比较两个字符串的字典序大小                                                               |
+| `strcmp(s1,s2)`         | 比较两个字符串的字典序大小, 如果`s1=s2`返回0, `s1&gt;s2`返回正值, `s1&lt;s2`返回负值                       |
 | `strcat(s1,s2)`         | 将字符串`s2`拼接到`s1`后面                                                           |
 | `strcpy(s1,s2)`         | 将字符串s2复制到字符串s1中                                                             |
 | `string.erase(pos,len)` | `.erase()` 是 `string` 类型的成员函数,用于删除从 `pos` 开始长度为 `len` 的字符串                  |
 | `stoi(str)`             | 将 `string` 类型的字符串转换为 `int` 类型，并且`stoi` 会隐式地将 `char` 数组转换为 `string`，然后再转换为整数 |
-|                         |                                                                             |
+| `to_string()`           | 用于将各种基本数据类型（如 `int、float、double、long `等）转换为字符串`std::string`                 |
+| `remove()`              | `remove(token.begin(), token.end(), &#39; &#39;)`将所有空格元素移动到末尾，并返回第一个空格的迭代器          |
 ### C&#43;&#43;的STL中一些常用的库函数
 #### vector 数组
 
@@ -46,17 +49,25 @@
 | `back()`         | 返回数组最后一个元素的引用                        |
 | `begin()`        | 返回数组第一个元素的迭代器                        |
 | `end()`          | 返回数组最后一个元素后一个位置的迭代器                  |
+| `clear()`        | 清空数组                                 |
 
 #### map 关联容器
 &gt; `map`会自动按照键值排序
 
-| 成员函数      | 用法                                   |
-| --------- | ------------------------------------ |
-| `size()`  | 返回容器当前包含元素的数量                        |
-| `empty()` | 检查当前的数组是否为空, 是则返回`true`, 否则返回`false` |
-| `begin()` | 返回数组第一个元素的迭代器                        |
-| `end()`   | 返回数组最后一个元素后一个位置的迭代器                  |
-
+| 成员函数            | 用法                                   |
+| --------------- | ------------------------------------ |
+| `size()`        | 返回容器当前包含元素的数量                        |
+| `empty()`       | 检查当前的数组是否为空, 是则返回`true`, 否则返回`false` |
+| `begin()`       | 返回数组第一个元素的迭代器                        |
+| `end()`         | 返回数组最后一个元素后一个位置的迭代器                  |
+| `insert()`      | 可以插入一个`pair`                         |
+| `find()`        | 若找到该元素则返回指向该元素的迭代器，否侧返回`.end()`      |
+| `lower_bound()` | 返回大于等于x的最小的数的迭代器                     |
+| `upper_bound()` | 返回大于x的最小的数的迭代器                       |
+```c&#43;&#43;
+map&lt;string, int&gt;mp;
+mp[&#34;example&#34;] = 1;
+```
 #### pair 模板类
 ```c&#43;&#43;
 using namespace std;
@@ -67,6 +78,16 @@ cout &lt;&lt; v[i].first &lt;&lt; &#34; &#34; &lt;&lt; v[i].second &lt;&lt; &#39
 ```
 
 #### queue 队列
+
+| 成员函数      | 用法        |
+| --------- | --------- |
+| `size()`  | 返回队列长度    |
+| `empty()` | 返回队列是否为空  |
+| `push()`  | 向队尾插入一个元素 |
+| `front()` | 返回队头元素    |
+| `back()`  | 返回队尾元素    |
+| `pop()`   | 弹出队头元素    |
+
 ```c&#43;&#43;
 queue&lt;int&gt; q;// 循环队列
 
@@ -82,6 +103,17 @@ priority_queue&lt;int&gt; q;// 大根堆
 priority_queue&lt;int, vector&lt;int&gt;, greater&lt;int&gt; q;// 小根堆
 priority_queue&lt;pair&lt;int, int&gt;&gt;q;
 ```
+
+#### priority_queue 优先队列
+默认定义的话就是大根堆 `priority_queue&lt;int&gt; heap;`
+
+如果需要定义小根堆的话 `priority_queue&lt;int, vector&lt;int&gt;, greater&lt;int &gt;&gt; heap`
+
+| 成员函数     | 用法     |
+| -------- | ------ |
+| `push()` | 插入一个元素 |
+| `top()`  | 返回堆顶元素 |
+| `pop()`  | 弹出堆顶元素 |
 
 ```c&#43;&#43;
 priority_queue&lt;int&gt; maxHeap;
@@ -130,13 +162,30 @@ int main() {
 &gt; 集合的元素具有唯一性
 &gt; `set&lt;int&gt; s;`
 
-| 成员函数       | 用法                                                           |
-| ---------- | ------------------------------------------------------------ |
-| `insert()` | 将元素插入到集合中                                                    |
-| `erase()`  | 删除指定元素, 比如                                                   |
-| `find()`   | 查找指定元素, 并返回指向该元素的迭代器, 如果找不到则返回 `set.end()`, 可以通过 `*it` 来访问元素 |
-| `size()`   | 返回集合中的元素数量                                                   |
-| `count()`  | 判断某个元素是否存在, 返回0或1                                            |
+| 成员函数            | 用法                                                           |
+| --------------- | ------------------------------------------------------------ |
+| `insert()`      | 将元素插入到集合中                                                    |
+| `erase()`       | 删除指定元素, 参数可以是一个元素, 也可以是一个迭代器                                 |
+| `find()`        | 查找指定元素, 并返回指向该元素的迭代器, 如果找不到则返回 `set.end()`, 可以通过 `*it` 来访问元素 |
+| `size()`        | 返回集合中的元素数量                                                   |
+| `count()`       | 判断某个元素是否存在, 返回0或1                                            |
+| `ckear()`       | 清空集合                                                         |
+| `lower_bound()` | 返回大于等于x的最小的数的迭代器                                             |
+| `upper_bound()` | 返回大于x的最小的数的迭代器                                               |
+
+#### bitset 模板类
+定义 `bitset&lt;10000&gt; S`;
+
+| 成员函数       | 用法         |
+| ---------- | ---------- |
+| `count()`  | 返回有多少个1    |
+| `any()`    | 判断是否至少有一个1 |
+| `none()`   | 判断是否全为0    |
+| `set()`    | 把所有位置置为1   |
+| `set(k,v)` | 将第k位置成v    |
+| `reset()`  | 把所有位置成0    |
+| `flip()`   | 等价于~       |
+| `flip(k)`  | 把第k位取反     |
 
 #### 查找相关的函数
 
@@ -364,62 +413,6 @@ int main() {
 	return 0;
 }
 ```
-
-
-### 并查集
-
-```c&#43;&#43;
-#include &lt;bits/stdc&#43;&#43;.h&gt;  
-using namespace std;  
-  
-const int MAXN = 100005;  
-vector&lt;int&gt;v(MAXN &#43; 1), num(MAXN &#43; 1);  
-  
-void initt(int n) {  
-    for (int i = 1; i &lt;= n; &#43;&#43;i) {  
-        v[i] = i;  
-        num[i] = 1;  
-    }  
-}  
-  
-int findd(int x) {  
-    if (v[x] != x) v[x] = findd(v[x]);  
-    return v[x];  
-}  
-  
-void unionn(int x, int y) {  
-    int a = findd(x);  
-    int b = findd(y);  
-    if (a != b) {  
-        v[b] = a;  
-        num[a] &#43;= num[b];  
-    }  
-}  
-  
-int main() {  
-    freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);  
-    int n, m, a, b, c;  
-    scanf(&#34;%d%d&#34;, &amp;n, &amp;m);  
-    getchar();  
-    initt(n);  
-    char opcode;  
-    while (m--) {  
-        scanf(&#34;%c&#34;, &amp;opcode);  
-        if (opcode == &#39;M&#39;) {  
-            scanf(&#34;%d%d&#34;, &amp;a, &amp;b);  
-            getchar();  
-            unionn(a, b);  
-        } else if (opcode == &#39;Q&#39;) {  
-            scanf(&#34;%d&#34;, &amp;c);  
-            getchar();  
-            printf(&#34;%d\n&#34;, num[findd(c)]);  
-        }  
-    }  
-    return 0;  
-}
-```
-
-例题1-ZJNUOJ-亲戚——高级
 
 ### 高精度
 
@@ -947,7 +940,7 @@ int main() {
 }
 ```
 
-### 搜索
+### 搜索与图论
 #### 深度优先搜索(DFS)
 
 **例题1-AcWing 842. 排列数字 **
@@ -1323,6 +1316,526 @@ int main() {
 	return 0;
 }
 ```
+
+### 最短路
+#### 单源最短路
+##### 所有边的权重都是正数
+朴素Dijkstra算法 $时间复杂度:O(n^2)$, 适合稠密图
+
+**例题1-AcWing 849. Dijkstra求最短路 I**
+```c&#43;&#43;
+#include &lt;iostream&gt;
+#include &lt;cstring&gt;
+#include &lt;algorithm&gt;
+using namespace std;
+
+const int N = 510;
+int g[N][N];
+int dist[N];// 1号点到i号点的最短距离
+bool st[N];// 节点状态-是否已经更新为最短距离节点
+int n, m;
+
+int dijkstra() {
+	memset(dist, 0x3f, sizeof dist);
+	dist[1] = 0;
+	for (int i = 0; i &lt; n; i&#43;&#43;) {// 遍历所有节点
+		int t = -1;
+		for (int j = 1; j &lt;= n; j&#43;&#43;) {// 找到未处理的最短距离节点
+			if (!st[j] &amp;&amp; (t == -1 || dist[t] &gt; dist[j])) {
+				t = j;
+			}
+		}
+		if (t == -1) break;
+		st[t] = true;
+		for (int j = 1; j &lt;= n; j&#43;&#43;) {
+			dist[j] = min(dist[j], dist[t] &#43; g[t][j]);
+		}
+	}
+	if (dist[n] == 0x3f3f3f3f) return -1;
+	else return dist[n];
+}
+
+int main() {
+	freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
+	cin &gt;&gt; n &gt;&gt; m;
+	memset(g, 0x3f, sizeof g);
+	while (m--) {
+		int a, b, c;
+		cin &gt;&gt; a &gt;&gt; b &gt;&gt; c;
+		g[a][b] = min(g[a][b], c);
+	}
+	int t = dijkstra();
+	cout &lt;&lt; t &lt;&lt; &#39;\n&#39;;
+	return 0;
+}
+```
+
+堆优化版的Dijkstra算法 $时间复杂度:O(mlog_n)$, 适合稀疏图
+```c&#43;&#43;
+#include &lt;iostream&gt;
+#include &lt;cstring&gt;
+#include &lt;algorithm&gt;
+#include &lt;queue&gt;
+using namespace std;
+typedef pair&lt;int, int&gt; PII;
+const int INF = 0x3f3f3f3f;
+const int N  = 2e5 &#43; 10;
+int h[N], e[N], ne[N], w[N];
+int dist[N];// 1号点到i号点的最短距离
+bool st[N];// 节点状态-是否已经更新为最短距离节点
+int n, m, idx;
+
+void add(int a, int b, int c) {
+	e[idx] = b, w[idx] = c, ne[idx] = h[a], h[a] = idx&#43;&#43;;
+}
+
+int dijkstra() {
+	memset(dist, 0x3f, sizeof dist);
+	dist[1] = 0;
+	priority_queue&lt;PII, vector&lt;PII&gt;, greater&lt;PII&gt; &gt;heap;
+	heap.push({0, 1});
+	while (heap.size()) {
+		PII t = heap.top();// 取小根堆中距离节点1最小的元素
+		heap.pop();
+		int ver = t.second, distance = t.first;
+		if (st[ver]) continue;
+		st[ver] = true;
+		for (int i = h[ver]; i != -1; i = ne[i]) {// 遍历当前节点 ver 的所有邻接边。
+			int j = e[i];
+			if (dist[j] &gt; distance &#43; w[i]) {
+				dist[j] =  distance &#43; w[i];
+				heap.push({dist[j], j});
+			}
+		}
+	}
+	if (dist[n] == INF) return -1;
+	else return dist[n];
+}
+
+int main() {
+	freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
+	scanf(&#34;%d%d&#34;, &amp;n, &amp;m);
+	memset(h, -1, sizeof h);
+	while (m--) {
+		int a, b, c;
+		scanf(&#34;%d%d%d&#34;, &amp;a, &amp;b, &amp;c);
+		add(a, b, c);
+	}
+	int t = dijkstra();
+	printf(&#34;%d\n&#34;, t);
+	return 0;
+}
+```
+
+##### 存在负权边
+
+Bellman-Ford算法 $时间复杂度:O(n*m)$
+
+**例题1-AcWing 853. 有边数限制的最短路**
+```c&#43;&#43;
+#include &lt;iostream&gt;
+#include &lt;cstring&gt;
+#include &lt;algorithm&gt;
+using namespace std;
+
+const int N = 510, M = 10010, INF = 0x3f3f3f3f;
+int dist[N];// 距离数组
+int backup[N];// 备份数组
+int n, m, k;
+
+struct Edge {
+	int a, b, w;
+} edges[M];
+
+int bellman_ford() {
+	memset(dist, 0x3f, sizeof dist);
+	dist[1] = 0;
+	for (int i = 0; i &lt; k; i&#43;&#43;) {
+		memcpy(backup, dist, sizeof dist);// 使用备份数组，防止串联
+		for (int j = 0; j &lt; m; j&#43;&#43;) {
+			int a = edges[j].a, b = edges[j].b, w = edges[j].w;
+			dist[b] = min(dist[b], backup[a] &#43; w);
+		}
+	}
+	if (dist[n] &gt; INF / 2) return -1;
+	return dist[n];
+}
+
+int main() {
+	freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
+	scanf(&#34;%d%d%d&#34;, &amp;n, &amp;m, &amp;k);
+	for (int i = 0; i &lt; m; i&#43;&#43;) {
+		int a, b, w;
+		scanf(&#34;%d%d%d&#34;, &amp;a, &amp;b, &amp;w);
+		edges[i] = {a, b, w};
+	}
+	int t = bellman_ford();
+	if (t == -1) puts(&#34;impossible&#34;);
+	else printf(&#34;%d\n&#34;, t);
+	return 0;
+}
+```
+
+SPFA算法 $时间复杂度:一般O(n), 最坏O(n*m)$
+
+**例题1-AcWing 851. spfa求最短路**
+```c&#43;&#43;
+#include &lt;iostream&gt;
+#include &lt;queue&gt;
+#include &lt;cstring&gt;
+#include &lt;algorithm&gt;
+using namespace std;
+
+const int N = 1e5 &#43; 10, INF = 0x3f3f3f3f;
+int n, m;
+int h[N], e[N], ne[N], w[N], idx;
+int dist[N];
+int st[N];// 判断某个节点是否在队列中
+
+void add(int a, int b, int c) {
+	e[idx] = b, w[idx] = c, ne[idx] = h[a], h[a] = idx&#43;&#43;;
+}
+
+int spfa() {
+	memset(dist, 0x3f, sizeof dist);
+	dist[1] = 0;
+	queue&lt;int&gt; q;
+	q.push(1);
+	st[1] = true;
+	while (q.size()) {
+		int t = q.front();
+		q.pop();
+		st[t] = false;
+		for (int i = h[t]; i != -1; i = ne[i]) {// 遍历节点的所有邻接边
+			int j = e[i];// 获取边的终点
+			if (dist[j] &gt; dist[t] &#43; w[i]) {
+				dist[j] = dist[t] &#43; w[i];
+				if (!st[j]) {
+					q.push(j);// 利用队列来进行优化，从而避免对所有边进行松弛操作
+					st[j] = true;
+				}
+			}
+		}
+	}
+	if (dist[n] == 0x3f3f3f3f) return -1;
+	return dist[n];
+}
+
+int main() {
+	freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
+	scanf(&#34;%d%d&#34;, &amp;n, &amp;m);
+	memset(h, -1, sizeof h);
+	while (m--) {
+		int a, b, c;
+		scanf(&#34;%d%d%d&#34;, &amp;a, &amp;b, &amp;c);
+		add(a, b, c);
+	}
+	int t = spfa();
+	if (t == -1) puts(&#34;impossible&#34;);
+	else printf(&#34;%d\n&#34;, t);
+	return 0;
+}
+```
+
+**例题2- AcWing 852. spfa判断负环**
+```c&#43;&#43;
+#include &lt;iostream&gt;
+#include &lt;queue&gt;
+#include &lt;cstring&gt;
+#include &lt;algorithm&gt;
+using namespace std;
+
+const int N = 1e5 &#43; 10, INF = 0x3f3f3f3f;
+int n, m;
+int h[N], e[N], ne[N], w[N], idx;
+int dist[N], cnt[N];
+int st[N];// 判断某个节点是否在队列中
+
+void add(int a, int b, int c) {
+	e[idx] = b, w[idx] = c, ne[idx] = h[a], h[a] = idx&#43;&#43;;
+}
+
+bool spfa() {
+	queue&lt;int&gt; q;
+	for (int i = 1; i &lt;= n; i&#43;&#43;) {
+		st[i] = true;
+		q.push(i);
+	}
+	while (q.size()) {
+		int t = q.front();
+		q.pop();
+		st[t] = false;
+		for (int i = h[t]; i != -1; i = ne[i]) {// 遍历节点的所有邻接边
+			int j = e[i];// 获取边的终点
+			if (dist[j] &gt; dist[t] &#43; w[i]) {
+				dist[j] = dist[t] &#43; w[i];
+				cnt[j] = cnt[t] &#43; 1;
+				if (cnt[j] &gt;= n) return true;
+				if (!st[j]) {
+					q.push(j);// 利用队列来进行优化，从而避免对所有边进行松弛操作
+					st[j] = true;
+				}
+			}
+		}
+	}
+	return false;
+}
+
+int main() {
+	freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
+	scanf(&#34;%d%d&#34;, &amp;n, &amp;m);
+	memset(h, -1, sizeof h);
+	while (m--) {
+		int a, b, c;
+		scanf(&#34;%d%d%d&#34;, &amp;a, &amp;b, &amp;c);
+		add(a, b, c);
+	}
+	if (spfa()) puts(&#34;Yes&#34;);
+	else puts(&#34;No&#34;);
+	return 0;
+}
+```
+
+#### 多源汇最短路
+
+Floyed算法 $时间复杂度:O(n^3)$
+```c&#43;&#43;
+#include &lt;iostream&gt;
+#include &lt;cstring&gt;
+#include &lt;algorithm&gt;
+using namespace std;
+
+const int N = 210, INF = 0x3f3f3f3f;
+int d[N][N];
+int n, m, k;
+
+void floyd() {
+	for (int k = 1; k &lt;= n; k&#43;&#43;) {
+		for (int i = 1; i &lt;= n; i&#43;&#43;) {
+			for (int j = 1; j &lt;= n; j&#43;&#43;) {
+				d[i][j] =  min(d[i][j], d[i][k] &#43; d[k][j]);
+			}
+		}
+	}
+}
+
+int main() {
+	freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
+	cin &gt;&gt; n &gt;&gt; m &gt;&gt; k;
+	memset(d, 0x3f, sizeof d);
+	for (int i = 0; i &lt; n; i&#43;&#43;) d[i][i] = 0;
+	while (m--) {
+		int a, b, c;
+		cin &gt;&gt; a &gt;&gt; b &gt;&gt; c;
+		d[a][b] = min(d[a][b], c);
+	}
+	floyd();
+	while (k--) {
+		int a, b;
+		cin &gt;&gt; a &gt;&gt; b;
+		if (d[a][b] &gt; INF / 2) puts(&#34;impossible&#34;);
+		else cout &lt;&lt; d[a][b] &lt;&lt; &#39;\n&#39;;
+	}
+	return 0;
+}
+```
+### 最小生成树
+#### Prim算法
+稠密图用朴素版Prim, $时间复杂度:O(n^2)$
+```c&#43;&#43;
+#include &lt;iostream&gt;
+#include &lt;cstring&gt;
+#include &lt;algorithm&gt;
+using namespace std;
+
+const int N = 510, INF = 0x3f3f3f3f;
+int g[N][N];
+int dist[N];
+bool st[N];
+int n, m;
+
+int prim() {
+	memset(dist, 0x3f, sizeof dist);
+	int res = 0;
+	for (int i = 0; i &lt; n; i&#43;&#43;) {
+		int t = -1;
+		for (int j = 1; j &lt;= n; j&#43;&#43;) {
+			if (!st[j] &amp;&amp; (t == -1 || dist[t] &gt; dist[j])) {// 找到距离当前集合最小的点
+				t = j;
+			}
+		}
+		if (i &amp;&amp; dist[t] == INF) return INF;
+		if (i) res &#43;= dist[t];// 如果是第一个点，需要通过下面的代码加入到集合中
+		for (int j = 1; j &lt;= n; j&#43;&#43;) dist[j] = min(dist[j], g[t][j]);
+		st[t] = true;
+	}
+	return res;
+}
+
+int main() {
+	freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
+	cin &gt;&gt; n &gt;&gt; m;
+	memset(g, 0x3f, sizeof g);
+	while (m--) {
+		int a, b, c;
+		cin &gt;&gt; a &gt;&gt; b &gt;&gt; c;
+		g[a][b] = c;
+	}
+	int t = prim();
+	if (t == INF) puts(&#34;impossible&#34;);
+	else cout &lt;&lt; t &lt;&lt; &#39;\n&#39;;
+	return 0;
+}
+```
+稀疏图用堆优化版的Prim, $时间复杂度:O(mlog_n)$ `一般不常用`
+
+#### Kruskal算法, $时间复杂度:O(mlog_n)$
+
+**例题1-AcWing 859. Kruskal算法求最小生成树**
+```c&#43;&#43;
+#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+using namespace std;
+
+const int N = 200010;
+int n, m;
+int p[N];
+
+struct Edge {
+	int a, b, w;
+	bool operator &lt; (const Edge &amp;W) const {
+		return w &lt; W.w;
+	}
+} edges[N];
+
+int find(int x) {
+	if (p[x] != x) p[x] = find(p[x]);
+	return p[x];
+}
+
+int main() {
+	freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
+	cin &gt;&gt; n &gt;&gt; m;
+	for (int i = 0; i &lt; m; i&#43;&#43;) cin &gt;&gt; edges[i].a &gt;&gt; edges[i].b &gt;&gt; edges[i].w;
+	sort(edges, edges &#43; m);
+	for (int i = 1; i &lt;= n; i&#43;&#43;) p[i] = i;
+	int res = 0, cnt = 0;
+	for (int i = 0; i &lt; m; i&#43;&#43;) {
+		int a = edges[i].a, b = edges[i].b, w = edges[i].w;
+		a = find(a), b = find(b);
+		if (a != b) {
+			p[a] = b;
+			res &#43;= w;
+			cnt &#43;&#43;;
+		}
+	}
+	if (cnt &lt; n - 1) puts(&#34;impossible&#34;);
+	else cout &lt;&lt; res &lt;&lt; &#39;\n&#39;;
+	return 0;
+}
+```
+
+### 二分图
+#### 染色法, $时间复杂度:O(m&#43;n)$
+```c&#43;&#43;
+#include &lt;iostream&gt;
+#include &lt;cstring&gt;
+using namespace std;
+
+const int N = 1e5 &#43; 10, M = 2e5 &#43; 10;
+int h[N], e[N], ne[N], idx;
+int color[N];
+
+void add(int a, int b) {
+	e[idx] = b, ne[idx] = h[a], h[a] = idx&#43;&#43;;
+}
+
+bool dfs(int u, int c) {
+	color[u] = c;// 进行染色
+	for (int i = h[u]; i != -1; i = ne[i]) {
+		int v = e[i];
+		if (!color[v]) {// 这个邻接点未染色
+			if (!dfs(v, 3 - c)) return false;
+		} 
+		else if (color[v] == c) return false; // 矛盾
+	}
+	return true;
+}
+
+int main() {
+	freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
+	memset(h, -1, sizeof h);
+	int n, m;
+	cin &gt;&gt; n &gt;&gt; m;
+	while (m--) {
+		int a, b;
+		cin &gt;&gt; a &gt;&gt; b;
+		add(a, b), add(b, a);
+	}
+	bool flag = true;
+	for (int i = 1; i &lt;= n; i&#43;&#43;) {
+		if (!color[i]) {
+			if (!dfs(i, 1)) {
+				flag = false;
+				break;
+			}
+		}
+	}
+	if (flag) puts(&#34;Yes&#34;);
+	else puts(&#34;No&#34;);
+	return 0;
+}
+```
+#### 匈牙利算法(月老算法), $时间复杂度:O(m*n)\ 一般远小于这个$
+```c&#43;&#43;
+#include &lt;iostream&gt;
+#include &lt;cstring&gt;
+using namespace std;
+
+const int N = 510, M = 1e5 &#43; 10;
+int h[N], e[M], ne[M], idx;
+int n1, n2, m;
+int match[N];
+bool st[N];
+
+void add(int a, int b) {
+	e[idx] = b, ne[idx] = h[a],	h[a] = idx&#43;&#43;;
+}
+
+int find(int x) {// 遍历所有邻接点
+	for (int i = h[x]; i != -1; i = ne[i]) {
+		int j = e[i];
+		if (!st[j]) { // 如果右半部的j没有被这个点标记，就先标记
+			st[j] = true;
+			if (match[j] == 0 || find(match[j])) {// 右半部的未匹配或者之前已经匹配
+// 若之前已经匹配到的左半部元素无法找到另一个可匹配的对象就返回false
+				match[j] = x;
+				return true;
+			}
+		}
+	}
+	return false;
+}
+
+int main() {
+	freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
+	memset(h, -1, sizeof h);
+	cin &gt;&gt; n1 &gt;&gt; n2 &gt;&gt; m;
+	while (m--) {
+		int a, b;
+		cin &gt;&gt; a &gt;&gt; b;
+		add(a, b);
+	}
+	int res = 0;
+	for (int i = 1; i &lt;= n1; i&#43;&#43;) {
+		memset(st, false, sizeof st);
+		if (find(i)) res&#43;&#43;; // 如果能正常匹配
+	}
+	cout &lt;&lt; res &lt;&lt; &#39;\n&#39;;
+	return 0;
+}
+```
+
 
 ### 数学基础
 #### 质素相关
@@ -2065,8 +2578,49 @@ int main() {
 }
 ```
 
+**例题2-AcWing 893. 集合-Nim游戏**
 
+![](imgs/image-20240825121512404.png)
 
+```c&#43;&#43;
+#include &lt;iostream&gt;
+#include &lt;cstring&gt;
+#include &lt;set&gt;
+using namespace std;
+
+const int N = 110, M = 10010;
+int n, m, s[N], f[N];// s表示可选的取法, f表示sg的值
+
+int sg(int x) {
+	if (f[x] != -1) return f[x];// 记忆化搜索
+	set&lt;int&gt;S;
+	for (int i = 0; i &lt; m; i&#43;&#43;) {// 遍历所有后继节点
+		int sum = s[i];
+		if (x &gt;= sum) S.insert(sg(x - sum));// 将所有后继节点的sg值插入集合
+	}
+	for (int i = 0;; i&#43;&#43;) {// mex()函数
+		if (!S.count(i)) return f[x] = i;
+	}
+}
+
+int main() {
+	freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
+	cin &gt;&gt; m;
+	for (int i = 0; i &lt; m; i&#43;&#43;) cin &gt;&gt; s[i];
+	cin &gt;&gt; n;
+	memset(f, -1, sizeof f);
+	int res = 0;
+	for (int i = 0; i &lt; n; i&#43;&#43;) {// 将每堆石子的sg值异或在一起
+		int x;
+		cin &gt;&gt; x;
+		res ^= sg(x);
+		printf(&#34;sg(%d) = %d\n&#34;, x, sg(x));
+	}
+	if (res) puts(&#34;Yes&#34;);
+	else puts(&#34;No&#34;);
+	return 0;
+}
+```
 
 
 
@@ -2787,7 +3341,621 @@ int main() {
 
 
 ## 数据结构
- 
+### 链表与邻接表
+#### 单链表
+```c&#43;&#43;
+#include &lt;iostream&gt;
+using namespace std;
+const int N = 1e5 &#43; 10;
+
+int e[N], ne[N], idx, head;
+
+void init() {// 初始化
+	head = -1;
+	idx = 0;
+}
+
+void add_to_head(int x) {// 在头节点后插入元素
+	e[idx] = x, ne[idx] = head, head = idx &#43;&#43;;
+}
+
+void add(int k, int x) {// 在下标为k的元素后插入一个元素
+	e[idx] = x, ne[idx] = ne[k], ne[k] = idx&#43;&#43;;
+}
+
+void remove(int k) {// 删除下标为k的元素
+	ne[k] = ne[ne[k]];
+}
+
+int main() {
+	freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
+	init();
+	int m, k, x;
+	char op;
+	cin &gt;&gt; m;
+	while (m--) {
+		cin &gt;&gt; op;
+		if (op == &#39;H&#39;) {
+			cin &gt;&gt; x;
+			add_to_head(x);
+		} else if (op == &#39;I&#39;) {
+			cin &gt;&gt; k &gt;&gt; x;
+			add(k - 1, x);
+		} else {
+			cin &gt;&gt; k;
+			if (k == 0) head = ne[head];// 删除头节点
+			else remove(k - 1);
+		}
+	}
+	for (int i = head; i != -1; i = ne[i]) cout &lt;&lt; e[i] &lt;&lt; &#39; &#39;;
+	return 0;
+}
+```
+#### 双链表
+```c&#43;&#43;
+#include &lt;iostream&gt;
+using namespace std;
+
+const int N = 1e5 &#43; 10;
+int e[N], l[N], r[N], idx;
+
+void init() {
+	r[0] = 1, l[1] = 0, idx = 2;
+}
+
+void add(int k, int x) {
+	e[idx] = x, r[idx] = r[k], l[idx] = k;
+	l[r[k]] = idx, r[k] = idx&#43;&#43;;
+}
+
+void remove(int k) {
+	r[l[k]] = r[k], l[r[k]] = l[k];
+}
+
+int main() {
+	freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
+	init();
+	int m, k, x;
+	string op;
+	cin &gt;&gt; m;
+	while (m--) {
+		cin &gt;&gt; op;
+		if (op == &#34;L&#34;) {
+			cin &gt;&gt; x;
+			add(0, x);// 0号点右边就是链表的最左边
+		} else if (op == &#34;R&#34;) {
+			cin &gt;&gt; x;
+			add(l[1], x);// 1号点左边就是链表的最右边
+		} else if (op == &#34;D&#34;) {
+			cin &gt;&gt; k;
+			remove(k &#43; 1);// 第一个插入元素的下标是2
+		} else if (op == &#34;IL&#34;) {
+			cin &gt;&gt; k &gt;&gt; x;
+			add(l[k &#43; 1], x);
+		} else if (op == &#34;IR&#34;) {
+			cin &gt;&gt; k &gt;&gt; x;
+			add(k &#43; 1, x);
+		}
+	}
+	for (int i = r[0]; i != 1; i = r[i]) cout &lt;&lt; e[i] &lt;&lt; &#39; &#39;;
+	// 当前节点的下标等于 1 时，退出循环
+	return 0;
+}
+```
+
+### 栈与队列
+#### 模拟栈
+```c&#43;&#43;
+#include &lt;iostream&gt;
+using namespace std;
+
+const int N = 1e5 &#43; 10;
+int stk[N], tt;
+
+int main() {
+	freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
+	string cmd;
+	int n, x;
+	cin &gt;&gt; n;
+	while (n--) {
+		cin &gt;&gt; cmd;
+		if (cmd == &#34;push&#34;) {
+			cin &gt;&gt; x;
+			stk[&#43;&#43;tt] = x;
+		} else if (cmd == &#34;pop&#34;) {
+			tt--;
+		} else if (cmd == &#34;query&#34;) {
+			cout &lt;&lt; stk[tt] &lt;&lt; &#39;\n&#39;;
+		} else if (cmd == &#34;empty&#34;) {
+			if (tt == 0) puts(&#34;YES&#34;);
+			else puts(&#34;NO&#34;);
+		}
+	}
+	return 0;
+}
+```
+#### 模拟队列
+**普通队列**
+```c&#43;&#43;
+#include &lt;iostream&gt;
+using namespace std;
+
+const int N = 1e5 &#43; 10;
+int q[N], hh, tt = -1;
+
+int main() {
+	freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
+	string op;
+	int n;
+	cin &gt;&gt; n;
+	while (n--) {
+		cin &gt;&gt; op;
+		if (op == &#34;push&#34;) {
+			cin &gt;&gt; q[&#43;&#43;tt];
+		} else if (op == &#34;pop&#34;) {
+			hh&#43;&#43;;
+		} else if (op == &#34;empty&#34;) {
+			hh &gt; tt ? puts(&#34;YES&#34;) : puts(&#34;NO&#34;);
+		} else if (op == &#34;query&#34;) {
+			cout &lt;&lt; q[hh] &lt;&lt; &#39;\n&#39;;
+		}
+	}
+	return 0;
+}
+```
+
+#### 单调栈
+```c&#43;&#43;
+#include &lt;iostream&gt;
+using namespace std;
+
+const int N = 1e5 &#43; 10;
+int stk[N], tt;
+
+int main() {
+	freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
+	int n, x;
+	cin &gt;&gt; n;
+	for (int i = 1; i &lt;= n; i&#43;&#43;) {
+		int x;
+		cin &gt;&gt; x;
+		while (tt &amp;&amp; stk[tt] &gt; x) tt--;// 找第一个小于x的元素
+		if (tt == 0) cout &lt;&lt; &#34;-1 &#34;;
+		else cout &lt;&lt; stk[tt] &lt;&lt; &#34; &#34;;
+		stk[&#43;&#43;tt] = x;
+	}
+	return 0;
+}
+```
+
+#### 单调队列
+**例题1-AcWing 154. 滑动窗口**
+```c&#43;&#43;
+#include &lt;iostream&gt;  
+using namespace std;  
+  
+const int N = 1e6 &#43; 10;  
+int a[N], q[N];  
+  
+int main() {  
+    freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);  
+    int n, k;  
+    cin &gt;&gt; n &gt;&gt; k;  
+    for (int i = 0; i &lt; n; i&#43;&#43;) cin &gt;&gt; a[i];  
+    int hh = 0, tt = -1;  
+    for (int i = 0; i &lt; n; i&#43;&#43;) {  
+        if (hh &lt;= tt &amp;&amp; i - k &#43; 1 &gt; q[hh]) hh&#43;&#43;; // 若超出窗口大小, 弹出队头元素  
+        while (hh &lt;= tt &amp;&amp; a[q[tt]] &gt;= a[i]) tt--; // 弹出队内所有不小于a[i]的数, 并让更小的数字入队  
+        q[&#43;&#43;tt] = i;  
+//        printf(&#34;--%d-%d--\n &#34;, tt, i);  
+        if (i &gt;= k - 1) printf(&#34;%d &#34;, a[q[hh]]);// 从窗口完全进入开始输出  
+    }  
+    puts(&#34;&#34;);  
+    hh = 0, tt = -1;  
+    for (int i = 0; i &lt; n; i&#43;&#43;) {  
+        if (hh &lt;= tt &amp;&amp; i &#43; 1 - k &gt; q[hh]) hh&#43;&#43;;  
+        while (hh &lt;= tt &amp;&amp; a[q[tt]] &lt;= a[i]) tt--;  
+        q[&#43;&#43;tt] = i;  
+        if (i &gt;= k - 1) printf(&#34;%d &#34;, a[q[hh]]);  
+    }  
+    return 0;  
+}
+```
+
+### kmp
+```c&#43;&#43;
+#include &lt;iostream&gt;
+using namespace std;
+
+const int N = 10010, M = 100010;
+char p[N], s[M];
+int ne[N];
+int main() {
+	freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
+	int n, m;
+	cin &gt;&gt; n &gt;&gt; p &#43; 1 &gt;&gt; m &gt;&gt; s &#43; 1;
+	// 求next数组
+	for (int i = 2, j = 0; i &lt;= n; i&#43;&#43;) {
+		while (j &amp;&amp; p[i] != p[j &#43; 1]) j = ne[j];
+		if (p[i] == p[j &#43; 1]) j&#43;&#43;;
+		ne[i] = j;
+	}
+//	for(int i=1;i&lt;=n;i&#43;&#43;) cout &lt;&lt; ne[i] &lt;&lt; &#39; &#39;;
+//	puts(&#34;&#34;);
+	// kmp进行匹配
+	for (int i = 1, j = 0; i &lt;= m; i&#43;&#43;) {
+		while (j &amp;&amp; s[i] != p[j &#43; 1]) j = ne[j];
+		if (s[i] == p[j &#43; 1]) j&#43;&#43;;
+		if (j == n) {// 字串匹配成功
+			cout &lt;&lt; i - n &lt;&lt; &#39; &#39;;
+			j = ne[j];// 尝试匹配下一次字串出现的位置
+		}
+	}
+	return 0;
+}
+```
+
+### Trie树
+&gt; 用来高效存储和查找字符串集合的数据结构
+
+**例题1-AcWing 835. Trie字符串统计**
+```c&#43;&#43;
+#include &lt;iostream&gt;
+using namespace std;
+
+const int N = 100010;
+int son[N][26];// Trie树, 第一维表示串长度, 第二维表示a-z这26种可能
+int cnt[N];// 表示以这个字符结尾的字符串有多少个
+int idx;// 给每一个字符结点分配一个唯一的标识符
+char str [N];
+
+void insert(char str[]) {
+	int p = 0;
+	for (int i = 0; str[i]; i&#43;&#43;) {
+		int u = str[i] - &#39;a&#39;;
+		if (!son[p][u]) son[p][u] = &#43;&#43;idx;
+		p = son[p][u];
+	}
+	cnt[p]&#43;&#43;;
+}
+
+int query(char str[]) {
+	int p = 0;
+	for (int i = 0; str[i]; i&#43;&#43;) {
+		int u = str[i] - &#39;a&#39;;
+		if (!son[p][u]) return 0;
+		p = son[p][u];
+	}
+	return cnt[p];
+}
+
+int main() {
+	freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
+	int n;
+	char op;
+	scanf(&#34;%d&#34;, &amp;n);
+	getchar();
+	while (n--) {
+		scanf(&#34;%c %s&#34;, &amp;op, &amp;str);
+		getchar();
+		if (op == &#39;I&#39;) {
+			insert(str);
+		} else {
+			printf(&#34;%d\n&#34;, query(str));
+		}
+	}
+	return 0;
+}
+```
+
+### 并查集
+&gt; 基本原理: 每个集合用一棵树来表示, 树根的编号就是集合的编号
+
+**例题1-AcWing 836. 合并集合**
+```c&#43;&#43;
+#include &lt;iostream&gt;
+using namespace std;
+
+const int N = 100010;
+int p[N];// 父节点数组
+
+int find(int x) {// 返回x的祖宗节点 &#43; 路径压缩
+	if (p[x] != x) p[x] = find(p[x]);
+	return p[x];
+}
+
+int main() {
+	freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
+	int n, m, a, b;
+	char op;
+	scanf(&#34;%d%d&#34;, &amp;n, &amp;m);
+	getchar();
+	for (int i = 1; i &lt;= n; i&#43;&#43;) p[i] = i;
+	while (m--) {
+		scanf(&#34;%c %d %d&#34;, &amp;op, &amp;a, &amp;b);
+		getchar();
+		if (op == &#39;M&#39;) p[find(a)] = find(b);
+		else {
+			if (find(a) == find(b)) printf(&#34;YES\n&#34;);
+			else printf(&#34;NO\n&#34;);
+		}
+	}
+	return 0;
+}
+```
+**例题2-AcWing 837. 连通块中点的数量**
+```c&#43;&#43;
+#include &lt;iostream&gt;
+using namespace std;
+
+const int N = 100010;
+int p[N];// 父节点数组
+int s[N];// 所属集合中元素的个数
+
+int find(int x) {// 返回x的祖宗节点 &#43; 路径压缩
+	if (p[x] != x) p[x] = find(p[x]);
+	return p[x];
+}
+
+int main() {
+	freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
+	int n, m, a, b;
+	char op[5];
+	scanf(&#34;%d%d&#34;, &amp;n, &amp;m);
+	for (int i = 1; i &lt;= n; i&#43;&#43;) p[i] = i, s[i] = 1;
+	while (m--) {
+		scanf(&#34;%s&#34;, op);
+		if (op[0] == &#39;C&#39;) {
+			scanf(&#34;%d%d&#34;, &amp;a, &amp;b);
+			if (find(a) == find(b)) continue;
+			s[find(b)] &#43;= s[find(a)];// 这两个步骤的顺序不能错
+			p[find(a)] = find(b);
+		} else if (op[0] == &#39;Q&#39; &amp;&amp; op[1] == &#39;1&#39;) {
+			scanf(&#34;%d%d&#34;, &amp;a, &amp;b);
+			if (find(a) == find(b)) printf(&#34;YES\n&#34;);
+			else printf(&#34;NO\n&#34;);
+		} else {
+			scanf(&#34;%d&#34;, &amp;a);
+			printf(&#34;%d\n&#34;, s[find(a)]);
+		}
+	}
+	return 0;
+}
+```
+
+例题1-ZJNUOJ-亲戚——高级
+
+### 堆
+#### 堆排序
+**例题1-AcWing 838. 堆排序**
+```c&#43;&#43;
+#include &lt;iostream&gt;
+using namespace std;
+
+const int N = 1e5 &#43; 10;
+int h[N], n, m, sz;
+
+void down(int u) {
+	int t = u;
+	if (u * 2 &lt;= sz &amp;&amp; h[u * 2] &lt; h[t]) t = u * 2;
+	if (u * 2 &#43; 1 &lt;= sz &amp;&amp; h[u * 2 &#43; 1] &lt; h[t]) t = u * 2 &#43; 1;
+	if (u != t) {
+		swap(h[t], h[u]);
+		down(t);
+	}
+}
+
+void up(int u) {
+	while (u / 2 &amp;&amp; h[u / 2] &gt; h[u]) {
+		swap(h[u / 2], h[u]);
+		u /= 2;
+	}
+}
+
+int main() {
+	freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
+	cin &gt;&gt; n &gt;&gt; m;
+	for (int i = 1; i &lt;= n; i&#43;&#43;) cin &gt;&gt; h[i];
+	sz = n;
+	for (int i = n / 2; i; i--) down(i);
+	while (m--) {
+		cout &lt;&lt; h[1] &lt;&lt; &#39; &#39;;
+		h[1] = h[sz--];
+		down(1);
+	}
+	return 0;
+}
+```
+
+#### 模拟堆
+**例题2-AcWing 839. 模拟堆**
+```c&#43;&#43;
+#include &lt;iostream&gt;
+#include &lt;string.h&gt;
+using namespace std;
+
+const int N = 1e5 &#43; 10;
+int k, x, sz;
+int h[N];// 堆
+int ph[N];// 输入序号 与 堆中序号映射关系, 第k个插入的元素在堆中的位置
+int hp[N];// 堆中序号 与 输入序号映射关系
+
+void heap_swap(int a, int b) {
+	swap(ph[hp[a]], ph[hp[b]]);
+	swap(hp[a], hp[b]);
+	swap(h[a], h[b]);
+}
+
+void down(int u) {
+	int t = u;
+	if (u * 2 &lt;= sz &amp;&amp; h[u * 2] &lt; h[t]) t = u * 2;
+	if (u * 2 &#43; 1 &lt;= sz &amp;&amp; h[u * 2 &#43; 1] &lt; h[t]) t = u * 2 &#43; 1;
+	if (u != t) {
+		heap_swap(h[t], h[u]);
+		down(t);
+	}
+}
+
+void up(int u) {
+	while (u / 2 &amp;&amp; h[u / 2] &gt; h[u]) {
+		swap(h[u / 2], h[u]);
+		u /= 2;
+	}
+}
+
+int main() {
+	freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
+	int n, m = 0;
+	cin &gt;&gt; n;
+	while (n--) {
+		char op[10];
+		scanf(&#34;%s&#34;, op);
+		if (!strcmp(op, &#34;I&#34;)) {
+			scanf(&#34;%d&#34;, &amp;x);
+			sz&#43;&#43;;
+			m&#43;&#43;;
+			ph[m] = sz, hp[sz] = m;
+			h[sz] = x;
+			up(sz);
+		} 
+		else if (!strcmp(op, &#34;PM&#34;)) printf(&#34;%d\n&#34;, h[1]);
+		else if (!strcmp(op, &#34;DM&#34;)) {
+			heap_swap(1, sz);
+			sz--;
+			down(1);
+		} else if (!strcmp(op, &#34;D&#34;)) {
+			scanf(&#34;%d&#34;, &amp;k);
+			k = ph[k];// 获取第k个插入的元素在堆中的位置
+			heap_swap(k, sz);
+			sz--;
+			down(k), up(k);
+		} else {
+			scanf(&#34;%d%d&#34;, &amp;k, &amp;x);
+			k = ph[k];
+			h[k] = x;
+			down(k), up(k);
+		}
+	}
+	return 0;
+}
+```
+
+### 哈希表
+**拉链法**
+```c&#43;&#43;
+#include &lt;iostream&gt;
+#include &lt;cstring&gt;
+using namespace std;
+
+const int N = 1e5 &#43; 3;
+int h[N];
+int e[N], ne[N], idx;
+
+void insert(int x) {// 单链表的插入
+	int k = (x % N &#43; N) % N;
+	e[idx] = x, ne[idx] = h[k], h[k] = idx&#43;&#43;;
+}
+
+bool find(int x) {
+	int k = (x % N &#43; N) % N;
+	for (int i = h[k]; i != -1; i = ne[i]) {
+		if (e[i] == x) return true;
+	}
+	return false;
+}
+
+int main() {
+	freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
+	int n, x;
+	scanf(&#34;%d&#34;, &amp;n);
+	memset(h, -1, sizeof h);
+	while (n--) {
+		char op[2];
+		scanf(&#34;%s%d&#34;, op, &amp;x);
+		if (*op == &#39;I&#39;) {
+			insert(x);
+		} else {
+			if (find(x)) printf(&#34;Yes\n&#34;);
+			else printf(&#34;No\n&#34;);
+		}
+	}
+	return 0;
+}
+```
+**开放地址法**
+```c&#43;&#43;
+#include &lt;iostream&gt;
+#include &lt;cstring&gt;
+using namespace std;
+
+const int N = 200003, null = 0x3f3f3f3f;
+int h[N];
+
+int find(int x) {
+	int k = (x % N &#43; N) % N;
+	while (h[k] != null &amp;&amp; h[k] != x) {
+		k&#43;&#43;;
+		if (k == N) k = 0;
+	}
+	return k;
+}
+
+int main() {
+	freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
+	int n, x;
+	scanf(&#34;%d&#34;, &amp;n);
+	memset(h, 0x3f, sizeof h);
+	while (n--) {
+		char op[2];
+		scanf(&#34;%s%d&#34;, op, &amp;x);
+		int k = find(x);
+		if (*op == &#39;I&#39;) h[k] = x;
+		else {
+			if (h[k] != null) puts(&#34;Yes&#34;);
+			else puts(&#34;No&#34;);
+		}
+	}
+	return 0;
+}
+```
+
+#### 字符串哈希
+##### 字符串前缀哈希法
+
+**例题1-AcWing 841. 字符串哈希**
+
+```c&#43;&#43;
+#include &lt;iostream&gt;
+using namespace std;
+typedef unsigned long long ULL;
+const int N = 1e5 &#43; 10, P = 131;
+
+int n, m;
+char str[N];
+ULL h[N], p[N];
+
+ULL get(int l, int r) {
+	return h[r] - h[l - 1] * p[r - l &#43; 1];
+}
+
+int main() {
+	freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
+	scanf(&#34;%d%d%s&#34;, &amp;n, &amp;m, str &#43; 1);
+	p[0] = 1;
+	for (int i = 1; i &lt;= n; i&#43;&#43;) {
+		p[i] = p[i - 1] * P;
+		h[i] = h[i - 1] * P &#43; str[i];
+	}
+	while (m--) {
+		int l1, l2, r1, r2;
+		scanf(&#34;%d%d%d%d&#34;, &amp;l1, &amp;r1, &amp;l2, &amp;r2);
+		if (get(l1, r1) == get(l2, r2)) puts(&#34;Yes&#34;);
+		else puts(&#34;No&#34;);
+	}
+	return 0;
+}
+```
+
 ### 树
 
 #### 二叉查找树（BST）
@@ -2795,6 +3963,7 @@ int main() {
 ```
 
 ```
+
 
 ## 遇到的一些问题
 
@@ -3576,86 +4745,6 @@ int main() {
 	}
 	for (int i = res.size() - 1; i &gt;= 0; i--) cout &lt;&lt; res[i];
 	return 0;
-}
-```
-
-
-### PAT(Basic Level) Practice（中文）
-
-#### 1001 害死人不偿命的(3n&#43;1)猜想
-```c&#43;&#43;
-#include &lt;bits/stdc&#43;&#43;.h&gt;
-using namespace std;
-
-int main() {
-	int n;cin &gt;&gt; n;
-	int cnt = 0;
-	while (n &gt; 1) {
-		if (n % 2 == 1)n = (3 * n &#43; 1) / 2;
-		else n /= 2;
-		cnt&#43;&#43;;
-	}
-	cout&lt;&lt;cnt&lt;&lt;endl;
-	return 0;
-}
-```
-
-#### 1002 写出这个数
-```c&#43;&#43;
-#include &lt;bits/stdc&#43;&#43;.h&gt;  
-using namespace std;  
-  
-string table[10] = {&#34;ling&#34;, &#34;yi&#34;, &#34;er&#34;, &#34;san&#34;, &#34;si&#34;, &#34;wu&#34;, &#34;liu&#34;, &#34;qi&#34;, &#34;ba&#34;, &#34;jiu&#34;};  
-vector&lt;int&gt;v;  
-int main() {  
-//    freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);  
-    long long sum = 0;  
-    string s;  
-    cin &gt;&gt; s;  
-    long long len = s.length();  
-    for (int i = 0; i &lt; len; i&#43;&#43;) {  
-        sum &#43;= int(s[i]) - int(&#39;0&#39;) ;  
-    }  
-    while (sum) {  
-        int tmp = sum % 10;  
-        v.push_back(tmp);  
-        sum /= 10;  
-    }  
-    for (int i = v.size() - 1; i &gt; 0; i--) {  
-        cout &lt;&lt; table[v[i]] &lt;&lt; &#39; &#39;;  
-    }  
-    cout &lt;&lt; table[v[0]];  
-    return 0;  
-}
-```
-
-
-#### 1003 我要通过！
-
-```c&#43;&#43;
-#include &lt;bits/stdc&#43;&#43;.h&gt;  
-using namespace std;  
-  
-int main() {  
-//    freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);  
-    int n;  
-    cin &gt;&gt; n;  
-    string s;  
-    while (n--) {  
-        cin &gt;&gt; s;  
-        map&lt;char, int&gt; m;  
-        int l=0, r=0;  
-        int len = s.length();  
-        for (int i = 0; i &lt; len; i&#43;&#43;) {  
-            m[s[i]]&#43;&#43;;  
-            if (s[i] == &#39;P&#39;) l = i;  
-            if (s[i] == &#39;T&#39;) r = i;  
-        }  
-        if (m[&#39;P&#39;] == 1 &amp;&amp; m[&#39;A&#39;] != 0 &amp;&amp; m[&#39;T&#39;] == 1 &amp;&amp; m.size() == 3 &amp;&amp; (r - l) != 1 &amp;&amp; l * (r - l - 1) == (len - r - 1)) {  
-            cout &lt;&lt; &#34;YES&#34; &lt;&lt; endl;  
-        } else cout &lt;&lt; &#34;NO&#34; &lt;&lt; endl;  
-    }  
-    return 0;  
 }
 ```
 
@@ -4969,6 +6058,86 @@ int main() {
 	return 0;
 }
 ```
+
+### 苏州大学2022年机试真题
+#### 编程题1
+![](imgs/image-20240831002249866.png)
+
+
+解法一
+```c&#43;&#43;
+#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+#include &lt;iomanip&gt;
+#include &lt;string&gt;
+#include &lt;vector&gt;
+#include &lt;set&gt;
+using namespace std;
+
+string getMostFrequent(const string&amp; numStr) {
+	string resultStr = &#34;&#34;;
+	set&lt;int&gt; numset;// 定义一个集合来去重
+	vector&lt;int&gt; res;
+	int maxx = 0;
+	int n = numStr.size();
+	int a = numStr[n - 1] - &#39;0&#39;;// 取出最后一位数
+	for (int i = 0; i &lt; n - 1; i&#43;&#43;) {
+		int cnt = 0;
+		int tmp = 0;
+		while (i &lt; n - 1 &amp;&amp; !isdigit(numStr[i])) i&#43;&#43;;// 找到第一个数字
+		if (i &gt;= n - 1) break;
+		int j = i;
+		while (numStr[j] != &#39;,&#39;) {
+			if (numStr[j] - &#39;0&#39; == a) cnt&#43;&#43;;
+			tmp = tmp * 10 &#43; numStr[j] - &#39;0&#39;;
+			j&#43;&#43;;
+		}
+		i = j;
+		if (numset.count(tmp)) continue;// 如果这个数已经统计过，就处理下一个
+		else if (cnt &gt; maxx) {
+			maxx = cnt;
+			res.clear();// 找到更大的情况就清空数组
+			res.push_back(tmp);
+		} else if (cnt == maxx) {
+			res.push_back(tmp);
+		}
+		numset.insert(tmp);
+	}
+	if (maxx == 0) resultStr = &#34;-1&#34;;
+	else {
+		resultStr &#43;= to_string(res[0]);
+		for (int i = 1; i &lt; res.size(); i&#43;&#43;) {
+			resultStr &#43;= &#34;,&#34; &#43; to_string(res[i]);
+		}
+	}
+	return resultStr;
+}
+
+int main() {
+	string resultStr;
+	resultStr = getMostFrequent(&#34;60, 36, 1, 49, 135, 35, 2&#34;);
+	cout &lt;&lt; resultStr &lt;&lt; &#39;\n&#39;;
+	resultStr = getMostFrequent(&#34;60, 36, 235, 122, 3, 17, 235, 2&#34;);
+	cout &lt;&lt; resultStr &lt;&lt; &#39;\n&#39;;
+	resultStr = getMostFrequent(&#34;69, 369, 703,12, 4332, 69, 4332, 91, 6, 3&#34;);
+	cout &lt;&lt; resultStr &lt;&lt; &#39;\n&#39;;
+	resultStr = getMostFrequent(&#34;15, 229, 692, 93, 23, 221, 2&#34;);
+	cout &lt;&lt; resultStr &lt;&lt; &#39;\n&#39;;
+	resultStr = getMostFrequent(&#34;95, 95, 39, 125, 125, 23, 105, 150, 5&#34;);
+	cout &lt;&lt; resultStr &lt;&lt; &#39;\n&#39;;
+	resultStr = getMostFrequent(&#34;9&#34;);
+	cout &lt;&lt; resultStr &lt;&lt; &#39;\n&#39;;
+	return 0;
+}
+```
+
+#### 编程题2
+
+
+
+
+
+
 
 ---
 
