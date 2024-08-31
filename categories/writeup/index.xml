@@ -4,7 +4,16 @@
     <link>http://localhost:1313/categories/writeup/</link>
     <description>Writeup - Category | ⚡Lunatic BLOG⚡</description>
     <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>goodlunatic0@gmail.com (Lunatic)</managingEditor>
-      <webMaster>goodlunatic0@gmail.com (Lunatic)</webMaster><lastBuildDate>Fri, 26 Jul 2024 14:57:40 &#43;0800</lastBuildDate><atom:link href="http://localhost:1313/categories/writeup/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>goodlunatic0@gmail.com (Lunatic)</webMaster><lastBuildDate>Wed, 28 Aug 2024 16:44:56 &#43;0800</lastBuildDate><atom:link href="http://localhost:1313/categories/writeup/" rel="self" type="application/rss+xml" /><item>
+  <title>2024 羊城杯网络安全大赛 Misc Writeup</title>
+  <link>http://localhost:1313/posts/4a27616/</link>
+  <pubDate>Wed, 28 Aug 2024 16:44:56 &#43;0800</pubDate>
+  <author>Lunatic</author>
+  <guid>http://localhost:1313/posts/4a27616/</guid>
+  <description><![CDATA[<p>有段时间没有做CTF题了，感觉有些生疏了都，很可惜赛中差一题就能AK了</p>
+<p>因此这个愿望只能留给学弟去实现了，之后可能真正能好好打CTF的机会也不多了吧</p>]]></description>
+</item>
+<item>
   <title>2024 DASCTF 暑期挑战赛 Misc Writeup</title>
   <link>http://localhost:1313/posts/067cfbd/</link>
   <pubDate>Fri, 26 Jul 2024 14:57:40 &#43;0800</pubDate>
@@ -78,14 +87,6 @@
   <author>Lunatic</author>
   <guid>http://localhost:1313/posts/bd957c3/</guid>
   <description><![CDATA[<p><strong>不愧是竞速长城杯，时间这么短，只能说强度很高</strong>。</p>]]></description>
-</item>
-<item>
-  <title>2024 VCTF Misc Writeup</title>
-  <link>http://localhost:1313/posts/aa61ddd/</link>
-  <pubDate>Sun, 17 Mar 2024 18:17:29 &#43;0800</pubDate>
-  <author>Lunatic</author>
-  <guid>http://localhost:1313/posts/aa61ddd/</guid>
-  <description><![CDATA[<p><strong>发现自己有段时间没有打比赛了，手有点生疏，于是打了 2024VCTF 来找找感觉</strong></p>]]></description>
 </item>
 </channel>
 </rss>

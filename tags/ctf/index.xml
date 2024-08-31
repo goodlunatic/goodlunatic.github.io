@@ -4,7 +4,16 @@
     <link>http://localhost:1313/tags/ctf/</link>
     <description>CTF - Tag | ⚡Lunatic BLOG⚡</description>
     <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>goodlunatic0@gmail.com (Lunatic)</managingEditor>
-      <webMaster>goodlunatic0@gmail.com (Lunatic)</webMaster><lastBuildDate>Fri, 26 Jul 2024 15:12:02 &#43;0800</lastBuildDate><atom:link href="http://localhost:1313/tags/ctf/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>goodlunatic0@gmail.com (Lunatic)</webMaster><lastBuildDate>Wed, 28 Aug 2024 16:44:56 &#43;0800</lastBuildDate><atom:link href="http://localhost:1313/tags/ctf/" rel="self" type="application/rss+xml" /><item>
+  <title>2024 羊城杯网络安全大赛 Misc Writeup</title>
+  <link>http://localhost:1313/posts/4a27616/</link>
+  <pubDate>Wed, 28 Aug 2024 16:44:56 &#43;0800</pubDate>
+  <author>Lunatic</author>
+  <guid>http://localhost:1313/posts/4a27616/</guid>
+  <description><![CDATA[<p>有段时间没有做CTF题了，感觉有些生疏了都，很可惜赛中差一题就能AK了</p>
+<p>因此这个愿望只能留给学弟去实现了，之后可能真正能好好打CTF的机会也不多了吧</p>]]></description>
+</item>
+<item>
   <title>Pentesting Learning Record</title>
   <link>http://localhost:1313/posts/417c7ba/</link>
   <pubDate>Fri, 26 Jul 2024 15:12:02 &#43;0800</pubDate>
@@ -78,15 +87,6 @@
   <guid>http://localhost:1313/posts/1e26f78/</guid>
   <description><![CDATA[<p>这几天在群里看到一道非常有意思的关于二维码的题目</p>
 <p>于是打算稍微深入总结并巩固一下QRcode的知识点</p>]]></description>
-</item>
-<item>
-  <title>Misc-LSB 小记</title>
-  <link>http://localhost:1313/posts/aded309/</link>
-  <pubDate>Wed, 12 Jun 2024 14:33:39 &#43;0800</pubDate>
-  <author>Lunatic</author>
-  <guid>http://localhost:1313/posts/aded309/</guid>
-  <description><![CDATA[<p>前几天在 PuzzleSolver 群里看到了这样一道题目，题目主要考察了 LSB 隐写</p>
-<p>从这道题中发现自己的基础并不扎实，于是打算以这道题为契机，好好学习一下LSB隐写</p>]]></description>
 </item>
 </channel>
 </rss>
