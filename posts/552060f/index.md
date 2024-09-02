@@ -1690,48 +1690,38 @@ int main() {
 稀疏图用堆优化版的Prim, $时间复杂度:O(mlog_n)$ `一般不常用`
 
 #### Kruskal算法, $时间复杂度:O(mlog_n)$
-
-**例题1-AcWing 859. Kruskal算法求最小生成树**
 ```c&#43;&#43;
-#include &lt;iostream&gt;
-#include &lt;algorithm&gt;
-using namespace std;
-
-const int N = 200010;
-int n, m;
-int p[N];
-
-struct Edge {
-	int a, b, w;
-	bool operator &lt; (const Edge &amp;W) const {
-		return w &lt; W.w;
-	}
-} edges[N];
-
-int find(int x) {
-	if (p[x] != x) p[x] = find(p[x]);
-	return p[x];
-}
-
-int main() {
-	freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
-	cin &gt;&gt; n &gt;&gt; m;
-	for (int i = 0; i &lt; m; i&#43;&#43;) cin &gt;&gt; edges[i].a &gt;&gt; edges[i].b &gt;&gt; edges[i].w;
-	sort(edges, edges &#43; m);
-	for (int i = 1; i &lt;= n; i&#43;&#43;) p[i] = i;
-	int res = 0, cnt = 0;
-	for (int i = 0; i &lt; m; i&#43;&#43;) {
-		int a = edges[i].a, b = edges[i].b, w = edges[i].w;
-		a = find(a), b = find(b);
-		if (a != b) {
-			p[a] = b;
-			res &#43;= w;
-			cnt &#43;&#43;;
-		}
-	}
-	if (cnt &lt; n - 1) puts(&#34;impossible&#34;);
-	else cout &lt;&lt; res &lt;&lt; &#39;\n&#39;;
-	return 0;
+struct Edge {  
+    int x, y, v, st;  
+    bool operator &lt; (const Edge &amp;w) const {  
+        return v &lt; w.v;  
+    }  
+} edge[5000];  
+  
+int Find(int x) {  
+    if (x != p[x]) p[x] = Find(p[x]);  
+    return p[x];  
+}  
+  
+void Union(int x, int y) {  
+    x = Find(x), y = Find(y);  
+    if (h[x] &lt; h[y]) p[x]  = y;  
+    else if (h[y] &lt; h[x]) p[y] = x;  
+    else p[y] = x, h[x]&#43;&#43;;  
+}  
+  
+int kruskal(int n, int num) {  
+    for (int i = 0; i &lt;= n; i&#43;&#43;) p[i] = i, h[i] = 0;  
+    int cost = 0;  
+    for (int i = 0; i &lt; num; i&#43;&#43;) {  
+        int x = edge[i].x;  
+        int y = edge[i].y;  
+        if (Find(x) != Find(y)) {  
+            Union(x, y);  
+            cost &#43;= edge[i].v;  
+        }  
+    }  
+    return cost;  
 }
 ```
 
@@ -3960,10 +3950,59 @@ int main() {
 
 #### 二叉查找树（BST）
 
-```
+```c&#43;&#43;
+#include &lt;iostream&gt;
+using namespace std;
 
-```
+struct Node {
+	Node *left, *right;
+	char data;
+	Node(char data): data(data), left(NULL), right(NULL) {};
+};
 
+Node *Insert(Node *root, char data) {
+	if (root == NULL) return new Node(data);
+	else if (root-&gt;data &lt; data) root-&gt;right = Insert(root-&gt;right, data);
+	else root-&gt;left = Insert(root-&gt;left, data);
+	return root;
+}
+
+void preOrder(Node *root) {
+	if (root != NULL) {
+		printf(&#34;%c &#34;, root-&gt;data);
+		preOrder(root-&gt;left);
+		preOrder(root-&gt;right);
+	}
+}
+
+bool cmp(Node *root1, Node *root2) {
+	if (root1 == NULL &amp;&amp; root2 == NULL) return true;
+	else if ((root1 == NULL &amp;&amp; root2 != NULL) || (root1 != NULL &amp;&amp; root2 == NULL) || (root1-&gt;data != root2-&gt;data)) {
+		return false;
+	}
+	return cmp(root1-&gt;left, root2-&gt;left) &amp;&amp; cmp(root1-&gt;right, root2-&gt;right);
+}
+
+int main() {
+	freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
+	int n;
+	string s, t;
+	Node *root1 = NULL;
+	while (cin &gt;&gt; n) {
+		if (n == 0) break;
+		cin &gt;&gt; s;
+		for (int i = 0; i &lt; s.size(); i&#43;&#43;) root1 = Insert(root1, s[i]);
+		for (int i = 0; i &lt; n; i&#43;&#43;) {
+			Node *root2 = NULL;
+			cin &gt;&gt; t;
+			for (int j = 0; j &lt; t.size(); j&#43;&#43;) root2 = Insert(root2, t[j]);
+			if (cmp(root1, root2)) puts(&#34;YES&#34;);
+			else puts(&#34;NO&#34;);
+		}
+	}
+	return 0;
+}
+```
 
 ## 遇到的一些问题
 
@@ -4520,7 +4559,52 @@ int main() {
 
 #### 前缀和与差分
 
+#### 最小生成树
 
+##### Kruskal算法
+**例题1-AcWing 859. Kruskal算法求最小生成树**
+```c&#43;&#43;
+#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+using namespace std;
+
+const int N = 200010;
+int n, m;
+int p[N];
+
+struct Edge {
+	int a, b, w;
+	bool operator &lt; (const Edge &amp;W) const {
+		return w &lt; W.w;
+	}
+} edges[N];
+
+int find(int x) {
+	if (p[x] != x) p[x] = find(p[x]);
+	return p[x];
+}
+
+int main() {
+	freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
+	cin &gt;&gt; n &gt;&gt; m;
+	for (int i = 0; i &lt; m; i&#43;&#43;) cin &gt;&gt; edges[i].a &gt;&gt; edges[i].b &gt;&gt; edges[i].w;
+	sort(edges, edges &#43; m);
+	for (int i = 1; i &lt;= n; i&#43;&#43;) p[i] = i;
+	int res = 0, cnt = 0;
+	for (int i = 0; i &lt; m; i&#43;&#43;) {
+		int a = edges[i].a, b = edges[i].b, w = edges[i].w;
+		a = find(a), b = find(b);
+		if (a != b) {
+			p[a] = b;
+			res &#43;= w;
+			cnt &#43;&#43;;
+		}
+	}
+	if (cnt &lt; n - 1) puts(&#34;impossible&#34;);
+	else cout &lt;&lt; res &lt;&lt; &#39;\n&#39;;
+	return 0;
+}
+```
 
 #### 数学基础
 
@@ -6059,12 +6143,342 @@ int main() {
 }
 ```
 
+#### 还是畅通工程(Kruskal算法求最小生成树)
+```c&#43;&#43;
+#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+using namespace std;
+
+const int N = 110;
+int p[N], h[N];
+
+struct Edge {
+	int x, y, v;
+	bool operator&lt;(const Edge &amp;w) const {
+		return v &lt; w.v;
+	}
+} edge[5000];
+
+int Find(int x) {
+	if (x != p[x]) p[x] = Find(p[x]);
+	return p[x];
+}
+
+void Union(int x, int y) {
+	x = Find(x), y = Find(y);
+	if (h[x] &lt; h[y])p[x] = y;
+	else if (h[y] &lt; h[x]) p[y] = x;
+	else p[y] = x, h[x]&#43;&#43;;
+}
+
+int kruskal(int n, int num) {
+	int cost = 0;
+	for (int i = 0; i &lt;= n; i&#43;&#43;) p[i] = i, h[i] = 0;
+	for (int i = 0; i &lt; num; i&#43;&#43;) {
+		int x = edge[i].x;
+		int y = edge[i].y;
+		if (Find(x) != Find(y)) {
+			Union(x, y);
+			cost &#43;= edge[i].v;
+		}
+	}
+	return cost;
+}
+
+int main() {
+	freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
+	int n;
+	while (scanf(&#34;%d&#34;, &amp;n) != EOF) {
+		if (n == 0) break;
+		int num = n * (n - 1) / 2;
+		for (int i = 0; i &lt; num; i&#43;&#43;) {
+			scanf(&#34;%d%d%d&#34;, &amp;edge[i].x, &amp;edge[i].y, &amp;edge[i].v);
+		}
+		sort(edge, edge &#43; num);
+		int cost = kruskal(n, num);
+		printf(&#34;%d\n&#34;, cost);
+	}
+	return 0;
+}
+```
+
+#### 继续畅通工程(Kruskal算法求最小生成树)
+```c&#43;&#43;
+#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+using namespace std;
+
+const int N = 110;
+int p[N], h[N];
+
+struct Edge {
+	int x, y, v, st;
+	bool operator &lt; (const Edge &amp;w) const {
+		return v &lt; w.v;
+	}
+} edge[5000];
+
+int Find(int x) {
+	if (x != p[x]) p[x] = Find(p[x]);
+	return p[x];
+}
+
+void Union(int x, int y) {
+	x = Find(x), y = Find(y);
+	if (h[x] &lt; h[y]) p[x]  = y;
+	else if (h[y] &lt; h[x]) p[y] = x;
+	else p[y] = x, h[x]&#43;&#43;;
+}
+
+int kruskal(int n, int num) {
+	for (int i = 0; i &lt;= n; i&#43;&#43;) p[i] = i, h[i] = 0;
+	int cost = 0;
+	for (int i = 0; i &lt; num; i&#43;&#43;) {
+		int x = edge[i].x;
+		int y = edge[i].y;
+		if (Find(x) != Find(y)) {
+			Union(x, y);
+			cost &#43;= edge[i].v;
+		}
+	}
+	return cost;
+}
+
+int main() {
+	freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
+	int n;
+	while (scanf(&#34;%d&#34;, &amp;n) != EOF) {
+		if (n == 0) break;
+		int num = n * (n - 1) / 2;
+		for (int i = 0; i &lt; num; i&#43;&#43;) {
+			scanf(&#34;%d%d%d%d&#34;, &amp;edge[i].x, &amp;edge[i].y, &amp;edge[i].v, &amp;edge[i].st);
+			if (edge[i].st == 1) edge[i].v = 0;
+		}
+		sort(edge, edge &#43; num);
+//		for (int i = 0; i &lt; num; i&#43;&#43;) {
+//			printf(&#34;%d %d %d %d\n&#34;, edge[i].x, edge[i].y, edge[i].v, edge[i].st);
+//		}
+		int cost = kruskal(n, num);
+		printf(&#34;%d\n&#34;, cost);
+	}
+	return 0;
+}
+```
+
+#### 畅通工程
+```c&#43;&#43;
+#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+using namespace std;
+
+const int N = 110;
+int p[N], h[N];
+
+struct Edge {
+	int x, y, v;
+	bool operator&lt;(const Edge &amp;w) const {
+		return v &lt; w.v;
+	}
+} edge[5000];
+
+int Find(int x) {
+	if (x != p[x]) p[x] = Find(p[x]);
+	return p[x];
+}
+
+void Union(int x, int y) {
+	x = Find(x), y = Find(y);
+	if (h[x] &lt; h[y]) p[x] = y;
+	else if (h[y] &lt; h[x]) p[y] = x;
+	else p[y] = x, h[x]&#43;&#43;;
+}
+
+int kruskal(int m, int n) {
+	int cost = 0;
+	for (int i = 0; i &lt;= m; i&#43;&#43;) p[i] = i, h[i] = 0;
+	for (int i = 0; i &lt; n; i&#43;&#43;) {
+		int x = edge[i].x;
+		int y = edge[i].y;
+		if (Find(x) != Find(y)) {
+			Union(x, y);
+			cost &#43;= edge[i].v;
+		}
+	}
+	return cost;
+}
+
+int main() {
+	freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
+	int n, m;
+	while (scanf(&#34;%d&#34;, &amp;n) != EOF) {
+		if (n == 0) break;
+		scanf(&#34;%d&#34;, &amp;m);
+		for (int i = 0; i &lt; n; i&#43;&#43;) {
+			scanf(&#34;%d%d%d&#34;, &amp;edge[i].x, &amp;edge[i].y, &amp;edge[i].v);
+		}
+		sort(edge, edge &#43; n);
+		int cost = kruskal(m, n);
+		int cnt = 0;
+		for (int i = 1; i &lt;= m; i&#43;&#43;) {
+			if (p[i] == i) cnt&#43;&#43;;
+		}
+		if (cnt == 1 &amp;&amp; n &gt;= m - 1) printf(&#34;%d\n&#34;, cost);
+		else printf(&#34;?\n&#34;);
+	}
+	return 0;
+}
+```
+
+#### 二叉搜索树
+```c&#43;&#43;
+#include &lt;iostream&gt;
+using namespace std;
+
+struct Node {
+	Node *left, *right;
+	char data;
+	Node(char data): data(data), left(NULL), right(NULL) {};
+};
+
+Node *Insert(Node *root, char data) {
+	if (root == NULL) return new Node(data);
+	else if (root-&gt;data &lt; data) root-&gt;right = Insert(root-&gt;right, data);
+	else root-&gt;left = Insert(root-&gt;left, data);
+	return root;
+}
+
+void preOrder(Node *root) {
+	if (root != NULL) {
+		printf(&#34;%c &#34;, root-&gt;data);
+		preOrder(root-&gt;left);
+		preOrder(root-&gt;right);
+	}
+}
+
+bool cmp(Node *root1, Node *root2) {
+	if (root1 == NULL &amp;&amp; root2 == NULL) return true;
+	else if ((root1 == NULL &amp;&amp; root2 != NULL) || (root1 != NULL &amp;&amp; root2 == NULL) || (root1-&gt;data != root2-&gt;data)) {
+		return false;
+	}
+	return cmp(root1-&gt;left, root2-&gt;left) &amp;&amp; cmp(root1-&gt;right, root2-&gt;right);
+}
+
+int main() {
+	freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
+	int n;
+	string s, t;
+	Node *root1 = NULL;
+	while (cin &gt;&gt; n) {
+		if (n == 0) break;
+		cin &gt;&gt; s;
+		for (int i = 0; i &lt; s.size(); i&#43;&#43;) root1 = Insert(root1, s[i]);
+		for (int i = 0; i &lt; n; i&#43;&#43;) {
+			Node *root2 = NULL;
+			cin &gt;&gt; t;
+			for (int j = 0; j &lt; t.size(); j&#43;&#43;) root2 = Insert(root2, t[j]);
+			if (cmp(root1, root2)) puts(&#34;YES&#34;);
+			else puts(&#34;NO&#34;);
+		}
+	}
+	return 0;
+}
+```
+
+#### Head of a Gang
+
+解法一
+```c&#43;&#43;
+#include &lt;iostream&gt;  
+#include &lt;cstring&gt;  
+#include &lt;algorithm&gt;  
+using namespace std;  
+  
+const int N = 26;  
+int sum[N], weight;  
+  
+struct person { // 成员  
+    string name;  
+    int parents;// 根节点  
+    int weight;  
+} p[N];  
+  
+struct gang { // 帮派  
+    string head;  
+    int number;// 成员数量  
+    bool operator &lt; (const gang &amp;w) const {  
+        return head &lt; w.head;  
+    }  
+} g[10];  
+  
+int findRoot(int x) {  
+    if (p[x].parents &lt; 0) return x; // 根节点  
+    else {  
+        p[x].parents = findRoot(p[x].parents);  
+        return p[x].parents;  
+    }  
+}  
+  
+int main() {  
+    freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);  
+    int n, k, no1, no2, weight, sum[N];  
+    string name1, name2;  
+    while (cin &gt;&gt; n &gt;&gt; k) {  
+        for (int i = 0; i &lt; N; i&#43;&#43;) {// 初始化  
+            p[i].parents = -1;  
+            p[i].weight = 0;  
+            sum[i] = 0;//帮派中交流的总权重  
+        }  
+        for (int i = 0; i &lt; n; i&#43;&#43;) {  
+            cin &gt;&gt; name1 &gt;&gt; name2 &gt;&gt; weight;  
+            no1 = name1[0] - &#39;A&#39;;  
+            no2 = name2[0] - &#39;A&#39;;  
+            p[no1].name = name1;  
+            p[no1].weight &#43;= weight;  
+            p[no2].name = name2;  
+            p[no2].weight &#43;= weight;  
+            int p1 = findRoot(no1);  
+            int p2 = findRoot(no2);  
+            if (p1 != p2) {  
+                p[p1].parents &#43;= p[p2].parents;  
+                p[p2].parents = p1;  
+                sum[p1] &#43;= sum[p2] &#43; weight;// 两个集合的总权重合并  
+            } else sum[p1] &#43;= weight;  
+        }  
+        int ans = 0;// 帮派数量  
+        for (int i = 0; i &lt; N; i&#43;&#43;) {  
+            if (p[i].parents &lt; -2 &amp;&amp; sum[i] &gt; k) {  
+                g[ans].number = -p[i].parents;  
+                int maxx = i;  
+                for (int j = 0; j &lt; N; j&#43;&#43;) {  
+                    if (findRoot(j) == i &amp;&amp; p[j].weight &gt; p[maxx].weight) {  
+                        maxx = j;// 选择权值最大的作为头目  
+                    }  
+                }  
+                g[ans].head = p[maxx].name;  
+                ans&#43;&#43;;  
+            }  
+        }  
+        cout &lt;&lt; ans &lt;&lt; &#39;\n&#39;;  
+        sort(g, g &#43; ans);  
+        for (int i = 0; i &lt; ans; i&#43;&#43;) {  
+            cout &lt;&lt; g[i].head &lt;&lt; &#34; &#34; &lt;&lt; g[i].number &lt;&lt; &#39;\n&#39;;  
+        }  
+    }  
+    return 0;  
+}
+```
+
+解法二(TODO)
+```
+
+```
+
 ### 苏州大学2022年机试真题
 #### 编程题1
 ![](imgs/image-20240831002249866.png)
 
 
-解法一
+**解法一**
 ```c&#43;&#43;
 #include &lt;iostream&gt;
 #include &lt;algorithm&gt;
@@ -6112,32 +6526,284 @@ string getMostFrequent(const string&amp; numStr) {
 	}
 	return resultStr;
 }
+```
 
-int main() {
-	string resultStr;
-	resultStr = getMostFrequent(&#34;60, 36, 1, 49, 135, 35, 2&#34;);
-	cout &lt;&lt; resultStr &lt;&lt; &#39;\n&#39;;
-	resultStr = getMostFrequent(&#34;60, 36, 235, 122, 3, 17, 235, 2&#34;);
-	cout &lt;&lt; resultStr &lt;&lt; &#39;\n&#39;;
-	resultStr = getMostFrequent(&#34;69, 369, 703,12, 4332, 69, 4332, 91, 6, 3&#34;);
-	cout &lt;&lt; resultStr &lt;&lt; &#39;\n&#39;;
-	resultStr = getMostFrequent(&#34;15, 229, 692, 93, 23, 221, 2&#34;);
-	cout &lt;&lt; resultStr &lt;&lt; &#39;\n&#39;;
-	resultStr = getMostFrequent(&#34;95, 95, 39, 125, 125, 23, 105, 150, 5&#34;);
-	cout &lt;&lt; resultStr &lt;&lt; &#39;\n&#39;;
-	resultStr = getMostFrequent(&#34;9&#34;);
-	cout &lt;&lt; resultStr &lt;&lt; &#39;\n&#39;;
-	return 0;
+**解法二**
+```c&#43;&#43;
+string getMostFrequent(const string&amp; numStr) {
+	string resultStr = &#34;&#34;;
+	string tmp;
+	vector&lt;string&gt; res;
+	vector&lt;string&gt; tmpstr;
+	set&lt;string&gt; st;
+	int len = numStr.size();
+	int a = numStr[len - 1] - &#39;0&#39;;
+	istringstream iss(numStr);
+	int maxx = 0;
+	while (getline(iss, tmp, &#39;,&#39;)) {
+		tmp.erase(remove(tmp.begin(), tmp.end(), &#39; &#39;), tmp.end());// 删除空格
+		tmpstr.push_back(tmp);
+	}
+	for (int i = 0; i &lt; tmpstr.size() - 1; i&#43;&#43;) { // 遍历每个字符串
+		tmp = tmpstr[i];
+		if (st.count(tmp)) continue;
+		int cnt = 0;
+		for (int i = 0; i &lt; tmp.size(); i&#43;&#43;) {
+			if (tmp[i] - &#39;0&#39; == a) cnt&#43;&#43;;
+		}
+		if (cnt &gt; maxx) {
+			maxx = cnt;
+			res.clear();
+			res.push_back(tmp);
+		} else if (cnt == maxx) {
+			res.push_back(tmp);
+		}
+		st.insert(tmp);
+	}
+	if (maxx == 0) return &#34;-1&#34;;
+	resultStr = res[0];
+	for (int i = 1; i &lt; res.size(); i&#43;&#43;) resultStr &#43;= &#39;,&#39; &#43; res[i];
+	return resultStr;
 }
 ```
 
 #### 编程题2
 
+![](imgs/image-20240901134740653.png)
 
+```c&#43;&#43;
+#include &lt;iostream&gt;
+#include &lt;iomanip&gt;
+#include &lt;string&gt;
+#include &lt;vector&gt;
+#include &lt;algorithm&gt;
+using namespace std;
 
+unsigned int getTrgNum(const vector&lt;unsigned int&gt;&amp; vec_uint) {
+	unsigned int item = 0;   // 缺少的整数
+	vector&lt;unsigned int&gt; a  = vec_uint;
+	int n = a.size();
+	sort(a.begin(), a.end());
+	vector&lt;unsigned int&gt; diffs(n &#43; 10);
+	for (int i = 1; i &lt; n; i&#43;&#43;) diffs[i - 1] = a[i] - a[i - 1];
+	int pos = -1;
+	int d;// 公差
+	int dd;// 差分数组中的缺失值
+	for (int i = 1; i &lt; n - 1; i&#43;&#43;) {
+		if (diffs[i] == diffs[i - 1] &#43; diffs[i &#43; 1]) {// 差分数组缺失值在中间的情况
+			if (i - 2 &gt;= 0) d = diffs[i - 1] - diffs[i - 2];
+			else if (i &#43; 2 &lt;= n - 2) d = diffs[i &#43; 2] - diffs[i &#43; 1];
+			dd = diffs[i - 1] &#43; d;
+			item = a[i] &#43; dd;
+		}
+	}
+	if ((diffs[1] - diffs[0] != diffs[2] - diffs[1]) &amp;&amp; (diffs[3] - diffs[2] == diffs[2] - diffs[1])) {// 差分数组缺失值在左侧
+		d = diffs[2] - diffs[1];
+		dd = diffs[1] - d;
+		item = a[1] - dd;
+	} else if ((diffs[n - 2] - diffs[n - 3] != diffs[n - 3] - diffs[n - 4]) &amp;&amp; (diffs[n - 3] - diffs[n - 4] == diffs[n - 4] - diffs[n - 5])) {
+		// 差分数组缺失值在右侧
+		d = diffs[n - 3] - diffs[n - 4];;
+		dd = diffs[n - 3] &#43; d;
+		item = a[n - 2] &#43; dd;
+	}
+	cout &lt;&lt; item &lt;&lt; &#39;\n&#39;;
+	return item;
+}
 
+int main() {
+	getTrgNum({1, 3, 6, 15, 21});
+	getTrgNum({1, 4, 7, 11, 16});
+	getTrgNum({1, 2, 4, 7, 11, 22});
+	return 0;
+}
+```
 
+#### 编程题3
 
+![](imgs/image-20240901134820628.png)
+
+解法一
+```c&#43;&#43;
+float getMostWeight(const string&amp; wordStr) {
+	float value = 0;
+	float maxx = 0;
+	string tmp;
+	istringstream iss(wordStr);
+	while (getline(iss, tmp, &#39; &#39;)) {
+		value = 0;
+		for (int i = 0; i &lt; tmp.size(); i&#43;&#43;) {
+			value &#43;= tmp[i];
+		}
+		value /= tmp.size();
+		if (value &gt; maxx) maxx = value;
+	}
+	value = maxx;
+	return value;
+}
+```
+
+解法二
+```c&#43;&#43;
+float getMostWeight(const string&amp; wordStr) {
+	float value = 0;
+	int len = wordStr.size();
+	for (int i = 0; i &lt; len; i&#43;&#43;) {
+		int cnt = 0;
+		float sum = 0;
+		while (i &lt; len &amp;&amp; isalpha(wordStr[i])) {
+			cnt&#43;&#43;;
+			sum &#43;= wordStr[i];
+			i&#43;&#43;;
+		}
+		if (sum != 0) {
+			sum /= cnt;
+			if (sum &gt; value) value = sum;
+		}
+	}
+	cout &lt;&lt; value &lt;&lt; &#39;\n&#39;;
+	return value;
+}
+```
+
+#### 编程题4
+
+![](imgs/image-20240901153536533.png)
+
+```c&#43;&#43;
+bool isSameCage(unsigned int heads, unsigned int feet) {
+	bool flag = true;
+	if (feet &amp; 1) return false;
+	int y = feet / 2 - heads;
+	int x = 2 * heads - feet / 2;
+	if (x &lt; 0 || y &lt; 0) return false;
+	else return true;
+	return  flag;
+}
+```
+#### 编程题5(TODO)
+
+![](imgs/image-20240901154649873.png)
+
+#### 编程题6
+
+![](imgs/image-20240901164150764.png)
+
+```c&#43;&#43;
+struct BinaryNode {
+	char data;
+	BinaryNode* left, *right;
+	BinaryNode(char entry) {
+		data = entry;
+		left = NULL;
+		right = NULL;
+	}
+};
+
+class BinaryTree {
+	private:
+		BinaryNode* root;
+	public:
+		BinaryTree() {  // 构造函数
+			root = NULL;
+		}
+		~BinaryTree() {  // 析构函数
+			release(root);
+		}
+		void release(BinaryNode*&amp; bt) {// 是否二叉树的递归成员函数
+			if (bt) {
+				release(bt-&gt;left);
+				release(bt-&gt;right);
+				delete bt;
+				bt = NULL;
+			}
+		}
+		BinaryNode* recursive_create(string&amp; preorder) { // 根据先序字符串创建二叉树的递归成员函数
+			if (preorder.empty())
+				return NULL;
+			char data = preorder[0];
+			preorder.erase(0, 1);
+			if (data == &#39;#&#39;)
+				return NULL;
+			else {
+				BinaryNode* new_root = new BinaryNode(data);
+				new_root-&gt;left = recursive_create(preorder);
+				new_root-&gt;right = recursive_create(preorder);
+				return new_root;
+			}
+		}
+		void create(string preorder) {  // 创建二叉树的成员函数
+			root = recursive_create(preorder);
+		}
+		map&lt;char, BinaryNode*&gt; mcb; // 通过字符快速找到节点
+		map&lt;BinaryNode*, int&gt; mbi; // 通过节点快速获取到最近子节点的距离
+		int dfs(BinaryNode* root) {
+			if (root == NULL) return 0;
+			mcb[root-&gt;data] = root;
+			int l = dfs(root-&gt;left);
+			int r = dfs(root-&gt;right);
+			mbi[root] = min(l, r);
+			return mbi[root] &#43; 1;
+		}
+		int closestleaf(char x) {
+			mcb.clear(), mbi.clear();
+			dfs(root);
+			return mbi[mcb[x]];
+		}
+};
+
+int main() {
+	string preorder = &#34;AaB##EF###bG##h##&#34;;
+	BinaryTree bt;
+	bt.create(preorder);
+	cout &lt;&lt; bt.closestleaf(&#39;a&#39;) &lt;&lt; &#39;\n&#39;;
+	cout &lt;&lt; bt.closestleaf(&#39;A&#39;) &lt;&lt; &#39;\n&#39;;
+	return 0;
+}
+```
+
+#### 编程题7(TODO)
+
+![](imgs/image-20240901193331209.png)
+
+```
+
+```
+#### 编程题8
+
+![](imgs/image-20240901200538725.png)
+DP做法(TODO)
+```c&#43;&#43;
+unsigned long getNumOfBallCombinations(unsigned int scores) {
+	int N = 50;
+	long long f[N][N] = {0};// 表示只允许使用前j种球，且第j种球至少出现一次的方案
+	f[0][1] = 1;
+	f[1][1] = 1;
+	f[2][1] = 1;
+	f[2][2] = 1;
+	for (int i = 3; i &lt;= scores; i&#43;&#43;) {
+		f[i][1] = 1;
+		f[i][2] = f[i - 2][1] &#43; f[i - 2][2];
+		f[i][3] = f[i - 3][1] &#43; f[i - 3][2] &#43; f[i - 3][3];
+		f[i][4] = f[i][1] &#43; f[i][2] &#43; f[i][3];
+	}
+	return f[scores][4];
+}
+```
+暴力枚举法
+```c&#43;&#43;
+unsigned long getNumOfBallCombinations(unsigned int scores) {
+	int i = 0;
+	if (scores == 0) return 0;
+	long long count = 0;
+	while (i * 3 &lt;= scores) {
+// 遍历三分球的情况, 二分球有0~ (scores - 3 * i) / 2这几种取值
+		count &#43;= (scores - 3 * i) / 2 &#43; 1;
+		i&#43;&#43;;
+	}
+	return count;
+}
+```
 
 ---
 
