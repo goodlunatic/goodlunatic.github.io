@@ -1319,7 +1319,14 @@ int main() {
 
 ### 最短路
 #### 单源最短路
-##### 所有边的权重都是正数
+##### dijkstra算法(正权边)
+
+&gt; 稀疏图和稠密图的区别：
+&gt; 
+&gt; 稠密图：$边数\ m \approx 点数\ n^2$
+&gt; 
+&gt; 稀疏图：$边数\ m\ &lt;&lt;\ 点数\ n^2$
+
 朴素Dijkstra算法 $时间复杂度:O(n^2)$, 适合稠密图
 
 **例题1-AcWing 849. Dijkstra求最短路 I**
@@ -1347,7 +1354,7 @@ int dijkstra() {
 		}
 		if (t == -1) break;
 		st[t] = true;
-		for (int j = 1; j &lt;= n; j&#43;&#43;) {
+		for (int j = 1; j &lt;= n; j&#43;&#43;) {// 通过新加入的点更新所有点的距离
 			dist[j] = min(dist[j], dist[t] &#43; g[t][j]);
 		}
 	}
@@ -1385,17 +1392,17 @@ int dist[N];// 1号点到i号点的最短距离
 bool st[N];// 节点状态-是否已经更新为最短距离节点
 int n, m, idx;
 
-void add(int a, int b, int c) {
+void add(int a, int b, int c) {// 邻接表存储
 	e[idx] = b, w[idx] = c, ne[idx] = h[a], h[a] = idx&#43;&#43;;
 }
 
 int dijkstra() {
 	memset(dist, 0x3f, sizeof dist);
 	dist[1] = 0;
-	priority_queue&lt;PII, vector&lt;PII&gt;, greater&lt;PII&gt; &gt;heap;
+	priority_queue&lt;PII, vector&lt;PII&gt;, greater&lt;PII&gt; &gt;heap;// 小顶堆
 	heap.push({0, 1});
 	while (heap.size()) {
-		PII t = heap.top();// 取小根堆中距离节点1最小的元素
+		PII t = heap.top();// 取小根堆中离起点最近的元素
 		heap.pop();
 		int ver = t.second, distance = t.first;
 		if (st[ver]) continue;
@@ -1427,7 +1434,7 @@ int main() {
 }
 ```
 
-##### 存在负权边
+##### Bellman-Ford&#43;SPFA算法(负权边)
 
 Bellman-Ford算法 $时间复杂度:O(n*m)$
 
@@ -1596,8 +1603,8 @@ int main() {
 }
 ```
 
-#### 多源汇最短路
-
+#### 多源最短路
+##### Floyed算法
 Floyed算法 $时间复杂度:O(n^3)$
 ```c&#43;&#43;
 #include &lt;iostream&gt;
@@ -3551,6 +3558,90 @@ int main() {
     return 0;  
 }
 ```
+
+#### 表达式求值
+中缀转后缀&#43;求值(支持浮点数)
+```c&#43;&#43;
+#include &lt;iostream&gt;
+#include &lt;stack&gt;
+#include &lt;string&gt;
+using namespace std;
+
+stack&lt;double&gt; num;
+stack&lt;char&gt; op;
+string post;
+
+void init() {
+	while (!op.empty()) op.pop();
+	while (!num.empty()) num.pop();
+	post.clear();
+}
+
+int pre(char op) {
+	if (op == &#39;&#43;&#39; || op == &#39;-&#39;) return 1;
+	if (op == &#39;*&#39; || op == &#39;/&#39;) return 2;
+	return 0;
+}
+
+void eval() {
+	double r = num.top();
+	num.pop();
+	double l = num.top();
+	num.pop();
+	char opcode = op.top();
+	op.pop();
+	post &#43;= opcode;
+	if (opcode == &#39;&#43;&#39;) num.push(l &#43; r);
+	if (opcode == &#39;-&#39;) num.push(l - r);
+	if (opcode == &#39;*&#39;) num.push(l * r);
+	if (opcode == &#39;/&#39;) num.push(l / r);
+}
+
+int main() {
+	freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
+	string s;
+	while (getline(cin, s)) {
+		if (s == &#34;0&#34;) break;
+		init();
+		for (int i = 0; i &lt; s.size(); i&#43;&#43;) {
+			if (isspace(s[i])) continue;
+			if (isdigit(s[i])) {
+				double t = 0;
+				while (i &lt; s.size() &amp;&amp; isdigit(s[i])) {
+					post &#43;= s[i];
+					t = t * 10 &#43; s[i&#43;&#43;] - &#39;0&#39;;
+				}
+				i--;
+				num.push(t);
+			} else if (s[i] == &#39;(&#39;) op.push(s[i]);
+			else if (s[i] == &#39;)&#39;) {
+				while (!op.empty() &amp;&amp; op.top() != &#39;(&#39;) {
+					eval();
+				}
+				op.pop();
+			} else {
+				while (!op.empty() &amp;&amp; pre(op.top()) &gt;= pre(s[i])) {
+					eval();
+				}
+				op.push(s[i]);
+			}
+		}
+		while (!op.empty()) {
+			eval();
+		}
+
+		printf(&#34;%c&#34;, post[0]);
+		for (int i = 1; i &lt; post.size(); i&#43;&#43;) {
+			printf(&#34; %c&#34;, post[i]);
+		}
+		puts(&#34;&#34;);
+		printf(&#34;%.2lf\n&#34;, num.top());
+	}
+	return 0;
+}
+
+```
+
 
 ### kmp
 ```c&#43;&#43;
@@ -6472,6 +6563,353 @@ int main() {
 ```
 
 ```
+
+#### 简单计算器
+```c&#43;&#43;
+#include &lt;iostream&gt;
+#include &lt;stack&gt;
+#include &lt;string&gt;
+using namespace std;
+
+stack&lt;double&gt; num;
+stack&lt;char&gt; op;
+
+void init() {
+	while (!op.empty()) op.pop();
+	while (!num.empty()) num.pop();
+}
+
+int pre(char op) {
+	if (op == &#39;&#43;&#39; || op == &#39;-&#39;) return 1;
+	if (op == &#39;*&#39; || op == &#39;/&#39;) return 2;
+	return 0;
+}
+
+void eval() {
+	double r = num.top();
+	num.pop();
+	double l = num.top();
+	num.pop();
+	char opcode = op.top();
+	op.pop();
+	if (opcode == &#39;&#43;&#39;) num.push(l &#43; r);
+	if (opcode == &#39;-&#39;) num.push(l - r);
+	if (opcode == &#39;*&#39;) num.push(l * r);
+	if (opcode == &#39;/&#39;) num.push(l / r);
+}
+
+int main() {
+	freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
+	string s;
+	while (getline(cin, s)) {
+		if (s == &#34;0&#34;) break;
+		init();
+		for (int i = 0; i &lt; s.size(); i&#43;&#43;) {
+			if (isspace(s[i])) continue;
+			if (isdigit(s[i])) {
+				double t = 0;
+				while (i &lt; s.size() &amp;&amp; isdigit(s[i])) {
+					t = t * 10 &#43; s[i&#43;&#43;] - &#39;0&#39;;
+				}
+				i--;
+				num.push(t);
+			} else if (s[i] == &#39;(&#39;) op.push(s[i]);
+			else if (s[i] == &#39;)&#39;) {
+				while (!op.empty() &amp;&amp; op.top() != &#39;(&#39;) {
+					eval();
+				}
+				op.pop();
+			} else {
+				while (!op.empty() &amp;&amp; pre(op.top()) &gt;= pre(s[i])) {
+					eval();
+				}
+				op.push(s[i]);
+			}
+		}
+		while (!op.empty()) {
+			eval();
+		}
+		printf(&#34;%.2lf\n&#34;, num.top());
+	}
+	return 0;
+}
+
+```
+
+#### 欧拉回路
+&gt; 欧拉回路是指不令笔离开纸面，可画过图中每条边仅一次，且可以回到起点的一条回路
+
+判断欧拉回路的条件：
+1. 除了孤立节点外，其它节点满足连通并且度为偶数
+2. 图中只允许有一个连通分量
+
+解法一：并查集
+```c&#43;&#43;
+#include &lt;iostream&gt;
+using namespace std;
+typedef long long ll;
+
+const int N = 1010;
+ll p[N], d[N], h[N], g[N];
+
+ll Find(ll k) {
+	if (p[k] != k) p[k] = Find(p[k]);
+	return p[k];
+}
+
+void Union(ll a, ll b) {
+	a = Find(a), b = Find(b);
+	if (h[a] &lt; h[b]) p[a] = b;
+	else if (h[b] &lt; h[a]) p[b] = a;
+	else p[b] = a, h[a]&#43;&#43;;
+}
+
+int main() {
+	freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
+	int n, m, a, b, t;
+	while (cin &gt;&gt; n &amp;&amp; n) {
+		cin &gt;&gt; m;
+		for (int i = 0; i &lt;= n; i&#43;&#43;) p[i] = i, d[i] = 0;
+		for (int i = 1; i &lt;= m; i&#43;&#43;) {
+			cin &gt;&gt; a &gt;&gt; b;
+			d[a]&#43;&#43;, d[b]&#43;&#43;;
+			Union(a, b);
+			t = a;// 记录其中一个连通图的点
+		}
+		int res = 0;
+		bool flag = true;
+		for (int i = 1; i &lt;= n; i&#43;&#43;) {
+			if (Find(i) != Find(t) &amp;&amp; d[i] != 0) {// 存在多个连通分量
+				flag = false;
+				break;
+			} else if (d[i] &amp; 1) {// 存在度不为偶数的点
+				flag = false;
+				break;
+			}
+		}
+		if (flag) puts(&#34;1&#34;);
+		else puts(&#34;0&#34;);
+	}
+	return 0;
+}
+
+```
+解法二(dfs&#43;剪枝)
+```c&#43;&#43;
+#include &lt;iostream&gt;
+#include &lt;cstring&gt;
+using namespace std;
+
+const int N = 1010;
+int n, m, x, y, g[N][N];
+
+bool dfs(int st, int k, int cnt) {// 深搜&#43;剪枝
+	if (st == k &amp;&amp; cnt == m) return true;// 回到起点并且经过m条边
+	bool ret = false;
+	for (int j = 1; j &lt;= n &amp;&amp; !ret; j&#43;&#43;) {
+		if (g[k][j]) {
+			g[k][j] = g[j][k] = 0;// 剪枝标记, 防止重复使用
+			ret |= dfs(st, j, cnt &#43; 1);
+			g[k][j] = g[j][k] = 1;// 恢复
+		}
+	}
+	return ret;
+}
+
+int main() {
+	freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
+	while (cin &gt;&gt; n &amp;&amp; n) {
+		cin &gt;&gt; m;
+		memset(g, 0, sizeof g);
+		for (int i = 0; i &lt; m; i&#43;&#43;) {
+			cin &gt;&gt; x &gt;&gt; y;
+			g[x][y] = g[y][x] = 1;
+		}
+		bool res = false;
+		for (int i = 1; i &lt;= n &amp;&amp; !res; i&#43;&#43;) {
+			res |= dfs(i, i, 0);// 只要有一条可行路径就行
+		}
+		if (res) puts(&#34;1&#34;);
+		else puts(&#34;0&#34;);
+	}
+	return 0;
+}
+```
+
+#### 找出直系亲属 
+
+```c&#43;&#43;
+#include &lt;iostream&gt;
+#include &lt;vector&gt;
+using namespace std;
+
+const int N = 26;
+vector&lt;int&gt;g[N];
+int n, m, depth;
+string s;
+
+void print(int depth, int flag) {// 用flag来区分parent和child的关系
+	if (depth == 1) {
+		if (flag == 1) puts(&#34;parent&#34;);
+		else puts(&#34;child&#34;);
+	} else if (depth == 2) {
+		if (flag == 1) puts(&#34;grandparent&#34;);
+		else puts(&#34;grandchild&#34;);
+	} else {
+		for (int i = 0; i &lt; depth - 2; i&#43;&#43;) {
+			printf(&#34;great-&#34;);
+		}
+		if (flag == 1) puts(&#34;grandparent&#34;);
+		else puts(&#34;grandchild&#34;);
+	}
+}
+
+void dfs(int a, int b, int d) {
+	if (a == b) {
+		depth = d;
+		return ;
+	}
+	for (int i = 0; i &lt; g[a].size(); i&#43;&#43;) {
+		dfs(g[a][i], b, d &#43; 1);
+	}
+}
+
+int main() {
+	freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
+	cin &gt;&gt; n &gt;&gt; m;
+	for (int i = 0; i &lt; n; i&#43;&#43;) {
+		cin &gt;&gt; s;
+		if (s[1] != &#39;-&#39;) g[s[0] - &#39;A&#39;].push_back(s[1] - &#39;A&#39;);
+		if (s[2] != &#39;-&#39;) g[s[0] - &#39;A&#39;].push_back(s[2] - &#39;A&#39;);
+	}
+	for (int i = 0; i &lt; m; i&#43;&#43;) {
+		depth = -1;
+		cin &gt;&gt; s;
+		int a = s[0] - &#39;A&#39;, b = s[1] - &#39;A&#39;;
+		dfs(a, b, 0);
+		if (depth == -1) {
+			dfs(b, a, 0);
+			if (depth == -1)puts(&#34;-&#34;);
+			else print(depth, 1);
+		} else print(depth, 2);
+
+	}
+	return 0;
+}
+```
+
+#### To Fill or Not to Fill(贪心)
+```c&#43;&#43;
+#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+using namespace std;
+
+const int N = 510;
+int cmax, d, davg, n; // 容量、目的地距离、每单位汽油能行驶的距离，加油站数量
+
+struct Station {
+	double price;
+	int dist;
+	bool operator &lt; (const Station &amp;w) const {
+		return price &lt; w.price;
+	}
+} s[N];
+
+int main() {
+	freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
+	while (cin &gt;&gt; cmax &gt;&gt; d &gt;&gt; davg &gt;&gt; n) {
+		double cost = 0, per[d];
+		for (int i = 0; i &lt; d; i&#43;&#43;) per[i] = -1;
+		for (int i = 0; i &lt; n; i&#43;&#43;) {
+			cin &gt;&gt; s[i].price &gt;&gt; s[i].dist;
+		}
+		sort(s, s &#43; n);
+		for (int i = 0; i &lt; n; i&#43;&#43;) {
+			for (int j = s[i].dist; j &lt; s[i].dist &#43; cmax * davg &amp;&amp; j &lt; d; j&#43;&#43;) {
+				if (per[j] &lt; 0) per[j] = s[i].price / davg;// 贪心
+			}
+		}
+		int i = 0;
+		for (i = 0; i &lt; d; i&#43;&#43;) {
+			if (per[i] &lt; 0) {
+				printf(&#34;The maximum travel distance = %.2f\n&#34;, double(i));
+				break;
+			}
+			cost &#43;= per[i];
+		}
+		if (i == d) printf(&#34;%.2lf\n&#34;, cost);
+	}
+	return 0;
+}
+```
+
+#### 最短路径问题(dijkstra算法&#43;vector数组存储图)
+这题有点坑，使用传统邻接表存储会TLE
+```c&#43;&#43;
+#include &lt;iostream&gt;
+#include &lt;vector&gt;
+#include &lt;queue&gt;
+#include &lt;cstring&gt;
+using namespace std;
+typedef pair&lt;int, int&gt;PII;
+const int N = 1010, M = 1e5 &#43; 10, INF = 0x3f3f3f3f;
+int n, m, a, b, d, p, s, t;
+int dist[N], cost[N];
+bool st[N];
+
+struct Edge {
+	int to, lenth, price;
+	Edge(int b, int d, int p): to(b), lenth(d), price(p) {};
+};
+
+vector&lt;Edge&gt; g[M];// 元素为vector&lt;Edge&gt;的数组
+
+PII dijkstra(int s, int t) {
+	memset(dist, 0x3f, sizeof dist);
+	memset(cost, 0x3f, sizeof cost);
+	memset(st, 0, sizeof st);
+	dist[s] = 0, cost[s] = 0;
+	priority_queue&lt;PII, vector&lt;PII&gt;, greater&lt;PII&gt; &gt;heap;
+	heap.push({0, s});
+	while (!heap.empty()) {
+		PII tmp = heap.top();// 取距离起点最近的点
+		heap.pop();
+		int elem = tmp.second, dis = tmp.first;
+		if (st[elem]) continue;
+		st[elem] = true;
+		for (int i = 0; i &lt; g[elem].size(); i&#43;&#43;) { // 遍历所有邻接点
+			int j = g[elem][i].to;
+			int w = g[elem][i].lenth;
+			int v = g[elem][i].price;
+			if ((dist[j] &gt; dis &#43; w) || (dist[j] == dis &#43; w &amp;&amp; cost[j] &gt; cost[elem] &#43; v)) {
+				dist[j] = dis &#43; w;
+				cost[j] = cost[elem] &#43; v;
+				heap.push({dist[j], j});
+			}
+		}
+	}
+	if (dist[t] == INF) return {INF, INF};
+	else return {dist[t], cost[t]};
+}
+
+int main() {
+	freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
+	while (scanf(&#34;%d%d&#34;, &amp;n, &amp;m) != EOF) {
+		if (n == 0 &amp;&amp; m == 0) break;
+		memset(g, 0, sizeof g);
+		for (int i = 0; i &lt; m; i&#43;&#43;) {
+			scanf(&#34;%d%d%d%d&#34;, &amp;a, &amp;b, &amp;d, &amp;p);
+			g[a].push_back(Edge(b, d, p));
+			g[b].push_back(Edge(a, d, p));
+		}
+		cin &gt;&gt; s &gt;&gt; t;
+		PII res = dijkstra(s, t);
+		cout &lt;&lt; res.first &lt;&lt; &#34; &#34; &lt;&lt; res.second &lt;&lt; &#39;\n&#39;;
+	}
+	return 0;
+}
+```
+
 
 ### 苏州大学2022年机试真题
 #### 编程题1
