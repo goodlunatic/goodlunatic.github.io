@@ -4,12 +4,12 @@
     <link>http://localhost:1313/</link>
     <description>This is Lunatic BLOG @_@</description>
     <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>goodlunatic0@gmail.com (Lunatic)</managingEditor>
-      <webMaster>goodlunatic0@gmail.com (Lunatic)</webMaster><lastBuildDate>Wed, 04 Sep 2024 21:35:29 &#43;0800</lastBuildDate>
+      <webMaster>goodlunatic0@gmail.com (Lunatic)</webMaster><lastBuildDate>Sun, 08 Sep 2024 21:35:29 &#43;0800</lastBuildDate>
       <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
     <item>
   <title>Preparation For Programming Proficiency Exam</title>
   <link>http://localhost:1313/posts/552060f/</link>
-  <pubDate>Wed, 04 Sep 2024 21:35:29 &#43;0800</pubDate>
+  <pubDate>Sun, 08 Sep 2024 21:35:29 &#43;0800</pubDate>
   <author>Lunatic</author>
   <guid>http://localhost:1313/posts/552060f/</guid>
   <description><![CDATA[<p>时间过得真快呀，回想上次做算法题应该是大一的时候了</p>
@@ -75,7 +75,7 @@
   <description><![CDATA[<p>忙里偷闲，稍微打了一下 2024WKCTF 练练手</p>]]></description>
 </item>
 <item>
-  <title>Network Traffic Analysis</title>
+  <title>Misc-Network Traffic Analysis</title>
   <link>http://localhost:1313/posts/5422d65/</link>
   <pubDate>Sat, 06 Jul 2024 18:15:27 &#43;0800</pubDate>
   <author>Lunatic</author>

@@ -1083,6 +1083,9 @@ if __name__ == &#39;__main__&#39;:
 #### 2、wbStego4open隐写
 
 用wbStego4open直接decode
+#### 3、silenteye隐写
+
+直接拉入 silenteye 解密即可
 
 ### GIF思路
 

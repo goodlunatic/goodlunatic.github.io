@@ -35,21 +35,27 @@
 | `stoi(str)`             | 将 `string` 类型的字符串转换为 `int` 类型，并且`stoi` 会隐式地将 `char` 数组转换为 `string`，然后再转换为整数 |
 | `to_string()`           | 用于将各种基本数据类型（如 `int、float、double、long `等）转换为字符串`std::string`                 |
 | `remove()`              | `remove(token.begin(), token.end(), &#39; &#39;)`将所有空格元素移动到末尾，并返回第一个空格的迭代器          |
+| `atoi()`                | 用于将字符串表示的整数转换为实际的整数值`const char *str = &#34;12345&#34;; int num = atoi(str);`       |
+| `stoi()`                | 用于将字符串转换为整数`string str = &#34;123.456&#34;;double num = stod(str);`                 |
+| `stod()`                | 用于将字符串转换为双精度浮点数`string str = &#34;12345&#34;;int num = stoi(str);`                  |
+| `to_string()`           | 用于将数值类型（如整数、浮点数等）转换为 `string` 类型                                            |
 ### C&#43;&#43;的STL中一些常用的库函数
 #### vector 数组
 
-| 成员函数             | 用法                                   |
-| ---------------- | ------------------------------------ |
-| `size()`         | 返回数组当前包含的元素数量                        |
-| `empty()`        | 检查当前的数组是否为空, 是则返回`true`, 否则返回`false` |
-| `push_back()`    | 在数组末尾添加一个元素                          |
-| `pop_back()`     | 删除数组末尾最后一个元素                         |
-| `erase(pos,len)` | 删除数组从下标`pos`开始长度为`len`的元素            |
-| `front()`        | 返回数组第一个元素的引用                         |
-| `back()`         | 返回数组最后一个元素的引用                        |
-| `begin()`        | 返回数组第一个元素的迭代器                        |
-| `end()`          | 返回数组最后一个元素后一个位置的迭代器                  |
-| `clear()`        | 清空数组                                 |
+| 成员函数                  | 用法                                   |
+| --------------------- | ------------------------------------ |
+| `size()`              | 返回数组当前包含的元素数量                        |
+| `empty()`             | 检查当前的数组是否为空, 是则返回`true`, 否则返回`false` |
+| `push_back()`         | 在数组末尾添加一个元素                          |
+| `pop_back()`          | 删除数组末尾最后一个元素                         |
+| `erase(pos,len)`      | 删除数组从下标`pos`开始长度为`len`的元素            |
+| `front()`             | 返回数组第一个元素的引用                         |
+| `back()`              | 返回数组最后一个元素的引用                        |
+| `begin()`             | 返回数组第一个元素的迭代器                        |
+| `end()`               | 返回数组最后一个元素后一个位置的迭代器                  |
+| `clear()`             | 清空数组                                 |
+| `vector&lt;int&gt; v(10)`   | 初始化一个长度为10,元素默认为0的vector             |
+| `vector&lt;int&gt; v(10,5)` | 初始化一个长度为10,元素默认为5的vector             |
 
 #### map 关联容器
 &gt; `map`会自动按照键值排序
@@ -64,6 +70,7 @@
 | `find()`        | 若找到该元素则返回指向该元素的迭代器，否侧返回`.end()`      |
 | `lower_bound()` | 返回大于等于x的最小的数的迭代器                     |
 | `upper_bound()` | 返回大于x的最小的数的迭代器                       |
+| `clear()`       | 清空容器                                 |
 ```c&#43;&#43;
 map&lt;string, int&gt;mp;
 mp[&#34;example&#34;] = 1;
@@ -901,41 +908,42 @@ int main() {
 
 例题1-AcWing803.区间合并
 ```c&#43;&#43;
-#include &lt;bits/stdc&#43;&#43;.h&gt;
+#include &lt;iostream&gt;
+#include &lt;vector&gt;
+#include &lt;algorithm&gt;
 using namespace std;
-typedef pair&lt;int, int&gt; PII;
+typedef pair&lt;int, int&gt;PII;
+int n, l, r;
 
 vector&lt;PII&gt;segs;
+vector&lt;PII&gt;res;
 
-// 区间合并的关键代码
-void merge(vector&lt;PII&gt;&amp;segs) {
-	vector&lt;PII&gt;res;
-	if (!segs.size()) return;
+void merge(vector&lt;PII&gt;segs) {
 	sort(segs.begin(), segs.end());
 	int st = segs[0].first, ed = segs[0].second;
 	for (int i = 1; i &lt; segs.size(); i&#43;&#43;) {
 		if (segs[i].first &gt; ed) {
 			res.push_back({st, ed});
+//			printf(&#34;%d %d\n&#34;, st, ed);
+			st = segs[i].first;
 			ed = segs[i].second;
 		} else {
 			ed = max(ed, segs[i].second);
 		}
 	}
-//	将最后一个区间也放入数组
-	res.push_back({st, ed});
-	segs = res;
+	res.push_back({st, ed});// 最后一个元素要注意
+//	printf(&#34;%d %d\n&#34;, st, ed);
 }
 
 int main() {
 	freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
-	int n, l, r;
-	cin &gt;&gt; n;
+	scanf(&#34;%d&#34;, &amp;n);
 	for (int i = 0; i &lt; n; i&#43;&#43;) {
 		scanf(&#34;%d%d&#34;, &amp;l, &amp;r);
 		segs.push_back({l, r});
 	}
 	merge(segs);
-	cout &lt;&lt; segs.size() &lt;&lt; &#39;\n&#39;;
+	printf(&#34;%d\n&#34;, res.size());
 	return 0;
 }
 ```
@@ -943,7 +951,7 @@ int main() {
 ### 搜索与图论
 #### 深度优先搜索(DFS)
 
-**例题1-AcWing 842. 排列数字 **
+**例题1-AcWing 842. 排列数字**
 
 ```c&#43;&#43;
 #include &lt;bits/stdc&#43;&#43;.h&gt;
@@ -1379,6 +1387,43 @@ int main() {
 
 堆优化版的Dijkstra算法 $时间复杂度:O(mlog_n)$, 适合稀疏图
 ```c&#43;&#43;
+struct Edge {
+	int to, lenth, price;
+	Edge(int b, int d, int p): to(b), lenth(d), price(p) {};
+};
+
+vector&lt;Edge&gt; g[M];// 元素为vector&lt;Edge&gt;的数组
+
+PII dijkstra(int s, int t) {
+	memset(dist, 0x3f, sizeof dist);
+	memset(cost, 0x3f, sizeof cost);
+	memset(st, 0, sizeof st);
+	dist[s] = 0, cost[s] = 0;
+	priority_queue&lt;PII, vector&lt;PII&gt;, greater&lt;PII&gt; &gt;heap;
+	heap.push({0, s});
+	while (!heap.empty()) {
+		PII tmp = heap.top();// 取距离起点最近的点
+		heap.pop();
+		int elem = tmp.second, dis = tmp.first;
+		if (st[elem]) continue;
+		st[elem] = true;
+		for (int i = 0; i &lt; g[elem].size(); i&#43;&#43;) { // 遍历所有邻接点
+			int j = g[elem][i].to;
+			int w = g[elem][i].lenth;
+			int v = g[elem][i].price;
+			if ((dist[j] &gt; dis &#43; w) || (dist[j] == dis &#43; w &amp;&amp; cost[j] &gt; cost[elem] &#43; v)) {
+				dist[j] = dis &#43; w;
+				cost[j] = cost[elem] &#43; v;
+				heap.push({dist[j], j});
+			}
+		}
+	}
+	if (dist[t] == INF) return {INF, INF};
+	else return {dist[t], cost[t]};
+}
+```
+
+```c&#43;&#43;
 #include &lt;iostream&gt;
 #include &lt;cstring&gt;
 #include &lt;algorithm&gt;
@@ -1482,6 +1527,61 @@ int main() {
 	return 0;
 }
 ```
+
+##### DFS&#43;剪枝
+**PAT-1003 Emergency**
+```c&#43;&#43;
+#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+using namespace std;
+const int N = 510, INF = 0x3f3f3f3f;
+int n, m, c1, c2, x, y, w, path;
+int arr[N];
+int g[N][N];
+bool st[N];
+int minn, maxx;// 路径最小值、救援队数量最大值
+
+void dfs(int c1, int len, int rescue) {
+	if (len &gt; minn) return;
+	if (c1 == c2) {//到达目的地
+		if (minn &gt; len) {
+			minn = len;
+			maxx = rescue;
+			path = 1;
+		} else if (minn == len) {
+			maxx = max(rescue, maxx);
+			path&#43;&#43;;
+		}
+		return;
+	}
+	for (int i = 0; i &lt; n; i&#43;&#43;) {
+		if (g[c1][i] != INF) {
+			if (st[i]) continue;
+			st[i] = true;//标记
+			dfs(i, len &#43; g[c1][i], rescue &#43; arr[i]);
+			st[i] = false;
+		}
+	}
+}
+
+int main() {
+	// freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
+	fill(&amp;g[0][0], &amp;g[0][0] &#43; sizeof(g) / sizeof(g[0][0]), INF);
+	fill(st, st &#43; n &#43; 1, false);
+	scanf(&#34;%d%d%d%d&#34;, &amp;n, &amp;m, &amp;c1, &amp;c2);
+	for (int i = 0; i &lt; n; i&#43;&#43;) scanf(&#34;%d&#34;, &amp;arr[i]);
+	for (int i = 0; i &lt; m; i&#43;&#43;) {
+		scanf(&#34;%d%d%d&#34;, &amp;x, &amp;y, &amp;w);
+		g[x][y] = g[y][x] = w;
+	}
+	minn = INF, maxx = -1;
+	st[c1] = true;// 标记
+	dfs(c1, 0, arr[c1]);
+	printf(&#34;%d %d\n&#34;, path, maxx);
+	return 0;
+}
+```
+
 
 SPFA算法 $时间复杂度:一般O(n), 最坏O(n*m)$
 
@@ -3065,7 +3165,7 @@ int main() {
 }
 ```
 
-**例题3-AcWing897. 最长公共子序列 **
+**例题3-AcWing897. 最长公共子序列**
 ```c&#43;&#43;
 #include &lt;bits/stdc&#43;&#43;.h&gt;
 using namespace std;
@@ -6843,44 +6943,44 @@ int main() {
 }
 ```
 
-#### 最短路径问题(dijkstra算法&#43;vector数组存储图)
-这题有点坑，使用传统邻接表存储会TLE
+#### 最短路径问题(堆优化版的dijkstra算法&#43;vector数组存储图)
 ```c&#43;&#43;
 #include &lt;iostream&gt;
 #include &lt;vector&gt;
 #include &lt;queue&gt;
-#include &lt;cstring&gt;
+#include &lt;algorithm&gt;
+#include &lt;functional&gt;
 using namespace std;
-typedef pair&lt;int, int&gt;PII;
+typedef pair&lt;int, int&gt; PII;
 const int N = 1010, M = 1e5 &#43; 10, INF = 0x3f3f3f3f;
-int n, m, a, b, d, p, s, t;
-int dist[N], cost[N];
-bool st[N];
+int n, m, a, b, c, d, st, ed;
+int dist[N];
+int cost[N];
+bool visit[N];
 
 struct Edge {
-	int to, lenth, price;
-	Edge(int b, int d, int p): to(b), lenth(d), price(p) {};
+	int to, weight, val;
 };
 
-vector&lt;Edge&gt; g[M];// 元素为vector&lt;Edge&gt;的数组
+vector&lt;Edge&gt;g[N];
 
-PII dijkstra(int s, int t) {
-	memset(dist, 0x3f, sizeof dist);
-	memset(cost, 0x3f, sizeof cost);
-	memset(st, 0, sizeof st);
-	dist[s] = 0, cost[s] = 0;
+PII dijkstra(int st, int ed) {
+	fill(dist, dist &#43; N, INF);
+	fill(visit, visit &#43; N, false);
+	fill(cost, cost &#43; N, INF);
 	priority_queue&lt;PII, vector&lt;PII&gt;, greater&lt;PII&gt; &gt;heap;
-	heap.push({0, s});
+	dist[st] = 0, cost[st] = 0;
+	heap.push({0, st});
 	while (!heap.empty()) {
-		PII tmp = heap.top();// 取距离起点最近的点
+		PII tmp = heap.top();
 		heap.pop();
 		int elem = tmp.second, dis = tmp.first;
-		if (st[elem]) continue;
-		st[elem] = true;
-		for (int i = 0; i &lt; g[elem].size(); i&#43;&#43;) { // 遍历所有邻接点
+		if (visit[elem]) continue;
+		visit[elem] = true;
+		for (int i = 0; i &lt; g[elem].size(); i&#43;&#43;) {
 			int j = g[elem][i].to;
-			int w = g[elem][i].lenth;
-			int v = g[elem][i].price;
+			int w = g[elem][i].weight;
+			int v = g[elem][i].val;
 			if ((dist[j] &gt; dis &#43; w) || (dist[j] == dis &#43; w &amp;&amp; cost[j] &gt; cost[elem] &#43; v)) {
 				dist[j] = dis &#43; w;
 				cost[j] = cost[elem] &#43; v;
@@ -6888,28 +6988,79 @@ PII dijkstra(int s, int t) {
 			}
 		}
 	}
-	if (dist[t] == INF) return {INF, INF};
-	else return {dist[t], cost[t]};
+	if (dist[ed] == INF) return {INF, INF};
+	return {dist[ed], cost[ed]};
 }
 
 int main() {
 	freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
 	while (scanf(&#34;%d%d&#34;, &amp;n, &amp;m) != EOF) {
 		if (n == 0 &amp;&amp; m == 0) break;
-		memset(g, 0, sizeof g);
+		for (int i = 0; i &lt; N; i&#43;&#43;) g[i].clear();// 初始化
 		for (int i = 0; i &lt; m; i&#43;&#43;) {
-			scanf(&#34;%d%d%d%d&#34;, &amp;a, &amp;b, &amp;d, &amp;p);
-			g[a].push_back(Edge(b, d, p));
-			g[b].push_back(Edge(a, d, p));
+			scanf(&#34;%d%d%d%d&#34;, &amp;a, &amp;b, &amp;c, &amp;d);
+			g[a].push_back({b, c, d});
+			g[b].push_back({a, c, d});
 		}
-		cin &gt;&gt; s &gt;&gt; t;
-		PII res = dijkstra(s, t);
-		cout &lt;&lt; res.first &lt;&lt; &#34; &#34; &lt;&lt; res.second &lt;&lt; &#39;\n&#39;;
+		scanf(&#34;%d%d&#34;, &amp;st, &amp;ed);
+		PII res = dijkstra(st, ed);
+		printf(&#34;%d %d\n&#34;, res.first, res.second);
 	}
 	return 0;
 }
 ```
 
+#### 最大报销额(DFS暴搜)
+```c&#43;&#43;
+#include &lt;iostream&gt;
+#include &lt;queue&gt;
+#include &lt;algorithm&gt;
+using namespace std;
+
+int n, m;
+double q, p, res;
+char a, b;
+priority_queue&lt;double&gt;heap;
+
+bool check(char a, double p) {
+	if (a == &#39;A&#39; || a == &#39;B&#39; || a == &#39;C&#39;) return p &lt;= 600.00;
+	else return false;
+}
+
+void dfs(double sum, double q) {
+	if (sum &gt; q) return;
+	else res = max(res, sum);
+	if (!heap.empty()) {
+		double t = heap.top();
+		heap.pop();
+		dfs(sum, q), dfs(sum &#43; t, q);//暴搜:这张发票选或不选
+		heap.push(t);//恢复状态
+	}
+}
+
+int main() {
+	freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
+	while (cin &gt;&gt; q &gt;&gt; n &amp;&amp; n) {
+		heap = priority_queue&lt;double&gt;();// 初始化大顶堆
+		for (int i = 0; i &lt; n; i&#43;&#43;) {// 遍历每张发票
+			bool flag = true;
+			double sum = 0.0;
+			cin &gt;&gt; m;
+			for (int i = 0; i &lt; m; i&#43;&#43;) {// 遍历每个物品
+				cin &gt;&gt; a &gt;&gt; b &gt;&gt; p;
+				flag &amp;= check(a, p);
+				sum &#43;= p;
+			}
+			if (sum &gt; max(1000.0, q)) flag = false;
+			if (flag) heap.push(sum);// 发票符合要求就入堆
+		}
+		res = 0;
+		dfs(0.0, q);
+		printf(&#34;%.2lf\n&#34;, res);
+	}
+	return 0;
+}
+```
 
 ### 苏州大学2022年机试真题
 #### 编程题1
@@ -7242,6 +7393,470 @@ unsigned long getNumOfBallCombinations(unsigned int scores) {
 	return count;
 }
 ```
+### 王道考研机试指南
+#### 图论
+##### 并查集
+###### Is It A Tree?
+```c&#43;&#43;
+#include &lt;iostream&gt;
+#include &lt;cstring&gt;
+using namespace std;
+
+const int N = 1e4 &#43; 10;
+int a, b;
+int p[N], h[N];
+int inDegree[N];
+bool st[N];
+
+void init() {
+	for (int i = 0; i &lt; N; i&#43;&#43;) {
+		p[i] = i;
+		h[i] = 0;
+		st[i] = false;
+		inDegree[i] = 0;
+	}
+}
+
+int Find(int x) {
+	if (x != p[x]) p[x] = Find(p[x]);
+	return p[x];
+}
+
+void Union(int x, int y) {
+	x = Find(x), y = Find(y);
+	if (h[x] &lt; h[y]) p[x] = y;
+	else if (h[y] &lt; h[x]) p[y] = x;
+	else p[y] = x, h[x] &#43;&#43;;
+}
+/*
+判断一个图是否是树：
+1. 只有一个根节点并且只有一个连通分量
+2. 空树也是树
+*/
+
+bool is_tree() {
+	int part = 0, root = 0, flag = true;
+	for (int i = 0; i &lt; N; i&#43;&#43;) {
+		if (!st[i]) continue;
+		if (inDegree[i] == 0) root&#43;&#43;; // 统计入度为0的节点/根节点
+		if (p[i] == i) part&#43;&#43;; // 统计连通分量的个数
+		if (inDegree[i] &gt; 1) return false;
+	}
+	if (root != 1 || part &gt; 1) flag = false;
+	if (root == 0 &amp;&amp; part == 0) flag = true;
+	return flag;
+}
+
+int main() {
+	// freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
+	init();
+	int cnt = 0;
+	while (scanf(&#34;%d%d&#34;, &amp;a, &amp;b) != EOF) {
+		if (a == -1 &amp;&amp; b == -1) break;
+		else if (a == 0 &amp;&amp; b == 0) {
+			if (is_tree()) printf(&#34;Case %d is a tree.\n&#34;, &#43;&#43;cnt);
+			else printf(&#34;Case %d is not a tree.\n&#34;, &#43;&#43;cnt);
+			init();
+		} else {
+			if (Find(a) != Find(b)) Union(a, b);
+			st[a] = true, st[b] = true;
+			inDegree[b]&#43;&#43;;
+		}
+	}
+	return 0;
+}
+```
+###### 第一题(使用map映射来完成并查集)
+```c&#43;&#43;
+#include &lt;iostream&gt;
+#include &lt;map&gt;
+using namespace std;
+
+map&lt;int, int&gt;p, h;
+int a, b;
+
+int Find(int x) {
+	if (p.find(x) != p.end()) {
+		if (x != p[x]) p[x] = Find(p[x]);
+	} else {
+		p[x] = x, h[x] = 0;
+	}
+	return p[x];
+}
+
+void Union(int a, int b) {
+	a = Find(a), b = Find(b);
+	if (a != b) {
+		if (h[a] &lt; h[b]) p[a] = b;
+		else if (h[b] &lt; h[a]) p[b] = a;
+		else p[b] = a, h[a]&#43;&#43;;
+	}
+}
+
+int main() {
+	freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
+	int cnt = 0;
+	while (scanf(&#34;%d%d&#34;, &amp;a, &amp;b) != EOF) {
+		Union(a, b);
+	}
+	for (auto item : p) {
+		if (item.first == item.second) cnt&#43;&#43;;
+	}
+	printf(&#34;%d\n&#34;, cnt);
+	return 0;
+}
+```
+##### 最小生成树
+###### Freckles
+```c&#43;&#43;
+#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+#include &lt;cmath&gt;
+#include &lt;map&gt;
+using namespace std;
+const int N = 110, M = 5000;
+int n, cnt;
+map&lt;int, int&gt;h, p;
+
+struct Node {
+	double x, y;
+} node[N];
+
+struct Edge {
+	int x, y;
+	double w;
+	bool operator &lt; (const Edge &amp;e) const {
+		return w &lt; e.w;
+	}
+} edge[5000];
+
+double getDis(Node a, Node b) {
+	return sqrt((a.x - b.x) * (a.x - b.x) &#43; (a.y - b.y) * (a.y - b.y));
+}
+
+int Find(int x) {
+	if (p.find(x) == p.end()) p[x] = x, h[x] = 0;
+	if (x != p[x]) p[x] = Find(p[x]);
+	return p[x];
+}
+
+void Union(int x, int y) {
+	x = Find(x), y = Find(y);
+	if (h[x] &lt; h[y]) p[x] = y;
+	else if (h[y] &lt; h[x]) p[y] = x;
+	else p[y] = x, h[x]&#43;&#43;;
+}
+
+double kruskal() {
+	double cost = 0;
+	for (int i = 0; i &lt; cnt; i&#43;&#43;) {
+		int x = edge[i].x, y = edge[i].y;
+		if (Find(x) != Find(y)) {
+			Union(x, y);
+			cost &#43;= edge[i].w;
+		}
+	}
+	return cost;
+}
+
+int main() {
+	freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
+	scanf(&#34;%d&#34;, &amp;n);
+	for (int i = 0; i &lt; n; i&#43;&#43;) {
+		scanf(&#34;%lf%lf&#34;, &amp;node[i].x, &amp;node[i].y);
+	}
+	cnt = 0;
+	for (int i = 0; i &lt; n; i&#43;&#43;) {
+		for (int j = i &#43; 1; j &lt; n; j&#43;&#43;) {
+			double dist = getDis(node[i], node[j]);
+			edge[cnt].x = i, edge[cnt].y = j, edge[cnt].w = dist;
+			cnt&#43;&#43;;
+		}
+	}
+	sort(edge, edge &#43; cnt);
+	double res = kruskal();
+	printf(&#34;%.2lf\n&#34;, res);
+	return 0;
+}
+```
+###### Jungle Roads
+```c&#43;&#43;
+#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+#include &lt;map&gt;
+using namespace std;
+
+const int N = 30, M = 100;
+int n, cnt, num, weight;
+map&lt;int, int&gt;h, p;
+
+struct Edge {
+	int x, y, v;
+	bool operator &lt; (const Edge &amp;w) const {
+		return v &lt; w.v;
+	}
+} edge[M];
+
+int Find(int x) {
+	if (p.find(x) == p.end()) p[x] = x, h[x] = 0;
+	if (x != p[x]) p[x] = Find(p[x]);
+	return p[x];
+}
+
+void Union(int x, int y) {
+	x = Find(x), y = Find(y);
+	if (h[x] &lt; h[y]) p[x] = y;
+	else if (h[y] &lt; h[x]) p[y] = x;
+	else p[y] = x, h[x]&#43;&#43;;
+}
+
+int kruskal() {
+	int cost = 0;
+	for (int i = 0; i &lt; num; i&#43;&#43;) {
+		int x = edge[i].x;
+		int y = edge[i].y;
+		if (Find(x) != Find(y)) {
+			Union(x, y);
+			cost &#43;= edge[i].v;
+		}
+	}
+	return cost;
+}
+
+int main() {
+	freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
+	while (scanf(&#34;%d&#34;, &amp;n) != EOF) {
+		if (n == 0) break;
+		char from[2], to[2];
+		num = 0;
+		for (int i = 0; i &lt; n - 1; i&#43;&#43;) {
+			scanf(&#34;%s%d&#34;, from, &amp;cnt);
+			for (int i = 0; i &lt; cnt; i&#43;&#43;) {
+				scanf(&#34;%s%d&#34;, to, &amp;weight);
+				edge[num].x = from[0] - &#39;A&#39;;
+				edge[num].y = to[0] - &#39;A&#39;;
+				edge[num].v = weight;
+				num &#43;&#43;;
+			}
+		}
+		sort(edge, edge &#43; num);
+		int res = kruskal();
+		printf(&#34;%d\n&#34;, res);
+		p.clear(), h.clear();
+	}
+	return 0;
+}
+```
+
+##### 最短路
+###### 畅通工程续
+**朴素的dijkstra**
+```c&#43;&#43;
+#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+#include &lt;vector&gt;
+using namespace std;
+typedef pair&lt;int, int&gt; PII;
+const int N = 210, M = 1010, INF = 0x3f3f3f3f;
+int dist[N];
+bool visit[N];
+int n, m, a, b, c, st, ed;
+
+struct Edge {
+	int to, weight;
+};
+vector&lt;Edge&gt;g[N];
+Edge tmp;
+
+int dijkstra(int st, int ed) {
+	fill(dist, dist &#43; n, INF);
+	fill(visit, visit &#43; n, false);
+	dist[st] = 0;
+	for (int i = 0; i &lt; n; i&#43;&#43;) {
+		int t = -1;
+		for (int j = 0; j &lt; n; j&#43;&#43;) {
+			if (!visit[j] &amp;&amp; (t == -1 || dist[t] &gt; dist[j])) {
+				t = j;
+			}
+		}
+		if (t == -1) break;
+		visit[t] = true;
+		for (int j = 0; j &lt; g[t].size(); j&#43;&#43;) {
+			int y = g[t][j].to, w = g[t][j].weight;
+			dist[y] = min(dist[y], dist[t] &#43; w);
+		}
+	}
+	return (dist[ed] == INF) ? -1 : dist[ed];
+}
+
+int main() {
+	freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
+	while (scanf(&#34;%d%d&#34;, &amp;n, &amp;m) != EOF) {
+		for (int i = 0; i &lt; n; i&#43;&#43;) g[i].clear();//初始化图
+		for (int i = 0; i &lt; m; i&#43;&#43;) {
+			scanf(&#34;%d%d%d&#34;, &amp;a, &amp;b, &amp;c);
+			tmp.to = b, tmp.weight = c;
+			g[a].push_back(tmp);
+			tmp.to = a;
+			g[b].push_back(tmp);
+		}
+		scanf(&#34;%d%d&#34;, &amp;st, &amp;ed);
+		int res = dijkstra(st, ed);
+		printf(&#34;%d\n&#34;, res);
+	}
+	return 0;
+}
+```
+**堆优化的dijkstra**
+```c&#43;&#43;
+#include &lt;iostream&gt;
+#include &lt;vector&gt;
+#include &lt;queue&gt;
+#include &lt;algorithm&gt;
+#include &lt;functional&gt;
+using namespace std;
+typedef pair&lt;int, int&gt;PII;
+const int N = 210, M = 1010, INF = 0x3f3f3f3f;
+int n, m, a, b, c, st, ed;
+bool visit[N];
+int dist[N];
+
+struct Edge {
+	int to, weight;
+};
+
+vector&lt;Edge&gt;g[N];
+
+int dijkstra(int st, int ed) {
+	fill(dist, dist &#43; n, INF);
+	fill(visit, visit &#43; n, false);
+	priority_queue&lt;PII, vector&lt;PII&gt;, greater&lt;PII&gt; &gt;heap;
+	heap.push({0, st});
+	dist[st] = 0;// 初始化起点的距离为0
+	while (!heap.empty()) {
+		PII tmp = heap.top();
+		heap.pop();
+		int from = tmp.second, dis = tmp.first;
+		if (visit[from]) continue;
+		visit[from] = true;
+		for (int i = 0; i &lt; g[from].size(); i&#43;&#43;) {
+			int t = g[from][i].to;
+			int w = g[from][i].weight;
+			if (dist[t] &gt; dis &#43; w) {
+				dist[t] = dis &#43; w;
+				heap.push({dist[t], t});
+			}
+		}
+	}
+	return (dist[ed] == INF) ? -1 : dist[ed];
+}
+
+int main() {
+	freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
+	while (scanf(&#34;%d%d&#34;, &amp;n, &amp;m) != EOF) {
+		for (int i = 0; i &lt; n; i&#43;&#43;) g[i].clear();//初始化图
+		for (int i = 0; i &lt; m; i&#43;&#43;) {
+			scanf(&#34;%d%d%d&#34;, &amp;a, &amp;b, &amp;c);
+			g[a].push_back({b, c});
+			g[b].push_back({a, c});
+		}
+		scanf(&#34;%d%d&#34;, &amp;st, &amp;ed);
+		int res = dijkstra(st, ed);
+		printf(&#34;%d\n&#34;, res);
+	}
+	return 0;
+}
+```
+
+###### 最短路径
+```c&#43;&#43;
+#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+#include &lt;map&gt;
+#include &lt;queue&gt;
+using namespace std;
+typedef long long ll;
+typedef pair&lt;int, int&gt;PII;
+const int N = 110, M = 510, MOD = 100000, INF = 0x3f3f3f3f;
+int n, m, a, b;
+bool vis[N];
+ll dist[N];
+map&lt;int, int&gt; h, p;
+
+struct Edge {
+	int to;
+	ll weight;
+};
+vector&lt;Edge&gt;g[N];
+
+ll qmi(int a, int k, int mod) {
+	ll res = 1;
+	while (k) {
+		if (k &amp; 1) res = res * a % mod;
+		k &gt;&gt;= 1;
+		a = (ll)a * a % mod;
+	}
+	return res;
+}
+
+int Find(int x) {
+	if (p.find(x) == p.end()) p[x] = x, h[x] = 0;
+	if (x != p[x]) p[x] = Find(p[x]);
+	return p[x];
+}
+
+void Union(int x, int y) {
+	x = Find(x), y = Find(y);
+	if (h[x] &lt; h[y]) p[x] = y;
+	else if (h[y] &lt; h[x]) p[y] = x;
+	else p[y] = x, h[x]&#43;&#43;;
+}
+
+void dijkstra() {
+	fill(dist, dist &#43; N, INF);
+	fill(vis, vis &#43; N, false);
+	priority_queue&lt;PII, vector&lt;PII&gt;, greater&lt;PII&gt; &gt;heap;
+	heap.push({0, 0});
+	dist[0] = 0;
+	while (!heap.empty()) {// 堆优化版的dijkstra
+		PII tmp = heap.top();// 选出距离最小的元素
+		heap.pop();
+		int elem = tmp.second, dis = tmp.first;
+		if (vis[elem]) continue;// 如果已经使用过, 就尝试下一个
+		vis[elem] = true;
+		for (int i = 0; i &lt; g[elem].size(); i&#43;&#43;) {// 遍历所有边
+			int t = g[elem][i].to;
+			int w = g[elem][i].weight;
+			if (dist[t] &gt; dis &#43; w) {
+				dist[t] = dis &#43; w;
+				heap.push({dist[t], t});
+			}
+		}
+	}
+}
+
+int main() {
+	freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
+	scanf(&#34;%d%d&#34;, &amp;n, &amp;m);
+	for (int i = 0; i &lt; n; i&#43;&#43;) g[i].clear();// 初始化图
+	for (int i = 0; i &lt; m; i&#43;&#43;) {
+		scanf(&#34;%d%d&#34;, &amp;a, &amp;b);
+		if (Find(a) != Find(b)) {
+			ll len =  qmi(2, i, MOD);
+			Union(a, b);
+			g[a].push_back({b, len});
+			g[b].push_back({a, len});
+		}
+	}
+	dijkstra();
+	for (int i = 1; i &lt; n; i&#43;&#43;) {
+		if (dist[i] == INF) printf(&#34;-1\n&#34;);
+		else printf(&#34;%lld\n&#34;, dist[i] % MOD);
+	}
+	return 0;
+}
+```
+
 
 ---
 
