@@ -3042,7 +3042,7 @@ snow隐写，到snowdos32工具目录下运行 SNOW.EXE -C -p password flag.txt 
 </span></span><span class="line"><span class="cl">    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">res</span><span class="p">)</span></span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="12使用脚本提取数据进行分析" class="heading-element">
-  <a href="#12%e4%bd%bf%e7%94%a8%e8%84%9a%e6%9c%ac%e6%8f%90%e5%8f%96%e6%95%b0%e6%8d%ae%e8%bf%9b%e8%a1%8c%e5%88%86%e6%9e%90" class="heading-mark"></a>12、使用脚本提取数据进行分析</h3><div class="highlight" id="id-1"><div class="chroma">
+  <a href="#12%e4%bd%bf%e7%94%a8%e8%84%9a%e6%9c%ac%e6%8f%90%e5%8f%96%e6%95%b0%e6%8d%ae%e8%bf%9b%e8%a1%8c%e5%88%86%e6%9e%90" class="heading-mark"></a>12、使用脚本提取数据进行分析</h3><div class="highlight" id="id-90"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -3172,7 +3172,7 @@ snow隐写，到snowdos32工具目录下运行 SNOW.EXE -C -p password flag.txt 
 </div><h3 id="13stegpy隐写" class="heading-element">
   <a href="#13stegpy%e9%9a%90%e5%86%99" class="heading-mark"></a>13、stegpy隐写</h3><p><a href="https://github.com/izcoser/stegpy"target="_blank" rel="external nofollow noopener noreferrer"> stegpy 开源地址</a> 下载好后直接用WSL输入以下命令并输入密码解密即可</p>
 <p>也可以直接用 pip 安装： pip3 install stegpy</p>
-<div class="highlight" id="id-2"><div class="chroma">
+<div class="highlight" id="id-91"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
@@ -3193,7 +3193,7 @@ snow隐写，到snowdos32工具目录下运行 SNOW.EXE -C -p password flag.txt 
   <a href="#1%e7%94%a8yandex%e8%af%86%e5%9b%be" class="heading-mark"></a>1.用yandex识图</h3><h2 id="others" class="heading-element">
   <a href="#others" class="heading-mark"></a>Others：</h2><h3 id="字节序" class="heading-element">
   <a href="#%e5%ad%97%e8%8a%82%e5%ba%8f" class="heading-mark"></a>字节序</h3><p><strong>字节的排列方式有两个通用规则:</strong></p>
-<div class="highlight" id="id-3"><div class="chroma">
+<div class="highlight" id="id-92"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -3203,7 +3203,7 @@ snow隐写，到snowdos32工具目录下运行 SNOW.EXE -C -p password flag.txt 
 </span></span><span class="line"><span class="cl">小端序（Little-Endian），将一个多位数的低位放在较小的地址处，高位放在较大的地址处，则称小端序。小端序与人类的阅读习惯相反，但更符合计算机读取内存的方式，因为CPU读取内存中的数据时，是从低地址向高地址方向进行读取的。</span></span></code></pre></td></tr></table>
 </div>
 </div><p><strong>例子：</strong></p>
-<div class="highlight" id="id-4"><div class="chroma">
+<div class="highlight" id="id-93"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -3221,7 +3221,7 @@ snow隐写，到snowdos32工具目录下运行 SNOW.EXE -C -p password flag.txt 
 </span></span><span class="line"><span class="cl">0x0D 0x0C 0xB 0xA</span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="为何要有字节序" class="heading-element">
-  <a href="#%e4%b8%ba%e4%bd%95%e8%a6%81%e6%9c%89%e5%ad%97%e8%8a%82%e5%ba%8f" class="heading-mark"></a>为何要有字节序</h3><div class="highlight" id="id-5"><div class="chroma">
+  <a href="#%e4%b8%ba%e4%bd%95%e8%a6%81%e6%9c%89%e5%ad%97%e8%8a%82%e5%ba%8f" class="heading-mark"></a>为何要有字节序</h3><div class="highlight" id="id-1"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
@@ -3229,7 +3229,7 @@ snow隐写，到snowdos32工具目录下运行 SNOW.EXE -C -p password flag.txt 
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">因为计算机电路先处理低位字节，效率比较高，因为计算都是从低位开始的。所以，计算机的内部处理都是小端字节序。在计算机内部，小端序被广泛应用于现代 CPU 内部存储数据；而在其他场景，比如网络传输和文件存储则使用大端序。</span></span></code></pre></td></tr></table>
 </div>
 </div><p><strong>使用Python中的struct模块来处理大小端序</strong></p>
-<div class="highlight" id="id-6"><div class="chroma">
+<div class="highlight" id="id-2"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -3347,7 +3347,7 @@ snow隐写，到snowdos32工具目录下运行 SNOW.EXE -C -p password flag.txt 
 </span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s2">&#34;</span><span class="se">\n</span><span class="s2">Data integrity maintained!&#34;</span><span class="p">)</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p><strong>十六进制数据大小端序转换</strong></p>
-<div class="highlight" id="id-7"><div class="chroma">
+<div class="highlight" id="id-3"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -3402,7 +3402,7 @@ snow隐写，到snowdos32工具目录下运行 SNOW.EXE -C -p password flag.txt 
 </div>
 </div><h3 id="linux-tar命令" class="heading-element">
   <a href="#linux-tar%e5%91%bd%e4%bb%a4" class="heading-mark"></a>Linux tar命令</h3><h3 id="打包压缩" class="heading-element">
-  <a href="#%e6%89%93%e5%8c%85%e5%8e%8b%e7%bc%a9" class="heading-mark"></a>打包压缩</h3><div class="highlight" id="id-8"><div class="chroma">
+  <a href="#%e6%89%93%e5%8c%85%e5%8e%8b%e7%bc%a9" class="heading-mark"></a>打包压缩</h3><div class="highlight" id="id-4"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -3422,7 +3422,7 @@ snow隐写，到snowdos32工具目录下运行 SNOW.EXE -C -p password flag.txt 
 </span></span><span class="line"><span class="cl"><span class="c1">#-f 表示指定目标文件名</span></span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="解压提取" class="heading-element">
-  <a href="#%e8%a7%a3%e5%8e%8b%e6%8f%90%e5%8f%96" class="heading-mark"></a>解压提取</h3><div class="highlight" id="id-9"><div class="chroma">
+  <a href="#%e8%a7%a3%e5%8e%8b%e6%8f%90%e5%8f%96" class="heading-mark"></a>解压提取</h3><div class="highlight" id="id-5"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
