@@ -1000,6 +1000,11 @@ java Extract beautiful.jpg
 #解密出来的数据会放到F5文件夹下的output.txt中
 ```
 
+#### 6、JPG宽高隐写
+010打开JPG图片，找到 struct SOF 块数据，手动调整宽高即可
+
+![](imgs/image-20240911103611924.png)
+
 ### BMP思路
 
 #### 1、bmp宽高爆破：

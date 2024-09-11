@@ -1271,16 +1271,50 @@ int main() {
 ```
 #### 拓扑排序
 
+**按照数字大小输出拓扑序列**
+```c&#43;&#43;
+void topsort(int n) {
+	priority_queue&lt;int, vector&lt;int&gt;, greater&lt;int&gt; &gt;q;
+	for (int i = 1; i &lt;= n; i&#43;&#43;) if (!d[i]) q.push(i);
+	while (!q.empty()) {
+		int tmp = q.top();
+		printf(&#34;%d &#34;, tmp);
+		q.pop();
+		for (int i = 0; i &lt; edge[tmp].size(); i&#43;&#43;) {
+			int to = edge[tmp][i];
+			d[to]--;
+			if (!d[to]) q.push(to);
+		}
+	}
+}
+```
+
+**判断是否存在环**
+```c&#43;&#43;
+void topsort(int n) {
+	queue&lt;int&gt;q;
+	for (int i = 0; i &lt; n; i&#43;&#43;) {
+		if (indegree[i] == 0) q.push(i);
+	}
+	int cnt = 0;
+	while (!q.empty()) {
+		int tmp = q.front();
+		q.pop(), cnt&#43;&#43;;
+		for (int i = 0; i &lt; edge[tmp].size(); i&#43;&#43;) {
+			int to = edge[tmp][i];
+			indegree[to]--;
+			if (indegree[to] == 0) q.push(to);
+		}
+	}
+	if (cnt == n) puts(&#34;YES&#34;);
+	else puts(&#34;NO&#34;);
+}
+```
+
+
+
 **例题1-AcWing 848. 有向图的拓扑序列**
 ```c&#43;&#43;
-#include &lt;iostream&gt;
-#include &lt;cstring&gt;
-using namespace std;
-const int N = 1e5 &#43; 10;
-int n, m;
-int h[N], e[N], ne[N], idx;
-int q[N], d[N];
-
 void add(int a, int b) {
 	e[idx] = b, ne[idx] = h[a], h[a] = idx&#43;&#43;;
 }
@@ -1301,27 +1335,6 @@ bool topsort() {
 		}
 	}
 	return tt == n - 1;
-}
-
-int main() {
-	freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
-	memset(h, -1, sizeof h);
-	cin &gt;&gt; n &gt;&gt; m;
-	for (int i = 0; i &lt; m; i&#43;&#43;) {
-		int a, b;
-		cin &gt;&gt; a &gt;&gt; b;
-		add(a, b);
-		d[b]&#43;&#43;;
-	}
-	if (topsort()) {
-		for (int i = 0; i &lt; n; i&#43;&#43;) {
-			cout &lt;&lt; q[i] &lt;&lt; &#39; &#39;;
-		}
-		puts(&#34;&#34;);
-	} else {
-		cout &lt;&lt; &#34;-1&#34; &lt;&lt; &#39;\n&#39;;
-	}
-	return 0;
 }
 ```
 
@@ -7857,6 +7870,104 @@ int main() {
 }
 ```
 
+##### 拓扑排序
+###### Legal or Not
+```c&#43;&#43;
+#include &lt;iostream&gt;
+#include &lt;vector&gt;
+#include &lt;queue&gt;
+using namespace std;
+const int N = 110;
+int n, m, x, y;
+int indegree[N];
+vector&lt;int&gt; edge[N];
+
+void init() {
+	for (int i = 0; i &lt; N; i&#43;&#43;) edge[i].clear();
+	fill(indegree, indegree &#43; N, 0);
+}
+
+void topsort(int n) {
+	queue&lt;int&gt;q;
+	for (int i = 0; i &lt; n; i&#43;&#43;) {
+		if (indegree[i] == 0) q.push(i);
+	}
+	int cnt = 0;
+	while (!q.empty()) {
+		int tmp = q.front();
+		q.pop(), cnt&#43;&#43;;
+		for (int i = 0; i &lt; edge[tmp].size(); i&#43;&#43;) {
+			int to = edge[tmp][i];
+			indegree[to]--;
+			if (indegree[to] == 0) q.push(to);
+		}
+	}
+	if (cnt == n) puts(&#34;YES&#34;);
+	else puts(&#34;NO&#34;);
+}
+
+int main() {
+	freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
+	while (scanf(&#34;%d%d&#34;, &amp;n, &amp;m) != EOF) {
+		if (n == 0 &amp;&amp; m == 0) break;
+		init();
+		for (int i = 0; i &lt; m; i&#43;&#43;) {
+			scanf(&#34;%d%d&#34;, &amp;x, &amp;y);
+			edge[x].push_back(y);
+			indegree[y]&#43;&#43;;
+		}
+		topsort(n);
+	}
+	return 0;
+}
+```
+###### 确定比赛名次
+```c&#43;&#43;
+#include &lt;iostream&gt;
+#include &lt;functional&gt;
+#include &lt;vector&gt;
+#include &lt;queue&gt;
+using namespace std;
+
+const int N = 510;
+int n, m, x, y;
+vector&lt;int&gt;edge[N];
+int d[N];// 入度
+
+void init() {
+	for (int i = 0; i &lt; N; i&#43;&#43;) edge[i].clear();
+	fill(d, d &#43; N, 0);
+}
+
+void topsort(int n) {
+	priority_queue&lt;int, vector&lt;int&gt;, greater&lt;int&gt; &gt;q;
+	for (int i = 1; i &lt;= n; i&#43;&#43;) if (!d[i]) q.push(i);
+	while (!q.empty()) {
+		int tmp = q.top();
+		printf(&#34;%d &#34;, tmp);
+		q.pop();
+		for (int i = 0; i &lt; edge[tmp].size(); i&#43;&#43;) {
+			int to = edge[tmp][i];
+			d[to]--;
+			if (!d[to]) q.push(to);
+		}
+	}
+}
+
+int main() {
+	//freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
+	while (scanf(&#34;%d%d&#34;, &amp;n, &amp;m) != EOF) {
+		init();
+		for (int i = 0; i &lt; m; i&#43;&#43;) {
+			scanf(&#34;%d%d&#34;, &amp;x, &amp;y);
+			edge[x].push_back(y);
+			d[y]&#43;&#43;;
+		}
+		topsort(n);
+	}
+	return 0;
+}
+```
 
 ---
 
