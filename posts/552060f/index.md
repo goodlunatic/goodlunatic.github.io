@@ -17,6 +17,7 @@
 | `sprintf()`              | `sprintf(s, &#34;Integer: %d, Float: %.2f&#34;, num, fnum);`用于将格式化的数据写入到一个字符串中               |
 | `istringstream iss(str)` | 流化一个字符串，从一个字符串中读取数据，包含在`#include &lt;sstream&gt;` 文件头中                                     |
 |                          |                                                                                      |
+|                          |                                                                                      |
 
 ## 一些函数
 
@@ -179,7 +180,16 @@ int main() {
 | `ckear()`       | 清空集合                                                         |
 | `lower_bound()` | 返回大于等于x的最小的数的迭代器                                             |
 | `upper_bound()` | 返回大于x的最小的数的迭代器                                               |
-
+set的遍历
+```c&#43;&#43;
+for (set&lt;int&gt;::iterator it = myset.begin();it!=myset.end();it&#43;&#43;) {
+		printf(&#34;%d &#34;, *it);
+	}
+// 在C&#43;&#43;11以上版本可以用auto
+for (auto item : myset) {  
+        printf(&#34;%d &#34;, item);  
+    }
+```
 #### bitset 模板类
 定义 `bitset&lt;10000&gt; S`;
 
@@ -1337,6 +1347,145 @@ bool topsort() {
 	return tt == n - 1;
 }
 ```
+#### 关键路径
+&gt; 这里需要重点区分两种网络：
+&gt; 
+&gt; AOV网：只区分活动的先后，边上没有权值
+&gt; 
+&gt; AOE网：用边来表示活动，用点来表示事件，边上有权重
+
+&gt; AOE网中有四个变量需要重点区分：
+&gt; ev：事件的最早发生时间：`max()`
+&gt; 
+&gt; lv：事件的最晚发生时间 `min()`
+&gt; 
+&gt; ee：活动的最早发生时间 `箭尾事件的最早发生时间`
+&gt; 
+&gt; le：活动的最晚发生时间 `箭头事件的最晚发生时间-权值`
+
+&gt;AOE网中的两个关键：
+&gt;
+&gt;关键路径：项目中从开始到结束所需的最长路径
+&gt;
+&gt;关键活动：关键路径上的活动。它们是项目中最关键的活动，因为它们直接影响到整个项目的完成时间
+
+举个例子，比如下面这个图
+
+![](imgs/image-20240911162050614.jpeg)
+
+| 事件            | v0                   | v1                   | v2                   | v3                    | v4                    | v5  | v6  | v7                    | v8  | v9                    |     |     |     |
+| ------------- | -------------------- | -------------------- | -------------------- | --------------------- | --------------------- | --- | --- | --------------------- | --- | --------------------- | --- | --- | --- |
+| ev(事件的最早发生时间) | 0                    | 3                    | 4                    | `max(v1&#43;5.v2&#43;8)` = 12 | `max(v1&#43;6,v3&#43;3)` = 15 | 11  | 24  | `max(v4&#43;4,v5&#43;6)` = 19 | 24  | `max(v6&#43;2,v8&#43;3)` = 27 |     |     |     |
+| lv(事件的最晚发生时间) | `min(v1-3,v2-4)` = 0 | `min(v4-6,v3-5)` = 7 | `min(v5-7,v3-8)` = 4 | 12                    | `min(v6-9,v7-4)` = 15 | 13  | 25  | 19                    | 24  | 27                    |     |     |     |
+|               |                      |                      |                      |                       |                       |     |     |                       |     |                       |     |     |     |
+| 活动            | a0                   | a1                   | a2                   | a3                    | a4                    | a5  | a6  | a7                    | a8  | a9                    | a10 | a11 | a12 |
+| ee(活动的最早发生时间) | 0                    | 0                    | 3                    | 3                     | 4                     | 4   | 12  | 15                    | 15  | 11                    | 24  | 19  | 24  |
+| le(活动的最晚发生时间) | 4                    | 0                    | 7                    | 9                     | 4                     | 6   | 12  | 16                    | 15  | 13                    | 25  | 19  | 24  |
+| le-ee         | 4                    | 0                    | 4                    | 6                     | 0                     | 2   | 0   | 1                     | 0   | 2                     | 1   | 0   | 0   |
+所以最终的关键路径为: v0-&gt;v2-&gt;v3-&gt;v4-&gt;v7-&gt;v8-&gt;v9 
+关键路径上的关键活动为: a1-&gt;a4-&gt;a6-&gt;a8-&gt;a11-&gt;a12
+
+```c&#43;&#43;
+#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+#include &lt;queue&gt;
+#include &lt;vector&gt;
+#include &lt;set&gt;
+using namespace std;
+const int N = 1010, M = 1e4 &#43; 10, INF = 0x3f3f3f3f;
+int n, m, a, b, c;
+int d[N];// 入度
+int ev[N];// 事件最早发生时间
+int lv[N];// 事件最晚发生时间
+
+struct Edge {
+	int to, weight;
+};
+vector&lt;Edge&gt;edge[N];
+
+void init() {
+	fill(d, d &#43; N, 0);
+	fill(ev, ev &#43; N, 0);
+	for (int i = 0; i &lt; N; i&#43;&#43;) edge[i].clear();
+}
+
+int topsort() {
+	int total = 0;
+	queue&lt;int&gt;q;
+	vector&lt;int&gt;topseq;
+	for (int i = 0; i &lt; n; i&#43;&#43;) {
+		if (!d[i]) {
+			q.push(i);
+			ev[i] = 1;// 第一个活动完成需要1ns
+		}
+	}
+	while (!q.empty()) {
+		int tmp = q.front();
+		topseq.push_back(tmp);
+		q.pop();
+		for (int i = 0; i &lt; edge[tmp].size(); i&#43;&#43;) {
+			int t = edge[tmp][i].to;
+			int v = edge[tmp][i].weight;
+			ev[t] = max(ev[t], ev[tmp] &#43; v);
+			d[t]--;
+			if (!d[t]) q.push(t);// 若入队为0, 则入队
+			total = max(total, ev[t]);
+		}
+	}
+	for (int i = topseq.size() - 1; i &gt;= 0; i--) {// 逆序求lv数组
+		int tmp = topseq[i];
+		if (edge[tmp].size() == 0) lv[tmp] = total;// 如果是最后一个节点
+		else lv[tmp] = INF;
+		for (int j = 0; j &lt; edge[tmp].size(); j&#43;&#43;) {
+			int t = edge[tmp][j].to;
+			int v = edge[tmp][j].weight;
+			lv[tmp] = min(lv[tmp], lv[t] - v); // 取最小值
+		}
+	}
+	return total;
+}
+
+void criticalActivity() {
+	int ee[M], le[M];
+	int cnt = 0;
+	set&lt;int&gt;criticalPath;
+	printf(&#34;\nThe Critical Activities are:\n&#34;);
+	for (int i = 0; i &lt; n; i&#43;&#43;) {
+		for (int j = 0; j &lt; edge[i].size(); j&#43;&#43;) {
+			int t = edge[i][j].to;
+			int v = edge[i][j].weight;
+			ee[cnt] = ev[i], le[cnt] = lv[t] - v;
+			if (ee[cnt] == le[cnt]) {
+				printf(&#34;a%d : v%d -&gt; v%d\n&#34;, cnt, i, t);
+				criticalPath.insert(i), criticalPath.insert(t);
+			}
+			cnt&#43;&#43;;
+		}
+	}
+	printf(&#34;\nThe Critical Path are:\n&#34;);
+	for (auto item : criticalPath) {
+		printf(&#34;v%d &#34;, item);
+	}
+}
+
+int main() {
+	freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
+	while (~scanf(&#34;%d%d&#34;, &amp;n, &amp;m)) {
+		init();
+		for (int i = 0; i &lt; m; i&#43;&#43;) {
+			scanf(&#34;%d%d%d&#34;, &amp;a, &amp;b, &amp;c);
+			edge[a].push_back({b, c});
+			d[b]&#43;&#43;;// 入度&#43;1
+		}
+		int res = topsort();
+		printf(&#34;%d\n&#34;, res);
+		criticalActivity();
+	}
+	return 0;
+}
+```
+
+
 
 ### 最短路
 #### 单源最短路
@@ -1948,7 +2097,7 @@ int main() {
 
 
 ### 数学基础
-#### 质素相关
+#### 质数相关
 ##### 试除法判定质数
 ```c&#43;&#43;
 bool is_prime(int n) {
@@ -2018,6 +2167,18 @@ vector&lt;int&gt; get_divisors(int n) {
 ```
 
 ##### 求约数个数
+暴力枚举法
+```c&#43;&#43;
+int func(ll n) {
+    int cnt = 0;
+    int i;
+    for (i = 1; i * i &lt; n; i&#43;&#43;) {// 这里用 i &lt; n / i 会过不了样例
+        if (n % i == 0) cnt &#43;= 2;
+    }
+    if (i == n / i) cnt&#43;&#43;;
+    return cnt;
+}
+```
 
 ![](imgs/image-20240823200607945.png)
 
@@ -2097,7 +2258,28 @@ int gcd(int a, int b) {
 	return b ? gcd(b, a % b) : a;
 }
 ```
+&gt; 求最大公约数和最小公倍数
+```c&#43;&#43;
+#include&lt;iostream&gt;
+using namespace std;
 
+int a, b;
+int GCD(int a, int b) {
+	return b==0?a:GCD(b, a%b);
+}
+
+int LCM(int a, int b) {
+	return a/GCD(a,b)*b;
+}
+
+int main() {
+	freopen(&#34;input.txt&#34;,&#34;r&#34;,stdin);
+	while(~scanf(&#34;%d%d&#34;,&amp;a, &amp;b)) {
+		printf(&#34;%d\n&#34;, LCM(a, b));
+	}
+	return 0;
+}
+```
 
 #### 欧拉函数
 
@@ -6746,7 +6928,6 @@ int main() {
 	}
 	return 0;
 }
-
 ```
 
 #### 欧拉回路
@@ -7407,6 +7588,563 @@ unsigned long getNumOfBallCombinations(unsigned int scores) {
 }
 ```
 ### 王道考研机试指南
+
+#### 数据结构
+##### 完数VS盈数 
+```c&#43;&#43;
+#include&lt;iostream&gt;
+#include&lt;vector&gt;
+using namespace std;
+
+vector&lt;int&gt;E,G;
+
+int check(int n) {
+	int sum = 0;
+	for(int i=1; i&lt;n; i&#43;&#43;) {
+		if(n%i==0) sum &#43;= i;
+	}
+	if(sum == n) return 1;
+	else if(sum &gt; n) return 2;
+	return 0;
+}
+
+int main() {
+	// freopen(&#34;input.txt&#34;,&#34;r&#34;,stdin);
+	for(int i=2; i&lt;=60; i&#43;&#43;) {
+		if(check(i) == 1) E.push_back(i);
+		else if(check(i) == 2) G.push_back(i);
+	}
+	printf(&#34;E: &#34;);
+	for(int i=0; i&lt;E.size(); i&#43;&#43;) {
+		printf(&#34;%d&#34;, E[i]);
+		if(i &lt; E.size()-1) printf(&#34; &#34;);
+	}
+	printf(&#34;\nG: &#34;);
+	for(int i=0; i&lt;G.size(); i&#43;&#43;) {
+		printf(&#34;%d&#34;, G[i]);
+		if(i &lt; G.size()-1) printf(&#34; &#34;);
+	}
+	return 0;
+}
+```
+
+##### 约瑟夫问题NO.2
+```c&#43;&#43;
+#include&lt;iostream&gt;
+#include&lt;queue&gt;
+using namespace std;
+
+int n, p, m;
+queue&lt;int&gt;q;
+int main() {
+//	freopen(&#34;input.txt&#34;,&#34;r&#34;,stdin);
+	while(~scanf(&#34;%d%d%d&#34;,&amp;n, &amp;p, &amp;m)) {
+		if(n == 0 &amp;&amp; p == 0 &amp;&amp; m == 0) break;
+		for(int i=1; i&lt;=n; i&#43;&#43;) q.push(i);
+		for(int i=1; i&lt;p; i&#43;&#43;) q.push(q.front()), q.pop();
+		while(!q.empty()) {
+			for(int i=1; i&lt;m; i&#43;&#43;) q.push(q.front()), q.pop();
+			if(q.size() == 1) printf(&#34;%d\n&#34;,q.front());
+			else printf(&#34;%d,&#34;,q.front());
+			q.pop();
+		}
+	}
+	return 0;
+}
+```
+##### POJ1012 Joseph
+```c&#43;&#43;
+#include&lt;iostream&gt;
+using namespace std;
+
+const int N = 15;
+int res[16] = {0,2,7,5,30,169,441,1872,7632,1740,93313,459901,1358657,2504881,13482720,25779600};
+
+void createTable() {// 打表
+	for(int k=1; k&lt;=N; k&#43;&#43;) {// 遍历所有人数
+		int n = 2*k;
+		for(int m=k&#43;1;; m&#43;&#43;) {// 这里的m表示每次数到m的人就删除
+			int j, s=0;// 数组下标从0开始
+			for(j=0; j&lt;k; j&#43;&#43;) { // 需要删除k个元素
+				s = (s&#43;m-1) % (n-j);// 这里的s表示待删除的人在修改后数组中的位置
+				if(s&lt;k) break;
+			}
+			if(j == k) {
+				res[k] = m;
+				break;
+			}
+		}
+	}
+}
+
+int main() {
+//	freopen(&#34;input.txt&#34;,&#34;r&#34;,stdin);
+//	createTable();
+//	for(int i=0; i&lt;=N; i&#43;&#43;) printf(&#34;%d,&#34;, res[i]);
+	int q;
+	while(~scanf(&#34;%d&#34;, &amp;q)) {
+		if(q == 0) break;
+		printf(&#34;%d\n&#34;, res[q]);
+	}
+	return 0;
+}
+```
+##### 括号匹配问题
+```c&#43;&#43;
+#include&lt;iostream&gt;
+#include&lt;stack&gt;
+#include&lt;string&gt;
+using namespace std;
+string s;
+
+int main() {
+	freopen(&#34;input.txt&#34;,&#34;r&#34;,stdin);
+	stack&lt;char&gt;stk;
+	while(getline(cin, s)) {
+		int len = s.size();
+		char mark[len&#43;1];
+		for(int i=0; i &lt; s.size(); i&#43;&#43;) {
+			if(s[i] == &#39;(&#39;) {
+				stk.push(i);
+				mark[i] = &#39;$&#39;;
+			} else if(s[i] == &#39;)&#39;) {
+				if(!stk.empty()) {
+					mark[stk.top()] = &#39; &#39;;
+					mark[i] = &#39; &#39;;
+					stk.pop();
+				} else mark[i] = &#39;?&#39;;
+			} else mark[i] = &#39; &#39;;
+		}
+		while(!stk.empty()) {
+			mark[stk.top()] = &#39;$&#39;;
+			stk.pop();
+		}
+		for(int i=0; i&lt;len; i&#43;&#43;) printf(&#34;%c&#34;,mark[i]);
+		puts(&#34;&#34;);
+	}
+	return 0;
+}
+```
+##### 简单计算器
+```c&#43;&#43;
+#include &lt;iostream&gt;
+#include &lt;stack&gt;
+#include &lt;string&gt;
+using namespace std;
+
+stack&lt;double&gt; num;
+stack&lt;char&gt; op;
+string post;
+
+void init() {
+	while (!op.empty()) op.pop();
+	while (!num.empty()) num.pop();
+	post.clear();
+}
+
+int pre(char op) {
+	if (op == &#39;&#43;&#39; || op == &#39;-&#39;) return 1;
+	if (op == &#39;*&#39; || op == &#39;/&#39;) return 2;
+	return 0;
+}
+
+void eval() {
+	double r = num.top();
+	num.pop();
+	double l = num.top();
+	num.pop();
+	char opcode = op.top();
+	op.pop();
+	post &#43;= opcode;
+	if (opcode == &#39;&#43;&#39;) num.push(l &#43; r);
+	if (opcode == &#39;-&#39;) num.push(l - r);
+	if (opcode == &#39;*&#39;) num.push(l * r);
+	if (opcode == &#39;/&#39;) num.push(l / r);
+}
+
+int main() {
+	// freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
+	string s;
+	while (getline(cin, s)) {
+		if (s == &#34;0&#34;) break;
+		init();
+		for (int i = 0; i &lt; s.size(); i&#43;&#43;) {
+			if (isspace(s[i])) continue;
+			if (isdigit(s[i])) {
+				double t = 0;
+				while (i &lt; s.size() &amp;&amp; isdigit(s[i])) {
+					post &#43;= s[i];
+					t = t * 10 &#43; s[i&#43;&#43;] - &#39;0&#39;;
+				}
+				i--;
+				num.push(t);
+			} else if (s[i] == &#39;(&#39;) op.push(s[i]);
+			else if (s[i] == &#39;)&#39;) {
+				while (!op.empty() &amp;&amp; op.top() != &#39;(&#39;) {
+					eval();
+				}
+				op.pop();
+			} else {
+				while (!op.empty() &amp;&amp; pre(op.top()) &gt;= pre(s[i])) {
+					eval();
+				}
+				op.push(s[i]);
+			}
+		}
+		while (!op.empty()) {
+			eval();
+		}
+
+//		printf(&#34;%c&#34;, post[0]);
+//		for (int i = 1; i &lt; post.size(); i&#43;&#43;) {
+//			printf(&#34; %c&#34;, post[i]);
+//		}
+//		puts(&#34;&#34;);
+		printf(&#34;%.2lf\n&#34;, num.top());
+	}
+	return 0;
+}
+
+```
+
+
+#### 搜索
+##### 宽度优先搜索
+###### Catch That Cow
+```c&#43;&#43;
+#include&lt;iostream&gt;
+#include&lt;queue&gt;
+using namespace std;
+const int N = 1e5&#43;5,INF = 0x3f3f3f3f;
+queue&lt;int&gt;q;
+int dist[N];
+int x,y;
+
+void init() {
+	fill(dist,dist&#43;N,INF);
+}
+
+void extend(int from , int to) {
+	if(to &gt;= 0 &amp;&amp; to &lt; N &amp;&amp; dist[to] == INF) {
+		dist[to] = dist[from] &#43; 1;
+		q.push(to);
+	}
+}
+
+void bfs(int st, int ed) {
+	dist[st] = 0;
+	q.push(st);
+	while(!q.empty()) {// 利用队列，第一次更新的一定是最短距离
+		int t = q.front();
+		q.pop();
+		if(t == ed) return;
+		extend(t,t&#43;1);
+		extend(t,t-1);
+		extend(t,2*t);
+	}
+}
+
+int main() {
+//	freopen(&#34;input.txt&#34;,&#34;r&#34;,stdin);
+	while(~scanf(&#34;%d%d&#34;,&amp;x,&amp;y)) {
+		init();
+		bfs(x,y);
+		printf(&#34;%d\n&#34;,dist[y]);
+	}
+	return 0;
+}
+```
+
+###### 玛雅人的密码 
+```c&#43;&#43;
+#include&lt;iostream&gt;
+#include&lt;queue&gt;
+#include&lt;map&gt;
+#include&lt;string&gt;
+using namespace std;
+
+int n;
+string s;
+map&lt;string, bool&gt; visit;
+
+struct Newstr {
+	int step;
+	string s;
+	Newstr(int i,string str):step(i),s(str) {}
+};
+
+void dfs(string s) {
+	queue&lt;Newstr&gt;q;
+	q.push(Newstr(0,s));
+	visit[s] = true;
+	while(!q.empty()) {
+		Newstr tmp = q.front();
+		q.pop();
+		string nowstr = tmp.s;
+		int nowstep = tmp.step;
+		if(nowstr.find(&#34;2012&#34;)!=string::npos) {
+			cout &lt;&lt; nowstep &lt;&lt; &#39;\n&#39;;
+			return;
+		}
+		for(int i=0; i&lt;nowstr.size()-1; i&#43;&#43;) {
+			swap(nowstr[i],nowstr[i&#43;1]);
+			if(!visit[nowstr]) {
+				q.push(Newstr(nowstep&#43;1,nowstr));
+				visit[nowstr] = true;
+			}
+			swap(nowstr[i],nowstr[i&#43;1]);// 恢复现场
+		}
+	}
+}
+
+int main() {
+	freopen(&#34;input.txt&#34;,&#34;r&#34;,stdin);
+	while(cin &gt;&gt; n &gt;&gt; s) {
+		visit.clear();
+		dfs(s);
+	}
+	return 0;
+}
+```
+
+
+
+##### 深度优先搜索
+
+###### Find The Multiple
+```c&#43;&#43;
+#include&lt;iostream&gt;
+using namespace std;
+typedef long long ll;
+
+int n;
+bool flag;
+
+void dfs(int len,ll num) {
+	if(len&gt;18 || flag) return;
+	if(num % n == 0) {
+		flag = true;
+		printf(&#34;%lld\n&#34;,num);
+		return;
+	}
+	dfs(len&#43;1,10*num);
+	dfs(len&#43;1,10*num&#43;1);
+}
+
+int main() {
+//	freopen(&#34;input.txt&#34;,&#34;r&#34;,stdin);
+	while(~scanf(&#34;%d&#34;,&amp;n) &amp;&amp; n) {
+		flag = false;
+		dfs(0,1);
+	}
+	return 0;
+}
+```
+
+###### A Knights&#39;s Journey
+这道题是经典的骑士旅行问题，即通过DFS找出一条能够遍历所有节点的路径
+```c&#43;&#43;
+#include&lt;iostream&gt;
+using namespace std;
+const int N = 27;
+int n,p,q;
+bool flag;
+bool vis[N][N];
+
+int dx[8] = {-1,1,-2,2,-2,2,-1,1};// 行数
+int dy[8] = {-2,-2,-1,-1,1,1,2,2};// 列数
+
+struct Path {
+	int x,y;
+} path[N*N];
+
+void init() {
+	flag = false;
+	for(int i=1; i&lt;=p; i&#43;&#43;) {
+		for(int j=1; j&lt;=q; j&#43;&#43;) {
+			vis[i][j] = false;
+		}
+	}
+}
+
+void dfs(int x,int y,int num) {
+	path[num].x = x;// 加入当前节点
+	path[num].y = y;
+	if(num == p*q-1) {// 所有节点都遍历到了
+		flag = true;
+		return;
+	}
+	for(int i=0; i&lt;8; i&#43;&#43;) {
+		int nx = x&#43;dx[i];
+		int ny = y&#43;dy[i];
+		if(flag) break;
+		if(nx &gt;= 1 &amp;&amp; nx &lt;= p &amp;&amp; ny &gt;= 1 &amp;&amp; ny &lt;=q &amp;&amp; !vis[nx][ny]) {
+			vis[nx][ny] = true;
+			dfs(nx,ny,num&#43;1);
+			vis[nx][ny] = false;// 恢复
+		}
+	}
+}
+
+int main() {
+//	freopen(&#34;input.txt&#34;,&#34;r&#34;,stdin);
+	scanf(&#34;%d&#34;,&amp;n);
+	for(int k=1; k&lt;=n; k&#43;&#43;) {
+		scanf(&#34;%d%d&#34;,&amp;p,&amp;q);
+//		printf(&#34;%d %d\n&#34;,p,q);
+		init();
+		vis[1][1] = true;
+		dfs(1,1,0);
+		printf(&#34;Scenario #%d:\n&#34;,k);
+		if(!flag) printf(&#34;impossible\n&#34;);
+		else {
+			for(int i=0; i&lt;p*q; i&#43;&#43;) {// 遍历输出经过的每个点 
+				printf(&#34;%c%d&#34;,path[i].y&#43;&#39;A&#39;-1,path[i].x);
+			}
+			puts(&#34;&#34;);
+		}
+		puts(&#34;&#34;);
+	}
+	return 0;
+}
+```
+
+###### Square
+```c&#43;&#43;
+#include&lt;iostream&gt;
+#include&lt;algorithm&gt;
+#include&lt;cstring&gt;
+using namespace std;
+const int M = 30;
+int arr[M];
+bool vis[M];
+int n,m;
+int len;
+
+void init() {
+	memset(arr,0,sizeof arr);
+	memset(vis,false,sizeof vis);
+}
+
+bool dfs(int l,int x,int idx) {
+	// l:已经拼好的边数
+	// x:当前已经拼出的长度
+	// idx:上一次选择的位置的前一位置 
+	if(l == 4) return true;// 成功拼出正方形
+	if(x == len) {
+		l&#43;&#43;;
+		x = 0;
+		idx = m-1;
+	}
+	for(int i=idx; i&gt;=0; i--) {// 剪枝：从上次选择的位置的前一个位置开始选 
+		if(!vis[i] &amp;&amp; x&#43;arr[i] &lt;= len) {
+			vis[i] = true;
+			if(dfs(l,x&#43;arr[i],i-1)) return true;
+			vis[i] = false;// 恢复 
+		}
+	}
+	return false;
+}
+
+int main() {
+	freopen(&#34;input.txt&#34;,&#34;r&#34;,stdin);
+	scanf(&#34;%d&#34;,&amp;n);
+	while(n--) {
+		init();
+		scanf(&#34;%d&#34;,&amp;m);
+		int sum = 0;
+		for(int i=0; i&lt;m; i&#43;&#43;) {
+			scanf(&#34;%d&#34;,&amp;arr[i]);
+			sum &#43;= arr[i];
+		}
+		sort(arr,arr&#43;m);
+		len = sum / 4;
+		if(m &lt; 4 || sum % 4 || arr[m-1] &gt; len) {
+			puts(&#34;no&#34;);
+			continue;
+		}
+		if(dfs(0,arr[m-1],m-1)) puts(&#34;yes&#34;);
+		else puts(&#34;no&#34;);
+	}
+	return 0;
+}
+```
+
+###### 神奇的口袋
+```c&#43;&#43;
+#include&lt;iostream&gt;
+#include&lt;cstring&gt;
+#include&lt;algorithm&gt;
+using namespace std;
+const int N = 25;
+int a[N];
+int n,res;
+
+void init() {
+	res = 0;
+	memset(a,0,sizeof a);
+}
+
+void dfs(int sum,int idx) {
+	if(sum == 40) {
+		res&#43;&#43;;
+		return;
+	}
+	for(int i=idx; i&lt;n; i&#43;&#43;) {
+		if(sum&#43;a[i] &gt; 40) break;
+		dfs(sum&#43;a[i],i&#43;1);
+	}
+}
+
+int main() {
+	freopen(&#34;input.txt&#34;,&#34;r&#34;,stdin);
+	while(~scanf(&#34;%d&#34;,&amp;n)) {
+		init();
+		for(int i=0; i&lt;n; i&#43;&#43;) scanf(&#34;%d&#34;,&amp;a[i]);
+	}
+	sort(a,a&#43;n);
+	dfs(0,0);
+	printf(&#34;%d\n&#34;,res);
+	return 0;
+}
+```
+###### 八皇后
+```c&#43;&#43;
+#include&lt;iostream&gt;
+#include&lt;vector&gt;
+using namespace std;
+const int N = 20;
+int b;
+bool col[N],dg[N],udg[N];
+vector&lt;int&gt;res;
+
+void dfs(int n,int u,int s) {
+	if(u==n) {
+		res.push_back(s);
+		return;
+	}
+	for(int i=0; i&lt;n; i&#43;&#43;) {
+		if(!col[i] &amp;&amp; !dg[u&#43;i] &amp;&amp; !udg[n-i&#43;u]) {
+			col[i] = dg[u&#43;i] = udg[n-i&#43;u] = true;
+			dfs(n,u&#43;1,i&#43;1&#43;10*s);
+			col[i] = dg[u&#43;i] = udg[n-i&#43;u] = false;
+		}
+	}
+}
+
+int main() {
+	freopen(&#34;input.txt&#34;,&#34;r&#34;,stdin);
+	dfs(8,0,0);
+	while(~scanf(&#34;%d&#34;,&amp;b)) {
+		printf(&#34;%d\n&#34;,res[b-1]);
+	}
+	return 0;
+}
+```
+
+
+
+
 #### 图论
 ##### 并查集
 ###### Is It A Tree?
@@ -7965,6 +8703,346 @@ int main() {
 		}
 		topsort(n);
 	}
+	return 0;
+}
+```
+
+###### Instructions Arrangement
+这道题其实没那么复杂，只要利用拓扑排序求出每个事件的最早发生时间，返回最大值即可
+```c&#43;&#43;
+#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+#include &lt;queue&gt;
+#include &lt;vector&gt;
+using namespace std;
+const int N = 1010, M = 1e4 &#43; 10;
+int n, m, a, b, c;
+int d[N];// 入度
+int ev[N];// 事件最早发生时间
+
+struct Edge {
+	int to, weight;
+};
+vector&lt;Edge&gt;edge[M];
+
+void init() {
+	fill(d, d &#43; N, 0);
+	fill(ev, ev &#43; N, 0);
+	for (int i = 0; i &lt; N; i&#43;&#43;) edge[i].clear();
+}
+
+int topsort() {
+	int total = 0;
+	queue&lt;int&gt;q;
+	for (int i = 0; i &lt; n; i&#43;&#43;) {
+		if (!d[i]) {
+			q.push(i);
+			ev[i] = 1;// 第一个活动完成需要1ns
+		}
+	}
+	while (!q.empty()) {
+		int tmp = q.front();
+		q.pop();
+		for (int i = 0; i &lt; edge[tmp].size(); i&#43;&#43;) {
+			int t = edge[tmp][i].to;
+			int v = edge[tmp][i].weight;
+			ev[t] = max(ev[t], ev[tmp] &#43; v);
+			d[t]--;
+			if (!d[t]) q.push(t);// 若入队为0, 则入队
+			total = max(total, ev[t]);
+		}
+	}
+	return total;
+}
+
+int main() {
+//	freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin);
+	while (~scanf(&#34;%d%d&#34;, &amp;n, &amp;m)) {
+		init();
+		for (int i = 0; i &lt; m; i&#43;&#43;) {
+			scanf(&#34;%d%d%d&#34;, &amp;a, &amp;b, &amp;c);
+			edge[a].push_back({b, c});
+			d[b]&#43;&#43;;// 入度&#43;1
+		}
+		int res = topsort();
+		printf(&#34;%d\n&#34;, res);
+	}
+	return 0;
+}
+```
+
+### PAT甲级
+#### 1012 The Best Rank
+```c&#43;&#43;
+#include&lt;iostream&gt;
+#include&lt;algorithm&gt;
+#include&lt;map&gt;
+using namespace std;
+typedef pair&lt;int,char&gt; PII;
+const int N = 2010;
+
+struct Student {
+	int id,A,C,M,E;
+	int bestrk;
+	int tmprk;
+	char bestobj;
+	Student():bestrk(101) {}
+} stu[N];
+
+bool cmpA(Student a, Student b) {
+	return a.A &gt; b.A;
+}
+
+bool cmpC(Student a, Student b) {
+	return a.C &gt; b.C;
+}
+
+bool cmpM(Student a, Student b) {
+	return a.M &gt; b.M;
+}
+
+bool cmpE(Student a, Student b) {
+	return a.E &gt; b.E;
+}
+
+void print(int num) {
+	for(int i=0; i&lt;num; i&#43;&#43;) {
+		printf(&#34;%d %d %d %d %d %d %c\n&#34;, stu[i].id, stu[i].A, stu[i].C, stu[i].M, stu[i].E, stu[i].bestrk, stu[i].bestobj);
+	}
+}
+
+int n,m,query;
+int main() {
+	freopen(&#34;input.txt&#34;,&#34;r&#34;,stdin);
+	scanf(&#34;%d%d&#34;,&amp;n,&amp;m);
+	for(int i=0; i&lt;n; i&#43;&#43;) {
+		scanf(&#34;%d%d%d%d&#34;, &amp;stu[i].id, &amp;stu[i].C, &amp;stu[i].M, &amp;stu[i].E);
+		stu[i].A = stu[i].C &#43; stu[i].M &#43; stu[i].E;
+	}
+	sort(stu,stu&#43;n,cmpA);
+	for(int i=0; i&lt;n; i&#43;&#43;) {
+		if(i&gt;0 &amp;&amp; stu[i].A == stu[i-1].A) {
+			stu[i].tmprk = stu[i-1].tmprk;
+		} else stu[i].tmprk = i&#43;1;
+	}
+	for(int i=0; i&lt;n; i&#43;&#43;) {
+		if(stu[i].tmprk &lt; stu[i].bestrk) {
+			stu[i].bestrk = stu[i].tmprk;
+			stu[i].bestobj = &#39;A&#39;;
+		}
+	}
+	sort(stu,stu&#43;n,cmpC);
+	for(int i=0; i&lt;n; i&#43;&#43;) {
+		if(i&gt;0 &amp;&amp; stu[i].C == stu[i-1].C) {
+			stu[i].tmprk = stu[i-1].tmprk;
+		} else stu[i].tmprk = i&#43;1;
+	}
+	for(int i=0; i&lt;n; i&#43;&#43;) {
+		if(stu[i].tmprk &lt; stu[i].bestrk) {
+			stu[i].bestrk = stu[i].tmprk;
+			stu[i].bestobj = &#39;C&#39;;
+		}
+	}
+	sort(stu,stu&#43;n,cmpM);
+	for(int i=0; i&lt;n; i&#43;&#43;) {
+		if(i&gt;0 &amp;&amp; stu[i].M == stu[i-1].M) {
+			stu[i].tmprk = stu[i-1].tmprk;
+		} else stu[i].tmprk = i&#43;1;
+	}
+	for(int i=0; i&lt;n; i&#43;&#43;) {
+		if(stu[i].tmprk &lt; stu[i].bestrk) {
+			stu[i].bestrk = stu[i].tmprk;
+			stu[i].bestobj = &#39;M&#39;;
+		}
+	}
+	sort(stu,stu&#43;n,cmpE);
+	for(int i=0; i&lt;n; i&#43;&#43;) {
+		if(i&gt;0 &amp;&amp; stu[i].E == stu[i-1].E) {
+			stu[i].tmprk = stu[i-1].tmprk;
+		} else stu[i].tmprk = i&#43;1;
+	}
+	for(int i=0; i&lt;n; i&#43;&#43;) {
+		if(stu[i].tmprk &lt; stu[i].bestrk) {
+			stu[i].bestrk = stu[i].tmprk;
+			stu[i].bestobj = &#39;E&#39;;
+		}
+	}
+
+	map&lt;int,PII&gt; mp;
+	for(int i=0; i&lt;n; i&#43;&#43;) {
+		mp[stu[i].id]  = PII(stu[i].bestrk,stu[i].bestobj);
+	}
+	for(int i=0; i&lt;m; i&#43;&#43;) {
+		scanf(&#34;%d&#34;,&amp;query);
+		if(mp.find(query) != mp.end()) {
+			printf(&#34;%d %c\n&#34;,mp[query].first,mp[query].second);
+		} else printf(&#34;N/A\n&#34;);
+	}
+	return 0;
+}
+```
+
+#### 1014 Waiting in Line
+这题需要注意，17:00前无法入队的客户都需要输出Sorry
+
+而17:00前能入队，就算结束时间在17:00之后，也要正常输出离开时间
+```c&#43;&#43;
+#include&lt;iostream&gt;
+#include&lt;queue&gt;
+using namespace std;
+const int N = 1010;
+int n,m,k,Q,query;
+
+struct customer {
+	int process_t,leave_t;
+	customer():leave_t(0) {}
+} c[N];
+
+int main() {
+	freopen(&#34;input.txt&#34;,&#34;r&#34;,stdin);
+	scanf(&#34;%d%d%d%d&#34;,&amp;n,&amp;m,&amp;k,&amp;Q);
+	for(int i=1; i&lt;=k; i&#43;&#43;) scanf(&#34;%d&#34;,&amp;c[i].process_t);
+	queue&lt;int&gt;q[N];
+	int cur = 1;// 客户入队的编号
+	for(int t = 480; t&lt;1020; t&#43;&#43;) {// 按照离开-&gt;入队-&gt;计算时间的顺序，防止延迟
+		for(int i=1; i&lt;=n; i&#43;&#43;) { // 遍历每个窗口，查看是否有客户离开
+			if(q[i].size()) {
+				int tmp = q[i].front();
+				if(c[tmp].leave_t == t) q[i].pop();
+			}
+		}
+		for(int i = 1; i&lt;=m; i&#43;&#43;) { // 遍历前i个容量
+			for(int j=1; j&lt;=n; j&#43;&#43;) { // 入队，遍历每个窗口
+				if(q[j].size() &lt; i &amp;&amp; cur &lt;=k) {
+					q[j].push(cur&#43;&#43;);
+				}
+			}
+		}
+		for(int i=1; i&lt;=n; i&#43;&#43;) { // 遍历每个窗口，计算客户的离开时间
+			if(q[i].size()) {
+				int tmp = q[i].front();
+				if(c[tmp].leave_t == 0) {
+					c[tmp].leave_t = c[tmp].process_t&#43;t;
+				}
+			}
+		}
+	}
+	for(int i=0; i&lt;Q; i&#43;&#43;) {
+		scanf(&#34;%d&#34;,&amp;query);
+		// 如果到结束都没有入队或者超过17:00，就输出Sorry
+		if(c[query].leave_t == 0) puts(&#34;Sorry&#34;);
+		else {
+			int hh = c[query].leave_t / 60;
+			int mm = c[query].leave_t % 60;
+			printf(&#34;%02d:%02d\n&#34;,hh,mm);
+		}
+	}
+	return 0;
+}
+```
+#### 1043 Is It a Binary Search Tree
+```c&#43;&#43;
+#include&lt;iostream&gt;
+#include&lt;vector&gt;
+using namespace std;
+vector&lt;int&gt;pre1, pre2, vec, post;
+
+struct Node {
+	int data;
+	Node *left, *right;
+	Node(int data):data(data), left(NULL), right(NULL) {}
+};
+
+Node *Insert(Node *root, int data) {
+	if(root == NULL) return new Node(data);
+	else if(data &gt;= root-&gt;data) root-&gt;right = Insert(root-&gt;right,data);
+	else root-&gt;left = Insert(root-&gt;left,data);
+	return root;
+}
+
+void preOrder1(Node *root) { // 先序遍历
+	if(root!=NULL) {
+		pre1.push_back(root-&gt;data);
+		preOrder1(root-&gt;left);
+		preOrder1(root-&gt;right);
+	}
+}
+
+void preOrder2(Node *root) { // 镜像先序遍历
+	if(root!=NULL) {
+		pre2.push_back(root-&gt;data);
+		preOrder2(root-&gt;right);
+		preOrder2(root-&gt;left);
+	}
+}
+
+void postOrder(Node *root, bool mirror) {
+	if(root!=NULL) {
+		if(mirror) {
+			postOrder(root-&gt;right,mirror);
+			postOrder(root-&gt;left,mirror);
+		} else {
+			postOrder(root-&gt;left,mirror);
+			postOrder(root-&gt;right,mirror);
+		}
+		post.push_back(root-&gt;data);
+	}
+
+}
+
+int n,tmp;
+int main() {
+	// freopen(&#34;input.txt&#34;,&#34;r&#34;,stdin);
+	Node *root = NULL;
+	scanf(&#34;%d&#34;,&amp;n);
+	for(int i=0; i&lt;n; i&#43;&#43;) {
+		scanf(&#34;%d&#34;,&amp;tmp);
+		vec.push_back(tmp);
+		root = Insert(root,tmp);
+	}
+	preOrder1(root);
+	preOrder2(root);
+	bool flag = false, mirror = false;
+	if(vec == pre1) flag = true;
+	if(vec == pre2) flag = true, mirror = true;
+	if(flag) {
+		puts(&#34;YES&#34;);
+		postOrder(root,mirror);
+		for(int i=0; i&lt;n; i&#43;&#43;) {
+			printf(&#34;%d&#34;,post[i]);
+			if(i&lt;n-1) printf(&#34; &#34;);
+		}
+	} else puts(&#34;NO&#34;);
+	return 0;
+}
+```
+#### 1104 Sum of Number Segments
+&gt; 计算元素 a[i] 出现的次数
+&gt; 
+&gt; 起点:元素 a[i] 作为子序列中的某个元素，它的子序列可以从任意位置 0 到 i 开始。也就是说，a[i] 可以是所有从 0 到 i 之间任意起点的子序列中的一部分。a[i] 可以作为这些子序列中的一个元素。可以选择的起点有 i &#43; 1 个（包括 i 本身）。
+&gt; 
+&gt; 终点:元素 a[i] 也可以作为所有从 i 到 N-1 之间的任意终点的子序列的一部分。即，子序列可以以 i 为起点，延续到任意位置 i 到 N-1。可以选择的终点数有 N - i 个（包括 i 本身）。
+&gt; 
+&gt; 因此，元素 a[i] 将会出现在 (i &#43; 1) * (N - i) 个子序列中。其中 (i &#43; 1) 是起点的数量，(N - i) 是终点的数量。每个子序列都包含 a[i]，所以它在这些子序列中出现的次数是这两者的乘积。
+
+这题要特别注意的是，`double`类型在多次累计的过程中会出现误差，因此可以使用`long long`来存储
+```c&#43;&#43;
+#include&lt;iostream&gt;
+using namespace std;
+typedef long long ll;
+
+int n;
+double tmp;
+int main() {
+	// freopen(&#34;input.txt&#34;,&#34;r&#34;,stdin);
+	scanf(&#34;%d&#34;,&amp;n);
+	ll sum = 0;
+	for(int i = 1; i &lt;= n; i&#43;&#43;) {
+		scanf(&#34;%lf&#34;,&amp;tmp);
+		ll num = tmp * 10000 / 10;
+		sum &#43;= num * (n - i &#43; 1) * i;
+	}
+	printf(&#34;%.2lf\n&#34;,sum / 1000.0);
 	return 0;
 }
 ```
