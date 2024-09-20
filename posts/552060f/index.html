@@ -637,7 +637,7 @@
 </tr>
 <tr>
 <td><code>to_string()</code></td>
-<td>用于将各种基本数据类型（如 <code>int、float、double、long </code>等）转换为字符串<code>std::string</code></td>
+<td>用于将各种基本数据类型（如 <code>int、float、double、long </code>等）转换为字符串<code>string</code></td>
 </tr>
 <tr>
 <td><code>remove()</code></td>
@@ -649,11 +649,11 @@
 </tr>
 <tr>
 <td><code>stoi()</code></td>
-<td>用于将字符串转换为整数<code>string str = &quot;123.456&quot;;double num = stod(str);</code></td>
+<td>用于将字符串转换为整数<code>string str = &quot;12345&quot;;int num = stoi(str);</code></td>
 </tr>
 <tr>
 <td><code>stod()</code></td>
-<td>用于将字符串转换为双精度浮点数<code>string str = &quot;12345&quot;;int num = stoi(str);</code></td>
+<td>用于将字符串转换为双精度浮点数<code>string str = &quot;123.456&quot;;double num = stod(str);</code></td>
 </tr>
 <tr>
 <td><code>to_string()</code></td>
@@ -1014,7 +1014,7 @@
 <td>判断某个元素是否存在, 返回0或1</td>
 </tr>
 <tr>
-<td><code>ckear()</code></td>
+<td><code>clear()</code></td>
 <td>清空集合</td>
 </tr>
 <tr>
@@ -3483,7 +3483,7 @@ ev：事件的最早发生时间：<code>max()</code></p>
 </span></span><span class="line"><span class="cl">			<span class="kt">int</span> <span class="n">v</span> <span class="o">=</span> <span class="n">edge</span><span class="p">[</span><span class="n">tmp</span><span class="p">][</span><span class="n">i</span><span class="p">].</span><span class="n">weight</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">			<span class="n">ev</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">=</span> <span class="n">max</span><span class="p">(</span><span class="n">ev</span><span class="p">[</span><span class="n">t</span><span class="p">],</span> <span class="n">ev</span><span class="p">[</span><span class="n">tmp</span><span class="p">]</span> <span class="o">+</span> <span class="n">v</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">			<span class="n">d</span><span class="p">[</span><span class="n">t</span><span class="p">]</span><span class="o">--</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">			<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">d</span><span class="p">[</span><span class="n">t</span><span class="p">])</span> <span class="n">q</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">t</span><span class="p">);</span><span class="c1">// 若入队为0, 则入队
+</span></span><span class="line"><span class="cl">			<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">d</span><span class="p">[</span><span class="n">t</span><span class="p">])</span> <span class="n">q</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">t</span><span class="p">);</span><span class="c1">// 若入度为0, 则入队
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>			<span class="n">total</span> <span class="o">=</span> <span class="n">max</span><span class="p">(</span><span class="n">total</span><span class="p">,</span> <span class="n">ev</span><span class="p">[</span><span class="n">t</span><span class="p">]);</span>
 </span></span><span class="line"><span class="cl">		<span class="p">}</span>
 </span></span><span class="line"><span class="cl">	<span class="p">}</span>

@@ -34,11 +34,11 @@
 | `strcpy(s1,s2)`         | 将字符串s2复制到字符串s1中                                                             |
 | `string.erase(pos,len)` | `.erase()` 是 `string` 类型的成员函数,用于删除从 `pos` 开始长度为 `len` 的字符串                  |
 | `stoi(str)`             | 将 `string` 类型的字符串转换为 `int` 类型，并且`stoi` 会隐式地将 `char` 数组转换为 `string`，然后再转换为整数 |
-| `to_string()`           | 用于将各种基本数据类型（如 `int、float、double、long `等）转换为字符串`std::string`                 |
+| `to_string()`           | 用于将各种基本数据类型（如 `int、float、double、long `等）转换为字符串`string`                      |
 | `remove()`              | `remove(token.begin(), token.end(), &#39; &#39;)`将所有空格元素移动到末尾，并返回第一个空格的迭代器          |
 | `atoi()`                | 用于将字符串表示的整数转换为实际的整数值`const char *str = &#34;12345&#34;; int num = atoi(str);`       |
-| `stoi()`                | 用于将字符串转换为整数`string str = &#34;123.456&#34;;double num = stod(str);`                 |
-| `stod()`                | 用于将字符串转换为双精度浮点数`string str = &#34;12345&#34;;int num = stoi(str);`                  |
+| `stoi()`                | 用于将字符串转换为整数`string str = &#34;12345&#34;;int num = stoi(str);`                      |
+| `stod()`                | 用于将字符串转换为双精度浮点数`string str = &#34;123.456&#34;;double num = stod(str);`             |
 | `to_string()`           | 用于将数值类型（如整数、浮点数等）转换为 `string` 类型                                            |
 ### C&#43;&#43;的STL中一些常用的库函数
 #### vector 数组
@@ -177,7 +177,7 @@ int main() {
 | `find()`        | 查找指定元素, 并返回指向该元素的迭代器, 如果找不到则返回 `set.end()`, 可以通过 `*it` 来访问元素 |
 | `size()`        | 返回集合中的元素数量                                                   |
 | `count()`       | 判断某个元素是否存在, 返回0或1                                            |
-| `ckear()`       | 清空集合                                                         |
+| `clear()`       | 清空集合                                                         |
 | `lower_bound()` | 返回大于等于x的最小的数的迭代器                                             |
 | `upper_bound()` | 返回大于x的最小的数的迭代器                                               |
 set的遍历
@@ -1321,8 +1321,6 @@ void topsort(int n) {
 }
 ```
 
-
-
 **例题1-AcWing 848. 有向图的拓扑序列**
 ```c&#43;&#43;
 void add(int a, int b) {
@@ -1428,7 +1426,7 @@ int topsort() {
 			int v = edge[tmp][i].weight;
 			ev[t] = max(ev[t], ev[tmp] &#43; v);
 			d[t]--;
-			if (!d[t]) q.push(t);// 若入队为0, 则入队
+			if (!d[t]) q.push(t);// 若入度为0, 则入队
 			total = max(total, ev[t]);
 		}
 	}
@@ -1743,7 +1741,6 @@ int main() {
 	return 0;
 }
 ```
-
 
 SPFA算法 $时间复杂度:一般O(n), 最坏O(n*m)$
 
