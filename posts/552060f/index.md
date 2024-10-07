@@ -1,6 +1,6 @@
 # Preparation For Programming Proficiency Exam
 
-时间过得真快呀，回想上次做算法题应该是大一的时候了
+ 时间过得真快呀，回想上次做算法题应该是大一的时候了
 
 没想到现在回过头来，依旧需要重新拾起自己的算法功底
 &lt;!--more--&gt;

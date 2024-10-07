@@ -16,17 +16,18 @@
   <meta itemprop="keywords" content="Misc,CTF"><meta property="og:url" content="http://localhost:1313/posts/1ad9200/">
   <meta property="og:site_name" content="⚡Lunatic BLOG⚡">
   <meta property="og:title" content="CTF-Misc Guide">
-  <meta property="og:description" content="This is a simple Guide for CTF in Misc Area.
-">
+  <meta property="og:description" content="This is a simple Guide for CTF in Misc Area.">
   <meta property="og:locale" content="en">
   <meta property="og:type" content="article">
-  <meta property="article:section" content="posts">
+    <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2024-09-10T20:30:17+08:00">
     <meta property="article:modified_time" content="2024-09-10T20:30:17+08:00">
     <meta property="article:tag" content="Misc">
     <meta property="article:tag" content="CTF">
-<meta name="twitter:card" content="summary"><meta name="twitter:title" content="CTF-Misc Guide">
-<meta name="twitter:description" content="This is a simple Guide for CTF in Misc Area.">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="CTF-Misc Guide">
+  <meta name="twitter:description" content="This is a simple Guide for CTF in Misc Area.">
       <meta name="twitter:site" content="@https://twitter.com/goodlunatic007">
 <meta name="application-name" content="FixIt">
 <meta name="apple-mobile-web-app-title" content="FixIt"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="https://www.nssctf.cn/files/2024/4/28/8fdad6c6ee.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="http://localhost:1313/posts/1ad9200/" /><link rel="prev" href="http://localhost:1313/posts/552060f/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
@@ -227,7 +228,7 @@
         </li>
         <li><a href="#png思路">PNG思路</a>
           <ul>
-            <li><a href="#1crc错误不能乱改改宽高1720是宽2124是高可用pictools脚本快速爆破">1、CRC错误(不能乱改)，改宽高，17~20是宽，21~24是高(可用Pictools脚本快速爆破)</a></li>
+            <li><a href="#1crc错误不能乱改改宽高1720是宽2124是高可用pictools脚本快速爆破">1、CRC错误(不能乱改)，改宽高，17<del>20是宽，21</del>24是高(可用Pictools脚本快速爆破)</a></li>
             <li><a href="#2lsb最低有效位隐写">2、LSB(最低有效位)隐写:</a></li>
             <li><a href="#3lsb低位隐写">3、LSB低位隐写</a></li>
             <li><a href="#4idat块隐写">4、IDAT块隐写</a></li>
@@ -1403,7 +1404,7 @@ U     R    H   D    B     D   F    G    E</p>
 </div>
 </div><h3 id="png思路" class="heading-element">
   <a href="#png%e6%80%9d%e8%b7%af" class="heading-mark"></a>PNG思路</h3><h4 id="1crc错误不能乱改改宽高1720是宽2124是高可用pictools脚本快速爆破" class="heading-element">
-  <a href="#1crc%e9%94%99%e8%af%af%e4%b8%8d%e8%83%bd%e4%b9%b1%e6%94%b9%e6%94%b9%e5%ae%bd%e9%ab%981720%e6%98%af%e5%ae%bd2124%e6%98%af%e9%ab%98%e5%8f%af%e7%94%a8pictools%e8%84%9a%e6%9c%ac%e5%bf%ab%e9%80%9f%e7%88%86%e7%a0%b4" class="heading-mark"></a>1、CRC错误(不能乱改)，改宽高，17~20是宽，21~24是高(可用Pictools脚本快速爆破)</h4><h4 id="2lsb最低有效位隐写" class="heading-element">
+  <a href="#1crc%e9%94%99%e8%af%af%e4%b8%8d%e8%83%bd%e4%b9%b1%e6%94%b9%e6%94%b9%e5%ae%bd%e9%ab%981720%e6%98%af%e5%ae%bd2124%e6%98%af%e9%ab%98%e5%8f%af%e7%94%a8pictools%e8%84%9a%e6%9c%ac%e5%bf%ab%e9%80%9f%e7%88%86%e7%a0%b4" class="heading-mark"></a>1、CRC错误(不能乱改)，改宽高，17<del>20是宽，21</del>24是高(可用Pictools脚本快速爆破)</h4><h4 id="2lsb最低有效位隐写" class="heading-element">
   <a href="#2lsb%e6%9c%80%e4%bd%8e%e6%9c%89%e6%95%88%e4%bd%8d%e9%9a%90%e5%86%99" class="heading-mark"></a>2、LSB(最低有效位)隐写:</h4><p><strong>没有密钥的情况</strong></p>
 <div class="highlight" id="id-35"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -1884,124 +1885,124 @@ snow隐写，到snowdos32工具目录下运行 SNOW.EXE -C -p password flag.txt 
   <a href="#zip%e6%96%87%e4%bb%b6%e7%bb%93%e6%9e%84" class="heading-mark"></a>zip文件结构</h3><p>三部分：压缩文件源数据区 + 压缩源文件目录区 + 压缩源文件目录结束标志</p>
 <p><strong>文件源数据区</strong></p>
 <table>
-<thead>
-<tr>
-<th style="text-align:left">HEX 数据</th>
-<th style="text-align:left">描述</th>
-<th style="text-align:left">010Editor 模板数据</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">50 4B 03 04</td>
-<td style="text-align:left">zip 文件头标记，看文本的话就是 PK 开头</td>
-<td style="text-align:left">char frSignature[4]</td>
-</tr>
-<tr>
-<td style="text-align:left">0A 00</td>
-<td style="text-align:left">解压文件所需 pkware 版本</td>
-<td style="text-align:left">ushort frVersion</td>
-</tr>
-<tr>
-<td style="text-align:left">00 00</td>
-<td style="text-align:left">全局方式位标记（有无加密），头文件标记后 2bytes</td>
-<td style="text-align:left">ushort frFlags</td>
-</tr>
-<tr>
-<td style="text-align:left">00 00</td>
-<td style="text-align:left">压缩方式</td>
-<td style="text-align:left">enum COMPTYPE frCompression</td>
-</tr>
-<tr>
-<td style="text-align:left">E8 A6</td>
-<td style="text-align:left">最后修改文件时间</td>
-<td style="text-align:left">DOSTIME frFileTime</td>
-</tr>
-<tr>
-<td style="text-align:left">32 53</td>
-<td style="text-align:left">最后修改文件日期</td>
-<td style="text-align:left">DOSDATE frFileDate</td>
-</tr>
-<tr>
-<td style="text-align:left">0C 7E 7F D8</td>
-<td style="text-align:left">CRC-32 校验</td>
-<td style="text-align:left">uint frCrc</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th style="text-align: left">HEX 数据</th>
+          <th style="text-align: left">描述</th>
+          <th style="text-align: left">010Editor 模板数据</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">50 4B 03 04</td>
+          <td style="text-align: left">zip 文件头标记，看文本的话就是 PK 开头</td>
+          <td style="text-align: left">char frSignature[4]</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">0A 00</td>
+          <td style="text-align: left">解压文件所需 pkware 版本</td>
+          <td style="text-align: left">ushort frVersion</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">00 00</td>
+          <td style="text-align: left">全局方式位标记（有无加密），头文件标记后 2bytes</td>
+          <td style="text-align: left">ushort frFlags</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">00 00</td>
+          <td style="text-align: left">压缩方式</td>
+          <td style="text-align: left">enum COMPTYPE frCompression</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">E8 A6</td>
+          <td style="text-align: left">最后修改文件时间</td>
+          <td style="text-align: left">DOSTIME frFileTime</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">32 53</td>
+          <td style="text-align: left">最后修改文件日期</td>
+          <td style="text-align: left">DOSDATE frFileDate</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">0C 7E 7F D8</td>
+          <td style="text-align: left">CRC-32 校验</td>
+          <td style="text-align: left">uint frCrc</td>
+      </tr>
+  </tbody>
 </table>
 <p><strong>文件目录区</strong></p>
 <table>
-<thead>
-<tr>
-<th>HEX 数据</th>
-<th>描述</th>
-<th>010Editor 模板数据</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>50 4B 01 02</td>
-<td>目录中文件文件头标记</td>
-<td>char deSignature[4]</td>
-</tr>
-<tr>
-<td>3F 00</td>
-<td>压缩使用的 pkware 版本</td>
-<td>ushort deVersionMadeBy</td>
-</tr>
-<tr>
-<td>0A 00</td>
-<td>解压文件所需 pkware 版本</td>
-<td>ushort deVersionToExtract</td>
-</tr>
-<tr>
-<td>00 00</td>
-<td>全局方式位标记（有无加密），目录文件标记后 4bytes</td>
-<td>ushort frFlags</td>
-</tr>
-<tr>
-<td>00 00</td>
-<td>压缩方式</td>
-<td>enum COMPTYPE frCompression</td>
-</tr>
-<tr>
-<td>E8 A6</td>
-<td>最后修改文件时间</td>
-<td>DOSTIME frFileTime</td>
-</tr>
-<tr>
-<td>32 53</td>
-<td>最后修改文件日期</td>
-<td>DOSDATE frFileDate</td>
-</tr>
-<tr>
-<td>0C 7E 7F D8</td>
-<td>CRC-32 校验</td>
-<td>uint frCrc</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th style="text-align: left">HEX 数据</th>
+          <th style="text-align: left">描述</th>
+          <th style="text-align: left">010Editor 模板数据</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">50 4B 01 02</td>
+          <td style="text-align: left">目录中文件文件头标记</td>
+          <td style="text-align: left">char deSignature[4]</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">3F 00</td>
+          <td style="text-align: left">压缩使用的 pkware 版本</td>
+          <td style="text-align: left">ushort deVersionMadeBy</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">0A 00</td>
+          <td style="text-align: left">解压文件所需 pkware 版本</td>
+          <td style="text-align: left">ushort deVersionToExtract</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">00 00</td>
+          <td style="text-align: left">全局方式位标记（有无加密），目录文件标记后 4bytes</td>
+          <td style="text-align: left">ushort frFlags</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">00 00</td>
+          <td style="text-align: left">压缩方式</td>
+          <td style="text-align: left">enum COMPTYPE frCompression</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">E8 A6</td>
+          <td style="text-align: left">最后修改文件时间</td>
+          <td style="text-align: left">DOSTIME frFileTime</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">32 53</td>
+          <td style="text-align: left">最后修改文件日期</td>
+          <td style="text-align: left">DOSDATE frFileDate</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">0C 7E 7F D8</td>
+          <td style="text-align: left">CRC-32 校验</td>
+          <td style="text-align: left">uint frCrc</td>
+      </tr>
+  </tbody>
 </table>
 <p><strong>文件目录结束</strong></p>
 <table>
-<thead>
-<tr>
-<th>50 4B 05 06</th>
-<th>目录结束标记</th>
-<th>char elSignature[4]</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>00 00</td>
-<td>当前磁盘编号</td>
-<td>ushort elDiskNumber</td>
-</tr>
-<tr>
-<td>00 00</td>
-<td>目录区开始磁盘编号</td>
-<td>ushort elStartDiskNumber</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th style="text-align: left">50 4B 05 06</th>
+          <th style="text-align: left">目录结束标记</th>
+          <th style="text-align: left">char elSignature[4]</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">00 00</td>
+          <td style="text-align: left">当前磁盘编号</td>
+          <td style="text-align: left">ushort elDiskNumber</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">00 00</td>
+          <td style="text-align: left">目录区开始磁盘编号</td>
+          <td style="text-align: left">ushort elStartDiskNumber</td>
+      </tr>
+  </tbody>
 </table>
 <h4 id="常见报错及对应解决方法借助010的模板功能" class="heading-element">
   <a href="#%e5%b8%b8%e8%a7%81%e6%8a%a5%e9%94%99%e5%8f%8a%e5%af%b9%e5%ba%94%e8%a7%a3%e5%86%b3%e6%96%b9%e6%b3%95%e5%80%9f%e5%8a%a9010%e7%9a%84%e6%a8%a1%e6%9d%bf%e5%8a%9f%e8%83%bd" class="heading-mark"></a>常见报错及对应解决方法（借助010的模板功能）</h4><ol>
@@ -2014,116 +2015,116 @@ snow隐写，到snowdos32工具目录下运行 SNOW.EXE -C -p password flag.txt 
 <p><img loading="lazy" src="imgs/image-20240724172708418.png" alt="imgs/image-20240724172708418.png" srcset="imgs/image-20240724172708418.png?size=small, imgs/image-20240724172708418.png?size=medium 1.5x, imgs/image-20240724172708418.png?size=large 2x" data-title="imgs/image-20240724172708418.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <h3 id="rar文件结构" class="heading-element">
   <a href="#rar%e6%96%87%e4%bb%b6%e7%bb%93%e6%9e%84" class="heading-mark"></a>rar文件结构</h3><table>
-<thead>
-<tr>
-<th>HEX 数据</th>
-<th>描述</th>
-<th>010Editor 模板数据</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>52 61 72 21 1A 07 00</td>
-<td>rar 文件头标记，文本为 Rar!</td>
-<td></td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th style="text-align: left">HEX 数据</th>
+          <th style="text-align: left">描述</th>
+          <th style="text-align: left">010Editor 模板数据</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">52 61 72 21 1A 07 00</td>
+          <td style="text-align: left">rar 文件头标记，文本为 Rar!</td>
+          <td style="text-align: left"></td>
+      </tr>
+  </tbody>
 </table>
 <p><strong>Main block</strong></p>
 <table>
-<thead>
-<tr>
-<th>HEX 数据</th>
-<th>描述</th>
-<th>010Editor 模板数据</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>33 92 B5 E5</td>
-<td>全部块的 CRC32 值</td>
-<td>uint32 HEAD_CRC</td>
-</tr>
-<tr>
-<td>0A</td>
-<td>块大小</td>
-<td>struct uleb128 HeadSize</td>
-</tr>
-<tr>
-<td>01</td>
-<td>块类型</td>
-<td>struct uleb128 HeadType</td>
-</tr>
-<tr>
-<td>05</td>
-<td>阻止标志</td>
-<td>struct uleb128 HeadFlag</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th style="text-align: left">HEX 数据</th>
+          <th style="text-align: left">描述</th>
+          <th style="text-align: left">010Editor 模板数据</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">33 92 B5 E5</td>
+          <td style="text-align: left">全部块的 CRC32 值</td>
+          <td style="text-align: left">uint32 HEAD_CRC</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">0A</td>
+          <td style="text-align: left">块大小</td>
+          <td style="text-align: left">struct uleb128 HeadSize</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">01</td>
+          <td style="text-align: left">块类型</td>
+          <td style="text-align: left">struct uleb128 HeadType</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">05</td>
+          <td style="text-align: left">阻止标志</td>
+          <td style="text-align: left">struct uleb128 HeadFlag</td>
+      </tr>
+  </tbody>
 </table>
 <p><strong>File Header</strong></p>
 <table>
-<thead>
-<tr>
-<th>HEX 数据</th>
-<th>描述</th>
-<th>010Editor 模板数据</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>43 06 35 17</td>
-<td>单独块的 CRC32 值</td>
-<td>uint32 HEAD_CRC</td>
-</tr>
-<tr>
-<td>55</td>
-<td>块大小</td>
-<td>struct uleb128 HeadSize</td>
-</tr>
-<tr>
-<td>02</td>
-<td>块类型</td>
-<td>struct uleb128 HeadType</td>
-</tr>
-<tr>
-<td>03</td>
-<td>阻止标志</td>
-<td>struct uleb128 HeadFlag</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th style="text-align: left">HEX 数据</th>
+          <th style="text-align: left">描述</th>
+          <th style="text-align: left">010Editor 模板数据</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">43 06 35 17</td>
+          <td style="text-align: left">单独块的 CRC32 值</td>
+          <td style="text-align: left">uint32 HEAD_CRC</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">55</td>
+          <td style="text-align: left">块大小</td>
+          <td style="text-align: left">struct uleb128 HeadSize</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">02</td>
+          <td style="text-align: left">块类型</td>
+          <td style="text-align: left">struct uleb128 HeadType</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">03</td>
+          <td style="text-align: left">阻止标志</td>
+          <td style="text-align: left">struct uleb128 HeadFlag</td>
+      </tr>
+  </tbody>
 </table>
 <p><strong>Terminator</strong></p>
 <table>
-<thead>
-<tr>
-<th>HEX 数据</th>
-<th>描述</th>
-<th>010Editor 模板数据</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1D 77 56 51</td>
-<td>固定的 CRC32 值</td>
-<td>uint32 HEAD_CRC</td>
-</tr>
-<tr>
-<td>03</td>
-<td>块大小</td>
-<td>struct uleb128 HeadSize</td>
-</tr>
-<tr>
-<td>05</td>
-<td>块类型</td>
-<td>struct uleb128 HeadType</td>
-</tr>
-<tr>
-<td>04 00</td>
-<td>阻止标志</td>
-<td>struct uleb128 HeadFlag</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th style="text-align: left">HEX 数据</th>
+          <th style="text-align: left">描述</th>
+          <th style="text-align: left">010Editor 模板数据</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">1D 77 56 51</td>
+          <td style="text-align: left">固定的 CRC32 值</td>
+          <td style="text-align: left">uint32 HEAD_CRC</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">03</td>
+          <td style="text-align: left">块大小</td>
+          <td style="text-align: left">struct uleb128 HeadSize</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">05</td>
+          <td style="text-align: left">块类型</td>
+          <td style="text-align: left">struct uleb128 HeadType</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">04 00</td>
+          <td style="text-align: left">阻止标志</td>
+          <td style="text-align: left">struct uleb128 HeadFlag</td>
+      </tr>
+  </tbody>
 </table>
 <h3 id="1压缩包伪加密" class="heading-element">
   <a href="#1%e5%8e%8b%e7%bc%a9%e5%8c%85%e4%bc%aa%e5%8a%a0%e5%af%86" class="heading-mark"></a>1、压缩包伪加密</h3><h3 id="zip文件" class="heading-element">
@@ -2203,34 +2204,34 @@ snow隐写，到snowdos32工具目录下运行 SNOW.EXE -C -p password flag.txt 
 </div>
 </div><p>如何判断压缩工具（参考自B神的博客）</p>
 <table>
-<thead>
-<tr>
-<th>压缩攻击</th>
-<th>VersionMadeBy(压缩所用版本)</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Bandzip 7.06</td>
-<td>20</td>
-</tr>
-<tr>
-<td>Windows自带</td>
-<td>20</td>
-</tr>
-<tr>
-<td>WinRAR 4.20</td>
-<td>31</td>
-</tr>
-<tr>
-<td>WinRAR 5.70</td>
-<td>31</td>
-</tr>
-<tr>
-<td>7-Zip</td>
-<td>63</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th style="text-align: left">压缩攻击</th>
+          <th style="text-align: left">VersionMadeBy(压缩所用版本)</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">Bandzip 7.06</td>
+          <td style="text-align: left">20</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Windows自带</td>
+          <td style="text-align: left">20</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">WinRAR 4.20</td>
+          <td style="text-align: left">31</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">WinRAR 5.70</td>
+          <td style="text-align: left">31</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">7-Zip</td>
+          <td style="text-align: left">63</td>
+      </tr>
+  </tbody>
 </table>
 <p><strong>bkcrack常用参数</strong></p>
 <div class="highlight" id="id-56"><div class="chroma">
@@ -3469,7 +3470,7 @@ snow隐写，到snowdos32工具目录下运行 SNOW.EXE -C -p password flag.txt 
   <div
     class="toc-content"
     id="toc-content-auto"></div></aside></main><footer class="footer">
-    <div class="footer-container"><div class="footer-line powered">Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreferrer" title="Hugo 0.125.3">Hugo</a> | Theme - <a href="https://github.com/hugo-fixit/FixIt" target="_blank" rel="external" title="FixIt v0.3.2">FixIt</a>
+    <div class="footer-container"><div class="footer-line powered">Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreferrer" title="Hugo 0.135.0">Hugo</a> | Theme - <a href="https://github.com/hugo-fixit/FixIt" target="_blank" rel="external" title="FixIt v0.3.2">FixIt</a>
         </div><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
             <span itemprop="copyrightYear">2024</span><span class="author" itemprop="copyrightHolder">
               <a href="https://goodlunatic.github.io"target="_blank" rel="external nofollow noopener noreferrer">Lunatic</a></span></div></div>
