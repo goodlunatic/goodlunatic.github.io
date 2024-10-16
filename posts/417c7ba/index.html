@@ -19,16 +19,17 @@
   <meta property="og:site_name" content="⚡Lunatic BLOG⚡">
   <meta property="og:title" content="Pentesting Learning Record">
   <meta property="og:description" content="越来越多的线下赛开始考察实战渗透了，一直想学渗透来着
-但无奈一直被耽搁，回过头来的时候发现自己已经要退役了
-">
+但无奈一直被耽搁，回过头来的时候发现自己已经要退役了">
   <meta property="og:locale" content="en">
   <meta property="og:type" content="article">
-  <meta property="article:section" content="posts">
+    <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2024-07-26T15:12:02+08:00">
     <meta property="article:modified_time" content="2024-07-26T15:12:02+08:00">
     <meta property="article:tag" content="CTF">
-<meta name="twitter:card" content="summary"><meta name="twitter:title" content="Pentesting Learning Record">
-<meta name="twitter:description" content="越来越多的线下赛开始考察实战渗透了，一直想学渗透来着
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Pentesting Learning Record">
+  <meta name="twitter:description" content="越来越多的线下赛开始考察实战渗透了，一直想学渗透来着
 但无奈一直被耽搁，回过头来的时候发现自己已经要退役了">
       <meta name="twitter:site" content="@https://twitter.com/goodlunatic007">
 <meta name="application-name" content="FixIt">
@@ -539,215 +540,215 @@ Shodan:https://www.shodan.io/
 <p>图片 &ndash;&gt; 定位</p>
 <h3 id="黑客常用端口总结" class="heading-element">
   <a href="#%e9%bb%91%e5%ae%a2%e5%b8%b8%e7%94%a8%e7%ab%af%e5%8f%a3%e6%80%bb%e7%bb%93" class="heading-mark"></a>黑客常用端口总结</h3><table>
-<thead>
-<tr>
-<th style="text-align:center">端口</th>
-<th style="text-align:center">服务</th>
-<th style="text-align:center">入侵方式</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">21</td>
-<td style="text-align:center">ftp/tftp/vsftpd文件传输协议</td>
-<td style="text-align:center">爆破/嗅探/溢出/后门</td>
-</tr>
-<tr>
-<td style="text-align:center">22</td>
-<td style="text-align:center">ssh远程连接</td>
-<td style="text-align:center">爆破/openssh漏洞</td>
-</tr>
-<tr>
-<td style="text-align:center">23</td>
-<td style="text-align:center">Telnet远程连接</td>
-<td style="text-align:center">爆破/嗅探/弱口令</td>
-</tr>
-<tr>
-<td style="text-align:center">25</td>
-<td style="text-align:center">SMTP邮件服务</td>
-<td style="text-align:center">邮件伪造</td>
-</tr>
-<tr>
-<td style="text-align:center">53</td>
-<td style="text-align:center">DNS域名解析系统</td>
-<td style="text-align:center">域传送/劫持/缓存投毒/欺骗</td>
-</tr>
-<tr>
-<td style="text-align:center">67/68</td>
-<td style="text-align:center">dhcp服务</td>
-<td style="text-align:center">劫持/欺骗</td>
-</tr>
-<tr>
-<td style="text-align:center">110</td>
-<td style="text-align:center">pop3</td>
-<td style="text-align:center">爆破/嗅探</td>
-</tr>
-<tr>
-<td style="text-align:center">139</td>
-<td style="text-align:center">Samba服务</td>
-<td style="text-align:center">爆破/未授权访问/远程命令执行</td>
-</tr>
-<tr>
-<td style="text-align:center">143</td>
-<td style="text-align:center">Imap协议</td>
-<td style="text-align:center">爆破</td>
-</tr>
-<tr>
-<td style="text-align:center">161</td>
-<td style="text-align:center">SNMP协议</td>
-<td style="text-align:center">爆破/搜集目标内网信息</td>
-</tr>
-<tr>
-<td style="text-align:center">389</td>
-<td style="text-align:center">Ldap目录访问协议</td>
-<td style="text-align:center">注入/未授权访问/弱口令</td>
-</tr>
-<tr>
-<td style="text-align:center">445</td>
-<td style="text-align:center">smb</td>
-<td style="text-align:center">ms17-010/端口溢出</td>
-</tr>
-<tr>
-<td style="text-align:center">512/513/514</td>
-<td style="text-align:center">Linux Rexec服务</td>
-<td style="text-align:center">爆破/Rlogin登陆</td>
-</tr>
-<tr>
-<td style="text-align:center">873</td>
-<td style="text-align:center">Rsync服务</td>
-<td style="text-align:center">文件上传/未授权访问</td>
-</tr>
-<tr>
-<td style="text-align:center">1080</td>
-<td style="text-align:center">socket</td>
-<td style="text-align:center">爆破</td>
-</tr>
-<tr>
-<td style="text-align:center">1352</td>
-<td style="text-align:center">Lotus domino邮件服务</td>
-<td style="text-align:center">爆破/信息泄漏</td>
-</tr>
-<tr>
-<td style="text-align:center">1433</td>
-<td style="text-align:center">mssql</td>
-<td style="text-align:center">爆破/注入/SA弱口令</td>
-</tr>
-<tr>
-<td style="text-align:center">1521</td>
-<td style="text-align:center">oracle</td>
-<td style="text-align:center">爆破/注入/TNS爆破/反弹shell</td>
-</tr>
-<tr>
-<td style="text-align:center">2049</td>
-<td style="text-align:center">Nfs服务</td>
-<td style="text-align:center">配置不当</td>
-</tr>
-<tr>
-<td style="text-align:center">2181</td>
-<td style="text-align:center">zookeeper服务</td>
-<td style="text-align:center">未授权访问</td>
-</tr>
-<tr>
-<td style="text-align:center">2375</td>
-<td style="text-align:center">docker remote api</td>
-<td style="text-align:center">未授权访问</td>
-</tr>
-<tr>
-<td style="text-align:center">3306</td>
-<td style="text-align:center">mysql</td>
-<td style="text-align:center">爆破/注入</td>
-</tr>
-<tr>
-<td style="text-align:center">3389</td>
-<td style="text-align:center">Rdp远程桌面链接</td>
-<td style="text-align:center">爆破/shift后门</td>
-</tr>
-<tr>
-<td style="text-align:center">4848</td>
-<td style="text-align:center">GlassFish控制台</td>
-<td style="text-align:center">爆破/认证绕过</td>
-</tr>
-<tr>
-<td style="text-align:center">5000</td>
-<td style="text-align:center">sybase/DB2数据库</td>
-<td style="text-align:center">爆破/注入/提权</td>
-</tr>
-<tr>
-<td style="text-align:center">5432</td>
-<td style="text-align:center">postgresql</td>
-<td style="text-align:center">爆破/注入/缓冲区溢出</td>
-</tr>
-<tr>
-<td style="text-align:center">5632</td>
-<td style="text-align:center">pcanywhere服务</td>
-<td style="text-align:center">抓密码/代码执行</td>
-</tr>
-<tr>
-<td style="text-align:center">5900</td>
-<td style="text-align:center">vnc</td>
-<td style="text-align:center">爆破/认证绕过</td>
-</tr>
-<tr>
-<td style="text-align:center">6379</td>
-<td style="text-align:center">Redis数据库</td>
-<td style="text-align:center">未授权访问/爆破</td>
-</tr>
-<tr>
-<td style="text-align:center">7001/7002</td>
-<td style="text-align:center">weblogic</td>
-<td style="text-align:center">java反序列化/控制台弱口令</td>
-</tr>
-<tr>
-<td style="text-align:center">80/443</td>
-<td style="text-align:center">http/https</td>
-<td style="text-align:center">web应用漏洞/心脏滴血</td>
-</tr>
-<tr>
-<td style="text-align:center">8069</td>
-<td style="text-align:center">zabbix服务</td>
-<td style="text-align:center">远程命令执行/注入</td>
-</tr>
-<tr>
-<td style="text-align:center">8161</td>
-<td style="text-align:center">activemq</td>
-<td style="text-align:center">弱口令/写文件</td>
-</tr>
-<tr>
-<td style="text-align:center">8080/8089</td>
-<td style="text-align:center">Jboss/Tomcat/Resin</td>
-<td style="text-align:center">爆破/PUT文件上传/反序列化</td>
-</tr>
-<tr>
-<td style="text-align:center">8083/8086</td>
-<td style="text-align:center">influxDB</td>
-<td style="text-align:center">未授权访问</td>
-</tr>
-<tr>
-<td style="text-align:center">9000</td>
-<td style="text-align:center">fastcgi</td>
-<td style="text-align:center">远程命令执行</td>
-</tr>
-<tr>
-<td style="text-align:center">9090</td>
-<td style="text-align:center">Websphere控制台</td>
-<td style="text-align:center">爆破/java反序列化/弱口令</td>
-</tr>
-<tr>
-<td style="text-align:center">9200/9300</td>
-<td style="text-align:center">elasticsearch</td>
-<td style="text-align:center">远程代码执行</td>
-</tr>
-<tr>
-<td style="text-align:center">11211</td>
-<td style="text-align:center">memcached</td>
-<td style="text-align:center">未授权访问</td>
-</tr>
-<tr>
-<td style="text-align:center">27017/27018</td>
-<td style="text-align:center">mongodb</td>
-<td style="text-align:center">未授权访问/爆破</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th style="text-align: center">端口</th>
+          <th style="text-align: center">服务</th>
+          <th style="text-align: center">入侵方式</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: center">21</td>
+          <td style="text-align: center">ftp/tftp/vsftpd文件传输协议</td>
+          <td style="text-align: center">爆破/嗅探/溢出/后门</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">22</td>
+          <td style="text-align: center">ssh远程连接</td>
+          <td style="text-align: center">爆破/openssh漏洞</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">23</td>
+          <td style="text-align: center">Telnet远程连接</td>
+          <td style="text-align: center">爆破/嗅探/弱口令</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">25</td>
+          <td style="text-align: center">SMTP邮件服务</td>
+          <td style="text-align: center">邮件伪造</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">53</td>
+          <td style="text-align: center">DNS域名解析系统</td>
+          <td style="text-align: center">域传送/劫持/缓存投毒/欺骗</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">67/68</td>
+          <td style="text-align: center">dhcp服务</td>
+          <td style="text-align: center">劫持/欺骗</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">110</td>
+          <td style="text-align: center">pop3</td>
+          <td style="text-align: center">爆破/嗅探</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">139</td>
+          <td style="text-align: center">Samba服务</td>
+          <td style="text-align: center">爆破/未授权访问/远程命令执行</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">143</td>
+          <td style="text-align: center">Imap协议</td>
+          <td style="text-align: center">爆破</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">161</td>
+          <td style="text-align: center">SNMP协议</td>
+          <td style="text-align: center">爆破/搜集目标内网信息</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">389</td>
+          <td style="text-align: center">Ldap目录访问协议</td>
+          <td style="text-align: center">注入/未授权访问/弱口令</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">445</td>
+          <td style="text-align: center">smb</td>
+          <td style="text-align: center">ms17-010/端口溢出</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">512/513/514</td>
+          <td style="text-align: center">Linux Rexec服务</td>
+          <td style="text-align: center">爆破/Rlogin登陆</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">873</td>
+          <td style="text-align: center">Rsync服务</td>
+          <td style="text-align: center">文件上传/未授权访问</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">1080</td>
+          <td style="text-align: center">socket</td>
+          <td style="text-align: center">爆破</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">1352</td>
+          <td style="text-align: center">Lotus domino邮件服务</td>
+          <td style="text-align: center">爆破/信息泄漏</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">1433</td>
+          <td style="text-align: center">mssql</td>
+          <td style="text-align: center">爆破/注入/SA弱口令</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">1521</td>
+          <td style="text-align: center">oracle</td>
+          <td style="text-align: center">爆破/注入/TNS爆破/反弹shell</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">2049</td>
+          <td style="text-align: center">Nfs服务</td>
+          <td style="text-align: center">配置不当</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">2181</td>
+          <td style="text-align: center">zookeeper服务</td>
+          <td style="text-align: center">未授权访问</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">2375</td>
+          <td style="text-align: center">docker remote api</td>
+          <td style="text-align: center">未授权访问</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">3306</td>
+          <td style="text-align: center">mysql</td>
+          <td style="text-align: center">爆破/注入</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">3389</td>
+          <td style="text-align: center">Rdp远程桌面链接</td>
+          <td style="text-align: center">爆破/shift后门</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">4848</td>
+          <td style="text-align: center">GlassFish控制台</td>
+          <td style="text-align: center">爆破/认证绕过</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">5000</td>
+          <td style="text-align: center">sybase/DB2数据库</td>
+          <td style="text-align: center">爆破/注入/提权</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">5432</td>
+          <td style="text-align: center">postgresql</td>
+          <td style="text-align: center">爆破/注入/缓冲区溢出</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">5632</td>
+          <td style="text-align: center">pcanywhere服务</td>
+          <td style="text-align: center">抓密码/代码执行</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">5900</td>
+          <td style="text-align: center">vnc</td>
+          <td style="text-align: center">爆破/认证绕过</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">6379</td>
+          <td style="text-align: center">Redis数据库</td>
+          <td style="text-align: center">未授权访问/爆破</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">7001/7002</td>
+          <td style="text-align: center">weblogic</td>
+          <td style="text-align: center">java反序列化/控制台弱口令</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">80/443</td>
+          <td style="text-align: center">http/https</td>
+          <td style="text-align: center">web应用漏洞/心脏滴血</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">8069</td>
+          <td style="text-align: center">zabbix服务</td>
+          <td style="text-align: center">远程命令执行/注入</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">8161</td>
+          <td style="text-align: center">activemq</td>
+          <td style="text-align: center">弱口令/写文件</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">8080/8089</td>
+          <td style="text-align: center">Jboss/Tomcat/Resin</td>
+          <td style="text-align: center">爆破/PUT文件上传/反序列化</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">8083/8086</td>
+          <td style="text-align: center">influxDB</td>
+          <td style="text-align: center">未授权访问</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">9000</td>
+          <td style="text-align: center">fastcgi</td>
+          <td style="text-align: center">远程命令执行</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">9090</td>
+          <td style="text-align: center">Websphere控制台</td>
+          <td style="text-align: center">爆破/java反序列化/弱口令</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">9200/9300</td>
+          <td style="text-align: center">elasticsearch</td>
+          <td style="text-align: center">远程代码执行</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">11211</td>
+          <td style="text-align: center">memcached</td>
+          <td style="text-align: center">未授权访问</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">27017/27018</td>
+          <td style="text-align: center">mongodb</td>
+          <td style="text-align: center">未授权访问/爆破</td>
+      </tr>
+  </tbody>
 </table>
 <h4 id="telnet" class="heading-element">
   <a href="#telnet" class="heading-mark"></a>telnet</h4><div class="highlight" id="id-9"><div class="chroma">
@@ -1556,7 +1557,7 @@ Shodan:https://www.shodan.io/
   <div
     class="toc-content"
     id="toc-content-auto"></div></aside></main><footer class="footer">
-    <div class="footer-container"><div class="footer-line powered">Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreferrer" title="Hugo 0.125.3">Hugo</a> | Theme - <a href="https://github.com/hugo-fixit/FixIt" target="_blank" rel="external" title="FixIt v0.3.2">FixIt</a>
+    <div class="footer-container"><div class="footer-line powered">Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreferrer" title="Hugo 0.135.0">Hugo</a> | Theme - <a href="https://github.com/hugo-fixit/FixIt" target="_blank" rel="external" title="FixIt v0.3.2">FixIt</a>
         </div><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
             <span itemprop="copyrightYear">2024</span><span class="author" itemprop="copyrightHolder">
               <a href="https://goodlunatic.github.io"target="_blank" rel="external nofollow noopener noreferrer">Lunatic</a></span></div></div>
