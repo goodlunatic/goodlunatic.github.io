@@ -47,7 +47,35 @@ A simple blog for IOT Security Research.
 &gt; 使用方法：./firmwalker.sh squashfs-root的路径
 
 
+![](imgs/image-20241016181231412.png)
 
+多次出现httpd的字样，因此猜测是httpd起的服务
+
+接下来逆向分析一下/usr/bin/httpd这个文件
+
+通过搜索passwd跟踪到以下DebugResultRpmHtm这个函数，可以得到 用户名：osteam 密码：5up
+![](imgs/image-20241016181821704.png)
+
+再往上可以找到另外两个函数ArtRpmHtm和CmdRpmHtm
+![](imgs/image-20241016182046585.png)
+
+然后我们对固件进行模拟，我这里使用的是AttifyOS3.0中的 firmware-analysis-toolkit
+
+![](imgs/image-20241017201034207.png)
+
+模拟成功后我们直接访问 192.168.1.1 即可
+
+![](imgs/image-20241017201209947.png)
+
+使用默认密码 admin admin 登录
+
+![](imgs/image-20241017201238654.png)
+
+登录成功后直接访问 192.168.1.1/userRpmNatDebugRpm26525557/linux_cmdline.html
+
+然后输入我们之前逆向得到的用户名密码：osteam 5up 即可实现 RCE
+
+![](imgs/image-20241017201524213.png)
 
 
 ---
