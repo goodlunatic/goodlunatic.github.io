@@ -570,6 +570,16 @@ if a == &#34;2&#34;:
 flag{11 21 31 18 27 33 34}
 flag{QAZIJCV}
 ```
+### 棋盘密码((ADFGVX,ADFGX,Polybius)
+
+![](imgs/image-20241018145022295.png)
+
+直接使用CaptfEncoder或者随波逐流等工具输入密文和密钥解密即可
+![](imgs/image-20241018145101804.png)
+
+ADFGVX密码 默认棋盘：ph0qg64mea1yl2nofdxkr3cvs5zw7bj9uti8 默认密钥：german
+ADFGX密码 默认棋盘：phqgmeaynofdxkrcvszwbutil 默认密钥：german
+波利比奥斯方阵密码 密钥：随机 默认密文字符：ABCDE
 
 ### 福尔摩斯密码
 

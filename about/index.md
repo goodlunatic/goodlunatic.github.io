@@ -21,7 +21,7 @@
 # **✨️ Sponsors**
 
 - **If you like my blog , you can buy me a cup of java.**
-- **Thank You😃**
+- **Thank You 😃**
 
 |  Sponsor   | **Amount**  |
 | :--------: | :---------: |

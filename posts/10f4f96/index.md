@@ -1,8 +1,12 @@
-# 2024 DubheCTF-Cipher 赛题详解
+# 2024 XCTF-DubheCTF Misc Writeup
+
+**这两天打了 2024 DubheCTF 后突然感觉自己之前学的东西只不过是皮毛中的皮毛**
+
+**感觉还得是靠打这些难度比较高的比赛来督促自己学习新东西**
+&lt;!--more--&gt;
+## 题目名称 Cipher
 
 **从这道题入手，由浅入深学习一下Windows自带的 Cipher 加密（EFS加密算法）**
-
-&lt;!--more--&gt;
 
 **用磁盘精灵打开vhd文件，在public目录下看到一个加密的flag.jpg**
 
@@ -191,7 +195,97 @@ decrypt_file(&#39;flag.jpg.enc&#39;, &#39;flag.jpg&#39;, key)
 
 贴一个破解版软件的下载链接：https://www.anxz.com/down/69148.html
 
+## 题目名称 authenticated mess &amp; unauthenticated less
+从这道题来浅浅学一下 VMessAEAD 的加密方式
 
+题目给了一个 pcapng 的流量包文件，一开始以为是和 2022强网杯-谍影重重一样的 VMessMD5 加密的流量分析，需要爆破时间戳
+
+赛后看了题解才发现不是，这道题是 VMessAEAD 的加密方式（也是现在版本的 v2ray-core 强制的加密方式）
+
+用wireshark翻流量可以得到一个 v2ray 的 json 配置文件，也是从这里确定了是VMess流量分析
+
+![](imgs/image-20241018140800820.png)
+
+赛后看了出题人的题解后，发现出题人已经写了一个专门用来解析 VMessAEAD 的 Python 库
+
+Python 库的开源地址：https://github.com/mnixry/vmess-aead-python
+
+这里就直接用出题人写好的库进行解析了
+
+Tips：调用这个库需要使用 Python3.10 以上的版本
+
+```python
+import uuid
+
+from vmess_aead.encoding import VMessBodyEncoder
+from vmess_aead.headers.request import VMessAEADRequestPacketHeader
+from vmess_aead.utils.reader import BytesReader
+
+data = &#34;a49502ee07ffdd20f11597e961f7768b41be7bc32030107fc81f235f72ff1b294d074ade94281242412b4c19123b15250ac3d5ad9524df9acd0ee5f6dcca7b0c2849b2f4df20190dd084c01c3f6e2834dd87cb8e97fa178b2ec454755f89d9b735ae6dab9c7989cf4154f7eae53774d9d6cdb55d0a76fdaf21e08bae26e49cbb3c56d11a3fe540454bfbae06305460301caca4109df3335b0c3646b6e2d856a927f9298b87da3a7cf3cffcca6c27259fc055faa9f3155cc95f698bb37436008783b6cd03d38a8e109f78a48c860b600fcbe825cd6c6a5be2c95fce121df574c70fe62e4f24e28de5983db6c3c0192d72ec785b6d58c4b8301c4f70eab683&#34;
+data = bytes.fromhex(data)
+
+reader = BytesReader(data)
+user_id = uuid.UUID(&#34;f3a5cae3-6bd2-40d1-b13b-2cc3d87af2c7&#34;)
+
+
+header = VMessAEADRequestPacketHeader.from_packet(reader, user_id)
+print(header)
+
+encoder = VMessBodyEncoder(
+    header.payload.body_key,
+    header.payload.body_iv,
+    header.payload.options,
+    header.payload.security,
+    header.payload.command,
+)
+body = encoder.decode_once(reader)
+print(body)
+```
+
+解析了流量中的数据后可以得到一个图片的地址：
+
+https://p.sda1.dev/16/11c111ee40a928d5d751dd5869414093/__p0.png
+
+![](imgs/image-20241018140830066.png)
+
+用 zsteg 一扫发现图片末尾有一个压缩包，用 foremost 提取出来后发现需要密码
+
+![](imgs/image-20241018140839709.png)
+
+这里可以去 saucenao 搜这个图片得到密码 116921220
+
+Tips：这个纯数字密码因为是9位，所以用弱密码爆破的可行性不高，需要爆破好久
+
+之前某个比赛也遇到过这种，解密的密钥需要去 pixiv 上获取【可恶的二次元】
+
+![](imgs/image-20241018140855956.png)
+
+解压压缩包后得到一个项目的源码
+
+后面的考点就主要是 Web 方向的了—— EdTunnel，Wrangler 和 SSRF
+
+先查看 docker-compose.yml 发现存在一个 edtunnel 服务
+
+![](imgs/image-20241018140906583.png)
+
+这个服务的相关内容来自：https://github.com/3Kmfi6HP/EDtunnel
+
+出题人只对 UUID 和默认路由进行了更改
+
+edtunnel 是一个开源的轻量级反向隧道工具，用于穿越防火墙和网络限制，建立安全的网络连接。
+
+它提供了一种简单的方式，允许用户在两个网络之间建立加密的隧道连接。
+
+赛后看了参考的wp知道了 EdTunnel 是通过 Wrangler 本地的开发模式部署的
+
+然后 Wrangler 有一个 SSRF 的漏洞 CVE-2023-7080
+
+后续就是用 v2ray 使用 exp-config.json 将端口暴露到本地
+
+然后用浏览器连接到这个端口，在 内存快照 中可以打出堆快照，flag就藏在这里
+
+**参考链接：**
+- https://github.com/mix-archive/MessyStack?tab=readme-ov-file
 
 ---
 
