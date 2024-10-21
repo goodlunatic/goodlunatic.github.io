@@ -4,7 +4,15 @@
     <link>http://localhost:1313/tags/misc/</link>
     <description>Misc - Tag | ⚡Lunatic BLOG⚡</description>
     <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>goodlunatic0@gmail.com (Lunatic)</managingEditor>
-      <webMaster>goodlunatic0@gmail.com (Lunatic)</webMaster><lastBuildDate>Tue, 10 Sep 2024 20:30:17 &#43;0800</lastBuildDate><atom:link href="http://localhost:1313/tags/misc/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>goodlunatic0@gmail.com (Lunatic)</webMaster><lastBuildDate>Mon, 21 Oct 2024 12:22:20 &#43;0800</lastBuildDate><atom:link href="http://localhost:1313/tags/misc/" rel="self" type="application/rss+xml" /><item>
+  <title>2024 睿抗机器人开发者大赛（RAICOM）网络安全赛道初赛 Misc Writeup</title>
+  <link>http://localhost:1313/posts/1eae35a/</link>
+  <pubDate>Mon, 21 Oct 2024 12:22:20 &#43;0800</pubDate>
+  <author>Lunatic</author>
+  <guid>http://localhost:1313/posts/1eae35a/</guid>
+  <description><![CDATA[<p><strong>这比赛只能说是纯手速局</strong></p>]]></description>
+</item>
+<item>
   <title>CTF-Misc Guide</title>
   <link>http://localhost:1313/posts/1ad9200/</link>
   <pubDate>Tue, 10 Sep 2024 20:30:17 &#43;0800</pubDate>
@@ -79,15 +87,6 @@
   <guid>http://localhost:1313/posts/f0ec4d6/</guid>
   <description><![CDATA[<p>最近做 Misc 题的时候经常碰到盲水印的题目，虽然可以使用B神的 Puzzle Solver 一把梭
 但是还是打算深入学习一下</p>]]></description>
-</item>
-<item>
-  <title>2024 NKCTF Misc Writeup</title>
-  <link>http://localhost:1313/posts/e0d44f3/</link>
-  <pubDate>Tue, 30 Apr 2024 19:07:38 &#43;0800</pubDate>
-  <author>Lunatic</author>
-  <guid>http://localhost:1313/posts/e0d44f3/</guid>
-  <description><![CDATA[<p><strong>从这场比赛可以看出自己还是有很多东西需要去学</strong><br>
-<strong>感觉 Misc 很大程度上还是看经验，自己见过的东西还是太少了</strong></p>]]></description>
 </item>
 </channel>
 </rss>

@@ -4,7 +4,15 @@
     <link>http://localhost:1313/tags/ctf/</link>
     <description>CTF - Tag | ⚡Lunatic BLOG⚡</description>
     <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>goodlunatic0@gmail.com (Lunatic)</managingEditor>
-      <webMaster>goodlunatic0@gmail.com (Lunatic)</webMaster><lastBuildDate>Fri, 18 Oct 2024 14:44:40 &#43;0800</lastBuildDate><atom:link href="http://localhost:1313/tags/ctf/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>goodlunatic0@gmail.com (Lunatic)</webMaster><lastBuildDate>Mon, 21 Oct 2024 12:22:20 &#43;0800</lastBuildDate><atom:link href="http://localhost:1313/tags/ctf/" rel="self" type="application/rss+xml" /><item>
+  <title>2024 睿抗机器人开发者大赛（RAICOM）网络安全赛道初赛 Misc Writeup</title>
+  <link>http://localhost:1313/posts/1eae35a/</link>
+  <pubDate>Mon, 21 Oct 2024 12:22:20 &#43;0800</pubDate>
+  <author>Lunatic</author>
+  <guid>http://localhost:1313/posts/1eae35a/</guid>
+  <description><![CDATA[<p><strong>这比赛只能说是纯手速局</strong></p>]]></description>
+</item>
+<item>
   <title>CTF-Reverse Record</title>
   <link>http://localhost:1313/posts/690000000000000000000000000000000000000000000000000000000000000/</link>
   <pubDate>Fri, 18 Oct 2024 14:44:40 &#43;0800</pubDate>
@@ -78,14 +86,6 @@
   <author>Lunatic</author>
   <guid>http://localhost:1313/posts/5422d65/</guid>
   <description><![CDATA[<p><strong>This is a Simple Guide for Network Traffic Analysis.</strong></p>]]></description>
-</item>
-<item>
-  <title>Misc-Forensics</title>
-  <link>http://localhost:1313/posts/761da51/</link>
-  <pubDate>Sat, 06 Jul 2024 16:34:12 &#43;0800</pubDate>
-  <author>Lunatic</author>
-  <guid>http://localhost:1313/posts/761da51/</guid>
-  <description><![CDATA[<p><strong>This is a simple summary of digital forensics .</strong></p>]]></description>
 </item>
 </channel>
 </rss>
