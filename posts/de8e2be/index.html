@@ -14,7 +14,7 @@
 出题师傅的水平还是挺可以的，然后经验啥的感觉还是比较老练">
   <meta itemprop="datePublished" content="2024-10-21T13:16:19+08:00">
   <meta itemprop="dateModified" content="2024-10-21T13:16:19+08:00">
-  <meta itemprop="wordCount" content="72">
+  <meta itemprop="wordCount" content="396">
   <meta itemprop="keywords" content="CTF,Misc,Writeup"><meta property="og:url" content="http://localhost:1313/posts/de8e2be/">
   <meta property="og:site_name" content="⚡Lunatic BLOG⚡">
   <meta property="og:title" content="2024 强网拟态防御国际精英挑战赛初赛 Misc Writeup">
@@ -45,7 +45,7 @@
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": "http:\/\/localhost:1313\/posts\/de8e2be\/"
-    },"genre": "posts","keywords": "CTF, Misc, Writeup","wordcount":  72 ,
+    },"genre": "posts","keywords": "CTF, Misc, Writeup","wordcount":  396 ,
     "url": "http:\/\/localhost:1313\/posts\/de8e2be\/","datePublished": "2024-10-21T13:16:19+08:00","dateModified": "2024-10-21T13:16:19+08:00","publisher": {
       "@type": "Organization",
       "name": ""},"author": {
@@ -149,7 +149,7 @@
 <article class="page single">
   <div class="header"><h1 class="single-title animate__animated animate__flipInX"><span>2024 强网拟态防御国际精英挑战赛初赛 Misc Writeup</span>
     </h1></div><div class="post-meta">
-    <div class="post-meta-line"><span class="post-author"><a href="https://goodlunatic.github.io" title="Author"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><img loading="lazy" src="https://www.nssctf.cn/files/2024/4/28/7f130a1387.png" alt="Lunatic" data-title="Lunatic" class="avatar" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>&nbsp;Lunatic</a></span><span class="post-included-in">&nbsp;included in <a href="/categories/writeup/" class="post-category" title="Category - Writeup"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> Writeup</a></span></div><div class="post-meta-line"><span title="published on &lt;no value&gt;"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden="true"></i><time datetime="2024-10-21">2024-10-21</time></span>&nbsp;<span title=""><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>About 100 words</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>One minute</span>&nbsp;</div>
+    <div class="post-meta-line"><span class="post-author"><a href="https://goodlunatic.github.io" title="Author"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><img loading="lazy" src="https://www.nssctf.cn/files/2024/4/28/7f130a1387.png" alt="Lunatic" data-title="Lunatic" class="avatar" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>&nbsp;Lunatic</a></span><span class="post-included-in">&nbsp;included in <a href="/categories/writeup/" class="post-category" title="Category - Writeup"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> Writeup</a></span></div><div class="post-meta-line"><span title="published on &lt;no value&gt;"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden="true"></i><time datetime="2024-10-21">2024-10-21</time></span>&nbsp;<span title=""><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>About 400 words</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>2 minutes</span>&nbsp;</div>
   </div><div class="details toc" id="toc-static"
     data-kept="false">
     <div class="details-summary toc-title">
@@ -160,7 +160,12 @@
   <ul>
     <li><a href="#题目名称-ezflag">题目名称 ezflag</a></li>
     <li><a href="#题目名称-pvz">题目名称 PvZ</a></li>
-    <li><a href="#题目名称-find-way-to-read-video">题目名称 Find way to read video</a></li>
+    <li><a href="#题目名称-find-way-to-read-video">题目名称 Find way to read video</a>
+      <ul>
+        <li><a href="#解法一根据题目名获取video">解法一：根据题目名获取video</a></li>
+        <li><a href="#解法二直接从json中获取flag">解法二：直接从json中获取flag</a></li>
+      </ul>
+    </li>
     <li><a href="#题目名称-streaming">题目名称 Streaming</a></li>
   </ul>
 </nav></div>
@@ -182,7 +187,7 @@
 </blockquote>
 <p>压缩包解压后可以得到一个flag.zip，010查看发现是一张png图片，改后缀为png即可得到flag</p>
 <p><img loading="lazy" src="imgs/image-20241021150616473.png" alt="imgs/image-20241021150616473.png" srcset="imgs/image-20241021150616473.png?size=small, imgs/image-20241021150616473.png?size=medium 1.5x, imgs/image-20241021150616473.png?size=large 2x" data-title="imgs/image-20241021150616473.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
-<p>flag{140c7366-c217-4039-af6a-d36c4591a4c8}</p>
+<p><code>flag{140c7366-c217-4039-af6a-d36c4591a4c8}</code></p>
 <h2 id="题目名称-pvz" class="heading-element">
   <a href="#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-pvz" class="heading-mark"></a>题目名称 PvZ</h2><p>解压题目给的压缩包，得到一个名为 <code>key is md5(price)</code> 的文件夹和一个加密的压缩包</p>
 <p>文件夹里有一个txt和一张图片，内容如下</p>
@@ -231,9 +236,321 @@
 </div><p>这个时候回头去看图片的名字：M41b0lg3.png</p>
 <p>把M41b0lg3转换为malbolge，上网一搜发现是一种编程语言，直接在线网站运行即可得到flag</p>
 <p><img loading="lazy" src="imgs/image-20241021154255576.png" alt="imgs/image-20241021154255576.png" srcset="imgs/image-20241021154255576.png?size=small, imgs/image-20241021154255576.png?size=medium 1.5x, imgs/image-20241021154255576.png?size=large 2x" data-title="imgs/image-20241021154255576.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
-<p>flag{5108a32f-1c7f-4a40-a4fa-fd8982e6eb49}</p>
+<p><code>flag{5108a32f-1c7f-4a40-a4fa-fd8982e6eb49}</code></p>
 <h2 id="题目名称-find-way-to-read-video" class="heading-element">
-  <a href="#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-find-way-to-read-video" class="heading-mark"></a>题目名称 Find way to read video</h2><h2 id="题目名称-streaming" class="heading-element">
+  <a href="#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-find-way-to-read-video" class="heading-mark"></a>题目名称 Find way to read video</h2><p>解压题目附件给的压缩包，得到一个bonan7654.txt，内容如下</p>
+<blockquote>
+<p>bonan7654 has put his email template on a public platform.</p>
+</blockquote>
+<p>然后就是要找bonan7654在哪个平台上发东西了，比赛的时候，社工这个人把我心态都搞崩了</p>
+<p>国内外各大平台都搜了就是搜不到，赛后才知道是在gitcode上发的【无语】</p>
+<p><img loading="lazy" src="imgs/image-20241021155911245.png" alt="imgs/image-20241021155911245.png" srcset="imgs/image-20241021155911245.png?size=small, imgs/image-20241021155911245.png?size=medium 1.5x, imgs/image-20241021155911245.png?size=large 2x" data-title="imgs/image-20241021155911245.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>唉，还是见的东西太少了，通过这次比赛也是让我知道了还有gitcode这个东西。。</p>
+<p>下载这个项目中的README.md，发现是垃圾邮件隐写(spammimic)，找个在线网站解密一下</p>
+<p><img loading="lazy" src="imgs/image-20241021160132194.png" alt="imgs/image-20241021160132194.png" srcset="imgs/image-20241021160132194.png?size=small, imgs/image-20241021160132194.png?size=medium 1.5x, imgs/image-20241021160132194.png?size=large 2x" data-title="imgs/image-20241021160132194.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>decode后得到如下内容：</p>
+<div class="highlight" id="id-3"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">BV1wm2EY2Egx eyJ2IjozLCJuIjoiZjE0ZyIsInMiOiIiLCJoIjoiZjczZDEyZCIsIm0iOjkwLCJrIjo4MSwibWciOjIwMCwia2ciOjEzMCwibCI6NDMsInNsIjoxLCJmaGwiOlsiMjUyZjEwYyIsImFjYWM4NmMiLCJjYTk3ODExIiwiY2QwYWE5OCIsIjAyMWZiNTkiLCIyYzYyNDIzIiwiNGUwNzQwOCIsIjRlMDc0MDgiLCJjYTk3ODExIiwiMmU3ZDJjMCIsIjZiODZiMjciLCIzZjc5YmI3IiwiNGUwNzQwOCIsIjM5NzNlMDIiLCJkNDczNWUzIiwiNGIyMjc3NyIsIjc5MDI2OTkiLCJlN2Y2YzAxIiwiMzk3M2UwMiIsIjRiMjI3NzciLCI0YjIyNzc3IiwiNmI4NmIyNyIsIjJlN2QyYzAiLCIzOTczZTAyIiwiY2E5NzgxMSIsIjNmNzliYjciLCI0ZTA3NDA4IiwiZDQ3MzVlMyIsIjM5NzNlMDIiLCIzZjc5YmI3IiwiM2Y3OWJiNyIsIjI1MmYxMGMiLCIzZjc5YmI3IiwiNmI4NmIyNyIsIjE4YWMzZTciLCI1ZmVjZWI2IiwiNGUwNzQwOCIsIjE4YWMzZTciLCIxOGFjM2U3IiwiMTk1ODFlMiIsIjNmNzliYjciLCJkMTBiMzZhIiwiMDFiYTQ3MSIsIjZlMzQwYjkiLCI2ZTM0MGI5IiwiNmUzNDBiOSIsIjZlMzQwYjkiLCI2ZTM0MGI5IiwiNmUzNDBiOSIsIjZlMzQwYjkiLCI2ZTM0MGI5IiwiNmUzNDBiOSIsIjZlMzQwYjkiLCI2ZTM0MGI5IiwiNmUzNDBiOSIsIjZlMzQwYjkiLCI2ZTM0MGI5IiwiNmUzNDBiOSIsIjZlMzQwYjkiLCI2ZTM0MGI5IiwiNmUzNDBiOSIsIjZlMzQwYjkiLCI2ZTM0MGI5IiwiNmUzNDBiOSIsIjZlMzQwYjkiLCI2ZTM0MGI5IiwiNmUzNDBiOSIsIjZlMzQwYjkiLCI2ZTM0MGI5IiwiNmUzNDBiOSIsIjZlMzQwYjkiLCI2ZTM0MGI5IiwiNmUzNDBiOSIsIjZlMzQwYjkiLCI2ZTM0MGI5IiwiNmUzNDBiOSIsIjZlMzQwYjkiLCI2ZTM0MGI5IiwiNmUzNDBiOSIsIjZlMzQwYjkiLCI2ZTM0MGI5IiwiNzdhZGZjOSIsImRlN2QxYjciLCI0NGJkN2FlIiwiYmI3MjA4YiIsIjgzODkxZDciLCIyYTBhYjczIiwiZmUxZGNkMyIsIjU1OWFlYWQiLCJmMDMxZWZhIl19</span></span></code></pre></td></tr></table>
+</div>
+</div><p>CyberChef解base64可以得到一个json</p>
+<p><img loading="lazy" src="imgs/image-20241021160232969.png" alt="imgs/image-20241021160232969.png" srcset="imgs/image-20241021160232969.png?size=small, imgs/image-20241021160232969.png?size=medium 1.5x, imgs/image-20241021160232969.png?size=large 2x" data-title="imgs/image-20241021160232969.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<div class="highlight" id="id-4"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">  1
+</span><span class="lnt">  2
+</span><span class="lnt">  3
+</span><span class="lnt">  4
+</span><span class="lnt">  5
+</span><span class="lnt">  6
+</span><span class="lnt">  7
+</span><span class="lnt">  8
+</span><span class="lnt">  9
+</span><span class="lnt"> 10
+</span><span class="lnt"> 11
+</span><span class="lnt"> 12
+</span><span class="lnt"> 13
+</span><span class="lnt"> 14
+</span><span class="lnt"> 15
+</span><span class="lnt"> 16
+</span><span class="lnt"> 17
+</span><span class="lnt"> 18
+</span><span class="lnt"> 19
+</span><span class="lnt"> 20
+</span><span class="lnt"> 21
+</span><span class="lnt"> 22
+</span><span class="lnt"> 23
+</span><span class="lnt"> 24
+</span><span class="lnt"> 25
+</span><span class="lnt"> 26
+</span><span class="lnt"> 27
+</span><span class="lnt"> 28
+</span><span class="lnt"> 29
+</span><span class="lnt"> 30
+</span><span class="lnt"> 31
+</span><span class="lnt"> 32
+</span><span class="lnt"> 33
+</span><span class="lnt"> 34
+</span><span class="lnt"> 35
+</span><span class="lnt"> 36
+</span><span class="lnt"> 37
+</span><span class="lnt"> 38
+</span><span class="lnt"> 39
+</span><span class="lnt"> 40
+</span><span class="lnt"> 41
+</span><span class="lnt"> 42
+</span><span class="lnt"> 43
+</span><span class="lnt"> 44
+</span><span class="lnt"> 45
+</span><span class="lnt"> 46
+</span><span class="lnt"> 47
+</span><span class="lnt"> 48
+</span><span class="lnt"> 49
+</span><span class="lnt"> 50
+</span><span class="lnt"> 51
+</span><span class="lnt"> 52
+</span><span class="lnt"> 53
+</span><span class="lnt"> 54
+</span><span class="lnt"> 55
+</span><span class="lnt"> 56
+</span><span class="lnt"> 57
+</span><span class="lnt"> 58
+</span><span class="lnt"> 59
+</span><span class="lnt"> 60
+</span><span class="lnt"> 61
+</span><span class="lnt"> 62
+</span><span class="lnt"> 63
+</span><span class="lnt"> 64
+</span><span class="lnt"> 65
+</span><span class="lnt"> 66
+</span><span class="lnt"> 67
+</span><span class="lnt"> 68
+</span><span class="lnt"> 69
+</span><span class="lnt"> 70
+</span><span class="lnt"> 71
+</span><span class="lnt"> 72
+</span><span class="lnt"> 73
+</span><span class="lnt"> 74
+</span><span class="lnt"> 75
+</span><span class="lnt"> 76
+</span><span class="lnt"> 77
+</span><span class="lnt"> 78
+</span><span class="lnt"> 79
+</span><span class="lnt"> 80
+</span><span class="lnt"> 81
+</span><span class="lnt"> 82
+</span><span class="lnt"> 83
+</span><span class="lnt"> 84
+</span><span class="lnt"> 85
+</span><span class="lnt"> 86
+</span><span class="lnt"> 87
+</span><span class="lnt"> 88
+</span><span class="lnt"> 89
+</span><span class="lnt"> 90
+</span><span class="lnt"> 91
+</span><span class="lnt"> 92
+</span><span class="lnt"> 93
+</span><span class="lnt"> 94
+</span><span class="lnt"> 95
+</span><span class="lnt"> 96
+</span><span class="lnt"> 97
+</span><span class="lnt"> 98
+</span><span class="lnt"> 99
+</span><span class="lnt">100
+</span><span class="lnt">101
+</span><span class="lnt">102
+</span><span class="lnt">103
+</span><span class="lnt">104
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;v&#34;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;n&#34;</span><span class="p">:</span> <span class="s2">&#34;f14g&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;s&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;h&#34;</span><span class="p">:</span> <span class="s2">&#34;f73d12d&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;m&#34;</span><span class="p">:</span> <span class="mi">90</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;k&#34;</span><span class="p">:</span> <span class="mi">81</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;mg&#34;</span><span class="p">:</span> <span class="mi">200</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;kg&#34;</span><span class="p">:</span> <span class="mi">130</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;l&#34;</span><span class="p">:</span> <span class="mi">43</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;sl&#34;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;fhl&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;252f10c&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;acac86c&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;ca97811&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;cd0aa98&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;021fb59&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;2c62423&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;4e07408&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;4e07408&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;ca97811&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;2e7d2c0&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;6b86b27&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;3f79bb7&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;4e07408&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;3973e02&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;d4735e3&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;4b22777&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;7902699&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;e7f6c01&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;3973e02&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;4b22777&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;4b22777&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;6b86b27&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;2e7d2c0&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;3973e02&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;ca97811&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;3f79bb7&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;4e07408&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;d4735e3&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;3973e02&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;3f79bb7&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;3f79bb7&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;252f10c&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;3f79bb7&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;6b86b27&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;18ac3e7&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;5feceb6&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;4e07408&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;18ac3e7&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;18ac3e7&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;19581e2&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;3f79bb7&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;d10b36a&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;01ba471&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;6e340b9&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;6e340b9&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;6e340b9&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;6e340b9&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;6e340b9&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;6e340b9&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;6e340b9&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;6e340b9&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;6e340b9&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;6e340b9&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;6e340b9&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;6e340b9&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;6e340b9&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;6e340b9&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;6e340b9&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;6e340b9&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;6e340b9&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;6e340b9&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;6e340b9&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;6e340b9&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;6e340b9&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;6e340b9&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;6e340b9&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;6e340b9&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;6e340b9&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;6e340b9&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;6e340b9&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;6e340b9&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;6e340b9&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;6e340b9&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;6e340b9&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;6e340b9&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;6e340b9&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;6e340b9&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;6e340b9&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;6e340b9&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;6e340b9&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;6e340b9&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;77adfc9&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;de7d1b7&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;44bd7ae&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;bb7208b&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;83891d7&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;2a0ab73&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;fe1dcd3&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;559aead&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;f031efa&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>再赛后参考了别的师傅的wp后，知道这里处理这段json有两种方法</p>
+<h3 id="解法一根据题目名获取video" class="heading-element">
+  <a href="#%e8%a7%a3%e6%b3%95%e4%b8%80%e6%a0%b9%e6%8d%ae%e9%a2%98%e7%9b%ae%e5%90%8d%e8%8e%b7%e5%8f%96video" class="heading-mark"></a>解法一：根据题目名获取video</h3><p>根据题目名字的提示：Find way to read video</p>
+<p>可以猜测这段json与video有关</p>
+<h3 id="解法二直接从json中获取flag" class="heading-element">
+  <a href="#%e8%a7%a3%e6%b3%95%e4%ba%8c%e7%9b%b4%e6%8e%a5%e4%bb%8ejson%e4%b8%ad%e8%8e%b7%e5%8f%96flag" class="heading-mark"></a>解法二：直接从json中获取flag</h3><p>这里主要关注json中的fhl键，发现每个元素都是长度为7的字符串</p>
+<p>然后字符串看起来有点像是某种Hash，然后只截取了其中的一部分</p>
+<p>我这里先尝试了字符f的各种Hash</p>
+<div class="highlight" id="id-5"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">MD5：8fa14cdd754f91cc6554c9e71929cce7
+</span></span><span class="line"><span class="cl">SHA-256：252f10c83610ebca1a059c0bae8255eba2f95be4d1d7bcfa89d7248a82d9f111</span></span></code></pre></td></tr></table>
+</div>
+</div><p>然后发现第一个元素刚刚好是字符f的SHA-256的前七位，继续尝试lag{这四个字符的SHA-256</p>
+<div class="highlight" id="id-6"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">f: 252f10c83610ebca1a059c0bae8255eba2f95be4d1d7bcfa89d7248a82d9f111
+</span></span><span class="line"><span class="cl">l: acac86c0e609ca906f632b0e2dacccb2b77d22b0621f20ebece1a4835b93f6f0
+</span></span><span class="line"><span class="cl">a: ca978112ca1bbdcafac231b39a23dc4da786eff8147c4e72b9807785afee48bb
+</span></span><span class="line"><span class="cl">g: cd0aa9856147b6c5b4ff2b7dfee5da20aa38253099ef1b4a64aced233c9afe29
+</span></span><span class="line"><span class="cl">{: 021fb596db81e6d02bf3d2586ee3981fe519f275c0ac9ca76bbcf2ebb4097d96</span></span></code></pre></td></tr></table>
+</div>
+</div><p>发现刚刚好全对上了，因此我们接下来直接写个脚本提取flag即可</p>
+<div class="highlight" id="id-7"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">hashlib</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">string</span> <span class="kn">import</span> <span class="n">printable</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">table</span> <span class="o">=</span> <span class="p">{}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">printable</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">hash_data</span> <span class="o">=</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">sha256</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">encode</span><span class="p">())</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()[:</span><span class="mi">7</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="n">table</span><span class="p">[</span><span class="n">hash_data</span><span class="p">]</span> <span class="o">=</span> <span class="n">item</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">fhl</span><span class="o">=</span><span class="p">[</span><span class="s2">&#34;252f10c&#34;</span><span class="p">,</span><span class="s2">&#34;acac86c&#34;</span><span class="p">,</span><span class="s2">&#34;ca97811&#34;</span><span class="p">,</span><span class="s2">&#34;cd0aa98&#34;</span><span class="p">,</span><span class="s2">&#34;021fb59&#34;</span><span class="p">,</span><span class="s2">&#34;2c62423&#34;</span><span class="p">,</span><span class="s2">&#34;4e07408&#34;</span><span class="p">,</span><span class="s2">&#34;4e07408&#34;</span><span class="p">,</span><span class="s2">&#34;ca97811&#34;</span><span class="p">,</span><span class="s2">&#34;2e7d2c0&#34;</span><span class="p">,</span><span class="s2">&#34;6b86b27&#34;</span><span class="p">,</span><span class="s2">&#34;3f79bb7&#34;</span><span class="p">,</span><span class="s2">&#34;4e07408&#34;</span><span class="p">,</span><span class="s2">&#34;3973e02&#34;</span><span class="p">,</span><span class="s2">&#34;d4735e3&#34;</span><span class="p">,</span><span class="s2">&#34;4b22777&#34;</span><span class="p">,</span><span class="s2">&#34;7902699&#34;</span><span class="p">,</span><span class="s2">&#34;e7f6c01&#34;</span><span class="p">,</span><span class="s2">&#34;3973e02&#34;</span><span class="p">,</span><span class="s2">&#34;4b22777&#34;</span><span class="p">,</span><span class="s2">&#34;4b22777&#34;</span><span class="p">,</span><span class="s2">&#34;6b86b27&#34;</span><span class="p">,</span><span class="s2">&#34;2e7d2c0&#34;</span><span class="p">,</span><span class="s2">&#34;3973e02&#34;</span><span class="p">,</span><span class="s2">&#34;ca97811&#34;</span><span class="p">,</span><span class="s2">&#34;3f79bb7&#34;</span><span class="p">,</span><span class="s2">&#34;4e07408&#34;</span><span class="p">,</span><span class="s2">&#34;d4735e3&#34;</span><span class="p">,</span><span class="s2">&#34;3973e02&#34;</span><span class="p">,</span><span class="s2">&#34;3f79bb7&#34;</span><span class="p">,</span><span class="s2">&#34;3f79bb7&#34;</span><span class="p">,</span><span class="s2">&#34;252f10c&#34;</span><span class="p">,</span><span class="s2">&#34;3f79bb7&#34;</span><span class="p">,</span><span class="s2">&#34;6b86b27&#34;</span><span class="p">,</span><span class="s2">&#34;18ac3e7&#34;</span><span class="p">,</span><span class="s2">&#34;5feceb6&#34;</span><span class="p">,</span><span class="s2">&#34;4e07408&#34;</span><span class="p">,</span><span class="s2">&#34;18ac3e7&#34;</span><span class="p">,</span><span class="s2">&#34;18ac3e7&#34;</span><span class="p">,</span><span class="s2">&#34;19581e2&#34;</span><span class="p">,</span><span class="s2">&#34;3f79bb7&#34;</span><span class="p">,</span><span class="s2">&#34;d10b36a&#34;</span><span class="p">,</span><span class="s2">&#34;01ba471&#34;</span><span class="p">,</span><span class="s2">&#34;6e340b9&#34;</span><span class="p">,</span><span class="s2">&#34;6e340b9&#34;</span><span class="p">,</span><span class="s2">&#34;6e340b9&#34;</span><span class="p">,</span><span class="s2">&#34;6e340b9&#34;</span><span class="p">,</span><span class="s2">&#34;6e340b9&#34;</span><span class="p">,</span><span class="s2">&#34;6e340b9&#34;</span><span class="p">,</span><span class="s2">&#34;6e340b9&#34;</span><span class="p">,</span><span class="s2">&#34;6e340b9&#34;</span><span class="p">,</span><span class="s2">&#34;6e340b9&#34;</span><span class="p">,</span><span class="s2">&#34;6e340b9&#34;</span><span class="p">,</span><span class="s2">&#34;6e340b9&#34;</span><span class="p">,</span><span class="s2">&#34;6e340b9&#34;</span><span class="p">,</span><span class="s2">&#34;6e340b9&#34;</span><span class="p">,</span><span class="s2">&#34;6e340b9&#34;</span><span class="p">,</span><span class="s2">&#34;6e340b9&#34;</span><span class="p">,</span><span class="s2">&#34;6e340b9&#34;</span><span class="p">,</span><span class="s2">&#34;6e340b9&#34;</span><span class="p">,</span><span class="s2">&#34;6e340b9&#34;</span><span class="p">,</span><span class="s2">&#34;6e340b9&#34;</span><span class="p">,</span><span class="s2">&#34;6e340b9&#34;</span><span class="p">,</span><span class="s2">&#34;6e340b9&#34;</span><span class="p">,</span><span class="s2">&#34;6e340b9&#34;</span><span class="p">,</span><span class="s2">&#34;6e340b9&#34;</span><span class="p">,</span><span class="s2">&#34;6e340b9&#34;</span><span class="p">,</span><span class="s2">&#34;6e340b9&#34;</span><span class="p">,</span><span class="s2">&#34;6e340b9&#34;</span><span class="p">,</span><span class="s2">&#34;6e340b9&#34;</span><span class="p">,</span><span class="s2">&#34;6e340b9&#34;</span><span class="p">,</span><span class="s2">&#34;6e340b9&#34;</span><span class="p">,</span><span class="s2">&#34;6e340b9&#34;</span><span class="p">,</span><span class="s2">&#34;6e340b9&#34;</span><span class="p">,</span><span class="s2">&#34;6e340b9&#34;</span><span class="p">,</span><span class="s2">&#34;6e340b9&#34;</span><span class="p">,</span><span class="s2">&#34;6e340b9&#34;</span><span class="p">,</span><span class="s2">&#34;6e340b9&#34;</span><span class="p">,</span><span class="s2">&#34;6e340b9&#34;</span><span class="p">,</span><span class="s2">&#34;6e340b9&#34;</span><span class="p">,</span><span class="s2">&#34;6e340b9&#34;</span><span class="p">,</span><span class="s2">&#34;77adfc9&#34;</span><span class="p">,</span><span class="s2">&#34;de7d1b7&#34;</span><span class="p">,</span><span class="s2">&#34;44bd7ae&#34;</span><span class="p">,</span><span class="s2">&#34;bb7208b&#34;</span><span class="p">,</span><span class="s2">&#34;83891d7&#34;</span><span class="p">,</span><span class="s2">&#34;2a0ab73&#34;</span><span class="p">,</span><span class="s2">&#34;fe1dcd3&#34;</span><span class="p">,</span><span class="s2">&#34;559aead&#34;</span><span class="p">,</span><span class="s2">&#34;f031efa&#34;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="n">flag</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">fhl</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">try</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">flag</span> <span class="o">+=</span> <span class="n">table</span><span class="p">[</span><span class="n">item</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="k">except</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;[-] </span><span class="si">{</span><span class="n">item</span><span class="si">}</span><span class="s2">解码失败，可能为不可打印字符！&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">flag</span><span class="p">)</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><img loading="lazy" src="imgs/image-20241021161650367.png" alt="imgs/image-20241021161650367.png" srcset="imgs/image-20241021161650367.png?size=small, imgs/image-20241021161650367.png?size=medium 1.5x, imgs/image-20241021161650367.png?size=large 2x" data-title="imgs/image-20241021161650367.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><code>flag{833ac1e3-2476-441c-ae32-eefe1d03dd9e}</code></p>
+<h2 id="题目名称-streaming" class="heading-element">
   <a href="#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-streaming" class="heading-mark"></a>题目名称 Streaming</h2></div><div class="post-footer" id="post-footer">
   <div class="post-info">
     <div class="post-info-line">
