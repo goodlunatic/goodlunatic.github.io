@@ -5,6 +5,8 @@
 **这比赛只能说是纯纯手速局。。**
 &lt;!--more--&gt;
 
+![](imgs/image-20241021155152950.png)
+
 &gt; 题目附件下载地址： https://pan.baidu.com/s/1pwPzE8nTjgsj0uHMFtEQLg?pwd=cgpm 提取码: cgpm 
 
 ## 题目名称 你是黑客么 
@@ -84,7 +86,7 @@ while True:
 
 出题人这里没出好，因此这题这里有两种解法，我都简要介绍一下吧
 
-解法一：常规解
+### 解法一：常规解
 
 仔细观察文件名，然后对应到键盘上的按键，可以发现如下规律：
 
@@ -108,7 +110,7 @@ CyberChef解码即可得到flag：`flag{2468__TUvn__qwer}`
 
 ![](imgs/image-20241021130225112.png)
 
-解法二：非预期
+### 解法二：非预期
 
 直接一个个查看txt中的数据，在qwsz.txt中发现明显的zip文件头，就是少了`504B`
 
@@ -135,6 +137,7 @@ CyberChef解码即可得到flag：`flag{2468__TUvn__qwer}`
 ## 题目名称 变异凯撒(原题)
 
 &gt; 2024年郑州大学“奇安信杯”网络空间安全竞赛原题
+&gt; 
 &gt; https://second.certstone.top/2024-nian-zheng-zhou-da-xue-qi-an-xin-bei-wang-luo-kong-jian-an-quan-jing-sai-what-can-i-say-dui-wu-writeup/
 
 

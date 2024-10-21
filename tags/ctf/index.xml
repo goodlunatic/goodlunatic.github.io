@@ -4,13 +4,23 @@
     <link>http://localhost:1313/tags/ctf/</link>
     <description>CTF - Tag | ⚡Lunatic BLOG⚡</description>
     <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>goodlunatic0@gmail.com (Lunatic)</managingEditor>
-      <webMaster>goodlunatic0@gmail.com (Lunatic)</webMaster><lastBuildDate>Mon, 21 Oct 2024 12:22:20 &#43;0800</lastBuildDate><atom:link href="http://localhost:1313/tags/ctf/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>goodlunatic0@gmail.com (Lunatic)</webMaster><lastBuildDate>Mon, 21 Oct 2024 13:16:19 &#43;0800</lastBuildDate><atom:link href="http://localhost:1313/tags/ctf/" rel="self" type="application/rss+xml" /><item>
+  <title>2024 强网拟态防御国际精英挑战赛初赛 Misc Writeup</title>
+  <link>http://localhost:1313/posts/de8e2be/</link>
+  <pubDate>Mon, 21 Oct 2024 13:16:19 &#43;0800</pubDate>
+  <author>Lunatic</author>
+  <guid>http://localhost:1313/posts/de8e2be/</guid>
+  <description><![CDATA[<p><strong>这比赛虽然有些Misc题比较搞心态，但是不得不说题目质量还是在的</strong></p>
+<p><strong>出题师傅的水平还是挺可以的，然后经验啥的感觉还是比较老练</strong></p>]]></description>
+</item>
+<item>
   <title>2024 睿抗机器人开发者大赛（RAICOM）网络安全赛道初赛 Misc Writeup</title>
   <link>http://localhost:1313/posts/1eae35a/</link>
   <pubDate>Mon, 21 Oct 2024 12:22:20 &#43;0800</pubDate>
   <author>Lunatic</author>
   <guid>http://localhost:1313/posts/1eae35a/</guid>
-  <description><![CDATA[<p><strong>这比赛只能说是纯手速局</strong></p>]]></description>
+  <description><![CDATA[<p><strong>很早之前和队友报的名，结果到现在才打。。</strong></p>
+<p><strong>这比赛只能说是纯纯手速局。。</strong></p>]]></description>
 </item>
 <item>
   <title>CTF-Reverse Record</title>
@@ -78,14 +88,6 @@
   <author>Lunatic</author>
   <guid>http://localhost:1313/posts/2125dc5/</guid>
   <description><![CDATA[<p>忙里偷闲，稍微打了一下 2024WKCTF 练练手</p>]]></description>
-</item>
-<item>
-  <title>Misc-Network Traffic Analysis</title>
-  <link>http://localhost:1313/posts/5422d65/</link>
-  <pubDate>Sat, 06 Jul 2024 18:15:27 &#43;0800</pubDate>
-  <author>Lunatic</author>
-  <guid>http://localhost:1313/posts/5422d65/</guid>
-  <description><![CDATA[<p><strong>This is a Simple Guide for Network Traffic Analysis.</strong></p>]]></description>
 </item>
 </channel>
 </rss>
