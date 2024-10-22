@@ -215,13 +215,22 @@ CyberChef解base64可以得到一个json
 }
 ```
 
-再赛后参考了别的师傅的wp后，知道这里处理这段json有两种方法
+在赛后参考了别的师傅的wp后，知道这里处理这段json有两种方法
 
 ### 解法一：根据题目名获取video
 
 根据题目名字的提示：Find way to read video
 
-可以猜测这段json与video有关
+可以猜测这段json与video有关，观察到原来那段base64数据前有一段BV开头的字符串：BV1wm2EY2Egx 
+
+搜索这个字符串可以在B站上找到下面这个视频，视频标题：`ZjE0Zw==` base64解码后可以得到 `fl4g`
+
+![](imgs/image-20241022183235798.png)
+
+
+
+
+
 
 ### 解法二：直接从json中获取flag
 这里主要关注json中的fhl键，发现每个元素都是长度为7的字符串
@@ -273,6 +282,9 @@ print(flag)
 `flag{833ac1e3-2476-441c-ae32-eefe1d03dd9e}`
 
 ## 题目名称 Streaming
+
+
+## 题目名称 Input Page Walk
 
 
 ---
