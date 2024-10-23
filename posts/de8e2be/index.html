@@ -12,9 +12,9 @@
   <meta itemprop="name" content="2024 强网拟态防御国际精英挑战赛初赛 Misc Writeup">
   <meta itemprop="description" content="这比赛虽然有些Misc题比较搞心态，但是不得不说题目质量还是在的
 出题师傅的水平还是挺可以的，然后经验啥的感觉还是比较老练">
-  <meta itemprop="datePublished" content="2024-10-21T13:16:19+08:00">
-  <meta itemprop="dateModified" content="2024-10-21T13:16:19+08:00">
-  <meta itemprop="wordCount" content="403">
+  <meta itemprop="datePublished" content="2024-10-23T13:16:19+08:00">
+  <meta itemprop="dateModified" content="2024-10-23T13:16:19+08:00">
+  <meta itemprop="wordCount" content="897">
   <meta itemprop="keywords" content="CTF,Misc,Writeup"><meta property="og:url" content="http://localhost:1313/posts/de8e2be/">
   <meta property="og:site_name" content="⚡Lunatic BLOG⚡">
   <meta property="og:title" content="2024 强网拟态防御国际精英挑战赛初赛 Misc Writeup">
@@ -24,8 +24,8 @@
   <meta property="og:locale" content="en">
   <meta property="og:type" content="article">
   <meta property="article:section" content="posts">
-    <meta property="article:published_time" content="2024-10-21T13:16:19+08:00">
-    <meta property="article:modified_time" content="2024-10-21T13:16:19+08:00">
+    <meta property="article:published_time" content="2024-10-23T13:16:19+08:00">
+    <meta property="article:modified_time" content="2024-10-23T13:16:19+08:00">
     <meta property="article:tag" content="CTF">
     <meta property="article:tag" content="Misc">
     <meta property="article:tag" content="Writeup">
@@ -45,8 +45,8 @@
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": "http:\/\/localhost:1313\/posts\/de8e2be\/"
-    },"genre": "posts","keywords": "CTF, Misc, Writeup","wordcount":  403 ,
-    "url": "http:\/\/localhost:1313\/posts\/de8e2be\/","datePublished": "2024-10-21T13:16:19+08:00","dateModified": "2024-10-21T13:16:19+08:00","publisher": {
+    },"genre": "posts","keywords": "CTF, Misc, Writeup","wordcount":  897 ,
+    "url": "http:\/\/localhost:1313\/posts\/de8e2be\/","datePublished": "2024-10-23T13:16:19+08:00","dateModified": "2024-10-23T13:16:19+08:00","publisher": {
       "@type": "Organization",
       "name": ""},"author": {
         "@type": "Person",
@@ -149,7 +149,7 @@
 <article class="page single">
   <div class="header"><h1 class="single-title animate__animated animate__flipInX"><span>2024 强网拟态防御国际精英挑战赛初赛 Misc Writeup</span>
     </h1></div><div class="post-meta">
-    <div class="post-meta-line"><span class="post-author"><a href="https://goodlunatic.github.io" title="Author"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><img loading="lazy" src="https://www.nssctf.cn/files/2024/4/28/7f130a1387.png" alt="Lunatic" data-title="Lunatic" class="avatar" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>&nbsp;Lunatic</a></span><span class="post-included-in">&nbsp;included in <a href="/categories/writeup/" class="post-category" title="Category - Writeup"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> Writeup</a></span></div><div class="post-meta-line"><span title="published on &lt;no value&gt;"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden="true"></i><time datetime="2024-10-21">2024-10-21</time></span>&nbsp;<span title=""><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>About 500 words</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>2 minutes</span>&nbsp;</div>
+    <div class="post-meta-line"><span class="post-author"><a href="https://goodlunatic.github.io" title="Author"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><img loading="lazy" src="https://www.nssctf.cn/files/2024/4/28/7f130a1387.png" alt="Lunatic" data-title="Lunatic" class="avatar" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>&nbsp;Lunatic</a></span><span class="post-included-in">&nbsp;included in <a href="/categories/writeup/" class="post-category" title="Category - Writeup"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> Writeup</a></span></div><div class="post-meta-line"><span title="published on &lt;no value&gt;"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden="true"></i><time datetime="2024-10-23">2024-10-23</time></span>&nbsp;<span title=""><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>About 900 words</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>5 minutes</span>&nbsp;</div>
   </div><div class="details toc" id="toc-static"
     data-kept="false">
     <div class="details-summary toc-title">
@@ -478,11 +478,324 @@
 <p>可以猜测这段json与video有关，观察到原来那段base64数据前有一段BV开头的字符串：BV1wm2EY2Egx</p>
 <p>搜索这个字符串可以在B站上找到下面这个视频，视频标题：<code>ZjE0Zw==</code> base64解码后可以得到 <code>fl4g</code></p>
 <p><img loading="lazy" src="imgs/image-20241022183235798.png" alt="imgs/image-20241022183235798.png" srcset="imgs/image-20241022183235798.png?size=small, imgs/image-20241022183235798.png?size=medium 1.5x, imgs/image-20241022183235798.png?size=large 2x" data-title="imgs/image-20241022183235798.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>因此，猜测需要从这些视频里提取flag</p>
+<p>首先，我们需要批量下载这90个视频到本地，爬虫大佬可以自己写脚本爬，这里我就偷懒直接借助插件了</p>
+<p><img loading="lazy" src="imgs/image-20241023171544503.png" alt="imgs/image-20241023171544503.png" srcset="imgs/image-20241023171544503.png?size=small, imgs/image-20241023171544503.png?size=medium 1.5x, imgs/image-20241023171544503.png?size=large 2x" data-title="imgs/image-20241023171544503.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>油猴插件直接安装这个脚本，然后本地需要先打开 <a href="https://github.com/aria2/aria2"target="_blank" rel="external nofollow noopener noreferrer">Aria2</a> 备用</p>
+<p>然后刷新b站视频界面，可以在屏幕左侧看到脚本已启用</p>
+<p><img loading="lazy" src="imgs/image-20241023171835641.png" alt="imgs/image-20241023171835641.png" srcset="imgs/image-20241023171835641.png?size=small, imgs/image-20241023171835641.png?size=medium 1.5x, imgs/image-20241023171835641.png?size=large 2x" data-title="imgs/image-20241023171835641.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>然后勾上所有的视频，选择 <code>AriaNgGUI</code> 下载即可</p>
+<p><img loading="lazy" src="imgs/image-20241023171925914.png" alt="imgs/image-20241023171925914.png" srcset="imgs/image-20241023171925914.png?size=small, imgs/image-20241023171925914.png?size=medium 1.5x, imgs/image-20241023171925914.png?size=large 2x" data-title="imgs/image-20241023171925914.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>我们直接播放视频可以看到前面有几帧是条纹的干扰画面，因此将视频下载到本地后，我们可以先尝试用以下代码分离视频中的所有帧</p>
+<div class="highlight" id="id-5"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">video2imgs</span><span class="p">(</span><span class="n">video_path</span><span class="p">,</span><span class="n">imgs_dir</span><span class="p">):</span> <span class="c1"># 分离视频中的所有帧</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cap</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">VideoCapture</span><span class="p">(</span><span class="n">video_path</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="ow">not</span> <span class="n">cap</span><span class="o">.</span><span class="n">isOpened</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;[-] 视频读取失败&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span>
+</span></span><span class="line"><span class="cl">    <span class="n">frames_num</span> <span class="o">=</span> <span class="n">cap</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;[+] 视频读取成功，总帧数为 </span><span class="si">{</span><span class="n">frames_num</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">imgs_dir</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">imgs_dir</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">frame_cnt</span> <span class="o">=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ret</span><span class="p">,</span><span class="n">frame</span> <span class="o">=</span> <span class="n">cap</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="ow">not</span> <span class="n">ret</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="k">break</span>
+</span></span><span class="line"><span class="cl">        <span class="n">img_name</span> <span class="o">=</span> <span class="n">imgs_dir</span><span class="o">+</span><span class="sa">f</span><span class="s2">&#34;</span><span class="si">{</span><span class="n">frame_cnt</span><span class="si">}</span><span class="s2">.png&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">cv2</span><span class="o">.</span><span class="n">imwrite</span><span class="p">(</span><span class="n">img_name</span><span class="p">,</span><span class="n">frame</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;[+] 视频第 </span><span class="si">{</span><span class="n">frame_cnt</span><span class="si">}</span><span class="s2"> 帧保存成功&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">frame_cnt</span> <span class="o">+=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cap</span><span class="o">.</span><span class="n">release</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;[+] 视频 </span><span class="si">{</span><span class="n">video_path</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2"> 所有帧已读取完毕&#34;</span><span class="p">)</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>分离出来后可以发现前四帧和最后四帧是干扰项，然后查看后面的图片可以明显看到图像上方有白色的原点，猜测隐写了内容</p>
+<p><img loading="lazy" src="imgs/image-20241023205400995.png" alt="imgs/image-20241023205400995.png" srcset="imgs/image-20241023205400995.png?size=small, imgs/image-20241023205400995.png?size=medium 1.5x, imgs/image-20241023205400995.png?size=large 2x" data-title="imgs/image-20241023205400995.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>因此我们尝试提取图像中的的像素，因为所有白色的像素都在第一行，因此我们先分析第一行的225个像素</p>
+<div class="highlight" id="id-6"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">extract_flag</span><span class="p">(</span><span class="n">video_path</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 使用cv2读取视频</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cap</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">VideoCapture</span><span class="p">(</span><span class="n">video_path</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># frame_width = cap.get(3)</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># frame_height = cap.get(4)</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># print(frame_width,frame_height)# 224,224</span>
+</span></span><span class="line"><span class="cl">    <span class="n">res</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">frames_cnt</span> <span class="o">=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span> 
+</span></span><span class="line"><span class="cl">        <span class="c1"># 读取视频的下一帧，并返回布尔值和当前帧的图像数据</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ret</span><span class="p">,</span> <span class="n">frame</span> <span class="o">=</span> <span class="n">cap</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># print(frame[0][0][0])</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span><span class="p">(</span><span class="n">frames_cnt</span> <span class="o">==</span> <span class="mi">5</span><span class="p">):</span><span class="c1"># 经过尝试发现flag就藏在每个视频的第 5 帧中</span>
+</span></span><span class="line"><span class="cl">            <span class="c1"># 自动计算行数，待转换的列数为3，并取出前225个像素R通道的值</span>
+</span></span><span class="line"><span class="cl">            <span class="n">pixels</span> <span class="o">=</span> <span class="n">frame</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">))[:</span><span class="mi">224</span><span class="p">][:,</span><span class="mi">0</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">pixels</span><span class="p">)):</span>
+</span></span><span class="line"><span class="cl">                <span class="k">if</span> <span class="n">pixels</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">200</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">pixels</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">                <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">pixels</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">            <span class="n">res</span> <span class="o">=</span> <span class="n">decode_pixel</span><span class="p">(</span><span class="n">pixels</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="k">break</span>
+</span></span><span class="line"><span class="cl">        <span class="n">frames_cnt</span> <span class="o">+=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">res</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>根据<code>flag{</code>头的八位二进制表示，我们可以找到隐写的对应位置</p>
+<p>最后经过尝试，发现flag的每个字符都藏在每个视频第五帧第一行32-40的像素点中</p>
+<div class="highlight" id="id-7"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">decode_pixel</span><span class="p">(</span><span class="n">pixels</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;&#39;&#39;
+</span></span></span><span class="line"><span class="cl"><span class="s1">    f：01100110
+</span></span></span><span class="line"><span class="cl"><span class="s1">    l：01101100
+</span></span></span><span class="line"><span class="cl"><span class="s1">    a：01100001
+</span></span></span><span class="line"><span class="cl"><span class="s1">    g：01100111
+</span></span></span><span class="line"><span class="cl"><span class="s1">    {：01111011
+</span></span></span><span class="line"><span class="cl"><span class="s1">    &#39;&#39;&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">res</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">8</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># 经过尝试，发现flag是隐写在24-40这十六个像素中</span>
+</span></span><span class="line"><span class="cl">        <span class="n">res</span> <span class="o">+=</span> <span class="nb">str</span><span class="p">(</span><span class="n">pixels</span><span class="p">[</span><span class="mi">32</span><span class="o">+</span><span class="n">i</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">    <span class="n">flag_char</span> <span class="o">=</span> <span class="n">libnum</span><span class="o">.</span><span class="n">b2s</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">flag_char</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>最后，完整的解题代码如下：</p>
+<div class="highlight" id="id-8"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span><span class="lnt">73
+</span><span class="lnt">74
+</span><span class="lnt">75
+</span><span class="lnt">76
+</span><span class="lnt">77
+</span><span class="lnt">78
+</span><span class="lnt">79
+</span><span class="lnt">80
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">cv2</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">os</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">libnum</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">video2imgs</span><span class="p">(</span><span class="n">video_path</span><span class="p">,</span><span class="n">imgs_dir</span><span class="p">):</span> <span class="c1"># 分离视频中的所有帧</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cap</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">VideoCapture</span><span class="p">(</span><span class="n">video_path</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="ow">not</span> <span class="n">cap</span><span class="o">.</span><span class="n">isOpened</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;[-] 视频读取失败&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span>
+</span></span><span class="line"><span class="cl">    <span class="n">frames_num</span> <span class="o">=</span> <span class="n">cap</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;[+] 视频读取成功，总帧数为 </span><span class="si">{</span><span class="n">frames_num</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">imgs_dir</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">imgs_dir</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">frame_cnt</span> <span class="o">=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ret</span><span class="p">,</span><span class="n">frame</span> <span class="o">=</span> <span class="n">cap</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="ow">not</span> <span class="n">ret</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="k">break</span>
+</span></span><span class="line"><span class="cl">        <span class="n">img_name</span> <span class="o">=</span> <span class="n">imgs_dir</span><span class="o">+</span><span class="sa">f</span><span class="s2">&#34;</span><span class="si">{</span><span class="n">frame_cnt</span><span class="si">}</span><span class="s2">.png&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">cv2</span><span class="o">.</span><span class="n">imwrite</span><span class="p">(</span><span class="n">img_name</span><span class="p">,</span><span class="n">frame</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;[+] 视频第 </span><span class="si">{</span><span class="n">frame_cnt</span><span class="si">}</span><span class="s2"> 帧保存成功&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">frame_cnt</span> <span class="o">+=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cap</span><span class="o">.</span><span class="n">release</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;[+] 视频 </span><span class="si">{</span><span class="n">video_path</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2"> 所有帧已读取完毕&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">decode_pixel</span><span class="p">(</span><span class="n">pixels</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;&#39;&#39;
+</span></span></span><span class="line"><span class="cl"><span class="s1">    f：01100110
+</span></span></span><span class="line"><span class="cl"><span class="s1">    l：01101100
+</span></span></span><span class="line"><span class="cl"><span class="s1">    a：01100001
+</span></span></span><span class="line"><span class="cl"><span class="s1">    g：01100111
+</span></span></span><span class="line"><span class="cl"><span class="s1">    {：01111011
+</span></span></span><span class="line"><span class="cl"><span class="s1">    &#39;&#39;&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">res</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">8</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># 经过尝试，发现flag是隐写在24-40这十六个像素中</span>
+</span></span><span class="line"><span class="cl">        <span class="n">res</span> <span class="o">+=</span> <span class="nb">str</span><span class="p">(</span><span class="n">pixels</span><span class="p">[</span><span class="mi">32</span><span class="o">+</span><span class="n">i</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">    <span class="n">flag_char</span> <span class="o">=</span> <span class="n">libnum</span><span class="o">.</span><span class="n">b2s</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">flag_char</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">extract_flag</span><span class="p">(</span><span class="n">video_path</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 使用cv2读取视频</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cap</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">VideoCapture</span><span class="p">(</span><span class="n">video_path</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># frame_width = cap.get(3)</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># frame_height = cap.get(4)</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># print(frame_width,frame_height)# 224,224</span>
+</span></span><span class="line"><span class="cl">    <span class="n">res</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">frames_cnt</span> <span class="o">=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span> 
+</span></span><span class="line"><span class="cl">        <span class="c1"># 读取视频的下一帧，并返回布尔值和当前帧的图像数据</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ret</span><span class="p">,</span> <span class="n">frame</span> <span class="o">=</span> <span class="n">cap</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># print(frame[0][0][0])</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span><span class="p">(</span><span class="n">frames_cnt</span> <span class="o">==</span> <span class="mi">5</span><span class="p">):</span><span class="c1"># 经过尝试发现flag就藏在每个视频的第 5 帧中</span>
+</span></span><span class="line"><span class="cl">            <span class="c1"># 自动计算行数，待转换的列数为3，并取出前225个像素R通道的值</span>
+</span></span><span class="line"><span class="cl">            <span class="n">pixels</span> <span class="o">=</span> <span class="n">frame</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">))[:</span><span class="mi">224</span><span class="p">][:,</span><span class="mi">0</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">pixels</span><span class="p">)):</span>
+</span></span><span class="line"><span class="cl">                <span class="k">if</span> <span class="n">pixels</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">200</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">pixels</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">                <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">pixels</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">            <span class="n">res</span> <span class="o">=</span> <span class="n">decode_pixel</span><span class="p">(</span><span class="n">pixels</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="k">break</span>
+</span></span><span class="line"><span class="cl">        <span class="n">frames_cnt</span> <span class="o">+=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">res</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&#34;__main__&#34;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">flag</span> <span class="o">=</span> <span class="p">[</span><span class="sa">b</span><span class="s1">&#39;&#39;</span><span class="p">]</span><span class="o">*</span><span class="mi">100</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="s2">&#34;./videos/&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># print(dir)</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># output_dir = &#34;./output/&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># if not os.path.exists(output_dir):</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># os.mkdir(output_dir)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="nb">dir</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">index</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;_&#39;</span><span class="p">)[</span><span class="mi">2</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">        <span class="n">video_path</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&#34;./videos/</span><span class="si">{</span><span class="n">item</span><span class="si">}</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># imgs_dir = f&#34;./output/imgs_{index}/&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># video2imgs(video_path,imgs_dir)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">flag</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="n">extract_flag</span><span class="p">(</span><span class="n">video_path</span><span class="p">)</span>  
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">flag</span><span class="p">))</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><img loading="lazy" src="imgs/image-20241023172017846.png" alt="imgs/image-20241023172017846.png" srcset="imgs/image-20241023172017846.png?size=small, imgs/image-20241023172017846.png?size=medium 1.5x, imgs/image-20241023172017846.png?size=large 2x" data-title="imgs/image-20241023172017846.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><code>flag{833ac1e3-2476-441c-ae32-eefe1d03dd9e}</code></p>
 <h3 id="解法二直接从json中获取flag" class="heading-element">
   <a href="#%e8%a7%a3%e6%b3%95%e4%ba%8c%e7%9b%b4%e6%8e%a5%e4%bb%8ejson%e4%b8%ad%e8%8e%b7%e5%8f%96flag" class="heading-mark"></a>解法二：直接从json中获取flag</h3><p>这里主要关注json中的fhl键，发现每个元素都是长度为7的字符串</p>
 <p>然后字符串看起来有点像是某种Hash，然后只截取了其中的一部分</p>
 <p>我这里先尝试了字符f的各种Hash</p>
-<div class="highlight" id="id-5"><div class="chroma">
+<div class="highlight" id="id-9"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -492,7 +805,7 @@
 </span></span><span class="line"><span class="cl">SHA-256：252f10c83610ebca1a059c0bae8255eba2f95be4d1d7bcfa89d7248a82d9f111</span></span></code></pre></td></tr></table>
 </div>
 </div><p>然后发现第一个元素刚刚好是字符f的SHA-256的前七位，继续尝试lag{这四个字符的SHA-256</p>
-<div class="highlight" id="id-6"><div class="chroma">
+<div class="highlight" id="id-10"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -508,7 +821,7 @@
 </span></span><span class="line"><span class="cl">{: 021fb596db81e6d02bf3d2586ee3981fe519f275c0ac9ca76bbcf2ebb4097d96</span></span></code></pre></td></tr></table>
 </div>
 </div><p>发现刚刚好全对上了，因此我们接下来直接写个脚本提取flag即可</p>
-<div class="highlight" id="id-7"><div class="chroma">
+<div class="highlight" id="id-11"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -559,7 +872,7 @@
   <div class="post-info">
     <div class="post-info-line">
       <div class="post-info-mod">
-        <span title="Updated on 2024-10-21 13:16:19">Updated on 2024-10-21&nbsp;</span>
+        <span title="Updated on 2024-10-23 13:16:19">Updated on 2024-10-23&nbsp;</span>
       </div></div><div class="post-info-line">
         <div class="post-info-md"><span><a href="/posts/de8e2be/index.md" title="Read Markdown" class="link-to-markdown">Read Markdown</a></span></div>
         <div class="post-info-share">

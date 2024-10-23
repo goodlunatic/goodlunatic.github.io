@@ -227,10 +227,190 @@ CyberChef解base64可以得到一个json
 
 ![](imgs/image-20241022183235798.png)
 
+因此，猜测需要从这些视频里提取flag
 
+首先，我们需要批量下载这90个视频到本地，爬虫大佬可以自己写脚本爬，这里我就偷懒直接借助插件了
 
+![](imgs/image-20241023171544503.png)
 
+油猴插件直接安装这个脚本，然后本地需要先打开 [Aria2](https://github.com/aria2/aria2) 备用
 
+然后刷新b站视频界面，可以在屏幕左侧看到脚本已启用
+
+![](imgs/image-20241023171835641.png)
+
+然后勾上所有的视频，选择 `AriaNgGUI` 下载即可
+
+![](imgs/image-20241023171925914.png)
+
+我们直接播放视频可以看到前面有几帧是条纹的干扰画面，因此将视频下载到本地后，我们可以先尝试用以下代码分离视频中的所有帧
+
+```python
+def video2imgs(video_path,imgs_dir): # 分离视频中的所有帧
+    cap = cv2.VideoCapture(video_path)
+    if not cap.isOpened():
+        print(f&#34;[-] 视频读取失败&#34;)
+        return
+    frames_num = cap.get(7)
+    print(f&#34;[&#43;] 视频读取成功，总帧数为 {frames_num}&#34;)
+    if not os.path.exists(imgs_dir):
+        os.mkdir(imgs_dir)
+    frame_cnt = 1
+    while True:
+        ret,frame = cap.read()
+        if not ret:
+            break
+        img_name = imgs_dir&#43;f&#34;{frame_cnt}.png&#34;
+        cv2.imwrite(img_name,frame)
+        print(f&#34;[&#43;] 视频第 {frame_cnt} 帧保存成功&#34;)
+        frame_cnt &#43;= 1
+    cap.release()
+    print(f&#34;[&#43;] 视频 {video_path.split(&#39;/&#39;)[-1]} 所有帧已读取完毕&#34;)
+```
+
+分离出来后可以发现前四帧和最后四帧是干扰项，然后查看后面的图片可以明显看到图像上方有白色的原点，猜测隐写了内容
+
+![](imgs/image-20241023205400995.png)
+
+因此我们尝试提取图像中的的像素，因为所有白色的像素都在第一行，因此我们先分析第一行的225个像素
+
+```python
+def extract_flag(video_path):
+    # 使用cv2读取视频
+    cap = cv2.VideoCapture(video_path)
+    # frame_width = cap.get(3)
+    # frame_height = cap.get(4)
+    # print(frame_width,frame_height)# 224,224
+    res = &#34;&#34;
+    frames_cnt = 1
+    while True: 
+        # 读取视频的下一帧，并返回布尔值和当前帧的图像数据
+        ret, frame = cap.read()
+        # print(frame[0][0][0])
+        if(frames_cnt == 5):# 经过尝试发现flag就藏在每个视频的第 5 帧中
+            # 自动计算行数，待转换的列数为3，并取出前225个像素R通道的值
+            pixels = frame.reshape((-1,3))[:224][:,0]
+            for i in range(len(pixels)):
+                if pixels[i] &gt; 200:
+                    pixels[i] = 1
+                else:
+                    pixels[i] = 0
+            res = decode_pixel(pixels)
+            break
+        frames_cnt &#43;= 1
+    return res
+
+```
+
+根据`flag{`头的八位二进制表示，我们可以找到隐写的对应位置
+
+最后经过尝试，发现flag的每个字符都藏在每个视频第五帧第一行32-40的像素点中
+
+```python
+def decode_pixel(pixels):
+    &#39;&#39;&#39;
+    f：01100110
+    l：01101100
+    a：01100001
+    g：01100111
+    {：01111011
+    &#39;&#39;&#39;
+    res = &#34;&#34;
+    for i in range(8):
+        # 经过尝试，发现flag是隐写在24-40这十六个像素中
+        res &#43;= str(pixels[32&#43;i])
+    flag_char = libnum.b2s(res)
+    return flag_char
+```
+
+最后，完整的解题代码如下：
+
+```python
+import cv2
+import os
+import libnum
+
+def video2imgs(video_path,imgs_dir): # 分离视频中的所有帧
+    cap = cv2.VideoCapture(video_path)
+    if not cap.isOpened():
+        print(f&#34;[-] 视频读取失败&#34;)
+        return
+    frames_num = cap.get(7)
+    print(f&#34;[&#43;] 视频读取成功，总帧数为 {frames_num}&#34;)
+    if not os.path.exists(imgs_dir):
+        os.mkdir(imgs_dir)
+    frame_cnt = 1
+    while True:
+        ret,frame = cap.read()
+        if not ret:
+            break
+        img_name = imgs_dir&#43;f&#34;{frame_cnt}.png&#34;
+        cv2.imwrite(img_name,frame)
+        print(f&#34;[&#43;] 视频第 {frame_cnt} 帧保存成功&#34;)
+        frame_cnt &#43;= 1
+    cap.release()
+    print(f&#34;[&#43;] 视频 {video_path.split(&#39;/&#39;)[-1]} 所有帧已读取完毕&#34;)
+        
+
+def decode_pixel(pixels):
+    &#39;&#39;&#39;
+    f：01100110
+    l：01101100
+    a：01100001
+    g：01100111
+    {：01111011
+    &#39;&#39;&#39;
+    res = &#34;&#34;
+    for i in range(8):
+        # 经过尝试，发现flag是隐写在24-40这十六个像素中
+        res &#43;= str(pixels[32&#43;i])
+    flag_char = libnum.b2s(res)
+    return flag_char
+
+def extract_flag(video_path):
+    # 使用cv2读取视频
+    cap = cv2.VideoCapture(video_path)
+    # frame_width = cap.get(3)
+    # frame_height = cap.get(4)
+    # print(frame_width,frame_height)# 224,224
+    res = &#34;&#34;
+    frames_cnt = 1
+    while True: 
+        # 读取视频的下一帧，并返回布尔值和当前帧的图像数据
+        ret, frame = cap.read()
+        # print(frame[0][0][0])
+        if(frames_cnt == 5):# 经过尝试发现flag就藏在每个视频的第 5 帧中
+            # 自动计算行数，待转换的列数为3，并取出前225个像素R通道的值
+            pixels = frame.reshape((-1,3))[:224][:,0]
+            for i in range(len(pixels)):
+                if pixels[i] &gt; 200:
+                    pixels[i] = 1
+                else:
+                    pixels[i] = 0
+            res = decode_pixel(pixels)
+            break
+        frames_cnt &#43;= 1
+    return res
+
+if __name__ == &#34;__main__&#34;:
+    flag = [b&#39;&#39;]*100
+    dir = os.listdir(&#34;./videos/&#34;)
+    # print(dir)
+    # output_dir = &#34;./output/&#34;
+    # if not os.path.exists(output_dir):
+        # os.mkdir(output_dir)
+    for item in dir:
+        index = int(item.split(&#39;_&#39;)[2])
+        video_path = f&#34;./videos/{item}&#34;
+        # imgs_dir = f&#34;./output/imgs_{index}/&#34;
+        # video2imgs(video_path,imgs_dir)
+        flag[index] = extract_flag(video_path)  
+    print(b&#39;&#39;.join(flag))
+```
+
+![](imgs/image-20241023172017846.png)
+
+`flag{833ac1e3-2476-441c-ae32-eefe1d03dd9e}`
 
 ### 解法二：直接从json中获取flag
 这里主要关注json中的fhl键，发现每个元素都是长度为7的字符串
