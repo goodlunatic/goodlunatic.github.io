@@ -1248,7 +1248,7 @@ word中可能有一段是1倍行距，可能又有一段是1.5倍行距，需要
 
 ### 1、 有可能是ntfs，直接用NtfsStreamsEditor2扫描所在文件夹，然后导出可疑文件【如果是压缩包，一定要用winrar解压】
 
-### 2、可能是wbStego4open隐写，用wbStego4open直接decode
+### 2、可能是wbStego4open隐写，用wbStego4open直接decode(可能有密钥)
 
 ### 3、如果是那种文件夹套文件夹的题目，可以直接把路径粘贴到everything中，让everything一把梭
 
@@ -1257,6 +1257,14 @@ word中可能有一段是1倍行距，可能又有一段是1.5倍行距，需要
 一个文件打开都是空白字符
 可以使用在线网站解密：https://vii5ard.github.io/whitespace/ 复制进去直接run即可
 snow隐写，到snowdos32工具目录下运行 SNOW.EXE -C -p password flag.txt 命令即可
+
+### 5、垃圾邮件隐写(spammimic)
+
+例题1-2024强网拟态初赛-PvZ
+
+直接使用以下在线网站解密即可：
+
+https://www.spammimic.com/
 
 ## Misc——html题思路：
 
