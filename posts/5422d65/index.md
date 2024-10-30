@@ -381,6 +381,10 @@ plt.show()
 
 ## 数位板流量分析：
 
+[例题1-2022浙江省赛决赛-hard_Digital_plate](https://goodlunatic.github.io/posts/3f7db4e/#%E9%A2%98%E7%9B%AE%E5%90%8D%E7%A7%B0-hard_digital_plate)
+
+例题2-RoarCTF MISC Davinci_Cipher
+
 ```bash
 # 先导出数据并去除空行
 tshark -r hard_Digital_plate.pcapng -T fields -e usb.capdata | sed &#39;/^\s*$/d&#39; &gt; out.txt
@@ -408,32 +412,7 @@ tshark -r hard_Digital_plate.pcapng -T fields -e usb.capdata | sed &#39;/^\s*$/d
 08813c08951e610200000000
 ```
 
-第二个字节代表了是否启用0x81位有效坐标，同时后四位还有数位板的压感值。
-
-当第二字节为0x81时，说明数位板正在作画，且第8字节和第9字节存在压感值，当第二字节为0x80时，说明数位板没有落笔，即没有作画，此时第8字节和第9字节不存在压感，为0x0000。
-
-坐标分析直接说结论，第5-8位是x轴坐标，第9-12位是y轴坐标，并且是小端序储存方法。
-
-例如：
-
-08803708951e000000000000这个数据，0x3708是x坐标信息，0x951e是y坐标信息，但是由于数据为小端序储存，实际x坐标为0x0837，y坐标为0x1e95。
-
-分析数据，分为压感和低压感的数据，直接用CTFD中的脚本跑出坐标并画图
-
-```python
-#数位板压感数据分析.py
-nums = []
-keys = open(&#39;out.txt&#39;, &#39;r&#39;)
-result = open(&#39;result.txt&#39;, &#39;w&#39;)
-for line in keys:
-    if int(line[12:16], 16) == 0:
-        continue
-    x = int(line[4:6], 16) &#43; int(line[6:8], 16) * 0xff
-    y = int(line[8:10], 16) &#43; int(line[10:12], 16) * 0xff
-    result.write(str(x)&#43;&#39; &#39;&#43;str(-y)&#43;&#39;\n&#39;)
-keys.close()
-result.close()
-```
+需要我们根据设备的传输协议来分析出对应的xy坐标以及压感数据
 
 ```python
 #数位板低压感数据分析.py
@@ -449,6 +428,49 @@ for line in keys:
         result.write(str(x)&#43;&#39; &#39;&#43;str(-y)&#43;&#39;\n&#39;)
 keys.close()
 result.close()
+```
+
+```python
+import matplotlib.pyplot as plt
+
+
+press_lst = []
+
+with open(&#34;out.txt&#34;,&#34;r&#34;) as f:
+    lines = f.readlines()
+
+def draw_pic1():
+    x = []
+    y = []
+    for line in lines:
+        if(int(line[12:16],16) != 0):
+            press_data = int(line[12:16],16)
+            x.append(int(line[6:8],16)*0xff&#43;int(line[4:6],16))
+            y.append(int(line[10:12],16)*0xff&#43;int(line[8:10],16))
+            
+    plt.scatter(x,y)
+    plt.grid() # 显示网格
+    plt.show()
+
+def draw_pic2():
+    x = []
+    y = []
+    for line in lines:
+        if(int(line[12:16],16) != 0):
+            press_data = int(line[12:16],16)
+            press_lst.append(press_data)
+            if(press_data &lt; 65000):
+                x.append(int(line[6:8],16)*0xff&#43;int(line[4:6],16))
+                y.append(int(line[10:12],16)*0xff&#43;int(line[8:10],16))
+            
+    plt.scatter(x,y)
+    plt.grid() # 显示网格
+    plt.show()
+    
+if __name__ == &#34;__main__&#34;:
+    draw_pic1()
+    draw_pic2()
+    print(press_lst)
 ```
 
 ## SQL注入流量分析

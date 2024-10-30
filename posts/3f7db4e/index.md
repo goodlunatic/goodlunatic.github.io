@@ -391,7 +391,49 @@ def draw_pic2():
 
 ![](imgs/image-20241030201323495.png)
 
+完整数位板流量解题代码如下：
+```python
+import matplotlib.pyplot as plt
 
+
+press_lst = []
+
+with open(&#34;out.txt&#34;,&#34;r&#34;) as f:
+    lines = f.readlines()
+
+def draw_pic1():
+    x = []
+    y = []
+    for line in lines:
+        if(int(line[12:16],16) != 0):
+            press_data = int(line[12:16],16)
+            x.append(int(line[6:8],16)*0xff&#43;int(line[4:6],16))
+            y.append(int(line[10:12],16)*0xff&#43;int(line[8:10],16))
+            
+    plt.scatter(x,y)
+    plt.grid() # 显示网格
+    plt.show()
+
+def draw_pic2():
+    x = []
+    y = []
+    for line in lines:
+        if(int(line[12:16],16) != 0):
+            press_data = int(line[12:16],16)
+            press_lst.append(press_data)
+            if(press_data &lt; 65000):
+                x.append(int(line[6:8],16)*0xff&#43;int(line[4:6],16))
+                y.append(int(line[10:12],16)*0xff&#43;int(line[8:10],16))
+            
+    plt.scatter(x,y)
+    plt.grid() # 显示网格
+    plt.show()
+    
+if __name__ == &#34;__main__&#34;:
+    draw_pic1()
+    draw_pic2()
+    print(press_lst)
+```
 
 
 ---
