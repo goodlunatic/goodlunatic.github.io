@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="en">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <title>2024 “天一永安杯”宁波市赛初赛 Misc Writeup - ⚡Lunatic BLOG⚡</title><meta name="author" content="Lunatic">
+<meta name="author-link" content="https://goodlunatic.github.io">
+<meta name="description" content="宁波市赛的 Misc 还是一如既往的抽象 @_@
+还是太菜了，赛中只做出了一道 Misc" /><meta name="keywords" content='CTF, Misc, Writeup' />
+  <meta itemprop="name" content="2024 “天一永安杯”宁波市赛初赛 Misc Writeup">
+  <meta itemprop="description" content="宁波市赛的 Misc 还是一如既往的抽象 @_@
+还是太菜了，赛中只做出了一道 Misc">
+  <meta itemprop="datePublished" content="2024-05-06T14:53:14+08:00">
+  <meta itemprop="dateModified" content="2024-05-06T14:53:14+08:00">
+  <meta itemprop="wordCount" content="155">
+  <meta itemprop="keywords" content="CTF,Misc,Writeup"><meta property="og:url" content="http://localhost:1313/posts/9d73413/">
+  <meta property="og:site_name" content="⚡Lunatic BLOG⚡">
+  <meta property="og:title" content="2024 “天一永安杯”宁波市赛初赛 Misc Writeup">
+  <meta property="og:description" content="宁波市赛的 Misc 还是一如既往的抽象 @_@
+还是太菜了，赛中只做出了一道 Misc">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2024-05-06T14:53:14+08:00">
+    <meta property="article:modified_time" content="2024-05-06T14:53:14+08:00">
+    <meta property="article:tag" content="CTF">
+    <meta property="article:tag" content="Misc">
+    <meta property="article:tag" content="Writeup">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="2024 “天一永安杯”宁波市赛初赛 Misc Writeup">
+  <meta name="twitter:description" content="宁波市赛的 Misc 还是一如既往的抽象 @_@
+还是太菜了，赛中只做出了一道 Misc">
+      <meta name="twitter:site" content="@https://twitter.com/goodlunatic007">
+<meta name="application-name" content="FixIt">
+<meta name="apple-mobile-web-app-title" content="FixIt"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="https://www.nssctf.cn/files/2024/4/28/8fdad6c6ee.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="http://localhost:1313/posts/9d73413/" /><link rel="prev" href="http://localhost:1313/posts/f0ec4d6/" /><link rel="next" href="http://localhost:1313/posts/1b1f96e/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "2024 “天一永安杯”宁波市赛初赛 Misc Writeup",
+    "inLanguage": "en",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "http:\/\/localhost:1313\/posts\/9d73413\/"
+    },"genre": "posts","keywords": "CTF, Misc, Writeup","wordcount":  155 ,
+    "url": "http:\/\/localhost:1313\/posts\/9d73413\/","datePublished": "2024-05-06T14:53:14+08:00","dateModified": "2024-05-06T14:53:14+08:00","publisher": {
+      "@type": "Organization",
+      "name": ""},"author": {
+        "@type": "Person",
+        "name": "Lunatic"
+      },"description": ""
+  }
+  </script></head>
+  <body data-header-desktop="sticky" data-header-mobile="auto"><script>(window.localStorage?.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper" data-page-style="normal"><header class="desktop animate__faster" id="header-desktop">
+  <div class="header-wrapper">
+    <div class="header-title">
+      <a href="/" title="⚡Lunatic BLOG⚡"><span class="header-title-pre">⚡</span><span id="typeit-header-desktop" class="typeit"></span></a><span id="typeit-header-subtitle-desktop" class="typeit header-subtitle"></span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/archives/"
+                
+                
+              ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> Archives</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/categories/"
+                
+                
+              ><i class="fa-solid fa-folder-tree fa-fw fa-sm" aria-hidden="true"></i> Categories</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/tags/"
+                
+                
+              ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> Tags</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/friends/"
+                
+                
+              ><i class="fa-solid fa-chain fa-fw fa-sm" aria-hidden="true"></i> Friends</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/about/"
+                
+                
+              ><i class="fa-solid fa-graduation-cap fa-fw fa-sm" aria-hidden="true"></i> About</a></li><li class="menu-item delimiter"></li><li class="menu-item theme-switch" title="Switch Theme">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li></ul>
+    </nav>
+  </div>
+</header><header class="mobile animate__faster" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="⚡Lunatic BLOG⚡"><span class="header-title-pre">⚡</span><span id="typeit-header-title-mobile" class="typeit"></span></a><span id="typeit-header-subtitle-mobile" class="typeit header-subtitle"></span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/archives/"
+                  
+                  
+                ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> Archives</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/categories/"
+                  
+                  
+                ><i class="fa-solid fa-folder-tree fa-fw fa-sm" aria-hidden="true"></i> Categories</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/tags/"
+                  
+                  
+                ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> Tags</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/friends/"
+                  
+                  
+                ><i class="fa-solid fa-chain fa-fw fa-sm" aria-hidden="true"></i> Friends</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/about/"
+                  
+                  
+                ><i class="fa-solid fa-graduation-cap fa-fw fa-sm" aria-hidden="true"></i> About</a></li><li class="menu-item menu-system">
+          <span class="menu-system-item theme-switch" title="Switch Theme"><i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i></span></li>
+      </ul>
+    </nav>
+  </div>
+</header><main class="container"><aside class="aside-collection animate__animated animate__fadeIn animate__faster" aria-label=""></aside>
+
+<article class="page single">
+  <div class="header"><h1 class="single-title animate__animated animate__flipInX"><span>2024 “天一永安杯”宁波市赛初赛 Misc Writeup</span>
+    </h1></div><div class="post-meta">
+    <div class="post-meta-line"><span class="post-author"><a href="https://goodlunatic.github.io" title="Author"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><img loading="lazy" src="https://www.nssctf.cn/files/2024/4/28/7f130a1387.png" alt="Lunatic" data-title="Lunatic" class="avatar" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>&nbsp;Lunatic</a></span><span class="post-included-in">&nbsp;included in <a href="/categories/writeup/" class="post-category" title="Category - Writeup"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> Writeup</a></span></div><div class="post-meta-line"><span title="published on &lt;no value&gt;"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden="true"></i><time datetime="2024-05-06">2024-05-06</time></span>&nbsp;<span title=""><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>About 200 words</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>One minute</span>&nbsp;</div>
+  </div><div class="details toc" id="toc-static"
+    data-kept="false">
+    <div class="details-summary toc-title">
+      <span>Contents</span>
+      <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+    </div>
+    <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#题目名称-babypng">题目名称 babypng</a></li>
+    <li><a href="#题目名称-code">题目名称 code</a></li>
+    <li><a href="#题目名称-grids-secret">题目名称 grid&rsquo;s Secret</a></li>
+  </ul>
+</nav></div>
+  </div><div class="content" id="content"><p>宁波市赛的 Misc 还是一如既往的抽象 @_@</p>
+<p>还是太菜了，赛中只做出了一道 Misc</p>
+<p><img loading="lazy" src="/posts/9d73413/imgs/image-20240803102239947.png" alt="/posts/9d73413/imgs/image-20240803102239947.png" srcset="/posts/9d73413/imgs/image-20240803102239947.png?size=small, /posts/9d73413/imgs/image-20240803102239947.png?size=medium 1.5x, /posts/9d73413/imgs/image-20240803102239947.png?size=large 2x" data-title="/posts/9d73413/imgs/image-20240803102239947.png" style="--width: 871px;--aspect-ratio: 871 / 505;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<h2 id="题目名称-babypng" class="heading-element">
+  <a href="#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-babypng" class="heading-mark"></a>题目名称 babypng</h2><p>题目附件给了一张 sakiko.png，用 stegsolve 查看，发现在 红色通道7 绿色通道7 蓝色通道7 中存在 LSB 隐写</p>
+<p><img loading="lazy" src="/posts/9d73413/imgs/image-20240505185726802.png" alt="/posts/9d73413/imgs/image-20240505185726802.png" srcset="/posts/9d73413/imgs/image-20240505185726802.png?size=small, /posts/9d73413/imgs/image-20240505185726802.png?size=medium 1.5x, /posts/9d73413/imgs/image-20240505185726802.png?size=large 2x" data-title="/posts/9d73413/imgs/image-20240505185726802.png" style="--width: 1751px;--aspect-ratio: 1751 / 936;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><img loading="lazy" src="/posts/9d73413/imgs/image-20240505185738438.png" alt="/posts/9d73413/imgs/image-20240505185738438.png" srcset="/posts/9d73413/imgs/image-20240505185738438.png?size=small, /posts/9d73413/imgs/image-20240505185738438.png?size=medium 1.5x, /posts/9d73413/imgs/image-20240505185738438.png?size=large 2x" data-title="/posts/9d73413/imgs/image-20240505185738438.png" style="--width: 1751px;--aspect-ratio: 1751 / 936;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><img loading="lazy" src="/posts/9d73413/imgs/image-20240505185743354.png" alt="/posts/9d73413/imgs/image-20240505185743354.png" srcset="/posts/9d73413/imgs/image-20240505185743354.png?size=small, /posts/9d73413/imgs/image-20240505185743354.png?size=medium 1.5x, /posts/9d73413/imgs/image-20240505185743354.png?size=large 2x" data-title="/posts/9d73413/imgs/image-20240505185743354.png" style="--width: 1751px;--aspect-ratio: 1751 / 936;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>因此，我们使用 stegsolve 把这三个通道中的数据提取出来</p>
+<p><img loading="lazy" src="/posts/9d73413/imgs/image-20240505185754988.png" alt="/posts/9d73413/imgs/image-20240505185754988.png" srcset="/posts/9d73413/imgs/image-20240505185754988.png?size=small, /posts/9d73413/imgs/image-20240505185754988.png?size=medium 1.5x, /posts/9d73413/imgs/image-20240505185754988.png?size=large 2x" data-title="/posts/9d73413/imgs/image-20240505185754988.png" style="--width: 1751px;--aspect-ratio: 1751 / 936;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>然后直接使用 CyberChef 解密即可</p>
+<p><img loading="lazy" src="/posts/9d73413/imgs/image-20240505185807214.png" alt="/posts/9d73413/imgs/image-20240505185807214.png" srcset="/posts/9d73413/imgs/image-20240505185807214.png?size=small, /posts/9d73413/imgs/image-20240505185807214.png?size=medium 1.5x, /posts/9d73413/imgs/image-20240505185807214.png?size=large 2x" data-title="/posts/9d73413/imgs/image-20240505185807214.png" style="--width: 3771px;--aspect-ratio: 3771 / 2092;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>发现在每段前面都有可疑的字符，手动一个个提取出来可以得到：PixelJihad_key:ezgame</p>
+<p>最后使用 PixelJihad 解密即可得到 flag：flag{f177a390334bfb71047cd2cd10a336a5}</p>
+<p><img loading="lazy" src="/posts/9d73413/imgs/image-20240505185818835.png" alt="/posts/9d73413/imgs/image-20240505185818835.png" srcset="/posts/9d73413/imgs/image-20240505185818835.png?size=small, /posts/9d73413/imgs/image-20240505185818835.png?size=medium 1.5x, /posts/9d73413/imgs/image-20240505185818835.png?size=large 2x" data-title="/posts/9d73413/imgs/image-20240505185818835.png" style="--width: 1850px;--aspect-ratio: 1850 / 903;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<h2 id="题目名称-code" class="heading-element">
+  <a href="#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-code" class="heading-mark"></a>题目名称 code</h2><p>题目附件给了一个 code.txt，打开后发现有零宽，解密后可以得到提示：ilove0an1（猜测需要把数据转成0和1）</p>
+<p><img loading="lazy" src="/posts/9d73413/imgs/image-20240505190050945.png" alt="/posts/9d73413/imgs/image-20240505190050945.png" srcset="/posts/9d73413/imgs/image-20240505190050945.png?size=small, /posts/9d73413/imgs/image-20240505190050945.png?size=medium 1.5x, /posts/9d73413/imgs/image-20240505190050945.png?size=large 2x" data-title="/posts/9d73413/imgs/image-20240505190050945.png" style="--width: 3836px;--aspect-ratio: 3836 / 2160;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><img loading="lazy" src="/posts/9d73413/imgs/image-20240505185949846.png" alt="/posts/9d73413/imgs/image-20240505185949846.png" srcset="/posts/9d73413/imgs/image-20240505185949846.png?size=small, /posts/9d73413/imgs/image-20240505185949846.png?size=medium 1.5x, /posts/9d73413/imgs/image-20240505185949846.png?size=large 2x" data-title="/posts/9d73413/imgs/image-20240505185949846.png" style="--width: 2492px;--aspect-ratio: 2492 / 1594;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>根据题面的提示：i love drawing，猜测是使用代码绘图，因此上面的那些代码应该是绘图代码</p>
+<p>比赛的时候没找到，赛后和别的师傅交流的时候知道了下面这个开源项目：</p>
+<p><a href="https://github.com/susam/cfrs"target="_blank" rel="external nofollow noopener noreferrer">https://github.com/susam/cfrs</a></p>
+<p>然后还有对应的在线绘图的网站：</p>
+<p><a href="https://susam.net/cfrs.html"target="_blank" rel="external nofollow noopener noreferrer">https://susam.net/cfrs.html</a></p>
+<p>然后我们就可以尝试使用这个网站进行绘图，因为网站长度有限制，因此我们一段一段看</p>
+<p>发现整个代码一共就以下几种情况：</p>
+<p><img loading="lazy" src="/posts/9d73413/imgs/image-20240505190458059.png" alt="/posts/9d73413/imgs/image-20240505190458059.png" srcset="/posts/9d73413/imgs/image-20240505190458059.png?size=small, /posts/9d73413/imgs/image-20240505190458059.png?size=medium 1.5x, /posts/9d73413/imgs/image-20240505190458059.png?size=large 2x" data-title="/posts/9d73413/imgs/image-20240505190458059.png" style="--width: 3834px;--aspect-ratio: 3834 / 2160;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><img loading="lazy" src="/posts/9d73413/imgs/image-20240505190514144.png" alt="/posts/9d73413/imgs/image-20240505190514144.png" srcset="/posts/9d73413/imgs/image-20240505190514144.png?size=small, /posts/9d73413/imgs/image-20240505190514144.png?size=medium 1.5x, /posts/9d73413/imgs/image-20240505190514144.png?size=large 2x" data-title="/posts/9d73413/imgs/image-20240505190514144.png" style="--width: 3835px;--aspect-ratio: 3835 / 2160;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><img loading="lazy" src="/posts/9d73413/imgs/image-20240505190528225.png" alt="/posts/9d73413/imgs/image-20240505190528225.png" srcset="/posts/9d73413/imgs/image-20240505190528225.png?size=small, /posts/9d73413/imgs/image-20240505190528225.png?size=medium 1.5x, /posts/9d73413/imgs/image-20240505190528225.png?size=large 2x" data-title="/posts/9d73413/imgs/image-20240505190528225.png" style="--width: 3839px;--aspect-ratio: 3839 / 2160;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><img loading="lazy" src="/posts/9d73413/imgs/image-20240505190555641.png" alt="/posts/9d73413/imgs/image-20240505190555641.png" srcset="/posts/9d73413/imgs/image-20240505190555641.png?size=small, /posts/9d73413/imgs/image-20240505190555641.png?size=medium 1.5x, /posts/9d73413/imgs/image-20240505190555641.png?size=large 2x" data-title="/posts/9d73413/imgs/image-20240505190555641.png" style="--width: 3833px;--aspect-ratio: 3833 / 2160;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><img loading="lazy" src="/posts/9d73413/imgs/image-20240505190609127.png" alt="/posts/9d73413/imgs/image-20240505190609127.png" srcset="/posts/9d73413/imgs/image-20240505190609127.png?size=small, /posts/9d73413/imgs/image-20240505190609127.png?size=medium 1.5x, /posts/9d73413/imgs/image-20240505190609127.png?size=large 2x" data-title="/posts/9d73413/imgs/image-20240505190609127.png" style="--width: 3834px;--aspect-ratio: 3834 / 2160;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><img loading="lazy" src="/posts/9d73413/imgs/image-20240505190622568.png" alt="/posts/9d73413/imgs/image-20240505190622568.png" srcset="/posts/9d73413/imgs/image-20240505190622568.png?size=small, /posts/9d73413/imgs/image-20240505190622568.png?size=medium 1.5x, /posts/9d73413/imgs/image-20240505190622568.png?size=large 2x" data-title="/posts/9d73413/imgs/image-20240505190622568.png" style="--width: 3836px;--aspect-ratio: 3836 / 2160;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><img loading="lazy" src="/posts/9d73413/imgs/image-20240505190641671.png" alt="/posts/9d73413/imgs/image-20240505190641671.png" srcset="/posts/9d73413/imgs/image-20240505190641671.png?size=small, /posts/9d73413/imgs/image-20240505190641671.png?size=medium 1.5x, /posts/9d73413/imgs/image-20240505190641671.png?size=large 2x" data-title="/posts/9d73413/imgs/image-20240505190641671.png" style="--width: 3831px;--aspect-ratio: 3831 / 2160;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><img loading="lazy" src="/posts/9d73413/imgs/image-20240505190655092.png" alt="/posts/9d73413/imgs/image-20240505190655092.png" srcset="/posts/9d73413/imgs/image-20240505190655092.png?size=small, /posts/9d73413/imgs/image-20240505190655092.png?size=medium 1.5x, /posts/9d73413/imgs/image-20240505190655092.png?size=large 2x" data-title="/posts/9d73413/imgs/image-20240505190655092.png" style="--width: 3834px;--aspect-ratio: 3834 / 2160;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><img loading="lazy" src="/posts/9d73413/imgs/image-20240505190710848.png" alt="/posts/9d73413/imgs/image-20240505190710848.png" srcset="/posts/9d73413/imgs/image-20240505190710848.png?size=small, /posts/9d73413/imgs/image-20240505190710848.png?size=medium 1.5x, /posts/9d73413/imgs/image-20240505190710848.png?size=large 2x" data-title="/posts/9d73413/imgs/image-20240505190710848.png" style="--width: 3837px;--aspect-ratio: 3837 / 2160;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>然后我们根据上面那个零宽解出来的提示，把圆圈替换为0，有几个圆圈就有几个0，然后把竖线替换为1</p>
+<p>就是这里要特别注意，替换的时候要仔细一点，然后圆圈要一个一个替换，要不然最后会得不到 flag</p>
+<p>使用 CyberChef 替换然后二进制转字符串即可得到flag：flag{1_wanna_c1rcl3s_4nd_1in3s}</p>
+<p><img loading="lazy" src="/posts/9d73413/imgs/image-20240505190911601.png" alt="/posts/9d73413/imgs/image-20240505190911601.png" srcset="/posts/9d73413/imgs/image-20240505190911601.png?size=small, /posts/9d73413/imgs/image-20240505190911601.png?size=medium 1.5x, /posts/9d73413/imgs/image-20240505190911601.png?size=large 2x" data-title="/posts/9d73413/imgs/image-20240505190911601.png" style="--width: 3836px;--aspect-ratio: 3836 / 2160;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<h2 id="题目名称-grids-secret" class="heading-element">
+  <a href="#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-grids-secret" class="heading-mark"></a>题目名称 grid&rsquo;s Secret</h2><p>题目附件给了一个 secret.txt 打开发现有很多奇怪的数据，然后在末尾发现了零宽隐写</p>
+<p>解零宽后可以得到一个提示：4invaild</p>
+<p><img loading="lazy" src="/posts/9d73413/imgs/image-20240506151217495.png" alt="/posts/9d73413/imgs/image-20240506151217495.png" srcset="/posts/9d73413/imgs/image-20240506151217495.png?size=small, /posts/9d73413/imgs/image-20240506151217495.png?size=medium 1.5x, /posts/9d73413/imgs/image-20240506151217495.png?size=large 2x" data-title="/posts/9d73413/imgs/image-20240506151217495.png" style="--width: 3837px;--aspect-ratio: 3837 / 2160;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><img loading="lazy" src="/posts/9d73413/imgs/image-20240506151250668.png" alt="/posts/9d73413/imgs/image-20240506151250668.png" srcset="/posts/9d73413/imgs/image-20240506151250668.png?size=small, /posts/9d73413/imgs/image-20240506151250668.png?size=medium 1.5x, /posts/9d73413/imgs/image-20240506151250668.png?size=large 2x" data-title="/posts/9d73413/imgs/image-20240506151250668.png" style="--width: 1504px;--aspect-ratio: 1504 / 859;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>赛后和其他师傅交流了才知道，这个提示指的是前四个字符是无效的，因此可以直接删去</p>
+<p>由题目 grid（网格）可以联想到坐标系，因此我们需要把数据划分为6个字符一组</p>
+<p>然后用最后两个字符作为横纵坐标对表格进行填充，有数据的地方填上1，没有数据的地方都初始化为0</p>
+<p>一开始以为是二维码，经过尝试后发现直接把二进制数据从最后一列开始连起来就行</p>
+<div class="highlight" id="id-1"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">libnum</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl"><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&#34;1.txt&#34;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">text</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">text</span><span class="p">),</span> <span class="mi">6</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">pos</span> <span class="o">=</span> <span class="n">text</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">4</span><span class="p">:</span><span class="n">i</span><span class="o">+</span><span class="mi">6</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pos</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="mi">24</span><span class="p">),</span> <span class="n">columns</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="mi">24</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">point</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">x</span> <span class="o">=</span> <span class="nb">ord</span><span class="p">(</span><span class="n">point</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">-</span> <span class="nb">ord</span><span class="p">(</span><span class="s1">&#39;A&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">y</span> <span class="o">=</span> <span class="nb">ord</span><span class="p">(</span><span class="n">point</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">-</span> <span class="nb">ord</span><span class="p">(</span><span class="s1">&#39;A&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">flag</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">23</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">24</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">flag</span> <span class="o">+=</span> <span class="nb">str</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">libnum</span><span class="o">.</span><span class="n">b2s</span><span class="p">(</span><span class="n">flag</span><span class="p">))</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><img loading="lazy" src="/posts/9d73413/imgs/image-20240506151653836.png" alt="/posts/9d73413/imgs/image-20240506151653836.png" srcset="/posts/9d73413/imgs/image-20240506151653836.png?size=small, /posts/9d73413/imgs/image-20240506151653836.png?size=medium 1.5x, /posts/9d73413/imgs/image-20240506151653836.png?size=large 2x" data-title="/posts/9d73413/imgs/image-20240506151653836.png" style="--width: 3838px;--aspect-ratio: 3838 / 2160;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>flag{M4idenh3ad_4nd_VHF}</p></div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title="Updated on 2024-05-06 14:53:14">Updated on 2024-05-06&nbsp;</span>
+      </div></div><div class="post-info-line">
+        <div class="post-info-md"><span><a href="/posts/9d73413/index.md" title="Read Markdown" class="link-to-markdown">Read Markdown</a></span></div>
+        <div class="post-info-share">
+          <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="http://localhost:1313/posts/9d73413/" data-title="2024 “天一永安杯”宁波市赛初赛 Misc Writeup" data-via="https://twitter.com/goodlunatic007" data-hashtags="CTF,Misc,Writeup"><i class="fa-brands fa-twitter fa-fw" aria-hidden="true"></i></a>
+  <a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="http://localhost:1313/posts/9d73413/" data-hashtag="CTF"><i class="fa-brands fa-facebook-square fa-fw" aria-hidden="true"></i></a>
+  <a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="http://localhost:1313/posts/9d73413/" data-title="2024 “天一永安杯”宁波市赛初赛 Misc Writeup"><i class="fa-brands fa-weibo fa-fw" aria-hidden="true"></i></a>
+  </span>
+        </div>
+      </div></div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href="/tags/ctf/" class="post-tag" title="Tags - CTF">CTF</a><a href="/tags/misc/" class="post-tag" title="Tags - Misc">Misc</a><a href="/tags/writeup/" class="post-tag" title="Tags - Writeup">Writeup</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+    </section>
+  </div>
+
+  <div class="post-nav"><a href="/posts/f0ec4d6/" class="post-nav-item" rel="prev" title="Misc-Blind WaterMark"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>Misc-Blind WaterMark</a>
+      <a href="/posts/1b1f96e/" class="post-nav-item" rel="next" title="2024 CISCN初赛 Misc Writeup">2024 CISCN初赛 Misc Writeup<i class="fa-solid fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+</article>
+
+<aside class="toc" id="toc-auto" aria-label=""><h2 class="toc-title">Contents&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+  <div
+    class="toc-content"
+    id="toc-content-auto"></div></aside></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line powered">Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreferrer" title="Hugo 0.135.0">Hugo</a> | Theme - <a href="https://github.com/hugo-fixit/FixIt" target="_blank" rel="external" title="FixIt v0.3.2">FixIt</a>
+        </div><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
+            <span itemprop="copyrightYear">2024</span><span class="author" itemprop="copyrightHolder">
+              <a href="https://goodlunatic.github.io"target="_blank" rel="external nofollow noopener noreferrer">Lunatic</a></span></div></div>
+  </footer></div><div class="widgets"><div class="fixed-buttons animate__faster d-none"><div class="fixed-button back-to-top" role="button" aria-label="Back to Top"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i><span class="variant-numeric d-none">0%</span>
+        </div></div><div id="mask"></div><noscript>
+    <div class="noscript-warning">Theme FixIt works best with JavaScript enabled.</div>
+  </noscript>
+</div><script src="/lib/sharer/sharer.min.js" async defer></script><script src="/lib/typeit/index.umd.js" defer></script><script>window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":1000},"comment":{"enable":false},"data":{"typeit-header-desktop":"Lunatic BLOG","typeit-header-title-mobile":"Lunatic BLOG"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"typeit-header-desktop":["typeit-header-desktop"],"typeit-header-subtitle-desktop":["typeit-header-subtitle-desktop"],"typeit-header-subtitle-mobile":["typeit-header-subtitle-mobile"],"typeit-header-title-mobile":["typeit-header-title-mobile"]},"duration":-1,"loop":false,"speed":100}};</script><script src="/js/theme.min.js" defer></script></body>
+</html>

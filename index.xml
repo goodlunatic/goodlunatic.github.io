@@ -1,0 +1,94 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title>⚡Lunatic BLOG⚡</title>
+    <link>http://localhost:1313/</link>
+    <description>This is Lunatic BLOG @_@</description>
+    <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>goodlunatic0@gmail.com (Lunatic)</managingEditor>
+      <webMaster>goodlunatic0@gmail.com (Lunatic)</webMaster><lastBuildDate>Wed, 16 Oct 2024 13:44:52 &#43;0800</lastBuildDate>
+      <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+  <title>IOT Security Research</title>
+  <link>http://localhost:1313/posts/848cf69/</link>
+  <pubDate>Wed, 16 Oct 2024 13:44:52 &#43;0800</pubDate>
+  <author>Lunatic</author>
+  <guid>http://localhost:1313/posts/848cf69/</guid>
+  <description><![CDATA[<p>A simple blog for IOT Security Research.</p>]]></description>
+</item>
+<item>
+  <title>CTF-Misc Guide</title>
+  <link>http://localhost:1313/posts/1ad9200/</link>
+  <pubDate>Tue, 10 Sep 2024 20:30:17 &#43;0800</pubDate>
+  <author>Lunatic</author>
+  <guid>http://localhost:1313/posts/1ad9200/</guid>
+  <description><![CDATA[<p><strong>This is a simple Guide for CTF in Misc Area.</strong></p>]]></description>
+</item>
+<item>
+  <title>Preparation For Programming Proficiency Exam</title>
+  <link>http://localhost:1313/posts/552060f/</link>
+  <pubDate>Sun, 08 Sep 2024 21:35:29 &#43;0800</pubDate>
+  <author>Lunatic</author>
+  <guid>http://localhost:1313/posts/552060f/</guid>
+  <description><![CDATA[<p>时间过得真快呀，回想上次做算法题应该是大一的时候了</p>
+<p>没想到现在回过头来，依旧需要重新拾起自己的算法功底</p>]]></description>
+</item>
+<item>
+  <title>2024 羊城杯网络安全大赛 Misc Writeup</title>
+  <link>http://localhost:1313/posts/4a27616/</link>
+  <pubDate>Wed, 28 Aug 2024 16:44:56 &#43;0800</pubDate>
+  <author>Lunatic</author>
+  <guid>http://localhost:1313/posts/4a27616/</guid>
+  <description><![CDATA[<p>有段时间没有做CTF题了，感觉有些生疏了都，很可惜赛中差一题就能AK了</p>
+<p>因此这个愿望只能留给学弟去实现了，之后可能真正能好好打CTF的机会也不多了吧</p>]]></description>
+</item>
+<item>
+  <title>Pentesting Learning Record</title>
+  <link>http://localhost:1313/posts/417c7ba/</link>
+  <pubDate>Fri, 26 Jul 2024 15:12:02 &#43;0800</pubDate>
+  <author>Lunatic</author>
+  <guid>http://localhost:1313/posts/417c7ba/</guid>
+  <description><![CDATA[<p>越来越多的线下赛开始考察实战渗透了，一直想学渗透来着</p>
+<p>但无奈一直被耽搁，回过头来的时候发现自己已经要退役了</p>]]></description>
+</item>
+<item>
+  <title>2024 DASCTF 暑期挑战赛 Misc Writeup</title>
+  <link>http://localhost:1313/posts/067cfbd/</link>
+  <pubDate>Fri, 26 Jul 2024 14:57:40 &#43;0800</pubDate>
+  <author>Lunatic</author>
+  <guid>http://localhost:1313/posts/067cfbd/</guid>
+  <description><![CDATA[<p>这场比赛开始的时候去成都线下打国赛决赛了</p>
+<p>现在才有时间回来复现，发现这场比赛的Misc题出的都挺好的</p>]]></description>
+</item>
+<item>
+  <title>CTF-ICS Learning Record</title>
+  <link>http://localhost:1313/posts/01ebd40/</link>
+  <pubDate>Thu, 18 Jul 2024 19:57:39 &#43;0800</pubDate>
+  <author>Lunatic</author>
+  <guid>http://localhost:1313/posts/01ebd40/</guid>
+  <description><![CDATA[<p>越来越多的比赛中出现工控相关的赛题，因此打算借这个机会学习一下。</p>]]></description>
+</item>
+<item>
+  <title>2023 春秋杯冬季赛 Misc Writeup</title>
+  <link>http://localhost:1313/posts/5de0d7e/</link>
+  <pubDate>Wed, 17 Jul 2024 20:31:08 &#43;0800</pubDate>
+  <author>Lunatic</author>
+  <guid>http://localhost:1313/posts/5de0d7e/</guid>
+  <description><![CDATA[<p>后来再回头看自己当初没做出来的题，也是感触颇深</p>]]></description>
+</item>
+<item>
+  <title>2024 WKCTF Misc Writeup</title>
+  <link>http://localhost:1313/posts/2125dc5/</link>
+  <pubDate>Wed, 17 Jul 2024 11:17:04 &#43;0800</pubDate>
+  <author>Lunatic</author>
+  <guid>http://localhost:1313/posts/2125dc5/</guid>
+  <description><![CDATA[<p>忙里偷闲，稍微打了一下 2024WKCTF 练练手</p>]]></description>
+</item>
+<item>
+  <title>Misc-Network Traffic Analysis</title>
+  <link>http://localhost:1313/posts/5422d65/</link>
+  <pubDate>Sat, 06 Jul 2024 18:15:27 &#43;0800</pubDate>
+  <author>Lunatic</author>
+  <guid>http://localhost:1313/posts/5422d65/</guid>
+  <description><![CDATA[<p><strong>This is a Simple Guide for Network Traffic Analysis.</strong></p>]]></description>
+</item>
+</channel>
+</rss>

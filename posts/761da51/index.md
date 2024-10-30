@@ -1,0 +1,737 @@
+# Misc-Forensics
+
+
+**This is a simple summary of digital forensics .**
+
+&lt;!--more--&gt;
+
+## 使用的系统和环境
+
+```bash
+#Win11-WSL-Ubuntu
+这个系统下面vol2和vol3都下载了
+直接在终端输入vol.py或者vol3.py即可
+#Vmware-Kali
+这个系统下面只安装了vol2
+输入vol.py即可使用
+```
+
+## 获取Hash值
+
+```bash
+#获取sha1
+sha1sum filename
+#h获取MD5
+md5sum filename
+```
+
+## 内存取证
+
+常见文件后缀：.vmem / .dump / .raw / .img
+
+内存取证除了常用的 Vol 以外，也可以尝试一下 R-Stdio 这个工具，提取文件的时候不一定哪个可以用
+
+打开 R-Stdio -&gt; 驱动器 -&gt; 打开镜像 -&gt; 扫描
+
+![](imgs/Rstdio1.png)
+
+![](imgs/Rstdio2.png)
+
+
+vol.py --info 可以查看插件
+
+```bash
+#官方WIKI
+https://github.com/volatilityfoundation/volatility/wiki
+#点击右侧的Command References来查看具体参数的用法
+```
+
+### Windows内存取证
+
+不是Windows10的内存镜像的话可以直接用 Vol_all_in_one 一键分析
+
+取证过程中一定要记得查看镜像桌面上的文件！
+
+#### Volatility2
+
+~~~bash
+# 识别操作系统的基本信息
+vol.py mem.dump imageinfo
+# 查看进程
+vol.py -f OtterCTF.vmem --profile=Win7SP1x64 pslist
+# 查看隐藏或者解链的进程
+vol.py -f OtterCTF.vmem --profile=Win7SP1x64 pstree
+# 通过memdump爆破出进程对应的信息
+vol.py -f OtterCTF.vmem --profile=Win7SP1x64 memdump -p 3036 --dump-dir=./
+# 扫描镜像中的服务
+vol.py --plugins=/home/kali/volatility/volatility/plugins -f mem.raw --profile=Win7SP1x64 svcscan
+# 扫描进程缓存的文件
+vol.py -f memory.raw --profile=Win7SP1x64 filescan
+# 查找特定后缀的文件
+vol.py -f example.raw --profile=Win7SP1x64 filescan | grep -E &#39;txt|png|jpg|gif|zip|rar|7z|pdf|doc&#39;
+# 查找指定文件夹下的文件
+volatility -f example.raw --profile=Win7SP1x64 filescan | grep TMP_User
+# 使用dumpfiles爆破文件内容（有时可能会出现vol2提取不了但是vol3可以的情况，也可以使用 R-stdio 工具提取）
+vol.py -f OtterCTF.vmem --profile=Win7SP1x64 dumpfiles -Q 0x000000007e410890 --dump-dir=./
+# 查看进程环境变量
+vol.py -f memory.raw --profile=Win7SP1x64 envars
+# 扫描进程命令行参数
+vol.py -f memory.raw --profile=Win7SP1x64 cmdscan
+vol.py -f memory.raw --profile=Win7SP1x64 cmdline
+# 扫描动态库列表
+# 可使用-p参数指定PID号
+vol.py -f memory.img --profile=Win2003SP1x86 dlllist
+vol.py -f memory.img --profile=Win2003SP1x86 ldrmodules
+# 扫描系统中的恶意软件
+vol.py -f memory.img --profile=Win2003SP1x86 malfind
+# 查看当前镜像中的用户
+vol.py --plugins=/home/kali/volatility/volatility/plugins -f mem.raw --profile=Win7SP1x64 printkey -K &#34;SAM\Domains\Account\Users\Names&#34;
+# 查看镜像中的用户名和密码(hash值)
+vol.py -f OtterCTF.vmem --profile=Win7SP1x64 hashdump
+# 使用mimikatz插件快速获取用户密码
+vol.py --plugins=/home/kali/volatility/volatility/plugins -f mem.dump --profile=Win7SP1x64 mimikatz
+# 扫描注册表数据
+# 查看注册表配置单元
+vol.py -f memory.raw --profile=Win7SP1x64 hivelist
+# 查看注册表键值
+vol.py -f OtterCTF.vmem --profile=Win7SP1x64 printkey
+# 查看注册表键名
+vol.py -f memory.raw --profile=Win7SP1x64 hivedump -o 0xfffff8a001cce010(注册表Volatility地址)
+# 查看网络连接状态
+vol.py -f memory.raw --profile=Win7SP1x64 connscan
+vol.py --plugins=/home/kali/volatility/volatility/plugins -f mem.raw --profile=Win7SP1x64 netscan
+vol.py --plugins=/home/kali/volatility/volatility/plugins -f mem.raw --profile=Win7SP1x64 connections
+# 查看浏览器历史记录
+vol.py -f 1.vmem --profile=Win7SP1x64 iehistory
+# 显示有关编辑控件的信息
+vol.py -f 1.vmem --profile=Win7SP1x64 editbox
+# 查看当前展示的notepad的内容
+vol.py -f 1.vmem --profile=Win7SP1x64 notepad
+# 获取屏幕截图
+vol.py -f 1.vmem --profile=Win7SP1x64 screenshot --dump-dir=./
+# 查看剪贴板信息
+vol.py -f 1.vmem --profile=Win7SP1x64 clipboard
+# 查看剪贴板信详细内容
+vol.py -f 1.vmem --profile=Win7SP1x64 clipboard -v
+# 查看运行程序相关的记录，比如最后一次更新时间，运行过的次数等
+vol.py -f 1.vmem --profile=Win7SP1x64 userassist
+# 最大程序提取信息
+vol.py -f 1.vmem --profile=Win7SP1x64 timeliner
+# 恢复被删除的文件
+vol.py -f 1.vmem --profile=Win7SP1x64 mftparser
+# 使用ndispktscan插件搜索内核的网络流量包信息
+vol.py --plugins=/home/kali/volatility/volatility/plugins -f OtterCTF.vmem --profile=Win7SP1x64 ndispktscan
+# 使用usbstor插件获取USB连接信息
+vol.py --plugins=/home/kali/volatility/volatility/plugins -f OtterCTF.vmem --profile=Win7SP1x64 usbstor
+# 使用VolDiff进行恶意软件检测
+vol.py --plugins=/home/kali/volatility/volatility/plugins -f OtterCTF.vmem --profile=Win7SP1x64 voldiff
+# 使用bitlocker插件获取Bitlocker的加密密钥
+vol.py --plugins=/home/kali/volatility/volatility/plugins -f OtterCTF.vmem --profile=Win7SP1x64 bitlocker
+~~~
+
+#### Volatility3
+
+识别内存的系统版本（这个有时候vol3识别不出来，但是vol2可以）
+
+```bash
+vol3.py -f dacong.raw banners.Banners
+```
+
+如果是windows10的内存镜像的话，vol2的某些功能可能用不了，因此需要vol3（例：2023 安洵杯 dacongのWindows）
+
+```bash
+# 查看命令
+vol3.py -h
+# 扫描镜像中的文件
+vol3.py -f dacong.raw windows.filescan
+# 查看桌面上的文件
+vol3.py -f dacong.raw windows.filescan | grep Desktop
+# 提取文件
+vol3.py -f mem.raw windows.dumpfiles --virtaddr=&#34;0x0000e0007ad17f20&#34;
+# 扫描注册表（感觉这个功能vol2的更好）
+vol3.py -f dacong.raw windows.registry.printkey
+vol3.py -f dacong.raw windows.registry.hivelist
+# 扫描命令行记录
+vol3.py -f dacong.raw windows.cmdline
+# 查看网络使用状态、端口占用状态
+vol3.py -f dacong.raw windows.netscan
+vol3.py -f dacong.raw windows.netstat
+# 查看系统中的进程
+vol3.py -f dacong.raw windows.pslist
+vol3.py -f dacong.raw windows.pstree
+```
+
+**一些特殊进程**
+
+便签：StikyNot.exe （.snt 文件路径在C:\Users\XXX\AppData\Roaming\Microsoft\Sticky Notes\）【这个文件需要用Win7的便签或者记事本打开】
+
+画图：mspaint.exe（这个进程可以用 memdump 导出 dmp 文件，然后改后缀为.data拖入Gimp中调整位移和分辨率，例：2024 NKCTF）
+
+联系人：wab.exe （.contact 文件）
+
+**一些特殊文件**
+
+evtx - Windows系统日志
+
+dat - 无法导出可以加上 -u 参数：volatility -f mem.data dumpfiles -r pdf$ -i --name -D dumpfiles/ -u
+
+### Linux内存取证
+
+取证过程中一定要记得查看镜像桌面上的文件！
+
+#### 制作  Profile(Vol2)  的详细过程
+
+**Identify the profile for Linux**
+
+```bash
+strings mem | grep -i &#39;Linux version&#39; | uniq
+```
+
+```bash
+Linux version 5.10.0-21-amd64 (debian-kernel@lists.debian.org) (gcc-10 (Debian 10.2.1-6) 10.2.1 20210110, GNU ld (GNU Binutils for Debian) 2.35.2) #1 SMP Debian 5.10.162-1 (2023-01-21)
+```
+
+**Tips: Ubuntu 22.04 目前是不支持用 Vol2 进行取证的，必须使用 Vol3**
+
+```bash
+# 例题：2022 Sekai CTF | symbolic-needs 1
+# 题目附件的内核版本：
+Ubuntu 22.04 Linux-version 5.15.0-43-generic
+```
+
+**Try to find profile on [Github](https://github.com/volatilityfoundation/profiles/tree/master/Linux)**
+
+如果找不到需要的profile，就需要进行下面的步骤，自己手动制作profile了
+
+**Make the profile by yourself**
+
+一个profile的结构如下：其实一共就两个文件
+
+```
+Debian5010\boot\System.map-2.6.26-2-amd64
+Debian5010\volatility\tools\linux\module.dwarf
+```
+
+这里以 Linux version 5.10.0-21-amd64 这个内核为例
+
+示例项目已开源在 [作者的Github仓库](https://github.com/goodlunatic/Docker-ProfileMaker-vol2)
+
+参考资料：[巨魔大佬的博客](https://treasure-house.randark.site/blog/2023-10-26-0xGame2023-oh-my-linux/)
+
+首先要到 [官方仓库](https://debian.sipwise.com/debian-security/pool/main/l/linux/)下载以下几个文件
+
+```
+linux-headers-5.10.0-21-amd64_5.10.162-1_amd64.deb
+linux-headers-5.10.0-21-common_5.10.162-1_all.deb
+linux-image-5.10.0-21-amd64-dbg_5.10.162-1_amd64.deb
+linux-image-5.10.0-21-amd64-unsigned_5.10.162-1_amd64.deb
+```
+
+然后解压 linux-image-5.10.0-21-amd64-dbg_5.10.162-1_amd64.deb 这个文件
+
+将下面这个文件复制出来
+
+```
+linux-image-5.10.0-21-amd64-dbg_5.10.162-1_amd64\data\usr\lib\debug\boot\System.map-5.10.0-21-amd64
+```
+
+然后用 Docker 构建镜像制作 dwarf 文件，用于构建的 Dockerfile 文件如下：修改自[巨魔的开源项目](https://github.com/CTF-Archives/profile-builder-Debian_5.10.0-21)
+
+Tips:使用前需要把上面那四个文件放到 Dockerfile 同一目录下，构建好后进入容器，dwarf 文件在/app目录下
+
+```dockerfile
+FROM debian:11.8
+
+COPY ./service/docker-entrypoint.sh /docker-entrypoint.sh
+COPY ./src/ /src/
+
+RUN sed -i &#39;s/deb.debian.org/mirrors.ustc.edu.cn/g&#39; /etc/apt/sources.list \
+    &amp;&amp; sed -i &#39;s/security.debian.org/mirrors.ustc.edu.cn/g&#39; /etc/apt/sources.list \
+	&amp;&amp; apt update --no-install-recommends\
+    &amp;&amp; apt install -y openssh-server linux-kbuild-5.10 gcc-10 dwarfdump build-essential unzip linux-compiler-gcc-10-x86 \
+    &amp;&amp; chmod &#43;x /docker-entrypoint.sh \
+    &amp;&amp; mkdir /app \
+    &amp;&amp; sed -i &#39;s/\#PermitRootLogin prohibit-password/PermitRootLogin yes/g&#39; /etc/ssh/sshd_config \
+    &amp;&amp; sed -i &#39;s/\#PasswordAuthentication yes/PasswordAuthentication yes/g&#39; /etc/ssh/sshd_config \
+    &amp;&amp; echo &#39;root:root&#39; | chpasswd \
+    &amp;&amp; systemctl enable ssh \
+    &amp;&amp; service ssh start
+
+WORKDIR /src
+
+COPY linux-headers-5.10.0-21-amd64_5.10.162-1_amd64.deb linux-headers-5.10.0-21-amd64_5.10.162-1_amd64.deb
+COPY linux-headers-5.10.0-21-common_5.10.162-1_all.deb linux-headers-5.10.0-21-common_5.10.162-1_all.deb
+COPY linux-image-5.10.0-21-amd64-dbg_5.10.162-1_amd64.deb linux-image-5.10.0-21-amd64-dbg_5.10.162-1_amd64.deb
+COPY linux-image-5.10.0-21-amd64-unsigned_5.10.162-1_amd64.deb linux-image-5.10.0-21-amd64-unsigned_5.10.162-1_amd64.deb
+
+RUN unzip tool.zip \
+    &amp;&amp; dpkg -i linux-headers-5.10.0-21-common_5.10.162-1_all.deb \
+    &amp;&amp; dpkg -i linux-image-5.10.0-21-amd64-dbg_5.10.162-1_amd64.deb \
+	&amp;&amp; dpkg -i linux-headers-5.10.0-21-amd64_5.10.162-1_amd64.deb
+	
+RUN apt --fix-broken install \
+    &amp;&amp; apt install -y kmod linux-base initramfs-tools \
+	&amp;&amp; dpkg -i linux-image-5.10.0-21-amd64-unsigned_5.10.162-1_amd64.deb \
+	&amp;&amp; apt --fix-broken install -y \
+	&amp;&amp; dpkg -i linux-image-5.10.0-21-amd64-unsigned_5.10.162-1_amd64.deb
+
+WORKDIR /src/linux
+
+RUN echo &#39;MODULE_LICENSE(&#34;GPL&#34;);&#39; &gt;&gt; module.c &amp;&amp; \
+    sed -i &#39;s/$(shell uname -r)/5.10.0-21-amd64/g&#39; Makefile &amp;&amp; \
+    make &amp;&amp; \
+    mv module.dwarf /app
+
+CMD [&#34;/bin/bash&#34;]
+```
+
+```bash
+docker build --tag profile .
+docker run -p 2022:22  -it profile /bin/sh
+```
+
+SSH连接容器映射出来的端口，将 dwarf 文件复制出来，然后和之前的 systemmap 文件一起打包为 Debian_5.10.0-21-amd64_profile.zip
+
+最后将这个 zip 文件放到 ~/volatility/volatility/plugins/overlays/linux/ 路径下即可
+
+使用 vol.py --info | grep Profile | grep Linux 命令查看 profile 是否成功加载
+
+![](imgs/profile1.png)
+
+#### 制作  symbols(Vol3)  的详细过程
+
+**识别内存镜像的系统版本**
+
+```bash
+strings mem | grep -i &#39;Linux version&#39; | uniq
+```
+
+```bash
+Linux version 5.4.0-100-generic (buildd@lcy02-amd64-002) (gcc version 9.3.0 (Ubuntu 9.3.0-17ubuntu1~20.04)) 
+# 113-Ubuntu SMP Thu Feb 3 18:43:29 UTC 2022 (Ubuntu 5.4.0-100.113-generic 5.4.166)
+```
+
+然后要找到和这个系统版本一模一样的内核，注意一定要一模一样
+
+内核文件类似于下面这样
+
+```
+linux-image-unsigned-5.4.0-100-generic-dbgsym_5.4.0-100.113_amd64.ddeb
+```
+
+Ubuntu的内核可以去这个网站上找：https://launchpad.net/ubuntu/&#43;source/linux/5.4.0-100.113
+
+找到内核文件之后的操作可以使用作者写的 [Dockerfile](https://github.com/goodlunatic/Docker-SymbolsMaker-vol3) 辅助完成
+
+```dockerfile
+FROM ubuntu:20.04
+
+# 将环境设置为非交互环境
+ENV DEBIAN_FRONTEND=noninteractive
+
+COPY ./src/ /src/
+
+RUN sed -i &#39;s/archive.ubuntu.com/mirrors.ustc.edu.cn/g&#39; /etc/apt/sources.list \
+    &amp;&amp; sed -i &#39;s/security.ubuntu.com/mirrors.ustc.edu.cn/g&#39; /etc/apt/sources.list \
+	&amp;&amp; apt update --no-install-recommends\
+    &amp;&amp; apt install -y openssh-server gcc-10 dwarfdump build-essential unzip \
+    &amp;&amp; mkdir /app \
+    &amp;&amp; sed -i &#39;s/\#PermitRootLogin prohibit-password/PermitRootLogin yes/g&#39; /etc/ssh/sshd_config \
+    &amp;&amp; sed -i &#39;s/\#PasswordAuthentication yes/PasswordAuthentication yes/g&#39; /etc/ssh/sshd_config \
+    &amp;&amp; echo &#39;root:root&#39; | chpasswd \
+    &amp;&amp; systemctl enable ssh \
+    &amp;&amp; service ssh start
+
+WORKDIR /src
+
+# 这里的文件名需要根据系统版本进行修改
+COPY ./src/linux-image-unsigned-5.4.0-100-generic-dbgsym_5.4.0-100.113_amd64.ddeb linux-image-unsigned-5.4.0-100-generic-dbgsym_5.4.0-100.113_amd64.ddeb
+
+RUN dpkg -i linux-image-unsigned-5.4.0-100-generic-dbgsym_5.4.0-100.113_amd64.ddeb \
+    &amp;&amp; chmod &#43;x dwarf2json \
+    # 下面这里的文件名需要根据系统版本进行修改
+    &amp;&amp; ./dwarf2json linux --elf /usr/lib/debug/boot/vmlinux-5.4.0-100-generic &gt; linux-image-5.4.0-100-generic.json
+	
+
+CMD [&#34;/bin/bash&#34;]
+```
+
+```bash
+docker build --tag profile .
+docker run -p 2022:22  -it profile /bin/sh
+```
+
+SSH连接容器映射出来的端口，然后将json文件放到 volatility3/volatility3/framework/symbols/linux/ 目录下即可
+
+#### Volatility2
+
+**[官方文档](https://github.com/volatilityfoundation/volatility/wiki/Linux-Command-Reference)**
+
+```bash
+# 查看Profile是否载入成功
+vol.py --info | grep Profile | grep Linux
+# 查看内核和发行版信息
+vol.py -f mem --profile=LinuxDebian_5_10_0-21-amd64_profilex64 linux_banner
+# 查看命令行记录
+vol.py -f mem --profile=LinuxDebian_5_10_0-21-amd64_profilex64 linux_bash
+# 查看桌面上的文件
+vol.py -f 1.mem --profile=LinuxUbuntu_5_4_0-100-amd64_profilex64 linux_find_file -L | grep &#34;Desktop&#34;
+# 提取文件
+vol.py -f 1.mem --profile=LinuxUbuntu_5_4_0-100-amd64_profilex64 linux_find_file -i 0xffff9ce28fe300e8 -O
+# 恢复文件系统
+sudo python2 ~/volatility/vol.py -f mem --profile=LinuxUbuntu_5_4_0-100-amd64_profilex64 linux_recover_filesystem --dump-dir=./
+# 查看进程
+vol.py -f mem --profile=LinuxDebian_5_10_0-21-amd64_profilex64 linux_pslist
+# 查看进程打开的文件
+vol.py -f mem --profile=LinuxDebian_5_10_0-21-amd64_profilex64 linux_lsof
+# 查看正在运行的进程
+vol.py -f mem --profile=LinuxDebian_5_10_0-21-amd64_profilex64 linux_psaux
+# 查看网络状态
+vol.py -f mem --profile=LinuxDebian_5_10_0-21-amd64_profilex64 linux_netstat
+# 查看挂载了哪些文件系统
+vol.py -f mem --profile=LinuxDebian_5_10_0-21-amd64_profilex64 linux_mount
+# 查看已加载的内核模块
+vol.py -f mem --profile=LinuxDebian_5_10_0-21-amd64_profilex64 linux_lsmod
+# 查看隐藏的内核模块
+vol.py -f mem --profile=LinuxDebian_5_10_0-21-amd64_profilex64 linux_hidden_modules
+# 查看可疑的进程
+vol.py -f mem --profile=LinuxDebian_5_10_0-21-amd64_profilex64 linux_malfind
+# 恢复Truecrypt密钥(需要yara模块，然后使用上可能有点问题)
+vol.py -f mem --profile=LinuxDebian_5_10_0-21-amd64_profilex64 linux_truecrypt_passphrase
+# 在内存转储中打开一个shell
+vol.py -f mem --profile=LinuxDebian_5_10_0-21-amd64_profilex64 linux_volshell -v
+
+Volatility Foundation Volatility Framework 2.6.1
+WARNING : volatility.debug    : Overlay structure cpuinfo_x86 not present in vtypes
+WARNING : volatility.debug    : Overlay structure cpuinfo_x86 not present in vtypes
+Current context: process systemd, pid=1 DTB=0x2080000
+Welcome to volshell! Current memory image is:
+file:///mnt/c/Users/GoodLunatic/Desktop/1/mem
+To get help, type &#39;hh()&#39;
+&gt;&gt;&gt; hh()
+
+Use addrspace() for Kernel/Virtual AS
+Use addrspace().base for Physical AS
+Use proc() to get the current process object
+  and proc().get_process_address_space() for the current process AS
+  and proc().get_load_modules() for the current process DLLs
+
+addrspace()                              : Get the current kernel/virtual address space.
+cc(offset=None, pid=None, name=None, physical=False) : Change current shell context.
+db(address, length=128, space=None)      : Print bytes as canonical hexdump.
+dd(address, length=128, space=None)      : Print dwords at address.
+dis(address, length=128, space=None, mode=None) : Disassemble code at a given address.
+dq(address, length=128, space=None)      : Print qwords at address.
+dt(objct, address=None, space=None, recursive=False, depth=0) : Describe an object or show type info.
+find(needle, max=1, shift=0, skip=0, count=False, length=128) :
+getmods()                                : Generator for kernel modules (scripting).
+getprocs()                               : Generator of process objects (scripting).
+hh(cmd=None)                             : Get help on a command.
+list_entry(head, objname, offset=-1, fieldname=None, forward=True, space=None) : Traverse a _LIST_ENTRY.
+modules()                                : Print loaded modules in a table view.
+proc()                                   : Get the current process object.
+ps()                                     : Print active processes in a table view.
+sc()                                     : Show the current context.
+For help on a specific command, type &#39;hh(&lt;command&gt;)&#39;
+```
+
+#### Volatility3
+
+```bash
+# 查看当前都有哪些 Profile 可用
+vol3.py IsfInfo | grep linux
+# 查看bash历史记录
+vol3.py -f 1.mem linux.bash
+# 扫描进程
+vol3.py -f 1.mem linux.pslist
+# 列出子进程
+vol3.py -f 1.mem linux.pstree
+# 扫描文件
+```
+
+```
+    linux.bash.Bash     Recovers bash command history from memory.
+    linux.capabilities.Capabilities
+                        Lists process capabilities
+    linux.check_afinfo.Check_afinfo
+                        Verifies the operation function pointers of network protocols.
+    linux.check_creds.Check_creds
+                        Checks if any processes are sharing credential structures
+    linux.check_idt.Check_idt
+                        Checks if the IDT has been altered
+    linux.check_modules.Check_modules
+                        Compares module list to sysfs info, if available
+    linux.check_syscall.Check_syscall
+                        Check system call table for hooks.
+    linux.elfs.Elfs     Lists all memory mapped ELF files for all processes.
+    linux.envars.Envars
+    linux.envvars.Envvars
+                        Lists processes with their environment variables
+    linux.iomem.IOMem   Generates an output similar to /proc/iomem on a running system.
+    linux.keyboard_notifiers.Keyboard_notifiers
+                        Parses the keyboard notifier call chain
+    linux.kmsg.Kmsg     Kernel log buffer reader
+    linux.lsmod.Lsmod   Lists loaded kernel modules.
+    linux.lsof.Lsof     Lists all memory maps for all processes.
+    linux.malfind.Malfind
+                        Lists process memory ranges that potentially contain injected code.
+    linux.mountinfo.MountInfo
+                        Lists mount points on processes mount namespaces
+    linux.proc.Maps     Lists all memory maps for all processes.
+    linux.psaux.PsAux   Lists processes with their command line arguments
+    linux.pslist.PsList
+                        Lists the processes present in a particular linux memory image.
+    linux.psscan.PsScan
+                        Scans for processes present in a particular linux image.
+    linux.pstree.PsTree
+                        Plugin for listing processes in a tree based on their parent process ID.
+    linux.sockstat.Sockstat
+                        Lists all network connections for all processes.
+    linux.tty_check.tty_check
+                        Checks tty devices for hooks
+```
+
+### MacOS内存取证
+
+#### Volatility2
+
+
+
+#### Volatility3
+
+
+
+### 识别不出内存镜像版本的取证
+
+直接使用 010 手搓或者用 Strings 命令把可打印字符保存到文本文件中再手搓
+
+需要从内存中找到 AES 解密的 key 的情况：可以使用 findaes.exe 工具辅助查找
+
+![](imgs/findaes.png)
+
+### 用来制作内存镜像的工具
+
+1、Volatility
+2、FTK Imager
+3、Magnet RAM Capture
+4、Belkasoft Live RAM Capturer
+5、WinPMEM
+6、Rekall
+7、DumpIt
+8、OSForensics
+
+### dmp文件
+
+1、拉入Passware Kit Forensic-Memory Analysis进行分析（用户名和密码）
+
+2、使用vol分析
+
+### dump文件
+
+```
+&#34;dmp&#34; 通常特指 Windows 的崩溃转储文件，而 &#34;dump&#34; 是一个更为通用的术语，可以用于描述各种数据转储操作或文件。
+```
+
+取证方法大致和dmp文件相同
+
+### mem文件
+
+```bash
+vol.py -f mem imageinfo
+```
+
+### raw文件
+
+可以直接使用 vol2 或者 vol3 进行内存取证
+
+## 磁盘取证
+
+Tips：1、同一个镜像文件，不同的密码可以挂载出不同的盘，里面的数据也不同
+
+### VeraCrypt
+
+解密&amp;挂载磁盘的步骤：
+
+1.选择要挂载的加密盘，然后选择一个没有被占用的盘符再点击左下角的加载
+
+![](imgs/VeraCrypt1-17142941155649.png)
+
+2.输入加密盘的密钥，或者直接使用密钥文件(图片文件也可以)
+
+​	如果这里加载失败，可以点击下面的加密卷工具，把密钥给改了，然后使用自己更改后的密钥挂载
+
+### 取证大师
+
+没啥好说的，直接把硬盘镜像文件拉进去梭就行
+
+### fat文件
+
+```
+FAT格式： 即FAT16,这是MS－DOS和最早期的Win 95操作系统中最常见的磁盘分区格式。它采用16位的文件分配表，能支持最大为2GB的分区，几乎所有的操作系统都支持这一种格式。
+```
+
+1、可以使用veracrypt挂载到本地，然后用资源管理器打开
+
+2、如果挂载后资源管理器打不开，可以使用winhex-工具-打开磁盘查看
+
+### VMDK文件
+
+可以用Imdisk挂载到本地
+
+1、可以使用Diskgenius-磁盘-打开虚拟磁盘文件
+
+2、可以使用Imdisk挂载到本地，然后用everything进行搜索
+
+3、可以使用7zip打开然后解压缩
+
+4、可以使用FTK、Vera挂载 
+
+### E01文件
+
+1、若有BitLocker加密并提供了内存镜像，就拉入Passware Kit Forensic-Decrypt Disk-BitLocker进行爆破解密
+
+​	  解密后会得到一个G-decrypted.dd，然后用 FTK image 打开
+
+2、提供的 E01 文件可能有好几部分，BitLocker加密的密钥可能藏在其中一部分中，建议用 FTK image 查看一下
+
+​	  FTK image 直接提取文件可能会有点问题（加密压缩包、根目录文件看不到），建议还是直接 mount 到本地然后再提取
+
+### ad1文件
+
+ad1文件是用 FTKimage 制作的磁盘镜像，因此可以使用 FTKimage 进行挂载
+
+### vhd文件
+
+vhd 是 Virtual Hard Disk 虚拟磁盘的缩写，是一种用于存储虚拟机磁盘镜像的文件格式
+
+可以在 Windows 系统下直接挂载，也可以拉入 DiskGenius  打开查看
+
+### 磁盘取证的一些思路
+
+### 查看Powershell的历史记录
+
+用户的powershell历史记录会保存在这个路径下
+\Users\test\AppData\Roaming\Microsoft\Windows\PowerShell\PSReadLine\ConsoleHost_history.txt
+
+
+## 网站取证
+
+1、直接拿D_safe扫描可疑文件
+
+## 服务器取证
+
+硬盘镜像文件后缀: .qcow2
+
+### Mysql5.7 数据库从qp.xb文件恢复数据
+
+需要安装并使用qpress和xtrabackup
+
+```bash
+wget &#34;http://docs-aliyun.cn-hangzhou.oss.aliyun-inc.com/assets/attach/183466/cn_zh/1608011575185/qpress-11-linux-x64.tar&#34;
+wget https://www.percona.com/downloads/XtraBackup/Percona-XtraBackup-2.4.9/binary/redhat/7/x86_64/percona-xtrabackup-24-2.4.9-1.el7.x86_64.rpm
+```
+
+```bash
+chmod 775 qpress
+cp qpress /usr/bin
+
+cat filename.xb | xbstream -x -v -C /www/server/data
+cd /www/server/data
+innobackupex --decompress --remove-original /www/server/data 
+#下一步可能会报错，但是不影响
+innobackupex --defaults-file=/etc/my.cnf --apply-log /www/server/data
+# 修改该目录所属的用户和用户组
+chown -R mysql:mysql /www/server/data
+```
+
+## 其他
+
+### 1、磁盘恢复
+
+拉到 kali 中用 extundelete
+
+extundelete --restore-all disk-image
+
+之后在所在目录会生成一个恢复文件
+
+### 2、浏览器登录凭证破解
+
+Firefox登录凭证破解
+
+使用[Firepwd工具](https://github.com/lclevy/firepwd)破解，将key4.db、logins.json复制到firepwd目录下，用firepwd.py破解
+
+```python
+python firepwd.py logins.json
+```
+
+### 3、DPAPI破解
+
+Windows DPAPI 是一种用于在 Windows 操作系统中存储和保护用户敏感数据的加密技术。它可以用于加密密码、证书、浏览器凭据等用户数据。
+
+可以使用 DPAPImk2john.py 将这个数据转换为 john 可识别的格式，然后使用 john 爆破
+
+![](imgs/DPAPI1.png)
+
+![](imgs/DPAPI2.png)
+
+DPAPI的应用：
+
+    1、EFS文件加密(Cipher)
+    2、存储无线连接密码
+    3、Windows凭据管理器
+    4、IE&amp;Chrome Browser
+    5、Windows CardSpace
+    6、Windows Vault
+
+### 4、VeraCrypt加密
+
+用 VeraCrypt 解密并挂载即可，加密的密钥可能是一串密码，也可能是某个文件
+
+### 5、TrueCeypt加密
+
+TrueCrypt 的加密卷也可以使用 VeraCrypt 解密并挂载，只要把模式调整成 TrueCrypt 即可
+
+### 6、Encfs加密
+
+在windows下用 Encfs4win 来挂载即可，解密这个加密卷，需要 .encfs6.xml和解密的密码
+
+例题-2024 NKCTF cain_is_hacker
+
+### 7、GPG / PGP 加密
+
+这个加密可以使用 Linux 下的 GPG 解密，也可以使用 Windows 下的 Kleopatra 解密
+
+Linux 下解密的流程如下
+
+```bash
+# 导入公钥和私钥，导入私钥的时候需要输入密码
+gpg --import ciscnctf.asc
+gpg --import ciscn2016.asc
+# 使用 gpg 解密，这里解密的时候还需要再输入一次密码
+gpg --decrypt SECRET.docx.pgp &gt; decryptfile
+# 查看已经导入的密钥
+gpg --list-keys
+# 删除密钥，这里需要先删除私钥再删除公钥
+# 删除私钥
+gpg --delete-secret-keys ciscnctf2016@gmail.com
+#删除公钥
+gpg --delete-keys CISCN2016@gmail.com
+```
+
+例题1-i春秋 Pretty Good Privacy
+
+例题2-2024 CISCN初赛 Tough-DNS
+### 8、Cipher加密
+
+Windows自带的 Cipher 加密（EFS加密算法）
+
+直接使用 Advanced efs data recovery 解密即可，解密需要密钥和密码
+
+例题-2024 DubheCTF Cipher
+
+
+---
+
+> Author: [Lunatic](https://goodlunatic.github.io)  
+> URL: http://localhost:1313/posts/761da51/  
+

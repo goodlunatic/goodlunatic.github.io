@@ -1,0 +1,93 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title>Misc - Tag - ⚡Lunatic BLOG⚡</title>
+    <link>http://localhost:1313/tags/misc/</link>
+    <description>Misc - Tag | ⚡Lunatic BLOG⚡</description>
+    <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>goodlunatic0@gmail.com (Lunatic)</managingEditor>
+      <webMaster>goodlunatic0@gmail.com (Lunatic)</webMaster><lastBuildDate>Tue, 10 Sep 2024 20:30:17 &#43;0800</lastBuildDate><atom:link href="http://localhost:1313/tags/misc/" rel="self" type="application/rss+xml" /><item>
+  <title>CTF-Misc Guide</title>
+  <link>http://localhost:1313/posts/1ad9200/</link>
+  <pubDate>Tue, 10 Sep 2024 20:30:17 &#43;0800</pubDate>
+  <author>Lunatic</author>
+  <guid>http://localhost:1313/posts/1ad9200/</guid>
+  <description><![CDATA[<p><strong>This is a simple Guide for CTF in Misc Area.</strong></p>]]></description>
+</item>
+<item>
+  <title>2024 羊城杯网络安全大赛 Misc Writeup</title>
+  <link>http://localhost:1313/posts/4a27616/</link>
+  <pubDate>Wed, 28 Aug 2024 16:44:56 &#43;0800</pubDate>
+  <author>Lunatic</author>
+  <guid>http://localhost:1313/posts/4a27616/</guid>
+  <description><![CDATA[<p>有段时间没有做CTF题了，感觉有些生疏了都，很可惜赛中差一题就能AK了</p>
+<p>因此这个愿望只能留给学弟去实现了，之后可能真正能好好打CTF的机会也不多了吧</p>]]></description>
+</item>
+<item>
+  <title>2024 DASCTF 暑期挑战赛 Misc Writeup</title>
+  <link>http://localhost:1313/posts/067cfbd/</link>
+  <pubDate>Fri, 26 Jul 2024 14:57:40 &#43;0800</pubDate>
+  <author>Lunatic</author>
+  <guid>http://localhost:1313/posts/067cfbd/</guid>
+  <description><![CDATA[<p>这场比赛开始的时候去成都线下打国赛决赛了</p>
+<p>现在才有时间回来复现，发现这场比赛的Misc题出的都挺好的</p>]]></description>
+</item>
+<item>
+  <title>2023 春秋杯冬季赛 Misc Writeup</title>
+  <link>http://localhost:1313/posts/5de0d7e/</link>
+  <pubDate>Wed, 17 Jul 2024 20:31:08 &#43;0800</pubDate>
+  <author>Lunatic</author>
+  <guid>http://localhost:1313/posts/5de0d7e/</guid>
+  <description><![CDATA[<p>后来再回头看自己当初没做出来的题，也是感触颇深</p>]]></description>
+</item>
+<item>
+  <title>2024 WKCTF Misc Writeup</title>
+  <link>http://localhost:1313/posts/2125dc5/</link>
+  <pubDate>Wed, 17 Jul 2024 11:17:04 &#43;0800</pubDate>
+  <author>Lunatic</author>
+  <guid>http://localhost:1313/posts/2125dc5/</guid>
+  <description><![CDATA[<p>忙里偷闲，稍微打了一下 2024WKCTF 练练手</p>]]></description>
+</item>
+<item>
+  <title>Misc-Network Traffic Analysis</title>
+  <link>http://localhost:1313/posts/5422d65/</link>
+  <pubDate>Sat, 06 Jul 2024 18:15:27 &#43;0800</pubDate>
+  <author>Lunatic</author>
+  <guid>http://localhost:1313/posts/5422d65/</guid>
+  <description><![CDATA[<p><strong>This is a Simple Guide for Network Traffic Analysis.</strong></p>]]></description>
+</item>
+<item>
+  <title>Misc-Forensics</title>
+  <link>http://localhost:1313/posts/761da51/</link>
+  <pubDate>Sat, 06 Jul 2024 16:34:12 &#43;0800</pubDate>
+  <author>Lunatic</author>
+  <guid>http://localhost:1313/posts/761da51/</guid>
+  <description><![CDATA[<p><strong>This is a simple summary of digital forensics .</strong></p>]]></description>
+</item>
+<item>
+  <title>2024 “天一永安杯”宁波市赛初赛 Misc Writeup</title>
+  <link>http://localhost:1313/posts/9d73413/</link>
+  <pubDate>Mon, 06 May 2024 14:53:14 &#43;0800</pubDate>
+  <author>Lunatic</author>
+  <guid>http://localhost:1313/posts/9d73413/</guid>
+  <description><![CDATA[<p>宁波市赛的 Misc 还是一如既往的抽象 @_@</p>
+<p>还是太菜了，赛中只做出了一道 Misc</p>]]></description>
+</item>
+<item>
+  <title>Misc-Blind WaterMark</title>
+  <link>http://localhost:1313/posts/f0ec4d6/</link>
+  <pubDate>Sat, 04 May 2024 14:35:57 &#43;0800</pubDate>
+  <author>Lunatic</author>
+  <guid>http://localhost:1313/posts/f0ec4d6/</guid>
+  <description><![CDATA[<p>最近做 Misc 题的时候经常碰到盲水印的题目，虽然可以使用B神的 Puzzle Solver 一把梭
+但是还是打算深入学习一下</p>]]></description>
+</item>
+<item>
+  <title>2024 NKCTF Misc Writeup</title>
+  <link>http://localhost:1313/posts/e0d44f3/</link>
+  <pubDate>Tue, 30 Apr 2024 19:07:38 &#43;0800</pubDate>
+  <author>Lunatic</author>
+  <guid>http://localhost:1313/posts/e0d44f3/</guid>
+  <description><![CDATA[<p><strong>从这场比赛可以看出自己还是有很多东西需要去学</strong><br>
+<strong>感觉 Misc 很大程度上还是看经验，自己见过的东西还是太少了</strong></p>]]></description>
+</item>
+</channel>
+</rss>
