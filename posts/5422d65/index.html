@@ -265,7 +265,7 @@
 <p><img loading="lazy" src="imgs/N1.png" alt="imgs/N1.png" srcset="imgs/N1.png?size=small, imgs/N1.png?size=medium 1.5x, imgs/N1.png?size=large 2x" data-title="imgs/N1.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <h2 id="tshark使用教程" class="heading-element">
   <a href="#tshark%e4%bd%bf%e7%94%a8%e6%95%99%e7%a8%8b" class="heading-mark"></a>tshark使用教程</h2><p>导出流量包中所有POST数据包的data数据</p>
-<div class="highlight" id="id-1"><div class="chroma">
+<div class="highlight" id="id-3"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -281,7 +281,7 @@
 </span></span><span class="line"><span class="cl"><span class="c1"># -e http.file_data: 输出HTTP负载的数据。</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>导出HTTP数据包中所有的数据</p>
-<div class="highlight" id="id-2"><div class="chroma">
+<div class="highlight" id="id-4"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
@@ -289,7 +289,7 @@
 <pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">tshark -r 1.pcapng -Y <span class="s2">&#34;http&#34;</span> -T fields -e http.file_data &gt; data.txt</span></span></code></pre></td></tr></table>
 </div>
 </div><p>可以使用 uniq 参数去除重复行</p>
-<div class="highlight" id="id-3"><div class="chroma">
+<div class="highlight" id="id-5"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
@@ -310,7 +310,7 @@
 <h3 id="4有时候可能需要分版本分别导出" class="heading-element">
   <a href="#4%e6%9c%89%e6%97%b6%e5%80%99%e5%8f%af%e8%83%bd%e9%9c%80%e8%a6%81%e5%88%86%e7%89%88%e6%9c%ac%e5%88%86%e5%88%ab%e5%af%bc%e5%87%ba" class="heading-mark"></a>4、有时候可能需要分版本分别导出</h3><h3 id="5可能可以直接搜索flag明文或者编码加密过的flag" class="heading-element">
   <a href="#5%e5%8f%af%e8%83%bd%e5%8f%af%e4%bb%a5%e7%9b%b4%e6%8e%a5%e6%90%9c%e7%b4%a2flag%e6%98%8e%e6%96%87%e6%88%96%e8%80%85%e7%bc%96%e7%a0%81%e5%8a%a0%e5%af%86%e8%bf%87%e7%9a%84flag" class="heading-mark"></a>5、可能可以直接搜索flag明文或者编码加密过的flag</h3><p>搜索flag脚本，待改进。。。</p>
-<div class="highlight" id="id-4"><div class="chroma">
+<div class="highlight" id="id-6"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -463,7 +463,7 @@
 <h3 id="键盘流量分析" class="heading-element">
   <a href="#%e9%94%ae%e7%9b%98%e6%b5%81%e9%87%8f%e5%88%86%e6%9e%90" class="heading-mark"></a>键盘流量分析</h3><p>例题5：键盘流量分析</p>
 <p>先在wsl或者别的虚拟机中用tshark提取数据</p>
-<div class="highlight" id="id-5"><div class="chroma">
+<div class="highlight" id="id-7"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -481,7 +481,7 @@
 </span></span><span class="line"><span class="cl"><span class="c1"># 在sed中使用正则表达式过滤掉所有空行（其中 ^\s*$ 匹配空行，`d` 表示删除）</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>Tips：老版本的tshark提取数据是有冒号的，新版本就没有冒号了，所以需要我们自己添加冒号</p>
-<div class="highlight" id="id-6"><div class="chroma">
+<div class="highlight" id="id-8"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -525,7 +525,7 @@
 </span></span><span class="line"><span class="cl"><span class="n">fi</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>加完冒号以后我们就可以直接用脚本翻译数据了</p>
-<div class="highlight" id="id-7"><div class="chroma">
+<div class="highlight" id="id-9"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -626,7 +626,7 @@
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;output :&#39;</span> <span class="o">+</span> <span class="s2">&#34;&#34;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">output</span><span class="p">))</span></span></span></code></pre></td></tr></table>
 </div>
-</div><div class="highlight" id="id-8"><div class="chroma">
+</div><div class="highlight" id="id-10"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -685,7 +685,7 @@
 <h3 id="鼠标流量" class="heading-element">
   <a href="#%e9%bc%a0%e6%a0%87%e6%b5%81%e9%87%8f" class="heading-mark"></a>鼠标流量</h3><p>例题6：键盘流量分析</p>
 <p>前两步和键盘流量一样，提取数据并加冒号，但是这里要注意判断数据的长度</p>
-<div class="highlight" id="id-9"><div class="chroma">
+<div class="highlight" id="id-1"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -729,7 +729,7 @@
 </span></span><span class="line"><span class="cl"><span class="n">fi</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>根据加完冒号的数据获取坐标</p>
-<div class="highlight" id="id-10"><div class="chroma">
+<div class="highlight" id="id-2"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -785,7 +785,7 @@
 </span></span><span class="line"><span class="cl"><span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>之后可以用gnuplot或者用python脚本画图</p>
-<div class="highlight" id="id-11"><div class="chroma">
+<div class="highlight" id="id-3"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -794,7 +794,7 @@
 <pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1">#gnuplot画图命令</span>
 </span></span><span class="line"><span class="cl">gnuplot&gt; plot <span class="s2">&#34;xy.txt&#34;</span></span></span></code></pre></td></tr></table>
 </div>
-</div><div class="highlight" id="id-12"><div class="chroma">
+</div><div class="highlight" id="id-4"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -820,7 +820,7 @@
 <p><strong>三、用脚本添加冒号</strong></p>
 <p><strong>四、翻译文字并处理或者提取坐标画图</strong></p>
 <h2 id="数位板流量分析" class="heading-element">
-  <a href="#%e6%95%b0%e4%bd%8d%e6%9d%bf%e6%b5%81%e9%87%8f%e5%88%86%e6%9e%90" class="heading-mark"></a>数位板流量分析：</h2><div class="highlight" id="id-13"><div class="chroma">
+  <a href="#%e6%95%b0%e4%bd%8d%e6%9d%bf%e6%b5%81%e9%87%8f%e5%88%86%e6%9e%90" class="heading-mark"></a>数位板流量分析：</h2><div class="highlight" id="id-5"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -838,7 +838,7 @@
 </span></span><span class="line"><span class="cl"><span class="c1"># 在sed中使用正则表达式过滤掉所有空行（其中 ^\s*$ 匹配空行，`d` 表示删除）</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>类似于：</p>
-<div class="highlight" id="id-14"><div class="chroma">
+<div class="highlight" id="id-6"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -875,7 +875,7 @@
 <p>例如：</p>
 <p>08803708951e000000000000这个数据，0x3708是x坐标信息，0x951e是y坐标信息，但是由于数据为小端序储存，实际x坐标为0x0837，y坐标为0x1e95。</p>
 <p>分析数据，分为压感和低压感的数据，直接用CTFD中的脚本跑出坐标并画图</p>
-<div class="highlight" id="id-15"><div class="chroma">
+<div class="highlight" id="id-7"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -904,7 +904,7 @@
 </span></span><span class="line"><span class="cl"><span class="n">keys</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl"><span class="n">result</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></span></span></code></pre></td></tr></table>
 </div>
-</div><div class="highlight" id="id-16"><div class="chroma">
+</div><div class="highlight" id="id-8"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -949,7 +949,7 @@
   <a href="#%e5%93%a5%e6%96%af%e6%8b%89%e6%b5%81%e9%87%8f%e5%88%86%e6%9e%90" class="heading-mark"></a>哥斯拉流量分析</h3><h4 id="303版本" class="heading-element">
   <a href="#303%e7%89%88%e6%9c%ac" class="heading-mark"></a>3.03版本</h4><p>哥斯拉的连接需要填写密码和密钥，加密过程中使用的是密钥MD5的前16位</p>
 <p><strong>Request解密脚本</strong></p>
-<div class="highlight" id="id-17"><div class="chroma">
+<div class="highlight" id="id-9"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -989,7 +989,7 @@
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">echo</span> <span class="nx">gzdecode</span><span class="p">(</span><span class="nx">encode</span><span class="p">(</span><span class="nx">base64_decode</span><span class="p">(</span><span class="nx">urldecode</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)),</span> <span class="nv">$key</span><span class="p">));</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p><strong>Response解密脚本</strong></p>
-<div class="highlight" id="id-18"><div class="chroma">
+<div class="highlight" id="id-10"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1024,7 +1024,7 @@
 </div>
 </div><p><strong>解密的例子</strong></p>
 <p>request解密</p>
-<div class="highlight" id="id-19"><div class="chroma">
+<div class="highlight" id="id-11"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -1042,7 +1042,7 @@
 </span></span></span><span class="line"><span class="cl"><span class="sd">execCommand**/</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>Response解密</p>
-<div class="highlight" id="id-20"><div class="chroma">
+<div class="highlight" id="id-12"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -1070,7 +1070,7 @@
 <p>1、路径base64字符串需要去除前两个字符后再解码</p>
 <p>2、响应数据的头尾有额外的字符，需要先去除然后再base64解码</p>
 <p>蚁剑webshell样本</p>
-<div class="highlight" id="id-21"><div class="chroma">
+<div class="highlight" id="id-13"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1255,7 +1255,7 @@
 </div><p>这里总结一下我手动分析蚁剑流量的步骤：</p>
 <p>1、首先url解码请求包，然后base64解码其中的php文件和该文件执行的命令</p>
 <p>2、找到php文件中asoutput函数的标识字符串</p>
-<div class="highlight" id="id-22"><div class="chroma">
+<div class="highlight" id="id-14"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -1283,7 +1283,7 @@
 <h3 id="cobalstrike流量分析" class="heading-element">
   <a href="#cobalstrike%e6%b5%81%e9%87%8f%e5%88%86%e6%9e%90" class="heading-mark"></a>CobalStrike流量分析</h3><p>先从流量包中导出key文件</p>
 <p>然后在 cs-scripts中运行 python3 parse_beacon_keys.py 得到私钥</p>
-<div class="highlight" id="id-23"><div class="chroma">
+<div class="highlight" id="id-15"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1318,7 +1318,7 @@
 </div>
 </div><p>在数据包的HTTP请求中获得Cookie，然后修改CS_Decrypt中的 Beacon_metadata_RSA_Decrypt.py 的私钥和Cookie</p>
 <p>运行即可得到 AES和HMAC key</p>
-<div class="highlight" id="id-24"><div class="chroma">
+<div class="highlight" id="id-16"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -1341,14 +1341,14 @@
 NTLMv2 Response是从ntlmProofStr开始，因此从NTLMv2的响应中要删除ntlmProofStr。</p>
 <p>最后，在过滤器中输入ntlmssp.ntlmserverchallenge，查找NTLM Server Challenge字段，通常这个数据包是在NTLM_Auth数据包之前，将该值作为十六进制字符串复制到文本文档。</p>
 <p>把上面三部分的参数按以下格式保存到hash.txt</p>
-<div class="highlight" id="id-25"><div class="chroma">
+<div class="highlight" id="id-17"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">username::domain:ServerChallenge:NTproofstring:modifiedntlmv2response</span></span></code></pre></td></tr></table>
 </div>
-</div><div class="highlight" id="id-26"><div class="chroma">
+</div><div class="highlight" id="id-18"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
@@ -1356,14 +1356,14 @@ NTLMv2 Response是从ntlmProofStr开始，因此从NTLMv2的响应中要删除nt
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">administrator::WIN2008:9a88373dbb4f5e36:4eb74543b9962bb2ca36e938909bb930:0101000000000000d23c83f972f7d9015e866dc6343b804400000000020008004800410043004b000100040044004300040010006800610063006b002e0063006f006d0003001600440043002e006800610063006b002e0063006f006d00050010006800610063006b002e0063006f006d0007000800d23c83f972f7d9010600040002000000080030003000000000000000000000000030000046fc5f0d124bc9b99b5b560c14cd7c7e217f08f22ef5f223679ec2c576230fa30a001000000000000000000000000000000000000900240063006900660073002f003100390032002e003100360038002e00310036002e0031003000000000000000000000000000</span></span></code></pre></td></tr></table>
 </div>
 </div><p>最后使用 hashcat 进行爆破</p>
-<div class="highlight" id="id-27"><div class="chroma">
+<div class="highlight" id="id-19"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">hashcat -m 5600 hash.txt rockyou.txt</span></span></code></pre></td></tr></table>
 </div>
-</div><div class="highlight" id="id-28"><div class="chroma">
+</div><div class="highlight" id="id-20"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -1375,14 +1375,14 @@ NTLMv2 Response是从ntlmProofStr开始，因此从NTLMv2的响应中要删除nt
 </div><h3 id="提取-ntlmv2-哈希值并破解http协议" class="heading-element">
   <a href="#%e6%8f%90%e5%8f%96-ntlmv2-%e5%93%88%e5%b8%8c%e5%80%bc%e5%b9%b6%e7%a0%b4%e8%a7%a3http%e5%8d%8f%e8%ae%ae" class="heading-mark"></a>提取 NTLMv2 哈希值并破解（HTTP协议）</h3><p>大致步骤和SMB协议的差不多，就是NTLM信息放在了 hypertext transport protocol 中
 按照之前的步骤提取出来，然后 hashcat 爆破即可</p>
-<div class="highlight" id="id-29"><div class="chroma">
+<div class="highlight" id="id-21"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">username::domain:ServerChallenge:NTproofstring:modifiedntlmv2response</span></span></code></pre></td></tr></table>
 </div>
-</div><div class="highlight" id="id-30"><div class="chroma">
+</div><div class="highlight" id="id-22"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
@@ -1429,7 +1429,7 @@ NTLMv2 Response是从ntlmProofStr开始，因此从NTLMv2的响应中要删除nt
 </blockquote>
 <h4 id="例题1-hngk-modbus流量分析" class="heading-element">
   <a href="#%e4%be%8b%e9%a2%981-hngk-modbus%e6%b5%81%e9%87%8f%e5%88%86%e6%9e%90" class="heading-mark"></a>例题1 HNGK-Modbus流量分析</h4><p>使用下面这个过滤器命令即可得到 flag</p>
-<div class="highlight" id="id-31"><div class="chroma">
+<div class="highlight" id="id-23"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
@@ -1453,7 +1453,7 @@ Userdata：用户自定义数据区，也包含功能指令</p>
 因此，我们将所有带有二进制数据的数据包都过滤出来，发现一些Job的数据包中也有二进制数据
 <img loading="lazy" src="imgs/image-20240430112312109.png" alt="imgs/image-20240430112312109.png" srcset="imgs/image-20240430112312109.png?size=small, imgs/image-20240430112312109.png?size=medium 1.5x, imgs/image-20240430112312109.png?size=large 2x" data-title="imgs/image-20240430112312109.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>
 然后我们尝试将所有带有二进制数据的Job数据包都过滤出来并导出特定分组，过滤器代码如下</p>
-<div class="highlight" id="id-32"><div class="chroma">
+<div class="highlight" id="id-24"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
@@ -1462,7 +1462,7 @@ Userdata：用户自定义数据区，也包含功能指令</p>
 </div>
 </div><p><img loading="lazy" src="imgs/image-20240430112740044.png" alt="imgs/image-20240430112740044.png" srcset="imgs/image-20240430112740044.png?size=small, imgs/image-20240430112740044.png?size=medium 1.5x, imgs/image-20240430112740044.png?size=large 2x" data-title="imgs/image-20240430112740044.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>然后使用 tshark 提取数据</p>
-<div class="highlight" id="id-33"><div class="chroma">
+<div class="highlight" id="id-25"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
@@ -1477,7 +1477,7 @@ Userdata：用户自定义数据区，也包含功能指令</p>
 使用过滤器过滤出传了 s7comm.resp.data 字段数据但数据不是 66 的 S7 数据包
 发现了疑似 flag 的数据，为了防止 flag 中含有 f 字符而被过滤
 因此我们使用下面这个过滤命令进行过滤，然后导出特定分组</p>
-<div class="highlight" id="id-34"><div class="chroma">
+<div class="highlight" id="id-26"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
@@ -1488,7 +1488,7 @@ Userdata：用户自定义数据区，也包含功能指令</p>
 <h4 id="例题3-枢网智盾2021异常流分析" class="heading-element">
   <a href="#%e4%be%8b%e9%a2%983-%e6%9e%a2%e7%bd%91%e6%99%ba%e7%9b%be2021%e5%bc%82%e5%b8%b8%e6%b5%81%e5%88%86%e6%9e%90" class="heading-mark"></a>例题3 枢网智盾2021—异常流分析</h4><p>打开流量包，发现很多 S7comm 流量，然后稍微过滤一下，发现是写入数据的流量
 然后写入的数据几乎都是 ffff 开头的，因此我们直接查看不是 ffff 开头的数据</p>
-<div class="highlight" id="id-35"><div class="chroma">
+<div class="highlight" id="id-27"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
@@ -1497,7 +1497,7 @@ Userdata：用户自定义数据区，也包含功能指令</p>
 </div>
 </div><p>即可得到 flag：flag{ffad28a0ce69db34751f}</p>
 <h4 id="例题4-枢网智盾2021工控协议分析" class="heading-element">
-  <a href="#%e4%be%8b%e9%a2%984-%e6%9e%a2%e7%bd%91%e6%99%ba%e7%9b%be2021%e5%b7%a5%e6%8e%a7%e5%8d%8f%e8%ae%ae%e5%88%86%e6%9e%90" class="heading-mark"></a>例题4 枢网智盾2021—工控协议分析</h4><div class="highlight" id="id-36"><div class="chroma">
+  <a href="#%e4%be%8b%e9%a2%984-%e6%9e%a2%e7%bd%91%e6%99%ba%e7%9b%be2021%e5%b7%a5%e6%8e%a7%e5%8d%8f%e8%ae%ae%e5%88%86%e6%9e%90" class="heading-mark"></a>例题4 枢网智盾2021—工控协议分析</h4><div class="highlight" id="id-28"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
@@ -1534,7 +1534,7 @@ flag{hncome66!}</p>
 <p>例题-DDCTF2018 流量分析</p>
 <p>直接在 TLS 加载 RSA 私钥解密即可</p>
 <p>私钥的格式如下：</p>
-<div class="highlight" id="id-37"><div class="chroma">
+<div class="highlight" id="id-29"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1572,14 +1572,14 @@ flag{hncome66!}</p>
 </div><p>例题-2024铁三初赛 流量分析</p>
 <h2 id="icmp流量分析" class="heading-element">
   <a href="#icmp%e6%b5%81%e9%87%8f%e5%88%86%e6%9e%90" class="heading-mark"></a>ICMP流量分析</h2><p>flag 可能藏在每一帧的长度中</p>
-<div class="highlight" id="id-38"><div class="chroma">
+<div class="highlight" id="id-30"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">tshark -r 1.pcapng -Y &#34;icmp&#34; -T fields -e frame.len | uniq &gt; data.txt</span></span></code></pre></td></tr></table>
 </div>
-</div><div class="highlight" id="id-39"><div class="chroma">
+</div><div class="highlight" id="id-31"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -1600,7 +1600,7 @@ flag{hncome66!}</p>
 <h2 id="vpn流量分析" class="heading-element">
   <a href="#vpn%e6%b5%81%e9%87%8f%e5%88%86%e6%9e%90" class="heading-mark"></a>VPN流量分析</h2><h3 id="shadowsocks流量分析" class="heading-element">
   <a href="#shadowsocks%e6%b5%81%e9%87%8f%e5%88%86%e6%9e%90" class="heading-mark"></a>Shadowsocks流量分析</h3><p>例题-2023强网杯-谍影重重3.0</p>
-<div class="highlight" id="id-40"><div class="chroma">
+<div class="highlight" id="id-32"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1718,7 +1718,7 @@ flag{hncome66!}</p>
 在参考链接：https://gitee.com/wangmin-gf/ads-b 看到了与tcp.payload中相似的数据
 使用tshark提取出流量包中的数据，然后使用这个脚本批量解密找speed最快的即可</p>
 <p>tshark -r attach.pcapng -T fields -e &ldquo;tcp.payload&rdquo; | sed &lsquo;/^\s*$/d&rsquo; &gt; tshark.txt</p>
-<div class="highlight" id="id-41"><div class="chroma">
+<div class="highlight" id="id-33"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -1741,7 +1741,7 @@ flag{hncome66!}</p>
 </span></span><span class="line"><span class="cl">        <span class="n">res</span> <span class="o">=</span> <span class="n">pyModeS</span><span class="o">.</span><span class="n">tell</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">strip</span><span class="p">()[</span><span class="mi">18</span><span class="p">:</span><span class="mi">46</span><span class="p">])</span>
 </span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;===========================================================================&#34;</span><span class="p">)</span></span></span></code></pre></td></tr></table>
 </div>
-</div><div class="highlight" id="id-42"><div class="chroma">
+</div><div class="highlight" id="id-34"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
