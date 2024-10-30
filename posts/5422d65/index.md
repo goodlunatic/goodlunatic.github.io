@@ -179,6 +179,10 @@ flag(file_lt,flag_txt)
 ```bash
 #提取数据的命令，这里用正则表达式剔除了空行
 tshark -r usb.pcapng -T fields -e usb.capdata | sed &#39;/^\s*$/d&#39; &gt; usbdata.txt
+# -r 指定了需要读取的文件
+# -T 表示仅仅输出所选字段
+# -e 指定提取的字段
+# 在sed中使用正则表达式过滤掉所有空行（其中 ^\s*$ 匹配空行，`d` 表示删除）
 ```
 
 Tips：老版本的tshark提取数据是有冒号的，新版本就没有冒号了，所以需要我们自己添加冒号
@@ -375,15 +379,16 @@ plt.show()
 
 **四、翻译文字并处理或者提取坐标画图**
 
-
-
 ## 数位板流量分析：
 
-先导出数据
-
-tshark -r hard_Digital_plate.pcapng -T fields -e usbhid.data | sed &#39;/^\s*$/d&#39; &gt; out.txt
-
-\#提取并去除空行
+```bash
+# 先导出数据并去除空行
+tshark -r hard_Digital_plate.pcapng -T fields -e usb.capdata | sed &#39;/^\s*$/d&#39; &gt; out.txt
+# -r 指定了需要读取的文件
+# -T 表示仅仅输出所选字段
+# -e 指定提取的字段
+# 在sed中使用正则表达式过滤掉所有空行（其中 ^\s*$ 匹配空行，`d` 表示删除）
+```
 
 类似于：
 

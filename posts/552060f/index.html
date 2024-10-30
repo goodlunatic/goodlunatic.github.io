@@ -19,21 +19,20 @@
   <meta property="og:site_name" content="⚡Lunatic BLOG⚡">
   <meta property="og:title" content="Preparation For Programming Proficiency Exam">
   <meta property="og:description" content="时间过得真快呀，回想上次做算法题应该是大一的时候了
-没想到现在回过头来，依旧需要重新拾起自己的算法功底">
+没想到现在回过头来，依旧需要重新拾起自己的算法功底
+">
   <meta property="og:locale" content="en">
   <meta property="og:type" content="article">
-    <meta property="article:section" content="posts">
+  <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2024-09-08T21:35:29+08:00">
     <meta property="article:modified_time" content="2024-09-08T21:35:29+08:00">
     <meta property="article:tag" content="Skills">
-
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Preparation For Programming Proficiency Exam">
-  <meta name="twitter:description" content="时间过得真快呀，回想上次做算法题应该是大一的时候了
+<meta name="twitter:card" content="summary"><meta name="twitter:title" content="Preparation For Programming Proficiency Exam">
+<meta name="twitter:description" content="时间过得真快呀，回想上次做算法题应该是大一的时候了
 没想到现在回过头来，依旧需要重新拾起自己的算法功底">
       <meta name="twitter:site" content="@https://twitter.com/goodlunatic007">
 <meta name="application-name" content="FixIt">
-<meta name="apple-mobile-web-app-title" content="FixIt"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="https://www.nssctf.cn/files/2024/4/28/8fdad6c6ee.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="http://localhost:1313/posts/552060f/" /><link rel="prev" href="http://localhost:1313/posts/4a27616/" /><link rel="next" href="http://localhost:1313/posts/1ad9200/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
+<meta name="apple-mobile-web-app-title" content="FixIt"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="https://www.nssctf.cn/files/2024/4/28/8fdad6c6ee.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="http://localhost:1313/posts/552060f/" /><link rel="prev" href="http://localhost:1313/posts/4a27616/" /><link rel="next" href="http://localhost:1313/posts/690000000000000000000000000000000000000000000000000000000000000/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
   {
@@ -545,232 +544,232 @@
 <p>没想到现在回过头来，依旧需要重新拾起自己的算法功底</p>
 <h2 id="输入与输出" class="heading-element">
   <a href="#%e8%be%93%e5%85%a5%e4%b8%8e%e8%be%93%e5%87%ba" class="heading-mark"></a>输入与输出</h2><table>
-  <thead>
-      <tr>
-          <th style="text-align: left">函数</th>
-          <th style="text-align: left">用法</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td style="text-align: left"><code>scanf()</code></td>
-          <td style="text-align: left">默认是以空白字符（空格、制表符、换行符）为分隔，当有多组样例的时候，可以使用<code>while(scanf(&quot;%d&quot;,&amp;a)!=EOF)</code>来进行多组样例的输入</td>
-      </tr>
-      <tr>
-          <td style="text-align: left"><code>getchar()</code></td>
-          <td style="text-align: left">从标准输入流中读取一个字符，常用来处理上一行末尾留下的换行符</td>
-      </tr>
-      <tr>
-          <td style="text-align: left"><code>fgets()</code></td>
-          <td style="text-align: left"><code>fgets(a,MAX_LEN,stdin);</code>读取一整行的文本，末尾会多一个换行符；可使用<code>str[strcspn(str, &quot;\n&quot;)] = '\0';</code>进行处理</td>
-      </tr>
-      <tr>
-          <td style="text-align: left"><code>cin.getline()</code></td>
-          <td style="text-align: left"><code>cin.getline(str, MAXN);</code> 其中 str 是 <code>char[]</code>，读取一整行的文本，末尾没有换行符</td>
-      </tr>
-      <tr>
-          <td style="text-align: left"><code>getline()</code></td>
-          <td style="text-align: left"><code>getline(cin,str)</code>其中 str 是 <code>string str</code>，读取一整行的文本，末尾没有换行符</td>
-      </tr>
-      <tr>
-          <td style="text-align: left"><code>sprintf()</code></td>
-          <td style="text-align: left"><code>sprintf(s, &quot;Integer: %d, Float: %.2f&quot;, num, fnum);</code>用于将格式化的数据写入到一个字符串中</td>
-      </tr>
-      <tr>
-          <td style="text-align: left"><code>istringstream iss(str)</code></td>
-          <td style="text-align: left">流化一个字符串，从一个字符串中读取数据，包含在<code>#include &lt;sstream&gt;</code> 文件头中</td>
-      </tr>
-      <tr>
-          <td style="text-align: left"></td>
-          <td style="text-align: left"></td>
-      </tr>
-      <tr>
-          <td style="text-align: left"></td>
-          <td style="text-align: left"></td>
-      </tr>
-  </tbody>
+<thead>
+<tr>
+<th>函数</th>
+<th>用法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>scanf()</code></td>
+<td>默认是以空白字符（空格、制表符、换行符）为分隔，当有多组样例的时候，可以使用<code>while(scanf(&quot;%d&quot;,&amp;a)!=EOF)</code>来进行多组样例的输入</td>
+</tr>
+<tr>
+<td><code>getchar()</code></td>
+<td>从标准输入流中读取一个字符，常用来处理上一行末尾留下的换行符</td>
+</tr>
+<tr>
+<td><code>fgets()</code></td>
+<td><code>fgets(a,MAX_LEN,stdin);</code>读取一整行的文本，末尾会多一个换行符；可使用<code>str[strcspn(str, &quot;\n&quot;)] = '\0';</code>进行处理</td>
+</tr>
+<tr>
+<td><code>cin.getline()</code></td>
+<td><code>cin.getline(str, MAXN);</code> 其中 str 是 <code>char[]</code>，读取一整行的文本，末尾没有换行符</td>
+</tr>
+<tr>
+<td><code>getline()</code></td>
+<td><code>getline(cin,str)</code>其中 str 是 <code>string str</code>，读取一整行的文本，末尾没有换行符</td>
+</tr>
+<tr>
+<td><code>sprintf()</code></td>
+<td><code>sprintf(s, &quot;Integer: %d, Float: %.2f&quot;, num, fnum);</code>用于将格式化的数据写入到一个字符串中</td>
+</tr>
+<tr>
+<td><code>istringstream iss(str)</code></td>
+<td>流化一个字符串，从一个字符串中读取数据，包含在<code>#include &lt;sstream&gt;</code> 文件头中</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody>
 </table>
 <h2 id="一些函数" class="heading-element">
   <a href="#%e4%b8%80%e4%ba%9b%e5%87%bd%e6%95%b0" class="heading-mark"></a>一些函数</h2><h3 id="字符串相关的一些函数" class="heading-element">
   <a href="#%e5%ad%97%e7%ac%a6%e4%b8%b2%e7%9b%b8%e5%85%b3%e7%9a%84%e4%b8%80%e4%ba%9b%e5%87%bd%e6%95%b0" class="heading-mark"></a>字符串相关的一些函数</h3><table>
-  <thead>
-      <tr>
-          <th style="text-align: left">函数</th>
-          <th style="text-align: left">用法</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td style="text-align: left"><code>substr(pos,len)</code></td>
-          <td style="text-align: left"><code>s.substr(pos,len)</code>返回从字符串的 <code>pos</code> 位置开始，长度为 <code>len</code> 的子字符串</td>
-      </tr>
-      <tr>
-          <td style="text-align: left"><code>sprintf(字符数组,格式串,变量)</code></td>
-          <td style="text-align: left">将变量按格式字符串的格式写入到字符数组</td>
-      </tr>
-      <tr>
-          <td style="text-align: left"><code>sscanf(字符数组,格式串,&amp;变量)</code></td>
-          <td style="text-align: left">从字符数组中按格式串提取变量，返回成功提取的变量数量</td>
-      </tr>
-      <tr>
-          <td style="text-align: left"><code>strcspn(str,&quot;\\n&quot;)</code></td>
-          <td style="text-align: left">返回字符串 str 中第一个出现的字符 \n 的位置</td>
-      </tr>
-      <tr>
-          <td style="text-align: left"><code>strcmp(s1,s2)</code></td>
-          <td style="text-align: left">比较两个字符串的字典序大小, 如果<code>s1=s2</code>返回0, <code>s1&gt;s2</code>返回正值, <code>s1&lt;s2</code>返回负值</td>
-      </tr>
-      <tr>
-          <td style="text-align: left"><code>strcat(s1,s2)</code></td>
-          <td style="text-align: left">将字符串<code>s2</code>拼接到<code>s1</code>后面</td>
-      </tr>
-      <tr>
-          <td style="text-align: left"><code>strcpy(s1,s2)</code></td>
-          <td style="text-align: left">将字符串s2复制到字符串s1中</td>
-      </tr>
-      <tr>
-          <td style="text-align: left"><code>string.erase(pos,len)</code></td>
-          <td style="text-align: left"><code>.erase()</code> 是 <code>string</code> 类型的成员函数,用于删除从 <code>pos</code> 开始长度为 <code>len</code> 的字符串</td>
-      </tr>
-      <tr>
-          <td style="text-align: left"><code>stoi(str)</code></td>
-          <td style="text-align: left">将 <code>string</code> 类型的字符串转换为 <code>int</code> 类型，并且<code>stoi</code> 会隐式地将 <code>char</code> 数组转换为 <code>string</code>，然后再转换为整数</td>
-      </tr>
-      <tr>
-          <td style="text-align: left"><code>to_string()</code></td>
-          <td style="text-align: left">用于将各种基本数据类型（如 <code>int、float、double、long </code>等）转换为字符串<code>string</code></td>
-      </tr>
-      <tr>
-          <td style="text-align: left"><code>remove()</code></td>
-          <td style="text-align: left"><code>remove(token.begin(), token.end(), ' ')</code>将所有空格元素移动到末尾，并返回第一个空格的迭代器</td>
-      </tr>
-      <tr>
-          <td style="text-align: left"><code>atoi()</code></td>
-          <td style="text-align: left">用于将字符串表示的整数转换为实际的整数值<code>const char *str = &quot;12345&quot;; int num = atoi(str);</code></td>
-      </tr>
-      <tr>
-          <td style="text-align: left"><code>stoi()</code></td>
-          <td style="text-align: left">用于将字符串转换为整数<code>string str = &quot;12345&quot;;int num = stoi(str);</code></td>
-      </tr>
-      <tr>
-          <td style="text-align: left"><code>stod()</code></td>
-          <td style="text-align: left">用于将字符串转换为双精度浮点数<code>string str = &quot;123.456&quot;;double num = stod(str);</code></td>
-      </tr>
-      <tr>
-          <td style="text-align: left"><code>to_string()</code></td>
-          <td style="text-align: left">用于将数值类型（如整数、浮点数等）转换为 <code>string</code> 类型</td>
-      </tr>
-  </tbody>
+<thead>
+<tr>
+<th>函数</th>
+<th>用法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>substr(pos,len)</code></td>
+<td><code>s.substr(pos,len)</code>返回从字符串的 <code>pos</code> 位置开始，长度为 <code>len</code> 的子字符串</td>
+</tr>
+<tr>
+<td><code>sprintf(字符数组,格式串,变量)</code></td>
+<td>将变量按格式字符串的格式写入到字符数组</td>
+</tr>
+<tr>
+<td><code>sscanf(字符数组,格式串,&amp;变量)</code></td>
+<td>从字符数组中按格式串提取变量，返回成功提取的变量数量</td>
+</tr>
+<tr>
+<td><code>strcspn(str,&quot;\\n&quot;)</code></td>
+<td>返回字符串 str 中第一个出现的字符 \n 的位置</td>
+</tr>
+<tr>
+<td><code>strcmp(s1,s2)</code></td>
+<td>比较两个字符串的字典序大小, 如果<code>s1=s2</code>返回0, <code>s1&gt;s2</code>返回正值, <code>s1&lt;s2</code>返回负值</td>
+</tr>
+<tr>
+<td><code>strcat(s1,s2)</code></td>
+<td>将字符串<code>s2</code>拼接到<code>s1</code>后面</td>
+</tr>
+<tr>
+<td><code>strcpy(s1,s2)</code></td>
+<td>将字符串s2复制到字符串s1中</td>
+</tr>
+<tr>
+<td><code>string.erase(pos,len)</code></td>
+<td><code>.erase()</code> 是 <code>string</code> 类型的成员函数,用于删除从 <code>pos</code> 开始长度为 <code>len</code> 的字符串</td>
+</tr>
+<tr>
+<td><code>stoi(str)</code></td>
+<td>将 <code>string</code> 类型的字符串转换为 <code>int</code> 类型，并且<code>stoi</code> 会隐式地将 <code>char</code> 数组转换为 <code>string</code>，然后再转换为整数</td>
+</tr>
+<tr>
+<td><code>to_string()</code></td>
+<td>用于将各种基本数据类型（如 <code>int、float、double、long </code>等）转换为字符串<code>string</code></td>
+</tr>
+<tr>
+<td><code>remove()</code></td>
+<td><code>remove(token.begin(), token.end(), ' ')</code>将所有空格元素移动到末尾，并返回第一个空格的迭代器</td>
+</tr>
+<tr>
+<td><code>atoi()</code></td>
+<td>用于将字符串表示的整数转换为实际的整数值<code>const char *str = &quot;12345&quot;; int num = atoi(str);</code></td>
+</tr>
+<tr>
+<td><code>stoi()</code></td>
+<td>用于将字符串转换为整数<code>string str = &quot;12345&quot;;int num = stoi(str);</code></td>
+</tr>
+<tr>
+<td><code>stod()</code></td>
+<td>用于将字符串转换为双精度浮点数<code>string str = &quot;123.456&quot;;double num = stod(str);</code></td>
+</tr>
+<tr>
+<td><code>to_string()</code></td>
+<td>用于将数值类型（如整数、浮点数等）转换为 <code>string</code> 类型</td>
+</tr>
+</tbody>
 </table>
 <h3 id="c的stl中一些常用的库函数" class="heading-element">
   <a href="#c%e7%9a%84stl%e4%b8%ad%e4%b8%80%e4%ba%9b%e5%b8%b8%e7%94%a8%e7%9a%84%e5%ba%93%e5%87%bd%e6%95%b0" class="heading-mark"></a>C++的STL中一些常用的库函数</h3><h4 id="vector-数组" class="heading-element">
   <a href="#vector-%e6%95%b0%e7%bb%84" class="heading-mark"></a>vector 数组</h4><table>
-  <thead>
-      <tr>
-          <th style="text-align: left">成员函数</th>
-          <th style="text-align: left">用法</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td style="text-align: left"><code>size()</code></td>
-          <td style="text-align: left">返回数组当前包含的元素数量</td>
-      </tr>
-      <tr>
-          <td style="text-align: left"><code>empty()</code></td>
-          <td style="text-align: left">检查当前的数组是否为空, 是则返回<code>true</code>, 否则返回<code>false</code></td>
-      </tr>
-      <tr>
-          <td style="text-align: left"><code>push_back()</code></td>
-          <td style="text-align: left">在数组末尾添加一个元素</td>
-      </tr>
-      <tr>
-          <td style="text-align: left"><code>pop_back()</code></td>
-          <td style="text-align: left">删除数组末尾最后一个元素</td>
-      </tr>
-      <tr>
-          <td style="text-align: left"><code>erase(pos,len)</code></td>
-          <td style="text-align: left">删除数组从下标<code>pos</code>开始长度为<code>len</code>的元素</td>
-      </tr>
-      <tr>
-          <td style="text-align: left"><code>front()</code></td>
-          <td style="text-align: left">返回数组第一个元素的引用</td>
-      </tr>
-      <tr>
-          <td style="text-align: left"><code>back()</code></td>
-          <td style="text-align: left">返回数组最后一个元素的引用</td>
-      </tr>
-      <tr>
-          <td style="text-align: left"><code>begin()</code></td>
-          <td style="text-align: left">返回数组第一个元素的迭代器</td>
-      </tr>
-      <tr>
-          <td style="text-align: left"><code>end()</code></td>
-          <td style="text-align: left">返回数组最后一个元素后一个位置的迭代器</td>
-      </tr>
-      <tr>
-          <td style="text-align: left"><code>clear()</code></td>
-          <td style="text-align: left">清空数组</td>
-      </tr>
-      <tr>
-          <td style="text-align: left"><code>vector&lt;int&gt; v(10)</code></td>
-          <td style="text-align: left">初始化一个长度为10,元素默认为0的vector</td>
-      </tr>
-      <tr>
-          <td style="text-align: left"><code>vector&lt;int&gt; v(10,5)</code></td>
-          <td style="text-align: left">初始化一个长度为10,元素默认为5的vector</td>
-      </tr>
-  </tbody>
+<thead>
+<tr>
+<th>成员函数</th>
+<th>用法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>size()</code></td>
+<td>返回数组当前包含的元素数量</td>
+</tr>
+<tr>
+<td><code>empty()</code></td>
+<td>检查当前的数组是否为空, 是则返回<code>true</code>, 否则返回<code>false</code></td>
+</tr>
+<tr>
+<td><code>push_back()</code></td>
+<td>在数组末尾添加一个元素</td>
+</tr>
+<tr>
+<td><code>pop_back()</code></td>
+<td>删除数组末尾最后一个元素</td>
+</tr>
+<tr>
+<td><code>erase(pos,len)</code></td>
+<td>删除数组从下标<code>pos</code>开始长度为<code>len</code>的元素</td>
+</tr>
+<tr>
+<td><code>front()</code></td>
+<td>返回数组第一个元素的引用</td>
+</tr>
+<tr>
+<td><code>back()</code></td>
+<td>返回数组最后一个元素的引用</td>
+</tr>
+<tr>
+<td><code>begin()</code></td>
+<td>返回数组第一个元素的迭代器</td>
+</tr>
+<tr>
+<td><code>end()</code></td>
+<td>返回数组最后一个元素后一个位置的迭代器</td>
+</tr>
+<tr>
+<td><code>clear()</code></td>
+<td>清空数组</td>
+</tr>
+<tr>
+<td><code>vector&lt;int&gt; v(10)</code></td>
+<td>初始化一个长度为10,元素默认为0的vector</td>
+</tr>
+<tr>
+<td><code>vector&lt;int&gt; v(10,5)</code></td>
+<td>初始化一个长度为10,元素默认为5的vector</td>
+</tr>
+</tbody>
 </table>
 <h4 id="map-关联容器" class="heading-element">
   <a href="#map-%e5%85%b3%e8%81%94%e5%ae%b9%e5%99%a8" class="heading-mark"></a>map 关联容器</h4><blockquote>
 <p><code>map</code>会自动按照键值排序</p>
 </blockquote>
 <table>
-  <thead>
-      <tr>
-          <th style="text-align: left">成员函数</th>
-          <th style="text-align: left">用法</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td style="text-align: left"><code>size()</code></td>
-          <td style="text-align: left">返回容器当前包含元素的数量</td>
-      </tr>
-      <tr>
-          <td style="text-align: left"><code>empty()</code></td>
-          <td style="text-align: left">检查当前的数组是否为空, 是则返回<code>true</code>, 否则返回<code>false</code></td>
-      </tr>
-      <tr>
-          <td style="text-align: left"><code>begin()</code></td>
-          <td style="text-align: left">返回数组第一个元素的迭代器</td>
-      </tr>
-      <tr>
-          <td style="text-align: left"><code>end()</code></td>
-          <td style="text-align: left">返回数组最后一个元素后一个位置的迭代器</td>
-      </tr>
-      <tr>
-          <td style="text-align: left"><code>insert()</code></td>
-          <td style="text-align: left">可以插入一个<code>pair</code></td>
-      </tr>
-      <tr>
-          <td style="text-align: left"><code>find()</code></td>
-          <td style="text-align: left">若找到该元素则返回指向该元素的迭代器，否侧返回<code>.end()</code></td>
-      </tr>
-      <tr>
-          <td style="text-align: left"><code>lower_bound()</code></td>
-          <td style="text-align: left">返回大于等于x的最小的数的迭代器</td>
-      </tr>
-      <tr>
-          <td style="text-align: left"><code>upper_bound()</code></td>
-          <td style="text-align: left">返回大于x的最小的数的迭代器</td>
-      </tr>
-      <tr>
-          <td style="text-align: left"><code>clear()</code></td>
-          <td style="text-align: left">清空容器</td>
-      </tr>
-  </tbody>
+<thead>
+<tr>
+<th>成员函数</th>
+<th>用法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>size()</code></td>
+<td>返回容器当前包含元素的数量</td>
+</tr>
+<tr>
+<td><code>empty()</code></td>
+<td>检查当前的数组是否为空, 是则返回<code>true</code>, 否则返回<code>false</code></td>
+</tr>
+<tr>
+<td><code>begin()</code></td>
+<td>返回数组第一个元素的迭代器</td>
+</tr>
+<tr>
+<td><code>end()</code></td>
+<td>返回数组最后一个元素后一个位置的迭代器</td>
+</tr>
+<tr>
+<td><code>insert()</code></td>
+<td>可以插入一个<code>pair</code></td>
+</tr>
+<tr>
+<td><code>find()</code></td>
+<td>若找到该元素则返回指向该元素的迭代器，否侧返回<code>.end()</code></td>
+</tr>
+<tr>
+<td><code>lower_bound()</code></td>
+<td>返回大于等于x的最小的数的迭代器</td>
+</tr>
+<tr>
+<td><code>upper_bound()</code></td>
+<td>返回大于x的最小的数的迭代器</td>
+</tr>
+<tr>
+<td><code>clear()</code></td>
+<td>清空容器</td>
+</tr>
+</tbody>
 </table>
 <div class="highlight" id="id-1"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -799,38 +798,38 @@
 </div>
 </div><h4 id="queue-队列" class="heading-element">
   <a href="#queue-%e9%98%9f%e5%88%97" class="heading-mark"></a>queue 队列</h4><table>
-  <thead>
-      <tr>
-          <th style="text-align: left">成员函数</th>
-          <th style="text-align: left">用法</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td style="text-align: left"><code>size()</code></td>
-          <td style="text-align: left">返回队列长度</td>
-      </tr>
-      <tr>
-          <td style="text-align: left"><code>empty()</code></td>
-          <td style="text-align: left">返回队列是否为空</td>
-      </tr>
-      <tr>
-          <td style="text-align: left"><code>push()</code></td>
-          <td style="text-align: left">向队尾插入一个元素</td>
-      </tr>
-      <tr>
-          <td style="text-align: left"><code>front()</code></td>
-          <td style="text-align: left">返回队头元素</td>
-      </tr>
-      <tr>
-          <td style="text-align: left"><code>back()</code></td>
-          <td style="text-align: left">返回队尾元素</td>
-      </tr>
-      <tr>
-          <td style="text-align: left"><code>pop()</code></td>
-          <td style="text-align: left">弹出队头元素</td>
-      </tr>
-  </tbody>
+<thead>
+<tr>
+<th>成员函数</th>
+<th>用法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>size()</code></td>
+<td>返回队列长度</td>
+</tr>
+<tr>
+<td><code>empty()</code></td>
+<td>返回队列是否为空</td>
+</tr>
+<tr>
+<td><code>push()</code></td>
+<td>向队尾插入一个元素</td>
+</tr>
+<tr>
+<td><code>front()</code></td>
+<td>返回队头元素</td>
+</tr>
+<tr>
+<td><code>back()</code></td>
+<td>返回队尾元素</td>
+</tr>
+<tr>
+<td><code>pop()</code></td>
+<td>弹出队头元素</td>
+</tr>
+</tbody>
 </table>
 <div class="highlight" id="id-3"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -867,26 +866,26 @@
   <a href="#priority_queue-%e4%bc%98%e5%85%88%e9%98%9f%e5%88%97" class="heading-mark"></a>priority_queue 优先队列</h4><p>默认定义的话就是大根堆 <code>priority_queue&lt;int&gt; heap;</code></p>
 <p>如果需要定义小根堆的话 <code>priority_queue&lt;int, vector&lt;int&gt;, greater&lt;int &gt;&gt; heap</code></p>
 <table>
-  <thead>
-      <tr>
-          <th style="text-align: left">成员函数</th>
-          <th style="text-align: left">用法</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td style="text-align: left"><code>push()</code></td>
-          <td style="text-align: left">插入一个元素</td>
-      </tr>
-      <tr>
-          <td style="text-align: left"><code>top()</code></td>
-          <td style="text-align: left">返回堆顶元素</td>
-      </tr>
-      <tr>
-          <td style="text-align: left"><code>pop()</code></td>
-          <td style="text-align: left">弹出堆顶元素</td>
-      </tr>
-  </tbody>
+<thead>
+<tr>
+<th>成员函数</th>
+<th>用法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>push()</code></td>
+<td>插入一个元素</td>
+</tr>
+<tr>
+<td><code>top()</code></td>
+<td>返回堆顶元素</td>
+</tr>
+<tr>
+<td><code>pop()</code></td>
+<td>弹出堆顶元素</td>
+</tr>
+</tbody>
 </table>
 <div class="highlight" id="id-4"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -952,34 +951,34 @@
 <p><code>stack&lt;int&gt; stk;</code></p>
 </blockquote>
 <table>
-  <thead>
-      <tr>
-          <th style="text-align: left">成员函数</th>
-          <th style="text-align: left">用法</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td style="text-align: left"><code>push()</code></td>
-          <td style="text-align: left">将元素压入栈顶</td>
-      </tr>
-      <tr>
-          <td style="text-align: left"><code>pop()</code></td>
-          <td style="text-align: left">移除栈顶元素</td>
-      </tr>
-      <tr>
-          <td style="text-align: left"><code>top()</code></td>
-          <td style="text-align: left">访问栈顶元素</td>
-      </tr>
-      <tr>
-          <td style="text-align: left"><code>empty()</code></td>
-          <td style="text-align: left">判断栈是否为空</td>
-      </tr>
-      <tr>
-          <td style="text-align: left"><code>size()</code></td>
-          <td style="text-align: left">返回栈中的元素数量</td>
-      </tr>
-  </tbody>
+<thead>
+<tr>
+<th>成员函数</th>
+<th>用法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>push()</code></td>
+<td>将元素压入栈顶</td>
+</tr>
+<tr>
+<td><code>pop()</code></td>
+<td>移除栈顶元素</td>
+</tr>
+<tr>
+<td><code>top()</code></td>
+<td>访问栈顶元素</td>
+</tr>
+<tr>
+<td><code>empty()</code></td>
+<td>判断栈是否为空</td>
+</tr>
+<tr>
+<td><code>size()</code></td>
+<td>返回栈中的元素数量</td>
+</tr>
+</tbody>
 </table>
 <h4 id="set-关联容器" class="heading-element">
   <a href="#set-%e5%85%b3%e8%81%94%e5%ae%b9%e5%99%a8" class="heading-mark"></a>set 关联容器</h4><blockquote>
@@ -987,50 +986,50 @@
 <code>set&lt;int&gt; s;</code></p>
 </blockquote>
 <table>
-  <thead>
-      <tr>
-          <th style="text-align: left">成员函数</th>
-          <th style="text-align: left">用法</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td style="text-align: left"><code>insert()</code></td>
-          <td style="text-align: left">将元素插入到集合中</td>
-      </tr>
-      <tr>
-          <td style="text-align: left"><code>erase()</code></td>
-          <td style="text-align: left">删除指定元素, 参数可以是一个元素, 也可以是一个迭代器</td>
-      </tr>
-      <tr>
-          <td style="text-align: left"><code>find()</code></td>
-          <td style="text-align: left">查找指定元素, 并返回指向该元素的迭代器, 如果找不到则返回 <code>set.end()</code>, 可以通过 <code>*it</code> 来访问元素</td>
-      </tr>
-      <tr>
-          <td style="text-align: left"><code>size()</code></td>
-          <td style="text-align: left">返回集合中的元素数量</td>
-      </tr>
-      <tr>
-          <td style="text-align: left"><code>count()</code></td>
-          <td style="text-align: left">判断某个元素是否存在, 返回0或1</td>
-      </tr>
-      <tr>
-          <td style="text-align: left"><code>clear()</code></td>
-          <td style="text-align: left">清空集合</td>
-      </tr>
-      <tr>
-          <td style="text-align: left"><code>lower_bound()</code></td>
-          <td style="text-align: left">返回大于等于x的最小的数的迭代器</td>
-      </tr>
-      <tr>
-          <td style="text-align: left"><code>upper_bound()</code></td>
-          <td style="text-align: left">返回大于x的最小的数的迭代器</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">set的遍历</td>
-          <td style="text-align: left"></td>
-      </tr>
-  </tbody>
+<thead>
+<tr>
+<th>成员函数</th>
+<th>用法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>insert()</code></td>
+<td>将元素插入到集合中</td>
+</tr>
+<tr>
+<td><code>erase()</code></td>
+<td>删除指定元素, 参数可以是一个元素, 也可以是一个迭代器</td>
+</tr>
+<tr>
+<td><code>find()</code></td>
+<td>查找指定元素, 并返回指向该元素的迭代器, 如果找不到则返回 <code>set.end()</code>, 可以通过 <code>*it</code> 来访问元素</td>
+</tr>
+<tr>
+<td><code>size()</code></td>
+<td>返回集合中的元素数量</td>
+</tr>
+<tr>
+<td><code>count()</code></td>
+<td>判断某个元素是否存在, 返回0或1</td>
+</tr>
+<tr>
+<td><code>clear()</code></td>
+<td>清空集合</td>
+</tr>
+<tr>
+<td><code>lower_bound()</code></td>
+<td>返回大于等于x的最小的数的迭代器</td>
+</tr>
+<tr>
+<td><code>upper_bound()</code></td>
+<td>返回大于x的最小的数的迭代器</td>
+</tr>
+<tr>
+<td>set的遍历</td>
+<td></td>
+</tr>
+</tbody>
 </table>
 <div class="highlight" id="id-6"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -1054,81 +1053,81 @@
 </div><h4 id="bitset-模板类" class="heading-element">
   <a href="#bitset-%e6%a8%a1%e6%9d%bf%e7%b1%bb" class="heading-mark"></a>bitset 模板类</h4><p>定义 <code>bitset&lt;10000&gt; S</code>;</p>
 <table>
-  <thead>
-      <tr>
-          <th style="text-align: left">成员函数</th>
-          <th style="text-align: left">用法</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td style="text-align: left"><code>count()</code></td>
-          <td style="text-align: left">返回有多少个1</td>
-      </tr>
-      <tr>
-          <td style="text-align: left"><code>any()</code></td>
-          <td style="text-align: left">判断是否至少有一个1</td>
-      </tr>
-      <tr>
-          <td style="text-align: left"><code>none()</code></td>
-          <td style="text-align: left">判断是否全为0</td>
-      </tr>
-      <tr>
-          <td style="text-align: left"><code>set()</code></td>
-          <td style="text-align: left">把所有位置置为1</td>
-      </tr>
-      <tr>
-          <td style="text-align: left"><code>set(k,v)</code></td>
-          <td style="text-align: left">将第k位置成v</td>
-      </tr>
-      <tr>
-          <td style="text-align: left"><code>reset()</code></td>
-          <td style="text-align: left">把所有位置成0</td>
-      </tr>
-      <tr>
-          <td style="text-align: left"><code>flip()</code></td>
-          <td style="text-align: left">等价于~</td>
-      </tr>
-      <tr>
-          <td style="text-align: left"><code>flip(k)</code></td>
-          <td style="text-align: left">把第k位取反</td>
-      </tr>
-  </tbody>
+<thead>
+<tr>
+<th>成员函数</th>
+<th>用法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>count()</code></td>
+<td>返回有多少个1</td>
+</tr>
+<tr>
+<td><code>any()</code></td>
+<td>判断是否至少有一个1</td>
+</tr>
+<tr>
+<td><code>none()</code></td>
+<td>判断是否全为0</td>
+</tr>
+<tr>
+<td><code>set()</code></td>
+<td>把所有位置置为1</td>
+</tr>
+<tr>
+<td><code>set(k,v)</code></td>
+<td>将第k位置成v</td>
+</tr>
+<tr>
+<td><code>reset()</code></td>
+<td>把所有位置成0</td>
+</tr>
+<tr>
+<td><code>flip()</code></td>
+<td>等价于~</td>
+</tr>
+<tr>
+<td><code>flip(k)</code></td>
+<td>把第k位取反</td>
+</tr>
+</tbody>
 </table>
 <h4 id="查找相关的函数" class="heading-element">
   <a href="#%e6%9f%a5%e6%89%be%e7%9b%b8%e5%85%b3%e7%9a%84%e5%87%bd%e6%95%b0" class="heading-mark"></a>查找相关的函数</h4><table>
-  <thead>
-      <tr>
-          <th style="text-align: left">函数</th>
-          <th style="text-align: left">用法</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td style="text-align: left"><code>find(iterator first, iterator last, const T&amp; value);</code></td>
-          <td style="text-align: left">在范围内<strong>线性查找</strong>第一个等于给定值的元素, 并返回迭代器</td>
-      </tr>
-      <tr>
-          <td style="text-align: left"><code>binary_search(iterator first, iterator last, const T&amp; value);</code></td>
-          <td style="text-align: left">检查一个值是否存在于一个已排序的范围中, 并返回 <code>bool</code> 类型的结果</td>
-      </tr>
-      <tr>
-          <td style="text-align: left"><code>lower_bound(iterator first, iterator last, const T&amp; value);</code></td>
-          <td style="text-align: left">用于在有序序列中查找第一个不小于 <code>value</code> 的元素, 并返回迭代器, 获取具体下标需要减去 <code>begin()</code></td>
-      </tr>
-      <tr>
-          <td style="text-align: left"><code>upper_bound(iterator first, iterator last, const T&amp; value);</code></td>
-          <td style="text-align: left">用于在有序序列中查找第一个严格大于 <code>value</code> 的元素, 并返回迭代器, 获取具体下标需要减去 <code>begin()</code></td>
-      </tr>
-      <tr>
-          <td style="text-align: left"><code>equal_range(iterator first, iterator last, const T&amp; value);</code></td>
-          <td style="text-align: left">查找范围 <code>[first, last)</code> 中所有等于给定值的元素的区间, 返回一个 <code>pair</code> , <code>first</code> 指向第一个等于值的元素, <code>second</code>指向最后一个等于值的元素的<strong>后一个位置</strong></td>
-      </tr>
-      <tr>
-          <td style="text-align: left"></td>
-          <td style="text-align: left"></td>
-      </tr>
-  </tbody>
+<thead>
+<tr>
+<th>函数</th>
+<th>用法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>find(iterator first, iterator last, const T&amp; value);</code></td>
+<td>在范围内<strong>线性查找</strong>第一个等于给定值的元素, 并返回迭代器</td>
+</tr>
+<tr>
+<td><code>binary_search(iterator first, iterator last, const T&amp; value);</code></td>
+<td>检查一个值是否存在于一个已排序的范围中, 并返回 <code>bool</code> 类型的结果</td>
+</tr>
+<tr>
+<td><code>lower_bound(iterator first, iterator last, const T&amp; value);</code></td>
+<td>用于在有序序列中查找第一个不小于 <code>value</code> 的元素, 并返回迭代器, 获取具体下标需要减去 <code>begin()</code></td>
+</tr>
+<tr>
+<td><code>upper_bound(iterator first, iterator last, const T&amp; value);</code></td>
+<td>用于在有序序列中查找第一个严格大于 <code>value</code> 的元素, 并返回迭代器, 获取具体下标需要减去 <code>begin()</code></td>
+</tr>
+<tr>
+<td><code>equal_range(iterator first, iterator last, const T&amp; value);</code></td>
+<td>查找范围 <code>[first, last)</code> 中所有等于给定值的元素的区间, 返回一个 <code>pair</code> , <code>first</code> 指向第一个等于值的元素, <code>second</code>指向最后一个等于值的元素的<strong>后一个位置</strong></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody>
 </table>
 <h2 id="常用算法" class="heading-element">
   <a href="#%e5%b8%b8%e7%94%a8%e7%ae%97%e6%b3%95" class="heading-mark"></a>常用算法</h2><h3 id="排序算法" class="heading-element">
@@ -1788,7 +1787,7 @@
 <p>二维的情况很容易出错，建议还是画个表格辅助分析</p>
 <p>这里要特别注意，横轴是 y，竖轴是 x</p>
 </blockquote>
-<p><img loading="lazy" src="imgs/image-20240810171006938.png" alt="imgs/image-20240810171006938.png" srcset="imgs/image-20240810171006938.png?size=small, imgs/image-20240810171006938.png?size=medium 1.5x, imgs/image-20240810171006938.png?size=large 2x" data-title="imgs/image-20240810171006938.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><img loading="lazy" src="/posts/552060f/imgs/image-20240810171006938.png" alt="/posts/552060f/imgs/image-20240810171006938.png" srcset="/posts/552060f/imgs/image-20240810171006938.png?size=small, /posts/552060f/imgs/image-20240810171006938.png?size=medium 1.5x, /posts/552060f/imgs/image-20240810171006938.png?size=large 2x" data-title="/posts/552060f/imgs/image-20240810171006938.png" style="--width: 752px;--aspect-ratio: 752 / 531;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <div class="highlight" id="id-21"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -3174,172 +3173,172 @@ ev：事件的最早发生时间：<code>max()</code></p>
 <p>关键活动：关键路径上的活动。它们是项目中最关键的活动，因为它们直接影响到整个项目的完成时间</p>
 </blockquote>
 <p>举个例子，比如下面这个图</p>
-<p><img loading="lazy" src="imgs/image-20240911162050614.jpeg" alt="imgs/image-20240911162050614.jpeg" srcset="imgs/image-20240911162050614.jpeg?size=small, imgs/image-20240911162050614.jpeg?size=medium 1.5x, imgs/image-20240911162050614.jpeg?size=large 2x" data-title="imgs/image-20240911162050614.jpeg" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><img loading="lazy" src="/posts/552060f/imgs/image-20240911162050614.jpeg" alt="/posts/552060f/imgs/image-20240911162050614.jpeg" srcset="/posts/552060f/imgs/image-20240911162050614.jpeg?size=small, /posts/552060f/imgs/image-20240911162050614.jpeg?size=medium 1.5x, /posts/552060f/imgs/image-20240911162050614.jpeg?size=large 2x" data-title="/posts/552060f/imgs/image-20240911162050614.jpeg" style="--width: 850px;--aspect-ratio: 850 / 329;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <table>
-  <thead>
-      <tr>
-          <th style="text-align: left">事件</th>
-          <th style="text-align: left">v0</th>
-          <th style="text-align: left">v1</th>
-          <th style="text-align: left">v2</th>
-          <th style="text-align: left">v3</th>
-          <th style="text-align: left">v4</th>
-          <th style="text-align: left">v5</th>
-          <th style="text-align: left">v6</th>
-          <th style="text-align: left">v7</th>
-          <th style="text-align: left">v8</th>
-          <th style="text-align: left">v9</th>
-          <th style="text-align: left"></th>
-          <th style="text-align: left"></th>
-          <th style="text-align: left"></th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td style="text-align: left">ev(事件的最早发生时间)</td>
-          <td style="text-align: left">0</td>
-          <td style="text-align: left">3</td>
-          <td style="text-align: left">4</td>
-          <td style="text-align: left"><code>max(v1+5.v2+8)</code> = 12</td>
-          <td style="text-align: left"><code>max(v1+6,v3+3)</code> = 15</td>
-          <td style="text-align: left">11</td>
-          <td style="text-align: left">24</td>
-          <td style="text-align: left"><code>max(v4+4,v5+6)</code> = 19</td>
-          <td style="text-align: left">24</td>
-          <td style="text-align: left"><code>max(v6+2,v8+3)</code> = 27</td>
-          <td style="text-align: left"></td>
-          <td style="text-align: left"></td>
-          <td style="text-align: left"></td>
-      </tr>
-      <tr>
-          <td style="text-align: left">lv(事件的最晚发生时间)</td>
-          <td style="text-align: left"><code>min(v1-3,v2-4)</code> = 0</td>
-          <td style="text-align: left"><code>min(v4-6,v3-5)</code> = 7</td>
-          <td style="text-align: left"><code>min(v5-7,v3-8)</code> = 4</td>
-          <td style="text-align: left">12</td>
-          <td style="text-align: left"><code>min(v6-9,v7-4)</code> = 15</td>
-          <td style="text-align: left">13</td>
-          <td style="text-align: left">25</td>
-          <td style="text-align: left">19</td>
-          <td style="text-align: left">24</td>
-          <td style="text-align: left">27</td>
-          <td style="text-align: left"></td>
-          <td style="text-align: left"></td>
-          <td style="text-align: left"></td>
-      </tr>
-      <tr>
-          <td style="text-align: left"></td>
-          <td style="text-align: left"></td>
-          <td style="text-align: left"></td>
-          <td style="text-align: left"></td>
-          <td style="text-align: left"></td>
-          <td style="text-align: left"></td>
-          <td style="text-align: left"></td>
-          <td style="text-align: left"></td>
-          <td style="text-align: left"></td>
-          <td style="text-align: left"></td>
-          <td style="text-align: left"></td>
-          <td style="text-align: left"></td>
-          <td style="text-align: left"></td>
-          <td style="text-align: left"></td>
-      </tr>
-      <tr>
-          <td style="text-align: left">活动</td>
-          <td style="text-align: left">a0</td>
-          <td style="text-align: left">a1</td>
-          <td style="text-align: left">a2</td>
-          <td style="text-align: left">a3</td>
-          <td style="text-align: left">a4</td>
-          <td style="text-align: left">a5</td>
-          <td style="text-align: left">a6</td>
-          <td style="text-align: left">a7</td>
-          <td style="text-align: left">a8</td>
-          <td style="text-align: left">a9</td>
-          <td style="text-align: left">a10</td>
-          <td style="text-align: left">a11</td>
-          <td style="text-align: left">a12</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">ee(活动的最早发生时间)</td>
-          <td style="text-align: left">0</td>
-          <td style="text-align: left">0</td>
-          <td style="text-align: left">3</td>
-          <td style="text-align: left">3</td>
-          <td style="text-align: left">4</td>
-          <td style="text-align: left">4</td>
-          <td style="text-align: left">12</td>
-          <td style="text-align: left">15</td>
-          <td style="text-align: left">15</td>
-          <td style="text-align: left">11</td>
-          <td style="text-align: left">24</td>
-          <td style="text-align: left">19</td>
-          <td style="text-align: left">24</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">le(活动的最晚发生时间)</td>
-          <td style="text-align: left">4</td>
-          <td style="text-align: left">0</td>
-          <td style="text-align: left">7</td>
-          <td style="text-align: left">9</td>
-          <td style="text-align: left">4</td>
-          <td style="text-align: left">6</td>
-          <td style="text-align: left">12</td>
-          <td style="text-align: left">16</td>
-          <td style="text-align: left">15</td>
-          <td style="text-align: left">13</td>
-          <td style="text-align: left">25</td>
-          <td style="text-align: left">19</td>
-          <td style="text-align: left">24</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">le-ee</td>
-          <td style="text-align: left">4</td>
-          <td style="text-align: left">0</td>
-          <td style="text-align: left">4</td>
-          <td style="text-align: left">6</td>
-          <td style="text-align: left">0</td>
-          <td style="text-align: left">2</td>
-          <td style="text-align: left">0</td>
-          <td style="text-align: left">1</td>
-          <td style="text-align: left">0</td>
-          <td style="text-align: left">2</td>
-          <td style="text-align: left">1</td>
-          <td style="text-align: left">0</td>
-          <td style="text-align: left">0</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">所以最终的关键路径为: v0-&gt;v2-&gt;v3-&gt;v4-&gt;v7-&gt;v8-&gt;v9</td>
-          <td style="text-align: left"></td>
-          <td style="text-align: left"></td>
-          <td style="text-align: left"></td>
-          <td style="text-align: left"></td>
-          <td style="text-align: left"></td>
-          <td style="text-align: left"></td>
-          <td style="text-align: left"></td>
-          <td style="text-align: left"></td>
-          <td style="text-align: left"></td>
-          <td style="text-align: left"></td>
-          <td style="text-align: left"></td>
-          <td style="text-align: left"></td>
-          <td style="text-align: left"></td>
-      </tr>
-      <tr>
-          <td style="text-align: left">关键路径上的关键活动为: a1-&gt;a4-&gt;a6-&gt;a8-&gt;a11-&gt;a12</td>
-          <td style="text-align: left"></td>
-          <td style="text-align: left"></td>
-          <td style="text-align: left"></td>
-          <td style="text-align: left"></td>
-          <td style="text-align: left"></td>
-          <td style="text-align: left"></td>
-          <td style="text-align: left"></td>
-          <td style="text-align: left"></td>
-          <td style="text-align: left"></td>
-          <td style="text-align: left"></td>
-          <td style="text-align: left"></td>
-          <td style="text-align: left"></td>
-          <td style="text-align: left"></td>
-      </tr>
-  </tbody>
+<thead>
+<tr>
+<th>事件</th>
+<th>v0</th>
+<th>v1</th>
+<th>v2</th>
+<th>v3</th>
+<th>v4</th>
+<th>v5</th>
+<th>v6</th>
+<th>v7</th>
+<th>v8</th>
+<th>v9</th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ev(事件的最早发生时间)</td>
+<td>0</td>
+<td>3</td>
+<td>4</td>
+<td><code>max(v1+5.v2+8)</code> = 12</td>
+<td><code>max(v1+6,v3+3)</code> = 15</td>
+<td>11</td>
+<td>24</td>
+<td><code>max(v4+4,v5+6)</code> = 19</td>
+<td>24</td>
+<td><code>max(v6+2,v8+3)</code> = 27</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>lv(事件的最晚发生时间)</td>
+<td><code>min(v1-3,v2-4)</code> = 0</td>
+<td><code>min(v4-6,v3-5)</code> = 7</td>
+<td><code>min(v5-7,v3-8)</code> = 4</td>
+<td>12</td>
+<td><code>min(v6-9,v7-4)</code> = 15</td>
+<td>13</td>
+<td>25</td>
+<td>19</td>
+<td>24</td>
+<td>27</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>活动</td>
+<td>a0</td>
+<td>a1</td>
+<td>a2</td>
+<td>a3</td>
+<td>a4</td>
+<td>a5</td>
+<td>a6</td>
+<td>a7</td>
+<td>a8</td>
+<td>a9</td>
+<td>a10</td>
+<td>a11</td>
+<td>a12</td>
+</tr>
+<tr>
+<td>ee(活动的最早发生时间)</td>
+<td>0</td>
+<td>0</td>
+<td>3</td>
+<td>3</td>
+<td>4</td>
+<td>4</td>
+<td>12</td>
+<td>15</td>
+<td>15</td>
+<td>11</td>
+<td>24</td>
+<td>19</td>
+<td>24</td>
+</tr>
+<tr>
+<td>le(活动的最晚发生时间)</td>
+<td>4</td>
+<td>0</td>
+<td>7</td>
+<td>9</td>
+<td>4</td>
+<td>6</td>
+<td>12</td>
+<td>16</td>
+<td>15</td>
+<td>13</td>
+<td>25</td>
+<td>19</td>
+<td>24</td>
+</tr>
+<tr>
+<td>le-ee</td>
+<td>4</td>
+<td>0</td>
+<td>4</td>
+<td>6</td>
+<td>0</td>
+<td>2</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>2</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>所以最终的关键路径为: v0-&gt;v2-&gt;v3-&gt;v4-&gt;v7-&gt;v8-&gt;v9</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>关键路径上的关键活动为: a1-&gt;a4-&gt;a6-&gt;a8-&gt;a11-&gt;a12</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
 </table>
 <div class="highlight" id="id-41"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -4858,7 +4857,7 @@ ev：事件的最早发生时间：<code>max()</code></p>
 </span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">cnt</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
-</div><p><img loading="lazy" src="imgs/image-20240823200607945.png" alt="imgs/image-20240823200607945.png" srcset="imgs/image-20240823200607945.png?size=small, imgs/image-20240823200607945.png?size=medium 1.5x, imgs/image-20240823200607945.png?size=large 2x" data-title="imgs/image-20240823200607945.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+</div><p><img loading="lazy" src="/posts/552060f/imgs/image-20240823200607945.png" alt="/posts/552060f/imgs/image-20240823200607945.png" srcset="/posts/552060f/imgs/image-20240823200607945.png?size=small, /posts/552060f/imgs/image-20240823200607945.png?size=medium 1.5x, /posts/552060f/imgs/image-20240823200607945.png?size=large 2x" data-title="/posts/552060f/imgs/image-20240823200607945.png" style="--width: 1520px;--aspect-ratio: 1520 / 693;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <div class="highlight" id="id-60"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -4917,7 +4916,7 @@ ev：事件的最早发生时间：<code>max()</code></p>
 </span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><h5 id="求约数之和" class="heading-element">
-  <a href="#%e6%b1%82%e7%ba%a6%e6%95%b0%e4%b9%8b%e5%92%8c" class="heading-mark"></a>求约数之和</h5><p><img loading="lazy" src="imgs/image-20240823200639160.png" alt="imgs/image-20240823200639160.png" srcset="imgs/image-20240823200639160.png?size=small, imgs/image-20240823200639160.png?size=medium 1.5x, imgs/image-20240823200639160.png?size=large 2x" data-title="imgs/image-20240823200639160.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+  <a href="#%e6%b1%82%e7%ba%a6%e6%95%b0%e4%b9%8b%e5%92%8c" class="heading-mark"></a>求约数之和</h5><p><img loading="lazy" src="/posts/552060f/imgs/image-20240823200639160.png" alt="/posts/552060f/imgs/image-20240823200639160.png" srcset="/posts/552060f/imgs/image-20240823200639160.png?size=small, /posts/552060f/imgs/image-20240823200639160.png?size=medium 1.5x, /posts/552060f/imgs/image-20240823200639160.png?size=large 2x" data-title="/posts/552060f/imgs/image-20240823200639160.png" style="--width: 1530px;--aspect-ratio: 1530 / 736;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <div class="highlight" id="id-61"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -5047,7 +5046,7 @@ ev：事件的最早发生时间：<code>max()</code></p>
 </span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="欧拉函数" class="heading-element">
-  <a href="#%e6%ac%a7%e6%8b%89%e5%87%bd%e6%95%b0" class="heading-mark"></a>欧拉函数</h4><p><img loading="lazy" src="imgs/image-20240823204244353.png" alt="imgs/image-20240823204244353.png" srcset="imgs/image-20240823204244353.png?size=small, imgs/image-20240823204244353.png?size=medium 1.5x, imgs/image-20240823204244353.png?size=large 2x" data-title="imgs/image-20240823204244353.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+  <a href="#%e6%ac%a7%e6%8b%89%e5%87%bd%e6%95%b0" class="heading-mark"></a>欧拉函数</h4><p><img loading="lazy" src="/posts/552060f/imgs/image-20240823204244353.png" alt="/posts/552060f/imgs/image-20240823204244353.png" srcset="/posts/552060f/imgs/image-20240823204244353.png?size=small, /posts/552060f/imgs/image-20240823204244353.png?size=medium 1.5x, /posts/552060f/imgs/image-20240823204244353.png?size=large 2x" data-title="/posts/552060f/imgs/image-20240823204244353.png" style="--width: 1479px;--aspect-ratio: 1479 / 307;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p><strong>例题1-AcWing 873. 欧拉函数</strong></p>
 <div class="highlight" id="id-64"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -5226,7 +5225,7 @@ ev：事件的最早发生时间：<code>max()</code></p>
 </span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><h5 id="快速幂求逆元" class="heading-element">
-  <a href="#%e5%bf%ab%e9%80%9f%e5%b9%82%e6%b1%82%e9%80%86%e5%85%83" class="heading-mark"></a>快速幂求逆元</h5><p><img loading="lazy" src="imgs/image-20240824100411661.png" alt="imgs/image-20240824100411661.png" srcset="imgs/image-20240824100411661.png?size=small, imgs/image-20240824100411661.png?size=medium 1.5x, imgs/image-20240824100411661.png?size=large 2x" data-title="imgs/image-20240824100411661.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+  <a href="#%e5%bf%ab%e9%80%9f%e5%b9%82%e6%b1%82%e9%80%86%e5%85%83" class="heading-mark"></a>快速幂求逆元</h5><p><img loading="lazy" src="/posts/552060f/imgs/image-20240824100411661.png" alt="/posts/552060f/imgs/image-20240824100411661.png" srcset="/posts/552060f/imgs/image-20240824100411661.png?size=small, /posts/552060f/imgs/image-20240824100411661.png?size=medium 1.5x, /posts/552060f/imgs/image-20240824100411661.png?size=large 2x" data-title="/posts/552060f/imgs/image-20240824100411661.png" style="--width: 1332px;--aspect-ratio: 1332 / 277;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <blockquote>
 <p>当 $p$ 为质数时, 由费马小定理可得:
 $$a^{p-1} \equiv 1 \pmod{p}$$
@@ -5787,8 +5786,8 @@ $$</p>
 </div><p><strong>例题4-AcWing888.求组合数4</strong>
 这道题要求我们计算 $C_a^b$ 的精确数值, 不进行取模, 并且 $1&lt;=a,b&lt;=500$ ,因此我们这里需要用到分解质因数+高精度乘法的方法</p>
 <p>这里还需要用到下面这个定理来提高效率
-<img loading="lazy" src="imgs/image-20240824191901858.png" alt="imgs/image-20240824191901858.png" srcset="imgs/image-20240824191901858.png?size=small, imgs/image-20240824191901858.png?size=medium 1.5x, imgs/image-20240824191901858.png?size=large 2x" data-title="imgs/image-20240824191901858.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
-<p><img loading="lazy" src="imgs/image-20240824192012316.png" alt="imgs/image-20240824192012316.png" srcset="imgs/image-20240824192012316.png?size=small, imgs/image-20240824192012316.png?size=medium 1.5x, imgs/image-20240824192012316.png?size=large 2x" data-title="imgs/image-20240824192012316.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<img loading="lazy" src="/posts/552060f/imgs/image-20240824191901858.png" alt="/posts/552060f/imgs/image-20240824191901858.png" srcset="/posts/552060f/imgs/image-20240824191901858.png?size=small, /posts/552060f/imgs/image-20240824191901858.png?size=medium 1.5x, /posts/552060f/imgs/image-20240824191901858.png?size=large 2x" data-title="/posts/552060f/imgs/image-20240824191901858.png" style="--width: 1509px;--aspect-ratio: 1509 / 221;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><img loading="lazy" src="/posts/552060f/imgs/image-20240824192012316.png" alt="/posts/552060f/imgs/image-20240824192012316.png" srcset="/posts/552060f/imgs/image-20240824192012316.png?size=small, /posts/552060f/imgs/image-20240824192012316.png?size=medium 1.5x, /posts/552060f/imgs/image-20240824192012316.png?size=large 2x" data-title="/posts/552060f/imgs/image-20240824192012316.png" style="--width: 1534px;--aspect-ratio: 1534 / 148;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <div class="highlight" id="id-77"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -6093,7 +6092,7 @@ C_{2n}^n$$
 </span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p><strong>例题2-AcWing 893. 集合-Nim游戏</strong></p>
-<p><img loading="lazy" src="imgs/image-20240825121512404.png" alt="imgs/image-20240825121512404.png" srcset="imgs/image-20240825121512404.png?size=small, imgs/image-20240825121512404.png?size=medium 1.5x, imgs/image-20240825121512404.png?size=large 2x" data-title="imgs/image-20240825121512404.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><img loading="lazy" src="/posts/552060f/imgs/image-20240825121512404.png" alt="/posts/552060f/imgs/image-20240825121512404.png" srcset="/posts/552060f/imgs/image-20240825121512404.png?size=small, /posts/552060f/imgs/image-20240825121512404.png?size=medium 1.5x, /posts/552060f/imgs/image-20240825121512404.png?size=large 2x" data-title="/posts/552060f/imgs/image-20240825121512404.png" style="--width: 1501px;--aspect-ratio: 1501 / 630;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <div class="highlight" id="id-81"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -11806,7 +11805,7 @@ C_{2n}^n$$
 </span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="sharing" class="heading-element">
-  <a href="#sharing" class="heading-mark"></a>Sharing</h4><div class="highlight" id="id-1"><div class="chroma">
+  <a href="#sharing" class="heading-mark"></a>Sharing</h4><div class="highlight" id="id-159"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -11864,7 +11863,7 @@ C_{2n}^n$$
 </span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="最大连续子序列dp" class="heading-element">
-  <a href="#%e6%9c%80%e5%a4%a7%e8%bf%9e%e7%bb%ad%e5%ad%90%e5%ba%8f%e5%88%97dp" class="heading-mark"></a>最大连续子序列(dp)</h4><div class="highlight" id="id-2"><div class="chroma">
+  <a href="#%e6%9c%80%e5%a4%a7%e8%bf%9e%e7%bb%ad%e5%ad%90%e5%ba%8f%e5%88%97dp" class="heading-mark"></a>最大连续子序列(dp)</h4><div class="highlight" id="id-160"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -11926,7 +11925,7 @@ C_{2n}^n$$
 </span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="排名" class="heading-element">
-  <a href="#%e6%8e%92%e5%90%8d" class="heading-mark"></a>排名</h4><div class="highlight" id="id-3"><div class="chroma">
+  <a href="#%e6%8e%92%e5%90%8d" class="heading-mark"></a>排名</h4><div class="highlight" id="id-161"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -12014,7 +12013,7 @@ C_{2n}^n$$
 </span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="grading" class="heading-element">
-  <a href="#grading" class="heading-mark"></a>Grading</h4><div class="highlight" id="id-4"><div class="chroma">
+  <a href="#grading" class="heading-mark"></a>Grading</h4><div class="highlight" id="id-162"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -12072,7 +12071,7 @@ C_{2n}^n$$
 </span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="zoj问题" class="heading-element">
-  <a href="#zoj%e9%97%ae%e9%a2%98" class="heading-mark"></a>ZOJ问题</h4><div class="highlight" id="id-5"><div class="chroma">
+  <a href="#zoj%e9%97%ae%e9%a2%98" class="heading-mark"></a>ZOJ问题</h4><div class="highlight" id="id-163"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -12118,7 +12117,7 @@ C_{2n}^n$$
 </span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="游船出租" class="heading-element">
-  <a href="#%e6%b8%b8%e8%88%b9%e5%87%ba%e7%a7%9f" class="heading-mark"></a>游船出租</h4><div class="highlight" id="id-6"><div class="chroma">
+  <a href="#%e6%b8%b8%e8%88%b9%e5%87%ba%e7%a7%9f" class="heading-mark"></a>游船出租</h4><div class="highlight" id="id-164"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -12202,7 +12201,7 @@ C_{2n}^n$$
 </span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="寻找大富翁" class="heading-element">
-  <a href="#%e5%af%bb%e6%89%be%e5%a4%a7%e5%af%8c%e7%bf%81" class="heading-mark"></a>寻找大富翁</h4><div class="highlight" id="id-7"><div class="chroma">
+  <a href="#%e5%af%bb%e6%89%be%e5%a4%a7%e5%af%8c%e7%bf%81" class="heading-mark"></a>寻找大富翁</h4><div class="highlight" id="id-165"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -12258,7 +12257,7 @@ C_{2n}^n$$
 </span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="毕业bgdp" class="heading-element">
-  <a href="#%e6%af%95%e4%b8%9abgdp" class="heading-mark"></a>毕业bg(dp)</h4><div class="highlight" id="id-8"><div class="chroma">
+  <a href="#%e6%af%95%e4%b8%9abgdp" class="heading-mark"></a>毕业bg(dp)</h4><div class="highlight" id="id-166"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -12324,7 +12323,7 @@ C_{2n}^n$$
 </span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="又一版-ab" class="heading-element">
-  <a href="#%e5%8f%88%e4%b8%80%e7%89%88-ab" class="heading-mark"></a>又一版 A+B</h4><div class="highlight" id="id-9"><div class="chroma">
+  <a href="#%e5%8f%88%e4%b8%80%e7%89%88-ab" class="heading-mark"></a>又一版 A+B</h4><div class="highlight" id="id-167"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -12376,7 +12375,7 @@ C_{2n}^n$$
 </span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="hello-world-for-u" class="heading-element">
-  <a href="#hello-world-for-u" class="heading-mark"></a>Hello World for U</h4><div class="highlight" id="id-10"><div class="chroma">
+  <a href="#hello-world-for-u" class="heading-mark"></a>Hello World for U</h4><div class="highlight" id="id-168"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -12456,7 +12455,7 @@ C_{2n}^n$$
 </span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="继续xxx定律" class="heading-element">
-  <a href="#%e7%bb%a7%e7%bb%adxxx%e5%ae%9a%e5%be%8b" class="heading-mark"></a>继续xxx定律</h4><div class="highlight" id="id-11"><div class="chroma">
+  <a href="#%e7%bb%a7%e7%bb%adxxx%e5%ae%9a%e5%be%8b" class="heading-mark"></a>继续xxx定律</h4><div class="highlight" id="id-169"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -12516,7 +12515,7 @@ C_{2n}^n$$
 </span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="魔咒词典" class="heading-element">
-  <a href="#%e9%ad%94%e5%92%92%e8%af%8d%e5%85%b8" class="heading-mark"></a>魔咒词典</h4><div class="highlight" id="id-12"><div class="chroma">
+  <a href="#%e9%ad%94%e5%92%92%e8%af%8d%e5%85%b8" class="heading-mark"></a>魔咒词典</h4><div class="highlight" id="id-170"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -12576,7 +12575,7 @@ C_{2n}^n$$
 </span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="graduate-admission" class="heading-element">
-  <a href="#graduate-admission" class="heading-mark"></a>Graduate Admission</h4><div class="highlight" id="id-13"><div class="chroma">
+  <a href="#graduate-admission" class="heading-mark"></a>Graduate Admission</h4><div class="highlight" id="id-171"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -12744,7 +12743,7 @@ C_{2n}^n$$
 </span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="excel排序" class="heading-element">
-  <a href="#excel%e6%8e%92%e5%ba%8f" class="heading-mark"></a>EXCEL排序</h4><div class="highlight" id="id-14"><div class="chroma">
+  <a href="#excel%e6%8e%92%e5%ba%8f" class="heading-mark"></a>EXCEL排序</h4><div class="highlight" id="id-172"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -12842,7 +12841,7 @@ C_{2n}^n$$
 </span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="奥运排序问题" class="heading-element">
-  <a href="#%e5%a5%a5%e8%bf%90%e6%8e%92%e5%ba%8f%e9%97%ae%e9%a2%98" class="heading-mark"></a>奥运排序问题</h4><div class="highlight" id="id-15"><div class="chroma">
+  <a href="#%e5%a5%a5%e8%bf%90%e6%8e%92%e5%ba%8f%e9%97%ae%e9%a2%98" class="heading-mark"></a>奥运排序问题</h4><div class="highlight" id="id-173"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -12934,7 +12933,7 @@ C_{2n}^n$$
 </span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="还是畅通工程kruskal算法求最小生成树" class="heading-element">
-  <a href="#%e8%bf%98%e6%98%af%e7%95%85%e9%80%9a%e5%b7%a5%e7%a8%8bkruskal%e7%ae%97%e6%b3%95%e6%b1%82%e6%9c%80%e5%b0%8f%e7%94%9f%e6%88%90%e6%a0%91" class="heading-mark"></a>还是畅通工程(Kruskal算法求最小生成树)</h4><div class="highlight" id="id-16"><div class="chroma">
+  <a href="#%e8%bf%98%e6%98%af%e7%95%85%e9%80%9a%e5%b7%a5%e7%a8%8bkruskal%e7%ae%97%e6%b3%95%e6%b1%82%e6%9c%80%e5%b0%8f%e7%94%9f%e6%88%90%e6%a0%91" class="heading-mark"></a>还是畅通工程(Kruskal算法求最小生成树)</h4><div class="highlight" id="id-174"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -13050,7 +13049,7 @@ C_{2n}^n$$
 </span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="继续畅通工程kruskal算法求最小生成树" class="heading-element">
-  <a href="#%e7%bb%a7%e7%bb%ad%e7%95%85%e9%80%9a%e5%b7%a5%e7%a8%8bkruskal%e7%ae%97%e6%b3%95%e6%b1%82%e6%9c%80%e5%b0%8f%e7%94%9f%e6%88%90%e6%a0%91" class="heading-mark"></a>继续畅通工程(Kruskal算法求最小生成树)</h4><div class="highlight" id="id-17"><div class="chroma">
+  <a href="#%e7%bb%a7%e7%bb%ad%e7%95%85%e9%80%9a%e5%b7%a5%e7%a8%8bkruskal%e7%ae%97%e6%b3%95%e6%b1%82%e6%9c%80%e5%b0%8f%e7%94%9f%e6%88%90%e6%a0%91" class="heading-mark"></a>继续畅通工程(Kruskal算法求最小生成树)</h4><div class="highlight" id="id-175"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -13174,7 +13173,7 @@ C_{2n}^n$$
 </span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="畅通工程-1" class="heading-element">
-  <a href="#%e7%95%85%e9%80%9a%e5%b7%a5%e7%a8%8b-1" class="heading-mark"></a>畅通工程</h4><div class="highlight" id="id-18"><div class="chroma">
+  <a href="#%e7%95%85%e9%80%9a%e5%b7%a5%e7%a8%8b-1" class="heading-mark"></a>畅通工程</h4><div class="highlight" id="id-176"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -13300,7 +13299,7 @@ C_{2n}^n$$
 </span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="二叉搜索树" class="heading-element">
-  <a href="#%e4%ba%8c%e5%8f%89%e6%90%9c%e7%b4%a2%e6%a0%91" class="heading-mark"></a>二叉搜索树</h4><div class="highlight" id="id-19"><div class="chroma">
+  <a href="#%e4%ba%8c%e5%8f%89%e6%90%9c%e7%b4%a2%e6%a0%91" class="heading-mark"></a>二叉搜索树</h4><div class="highlight" id="id-177"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -13409,7 +13408,7 @@ C_{2n}^n$$
 </div>
 </div><h4 id="head-of-a-gang" class="heading-element">
   <a href="#head-of-a-gang" class="heading-mark"></a>Head of a Gang</h4><p>解法一</p>
-<div class="highlight" id="id-20"><div class="chroma">
+<div class="highlight" id="id-178"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -13571,14 +13570,14 @@ C_{2n}^n$$
 </span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>解法二(TODO)</p>
-<div class="highlight" id="id-21"><div class="chroma">
+<div class="highlight" id="id-179"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"></code></pre></td></tr></table>
 </div>
 </div><h4 id="简单计算器" class="heading-element">
-  <a href="#%e7%ae%80%e5%8d%95%e8%ae%a1%e7%ae%97%e5%99%a8" class="heading-mark"></a>简单计算器</h4><div class="highlight" id="id-22"><div class="chroma">
+  <a href="#%e7%ae%80%e5%8d%95%e8%ae%a1%e7%ae%97%e5%99%a8" class="heading-mark"></a>简单计算器</h4><div class="highlight" id="id-180"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -13727,7 +13726,7 @@ C_{2n}^n$$
 <li>图中只允许有一个连通分量</li>
 </ol>
 <p>解法一：并查集</p>
-<div class="highlight" id="id-23"><div class="chroma">
+<div class="highlight" id="id-181"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -13827,7 +13826,7 @@ C_{2n}^n$$
 </span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>解法二(dfs+剪枝)</p>
-<div class="highlight" id="id-24"><div class="chroma">
+<div class="highlight" id="id-182"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -13909,7 +13908,7 @@ C_{2n}^n$$
 </span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="找出直系亲属" class="heading-element">
-  <a href="#%e6%89%be%e5%87%ba%e7%9b%b4%e7%b3%bb%e4%ba%b2%e5%b1%9e" class="heading-mark"></a>找出直系亲属</h4><div class="highlight" id="id-25"><div class="chroma">
+  <a href="#%e6%89%be%e5%87%ba%e7%9b%b4%e7%b3%bb%e4%ba%b2%e5%b1%9e" class="heading-mark"></a>找出直系亲属</h4><div class="highlight" id="id-183"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -14029,7 +14028,7 @@ C_{2n}^n$$
 </span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="to-fill-or-not-to-fill贪心" class="heading-element">
-  <a href="#to-fill-or-not-to-fill%e8%b4%aa%e5%bf%83" class="heading-mark"></a>To Fill or Not to Fill(贪心)</h4><div class="highlight" id="id-26"><div class="chroma">
+  <a href="#to-fill-or-not-to-fill%e8%b4%aa%e5%bf%83" class="heading-mark"></a>To Fill or Not to Fill(贪心)</h4><div class="highlight" id="id-184"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -14117,7 +14116,7 @@ C_{2n}^n$$
 </span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="最短路径问题堆优化版的dijkstra算法vector数组存储图" class="heading-element">
-  <a href="#%e6%9c%80%e7%9f%ad%e8%b7%af%e5%be%84%e9%97%ae%e9%a2%98%e5%a0%86%e4%bc%98%e5%8c%96%e7%89%88%e7%9a%84dijkstra%e7%ae%97%e6%b3%95vector%e6%95%b0%e7%bb%84%e5%ad%98%e5%82%a8%e5%9b%be" class="heading-mark"></a>最短路径问题(堆优化版的dijkstra算法+vector数组存储图)</h4><div class="highlight" id="id-27"><div class="chroma">
+  <a href="#%e6%9c%80%e7%9f%ad%e8%b7%af%e5%be%84%e9%97%ae%e9%a2%98%e5%a0%86%e4%bc%98%e5%8c%96%e7%89%88%e7%9a%84dijkstra%e7%ae%97%e6%b3%95vector%e6%95%b0%e7%bb%84%e5%ad%98%e5%82%a8%e5%9b%be" class="heading-mark"></a>最短路径问题(堆优化版的dijkstra算法+vector数组存储图)</h4><div class="highlight" id="id-185"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -14249,7 +14248,7 @@ C_{2n}^n$$
 </span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="最大报销额dfs暴搜" class="heading-element">
-  <a href="#%e6%9c%80%e5%a4%a7%e6%8a%a5%e9%94%80%e9%a2%9ddfs%e6%9a%b4%e6%90%9c" class="heading-mark"></a>最大报销额(DFS暴搜)</h4><div class="highlight" id="id-28"><div class="chroma">
+  <a href="#%e6%9c%80%e5%a4%a7%e6%8a%a5%e9%94%80%e9%a2%9ddfs%e6%9a%b4%e6%90%9c" class="heading-mark"></a>最大报销额(DFS暴搜)</h4><div class="highlight" id="id-186"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -14352,9 +14351,9 @@ C_{2n}^n$$
 </div>
 </div><h3 id="苏州大学2022年机试真题" class="heading-element">
   <a href="#%e8%8b%8f%e5%b7%9e%e5%a4%a7%e5%ad%a62022%e5%b9%b4%e6%9c%ba%e8%af%95%e7%9c%9f%e9%a2%98" class="heading-mark"></a>苏州大学2022年机试真题</h3><h4 id="编程题1" class="heading-element">
-  <a href="#%e7%bc%96%e7%a8%8b%e9%a2%981" class="heading-mark"></a>编程题1</h4><p><img loading="lazy" src="imgs/image-20240831002249866.png" alt="imgs/image-20240831002249866.png" srcset="imgs/image-20240831002249866.png?size=small, imgs/image-20240831002249866.png?size=medium 1.5x, imgs/image-20240831002249866.png?size=large 2x" data-title="imgs/image-20240831002249866.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+  <a href="#%e7%bc%96%e7%a8%8b%e9%a2%981" class="heading-mark"></a>编程题1</h4><p><img loading="lazy" src="/posts/552060f/imgs/image-20240831002249866.png" alt="/posts/552060f/imgs/image-20240831002249866.png" srcset="/posts/552060f/imgs/image-20240831002249866.png?size=small, /posts/552060f/imgs/image-20240831002249866.png?size=medium 1.5x, /posts/552060f/imgs/image-20240831002249866.png?size=large 2x" data-title="/posts/552060f/imgs/image-20240831002249866.png" style="--width: 849px;--aspect-ratio: 849 / 831;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p><strong>解法一</strong></p>
-<div class="highlight" id="id-29"><div class="chroma">
+<div class="highlight" id="id-187"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -14452,7 +14451,7 @@ C_{2n}^n$$
 </span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p><strong>解法二</strong></p>
-<div class="highlight" id="id-30"><div class="chroma">
+<div class="highlight" id="id-188"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -14528,8 +14527,8 @@ C_{2n}^n$$
 </span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="编程题2" class="heading-element">
-  <a href="#%e7%bc%96%e7%a8%8b%e9%a2%982" class="heading-mark"></a>编程题2</h4><p><img loading="lazy" src="imgs/image-20240901134740653.png" alt="imgs/image-20240901134740653.png" srcset="imgs/image-20240901134740653.png?size=small, imgs/image-20240901134740653.png?size=medium 1.5x, imgs/image-20240901134740653.png?size=large 2x" data-title="imgs/image-20240901134740653.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
-<div class="highlight" id="id-31"><div class="chroma">
+  <a href="#%e7%bc%96%e7%a8%8b%e9%a2%982" class="heading-mark"></a>编程题2</h4><p><img loading="lazy" src="/posts/552060f/imgs/image-20240901134740653.png" alt="/posts/552060f/imgs/image-20240901134740653.png" srcset="/posts/552060f/imgs/image-20240901134740653.png?size=small, /posts/552060f/imgs/image-20240901134740653.png?size=medium 1.5x, /posts/552060f/imgs/image-20240901134740653.png?size=large 2x" data-title="/posts/552060f/imgs/image-20240901134740653.png" style="--width: 1099px;--aspect-ratio: 1099 / 750;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<div class="highlight" id="id-189"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -14625,9 +14624,9 @@ C_{2n}^n$$
 </span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="编程题3" class="heading-element">
-  <a href="#%e7%bc%96%e7%a8%8b%e9%a2%983" class="heading-mark"></a>编程题3</h4><p><img loading="lazy" src="imgs/image-20240901134820628.png" alt="imgs/image-20240901134820628.png" srcset="imgs/image-20240901134820628.png?size=small, imgs/image-20240901134820628.png?size=medium 1.5x, imgs/image-20240901134820628.png?size=large 2x" data-title="imgs/image-20240901134820628.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+  <a href="#%e7%bc%96%e7%a8%8b%e9%a2%983" class="heading-mark"></a>编程题3</h4><p><img loading="lazy" src="/posts/552060f/imgs/image-20240901134820628.png" alt="/posts/552060f/imgs/image-20240901134820628.png" srcset="/posts/552060f/imgs/image-20240901134820628.png?size=small, /posts/552060f/imgs/image-20240901134820628.png?size=medium 1.5x, /posts/552060f/imgs/image-20240901134820628.png?size=large 2x" data-title="/posts/552060f/imgs/image-20240901134820628.png" style="--width: 1093px;--aspect-ratio: 1093 / 788;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>解法一</p>
-<div class="highlight" id="id-32"><div class="chroma">
+<div class="highlight" id="id-190"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -14665,7 +14664,7 @@ C_{2n}^n$$
 </span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>解法二</p>
-<div class="highlight" id="id-33"><div class="chroma">
+<div class="highlight" id="id-191"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -14709,8 +14708,8 @@ C_{2n}^n$$
 </span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="编程题4" class="heading-element">
-  <a href="#%e7%bc%96%e7%a8%8b%e9%a2%984" class="heading-mark"></a>编程题4</h4><p><img loading="lazy" src="imgs/image-20240901153536533.png" alt="imgs/image-20240901153536533.png" srcset="imgs/image-20240901153536533.png?size=small, imgs/image-20240901153536533.png?size=medium 1.5x, imgs/image-20240901153536533.png?size=large 2x" data-title="imgs/image-20240901153536533.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
-<div class="highlight" id="id-34"><div class="chroma">
+  <a href="#%e7%bc%96%e7%a8%8b%e9%a2%984" class="heading-mark"></a>编程题4</h4><p><img loading="lazy" src="/posts/552060f/imgs/image-20240901153536533.png" alt="/posts/552060f/imgs/image-20240901153536533.png" srcset="/posts/552060f/imgs/image-20240901153536533.png?size=small, /posts/552060f/imgs/image-20240901153536533.png?size=medium 1.5x, /posts/552060f/imgs/image-20240901153536533.png?size=large 2x" data-title="/posts/552060f/imgs/image-20240901153536533.png" style="--width: 843px;--aspect-ratio: 843 / 565;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<div class="highlight" id="id-192"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -14734,10 +14733,10 @@ C_{2n}^n$$
 </span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="编程题5todo" class="heading-element">
-  <a href="#%e7%bc%96%e7%a8%8b%e9%a2%985todo" class="heading-mark"></a>编程题5(TODO)</h4><p><img loading="lazy" src="imgs/image-20240901154649873.png" alt="imgs/image-20240901154649873.png" srcset="imgs/image-20240901154649873.png?size=small, imgs/image-20240901154649873.png?size=medium 1.5x, imgs/image-20240901154649873.png?size=large 2x" data-title="imgs/image-20240901154649873.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+  <a href="#%e7%bc%96%e7%a8%8b%e9%a2%985todo" class="heading-mark"></a>编程题5(TODO)</h4><p><img loading="lazy" src="/posts/552060f/imgs/image-20240901154649873.png" alt="/posts/552060f/imgs/image-20240901154649873.png" srcset="/posts/552060f/imgs/image-20240901154649873.png?size=small, /posts/552060f/imgs/image-20240901154649873.png?size=medium 1.5x, /posts/552060f/imgs/image-20240901154649873.png?size=large 2x" data-title="/posts/552060f/imgs/image-20240901154649873.png" style="--width: 863px;--aspect-ratio: 863 / 693;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <h4 id="编程题6" class="heading-element">
-  <a href="#%e7%bc%96%e7%a8%8b%e9%a2%986" class="heading-mark"></a>编程题6</h4><p><img loading="lazy" src="imgs/image-20240901164150764.png" alt="imgs/image-20240901164150764.png" srcset="imgs/image-20240901164150764.png?size=small, imgs/image-20240901164150764.png?size=medium 1.5x, imgs/image-20240901164150764.png?size=large 2x" data-title="imgs/image-20240901164150764.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
-<div class="highlight" id="id-35"><div class="chroma">
+  <a href="#%e7%bc%96%e7%a8%8b%e9%a2%986" class="heading-mark"></a>编程题6</h4><p><img loading="lazy" src="/posts/552060f/imgs/image-20240901164150764.png" alt="/posts/552060f/imgs/image-20240901164150764.png" srcset="/posts/552060f/imgs/image-20240901164150764.png?size=small, /posts/552060f/imgs/image-20240901164150764.png?size=medium 1.5x, /posts/552060f/imgs/image-20240901164150764.png?size=large 2x" data-title="/posts/552060f/imgs/image-20240901164150764.png" style="--width: 801px;--aspect-ratio: 801 / 1025;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<div class="highlight" id="id-193"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -14883,17 +14882,17 @@ C_{2n}^n$$
 </span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="编程题7todo" class="heading-element">
-  <a href="#%e7%bc%96%e7%a8%8b%e9%a2%987todo" class="heading-mark"></a>编程题7(TODO)</h4><p><img loading="lazy" src="imgs/image-20240901193331209.png" alt="imgs/image-20240901193331209.png" srcset="imgs/image-20240901193331209.png?size=small, imgs/image-20240901193331209.png?size=medium 1.5x, imgs/image-20240901193331209.png?size=large 2x" data-title="imgs/image-20240901193331209.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
-<div class="highlight" id="id-36"><div class="chroma">
+  <a href="#%e7%bc%96%e7%a8%8b%e9%a2%987todo" class="heading-mark"></a>编程题7(TODO)</h4><p><img loading="lazy" src="/posts/552060f/imgs/image-20240901193331209.png" alt="/posts/552060f/imgs/image-20240901193331209.png" srcset="/posts/552060f/imgs/image-20240901193331209.png?size=small, /posts/552060f/imgs/image-20240901193331209.png?size=medium 1.5x, /posts/552060f/imgs/image-20240901193331209.png?size=large 2x" data-title="/posts/552060f/imgs/image-20240901193331209.png" style="--width: 760px;--aspect-ratio: 760 / 288;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<div class="highlight" id="id-194"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"></code></pre></td></tr></table>
 </div>
 </div><h4 id="编程题8" class="heading-element">
-  <a href="#%e7%bc%96%e7%a8%8b%e9%a2%988" class="heading-mark"></a>编程题8</h4><p><img loading="lazy" src="imgs/image-20240901200538725.png" alt="imgs/image-20240901200538725.png" srcset="imgs/image-20240901200538725.png?size=small, imgs/image-20240901200538725.png?size=medium 1.5x, imgs/image-20240901200538725.png?size=large 2x" data-title="imgs/image-20240901200538725.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>
+  <a href="#%e7%bc%96%e7%a8%8b%e9%a2%988" class="heading-mark"></a>编程题8</h4><p><img loading="lazy" src="/posts/552060f/imgs/image-20240901200538725.png" alt="/posts/552060f/imgs/image-20240901200538725.png" srcset="/posts/552060f/imgs/image-20240901200538725.png?size=small, /posts/552060f/imgs/image-20240901200538725.png?size=medium 1.5x, /posts/552060f/imgs/image-20240901200538725.png?size=large 2x" data-title="/posts/552060f/imgs/image-20240901200538725.png" style="--width: 780px;--aspect-ratio: 780 / 353;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>
 DP做法(TODO)</p>
-<div class="highlight" id="id-37"><div class="chroma">
+<div class="highlight" id="id-195"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -14929,7 +14928,7 @@ DP做法(TODO)</p>
 </span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>暴力枚举法</p>
-<div class="highlight" id="id-38"><div class="chroma">
+<div class="highlight" id="id-196"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -14959,7 +14958,7 @@ DP做法(TODO)</p>
 </div><h3 id="王道考研机试指南" class="heading-element">
   <a href="#%e7%8e%8b%e9%81%93%e8%80%83%e7%a0%94%e6%9c%ba%e8%af%95%e6%8c%87%e5%8d%97" class="heading-mark"></a>王道考研机试指南</h3><h4 id="数据结构-1" class="heading-element">
   <a href="#%e6%95%b0%e6%8d%ae%e7%bb%93%e6%9e%84-1" class="heading-mark"></a>数据结构</h4><h5 id="完数vs盈数" class="heading-element">
-  <a href="#%e5%ae%8c%e6%95%b0vs%e7%9b%88%e6%95%b0" class="heading-mark"></a>完数VS盈数</h5><div class="highlight" id="id-39"><div class="chroma">
+  <a href="#%e5%ae%8c%e6%95%b0vs%e7%9b%88%e6%95%b0" class="heading-mark"></a>完数VS盈数</h5><div class="highlight" id="id-197"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -15033,7 +15032,7 @@ DP做法(TODO)</p>
 </span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><h5 id="约瑟夫问题no2" class="heading-element">
-  <a href="#%e7%ba%a6%e7%91%9f%e5%a4%ab%e9%97%ae%e9%a2%98no2" class="heading-mark"></a>约瑟夫问题NO.2</h5><div class="highlight" id="id-40"><div class="chroma">
+  <a href="#%e7%ba%a6%e7%91%9f%e5%a4%ab%e9%97%ae%e9%a2%98no2" class="heading-mark"></a>约瑟夫问题NO.2</h5><div class="highlight" id="id-198"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -15081,7 +15080,7 @@ DP做法(TODO)</p>
 </span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><h5 id="poj1012-joseph" class="heading-element">
-  <a href="#poj1012-joseph" class="heading-mark"></a>POJ1012 Joseph</h5><div class="highlight" id="id-41"><div class="chroma">
+  <a href="#poj1012-joseph" class="heading-mark"></a>POJ1012 Joseph</h5><div class="highlight" id="id-199"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -15155,7 +15154,7 @@ DP做法(TODO)</p>
 </span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><h5 id="括号匹配问题" class="heading-element">
-  <a href="#%e6%8b%ac%e5%8f%b7%e5%8c%b9%e9%85%8d%e9%97%ae%e9%a2%98" class="heading-mark"></a>括号匹配问题</h5><div class="highlight" id="id-42"><div class="chroma">
+  <a href="#%e6%8b%ac%e5%8f%b7%e5%8c%b9%e9%85%8d%e9%97%ae%e9%a2%98" class="heading-mark"></a>括号匹配问题</h5><div class="highlight" id="id-200"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -15227,7 +15226,7 @@ DP做法(TODO)</p>
 </span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><h5 id="简单计算器-1" class="heading-element">
-  <a href="#%e7%ae%80%e5%8d%95%e8%ae%a1%e7%ae%97%e5%99%a8-1" class="heading-mark"></a>简单计算器</h5><div class="highlight" id="id-43"><div class="chroma">
+  <a href="#%e7%ae%80%e5%8d%95%e8%ae%a1%e7%ae%97%e5%99%a8-1" class="heading-mark"></a>简单计算器</h5><div class="highlight" id="id-201"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -15389,7 +15388,7 @@ DP做法(TODO)</p>
 </div><h4 id="搜索" class="heading-element">
   <a href="#%e6%90%9c%e7%b4%a2" class="heading-mark"></a>搜索</h4><h5 id="宽度优先搜索" class="heading-element">
   <a href="#%e5%ae%bd%e5%ba%a6%e4%bc%98%e5%85%88%e6%90%9c%e7%b4%a2" class="heading-mark"></a>宽度优先搜索</h5><h6 id="catch-that-cow" class="heading-element">
-  <a href="#catch-that-cow" class="heading-mark"></a>Catch That Cow</h6><div class="highlight" id="id-44"><div class="chroma">
+  <a href="#catch-that-cow" class="heading-mark"></a>Catch That Cow</h6><div class="highlight" id="id-202"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -15477,7 +15476,7 @@ DP做法(TODO)</p>
 </span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><h6 id="玛雅人的密码" class="heading-element">
-  <a href="#%e7%8e%9b%e9%9b%85%e4%ba%ba%e7%9a%84%e5%af%86%e7%a0%81" class="heading-mark"></a>玛雅人的密码</h6><div class="highlight" id="id-45"><div class="chroma">
+  <a href="#%e7%8e%9b%e9%9b%85%e4%ba%ba%e7%9a%84%e5%af%86%e7%a0%81" class="heading-mark"></a>玛雅人的密码</h6><div class="highlight" id="id-203"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -15580,7 +15579,7 @@ DP做法(TODO)</p>
 </div>
 </div><h5 id="深度优先搜索" class="heading-element">
   <a href="#%e6%b7%b1%e5%ba%a6%e4%bc%98%e5%85%88%e6%90%9c%e7%b4%a2" class="heading-mark"></a>深度优先搜索</h5><h6 id="find-the-multiple" class="heading-element">
-  <a href="#find-the-multiple" class="heading-mark"></a>Find The Multiple</h6><div class="highlight" id="id-46"><div class="chroma">
+  <a href="#find-the-multiple" class="heading-mark"></a>Find The Multiple</h6><div class="highlight" id="id-204"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -15639,7 +15638,7 @@ DP做法(TODO)</p>
 </div>
 </div><h6 id="a-knightss-journey" class="heading-element">
   <a href="#a-knightss-journey" class="heading-mark"></a>A Knights&rsquo;s Journey</h6><p>这道题是经典的骑士旅行问题，即通过DFS找出一条能够遍历所有节点的路径</p>
-<div class="highlight" id="id-47"><div class="chroma">
+<div class="highlight" id="id-205"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -15771,7 +15770,7 @@ DP做法(TODO)</p>
 </span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><h6 id="square" class="heading-element">
-  <a href="#square" class="heading-mark"></a>Square</h6><div class="highlight" id="id-48"><div class="chroma">
+  <a href="#square" class="heading-mark"></a>Square</h6><div class="highlight" id="id-206"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -15891,7 +15890,7 @@ DP做法(TODO)</p>
 </span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><h6 id="神奇的口袋" class="heading-element">
-  <a href="#%e7%a5%9e%e5%a5%87%e7%9a%84%e5%8f%a3%e8%a2%8b" class="heading-mark"></a>神奇的口袋</h6><div class="highlight" id="id-49"><div class="chroma">
+  <a href="#%e7%a5%9e%e5%a5%87%e7%9a%84%e5%8f%a3%e8%a2%8b" class="heading-mark"></a>神奇的口袋</h6><div class="highlight" id="id-207"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -15967,7 +15966,7 @@ DP做法(TODO)</p>
 </span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><h6 id="八皇后" class="heading-element">
-  <a href="#%e5%85%ab%e7%9a%87%e5%90%8e" class="heading-mark"></a>八皇后</h6><div class="highlight" id="id-50"><div class="chroma">
+  <a href="#%e5%85%ab%e7%9a%87%e5%90%8e" class="heading-mark"></a>八皇后</h6><div class="highlight" id="id-208"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -16035,7 +16034,7 @@ DP做法(TODO)</p>
 </div><h4 id="图论" class="heading-element">
   <a href="#%e5%9b%be%e8%ae%ba" class="heading-mark"></a>图论</h4><h5 id="并查集-1" class="heading-element">
   <a href="#%e5%b9%b6%e6%9f%a5%e9%9b%86-1" class="heading-mark"></a>并查集</h5><h6 id="is-it-a-tree" class="heading-element">
-  <a href="#is-it-a-tree" class="heading-mark"></a>Is It A Tree?</h6><div class="highlight" id="id-51"><div class="chroma">
+  <a href="#is-it-a-tree" class="heading-mark"></a>Is It A Tree?</h6><div class="highlight" id="id-209"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -16175,7 +16174,7 @@ DP做法(TODO)</p>
 </span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><h6 id="第一题使用map映射来完成并查集" class="heading-element">
-  <a href="#%e7%ac%ac%e4%b8%80%e9%a2%98%e4%bd%bf%e7%94%a8map%e6%98%a0%e5%b0%84%e6%9d%a5%e5%ae%8c%e6%88%90%e5%b9%b6%e6%9f%a5%e9%9b%86" class="heading-mark"></a>第一题(使用map映射来完成并查集)</h6><div class="highlight" id="id-52"><div class="chroma">
+  <a href="#%e7%ac%ac%e4%b8%80%e9%a2%98%e4%bd%bf%e7%94%a8map%e6%98%a0%e5%b0%84%e6%9d%a5%e5%ae%8c%e6%88%90%e5%b9%b6%e6%9f%a5%e9%9b%86" class="heading-mark"></a>第一题(使用map映射来完成并查集)</h6><div class="highlight" id="id-210"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -16256,7 +16255,7 @@ DP做法(TODO)</p>
 </div>
 </div><h5 id="最小生成树-2" class="heading-element">
   <a href="#%e6%9c%80%e5%b0%8f%e7%94%9f%e6%88%90%e6%a0%91-2" class="heading-mark"></a>最小生成树</h5><h6 id="freckles" class="heading-element">
-  <a href="#freckles" class="heading-mark"></a>Freckles</h6><div class="highlight" id="id-53"><div class="chroma">
+  <a href="#freckles" class="heading-mark"></a>Freckles</h6><div class="highlight" id="id-211"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -16400,7 +16399,7 @@ DP做法(TODO)</p>
 </span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><h6 id="jungle-roads" class="heading-element">
-  <a href="#jungle-roads" class="heading-mark"></a>Jungle Roads</h6><div class="highlight" id="id-54"><div class="chroma">
+  <a href="#jungle-roads" class="heading-mark"></a>Jungle Roads</h6><div class="highlight" id="id-212"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -16538,7 +16537,7 @@ DP做法(TODO)</p>
 </div><h5 id="最短路-1" class="heading-element">
   <a href="#%e6%9c%80%e7%9f%ad%e8%b7%af-1" class="heading-mark"></a>最短路</h5><h6 id="畅通工程续" class="heading-element">
   <a href="#%e7%95%85%e9%80%9a%e5%b7%a5%e7%a8%8b%e7%bb%ad" class="heading-mark"></a>畅通工程续</h6><p><strong>朴素的dijkstra</strong></p>
-<div class="highlight" id="id-55"><div class="chroma">
+<div class="highlight" id="id-213"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -16652,7 +16651,7 @@ DP做法(TODO)</p>
 </span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p><strong>堆优化的dijkstra</strong></p>
-<div class="highlight" id="id-56"><div class="chroma">
+<div class="highlight" id="id-214"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -16772,7 +16771,7 @@ DP做法(TODO)</p>
 </span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><h6 id="最短路径" class="heading-element">
-  <a href="#%e6%9c%80%e7%9f%ad%e8%b7%af%e5%be%84" class="heading-mark"></a>最短路径</h6><div class="highlight" id="id-57"><div class="chroma">
+  <a href="#%e6%9c%80%e7%9f%ad%e8%b7%af%e5%be%84" class="heading-mark"></a>最短路径</h6><div class="highlight" id="id-215"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -16949,7 +16948,7 @@ DP做法(TODO)</p>
 </div>
 </div><h5 id="拓扑排序-1" class="heading-element">
   <a href="#%e6%8b%93%e6%89%91%e6%8e%92%e5%ba%8f-1" class="heading-mark"></a>拓扑排序</h5><h6 id="legal-or-not" class="heading-element">
-  <a href="#legal-or-not" class="heading-mark"></a>Legal or Not</h6><div class="highlight" id="id-58"><div class="chroma">
+  <a href="#legal-or-not" class="heading-mark"></a>Legal or Not</h6><div class="highlight" id="id-216"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -17049,7 +17048,7 @@ DP做法(TODO)</p>
 </span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><h6 id="确定比赛名次" class="heading-element">
-  <a href="#%e7%a1%ae%e5%ae%9a%e6%af%94%e8%b5%9b%e5%90%8d%e6%ac%a1" class="heading-mark"></a>确定比赛名次</h6><div class="highlight" id="id-59"><div class="chroma">
+  <a href="#%e7%a1%ae%e5%ae%9a%e6%af%94%e8%b5%9b%e5%90%8d%e6%ac%a1" class="heading-mark"></a>确定比赛名次</h6><div class="highlight" id="id-217"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -17144,7 +17143,7 @@ DP做法(TODO)</p>
 </div>
 </div><h6 id="instructions-arrangement" class="heading-element">
   <a href="#instructions-arrangement" class="heading-mark"></a>Instructions Arrangement</h6><p>这道题其实没那么复杂，只要利用拓扑排序求出每个事件的最早发生时间，返回最大值即可</p>
-<div class="highlight" id="id-60"><div class="chroma">
+<div class="highlight" id="id-218"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -17269,7 +17268,7 @@ DP做法(TODO)</p>
 </div>
 </div><h3 id="pat甲级" class="heading-element">
   <a href="#pat%e7%94%b2%e7%ba%a7" class="heading-mark"></a>PAT甲级</h3><h4 id="1012-the-best-rank" class="heading-element">
-  <a href="#1012-the-best-rank" class="heading-mark"></a>1012 The Best Rank</h4><div class="highlight" id="id-61"><div class="chroma">
+  <a href="#1012-the-best-rank" class="heading-mark"></a>1012 The Best Rank</h4><div class="highlight" id="id-219"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">  1
 </span><span class="lnt">  2
@@ -17489,7 +17488,7 @@ DP做法(TODO)</p>
 </div><h4 id="1014-waiting-in-line" class="heading-element">
   <a href="#1014-waiting-in-line" class="heading-mark"></a>1014 Waiting in Line</h4><p>这题需要注意，17:00前无法入队的客户都需要输出Sorry</p>
 <p>而17:00前能入队，就算结束时间在17:00之后，也要正常输出离开时间</p>
-<div class="highlight" id="id-62"><div class="chroma">
+<div class="highlight" id="id-220"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -17599,7 +17598,7 @@ DP做法(TODO)</p>
 </span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="1043-is-it-a-binary-search-tree" class="heading-element">
-  <a href="#1043-is-it-a-binary-search-tree" class="heading-mark"></a>1043 Is It a Binary Search Tree</h4><div class="highlight" id="id-63"><div class="chroma">
+  <a href="#1043-is-it-a-binary-search-tree" class="heading-mark"></a>1043 Is It a Binary Search Tree</h4><div class="highlight" id="id-221"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -17758,7 +17757,7 @@ DP做法(TODO)</p>
 <p>因此，元素 a[i] 将会出现在 (i + 1) * (N - i) 个子序列中。其中 (i + 1) 是起点的数量，(N - i) 是终点的数量。每个子序列都包含 a[i]，所以它在这些子序列中出现的次数是这两者的乘积。</p>
 </blockquote>
 <p>这题要特别注意的是，<code>double</code>类型在多次累计的过程中会出现误差，因此可以使用<code>long long</code>来存储</p>
-<div class="highlight" id="id-64"><div class="chroma">
+<div class="highlight" id="id-222"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -17822,7 +17821,7 @@ DP做法(TODO)</p>
   </div>
 
   <div class="post-nav"><a href="/posts/4a27616/" class="post-nav-item" rel="prev" title="2024 羊城杯网络安全大赛 Misc Writeup"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>2024 羊城杯网络安全大赛 Misc Writeup</a>
-      <a href="/posts/1ad9200/" class="post-nav-item" rel="next" title="CTF-Misc Guide">CTF-Misc Guide<i class="fa-solid fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+      <a href="/posts/690000000000000000000000000000000000000000000000000000000000000/" class="post-nav-item" rel="next" title="CTF-Reverse Record">CTF-Reverse Record<i class="fa-solid fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
 </div>
 </article>
 
@@ -17830,7 +17829,7 @@ DP做法(TODO)</p>
   <div
     class="toc-content"
     id="toc-content-auto"></div></aside></main><footer class="footer">
-    <div class="footer-container"><div class="footer-line powered">Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreferrer" title="Hugo 0.135.0">Hugo</a> | Theme - <a href="https://github.com/hugo-fixit/FixIt" target="_blank" rel="external" title="FixIt v0.3.2">FixIt</a>
+    <div class="footer-container"><div class="footer-line powered">Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreferrer" title="Hugo 0.125.3">Hugo</a> | Theme - <a href="https://github.com/hugo-fixit/FixIt" target="_blank" rel="external" title="FixIt v0.3.2">FixIt</a>
         </div><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
             <span itemprop="copyrightYear">2024</span><span class="author" itemprop="copyrightHolder">
               <a href="https://goodlunatic.github.io"target="_blank" rel="external nofollow noopener noreferrer">Lunatic</a></span></div></div>

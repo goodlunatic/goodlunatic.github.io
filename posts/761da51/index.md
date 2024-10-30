@@ -604,7 +604,10 @@ ad1文件是用 FTKimage 制作的磁盘镜像，因此可以使用 FTKimage 进
 
 vhd 是 Virtual Hard Disk 虚拟磁盘的缩写，是一种用于存储虚拟机磁盘镜像的文件格式
 
-可以在 Windows 系统下直接挂载，也可以拉入 DiskGenius  打开查看
+1、可以在 Windows 系统下直接挂载，也可以拉入 DiskGenius  打开查看
+
+2、如果显示有BitLocker加密，可以先用`x-ways Forensics`转换为DD文件，然后用`PasswareKit`结合内存镜像爆破密钥
+例题1-NewStarCTF Week4-擅长加密的小明
 
 ### 磁盘取证的一些思路
 

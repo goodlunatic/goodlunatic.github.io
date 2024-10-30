@@ -4,7 +4,33 @@
     <link>http://localhost:1313/categories/writeup/</link>
     <description>Writeup - Category | ⚡Lunatic BLOG⚡</description>
     <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>goodlunatic0@gmail.com (Lunatic)</managingEditor>
-      <webMaster>goodlunatic0@gmail.com (Lunatic)</webMaster><lastBuildDate>Wed, 28 Aug 2024 16:44:56 &#43;0800</lastBuildDate><atom:link href="http://localhost:1313/categories/writeup/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>goodlunatic0@gmail.com (Lunatic)</webMaster><lastBuildDate>Tue, 29 Oct 2024 21:56:08 &#43;0800</lastBuildDate><atom:link href="http://localhost:1313/categories/writeup/" rel="self" type="application/rss+xml" /><item>
+  <title>2024 网鼎杯网络安全大赛 Misc Writeup</title>
+  <link>http://localhost:1313/posts/1a285be/</link>
+  <pubDate>Tue, 29 Oct 2024 21:56:08 &#43;0800</pubDate>
+  <author>Lunatic</author>
+  <guid>http://localhost:1313/posts/1a285be/</guid>
+  <description><![CDATA[<p><strong>2024 网鼎杯网络安全大赛 Misc Writeup</strong></p>]]></description>
+</item>
+<item>
+  <title>2024 强网拟态防御国际精英挑战赛初赛 Misc Writeup</title>
+  <link>http://localhost:1313/posts/de8e2be/</link>
+  <pubDate>Wed, 23 Oct 2024 13:16:19 &#43;0800</pubDate>
+  <author>Lunatic</author>
+  <guid>http://localhost:1313/posts/de8e2be/</guid>
+  <description><![CDATA[<p><strong>这比赛虽然有些Misc题比较搞心态，但是不得不说题目质量还是在的</strong></p>
+<p><strong>出题师傅的水平还是挺可以的，然后经验啥的感觉还是比较老练</strong></p>]]></description>
+</item>
+<item>
+  <title>2024 睿抗机器人开发者大赛（RAICOM）网络安全赛道初赛 Misc Writeup</title>
+  <link>http://localhost:1313/posts/1eae35a/</link>
+  <pubDate>Mon, 21 Oct 2024 12:22:20 &#43;0800</pubDate>
+  <author>Lunatic</author>
+  <guid>http://localhost:1313/posts/1eae35a/</guid>
+  <description><![CDATA[<p><strong>很早之前和队友报的名，结果到现在才打。。</strong></p>
+<p><strong>这比赛只能说是纯纯手速局。。</strong></p>]]></description>
+</item>
+<item>
   <title>2024 羊城杯网络安全大赛 Misc Writeup</title>
   <link>http://localhost:1313/posts/4a27616/</link>
   <pubDate>Wed, 28 Aug 2024 16:44:56 &#43;0800</pubDate>
@@ -63,30 +89,6 @@
   <guid>http://localhost:1313/posts/e0d44f3/</guid>
   <description><![CDATA[<p><strong>从这场比赛可以看出自己还是有很多东西需要去学</strong><br>
 <strong>感觉 Misc 很大程度上还是看经验，自己见过的东西还是太少了</strong></p>]]></description>
-</item>
-<item>
-  <title>2024 帕鲁杯 Misc Writeup</title>
-  <link>http://localhost:1313/posts/a907e2b/</link>
-  <pubDate>Sun, 28 Apr 2024 15:59:10 &#43;0800</pubDate>
-  <author>Lunatic</author>
-  <guid>http://localhost:1313/posts/a907e2b/</guid>
-  <description><![CDATA[<p><strong>2024 帕鲁杯 Misc Writeup</strong></p>]]></description>
-</item>
-<item>
-  <title>2023&amp;2024 红明谷初赛 Misc Writeup</title>
-  <link>http://localhost:1313/posts/e49ecc5/</link>
-  <pubDate>Sun, 07 Apr 2024 19:52:15 &#43;0800</pubDate>
-  <author>Lunatic</author>
-  <guid>http://localhost:1313/posts/e49ecc5/</guid>
-  <description><![CDATA[<p><strong>连续打了两年的红明谷了，两次都没进决赛，红明谷的Misc题也是一如既往的抽象。</strong></p>]]></description>
-</item>
-<item>
-  <title>2024 长城杯信息安全铁人三项赛 Misc Writeup</title>
-  <link>http://localhost:1313/posts/bd957c3/</link>
-  <pubDate>Mon, 01 Apr 2024 19:18:07 &#43;0800</pubDate>
-  <author>Lunatic</author>
-  <guid>http://localhost:1313/posts/bd957c3/</guid>
-  <description><![CDATA[<p><strong>不愧是竞速长城杯，时间这么短，只能说强度很高</strong>。</p>]]></description>
 </item>
 </channel>
 </rss>

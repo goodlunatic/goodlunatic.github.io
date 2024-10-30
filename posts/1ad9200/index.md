@@ -570,6 +570,16 @@ if a == &#34;2&#34;:
 flag{11 21 31 18 27 33 34}
 flag{QAZIJCV}
 ```
+### 棋盘密码((ADFGVX,ADFGX,Polybius)
+
+![](imgs/image-20241018145022295.png)
+
+直接使用CaptfEncoder或者随波逐流等工具输入密文和密钥解密即可
+![](imgs/image-20241018145101804.png)
+
+ADFGVX密码 默认棋盘：ph0qg64mea1yl2nofdxkr3cvs5zw7bj9uti8 默认密钥：german
+ADFGX密码 默认棋盘：phqgmeaynofdxkrcvszwbutil 默认密钥：german
+波利比奥斯方阵密码 密钥：随机 默认密文字符：ABCDE
 
 ### 福尔摩斯密码
 
@@ -1238,7 +1248,7 @@ word中可能有一段是1倍行距，可能又有一段是1.5倍行距，需要
 
 ### 1、 有可能是ntfs，直接用NtfsStreamsEditor2扫描所在文件夹，然后导出可疑文件【如果是压缩包，一定要用winrar解压】
 
-### 2、可能是wbStego4open隐写，用wbStego4open直接decode
+### 2、可能是wbStego4open隐写，用wbStego4open直接decode(可能有密钥)
 
 ### 3、如果是那种文件夹套文件夹的题目，可以直接把路径粘贴到everything中，让everything一把梭
 
@@ -1247,6 +1257,14 @@ word中可能有一段是1倍行距，可能又有一段是1.5倍行距，需要
 一个文件打开都是空白字符
 可以使用在线网站解密：https://vii5ard.github.io/whitespace/ 复制进去直接run即可
 snow隐写，到snowdos32工具目录下运行 SNOW.EXE -C -p password flag.txt 命令即可
+
+### 5、垃圾邮件隐写(spammimic)
+
+例题1-2024强网拟态初赛-PvZ
+
+直接使用以下在线网站解密即可：
+
+https://www.spammimic.com/
 
 ## Misc——html题思路：
 
@@ -1721,6 +1739,7 @@ copy /B topic.zip.001 &#43; topic.zip.002&#43;topic.zip.003&#43;topic.zip.004&#4
 ### 8、压缩包炸弹
 
 很小的压缩文件，解压出来会占据巨大的空间，甚至撑爆磁盘
+
 处理方法：010中直接编辑压缩包文件，看看是否藏有另一个压缩包
 
 ### 9、根据010中的模板修改了某些参数
@@ -1863,6 +1882,8 @@ out.show()
 ### 3、LSB(最低有效位隐写)：用silenteye解密
 
 ### 4、SSTV慢扫描电视：
+
+**SSTV识别可以直接用这个项目里的脚本：https://github.com/colaclanth/sstv**
 
 #### Windows中使用RX-SSTV
 
