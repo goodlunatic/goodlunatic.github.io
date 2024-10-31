@@ -1,4 +1,4 @@
-# 2024 网鼎杯网络安全大赛 Misc Writeup
+# 2024 网鼎杯网络安全大赛青龙组 Misc Writeup
 
 **2024 网鼎杯网络安全大赛 Misc Writeup**
 &lt;!--more--&gt;
@@ -8,6 +8,28 @@
 &gt; 题目附件下载地址： https://pan.baidu.com/s/1HmsiauKm_0luI-oa2CvRBA?pwd=8vs5 提取码: 8vs5
 
 ## 题目名称 Misc01
+
+![](imgs/image-20241031101152559.png)
+
+题目附件给了一个`MME.cap`流量包，wireshark打开查看
+
+&gt; 附件名字中的`MME（Mobility Management Entity）`表示`移动性管理实体`
+
+发现流量包中的协议主要有：`DIAMETER`、`S1AP/NAS-EPS`、`GTPv2`、`S1AP`
+
+问一问GPT，发现 `DIAMETER`、`GTPv2` 是比较可能的方向
+
+![](imgs/image-20241031102603188.png)
+
+因此我们配合过滤器一个个查看流量包，最终在`DIAMETER`协议中发现关键信息`MME-Location-Information`
+
+![](imgs/image-20241031103005789.png)
+
+![](imgs/image-20241031103245281.png)
+
+最后把该字段中的值`MD5`加密一下即可得到flag：`wdflag{1f717538aeec1322f446a754d0bcf220}`
+
+![](imgs/image-20241031101958348.png)
 
 ## 题目名称 Misc02(赛后复现)
 ![](imgs/image-20241029215810192.png)
@@ -75,7 +97,33 @@ service ssh start
 
 做完符号文件后发现也扫不出东西，因此这道题我这里就直接打算用010手动提取了
 
-根据PNG的文件头base64编码后的值：`iVBORw0KGgo`
+首先，我们先用`strings`看看用户桌面上有什么东西，当然这里也可以直接在`010`中搜字符串
+
+```bash
+strings flag | grep Desktop
+```
+
+![](imgs/image-20241031103755088.png)
+
+我们确定了用户名以及桌面的路径，便于我们缩小范围，过滤掉无效的干扰数据
+
+```bash
+strings flag | grep /home/ccc/Desktop/
+```
+
+![](imgs/image-20241031104039178.png)
+
+可以看到扫出来了很多非常关键的信息，桌面上有很多张PNG图片，然后还有同名的TXT文件
+
+甚至还有内存镜像的vol3符号文件以及制作符号文件的工具（所以我猜测出题人是故意让我们没办法用vol3进行取证）
+
+然后我们到`010`中搜索那几张图片的文件名
+
+![](imgs/image-20241031104327371.png)
+
+发现用了`base64 xxx.png &gt; xxx.txt`这个命令，把图片数据以base64编码的格式保存到同名txt文件中
+
+猜测另外几个文件也是同理，因此我们根据PNG的文件头base64编码后的值：`iVBORw0KGgo`
 
 在010中可以定位到12个位置
 
