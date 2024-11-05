@@ -35,6 +35,17 @@ search_terms = [
 ]
 ```
 
+```python
+# 各种常用关键字的bash64编码
+flag                          Zmxh
+F14g                          RjE0
+DASCTF                        REFTQ1RGe
+s3cr3t                        czNjcjN0
+secret                        c2VjcmV0
+password                      cGFzc3dvc
+PNG文件头                      iVBORw0KGgo
+ZIP文件头                      UEsDBA
+```
 ## 各种加密/编码：
 
 ### base家族
@@ -50,6 +61,10 @@ search_terms = [
 6、base85                       flag         Ao(mg
 7、base91                       flag         @iH&lt;Z
 8、base92                       flag         F#S&lt;I
+9、base100                      flag         👝👣👘👞
+10、base1024                    flag
+11、base2048                    flag         ڥڊװ
+12、base65535                   flag         ꍦ鱡
 ```
 
 base64还可以换表(表中的字符要求不重复)编码，例如
@@ -96,7 +111,13 @@ b&#39;\xe5\xaf\x92\xe9\xb8\xa6\xe5\xb0\x8f\xe7\xab\x99&#39;
 ```
 
 ### emoji-aes编码：
+密文由一大串emoji表情组成，解密需要密钥，例如
 
+已知key：th1sisKey，直接使用在线网站解密即可，在线网站源码也可以下载到本地
+
+```
+🙃💵🌿🎤🚪🌏🐎🥋🚫😆😍🔬👣🖐🌏😇🥋😇😊🍎🏹👌🌊☃🦓🌏🐅🥋🚨📮🐍🎈📮📂✅🐍⏩⌨🎈😍🌊😇🐍☺💧🥋🍌🎤🍍😇👁🦓😇🍍📮📂🎅😡🍵✖✉🏹⌨🍵🎤😆🍵🚹🏹🍎🚨ℹ☃👑🎤🚪💵😎😀😎🔬💵🦓🏹👉🦓✖😀🐘🔪⌨🎈🥋👌🍌🚹😂✉🍎🍌🏎👌🏹💵👌👁🎃🗒
+```
 https://aghorler.github.io/emoji-aes/
 
 ### 词频分析：
@@ -513,6 +534,14 @@ flag{ichunqiu_=E6=8A=80=E6=9C=AF=E6=9C=89=E6=B8=A9=E5=BA=A6}
 
 flag{ichunqiu_技术有温度}
 
+### Unicode编码
+
+这个编码有很多种格式，比如`&#43;U、\u、\x、&amp;#`啥的
+
+![](imgs/image-20241101155218913.png)
+
+可以使用这个在线网站解码：https://r12a.github.io/app-conversion/
+
 ### 中文ascii码
 
 ```
@@ -609,19 +638,17 @@ U     R    H   D    B     D   F    G    E
 
 这里要注意，出题人可能会把文件头的小写字母偷偷改成大写，例如：Rar -&gt; RAR
 
-```
-.zip的文件头：50 4B 03 04 14 00 08 00
-.rar的文件头：52 61 72 21
-.rar的文件尾：C4 3D 7B 00 40 07 00
-.7z的文件头：37 7A BC AF 27 1C
-.pyc的文件头：03 F3 0D 0A
-.jpg的文件头：FF D8 FF E0 00 10 4A 46 49 46 00 01
-.png的文件头：89 50 4e 47 0d 0a 1a 0a   文件尾：49 45 4E 44 AE 42 60 82
-.gif的文件头：47 49 46 38 39 61（GIF89A）或 47 49 46 38 37 61（GIF87A）
-.gif的文件尾：00 3B
-.gz的文件头：1F 8B 08 00
-.pyc的文件头：03 F3 0D 0A
-.psd的文件头：38 42 50 53
+```python
+zip 文件头：50 4B 03 04 14 00 08 00
+rar 文件头：52 61 72 21 (Rar!)               文件尾：C4 3D 7B 00 40 07 00
+7z  文件头：37 7A BC AF 27 1C
+png 文件头：89 50 4E 47 0D 0A 1A 0A 00 00 00 0D 49 48 44 52   文件尾：49 45 4E 44 AE 42 60 82
+jpg 文件头：FF D8 FF E0 00 10 4A 46 49 46 00 01
+gif 文件头：47 49 46 38 39 61（GIF89A）或 47 49 46 38 37 61（GIF87A）    文件尾：00 3B
+wav 文件头：57415645
+gz 文件头：1F 8B 08 00
+pyc的文件头：03 F3 0D 0A
+psd的文件头：38 42 50 53
 TIFF (tif)，文件头：49492A00
 Windows [Bitmap](https://so.csdn.net/so/search?q=Bitmap&amp;spm=1001.2101.3001.7020) (bmp)，文件头：424D
 CAD (dwg)，文件头：41433130
@@ -639,7 +666,6 @@ Postscript (eps.or.ps)，文件头：252150532D41646F6265
 Adobe Acrobat (pdf)，文件头：255044462D312E
 Quicken (qdf)，文件头：AC9EBD8F
 Windows Password (pwl)，文件头：E3828596
-Wave (wav)，文件头：57415645
 AVI (avi)，文件头：41564920
 Real Audio (ram)，文件头：2E7261FD
 Real Media (rm)，文件头：2E524D46
@@ -649,11 +675,6 @@ Quicktime (mov)，文件头：6D6F6F76
 Windows Media (asf)，文件头：3026B2758E66CF11
 MIDI (mid)，文件头：4D546864
 M4a，文件头：00000018667479704D3441
-```
-
-```bash
-#Tips
-1.PNG文件的前16字节是已知的：89 50 4E 47 0D 0A 1A 0A 00 00 00 0D 49 48 44 52
 ```
 
 ## Misc——流量分析
@@ -841,7 +862,47 @@ Tips:在PS中按F8就可以看到每个像素点的具体坐标了
 exiftool 3.jpg
 ```
 
+#### 18、给了两张图片，flag藏在每行不同像素的个数中
 
+例题1-2023羊城杯初赛-两支老虎
+
+```python
+from PIL import Image, ImageChops
+
+img1 = Image.open(&#34;1.png&#34;)
+width1,heigth1 = img1.size # 1134,720
+img2 = Image.open(&#34;2.png&#34;) 
+width2,heigth2 = img2.size # 1144,720
+img2 = img2.crop((0,0,1134,720))
+width2,heigth2 = img2.size
+# img2.save(&#34;3.png&#34;)
+
+diff_dit = {}
+# 返回差异图像，表示 img1 和 img2 之间的像素差异。
+diff = ImageChops.difference(img1,img2)
+width3,heigth3 = diff.size
+for x in range(width3):
+    for y in range(heigth3):
+        pixel3 = str(diff.getpixel((x,y)))
+        # 统计一下差异像素
+        if pixel3 not in diff_dit: 
+            diff_dit[pixel3] = 0
+        else:
+            diff_dit[pixel3] &#43;= 1
+print(diff_dit) 
+# {&#39;(0, 0, 0)&#39;: 813891, &#39;(1, 1, 1)&#39;: 2533, &#39;(1, 1, 0)&#39;: 53}
+
+for y in range(heigth1):
+    cnt = 0
+    for x in range(width1):
+        pixel1 = img1.getpixel((x,y))
+        pixel2 = img2.getpixel((x,y))
+        if pixel1 != pixel2:
+            cnt &#43;= 1
+    if cnt != 0:
+        print(chr(cnt),end=&#39;&#39;)
+# DASCTF{tWo_t1gers_rUn_f@st}
+```
 
 ### PNG思路
 
@@ -1198,6 +1259,23 @@ with open(&#39;flag.zip&#39;, &#39;wb&#39;) as f:
 ![](imgs/PDF417code.png)
 
 这里要注意的是，出题人可能会把图片反相导致无法直接扫描，因此我们可以先将图片拉入 PS 先进行反相处理
+
+#### 二维码的纠错等级
+参考链接：https://www.shangyexinzhi.com/article/4952046.html
+
+以下面这张二维码为例子
+
+![](imgs/image-20241031211220251.png)
+
+
+| 1位置的颜色 | 2位置的颜色 |    纠错等级    | 容错率 |
+| :----: | :----: | :--------: | :-: |
+|   黑    |   黑    |   L(Low)   | 7%  |
+|   黑    |   白    | M(Medium)  | 15% |
+|   白    |   黑    | Q(Quartil) | 25% |
+|   白    |   白    |  H(High)   | 30% |
+
+
 
 ## Misc——PDF题思路：
 

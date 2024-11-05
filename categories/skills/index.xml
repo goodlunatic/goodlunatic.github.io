@@ -29,5 +29,13 @@
   <guid>http://localhost:1313/posts/4b500cc/</guid>
   <description><![CDATA[<p><strong>最近放假回家了，闲来无事，就折腾了一下家里的老电脑，顺便优化更新一下店里的老东西</strong></p>]]></description>
 </item>
+<item>
+  <title>从零开始，快速入门Git</title>
+  <link>http://localhost:1313/posts/0d2a7eb/</link>
+  <pubDate>Fri, 08 Dec 2023 15:53:54 &#43;0800</pubDate>
+  <author>Lunatic</author>
+  <guid>http://localhost:1313/posts/0d2a7eb/</guid>
+  <description><![CDATA[<p><strong>对程序员来说Git是一个不得不用的东西，因此打算好好学习一下</strong></p>]]></description>
+</item>
 </channel>
 </rss>

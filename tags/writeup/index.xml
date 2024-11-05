@@ -4,13 +4,21 @@
     <link>http://localhost:1313/tags/writeup/</link>
     <description>Writeup - Tag | ⚡Lunatic BLOG⚡</description>
     <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>goodlunatic0@gmail.com (Lunatic)</managingEditor>
-      <webMaster>goodlunatic0@gmail.com (Lunatic)</webMaster><lastBuildDate>Thu, 31 Oct 2024 09:56:08 &#43;0800</lastBuildDate><atom:link href="http://localhost:1313/tags/writeup/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>goodlunatic0@gmail.com (Lunatic)</webMaster><lastBuildDate>Tue, 05 Nov 2024 10:21:35 &#43;0800</lastBuildDate><atom:link href="http://localhost:1313/tags/writeup/" rel="self" type="application/rss+xml" /><item>
+  <title>2024 某金融系统内部赛 Misc Writeup</title>
+  <link>http://localhost:1313/posts/69280be/</link>
+  <pubDate>Tue, 05 Nov 2024 10:21:35 &#43;0800</pubDate>
+  <author>Lunatic</author>
+  <guid>http://localhost:1313/posts/69280be/</guid>
+  <description><![CDATA[<p>不知道具体是什么比赛，但是赛题还是有一定的强度的</p>]]></description>
+</item>
+<item>
   <title>2024 网鼎杯网络安全大赛青龙组 Misc Writeup</title>
   <link>http://localhost:1313/posts/1a285be/</link>
   <pubDate>Thu, 31 Oct 2024 09:56:08 &#43;0800</pubDate>
   <author>Lunatic</author>
   <guid>http://localhost:1313/posts/1a285be/</guid>
-  <description><![CDATA[<p><strong>2024 网鼎杯网络安全大赛 Misc Writeup</strong></p>]]></description>
+  <description><![CDATA[<p><strong>2024 网鼎杯网络安全大赛青龙组 Misc Writeup</strong></p>]]></description>
 </item>
 <item>
   <title>2024 强网拟态防御国际精英挑战赛初赛 Misc Writeup</title>
@@ -80,15 +88,6 @@
   <guid>http://localhost:1313/posts/9d73413/</guid>
   <description><![CDATA[<p>宁波市赛的 Misc 还是一如既往的抽象 @_@</p>
 <p>还是太菜了，赛中只做出了一道 Misc</p>]]></description>
-</item>
-<item>
-  <title>2024 NKCTF Misc Writeup</title>
-  <link>http://localhost:1313/posts/e0d44f3/</link>
-  <pubDate>Tue, 30 Apr 2024 19:07:38 &#43;0800</pubDate>
-  <author>Lunatic</author>
-  <guid>http://localhost:1313/posts/e0d44f3/</guid>
-  <description><![CDATA[<p><strong>从这场比赛可以看出自己还是有很多东西需要去学</strong><br>
-<strong>感觉 Misc 很大程度上还是看经验，自己见过的东西还是太少了</strong></p>]]></description>
 </item>
 </channel>
 </rss>

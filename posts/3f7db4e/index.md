@@ -329,7 +329,7 @@ def draw_pic1():
         if(int(line[12:16],16) != 0):
             press_data = int(line[12:16],16)
             x.append(int(line[6:8],16)*0xff&#43;int(line[4:6],16))
-            y.append(int(line[10:12],16)*0xff&#43;int(line[8:10],16))
+            y.append(-1 * (int(line[10:12],16)*0xff&#43;int(line[8:10],16)))
             
     plt.scatter(x,y)
     plt.grid() # 显示网格
@@ -374,7 +374,7 @@ def draw_pic2():
             press_lst.append(press_data)
             if(press_data &lt; 65000):
                 x.append(int(line[6:8],16)*0xff&#43;int(line[4:6],16))
-                y.append(int(line[10:12],16)*0xff&#43;int(line[8:10],16))
+                y.append(-1 * (int(line[10:12],16)*0xff&#43;int(line[8:10],16)))
             
     plt.scatter(x,y)
     plt.grid() # 显示网格
@@ -408,7 +408,7 @@ def draw_pic1():
         if(int(line[12:16],16) != 0):
             press_data = int(line[12:16],16)
             x.append(int(line[6:8],16)*0xff&#43;int(line[4:6],16))
-            y.append(int(line[10:12],16)*0xff&#43;int(line[8:10],16))
+            y.append(-1 * (int(line[10:12],16)*0xff&#43;int(line[8:10],16)))
             
     plt.scatter(x,y)
     plt.grid() # 显示网格
@@ -423,7 +423,7 @@ def draw_pic2():
             press_lst.append(press_data)
             if(press_data &lt; 65000):
                 x.append(int(line[6:8],16)*0xff&#43;int(line[4:6],16))
-                y.append(int(line[10:12],16)*0xff&#43;int(line[8:10],16))
+                y.append(-1 * (int(line[10:12],16)*0xff&#43;int(line[8:10],16)))
             
     plt.scatter(x,y)
     plt.grid() # 显示网格

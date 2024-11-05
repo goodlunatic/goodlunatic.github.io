@@ -1,6 +1,6 @@
 # 2024 网鼎杯网络安全大赛青龙组 Misc Writeup
 
-**2024 网鼎杯网络安全大赛 Misc Writeup**
+**2024 网鼎杯网络安全大赛青龙组 Misc Writeup**
 &lt;!--more--&gt;
 
 ![](imgs/image-20241030001333378.png)
