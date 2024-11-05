@@ -12,7 +12,7 @@
   <meta itemprop="description" content="This is a simple summary of digital forensics .">
   <meta itemprop="datePublished" content="2024-10-29T16:34:12+08:00">
   <meta itemprop="dateModified" content="2024-10-29T16:34:12+08:00">
-  <meta itemprop="wordCount" content="2073">
+  <meta itemprop="wordCount" content="2084">
   <meta itemprop="keywords" content="CTF,Misc,Forensics"><meta property="og:url" content="http://localhost:1313/posts/761da51/">
   <meta property="og:site_name" content="⚡Lunatic BLOG⚡">
   <meta property="og:title" content="Misc-Forensics">
@@ -41,7 +41,7 @@
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": "http:\/\/localhost:1313\/posts\/761da51\/"
-    },"genre": "posts","keywords": "CTF, Misc, Forensics","wordcount":  2073 ,
+    },"genre": "posts","keywords": "CTF, Misc, Forensics","wordcount":  2084 ,
     "url": "http:\/\/localhost:1313\/posts\/761da51\/","datePublished": "2024-10-29T16:34:12+08:00","dateModified": "2024-10-29T16:34:12+08:00","publisher": {
       "@type": "Organization",
       "name": ""},"author": {
@@ -181,6 +181,7 @@
         <li><a href="#识别不出内存镜像版本的取证">识别不出内存镜像版本的取证</a></li>
         <li><a href="#用来制作内存镜像的工具">用来制作内存镜像的工具</a></li>
         <li><a href="#dmp文件">dmp文件</a></li>
+        <li><a href="#lsassdmp文件">lsass.DMP文件</a></li>
         <li><a href="#dump文件">dump文件</a></li>
         <li><a href="#mem文件">mem文件</a></li>
         <li><a href="#raw文件">raw文件</a></li>
@@ -1025,8 +1026,26 @@
 <h3 id="dmp文件" class="heading-element">
   <a href="#dmp%e6%96%87%e4%bb%b6" class="heading-mark"></a>dmp文件</h3><p>1、拉入Passware Kit Forensic-Memory Analysis进行分析（用户名和密码）</p>
 <p>2、使用vol分析</p>
-<h3 id="dump文件" class="heading-element">
-  <a href="#dump%e6%96%87%e4%bb%b6" class="heading-mark"></a>dump文件</h3><div class="highlight" id="id-23"><div class="chroma">
+<h3 id="lsassdmp文件" class="heading-element">
+  <a href="#lsassdmp%e6%96%87%e4%bb%b6" class="heading-mark"></a>lsass.DMP文件</h3><p>直接使用<code>mimikatz</code>或者<code>pypykatz</code>分析</p>
+<div class="highlight" id="id-23"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sekurlsa::minidump lsass.dmp
+</span></span><span class="line"><span class="cl">sekurlsa::logonpasswords</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight" id="id-24"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">pypykatz lsa minidump lsass.DMP</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="dump文件" class="heading-element">
+  <a href="#dump%e6%96%87%e4%bb%b6" class="heading-mark"></a>dump文件</h3><div class="highlight" id="id-25"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
@@ -1035,7 +1054,7 @@
 </div>
 </div><p>取证方法大致和dmp文件相同</p>
 <h3 id="mem文件" class="heading-element">
-  <a href="#mem%e6%96%87%e4%bb%b6" class="heading-mark"></a>mem文件</h3><div class="highlight" id="id-24"><div class="chroma">
+  <a href="#mem%e6%96%87%e4%bb%b6" class="heading-mark"></a>mem文件</h3><div class="highlight" id="id-26"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
@@ -1055,7 +1074,7 @@
 <h3 id="取证大师" class="heading-element">
   <a href="#%e5%8f%96%e8%af%81%e5%a4%a7%e5%b8%88" class="heading-mark"></a>取证大师</h3><p>没啥好说的，直接把硬盘镜像文件拉进去梭就行</p>
 <h3 id="fat文件" class="heading-element">
-  <a href="#fat%e6%96%87%e4%bb%b6" class="heading-mark"></a>fat文件</h3><div class="highlight" id="id-25"><div class="chroma">
+  <a href="#fat%e6%96%87%e4%bb%b6" class="heading-mark"></a>fat文件</h3><div class="highlight" id="id-27"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
@@ -1092,7 +1111,7 @@
   <a href="#%e6%9c%8d%e5%8a%a1%e5%99%a8%e5%8f%96%e8%af%81" class="heading-mark"></a>服务器取证</h2><p>硬盘镜像文件后缀: .qcow2</p>
 <h3 id="mysql57-数据库从qpxb文件恢复数据" class="heading-element">
   <a href="#mysql57-%e6%95%b0%e6%8d%ae%e5%ba%93%e4%bb%8eqpxb%e6%96%87%e4%bb%b6%e6%81%a2%e5%a4%8d%e6%95%b0%e6%8d%ae" class="heading-mark"></a>Mysql5.7 数据库从qp.xb文件恢复数据</h3><p>需要安装并使用qpress和xtrabackup</p>
-<div class="highlight" id="id-26"><div class="chroma">
+<div class="highlight" id="id-28"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -1101,7 +1120,7 @@
 <pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">wget <span class="s2">&#34;http://docs-aliyun.cn-hangzhou.oss.aliyun-inc.com/assets/attach/183466/cn_zh/1608011575185/qpress-11-linux-x64.tar&#34;</span>
 </span></span><span class="line"><span class="cl">wget https://www.percona.com/downloads/XtraBackup/Percona-XtraBackup-2.4.9/binary/redhat/7/x86_64/percona-xtrabackup-24-2.4.9-1.el7.x86_64.rpm</span></span></code></pre></td></tr></table>
 </div>
-</div><div class="highlight" id="id-27"><div class="chroma">
+</div><div class="highlight" id="id-29"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1134,7 +1153,7 @@
 <h3 id="2浏览器登录凭证破解" class="heading-element">
   <a href="#2%e6%b5%8f%e8%a7%88%e5%99%a8%e7%99%bb%e5%bd%95%e5%87%ad%e8%af%81%e7%a0%b4%e8%a7%a3" class="heading-mark"></a>2、浏览器登录凭证破解</h3><p>Firefox登录凭证破解</p>
 <p>使用<a href="https://github.com/lclevy/firepwd"target="_blank" rel="external nofollow noopener noreferrer">Firepwd工具</a>破解，将key4.db、logins.json复制到firepwd目录下，用firepwd.py破解</p>
-<div class="highlight" id="id-28"><div class="chroma">
+<div class="highlight" id="id-30"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
@@ -1164,7 +1183,7 @@
 <h3 id="7gpg--pgp-加密" class="heading-element">
   <a href="#7gpg--pgp-%e5%8a%a0%e5%af%86" class="heading-mark"></a>7、GPG / PGP 加密</h3><p>这个加密可以使用 Linux 下的 GPG 解密，也可以使用 Windows 下的 Kleopatra 解密</p>
 <p>Linux 下解密的流程如下</p>
-<div class="highlight" id="id-29"><div class="chroma">
+<div class="highlight" id="id-31"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2

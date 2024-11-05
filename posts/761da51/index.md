@@ -526,6 +526,17 @@ vol3.py -f 1.mem linux.pstree
 
 2、使用vol分析
 
+### lsass.DMP文件
+
+直接使用`mimikatz`或者`pypykatz`分析
+```bash
+sekurlsa::minidump lsass.dmp
+sekurlsa::logonpasswords
+```
+
+```bash
+pypykatz lsa minidump lsass.DMP
+```
 ### dump文件
 
 ```
