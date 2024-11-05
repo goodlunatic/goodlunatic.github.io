@@ -3,6 +3,8 @@
 **不知道具体是什么比赛，但是赛题还是有一定的强度的**
 &lt;!--more--&gt;
 
+&gt; 题目附件下载： https://pan.baidu.com/s/1lzDfkHm1f0iuEMqsC-JhcQ?pwd=63vh 提取码: 63vh 
+
 ## 题目名称 X0r
 
 &gt; X0r is just a commonly used simple encryption

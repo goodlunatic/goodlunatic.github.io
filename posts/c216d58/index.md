@@ -3,6 +3,8 @@
 **2024 浙江省大学生网络与信息安全竞赛 Misc Writeup**
 &lt;!--more--&gt;
 
+&gt; 题目附件下载：https://pan.baidu.com/s/140Wxcv0w4eJJ1XX1r_sRcg?pwd=uvj4 提取码：uvj4
+
 ## 初赛
 ### 题目名称 签到题2
 题目给了如下密文
@@ -166,9 +168,197 @@ if __name__ == &#34;__main__&#34;:
 
 因此猜测需要我们提取 NTLMv2 哈希值并破解密码，详细的步骤可以看[我的这篇博客](https://goodlunatic.github.io/posts/5422d65/#ntlm%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90)
 
+![](imgs/image-20241105125012461.png)
 
+![](imgs/image-20241105125435227.png)
 
+![](imgs/image-20241105125148281.png)
 
+最后组合得到的hash如下
+```
+rockyou::MicrosoftAccount:4936df20962cae6d:db12ced50faf52f141636e80205e8f28:01010000000000003604281b951fdb017b4045aa008508eb0000000002001e00440042004500440036004200350041002d0035003100430032002d00340001001e00440042004500440036004200350041002d0035003100430032002d00340004004800640062006500640036006200350061002d0035003100630032002d0034003100650063002d0061006400380034002d0064006400320062003500370030006400350030003900360003004800640062006500640036006200350061002d0035003100630032002d0034003100650063002d0061006400380034002d00640064003200620035003700300064003500300039003600070008003604281b951fdb01060004000200000008003000300000000000000001000000002000008029a5d8256e5c2762f439df5c06f3bc411fb0faeb3a6fa52d9273c57b09f2d10a0010000000000000000000000000000000000009001e0063006900660073002f00310030002e00310030002e0031002e00380031000000000000000000
+```
+
+然后使用hashcat字典爆破即可得到密码：haticehatice
+
+![](imgs/image-20241105125651713.png)
+
+因此我们现在就可以去爆破之前提取出来的压缩包的密码
+
+![](imgs/image-20241105125829668.png)
+
+爆破得到压缩包解压密码为：`haticehatice12580`, 解压后得到100张图片碎片，猜测是拼图
+
+![](imgs/image-20241105125918896.png)
+
+这里我拿gaps大致拼了一下，然后尝试手动拼图
+
+```
+magick montage *.png -tile 10x10 -geometry &#43;0&#43;0 out.png
+```
+
+![](imgs/image-20241105130405227.png)
+
+gaps可以大致拼出来 `DASCTF` `PUZZL3` `ST3R` 这几个字符
+
+尝试用PPT手动拼图，发现光靠这样是不可能拼出来的，比赛的时候就更加了。。
+
+手动拼出下面的这几个字符串已经是本人的极限了。。。
+
+![](imgs/image-20241105135724873.png)
+
+因此猜测，图片中一定是隐藏了正确的顺序，我们尝试使用`stegsolve`打开其中一张拼图
+
+发现在红色0通道LSB隐写了一张二维码
+
+![](imgs/image-20241105140107033.png)
+
+扫码可以得到数字，猜测这个数字应该就是拼图的正确顺序
+
+![](imgs/image-20241105140210456.png)
+
+因此我们写个脚本把所有的顺序提取出来，并将拼图碎片按照顺序拼起来即可得到最后的flag
+
+`DASCTF{N7LM_4ND_PUZZL3_M4ST3R}`
+
+![](imgs/image-20241105145318142.png)
+
+最终的解题代码如下：
+
+```python
+from PIL import Image
+from pyzbar.pyzbar import decode
+import os
+
+def extract_lsb(imgname):
+    r = []
+    img = Image.open(imgname)
+    width,height = img.size
+    for x in range(width):
+        for y in range(height):
+            pixel = img.getpixel((x,y))
+            r.append(str(pixel[0] &amp; 1))
+            # print(pixel)
+    bin_data = &#39;&#39;.join(r)
+    return bin_data  
+            
+def bin2img(bin_data):
+    imgname = &#34;tmp.png&#34;
+    pixels = []
+    img = Image.new(&#34;RGB&#34;,(50,50))
+    for item in bin_data:
+        if item ==&#39;0&#39;:
+            pixels.append((0,0,0))
+        else :
+            pixels.append((255,255,255))
+    img.putdata(pixels)
+    # img.show()
+    img = img.resize((500,500)) 
+    # 这里调整一下图片的大小，便于后面pyzbar的识别
+    img.save(imgname)
+    return imgname
+    
+    
+def read_qrcode(imgname):
+    img = Image.open(imgname)
+    decode_data = decode(img)
+    # print(decode_data)
+    res = decode_data[0].data.decode()
+    os.remove(imgname)
+    return res
+        
+def rename_img():
+    filenames = os.listdir(&#34;./final_out&#34;)
+    for filename in filenames:
+        try:
+            src_img = &#34;./final_out/&#34;&#43;filename
+            bin_data = extract_lsb(src_img)
+            imgname = bin2img(bin_data)
+            res = read_qrcode(imgname)
+            dst_img = f&#34;./final_out/{res}.png&#34;
+            os.rename(src_img,dst_img)
+            print(f&#34;[&#43;] {src_img} ===&gt; {dst_img} down!!!&#34;)
+        except:
+            print(f&#34;[-] {src_img} Error!!!&#34;)
+
+def merge_img():
+    cols = 10
+    rows = 10
+    img_list = []
+    new_img = Image.new(&#34;RGB&#34;,(500,500))
+    
+    for i in range(1,101):
+        img = Image.open(f&#34;./final_out/{i}.png&#34;)
+        img_list.append(img)
+        
+    for y in range(rows):
+        for x in range(cols):
+            idx = y * cols &#43; x
+            img = img_list[idx]
+            x_offset = x * 50
+            y_offset = y * 50
+            new_img.paste(img,(x_offset,y_offset))
+            
+    # new_img.show()
+    new_img.save(&#34;flag.png&#34;)
+        
+if __name__ == &#34;__main__&#34;:
+    # rename_img()
+    merge_img()
+```
+
+### 题目名称 数据安全ds-enen
+
+解压附件压缩包，可以得到一个data.vhd磁盘文件
+
+直接`binwalk`一下可以得到一个加密的zip压缩包
+
+![](imgs/image-20241105145813061.png)
+
+提取得到的压缩包是弱密码，直接纯数字爆破一下即可得到解压密码：`60111106`
+![](imgs/image-20241105145923128.png)
+
+解压后可以得到一个`data.csv`，内容如下所示
+
+![](imgs/image-20241105150042328.png)
+
+提示了个性签名是加密的，猜测flag就在个性签名里，看这个格式感觉像是AES加密
+
+经过尝试发现是AES-ECB加密，密钥是用户的密码，长度为128bit，密钥长度不足则在末尾填充`\0`
+
+padding模式是zeropadding，因此写个脚本批量解密AES即可
+
+`DASCTF{dcd85182008e3a2d51b37f9845df3312}`
+
+完整的解题脚本如下
+
+```python
+import csv
+from base64 import b64decode
+from Crypto.Cipher import AES
+
+lst = []
+
+def zeropadding(key):
+    key = key &#43; b&#39;\x00&#39; * (16 - len(key) % 16)
+    return key
+
+with open(&#34;data.csv&#34;,&#34;r&#34;,encoding=&#39;utf-8&#39;) as f:
+    reader = csv.reader(f)
+    for row in reader:
+        lst.append(row)
+    
+for row in lst[1:]:
+    key = zeropadding(row[2].encode())
+    enc = row[-1]
+    data = b64decode(enc)
+    aes = AES.new(key,AES.MODE_ECB)
+    text = aes.decrypt(data)
+    if b&#39;DASCTF&#39; in text:
+        print(text)
+        
+# DASCTF{dcd85182008e3a2d51b37f9845df3312}
+```
 
 ---
 
