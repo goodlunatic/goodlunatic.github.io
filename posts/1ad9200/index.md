@@ -318,28 +318,39 @@ W    L   L   M
 
 去逗号改成空格，拉入随波逐流直接解密
 
-### AES加密（需要key）
+### DES加密算法
 
-### 不需要填IV的情况
+例子：
+```
+密文：AK5O3BaZi&#43;p1ci0JxythDZWToTXkFj4dexQ3cOAmYfUwtUVyJahFOcNroC8nAsHyCnmiuOOpJYyOWBV5npW3pg==
+密钥：hristina
+```
 
-1. 可以用这个网站：http://tools.bugscaner.com/cryptoaes/
+![](imgs/image-20241105212634286.png)
 
-![NO_IV.png](../../../../../../../../images/CTF——Misc Guide_2023-11-03-20-02-41.png)
+### AES加密算法
 
-2. 可以使用cyberchef，将IV设置为\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00
+在线网站解密：
+1. https://tool.lmeee.com/jiami/aes
+2. https://www.sojson.com/encrypt_aes.html
 
-### 密钥不足16字节的情况(需补齐16byte)
+#### AES-ECB(不需要IV)
 
-1. 可以使用这个网站：https://www.sojson.com/encrypt_aes.html
-2. ![](imgs/aes1.png)
+CyberChef解密AES-ECB时需要将IV设置为`\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00`
 
-2. 可以将密文和key拉入CaptfEncoder-win-x64-1.3.0解密
+如果 `key` 不足16字节可以尝试在后面补0
+
+#### AES-CBC(需要填写IV)
+
+密钥不足16字节时需要padding补齐16字节
+
+可以使用能自动补齐的在线网站解密 https://www.sojson.com/encrypt_aes.html
+
+![](imgs/aes1.png)
+
+可以将密文和key拉入`CaptfEncoder-win-x64-1.3.0`解密
 
 ![](imgs/aes2.png)
-
-也可能是Base64&#43;AES-128混合加密，直接用厨子解密
-要注意使用ECB mode并且把Input改为raw
-(key不足16位的话就在后面补0)
 
 ### 埃特巴什码(Atbash)
 
