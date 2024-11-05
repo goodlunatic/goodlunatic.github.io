@@ -4,13 +4,21 @@
     <link>http://localhost:1313/tags/writeup/</link>
     <description>Writeup - Tag | ⚡Lunatic BLOG⚡</description>
     <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>goodlunatic0@gmail.com (Lunatic)</managingEditor>
-      <webMaster>goodlunatic0@gmail.com (Lunatic)</webMaster><lastBuildDate>Tue, 05 Nov 2024 10:21:35 &#43;0800</lastBuildDate><atom:link href="http://localhost:1313/tags/writeup/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>goodlunatic0@gmail.com (Lunatic)</webMaster><lastBuildDate>Tue, 05 Nov 2024 10:45:20 &#43;0800</lastBuildDate><atom:link href="http://localhost:1313/tags/writeup/" rel="self" type="application/rss+xml" /><item>
+  <title>2024 浙江省大学生网络与信息安全竞赛 Misc Writeup</title>
+  <link>http://localhost:1313/posts/c216d58/</link>
+  <pubDate>Tue, 05 Nov 2024 10:45:20 &#43;0800</pubDate>
+  <author>Lunatic</author>
+  <guid>http://localhost:1313/posts/c216d58/</guid>
+  <description><![CDATA[<p><strong>2024 浙江省大学生网络与信息安全竞赛 Misc Writeup</strong></p>]]></description>
+</item>
+<item>
   <title>2024 某金融系统内部赛 Misc Writeup</title>
   <link>http://localhost:1313/posts/69280be/</link>
   <pubDate>Tue, 05 Nov 2024 10:21:35 &#43;0800</pubDate>
   <author>Lunatic</author>
   <guid>http://localhost:1313/posts/69280be/</guid>
-  <description><![CDATA[<p>不知道具体是什么比赛，但是赛题还是有一定的强度的</p>]]></description>
+  <description><![CDATA[<p><strong>不知道具体是什么比赛，但是赛题还是有一定的强度的</strong></p>]]></description>
 </item>
 <item>
   <title>2024 网鼎杯网络安全大赛青龙组 Misc Writeup</title>
@@ -79,15 +87,6 @@
   <author>Lunatic</author>
   <guid>http://localhost:1313/posts/1b1f96e/</guid>
   <description><![CDATA[<p>又是一年国赛，这次纯纯是被队友带飞了！！！</p>]]></description>
-</item>
-<item>
-  <title>2024 “天一永安杯”宁波市赛初赛 Misc Writeup</title>
-  <link>http://localhost:1313/posts/9d73413/</link>
-  <pubDate>Mon, 06 May 2024 14:53:14 &#43;0800</pubDate>
-  <author>Lunatic</author>
-  <guid>http://localhost:1313/posts/9d73413/</guid>
-  <description><![CDATA[<p>宁波市赛的 Misc 还是一如既往的抽象 @_@</p>
-<p>还是太菜了，赛中只做出了一道 Misc</p>]]></description>
 </item>
 </channel>
 </rss>
