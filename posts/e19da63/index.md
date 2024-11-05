@@ -265,7 +265,724 @@ print(foo(4, 0))
 
 ## 第三方模块(库)的使用
 
-####  turtle模块的使用
+#### libnum模块的使用
+
+```python
+import libnum
+str = &#34;flag{114514}&#34;
+bin = &#34;11001100110110001100001011001110111101100110001001100010011010000110101001100010011010001111101&#34;
+print(libnum.n2s(97))  ## a
+print(libnum.s2n(str))  ## 31698494968735985349289915517
+print(hex(libnum.s2n(str)))  ## 0x666c61677b3131343531347d
+print(libnum.s2b(str))
+## 011001100110110001100001011001110111101100110001001100010011010000110101001100010011010001111101
+print(libnum.b2s(bin))
+## 会自动在前面补零对齐8位 b&#39;flag{114514}&#39;
+```
+
+
+####  re模块的使用
+
+|   字符   |                             描述                             |
+| :------: | :----------------------------------------------------------: |
+|    \d    |         代表任意数字，就是阿拉伯数字 0-9 这些玩意。          |
+|    \D    | 大写的就是和小写的唱反调，d 你代表的是任意数字是吧？那么我 D 就代表不是数字的。 |
+|    \w    |   代表字母，数字，下划线。也就是 a-z、A-Z、0-9、中文字符。   |
+|    \W    |     跟 w 唱反调，代表不是字母，不是数字，不是下划线的。      |
+|    \n    |                        代表一个换行。                        |
+|    \r    |                        代表一个回车。                        |
+|    \f    |                          代表换页。                          |
+|    \t    |                       代表一个 Tab 。                        |
+|    \s    |      代表所有的空白字符，也就是上面这个：\n、\r、\t、\f      |
+|    \S    |            跟 s 唱反调，代表所有不是空白的字符。             |
+|   `A`    |                      代表字符串的开始。                      |
+|   `Z`    |                      代表字符串的结束。                      |
+|    ^     |                    匹配字符串开始的位置。                    |
+|    $     |                    匹配字符创结束的位置。                    |
+|    .     |                代表所有的单个字符，除了 \n \r                |
+| `[...]`  |     代表在 [] 范围内的字符，比如 [a-z] 就代表 a到z的字母     |
+| `[^...]` |           跟 […] 唱反调，代表不在 [] 范围内的字符            |
+|   {n}    | 匹配在 {n} 前面的东西，比如: o{2} 不能匹配 Bob 中的 o ，但是能匹配 food 中的两个o。 |
+| `{n,m}`  | 匹配在 {n,m} 前面的东西，比如：o{1,3} 将匹配“fooooood”中的前三个o。 |
+| `{n，}`  | 匹配在 {n,} 前面的东西，比如：o{2,} 不能匹配“Bob”中的“o”，但能匹配“foooood”中的所有o。 |
+|   `*`    | 和 {0,} 一个样，匹配 * 前面的 0 次或多次。 比如 zo* 能匹配“z”、“zo”以及“zoo”。 |
+|   `&#43;`    | 和{1，} 一个样，匹配 &#43; 前面 1 次或多次。 比如 zo&#43;”能匹配“zo”以及“zoo”，但不能匹配“z”。 |
+|   `？`   |          和{0,1} 一个样，匹配 ？前面 0 次或 1 次。           |
+|   a\|b   |                       匹配 a 或者 b。                        |
+|  `（）`  |                     匹配括号里面的内容。                     |
+
+```python
+## -*- encoding: utf-8 -*-
+
+## *代表匹配零次或多次
+## &#43;代表匹配一次或多次
+## ?代表匹配零次或一次
+## $匹配输入字符串的结束位置
+## \\.代表小数点
+## \\s代表空格，则\\s*代表匹配多个空格
+## \\d代表匹配一个数字字符，等价于[0-9]，则\\d&#43;\\.\\d*可匹配1.或1.0等\\d*\\.\\d&#43;可匹配.0或1.0等
+## [&#43;-]代表匹配包含的任一字符&#43;或-，[&#43;-]?则说明&#43;或-可有可无
+
+import re
+
+str = &#39;aabbabaabbaa&#39;
+# 一个&#34;.&#34;就是匹配除 \n (换行符)以外的任意一个字符
+print(re.findall(r&#39;a.b&#39;, str))  #[&#39;aab&#39;, &#39;aab&#39;]
+# *前面的字符出现0次或以上
+print(re.findall(r&#39;a*b&#39;, str))  #[&#39;aab&#39;, &#39;b&#39;, &#39;ab&#39;, &#39;aab&#39;, &#39;b&#39;]
+# 贪婪，匹配从.*前面为开始到后面为结束的所有内容
+print(re.findall(r&#39;a.*b&#39;, str))  #[&#39;aabbabaabb&#39;]
+# 非贪婪，遇到开始和结束就进行截取，因此截取多次符合的结果，中间没有字符也会被截取
+print(re.findall(r&#39;a.*?b&#39;, str))  #[&#39;aab&#39;, &#39;ab&#39;, &#39;aab&#39;]
+# 非贪婪，与上面一样，只是与上面的相比多了一个括号，只保留括号的内容
+print(re.findall(r&#39;a(.*?)b&#39;, str))  #[&#39;a&#39;, &#39;&#39;, &#39;a&#39;]
+
+str = &#39;&#39;&#39;aabbab
+         aabbaa
+         bb&#39;&#39;&#39;
+
+# 后面多加了2个b
+# 没有把最后一个换行的aab算进来
+print(re.findall(r&#39;a.*?b&#39;, str))  #[&#39;aab&#39;, &#39;ab&#39;, &#39;aab&#39;]
+# re.S不会对\n进行中断
+print(re.findall(r&#39;a.*?b&#39;, str, re.S))  #[&#39;aab&#39;, &#39;ab&#39;, &#39;aab&#39;, &#39;aa\n         b&#39;]
+```
+
+```python
+import re
+
+content = &#34;&#34;&#34;苹果是绿色的
+橙子是橙色的
+香蕉是黄色的
+乌鸦是黑色的&#34;&#34;&#34;
+p = re.compile(r&#34;.色&#34;)
+# 代表所有的单个字符，除了 \n \r
+print(type(p))
+for one in p.findall(content):
+    # 找出所有符合条件的文本
+    print(type(one))
+    print(one)
+```
+
+```python
+import re
+
+source = &#34;&#34;&#34;王亚辉
+tony
+刘文武&#34;&#34;&#34;
+
+# p = re.compile(r&#34;\w{2,4}&#34;)
+p = re.compile(r&#34;\w{2,4}&#34;, re.A)
+# 不匹配中文
+print(p.findall(source))
+```
+
+```python
+import re
+
+content = &#34;&#34;&#34;001-苹果价格-60
+002-橙子价格-78
+003-香蕉价格-88&#34;&#34;&#34;
+# p = re.compile(r&#34;^\d&#43;&#34;)
+p = re.compile(r&#34;^\d&#43;&#34;, re.M)
+# ^可以表示每行开头
+for one in p.findall(content):
+    print(one)
+```
+
+```python
+import re
+
+content = &#34;&#34;&#34;001-苹果价格-60
+002-橙子价格-78
+003-香蕉价格-88&#34;&#34;&#34;
+# p = re.compile(r&#34;^\d&#43;&#34;)
+p = re.compile(r&#34;\d&#43;$&#34;, re.M)
+# ^可以表示每行开头
+for one in p.findall(content):
+    print(one)
+```
+
+```python
+import re
+
+content = &#34;&#34;&#34;张三，手机号码15945678901
+李四，手机号码13945677701
+王二，手机号码13845666901&#34;&#34;&#34;
+p = re.compile(r&#34;^(.&#43;)，.&#43;(\d{11})&#34;, re.M)
+# ^可以表示每行开头
+for one in p.findall(content):
+    print(one)
+```
+
+```python
+import re
+
+content = &#34;&#34;&#34;Python3高级开发工程师上海互教教育科技有限公司上海-浦东新区2万/月02-18满员
+测试开发工程师(C&#43;/python)上海墨鹍数码科技有限公司上海-浦东新区2.5万/每月02-18未满员
+Python.3开发工程师上海德拓信息技术股份有限公司上海-徐汇区1.3万/每月02-18乘剩余11人
+测试开发工程师(Python)赫里普（上海）信息科技有限公司上海-浦东新区1.1万/每月02-18剩余5人&#34;&#34;&#34;
+p = re.compile(r&#34;([\d.]&#43;)万/每{0,1}月&#34;, re.M)
+# p = re.compile(r&#34;([\d.]&#43;)万/每{0,1}月&#34;)
+# ^可以表示每行开头
+for one in p.findall(content):
+    print(one)
+```
+
+```python
+import re
+
+names = &#34;关羽; 张飞, 赵云,马超, 黄忠  李逵&#34;
+namelist = re.split(r&#34;[;,\s]\s*&#34;, names)
+print(namelist)
+```
+
+```python
+import re
+
+## PhoneNumRegex = re.compile(r&#34;\d{3}-\d{3}-\d{3}&#34;)
+PhoneNumRegex = re.compile(r&#34;(\d{3})-(\d{3}-\d{3})&#34;)
+## 向 re.compile()传入一个字符串值，表示正则表达式，它将返回一个 Regex 模式对象
+mo = PhoneNumRegex.search(&#34;My Phone number is 415-555-4242&#34;)
+print(mo.group(0))
+print(mo.group())
+print(mo.group(1))
+print(mo.group(2))
+print(mo.groups())
+areacode, mainNumber = mo.groups()
+print(areacode)
+print(mainNumber)
+## print(&#34;Phone number founded:&#34; &#43; mo.group())
+## Regex 对象的 search()方法查找传入的字符串，寻找该正则表达式的所有匹配。如
+## 果字符串中没有找到该正则表达式模式，search()方法将返回 None。如果找到了该模式，
+## search()方法将返回一个 Match 对象。Match 对象有一个 group()方法，它返回被查找字
+## 符串中实际匹配的文本
+PhoneNumRegex2 = re.compile(r&#34;(\(\d{3}\))-(\d{3}-\d{3})&#34;)
+mo2 = PhoneNumRegex2.search(&#34;My Phone number is (415)-555-4242&#34;)
+print(mo2.groups())
+print(mo2.group(1))
+PhoneNumRegex3 = re.compile(r&#34;(\d{3}-)?\d{3}-\d{4}&#34;)
+mo3 = PhoneNumRegex3.search(&#34;My Phonenumber is 415-555-4224&#34;)
+print(mo3.group())
+mo4 = PhoneNumRegex3.search(&#34;My Phonenumber is 555-4224&#34;)
+print(mo4.group())
+```
+
+```python
+import re
+
+agentNamesRegex = re.compile(r&#34;Agent (\w)\w*&#34;)
+res = agentNamesRegex.sub(
+    r&#34;\1****&#34;,
+    &#34;Agent Alice told Agent Carol that Agent Eve knew Agent Bob was a double agent.&#34;,
+)
+print(res)
+## 字符串中的\1 将由分组 1 匹配的文本所替代，也就是正则表达式的(\w)分组。
+```
+
+```python
+## phoneAndEmail.py - Finds phone numbers and email addresses on the clipboard.
+import pyperclip, re
+
+phoneRegex = re.compile(
+    r&#34;&#34;&#34;(
+(\d{3}|\(\d{3}\))? ## area code
+(\s|-|\.)? ## separator
+(\d{3}) ## first 3 digits
+(\s|-|\.) ## separator
+(\d{4}) ## last 4 digits
+(\s*(ext|x|ext.)\s*(\d{2,5}))? ## extension
+)&#34;&#34;&#34;,
+    re.VERBOSE,
+)
+
+emailRegex = re.compile(
+    r&#34;&#34;&#34;(
+[a-zA-Z0-9._%&#43;-]&#43; ## username
+@ ## @ symbol
+[a-zA-Z0-9.-]&#43; ## domain name
+(\.[a-zA-Z]{2,4}) ## dot-something
+)&#34;&#34;&#34;,
+    re.VERBOSE,
+)
+
+text = str(pyperclip.paste())
+## 从剪切板获取内容
+matches = []
+for groups in phoneRegex.findall(text):
+    phoneNum = &#34;-&#34;.join([groups[1], groups[3], groups[5]])
+    ## 用-连接各部分
+if groups[8] != &#34;&#34;:
+    phoneNum &#43;= &#34; x&#34; &#43; groups[8]
+    matches.append(phoneNum)
+for groups in emailRegex.findall(text):
+    matches.append(groups[0])
+    ## group[0]是匹配r&#39;&#39;中的所有东西
+
+if len(matches) &gt; 0:
+    pyperclip.copy(&#34;\n&#34;.join(matches))
+    ## 以换行符为行分隔符复制到剪切板
+    print(&#34;Copied to clipboard:&#34;)
+    print(&#34;\n&#34;.join(matches))
+else:
+    print(&#34;No phone numbers or email addresses found.&#34;)
+```
+
+#### PIL(Pillow)模块的使用
+
+##### 1.打开  显示  保存图片
+
+png格式的图片保存为jpg格式时会报错是因为PNG和JPG的通道数不同
+
+PNG:RGBA
+
+JPG:RGB
+
+所以，PNG格式图片要保存成JPG格式就要丢弃A通道
+
+```python
+from PIL import Image
+
+image = Image.open(&#39;0.jpg&#39;)
+#打开这张图片
+image.show()
+## 显示这张图片
+image.save(&#39;1.jpg&#39;)
+#保持打开的图片
+print(image.mode, image.size, image.format)
+## RGB (1920, 1080) JPEG
+## mode代表图片的属性，RGB代表彩色图像，L代表光照图像即灰度图像等
+## size属性为图片的大小（长度，宽度）
+## format属性为图片的格式
+```
+
+##### 2.转换图片模式
+
+任何支持的图片模式都可以直接转为彩色模式或者灰度模式，但是，若是想转化为其他模式，
+
+则需要借助一个中间模式（通常是彩色）来进行过转
+
+```python
+from PIL import Image
+
+image = Image.open(&#39;0.jpg&#39;)
+## image.show()
+grey_image=image.convert(&#39;L&#39;)
+grey_image.show()
+grey_image.save(&#39;grey.jpg&#39;)
+```
+
+##### 3.通道的分离合并
+
+彩色图像可以分离出 R、G、B 通道，但若是灰度图像，则返回灰度图像本身。
+
+然后，可以将 R、G、B 通道按照一定的顺序再合并成彩色图像。
+
+```python
+from PIL import Image
+
+image = Image.open(&#39;0.jpg&#39;)
+r,g,b = image.split()
+im = Image.merge(&#39;RGB&#39;,(b,g,r))
+print(im)
+```
+
+##### 4.图片的裁剪、缩放、旋转和镜像
+
+```python
+from PIL import Image
+
+img = Image.open(&#39;0.jpg&#39;)
+## 获取图像尺寸
+w,h = img.size
+## 缩放50%
+img.thumbnail((w//2,h//2))
+img.show()
+## 水平翻转图片
+img1 = img.transpose(Image.FLIP_LEFT_RIGHT)
+## 保存图片
+img1.show()
+img1.save(&#39;1.png&#39;)
+#垂直翻转图片
+img2 = img.rotate(180)
+img2.show()
+#水平&#43;垂直翻转图片
+img3 = img.transpose(Image.FLIP_LEFT_RIGHT).rotate(180)
+img3.show()
+#裁剪图片
+#图片裁剪用到的方法是image.crop()，这个方法能从图像中提取出某个矩形大小的图像。它接收一个四元素的元组作为参数，各元素为（left, upper, right, lower），坐标系统的原点（0, 0）是左上角。
+print(img.size)
+imgcut = img.crop((100,200,500,600))
+imgcut.show()
+```
+
+transpose有这么几种模式：
+
+- FLIP_LEFT_RIGHT：左右镜像
+- FLIP_TOP_BOTTOM：上下镜像
+- ROTATE_90：逆时针转90度
+- ROTATE_180：逆时针转180度
+- ROTATE_270：逆时针转270度
+- TRANSPOSE：像素矩阵转置
+- TRANSVERSE：对角线对转
+
+##### 5.给图片添加文字
+
+```python
+from PIL import Image,ImageDraw,ImageFont
+
+img = Image.open(&#39;0.jpg&#39;)
+## 调用画图模块
+draw = ImageDraw.Draw(img)
+## 设置字体
+tfont = ImageFont.truetype(&#34;arial.ttf&#34;,24)
+## 添加文字
+&#34;&#34;&#34;
+    参数一：文字在图片的位置：(x, y)
+    参数二：文字内容
+    参数三：字体颜色，当然颜色也可以用RGB值指定
+    参数四：字体类型
+&#34;&#34;&#34;
+draw.text((50,30),&#34;eyes&#43;&#43;&#34;,fill=&#34;red&#34;,font=tfont)
+## 保存图片
+img.save(&#34;addword.png&#34;)
+img.show()
+```
+
+##### 6.PIL滤镜功能
+
+```python
+from PIL import Image,ImageFilter
+
+img = Image.open(&#39;0.jpg&#39;)
+img = img.filter(ImageFilter.CONTOUR)
+img.save(&#39;filter.png&#39;)
+img.show()
+```
+
+滤镜类型如下：
+
+```
+mageFilter.BLUR			模糊滤镜
+mageFilter.CONTOUR			轮廓
+mageFilter.EDGE_ENHANCE			边界加强
+mageFilter.EDGE_ENHANCE_MORE			边界加强（阀值更大）
+mageFilter.EMBOSS			浮雕滤镜
+mageFilter.FIND_EDGES			边界滤镜
+mageFilter.SMOOTH			平滑滤镜
+mageFilter.SMOOTH MORE			平滑滤镜（阀值更大）
+mageFilter.SHARPEN			锐化滤镜
+ImageFilter.DETAIL			细节滤镜
+```
+
+##### 7.图片的拼接
+
+```python
+from PIL import Image
+
+img1 = Image.open(&#39;0.jpg&#39;)
+img2 = Image.open(&#39;1.jpg&#39;)
+#先查看图片尺寸
+print(img1.size)
+print(img2.size)
+## 新建空白图片,三个参数分别是模式(RGB/RGBA) 大小 颜色
+newimg = Image.new(mode=&#34;RGB&#34;,size=(3840,2160),color=(255,100,50))
+## 拼接图片 第一个参数是图片 第二个参数是图片的位置
+newimg.paste(img1,(0,0))
+newimg.paste(img1,(1920,0))
+newimg.show()
+```
+
+将小图片合成为大图片(二维码)
+
+```python
+from PIL import Image
+import os
+
+IMAGES_PATH = &#39;signal1\\&#39;  ## 图片集（文件夹）地址
+IMAGES_FORMAT = [&#39;.png&#39;, &#39;.PNG&#39;]  ## 图片格式
+IMAGE_WIDTH = 100  ## 每张小图片的宽
+IMAGE_HEIGHT = 100  ## 每张小图片的高
+IMAGE_ROW = 25  ## 大图片一共有几行
+IMAGE_COLUMN = 25  ## 大图片一共有几列
+## IMAGE_SAVE_PATH = &#39;final.jpg&#39;  ## 图片转换后的地址
+
+newimg = Image.new(&#39;RGB&#39;,(IMAGE_COLUMN * IMAGE_HEIGHT, IMAGE_ROW * IMAGE_WIDTH))
+## 新建一个2500x2500的图像
+for y in range(25):
+    for x in range(25):
+        timg = Image.open(IMAGES_PATH &#43; str(y*IMAGE_COLUMN &#43; x) &#43; &#39;.png&#39;)
+        ## 打开文件夹中的图片
+        newimg.paste(timg, (x*IMAGE_WIDTH, y*IMAGE_HEIGHT))
+        ## 将打开的图片粘贴到newimg的指定位置
+newimg.save(&#39;new.png&#39;)
+## 将图片保存new.png
+```
+
+##### 8.二进制数据转图片
+```python
+def bin2img(bin_data):
+    imgname = &#34;tmp.png&#34;
+    pixels = []
+    img = Image.new(&#34;RGB&#34;,(50,50))
+    for item in bin_data:
+        if item ==&#39;0&#39;:
+            pixels.append((0,0,0))
+        else :
+            pixels.append((255,255,255))
+    img.putdata(pixels)
+    # img.show()
+    img = img.resize((500,500)) 
+    # 这里调整一下图片的大小，便于后面pyzbar的识别
+    img.save(imgname)
+    return imgname
+```
+
+##### 比赛中使用的例子
+例1-2024浙江省赛初赛-EZtraffic(100张图片按照顺序合并)
+```python
+def merge_img():
+    cols = 10
+    rows = 10
+    img_list = []
+    new_img = Image.new(&#34;RGB&#34;,(500,500))
+    
+    for i in range(1,101):
+        img = Image.open(f&#34;./final_out/{i}.png&#34;)
+        img_list.append(img)
+        
+    for y in range(rows):
+        for x in range(cols):
+            idx = y * cols &#43; x
+            img = img_list[idx]
+            x_offset = x * 50
+            y_offset = y * 50
+            new_img.paste(img,(x_offset,y_offset))
+            
+    # new_img.show()
+    new_img.save(&#34;flag.png&#34;)
+```
+
+#### pyzbar模块的使用
+
+##### 识别二维码
+```python
+from pyzbar.pyzbar import decode
+
+def read_qrcode(imgname):
+    img = Image.open(imgname)
+    img = img.resize((500,500)) 
+    # 这里调整一下图片的大小，便于二维码的识别
+    decode_data = decode(img)
+    # print(decode_data)
+    res = decode_data[0].data.decode()
+    os.remove(imgname)
+    return res
+```
+
+
+#### CSV模块的使用
+
+```python
+## -*- encoding: gbk -*-
+import os
+import csv
+
+with open(&#34;xiaoshuaib.csv&#34;, mode=&#34;w&#34;, encoding=&#34;gbk&#34;) as csv_file:
+    fieldnames = [&#34;你是谁&#34;, &#34;你几岁&#34;, &#34;你多高&#34;]
+    writer = csv.DictWriter(csv_file, fieldnames)
+
+    writer.writeheader()
+    writer.writerow({&#34;你是谁&#34;: &#34;小帅b&#34;, &#34;你几岁&#34;: &#34;18岁&#34;, &#34;你多高&#34;: &#34;18cm&#34;})
+    writer.writerow({&#34;你是谁&#34;: &#34;小帅c&#34;, &#34;你几岁&#34;: &#34;19岁&#34;, &#34;你多高&#34;: &#34;17cm&#34;})
+    writer.writerow({&#34;你是谁&#34;: &#34;小帅d&#34;, &#34;你几岁&#34;: &#34;20岁&#34;, &#34;你多高&#34;: &#34;16cm&#34;})
+```
+
+##### 比赛中使用的例子
+例1-2024浙江省赛初赛-ds-enen
+```python
+import csv
+
+with open(&#34;data.csv&#34;,&#34;r&#34;,encoding=&#39;utf-8&#39;) as f:
+    reader = csv.reader(f) # 创建 CSV 读取器
+    for row in reader:
+        lst.append(row)
+```
+
+#### pandas模块的使用
+
+```python
+## -*- encoding: gbk -*-
+import os
+import pandas
+
+xiaoshuaib = pandas.read_csv(&#34;xiaoshuaib.csv&#34;, encoding=&#34;gbk&#34;)
+print(xiaoshuaib)
+```
+
+```python
+import pandas as pd
+
+b = [&#34;xiaoshuaib&#34;, &#34;xiaoshuaic&#34;, &#34;xiaoshuaid&#34;]
+c = [&#34;18&#34;, &#34;19&#34;, &#34;20&#34;]
+d = [&#34;18&#34;, &#34;17&#34;, &#34;16&#34;]
+
+df = pd.DataFrame({&#34;你是谁&#34;: b, &#34;你几岁&#34;: c, &#34;你多高&#34;: d})
+df.to_csv(&#34;xsb.csv&#34;, index=False, sep=&#34;,&#34;)
+```
+
+```python
+#这个代码有点问题
+import pandas as pd
+
+obj = pd.Series([40, 12, -3, 25])
+## print(obj)
+## print(obj[0])
+## print(obj.index)
+## print(obj.values)
+obj1 = pd.Series([40, 12, -3, 25], index=[&#34;a&#34;, &#34;b&#34;, &#34;c&#34;, &#34;d&#34;])
+## print(obj1)
+## print(obj1[&#34;c&#34;])
+## print(obj1[obj1 &gt; 15])
+## a    40
+## d    25
+## abcd是索引，25、40是值，这里打印的是值大于15的obj中的元素
+## print(obj.describe())  ## 查看obj中的count、mean、std、min、max、25%、50%、75%
+dic = obj.to_dict()  ## Series可以转换为字典
+## print(dic)
+d = {
+    &#34;one&#34;: pd.Series(
+        [
+            1.0,
+            2.0,
+            3.0,
+        ],
+        index=[
+            &#34;a&#34;,
+            &#34;b&#34;,
+            &#34;c&#34;,
+        ],
+    ),
+    &#34;two&#34;: pd.Series([1.0, 2.0, 3.0, 4.0], index=[&#34;a&#34;, &#34;b&#34;, &#34;c&#34;, &#34;d&#34;]),
+}
+df = pd.DataFrame(d)
+print(df)
+## 当由多个Series组成DataFrame时，Pandas会自动按照index对齐数据，如果某个Series的index缺失，则Pandas会将其自动填写为np.nan
+```
+
+#### numpy库模块的使用
+
+```python
+import numpy as np
+import numpy.random as npr
+import matplotlib.pyplot as plt
+
+data = [1, 2, 3, 4]
+arr = np.array(data)
+## 创建一个一维数组
+## print(arr)
+## print(arr.dtype)
+data1 = [data, data]
+arr1 = np.array(data1)
+## 创建一个二维数组
+## print(arr1)
+
+
+arr2 = np.zeros((3, 3))
+## 创建3x3的全0的数组
+## print(arr2)
+arr3 = np.ones((3, 3))
+## print(arr3)
+arr4 = np.arange(1, 10, 2)
+## 创建1-10且差为2的等差数列
+## print(arr4)
+arr5 = np.linspace(1, 10, 4)
+## 创建1~10且长度为4的等差数列
+## print(arr5)
+
+arr6 = np.array([&#34;量&#34;, &#34;话&#34;])
+## print(arr6.dtype)  ## &lt;U1 是unicode数据类型
+arr1_1 = arr1.astype(np.unicode_)
+## 不同的数据类型之间也能互相转换
+## print(arr1_1)
+arr7 = np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]])
+## print(arr7)
+## print(arr7[1])
+## print(arr7[1][1])
+## print(arr7[:2])
+## print(arr7[:2, :2])
+arr7[:2, :2] = 10
+
+
+## print(arr7)
+## print(arr7 * arr7)
+## print(arr7.sum())
+## print(arr7.std())
+## print(arr7.mean())
+def f(x):
+    return x**2
+
+
+## print(f(arr7))
+print(npr.rand(3, 2))  ## npr.rand函数可以用来生成[0，1）的随机多维数组
+print(npr.rand(3, 2) * 2 &#43; 2)  ## 随机区间转化为[2，4）
+```
+
+```python
+import numpy.random as npr
+import matplotlib.pyplot as plt
+
+size = 1000
+rn1 = npr.rand(size, 2)
+rn2 = npr.randn(size)
+rn3 = npr.randint(0, 10, size)
+ranq = [0, 10, 20, 30, 40]
+rn4 = npr.choice(ranq, size=size)
+
+fig, ((ax1, ax2), (ax3, ax4)) = plt.subplots(nrows=2, ncols=2, figsize=(10, 10))
+ax1.hist(rn1, bins=25, stacked=True)
+ax1.set_title(&#34;rard&#34;)
+ax1.set_ylabel(&#34;frequency&#34;)
+ax1.grid(True)
+ax2.hist(rn2, bins=25)
+ax2.set_title(&#34;rardn&#34;)
+ax2.grid(True)
+ax3.hist(rn3, bins=25)
+ax3.set_title(&#34;rardint&#34;)
+ax3.set_ylabel(&#34;frequency&#34;)
+ax3.grid(True)
+ax4.hist(rn4, bins=25)
+ax4.set_title(&#34;choice&#34;)
+ax4.grid(True)
+plt.show()
+```
+
+```python
+#np.concatenate()的用法
+import numpy as np
+
+a = np.array([1, 2, 3])
+b = np.array([11, 22, 33])
+c = np.array([44, 55, 66])
+print(np.concatenate((a, b, c), axis=0))
+## 默认情况下，axis=0可以不写
+## 对于一维数组拼接，axis的值不影响最后的结果
+## [ 1  2  3 11 22 33 44 55 66]
+
+a = np.array([[1, 2, 3], [4, 5, 6]])
+b = np.array([[11, 21, 31], [7, 8, 9]])
+## print(np.concatenate((a, b), axis=0))
+## [[ 1  2  3]
+##  [ 4  5  6]
+##  [11 21 31]
+##  [ 7  8  9]]
+print(np.concatenate((a, b), axis=1))
+## axis=1表示对应行的数组进行拼接
+## [[ 1  2  3 11 21 31]
+##  [ 4  5  6  7  8  9]]
+```
+
+#### turtle模块的使用
 
 ```python
 ## 画太极图
@@ -372,7 +1089,7 @@ if __name__ == &#34;__main__&#34;:
 
 
 
-####  struct模块的使用
+#### struct模块的使用
 
 ```python
 import struct
@@ -433,7 +1150,7 @@ assert int_data == unpacked_int_big
 print(&#34;\nData integrity maintained!&#34;)
 ```
 
-####  time模块的使用
+#### time模块的使用
 
 ```python
 ## -*- encoding: utf-8 -*-
@@ -470,7 +1187,7 @@ print(time.ctime())
 print(time.strptime(&#39;2011-05-05 16:37:06&#39;, &#39;%Y-%m-%d %X&#39;))
 ```
 
-####  datetime模块的使用
+#### datetime模块的使用
 
 ```python
 import datetime
@@ -488,447 +1205,7 @@ print(start_time.strftime(&#34;%Y-%m-%d&#34;))
 print(start_time.strftime(&#34;%Y%m%d&#34;))
 ```
 
-####  re(正则表达式)模块的使用
-
-|   字符   |                             描述                             |
-| :------: | :----------------------------------------------------------: |
-|    \d    |         代表任意数字，就是阿拉伯数字 0-9 这些玩意。          |
-|    \D    | 大写的就是和小写的唱反调，d 你代表的是任意数字是吧？那么我 D 就代表不是数字的。 |
-|    \w    |   代表字母，数字，下划线。也就是 a-z、A-Z、0-9、中文字符。   |
-|    \W    |     跟 w 唱反调，代表不是字母，不是数字，不是下划线的。      |
-|    \n    |                        代表一个换行。                        |
-|    \r    |                        代表一个回车。                        |
-|    \f    |                          代表换页。                          |
-|    \t    |                       代表一个 Tab 。                        |
-|    \s    |      代表所有的空白字符，也就是上面这个：\n、\r、\t、\f      |
-|    \S    |            跟 s 唱反调，代表所有不是空白的字符。             |
-|   `A`    |                      代表字符串的开始。                      |
-|   `Z`    |                      代表字符串的结束。                      |
-|    ^     |                    匹配字符串开始的位置。                    |
-|    $     |                    匹配字符创结束的位置。                    |
-|    .     |                代表所有的单个字符，除了 \n \r                |
-| `[...]`  |     代表在 [] 范围内的字符，比如 [a-z] 就代表 a到z的字母     |
-| `[^...]` |           跟 […] 唱反调，代表不在 [] 范围内的字符            |
-|   {n}    | 匹配在 {n} 前面的东西，比如: o{2} 不能匹配 Bob 中的 o ，但是能匹配 food 中的两个o。 |
-| `{n,m}`  | 匹配在 {n,m} 前面的东西，比如：o{1,3} 将匹配“fooooood”中的前三个o。 |
-| `{n，}`  | 匹配在 {n,} 前面的东西，比如：o{2,} 不能匹配“Bob”中的“o”，但能匹配“foooood”中的所有o。 |
-|   `*`    | 和 {0,} 一个样，匹配 * 前面的 0 次或多次。 比如 zo* 能匹配“z”、“zo”以及“zoo”。 |
-|   `&#43;`    | 和{1，} 一个样，匹配 &#43; 前面 1 次或多次。 比如 zo&#43;”能匹配“zo”以及“zoo”，但不能匹配“z”。 |
-|   `？`   |          和{0,1} 一个样，匹配 ？前面 0 次或 1 次。           |
-|   a\|b   |                       匹配 a 或者 b。                        |
-|  `（）`  |                     匹配括号里面的内容。                     |
-
-```python
-## -*- encoding: utf-8 -*-
-
-## *代表匹配零次或多次
-## &#43;代表匹配一次或多次
-## ?代表匹配零次或一次
-## $匹配输入字符串的结束位置
-## \\.代表小数点
-## \\s代表空格，则\\s*代表匹配多个空格
-## \\d代表匹配一个数字字符，等价于[0-9]，则\\d&#43;\\.\\d*可匹配1.或1.0等\\d*\\.\\d&#43;可匹配.0或1.0等
-## [&#43;-]代表匹配包含的任一字符&#43;或-，[&#43;-]?则说明&#43;或-可有可无
-
-import re
-
-str = &#39;aabbabaabbaa&#39;
-#一个&#34;.&#34;就是匹配除 \n (换行符)以外的任意一个字符
-print(re.findall(r&#39;a.b&#39;, str))  #[&#39;aab&#39;, &#39;aab&#39;]
-#*前面的字符出现0次或以上
-print(re.findall(r&#39;a*b&#39;, str))  #[&#39;aab&#39;, &#39;b&#39;, &#39;ab&#39;, &#39;aab&#39;, &#39;b&#39;]
-#贪婪，匹配从.*前面为开始到后面为结束的所有内容
-print(re.findall(r&#39;a.*b&#39;, str))  #[&#39;aabbabaabb&#39;]
-#非贪婪，遇到开始和结束就进行截取，因此截取多次符合的结果，中间没有字符也会被截取
-print(re.findall(r&#39;a.*?b&#39;, str))  #[&#39;aab&#39;, &#39;ab&#39;, &#39;aab&#39;]
-#非贪婪，与上面一样，只是与上面的相比多了一个括号，只保留括号的内容
-print(re.findall(r&#39;a(.*?)b&#39;, str))  #[&#39;a&#39;, &#39;&#39;, &#39;a&#39;]
-
-str = &#39;&#39;&#39;aabbab
-         aabbaa
-         bb&#39;&#39;&#39;
-
-#后面多加了2个b
-#没有把最后一个换行的aab算进来
-print(re.findall(r&#39;a.*?b&#39;, str))  #[&#39;aab&#39;, &#39;ab&#39;, &#39;aab&#39;]
-#re.S不会对\n进行中断
-print(re.findall(r&#39;a.*?b&#39;, str, re.S))  #[&#39;aab&#39;, &#39;ab&#39;, &#39;aab&#39;, &#39;aa\n         b&#39;]
-```
-
-```python
-import re
-
-content = &#34;&#34;&#34;苹果是绿色的
-橙子是橙色的
-香蕉是黄色的
-乌鸦是黑色的&#34;&#34;&#34;
-p = re.compile(r&#34;.色&#34;)
-## 代表所有的单个字符，除了 \n \r
-print(type(p))
-for one in p.findall(content):
-    ## 找出所有符合条件的文本
-    print(type(one))
-    print(one)
-```
-
-```python
-import re
-
-source = &#34;&#34;&#34;王亚辉
-tony
-刘文武&#34;&#34;&#34;
-
-## p = re.compile(r&#34;\w{2,4}&#34;)
-p = re.compile(r&#34;\w{2,4}&#34;, re.A)
-## 不匹配中文
-print(p.findall(source))
-```
-
-```python
-import re
-
-content = &#34;&#34;&#34;001-苹果价格-60
-002-橙子价格-78
-003-香蕉价格-88&#34;&#34;&#34;
-## p = re.compile(r&#34;^\d&#43;&#34;)
-p = re.compile(r&#34;^\d&#43;&#34;, re.M)
-## ^可以表示每行开头
-for one in p.findall(content):
-    print(one)
-```
-
-```python
-import re
-
-content = &#34;&#34;&#34;001-苹果价格-60
-002-橙子价格-78
-003-香蕉价格-88&#34;&#34;&#34;
-## p = re.compile(r&#34;^\d&#43;&#34;)
-p = re.compile(r&#34;\d&#43;$&#34;, re.M)
-## ^可以表示每行开头
-for one in p.findall(content):
-    print(one)
-```
-
-```python
-import re
-
-content = &#34;&#34;&#34;张三，手机号码15945678901
-李四，手机号码13945677701
-王二，手机号码13845666901&#34;&#34;&#34;
-p = re.compile(r&#34;^(.&#43;)，.&#43;(\d{11})&#34;, re.M)
-## ^可以表示每行开头
-for one in p.findall(content):
-    print(one)
-```
-
-```python
-import re
-
-content = &#34;&#34;&#34;Python3高级开发工程师上海互教教育科技有限公司上海-浦东新区2万/月02-18满员
-测试开发工程师(C&#43;/python)上海墨鹍数码科技有限公司上海-浦东新区2.5万/每月02-18未满员
-Python.3开发工程师上海德拓信息技术股份有限公司上海-徐汇区1.3万/每月02-18乘剩余11人
-测试开发工程师(Python)赫里普（上海）信息科技有限公司上海-浦东新区1.1万/每月02-18剩余5人&#34;&#34;&#34;
-p = re.compile(r&#34;([\d.]&#43;)万/每{0,1}月&#34;, re.M)
-## p = re.compile(r&#34;([\d.]&#43;)万/每{0,1}月&#34;)
-## ^可以表示每行开头
-for one in p.findall(content):
-    print(one)
-```
-
-```python
-import re
-
-names = &#34;关羽; 张飞, 赵云,马超, 黄忠  李逵&#34;
-namelist = re.split(r&#34;[;,\s]\s*&#34;, names)
-print(namelist)
-```
-
-```python
-import re
-
-## PhoneNumRegex = re.compile(r&#34;\d{3}-\d{3}-\d{3}&#34;)
-PhoneNumRegex = re.compile(r&#34;(\d{3})-(\d{3}-\d{3})&#34;)
-## 向 re.compile()传入一个字符串值，表示正则表达式，它将返回一个 Regex 模式对象
-mo = PhoneNumRegex.search(&#34;My Phone number is 415-555-4242&#34;)
-print(mo.group(0))
-print(mo.group())
-print(mo.group(1))
-print(mo.group(2))
-print(mo.groups())
-areacode, mainNumber = mo.groups()
-print(areacode)
-print(mainNumber)
-## print(&#34;Phone number founded:&#34; &#43; mo.group())
-## Regex 对象的 search()方法查找传入的字符串，寻找该正则表达式的所有匹配。如
-## 果字符串中没有找到该正则表达式模式，search()方法将返回 None。如果找到了该模式，
-## search()方法将返回一个 Match 对象。Match 对象有一个 group()方法，它返回被查找字
-## 符串中实际匹配的文本
-PhoneNumRegex2 = re.compile(r&#34;(\(\d{3}\))-(\d{3}-\d{3})&#34;)
-mo2 = PhoneNumRegex2.search(&#34;My Phone number is (415)-555-4242&#34;)
-print(mo2.groups())
-print(mo2.group(1))
-PhoneNumRegex3 = re.compile(r&#34;(\d{3}-)?\d{3}-\d{4}&#34;)
-mo3 = PhoneNumRegex3.search(&#34;My Phonenumber is 415-555-4224&#34;)
-print(mo3.group())
-mo4 = PhoneNumRegex3.search(&#34;My Phonenumber is 555-4224&#34;)
-print(mo4.group())
-```
-
-```python
-import re
-
-agentNamesRegex = re.compile(r&#34;Agent (\w)\w*&#34;)
-res = agentNamesRegex.sub(
-    r&#34;\1****&#34;,
-    &#34;Agent Alice told Agent Carol that Agent Eve knew Agent Bob was a double agent.&#34;,
-)
-print(res)
-## 字符串中的\1 将由分组 1 匹配的文本所替代，也就是正则表达式的(\w)分组。
-```
-
-```python
-## phoneAndEmail.py - Finds phone numbers and email addresses on the clipboard.
-import pyperclip, re
-
-phoneRegex = re.compile(
-    r&#34;&#34;&#34;(
-(\d{3}|\(\d{3}\))? ## area code
-(\s|-|\.)? ## separator
-(\d{3}) ## first 3 digits
-(\s|-|\.) ## separator
-(\d{4}) ## last 4 digits
-(\s*(ext|x|ext.)\s*(\d{2,5}))? ## extension
-)&#34;&#34;&#34;,
-    re.VERBOSE,
-)
-
-emailRegex = re.compile(
-    r&#34;&#34;&#34;(
-[a-zA-Z0-9._%&#43;-]&#43; ## username
-@ ## @ symbol
-[a-zA-Z0-9.-]&#43; ## domain name
-(\.[a-zA-Z]{2,4}) ## dot-something
-)&#34;&#34;&#34;,
-    re.VERBOSE,
-)
-
-text = str(pyperclip.paste())
-## 从剪切板获取内容
-matches = []
-for groups in phoneRegex.findall(text):
-    phoneNum = &#34;-&#34;.join([groups[1], groups[3], groups[5]])
-    ## 用-连接各部分
-if groups[8] != &#34;&#34;:
-    phoneNum &#43;= &#34; x&#34; &#43; groups[8]
-    matches.append(phoneNum)
-for groups in emailRegex.findall(text):
-    matches.append(groups[0])
-    ## group[0]是匹配r&#39;&#39;中的所有东西
-
-if len(matches) &gt; 0:
-    pyperclip.copy(&#34;\n&#34;.join(matches))
-    ## 以换行符为行分隔符复制到剪切板
-    print(&#34;Copied to clipboard:&#34;)
-    print(&#34;\n&#34;.join(matches))
-else:
-    print(&#34;No phone numbers or email addresses found.&#34;)
-```
-
-####  PIL——(Pillow)模块的使用
-
-#### ####  一、打开  显示  保存图片
-
-png格式的图片保存为jpg格式时会报错是因为PNG和JPG的通道数不同
-
-PNG:RGBA
-
-JPG:RGB
-
-所以，PNG格式图片要保存成JPG格式就要丢弃A通道
-
-```python
-from PIL import Image
-
-image = Image.open(&#39;0.jpg&#39;)
-#打开这张图片
-image.show()
-## 显示这张图片
-image.save(&#39;1.jpg&#39;)
-#保持打开的图片
-print(image.mode, image.size, image.format)
-## RGB (1920, 1080) JPEG
-## mode代表图片的属性，RGB代表彩色图像，L代表光照图像即灰度图像等
-## size属性为图片的大小（长度，宽度）
-## format属性为图片的格式
-```
-
-#### ####  二、转换图片模式
-
-任何支持的图片模式都可以直接转为彩色模式或者灰度模式，但是，若是想转化为其他模式，
-
-则需要借助一个中间模式（通常是彩色）来进行过转
-
-```python
-from PIL import Image
-
-image = Image.open(&#39;0.jpg&#39;)
-## image.show()
-grey_image=image.convert(&#39;L&#39;)
-grey_image.show()
-grey_image.save(&#39;grey.jpg&#39;)
-```
-
-#### ####  三、通道的分离合并
-
-彩色图像可以分离出 R、G、B 通道，但若是灰度图像，则返回灰度图像本身。
-
-然后，可以将 R、G、B 通道按照一定的顺序再合并成彩色图像。
-
-```python
-from PIL import Image
-
-image = Image.open(&#39;0.jpg&#39;)
-r,g,b = image.split()
-im = Image.merge(&#39;RGB&#39;,(b,g,r))
-print(im)
-```
-
-#### ####  四、图片的裁剪、缩放、旋转和镜像
-
-```python
-from PIL import Image
-
-img = Image.open(&#39;0.jpg&#39;)
-## 获取图像尺寸
-w,h = img.size
-## 缩放50%
-img.thumbnail((w//2,h//2))
-img.show()
-## 水平翻转图片
-img1 = img.transpose(Image.FLIP_LEFT_RIGHT)
-## 保存图片
-img1.show()
-img1.save(&#39;1.png&#39;)
-#垂直翻转图片
-img2 = img.rotate(180)
-img2.show()
-#水平&#43;垂直翻转图片
-img3 = img.transpose(Image.FLIP_LEFT_RIGHT).rotate(180)
-img3.show()
-#裁剪图片
-#图片裁剪用到的方法是image.crop()，这个方法能从图像中提取出某个矩形大小的图像。它接收一个四元素的元组作为参数，各元素为（left, upper, right, lower），坐标系统的原点（0, 0）是左上角。
-print(img.size)
-imgcut = img.crop((100,200,500,600))
-imgcut.show()
-```
-
-transpose有这么几种模式：
-
-- FLIP_LEFT_RIGHT：左右镜像
-- FLIP_TOP_BOTTOM：上下镜像
-- ROTATE_90：逆时针转90度
-- ROTATE_180：逆时针转180度
-- ROTATE_270：逆时针转270度
-- TRANSPOSE：像素矩阵转置
-- TRANSVERSE：对角线对转
-
-#### ####  五、给图片添加文字
-
-```python
-from PIL import Image,ImageDraw,ImageFont
-
-img = Image.open(&#39;0.jpg&#39;)
-## 调用画图模块
-draw = ImageDraw.Draw(img)
-## 设置字体
-tfont = ImageFont.truetype(&#34;arial.ttf&#34;,24)
-## 添加文字
-&#34;&#34;&#34;
-    参数一：文字在图片的位置：(x, y)
-    参数二：文字内容
-    参数三：字体颜色，当然颜色也可以用RGB值指定
-    参数四：字体类型
-&#34;&#34;&#34;
-draw.text((50,30),&#34;eyes&#43;&#43;&#34;,fill=&#34;red&#34;,font=tfont)
-## 保存图片
-img.save(&#34;addword.png&#34;)
-img.show()
-```
-
-#### ####  六、PIL滤镜功能
-
-```python
-from PIL import Image,ImageFilter
-
-img = Image.open(&#39;0.jpg&#39;)
-img = img.filter(ImageFilter.CONTOUR)
-img.save(&#39;filter.png&#39;)
-img.show()
-```
-
-滤镜类型如下：
-
-```
-mageFilter.BLUR			模糊滤镜
-mageFilter.CONTOUR			轮廓
-mageFilter.EDGE_ENHANCE			边界加强
-mageFilter.EDGE_ENHANCE_MORE			边界加强（阀值更大）
-mageFilter.EMBOSS			浮雕滤镜
-mageFilter.FIND_EDGES			边界滤镜
-mageFilter.SMOOTH			平滑滤镜
-mageFilter.SMOOTH MORE			平滑滤镜（阀值更大）
-mageFilter.SHARPEN			锐化滤镜
-ImageFilter.DETAIL			细节滤镜
-```
-
-#### ####  七、图片的拼接
-
-```python
-from PIL import Image
-
-img1 = Image.open(&#39;0.jpg&#39;)
-img2 = Image.open(&#39;1.jpg&#39;)
-#先查看图片尺寸
-print(img1.size)
-print(img2.size)
-## 新建空白图片,三个参数分别是模式(RGB/RGBA) 大小 颜色
-newimg = Image.new(mode=&#34;RGB&#34;,size=(3840,2160),color=(255,100,50))
-## 拼接图片 第一个参数是图片 第二个参数是图片的位置
-newimg.paste(img1,(0,0))
-newimg.paste(img1,(1920,0))
-newimg.show()
-```
-
-#### ####  例子
-
-1、将小图片合成为大图片(二维码)
-
-```python
-from PIL import Image
-import os
-
-IMAGES_PATH = &#39;signal1\\&#39;  ## 图片集（文件夹）地址
-IMAGES_FORMAT = [&#39;.png&#39;, &#39;.PNG&#39;]  ## 图片格式
-IMAGE_WIDTH = 100  ## 每张小图片的宽
-IMAGE_HEIGHT = 100  ## 每张小图片的高
-IMAGE_ROW = 25  ## 大图片一共有几行
-IMAGE_COLUMN = 25  ## 大图片一共有几列
-## IMAGE_SAVE_PATH = &#39;final.jpg&#39;  ## 图片转换后的地址
-
-newimg = Image.new(&#39;RGB&#39;,(IMAGE_COLUMN * IMAGE_HEIGHT, IMAGE_ROW * IMAGE_WIDTH))
-## 新建一个2500x2500的图像
-for y in range(25):
-    for x in range(25):
-        timg = Image.open(IMAGES_PATH &#43; str(y*IMAGE_COLUMN &#43; x) &#43; &#39;.png&#39;)
-        ## 打开文件夹中的图片
-        newimg.paste(timg, (x*IMAGE_WIDTH, y*IMAGE_HEIGHT))
-        ## 将打开的图片粘贴到newimg的指定位置
-newimg.save(&#39;new.png&#39;)
-## 将图片保存new.png
-```
-
-####  Urllib模块使用
+#### Urllib模块使用
 
 ```python
 from urllib import request, parse
@@ -967,9 +1244,9 @@ data是给post请求携带参数的，timeout是设置请求超时时间&#34;&#3
 ## 而 Request 可以让我们自己定义请求的方式&#34;&#34;&#34;
 ```
 
-####  requests模块的使用
+#### requests模块的使用
 
-#### ####  使用python脚本发送HTTP请求
+#### 使用python脚本发送HTTP请求
 
 **requests支持的请求协议有GET POST PUT...**
 
@@ -1087,7 +1364,7 @@ else:
     print(&#34;Server not a iis 7.5 or iis 8.0&#34;)
 ```
 
-#### ####  使用session发送请求
+#### 使用session发送请求
 
 ```python
 import requests
@@ -1105,7 +1382,7 @@ print(response.status_code)
 print(response.text)
 ```
 
-####  requests-html模块的使用
+#### requests-html模块的使用
 
 **基本用法**
 
@@ -1151,7 +1428,7 @@ if __name__ == &#34;__main__&#34;:
     print(responese.html.find(&#39;a.mnav&#39;, first=True).text)
 ```
 
-#### ####  例子
+##### 例子
 
 **爬取简书用户的文章**
 
@@ -1184,7 +1461,7 @@ if __name__ == &#34;__main__&#34;:
         print(f&#34;[&#43;]{i&#43;1}[{title.text}](https://www.jianshu.com/u/7753478e1554{title.attrs[&#39;href&#39;]})&#34;)
 ```
 
-####  optparse模块的使用
+#### optparse模块的使用
 
 ```python
 #optparse模块的使用
@@ -1217,7 +1494,7 @@ print(options.passfile)
 print(options.threads)
 ```
 
-####  xlwt模块的简单使用
+#### xlwt模块的简单使用
 
 ```python
 import xlwt
@@ -1257,7 +1534,7 @@ for i, item in enumerate(data):
     wb.save(&#34;myExcel1.xls&#34;)
 ```
 
-####  xlsxwriter模块的使用
+#### xlsxwriter模块的使用
 
 ```python
 def write2xlsx(data,filename):
@@ -1276,7 +1553,7 @@ def write2xlsx(data,filename):
     workbook.close()
 ```
 
-####  json模块的简单使用
+#### json模块的简单使用
 
 ```python
 import json
@@ -1353,197 +1630,7 @@ memberList = myfriend.get(&#34;MemberList&#34;)
 print(memberList)
 ```
 
-####  CSV模块的使用
-
-```python
-## -*- encoding: gbk -*-
-import os
-import csv
-
-with open(&#34;xiaoshuaib.csv&#34;, mode=&#34;w&#34;, encoding=&#34;gbk&#34;) as csv_file:
-    fieldnames = [&#34;你是谁&#34;, &#34;你几岁&#34;, &#34;你多高&#34;]
-    writer = csv.DictWriter(csv_file, fieldnames)
-
-    writer.writeheader()
-    writer.writerow({&#34;你是谁&#34;: &#34;小帅b&#34;, &#34;你几岁&#34;: &#34;18岁&#34;, &#34;你多高&#34;: &#34;18cm&#34;})
-    writer.writerow({&#34;你是谁&#34;: &#34;小帅c&#34;, &#34;你几岁&#34;: &#34;19岁&#34;, &#34;你多高&#34;: &#34;17cm&#34;})
-    writer.writerow({&#34;你是谁&#34;: &#34;小帅d&#34;, &#34;你几岁&#34;: &#34;20岁&#34;, &#34;你多高&#34;: &#34;16cm&#34;})
-```
-
-####  Pandas模块的使用
-
-```python
-## -*- encoding: gbk -*-
-import os
-import pandas
-
-xiaoshuaib = pandas.read_csv(&#34;xiaoshuaib.csv&#34;, encoding=&#34;gbk&#34;)
-print(xiaoshuaib)
-```
-
-```python
-import pandas as pd
-
-b = [&#34;xiaoshuaib&#34;, &#34;xiaoshuaic&#34;, &#34;xiaoshuaid&#34;]
-c = [&#34;18&#34;, &#34;19&#34;, &#34;20&#34;]
-d = [&#34;18&#34;, &#34;17&#34;, &#34;16&#34;]
-
-df = pd.DataFrame({&#34;你是谁&#34;: b, &#34;你几岁&#34;: c, &#34;你多高&#34;: d})
-df.to_csv(&#34;xsb.csv&#34;, index=False, sep=&#34;,&#34;)
-```
-
-```python
-#这个代码有点问题
-import pandas as pd
-
-obj = pd.Series([40, 12, -3, 25])
-## print(obj)
-## print(obj[0])
-## print(obj.index)
-## print(obj.values)
-obj1 = pd.Series([40, 12, -3, 25], index=[&#34;a&#34;, &#34;b&#34;, &#34;c&#34;, &#34;d&#34;])
-## print(obj1)
-## print(obj1[&#34;c&#34;])
-## print(obj1[obj1 &gt; 15])
-## a    40
-## d    25
-## abcd是索引，25、40是值，这里打印的是值大于15的obj中的元素
-## print(obj.describe())  ## 查看obj中的count、mean、std、min、max、25%、50%、75%
-dic = obj.to_dict()  ## Series可以转换为字典
-## print(dic)
-d = {
-    &#34;one&#34;: pd.Series(
-        [
-            1.0,
-            2.0,
-            3.0,
-        ],
-        index=[
-            &#34;a&#34;,
-            &#34;b&#34;,
-            &#34;c&#34;,
-        ],
-    ),
-    &#34;two&#34;: pd.Series([1.0, 2.0, 3.0, 4.0], index=[&#34;a&#34;, &#34;b&#34;, &#34;c&#34;, &#34;d&#34;]),
-}
-df = pd.DataFrame(d)
-print(df)
-## 当由多个Series组成DataFrame时，Pandas会自动按照index对齐数据，如果某个Series的index缺失，则Pandas会将其自动填写为np.nan
-```
-
-####  numpy库模块的使用
-
-```python
-import numpy as np
-import numpy.random as npr
-import matplotlib.pyplot as plt
-
-data = [1, 2, 3, 4]
-arr = np.array(data)
-## 创建一个一维数组
-## print(arr)
-## print(arr.dtype)
-data1 = [data, data]
-arr1 = np.array(data1)
-## 创建一个二维数组
-## print(arr1)
-
-
-arr2 = np.zeros((3, 3))
-## 创建3x3的全0的数组
-## print(arr2)
-arr3 = np.ones((3, 3))
-## print(arr3)
-arr4 = np.arange(1, 10, 2)
-## 创建1-10且差为2的等差数列
-## print(arr4)
-arr5 = np.linspace(1, 10, 4)
-## 创建1~10且长度为4的等差数列
-## print(arr5)
-
-arr6 = np.array([&#34;量&#34;, &#34;话&#34;])
-## print(arr6.dtype)  ## &lt;U1 是unicode数据类型
-arr1_1 = arr1.astype(np.unicode_)
-## 不同的数据类型之间也能互相转换
-## print(arr1_1)
-arr7 = np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]])
-## print(arr7)
-## print(arr7[1])
-## print(arr7[1][1])
-## print(arr7[:2])
-## print(arr7[:2, :2])
-arr7[:2, :2] = 10
-
-
-## print(arr7)
-## print(arr7 * arr7)
-## print(arr7.sum())
-## print(arr7.std())
-## print(arr7.mean())
-def f(x):
-    return x**2
-
-
-## print(f(arr7))
-print(npr.rand(3, 2))  ## npr.rand函数可以用来生成[0，1）的随机多维数组
-print(npr.rand(3, 2) * 2 &#43; 2)  ## 随机区间转化为[2，4）
-```
-
-```python
-import numpy.random as npr
-import matplotlib.pyplot as plt
-
-size = 1000
-rn1 = npr.rand(size, 2)
-rn2 = npr.randn(size)
-rn3 = npr.randint(0, 10, size)
-ranq = [0, 10, 20, 30, 40]
-rn4 = npr.choice(ranq, size=size)
-
-fig, ((ax1, ax2), (ax3, ax4)) = plt.subplots(nrows=2, ncols=2, figsize=(10, 10))
-ax1.hist(rn1, bins=25, stacked=True)
-ax1.set_title(&#34;rard&#34;)
-ax1.set_ylabel(&#34;frequency&#34;)
-ax1.grid(True)
-ax2.hist(rn2, bins=25)
-ax2.set_title(&#34;rardn&#34;)
-ax2.grid(True)
-ax3.hist(rn3, bins=25)
-ax3.set_title(&#34;rardint&#34;)
-ax3.set_ylabel(&#34;frequency&#34;)
-ax3.grid(True)
-ax4.hist(rn4, bins=25)
-ax4.set_title(&#34;choice&#34;)
-ax4.grid(True)
-plt.show()
-```
-
-```python
-#np.concatenate()的用法
-import numpy as np
-
-a = np.array([1, 2, 3])
-b = np.array([11, 22, 33])
-c = np.array([44, 55, 66])
-print(np.concatenate((a, b, c), axis=0))
-## 默认情况下，axis=0可以不写
-## 对于一维数组拼接，axis的值不影响最后的结果
-## [ 1  2  3 11 22 33 44 55 66]
-
-a = np.array([[1, 2, 3], [4, 5, 6]])
-b = np.array([[11, 21, 31], [7, 8, 9]])
-## print(np.concatenate((a, b), axis=0))
-## [[ 1  2  3]
-##  [ 4  5  6]
-##  [11 21 31]
-##  [ 7  8  9]]
-print(np.concatenate((a, b), axis=1))
-## axis=1表示对应行的数组进行拼接
-## [[ 1  2  3 11 21 31]
-##  [ 4  5  6  7  8  9]]
-```
-
-####  scipy模块的使用
+#### scipy模块的使用
 
 \#经常要导入csv数据
 
@@ -1570,31 +1657,31 @@ print(&#34;method 2:&#34;)
 print(beta.rvs(size=10))
 ```
 
-####  seaborn模块的使用
+#### seaborn模块的使用
 
 ```
 
 ```
 
-####  asyncio模块的学习与使用
+#### asyncio模块的学习与使用
 
-#### ####  协程的概念
+##### 协程的概念
 
 在同一线程内，一段执行代码过程中，可以中断并跳转到另一段代码中，接着之前中断的地方继续执行。协程运行状态于多线程类似。
 
-#### ####  协程的优点
+##### 协程的优点
 
 -无需线程上下文切换，避免了无意义的调度，可以提高性能
 -无需原子操作锁定及同步开销【避免的资源竞争】
 -方便切换控制流，简化编程模型
 -高并发&#43;高扩展性&#43;低成本，一个CPU支特上万的协程不是问题，一很适合用于高并发处理
 
-#### ####  协程缺点：
+##### 协程缺点：
 
 -无法利用多核资源。协程的本质是单线程，不能同时将单个CPU的多个核用上，协程需要进程配合才能运行在多CPU上。（不过我们日常编程不会有这个问题，除非是CPU密集型应用)
 -进行阻塞操作（如IO时)会阻塞掉整个程序
 
-#### ####  生成器的学习
+##### 生成器的学习
 
 ```python
 def func():
@@ -1631,7 +1718,7 @@ a = func_a()
 func_b(a)
 ```
 
-#### ####  同步程序与异步程序的区别
+##### 同步程序与异步程序的区别
 
 ```python
 ## 同步程序
@@ -1665,7 +1752,7 @@ for i in range(5):
 print(f&#34;[&#43;]异步程序所花费的时间为{now()-start}&#34;)
 ```
 
-#### ####  asyncio中的概念
+##### asyncio中的概念
 
 事件循环
 
@@ -1812,7 +1899,7 @@ async def main():
 asyncio.run(main())
 ```
 
-#### ####  协程嵌套
+##### 协程嵌套
 
 ```python
 ## 协程嵌套
@@ -1838,7 +1925,7 @@ async def main():
 asyncio.run(main())
 ```
 
-#### ####  协程并发
+##### 协程并发
 
 ```python
 ## 协程并发
@@ -1869,7 +1956,7 @@ async def main():
 asyncio.run(main())
 ```
 
-####  aiohttp模块的使用
+#### aiohttp模块的使用
 
 ```python
 import aiohttp ## 导入异步HTTP请求库 aiohttp
@@ -1952,9 +2039,9 @@ if __name__ == &#34;__main__&#34;:
     asyncio.run(main())
 ```
 
-####  subprocess模块的使用
+#### subprocess模块的使用
 
-#### ####  Windows下执行命令
+##### Windows下执行命令
 
 ```python
 import subprocess
@@ -1979,7 +2066,7 @@ print(p.args)
 print(p.stdout)
 ```
 
-####  pydocx库的使用
+#### pydocx库的使用
 
 ```python
 from docx import Document
@@ -1993,7 +2080,7 @@ if __name__ == &#34;__main__&#34;:
     GenerateNewWord(newname)
 ```
 
-####  colorama模块的使用
+#### colorama模块的使用
 
 ```python
 from colorama import Fore, Back, Style, init
@@ -2009,7 +2096,7 @@ print(Style.BRIGHT &#43; &#39;这是明亮的文字&#39;)
 print(&#39;这是普通文本&#39;)
 ```
 
-####  prettytable模块的使用
+#### prettytable模块的使用
 
 ```python
 from prettytable import PrettyTable
@@ -2039,22 +2126,7 @@ print(x)
 &#34;&#34;&#34;
 ```
 
-####  libnum模块的使用
-
-```python
-import libnum
-str = &#34;flag{114514}&#34;
-bin = &#34;11001100110110001100001011001110111101100110001001100010011010000110101001100010011010001111101&#34;
-print(libnum.n2s(97))  ## a
-print(libnum.s2n(str))  ## 31698494968735985349289915517
-print(hex(libnum.s2n(str)))  ## 0x666c61677b3131343531347d
-print(libnum.s2b(str))
-## 011001100110110001100001011001110111101100110001001100010011010000110101001100010011010001111101
-print(libnum.b2s(bin))
-## 会自动在前面补零对齐8位 b&#39;flag{114514}&#39;
-```
-
-####  paramiko模块的使用
+#### paramiko模块的使用
 
 使用用户名和密码 ssh 连接（执行一个命令就要连接一次）
 

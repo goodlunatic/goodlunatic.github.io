@@ -4,7 +4,15 @@
     <link>http://localhost:1313/posts/</link>
     <description>All Posts | ⚡Lunatic BLOG⚡</description>
     <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>goodlunatic0@gmail.com (Lunatic)</managingEditor>
-      <webMaster>goodlunatic0@gmail.com (Lunatic)</webMaster><lastBuildDate>Tue, 05 Nov 2024 10:45:20 &#43;0800</lastBuildDate><atom:link href="http://localhost:1313/posts/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>goodlunatic0@gmail.com (Lunatic)</webMaster><lastBuildDate>Tue, 05 Nov 2024 16:51:48 &#43;0800</lastBuildDate><atom:link href="http://localhost:1313/posts/" rel="self" type="application/rss+xml" /><item>
+  <title>Python Basic Knowledge</title>
+  <link>http://localhost:1313/posts/e19da63/</link>
+  <pubDate>Tue, 05 Nov 2024 16:51:48 &#43;0800</pubDate>
+  <author>Lunatic</author>
+  <guid>http://localhost:1313/posts/e19da63/</guid>
+  <description><![CDATA[<p>Basic knowledge of Python Language.</p>]]></description>
+</item>
+<item>
   <title>2024 浙江省大学生网络与信息安全竞赛 Misc Writeup</title>
   <link>http://localhost:1313/posts/c216d58/</link>
   <pubDate>Tue, 05 Nov 2024 10:45:20 &#43;0800</pubDate>
@@ -76,15 +84,6 @@
   <guid>http://localhost:1313/posts/de8e2be/</guid>
   <description><![CDATA[<p><strong>这比赛虽然有些Misc题比较搞心态，但是不得不说题目质量还是在的</strong></p>
 <p><strong>出题师傅的水平还是挺可以的，然后经验啥的感觉还是比较老练</strong></p>]]></description>
-</item>
-<item>
-  <title>2024 睿抗机器人开发者大赛（RAICOM）网络安全赛道初赛 Misc Writeup</title>
-  <link>http://localhost:1313/posts/1eae35a/</link>
-  <pubDate>Mon, 21 Oct 2024 12:22:20 &#43;0800</pubDate>
-  <author>Lunatic</author>
-  <guid>http://localhost:1313/posts/1eae35a/</guid>
-  <description><![CDATA[<p><strong>很早之前和队友报的名，结果到现在才打。。</strong></p>
-<p><strong>这比赛只能说是纯纯手速局。。</strong></p>]]></description>
 </item>
 </channel>
 </rss>

@@ -2,13 +2,16 @@
   xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml"
   ><url>
-      <loc>http://localhost:1313/</loc><lastmod>2024-11-05T10:45:20&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+      <loc>http://localhost:1313/</loc><lastmod>2024-11-05T16:51:48&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+      <loc>http://localhost:1313/categories/</loc><lastmod>2024-11-05T16:51:48&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+      <loc>http://localhost:1313/tags/language/</loc><lastmod>2024-11-05T16:51:48&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+      <loc>http://localhost:1313/categories/language/</loc><lastmod>2024-11-05T16:51:48&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+      <loc>http://localhost:1313/posts/</loc><lastmod>2024-11-05T16:51:48&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+      <loc>http://localhost:1313/posts/e19da63/</loc><lastmod>2024-11-05T16:51:48&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+      <loc>http://localhost:1313/tags/</loc><lastmod>2024-11-05T16:51:48&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
       <loc>http://localhost:1313/posts/c216d58/</loc><lastmod>2024-11-05T10:45:20&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-      <loc>http://localhost:1313/categories/</loc><lastmod>2024-11-05T10:45:20&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
       <loc>http://localhost:1313/tags/ctf/</loc><lastmod>2024-11-05T10:45:20&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
       <loc>http://localhost:1313/tags/misc/</loc><lastmod>2024-11-05T10:45:20&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-      <loc>http://localhost:1313/posts/</loc><lastmod>2024-11-05T10:45:20&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-      <loc>http://localhost:1313/tags/</loc><lastmod>2024-11-05T10:45:20&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
       <loc>http://localhost:1313/tags/writeup/</loc><lastmod>2024-11-05T10:45:20&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
       <loc>http://localhost:1313/categories/writeup/</loc><lastmod>2024-11-05T10:45:20&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
       <loc>http://localhost:1313/posts/69280be/</loc><lastmod>2024-11-05T10:21:35&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
@@ -55,9 +58,6 @@
       <loc>http://localhost:1313/posts/5f3fb7a/</loc><lastmod>2023-12-19T17:06:50&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
       <loc>http://localhost:1313/posts/00658ee/</loc><lastmod>2023-12-10T17:12:41&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
       <loc>http://localhost:1313/posts/0d2a7eb/</loc><lastmod>2023-12-08T15:53:54&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-      <loc>http://localhost:1313/tags/language/</loc><lastmod>2023-11-08T16:51:48&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-      <loc>http://localhost:1313/categories/language/</loc><lastmod>2023-11-08T16:51:48&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-      <loc>http://localhost:1313/posts/e19da63/</loc><lastmod>2023-11-08T16:51:48&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
       <loc>http://localhost:1313/posts/db7acab/</loc><lastmod>2023-11-07T14:11:04&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
       <loc>http://localhost:1313/posts/ade0159/</loc><lastmod>2023-10-23T17:15:45&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
       <loc>http://localhost:1313/posts/b36b466/</loc><lastmod>2023-10-17T14:00:59&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
