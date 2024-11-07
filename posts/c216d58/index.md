@@ -361,6 +361,110 @@ for row in lst[1:]:
 # DASCTF{dcd85182008e3a2d51b37f9845df3312}
 ```
 
+### 题目名称 数据安全ds-encode
+
+解压附件压缩包，可以得到一个mysql的数据目录
+
+![](imgs/image-20241107214506171.png)
+
+然后在日志文件中找到了mysql的版本：`MySQL 5.7.29`
+
+![](imgs/image-20241107214628656.png)
+
+因此我们本地用`phpstudy`起一个`MySQL`服务，然后把上面的数据文件拷贝到`MySQL`的data目录中
+
+![](imgs/image-20241107214829607.png)
+
+然后尝试在`Navicat`中用默认密码`root`登录，并把数据以`CSV`文件的格式导出
+
+![](imgs/image-20241107215014344.png)
+
+![](imgs/image-20241107215050537.png)
+
+导出成功后，根据附件中的`个人信息数据规范文档`要求，写一个脚本处理数据即可
+
+![](imgs/image-20241107215252523.png)
+
+```python
+import csv
+import hashlib
+import base64
+
+data_list = []
+res_list = []
+
+with open(&#34;data.csv&#34;, &#34;r&#34;, encoding=&#39;utf-8&#39;) as f:
+    reader = csv.reader(f)
+    for row in reader:
+        data_list.append(row)
+
+def basedecode(line):
+    try:
+        if line[-1] == &#34;Base32&#34;:
+            for i in range(1,6):
+                line[i] = base64.b32decode(line[i]).decode()
+        elif line[-1] == &#34;Base64&#34;:
+            for i in range(1,6):
+                line[i] = base64.b64decode(line[i]).decode()
+        elif line[-1] == &#34;Base85&#34;:
+            for i in range(1,6):
+                line[i] = base64.b85decode(line[i]).decode()
+    except:
+        pass
+
+
+def username_solve(username):
+    res = &#39;&#39;
+    if len(username) == 2:
+        res = username[0] &#43; &#39;*&#39;
+    else:
+        res = username[0] &#43; &#34;*&#34;*(len(username)-2)&#43;username[-1]
+    return res
+
+
+def password_solve(pwd):
+    md5_hash = hashlib.md5()
+    md5_hash.update(pwd.encode(&#39;utf-8&#39;))
+    res = md5_hash.hexdigest()
+    return res
+
+
+def name_solve(name):
+    sha1_hash = hashlib.sha1()
+    sha1_hash.update(name.encode(&#39;utf-8&#39;))
+    res = sha1_hash.hexdigest()
+    return res
+
+
+def id_solve(id):
+    res = &#34;*&#34;*6 &#43; id[6:10] &#43; &#34;*&#34;*8
+    return res
+
+
+def phone_solve(phone):
+    res = phone[:3] &#43; &#34;*&#34;*4 &#43; phone[7:]
+    return res
+
+
+if __name__ == &#34;__main__&#34;:
+    data_list[0].remove(data_list[0][6])
+    res_list.append(data_list[0])
+
+    for line in data_list[1:]:
+        basedecode(line)
+        line[1] = username_solve(line[1])
+        line[2] = password_solve(line[2])
+        line[3] = name_solve(line[3])
+        line[4] = id_solve(line[4])
+        line[5] = phone_solve(line[5])
+        line.remove(line[6])
+        res_list.append(line)
+        
+    with open(&#39;data1.csv&#39;,&#34;w&#34;,newline=&#39;&#39;,encoding=&#39;utf-8&#39;) as f:
+        writer = csv.writer(f)
+        writer.writerows(res_list)
+```
+
 ---
 
 > Author: [Lunatic](https://goodlunatic.github.io)  

@@ -12,7 +12,7 @@
   <meta itemprop="description" content="不知道具体是什么比赛，但是赛题还是有一定的强度的">
   <meta itemprop="datePublished" content="2024-11-05T10:21:35+08:00">
   <meta itemprop="dateModified" content="2024-11-05T10:21:35+08:00">
-  <meta itemprop="wordCount" content="3676">
+  <meta itemprop="wordCount" content="3681">
   <meta itemprop="keywords" content="CTF,Misc,Writeup"><meta property="og:url" content="http://localhost:1313/posts/69280be/">
   <meta property="og:site_name" content="⚡Lunatic BLOG⚡">
   <meta property="og:title" content="2024 某金融系统内部赛 Misc Writeup">
@@ -41,7 +41,7 @@
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": "http:\/\/localhost:1313\/posts\/69280be\/"
-    },"genre": "posts","keywords": "CTF, Misc, Writeup","wordcount":  3676 ,
+    },"genre": "posts","keywords": "CTF, Misc, Writeup","wordcount":  3681 ,
     "url": "http:\/\/localhost:1313\/posts\/69280be\/","datePublished": "2024-11-05T10:21:35+08:00","dateModified": "2024-11-05T10:21:35+08:00","publisher": {
       "@type": "Organization",
       "name": ""},"author": {
@@ -191,6 +191,10 @@
 <p>我们在stegsolve中使用 data extract 把黑色背景并且带有LSB隐写的通道勾选上即可得到flag</p>
 <p><img loading="lazy" src="/posts/69280be/imgs/image-20241105103146312.png" alt="/posts/69280be/imgs/image-20241105103146312.png" srcset="/posts/69280be/imgs/image-20241105103146312.png?size=small, /posts/69280be/imgs/image-20241105103146312.png?size=medium 1.5x, /posts/69280be/imgs/image-20241105103146312.png?size=large 2x" data-title="/posts/69280be/imgs/image-20241105103146312.png" style="--width: 865px;--aspect-ratio: 865 / 668;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p><code>flag{24aa07d8-8662-718a-9da8-a2628e779e40}</code></p>
+<p>其实这里也算是非预期了吧，预期解应该是根据图片的文件名add想到使用 Image Conbiner 把两张图片和一起</p>
+<p><img loading="lazy" src="/posts/69280be/imgs/image-20241106154638906.png" alt="/posts/69280be/imgs/image-20241106154638906.png" srcset="/posts/69280be/imgs/image-20241106154638906.png?size=small, /posts/69280be/imgs/image-20241106154638906.png?size=medium 1.5x, /posts/69280be/imgs/image-20241106154638906.png?size=large 2x" data-title="/posts/69280be/imgs/image-20241106154638906.png" style="--width: 2561px;--aspect-ratio: 2561 / 1529;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>合成后导出为bmp，然后再用zsteg扫描得到flag</p>
+<p><img loading="lazy" src="/posts/69280be/imgs/image-20241106154704872.png" alt="/posts/69280be/imgs/image-20241106154704872.png" srcset="/posts/69280be/imgs/image-20241106154704872.png?size=small, /posts/69280be/imgs/image-20241106154704872.png?size=medium 1.5x, /posts/69280be/imgs/image-20241106154704872.png?size=large 2x" data-title="/posts/69280be/imgs/image-20241106154704872.png" style="--width: 1115px;--aspect-ratio: 1115 / 628;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <h2 id="题目名称-finder" class="heading-element">
   <a href="#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-finder" class="heading-mark"></a>题目名称 Finder</h2><p>解压附件压缩包，得到如下几个文件</p>
 <p><img loading="lazy" src="/posts/69280be/imgs/image-20241105103254808.png" alt="/posts/69280be/imgs/image-20241105103254808.png" srcset="/posts/69280be/imgs/image-20241105103254808.png?size=small, /posts/69280be/imgs/image-20241105103254808.png?size=medium 1.5x, /posts/69280be/imgs/image-20241105103254808.png?size=large 2x" data-title="/posts/69280be/imgs/image-20241105103254808.png" style="--width: 689px;--aspect-ratio: 689 / 183;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>

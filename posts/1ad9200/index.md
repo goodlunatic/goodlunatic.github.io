@@ -915,6 +915,16 @@ for y in range(heigth1):
 # DASCTF{tWo_t1gers_rUn_f@st}
 ```
 
+#### 19、两张图片，用StegSolve中的Image Conbiner合成为一张bmp
+
+![](imgs/image-20241106154249826.png)
+
+合成一张bmp后，再使用zsteg扫描
+
+![](imgs/image-20241106154358962.png)
+
+#### 20、图片多个通道存在LSB隐写，StegSolve中把背景颜色相同的勾选上
+
 ### PNG思路
 
 ####  1、CRC错误(不能乱改)，改宽高，17~20是宽，21~24是高(可用Pictools脚本快速爆破)
@@ -1241,6 +1251,12 @@ with open(&#39;flag.zip&#39;, &#39;wb&#39;) as f:
 
 ### 二维码思路
 
+参考链接：
+
+https://note.tonycrane.cc/ctf/misc/qrcode/
+
+https://www.cnblogs.com/luogi/p/15469106.html
+
 #### 1、bmp转二维码
 
 #### 2、16进制转pyc
@@ -1272,6 +1288,7 @@ with open(&#39;flag.zip&#39;, &#39;wb&#39;) as f:
 这里要注意的是，出题人可能会把图片反相导致无法直接扫描，因此我们可以先将图片拉入 PS 先进行反相处理
 
 #### 二维码的纠错等级
+
 参考链接：https://www.shangyexinzhi.com/article/4952046.html
 
 以下面这张二维码为例子

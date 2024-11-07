@@ -280,6 +280,25 @@ print(libnum.b2s(bin))
 ## 会自动在前面补零对齐8位 b&#39;flag{114514}&#39;
 ```
 
+#### hashlib模块的使用
+
+常见的加密
+
+```python
+import hashlib
+
+text = &#34;Hello&#34;
+
+# md5加密
+md5_hash = hashlib.md5()
+md5_hash.update(text.encode(&#39;utf-8&#39;))
+res = md5_hash.hexdigest()
+
+# SHA1加密
+sha1_hash = hashlib.sha1()
+sha1_hash.update(text.encode(&#39;utf-8&#39;))
+res = sha1_hash.hexdigest()
+```
 
 ####  re模块的使用
 
@@ -799,16 +818,40 @@ with open(&#34;xiaoshuaib.csv&#34;, mode=&#34;w&#34;, encoding=&#34;gbk&#34;) as
 ```
 
 ##### 比赛中使用的例子
-例1-2024浙江省赛初赛-ds-enen
+
+例1-2024浙江省赛初赛-ds-encode
+
 ```python
 import csv
 
-with open(&#34;data.csv&#34;,&#34;r&#34;,encoding=&#39;utf-8&#39;) as f:
+data_list = []
+res_list = []
+
+# 读取csv文件
+with open(&#34;data.csv&#34;, &#34;r&#34;, encoding=&#39;utf-8&#39;) as f:
     reader = csv.reader(f) # 创建 CSV 读取器
     for row in reader:
-        lst.append(row)
-```
+        data_list.append(row)
 
+
+data_list[0].remove(data_list[0][6])
+res_list.append(data_list[0])
+
+for line in data_list[1:]:
+    basedecode(line)
+    line[1] = username_solve(line[1])
+    line[2] = password_solve(line[2])
+    line[3] = name_solve(line[3])
+    line[4] = id_solve(line[4])
+    line[5] = phone_solve(line[5])
+    line.remove(line[6])
+    res_list.append(line)
+
+# 保存列表到csv文件
+with open(&#39;data1.csv&#39;,&#34;w&#34;,newline=&#39;&#39;,encoding=&#39;utf-8&#39;) as f:
+    writer = csv.writer(f)
+    writer.writerows(res_list)
+```
 #### pandas模块的使用
 
 ```python

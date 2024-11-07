@@ -47,6 +47,14 @@ ys~xdg/m@]mjkz@vl@z~lf&gt;b
 
 `flag{24aa07d8-8662-718a-9da8-a2628e779e40}`
 
+其实这里也算是非预期了吧，预期解应该是根据图片的文件名add想到使用 Image Conbiner 把两张图片和一起
+
+![](imgs/image-20241106154638906.png)
+
+合成后导出为bmp，然后再用zsteg扫描得到flag
+
+![](imgs/image-20241106154704872.png)
+
 ## 题目名称 Finder
 解压附件压缩包，得到如下几个文件
 
