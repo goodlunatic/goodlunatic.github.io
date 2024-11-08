@@ -152,6 +152,23 @@ https://aghorler.github.io/emoji-aes/
 3.根据对照表，手搓密钥的前几位
 
 ![vigenere](imgs/vigenere.png)
+4.Python代码解密/爆破维吉尼亚加密
+```python
+from pycipher import Vigenere
+
+
+cipher = &#34;rla xymijgpf ppsoto wq u nncwel ff tfqlgnxwzz sgnlwduzmy vcyg ib bhfbe u tnaxua ff satzmpibf vszqen eyvlatq cnzhk dk hfy mnciuzj ou s yygusfp bl dq e okcvpa hmsz vi wdimyfqqjqubzc hmpmbgxifbgi qs lciyaktb jf clntkspy drywuz wucfm&#34;
+
+with open(&#34;keys.txt&#34;,&#34;r&#34;) as f:
+    lines = f.readlines()
+
+for line in lines:
+    key = line.strip()
+    res = Vigenere(key).decipher(cipher)
+    if &#34;PASSWORD&#34; in res:
+        print(f&#34;[&#43;] key: {key}&#34;)
+        print(f&#34;[&#43;] res: {res.lower()}&#34;)
+```
 
 ### 希尔密码：
 
@@ -1483,13 +1500,21 @@ WinRAR打开、010改标志位、binwalk直接分离
 
 第24个字节尾数为4表示加密，0表示无加密，将尾数改为0即可破解伪加密
 
-### 2、CRC爆破（压缩包中文件比较小的时候）
+### 2、CRC爆破
 
-使用CRC爆破需要文件大小小于等于18个字节
+适用于压缩包中文件比较小，比如只有几字节的时候
+
+可以使用CTFD中的脚本爆破一下，注意有的脚本只能爆破zip压缩包
+
+如果需要根据CRC值爆破明文的话可以参考这个项目：https://github.com/theonlypwner/crc32
+
+```bash
+python3 crc32.py reverse 0x7c2df918
+```
+
+例题1-BugKu MISC 就五层你能解开吗?
 
 参考文章：https://blog.csdn.net/mochu7777777/article/details/110206427
-
-可以使用CTFD中的两种脚本爆破一下(速度不同)
 
 ### 3、明文攻击
 
@@ -1991,6 +2016,16 @@ out.show()
 
 **SSTV识别可以直接用这个项目里的脚本：https://github.com/colaclanth/sstv**
 
+```bash
+# 安装步骤：
+sudo python3 setup.py install 
+# 注意python版本如果低于python3.9，需要将setup.py中的numpy那一行注释
+# 使用命令如下，图片会自动命名为result.png
+sstv -d flag.wav
+```
+
+![](imgs/image-20241108232143418.png)
+
 #### Windows中使用RX-SSTV
 
 使用前还要安装虚拟声卡 Virtual Audio Cable
@@ -2011,7 +2046,7 @@ out.show()
 
 或者在dtmf2num.exe里使用dtmf2num -o C:\Desktop\1.wav命令
 
-### 6、 WAV[RIFF]的隐写(有 deepsound 和 silenteye 或者其他):
+### 6、WAV[RIFF]的隐写(有 deepsound 和 silenteye 或者其他):
 
 先用deepsound 试一下，如果需要密码说明就是 deepsound 隐写
 

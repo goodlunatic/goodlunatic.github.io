@@ -280,6 +280,40 @@ print(libnum.b2s(bin))
 ## 会自动在前面补零对齐8位 b&#39;flag{114514}&#39;
 ```
 
+#### itertools模块的使用
+
+##### 1. product生成笛卡尔积（嵌套循环）
+```python
+import itertools
+from string import printable
+
+# for i in printable:
+#     for j in printable:
+#         for k in printable:
+#             for l in printable:
+#                 print(i&#43;j&#43;k&#43;l)
+                
+for strs in itertools.product(printable, repeat=4):
+    print(&#39;&#39;.join(strs))
+```
+
+##### 2. permutations生成排列组合
+```python
+from itertools import permutations
+# 生成长度为2的排列组合
+print(list(permutations(&#34;ABC&#34;, 2)))  
+# [(&#39;A&#39;, &#39;B&#39;), (&#39;A&#39;, &#39;C&#39;), (&#39;B&#39;, &#39;A&#39;), (&#39;B&#39;, &#39;C&#39;), (&#39;C&#39;, &#39;A&#39;), (&#39;C&#39;, &#39;B&#39;)]
+```
+
+##### 3. combinations生成组合
+```python
+from itertools import combinations
+# 生成长度为2的组合
+print(list(combinations(&#34;ABC&#34;, 2)))  
+# [(&#39;A&#39;, &#39;B&#39;), (&#39;A&#39;, &#39;C&#39;), (&#39;B&#39;, &#39;C&#39;)]
+```
+
+
 #### hashlib模块的使用
 
 常见的加密
@@ -758,7 +792,7 @@ def bin2img(bin_data):
 ```
 
 ##### 比赛中使用的例子
-例1-2024浙江省赛初赛-EZtraffic(100张图片按照顺序合并)
+例题1-2024浙江省赛初赛-EZtraffic(100张图片按照顺序合并)
 ```python
 def merge_img():
     cols = 10
@@ -782,6 +816,29 @@ def merge_img():
     new_img.save(&#34;flag.png&#34;)
 ```
 
+例题2-2023SICTF-color
+```python
+import itertools
+from PIL import Image
+
+num = [0, 128, 255]
+lis = list(itertools.product(num, repeat=3))
+img = Image.open(&#34;./save.png&#34;)
+
+# 创建一张灰度图，并设置图像的初始颜色为255（白色）
+new_img = Image.new(&#34;L&#34;, size=(img.width, img.height), color=255)
+# 创建一个 RGB 模式的图像
+# new_img = Image.new(&#34;RGB&#34;, size=(img.width, img.height), color=(255, 255, 255))
+
+for y in range(img.height):
+    for x in range(img.width):
+        if img.getpixel((x, y)) in lis:
+            new_img.putpixel((x, y), value=0)
+            # 设置像素值为 (0, 0, 0)（黑色）
+            # new_img.putpixel((x, y), (0, 0, 0))
+            
+new_img.show()
+```
 #### pyzbar模块的使用
 
 ##### 识别二维码
