@@ -3,6 +3,8 @@
 **2024 浙江省大学生网络与信息安全竞赛 Misc Writeup**
 &lt;!--more--&gt;
 
+![](imgs/image-20241109233010712.png)
+
 &gt; 题目附件下载：https://pan.baidu.com/s/140Wxcv0w4eJJ1XX1r_sRcg?pwd=uvj4 提取码：uvj4
 
 ## 初赛
