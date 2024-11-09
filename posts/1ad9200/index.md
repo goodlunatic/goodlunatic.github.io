@@ -369,6 +369,14 @@ CyberChef解密AES-ECB时需要将IV设置为`\x00\x00\x00\x00\x00\x00\x00\x00\x
 
 ![](imgs/aes2.png)
 
+### 使用openssl进行加解密
+```bash
+# 加密
+tar -czvf - flag | openssl des3 -salt -k th1sisKey -out ./flag.tar.gz
+# 解密
+openssl des3 -d -salt -k th1sisKey -in ./flag.tar.gz -out decrypted_file
+```
+
 ### 埃特巴什码(Atbash)
 
 类似于：(&#43;w)v&amp;LdG_FhgKhdFfhgahJfKcgcKdc_eeIJ_gFN
