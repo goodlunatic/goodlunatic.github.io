@@ -884,7 +884,144 @@ with open(&#34;1.zip&#34;,&#34;wb&#34;) as f:
 
 最后使用得到的密码解压压缩包即可得到flag：`DASCTF{H3r3_1s_C0L0rful_W0rld}`
 
-### 题目名称 天明人（赛后复现）
+### 题目名称 天命人（赛后复现）
+
+题目附件给了一个压缩包，压缩包的注释中有提示
+
+![](imgs/image-20241109233650821.png)
+
+解压后用010打开，发现就是把一个压缩包的数据按照顺序分到了六个文件里
+
+因此我们写个脚本，按照顺序恢复一下压缩包即可
+
+```python
+with open(&#34;1&#34;,&#34;rb&#34;) as f:
+    data1 = f.read()
+
+with open(&#34;2&#34;,&#34;rb&#34;) as f:
+    data2 = f.read()
+
+with open(&#34;3&#34;,&#34;rb&#34;) as f:
+    data3 = f.read()
+    
+with open(&#34;4&#34;,&#34;rb&#34;) as f:
+    data4 = f.read()
+    
+with open(&#34;5&#34;,&#34;rb&#34;) as f:
+    data5 = f.read()
+
+with open(&#34;6&#34;,&#34;rb&#34;) as f:
+    data6 = f.read()
+    
+print(len(data1))
+print(len(data2))
+print(len(data3))
+print(len(data4))
+print(len(data5))
+print(len(data6))
+
+res = []
+for i in range(387797):
+    try:
+        res.append(data1[i])
+        res.append(data2[i])
+        res.append(data3[i])
+        res.append(data4[i])
+        res.append(data5[i])
+        res.append(data6[i])
+    except:
+        pass
+    
+print(len(res))
+with open(&#34;1.zip&#34;,&#34;wb&#34;) as f:
+    f.write(bytes(res))
+```
+
+解压得到的压缩包，有可以得到两个新的加密的压缩包
+
+![](imgs/image-20241109233851218.png)
+
+![](imgs/image-20241109233903989.png)
+
+发现根器.zip中的文件很短，只有几字节，因此可以直接使用`CRC32`爆破文件内容
+
+![](imgs/image-20241109234003835.png)
+
+爆破后即可得到另一个压缩包的解压密码：`C0M3_4ND_Get_S1X_R00TS!!`
+
+使用得到的密码解压`未竟.zip`，可以得到一张png图片，还有一个未知后缀的数据文件
+
+发现png图片中存在等距像素隐写，因此我们尝试等距提取像素，这里我就直接用了B神的代码
+
+![](imgs/image-20241109234246782.png)
+
+```python
+import os
+import re
+import cv2
+import argparse
+import itertools
+import numpy as np
+
+
+parser = argparse.ArgumentParser()
+parser.add_argument(&#39;-f&#39;, type=str, default=None, required=True,
+                    help=&#39;输入文件名称&#39;)
+parser.add_argument(&#39;-p&#39;, type=str, default=None, required=True,
+                    help=&#39;输入左上顶点和右下顶点坐标 (如:-p 220x344&#43;3520x2150)&#39;)
+parser.add_argument(&#39;-n&#39;, type=str, default=None, required=True,
+                    help=&#39;输入宽度间隔和高度间隔 (如:-n 44x86)&#39;)
+parser.add_argument(&#39;-size&#39;, type=str, default=&#39;1x1&#39;, required=False,
+                    help=&#39;输入截取图像的大小 (如:-size 7x7)&#39;)
+parser.add_argument(&#39;-resize&#39;, type=int, default=1, required=False,
+                    help=&#39;输入截取图像放大倍数 (如:-resize 1)&#39;)
+args  = parser.parse_args()
+
+if __name__ == &#39;__main__&#39;:
+    if re.search(r&#34;^\d{1,}x\d{1,}\&#43;\d{1,}x\d{1,}$&#34;, args.p) and re.search(r&#34;^\d{1,}x\d{1,}$&#34;, args.n) and re.search(r&#34;^\d{1,}x\d{1,}$&#34;, args.size):
+        x1, y1 = map(lambda x: int(x), args.p.split(&#34;&#43;&#34;)[0].split(&#34;x&#34;))
+        x2, y2 = map(lambda x: int(x), args.p.split(&#34;&#43;&#34;)[1].split(&#34;x&#34;))
+        width, height = map(lambda x: int(x), args.n.split(&#34;x&#34;))
+        width_size, height_size = map(lambda x: int(x), args.size.split(&#34;x&#34;))
+
+        img_path = os.path.abspath(args.f)
+        file_name = img_path.split(&#34;\\&#34;)[-1]
+
+        img = cv2.imread(img_path, cv2.IMREAD_COLOR)
+        row, col = img.shape[:2]
+
+        r, c = len(range(y1, y2 &#43; 1, height)), len(range(x1, x2 &#43; 1, width))
+        new_img = np.zeros(shape=(r * height_size * args.resize, c * width_size * args.resize, 3))
+        for y, x in itertools.product(range(r), range(c)):
+            for y_size in range(height_size):
+                for x_size in range(width_size):
+                    # new_img[y * height_size &#43; y_size, x * width_size &#43; x_size] = img[y1 &#43; y * height &#43; y_size, x1 &#43; x * width &#43; x_size]
+                    pt1 = ((x * width_size &#43; x_size) * args.resize, (y * height_size &#43; y_size) * args.resize)
+                    pt2 = ((x * width_size &#43; x_size) * args.resize &#43; args.resize, (y * height_size &#43; y_size) * args.resize &#43; args.resize)
+                    color = img[y1 &#43; y * height &#43; y_size, x1 &#43; x * width &#43; x_size].tolist()
+                    cv2.rectangle(new_img, pt1=pt1, pt2=pt2, color=color, thickness=-1)
+            
+        # cv2.imshow(new_img)
+        cv2.imwrite(f&#34;_{file_name}&#34;, new_img)
+        print(&#34;已保存到运行目录中...&#34;)
+    else:
+        print(&#34;参数-p或参数-n或参数-size, 输入错误!&#34;)
+```
+
+我们这里把图片重命名为1.png，然后输入以下命令提取等距像素点
+
+```bash
+python3 Get_Pixels.py -f 1.png -p 5x5&#43;1915x1075 -n 10x10
+```
+
+![](imgs/image-20241109234531172.png)
+
+提取出来的图片中我们可以得到：`verapass1:jinggubang`
+
+![](imgs/image-20241109234710761.png)
+
+
+
 
 
 ---

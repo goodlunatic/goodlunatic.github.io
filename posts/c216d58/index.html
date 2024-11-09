@@ -12,7 +12,7 @@
   <meta itemprop="description" content="2024 浙江省大学生网络与信息安全竞赛 Misc Writeup">
   <meta itemprop="datePublished" content="2024-11-09T22:45:20+08:00">
   <meta itemprop="dateModified" content="2024-11-09T22:45:20+08:00">
-  <meta itemprop="wordCount" content="2480">
+  <meta itemprop="wordCount" content="2897">
   <meta itemprop="keywords" content="CTF,Misc,Writeup"><meta property="og:url" content="http://localhost:1313/posts/c216d58/">
   <meta property="og:site_name" content="⚡Lunatic BLOG⚡">
   <meta property="og:title" content="2024 浙江省大学生网络与信息安全竞赛 Misc Writeup">
@@ -41,7 +41,7 @@
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": "http:\/\/localhost:1313\/posts\/c216d58\/"
-    },"genre": "posts","keywords": "CTF, Misc, Writeup","wordcount":  2480 ,
+    },"genre": "posts","keywords": "CTF, Misc, Writeup","wordcount":  2897 ,
     "url": "http:\/\/localhost:1313\/posts\/c216d58\/","datePublished": "2024-11-09T22:45:20+08:00","dateModified": "2024-11-09T22:45:20+08:00","publisher": {
       "@type": "Organization",
       "name": ""},"author": {
@@ -145,7 +145,7 @@
 <article class="page single">
   <div class="header"><h1 class="single-title animate__animated animate__flipInX"><span>2024 浙江省大学生网络与信息安全竞赛 Misc Writeup</span>
     </h1></div><div class="post-meta">
-    <div class="post-meta-line"><span class="post-author"><a href="https://goodlunatic.github.io" title="Author"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><img loading="lazy" src="https://www.nssctf.cn/files/2024/4/28/7f130a1387.png" alt="Lunatic" data-title="Lunatic" class="avatar" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>&nbsp;Lunatic</a></span><span class="post-included-in">&nbsp;included in <a href="/categories/writeup/" class="post-category" title="Category - Writeup"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> Writeup</a></span></div><div class="post-meta-line"><span title="published on &lt;no value&gt;"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden="true"></i><time datetime="2024-11-09">2024-11-09</time></span>&nbsp;<span title=""><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>About 2500 words</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>12 minutes</span>&nbsp;</div>
+    <div class="post-meta-line"><span class="post-author"><a href="https://goodlunatic.github.io" title="Author"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><img loading="lazy" src="https://www.nssctf.cn/files/2024/4/28/7f130a1387.png" alt="Lunatic" data-title="Lunatic" class="avatar" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>&nbsp;Lunatic</a></span><span class="post-included-in">&nbsp;included in <a href="/categories/writeup/" class="post-category" title="Category - Writeup"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> Writeup</a></span></div><div class="post-meta-line"><span title="published on &lt;no value&gt;"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden="true"></i><time datetime="2024-11-09">2024-11-09</time></span>&nbsp;<span title=""><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>About 2900 words</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>14 minutes</span>&nbsp;</div>
   </div><div class="details toc" id="toc-static"
     data-kept="false">
     <div class="details-summary toc-title">
@@ -171,7 +171,7 @@
         <li><a href="#题目名称-datasecurity_classify1">题目名称 datasecurity_classify1</a></li>
         <li><a href="#题目名称-finalsign">题目名称 FinalSign</a></li>
         <li><a href="#题目名称-非黑即白">题目名称 非黑即白</a></li>
-        <li><a href="#题目名称-天明人赛后复现">题目名称 天明人（赛后复现）</a></li>
+        <li><a href="#题目名称-天命人赛后复现">题目名称 天命人（赛后复现）</a></li>
       </ul>
     </li>
   </ul>
@@ -1540,8 +1540,221 @@
 <p><img loading="lazy" src="imgs/image-20241109232432151.png" alt="imgs/image-20241109232432151.png" srcset="imgs/image-20241109232432151.png?size=small, imgs/image-20241109232432151.png?size=medium 1.5x, imgs/image-20241109232432151.png?size=large 2x" data-title="imgs/image-20241109232432151.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p><img loading="lazy" src="imgs/image-20241109232544252.png" alt="imgs/image-20241109232544252.png" srcset="imgs/image-20241109232544252.png?size=small, imgs/image-20241109232544252.png?size=medium 1.5x, imgs/image-20241109232544252.png?size=large 2x" data-title="imgs/image-20241109232544252.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>最后使用得到的密码解压压缩包即可得到flag：<code>DASCTF{H3r3_1s_C0L0rful_W0rld}</code></p>
-<h3 id="题目名称-天明人赛后复现" class="heading-element">
-  <a href="#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-%e5%a4%a9%e6%98%8e%e4%ba%ba%e8%b5%9b%e5%90%8e%e5%a4%8d%e7%8e%b0" class="heading-mark"></a>题目名称 天明人（赛后复现）</h3></div><div class="post-footer" id="post-footer">
+<h3 id="题目名称-天命人赛后复现" class="heading-element">
+  <a href="#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-%e5%a4%a9%e5%91%bd%e4%ba%ba%e8%b5%9b%e5%90%8e%e5%a4%8d%e7%8e%b0" class="heading-mark"></a>题目名称 天命人（赛后复现）</h3><p>题目附件给了一个压缩包，压缩包的注释中有提示</p>
+<p><img loading="lazy" src="imgs/image-20241109233650821.png" alt="imgs/image-20241109233650821.png" srcset="imgs/image-20241109233650821.png?size=small, imgs/image-20241109233650821.png?size=medium 1.5x, imgs/image-20241109233650821.png?size=large 2x" data-title="imgs/image-20241109233650821.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>解压后用010打开，发现就是把一个压缩包的数据按照顺序分到了六个文件里</p>
+<p>因此我们写个脚本，按照顺序恢复一下压缩包即可</p>
+<div class="highlight" id="id-17"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&#34;1&#34;</span><span class="p">,</span><span class="s2">&#34;rb&#34;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">data1</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&#34;2&#34;</span><span class="p">,</span><span class="s2">&#34;rb&#34;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">data2</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&#34;3&#34;</span><span class="p">,</span><span class="s2">&#34;rb&#34;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">data3</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl"><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&#34;4&#34;</span><span class="p">,</span><span class="s2">&#34;rb&#34;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">data4</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl"><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&#34;5&#34;</span><span class="p">,</span><span class="s2">&#34;rb&#34;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">data5</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&#34;6&#34;</span><span class="p">,</span><span class="s2">&#34;rb&#34;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">data6</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data1</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data2</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data3</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data4</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data5</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data6</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">res</span> <span class="o">=</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">387797</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">try</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">res</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">data1</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">        <span class="n">res</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">data2</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">        <span class="n">res</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">data3</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">        <span class="n">res</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">data4</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">        <span class="n">res</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">data5</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">        <span class="n">res</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">data6</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">    <span class="k">except</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">pass</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">res</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&#34;1.zip&#34;</span><span class="p">,</span><span class="s2">&#34;wb&#34;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="nb">bytes</span><span class="p">(</span><span class="n">res</span><span class="p">))</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>解压得到的压缩包，有可以得到两个新的加密的压缩包</p>
+<p><img loading="lazy" src="imgs/image-20241109233851218.png" alt="imgs/image-20241109233851218.png" srcset="imgs/image-20241109233851218.png?size=small, imgs/image-20241109233851218.png?size=medium 1.5x, imgs/image-20241109233851218.png?size=large 2x" data-title="imgs/image-20241109233851218.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><img loading="lazy" src="imgs/image-20241109233903989.png" alt="imgs/image-20241109233903989.png" srcset="imgs/image-20241109233903989.png?size=small, imgs/image-20241109233903989.png?size=medium 1.5x, imgs/image-20241109233903989.png?size=large 2x" data-title="imgs/image-20241109233903989.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>发现根器.zip中的文件很短，只有几字节，因此可以直接使用<code>CRC32</code>爆破文件内容</p>
+<p><img loading="lazy" src="imgs/image-20241109234003835.png" alt="imgs/image-20241109234003835.png" srcset="imgs/image-20241109234003835.png?size=small, imgs/image-20241109234003835.png?size=medium 1.5x, imgs/image-20241109234003835.png?size=large 2x" data-title="imgs/image-20241109234003835.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>爆破后即可得到另一个压缩包的解压密码：<code>C0M3_4ND_Get_S1X_R00TS!!</code></p>
+<p>使用得到的密码解压<code>未竟.zip</code>，可以得到一张png图片，还有一个未知后缀的数据文件</p>
+<p>发现png图片中存在等距像素隐写，因此我们尝试等距提取像素，这里我就直接用了B神的代码</p>
+<p><img loading="lazy" src="imgs/image-20241109234246782.png" alt="imgs/image-20241109234246782.png" srcset="imgs/image-20241109234246782.png?size=small, imgs/image-20241109234246782.png?size=medium 1.5x, imgs/image-20241109234246782.png?size=large 2x" data-title="imgs/image-20241109234246782.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<div class="highlight" id="id-18"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">os</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">re</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">cv2</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">argparse</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">itertools</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-f&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">help</span><span class="o">=</span><span class="s1">&#39;输入文件名称&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-p&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">help</span><span class="o">=</span><span class="s1">&#39;输入左上顶点和右下顶点坐标 (如:-p 220x344+3520x2150)&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-n&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">help</span><span class="o">=</span><span class="s1">&#39;输入宽度间隔和高度间隔 (如:-n 44x86)&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-size&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s1">&#39;1x1&#39;</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">help</span><span class="o">=</span><span class="s1">&#39;输入截取图像的大小 (如:-size 7x7)&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-resize&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">help</span><span class="o">=</span><span class="s1">&#39;输入截取图像放大倍数 (如:-resize 1)&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">args</span>  <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s2">&#34;^\d{1,}x\d{1,}\+\d{1,}x\d{1,}$&#34;</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">p</span><span class="p">)</span> <span class="ow">and</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s2">&#34;^\d{1,}x\d{1,}$&#34;</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">n</span><span class="p">)</span> <span class="ow">and</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s2">&#34;^\d{1,}x\d{1,}$&#34;</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">size</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">x1</span><span class="p">,</span> <span class="n">y1</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">args</span><span class="o">.</span><span class="n">p</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&#34;+&#34;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&#34;x&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">        <span class="n">x2</span><span class="p">,</span> <span class="n">y2</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">args</span><span class="o">.</span><span class="n">p</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&#34;+&#34;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&#34;x&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">        <span class="n">width</span><span class="p">,</span> <span class="n">height</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">args</span><span class="o">.</span><span class="n">n</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&#34;x&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">        <span class="n">width_size</span><span class="p">,</span> <span class="n">height_size</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">args</span><span class="o">.</span><span class="n">size</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&#34;x&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">img_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">f</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">file_name</span> <span class="o">=</span> <span class="n">img_path</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&#34;</span><span class="se">\\</span><span class="s2">&#34;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">img</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="n">img_path</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">IMREAD_COLOR</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">row</span><span class="p">,</span> <span class="n">col</span> <span class="o">=</span> <span class="n">img</span><span class="o">.</span><span class="n">shape</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">r</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">y1</span><span class="p">,</span> <span class="n">y2</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">height</span><span class="p">)),</span> <span class="nb">len</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">width</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">        <span class="n">new_img</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">r</span> <span class="o">*</span> <span class="n">height_size</span> <span class="o">*</span> <span class="n">args</span><span class="o">.</span><span class="n">resize</span><span class="p">,</span> <span class="n">c</span> <span class="o">*</span> <span class="n">width_size</span> <span class="o">*</span> <span class="n">args</span><span class="o">.</span><span class="n">resize</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="n">y</span><span class="p">,</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">itertools</span><span class="o">.</span><span class="n">product</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">r</span><span class="p">),</span> <span class="nb">range</span><span class="p">(</span><span class="n">c</span><span class="p">)):</span>
+</span></span><span class="line"><span class="cl">            <span class="k">for</span> <span class="n">y_size</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">height_size</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">                <span class="k">for</span> <span class="n">x_size</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">width_size</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">                    <span class="c1"># new_img[y * height_size + y_size, x * width_size + x_size] = img[y1 + y * height + y_size, x1 + x * width + x_size]</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">pt1</span> <span class="o">=</span> <span class="p">((</span><span class="n">x</span> <span class="o">*</span> <span class="n">width_size</span> <span class="o">+</span> <span class="n">x_size</span><span class="p">)</span> <span class="o">*</span> <span class="n">args</span><span class="o">.</span><span class="n">resize</span><span class="p">,</span> <span class="p">(</span><span class="n">y</span> <span class="o">*</span> <span class="n">height_size</span> <span class="o">+</span> <span class="n">y_size</span><span class="p">)</span> <span class="o">*</span> <span class="n">args</span><span class="o">.</span><span class="n">resize</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">pt2</span> <span class="o">=</span> <span class="p">((</span><span class="n">x</span> <span class="o">*</span> <span class="n">width_size</span> <span class="o">+</span> <span class="n">x_size</span><span class="p">)</span> <span class="o">*</span> <span class="n">args</span><span class="o">.</span><span class="n">resize</span> <span class="o">+</span> <span class="n">args</span><span class="o">.</span><span class="n">resize</span><span class="p">,</span> <span class="p">(</span><span class="n">y</span> <span class="o">*</span> <span class="n">height_size</span> <span class="o">+</span> <span class="n">y_size</span><span class="p">)</span> <span class="o">*</span> <span class="n">args</span><span class="o">.</span><span class="n">resize</span> <span class="o">+</span> <span class="n">args</span><span class="o">.</span><span class="n">resize</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">color</span> <span class="o">=</span> <span class="n">img</span><span class="p">[</span><span class="n">y1</span> <span class="o">+</span> <span class="n">y</span> <span class="o">*</span> <span class="n">height</span> <span class="o">+</span> <span class="n">y_size</span><span class="p">,</span> <span class="n">x1</span> <span class="o">+</span> <span class="n">x</span> <span class="o">*</span> <span class="n">width</span> <span class="o">+</span> <span class="n">x_size</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">cv2</span><span class="o">.</span><span class="n">rectangle</span><span class="p">(</span><span class="n">new_img</span><span class="p">,</span> <span class="n">pt1</span><span class="o">=</span><span class="n">pt1</span><span class="p">,</span> <span class="n">pt2</span><span class="o">=</span><span class="n">pt2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">,</span> <span class="n">thickness</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            
+</span></span><span class="line"><span class="cl">        <span class="c1"># cv2.imshow(new_img)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">cv2</span><span class="o">.</span><span class="n">imwrite</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;_</span><span class="si">{</span><span class="n">file_name</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">,</span> <span class="n">new_img</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;已保存到运行目录中...&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;参数-p或参数-n或参数-size, 输入错误!&#34;</span><span class="p">)</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>我们这里把图片重命名为1.png，然后输入以下命令提取等距像素点</p>
+<div class="highlight" id="id-19"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">python3 Get_Pixels.py -f 1.png -p 5x5+1915x1075 -n 10x10</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img loading="lazy" src="imgs/image-20241109234531172.png" alt="imgs/image-20241109234531172.png" srcset="imgs/image-20241109234531172.png?size=small, imgs/image-20241109234531172.png?size=medium 1.5x, imgs/image-20241109234531172.png?size=large 2x" data-title="imgs/image-20241109234531172.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>提取出来的图片中我们可以得到：<code>verapass1:jinggubang</code></p>
+<p><img loading="lazy" src="imgs/image-20241109234710761.png" alt="imgs/image-20241109234710761.png" srcset="imgs/image-20241109234710761.png?size=small, imgs/image-20241109234710761.png?size=medium 1.5x, imgs/image-20241109234710761.png?size=large 2x" data-title="imgs/image-20241109234710761.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p></div><div class="post-footer" id="post-footer">
   <div class="post-info">
     <div class="post-info-line">
       <div class="post-info-mod">
