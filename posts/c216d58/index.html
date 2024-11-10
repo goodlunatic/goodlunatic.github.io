@@ -12,7 +12,7 @@
   <meta itemprop="description" content="2024 浙江省大学生网络与信息安全竞赛 Misc Writeup">
   <meta itemprop="datePublished" content="2024-11-10T10:45:20+08:00">
   <meta itemprop="dateModified" content="2024-11-10T10:45:20+08:00">
-  <meta itemprop="wordCount" content="2900">
+  <meta itemprop="wordCount" content="2901">
   <meta itemprop="keywords" content="CTF,Misc,Writeup"><meta property="og:url" content="http://localhost:1313/posts/c216d58/">
   <meta property="og:site_name" content="⚡Lunatic BLOG⚡">
   <meta property="og:title" content="2024 浙江省大学生网络与信息安全竞赛 Misc Writeup">
@@ -41,7 +41,7 @@
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": "http:\/\/localhost:1313\/posts\/c216d58\/"
-    },"genre": "posts","keywords": "CTF, Misc, Writeup","wordcount":  2900 ,
+    },"genre": "posts","keywords": "CTF, Misc, Writeup","wordcount":  2901 ,
     "url": "http:\/\/localhost:1313\/posts\/c216d58\/","datePublished": "2024-11-10T10:45:20+08:00","dateModified": "2024-11-10T10:45:20+08:00","publisher": {
       "@type": "Organization",
       "name": ""},"author": {
@@ -1639,6 +1639,9 @@
 <p>使用得到的密码解压<code>未竟.zip</code>，可以得到一张png图片，还有一个名为<code>紧箍咒</code>的未知后缀的数据文件</p>
 <p><img loading="lazy" src="imgs/image-20241110114410382.png" alt="imgs/image-20241110114410382.png" srcset="imgs/image-20241110114410382.png?size=small, imgs/image-20241110114410382.png?size=medium 1.5x, imgs/image-20241110114410382.png?size=large 2x" data-title="imgs/image-20241110114410382.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>发现png图片中存在等距像素隐写，因此我们尝试等距提取像素，这里我就直接用了B神的代码</p>
+<blockquote>
+<p>Tips：这里需要注意这个脚本建议在<code>Windows</code>下运行，然后把<code>金箍棒.png</code>改成<code>1.png</code>，要不然可能会有点问题，无法正常提取出后面的图片</p>
+</blockquote>
 <p><img loading="lazy" src="imgs/image-20241109234246782.png" alt="imgs/image-20241109234246782.png" srcset="imgs/image-20241109234246782.png?size=small, imgs/image-20241109234246782.png?size=medium 1.5x, imgs/image-20241109234246782.png?size=large 2x" data-title="imgs/image-20241109234246782.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <div class="highlight" id="id-18"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
