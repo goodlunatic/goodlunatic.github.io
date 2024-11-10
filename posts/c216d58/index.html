@@ -10,9 +10,9 @@
 <meta name="description" content="2024 浙江省大学生网络与信息安全竞赛 Misc Writeup" /><meta name="keywords" content='CTF, Misc, Writeup' />
   <meta itemprop="name" content="2024 浙江省大学生网络与信息安全竞赛 Misc Writeup">
   <meta itemprop="description" content="2024 浙江省大学生网络与信息安全竞赛 Misc Writeup">
-  <meta itemprop="datePublished" content="2024-11-09T22:45:20+08:00">
-  <meta itemprop="dateModified" content="2024-11-09T22:45:20+08:00">
-  <meta itemprop="wordCount" content="2897">
+  <meta itemprop="datePublished" content="2024-11-10T10:45:20+08:00">
+  <meta itemprop="dateModified" content="2024-11-10T10:45:20+08:00">
+  <meta itemprop="wordCount" content="2900">
   <meta itemprop="keywords" content="CTF,Misc,Writeup"><meta property="og:url" content="http://localhost:1313/posts/c216d58/">
   <meta property="og:site_name" content="⚡Lunatic BLOG⚡">
   <meta property="og:title" content="2024 浙江省大学生网络与信息安全竞赛 Misc Writeup">
@@ -21,8 +21,8 @@
   <meta property="og:locale" content="en">
   <meta property="og:type" content="article">
   <meta property="article:section" content="posts">
-    <meta property="article:published_time" content="2024-11-09T22:45:20+08:00">
-    <meta property="article:modified_time" content="2024-11-09T22:45:20+08:00">
+    <meta property="article:published_time" content="2024-11-10T10:45:20+08:00">
+    <meta property="article:modified_time" content="2024-11-10T10:45:20+08:00">
     <meta property="article:tag" content="CTF">
     <meta property="article:tag" content="Misc">
     <meta property="article:tag" content="Writeup">
@@ -41,8 +41,8 @@
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": "http:\/\/localhost:1313\/posts\/c216d58\/"
-    },"genre": "posts","keywords": "CTF, Misc, Writeup","wordcount":  2897 ,
-    "url": "http:\/\/localhost:1313\/posts\/c216d58\/","datePublished": "2024-11-09T22:45:20+08:00","dateModified": "2024-11-09T22:45:20+08:00","publisher": {
+    },"genre": "posts","keywords": "CTF, Misc, Writeup","wordcount":  2900 ,
+    "url": "http:\/\/localhost:1313\/posts\/c216d58\/","datePublished": "2024-11-10T10:45:20+08:00","dateModified": "2024-11-10T10:45:20+08:00","publisher": {
       "@type": "Organization",
       "name": ""},"author": {
         "@type": "Person",
@@ -145,7 +145,7 @@
 <article class="page single">
   <div class="header"><h1 class="single-title animate__animated animate__flipInX"><span>2024 浙江省大学生网络与信息安全竞赛 Misc Writeup</span>
     </h1></div><div class="post-meta">
-    <div class="post-meta-line"><span class="post-author"><a href="https://goodlunatic.github.io" title="Author"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><img loading="lazy" src="https://www.nssctf.cn/files/2024/4/28/7f130a1387.png" alt="Lunatic" data-title="Lunatic" class="avatar" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>&nbsp;Lunatic</a></span><span class="post-included-in">&nbsp;included in <a href="/categories/writeup/" class="post-category" title="Category - Writeup"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> Writeup</a></span></div><div class="post-meta-line"><span title="published on &lt;no value&gt;"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden="true"></i><time datetime="2024-11-09">2024-11-09</time></span>&nbsp;<span title=""><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>About 2900 words</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>14 minutes</span>&nbsp;</div>
+    <div class="post-meta-line"><span class="post-author"><a href="https://goodlunatic.github.io" title="Author"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><img loading="lazy" src="https://www.nssctf.cn/files/2024/4/28/7f130a1387.png" alt="Lunatic" data-title="Lunatic" class="avatar" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>&nbsp;Lunatic</a></span><span class="post-included-in">&nbsp;included in <a href="/categories/writeup/" class="post-category" title="Category - Writeup"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> Writeup</a></span></div><div class="post-meta-line"><span title="published on &lt;no value&gt;"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden="true"></i><time datetime="2024-11-10">2024-11-10</time></span>&nbsp;<span title=""><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>About 3000 words</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>14 minutes</span>&nbsp;</div>
   </div><div class="details toc" id="toc-static"
     data-kept="false">
     <div class="details-summary toc-title">
@@ -1630,13 +1630,14 @@
 </span></span><span class="line"><span class="cl"><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&#34;1.zip&#34;</span><span class="p">,</span><span class="s2">&#34;wb&#34;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
 </span></span><span class="line"><span class="cl">    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="nb">bytes</span><span class="p">(</span><span class="n">res</span><span class="p">))</span></span></span></code></pre></td></tr></table>
 </div>
-</div><p>解压得到的压缩包，有可以得到两个新的加密的压缩包</p>
+</div><p>解压得到的压缩包，又可以得到两个新的加密的压缩包</p>
 <p><img loading="lazy" src="imgs/image-20241109233851218.png" alt="imgs/image-20241109233851218.png" srcset="imgs/image-20241109233851218.png?size=small, imgs/image-20241109233851218.png?size=medium 1.5x, imgs/image-20241109233851218.png?size=large 2x" data-title="imgs/image-20241109233851218.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p><img loading="lazy" src="imgs/image-20241109233903989.png" alt="imgs/image-20241109233903989.png" srcset="imgs/image-20241109233903989.png?size=small, imgs/image-20241109233903989.png?size=medium 1.5x, imgs/image-20241109233903989.png?size=large 2x" data-title="imgs/image-20241109233903989.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>发现根器.zip中的文件很短，只有几字节，因此可以直接使用<code>CRC32</code>爆破文件内容</p>
 <p><img loading="lazy" src="imgs/image-20241109234003835.png" alt="imgs/image-20241109234003835.png" srcset="imgs/image-20241109234003835.png?size=small, imgs/image-20241109234003835.png?size=medium 1.5x, imgs/image-20241109234003835.png?size=large 2x" data-title="imgs/image-20241109234003835.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>爆破后即可得到另一个压缩包的解压密码：<code>C0M3_4ND_Get_S1X_R00TS!!</code></p>
-<p>使用得到的密码解压<code>未竟.zip</code>，可以得到一张png图片，还有一个未知后缀的数据文件</p>
+<p>使用得到的密码解压<code>未竟.zip</code>，可以得到一张png图片，还有一个名为<code>紧箍咒</code>的未知后缀的数据文件</p>
+<p><img loading="lazy" src="imgs/image-20241110114410382.png" alt="imgs/image-20241110114410382.png" srcset="imgs/image-20241110114410382.png?size=small, imgs/image-20241110114410382.png?size=medium 1.5x, imgs/image-20241110114410382.png?size=large 2x" data-title="imgs/image-20241110114410382.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>发现png图片中存在等距像素隐写，因此我们尝试等距提取像素，这里我就直接用了B神的代码</p>
 <p><img loading="lazy" src="imgs/image-20241109234246782.png" alt="imgs/image-20241109234246782.png" srcset="imgs/image-20241109234246782.png?size=small, imgs/image-20241109234246782.png?size=medium 1.5x, imgs/image-20241109234246782.png?size=large 2x" data-title="imgs/image-20241109234246782.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <div class="highlight" id="id-18"><div class="chroma">
@@ -1754,11 +1755,16 @@
 </div>
 </div><p><img loading="lazy" src="imgs/image-20241109234531172.png" alt="imgs/image-20241109234531172.png" srcset="imgs/image-20241109234531172.png?size=small, imgs/image-20241109234531172.png?size=medium 1.5x, imgs/image-20241109234531172.png?size=large 2x" data-title="imgs/image-20241109234531172.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>提取出来的图片中我们可以得到：<code>verapass1:jinggubang</code></p>
-<p><img loading="lazy" src="imgs/image-20241109234710761.png" alt="imgs/image-20241109234710761.png" srcset="imgs/image-20241109234710761.png?size=small, imgs/image-20241109234710761.png?size=medium 1.5x, imgs/image-20241109234710761.png?size=large 2x" data-title="imgs/image-20241109234710761.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p></div><div class="post-footer" id="post-footer">
+<p><img loading="lazy" src="imgs/image-20241109234710761.png" alt="imgs/image-20241109234710761.png" srcset="imgs/image-20241109234710761.png?size=small, imgs/image-20241109234710761.png?size=medium 1.5x, imgs/image-20241109234710761.png?size=large 2x" data-title="imgs/image-20241109234710761.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>这张图片提示了另一个<code>紧箍咒</code>文件是一个Veracrypt加密的磁盘文件</p>
+<p>刚刚好之前的那张图片显示的也是金箍棒，因此我们把之前的那张图片作为密钥文件，并输入密码<code>jinggubang</code>挂载</p>
+<p><img loading="lazy" src="imgs/image-20241110114047596.png" alt="imgs/image-20241110114047596.png" srcset="imgs/image-20241110114047596.png?size=small, imgs/image-20241110114047596.png?size=medium 1.5x, imgs/image-20241110114047596.png?size=large 2x" data-title="imgs/image-20241110114047596.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>挂载成功后即可得到flag：<code>DASCTF{T1m3_t0_F4Ce_De5t1nY}</code></p>
+<p><img loading="lazy" src="imgs/image-20241110114140806.png" alt="imgs/image-20241110114140806.png" srcset="imgs/image-20241110114140806.png?size=small, imgs/image-20241110114140806.png?size=medium 1.5x, imgs/image-20241110114140806.png?size=large 2x" data-title="imgs/image-20241110114140806.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p></div><div class="post-footer" id="post-footer">
   <div class="post-info">
     <div class="post-info-line">
       <div class="post-info-mod">
-        <span title="Updated on 2024-11-09 22:45:20">Updated on 2024-11-09&nbsp;</span>
+        <span title="Updated on 2024-11-10 10:45:20">Updated on 2024-11-10&nbsp;</span>
       </div></div><div class="post-info-line">
         <div class="post-info-md"><span><a href="/posts/c216d58/index.md" title="Read Markdown" class="link-to-markdown">Read Markdown</a></span></div>
         <div class="post-info-share">
