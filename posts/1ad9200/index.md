@@ -1211,14 +1211,32 @@ if __name__ == &#39;__main__&#39;:
 
 ### GIF思路
 
-#### 1、GIF图片可能要分帧提取(在线网站或者工具)
-
+#### 1、分帧提取GIF(在线网站或者工具)
+使用`ffmpeg`提取（如果帧间隔不同，提取出来会有问题）
 ```bash
 # 在Windows或者WSL中执行以下命令进行分离
 ffmpeg -i filename.gif frame%04d.png
 ```
 
-然后GIF可能会还有时间轴隐写(每帧时间不同)，因此需要乘以倍数，当然也可能会有空间轴隐写
+使用`PuzzleSolver`提取，是按照帧来进行提取
+
+![](imgs/image-20241111093328214.png)
+
+#### 2、帧间隔隐写
+
+直接使用`PuzzleSolver`一把梭了
+
+例题1-2024羊城杯初赛-checkin
+
+例题2-2024浙江省赛决赛-非黑即白
+
+![](imgs/image-20241111093420194.png)
+
+或者使用以下命令提取帧间隔
+
+```bash
+identify -format &#34;%s %T \n&#34; 100.gif  	#格式：帧序号 间隔
+```
 
 ### Webp思路
 
@@ -1276,12 +1294,6 @@ with open(&#39;flag.zip&#39;, &#39;wb&#39;) as f:
 
 ### 二维码思路
 
-参考链接：
-
-https://note.tonycrane.cc/ctf/misc/qrcode/
-
-https://www.cnblogs.com/luogi/p/15469106.html
-
 #### 1、bmp转二维码
 
 #### 2、16进制转pyc
@@ -1312,23 +1324,9 @@ https://www.cnblogs.com/luogi/p/15469106.html
 
 这里要注意的是，出题人可能会把图片反相导致无法直接扫描，因此我们可以先将图片拉入 PS 先进行反相处理
 
-#### 二维码的纠错等级
+#### QRcode 二维码的一些考点
 
-参考链接：https://www.shangyexinzhi.com/article/4952046.html
-
-以下面这张二维码为例子
-
-![](imgs/image-20241031211220251.png)
-
-
-| 1位置的颜色 | 2位置的颜色 |    纠错等级    | 容错率 |
-| :----: | :----: | :--------: | :-: |
-|   黑    |   黑    |   L(Low)   | 7%  |
-|   黑    |   白    | M(Medium)  | 15% |
-|   白    |   黑    | Q(Quartil) | 25% |
-|   白    |   白    |  H(High)   | 30% |
-
-
+详见我博客里的[这篇文章](https://goodlunatic.github.io/posts/1e26f78/)
 
 ## Misc——PDF题思路：
 

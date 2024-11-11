@@ -1,9 +1,31 @@
-# Misc-QRcode小记
+# QRcode二维码标准及常见考点详解
 
-这几天在群里看到一道非常有意思的关于二维码的题目
+在Misc题里QRcode出现的频率很高，然后现在出题也越来越偏向考察QRcode的原理
 
-于是打算稍微深入总结并巩固一下QRcode的知识点
+因此打算详细学习一下QRcode的标准，顺便总结一下常见考点
 &lt;!--more--&gt;
+
+参考链接：
+
+https://note.tonycrane.cc/ctf/misc/qrcode/
+
+https://www.cnblogs.com/luogi/p/15469106.html
+
+#### 二维码的纠错等级
+
+参考链接：https://www.shangyexinzhi.com/article/4952046.html
+
+以下面这张二维码为例子
+
+![](imgs/image-20241031211220251.png)
+
+
+| 1位置的颜色 | 2位置的颜色 |    纠错等级    | 容错率 |
+| :----: | :----: | :--------: | :-: |
+|   黑    |   黑    |   L(Low)   | 7%  |
+|   黑    |   白    | M(Medium)  | 15% |
+|   白    |   黑    | Q(Quartil) | 25% |
+|   白    |   白    |  H(High)   | 30% |
 
 ### 例题1-XQR
 
@@ -50,6 +72,9 @@ zsteg -e b1,rgb,lsb,xy XQR.png &gt; 1.zip
 
 TODO。。。
 
+例题2-2022NCTF qrssssssss
+
+例题3-2023羊城杯决赛-LmqHmAsk
 
 ---
 

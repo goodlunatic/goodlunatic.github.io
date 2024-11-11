@@ -5,21 +5,21 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
     <meta name="robots" content="noodp" />
-    <title>Misc-QRcode小记 - ⚡Lunatic BLOG⚡</title><meta name="author" content="Lunatic">
+    <title>QRcode二维码标准及常见考点详解 - ⚡Lunatic BLOG⚡</title><meta name="author" content="Lunatic">
 <meta name="author-link" content="https://goodlunatic.github.io">
-<meta name="description" content="这几天在群里看到一道非常有意思的关于二维码的题目
-于是打算稍微深入总结并巩固一下QRcode的知识点" /><meta name="keywords" content='CTF' />
-  <meta itemprop="name" content="Misc-QRcode小记">
-  <meta itemprop="description" content="这几天在群里看到一道非常有意思的关于二维码的题目
-于是打算稍微深入总结并巩固一下QRcode的知识点">
+<meta name="description" content="在Misc题里QRcode出现的频率很高，然后现在出题也越来越偏向考察QRcode的原理
+因此打算详细学习一下QRcode的标准，顺便总结一下常见考点" /><meta name="keywords" content='CTF, Misc' />
+  <meta itemprop="name" content="QRcode二维码标准及常见考点详解">
+  <meta itemprop="description" content="在Misc题里QRcode出现的频率很高，然后现在出题也越来越偏向考察QRcode的原理
+因此打算详细学习一下QRcode的标准，顺便总结一下常见考点">
   <meta itemprop="datePublished" content="2024-07-01T00:43:10+08:00">
   <meta itemprop="dateModified" content="2024-07-01T00:43:10+08:00">
-  <meta itemprop="wordCount" content="20">
-  <meta itemprop="keywords" content="CTF"><meta property="og:url" content="http://localhost:1313/posts/1e26f78/">
+  <meta itemprop="wordCount" content="48">
+  <meta itemprop="keywords" content="CTF,Misc"><meta property="og:url" content="http://localhost:1313/posts/1e26f78/">
   <meta property="og:site_name" content="⚡Lunatic BLOG⚡">
-  <meta property="og:title" content="Misc-QRcode小记">
-  <meta property="og:description" content="这几天在群里看到一道非常有意思的关于二维码的题目
-于是打算稍微深入总结并巩固一下QRcode的知识点
+  <meta property="og:title" content="QRcode二维码标准及常见考点详解">
+  <meta property="og:description" content="在Misc题里QRcode出现的频率很高，然后现在出题也越来越偏向考察QRcode的原理
+因此打算详细学习一下QRcode的标准，顺便总结一下常见考点
 ">
   <meta property="og:locale" content="en">
   <meta property="og:type" content="article">
@@ -27,9 +27,10 @@
     <meta property="article:published_time" content="2024-07-01T00:43:10+08:00">
     <meta property="article:modified_time" content="2024-07-01T00:43:10+08:00">
     <meta property="article:tag" content="CTF">
-<meta name="twitter:card" content="summary"><meta name="twitter:title" content="Misc-QRcode小记">
-<meta name="twitter:description" content="这几天在群里看到一道非常有意思的关于二维码的题目
-于是打算稍微深入总结并巩固一下QRcode的知识点">
+    <meta property="article:tag" content="Misc">
+<meta name="twitter:card" content="summary"><meta name="twitter:title" content="QRcode二维码标准及常见考点详解">
+<meta name="twitter:description" content="在Misc题里QRcode出现的频率很高，然后现在出题也越来越偏向考察QRcode的原理
+因此打算详细学习一下QRcode的标准，顺便总结一下常见考点">
       <meta name="twitter:site" content="@https://twitter.com/goodlunatic007">
 <meta name="application-name" content="FixIt">
 <meta name="apple-mobile-web-app-title" content="FixIt"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="https://www.nssctf.cn/files/2024/4/28/8fdad6c6ee.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="http://localhost:1313/posts/1e26f78/" /><link rel="prev" href="http://localhost:1313/posts/0434e3f/" /><link rel="next" href="http://localhost:1313/posts/2125dc5/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
@@ -38,12 +39,12 @@
   {
     "@context": "http://schema.org",
     "@type": "BlogPosting",
-    "headline": "Misc-QRcode小记",
+    "headline": "QRcode二维码标准及常见考点详解",
     "inLanguage": "en",
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": "http:\/\/localhost:1313\/posts\/1e26f78\/"
-    },"genre": "posts","keywords": "CTF","wordcount":  20 ,
+    },"genre": "posts","keywords": "CTF, Misc","wordcount":  48 ,
     "url": "http:\/\/localhost:1313\/posts\/1e26f78\/","datePublished": "2024-07-01T00:43:10+08:00","dateModified": "2024-07-01T00:43:10+08:00","publisher": {
       "@type": "Organization",
       "name": ""},"author": {
@@ -145,7 +146,7 @@
 </header><main class="container"><aside class="aside-collection animate__animated animate__fadeIn animate__faster" aria-label=""></aside>
 
 <article class="page single">
-  <div class="header"><h1 class="single-title animate__animated animate__flipInX"><span>Misc-QRcode小记</span>
+  <div class="header"><h1 class="single-title animate__animated animate__flipInX"><span>QRcode二维码标准及常见考点详解</span>
     </h1></div><div class="post-meta">
     <div class="post-meta-line"><span class="post-author"><a href="https://goodlunatic.github.io" title="Author"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><img loading="lazy" src="https://www.nssctf.cn/files/2024/4/28/7f130a1387.png" alt="Lunatic" data-title="Lunatic" class="avatar" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>&nbsp;Lunatic</a></span><span class="post-included-in">&nbsp;included in <a href="/categories/ctf/" class="post-category" title="Category - CTF"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> CTF</a></span></div><div class="post-meta-line"><span title="published on &lt;no value&gt;"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden="true"></i><time datetime="2024-07-01">2024-07-01</time></span>&nbsp;<span title=""><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>About 100 words</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>One minute</span>&nbsp;</div>
   </div><div class="details toc" id="toc-static"
@@ -158,6 +159,11 @@
   <ul>
     <li>
       <ul>
+        <li>
+          <ul>
+            <li><a href="#二维码的纠错等级">二维码的纠错等级</a></li>
+          </ul>
+        </li>
         <li><a href="#例题1-xqr">例题1-XQR</a>
           <ul>
             <li><a href="#解法一直接贴到原来的xqrpng上">解法一：直接贴到原来的XQR.png上</a></li>
@@ -168,8 +174,51 @@
     </li>
   </ul>
 </nav></div>
-  </div><div class="content" id="content"><p>这几天在群里看到一道非常有意思的关于二维码的题目</p>
-<p>于是打算稍微深入总结并巩固一下QRcode的知识点</p>
+  </div><div class="content" id="content"><p>在Misc题里QRcode出现的频率很高，然后现在出题也越来越偏向考察QRcode的原理</p>
+<p>因此打算详细学习一下QRcode的标准，顺便总结一下常见考点</p>
+<p>参考链接：</p>
+<p><a href="https://note.tonycrane.cc/ctf/misc/qrcode/"target="_blank" rel="external nofollow noopener noreferrer">https://note.tonycrane.cc/ctf/misc/qrcode/</a></p>
+<p><a href="https://www.cnblogs.com/luogi/p/15469106.html"target="_blank" rel="external nofollow noopener noreferrer">https://www.cnblogs.com/luogi/p/15469106.html</a></p>
+<h4 id="二维码的纠错等级" class="heading-element">
+  <a href="#%e4%ba%8c%e7%bb%b4%e7%a0%81%e7%9a%84%e7%ba%a0%e9%94%99%e7%ad%89%e7%ba%a7" class="heading-mark"></a>二维码的纠错等级</h4><p>参考链接：https://www.shangyexinzhi.com/article/4952046.html</p>
+<p>以下面这张二维码为例子</p>
+<p><img loading="lazy" src="imgs/image-20241031211220251.png" alt="imgs/image-20241031211220251.png" srcset="imgs/image-20241031211220251.png?size=small, imgs/image-20241031211220251.png?size=medium 1.5x, imgs/image-20241031211220251.png?size=large 2x" data-title="imgs/image-20241031211220251.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">1位置的颜色</th>
+<th style="text-align:center">2位置的颜色</th>
+<th style="text-align:center">纠错等级</th>
+<th style="text-align:center">容错率</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">黑</td>
+<td style="text-align:center">黑</td>
+<td style="text-align:center">L(Low)</td>
+<td style="text-align:center">7%</td>
+</tr>
+<tr>
+<td style="text-align:center">黑</td>
+<td style="text-align:center">白</td>
+<td style="text-align:center">M(Medium)</td>
+<td style="text-align:center">15%</td>
+</tr>
+<tr>
+<td style="text-align:center">白</td>
+<td style="text-align:center">黑</td>
+<td style="text-align:center">Q(Quartil)</td>
+<td style="text-align:center">25%</td>
+</tr>
+<tr>
+<td style="text-align:center">白</td>
+<td style="text-align:center">白</td>
+<td style="text-align:center">H(High)</td>
+<td style="text-align:center">30%</td>
+</tr>
+</tbody>
+</table>
 <h3 id="例题1-xqr" class="heading-element">
   <a href="#%e4%be%8b%e9%a2%981-xqr" class="heading-mark"></a>例题1-XQR</h3><p>题目附件给了一个压缩包，解压得到一张二维码，扫码后提示flag在别的地方</p>
 <p><img loading="lazy" src="/posts/1e26f78/imgs/image-20240701004700468.png" alt="/posts/1e26f78/imgs/image-20240701004700468.png" srcset="/posts/1e26f78/imgs/image-20240701004700468.png?size=small, /posts/1e26f78/imgs/image-20240701004700468.png?size=medium 1.5x, /posts/1e26f78/imgs/image-20240701004700468.png?size=large 2x" data-title="/posts/1e26f78/imgs/image-20240701004700468.png" style="--width: 2480px;--aspect-ratio: 2480 / 881;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
@@ -197,7 +246,9 @@
 <p>最后直接使用<a href="https://h3110w0r1d.com/qrazybox/"target="_blank" rel="external nofollow noopener noreferrer">这个网站</a>识别即可得到flag：DASCTF{Y0u_F1nd_me!!!}</p>
 <p><img loading="lazy" src="/posts/1e26f78/imgs/image-20240701005833869.png" alt="/posts/1e26f78/imgs/image-20240701005833869.png" srcset="/posts/1e26f78/imgs/image-20240701005833869.png?size=small, /posts/1e26f78/imgs/image-20240701005833869.png?size=medium 1.5x, /posts/1e26f78/imgs/image-20240701005833869.png?size=large 2x" data-title="/posts/1e26f78/imgs/image-20240701005833869.png" style="--width: 2564px;--aspect-ratio: 2564 / 1532;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <h4 id="解法二手搓得到足够的pattern" class="heading-element">
-  <a href="#%e8%a7%a3%e6%b3%95%e4%ba%8c%e6%89%8b%e6%90%93%e5%be%97%e5%88%b0%e8%b6%b3%e5%a4%9f%e7%9a%84pattern" class="heading-mark"></a>解法二：手搓得到足够的pattern</h4><p>TODO。。。</p></div><div class="post-footer" id="post-footer">
+  <a href="#%e8%a7%a3%e6%b3%95%e4%ba%8c%e6%89%8b%e6%90%93%e5%be%97%e5%88%b0%e8%b6%b3%e5%a4%9f%e7%9a%84pattern" class="heading-mark"></a>解法二：手搓得到足够的pattern</h4><p>TODO。。。</p>
+<p>例题2-2022NCTF qrssssssss</p>
+<p>例题3-2023羊城杯决赛-LmqHmAsk</p></div><div class="post-footer" id="post-footer">
   <div class="post-info">
     <div class="post-info-line">
       <div class="post-info-mod">
@@ -205,15 +256,15 @@
       </div></div><div class="post-info-line">
         <div class="post-info-md"><span><a href="/posts/1e26f78/index.md" title="Read Markdown" class="link-to-markdown">Read Markdown</a></span></div>
         <div class="post-info-share">
-          <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="http://localhost:1313/posts/1e26f78/" data-title="Misc-QRcode小记" data-via="https://twitter.com/goodlunatic007" data-hashtags="CTF"><i class="fa-brands fa-twitter fa-fw" aria-hidden="true"></i></a>
+          <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="http://localhost:1313/posts/1e26f78/" data-title="QRcode二维码标准及常见考点详解" data-via="https://twitter.com/goodlunatic007" data-hashtags="CTF,Misc"><i class="fa-brands fa-twitter fa-fw" aria-hidden="true"></i></a>
   <a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="http://localhost:1313/posts/1e26f78/" data-hashtag="CTF"><i class="fa-brands fa-facebook-square fa-fw" aria-hidden="true"></i></a>
-  <a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="http://localhost:1313/posts/1e26f78/" data-title="Misc-QRcode小记"><i class="fa-brands fa-weibo fa-fw" aria-hidden="true"></i></a>
+  <a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="http://localhost:1313/posts/1e26f78/" data-title="QRcode二维码标准及常见考点详解"><i class="fa-brands fa-weibo fa-fw" aria-hidden="true"></i></a>
   </span>
         </div>
       </div></div>
 
   <div class="post-info-more">
-    <section class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href="/tags/ctf/" class="post-tag" title="Tags - CTF">CTF</a></section>
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href="/tags/ctf/" class="post-tag" title="Tags - CTF">CTF</a><a href="/tags/misc/" class="post-tag" title="Tags - Misc">Misc</a></section>
     <section>
       <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
     </section>

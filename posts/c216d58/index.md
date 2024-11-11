@@ -5,7 +5,9 @@
 
 ![](imgs/image-20241109233010712.png)
 
-&gt; 题目附件下载：https://pan.baidu.com/s/140Wxcv0w4eJJ1XX1r_sRcg?pwd=uvj4 提取码：uvj4
+&gt; 初赛题目附件下载：https://pan.baidu.com/s/140Wxcv0w4eJJ1XX1r_sRcg?pwd=uvj4 提取码：uvj4
+&gt; 
+&gt; 决赛题目附件下载：https://pan.baidu.com/s/1AjtxVKSbWQjZRUXZg8d6Og?pwd=b8kf 提取码: b8kf
 
 ## 初赛
 ### 题目名称 签到题2

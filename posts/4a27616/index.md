@@ -4,6 +4,9 @@
 
 因此这个愿望只能留给学弟去实现了，之后可能真正能好好打CTF的机会也不多了吧
 &lt;!--more--&gt;
+
+&gt; 题目附件下载： https://pan.baidu.com/s/17lksbyj1c4WoEgM72YD8-g?pwd=aw7r 提取码: aw7r
+
 ## 题目名称 Checkin
 题目附件给了一个压缩包，里面有一个Flag.txt
 

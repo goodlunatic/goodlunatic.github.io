@@ -1,4 +1,4 @@
-# 2023 香山杯 Misc Writeup
+# 2023 香山杯网络安全大赛 Misc Writeup
 
 **香山杯的Misc除了爆零了，因此打算复盘一下。**
 &lt;!--more--&gt;
