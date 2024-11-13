@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="en">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <title>2024 全国大学生信息安全与对抗技术竞赛(ISCC) Misc Writeup - ⚡Lunatic BLOG⚡</title><meta name="author" content="Lunatic">
+<meta name="author-link" content="https://goodlunatic.github.io">
+<meta name="description" content="这比赛有点难评只能说，但是确实是《人民的好比赛》" /><meta name="keywords" content='CTF, Misc, Writeup' />
+  <meta itemprop="name" content="2024 全国大学生信息安全与对抗技术竞赛(ISCC) Misc Writeup">
+  <meta itemprop="description" content="这比赛有点难评只能说，但是确实是《人民的好比赛》">
+  <meta itemprop="datePublished" content="2024-06-30T14:43:01+08:00">
+  <meta itemprop="dateModified" content="2024-06-30T14:43:01+08:00">
+  <meta itemprop="wordCount" content="254">
+  <meta itemprop="keywords" content="CTF,Misc,Writeup"><meta property="og:url" content="http://localhost:1313/posts/a7d0d5f/">
+  <meta property="og:site_name" content="⚡Lunatic BLOG⚡">
+  <meta property="og:title" content="2024 全国大学生信息安全与对抗技术竞赛(ISCC) Misc Writeup">
+  <meta property="og:description" content="这比赛有点难评只能说，但是确实是《人民的好比赛》
+">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+  <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2024-06-30T14:43:01+08:00">
+    <meta property="article:modified_time" content="2024-06-30T14:43:01+08:00">
+    <meta property="article:tag" content="CTF">
+    <meta property="article:tag" content="Misc">
+    <meta property="article:tag" content="Writeup">
+<meta name="twitter:card" content="summary"><meta name="twitter:title" content="2024 全国大学生信息安全与对抗技术竞赛(ISCC) Misc Writeup">
+<meta name="twitter:description" content="这比赛有点难评只能说，但是确实是《人民的好比赛》">
+      <meta name="twitter:site" content="@https://twitter.com/goodlunatic007">
+<meta name="application-name" content="FixIt">
+<meta name="apple-mobile-web-app-title" content="FixIt"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="https://www.nssctf.cn/files/2024/4/28/8fdad6c6ee.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="http://localhost:1313/posts/a7d0d5f/" /><link rel="prev" href="http://localhost:1313/posts/0434e3f/" /><link rel="next" href="http://localhost:1313/posts/1e26f78/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "2024 全国大学生信息安全与对抗技术竞赛(ISCC) Misc Writeup",
+    "inLanguage": "en",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "http:\/\/localhost:1313\/posts\/a7d0d5f\/"
+    },"genre": "posts","keywords": "CTF, Misc, Writeup","wordcount":  254 ,
+    "url": "http:\/\/localhost:1313\/posts\/a7d0d5f\/","datePublished": "2024-06-30T14:43:01+08:00","dateModified": "2024-06-30T14:43:01+08:00","publisher": {
+      "@type": "Organization",
+      "name": ""},"author": {
+        "@type": "Person",
+        "name": "Lunatic"
+      },"description": ""
+  }
+  </script></head>
+  <body data-header-desktop="sticky" data-header-mobile="auto"><script>(window.localStorage?.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper" data-page-style="normal"><header class="desktop animate__faster" id="header-desktop">
+  <div class="header-wrapper">
+    <div class="header-title">
+      <a href="/" title="⚡Lunatic BLOG⚡"><span class="header-title-pre">⚡</span><span id="typeit-header-desktop" class="typeit"></span></a><span id="typeit-header-subtitle-desktop" class="typeit header-subtitle"></span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/archives/"
+                
+                
+              ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> Archives</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/categories/"
+                
+                
+              ><i class="fa-solid fa-folder-tree fa-fw fa-sm" aria-hidden="true"></i> Categories</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/tags/"
+                
+                
+              ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> Tags</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/friends/"
+                
+                
+              ><i class="fa-solid fa-chain fa-fw fa-sm" aria-hidden="true"></i> Friends</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/about/"
+                
+                
+              ><i class="fa-solid fa-graduation-cap fa-fw fa-sm" aria-hidden="true"></i> About</a></li><li class="menu-item delimiter"></li><li class="menu-item theme-switch" title="Switch Theme">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li></ul>
+    </nav>
+  </div>
+</header><header class="mobile animate__faster" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="⚡Lunatic BLOG⚡"><span class="header-title-pre">⚡</span><span id="typeit-header-title-mobile" class="typeit"></span></a><span id="typeit-header-subtitle-mobile" class="typeit header-subtitle"></span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/archives/"
+                  
+                  
+                ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> Archives</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/categories/"
+                  
+                  
+                ><i class="fa-solid fa-folder-tree fa-fw fa-sm" aria-hidden="true"></i> Categories</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/tags/"
+                  
+                  
+                ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> Tags</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/friends/"
+                  
+                  
+                ><i class="fa-solid fa-chain fa-fw fa-sm" aria-hidden="true"></i> Friends</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/about/"
+                  
+                  
+                ><i class="fa-solid fa-graduation-cap fa-fw fa-sm" aria-hidden="true"></i> About</a></li><li class="menu-item menu-system">
+          <span class="menu-system-item theme-switch" title="Switch Theme"><i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i></span></li>
+      </ul>
+    </nav>
+  </div>
+</header><main class="container"><aside class="aside-collection animate__animated animate__fadeIn animate__faster" aria-label=""></aside>
+
+<article class="page single">
+  <div class="header"><h1 class="single-title animate__animated animate__flipInX"><span>2024 全国大学生信息安全与对抗技术竞赛(ISCC) Misc Writeup</span>
+    </h1></div><div class="post-meta">
+    <div class="post-meta-line"><span class="post-author"><a href="https://goodlunatic.github.io" title="Author"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><img loading="lazy" src="https://www.nssctf.cn/files/2024/4/28/7f130a1387.png" alt="Lunatic" data-title="Lunatic" class="avatar" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>&nbsp;Lunatic</a></span><span class="post-included-in">&nbsp;included in <a href="/categories/writeup/" class="post-category" title="Category - Writeup"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> Writeup</a></span></div><div class="post-meta-line"><span title="published on &lt;no value&gt;"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden="true"></i><time datetime="2024-06-30">2024-06-30</time></span>&nbsp;<span title=""><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>About 300 words</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>2 minutes</span>&nbsp;</div>
+  </div><div class="details toc" id="toc-static"
+    data-kept="false">
+    <div class="details-summary toc-title">
+      <span>Contents</span>
+      <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+    </div>
+    <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#题目名称-rsa_ku">题目名称 RSA_KU</a></li>
+    <li><a href="#题目名称-时间刺客">题目名称 时间刺客</a></li>
+    <li><a href="#题目名称-工业互联网模拟仿真数据分析">题目名称 工业互联网模拟仿真数据分析</a></li>
+    <li><a href="#题目名称">题目名称</a></li>
+    <li><a href="#题目名称-1">题目名称</a></li>
+    <li><a href="#题目名称-2">题目名称</a></li>
+    <li><a href="#题目名称-3">题目名称</a></li>
+  </ul>
+</nav></div>
+  </div><div class="content" id="content"><p><strong>这比赛有点难评只能说，但是确实是《人民的好比赛》</strong></p>
+<h2 id="题目名称-rsa_ku" class="heading-element">
+  <a href="#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-rsa_ku" class="heading-mark"></a>题目名称 RSA_KU</h2><p>解一个方程就可以得到p和q，然后解RSA即可</p>
+<div class="highlight" id="id-1"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">gmpy2</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="o">*</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">Crypto.Util.number</span> <span class="kn">import</span> <span class="o">*</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">n</span> <span class="o">=</span> <span class="mi">129699330328568350681562198986490514508637584957167129897472522138320202321246467459276731970410463464391857177528123417751603910462751346700627325019668100946205876629688057506460903842119543114630198205843883677412125928979399310306206497958051030594098963939139480261500434508726394139839879752553022623977</span>
+</span></span><span class="line"><span class="cl"><span class="n">e</span> <span class="o">=</span> <span class="mi">65537</span>
+</span></span><span class="line"><span class="cl"><span class="n">c</span> <span class="o">=</span> <span class="mi">81542950634170106435892662475507283547967877210216191810634513013031046158459269258017597038287472919950811537049030186565471870789076226171751774409328287149914234904307925163438628271194937049804334335349685851934799426152133152587428808924287968838087416148799251156379854263050430010921100416842555347176</span>
+</span></span><span class="line"><span class="cl"><span class="n">r1</span> <span class="o">=</span> <span class="mi">129699330328568350681562198986490514508637584957167129897472522138320202321246467459276731970410463464391857177528123417751603910462751346700627325019668067056973833292274532016607871906443481233958300928276492550916101187841666991944275728863657788124666879987399045804435273107746626297122522298113586003834</span>
+</span></span><span class="line"><span class="cl"><span class="n">r2</span> <span class="o">=</span> <span class="mi">129699330328568350681562198986490514508637584957167129897472522138320202321246467459276731970410463464391857177528123417751603910462751346700627325019668066482326285878341068180156082719320570801770055174426452966817548862938770659420487687194933539128855877517847711670959794869291907075654200433400668220458</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">p</span> <span class="o">=</span> <span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;p&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">q</span> <span class="o">=</span> <span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;q&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">res</span> <span class="o">=</span> <span class="n">solve</span><span class="p">([(</span><span class="n">p</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">q</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">-</span><span class="n">r1</span><span class="p">,</span> <span class="p">(</span><span class="n">p</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">q</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span><span class="o">-</span><span class="n">r2</span><span class="p">],</span> <span class="p">[</span><span class="n">p</span><span class="p">,</span> <span class="n">q</span><span class="p">])[</span><span class="mi">1</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="n">p</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">res</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl"><span class="n">q</span> <span class="o">=</span> <span class="n">n</span><span class="o">//</span><span class="n">p</span>
+</span></span><span class="line"><span class="cl"><span class="n">phi</span> <span class="o">=</span> <span class="p">(</span><span class="n">p</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">q</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">d</span> <span class="o">=</span> <span class="n">gmpy2</span><span class="o">.</span><span class="n">invert</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">phi</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">m</span> <span class="o">=</span> <span class="nb">pow</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># print(m)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">long_to_bytes</span><span class="p">(</span><span class="n">m</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># b&#39;ISCC{EmTOvTJP4NZQLr8Yy2--}&#39;</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="题目名称-时间刺客" class="heading-element">
+  <a href="#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-%e6%97%b6%e9%97%b4%e5%88%ba%e5%ae%a2" class="heading-mark"></a>题目名称 时间刺客</h2><p>题目附件给了一个压缩包，解压后得到<code>给你也用不了.pcap</code>和<code>29.7z</code></p>
+<p>打开流量包，发现是USB流量，直接用脚本进行提取后可以得到如下内容</p>
+<p><img loading="lazy" src="/posts/a7d0d5f/imgs/image-20241113144924470.png" alt="/posts/a7d0d5f/imgs/image-20241113144924470.png" srcset="/posts/a7d0d5f/imgs/image-20241113144924470.png?size=small, /posts/a7d0d5f/imgs/image-20241113144924470.png?size=medium 1.5x, /posts/a7d0d5f/imgs/image-20241113144924470.png?size=large 2x" data-title="/posts/a7d0d5f/imgs/image-20241113144924470.png" style="--width: 865px;--aspect-ratio: 865 / 239;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>但是经过尝试发现是个假的flag，其实流量包的文件名也提示了</p>
+<p>之后仔细查看题目名称：时间刺客</p>
+<p>以及题面的提示：2024年10月14日早8点，小明敲键盘时候解出了flag</p>
+<p>猜测与这个时间有关，然后在29.rar中发现了接近的时间</p>
+<p><img loading="lazy" src="/posts/a7d0d5f/imgs/image-20241113144953954.png" alt="/posts/a7d0d5f/imgs/image-20241113144953954.png" srcset="/posts/a7d0d5f/imgs/image-20241113144953954.png?size=small, /posts/a7d0d5f/imgs/image-20241113144953954.png?size=medium 1.5x, /posts/a7d0d5f/imgs/image-20241113144953954.png?size=large 2x" data-title="/posts/a7d0d5f/imgs/image-20241113144953954.png" style="--width: 865px;--aspect-ratio: 865 / 341;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>经过尝试，发现直接把文件0.txt-1.txt的时间减去题面中的时间得到的秒数</p>
+<p>转为ascii码然后套上ISCC{} 就是flag：ISCC{ZpwRByy6TXk0oR4FDB}</p>
+<div class="highlight" id="id-2"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">data</span> <span class="o">=</span> <span class="s2">&#34;90 112 119 82 66 121 121 54 84 88 107 48 111 82 52 70 68 66&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">ls</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">ls</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">ls</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="nb">chr</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">item</span><span class="p">)),</span> <span class="n">end</span><span class="o">=</span><span class="s2">&#34;&#34;</span><span class="p">)</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="题目名称-工业互联网模拟仿真数据分析" class="heading-element">
+  <a href="#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-%e5%b7%a5%e4%b8%9a%e4%ba%92%e8%81%94%e7%bd%91%e6%a8%a1%e6%8b%9f%e4%bb%bf%e7%9c%9f%e6%95%b0%e6%8d%ae%e5%88%86%e6%9e%90" class="heading-mark"></a>题目名称 工业互联网模拟仿真数据分析</h2><p>题目一：在某些网络会话中，数据包可能保持固定大小，请给出含有此确定性特征的会话IP地址和数据包字节大小值。</p>
+<p>使用wireshark的过滤器一个个筛选，发现(ip.src == 192.168.1.2) &amp;&amp; (ip.dst == 192.168.1.4)的数据包的长度都是24，因此这题的答案就是</p>
+<p><code>192.168.1.2,192.168.1.4,24</code></p>
+<p><img loading="lazy" src="/posts/a7d0d5f/imgs/image-20241113145114429.png" alt="/posts/a7d0d5f/imgs/image-20241113145114429.png" srcset="/posts/a7d0d5f/imgs/image-20241113145114429.png?size=small, /posts/a7d0d5f/imgs/image-20241113145114429.png?size=medium 1.5x, /posts/a7d0d5f/imgs/image-20241113145114429.png?size=large 2x" data-title="/posts/a7d0d5f/imgs/image-20241113145114429.png" style="--width: 865px;--aspect-ratio: 865 / 489;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>题目二：通信包数据某些字段可能为确定的，请给出确定字节数值。</p>
+<p>翻看流量包，关注流量的data字段，发现data字段的前四位都是2024</p>
+<p>因此本题的答案就是 <code>2024</code></p>
+<p><img loading="lazy" src="/posts/a7d0d5f/imgs/image-20241113145136706.png" alt="/posts/a7d0d5f/imgs/image-20241113145136706.png" srcset="/posts/a7d0d5f/imgs/image-20241113145136706.png?size=small, /posts/a7d0d5f/imgs/image-20241113145136706.png?size=medium 1.5x, /posts/a7d0d5f/imgs/image-20241113145136706.png?size=large 2x" data-title="/posts/a7d0d5f/imgs/image-20241113145136706.png" style="--width: 865px;--aspect-ratio: 865 / 549;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>题目三：一些网络通信业务在时间序列上有确定性规律，请提供涉及的IP地址及时间规律数值（小数点后两位）</p>
+<p>使用wireshark的过滤器进行筛选，发现只有(ip.src == 192.168.1.3) &amp;&amp; (ip.dst == 192.168.1.5)的每帧的间隔都大致为0.06</p>
+<p>因此本题的答案为：<code>192.168.1.3,192.168.1.5,0.06</code></p>
+<p><img loading="lazy" src="/posts/a7d0d5f/imgs/image-20241113145205295.png" alt="/posts/a7d0d5f/imgs/image-20241113145205295.png" srcset="/posts/a7d0d5f/imgs/image-20241113145205295.png?size=small, /posts/a7d0d5f/imgs/image-20241113145205295.png?size=medium 1.5x, /posts/a7d0d5f/imgs/image-20241113145205295.png?size=large 2x" data-title="/posts/a7d0d5f/imgs/image-20241113145205295.png" style="--width: 865px;--aspect-ratio: 865 / 548;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>题目四：一些网络通信业务存在逻辑关联性，请提供涉及的IP地址</p>
+<p>因为题目中提示了逻辑关联性，因此猜测是两个以上ip之间连续的通信</p>
+<p>翻看流量包，发现只有192.168.1.2,192.168.3,192.168.1.6有这样的特征</p>
+<p>仔细查看下图中的分组，发现这三个ip的通信有明显的规律</p>
+<p>因此大胆猜测本题答案就是 <code>192.168.1.2,192.168.3,192.168.1.6</code></p>
+<p><img loading="lazy" src="/posts/a7d0d5f/imgs/image-20241113145239282.png" alt="/posts/a7d0d5f/imgs/image-20241113145239282.png" srcset="/posts/a7d0d5f/imgs/image-20241113145239282.png?size=small, /posts/a7d0d5f/imgs/image-20241113145239282.png?size=medium 1.5x, /posts/a7d0d5f/imgs/image-20241113145239282.png?size=large 2x" data-title="/posts/a7d0d5f/imgs/image-20241113145239282.png" style="--width: 865px;--aspect-ratio: 865 / 817;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>题目五：网络数据包往往会添加数据完整性校验值，请分析出数据校验算法名称及校验值在数据包的起始位和结束位（倒数位）</p>
+<p>校验算法网上一搜很容易就可以知道只可能是：CRC16或CRC32</p>
+<p><img loading="lazy" src="/posts/a7d0d5f/imgs/image-20241113145255494.png" alt="/posts/a7d0d5f/imgs/image-20241113145255494.png" srcset="/posts/a7d0d5f/imgs/image-20241113145255494.png?size=small, /posts/a7d0d5f/imgs/image-20241113145255494.png?size=medium 1.5x, /posts/a7d0d5f/imgs/image-20241113145255494.png?size=large 2x" data-title="/posts/a7d0d5f/imgs/image-20241113145255494.png" style="--width: 865px;--aspect-ratio: 865 / 548;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>然后题目提示结束位是倒数位，如上图，很容易可以知道是 1</p>
+<p>如果是上图那样的顺序，起始位应该是7，但是提交后发现不对</p>
+<p>因此遍历1-7以及对CRC16和CRC32进行尝试，发现遍历到4且校验算法是CRC16的时候答案正确</p>
+<p>因此本题的答案为：CRC16,4,1</p>
+<p>最后使用题目附件给的 flag.py 生成flag即可</p>
+<p><code>adcca5c2a82064a17a645d35b6b054cd</code></p>
+<div class="highlight" id="id-3"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">hashlib</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">generate_flag</span><span class="p">(</span><span class="o">*</span><span class="n">answers</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 将所有答案使用英文逗号连接</span>
+</span></span><span class="line"><span class="cl">    <span class="n">combined_answers</span> <span class="o">=</span> <span class="s1">&#39;,&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">answers</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 生成flag格式</span>
+</span></span><span class="line"><span class="cl">    <span class="n">initial_flag</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&#34;ISCC</span><span class="se">{{</span><span class="si">{</span><span class="n">combined_answers</span><span class="si">}</span><span class="se">}}</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 对flag进行MD5加密</span>
+</span></span><span class="line"><span class="cl">    <span class="n">md5_hash</span> <span class="o">=</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">md5</span><span class="p">(</span><span class="n">initial_flag</span><span class="o">.</span><span class="n">encode</span><span class="p">())</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">md5_hash</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 示例用法</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&#34;__main__&#34;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">answers</span> <span class="o">=</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;192.168.1.2,192.168.1.4,24&#34;</span><span class="p">,</span>  <span class="c1"># 第一小题答案：IP顺序从小到大排列，涉及的IP个数由选手自己判断，数值为整数</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;2024&#34;</span><span class="p">,</span>  <span class="c1"># 第二小题答案：数值为整数</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;192.168.1.3,192.168.1.5,0.06&#34;</span><span class="p">,</span>  <span class="c1"># 第三小题答案：IP顺序从小到大排列，涉及的IP个数由选手自己判断，数值保留小数点后2位</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;192.168.1.2,192.168.1.3,192.168.1.6&#34;</span><span class="p">,</span>  <span class="c1"># 第四小题答案：IP顺序从小到大排列，涉及的IP个数由选手自己判断</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;CRC16,4,1&#34;</span>   <span class="c1"># 第五小题答案：数据校验算法名称长度为5个字符，其中英文字母大写</span>
+</span></span><span class="line"><span class="cl">    <span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 生成MD5加密后的flag</span>
+</span></span><span class="line"><span class="cl">    <span class="n">final_flag</span> <span class="o">=</span> <span class="n">generate_flag</span><span class="p">(</span><span class="o">*</span><span class="n">answers</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 输出最终的MD5加密字符串</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="n">final_flag</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># adcca5c2a82064a17a645d35b6b054cd</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="题目名称" class="heading-element">
+  <a href="#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0" class="heading-mark"></a>题目名称</h2><h2 id="题目名称-1" class="heading-element">
+  <a href="#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-1" class="heading-mark"></a>题目名称</h2><h2 id="题目名称-2" class="heading-element">
+  <a href="#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-2" class="heading-mark"></a>题目名称</h2><h2 id="题目名称-3" class="heading-element">
+  <a href="#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-3" class="heading-mark"></a>题目名称</h2></div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title="Updated on 2024-06-30 14:43:01">Updated on 2024-06-30&nbsp;</span>
+      </div></div><div class="post-info-line">
+        <div class="post-info-md"><span><a href="/posts/a7d0d5f/index.md" title="Read Markdown" class="link-to-markdown">Read Markdown</a></span></div>
+        <div class="post-info-share">
+          <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="http://localhost:1313/posts/a7d0d5f/" data-title="2024 全国大学生信息安全与对抗技术竞赛(ISCC) Misc Writeup" data-via="https://twitter.com/goodlunatic007" data-hashtags="CTF,Misc,Writeup"><i class="fa-brands fa-twitter fa-fw" aria-hidden="true"></i></a>
+  <a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="http://localhost:1313/posts/a7d0d5f/" data-hashtag="CTF"><i class="fa-brands fa-facebook-square fa-fw" aria-hidden="true"></i></a>
+  <a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="http://localhost:1313/posts/a7d0d5f/" data-title="2024 全国大学生信息安全与对抗技术竞赛(ISCC) Misc Writeup"><i class="fa-brands fa-weibo fa-fw" aria-hidden="true"></i></a>
+  </span>
+        </div>
+      </div></div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href="/tags/ctf/" class="post-tag" title="Tags - CTF">CTF</a><a href="/tags/misc/" class="post-tag" title="Tags - Misc">Misc</a><a href="/tags/writeup/" class="post-tag" title="Tags - Writeup">Writeup</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+    </section>
+  </div>
+
+  <div class="post-nav"><a href="/posts/0434e3f/" class="post-nav-item" rel="prev" title="Review of Software-Testing"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>Review of Software-Testing</a>
+      <a href="/posts/1e26f78/" class="post-nav-item" rel="next" title="QRcode二维码标准及常见考点详解">QRcode二维码标准及常见考点详解<i class="fa-solid fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+</article>
+
+<aside class="toc" id="toc-auto" aria-label=""><h2 class="toc-title">Contents&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+  <div
+    class="toc-content"
+    id="toc-content-auto"></div></aside></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line powered">Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreferrer" title="Hugo 0.125.3">Hugo</a> | Theme - <a href="https://github.com/hugo-fixit/FixIt" target="_blank" rel="external" title="FixIt v0.3.2">FixIt</a>
+        </div><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
+            <span itemprop="copyrightYear">2024</span><span class="author" itemprop="copyrightHolder">
+              <a href="https://goodlunatic.github.io"target="_blank" rel="external nofollow noopener noreferrer">Lunatic</a></span></div></div>
+  </footer></div><div class="widgets"><div class="fixed-buttons animate__faster d-none"><div class="fixed-button back-to-top" role="button" aria-label="Back to Top"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i><span class="variant-numeric d-none">0%</span>
+        </div></div><div id="mask"></div><noscript>
+    <div class="noscript-warning">Theme FixIt works best with JavaScript enabled.</div>
+  </noscript>
+</div><script src="/lib/sharer/sharer.min.js" async defer></script><script src="/lib/typeit/index.umd.js" defer></script><script>window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":1000},"comment":{"enable":false},"data":{"typeit-header-desktop":"Lunatic BLOG","typeit-header-title-mobile":"Lunatic BLOG"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"typeit-header-desktop":["typeit-header-desktop"],"typeit-header-subtitle-desktop":["typeit-header-subtitle-desktop"],"typeit-header-subtitle-mobile":["typeit-header-subtitle-mobile"],"typeit-header-title-mobile":["typeit-header-title-mobile"]},"duration":-1,"loop":false,"speed":100}};</script><script src="/js/theme.min.js" defer></script></body>
+</html>

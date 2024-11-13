@@ -522,6 +522,8 @@ int main()
 
 ### Gronsfeld密码
 
+可以直接使用这个在线网站解密&amp;爆破：https://www.boxentriq.com/code-breaking/gronsfeld-cipher
+
 ```python
 # 解密脚本
 from pycipher import Gronsfeld
