@@ -4,9 +4,17 @@
     <link>http://localhost:1313/</link>
     <description>This is Lunatic BLOG @_@</description>
     <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>goodlunatic0@gmail.com (Lunatic)</managingEditor>
-      <webMaster>goodlunatic0@gmail.com (Lunatic)</webMaster><lastBuildDate>Sun, 10 Nov 2024 10:45:20 &#43;0800</lastBuildDate>
+      <webMaster>goodlunatic0@gmail.com (Lunatic)</webMaster><lastBuildDate>Tue, 12 Nov 2024 20:30:17 &#43;0800</lastBuildDate>
       <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
     <item>
+  <title>CTF-Misc Guide</title>
+  <link>http://localhost:1313/posts/1ad9200/</link>
+  <pubDate>Tue, 12 Nov 2024 20:30:17 &#43;0800</pubDate>
+  <author>Lunatic</author>
+  <guid>http://localhost:1313/posts/1ad9200/</guid>
+  <description><![CDATA[<p><strong>This is a simple Guide for CTF in Misc Area.</strong></p>]]></description>
+</item>
+<item>
   <title>2024 浙江省大学生网络与信息安全竞赛 Misc Writeup</title>
   <link>http://localhost:1313/posts/c216d58/</link>
   <pubDate>Sun, 10 Nov 2024 10:45:20 &#43;0800</pubDate>
@@ -45,14 +53,6 @@
   <author>Lunatic</author>
   <guid>http://localhost:1313/posts/761da51/</guid>
   <description><![CDATA[<p><strong>This is a simple summary of digital forensics .</strong></p>]]></description>
-</item>
-<item>
-  <title>CTF-Misc Guide</title>
-  <link>http://localhost:1313/posts/1ad9200/</link>
-  <pubDate>Mon, 28 Oct 2024 20:30:17 &#43;0800</pubDate>
-  <author>Lunatic</author>
-  <guid>http://localhost:1313/posts/1ad9200/</guid>
-  <description><![CDATA[<p><strong>This is a simple Guide for CTF in Misc Area.</strong></p>]]></description>
 </item>
 <item>
   <title>Misc-Network Traffic Analysis</title>

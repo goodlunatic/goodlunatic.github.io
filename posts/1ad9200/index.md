@@ -637,6 +637,40 @@ if a == &#34;2&#34;:
 flag{11 21 31 18 27 33 34}
 flag{QAZIJCV}
 ```
+
+### 手机九宫格键盘密码
+
+参考链接：[https://blog.csdn.net/qq_55011640/article/details/123626280](https://blog.csdn.net/qq_55011640/article/details/123626280)
+
+下面举个栗子就理解了：
+82  73  42  31  22  31  33  41  32
+U     R    H   D    B     D   F    G    E
+
+### 不同键盘布局的编码
+
+#### Qwerty
+
+![](imgs/image-20241113151943395.png)
+#### Qwertz
+
+![](imgs/image-20241113152029297.png)
+
+#### Azerty
+
+![](imgs/image-20241113152112365.png)
+
+#### Dvorak(德沃夏克键盘)
+
+![](imgs/image-20241113151817733.png)
+
+![](imgs/image-20241113151927957.png)
+
+#### Colemak
+
+![](imgs/image-20241113151902536.png)
+
+例题-2023台州市赛初赛 Black Mamba
+
 ### 棋盘密码((ADFGVX,ADFGX,Polybius)
 
 ![](imgs/image-20241018145022295.png)
@@ -656,14 +690,6 @@ ADFGX密码 默认棋盘：phqgmeaynofdxkrcvszwbutil 默认密钥：german
 
 直接网上查找福尔摩斯密码对照表即可
  flag{RRRRRRE}
-
-### 手机九宫格键盘密码
-
-参考链接：[https://blog.csdn.net/qq_55011640/article/details/123626280](https://blog.csdn.net/qq_55011640/article/details/123626280)
-
-下面举个栗子就理解了：
-82  73  42  31  22  31  33  41  32
-U     R    H   D    B     D   F    G    E
 
 ### 利用编程代码画图
 
@@ -2373,36 +2399,30 @@ if __name__ == &#34;__main__&#34;:
 
 ### Linux tar命令
 
-### 打包压缩
+#### 打包压缩
 
 ```bash
-#打包单独的文件
+# 打包单独的文件
 tar -cvf target.tar filename.txt
-#打包整个目录
+# 打包整个目录
 tar -cvf target.tar directory
-#-c 表示创建新的tar包
-#-v 表示显示详细信息
-#-f 表示指定目标文件名
+# -c 表示创建新的tar包
+# -v 表示显示详细信息
+# -f 表示指定目标文件名
+# 如果是.tar.gz，就用下面这个命令
+tar -czvf out.tar.gz ./*
 ```
 
-### 解压提取
+#### 解压提取
 
 ```bash
 #把压缩包中的所有文件解压到当前目录
 tar -xvf target.tar
 #把压缩包解压到指定目录
 tar -xvf target.tar -C path
+# 如果是.tar.gz，就用下面这个命令
+tar -xzvf file.tar.gz
 ```
-
-### 不同的键盘布局
-
-Qwerty、Qwertz、Azerty
-
-Dvorak
-
-Colemak
-
-例题-2023台州市赛初赛 Black Mamba
 
 
 

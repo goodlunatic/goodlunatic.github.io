@@ -26,7 +26,7 @@
 
 &gt; You can attach your nickname and website in the remarks and I will put them here.
 
-|   Sponsor    |  **Amount**   |
+| **Sponsor**  |  **Amount**   |
 | :----------: | :-----------: |
 |   **x\*n**   | **20.00 x 💎** |
 |   **\*沉**   | **20.00 x 💎** |
