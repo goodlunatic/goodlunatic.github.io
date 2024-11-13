@@ -1067,8 +1067,11 @@ Tips：这里有时候也可以不用补文件尾
 一张png图片还可能是apng，直接用apngdis_gui跑一下，可以分出两张相似的png
 
 #### 7、CVE-2023-28303 截图工具漏洞
+一张图片如果有两个`IEND`块：`AE 42 60 82` 
 
-可以使用Github上大佬写好的工具一把梭，前提是需要知道原图的分辨率
+就很有可能考察的是这个漏洞
+
+可以使用[Github上大佬写好的工具](https://github.com/frankthetank-music/Acropalypse-Multi-Tool)一把梭，前提是需要知道原图的分辨率
 
 #### 8、stegpy隐写
 

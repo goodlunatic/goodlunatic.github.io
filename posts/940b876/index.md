@@ -19,7 +19,23 @@
 
 把文件头中的`04 03`改成`03 04`，提取压缩包并解压可以得到一串Gronsfeld密文
 
-用github上的工具爆破密文，得到提示：叫我们尝试截图工具
+可以自己写个脚本爆破
+
+```python
+from pycipher import Gronsfeld
+from itertools import product
+
+cipher_text = &#39;vzbtrvplnnvphsqkxsiqibroou&#39;
+
+# five numbers burst
+for key in product(range(10), repeat=5):
+    # print(key)
+    plain_text = Gronsfeld(key).decipher(cipher_text)
+    if &#39;TRYTO&#39; in plain_text:
+        print(key,plain_text)
+```
+
+也可以用用github上的工具爆破密文，得到提示：叫我们尝试截图工具
 
 &gt; try to think the snippingtools
 

@@ -12,7 +12,7 @@
   <meta itemprop="description" content="差一题就能AK Misc了，还是比较遗憾">
   <meta itemprop="datePublished" content="2023-09-10T17:45:47+08:00">
   <meta itemprop="dateModified" content="2023-09-10T17:45:47+08:00">
-  <meta itemprop="wordCount" content="969">
+  <meta itemprop="wordCount" content="1011">
   <meta itemprop="keywords" content="CTF,Misc,Writeup"><meta property="og:url" content="http://localhost:1313/posts/940b876/">
   <meta property="og:site_name" content="⚡Lunatic BLOG⚡">
   <meta property="og:title" content="2023 羊城杯网络安全大赛 Misc Writeup">
@@ -41,7 +41,7 @@
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": "http:\/\/localhost:1313\/posts\/940b876\/"
-    },"genre": "posts","keywords": "CTF, Misc, Writeup","wordcount":  969 ,
+    },"genre": "posts","keywords": "CTF, Misc, Writeup","wordcount":  1011 ,
     "url": "http:\/\/localhost:1313\/posts\/940b876\/","datePublished": "2023-09-10T17:45:47+08:00","dateModified": "2023-09-10T17:45:47+08:00","publisher": {
       "@type": "Organization",
       "name": ""},"author": {
@@ -145,7 +145,7 @@
 <article class="page single">
   <div class="header"><h1 class="single-title animate__animated animate__flipInX"><span>2023 羊城杯网络安全大赛 Misc Writeup</span>
     </h1></div><div class="post-meta">
-    <div class="post-meta-line"><span class="post-author"><a href="https://goodlunatic.github.io" title="Author"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><img loading="lazy" src="https://www.nssctf.cn/files/2024/4/28/7f130a1387.png" alt="Lunatic" data-title="Lunatic" class="avatar" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>&nbsp;Lunatic</a></span><span class="post-included-in">&nbsp;included in <a href="/categories/writeup/" class="post-category" title="Category - Writeup"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> Writeup</a></span></div><div class="post-meta-line"><span title="published on &lt;no value&gt;"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden="true"></i><time datetime="2023-09-10">2023-09-10</time></span>&nbsp;<span title=""><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>About 1000 words</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>5 minutes</span>&nbsp;</div>
+    <div class="post-meta-line"><span class="post-author"><a href="https://goodlunatic.github.io" title="Author"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><img loading="lazy" src="https://www.nssctf.cn/files/2024/4/28/7f130a1387.png" alt="Lunatic" data-title="Lunatic" class="avatar" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>&nbsp;Lunatic</a></span><span class="post-included-in">&nbsp;included in <a href="/categories/writeup/" class="post-category" title="Category - Writeup"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> Writeup</a></span></div><div class="post-meta-line"><span title="published on &lt;no value&gt;"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden="true"></i><time datetime="2023-09-10">2023-09-10</time></span>&nbsp;<span title=""><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>About 1100 words</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>5 minutes</span>&nbsp;</div>
   </div><div class="details toc" id="toc-static"
     data-kept="false">
     <div class="details-summary toc-title">
@@ -181,7 +181,35 @@
 <p>然后010打开，发现末尾有一个压缩包，还有一张没有文件头但是有文件尾的png图片，并给了提示：5位数字</p>
 <p><img loading="lazy" src="/posts/940b876/imgs/image-20241111095158349.png" alt="/posts/940b876/imgs/image-20241111095158349.png" srcset="/posts/940b876/imgs/image-20241111095158349.png?size=small, /posts/940b876/imgs/image-20241111095158349.png?size=medium 1.5x, /posts/940b876/imgs/image-20241111095158349.png?size=large 2x" data-title="/posts/940b876/imgs/image-20241111095158349.png" style="--width: 1920px;--aspect-ratio: 1920 / 1032;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>把文件头中的<code>04 03</code>改成<code>03 04</code>，提取压缩包并解压可以得到一串Gronsfeld密文</p>
-<p>用github上的工具爆破密文，得到提示：叫我们尝试截图工具</p>
+<p>可以自己写个脚本爆破</p>
+<div class="highlight" id="id-1"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">pycipher</span> <span class="kn">import</span> <span class="n">Gronsfeld</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">product</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">cipher_text</span> <span class="o">=</span> <span class="s1">&#39;vzbtrvplnnvphsqkxsiqibroou&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># five numbers burst</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">product</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">),</span> <span class="n">repeat</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># print(key)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">plain_text</span> <span class="o">=</span> <span class="n">Gronsfeld</span><span class="p">(</span><span class="n">key</span><span class="p">)</span><span class="o">.</span><span class="n">decipher</span><span class="p">(</span><span class="n">cipher_text</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="s1">&#39;TRYTO&#39;</span> <span class="ow">in</span> <span class="n">plain_text</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="n">key</span><span class="p">,</span><span class="n">plain_text</span><span class="p">)</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>也可以用用github上的工具爆破密文，得到提示：叫我们尝试截图工具</p>
 <blockquote>
 <p>try to think the snippingtools</p>
 </blockquote>
@@ -222,7 +250,7 @@
 <p>然后用这个密钥去Deepsound解密，可以得到一个Family_bucket.zip压缩包，猜测是base全家桶</p>
 <p><img loading="lazy" src="/posts/940b876/imgs/image-20241111100010007.png" alt="/posts/940b876/imgs/image-20241111100010007.png" srcset="/posts/940b876/imgs/image-20241111100010007.png?size=small, /posts/940b876/imgs/image-20241111100010007.png?size=medium 1.5x, /posts/940b876/imgs/image-20241111100010007.png?size=large 2x" data-title="/posts/940b876/imgs/image-20241111100010007.png" style="--width: 1200px;--aspect-ratio: 1200 / 773;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>解压压缩包得到flag.txt和fl4g.txt，里面各有一段密文</p>
-<div class="highlight" id="id-1"><div class="chroma">
+<div class="highlight" id="id-2"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
@@ -230,7 +258,7 @@
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">:JOJ[=%tJD9gr2Q79*;T:-qZD=]S0c:0&#39;nT7orYd9L_TD=Ys#Z9iY:q;-$Xo:dQs&gt;9ia&amp;M9i3]K5r2G&gt;8Oc&#39;9=%u:f8QIW;;bp(\8Ms%=10QJ$:KBnd&lt;AmK;7p.T97oN8J</span></span></code></pre></td></tr></table>
 </div>
 </div><p>上述密文base85+base32解码后得到以下内容</p>
-<div class="highlight" id="id-2"><div class="chroma">
+<div class="highlight" id="id-3"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -251,7 +279,7 @@
 <p>挂载flag.vmdk，提取出flag.zip和key.txt</p>
 <p><img loading="lazy" src="/posts/940b876/imgs/image-20241111100129114.png" alt="/posts/940b876/imgs/image-20241111100129114.png" srcset="/posts/940b876/imgs/image-20241111100129114.png?size=small, /posts/940b876/imgs/image-20241111100129114.png?size=medium 1.5x, /posts/940b876/imgs/image-20241111100129114.png?size=large 2x" data-title="/posts/940b876/imgs/image-20241111100129114.png" style="--width: 1824px;--aspect-ratio: 1824 / 1371;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>从flag.zip中foremost分离出了一个png2txt.py</p>
-<div class="highlight" id="id-3"><div class="chroma">
+<div class="highlight" id="id-4"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -287,7 +315,7 @@
 </span></span><span class="line"><span class="cl">            <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">base64</span><span class="o">.</span><span class="n">b64encode</span><span class="p">(</span><span class="n">uu_byte</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span> <span class="o">+</span> <span class="s2">&#34;</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">)</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>chatGPT直接写一个恢复脚本得到压缩包解压密码</p>
-<div class="highlight" id="id-4"><div class="chroma">
+<div class="highlight" id="id-5"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -362,7 +390,7 @@
 <p>解压压缩包即可得到flag：<code>DASCTF{2431a606-00a3-4698-8b0f-eb806a7bb1be}</code></p>
 <h3 id="题目名称-gifuck" class="heading-element">
   <a href="#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-gifuck" class="heading-mark"></a>题目名称 GIFuck</h3><p>发现GIF每一帧的时间长度不同，存在时间轴隐写，写个脚本提取</p>
-<div class="highlight" id="id-5"><div class="chroma">
+<div class="highlight" id="id-6"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -445,7 +473,7 @@
 </span></span><span class="line"><span class="cl">    <span class="c1"># print(f&#34;{file}: {size} bytes&#34;)</span>
 </span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">res</span><span class="p">)</span></span></span></code></pre></td></tr></table>
 </div>
-</div><div class="highlight" id="id-6"><div class="chroma">
+</div><div class="highlight" id="id-7"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
@@ -458,7 +486,7 @@
 <p><img loading="lazy" src="/posts/940b876/imgs/image-20241111100339182.png" alt="/posts/940b876/imgs/image-20241111100339182.png" srcset="/posts/940b876/imgs/image-20241111100339182.png?size=small, /posts/940b876/imgs/image-20241111100339182.png?size=medium 1.5x, /posts/940b876/imgs/image-20241111100339182.png?size=large 2x" data-title="/posts/940b876/imgs/image-20241111100339182.png" style="--width: 3842px;--aspect-ratio: 3842 / 2090;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p><img loading="lazy" src="/posts/940b876/imgs/image-20241111100437841.png" alt="/posts/940b876/imgs/image-20241111100437841.png" srcset="/posts/940b876/imgs/image-20241111100437841.png?size=small, /posts/940b876/imgs/image-20241111100437841.png?size=medium 1.5x, /posts/940b876/imgs/image-20241111100437841.png?size=large 2x" data-title="/posts/940b876/imgs/image-20241111100437841.png" style="--width: 1022px;--aspect-ratio: 1022 / 95;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>除了使用上面那个网站，也可以写一个脚本提取</p>
-<div class="highlight" id="id-7"><div class="chroma">
+<div class="highlight" id="id-8"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -630,7 +658,7 @@
 <p>flag2.zip是伪加密，解压后得到一个txt，其中存在零宽字符</p>
 <p><img loading="lazy" src="/posts/940b876/imgs/image-20241111100737761.png" alt="/posts/940b876/imgs/image-20241111100737761.png" srcset="/posts/940b876/imgs/image-20241111100737761.png?size=small, /posts/940b876/imgs/image-20241111100737761.png?size=medium 1.5x, /posts/940b876/imgs/image-20241111100737761.png?size=large 2x" data-title="/posts/940b876/imgs/image-20241111100737761.png" style="--width: 1718px;--aspect-ratio: 1718 / 839;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>写一个脚本读取flag1.png中的像素数据</p>
-<div class="highlight" id="id-8"><div class="chroma">
+<div class="highlight" id="id-9"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -700,7 +728,7 @@
 <p>感觉是图片宽高被篡改了，我们尝试爆破一下图片的宽高，发现宽高为<code>1144x720</code>的时候图片可以正常显示</p>
 <p><img loading="lazy" src="/posts/940b876/imgs/image-20241101175515297.png" alt="/posts/940b876/imgs/image-20241101175515297.png" srcset="/posts/940b876/imgs/image-20241101175515297.png?size=small, /posts/940b876/imgs/image-20241101175515297.png?size=medium 1.5x, /posts/940b876/imgs/image-20241101175515297.png?size=large 2x" data-title="/posts/940b876/imgs/image-20241101175515297.png" style="--width: 1191px;--aspect-ratio: 1191 / 790;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>就是相比原图多了一段红素像素的数据，我们可以写一个脚本对比一下和原图的区别</p>
-<div class="highlight" id="id-9"><div class="chroma">
+<div class="highlight" id="id-10"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -719,7 +747,7 @@
 </div>
 </div><p>发现红色像素的长度为10px，因此我们把这一段裁去</p>
 <p>然后比较这两张图在像素上的区别，发现图片每行中存在不同像素且不同的像素的个数转Ascii码就是flag</p>
-<div class="highlight" id="id-10"><div class="chroma">
+<div class="highlight" id="id-11"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2

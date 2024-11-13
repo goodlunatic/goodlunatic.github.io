@@ -12,7 +12,7 @@
   <meta itemprop="description" content="This is a simple Guide for CTF in Misc Area.">
   <meta itemprop="datePublished" content="2024-11-12T20:30:17+08:00">
   <meta itemprop="dateModified" content="2024-11-12T20:30:17+08:00">
-  <meta itemprop="wordCount" content="5248">
+  <meta itemprop="wordCount" content="5253">
   <meta itemprop="keywords" content="Misc,CTF"><meta property="og:url" content="http://localhost:1313/posts/1ad9200/">
   <meta property="og:site_name" content="⚡Lunatic BLOG⚡">
   <meta property="og:title" content="CTF-Misc Guide">
@@ -40,7 +40,7 @@
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": "http:\/\/localhost:1313\/posts\/1ad9200\/"
-    },"genre": "posts","keywords": "Misc, CTF","wordcount":  5248 ,
+    },"genre": "posts","keywords": "Misc, CTF","wordcount":  5253 ,
     "url": "http:\/\/localhost:1313\/posts\/1ad9200\/","datePublished": "2024-11-12T20:30:17+08:00","dateModified": "2024-11-12T20:30:17+08:00","publisher": {
       "@type": "Organization",
       "name": ""},"author": {
@@ -1680,7 +1680,9 @@ flag{RRRRRRE}</p>
 <h4 id="6apngdis_gui" class="heading-element">
   <a href="#6apngdis_gui" class="heading-mark"></a>6、apngdis_gui</h4><p>一张png图片还可能是apng，直接用apngdis_gui跑一下，可以分出两张相似的png</p>
 <h4 id="7cve-2023-28303-截图工具漏洞" class="heading-element">
-  <a href="#7cve-2023-28303-%e6%88%aa%e5%9b%be%e5%b7%a5%e5%85%b7%e6%bc%8f%e6%b4%9e" class="heading-mark"></a>7、CVE-2023-28303 截图工具漏洞</h4><p>可以使用Github上大佬写好的工具一把梭，前提是需要知道原图的分辨率</p>
+  <a href="#7cve-2023-28303-%e6%88%aa%e5%9b%be%e5%b7%a5%e5%85%b7%e6%bc%8f%e6%b4%9e" class="heading-mark"></a>7、CVE-2023-28303 截图工具漏洞</h4><p>一张图片如果有两个<code>IEND</code>块：<code>AE 42 60 82</code></p>
+<p>就很有可能考察的是这个漏洞</p>
+<p>可以使用<a href="https://github.com/frankthetank-music/Acropalypse-Multi-Tool"target="_blank" rel="external nofollow noopener noreferrer">Github上大佬写好的工具</a>一把梭，前提是需要知道原图的分辨率</p>
 <h4 id="8stegpy隐写" class="heading-element">
   <a href="#8stegpy%e9%9a%90%e5%86%99" class="heading-mark"></a>8、stegpy隐写</h4><p><a href="https://github.com/izcoser/stegpy"target="_blank" rel="external nofollow noopener noreferrer"> stegpy 开源地址</a> 下载好后直接用WSL输入以下命令并输入密码解密即可</p>
 <p>也可以直接用 pip 安装： pip3 install stegpy</p>
