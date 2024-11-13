@@ -2424,6 +2424,14 @@ tar -xvf target.tar -C path
 tar -xzvf file.tar.gz
 ```
 
+### pyc隐写
+
+使用开源工具：https://github.com/AngelKitty/stegosaurus
+
+对隐写的内容进行提取即可
+
+![](imgs/image-20241113181609346.png)
+
 
 
 ---
