@@ -5,7 +5,7 @@
 **这里对赛中的部分Misc题进行一个简单的复盘**
 &lt;!--more--&gt;
 ## 初赛
-### Easy_Cipher
+### 题目名称 Easy_Cipher
 题目如下：
 ```
 [&#34;Kln/qZwlOsux&#43;b/Gv0WsxkOec5E70dNhvczSLFs&#43;0pkHaovEOBqUApBGBDBUrH08。RUNCIDAgMTI4IHNpeCBudW1iZXJz&#34;,&#34;Kln/qZwlOsux&#43;b/Gv0WsxkOec5E70dNhvczSLFs&#43;0pkHaovEOBqUApBGBDBUrH08&#34;]
@@ -42,123 +42,157 @@ if __name__ == &#34;__main__&#34;:
 #flag:b&#39;DASCTF{W0w_Y0u_Succ3s5ful1y_Cr4ck_Th1s_C1ph3r}\x00\x00&#39;
 ```
 
-### Steins_Gate
-#### 解法一：根据像素点还原原图
+### 题目名称 Steins_Gate
+题目附件给了下面这张图片，图片有点大，有50M
+
+![](imgs/image-20241114122503053.png)
+
+在PS中打开，发现图片由很多`嘟噜嘟噜`组成，然后发现一个汉字占用了`16x16`的像素区块，图像的宽高也刚好是16的倍数`(10752x6048)`
+
+![](imgs/image-20241114122549116.png)
+
+因此我们写一个脚本，获取每个区块中出现频率最高的像素，并尝试恢复原图`(672x378)`
+
 ```python
-from PIL import Image
+def fix_img():
+    img = Image.open(&#34;Steins_Gate.png&#34;)
+    width,height = img.size # 10752 6048
+    source_data = []
+    for y in range(0,height,16):
+        for x in range(0,width,16):
+            pixel_dict = {}
+            # 获取每个16x16区块中出现频率最高的像素
+            for j in range(y,y&#43;16):
+                for i in range(x,x&#43;16):
+                    pixel = img.getpixel((i,j))
+                    if pixel != (211, 211, 211):
+                        if pixel not in pixel_dict:
+                            pixel_dict[pixel] = 1
+                        else:
+                            pixel_dict[pixel] &#43;= 1
+                            
+            sorted_pixel = sorted(pixel_dict.items(),key = lambda item:item[1],reverse=True)
+            most_pixel = sorted_pixel[0][0]
+            source_data.append(most_pixel) 
 
-def get_pixel():
-    img = Image.open(&#39;Steins_Gate.png&#39;)
-    width, height = img.size
-    pixel = img.load()
-    target_data = []
-    # 从行开始取
-    for i in range(0, width, 16):
-        # 从列开始取
-        for j in range(0, height, 16):
-            # 统计每个区块的像素
-            dic = {}
-            for x in range(i, i&#43;16):
-                for y in range(j, j&#43;16):
-                    r, g, b = pixel[x, y]
-                    if (r, g, b) in dic:
-                        dic[(r, g, b)] &#43;= 1
-                    else:
-                        dic[(r, g, b)] = 1
-            # sorted_data = sorted(dic.items(), key=lambda x: x[1], reverse=True)
-            # print(sorted_data)
-            # return 0
-            # 按照字典中值来进行排序
-            sorted_data = sorted(dic.items(), key=lambda x: x[1], reverse=True)
-            if sorted_data[0][0] != (211, 211, 211):
-                target_pixel = sorted_data[0][0]
-            else:
-                target_pixel = sorted_data[1][0]
-            target_data.append(target_pixel)
-    return target_data
-
-
-def fix_image(width, height, target_data):
-    # 创建一个新的图像对象
-    img1 = Image.new(&#34;RGB&#34;, (width, height))
-    for i in range(width):
-        for j in range(height):
-            index = i * height &#43; j
-            target_pixel = target_data[index]
-            img1.putpixel((i, j), target_pixel)
-
-    img1.show()
-    img1.save(&#34;fixed.png&#34;)
-
-
-if __name__ == &#34;__main__&#34;:
-    target_data = get_pixel()
-    img = Image.open(&#39;Steins_Gate.png&#39;)
-    width, height = img.size
-    width = width // 16
-    height = height // 16
-    fix_image(width, height, target_data)
+    new_img = Image.new(&#34;RGB&#34;,(width//16,height//16))
+    new_img.putdata(source_data) # [(255, 0, 0), (0, 255, 0), (0, 0, 255)]
+    new_img.show()
+    # new_img.save(&#34;new.png&#34;)
 ```
 
-#### 解法二：
+运行以上脚本，即可恢复得到下图
+
+![](imgs/image-20241114122917882.png)
+
+zsteg和StegSolve扫一下，发现存在LSB隐写
+
+![](imgs/image-20241114123043433.png)
+
+![](imgs/image-20241114123058929.png)
+
+尝试直接提取出来，但是发现每串base64编码数据后面都有垃圾数据
+
+因此我们尝试写个脚本提取
+
+```python
+def extract_lsb():
+    res = &#34;&#34;
+    base64_data = []
+    img =  Image.open(&#34;new.png&#34;)
+    width,height = img.size # 672 378
+    for y in range(height):
+        lsb_data = &#34;&#34; # 一行一行地提取LSB数据
+        for x in range(width):
+            pixel = img.getpixel((x,y))
+            lsb_data &#43;= str(pixel[0] &amp; 1) &#43; str(pixel[1] &amp; 1) &#43; str(pixel[2] &amp; 1)
+        bytes_data = libnum.b2s(lsb_data)
+        # print(bytes_data)
+        try:
+            base64_data.append(bytes_data[:bytes_data.index(b&#34;==&#34;)&#43;2])
+        except:
+            pass
+    for item in base64_data:
+        res &#43;= item.decode() &#43; &#39;\n&#39;
+    with open(&#34;base64.txt&#34;,&#34;w&#34;) as f:
+        f.write(res)
+```
+
+提取出来的数据`CyberChef`解码可以得到一张jpg图片
+
+![](imgs/image-20241114123300195.png)
+
+![](imgs/image-20241114123418419.jpeg)
+
+然后还发现上面的base64编码的数据中存在base64隐写，直接使用工具提取出来可以得到：`DuDuLu~T0_Ch3@t_THe_w0r1d`
+
+![](imgs/image-20241114123331780.png)
+
+最后使用得到的密钥`outguess`解密图片即可得到flag：`DASCTF{699948e3ae1195f819b23b759684ac8e}`
+
+![](imgs/image-20241114123522769.png)
+
+完整解题代码如下：
 ```python
 from PIL import Image
 import libnum
-import base64
 
-def get_data():
-    res = []
-    base64_data = &#39;&#39;
-    img = Image.open(&#39;Steins_Gate.png&#39;)
-    f=open(&#39;lsb_low.txt&#39;,&#39;wb&#39;)
-    width,height=img.size
-    for i in range(6,height,16):
+
+def fix_img():
+    img = Image.open(&#34;Steins_Gate.png&#34;)
+    width,height = img.size # 10752 6048
+    source_data = []
+    for y in range(0,height,16):
+        for x in range(0,width,16):
+            pixel_dict = {}
+            # 获取每个16x16区块中出现频率最高的像素
+            for j in range(y,y&#43;16):
+                for i in range(x,x&#43;16):
+                    pixel = img.getpixel((i,j))
+                    if pixel != (211, 211, 211):
+                        if pixel not in pixel_dict:
+                            pixel_dict[pixel] = 1
+                        else:
+                            pixel_dict[pixel] &#43;= 1
+                            
+            sorted_pixel = sorted(pixel_dict.items(),key = lambda item:item[1],reverse=True)
+            most_pixel = sorted_pixel[0][0]
+            source_data.append(most_pixel) 
+
+    new_img = Image.new(&#34;RGB&#34;,(width//16,height//16))
+    new_img.putdata(source_data) # [(255, 0, 0), (0, 255, 0), (0, 0, 255)]
+    new_img.show()
+    # new_img.save(&#34;new.png&#34;)
+    
+def extract_lsb():
+    res = &#34;&#34;
+    base64_data = []
+    img =  Image.open(&#34;new.png&#34;)
+    width,height = img.size # 672 378
+    for y in range(height):
+        lsb_data = &#34;&#34; # 一行一行地提取LSB数据
+        for x in range(width):
+            pixel = img.getpixel((x,y))
+            lsb_data &#43;= str(pixel[0] &amp; 1) &#43; str(pixel[1] &amp; 1) &#43; str(pixel[2] &amp; 1)
+        bytes_data = libnum.b2s(lsb_data)
+        # print(bytes_data)
         try:
-            bins = &#34;&#34;
-            for j in range(2,width,16):
-                tmp = img.getpixel((j,i))
-                # 将每个通道的最低位（即最不重要的位）提取出来，并将其转换为字符串
-                bins &#43;= str(tmp[0] &amp; 1) &#43; str(tmp[1] &amp; 1) &#43; str(tmp[2] &amp; 1)
-            # 将二进制字符串bins转换为字节数据data
-            data = libnum.b2s(bins)
-            data = data[:data.index(b&#34;==&#34;)&#43;2]
-            # print(data)
-            res.append(data.decode())
-            # print(res)
+            base64_data.append(bytes_data[:bytes_data.index(b&#34;==&#34;)&#43;2])
         except:
-            break
-    base64_data = &#39;\n&#39;.join([item for item in res])
-    # print(base64_data) # 这里的base64_data可以转为一张jpg图片
-    return res
+            pass
+    for item in base64_data:
+        res &#43;= item.decode() &#43; &#39;\n&#39;
+    with open(&#34;base64.txt&#34;,&#34;w&#34;) as f:
+        f.write(res)
 
-def decode_base64_steg(data):
-    bin_str = &#39;&#39;
-    b64chars = &#39;ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789&#43;/&#39;
-    for stegb64 in data:
-        rowb64 = str(base64.b64encode(base64.b64decode(stegb64)), &#34;utf-8&#34;).strip(&#34;\n&#34;)
-        offset = abs(b64chars.index(stegb64.replace(&#39;=&#39;, &#39;&#39;)[-1]) - b64chars.index(rowb64.replace(&#39;=&#39;, &#39;&#39;)[-1]))
-        equalnum = stegb64.count(&#39;=&#39;)  # no equalnum no offset
-        if equalnum:
-            bin_str &#43;= bin(offset)[2:].zfill(equalnum * 2)
-        print(&#39;&#39;.join([chr(int(bin_str[i:i &#43; 8], 2)) for i in range(0, len(bin_str), 8)]))  # 8位一组
-        
 if __name__ == &#34;__main__&#34;:
-    data = get_data()
-    res = decode_base64_steg(data)
-    # DuDuLu~T0_Ch3@t_THe_w0r1d
+    # fix_img()
+    extract_lsb()
 ```
 
-```shell
-$ outguess -k &#39;DuDuLu~T0_Ch3@t_THe_w0r1d&#39; -r flag.jpg flag.txt
-Reading flag.jpg....
-Extracting usable bits:   67087 bits
-Steg retrieve: seed: 65, len: 40
-
-$ cat flag.txt
-DASCTF{699948e3ae1195f819b23b759684ac8e}
-```
 ## 决赛
-### 蝎子
+### 题目名称 蝎子
+
 Byxs20出的题，给了一个冰蝎webshell流量，最后一步套了一个光栅
 
 最后是卡在了光栅上，没有解出来，这里就贴一下解光栅的脚本吧

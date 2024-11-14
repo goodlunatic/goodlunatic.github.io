@@ -14,7 +14,7 @@
 这里对赛中的部分Misc题进行一个简单的复盘">
   <meta itemprop="datePublished" content="2023-11-07T14:11:04+08:00">
   <meta itemprop="dateModified" content="2023-11-07T14:11:04+08:00">
-  <meta itemprop="wordCount" content="576">
+  <meta itemprop="wordCount" content="562">
   <meta itemprop="keywords" content="CTF,Misc,Writeup"><meta property="og:url" content="http://localhost:1313/posts/db7acab/">
   <meta property="og:site_name" content="⚡Lunatic BLOG⚡">
   <meta property="og:title" content="2023 浙江省大学生网络与信息安全竞赛 Misc Writeup">
@@ -45,7 +45,7 @@
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": "http:\/\/localhost:1313\/posts\/db7acab\/"
-    },"genre": "posts","keywords": "CTF, Misc, Writeup","wordcount":  576 ,
+    },"genre": "posts","keywords": "CTF, Misc, Writeup","wordcount":  562 ,
     "url": "http:\/\/localhost:1313\/posts\/db7acab\/","datePublished": "2023-11-07T14:11:04+08:00","dateModified": "2023-11-07T14:11:04+08:00","publisher": {
       "@type": "Organization",
       "name": ""},"author": {
@@ -160,18 +160,13 @@
   <ul>
     <li><a href="#初赛">初赛</a>
       <ul>
-        <li><a href="#easy_cipher">Easy_Cipher</a></li>
-        <li><a href="#steins_gate">Steins_Gate</a>
-          <ul>
-            <li><a href="#解法一根据像素点还原原图">解法一：根据像素点还原原图</a></li>
-            <li><a href="#解法二">解法二：</a></li>
-          </ul>
-        </li>
+        <li><a href="#题目名称-easy_cipher">题目名称 Easy_Cipher</a></li>
+        <li><a href="#题目名称-steins_gate">题目名称 Steins_Gate</a></li>
       </ul>
     </li>
     <li><a href="#决赛">决赛</a>
       <ul>
-        <li><a href="#蝎子">蝎子</a></li>
+        <li><a href="#题目名称-蝎子">题目名称 蝎子</a></li>
       </ul>
     </li>
   </ul>
@@ -179,8 +174,8 @@
   </div><div class="content" id="content"><p><strong>全靠队友带飞。拿了省一</strong></p>
 <p><strong>这里对赛中的部分Misc题进行一个简单的复盘</strong></p>
 <h2 id="初赛" class="heading-element">
-  <a href="#%e5%88%9d%e8%b5%9b" class="heading-mark"></a>初赛</h2><h3 id="easy_cipher" class="heading-element">
-  <a href="#easy_cipher" class="heading-mark"></a>Easy_Cipher</h3><p>题目如下：</p>
+  <a href="#%e5%88%9d%e8%b5%9b" class="heading-mark"></a>初赛</h2><h3 id="题目名称-easy_cipher" class="heading-element">
+  <a href="#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-easy_cipher" class="heading-mark"></a>题目名称 Easy_Cipher</h3><p>题目如下：</p>
 <div class="highlight" id="id-1"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -246,9 +241,128 @@
 </span></span><span class="line"><span class="cl"><span class="c1">#key:515764</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#flag:b&#39;DASCTF{W0w_Y0u_Succ3s5ful1y_Cr4ck_Th1s_C1ph3r}\x00\x00&#39;</span></span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="steins_gate" class="heading-element">
-  <a href="#steins_gate" class="heading-mark"></a>Steins_Gate</h3><h4 id="解法一根据像素点还原原图" class="heading-element">
-  <a href="#%e8%a7%a3%e6%b3%95%e4%b8%80%e6%a0%b9%e6%8d%ae%e5%83%8f%e7%b4%a0%e7%82%b9%e8%bf%98%e5%8e%9f%e5%8e%9f%e5%9b%be" class="heading-mark"></a>解法一：根据像素点还原原图</h4><div class="highlight" id="id-4"><div class="chroma">
+</div><h3 id="题目名称-steins_gate" class="heading-element">
+  <a href="#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-steins_gate" class="heading-mark"></a>题目名称 Steins_Gate</h3><p>题目附件给了下面这张图片，图片有点大，有50M</p>
+<p><img loading="lazy" src="/posts/db7acab/imgs/image-20241114122503053.png" alt="/posts/db7acab/imgs/image-20241114122503053.png" srcset="/posts/db7acab/imgs/image-20241114122503053.png?size=small, /posts/db7acab/imgs/image-20241114122503053.png?size=medium 1.5x, /posts/db7acab/imgs/image-20241114122503053.png?size=large 2x" data-title="/posts/db7acab/imgs/image-20241114122503053.png" style="--width: 1426px;--aspect-ratio: 1426 / 746;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>在PS中打开，发现图片由很多<code>嘟噜嘟噜</code>组成，然后发现一个汉字占用了<code>16x16</code>的像素区块，图像的宽高也刚好是16的倍数<code>(10752x6048)</code></p>
+<p><img loading="lazy" src="/posts/db7acab/imgs/image-20241114122549116.png" alt="/posts/db7acab/imgs/image-20241114122549116.png" srcset="/posts/db7acab/imgs/image-20241114122549116.png?size=small, /posts/db7acab/imgs/image-20241114122549116.png?size=medium 1.5x, /posts/db7acab/imgs/image-20241114122549116.png?size=large 2x" data-title="/posts/db7acab/imgs/image-20241114122549116.png" style="--width: 1928px;--aspect-ratio: 1928 / 1048;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>因此我们写一个脚本，获取每个区块中出现频率最高的像素，并尝试恢复原图<code>(672x378)</code></p>
+<div class="highlight" id="id-4"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">fix_img</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="n">img</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&#34;Steins_Gate.png&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">width</span><span class="p">,</span><span class="n">height</span> <span class="o">=</span> <span class="n">img</span><span class="o">.</span><span class="n">size</span> <span class="c1"># 10752 6048</span>
+</span></span><span class="line"><span class="cl">    <span class="n">source_data</span> <span class="o">=</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">height</span><span class="p">,</span><span class="mi">16</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">width</span><span class="p">,</span><span class="mi">16</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">            <span class="n">pixel_dict</span> <span class="o">=</span> <span class="p">{}</span>
+</span></span><span class="line"><span class="cl">            <span class="c1"># 获取每个16x16区块中出现频率最高的像素</span>
+</span></span><span class="line"><span class="cl">            <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="n">y</span><span class="o">+</span><span class="mi">16</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">                <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">x</span><span class="o">+</span><span class="mi">16</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">pixel</span> <span class="o">=</span> <span class="n">img</span><span class="o">.</span><span class="n">getpixel</span><span class="p">((</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">                    <span class="k">if</span> <span class="n">pixel</span> <span class="o">!=</span> <span class="p">(</span><span class="mi">211</span><span class="p">,</span> <span class="mi">211</span><span class="p">,</span> <span class="mi">211</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">                        <span class="k">if</span> <span class="n">pixel</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">pixel_dict</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                            <span class="n">pixel_dict</span><span class="p">[</span><span class="n">pixel</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">                        <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                            <span class="n">pixel_dict</span><span class="p">[</span><span class="n">pixel</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">                            
+</span></span><span class="line"><span class="cl">            <span class="n">sorted_pixel</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">pixel_dict</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span><span class="n">key</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">item</span><span class="p">:</span><span class="n">item</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="n">most_pixel</span> <span class="o">=</span> <span class="n">sorted_pixel</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">            <span class="n">source_data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">most_pixel</span><span class="p">)</span> 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">new_img</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&#34;RGB&#34;</span><span class="p">,(</span><span class="n">width</span><span class="o">//</span><span class="mi">16</span><span class="p">,</span><span class="n">height</span><span class="o">//</span><span class="mi">16</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="n">new_img</span><span class="o">.</span><span class="n">putdata</span><span class="p">(</span><span class="n">source_data</span><span class="p">)</span> <span class="c1"># [(255, 0, 0), (0, 255, 0), (0, 0, 255)]</span>
+</span></span><span class="line"><span class="cl">    <span class="n">new_img</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># new_img.save(&#34;new.png&#34;)</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>运行以上脚本，即可恢复得到下图</p>
+<p><img loading="lazy" src="/posts/db7acab/imgs/image-20241114122917882.png" alt="/posts/db7acab/imgs/image-20241114122917882.png" srcset="/posts/db7acab/imgs/image-20241114122917882.png?size=small, /posts/db7acab/imgs/image-20241114122917882.png?size=medium 1.5x, /posts/db7acab/imgs/image-20241114122917882.png?size=large 2x" data-title="/posts/db7acab/imgs/image-20241114122917882.png" style="--width: 672px;--aspect-ratio: 672 / 378;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>zsteg和StegSolve扫一下，发现存在LSB隐写</p>
+<p><img loading="lazy" src="/posts/db7acab/imgs/image-20241114123043433.png" alt="/posts/db7acab/imgs/image-20241114123043433.png" srcset="/posts/db7acab/imgs/image-20241114123043433.png?size=small, /posts/db7acab/imgs/image-20241114123043433.png?size=medium 1.5x, /posts/db7acab/imgs/image-20241114123043433.png?size=large 2x" data-title="/posts/db7acab/imgs/image-20241114123043433.png" style="--width: 1115px;--aspect-ratio: 1115 / 628;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><img loading="lazy" src="/posts/db7acab/imgs/image-20241114123058929.png" alt="/posts/db7acab/imgs/image-20241114123058929.png" srcset="/posts/db7acab/imgs/image-20241114123058929.png?size=small, /posts/db7acab/imgs/image-20241114123058929.png?size=medium 1.5x, /posts/db7acab/imgs/image-20241114123058929.png?size=large 2x" data-title="/posts/db7acab/imgs/image-20241114123058929.png" style="--width: 774px;--aspect-ratio: 774 / 557;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>尝试直接提取出来，但是发现每串base64编码数据后面都有垃圾数据</p>
+<p>因此我们尝试写个脚本提取</p>
+<div class="highlight" id="id-5"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">extract_lsb</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="n">res</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">base64_data</span> <span class="o">=</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl">    <span class="n">img</span> <span class="o">=</span>  <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&#34;new.png&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">width</span><span class="p">,</span><span class="n">height</span> <span class="o">=</span> <span class="n">img</span><span class="o">.</span><span class="n">size</span> <span class="c1"># 672 378</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">height</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">lsb_data</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span> <span class="c1"># 一行一行地提取LSB数据</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">width</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">            <span class="n">pixel</span> <span class="o">=</span> <span class="n">img</span><span class="o">.</span><span class="n">getpixel</span><span class="p">((</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">            <span class="n">lsb_data</span> <span class="o">+=</span> <span class="nb">str</span><span class="p">(</span><span class="n">pixel</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&amp;</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">pixel</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&amp;</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">pixel</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">&amp;</span> <span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">bytes_data</span> <span class="o">=</span> <span class="n">libnum</span><span class="o">.</span><span class="n">b2s</span><span class="p">(</span><span class="n">lsb_data</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># print(bytes_data)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">try</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">base64_data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">bytes_data</span><span class="p">[:</span><span class="n">bytes_data</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="sa">b</span><span class="s2">&#34;==&#34;</span><span class="p">)</span><span class="o">+</span><span class="mi">2</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">        <span class="k">except</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="k">pass</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">base64_data</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">res</span> <span class="o">+=</span> <span class="n">item</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&#34;base64.txt&#34;</span><span class="p">,</span><span class="s2">&#34;w&#34;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">res</span><span class="p">)</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>提取出来的数据<code>CyberChef</code>解码可以得到一张jpg图片</p>
+<p><img loading="lazy" src="/posts/db7acab/imgs/image-20241114123300195.png" alt="/posts/db7acab/imgs/image-20241114123300195.png" srcset="/posts/db7acab/imgs/image-20241114123300195.png?size=small, /posts/db7acab/imgs/image-20241114123300195.png?size=medium 1.5x, /posts/db7acab/imgs/image-20241114123300195.png?size=large 2x" data-title="/posts/db7acab/imgs/image-20241114123300195.png" style="--width: 1919px;--aspect-ratio: 1919 / 986;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><img loading="lazy" src="/posts/db7acab/imgs/image-20241114123418419.jpeg" alt="/posts/db7acab/imgs/image-20241114123418419.jpeg" srcset="/posts/db7acab/imgs/image-20241114123418419.jpeg?size=small, /posts/db7acab/imgs/image-20241114123418419.jpeg?size=medium 1.5x, /posts/db7acab/imgs/image-20241114123418419.jpeg?size=large 2x" data-title="/posts/db7acab/imgs/image-20241114123418419.jpeg" style="--width: 1280px;--aspect-ratio: 1280 / 720;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>然后还发现上面的base64编码的数据中存在base64隐写，直接使用工具提取出来可以得到：<code>DuDuLu~T0_Ch3@t_THe_w0r1d</code></p>
+<p><img loading="lazy" src="/posts/db7acab/imgs/image-20241114123331780.png" alt="/posts/db7acab/imgs/image-20241114123331780.png" srcset="/posts/db7acab/imgs/image-20241114123331780.png?size=small, /posts/db7acab/imgs/image-20241114123331780.png?size=medium 1.5x, /posts/db7acab/imgs/image-20241114123331780.png?size=large 2x" data-title="/posts/db7acab/imgs/image-20241114123331780.png" style="--width: 752px;--aspect-ratio: 752 / 752;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>最后使用得到的密钥<code>outguess</code>解密图片即可得到flag：<code>DASCTF{699948e3ae1195f819b23b759684ac8e}</code></p>
+<p><img loading="lazy" src="/posts/db7acab/imgs/image-20241114123522769.png" alt="/posts/db7acab/imgs/image-20241114123522769.png" srcset="/posts/db7acab/imgs/image-20241114123522769.png?size=small, /posts/db7acab/imgs/image-20241114123522769.png?size=medium 1.5x, /posts/db7acab/imgs/image-20241114123522769.png?size=large 2x" data-title="/posts/db7acab/imgs/image-20241114123522769.png" style="--width: 1115px;--aspect-ratio: 1115 / 251;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>完整解题代码如下：</p>
+<div class="highlight" id="id-6"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -303,178 +417,67 @@
 </span><span class="lnt">51
 </span><span class="lnt">52
 </span><span class="lnt">53
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">get_pixel</span><span class="p">():</span>
-</span></span><span class="line"><span class="cl">    <span class="n">img</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;Steins_Gate.png&#39;</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">    <span class="n">width</span><span class="p">,</span> <span class="n">height</span> <span class="o">=</span> <span class="n">img</span><span class="o">.</span><span class="n">size</span>
-</span></span><span class="line"><span class="cl">    <span class="n">pixel</span> <span class="o">=</span> <span class="n">img</span><span class="o">.</span><span class="n">load</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl">    <span class="n">target_data</span> <span class="o">=</span> <span class="p">[]</span>
-</span></span><span class="line"><span class="cl">    <span class="c1"># 从行开始取</span>
-</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="mi">16</span><span class="p">):</span>
-</span></span><span class="line"><span class="cl">        <span class="c1"># 从列开始取</span>
-</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="mi">16</span><span class="p">):</span>
-</span></span><span class="line"><span class="cl">            <span class="c1"># 统计每个区块的像素</span>
-</span></span><span class="line"><span class="cl">            <span class="n">dic</span> <span class="o">=</span> <span class="p">{}</span>
-</span></span><span class="line"><span class="cl">            <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">i</span><span class="o">+</span><span class="mi">16</span><span class="p">):</span>
-</span></span><span class="line"><span class="cl">                <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">j</span><span class="p">,</span> <span class="n">j</span><span class="o">+</span><span class="mi">16</span><span class="p">):</span>
-</span></span><span class="line"><span class="cl">                    <span class="n">r</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">pixel</span><span class="p">[</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">]</span>
-</span></span><span class="line"><span class="cl">                    <span class="k">if</span> <span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span> <span class="ow">in</span> <span class="n">dic</span><span class="p">:</span>
-</span></span><span class="line"><span class="cl">                        <span class="n">dic</span><span class="p">[(</span><span class="n">r</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">b</span><span class="p">)]</span> <span class="o">+=</span> <span class="mi">1</span>
-</span></span><span class="line"><span class="cl">                    <span class="k">else</span><span class="p">:</span>
-</span></span><span class="line"><span class="cl">                        <span class="n">dic</span><span class="p">[(</span><span class="n">r</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">b</span><span class="p">)]</span> <span class="o">=</span> <span class="mi">1</span>
-</span></span><span class="line"><span class="cl">            <span class="c1"># sorted_data = sorted(dic.items(), key=lambda x: x[1], reverse=True)</span>
-</span></span><span class="line"><span class="cl">            <span class="c1"># print(sorted_data)</span>
-</span></span><span class="line"><span class="cl">            <span class="c1"># return 0</span>
-</span></span><span class="line"><span class="cl">            <span class="c1"># 按照字典中值来进行排序</span>
-</span></span><span class="line"><span class="cl">            <span class="n">sorted_data</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">dic</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="n">sorted_data</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="p">(</span><span class="mi">211</span><span class="p">,</span> <span class="mi">211</span><span class="p">,</span> <span class="mi">211</span><span class="p">):</span>
-</span></span><span class="line"><span class="cl">                <span class="n">target_pixel</span> <span class="o">=</span> <span class="n">sorted_data</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
-</span></span><span class="line"><span class="cl">            <span class="k">else</span><span class="p">:</span>
-</span></span><span class="line"><span class="cl">                <span class="n">target_pixel</span> <span class="o">=</span> <span class="n">sorted_data</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
-</span></span><span class="line"><span class="cl">            <span class="n">target_data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">target_pixel</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">target_data</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">fix_image</span><span class="p">(</span><span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="n">target_data</span><span class="p">):</span>
-</span></span><span class="line"><span class="cl">    <span class="c1"># 创建一个新的图像对象</span>
-</span></span><span class="line"><span class="cl">    <span class="n">img1</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&#34;RGB&#34;</span><span class="p">,</span> <span class="p">(</span><span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">))</span>
-</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">width</span><span class="p">):</span>
-</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">height</span><span class="p">):</span>
-</span></span><span class="line"><span class="cl">            <span class="n">index</span> <span class="o">=</span> <span class="n">i</span> <span class="o">*</span> <span class="n">height</span> <span class="o">+</span> <span class="n">j</span>
-</span></span><span class="line"><span class="cl">            <span class="n">target_pixel</span> <span class="o">=</span> <span class="n">target_data</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
-</span></span><span class="line"><span class="cl">            <span class="n">img1</span><span class="o">.</span><span class="n">putpixel</span><span class="p">((</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">),</span> <span class="n">target_pixel</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="n">img1</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl">    <span class="n">img1</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">&#34;fixed.png&#34;</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&#34;__main__&#34;</span><span class="p">:</span>
-</span></span><span class="line"><span class="cl">    <span class="n">target_data</span> <span class="o">=</span> <span class="n">get_pixel</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl">    <span class="n">img</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;Steins_Gate.png&#39;</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">    <span class="n">width</span><span class="p">,</span> <span class="n">height</span> <span class="o">=</span> <span class="n">img</span><span class="o">.</span><span class="n">size</span>
-</span></span><span class="line"><span class="cl">    <span class="n">width</span> <span class="o">=</span> <span class="n">width</span> <span class="o">//</span> <span class="mi">16</span>
-</span></span><span class="line"><span class="cl">    <span class="n">height</span> <span class="o">=</span> <span class="n">height</span> <span class="o">//</span> <span class="mi">16</span>
-</span></span><span class="line"><span class="cl">    <span class="n">fix_image</span><span class="p">(</span><span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="n">target_data</span><span class="p">)</span></span></span></code></pre></td></tr></table>
-</div>
-</div><h4 id="解法二" class="heading-element">
-  <a href="#%e8%a7%a3%e6%b3%95%e4%ba%8c" class="heading-mark"></a>解法二：</h4><div class="highlight" id="id-5"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span><span class="lnt">24
-</span><span class="lnt">25
-</span><span class="lnt">26
-</span><span class="lnt">27
-</span><span class="lnt">28
-</span><span class="lnt">29
-</span><span class="lnt">30
-</span><span class="lnt">31
-</span><span class="lnt">32
-</span><span class="lnt">33
-</span><span class="lnt">34
-</span><span class="lnt">35
-</span><span class="lnt">36
-</span><span class="lnt">37
-</span><span class="lnt">38
-</span><span class="lnt">39
-</span><span class="lnt">40
-</span><span class="lnt">41
-</span><span class="lnt">42
-</span><span class="lnt">43
-</span><span class="lnt">44
+</span><span class="lnt">54
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
 </span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">libnum</span>
-</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">base64</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">get_data</span><span class="p">():</span>
-</span></span><span class="line"><span class="cl">    <span class="n">res</span> <span class="o">=</span> <span class="p">[]</span>
-</span></span><span class="line"><span class="cl">    <span class="n">base64_data</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
-</span></span><span class="line"><span class="cl">    <span class="n">img</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;Steins_Gate.png&#39;</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">    <span class="n">f</span><span class="o">=</span><span class="nb">open</span><span class="p">(</span><span class="s1">&#39;lsb_low.txt&#39;</span><span class="p">,</span><span class="s1">&#39;wb&#39;</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">    <span class="n">width</span><span class="p">,</span><span class="n">height</span><span class="o">=</span><span class="n">img</span><span class="o">.</span><span class="n">size</span>
-</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="n">height</span><span class="p">,</span><span class="mi">16</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">fix_img</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="n">img</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&#34;Steins_Gate.png&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">width</span><span class="p">,</span><span class="n">height</span> <span class="o">=</span> <span class="n">img</span><span class="o">.</span><span class="n">size</span> <span class="c1"># 10752 6048</span>
+</span></span><span class="line"><span class="cl">    <span class="n">source_data</span> <span class="o">=</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">height</span><span class="p">,</span><span class="mi">16</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">width</span><span class="p">,</span><span class="mi">16</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">            <span class="n">pixel_dict</span> <span class="o">=</span> <span class="p">{}</span>
+</span></span><span class="line"><span class="cl">            <span class="c1"># 获取每个16x16区块中出现频率最高的像素</span>
+</span></span><span class="line"><span class="cl">            <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="n">y</span><span class="o">+</span><span class="mi">16</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">                <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">x</span><span class="o">+</span><span class="mi">16</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">pixel</span> <span class="o">=</span> <span class="n">img</span><span class="o">.</span><span class="n">getpixel</span><span class="p">((</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">                    <span class="k">if</span> <span class="n">pixel</span> <span class="o">!=</span> <span class="p">(</span><span class="mi">211</span><span class="p">,</span> <span class="mi">211</span><span class="p">,</span> <span class="mi">211</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">                        <span class="k">if</span> <span class="n">pixel</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">pixel_dict</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                            <span class="n">pixel_dict</span><span class="p">[</span><span class="n">pixel</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">                        <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                            <span class="n">pixel_dict</span><span class="p">[</span><span class="n">pixel</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">                            
+</span></span><span class="line"><span class="cl">            <span class="n">sorted_pixel</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">pixel_dict</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span><span class="n">key</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">item</span><span class="p">:</span><span class="n">item</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="n">most_pixel</span> <span class="o">=</span> <span class="n">sorted_pixel</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">            <span class="n">source_data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">most_pixel</span><span class="p">)</span> 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">new_img</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&#34;RGB&#34;</span><span class="p">,(</span><span class="n">width</span><span class="o">//</span><span class="mi">16</span><span class="p">,</span><span class="n">height</span><span class="o">//</span><span class="mi">16</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="n">new_img</span><span class="o">.</span><span class="n">putdata</span><span class="p">(</span><span class="n">source_data</span><span class="p">)</span> <span class="c1"># [(255, 0, 0), (0, 255, 0), (0, 0, 255)]</span>
+</span></span><span class="line"><span class="cl">    <span class="n">new_img</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># new_img.save(&#34;new.png&#34;)</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">extract_lsb</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="n">res</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">base64_data</span> <span class="o">=</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl">    <span class="n">img</span> <span class="o">=</span>  <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&#34;new.png&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">width</span><span class="p">,</span><span class="n">height</span> <span class="o">=</span> <span class="n">img</span><span class="o">.</span><span class="n">size</span> <span class="c1"># 672 378</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">height</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">lsb_data</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span> <span class="c1"># 一行一行地提取LSB数据</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">width</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">            <span class="n">pixel</span> <span class="o">=</span> <span class="n">img</span><span class="o">.</span><span class="n">getpixel</span><span class="p">((</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">            <span class="n">lsb_data</span> <span class="o">+=</span> <span class="nb">str</span><span class="p">(</span><span class="n">pixel</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&amp;</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">pixel</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&amp;</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">pixel</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">&amp;</span> <span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">bytes_data</span> <span class="o">=</span> <span class="n">libnum</span><span class="o">.</span><span class="n">b2s</span><span class="p">(</span><span class="n">lsb_data</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># print(bytes_data)</span>
 </span></span><span class="line"><span class="cl">        <span class="k">try</span><span class="p">:</span>
-</span></span><span class="line"><span class="cl">            <span class="n">bins</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span>
-</span></span><span class="line"><span class="cl">            <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="n">width</span><span class="p">,</span><span class="mi">16</span><span class="p">):</span>
-</span></span><span class="line"><span class="cl">                <span class="n">tmp</span> <span class="o">=</span> <span class="n">img</span><span class="o">.</span><span class="n">getpixel</span><span class="p">((</span><span class="n">j</span><span class="p">,</span><span class="n">i</span><span class="p">))</span>
-</span></span><span class="line"><span class="cl">                <span class="c1"># 将每个通道的最低位（即最不重要的位）提取出来，并将其转换为字符串</span>
-</span></span><span class="line"><span class="cl">                <span class="n">bins</span> <span class="o">+=</span> <span class="nb">str</span><span class="p">(</span><span class="n">tmp</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&amp;</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">tmp</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&amp;</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">tmp</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">&amp;</span> <span class="mi">1</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">            <span class="c1"># 将二进制字符串bins转换为字节数据data</span>
-</span></span><span class="line"><span class="cl">            <span class="n">data</span> <span class="o">=</span> <span class="n">libnum</span><span class="o">.</span><span class="n">b2s</span><span class="p">(</span><span class="n">bins</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">            <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[:</span><span class="n">data</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="sa">b</span><span class="s2">&#34;==&#34;</span><span class="p">)</span><span class="o">+</span><span class="mi">2</span><span class="p">]</span>
-</span></span><span class="line"><span class="cl">            <span class="c1"># print(data)</span>
-</span></span><span class="line"><span class="cl">            <span class="n">res</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">decode</span><span class="p">())</span>
-</span></span><span class="line"><span class="cl">            <span class="c1"># print(res)</span>
+</span></span><span class="line"><span class="cl">            <span class="n">base64_data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">bytes_data</span><span class="p">[:</span><span class="n">bytes_data</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="sa">b</span><span class="s2">&#34;==&#34;</span><span class="p">)</span><span class="o">+</span><span class="mi">2</span><span class="p">])</span>
 </span></span><span class="line"><span class="cl">        <span class="k">except</span><span class="p">:</span>
-</span></span><span class="line"><span class="cl">            <span class="k">break</span>
-</span></span><span class="line"><span class="cl">    <span class="n">base64_data</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">item</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">res</span><span class="p">])</span>
-</span></span><span class="line"><span class="cl">    <span class="c1"># print(base64_data) # 这里的base64_data可以转为一张jpg图片</span>
-</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">res</span>
+</span></span><span class="line"><span class="cl">            <span class="k">pass</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">base64_data</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">res</span> <span class="o">+=</span> <span class="n">item</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&#34;base64.txt&#34;</span><span class="p">,</span><span class="s2">&#34;w&#34;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">decode_base64_steg</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
-</span></span><span class="line"><span class="cl">    <span class="n">bin_str</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
-</span></span><span class="line"><span class="cl">    <span class="n">b64chars</span> <span class="o">=</span> <span class="s1">&#39;ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/&#39;</span>
-</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">stegb64</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
-</span></span><span class="line"><span class="cl">        <span class="n">rowb64</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">base64</span><span class="o">.</span><span class="n">b64encode</span><span class="p">(</span><span class="n">base64</span><span class="o">.</span><span class="n">b64decode</span><span class="p">(</span><span class="n">stegb64</span><span class="p">)),</span> <span class="s2">&#34;utf-8&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s2">&#34;</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">        <span class="n">offset</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">b64chars</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">stegb64</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;=&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="o">-</span> <span class="n">b64chars</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">rowb64</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;=&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]))</span>
-</span></span><span class="line"><span class="cl">        <span class="n">equalnum</span> <span class="o">=</span> <span class="n">stegb64</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s1">&#39;=&#39;</span><span class="p">)</span>  <span class="c1"># no equalnum no offset</span>
-</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">equalnum</span><span class="p">:</span>
-</span></span><span class="line"><span class="cl">            <span class="n">bin_str</span> <span class="o">+=</span> <span class="nb">bin</span><span class="p">(</span><span class="n">offset</span><span class="p">)[</span><span class="mi">2</span><span class="p">:]</span><span class="o">.</span><span class="n">zfill</span><span class="p">(</span><span class="n">equalnum</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="nb">chr</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">bin_str</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">i</span> <span class="o">+</span> <span class="mi">8</span><span class="p">],</span> <span class="mi">2</span><span class="p">))</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">bin_str</span><span class="p">),</span> <span class="mi">8</span><span class="p">)]))</span>  <span class="c1"># 8位一组</span>
-</span></span><span class="line"><span class="cl">        
 </span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&#34;__main__&#34;</span><span class="p">:</span>
-</span></span><span class="line"><span class="cl">    <span class="n">data</span> <span class="o">=</span> <span class="n">get_data</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl">    <span class="n">res</span> <span class="o">=</span> <span class="n">decode_base64_steg</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">    <span class="c1"># DuDuLu~T0_Ch3@t_THe_w0r1d</span></span></span></code></pre></td></tr></table>
-</div>
-</div><div class="highlight" id="id-6"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">$ outguess -k <span class="s1">&#39;DuDuLu~T0_Ch3@t_THe_w0r1d&#39;</span> -r flag.jpg flag.txt
-</span></span><span class="line"><span class="cl">Reading flag.jpg....
-</span></span><span class="line"><span class="cl">Extracting usable bits:   <span class="m">67087</span> bits
-</span></span><span class="line"><span class="cl">Steg retrieve: seed: 65, len: <span class="m">40</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">$ cat flag.txt
-</span></span><span class="line"><span class="cl">DASCTF<span class="o">{</span>699948e3ae1195f819b23b759684ac8e<span class="o">}</span></span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl">    <span class="c1"># fix_img()</span>
+</span></span><span class="line"><span class="cl">    <span class="n">extract_lsb</span><span class="p">()</span></span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="决赛" class="heading-element">
-  <a href="#%e5%86%b3%e8%b5%9b" class="heading-mark"></a>决赛</h2><h3 id="蝎子" class="heading-element">
-  <a href="#%e8%9d%8e%e5%ad%90" class="heading-mark"></a>蝎子</h3><p>Byxs20出的题，给了一个冰蝎webshell流量，最后一步套了一个光栅</p>
+  <a href="#%e5%86%b3%e8%b5%9b" class="heading-mark"></a>决赛</h2><h3 id="题目名称-蝎子" class="heading-element">
+  <a href="#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-%e8%9d%8e%e5%ad%90" class="heading-mark"></a>题目名称 蝎子</h3><p>Byxs20出的题，给了一个冰蝎webshell流量，最后一步套了一个光栅</p>
 <p>最后是卡在了光栅上，没有解出来，这里就贴一下解光栅的脚本吧</p>
 <div class="highlight" id="id-7"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
