@@ -42,6 +42,25 @@ if __name__ == &#34;__main__&#34;:
 #flag:b&#39;DASCTF{W0w_Y0u_Succ3s5ful1y_Cr4ck_Th1s_C1ph3r}\x00\x00&#39;
 ```
 
+### 题目名称 Ez_misc
+
+附件给了一个未知后缀的`yuanshen`文件，用010打开观察文件头，发现是单字节翻转后的JPG图片
+
+![](imgs/image-20241114154449966.png)
+
+将数据翻转回来，改后缀为jpg，即可得到下图
+
+![](imgs/image-20241114154628215.png)
+
+用`stegseek`爆破一下，发现藏了一个`flag.txt`
+
+![](imgs/image-20241114154935644.png)
+
+仔细观察内容，感觉是摩斯电码，因此我们CyberChef解码一下即可得到flag：`flag{df4f635ab342a5b3bb855a464d7bb4ec}`
+
+![](imgs/image-20241114155045416.png)
+
+
 ### 题目名称 Steins_Gate
 题目附件给了下面这张图片，图片有点大，有50M
 
@@ -191,7 +210,50 @@ if __name__ == &#34;__main__&#34;:
 ```
 
 ## 决赛
-### 题目名称 蝎子
+
+### 题目名称 Xcode
+
+题目附件给了一个`flag.txt`，内容如下
+```
+hAXBCEaBZMLZNJbRAQnNlOZdARqFAB1QpKa7IF4F5R1ElBKErIKpFQZNcNEc&#43;
+```
+
+先使用`随波逐流工具`进行`XXencode`解码
+
+![](imgs/image-20241114155637007.png)
+
+然后`base58`解码即可得到flag：`DASCTF{The_new_encode_master!!}`
+
+![](imgs/image-20241114155831899.png)
+
+### 题目名称 Ez_Signin(三血)
+
+题目附件给了一个加密的压缩包，经过尝试，发现是纯数字的弱密码：`11452`
+
+![](imgs/image-20241114160014859.png)
+
+解压后得到一串`base64编码`后的数据，直接用CyberChef解码可以得到类似坐标的数据
+
+![](imgs/image-20241114160259563.png)
+
+手动处理一下上面的数据，注意要把每个`LeftUp 1 到 LeftDown 1`之间的数据都删除
+
+然后只保留坐标数值，写一个脚本画图即可
+
+```python
+import matplotlib.pyplot as plt
+import numpy as np
+
+x, y = np.loadtxt(&#39;flag.txt&#39;, delimiter=&#39; &#39;, unpack=True)
+plt.plot(x, y, &#39;.&#39;)
+plt.show()
+```
+
+![](imgs/image-20241114183255012.png)
+
+`flag{8f16a9717824aa456eb9a98653eb3993}`
+
+### 题目名称 NewGrating
 
 Byxs20出的题，给了一个冰蝎webshell流量，最后一步套了一个光栅
 

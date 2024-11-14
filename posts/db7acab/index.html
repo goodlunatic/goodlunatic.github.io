@@ -14,7 +14,7 @@
 这里对赛中的部分Misc题进行一个简单的复盘">
   <meta itemprop="datePublished" content="2023-11-07T14:11:04+08:00">
   <meta itemprop="dateModified" content="2023-11-07T14:11:04+08:00">
-  <meta itemprop="wordCount" content="562">
+  <meta itemprop="wordCount" content="608">
   <meta itemprop="keywords" content="CTF,Misc,Writeup"><meta property="og:url" content="http://localhost:1313/posts/db7acab/">
   <meta property="og:site_name" content="⚡Lunatic BLOG⚡">
   <meta property="og:title" content="2023 浙江省大学生网络与信息安全竞赛 Misc Writeup">
@@ -45,7 +45,7 @@
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": "http:\/\/localhost:1313\/posts\/db7acab\/"
-    },"genre": "posts","keywords": "CTF, Misc, Writeup","wordcount":  562 ,
+    },"genre": "posts","keywords": "CTF, Misc, Writeup","wordcount":  608 ,
     "url": "http:\/\/localhost:1313\/posts\/db7acab\/","datePublished": "2023-11-07T14:11:04+08:00","dateModified": "2023-11-07T14:11:04+08:00","publisher": {
       "@type": "Organization",
       "name": ""},"author": {
@@ -149,7 +149,7 @@
 <article class="page single">
   <div class="header"><h1 class="single-title animate__animated animate__flipInX"><span>2023 浙江省大学生网络与信息安全竞赛 Misc Writeup</span>
     </h1></div><div class="post-meta">
-    <div class="post-meta-line"><span class="post-author"><a href="https://goodlunatic.github.io" title="Author"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><img loading="lazy" src="https://www.nssctf.cn/files/2024/4/28/7f130a1387.png" alt="Lunatic" data-title="Lunatic" class="avatar" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>&nbsp;Lunatic</a></span><span class="post-included-in">&nbsp;included in <a href="/categories/writeup/" class="post-category" title="Category - Writeup"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> Writeup</a></span></div><div class="post-meta-line"><span title="published on &lt;no value&gt;"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden="true"></i><time datetime="2023-11-07">2023-11-07</time></span>&nbsp;<span title=""><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>About 600 words</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>3 minutes</span>&nbsp;</div>
+    <div class="post-meta-line"><span class="post-author"><a href="https://goodlunatic.github.io" title="Author"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><img loading="lazy" src="https://www.nssctf.cn/files/2024/4/28/7f130a1387.png" alt="Lunatic" data-title="Lunatic" class="avatar" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>&nbsp;Lunatic</a></span><span class="post-included-in">&nbsp;included in <a href="/categories/writeup/" class="post-category" title="Category - Writeup"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> Writeup</a></span></div><div class="post-meta-line"><span title="published on &lt;no value&gt;"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden="true"></i><time datetime="2023-11-07">2023-11-07</time></span>&nbsp;<span title=""><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>About 700 words</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>3 minutes</span>&nbsp;</div>
   </div><div class="details toc" id="toc-static"
     data-kept="false">
     <div class="details-summary toc-title">
@@ -161,12 +161,15 @@
     <li><a href="#初赛">初赛</a>
       <ul>
         <li><a href="#题目名称-easy_cipher">题目名称 Easy_Cipher</a></li>
+        <li><a href="#题目名称-ez_misc">题目名称 Ez_misc</a></li>
         <li><a href="#题目名称-steins_gate">题目名称 Steins_Gate</a></li>
       </ul>
     </li>
     <li><a href="#决赛">决赛</a>
       <ul>
-        <li><a href="#题目名称-蝎子">题目名称 蝎子</a></li>
+        <li><a href="#题目名称-xcode">题目名称 Xcode</a></li>
+        <li><a href="#题目名称-ez_signin三血">题目名称 Ez_Signin(三血)</a></li>
+        <li><a href="#题目名称-newgrating">题目名称 NewGrating</a></li>
       </ul>
     </li>
   </ul>
@@ -241,7 +244,16 @@
 </span></span><span class="line"><span class="cl"><span class="c1">#key:515764</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#flag:b&#39;DASCTF{W0w_Y0u_Succ3s5ful1y_Cr4ck_Th1s_C1ph3r}\x00\x00&#39;</span></span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="题目名称-steins_gate" class="heading-element">
+</div><h3 id="题目名称-ez_misc" class="heading-element">
+  <a href="#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-ez_misc" class="heading-mark"></a>题目名称 Ez_misc</h3><p>附件给了一个未知后缀的<code>yuanshen</code>文件，用010打开观察文件头，发现是单字节翻转后的JPG图片</p>
+<p><img loading="lazy" src="/posts/db7acab/imgs/image-20241114154449966.png" alt="/posts/db7acab/imgs/image-20241114154449966.png" srcset="/posts/db7acab/imgs/image-20241114154449966.png?size=small, /posts/db7acab/imgs/image-20241114154449966.png?size=medium 1.5x, /posts/db7acab/imgs/image-20241114154449966.png?size=large 2x" data-title="/posts/db7acab/imgs/image-20241114154449966.png" style="--width: 1216px;--aspect-ratio: 1216 / 850;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>将数据翻转回来，改后缀为jpg，即可得到下图</p>
+<p><img loading="lazy" src="/posts/db7acab/imgs/image-20241114154628215.png" alt="/posts/db7acab/imgs/image-20241114154628215.png" srcset="/posts/db7acab/imgs/image-20241114154628215.png?size=small, /posts/db7acab/imgs/image-20241114154628215.png?size=medium 1.5x, /posts/db7acab/imgs/image-20241114154628215.png?size=large 2x" data-title="/posts/db7acab/imgs/image-20241114154628215.png" style="--width: 1283px;--aspect-ratio: 1283 / 716;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>用<code>stegseek</code>爆破一下，发现藏了一个<code>flag.txt</code></p>
+<p><img loading="lazy" src="/posts/db7acab/imgs/image-20241114154935644.png" alt="/posts/db7acab/imgs/image-20241114154935644.png" srcset="/posts/db7acab/imgs/image-20241114154935644.png?size=small, /posts/db7acab/imgs/image-20241114154935644.png?size=medium 1.5x, /posts/db7acab/imgs/image-20241114154935644.png?size=large 2x" data-title="/posts/db7acab/imgs/image-20241114154935644.png" style="--width: 1115px;--aspect-ratio: 1115 / 628;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>仔细观察内容，感觉是摩斯电码，因此我们CyberChef解码一下即可得到flag：<code>flag{df4f635ab342a5b3bb855a464d7bb4ec}</code></p>
+<p><img loading="lazy" src="/posts/db7acab/imgs/image-20241114155045416.png" alt="/posts/db7acab/imgs/image-20241114155045416.png" srcset="/posts/db7acab/imgs/image-20241114155045416.png?size=small, /posts/db7acab/imgs/image-20241114155045416.png?size=medium 1.5x, /posts/db7acab/imgs/image-20241114155045416.png?size=large 2x" data-title="/posts/db7acab/imgs/image-20241114155045416.png" style="--width: 1916px;--aspect-ratio: 1916 / 985;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<h3 id="题目名称-steins_gate" class="heading-element">
   <a href="#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-steins_gate" class="heading-mark"></a>题目名称 Steins_Gate</h3><p>题目附件给了下面这张图片，图片有点大，有50M</p>
 <p><img loading="lazy" src="/posts/db7acab/imgs/image-20241114122503053.png" alt="/posts/db7acab/imgs/image-20241114122503053.png" srcset="/posts/db7acab/imgs/image-20241114122503053.png?size=small, /posts/db7acab/imgs/image-20241114122503053.png?size=medium 1.5x, /posts/db7acab/imgs/image-20241114122503053.png?size=large 2x" data-title="/posts/db7acab/imgs/image-20241114122503053.png" style="--width: 1426px;--aspect-ratio: 1426 / 746;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>在PS中打开，发现图片由很多<code>嘟噜嘟噜</code>组成，然后发现一个汉字占用了<code>16x16</code>的像素区块，图像的宽高也刚好是16的倍数<code>(10752x6048)</code></p>
@@ -476,10 +488,49 @@
 </span></span><span class="line"><span class="cl">    <span class="n">extract_lsb</span><span class="p">()</span></span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="决赛" class="heading-element">
-  <a href="#%e5%86%b3%e8%b5%9b" class="heading-mark"></a>决赛</h2><h3 id="题目名称-蝎子" class="heading-element">
-  <a href="#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-%e8%9d%8e%e5%ad%90" class="heading-mark"></a>题目名称 蝎子</h3><p>Byxs20出的题，给了一个冰蝎webshell流量，最后一步套了一个光栅</p>
-<p>最后是卡在了光栅上，没有解出来，这里就贴一下解光栅的脚本吧</p>
+  <a href="#%e5%86%b3%e8%b5%9b" class="heading-mark"></a>决赛</h2><h3 id="题目名称-xcode" class="heading-element">
+  <a href="#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-xcode" class="heading-mark"></a>题目名称 Xcode</h3><p>题目附件给了一个<code>flag.txt</code>，内容如下</p>
 <div class="highlight" id="id-7"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">hAXBCEaBZMLZNJbRAQnNlOZdARqFAB1QpKa7IF4F5R1ElBKErIKpFQZNcNEc+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>先使用<code>随波逐流工具</code>进行<code>XXencode</code>解码</p>
+<p><img loading="lazy" src="/posts/db7acab/imgs/image-20241114155637007.png" alt="/posts/db7acab/imgs/image-20241114155637007.png" srcset="/posts/db7acab/imgs/image-20241114155637007.png?size=small, /posts/db7acab/imgs/image-20241114155637007.png?size=medium 1.5x, /posts/db7acab/imgs/image-20241114155637007.png?size=large 2x" data-title="/posts/db7acab/imgs/image-20241114155637007.png" style="--width: 812px;--aspect-ratio: 812 / 479;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>然后<code>base58</code>解码即可得到flag：<code>DASCTF{The_new_encode_master!!}</code></p>
+<p><img loading="lazy" src="/posts/db7acab/imgs/image-20241114155831899.png" alt="/posts/db7acab/imgs/image-20241114155831899.png" srcset="/posts/db7acab/imgs/image-20241114155831899.png?size=small, /posts/db7acab/imgs/image-20241114155831899.png?size=medium 1.5x, /posts/db7acab/imgs/image-20241114155831899.png?size=large 2x" data-title="/posts/db7acab/imgs/image-20241114155831899.png" style="--width: 812px;--aspect-ratio: 812 / 565;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<h3 id="题目名称-ez_signin三血" class="heading-element">
+  <a href="#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-ez_signin%e4%b8%89%e8%a1%80" class="heading-mark"></a>题目名称 Ez_Signin(三血)</h3><p>题目附件给了一个加密的压缩包，经过尝试，发现是纯数字的弱密码：<code>11452</code></p>
+<p><img loading="lazy" src="/posts/db7acab/imgs/image-20241114160014859.png" alt="/posts/db7acab/imgs/image-20241114160014859.png" srcset="/posts/db7acab/imgs/image-20241114160014859.png?size=small, /posts/db7acab/imgs/image-20241114160014859.png?size=medium 1.5x, /posts/db7acab/imgs/image-20241114160014859.png?size=large 2x" data-title="/posts/db7acab/imgs/image-20241114160014859.png" style="--width: 466px;--aspect-ratio: 466 / 457;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>解压后得到一串<code>base64编码</code>后的数据，直接用CyberChef解码可以得到类似坐标的数据</p>
+<p><img loading="lazy" src="/posts/db7acab/imgs/image-20241114160259563.png" alt="/posts/db7acab/imgs/image-20241114160259563.png" srcset="/posts/db7acab/imgs/image-20241114160259563.png?size=small, /posts/db7acab/imgs/image-20241114160259563.png?size=medium 1.5x, /posts/db7acab/imgs/image-20241114160259563.png?size=large 2x" data-title="/posts/db7acab/imgs/image-20241114160259563.png" style="--width: 1464px;--aspect-ratio: 1464 / 730;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>手动处理一下上面的数据，注意要把每个<code>LeftUp 1 到 LeftDown 1</code>之间的数据都删除</p>
+<p>然后只保留坐标数值，写一个脚本画图即可</p>
+<div class="highlight" id="id-8"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="s1">&#39;flag.txt&#39;</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="n">unpack</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><img loading="lazy" src="/posts/db7acab/imgs/image-20241114183255012.png" alt="/posts/db7acab/imgs/image-20241114183255012.png" srcset="/posts/db7acab/imgs/image-20241114183255012.png?size=small, /posts/db7acab/imgs/image-20241114183255012.png?size=medium 1.5x, /posts/db7acab/imgs/image-20241114183255012.png?size=large 2x" data-title="/posts/db7acab/imgs/image-20241114183255012.png" style="--width: 1920px;--aspect-ratio: 1920 / 975;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><code>flag{8f16a9717824aa456eb9a98653eb3993}</code></p>
+<h3 id="题目名称-newgrating" class="heading-element">
+  <a href="#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-newgrating" class="heading-mark"></a>题目名称 NewGrating</h3><p>Byxs20出的题，给了一个冰蝎webshell流量，最后一步套了一个光栅</p>
+<p>最后是卡在了光栅上，没有解出来，这里就贴一下解光栅的脚本吧</p>
+<div class="highlight" id="id-9"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
