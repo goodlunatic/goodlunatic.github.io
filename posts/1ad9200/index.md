@@ -359,6 +359,10 @@ CyberChef解密AES-ECB时需要将IV设置为`\x00\x00\x00\x00\x00\x00\x00\x00\x
 
 #### AES-CBC(需要填写IV)
 
+&gt; Tips: CBC模式下key的长度必须是16bytes的整数倍，但是IV不一定
+
+![](imgs/image-20241116212331838.png)
+
 密钥不足16字节时需要padding补齐16字节
 
 可以使用能自动补齐的在线网站解密 https://www.sojson.com/encrypt_aes.html
@@ -747,7 +751,12 @@ M4a，文件头：00000018667479704D3441
 
 ## MIsc——图片题思路：
 
-Tips：各种隐写可以先拉入一键梭哈网站解析一下:https://aperisolve.fr/
+&gt; Tips：
+&gt; 
+&gt; 1.各种隐写可以先拉入一键梭哈网站解析一下:https://aperisolve.fr/
+&gt; 
+&gt; 2.各种乱七八糟的隐写可以先看看这个UP主的视频：https://space.bilibili.com/39665558
+&gt; 
 
 ### 通用思路
 
@@ -977,6 +986,36 @@ for y in range(heigth1):
 ![](imgs/image-20241106154358962.png)
 
 #### 20、图片多个通道存在LSB隐写，StegSolve中把背景颜色相同的勾选上
+
+#### 21、把小说藏进图片
+
+参考链接：https://www.bilibili.com/video/BV1Ai4y1V7rg/?spm_id_from=333.999.0.0&amp;vd_source=31399c09aa0c93655468bde7b13fcc03
+
+```python
+# 脚本一
+from PIL import Image
+
+img = Image.open(&#34;1.bmp&#34;)
+width,height = img.size # 1326 1326
+
+res = &#34;&#34;
+for y in range(height):
+    for x in range(width):
+        r,g,b = img.getpixel((x,y))
+        data = (r &lt;&lt; 8) &#43; b
+        res &#43;= chr(data)
+    
+with open(&#34;decode.txt&#34;,&#34;w&#34;) as f:
+    f.write(res)
+```
+
+```python
+# 脚本二
+from PIL import Image
+from numpy import array
+res = bytes(array(Image.open(&#39;1.bmp&#39;))[:, :, ::2].flatten()).rstrip(b&#39;\0&#39;).decode(&#39;utf-16-be&#39;)
+print(res)
+```
 
 ### PNG思路
 
