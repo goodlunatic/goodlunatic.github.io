@@ -1096,6 +1096,77 @@ print(res)
 
 参考链接：https://1cepeak.cn/post/arnold/
 
+```python
+import matplotlib.pyplot as plt
+import cv2
+import numpy as np
+from PIL import Image
+
+img = cv2.imread(&#39;flag.png&#39;)
+
+def arnold_encode(image, shuffle_times, a, b):
+    &#34;&#34;&#34; Arnold shuffle for rgb image
+    Args:
+        image: input original rgb image
+        shuffle_times: how many times to shuffle
+    Returns:
+        Arnold encode image
+    &#34;&#34;&#34;
+    # 1:创建新图像
+    arnold_image = np.zeros(shape=image.shape)
+    
+    # 2：计算N
+    h, w = image.shape[0], image.shape[1]
+    N = h   # 或N=w
+    
+    # 3：遍历像素坐标变换
+    for time in range(shuffle_times):
+        for ori_x in range(h):
+            for ori_y in range(w):
+                # 按照公式坐标变换
+                new_x = (1*ori_x &#43; b*ori_y)% N
+                new_y = (a*ori_x &#43; (a*b&#43;1)*ori_y) % N
+
+                # 像素赋值
+                # print(image[ori_x, ori_y, :])
+                # print(arnold_image[new_x, new_y, :])
+                arnold_image[new_x, new_y, :] = image[ori_x, ori_y, :]
+        
+        # 更新坐标
+        image = np.copy(arnold_image)
+
+    cv2.imwrite(&#39;flag_arnold_encode.png&#39;, arnold_image, [int(cv2.IMWRITE_PNG_COMPRESSION), 0])
+    return arnold_image
+
+def arnold_decode(image, shuffle_times, a, b):
+    &#34;&#34;&#34; decode for rgb image that encoded by Arnold
+    Args:
+        image: rgb image encoded by Arnold
+        shuffle_times: how many times to shuffle
+    Returns:
+        decode image
+    &#34;&#34;&#34;
+    # 1:创建新图像
+    decode_image = np.zeros(shape=image.shape)
+    # 2：计算N
+    h, w = image.shape[0], image.shape[1]
+    N = h  # 或N=w
+
+    # 3：遍历像素坐标变换
+    for time in range(shuffle_times):
+        for ori_x in range(h):
+            for ori_y in range(w):
+                # 按照公式坐标变换
+                new_x = ((a * b &#43; 1) * ori_x &#43; (-b) * ori_y) % N
+                new_y = ((-a) * ori_x &#43; ori_y) % N
+                decode_image[new_x, new_y, :] = image[ori_x, ori_y, :]
+
+    cv2.imwrite(&#39;flag.png&#39;, decode_image, [int(cv2.IMWRITE_PNG_COMPRESSION), 0])
+    return decode_image
+
+# arnold_encode(img, 1, 2, 3)
+arnold_decode(img, 1, 29294, 7302244)
+```
 
 ### PNG思路
 
