@@ -12,7 +12,7 @@
   <meta itemprop="description" content="This is a simple Guide for CTF in Misc Area.">
   <meta itemprop="datePublished" content="2024-11-20T16:30:17+08:00">
   <meta itemprop="dateModified" content="2024-11-20T16:30:17+08:00">
-  <meta itemprop="wordCount" content="5555">
+  <meta itemprop="wordCount" content="5562">
   <meta itemprop="keywords" content="Misc,CTF"><meta property="og:url" content="http://localhost:1313/posts/1ad9200/">
   <meta property="og:site_name" content="⚡Lunatic BLOG⚡">
   <meta property="og:title" content="CTF-Misc Guide">
@@ -40,7 +40,7 @@
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": "http:\/\/localhost:1313\/posts\/1ad9200\/"
-    },"genre": "posts","keywords": "Misc, CTF","wordcount":  5555 ,
+    },"genre": "posts","keywords": "Misc, CTF","wordcount":  5562 ,
     "url": "http:\/\/localhost:1313\/posts\/1ad9200\/","datePublished": "2024-11-20T16:30:17+08:00","dateModified": "2024-11-20T16:30:17+08:00","publisher": {
       "@type": "Organization",
       "name": ""},"author": {
@@ -231,18 +231,18 @@
             <li><a href="#7image-conbiner两张图片">7、Image conbiner(两张图片)</a></li>
             <li><a href="#8oursecret隐写">8、OurSecret隐写</a></li>
             <li><a href="#9拼图题">9、拼图题</a></li>
-            <li><a href="#10近邻法缩放图片">10、近邻法缩放图片</a></li>
+            <li><a href="#10提取图中等距像素点近邻法缩放图片">10、提取图中等距像素点/近邻法缩放图片</a></li>
             <li><a href="#11pixeljihad有密码">11、pixeljihad（有密码）</a></li>
             <li><a href="#12隐写文本可能藏在原图片和隐写文件的中间">12、隐写文本可能藏在原图片和隐写文件的中间</a></li>
-            <li><a href="#13提取图片中等距的像素点得到隐写的图片">13、提取图片中等距的像素点得到隐写的图片</a></li>
-            <li><a href="#14silenteye隐写">14、silenteye隐写</a></li>
-            <li><a href="#15图片报错改宽高后图片无变化可以再-foremost-一下">15、图片报错改宽高后图片无变化，可以再 foremost 一下</a></li>
-            <li><a href="#16deegger-embedder隐写">16、DeEgger Embedder隐写</a></li>
-            <li><a href="#17flag可能藏在-exif-中">17、flag可能藏在 exif 中</a></li>
-            <li><a href="#18给了两张图片flag藏在每行不同像素的个数中">18、给了两张图片，flag藏在每行不同像素的个数中</a></li>
-            <li><a href="#19两张图片用stegsolve中的image-conbiner合成为一张bmp">19、两张图片，用StegSolve中的Image Conbiner合成为一张bmp</a></li>
-            <li><a href="#20图片多个通道存在lsb隐写stegsolve中把背景颜色相同的勾选上">20、图片多个通道存在LSB隐写，StegSolve中把背景颜色相同的勾选上</a></li>
-            <li><a href="#21把小说藏进图片">21、把小说藏进图片</a></li>
+            <li><a href="#13silenteye隐写">13、silenteye隐写</a></li>
+            <li><a href="#14图片报错改宽高后图片无变化可以再-foremost-一下">14、图片报错改宽高后图片无变化，可以再 foremost 一下</a></li>
+            <li><a href="#15deegger-embedder隐写">15、DeEgger Embedder隐写</a></li>
+            <li><a href="#16flag可能藏在-exif-中">16、flag可能藏在 exif 中</a></li>
+            <li><a href="#17给了两张图片flag藏在每行不同像素的个数中">17、给了两张图片，flag藏在每行不同像素的个数中</a></li>
+            <li><a href="#18两张图片用stegsolve中的image-conbiner合成为一张bmp">18、两张图片，用StegSolve中的Image Conbiner合成为一张bmp</a></li>
+            <li><a href="#19图片多个通道存在lsb隐写stegsolve中把背景颜色相同的勾选上">19、图片多个通道存在LSB隐写，StegSolve中把背景颜色相同的勾选上</a></li>
+            <li><a href="#20把小说藏进图片">20、把小说藏进图片</a></li>
+            <li><a href="#21arnold猫脸变换">21、Arnold猫脸变换</a></li>
           </ul>
         </li>
         <li><a href="#png思路">PNG思路</a>
@@ -1608,14 +1608,16 @@ flag{RRRRRRE}</p>
 </span></span><span class="line"><span class="cl">--size 每张小图，也就是拼图小块的大小
 </span></span><span class="line"><span class="cl">--verbose 实时显示</span></span></code></pre></td></tr></table>
 </div>
-</div><h4 id="10近邻法缩放图片" class="heading-element">
-  <a href="#10%e8%bf%91%e9%82%bb%e6%b3%95%e7%bc%a9%e6%94%be%e5%9b%be%e7%89%87" class="heading-mark"></a>10、近邻法缩放图片</h4><p>在PS中打开图片，然后在更改图像大小中，将宽高调成指定像素并将重新采样选项选为邻近（硬边缘）</p>
-<h4 id="11pixeljihad有密码" class="heading-element">
-  <a href="#11pixeljihad%e6%9c%89%e5%af%86%e7%a0%81" class="heading-mark"></a>11、pixeljihad（有密码）</h4><p>直接使用在线网站解密即可：<a href="https://sekao.net/pixeljihad/"target="_blank" rel="external nofollow noopener noreferrer">PixelJihad (sekao.net)</a></p>
-<h4 id="12隐写文本可能藏在原图片和隐写文件的中间" class="heading-element">
-  <a href="#12%e9%9a%90%e5%86%99%e6%96%87%e6%9c%ac%e5%8f%af%e8%83%bd%e8%97%8f%e5%9c%a8%e5%8e%9f%e5%9b%be%e7%89%87%e5%92%8c%e9%9a%90%e5%86%99%e6%96%87%e4%bb%b6%e7%9a%84%e4%b8%ad%e9%97%b4" class="heading-mark"></a>12、隐写文本可能藏在原图片和隐写文件的中间</h4><p>直接在010中搜索IEND，然后查看后面有没有额外内容即可</p>
-<h4 id="13提取图片中等距的像素点得到隐写的图片" class="heading-element">
-  <a href="#13%e6%8f%90%e5%8f%96%e5%9b%be%e7%89%87%e4%b8%ad%e7%ad%89%e8%b7%9d%e7%9a%84%e5%83%8f%e7%b4%a0%e7%82%b9%e5%be%97%e5%88%b0%e9%9a%90%e5%86%99%e7%9a%84%e5%9b%be%e7%89%87" class="heading-mark"></a>13、提取图片中等距的像素点得到隐写的图片</h4><p>在windows的终端wt中运行CTFD中的Get_Pixels.py</p>
+</div><h4 id="10提取图中等距像素点近邻法缩放图片" class="heading-element">
+  <a href="#10%e6%8f%90%e5%8f%96%e5%9b%be%e4%b8%ad%e7%ad%89%e8%b7%9d%e5%83%8f%e7%b4%a0%e7%82%b9%e8%bf%91%e9%82%bb%e6%b3%95%e7%bc%a9%e6%94%be%e5%9b%be%e7%89%87" class="heading-mark"></a>10、提取图中等距像素点/近邻法缩放图片</h4><p>参考链接：</p>
+<p><a href="https://www.bilibili.com/video/BV1Lf4y1r7dZ/?spm_id_from=333.999.0.0"target="_blank" rel="external nofollow noopener noreferrer">https://www.bilibili.com/video/BV1Lf4y1r7dZ/?spm_id_from=333.999.0.0</a></p>
+<p><a href="https://github.com/Byxs20"target="_blank" rel="external nofollow noopener noreferrer">https://github.com/Byxs20</a></p>
+<p>例题-2024浙江省赛决赛-天命人</p>
+<p>拿下面这张图片举个栗子</p>
+<p><img loading="lazy" src="imgs/image-20241120171656554.png" alt="imgs/image-20241120171656554.png" srcset="imgs/image-20241120171656554.png?size=small, imgs/image-20241120171656554.png?size=medium 1.5x, imgs/image-20241120171656554.png?size=large 2x" data-title="imgs/image-20241120171656554.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>方法一：直接在PS中将宽高都缩小为原来的十分之一，并选择邻近硬边缘即可直接得到隐藏的图片</p>
+<p><img loading="lazy" src="imgs/image-20241120171835713.png" alt="imgs/image-20241120171835713.png" srcset="imgs/image-20241120171835713.png?size=small, imgs/image-20241120171835713.png?size=medium 1.5x, imgs/image-20241120171835713.png?size=large 2x" data-title="imgs/image-20241120171835713.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>方法二：在windows的终端中运行CTFD中的Get_Pixels.py（注意所有路径中都不要出现中文）</p>
 <div class="highlight" id="id-40"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -1629,14 +1631,20 @@ flag{RRRRRRE}</p>
 </span></span><span class="line"><span class="cl">如果是等距离提取整张图片中所有像素点，要注意右下角那个点的位置XY都要减去一倍的距离
 </span></span><span class="line"><span class="cl">Tips:在PS中按F8就可以看到每个像素点的具体坐标了</span></span></code></pre></td></tr></table>
 </div>
-</div><h4 id="14silenteye隐写" class="heading-element">
-  <a href="#14silenteye%e9%9a%90%e5%86%99" class="heading-mark"></a>14、silenteye隐写</h4><p>特征：放大图像后会有行列不对齐的小灰块</p>
+</div><p>一样可以得到隐藏的图片</p>
+<p><img loading="lazy" src="imgs/image-20241120172043964.png" alt="imgs/image-20241120172043964.png" srcset="imgs/image-20241120172043964.png?size=small, imgs/image-20241120172043964.png?size=medium 1.5x, imgs/image-20241120172043964.png?size=large 2x" data-title="imgs/image-20241120172043964.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<h4 id="11pixeljihad有密码" class="heading-element">
+  <a href="#11pixeljihad%e6%9c%89%e5%af%86%e7%a0%81" class="heading-mark"></a>11、pixeljihad（有密码）</h4><p>直接使用在线网站解密即可：<a href="https://sekao.net/pixeljihad/"target="_blank" rel="external nofollow noopener noreferrer">PixelJihad (sekao.net)</a></p>
+<h4 id="12隐写文本可能藏在原图片和隐写文件的中间" class="heading-element">
+  <a href="#12%e9%9a%90%e5%86%99%e6%96%87%e6%9c%ac%e5%8f%af%e8%83%bd%e8%97%8f%e5%9c%a8%e5%8e%9f%e5%9b%be%e7%89%87%e5%92%8c%e9%9a%90%e5%86%99%e6%96%87%e4%bb%b6%e7%9a%84%e4%b8%ad%e9%97%b4" class="heading-mark"></a>12、隐写文本可能藏在原图片和隐写文件的中间</h4><p>直接在010中搜索IEND，然后查看后面有没有额外内容即可</p>
+<h4 id="13silenteye隐写" class="heading-element">
+  <a href="#13silenteye%e9%9a%90%e5%86%99" class="heading-mark"></a>13、silenteye隐写</h4><p>特征：放大图像后会有行列不对齐的小灰块</p>
 <p>直接用 silenteye 打开输入密钥decode即可，默认密钥是 silenteye</p>
-<h4 id="15图片报错改宽高后图片无变化可以再-foremost-一下" class="heading-element">
-  <a href="#15%e5%9b%be%e7%89%87%e6%8a%a5%e9%94%99%e6%94%b9%e5%ae%bd%e9%ab%98%e5%90%8e%e5%9b%be%e7%89%87%e6%97%a0%e5%8f%98%e5%8c%96%e5%8f%af%e4%bb%a5%e5%86%8d-foremost-%e4%b8%80%e4%b8%8b" class="heading-mark"></a>15、图片报错改宽高后图片无变化，可以再 foremost 一下</h4><h4 id="16deegger-embedder隐写" class="heading-element">
-  <a href="#16deegger-embedder%e9%9a%90%e5%86%99" class="heading-mark"></a>16、DeEgger Embedder隐写</h4><p>可以直接使用 DeEgger Embedder 工具 extract files</p>
-<h4 id="17flag可能藏在-exif-中" class="heading-element">
-  <a href="#17flag%e5%8f%af%e8%83%bd%e8%97%8f%e5%9c%a8-exif-%e4%b8%ad" class="heading-mark"></a>17、flag可能藏在 exif 中</h4><p>直接在 WSL 中输入以下命令查看即可，如果偷懒也可以直接使用 破空 flag 查找工具 进行查找</p>
+<h4 id="14图片报错改宽高后图片无变化可以再-foremost-一下" class="heading-element">
+  <a href="#14%e5%9b%be%e7%89%87%e6%8a%a5%e9%94%99%e6%94%b9%e5%ae%bd%e9%ab%98%e5%90%8e%e5%9b%be%e7%89%87%e6%97%a0%e5%8f%98%e5%8c%96%e5%8f%af%e4%bb%a5%e5%86%8d-foremost-%e4%b8%80%e4%b8%8b" class="heading-mark"></a>14、图片报错改宽高后图片无变化，可以再 foremost 一下</h4><h4 id="15deegger-embedder隐写" class="heading-element">
+  <a href="#15deegger-embedder%e9%9a%90%e5%86%99" class="heading-mark"></a>15、DeEgger Embedder隐写</h4><p>可以直接使用 DeEgger Embedder 工具 extract files</p>
+<h4 id="16flag可能藏在-exif-中" class="heading-element">
+  <a href="#16flag%e5%8f%af%e8%83%bd%e8%97%8f%e5%9c%a8-exif-%e4%b8%ad" class="heading-mark"></a>16、flag可能藏在 exif 中</h4><p>直接在 WSL 中输入以下命令查看即可，如果偷懒也可以直接使用 破空 flag 查找工具 进行查找</p>
 <div class="highlight" id="id-41"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -1644,8 +1652,8 @@ flag{RRRRRRE}</p>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="n">exiftool</span> <span class="mf">3.j</span><span class="n">pg</span></span></span></code></pre></td></tr></table>
 </div>
-</div><h4 id="18给了两张图片flag藏在每行不同像素的个数中" class="heading-element">
-  <a href="#18%e7%bb%99%e4%ba%86%e4%b8%a4%e5%bc%a0%e5%9b%be%e7%89%87flag%e8%97%8f%e5%9c%a8%e6%af%8f%e8%a1%8c%e4%b8%8d%e5%90%8c%e5%83%8f%e7%b4%a0%e7%9a%84%e4%b8%aa%e6%95%b0%e4%b8%ad" class="heading-mark"></a>18、给了两张图片，flag藏在每行不同像素的个数中</h4><p>例题1-2023羊城杯初赛-两支老虎</p>
+</div><h4 id="17给了两张图片flag藏在每行不同像素的个数中" class="heading-element">
+  <a href="#17%e7%bb%99%e4%ba%86%e4%b8%a4%e5%bc%a0%e5%9b%be%e7%89%87flag%e8%97%8f%e5%9c%a8%e6%af%8f%e8%a1%8c%e4%b8%8d%e5%90%8c%e5%83%8f%e7%b4%a0%e7%9a%84%e4%b8%aa%e6%95%b0%e4%b8%ad" class="heading-mark"></a>17、给了两张图片，flag藏在每行不同像素的个数中</h4><p>例题1-2023羊城杯初赛-两支老虎</p>
 <div class="highlight" id="id-42"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -1721,13 +1729,13 @@ flag{RRRRRRE}</p>
 </span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="nb">chr</span><span class="p">(</span><span class="n">cnt</span><span class="p">),</span><span class="n">end</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="c1"># DASCTF{tWo_t1gers_rUn_f@st}</span></span></span></code></pre></td></tr></table>
 </div>
-</div><h4 id="19两张图片用stegsolve中的image-conbiner合成为一张bmp" class="heading-element">
-  <a href="#19%e4%b8%a4%e5%bc%a0%e5%9b%be%e7%89%87%e7%94%a8stegsolve%e4%b8%ad%e7%9a%84image-conbiner%e5%90%88%e6%88%90%e4%b8%ba%e4%b8%80%e5%bc%a0bmp" class="heading-mark"></a>19、两张图片，用StegSolve中的Image Conbiner合成为一张bmp</h4><p><img loading="lazy" src="imgs/image-20241106154249826.png" alt="imgs/image-20241106154249826.png" srcset="imgs/image-20241106154249826.png?size=small, imgs/image-20241106154249826.png?size=medium 1.5x, imgs/image-20241106154249826.png?size=large 2x" data-title="imgs/image-20241106154249826.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+</div><h4 id="18两张图片用stegsolve中的image-conbiner合成为一张bmp" class="heading-element">
+  <a href="#18%e4%b8%a4%e5%bc%a0%e5%9b%be%e7%89%87%e7%94%a8stegsolve%e4%b8%ad%e7%9a%84image-conbiner%e5%90%88%e6%88%90%e4%b8%ba%e4%b8%80%e5%bc%a0bmp" class="heading-mark"></a>18、两张图片，用StegSolve中的Image Conbiner合成为一张bmp</h4><p><img loading="lazy" src="imgs/image-20241106154249826.png" alt="imgs/image-20241106154249826.png" srcset="imgs/image-20241106154249826.png?size=small, imgs/image-20241106154249826.png?size=medium 1.5x, imgs/image-20241106154249826.png?size=large 2x" data-title="imgs/image-20241106154249826.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>合成一张bmp后，再使用zsteg扫描</p>
 <p><img loading="lazy" src="imgs/image-20241106154358962.png" alt="imgs/image-20241106154358962.png" srcset="imgs/image-20241106154358962.png?size=small, imgs/image-20241106154358962.png?size=medium 1.5x, imgs/image-20241106154358962.png?size=large 2x" data-title="imgs/image-20241106154358962.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
-<h4 id="20图片多个通道存在lsb隐写stegsolve中把背景颜色相同的勾选上" class="heading-element">
-  <a href="#20%e5%9b%be%e7%89%87%e5%a4%9a%e4%b8%aa%e9%80%9a%e9%81%93%e5%ad%98%e5%9c%a8lsb%e9%9a%90%e5%86%99stegsolve%e4%b8%ad%e6%8a%8a%e8%83%8c%e6%99%af%e9%a2%9c%e8%89%b2%e7%9b%b8%e5%90%8c%e7%9a%84%e5%8b%be%e9%80%89%e4%b8%8a" class="heading-mark"></a>20、图片多个通道存在LSB隐写，StegSolve中把背景颜色相同的勾选上</h4><h4 id="21把小说藏进图片" class="heading-element">
-  <a href="#21%e6%8a%8a%e5%b0%8f%e8%af%b4%e8%97%8f%e8%bf%9b%e5%9b%be%e7%89%87" class="heading-mark"></a>21、把小说藏进图片</h4><p>参考链接：https://www.bilibili.com/video/BV1Ai4y1V7rg/?spm_id_from=333.999.0.0&amp;vd_source=31399c09aa0c93655468bde7b13fcc03</p>
+<h4 id="19图片多个通道存在lsb隐写stegsolve中把背景颜色相同的勾选上" class="heading-element">
+  <a href="#19%e5%9b%be%e7%89%87%e5%a4%9a%e4%b8%aa%e9%80%9a%e9%81%93%e5%ad%98%e5%9c%a8lsb%e9%9a%90%e5%86%99stegsolve%e4%b8%ad%e6%8a%8a%e8%83%8c%e6%99%af%e9%a2%9c%e8%89%b2%e7%9b%b8%e5%90%8c%e7%9a%84%e5%8b%be%e9%80%89%e4%b8%8a" class="heading-mark"></a>19、图片多个通道存在LSB隐写，StegSolve中把背景颜色相同的勾选上</h4><h4 id="20把小说藏进图片" class="heading-element">
+  <a href="#20%e6%8a%8a%e5%b0%8f%e8%af%b4%e8%97%8f%e8%bf%9b%e5%9b%be%e7%89%87" class="heading-mark"></a>20、把小说藏进图片</h4><p>参考链接：https://www.bilibili.com/video/BV1Ai4y1V7rg/?spm_id_from=333.999.0.0&amp;vd_source=31399c09aa0c93655468bde7b13fcc03</p>
 <div class="highlight" id="id-43"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -1778,7 +1786,9 @@ flag{RRRRRRE}</p>
 </span></span><span class="line"><span class="cl"><span class="n">res</span> <span class="o">=</span> <span class="nb">bytes</span><span class="p">(</span><span class="n">array</span><span class="p">(</span><span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;1.bmp&#39;</span><span class="p">))[:,</span> <span class="p">:,</span> <span class="p">::</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">flatten</span><span class="p">())</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;</span><span class="se">\0</span><span class="s1">&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf-16-be&#39;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">res</span><span class="p">)</span></span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="png思路" class="heading-element">
+</div><h4 id="21arnold猫脸变换" class="heading-element">
+  <a href="#21arnold%e7%8c%ab%e8%84%b8%e5%8f%98%e6%8d%a2" class="heading-mark"></a>21、Arnold猫脸变换</h4><p>参考链接：https://1cepeak.cn/post/arnold/</p>
+<h3 id="png思路" class="heading-element">
   <a href="#png%e6%80%9d%e8%b7%af" class="heading-mark"></a>PNG思路</h3><h4 id="1crc错误不能乱改改宽高1720是宽2124是高可用pictools脚本快速爆破" class="heading-element">
   <a href="#1crc%e9%94%99%e8%af%af%e4%b8%8d%e8%83%bd%e4%b9%b1%e6%94%b9%e6%94%b9%e5%ae%bd%e9%ab%981720%e6%98%af%e5%ae%bd2124%e6%98%af%e9%ab%98%e5%8f%af%e7%94%a8pictools%e8%84%9a%e6%9c%ac%e5%bf%ab%e9%80%9f%e7%88%86%e7%a0%b4" class="heading-mark"></a>1、CRC错误(不能乱改)，改宽高，17~20是宽，21~24是高(可用Pictools脚本快速爆破)</h4><h4 id="2lsb最低有效位隐写" class="heading-element">
   <a href="#2lsb%e6%9c%80%e4%bd%8e%e6%9c%89%e6%95%88%e4%bd%8d%e9%9a%90%e5%86%99" class="heading-mark"></a>2、LSB(最低有效位)隐写:</h4><p><strong>没有密钥的情况</strong></p>

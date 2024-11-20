@@ -952,9 +952,35 @@ gaps --image=flag.jpg --generations=50 --population=180 --size=125 --verbose
 --verbose 实时显示
 ```
 
-#### 10、近邻法缩放图片
+#### 10、提取图中等距像素点/近邻法缩放图片
+参考链接：
 
-在PS中打开图片，然后在更改图像大小中，将宽高调成指定像素并将重新采样选项选为邻近（硬边缘）
+https://www.bilibili.com/video/BV1Lf4y1r7dZ/?spm_id_from=333.999.0.0
+
+https://github.com/Byxs20
+
+例题-2024浙江省赛决赛-天命人
+
+拿下面这张图片举个栗子
+
+![](imgs/image-20241120171656554.png)
+
+方法一：直接在PS中将宽高都缩小为原来的十分之一，并选择邻近硬边缘即可直接得到隐藏的图片
+
+![](imgs/image-20241120171835713.png)
+
+方法二：在windows的终端中运行CTFD中的Get_Pixels.py（注意所有路径中都不要出现中文）
+
+```bash
+py main.py -f arcaea.png -p 0x0&#43;3828x2148 -n 12x12
+py main.py -f 要解密的图片 -p 第一个像素点的XY坐标&#43;最后一个像素点的XY坐标 -n 两个等距像素点的XY距离的差值
+如果是等距离提取整张图片中所有像素点，要注意右下角那个点的位置XY都要减去一倍的距离
+Tips:在PS中按F8就可以看到每个像素点的具体坐标了
+```
+
+一样可以得到隐藏的图片
+
+![](imgs/image-20241120172043964.png)
 
 #### 11、pixeljihad（有密码）
 
@@ -964,30 +990,19 @@ gaps --image=flag.jpg --generations=50 --population=180 --size=125 --verbose
 
 直接在010中搜索IEND，然后查看后面有没有额外内容即可
 
-#### 13、提取图片中等距的像素点得到隐写的图片
-
-在windows的终端wt中运行CTFD中的Get_Pixels.py
-
-```bash
-py main.py -f arcaea.png -p 0x0&#43;3828x2148 -n 12x12
-py main.py -f 要解密的图片 -p 第一个像素点的XY坐标&#43;最后一个像素点的XY坐标 -n 两个等距像素点的XY距离的差值
-如果是等距离提取整张图片中所有像素点，要注意右下角那个点的位置XY都要减去一倍的距离
-Tips:在PS中按F8就可以看到每个像素点的具体坐标了
-```
-
-#### 14、silenteye隐写
+#### 13、silenteye隐写
 
 特征：放大图像后会有行列不对齐的小灰块
 
 直接用 silenteye 打开输入密钥decode即可，默认密钥是 silenteye
 
-#### 15、图片报错改宽高后图片无变化，可以再 foremost 一下
+#### 14、图片报错改宽高后图片无变化，可以再 foremost 一下
 
-#### 16、DeEgger Embedder隐写
+#### 15、DeEgger Embedder隐写
 
 可以直接使用 DeEgger Embedder 工具 extract files
 
-#### 17、flag可能藏在 exif 中
+#### 16、flag可能藏在 exif 中
 
 直接在 WSL 中输入以下命令查看即可，如果偷懒也可以直接使用 破空 flag 查找工具 进行查找
 
@@ -995,7 +1010,7 @@ Tips:在PS中按F8就可以看到每个像素点的具体坐标了
 exiftool 3.jpg
 ```
 
-#### 18、给了两张图片，flag藏在每行不同像素的个数中
+#### 17、给了两张图片，flag藏在每行不同像素的个数中
 
 例题1-2023羊城杯初赛-两支老虎
 
@@ -1037,7 +1052,7 @@ for y in range(heigth1):
 # DASCTF{tWo_t1gers_rUn_f@st}
 ```
 
-#### 19、两张图片，用StegSolve中的Image Conbiner合成为一张bmp
+#### 18、两张图片，用StegSolve中的Image Conbiner合成为一张bmp
 
 ![](imgs/image-20241106154249826.png)
 
@@ -1045,9 +1060,9 @@ for y in range(heigth1):
 
 ![](imgs/image-20241106154358962.png)
 
-#### 20、图片多个通道存在LSB隐写，StegSolve中把背景颜色相同的勾选上
+#### 19、图片多个通道存在LSB隐写，StegSolve中把背景颜色相同的勾选上
 
-#### 21、把小说藏进图片
+#### 20、把小说藏进图片
 
 参考链接：https://www.bilibili.com/video/BV1Ai4y1V7rg/?spm_id_from=333.999.0.0&amp;vd_source=31399c09aa0c93655468bde7b13fcc03
 
@@ -1076,6 +1091,11 @@ from numpy import array
 res = bytes(array(Image.open(&#39;1.bmp&#39;))[:, :, ::2].flatten()).rstrip(b&#39;\0&#39;).decode(&#39;utf-16-be&#39;)
 print(res)
 ```
+
+#### 21、Arnold猫脸变换
+
+参考链接：https://1cepeak.cn/post/arnold/
+
 
 ### PNG思路
 
