@@ -82,6 +82,70 @@ Tips：base64可以与其他文件格式互相转换（比如图片[会有很多
 
 ![basecrack](imgs/basecrack.png)
 
+### base64隐写：
+
+可以使用以下脚本解密
+```python
+# base64隐写解密脚本1
+import base64
+b64chars = &#39;ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789&#43;/&#39;
+with open(&#39;stego.txt&#39;, &#39;rb&#39;) as f:
+    bin_str = &#39;&#39;
+    for line in f.readlines():
+        stegb64 = str(line, &#34;utf-8&#34;).strip(&#34;\n&#34;)
+        rowb64 = str(base64.b64encode(base64.b64decode(stegb64)), &#34;utf-8&#34;).strip(&#34;\n&#34;)
+        offset = abs(b64chars.index(stegb64.replace(&#39;=&#39;, &#39;&#39;)[-1]) - b64chars.index(rowb64.replace(&#39;=&#39;, &#39;&#39;)[-1]))
+        equalnum = stegb64.count(&#39;=&#39;)  # no equalnum no offset
+        if equalnum:
+            bin_str &#43;= bin(offset)[2:].zfill(equalnum * 2)
+        print(&#39;&#39;.join([chr(int(bin_str[i:i &#43; 8], 2)) for i in range(0, len(bin_str), 8)]))  # 8 位一组
+```
+
+```python
+# base64隐写解密脚本2
+file = open(&#39;./base64.txt&#39;,&#39;r&#39;)
+a = &#34;ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789&#43;/&#34;
+aaa = &#39;&#39;
+while True:
+    text = file.readline()  # 只读取一行内容
+    # 判断是否读取到内容
+    text = text.replace(&#34;\n&#34;, &#34;&#34;)
+    if not text:
+        break
+    if text.count(&#39;=&#39;) == 1:
+        aaa = aaa &#43; \
+            str(&#39;{:02b}&#39;.format((a.find(text[len(text)-2])) % 4))
+    if text.count(&#39;=&#39;) == 2:
+        aaa = aaa &#43; \
+            str(&#39;{:04b}&#39;.format((a.find(text[len(text)-3])) % 16))
+file.close()
+t = &#34;&#34;
+ttt = len(aaa)
+ttt = ttt//8*8
+for i in range(0,ttt,8):
+    t = t &#43; chr(int( aaa[i:i&#43;8],2))
+print(t)
+```
+
+或者直接使用PuzzleSolver解密
+
+![](imgs/image-20241120164908626.png)
+
+&gt; 这里要注意多行base64编码可能会出现需要我们自己补全=的情况（例题-攻防世界 MISC - tunnel）
+&gt; 
+&gt; 可以使用下面的脚本补全，也可以直接用上面那个工具补全
+
+```python
+import re
+with open(&#39;./result.txt&#39;,&#39;r&#39;) as f:
+    content = f.readlines()
+    for i in content:
+        result = re.findall(&#39;(.*?).evil.im&#39;,i)
+        result = result[0] &#43; (4 - len(result[0])%4) * &#39;=&#39;
+        with open(&#39;./base64.txt&#39;,&#39;a&#43;&#39;) as f1:
+            f1.write(result&#43;&#39;\n&#39;)
+```
+
 ### MD5加密
 
 ```
@@ -308,10 +372,6 @@ outguess -k &#39;key&#39; -r 加密后的图片.jpg -t 明文.txt
 ### 盲文：
 
 使用https://www.qqxiuzi.cn/bianma/wenbenjiami.php?s=mangwen在线翻译
-
-### base64隐写：
-
-直接用CTFD中的脚本跑出答案就行
 
 ### 文本加密为音乐符号：
 
