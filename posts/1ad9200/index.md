@@ -841,7 +841,7 @@ M4a，文件头：00000018667479704D3441
 
 ## Misc——流量分析
 
-详见作者博客中的 **Network Traffic Analysis** 这篇文章
+详见作者博客中的 **[Network Traffic Analysis](https://goodlunatic.github.io/posts/5422d65/)** 这篇文章
 
 ## MIsc——图片题思路：
 
@@ -2518,7 +2518,7 @@ stegpy 1.wav -p
 
 ## Misc——取证题思路：
 
-详解请查看我的另一篇 博客Misc——取证类题目详解
+详见作者博客中的 **[Misc-Forensics](https://goodlunatic.github.io/posts/761da51/)** 这篇文章
 
 ## Git文件泄露：
 
