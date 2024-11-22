@@ -5,7 +5,7 @@
 
 - **ID：Lunatic (Sometimes use Citanul)**
 
-- **CTF@Misc | BUPT-SCSS 研0 | [A1natas Team](https://www.a1natas.com/)**
+- **CTF@Misc | BUPT-SCSS 研0 | 4th captain of [A1natas Team](https://www.a1natas.com/)**
 
 # **💬 Contact Me**
 
