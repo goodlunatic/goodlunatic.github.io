@@ -807,14 +807,17 @@ rar 文件头：52 61 72 21 (Rar!)               文件尾：C4 3D 7B 00 40 07 0
 png 文件头：89 50 4E 47 0D 0A 1A 0A 00 00 00 0D 49 48 44 52   文件尾：49 45 4E 44 AE 42 60 82
 jpg 文件头：FF D8 FF E0 00 10 4A 46 49 46 00 01
 gif 文件头：47 49 46 38 39 61（GIF89A）或 47 49 46 38 37 61（GIF87A）    文件尾：00 3B
-wav 文件头：57415645
+Windows [Bitmap](https://so.csdn.net/so/search?q=Bitmap&amp;spm=1001.2101.3001.7020) (bmp)，文件头：42 4D
+psd 文件头：38 42 50 53
+TIFF (tif)，文件头：49 49 2A 00
+mp3 文件头：49 44 33 03 00 00 00 00
+wav 文件头1：57 41 56 45
+wav 文件头2：52 49 46 46 52 B7 01 00 57 41 56 45 66 6D 74 20
+mov 文件头：00 00 00 20 66 74 79 70 71 74 20 20 20 05 03 00
+swf 文件头：46 57 53 08 AC 43 00 00
 gz 文件头：1F 8B 08 00
 pyc的文件头：03 F3 0D 0A
-psd的文件头：38 42 50 53
-TIFF (tif)，文件头：49492A00
-Windows [Bitmap](https://so.csdn.net/so/search?q=Bitmap&amp;spm=1001.2101.3001.7020) (bmp)，文件头：424D
 CAD (dwg)，文件头：41433130
-Adobe Photoshop (psd)，文件头：38425053
 Rich Text Format (rtf)，文件头：7B5C727466
 XML (xml)，文件头：3C3F786D6C
 HTML (html)，文件头：68746D6C3E

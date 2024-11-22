@@ -463,6 +463,96 @@ print(flag)
 
 ## 题目名称 Streaming
 
+下载附件，得到一个流量包和一个未知后缀的数据文件
+
+发现协议中有RTCP协议，然后尝试追踪UDP流，发现有H.264的字样
+
+![](imgs/image-20241122190444573.png)
+
+因此我们手动修改解码方法
+
+![](imgs/image-20241122190740529.png)
+
+![](imgs/image-20241122190719484.png)
+
+![](imgs/image-20241122190801891.png)
+
+然后我们去Github上下载[这个插件](https://github.com/volvet/h264extractor)，然后放到wireshark安装目录中的plugin目录下即可
+
+使用插件导出H.264流传输的数据
+
+![](imgs/image-20241122191126086.png)
+
+![](imgs/image-20241122191143029.png)
+
+导出后可以得到一个后缀为.264的文件，直接使用爱奇艺万能播放器打开可以得到第一段flag和一堆FF字符
+
+![](imgs/image-20241122191232867.png)
+
+然后提示了flag1不仅仅是flag，联想到之前的那段未知数据，猜测这个也是密钥（算上引号长度刚好为16）
+
+文本中的FF提示了需要先异或0xFF（别问为啥，问就是Misc手的经验）
+
+![](imgs/image-20241122191404633.png)
+
+AES-ECB解密后可以得到一个压缩包，解压后可以得到一个`badapple`和一个`secret`文件
+
+badapple用010打开发现是一张png图片，因此我们改后缀为png，可以得到下图
+
+![](imgs/image-20241122192000961.png)
+
+
+![](imgs/image-20241122192747633.png)
+
+010打开发现存在`IDOT`块，赛后知道了是一种特殊的图片文件，苹果和安卓系统上会显示出不同的图片
+
+可以使用[在线网站](https://fotoforensics.com/analysis.php?id=49aa281215134389445673fd09e5ebb0f7d6ffe4.8537)直接看
+
+![](imgs/image-20241122193003151.png)
+
+也可以借助这个[开源项目](https://github.com/GGN-2015/macos_shadow_tank)，将图片重命名为`merged.png`，并放到`sample`目录下
+
+运行 `preview_macos.py` 即可得到第二段flag
+
+![](imgs/image-20241122193158584.png)
+
+最后再看`s4cret`这个文件，补上文件头`00`，并改后缀为.mov
+
+![](imgs/image-20241122193341274.png)
+
+![](imgs/image-20241122193302414.png)
+
+然后再用播放器打开，发现是由一组黑白帧组成的视频，直接写一个脚本提取黑白帧转二进制即可得到第三段flag
+
+```python
+import cv2
+import libnum
+
+
+cap = cv2.VideoCapture(&#39;s4cret.mov&#39;)
+frame_count = 0
+res = &#39;&#39;
+
+while True:
+    ret, frame = cap.read()
+    if not ret:
+        break
+    pixel = frame.reshape((-1,3)) # 将像素化为3列n行的格式
+    r = pixel[0][0] # 获取第一个像素r通道的数值
+    if r &gt; 200:
+        res &#43;= &#39;0&#39;
+    else:
+        res &#43;= &#39;1&#39;
+cap.release()
+
+# print(libnum.b2s(res))
+lenth = len(res) # 259
+res &#43;= (8 - (lenth % 8)) * &#39;0&#39;
+print(libnum.b2s(res))
+# b&#39;the flag3 is -13891ba324da}\xff\xff\xff\xff\xff\xe0&#39;
+```
+
+将三段flag组合即可得到最后的flag：`flag{3b3a9c08-88e4-4d65-b59e-13891ba324da}`
 
 ## 题目名称 Input Page Walk
 

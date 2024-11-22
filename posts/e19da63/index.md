@@ -1082,6 +1082,70 @@ print(np.concatenate((a, b), axis=1))
 ##  [ 4  5  6  7  8  9]]
 ```
 
+#### cv2模块的使用
+
+##### 比赛中的使用记录
+
+读取视频中每一帧第一行前225个像素的红色通道LSB数据
+
+```python
+def extract_flag(video_path):
+    # 使用cv2读取视频
+    cap = cv2.VideoCapture(video_path)
+    # frame_width = cap.get(3)
+    # frame_height = cap.get(4)
+    # print(frame_width,frame_height)# 224,224
+    res = &#34;&#34;
+    frames_cnt = 1
+    while True: 
+        # 读取视频的下一帧，并返回布尔值和当前帧的图像数据
+        ret, frame = cap.read()
+        # print(frame[0][0][0])
+        if(frames_cnt == 5):# 经过尝试发现flag就藏在每个视频的第 5 帧中
+            # 自动计算行数，待转换的列数为3，并取出前225个像素R通道的值
+            pixels = frame.reshape((-1,3))[:224][:,0]
+            for i in range(len(pixels)):
+                if pixels[i] &gt; 200:
+                    pixels[i] = 1
+                else:
+                    pixels[i] = 0
+            res = decode_pixel(pixels)
+            break
+        frames_cnt &#43;= 1
+    return res
+
+```
+
+读取视频黑白帧转二进制
+
+```python
+import cv2
+import libnum
+
+
+cap = cv2.VideoCapture(&#39;s4cret.mov&#39;)
+frame_count = 0
+res = &#39;&#39;
+
+while True:
+    ret, frame = cap.read()
+    if not ret:
+        break
+    pixel = frame.reshape((-1,3)) # 将像素化为3列n行的格式
+    r = pixel[0][0] # 获取第一个像素r通道的数值
+    if r &gt; 200:
+        res &#43;= &#39;0&#39;
+    else:
+        res &#43;= &#39;1&#39;
+cap.release()
+
+# print(libnum.b2s(res))
+lenth = len(res) # 259
+res &#43;= (8 - (lenth % 8)) * &#39;0&#39;
+print(libnum.b2s(res))
+# b&#39;the flag3 is -13891ba324da}\xff\xff\xff\xff\xff\xe0&#39;
+```
+
 #### turtle模块的使用
 
 ```python
@@ -2653,7 +2717,7 @@ plt.show()
 
 ####  pyecharts
 
-#### ####  直方图
+直方图
 
 ```python
 from pyecharts.charts import Bar
@@ -2670,7 +2734,7 @@ bar.render()
 
 ```
 
-#### ####  饼图
+饼图
 
 ```python
 from pyecharts import options as opts
@@ -2692,7 +2756,7 @@ def pie_base() -&gt; Pie:
 make_snapshot(snapshot, pie_base().render(), &#34;pie.png&#34;)
 ```
 
-#### ####  词云图
+词云图
 
 ```python
 from pyecharts import options as opts
@@ -3085,7 +3149,7 @@ ZipFile：用来创建和读取zip文件
 
 ZipInfo：读取存储的zip文件中每个文件的信息
 
-#### ####  （1）class zipfile.ZipFile(file[, mode[, compression[, allowZip64]]])
+（1）class zipfile.ZipFile(file[, mode[, compression[, allowZip64]]])
 
 ```
 file-表示文件的路径或类文件对象
@@ -3156,7 +3220,7 @@ writestr()支持将二进制数据直接写入到压缩文档
 pwd-解压密码，byte格式
 ```
 
-#### ####  （2）Class ZipInfo
+（2）Class ZipInfo
 
 ```
 ZipFile.getinfo(name) 方法返回的是一个ZipInfo对象，表示zip文档中相应文件的信息。它支持如下属性：
@@ -3202,7 +3266,7 @@ ZipFile.extractall([path[, members[, pwd]]])
 
 ####  Scrapy框架的使用
 
-#### ####   创建一个爬虫项目
+创建一个爬虫项目
 
 ```bash
 scrapy startproject qiushibaike
@@ -3210,7 +3274,7 @@ scrapy startproject qiushibaike
 
 然后在spiders目录下创建我们的爬虫代码demo.py
 
-#### ####  scrapy 创建出来的文件目录解释
+scrapy 创建出来的文件目录解释
 
 ```
 spiders目录—
@@ -3225,14 +3289,14 @@ settings.py
 这个文件用来定义我们的各种配置，比如配置请求头信息等
 ```
 
-#### ####  运行我们的爬虫
+运行我们的爬虫
 
 ```bash
 cd qiushibaike/
 scrapy crawl qiushibaike
 ```
 
-#### ####  可以使用scrapy shell 来请求网页
+可以使用scrapy shell 来请求网页
 
 ```bash
 scrapy shell /home/wistbean/PycharmProjects/spider/qiushibaike/qiushi-1.html
@@ -3242,7 +3306,7 @@ shell 后面可以是你爬下来的 HTML 文件
 
 也可以是你一个链接
 
-#### ####  获取相关数据的命令
+获取相关数据的命令
 
 ```bash
 content_left_div = response.xpath(&#39;//*[@id=&#34;content-left&#34;]&#39;)
@@ -3370,7 +3434,7 @@ class QiushibaikeItem(scrapy.Item):
 
 ####  Flask后端框架的使用
 
-#### ####  Helloworld
+#### Helloworld
 
 ```python
 from flask import Flask
@@ -3385,7 +3449,7 @@ def index():
 app.run()
 ```
 
-#### ####  路由的使用
+#### 路由的使用
 
 ```python
 from flask import Flask
@@ -3429,7 +3493,7 @@ if __name__ == &#34;__main__&#34;:
     app.run()
 ```
 
-#### ####  变量规则
+#### 变量规则
 
 ```python
 from flask import Flask
@@ -3470,7 +3534,7 @@ if __name__ == &#34;__main__&#34;:
     app.run()
 ```
 
-#### ####  自定义转换器
+#### 自定义转换器
 
 ```python
 from werkzeug.routing import BaseConverter
@@ -3505,7 +3569,7 @@ if __name__ == &#34;__main__&#34;:
     app.run()
 ```
 
-#### ####  渲染form表单
+#### 渲染form表单
 
 ```python
 from flask import Flask, render_template
@@ -3522,7 +3586,7 @@ if __name__ == &#34;__main__&#34;:
     app.run()
 ```
 
-#### ####  request对象
+#### request对象
 
 
 
