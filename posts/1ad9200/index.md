@@ -2298,9 +2298,21 @@ out.show()
 
 ### 2、频谱图分析(有时要调高最高频率)：
 
-### 3、LSB(最低有效位隐写)：用silenteye解密
+### 3、Silenteye隐写
 
-### 4、SSTV慢扫描电视：
+wav音频文件可能是 silenteye 隐写，可以拿默认密码 silenteye 解密试试看
+
+### 4、Deepsound隐写
+
+先用 deepsound 打开试一下，如果需要密码说明就是 deepsound 隐写，有密钥直接填入密钥解密即可
+
+如果是 deepsound 隐写并且没有密钥，就先用`deepsound2john`脚本获取wav文件的哈希值(注释里有使用方法)，
+
+然后拉入kali用john爆破hash(如果编码有误，可以先用notepad另存为一下)
+
+执行：john 1.txt
+
+### 5、SSTV慢扫描电视：
 
 **SSTV识别可以直接用这个项目里的脚本：https://github.com/colaclanth/sstv**
 
@@ -2328,21 +2340,12 @@ sstv -d flag.wav
 
 #### 拉入kali用qsstv（有时候要用到反向和反相）
 
-### 5、电话音分析
+### 6、电话音分析(DTMF)
 
 用在线网站:http://www.dialabc.com/sound/detect/
 
 或者在dtmf2num.exe里使用dtmf2num -o C:\Desktop\1.wav命令
 
-### 6、WAV[RIFF]的隐写(有 deepsound 和 silenteye 或者其他):
-
-先用deepsound 试一下，如果需要密码说明就是 deepsound 隐写
-
-如果是deepsound隐写，就先用脚本获取wav文件的哈希值(注释里有使用方法)，
-
-然后拉入kali用john爆破hash(如果编码有误，可以先用notepad另存为一下)
-
-执行：john 1.txt
 
 ### 7、wav可能是业余无线电文件：
 
@@ -2383,28 +2386,42 @@ done
 stegseek filename rockyou.txt
 ```
 
-### 9、MP3音频隐写
+### 9、MP3音频(mp3stego隐写)
 
-#### MP3stego
-
-使用前需要先把要处理的文件放到MP3stego目录下
+使用前需要先把要处理的文件放到 mp3stego 目录下
 
 ```bash
-#Encode
+# Encode
 encode -E data.txt -P pass sound.wav sound.mp3    
 data.txt里面放要隐写的txt信息 pass是解密时需要的密码
-#Decode
+# Decode
 decode -X -P pass sound.mp3   
 -X 是提取出隐写的文件
 pass是解密时需要的密码 
 sound.mp3是待处理的MP3文件
+# mp3stego可以使用无密码进行隐写
+# 如果需要密码解密，但是没有密码，可以试试看音频中歌曲的名字（比如Canon）
 ```
 
 ### 10、WAV还可能是OpenPuff隐写（有密码）
 
 直接用OpenPuff.exe解密即可
 
-### 11、提取并分析左右声道的差值
+### 11、stegpy隐写
+
+[ stegpy 开源地址](https://github.com/izcoser/stegpy) 下载好后直接用WSL输入以下命令并输入密码解密即可
+
+也可以直接用 pip 安装： pip3 install stegpy
+
+```bash
+stegpy 1.wav -p
+```
+
+### 12、DeEgger Embedder隐写
+
+可以直接使用 DeEgger Embedder 工具 extract files
+
+### 13、分析左右声道的差值
 
 ```python
 # 导入模块wavfile
@@ -2435,7 +2452,7 @@ with open(&#39;res.txt&#39;, &#39;w&#39;) as f:
     f.write(res)
 ```
 
-### 12、使用脚本提取数据进行分析
+### 14、使用脚本提取数据进行分析
 
 ```python
 # 2023 DASCTFxCBCTF
@@ -2501,23 +2518,30 @@ if __name__ == &#39;__main__&#39;:
     # DASCTF{Wh1stling_t0_Convey_informat1on!!!}
 ```
 
-### 13、stegpy隐写
+### 15、提取两个音频中的浮点集并分析
 
-[ stegpy 开源地址](https://github.com/izcoser/stegpy) 下载好后直接用WSL输入以下命令并输入密码解密即可
+例题1-2024极客大挑战-音乐大师
 
-也可以直接用 pip 安装： pip3 install stegpy
+```python
+import librosa
+import libnum
 
-```bash
-stegpy 1.wav -p
+res = []
+flag = &#34;&#34;
+table = {&#39;19&#39;:&#34;01&#34;,&#34;9&#34;:&#34;00&#34;,&#34;39&#34;:&#34;11&#34;,&#34;29&#34;:&#34;10&#34;}
+# 使用文件原始采样率获取音频数据和采样率
+data1,sr1 = librosa.load(&#34;secret.wav&#34;,sr=None,dtype=&#34;float32&#34;)
+data2,sr2 = librosa.load(&#34;1.wav&#34;,sr=None,dtype=&#34;float32&#34;)
+
+for i in range(148):
+    res.append(str(int((data1[i]-data2[i])*1e7)))
+
+for item in res:
+    flag &#43;= table[item]
+
+print(libnum.b2s(flag))
+# b&#39;SYC{wav_LSB_but_You_can_get_M3_Coll!}&#39;
 ```
-
-### 14、DeEgger Embedder隐写
-
-可以直接使用 DeEgger Embedder 工具 extract files
-
-### 15、Silenteye隐写
-
-音频文件也可能是 silenteye 隐写，可以拿默认密码 silenteye 解密试试看
 
 ## Misc——取证题思路：
 

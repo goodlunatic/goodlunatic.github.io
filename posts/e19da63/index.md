@@ -1146,6 +1146,42 @@ print(libnum.b2s(res))
 # b&#39;the flag3 is -13891ba324da}\xff\xff\xff\xff\xff\xe0&#39;
 ```
 
+#### wave模块的使用
+
+TODO...
+
+#### librosa模块的使用
+
+##### 比赛中的使用记录
+
+例题1-2024极客大挑战-音乐大师
+
+```python
+import librosa
+import libnum
+
+res = []
+flag = &#34;&#34;
+table = {&#39;19&#39;:&#34;01&#34;,&#34;9&#34;:&#34;00&#34;,&#34;39&#34;:&#34;11&#34;,&#34;29&#34;:&#34;10&#34;}
+# 使用文件原始采样率获取音频数据和采样率
+data1,sr1 = librosa.load(&#34;secret.wav&#34;,sr=None,dtype=&#34;float32&#34;)
+data2,sr2 = librosa.load(&#34;1.wav&#34;,sr=None,dtype=&#34;float32&#34;)
+
+for i in range(148):
+    res.append(str(int((data1[i]-data2[i])*1e7)))
+
+for item in res:
+    flag &#43;= table[item]
+
+print(libnum.b2s(flag))
+# b&#39;SYC{wav_LSB_but_You_can_get_M3_Coll!}&#39;
+```
+
+#### scipy模块的使用
+
+TODO...
+
+
 #### turtle模块的使用
 
 ```python

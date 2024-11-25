@@ -4,12 +4,21 @@
     <link>http://localhost:1313/</link>
     <description>Welcome to Lunatic&#39;s BLOG ^_^</description>
     <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>goodlunatic0@gmail.com (Lunatic)</managingEditor>
-      <webMaster>goodlunatic0@gmail.com (Lunatic)</webMaster><lastBuildDate>Thu, 21 Nov 2024 21:30:17 &#43;0800</lastBuildDate>
+      <webMaster>goodlunatic0@gmail.com (Lunatic)</webMaster><lastBuildDate>Mon, 25 Nov 2024 14:56:54 &#43;0800</lastBuildDate>
       <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
     <item>
+  <title>CTF-数据安全</title>
+  <link>http://localhost:1313/posts/c49ae8a/</link>
+  <pubDate>Mon, 25 Nov 2024 14:56:54 &#43;0800</pubDate>
+  <author>Lunatic</author>
+  <guid>http://localhost:1313/posts/c49ae8a/</guid>
+  <description><![CDATA[<p>最近的CTF比赛中经常出现数据安全的板块，个人感觉这种东西是可以靠平常积累来提升解题速度的</p>
+<p>因此准备写这样一篇博客来总结一下常见的考点</p>]]></description>
+</item>
+<item>
   <title>CTF-Misc Guide</title>
   <link>http://localhost:1313/posts/1ad9200/</link>
-  <pubDate>Thu, 21 Nov 2024 21:30:17 &#43;0800</pubDate>
+  <pubDate>Mon, 25 Nov 2024 14:30:17 &#43;0800</pubDate>
   <author>Lunatic</author>
   <guid>http://localhost:1313/posts/1ad9200/</guid>
   <description><![CDATA[<p><strong>This is a simple Guide for CTF in Misc Area.</strong></p>]]></description>
@@ -77,15 +86,6 @@
   <author>Lunatic</author>
   <guid>http://localhost:1313/posts/848cf69/</guid>
   <description><![CDATA[<p>A simple blog for IOT Security Research.</p>]]></description>
-</item>
-<item>
-  <title>2024 强网拟态防御国际精英挑战赛初赛 Misc Writeup</title>
-  <link>http://localhost:1313/posts/de8e2be/</link>
-  <pubDate>Wed, 23 Oct 2024 13:16:19 &#43;0800</pubDate>
-  <author>Lunatic</author>
-  <guid>http://localhost:1313/posts/de8e2be/</guid>
-  <description><![CDATA[<p><strong>这比赛虽然有些Misc题比较搞心态，但是不得不说题目质量还是在的</strong></p>
-<p><strong>出题师傅的水平还是挺可以的，然后经验啥的感觉还是比较老练</strong></p>]]></description>
 </item>
 </channel>
 </rss>
