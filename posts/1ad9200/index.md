@@ -796,6 +796,68 @@ ADFGX密码 默认棋盘：phqgmeaynofdxkrcvszwbutil 默认密钥：german
 2. CFRS编程语言【例题-2024宁波市赛初赛 Misc2】
 	在线画图网站：https://susam.net/cfrs.html
 
+### 通过拼音和声调进行编码
+
+例题-惠州学院红帽协会CTF招新赛-Crypto-xuanxue
+
+```
+哷哸哹哻哼哽咤娻屇庎忈咤煈炼呶呵呷呸
+```
+
+```python
+import pypinyin
+from pypinyin import pinyin, lazy_pinyin
+
+
+# 利用拼音库将每个汉字的拼音的字母转成ascii码相加,然后再与音调相加,最后取余128得到最后的字母
+def decrypt(s):
+    result = 0
+    pin = lazy_pinyin(s)[0]
+    k = pinyin(s, style=pypinyin.Style.TONE3, heteronym=True)[0][0]
+    for i in pin:
+        result &#43;= ord(i)
+    result &#43;= ord(k[len(k) - 1])
+    return chr(result % 128)
+
+
+if __name__ == &#39;__main__&#39;:
+    r = &#39;&#39;
+    s = &#34;哷哸哹哻哼哽咤娻屇庎忈咤煈炼呶呵呷呸&#34;
+    for i in s:
+        r &#43;= decrypt(i)
+    print(r)
+```
+
+### 当铺密码
+
+&gt; 当铺密码就是一种将中文和数字进行转化的密码：
+&gt; 
+&gt; 当前汉字有多少笔画出头，就是转化成数字几
+
+```
+王夫 井工 夫口 由中人 井中 夫夫 由中大
+67   84   70   123   82   77   125
+```
+
+### 简/繁体汉字笔画编码
+
+```python
+table = {&#34;许&#34;:11,&#34;史&#34;:5,&#34;李&#34;:7,&#34;赵&#34;:9,&#34;周&#34;:8,&#34;秦&#34;:10,&#34;吕&#34;:6,&#34;乙&#34;:1,&#34;王&#34;:4,&#34;丁&#34;:2,&#34;温&#34;:12,&#34;万&#34;:3}
+text = &#34;李李 王周 史乙 吕李 史丁 周王 温万 吕李 秦王 秦史 李周 秦乙 许史 秦乙 赵史 赵赵 许李 秦周 许吕 许李 许王 秦乙 赵史 秦史 许史 赵史 许周 赵李 许史 许吕 赵史 赵李 李周 吕周 赵史 许丁 许王 许乙 秦丁 许乙 许李 李周 吕周 温史&#34;.split()
+
+tmp = &#34;&#34;
+for item in text:
+    for char in item:
+        tmp &#43;= str(table[char])
+    tmp &#43;= &#39; &#39;
+tmp = tmp.split()
+
+for item in tmp:
+    print(chr(int(item)),end=&#34;&#34;)
+    
+# M03C4T{ChiNese_culture_is_vast_aND_profouND}
+```
+
 ## 各种文件头/尾：
 
 这里要注意，出题人可能会把文件头的小写字母偷偷改成大写，例如：Rar -&gt; RAR
