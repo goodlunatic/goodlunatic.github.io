@@ -12,7 +12,7 @@
   <meta itemprop="description" content="不愧是竞速长城杯，时间这么短，只能说强度很高。">
   <meta itemprop="datePublished" content="2024-04-01T19:18:07+08:00">
   <meta itemprop="dateModified" content="2024-04-01T19:18:07+08:00">
-  <meta itemprop="wordCount" content="902">
+  <meta itemprop="wordCount" content="1068">
   <meta itemprop="keywords" content="CTF,Misc,Writeup"><meta property="og:url" content="http://localhost:1313/posts/bd957c3/">
   <meta property="og:site_name" content="⚡Lunatic BLOG⚡">
   <meta property="og:title" content="2024 长城杯信息安全铁人三项赛 Misc Writeup">
@@ -41,7 +41,7 @@
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": "http:\/\/localhost:1313\/posts\/bd957c3\/"
-    },"genre": "posts","keywords": "CTF, Misc, Writeup","wordcount":  902 ,
+    },"genre": "posts","keywords": "CTF, Misc, Writeup","wordcount":  1068 ,
     "url": "http:\/\/localhost:1313\/posts\/bd957c3\/","datePublished": "2024-04-01T19:18:07+08:00","dateModified": "2024-04-01T19:18:07+08:00","publisher": {
       "@type": "Organization",
       "name": ""},"author": {
@@ -145,7 +145,7 @@
 <article class="page single">
   <div class="header"><h1 class="single-title animate__animated animate__flipInX"><span>2024 长城杯信息安全铁人三项赛 Misc Writeup</span>
     </h1></div><div class="post-meta">
-    <div class="post-meta-line"><span class="post-author"><a href="https://goodlunatic.github.io" title="Author"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><img loading="lazy" src="https://www.nssctf.cn/files/2024/4/28/7f130a1387.png" alt="Lunatic" data-title="Lunatic" class="avatar" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>&nbsp;Lunatic</a></span><span class="post-included-in">&nbsp;included in <a href="/categories/writeup/" class="post-category" title="Category - Writeup"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> Writeup</a></span></div><div class="post-meta-line"><span title="published on &lt;no value&gt;"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden="true"></i><time datetime="2024-04-01">2024-04-01</time></span>&nbsp;<span title=""><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>About 1000 words</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>5 minutes</span>&nbsp;</div>
+    <div class="post-meta-line"><span class="post-author"><a href="https://goodlunatic.github.io" title="Author"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><img loading="lazy" src="https://www.nssctf.cn/files/2024/4/28/7f130a1387.png" alt="Lunatic" data-title="Lunatic" class="avatar" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>&nbsp;Lunatic</a></span><span class="post-included-in">&nbsp;included in <a href="/categories/writeup/" class="post-category" title="Category - Writeup"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> Writeup</a></span></div><div class="post-meta-line"><span title="published on &lt;no value&gt;"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden="true"></i><time datetime="2024-04-01">2024-04-01</time></span>&nbsp;<span title=""><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>About 1100 words</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>6 minutes</span>&nbsp;</div>
   </div><div class="details toc" id="toc-static"
     data-kept="false">
     <div class="details-summary toc-title">
@@ -160,6 +160,7 @@
     <li><a href="#题目名称-clocked">题目名称 clocked</a></li>
     <li><a href="#题目名称-ctfer">题目名称 ctfer</a></li>
     <li><a href="#题目名称-device">题目名称 Device</a></li>
+    <li><a href="#题目名称-决赛-zip_guessinteger">题目名称 决赛-zip_guessinteger</a></li>
     <li><a href="#题目名称-rsa">题目名称 RSA</a></li>
     <li><a href="#题目名称-problem">题目名称 problem</a></li>
   </ul>
@@ -483,8 +484,110 @@
 <p><strong>但是综上所述，只要会解密 TLS 和哥斯拉流量，这道题还是不难的。</strong></p>
 <p><strong>很多师傅分析 Webshell 流量都是用一把梭脚本辅助分析的，之前自己也写过冰蝎的一把梭脚本</strong></p>
 <p><strong>哥斯拉的一把梭脚本就等我之后写完再放上来吧</strong></p>
+<h2 id="题目名称-决赛-zip_guessinteger" class="heading-element">
+  <a href="#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-%e5%86%b3%e8%b5%9b-zip_guessinteger" class="heading-mark"></a>题目名称 决赛-zip_guessinteger</h2><p>题目附件给了一个加密的压缩包，看到<code>store</code>压缩方法，猜测需要我们使用明文攻击破解</p>
+<p><img loading="lazy" src="/posts/bd957c3/imgs/image-20241128095911164.png" alt="/posts/bd957c3/imgs/image-20241128095911164.png" srcset="/posts/bd957c3/imgs/image-20241128095911164.png?size=small, /posts/bd957c3/imgs/image-20241128095911164.png?size=medium 1.5x, /posts/bd957c3/imgs/image-20241128095911164.png?size=large 2x" data-title="/posts/bd957c3/imgs/image-20241128095911164.png" style="--width: 1249px;--aspect-ratio: 1249 / 242;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>然后发现里面那个压缩包的名字很长，甚至远超过了12字符，因此满足压缩包明文攻击的要求</p>
+<p>为了避免<code>.</code>和<code>+</code>这俩符号对明文攻击的影响，我们把里面的压缩包重命名一下</p>
+<p><img loading="lazy" src="/posts/bd957c3/imgs/image-20241128100110736.png" alt="/posts/bd957c3/imgs/image-20241128100110736.png" srcset="/posts/bd957c3/imgs/image-20241128100110736.png?size=small, /posts/bd957c3/imgs/image-20241128100110736.png?size=medium 1.5x, /posts/bd957c3/imgs/image-20241128100110736.png?size=large 2x" data-title="/posts/bd957c3/imgs/image-20241128100110736.png" style="--width: 1388px;--aspect-ratio: 1388 / 253;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>然后使用以下命令进行明文攻击</p>
+<div class="highlight" id="id-4"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">echo</span> -n <span class="s2">&#34;breakthroughentry.txt&#34;</span> &gt; plain1.txt
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">bkcrack -C zip_guessinteger-20240524095540-lxuhr4t.zip -c breakthroughentry.zip -p plain1.txt -o <span class="m">30</span>  -x <span class="m">0</span> 504B0304
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">bkcrack -C zip_guessinteger-20240524095540-lxuhr4t.zip -k 003e5ac3 885a9927 00c436d9 -U out.zip <span class="m">123</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><img loading="lazy" src="/posts/bd957c3/imgs/image-20241128100357420.png" alt="/posts/bd957c3/imgs/image-20241128100357420.png" srcset="/posts/bd957c3/imgs/image-20241128100357420.png?size=small, /posts/bd957c3/imgs/image-20241128100357420.png?size=medium 1.5x, /posts/bd957c3/imgs/image-20241128100357420.png?size=large 2x" data-title="/posts/bd957c3/imgs/image-20241128100357420.png" style="--width: 1063px;--aspect-ratio: 1063 / 466;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>然后使用密码<code>123</code>解压压缩包可以得到下面这几个文件</p>
+<p><img loading="lazy" src="/posts/bd957c3/imgs/image-20241128100506497.png" alt="/posts/bd957c3/imgs/image-20241128100506497.png" srcset="/posts/bd957c3/imgs/image-20241128100506497.png?size=small, /posts/bd957c3/imgs/image-20241128100506497.png?size=medium 1.5x, /posts/bd957c3/imgs/image-20241128100506497.png?size=large 2x" data-title="/posts/bd957c3/imgs/image-20241128100506497.png" style="--width: 867px;--aspect-ratio: 867 / 268;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><code>md.txt</code>里内容如下</p>
+<blockquote>
+<p>恭喜你，已经破解了这个zip包。这是成功的第一步。还需要您破解内部的zip包。你可能需要先从研究guessinteger入手哦。期待你的好消息。</p>
+</blockquote>
+<p><code>guessinteger</code> 是个Linux下的可执行文件，但是缺少动态链接库没法直接执行</p>
+<p><img loading="lazy" src="/posts/bd957c3/imgs/image-20241128100614178.png" alt="/posts/bd957c3/imgs/image-20241128100614178.png" srcset="/posts/bd957c3/imgs/image-20241128100614178.png?size=small, /posts/bd957c3/imgs/image-20241128100614178.png?size=medium 1.5x, /posts/bd957c3/imgs/image-20241128100614178.png?size=large 2x" data-title="/posts/bd957c3/imgs/image-20241128100614178.png" style="--width: 1115px;--aspect-ratio: 1115 / 292;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>因此我们使用IDA打开，逆向一下，发现就是一个简单的生成明文的程序</p>
+<p><img loading="lazy" src="/posts/bd957c3/imgs/image-20241128100753158.png" alt="/posts/bd957c3/imgs/image-20241128100753158.png" srcset="/posts/bd957c3/imgs/image-20241128100753158.png?size=small, /posts/bd957c3/imgs/image-20241128100753158.png?size=medium 1.5x, /posts/bd957c3/imgs/image-20241128100753158.png?size=large 2x" data-title="/posts/bd957c3/imgs/image-20241128100753158.png" style="--width: 1916px;--aspect-ratio: 1916 / 1031;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>我们手写一下生成明文的<code>cpp</code>代码，Linux下编译并运行即可得到明文</p>
+<p><img loading="lazy" src="/posts/bd957c3/imgs/image-20241128101000725.png" alt="/posts/bd957c3/imgs/image-20241128101000725.png" srcset="/posts/bd957c3/imgs/image-20241128101000725.png?size=small, /posts/bd957c3/imgs/image-20241128101000725.png?size=medium 1.5x, /posts/bd957c3/imgs/image-20241128101000725.png?size=large 2x" data-title="/posts/bd957c3/imgs/image-20241128101000725.png" style="--width: 1115px;--aspect-ratio: 1115 / 195;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<div class="highlight" id="id-5"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="cp">#include&lt;bits/stdc++.h&gt;
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">	<span class="n">FILE</span> <span class="o">*</span><span class="n">s</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">s</span> <span class="o">=</span> <span class="n">fopen</span><span class="p">(</span><span class="s">&#34;breakthroughentry.txt&#34;</span><span class="p">,</span> <span class="s">&#34;wt&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="p">(</span> <span class="n">s</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">fwrite</span><span class="p">(</span><span class="s">&#34;Hi.boys and girs. Good luck for you!</span><span class="se">\r\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="mi">1uLL</span><span class="p">,</span> <span class="mh">0x26uLL</span><span class="p">,</span> <span class="n">s</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">		<span class="n">fwrite</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">			<span class="s">&#34;but this file contains no flag,you need to try more other methods.</span><span class="se">\r\n</span><span class="s">&#34;</span>
+</span></span><span class="line"><span class="cl">			<span class="s">&#34;But this file is a great milestone for your success!</span><span class="se">\r\n</span><span class="s">&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">			<span class="mi">1uLL</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">			<span class="mh">0x7AuLL</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">			<span class="n">s</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">		<span class="n">fwrite</span><span class="p">(</span><span class="s">&#34;best wishes for you.</span><span class="se">\r\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="mi">1uLL</span><span class="p">,</span> <span class="mh">0x16uLL</span><span class="p">,</span> <span class="n">s</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">		<span class="n">printf</span><span class="p">(</span><span class="s">&#34; [%s] file created successfuly</span><span class="se">\r\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="s">&#34;breakthroughentry.txt&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">		<span class="n">fclose</span><span class="p">(</span><span class="n">s</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>压缩成压缩包后可以发现CRC校验一致</p>
+<p><img loading="lazy" src="/posts/bd957c3/imgs/image-20241128101110873.png" alt="/posts/bd957c3/imgs/image-20241128101110873.png" srcset="/posts/bd957c3/imgs/image-20241128101110873.png?size=small, /posts/bd957c3/imgs/image-20241128101110873.png?size=medium 1.5x, /posts/bd957c3/imgs/image-20241128101110873.png?size=large 2x" data-title="/posts/bd957c3/imgs/image-20241128101110873.png" style="--width: 1688px;--aspect-ratio: 1688 / 428;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>然后我们用010打开那个加密的压缩包，从<code>ushort deVersionMadeBy == 63</code>可以知道出题人是用<code>7z</code>压缩的这个文件</p>
+<p><img loading="lazy" src="/posts/bd957c3/imgs/image-20241128101347446.png" alt="/posts/bd957c3/imgs/image-20241128101347446.png" srcset="/posts/bd957c3/imgs/image-20241128101347446.png?size=small, /posts/bd957c3/imgs/image-20241128101347446.png?size=medium 1.5x, /posts/bd957c3/imgs/image-20241128101347446.png?size=large 2x" data-title="/posts/bd957c3/imgs/image-20241128101347446.png" style="--width: 1148px;--aspect-ratio: 1148 / 266;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><img loading="lazy" src="/posts/bd957c3/imgs/image-20241128101230015.png" alt="/posts/bd957c3/imgs/image-20241128101230015.png" srcset="/posts/bd957c3/imgs/image-20241128101230015.png?size=small, /posts/bd957c3/imgs/image-20241128101230015.png?size=medium 1.5x, /posts/bd957c3/imgs/image-20241128101230015.png?size=large 2x" data-title="/posts/bd957c3/imgs/image-20241128101230015.png" style="--width: 1507px;--aspect-ratio: 1507 / 909;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>因此我们尝试用<code>7z</code>压缩明文，然后用以下命令进行明文攻击即可</p>
+<p>这里我为了方便，把加密压缩包重命名为<code>flag.zip</code>了</p>
+<div class="highlight" id="id-6"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">bkcrack -C flag.zip -c <span class="s1">&#39;breakthroughentry.txt&#39;</span> -P breakthroughentry.zip -p breakthroughentry.txt
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">bkcrack -C flag.zip -k 04d5c2a8 d6b29a38 09c04226 -U out.zip <span class="m">123</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><img loading="lazy" src="/posts/bd957c3/imgs/image-20241128101633992.png" alt="/posts/bd957c3/imgs/image-20241128101633992.png" srcset="/posts/bd957c3/imgs/image-20241128101633992.png?size=small, /posts/bd957c3/imgs/image-20241128101633992.png?size=medium 1.5x, /posts/bd957c3/imgs/image-20241128101633992.png?size=large 2x" data-title="/posts/bd957c3/imgs/image-20241128101633992.png" style="--width: 1115px;--aspect-ratio: 1115 / 403;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>最后使用密码<code>123</code>解压压缩包即可得到flag：<code>flag{ea4c4090-a512-47ed-a817-8771e1640a63}</code></p>
 <h2 id="题目名称-rsa" class="heading-element">
-  <a href="#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-rsa" class="heading-mark"></a>题目名称 RSA</h2><div class="highlight" id="id-4"><div class="chroma">
+  <a href="#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-rsa" class="heading-mark"></a>题目名称 RSA</h2><div class="highlight" id="id-7"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -519,7 +622,7 @@
 </div>
 </div><p><strong>先用 yafu 对n进行分解</strong></p>
 <p><img loading="lazy" src="/posts/bd957c3/imgs/image-20240429192941812.png" alt="image-20240429192941812" srcset="/posts/bd957c3/imgs/image-20240429192941812.png?size=small, /posts/bd957c3/imgs/image-20240429192941812.png?size=medium 1.5x, /posts/bd957c3/imgs/image-20240429192941812.png?size=large 2x" data-title="image-20240429192941812" style="--width: 2560px;--aspect-ratio: 2560 / 1136;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
-<div class="highlight" id="id-5"><div class="chroma">
+<div class="highlight" id="id-8"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -563,7 +666,7 @@
 </span></span><span class="line"><span class="cl"><span class="c1"># b&#39;32cacb2f994f6b42183a1300d9a3e8d6&#39;</span></span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="题目名称-problem" class="heading-element">
-  <a href="#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-problem" class="heading-mark"></a>题目名称 problem</h2><div class="highlight" id="id-6"><div class="chroma">
+  <a href="#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-problem" class="heading-mark"></a>题目名称 problem</h2><div class="highlight" id="id-9"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2

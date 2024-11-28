@@ -302,6 +302,98 @@ the password is &#34;Hav1F6n&#34;,plz use it to solve other wav by py.
 
 **哥斯拉的一把梭脚本就等我之后写完再放上来吧**
 
+## 题目名称 决赛-zip_guessinteger
+
+题目附件给了一个加密的压缩包，看到`store`压缩方法，猜测需要我们使用明文攻击破解
+
+![](imgs/image-20241128095911164.png)
+
+然后发现里面那个压缩包的名字很长，甚至远超过了12字符，因此满足压缩包明文攻击的要求
+
+为了避免`.`和`&#43;`这俩符号对明文攻击的影响，我们把里面的压缩包重命名一下
+
+![](imgs/image-20241128100110736.png)
+
+
+然后使用以下命令进行明文攻击
+
+```bash
+echo -n &#34;breakthroughentry.txt&#34; &gt; plain1.txt
+
+bkcrack -C zip_guessinteger-20240524095540-lxuhr4t.zip -c breakthroughentry.zip -p plain1.txt -o 30  -x 0 504B0304
+
+bkcrack -C zip_guessinteger-20240524095540-lxuhr4t.zip -k 003e5ac3 885a9927 00c436d9 -U out.zip 123
+```
+
+![](imgs/image-20241128100357420.png)
+
+然后使用密码`123`解压压缩包可以得到下面这几个文件
+
+![](imgs/image-20241128100506497.png)
+
+`md.txt`里内容如下
+
+&gt; 恭喜你，已经破解了这个zip包。这是成功的第一步。还需要您破解内部的zip包。你可能需要先从研究guessinteger入手哦。期待你的好消息。
+
+`guessinteger` 是个Linux下的可执行文件，但是缺少动态链接库没法直接执行
+
+![](imgs/image-20241128100614178.png)
+
+因此我们使用IDA打开，逆向一下，发现就是一个简单的生成明文的程序
+
+![](imgs/image-20241128100753158.png)
+
+我们手写一下生成明文的`cpp`代码，Linux下编译并运行即可得到明文
+
+![](imgs/image-20241128101000725.png)
+
+```c&#43;&#43;
+#include&lt;bits/stdc&#43;&#43;.h&gt;
+using namespace std;
+
+int main(){
+	FILE *s;
+	s = fopen(&#34;breakthroughentry.txt&#34;, &#34;wt&#34;);
+	if ( s )
+	{
+		fwrite(&#34;Hi.boys and girs. Good luck for you!\r\n&#34;, 1uLL, 0x26uLL, s);
+		fwrite(
+			&#34;but this file contains no flag,you need to try more other methods.\r\n&#34;
+			&#34;But this file is a great milestone for your success!\r\n&#34;,
+			1uLL,
+			0x7AuLL,
+			s);
+		fwrite(&#34;best wishes for you.\r\n&#34;, 1uLL, 0x16uLL, s);
+		printf(&#34; [%s] file created successfuly\r\n&#34;, &#34;breakthroughentry.txt&#34;);
+		fclose(s);
+	}
+	return 0;
+}
+```
+
+压缩成压缩包后可以发现CRC校验一致
+
+![](imgs/image-20241128101110873.png)
+
+然后我们用010打开那个加密的压缩包，从`ushort deVersionMadeBy == 63`可以知道出题人是用`7z`压缩的这个文件
+
+![](imgs/image-20241128101347446.png)
+
+![](imgs/image-20241128101230015.png)
+
+因此我们尝试用`7z`压缩明文，然后用以下命令进行明文攻击即可
+
+这里我为了方便，把加密压缩包重命名为`flag.zip`了
+
+```bash
+bkcrack -C flag.zip -c &#39;breakthroughentry.txt&#39; -P breakthroughentry.zip -p breakthroughentry.txt
+
+bkcrack -C flag.zip -k 04d5c2a8 d6b29a38 09c04226 -U out.zip 123
+```
+
+![](imgs/image-20241128101633992.png)
+
+最后使用密码`123`解压压缩包即可得到flag：`flag{ea4c4090-a512-47ed-a817-8771e1640a63}`
 
 ## 题目名称 RSA
 
