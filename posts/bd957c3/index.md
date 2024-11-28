@@ -318,7 +318,7 @@ the password is &#34;Hav1F6n&#34;,plz use it to solve other wav by py.
 然后使用以下命令进行明文攻击
 
 ```bash
-echo -n &#34;breakthroughentry.txt&#34; &gt; plain1.txt
+echo -n &#34;breakthroughentry&#34; &gt; plain1.txt
 
 bkcrack -C zip_guessinteger-20240524095540-lxuhr4t.zip -c breakthroughentry.zip -p plain1.txt -o 30  -x 0 504B0304
 
