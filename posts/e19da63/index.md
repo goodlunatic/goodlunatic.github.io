@@ -839,6 +839,29 @@ for y in range(img.height):
             
 new_img.show()
 ```
+
+例题3-2023楚慧杯-gb2312-80(元组转图片)
+
+```python
+def draw2pic2():
+    with open(&#34;hint.txt&#34;,&#34;r&#34;) as f:
+        data = f.read()
+    row_list = data.split()
+    for idx,row in enumerate(row_list):
+        # print(row)
+        pixel_data = []
+        img = Image.new(mode=&#34;RGB&#34;,size=(16,16))
+        for bin_data in row:                
+            if bin_data != &#39;0&#39;:
+                pixel_data.append((255,255,255))
+            else:
+                pixel_data.append((0,0,0))
+        img.putdata(pixel_data)
+        img = img.resize((250,250)) # 调整一下图片大小，便于查看
+        # img.show()
+        img.save(f&#34;./out1/{idx}.png&#34;) 
+```
+
 #### pyzbar模块的使用
 
 ##### 识别二维码

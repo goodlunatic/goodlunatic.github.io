@@ -174,7 +174,8 @@ b&#39;\xe5\xaf\x92\xe9\xb8\xa6\xe5\xb0\x8f\xe7\xab\x99&#39;
 &lt;class &#39;bytes&#39;&gt;
 ```
 
-### emoji-aes编码：
+### emoji-aes加密：
+
 密文由一大串emoji表情组成，解密需要密钥，例如
 
 已知key：th1sisKey，直接使用在线网站解密即可，在线网站源码也可以下载到本地
@@ -182,6 +183,7 @@ b&#39;\xe5\xaf\x92\xe9\xb8\xa6\xe5\xb0\x8f\xe7\xab\x99&#39;
 ```
 🙃💵🌿🎤🚪🌏🐎🥋🚫😆😍🔬👣🖐🌏😇🥋😇😊🍎🏹👌🌊☃🦓🌏🐅🥋🚨📮🐍🎈📮📂✅🐍⏩⌨🎈😍🌊😇🐍☺💧🥋🍌🎤🍍😇👁🦓😇🍍📮📂🎅😡🍵✖✉🏹⌨🍵🎤😆🍵🚹🏹🍎🚨ℹ☃👑🎤🚪💵😎😀😎🔬💵🦓🏹👉🦓✖😀🐘🔪⌨🎈🥋👌🍌🚹😂✉🍎🍌🏎👌🏹💵👌👁🎃🗒
 ```
+
 https://aghorler.github.io/emoji-aes/
 
 ### 词频分析：
@@ -655,6 +657,11 @@ print(secret)
 可以使用在线网站解密：https://vii5ard.github.io/whitespace/ 复制进去直接run即可
 
 snow隐写，到snowdos32工具目录下运行 SNOW.EXE -C -p password flag.txt 命令即可
+
+### 零宽字符隐写
+
+这个建议直接用B神的 PuzzleSolver 一把梭了
+
 
 ### 中文电报（中文电码）
 
@@ -1728,7 +1735,9 @@ word中可能有一段是1倍行距，可能又有一段是1.5倍行距，需要
 ### 4、无字天书(whitespace)&amp;snow隐写
 
 一个文件打开都是空白字符
+
 可以使用在线网站解密：https://vii5ard.github.io/whitespace/ 复制进去直接run即可
+
 snow隐写，到snowdos32工具目录下运行 SNOW.EXE -C -p password flag.txt 命令即可
 
 ### 5、垃圾邮件隐写(spammimic)
@@ -1738,6 +1747,22 @@ snow隐写，到snowdos32工具目录下运行 SNOW.EXE -C -p password flag.txt 
 直接使用以下在线网站解密即可：
 
 https://www.spammimic.com/
+
+### 6、Cloakify隐写
+
+例题1-群友发的题
+
+附件下载链接：https://pan.baidu.com/s/1EMAMOeot_aKXIs5pckTQfQ?pwd=93np 提取码：93np
+
+解密需要用到[Cloakify](https://github.com/TryCatchHCF/Cloakify)这个项目
+
+拿到密文和字典后，直接Python运行解密即可
+
+```bash
+python2 decloakify.py cipher.txt passwd.txt
+```
+
+&gt; Tips：如果碰到解密失败的情况，可以试试看在windows下重新复制文本，并在末尾加一个换行符
 
 ## Misc——html题思路：
 
@@ -1868,242 +1893,25 @@ python3 crc32.py reverse 0x7c2df918
 
 ### 3、明文攻击
 
-#### **已知所有的明文或三段密钥**
+#### 已知所有的明文或三段密钥
 
-**使用Advanced Archive Password Recovery破解**
+方法一、直接使用Advanced Archive Password Recovery破解
 
-有和压缩包中的一样(CRC值一样)的文件时，压缩然后用AAPR进行明文攻击,这个攻击的过程可能需要几分钟
+&gt; 有和压缩包中的一样(CRC值一样)的文件时，压缩然后用上面那个软件进行明文攻击,这个攻击的过程可能需要几分钟
+&gt; 
+&gt; 有了完整的三段密钥也可以使用这个工具破解密码
 
-有了完整的三段密钥也可以使用这个工具破解密码
+方法二、使用 bkcrack破解
 
-**使用pkcrack破解**
+&gt; 把相同文件按照对应的压缩方法，压缩成压缩包，然后使用bkcrack破解即可
 
-```bash
-#将pkcrack作为系统命令使用
-cp pkcrack /usr/sbin/pkcrack
-```
+例题1-2023古剑山-幸运饼干
 
-```bash
-pkcrack -c &#34;README.txt&#34; -p README.txt -C flag.zip -P README.zip
-```
+方法一、把该文件用压缩软件压缩成一个压缩包，然后用 Advanced Archive Password Recovery 明文攻击
 
-```
--C:要破解的目标文件(含路径)
--c:破解文件中的明文文件的名字(其路径不包括系统路径,从zip文件一层开始)
--P:压缩后的明文文件
--p:压缩的明文文件中明文文件的名字(也就是readme.txt在readme.zip中的位置)
-```
+方法二、用压缩软件把该文件压缩成一个压缩包，然后使用 bkcrack 进行明文攻击
 
-#### 已知部分明文
-
-**利用bkcrack进行攻击**
-
-参考资料
-
-```
-https://www.freebuf.com/articles/network/255145.html
-https://byxs20.github.io/posts/30731.html#%E6%80%BB%E7%BB%93
-```
-
-该利用方法的具体要求如下：
-
-```
-至少已知明文的12个字节及偏移，其中至少8字节需要连续。
-明文对应的文件加密方式为ZipCrypto Store
-Tips：进行明文攻击前要判断制作压缩包的压缩工具，然后对已知明文使用特定工具进行压缩，再进行明文攻击
-例子：bkcrack -C \$R9EG7XR.zip -c flag.txt -k 958597ea b9f7740b 622aed5e -d flag.txt
-```
-
-如何判断压缩工具（参考自B神的博客）
-
-|     压缩攻击     | VersionMadeBy(压缩所用版本) |
-| :----------: | :-------------------: |
-| Bandzip 7.06 |          20           |
-|  Windows自带   |          20           |
-| WinRAR 4.20  |          31           |
-| WinRAR 5.70  |          31           |
-|    7-Zip     |          63           |
-
-**bkcrack常用参数**
-
-```bash
--c 要解密的文件
--P 已知明文所在的压缩包
--p 已知的明文部分
--x 压缩包内目标文件的偏移地址  部分已知明文值
--C 加密压缩包
--o offset  -p参数指定的明文在压缩包内目标文件的偏移量
--k 后面加破解出的三段密钥
--d 后面加解密后数据的保存位置
--U 修改压缩包密码并导出	bkcrack -C flag.zip -c hint.jpg -k afb9fee3 f8795353 f6de1d4e -U out.zip 114514
-```
-
-例题：
-
-```bash
-#Tips:
-xxd // xxd 命令用于用二进制或十六进制显示文件的内容
--r // 把xxd的十六进制输出内容转换回原文件的二进制内容
--ps // 以 postscript的连续十六进制转储输出，这也叫做纯十六进制转储
-```
-
-##### 1)简单的加密文本压缩包破解
-
-```
-flag{16e371fa-0555-47fc-b343-74f6754f6c01}
-```
-
-```bash
-#攻击步骤如下：
-#准备已知明文
-echo -n &#34;lag{16e3&#34; &gt; plain1.txt   #连续的8明文
-echo -n &#34;74f6&#34; | xxd             #额外明文的十六进制格式，37346636
-#攻击，-o是偏移量
-bkcrack -C flag_360.zip -c flag.txt -p plain1.txt -o 1 -x 29 37346636
-#由于时间较长，为防止终端终端导致破解中断，可以加点小技巧
-bkcrack -C flag_360.zip -c flag.txt -p plain1.txt -o 1 -x 29 37346636 &gt; 1.log&amp; 
-#后台运行，结果存入1.log
-#加上time参数方便计算爆破时间
-time bkcrack -C flag_360.zip -c flag.txt -p plain1.txt -o 1 -x 29 37346636 &gt; 1.log&amp;
-#查看爆破进度
-tail -f 1.log
-#使用该秘钥进行解密：
-bkcrack -C flag_360.zip -c flag.txt  -k b21e5df4 ab9a9430 8c336475 -d flag.txt
-```
-
-```bash
-#-p 指定的明文不需要转换，-x 指定的明文需要转成十六进制
-#提到的偏移都是指 “已知明文在加密前文件中的偏移”。
-```
-
-##### 2)利用PNG图片文件头破解
-
-```bash
-#准备已知明文
-echo 89504E470D0A1A0A0000000D49484452 | xxd -r -ps &gt; png_header
-#攻击
-time bkcrack -C png4.zip -c 2.png -p png_header -o 0 &gt;1.log&amp;
-tail -f 1.log
-time bkcrack -C png4.zip -c flag.txt -k e0be8d5d 70bb3140 7e983fff -d flag.txt
-```
-
-##### 3)利用压缩包格式破解
-
-```
-将一个名为flag.txt的文件打包成ZIP压缩包后，发现文件名称会出现在压缩包文件头中，且偏移固定为30。且默认情况下，flag.zip也会作为该压缩包的名称。
-已知的明文片段有：
-“flag.txt”  8个字节，偏移30
-ZIP本身文件头：50 4B 03 04 ，4字节
-满足12字节的要求
-```
-
-```bash
-echo -n &#34;flag.txt&#34; &gt; plain1.txt #-n参数避免换行，不然文件中会出现换行符，导致攻击失效
-time bkcrack -C test5.zip -c flag.zip -p plain1.txt -o 30  -x 0 504B0304 &gt;1.log&amp;
-tail -f 1.log
-bkcrack -C test5.zip -c flag.zip -k b21e5df4 ab9a9430 8c336475  -d flag.zip
-#但若想解密2.png，由于是ZipCrypto deflate加密的
-#使用deflate算法压缩的文件，解码出来的是Deflate的数据流
-#所以解密后需要bkcrack/tool内的inflate.py脚本再次处理
-bkcrack -C test5.zip -c 2.png -k b21e5df4 ab9a9430 8c336475  -d 2.png
-python3 inflate.py &lt; 2.png &gt; 2_out.png
-```
-
-Tips：如果这里用&#34;XXXXX.txt&#34;作为plaint1.txt无法破解出密钥，可以试试直接去掉后缀再作为plaint1.txt
-
-例如：NKCTF2023——五年Misc，三年模拟
-
-```bash
-#echo -n &#34;handsome.txt&#34; &gt; plain1.txt 破解失败
-echo -n &#34;handsome&#34; &gt; plain1.txt
-time bkcrack -C test5.zip -c handsome.zip -p plain1.txt -o 30  -x 0 504B0304 &gt;1.log&amp;
-```
-
-##### 4)EXE文件格式破解
-
-```
-EXE文件默认加密情况下，不太会以store方式被加密，但它文件格式中的的明文及其明显，长度足够。如果加密ZIP压缩包出现以store算法存储的EXE格式文件，很容易进行破解。
-大部分exe中都有这相同一段，且偏移固定为64：
-```
-
-![img](https://image.3001.net/images/20201117/1605593956_5fb36b64db62588f96dcc.png!small)
-
-```bash
-echo -n &#34;0E1FBA0E00B409CD21B8014CCD21546869732070726F6772616D2063616E6E6F742062652072756E20696E20444F53206D6F64652E0D0D0A2400000000000000&#34; | xxd -r -ps &gt; mingwen
-time bkcrack -C nc64.zip -c nc64.exe -p mingwen -o64  &gt;1.log&amp;
-tail -f 1.log
-bkcrack -C nc64.zip -c nc64.exe -k b21e5df4 ab9a9430 8c336475  -d nc64.exe
-```
-
-##### 5)流量包pcapng格式解密
-
-```bash
-echo -n &#34;00004D3C2B1A01000000FFFFFFFFFFFFFFFF&#34; | xxd -r -ps &gt; pcap_plain1
-time bkcrack -C 3.zip -c capture.pcapng -p pcap_plain1 -o 6
-bkcrack -C 3.zip -c capture.pcapng  -k e33a580c  c0c96a81 1246d892  -d out.pcapng
-```
-
-##### 6)网站相关文件破解
-
-```
-robots.txt的文件开头内容通常是User-agent: * 
-html文件开头通常是 &lt;!DOCTYPE html&gt;
-xml文件开头通常是&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
-```
-
-```bash
-echo -n &#39;&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;&#39; &gt; xml_plain
-time bkcrack -C xml.zip -c 123/web.xml -p xml_plain -o 0  //注意相对路径
-bkcrack -C xml.zip -c 123/web.xml  -k e0be8d5d 70bb3140 7e983fff  -d web.xml
-```
-
-##### 7)SVG文件格式破解
-
-```bash
-#SVG是一种基于XML的图像文件格式
-echo -n &#39;&lt;?xml version=&#34;1.0&#34; &#39; &gt; plain.txt
-bkcrack -C secrets.zip -c spiral.svg -p plain.txt -o 0
-#解密 Store算法  直接解密即可
-bkcrack -C secrets.zip -c spiral.svg -k c4038591 d5ff449d d3b0c696 -d spiral_deciphered.svg
-#解密 deflate算法
-bkcrack -C secrets.zip -c advice.jpg -k c4038591 d5ff449d d3b0c696 -d out.jpg
-#该文件使用了deflate算法压缩的，解码出来的是Deflate的数据流,因此须将其解压缩。
-python3 inflate.py &lt; out.jpge &gt; flag.jpg
-```
-
-##### 8)VMDK文件格式破解
-
-```bash
-echo -n &#34;4B444D560100000003000000&#34; | xxd -r -ps &gt; plain2
-time bkcrack -C Easy_VMDK.zip -c flag.vmdk -p plain2 -o 0
-time bkcrack -C Easy_VMDK.zip -c flag.vmdk -k xxx xxx xxx -d flag.vmdk
-```
-
-**有时候直接给你部分明文的情况（2023 DASCTFxCBCTF）**
-
-直接在bkcrack中使用以下命令即可，key是题目给的压缩包中被压缩文件的部分明文
-
-```bash
-bkcrack -C purezip.zip -c &#39;secret key.zip&#39; -p key
-```
-
-**直接给了加密压缩包中部分文件的情况**
-
-例题1 - 2023 古剑山-幸运饼干
-
-- 可以先把该文件用压缩软件压缩成一个压缩包，然后用 Advanced Archive Password Recovery 明文攻击试试看
-
-- 用压缩软件把该文件压缩成一个压缩包，然后使用 bkcrack 进行明文攻击
-
-  为什么需要压缩成压缩包呢？因为如果不带上压缩包进行明文攻击的话会报下面这个错误
-
-  ```bash
-  $ bkcrack -C flag.zip -c &#39;hint.jpg&#39; -p hint.jpg
-  bkcrack 1.5.0 - 2023-03-08
-  Data error: ciphertext is smaller than plaintext.
-  ```
-
-  用 -P 参数带上压缩包后即可正确解密出密钥
+&gt; Tips：用 -P 参数带上压缩包后即可正确解密出密钥
 
   ```bash
   $ bkcrack -C flag.zip -c hint.jpg -p hint.jpg -P hint.zip
@@ -2117,9 +1925,7 @@ bkcrack -C purezip.zip -c &#39;secret key.zip&#39; -p key
   afb9fee3 f8795353 f6de1d4e
   ```
 
-  因此这种情况一定要记得将已有的文件用适当的压缩方法压缩成压缩包，然后用-P参数带上这个压缩包
-
-例题1 - 2023 铁三决赛-baby_jpg
+例题2-2023铁三决赛-baby_jpg
 
 我们先从部分伪加密的压缩包中分离出了 serect.pdf，然后从PDF中 foremost 出了加密压缩包中的 sha512.txt
 
@@ -2150,6 +1956,215 @@ Wrote unlocked archive.
 ```
 
 
+#### 已知部分明文
+
+**利用bkcrack进行攻击**
+
+&gt; 参考资料:
+&gt; 
+&gt; https://www.freebuf.com/articles/network/255145.html
+&gt; 
+&gt; https://byxs20.github.io/posts/30731.html#%E6%80%BB%E7%BB%93
+
+该利用方法的具体要求如下：
+
+```
+至少已知明文的12个字节及偏移，其中至少8字节需要连续。
+明文对应的文件加密方式为 ZipCrypto Store(有时候Deflate也可以)
+Tips：进行明文攻击前要判断制作压缩包的压缩工具，然后对已知明文使用特定工具进行压缩，再进行明文攻击
+例子：bkcrack -C \$R9EG7XR.zip -c flag.txt -k 958597ea b9f7740b 622aed5e -d flag.txt
+```
+
+如何判断压缩工具（参考自B神的博客）
+
+|     压缩攻击     | VersionMadeBy(压缩所用版本) |
+| :----------: | :-------------------: |
+| Bandzip 7.06 |          20           |
+|  Windows自带   |          20           |
+| WinRAR 4.20  |          31           |
+| WinRAR 5.70  |          31           |
+|    7-Zip     |          63           |
+
+**bkcrack常用参数**
+
+```bash
+-c 要解密的文件
+-P 已知明文所在的压缩包
+-p 已知的明文部分
+-x 压缩包内目标文件的偏移地址  部分已知明文值
+-C 加密压缩包
+-o offset  -p参数指定的明文在压缩包内目标文件的偏移量
+-k 后面加破解出的三段密钥
+-d 后面加解密后数据的保存位置
+-U 修改压缩包密码并导出	bkcrack -C flag.zip -c hint.jpg -k afb9fee3 f8795353 f6de1d4e -U out.zip 114514
+```
+
+
+##### 1)利用明文文本破解
+
+```
+flag{16e371fa-0555-47fc-b343-74f6754f6c01}
+```
+
+```bash
+#攻击步骤如下：
+#准备已知明文
+echo -n &#34;lag{16e3&#34; &gt; plain1.txt   #连续的8明文
+echo -n &#34;74f6&#34; | xxd             #额外明文的十六进制格式，37346636
+#攻击，-o是偏移量
+bkcrack -C flag_360.zip -c flag.txt -p plain1.txt -o 1 -x 29 37346636
+#由于时间较长，为防止终端终端导致破解中断，可以加点小技巧
+bkcrack -C flag_360.zip -c flag.txt -p plain1.txt -o 1 -x 29 37346636
+#后台运行，结果存入1.log
+#加上time参数方便计算爆破时间
+time bkcrack -C flag_360.zip -c flag.txt -p plain1.txt -o 1 -x 29 37346636 &gt; 1.log&amp;
+#查看爆破进度
+tail -f 1.log
+#使用得到的秘钥进行解密：
+bkcrack -C flag_360.zip -c flag.txt  -k b21e5df4 ab9a9430 8c336475 -d flag.txt
+# -p 指定的明文不需要转换
+# -x 指定的明文需要转成十六进制
+# 提到的偏移都是指 “已知明文在加密前文件中的偏移”。
+```
+
+##### 2)利用PNG图片文件头破解
+
+```bash
+#准备已知明文
+echo 89504E470D0A1A0A0000000D49484452 | xxd -r -ps &gt; png_header
+#攻击
+bkcrack -C png4.zip -c 2.png -p png_header -o 0
+bkcrack -C png4.zip -c flag.txt -k e0be8d5d 70bb3140 7e983fff -d flag.txt
+```
+
+##### 3)利用压缩包格式破解
+
+&gt; 将一个名为flag.txt的文件打包成ZIP压缩包后，发现文件名称会出现在压缩包文件头中，且偏移固定为30
+&gt; 
+&gt; 且默认情况下，flag.zip也会作为该压缩包的名称
+&gt; 
+&gt; 已知的明文片段有：
+&gt; 
+&gt; “flag.txt”  8个字节，偏移30
+&gt; 
+&gt; ZIP本身文件头：50 4B 03 04 ，4字节
+&gt; 
+&gt; 满足12字节的要求
+
+```bash
+echo -n &#34;flag.txt&#34; &gt; plain1.txt # -n参数避免换行，不然文件中会出现换行符，导致攻击失效
+bkcrack -C test5.zip -c flag.zip -p plain1.txt -o 30  -x 0 504B0304
+bkcrack -C test5.zip -c flag.zip -k b21e5df4 ab9a9430 8c336475  -d flag.zip
+# 但若想解密2.png，由于是ZipCrypto deflate加密的
+# 使用deflate算法压缩的文件，解码出来的是Deflate的数据流
+# 所以解密后需要bkcrack/tool内的inflate.py脚本再次处理
+bkcrack -C test5.zip -c 2.png -k b21e5df4 ab9a9430 8c336475  -d 2.png
+python3 inflate.py &lt; 2.png &gt; 2_out.png
+```
+
+&gt; Tips：如果这里用&#34;XXXXX.txt&#34;作为plaint1.txt无法破解出密钥，可以试试直接去掉后缀再作为plaint1.txt
+
+例题1-NKCTF2023——五年Misc，三年模拟
+
+```bash
+#echo -n &#34;handsome.txt&#34; &gt; plain1.txt 破解失败
+echo -n &#34;handsome&#34; &gt; plain1.txt
+bkcrack -C test5.zip -c handsome.zip -p plain1.txt -o 30  -x 0 504B0304
+```
+
+##### 4)利用EXE文件格式破解
+
+&gt; EXE文件默认加密情况下，不太会以store方式被加密，但它文件格式中的的明文及其明显，长度足够。
+&gt; 
+&gt; 如果加密ZIP压缩包出现以store算法存储的EXE格式文件，很容易进行破解。
+&gt; 
+&gt; 大部分exe中都有这相同一段，且偏移固定为64：
+
+![img](https://image.3001.net/images/20201117/1605593956_5fb36b64db62588f96dcc.png!small)
+
+```bash
+echo -n &#34;0E1FBA0E00B409CD21B8014CCD21546869732070726F6772616D2063616E6E6F742062652072756E20696E20444F53206D6F64652E0D0D0A2400000000000000&#34; | xxd -r -ps &gt; mingwen
+bkcrack -C nc64.zip -c nc64.exe -p mingwen -o 64
+bkcrack -C nc64.zip -c nc64.exe -k b21e5df4 ab9a9430 8c336475  -d nc64.exe
+```
+
+##### 5)利用pcapng格式破解
+
+```bash
+echo -n &#34;00004D3C2B1A01000000FFFFFFFFFFFFFFFF&#34; | xxd -r -ps &gt; pcap_plain1
+bkcrack -C 3.zip -c capture.pcapng -p pcap_plain1 -o 6
+bkcrack -C 3.zip -c capture.pcapng  -k e33a580c  c0c96a81 1246d892  -d out.pcapng
+```
+
+##### 6)利用XML文件格式破解
+
+```
+robots.txt的文件开头内容通常是User-agent: * 
+html文件开头通常是 &lt;!DOCTYPE html&gt;
+xml文件开头通常是&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
+```
+
+```bash
+echo -n &#39;&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;&#39; &gt; xml_plain
+time bkcrack -C xml.zip -c 123/web.xml -p xml_plain -o 0  //注意相对路径
+bkcrack -C xml.zip -c 123/web.xml  -k e0be8d5d 70bb3140 7e983fff  -d web.xml
+```
+
+##### 7)利用SVG文件格式破解
+
+```bash
+#SVG是一种基于XML的图像文件格式
+echo -n &#39;&lt;?xml version=&#34;1.0&#34; &#39; &gt; plain.txt
+bkcrack -C secrets.zip -c spiral.svg -p plain.txt -o 0
+#解密 Store算法  直接解密即可
+bkcrack -C secrets.zip -c spiral.svg -k c4038591 d5ff449d d3b0c696 -d spiral_deciphered.svg
+#解密 deflate算法
+bkcrack -C secrets.zip -c advice.jpg -k c4038591 d5ff449d d3b0c696 -d out.jpg
+#该文件使用了deflate算法压缩的，解码出来的是Deflate的数据流,因此须将其解压缩。
+python3 inflate.py &lt; out.jpge &gt; flag.jpg
+```
+
+##### 8)利用VMDK文件格式破解
+
+```bash
+echo -n &#34;4B444D560100000003000000&#34; | xxd -r -ps &gt; plain2
+time bkcrack -C Easy_VMDK.zip -c flag.vmdk -p plain2 -o 0
+time bkcrack -C Easy_VMDK.zip -c flag.vmdk -k xxx xxx xxx -d flag.vmdk
+```
+
+**有时候直接给你部分明文的情况（2023 DASCTFxCBCTF）**
+
+直接在bkcrack中使用以下命令即可，key是题目给的压缩包中被压缩文件的部分明文
+
+```bash
+bkcrack -C purezip.zip -c &#39;secret key.zip&#39; -p key
+```
+
+#### 得到密钥后使用bkcrack修改压缩包密码
+
+破解出压缩包的三段密钥后，可以用 -U 参数修改压缩包密码并导出
+
+```bash
+$ bkcrack -C 00000218.zip -k ed3fb6a9 1c4a7211 c07461ed -U out.zip 111
+bkcrack 1.5.0 - 2023-03-08
+[16:15:44] Writing unlocked archive out.zip with password &#34;111&#34;
+100.0 % (3 / 3)
+Wrote unlocked archive.
+```
+
+#### 得到密钥后反向爆破压缩包密码
+
+```bash
+bkcrack -k e48d3828 5b7223cc 71851fb0 -r 3 \?b
+
+bkcrack 1.5.0 - 2023-03-08
+[17:47:50] Recovering password
+length 0-6...
+[17:47:50] Password
+as bytes: 8b e7 dc
+as text: ���
+```
+
 #### 在比赛中的使用记录
 
 **2022 西湖论剑zipeasy**
@@ -2164,19 +2179,20 @@ bkcrack -C zipeasy.zip -c dasflow.zip -x 30 646173666c6f772e706361706e67 -x 0 50
 
 ```bash
 bkcrack -k e48d3828 5b7223cc 71851fb0 -r 3 \?b
-#bkcrack 1.5.0 - 2023-03-08
-#[17:47:50] Recovering password
-#length 0-6...
-#[17:47:50] Password
-#as bytes: 8b e7 dc
-#as text: ���
+
+bkcrack 1.5.0 - 2023-03-08
+[17:47:50] Recovering password
+length 0-6...
+[17:47:50] Password
+as bytes: 8b e7 dc
+as text: ���
 ```
 
 然后如果要对得到的密钥进行MD5加密，可以使用CyberChef（From Hex &#43; MD5）
 
 ![](imgs/MD5.png)
 
-Tips：题目做不出来可以尝试多换几个压缩软件：Bandzip、Winrar、7zip、360压缩、2345压缩等
+&gt; Tips：题目做不出来可以尝试多换几个压缩软件：Bandzip、Winrar、7zip、360压缩、2345压缩等
 
 ### 4、暴力破解(爆破时注意限制长度)
 
