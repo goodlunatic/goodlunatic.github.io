@@ -4,9 +4,17 @@
     <link>http://localhost:1313/</link>
     <description>Welcome to Lunatic&#39;s BLOG ^_^</description>
     <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>goodlunatic0@gmail.com (Lunatic)</managingEditor>
-      <webMaster>goodlunatic0@gmail.com (Lunatic)</webMaster><lastBuildDate>Fri, 29 Nov 2024 22:30:17 &#43;0800</lastBuildDate>
+      <webMaster>goodlunatic0@gmail.com (Lunatic)</webMaster><lastBuildDate>Sun, 01 Dec 2024 12:16:34 &#43;0800</lastBuildDate>
       <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
     <item>
+  <title>2024 古剑山全国大学生网络攻防大赛 Misc Writeup</title>
+  <link>http://localhost:1313/posts/1618f6c/</link>
+  <pubDate>Sun, 01 Dec 2024 12:16:34 &#43;0800</pubDate>
+  <author>Lunatic</author>
+  <guid>http://localhost:1313/posts/1618f6c/</guid>
+  <description><![CDATA[<p><strong>2024 古剑山全国大学生网络攻防大赛 Misc Writeup</strong></p>]]></description>
+</item>
+<item>
   <title>CTF-Misc Guide</title>
   <link>http://localhost:1313/posts/1ad9200/</link>
   <pubDate>Fri, 29 Nov 2024 22:30:17 &#43;0800</pubDate>
@@ -78,14 +86,6 @@
   <author>Lunatic</author>
   <guid>http://localhost:1313/posts/01ebd40/</guid>
   <description><![CDATA[<p>越来越多的比赛中出现工控相关的赛题，因此打算借这个机会学习一下。</p>]]></description>
-</item>
-<item>
-  <title>IOT Security Research</title>
-  <link>http://localhost:1313/posts/848cf69/</link>
-  <pubDate>Fri, 25 Oct 2024 13:44:52 &#43;0800</pubDate>
-  <author>Lunatic</author>
-  <guid>http://localhost:1313/posts/848cf69/</guid>
-  <description><![CDATA[<p>A simple blog for IOT Security Research.</p>]]></description>
 </item>
 </channel>
 </rss>

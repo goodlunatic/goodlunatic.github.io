@@ -1693,6 +1693,8 @@ with open(&#39;flag.zip&#39;, &#39;wb&#39;) as f:
 
 可以直接使用 DeEgger Embedder 工具 extract files
 
+6、使用PS打开，里面可能有多个图层(例题1-2024古剑山-jpg)
+
 ## Misc——MS-Office题思路
 
 ### Excel文件：.xls .xlsx
