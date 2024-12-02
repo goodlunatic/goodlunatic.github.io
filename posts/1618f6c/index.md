@@ -2,12 +2,64 @@
 
 **2024 古剑山全国大学生网络攻防大赛 Misc Writeup**
 &lt;!--more--&gt;
+
+附件下载链接： https://pan.baidu.com/s/1b5TedPnBTF9Z8ZfB7QWDaA?pwd=gbi9 提取码: gbi9
+
 ## 题目名称 蓝书包
 
+解压附件压缩包，得到128个压缩包，然后每个压缩包里只有一个文件
 
+![](imgs/image-20241202211724985.png)
 
+尝试使用工具弱密码爆破压缩包，发现第一个压缩包的密码是`10001`，第二个是`10002`，以此类推
 
-TODO
+![](imgs/image-20241202211754841.png)
+
+解压第一个压缩包发现有PNG的文件头，因此猜测把所有压缩包中的数据连起来是一张PNG图片
+
+编写以下脚本提取一下数据然后保存为图片
+
+```python
+import zipfile
+import os
+
+def decompress_zip(archive_file,passwd):
+    if not os.path.exists(&#34;tmp&#34;):
+        os.mkdir(&#34;tmp&#34;)
+    with zipfile.ZipFile(archive_file, &#39;r&#39;) as zip_ref:
+        zip_ref.extractall(path=&#34;tmp/&#34;, pwd=passwd.encode())
+        print(f&#34;{archive_file}用{passwd}成功解压缩 ===&gt;&#34;)
+    
+def extract_data():
+    files = os.listdir(&#34;./tmp&#34;)
+    # print(files)
+    for file in files:
+        filepath = &#34;./tmp/&#34;&#43;file
+        with open(filepath,&#39;rb&#39;) as f:
+            data = f.read()
+    os.system(&#34;rm tmp/*&#34;)
+    return data
+
+if __name__ == &#34;__main__&#34;:
+    png_data = b&#39;&#39;
+    for i in range(1,183):
+        filename = f&#34;{i}.zip&#34;
+        passwd = str(10000&#43;i)
+        decompress_zip(filename,passwd)
+        png_data &#43;= extract_data()
+        
+    # print(png_data)
+    with open(&#34;flag.png&#34;,&#34;wb&#34;) as f:
+        f.write(png_data)
+```
+
+运行以上脚本后可以得到下面这张图片
+
+![](imgs/image-20241202212117433.png)
+
+最后使用B神的PuzzleSolver爆破cloacked-pixel即可得到flag：`flag{8719e663c0507cecbff2db103a7f7cd7}`
+
+![](imgs/image-20241202212241251.png)
 
 ## 题目名称 jpg
 感觉这道题的整体出题思路参考自：2023 铁三决赛-baby-jpg

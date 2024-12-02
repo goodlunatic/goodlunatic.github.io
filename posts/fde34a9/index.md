@@ -2,6 +2,9 @@
 
 **2023 楚慧杯网络空间安全实践能力竞赛 Misc Writeup**
 &lt;!--more--&gt;
+
+**附件下载链接： https://pan.baidu.com/s/14GkEsQ2GK1FjDxxJRTl0gA?pwd=v9dz 提取码: v9dz**
+
 ## 题目名称 ez_zip
 
 解压附件得到一个`4096.zip`，打开发现有一个`4095.zip`，因此猜测是压缩包套娃
