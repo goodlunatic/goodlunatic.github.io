@@ -4,7 +4,15 @@
     <link>http://localhost:1313/tags/misc/</link>
     <description>Misc - Tag | ⚡Lunatic BLOG⚡</description>
     <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>goodlunatic0@gmail.com (Lunatic)</managingEditor>
-      <webMaster>goodlunatic0@gmail.com (Lunatic)</webMaster><lastBuildDate>Sun, 01 Dec 2024 12:16:34 &#43;0800</lastBuildDate><atom:link href="http://localhost:1313/tags/misc/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>goodlunatic0@gmail.com (Lunatic)</webMaster><lastBuildDate>Mon, 02 Dec 2024 12:15:27 &#43;0800</lastBuildDate><atom:link href="http://localhost:1313/tags/misc/" rel="self" type="application/rss+xml" /><item>
+  <title>Misc-Network Traffic Analysis</title>
+  <link>http://localhost:1313/posts/5422d65/</link>
+  <pubDate>Mon, 02 Dec 2024 12:15:27 &#43;0800</pubDate>
+  <author>Lunatic</author>
+  <guid>http://localhost:1313/posts/5422d65/</guid>
+  <description><![CDATA[<p><strong>This is a Simple Guide for Network Traffic Analysis.</strong></p>]]></description>
+</item>
+<item>
   <title>2024 古剑山全国大学生网络攻防大赛 Misc Writeup</title>
   <link>http://localhost:1313/posts/1618f6c/</link>
   <pubDate>Sun, 01 Dec 2024 12:16:34 &#43;0800</pubDate>
@@ -60,14 +68,6 @@
   <author>Lunatic</author>
   <guid>http://localhost:1313/posts/761da51/</guid>
   <description><![CDATA[<p><strong>This is a simple summary of digital forensics .</strong></p>]]></description>
-</item>
-<item>
-  <title>Misc-Network Traffic Analysis</title>
-  <link>http://localhost:1313/posts/5422d65/</link>
-  <pubDate>Mon, 28 Oct 2024 18:15:27 &#43;0800</pubDate>
-  <author>Lunatic</author>
-  <guid>http://localhost:1313/posts/5422d65/</guid>
-  <description><![CDATA[<p><strong>This is a Simple Guide for Network Traffic Analysis.</strong></p>]]></description>
 </item>
 <item>
   <title>2024 强网拟态防御国际精英挑战赛初赛 Misc Writeup</title>

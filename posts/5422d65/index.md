@@ -908,10 +908,64 @@ tshark -r 1.pcap -T fields -e s7comm.resp.data | uniq
 然后直接把明文传输的数据 base64 解码即可
 ![](imgs/image-20240430135958048.png)
 flag{hncome66!}
-## 蓝牙(OBEX)流量分析
+## 蓝牙流量分析
+### OBEX协议
 
-在统计的协议分级中选中OBEX协议
-然后查找pin的分组详情，获得压缩包的密码
+过滤器中输入`OBEX`，然后导出传输的压缩包，然后再在搜索中输入`PIN Code`选择分组列表和字符串即可找到解压密码
+
+### ATT协议
+
+例题1-low_energy_crypto
+
+```bash
+# 先用tshark导出公钥，并把公钥另存为pub.key
+tshark -r low_energy_crypto.pcapng -T fields -e btgatt.nordic.uart_rx -Y &#39;btatt.opcode == 0x1b&#39; | sed &#39;/^\s*$/d&#39; | uniq &gt; data.txt
+# 然后用tshark导出密文，这里的数据如果不是十六进制，用tshark提有时候会出问题，可以手提
+tshark -r low_energy_crypto.pcapng -T fields -e btgatt.nordic.uart_tx -Y &#39;btatt.opcode == 0x12&#39; | sed &#39;/^\s*$/d&#39; | uniq &gt; enc.txt
+# 公钥和密文都有了之后，就可以直接用RsaCtfTool解密密文了，这里的密文后面如果有多余\x00，可以用010手动去除，要不然可能解密失败
+python3 /home/kali/RsaCtfTool/RsaCtfTool.py --publickey ./pub.key --decryptfile ./enc.txt
+```
+
+![](imgs/image-20241202135717254.png)
+
+例题2-BLE_crypto
+```bash
+# 先用tshark导出公钥，并把公钥另存为pub.key，这里如果是十六进制，需要CyberChef转换一下先
+tshark -r BLE_crypto.pcapng -T fields -e btatt.value -Y &#39;btatt.opcode&#39; | sed &#39;/^\s*$/d&#39;
+# 然后用tshark导出密文，如果是十六进制，需要CyberChef转换一下先
+tshark -r low_energy_crypto.pcapng -T fields -e btgatt.nordic.uart_tx -Y &#39;btatt.opcode == 0x12&#39; | sed &#39;/^\s*$/d&#39; | uniq &gt; enc.txt
+# 公钥和密文都有了之后，就可以直接用RsaCtfTool解密密文了
+python3 /home/kali/RsaCtfTool/RsaCtfTool.py --publickey ./pub.key --decryptfile ./enc
+```
+
+![](imgs/image-20241202140503314.png)
+
+
+### SMP协议
+
+SMP协议的全称是Secure Manager Protocol，用来定义蓝牙的配对和密钥的分发
+
+配对完成后传输的数据是加密的，我们需要用(Crakle)[https://github.com/mikeryan/crackle]这个项目进行解密
+
+&gt; 这里老版本的可能有点问题，建议去pr中找一下新版的安装
+&gt; 
+&gt; 参考链接：https://cloud.tencent.com/developer/article/2159878
+
+安装好项目后直接运行一下命令解密流量包即可
+
+```bash
+crackle -i uploads_2022_04_11_h5kAcZEg_ble.pcapng -o dec.pcapng
+```
+
+![](imgs/image-20241202141020218.png)
+
+SMP协议解密完成后，我们可以在ATT协议中发现传输的数据，用以下命令导出
+
+```bash
+tshark -r dec.pcapng -T fields -e btatt.value -Y &#39;btatt.opcode == 0x52&#39; | sed &#39;/^\s*$/d&#39;
+```
+
+然后CyberChef将得到的十六进制数据转换一下即可得到flag：`flag{9ba3973652c0ee073652c0ee0c76ca6cb36441bd40}`
 
 ## 邮件(STMP)流量分析
 
