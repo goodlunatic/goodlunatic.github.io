@@ -27,7 +27,7 @@
 |                                                              |                                                     |                                                              |                                                              |
 | :----------------------------------------------------------: | :-------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: |
 | &lt;img src=&#34;https://www.nssctf.cn/files/2024/12/2/ceaca7b7bf.jpeg&#34; width=&#34;150pxpx&#34; height=&#34;150pxpx&#34;&gt; | **[yichen](https://www.yuque.com/hxfqg9) - 全栈佬** | &lt;img src=&#34;https://baozongwi.xyz/images/acvtar.jpg&#34; width=&#34;150pxpx&#34; height=&#34;150pxpx&#34;&gt; | **[baozongwi](https://baozongwi.xyz/) - 鲍师傅 [@SU](https://su-team.cn/)** |
-| &lt;img src=&#34;https://www.nssctf.cn/files/2024/11/10/8d59621379.jpeg&#34; width=&#34;150pxpx&#34; height=&#34;150pxpx&#34;&gt; |       **[秋雨渐冷](http://156.238.233.48/)**        |                                                              |                                                              |
+| &lt;img src=&#34;https://www.nssctf.cn/files/2024/11/10/8d59621379.jpeg&#34; width=&#34;150pxpx&#34; height=&#34;150pxpx&#34;&gt; |        **[秋雨渐冷](https://yiqing.asia/)**         |                                                              |                                                              |
 
 
 

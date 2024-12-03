@@ -3,7 +3,45 @@
 **2024 古剑山全国大学生网络攻防大赛 Misc Writeup**
 &lt;!--more--&gt;
 
+![](imgs/image-20241203134212759.jpeg)
+
 附件下载链接： https://pan.baidu.com/s/1b5TedPnBTF9Z8ZfB7QWDaA?pwd=gbi9 提取码: gbi9
+
+## 题目名称 CS
+
+题目附件就给了以下内容：
+
+&gt; 截获了一段密文字符串jhjnjcjikmkfjjjkkejkkekdjgjcjnjhjnjcjiko,明文就在其中，请你把它找出来？
+
+仔细观察上面的密文，可以看到有很多的j和k，然后j和k后面都跟了一个字符，因此我们可以把上述字符串分成以下两部分
+
+```python
+str1 = &#34;jjjjkkjjkjkkjjjjjjjk&#34;
+str2 = &#34;hncimfjkekedgcnhncio&#34;
+```
+
+然后就是有点脑洞，就是根据把j和k后面的字符ASCII分别-2和&#43;14
+
+j后面的字符直接-2是可以肉眼观察出来的，但是k后面的字符&#43;14可以通过爆破
+
+```python
+str1 = &#34;jjjjkkjjkjkkjjjjjjjk&#34;
+str2 = &#34;hncimfjkekedgcnhncio&#34;
+
+res = []
+
+for key in range(-100,100):
+    flag = &#34;&#34;
+    for i in range(len(str1)):
+        if str1[i] == &#34;j&#34;:
+            flag &#43;= chr(ord(str2[i]) - 2) 
+        else:
+            flag &#43;= chr(ord(str2[i]) &#43; key)
+    print(f&#34;flag:{flag.encode()}  key:{key}&#34;)
+    # flag:b&#39;flag{thisisrealflag}&#39;  key:14
+```
+
+然后就可以得到最后的flag：`flag{thisisrealflag}`
 
 ## 题目名称 蓝书包
 
