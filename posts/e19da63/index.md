@@ -862,6 +862,45 @@ def draw2pic2():
         img.save(f&#34;./out1/{idx}.png&#34;) 
 ```
 
+#### puzipper模块的使用
+
+
+##### 比赛中的使用记录
+
+例题1-2024HITCTF邀请赛-BOMB
+```python
+import os
+import pyzipper
+
+
+def extract_zip(zip_file,passwd):
+    if not os.path.exists(&#39;./tmp&#39;):
+        os.mkdir(&#39;./tmp&#39;)
+    with pyzipper.ZipFile(zip_file,&#34;r&#34;) as zip_ref:
+        for zipinfo in zip_ref.filelist:
+            if &#39;.txt&#39; not in zipinfo.filename:
+                zip_ref.extract(zipinfo,&#39;./tmp&#39;,pwd=passwd.encode())
+            else:
+                # 提取压缩包中特定压缩大小的文件
+                if zipinfo.compress_size &gt; 17:
+                    zip_ref.extract(zipinfo,&#39;./tmp&#39;,pwd=passwd.encode())
+    with open(&#34;./tmp/Password.txt&#34;,&#34;r&#34;) as f:
+        passwd = f.read()
+    os.remove(zip_file)
+    os.system(&#34;mv ./tmp/*.zip .&#34;)
+    return passwd
+
+if __name__ == &#34;__main__&#34;:
+    zip_file = &#34;nextlevel.zip&#34;
+    passwd = &#34;Ll3zHsArHF&#34;
+    cnt = 1
+    while True:
+        print(f&#34;[&#43;] 第{cnt}层的密码是：{passwd}&#34;)
+        passwd = extract_zip(zip_file,passwd)
+        cnt &#43;= 1
+```
+
+
 #### pyzbar模块的使用
 
 ##### 识别二维码
@@ -1469,7 +1508,7 @@ data是给post请求携带参数的，timeout是设置请求超时时间&#34;&#3
 
 #### requests模块的使用
 
-#### 使用python脚本发送HTTP请求
+##### 使用python脚本发送HTTP请求
 
 **requests支持的请求协议有GET POST PUT...**
 
@@ -1587,7 +1626,7 @@ else:
     print(&#34;Server not a iis 7.5 or iis 8.0&#34;)
 ```
 
-#### 使用session发送请求
+##### 使用session发送请求
 
 ```python
 import requests

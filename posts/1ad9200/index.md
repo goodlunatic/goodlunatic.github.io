@@ -2208,6 +2208,8 @@ as text: ���
 
 ### 5、连环套压缩包
 
+&gt; 压缩包套娃建议用`pyzipper`模块写脚本解套，不要用`zipfile`了，这个模块有点过时了
+
 可以用fcrackzip进行爆破或者使用CTFD中的脚本爆破
 
 ```python
