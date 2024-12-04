@@ -1,4 +1,4 @@
-# 2024 CISCN初赛 Misc Writeup
+# 2024 全国大学生信息安全竞赛初赛 Misc Writeup
 
 又是一年国赛，这次纯纯是被队友带飞了！！！
 &lt;!--more--&gt;
