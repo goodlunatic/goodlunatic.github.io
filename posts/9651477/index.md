@@ -53,6 +53,14 @@ if __name__ == &#34;__main__&#34;:
 
 在WSL中运行以上脚本后即可得到flag：`flag{e1c1d86f-4407-41c7-94c4-9609fdb5862e}`
 
+## 题目名称 Knock
+
+## 题目名称 CAN
+
+## 题目名称 Special_signal
+
+## 题目名称 payment
+
 ---
 
 > Author: [Lunatic](https://goodlunatic.github.io)  

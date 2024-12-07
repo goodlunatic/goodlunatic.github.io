@@ -14,7 +14,7 @@
 出题师傅的水平还是挺可以的，然后经验啥的感觉还是比较老练">
   <meta itemprop="datePublished" content="2024-10-23T13:16:19+08:00">
   <meta itemprop="dateModified" content="2024-10-23T13:16:19+08:00">
-  <meta itemprop="wordCount" content="1007">
+  <meta itemprop="wordCount" content="1021">
   <meta itemprop="keywords" content="CTF,Misc,Writeup"><meta property="og:url" content="http://localhost:1313/posts/de8e2be/">
   <meta property="og:site_name" content="⚡Lunatic BLOG⚡">
   <meta property="og:title" content="2024 强网拟态防御国际精英挑战赛初赛 Misc Writeup">
@@ -45,7 +45,7 @@
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": "http:\/\/localhost:1313\/posts\/de8e2be\/"
-    },"genre": "posts","keywords": "CTF, Misc, Writeup","wordcount":  1007 ,
+    },"genre": "posts","keywords": "CTF, Misc, Writeup","wordcount":  1021 ,
     "url": "http:\/\/localhost:1313\/posts\/de8e2be\/","datePublished": "2024-10-23T13:16:19+08:00","dateModified": "2024-10-23T13:16:19+08:00","publisher": {
       "@type": "Organization",
       "name": ""},"author": {
@@ -954,7 +954,18 @@
 </div>
 </div><p>将三段flag组合即可得到最后的flag：<code>flag{3b3a9c08-88e4-4d65-b59e-13891ba324da}</code></p>
 <h2 id="题目名称-input-page-walk" class="heading-element">
-  <a href="#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-input-page-walk" class="heading-mark"></a>题目名称 Input Page Walk</h2></div><div class="post-footer" id="post-footer">
+  <a href="#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-input-page-walk" class="heading-mark"></a>题目名称 Input Page Walk</h2><p>参考链接：<a href="https://blog.wm-team.cn/index.php/archives/84/#Input&#43;Page&#43;Walk"target="_blank" rel="external nofollow noopener noreferrer">强网拟态 2024 By W&amp;M - W&amp;M Team</a></p>
+<p>解压附件压缩包，可以得到下面这几个文件</p>
+<p><img loading="lazy" src="/posts/de8e2be/imgs/image-20241204222824693.png" alt="/posts/de8e2be/imgs/image-20241204222824693.png" srcset="/posts/de8e2be/imgs/image-20241204222824693.png?size=small, /posts/de8e2be/imgs/image-20241204222824693.png?size=medium 1.5x, /posts/de8e2be/imgs/image-20241204222824693.png?size=large 2x" data-title="/posts/de8e2be/imgs/image-20241204222824693.png" style="--width: 1155px;--aspect-ratio: 1155 / 318;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>因为后缀未知，因此尝试用010打开，发现是<code>webp</code>图片</p>
+<p><img loading="lazy" src="/posts/de8e2be/imgs/image-20241204222939434.png" alt="/posts/de8e2be/imgs/image-20241204222939434.png" srcset="/posts/de8e2be/imgs/image-20241204222939434.png?size=small, /posts/de8e2be/imgs/image-20241204222939434.png?size=medium 1.5x, /posts/de8e2be/imgs/image-20241204222939434.png?size=large 2x" data-title="/posts/de8e2be/imgs/image-20241204222939434.png" style="--width: 1143px;--aspect-ratio: 1143 / 872;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>改后缀为<code>webp</code>后可以看到下面这张图片，然后发现五个文件显示的内容是一样的</p>
+<p><img loading="lazy" src="/posts/de8e2be/imgs/image-20241204223043046.png" alt="/posts/de8e2be/imgs/image-20241204223043046.png" srcset="/posts/de8e2be/imgs/image-20241204223043046.png?size=small, /posts/de8e2be/imgs/image-20241204223043046.png?size=medium 1.5x, /posts/de8e2be/imgs/image-20241204223043046.png?size=large 2x" data-title="/posts/de8e2be/imgs/image-20241204223043046.png" style="--width: 1426px;--aspect-ratio: 1426 / 746;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>因此猜测重点不在图片上，赛后参考了WM战队师傅的Writeup后知道了可以用<code>010</code>diff一下这几个文件</p>
+<p><img loading="lazy" src="/posts/de8e2be/imgs/image-20241204223403680.png" alt="/posts/de8e2be/imgs/image-20241204223403680.png" srcset="/posts/de8e2be/imgs/image-20241204223403680.png?size=small, /posts/de8e2be/imgs/image-20241204223403680.png?size=medium 1.5x, /posts/de8e2be/imgs/image-20241204223403680.png?size=large 2x" data-title="/posts/de8e2be/imgs/image-20241204223403680.png" style="--width: 1920px;--aspect-ratio: 1920 / 1032;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>然后发现<code>0x3B140</code>前面的数据都是一样的，因此我们需要重点关注后面的数据</p>
+<p>赛后知道了后面不一样的内容每个都是btrfs(B-tree文件系统)的磁盘 【长见识了】</p>
+<p>因此我们尝试在</p></div><div class="post-footer" id="post-footer">
   <div class="post-info">
     <div class="post-info-line">
       <div class="post-info-mod">

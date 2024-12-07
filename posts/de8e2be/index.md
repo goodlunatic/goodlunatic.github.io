@@ -556,6 +556,30 @@ print(libnum.b2s(res))
 
 ## 题目名称 Input Page Walk
 
+参考链接：[强网拟态 2024 By W&amp;M - W&amp;M Team](https://blog.wm-team.cn/index.php/archives/84/#Input&#43;Page&#43;Walk)
+
+解压附件压缩包，可以得到下面这几个文件
+
+![](imgs/image-20241204222824693.png)
+
+因为后缀未知，因此尝试用010打开，发现是`webp`图片
+
+![](imgs/image-20241204222939434.png)
+
+改后缀为`webp`后可以看到下面这张图片，然后发现五个文件显示的内容是一样的
+
+![](imgs/image-20241204223043046.png)
+
+因此猜测重点不在图片上，赛后参考了WM战队师傅的Writeup后知道了可以用`010`diff一下这几个文件
+
+![](imgs/image-20241204223403680.png)
+
+然后发现`0x3B140`前面的数据都是一样的，因此我们需要重点关注后面的数据
+
+赛后知道了后面不一样的内容每个都是btrfs(B-tree文件系统)的磁盘 【长见识了】
+
+因此我们尝试在
+
 
 ---
 

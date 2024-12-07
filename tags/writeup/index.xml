@@ -4,7 +4,23 @@
     <link>http://localhost:1313/tags/writeup/</link>
     <description>Writeup - Tag | ⚡Lunatic BLOG⚡</description>
     <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>goodlunatic0@gmail.com (Lunatic)</managingEditor>
-      <webMaster>goodlunatic0@gmail.com (Lunatic)</webMaster><lastBuildDate>Wed, 04 Dec 2024 19:18:13 &#43;0800</lastBuildDate><atom:link href="http://localhost:1313/tags/writeup/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>goodlunatic0@gmail.com (Lunatic)</webMaster><lastBuildDate>Sat, 07 Dec 2024 20:26:08 &#43;0800</lastBuildDate><atom:link href="http://localhost:1313/tags/writeup/" rel="self" type="application/rss+xml" /><item>
+  <title>2024 深育杯大学生网络安全大赛 Writeup</title>
+  <link>http://localhost:1313/posts/b70ab5c/</link>
+  <pubDate>Sat, 07 Dec 2024 20:26:08 &#43;0800</pubDate>
+  <author>Lunatic</author>
+  <guid>http://localhost:1313/posts/b70ab5c/</guid>
+  <description><![CDATA[<p><strong>2024 深育杯大学生网络安全大赛 Writeup</strong></p>]]></description>
+</item>
+<item>
+  <title>2024 国城杯网络安全挑战赛 Misc Writeup</title>
+  <link>http://localhost:1313/posts/7bf9cb0/</link>
+  <pubDate>Sat, 07 Dec 2024 20:25:56 &#43;0800</pubDate>
+  <author>Lunatic</author>
+  <guid>http://localhost:1313/posts/7bf9cb0/</guid>
+  <description><![CDATA[<p><strong>2024 国城杯网络安全挑战赛 Misc Writeup</strong></p>]]></description>
+</item>
+<item>
   <title>2024 HITCTF安天杯网络安全国际邀请赛 Misc Writeup</title>
   <link>http://localhost:1313/posts/9651477/</link>
   <pubDate>Wed, 04 Dec 2024 19:18:13 &#43;0800</pubDate>
@@ -69,24 +85,6 @@
   <guid>http://localhost:1313/posts/1eae35a/</guid>
   <description><![CDATA[<p><strong>很早之前和队友报的名，结果到现在才打。。</strong></p>
 <p><strong>这比赛只能说是纯纯手速局。。</strong></p>]]></description>
-</item>
-<item>
-  <title>2024 羊城杯网络安全大赛 Misc Writeup</title>
-  <link>http://localhost:1313/posts/4a27616/</link>
-  <pubDate>Wed, 28 Aug 2024 16:44:56 &#43;0800</pubDate>
-  <author>Lunatic</author>
-  <guid>http://localhost:1313/posts/4a27616/</guid>
-  <description><![CDATA[<p>有段时间没有做CTF题了，感觉有些生疏了都，很可惜赛中差一题就能AK了</p>
-<p>因此这个愿望只能留给学弟去实现了，之后可能真正能好好打CTF的机会也不多了吧</p>]]></description>
-</item>
-<item>
-  <title>2024 DASCTF 暑期挑战赛 Misc Writeup</title>
-  <link>http://localhost:1313/posts/067cfbd/</link>
-  <pubDate>Fri, 26 Jul 2024 14:57:40 &#43;0800</pubDate>
-  <author>Lunatic</author>
-  <guid>http://localhost:1313/posts/067cfbd/</guid>
-  <description><![CDATA[<p>这场比赛开始的时候去成都线下打国赛决赛了</p>
-<p>现在才有时间回来复现，发现这场比赛的Misc题出的都挺好的</p>]]></description>
 </item>
 </channel>
 </rss>

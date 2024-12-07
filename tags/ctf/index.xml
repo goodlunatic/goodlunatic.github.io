@@ -4,7 +4,32 @@
     <link>http://localhost:1313/tags/ctf/</link>
     <description>CTF - Tag | ⚡Lunatic BLOG⚡</description>
     <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>goodlunatic0@gmail.com (Lunatic)</managingEditor>
-      <webMaster>goodlunatic0@gmail.com (Lunatic)</webMaster><lastBuildDate>Wed, 04 Dec 2024 19:18:13 &#43;0800</lastBuildDate><atom:link href="http://localhost:1313/tags/ctf/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>goodlunatic0@gmail.com (Lunatic)</webMaster><lastBuildDate>Sat, 07 Dec 2024 20:39:58 &#43;0800</lastBuildDate><atom:link href="http://localhost:1313/tags/ctf/" rel="self" type="application/rss+xml" /><item>
+  <title>CTF-Misc &#34;雅&#34;题共赏</title>
+  <link>http://localhost:1313/posts/d0736a7/</link>
+  <pubDate>Sat, 07 Dec 2024 20:39:58 &#43;0800</pubDate>
+  <author>Lunatic</author>
+  <guid>http://localhost:1313/posts/d0736a7/</guid>
+  <description><![CDATA[<p><strong>用这篇博客来记录一下本人在比赛中遇到的一些疑难题（本人尚未解出的题）</strong></p>
+<p><strong>如果师傅们有进一步的想法或者做出来了，可以联系我一起交流一下解题思路</strong></p>]]></description>
+</item>
+<item>
+  <title>2024 深育杯大学生网络安全大赛 Writeup</title>
+  <link>http://localhost:1313/posts/b70ab5c/</link>
+  <pubDate>Sat, 07 Dec 2024 20:26:08 &#43;0800</pubDate>
+  <author>Lunatic</author>
+  <guid>http://localhost:1313/posts/b70ab5c/</guid>
+  <description><![CDATA[<p><strong>2024 深育杯大学生网络安全大赛 Writeup</strong></p>]]></description>
+</item>
+<item>
+  <title>2024 国城杯网络安全挑战赛 Misc Writeup</title>
+  <link>http://localhost:1313/posts/7bf9cb0/</link>
+  <pubDate>Sat, 07 Dec 2024 20:25:56 &#43;0800</pubDate>
+  <author>Lunatic</author>
+  <guid>http://localhost:1313/posts/7bf9cb0/</guid>
+  <description><![CDATA[<p><strong>2024 国城杯网络安全挑战赛 Misc Writeup</strong></p>]]></description>
+</item>
+<item>
   <title>2024 HITCTF安天杯网络安全国际邀请赛 Misc Writeup</title>
   <link>http://localhost:1313/posts/9651477/</link>
   <pubDate>Wed, 04 Dec 2024 19:18:13 &#43;0800</pubDate>
@@ -60,30 +85,6 @@
   <author>Lunatic</author>
   <guid>http://localhost:1313/posts/c216d58/</guid>
   <description><![CDATA[<p><strong>2024 浙江省大学生网络与信息安全竞赛 Misc Writeup</strong></p>]]></description>
-</item>
-<item>
-  <title>2024 某金融系统内部赛 Misc Writeup</title>
-  <link>http://localhost:1313/posts/69280be/</link>
-  <pubDate>Tue, 05 Nov 2024 10:21:35 &#43;0800</pubDate>
-  <author>Lunatic</author>
-  <guid>http://localhost:1313/posts/69280be/</guid>
-  <description><![CDATA[<p><strong>不知道具体是什么比赛，但是赛题还是有一定的强度的</strong></p>]]></description>
-</item>
-<item>
-  <title>2024 网鼎杯网络安全大赛青龙组 Misc Writeup</title>
-  <link>http://localhost:1313/posts/1a285be/</link>
-  <pubDate>Thu, 31 Oct 2024 09:56:08 &#43;0800</pubDate>
-  <author>Lunatic</author>
-  <guid>http://localhost:1313/posts/1a285be/</guid>
-  <description><![CDATA[<p><strong>2024 网鼎杯网络安全大赛青龙组 Misc Writeup</strong></p>]]></description>
-</item>
-<item>
-  <title>Misc-Forensics</title>
-  <link>http://localhost:1313/posts/761da51/</link>
-  <pubDate>Tue, 29 Oct 2024 16:34:12 &#43;0800</pubDate>
-  <author>Lunatic</author>
-  <guid>http://localhost:1313/posts/761da51/</guid>
-  <description><![CDATA[<p><strong>This is a simple summary of digital forensics .</strong></p>]]></description>
 </item>
 </channel>
 </rss>

@@ -4,7 +4,16 @@
     <link>http://localhost:1313/categories/ctf/</link>
     <description>CTF - Category | ⚡Lunatic BLOG⚡</description>
     <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>goodlunatic0@gmail.com (Lunatic)</managingEditor>
-      <webMaster>goodlunatic0@gmail.com (Lunatic)</webMaster><lastBuildDate>Mon, 02 Dec 2024 12:15:27 &#43;0800</lastBuildDate><atom:link href="http://localhost:1313/categories/ctf/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>goodlunatic0@gmail.com (Lunatic)</webMaster><lastBuildDate>Sat, 07 Dec 2024 20:39:58 &#43;0800</lastBuildDate><atom:link href="http://localhost:1313/categories/ctf/" rel="self" type="application/rss+xml" /><item>
+  <title>CTF-Misc &#34;雅&#34;题共赏</title>
+  <link>http://localhost:1313/posts/d0736a7/</link>
+  <pubDate>Sat, 07 Dec 2024 20:39:58 &#43;0800</pubDate>
+  <author>Lunatic</author>
+  <guid>http://localhost:1313/posts/d0736a7/</guid>
+  <description><![CDATA[<p><strong>用这篇博客来记录一下本人在比赛中遇到的一些疑难题（本人尚未解出的题）</strong></p>
+<p><strong>如果师傅们有进一步的想法或者做出来了，可以联系我一起交流一下解题思路</strong></p>]]></description>
+</item>
+<item>
   <title>Misc-Network Traffic Analysis</title>
   <link>http://localhost:1313/posts/5422d65/</link>
   <pubDate>Mon, 02 Dec 2024 12:15:27 &#43;0800</pubDate>
@@ -79,14 +88,6 @@
   <guid>http://localhost:1313/posts/aded309/</guid>
   <description><![CDATA[<p>前几天在 PuzzleSolver 群里看到了这样一道题目，题目主要考察了 LSB 隐写</p>
 <p>从这道题中发现自己的基础并不扎实，于是打算以这道题为契机，好好学习一下LSB隐写</p>]]></description>
-</item>
-<item>
-  <title>CTF-Crypto Record</title>
-  <link>http://localhost:1313/posts/a4ba07e/</link>
-  <pubDate>Fri, 31 May 2024 11:04:14 &#43;0800</pubDate>
-  <author>Lunatic</author>
-  <guid>http://localhost:1313/posts/a4ba07e/</guid>
-  <description><![CDATA[<p>This a simple record of Crypto in CTF.</p>]]></description>
 </item>
 </channel>
 </rss>
