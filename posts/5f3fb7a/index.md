@@ -4,7 +4,7 @@
 
 &lt;!--more--&gt;
 
-# 碟影重重2.0
+## 碟影重重2.0
 
 下载附件得到一个只有TCP流量的流量包
 题目需要我们分析流量包找到飞机的飞机速度和飞机的 ICAO CODE
@@ -30,7 +30,7 @@ with open(&#34;tshark.txt&#34;) as f:
 Tips：这里的 ICAO CODE 需要大写：79A05E
 然后MD5加密一下即可得到：flag{4cf6729b9bc05686a79c1620b0b1967b}
 
-# Wabby Wabbo Radio
+## Wabby Wabbo Radio
 
 题目给的容器是一个网页版的播放器，通过抓包，得到了以下几个wav文件
 xh1.wav、xh2.wav、xh3.wav、xh4.wav、xh5.wav、hint1.wav、hin2.wav、flag.wav
@@ -105,7 +105,7 @@ if __name__ == &#34;__main__&#34;:
 
 ![](imgs/image-20240702171059245.png)
 
-# 找到PNG了吗
+## 找到PNG了吗
 
 Linux内存取证，内核版本如下：
 
