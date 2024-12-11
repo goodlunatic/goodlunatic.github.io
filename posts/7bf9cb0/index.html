@@ -12,7 +12,7 @@
   <meta itemprop="description" content="2024 国城杯网络安全挑战赛 Misc Writeup">
   <meta itemprop="datePublished" content="2024-12-07T20:25:56+08:00">
   <meta itemprop="dateModified" content="2024-12-07T20:25:56+08:00">
-  <meta itemprop="wordCount" content="1160">
+  <meta itemprop="wordCount" content="1338">
   <meta itemprop="keywords" content="CTF,Misc,Writeup"><meta property="og:url" content="http://localhost:1313/posts/7bf9cb0/">
   <meta property="og:site_name" content="⚡Lunatic BLOG⚡">
   <meta property="og:title" content="2024 国城杯网络安全挑战赛 Misc Writeup">
@@ -41,7 +41,7 @@
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": "http:\/\/localhost:1313\/posts\/7bf9cb0\/"
-    },"genre": "posts","keywords": "CTF, Misc, Writeup","wordcount":  1160 ,
+    },"genre": "posts","keywords": "CTF, Misc, Writeup","wordcount":  1338 ,
     "url": "http:\/\/localhost:1313\/posts\/7bf9cb0\/","datePublished": "2024-12-07T20:25:56+08:00","dateModified": "2024-12-07T20:25:56+08:00","publisher": {
       "@type": "Organization",
       "name": ""},"author": {
@@ -145,7 +145,7 @@
 <article class="page single">
   <div class="header"><h1 class="single-title animate__animated animate__flipInX"><span>2024 国城杯网络安全挑战赛 Misc Writeup</span>
     </h1></div><div class="post-meta">
-    <div class="post-meta-line"><span class="post-author"><a href="https://goodlunatic.github.io" title="Author"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><img loading="lazy" src="https://www.nssctf.cn/files/2024/4/28/7f130a1387.png" alt="Lunatic" data-title="Lunatic" class="avatar" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>&nbsp;Lunatic</a></span><span class="post-included-in">&nbsp;included in <a href="/categories/writeup/" class="post-category" title="Category - Writeup"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> Writeup</a></span></div><div class="post-meta-line"><span title="published on &lt;no value&gt;"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden="true"></i><time datetime="2024-12-07">2024-12-07</time></span>&nbsp;<span title=""><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>About 1200 words</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>6 minutes</span>&nbsp;</div>
+    <div class="post-meta-line"><span class="post-author"><a href="https://goodlunatic.github.io" title="Author"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><img loading="lazy" src="https://www.nssctf.cn/files/2024/4/28/7f130a1387.png" alt="Lunatic" data-title="Lunatic" class="avatar" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>&nbsp;Lunatic</a></span><span class="post-included-in">&nbsp;included in <a href="/categories/writeup/" class="post-category" title="Category - Writeup"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> Writeup</a></span></div><div class="post-meta-line"><span title="published on &lt;no value&gt;"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden="true"></i><time datetime="2024-12-07">2024-12-07</time></span>&nbsp;<span title=""><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>About 1400 words</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>7 minutes</span>&nbsp;</div>
   </div><div class="details toc" id="toc-static"
     data-kept="false">
     <div class="details-summary toc-title">
@@ -342,7 +342,124 @@
 <h2 id="题目名称-just_f0r3n51cs" class="heading-element">
   <a href="#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-just_f0r3n51cs" class="heading-mark"></a>题目名称 Just_F0r3n51Cs</h2><h2 id="题目名称-保险柜的秘密" class="heading-element">
   <a href="#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-%e4%bf%9d%e9%99%a9%e6%9f%9c%e7%9a%84%e7%a7%98%e5%af%86" class="heading-mark"></a>题目名称 保险柜的秘密</h2><h2 id="题目名称-ez_steg0" class="heading-element">
-  <a href="#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-ez_steg0" class="heading-mark"></a>题目名称 eZ_Steg0</h2></div><div class="post-footer" id="post-footer">
+  <a href="#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-ez_steg0" class="heading-mark"></a>题目名称 eZ_Steg0</h2><p>解压题目附件，可以得到以下几个文件，其中key.zip是加密的，猜测密码藏在图片中</p>
+<p><img loading="lazy" src="imgs/image-20241211161300773.png" alt="imgs/image-20241211161300773.png" srcset="imgs/image-20241211161300773.png?size=small, imgs/image-20241211161300773.png?size=medium 1.5x, imgs/image-20241211161300773.png?size=large 2x" data-title="imgs/image-20241211161300773.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>打开01.png，发现都是二值化的图像</p>
+<p><img loading="lazy" src="imgs/image-20241211161327316.png" alt="imgs/image-20241211161327316.png" srcset="imgs/image-20241211161327316.png?size=small, imgs/image-20241211161327316.png?size=medium 1.5x, imgs/image-20241211161327316.png?size=large 2x" data-title="imgs/image-20241211161327316.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>写一个脚本提取一下里面的数据，发现是PNG图片的十六进制数据</p>
+<div class="highlight" id="id-4"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">libnum</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">img</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&#34;01.png&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">width</span><span class="p">,</span><span class="n">height</span> <span class="o">=</span> <span class="n">img</span><span class="o">.</span><span class="n">size</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">bin_data</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">height</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">width</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">pixel</span> <span class="o">=</span> <span class="n">img</span><span class="o">.</span><span class="n">getpixel</span><span class="p">((</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">pixel</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">bin_data</span> <span class="o">+=</span> <span class="s1">&#39;0&#39;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">bin_data</span> <span class="o">+=</span> <span class="s1">&#39;1&#39;</span>
+</span></span><span class="line"><span class="cl">            
+</span></span><span class="line"><span class="cl"><span class="n">bin_data</span> <span class="o">=</span> <span class="n">bin_data</span> <span class="o">+</span> <span class="s1">&#39;0&#39;</span> <span class="o">*</span> <span class="p">(</span><span class="mi">8</span><span class="o">-</span><span class="nb">len</span><span class="p">(</span><span class="n">bin_data</span><span class="p">)</span><span class="o">%</span><span class="mi">8</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># print(libnum.b2s(bin_data))</span>
+</span></span><span class="line"><span class="cl"><span class="n">hex_data</span> <span class="o">=</span> <span class="n">libnum</span><span class="o">.</span><span class="n">b2s</span><span class="p">(</span><span class="n">bin_data</span><span class="p">)[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="n">hex_data</span> <span class="o">=</span> <span class="n">hex_data</span><span class="p">[</span><span class="mi">30</span><span class="p">:]</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">png_data</span> <span class="o">=</span> <span class="nb">bytes</span><span class="o">.</span><span class="n">fromhex</span><span class="p">(</span><span class="n">hex_data</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># print(png_data)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&#34;out.png&#34;</span><span class="p">,</span><span class="s2">&#34;wb&#34;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">png_data</span><span class="p">)</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>运行以上脚本可以得到下图，因此压缩吧密码就是：<code>!!SUp3RP422W0RD^/??.&amp;&amp;</code></p>
+<p><img loading="lazy" src="imgs/image-20241211161534160.png" alt="imgs/image-20241211161534160.png" srcset="imgs/image-20241211161534160.png?size=small, imgs/image-20241211161534160.png?size=medium 1.5x, imgs/image-20241211161534160.png?size=large 2x" data-title="imgs/image-20241211161534160.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>使用得到的密码解压压缩包，可以得到一个未知类型的key文件</p>
+<p>010打开发现前面有一段base64编码</p>
+<p><img loading="lazy" src="imgs/image-20241211161705299.png" alt="imgs/image-20241211161705299.png" srcset="imgs/image-20241211161705299.png?size=small, imgs/image-20241211161705299.png?size=medium 1.5x, imgs/image-20241211161705299.png?size=large 2x" data-title="imgs/image-20241211161705299.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>CyberChef解码一下可以得到提示：<code>stl  stl  stl</code></p>
+<p><img loading="lazy" src="imgs/image-20241211161854426.png" alt="imgs/image-20241211161854426.png" srcset="imgs/image-20241211161854426.png?size=small, imgs/image-20241211161854426.png?size=medium 1.5x, imgs/image-20241211161854426.png?size=large 2x" data-title="imgs/image-20241211161854426.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>上网搜索一下stl文件，发现是一种三位图形文件格式</p>
+<p><img loading="lazy" src="imgs/image-20241211161942128.png" alt="imgs/image-20241211161942128.png" srcset="imgs/image-20241211161942128.png?size=small, imgs/image-20241211161942128.png?size=medium 1.5x, imgs/image-20241211161942128.png?size=large 2x" data-title="imgs/image-20241211161942128.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>可以直接用这个<a href="https://www.3dpea.com/cn/view-STL-online"target="_blank" rel="external nofollow noopener noreferrer">在线网站</a>打开</p>
+<p><img loading="lazy" src="imgs/image-20241211162032588.png" alt="imgs/image-20241211162032588.png" srcset="imgs/image-20241211162032588.png?size=small, imgs/image-20241211162032588.png?size=medium 1.5x, imgs/image-20241211162032588.png?size=large 2x" data-title="imgs/image-20241211162032588.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>得到一个密钥：<code>sSeCre7keY?!!@$</code>，用这个密钥去异或一下flag文件，可以得到一个wav</p>
+<p><img loading="lazy" src="imgs/image-20241211162129988.png" alt="imgs/image-20241211162129988.png" srcset="imgs/image-20241211162129988.png?size=small, imgs/image-20241211162129988.png?size=medium 1.5x, imgs/image-20241211162129988.png?size=large 2x" data-title="imgs/image-20241211162129988.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>用010打开得到的wav文件，提示dAta有问题</p>
+<p><img loading="lazy" src="imgs/image-20241211162223557.png" alt="imgs/image-20241211162223557.png" srcset="imgs/image-20241211162223557.png?size=small, imgs/image-20241211162223557.png?size=medium 1.5x, imgs/image-20241211162223557.png?size=large 2x" data-title="imgs/image-20241211162223557.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>找一个正常的wav，发现把dAta改成data就正常了</p>
+<p><img loading="lazy" src="imgs/image-20241211162343496.png" alt="imgs/image-20241211162343496.png" srcset="imgs/image-20241211162343496.png?size=small, imgs/image-20241211162343496.png?size=medium 1.5x, imgs/image-20241211162343496.png?size=large 2x" data-title="imgs/image-20241211162343496.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>然后根据题面的提示，猜测是wav文件的LSB隐写</p>
+<p>参考文章：<a href="https://sumit-arora.medium.com/audio-steganography-the-art-of-hiding-secrets-within-earshot-part-2-of-2-c76b1be719b3"target="_blank" rel="external nofollow noopener noreferrer">Audio Steganography : The art of hiding secrets within earshot (part 2 of 2) | by Sumit Kumar Arora | Medium</a></p>
+<p>编写以下脚本提取隐写的内容即可得到flag：<code>D0g3xGC{U_4rE_4_WhI2_4t_Ste9An09r4pHY}</code></p>
+<div class="highlight" id="id-5"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">wave</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">libnum</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">bin_data</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">song</span> <span class="o">=</span> <span class="n">wave</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&#34;flag.wav&#34;</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;rb&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Convert audio to byte array</span>
+</span></span><span class="line"><span class="cl"><span class="n">frame_bytes</span> <span class="o">=</span> <span class="nb">bytearray</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">song</span><span class="o">.</span><span class="n">readframes</span><span class="p">(</span><span class="n">song</span><span class="o">.</span><span class="n">getnframes</span><span class="p">())))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">frame_bytes</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">bin_data</span> <span class="o">+=</span> <span class="nb">str</span><span class="p">(</span><span class="n">item</span> <span class="o">&amp;</span> <span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">bin_data</span> <span class="o">=</span> <span class="n">bin_data</span> <span class="o">+</span><span class="s1">&#39;0&#39;</span><span class="o">*</span><span class="p">(</span><span class="mi">8</span><span class="o">-</span><span class="nb">len</span><span class="p">(</span><span class="n">bin_data</span><span class="p">)</span><span class="o">%</span><span class="mi">8</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">flag</span> <span class="o">=</span> <span class="n">libnum</span><span class="o">.</span><span class="n">b2s</span><span class="p">(</span><span class="n">bin_data</span><span class="p">)[:</span><span class="mi">50</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">flag</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># b&#39;D0g3xGC{U_4rE_4_WhI2_4t_Ste9An09r4pHY}############&#39;</span></span></span></code></pre></td></tr></table>
+</div>
+</div></div><div class="post-footer" id="post-footer">
   <div class="post-info">
     <div class="post-info-line">
       <div class="post-info-mod">

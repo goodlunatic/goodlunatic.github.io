@@ -964,8 +964,8 @@
 <p>因此猜测重点不在图片上，赛后参考了WM战队师傅的Writeup后知道了可以用<code>010</code>diff一下这几个文件</p>
 <p><img loading="lazy" src="/posts/de8e2be/imgs/image-20241204223403680.png" alt="/posts/de8e2be/imgs/image-20241204223403680.png" srcset="/posts/de8e2be/imgs/image-20241204223403680.png?size=small, /posts/de8e2be/imgs/image-20241204223403680.png?size=medium 1.5x, /posts/de8e2be/imgs/image-20241204223403680.png?size=large 2x" data-title="/posts/de8e2be/imgs/image-20241204223403680.png" style="--width: 1920px;--aspect-ratio: 1920 / 1032;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>然后发现<code>0x3B140</code>前面的数据都是一样的，因此我们需要重点关注后面的数据</p>
-<p>赛后知道了后面不一样的内容每个都是btrfs(B-tree文件系统)的磁盘 【长见识了】</p>
-<p>因此我们尝试在</p></div><div class="post-footer" id="post-footer">
+<p>赛后知道了后面不一样的内容每个都是btrfs(B-tree文件系统)的磁盘镜像 【长见识了】</p>
+<p>因此我们尝试在Linux中挂载这个磁盘镜像</p></div><div class="post-footer" id="post-footer">
   <div class="post-info">
     <div class="post-info-line">
       <div class="post-info-mod">

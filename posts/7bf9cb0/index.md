@@ -121,6 +121,102 @@ print(ddd)
 
 ## 题目名称 eZ_Steg0
 
+解压题目附件，可以得到以下几个文件，其中key.zip是加密的，猜测密码藏在图片中
+
+![](imgs/image-20241211161300773.png)
+
+打开01.png，发现都是二值化的图像
+
+![](imgs/image-20241211161327316.png)
+
+写一个脚本提取一下里面的数据，发现是PNG图片的十六进制数据
+```python
+from PIL import Image
+import libnum
+
+
+img = Image.open(&#34;01.png&#34;)
+width,height = img.size
+
+bin_data = &#34;&#34;
+for y in range(height):
+    for x in range(width):
+        pixel = img.getpixel((x,y))
+        if pixel == 0:
+            bin_data &#43;= &#39;0&#39;
+        else:
+            bin_data &#43;= &#39;1&#39;
+            
+bin_data = bin_data &#43; &#39;0&#39; * (8-len(bin_data)%8)
+# print(libnum.b2s(bin_data))
+hex_data = libnum.b2s(bin_data)[::-1]
+hex_data = hex_data[30:].decode()
+png_data = bytes.fromhex(hex_data)
+# print(png_data)
+
+with open(&#34;out.png&#34;,&#34;wb&#34;) as f:
+    f.write(png_data)
+```
+
+运行以上脚本可以得到下图，因此压缩吧密码就是：`!!SUp3RP422W0RD^/??.&amp;&amp;`
+
+![](imgs/image-20241211161534160.png)
+
+使用得到的密码解压压缩包，可以得到一个未知类型的key文件
+
+010打开发现前面有一段base64编码
+
+![](imgs/image-20241211161705299.png)
+
+CyberChef解码一下可以得到提示：`stl  stl  stl`
+
+![](imgs/image-20241211161854426.png)
+
+上网搜索一下stl文件，发现是一种三位图形文件格式
+
+![](imgs/image-20241211161942128.png)
+
+可以直接用这个[在线网站](https://www.3dpea.com/cn/view-STL-online)打开
+
+![](imgs/image-20241211162032588.png)
+
+得到一个密钥：`sSeCre7keY?!!@$`，用这个密钥去异或一下flag文件，可以得到一个wav
+
+![](imgs/image-20241211162129988.png)
+
+用010打开得到的wav文件，提示dAta有问题
+
+![](imgs/image-20241211162223557.png)
+
+找一个正常的wav，发现把dAta改成data就正常了
+
+![](imgs/image-20241211162343496.png)
+
+然后根据题面的提示，猜测是wav文件的LSB隐写
+
+参考文章：[Audio Steganography : The art of hiding secrets within earshot (part 2 of 2) | by Sumit Kumar Arora | Medium](https://sumit-arora.medium.com/audio-steganography-the-art-of-hiding-secrets-within-earshot-part-2-of-2-c76b1be719b3)
+
+编写以下脚本提取隐写的内容即可得到flag：`D0g3xGC{U_4rE_4_WhI2_4t_Ste9An09r4pHY}`
+
+```python
+import wave
+import libnum
+
+
+bin_data = &#34;&#34;
+song = wave.open(&#34;flag.wav&#34;, mode=&#39;rb&#39;)
+# Convert audio to byte array
+frame_bytes = bytearray(list(song.readframes(song.getnframes())))
+
+for item in frame_bytes:
+    bin_data &#43;= str(item &amp; 1)
+
+bin_data = bin_data &#43;&#39;0&#39;*(8-len(bin_data)%8)
+flag = libnum.b2s(bin_data)[:50]
+print(flag)
+# b&#39;D0g3xGC{U_4rE_4_WhI2_4t_Ste9An09r4pHY}############&#39;
+```
+
 ---
 
 > Author: [Lunatic](https://goodlunatic.github.io)  
