@@ -2,6 +2,11 @@
 
 **2024 国城杯网络安全挑战赛 Misc Writeup**
 &lt;!--more--&gt;
+
+![](imgs/image-20241211164828734.png)
+
+题目附件下载： https://pan.baidu.com/s/10jfYCo2y19sFcZyQoAgv2g?pwd=gu59 提取码: gu59
+
 ## 题目名称 Tr4ffIc_w1th_Ste90
 
 解压附件压缩包，可以得到一个流量包和一个加密的压缩包
@@ -118,6 +123,133 @@ print(ddd)
 ## 题目名称 Just_F0r3n51Cs
 
 ## 题目名称 保险柜的秘密
+
+题目附件给了一个`E01`的磁盘镜像，可以使用`FTK image`进行挂载
+
+![](imgs/image-20241211200047575.png)
+
+虽然会提示报错，但是依旧是可以成功挂载的
+
+![](imgs/image-20241211200131377.png)
+
+挂载成功后，看用户目录下的桌面文件夹，有一个流量包文件
+
+![](imgs/image-20241211200221507.png)
+
+翻看流量包，发现主要是`HTTP`和`OICQ`流量，HTTP流量中可以导出下面这张JPG图片
+
+![](imgs/image-20241211200356477.png)
+
+010打开，发现末尾给了提示
+
+![](imgs/image-20241211200444071.png)
+
+base64解码可以得到：`oursecret is D0g3xGC`
+
+![](imgs/image-20241211200534288.png)
+
+因此猜测这张JPG图片用`oursecret`隐写了信息，尝试用`D0g3xGC`作为密钥进行提取
+
+![](imgs/image-20241211200724231.png)
+
+可以得到一个`hidden.txt`，内容如下
+
+&gt; ECB&#39;s key is
+&gt; 
+&gt; N11c3TrYY6666111
+&gt; 
+&gt; 记得给我秋秋空间点赞
+  
+给了密钥，并提示密文在QQ空间里，因此我们需要分析流量包中OICQ协议的内容
+
+![](imgs/image-20241211200910204.png)
+
+展开OICQ数据包的内容，可以得到QQ号：`293519770`
+
+因此我们可以尝试访问这个人的QQ空间
+
+![](imgs/image-20241211201027857.png)
+
+可以得到密文：
+
+&gt; 5e19e708fa1a2c98d19b1a92ebe9c790d85d76d96a6f32ec81c59417595b73ad
+
+![](imgs/image-20241211201217651.png)
+
+结合密文密钥，AES-ECB解密可以得到第一段的flag：`flag1:D0g3xGC{Y0u_`
+
+然后我们回到刚刚挂载磁盘的用户目录下，可以发现有一个`flag4.zip`
+
+![](imgs/image-20241211201507162.png)
+
+提取出来并解压，可以得到如下两个文件，其中的exe是由python打包的exe文件
+
+![](imgs/image-20241211201554986.png)
+
+因此猜测需要我们逆向exe中的加密逻辑，解密出bin文件中的内容
+
+首先我们可以使用 [pyinstxtractor-ng](https://github.com/pyinstxtractor/pyinstxtractor-ng/) 对exe文件进行解包得到.pyc文件
+
+![](imgs/image-20241211202359356.png)
+
+在一堆pyc文件中找到关键的`enc_png.pyc`，然后使用`uncompyle6`对pyc文件进行反编译
+
+![](imgs/image-20241211202557430.png)
+
+`uncompyle6`可以直接使用 `pip install` 进行安装
+
+![](imgs/image-20241211202951277.png)
+
+反编译成功后可以得到如下代码
+
+```python
+# uncompyle6 version 3.9.2
+# Python bytecode version base 3.8.0 (3413)
+# Decompiled from: Python 3.10.16 | packaged by conda-forge | (main, Dec  5 2024, 14:16:10) [GCC 13.3.0]
+# Embedded file name: enc_png.py
+
+
+def xor_encrypt(data, key):
+    encrypted_data = bytearray()
+    for i in range(len(data)):
+        encrypted_data.append(data[i] ^ key[i % len(key)])
+    else:
+        return encrypted_data
+
+
+def read_file(file_path):
+    with open(file_path, &#34;rb&#34;) as file:
+        data = file.read()
+    return data
+
+
+def write_file(file_path, data):
+    with open(file_path, &#34;wb&#34;) as file:
+        file.write(data)
+
+
+def encrypt_file(input_file_path, output_file_path, key):
+    data = read_file(input_file_path)
+    encrypted_data = xor_encrypt(data, key)
+    write_file(output_file_path, encrypted_data)
+
+
+if __name__ == &#34;__main__&#34;:
+    key = b&#39;GCcup_wAngwaNg!!&#39;
+    input_file = &#34;flag4.png&#34;
+    encrypted_file = &#34;flag4_encrypted.bin&#34;
+    encrypt_file(input_file, encrypted_file, key)
+```
+
+其实就是一个简单的逐字节异或，看懂加密逻辑后直接CyberChef解密即可得到：``
+
+![](imgs/image-20241211203417686.png)
+
+
+
+
+
+
 
 ## 题目名称 eZ_Steg0
 
