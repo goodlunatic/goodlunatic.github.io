@@ -7,27 +7,31 @@
     <meta name="robots" content="noodp" />
     <title>2024 国城杯网络安全挑战赛 Misc Writeup - ⚡Lunatic BLOG⚡</title><meta name="author" content="Lunatic">
 <meta name="author-link" content="https://goodlunatic.github.io">
-<meta name="description" content="2024 国城杯网络安全挑战赛 Misc Writeup" /><meta name="keywords" content='CTF, Misc, Writeup' />
+<meta name="description" content="忙里抽闲，简单地看了看题，感觉这场比赛的取证确实出得挺好的
+给取证题 Just_F0r3n51Cs 的出题人点个赞👍" /><meta name="keywords" content='CTF, Misc, Writeup' />
   <meta itemprop="name" content="2024 国城杯网络安全挑战赛 Misc Writeup">
-  <meta itemprop="description" content="2024 国城杯网络安全挑战赛 Misc Writeup">
-  <meta itemprop="datePublished" content="2024-12-12T11:25:56+08:00">
-  <meta itemprop="dateModified" content="2024-12-12T11:25:56+08:00">
-  <meta itemprop="wordCount" content="1544">
+  <meta itemprop="description" content="忙里抽闲，简单地看了看题，感觉这场比赛的取证确实出得挺好的
+给取证题 Just_F0r3n51Cs 的出题人点个赞👍">
+  <meta itemprop="datePublished" content="2024-12-12T19:25:56+08:00">
+  <meta itemprop="dateModified" content="2024-12-12T19:25:56+08:00">
+  <meta itemprop="wordCount" content="1592">
   <meta itemprop="keywords" content="CTF,Misc,Writeup"><meta property="og:url" content="http://localhost:1313/posts/7bf9cb0/">
   <meta property="og:site_name" content="⚡Lunatic BLOG⚡">
   <meta property="og:title" content="2024 国城杯网络安全挑战赛 Misc Writeup">
-  <meta property="og:description" content="2024 国城杯网络安全挑战赛 Misc Writeup
+  <meta property="og:description" content="忙里抽闲，简单地看了看题，感觉这场比赛的取证确实出得挺好的
+给取证题 Just_F0r3n51Cs 的出题人点个赞👍
 ">
   <meta property="og:locale" content="en">
   <meta property="og:type" content="article">
   <meta property="article:section" content="posts">
-    <meta property="article:published_time" content="2024-12-12T11:25:56+08:00">
-    <meta property="article:modified_time" content="2024-12-12T11:25:56+08:00">
+    <meta property="article:published_time" content="2024-12-12T19:25:56+08:00">
+    <meta property="article:modified_time" content="2024-12-12T19:25:56+08:00">
     <meta property="article:tag" content="CTF">
     <meta property="article:tag" content="Misc">
     <meta property="article:tag" content="Writeup">
 <meta name="twitter:card" content="summary"><meta name="twitter:title" content="2024 国城杯网络安全挑战赛 Misc Writeup">
-<meta name="twitter:description" content="2024 国城杯网络安全挑战赛 Misc Writeup">
+<meta name="twitter:description" content="忙里抽闲，简单地看了看题，感觉这场比赛的取证确实出得挺好的
+给取证题 Just_F0r3n51Cs 的出题人点个赞👍">
       <meta name="twitter:site" content="@https://twitter.com/goodlunatic007">
 <meta name="application-name" content="FixIt">
 <meta name="apple-mobile-web-app-title" content="FixIt"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="https://www.nssctf.cn/files/2024/4/28/8fdad6c6ee.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="http://localhost:1313/posts/7bf9cb0/" /><link rel="prev" href="http://localhost:1313/posts/d0736a7/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
@@ -41,8 +45,8 @@
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": "http:\/\/localhost:1313\/posts\/7bf9cb0\/"
-    },"genre": "posts","keywords": "CTF, Misc, Writeup","wordcount":  1544 ,
-    "url": "http:\/\/localhost:1313\/posts\/7bf9cb0\/","datePublished": "2024-12-12T11:25:56+08:00","dateModified": "2024-12-12T11:25:56+08:00","publisher": {
+    },"genre": "posts","keywords": "CTF, Misc, Writeup","wordcount":  1592 ,
+    "url": "http:\/\/localhost:1313\/posts\/7bf9cb0\/","datePublished": "2024-12-12T19:25:56+08:00","dateModified": "2024-12-12T19:25:56+08:00","publisher": {
       "@type": "Organization",
       "name": ""},"author": {
         "@type": "Person",
@@ -160,7 +164,8 @@
     <li><a href="#题目名称-保险柜的秘密">题目名称 保险柜的秘密</a></li>
   </ul>
 </nav></div>
-  </div><div class="content" id="content"><p><strong>2024 国城杯网络安全挑战赛 Misc Writeup</strong></p>
+  </div><div class="content" id="content"><p><strong>忙里抽闲，简单地看了看题，感觉这场比赛的取证确实出得挺好的</strong></p>
+<p><strong>给取证题 Just_F0r3n51Cs 的出题人点个赞👍</strong></p>
 <p><img loading="lazy" src="imgs/image-20241211164828734.png" alt="imgs/image-20241211164828734.png" srcset="imgs/image-20241211164828734.png?size=small, imgs/image-20241211164828734.png?size=medium 1.5x, imgs/image-20241211164828734.png?size=large 2x" data-title="imgs/image-20241211164828734.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>题目附件下载： <a href="https://pan.baidu.com/s/10jfYCo2y19sFcZyQoAgv2g?pwd=gu59"target="_blank" rel="external nofollow noopener noreferrer">https://pan.baidu.com/s/10jfYCo2y19sFcZyQoAgv2g?pwd=gu59</a> 提取码: gu59</p>
 <h2 id="题目名称-tr4ffic_w1th_ste90" class="heading-element">
@@ -505,13 +510,53 @@
 <p><img loading="lazy" src="imgs/image-20241212120049479.png" alt="imgs/image-20241212120049479.png" srcset="imgs/image-20241212120049479.png?size=small, imgs/image-20241212120049479.png?size=medium 1.5x, imgs/image-20241212120049479.png?size=large 2x" data-title="imgs/image-20241212120049479.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>尝试把两个文件都提取出来，压缩包发现是一个加密的，注释中有关于密码的提示</p>
 <p><img loading="lazy" src="imgs/image-20241212120109646.png" alt="imgs/image-20241212120109646.png" srcset="imgs/image-20241212120109646.png?size=small, imgs/image-20241212120109646.png?size=medium 1.5x, imgs/image-20241212120109646.png?size=large 2x" data-title="imgs/image-20241212120109646.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>对于用户的登录密码，我们可以导出<code>C:\Windows\System32\config</code>目录下的<code>SYSTEM</code>和<code>SAM</code>两个文件</p>
+<p>然后用<code>mimikatz</code>抓取hash，可以得到用户<code>D0g3xGC</code>用户的NTLM哈希为<code>c377ba8a4dd52401bc404dbe49771bbc</code></p>
+<p><img loading="lazy" src="imgs/image-20241212190241930.png" alt="imgs/image-20241212190241930.png" srcset="imgs/image-20241212190241930.png?size=small, imgs/image-20241212190241930.png?size=medium 1.5x, imgs/image-20241212190241930.png?size=large 2x" data-title="imgs/image-20241212190241930.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>拿到NTLM哈希后可以选择使用Hashcat爆破或者直接使用在线网站查询</p>
+<p><img loading="lazy" src="imgs/image-20241212190657827.png" alt="imgs/image-20241212190657827.png" srcset="imgs/image-20241212190657827.png?size=small, imgs/image-20241212190657827.png?size=medium 1.5x, imgs/image-20241212190657827.png?size=large 2x" data-title="imgs/image-20241212190657827.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>CMD5上可以直接查找密码为：<code>qwe123!@#</code></p>
+<p>然后我们需要获取用户登录<code>otterctf</code>网站的密码，结合之前发现这个系统中存在firefox，因此大概就是<code>火狐浏览器登录凭证</code>取证了</p>
+<p>火狐的登录凭证可以参考这个<a href="https://github.com/lclevy/firepwd"target="_blank" rel="external nofollow noopener noreferrer">开源项目</a>进行破解，运行脚本后即可得到密码：<code>Y0u_f1Nd^_^m3_233</code></p>
+<p><img loading="lazy" src="imgs/image-20241212192248259.png" alt="imgs/image-20241212192248259.png" srcset="imgs/image-20241212192248259.png?size=small, imgs/image-20241212192248259.png?size=medium 1.5x, imgs/image-20241212192248259.png?size=large 2x" data-title="imgs/image-20241212192248259.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>因此最后的解压密码为<code>qwe123!@#_Y0u_f1Nd^_^m3_233</code>，解压压缩包后得到一张<code>Original.png</code></p>
+<p>结合之前的提示<code>CatWatermark_666.png</code>，可以使用<a href="https://github.com/Konano/CatWatermark"target="_blank" rel="external nofollow noopener noreferrer">CatWatermark</a>这个开源项目进行解密</p>
+<p>参考项目中的Usage，发现解密需要提供<code>arnold_dx arnold_dy arnold_rd</code>这三个参数，结合图片名称，猜测三个参数应该就是<code>6 6 6</code></p>
+<div class="highlight" id="id-7"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># encode</span>
+</span></span><span class="line"><span class="cl">python3 encode.py original_image watermark_text output_image
+</span></span><span class="line"><span class="cl"><span class="c1"># decode</span>
+</span></span><span class="line"><span class="cl">python3 decode.py original_image watermarked_image output_image arnold_dx arnold_dy arnold_rd</span></span></code></pre></td></tr></table>
+</div>
+</div><p>所以直接把项目下载到本地然后Decode即可得到flag3：<code>F1N4L_s3CR3t_0F_Th15_</code></p>
+<div class="highlight" id="id-8"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">python</span> <span class="n">decode</span><span class="o">.</span><span class="n">py</span> <span class="n">Original</span><span class="o">.</span><span class="n">png</span> <span class="n">CatWatermark_666</span><span class="o">.</span><span class="n">png</span> <span class="n">out</span><span class="o">.</span><span class="n">png</span> <span class="mi">6</span> <span class="mi">6</span> <span class="mi">6</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><img loading="lazy" src="imgs/image-20241212193243341.png" alt="imgs/image-20241212193243341.png" srcset="imgs/image-20241212193243341.png?size=small, imgs/image-20241212193243341.png?size=medium 1.5x, imgs/image-20241212193243341.png?size=large 2x" data-title="imgs/image-20241212193243341.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>综上，结合上述四段flag，本题完整的flag为：<code>D0g3xGC{Y0u_h4V3_f0und_7H3_F1N4L_s3CR3t_0F_Th15F0R3N51c5_Ch4Ll3N93}</code></p>
+<blockquote>
+<p>一些个人的碎碎念：</p>
+<p>感觉这题取证确实出的挺好的，可以看出来出题人花了挺多心思，结合了挺多知识点</p>
+<p>感觉可以作为一道考察取证基础的典型例题了</p>
+</blockquote>
 <h2 id="题目名称-ez_steg0" class="heading-element">
   <a href="#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-ez_steg0" class="heading-mark"></a>题目名称 eZ_Steg0</h2><p>解压题目附件，可以得到以下几个文件，其中key.zip是加密的，猜测密码藏在图片中</p>
 <p><img loading="lazy" src="imgs/image-20241211161300773.png" alt="imgs/image-20241211161300773.png" srcset="imgs/image-20241211161300773.png?size=small, imgs/image-20241211161300773.png?size=medium 1.5x, imgs/image-20241211161300773.png?size=large 2x" data-title="imgs/image-20241211161300773.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>打开01.png，发现都是二值化的图像</p>
 <p><img loading="lazy" src="imgs/image-20241211161327316.png" alt="imgs/image-20241211161327316.png" srcset="imgs/image-20241211161327316.png?size=small, imgs/image-20241211161327316.png?size=medium 1.5x, imgs/image-20241211161327316.png?size=large 2x" data-title="imgs/image-20241211161327316.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>写一个脚本提取一下里面的数据，发现是PNG图片的十六进制数据</p>
-<div class="highlight" id="id-7"><div class="chroma">
+<div class="highlight" id="id-9"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -586,7 +631,7 @@
 <p>然后根据题面的提示，猜测是wav文件的LSB隐写</p>
 <p>参考文章：<a href="https://sumit-arora.medium.com/audio-steganography-the-art-of-hiding-secrets-within-earshot-part-2-of-2-c76b1be719b3"target="_blank" rel="external nofollow noopener noreferrer">Audio Steganography : The art of hiding secrets within earshot (part 2 of 2) | by Sumit Kumar Arora | Medium</a></p>
 <p>编写以下脚本提取隐写的内容即可得到flag：<code>D0g3xGC{U_4rE_4_WhI2_4t_Ste9An09r4pHY}</code></p>
-<div class="highlight" id="id-8"><div class="chroma">
+<div class="highlight" id="id-10"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -628,7 +673,7 @@
   <div class="post-info">
     <div class="post-info-line">
       <div class="post-info-mod">
-        <span title="Updated on 2024-12-12 11:25:56">Updated on 2024-12-12&nbsp;</span>
+        <span title="Updated on 2024-12-12 19:25:56">Updated on 2024-12-12&nbsp;</span>
       </div></div><div class="post-info-line">
         <div class="post-info-md"><span><a href="/posts/7bf9cb0/index.md" title="Read Markdown" class="link-to-markdown">Read Markdown</a></span></div>
         <div class="post-info-share">

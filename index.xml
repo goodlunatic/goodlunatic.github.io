@@ -4,15 +4,16 @@
     <link>http://localhost:1313/</link>
     <description>Welcome to Lunatic&#39;s BLOG ^_^</description>
     <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>goodlunatic0@gmail.com (Lunatic)</managingEditor>
-      <webMaster>goodlunatic0@gmail.com (Lunatic)</webMaster><lastBuildDate>Thu, 12 Dec 2024 11:25:56 &#43;0800</lastBuildDate>
+      <webMaster>goodlunatic0@gmail.com (Lunatic)</webMaster><lastBuildDate>Thu, 12 Dec 2024 19:25:56 &#43;0800</lastBuildDate>
       <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
     <item>
   <title>2024 国城杯网络安全挑战赛 Misc Writeup</title>
   <link>http://localhost:1313/posts/7bf9cb0/</link>
-  <pubDate>Thu, 12 Dec 2024 11:25:56 &#43;0800</pubDate>
+  <pubDate>Thu, 12 Dec 2024 19:25:56 &#43;0800</pubDate>
   <author>Lunatic</author>
   <guid>http://localhost:1313/posts/7bf9cb0/</guid>
-  <description><![CDATA[<p><strong>2024 国城杯网络安全挑战赛 Misc Writeup</strong></p>]]></description>
+  <description><![CDATA[<p><strong>忙里抽闲，简单地看了看题，感觉这场比赛的取证确实出得挺好的</strong></p>
+<p><strong>给取证题 Just_F0r3n51Cs 的出题人点个赞👍</strong></p>]]></description>
 </item>
 <item>
   <title>CTF-Misc &#34;雅&#34;题共赏</title>

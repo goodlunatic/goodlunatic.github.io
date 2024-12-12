@@ -1,6 +1,8 @@
 # 2024 国城杯网络安全挑战赛 Misc Writeup
 
-**2024 国城杯网络安全挑战赛 Misc Writeup**
+**忙里抽闲，简单地看了看题，感觉这场比赛的取证确实出得挺好的**
+
+**给取证题 Just_F0r3n51Cs 的出题人点个赞👍**
 &lt;!--more--&gt;
 
 ![](imgs/image-20241211164828734.png)
@@ -302,8 +304,52 @@ h4V3_f0und_7H3_
 
 ![](imgs/image-20241212120109646.png)
 
+对于用户的登录密码，我们可以导出`C:\Windows\System32\config`目录下的`SYSTEM`和`SAM`两个文件
 
+然后用`mimikatz`抓取hash，可以得到用户`D0g3xGC`用户的NTLM哈希为`c377ba8a4dd52401bc404dbe49771bbc`
 
+![](imgs/image-20241212190241930.png)
+
+拿到NTLM哈希后可以选择使用Hashcat爆破或者直接使用在线网站查询
+
+![](imgs/image-20241212190657827.png)
+
+CMD5上可以直接查找密码为：`qwe123!@#`
+
+然后我们需要获取用户登录`otterctf`网站的密码，结合之前发现这个系统中存在firefox，因此大概就是`火狐浏览器登录凭证`取证了
+
+火狐的登录凭证可以参考这个[开源项目](https://github.com/lclevy/firepwd)进行破解，运行脚本后即可得到密码：`Y0u_f1Nd^_^m3_233`
+
+![](imgs/image-20241212192248259.png)
+
+因此最后的解压密码为`qwe123!@#_Y0u_f1Nd^_^m3_233`，解压压缩包后得到一张`Original.png`
+
+结合之前的提示`CatWatermark_666.png`，可以使用[CatWatermark](https://github.com/Konano/CatWatermark)这个开源项目进行解密
+
+参考项目中的Usage，发现解密需要提供`arnold_dx arnold_dy arnold_rd`这三个参数，结合图片名称，猜测三个参数应该就是`6 6 6`
+
+```bash
+# encode
+python3 encode.py original_image watermark_text output_image
+# decode
+python3 decode.py original_image watermarked_image output_image arnold_dx arnold_dy arnold_rd
+```
+
+所以直接把项目下载到本地然后Decode即可得到flag3：`F1N4L_s3CR3t_0F_Th15_`
+
+```python
+python decode.py Original.png CatWatermark_666.png out.png 6 6 6
+```
+
+![](imgs/image-20241212193243341.png)
+
+综上，结合上述四段flag，本题完整的flag为：`D0g3xGC{Y0u_h4V3_f0und_7H3_F1N4L_s3CR3t_0F_Th15F0R3N51c5_Ch4Ll3N93}`
+
+&gt; 一些个人的碎碎念：
+&gt; 
+&gt; 感觉这题取证确实出的挺好的，可以看出来出题人花了挺多心思，结合了挺多知识点
+&gt; 
+&gt; 感觉可以作为一道考察取证基础的典型例题了
 
 ## 题目名称 eZ_Steg0
 
