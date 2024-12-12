@@ -122,8 +122,6 @@ print(ddd)
 
 ## 题目名称 Just_F0r3n51Cs
 
-## 题目名称 保险柜的秘密
-
 题目附件给了一个`E01`的磁盘镜像，可以使用`FTK image`进行挂载
 
 ![](imgs/image-20241211200047575.png)
@@ -241,12 +239,68 @@ if __name__ == &#34;__main__&#34;:
     encrypt_file(input_file, encrypted_file, key)
 ```
 
-其实就是一个简单的逐字节异或，看懂加密逻辑后直接CyberChef解密即可得到：``
+其实就是一个简单的逐字节异或，看懂加密逻辑后直接CyberChef解密即可得到：`F0R3N51c5_Ch4Ll3N93}`
 
 ![](imgs/image-20241211203417686.png)
 
+flag1和flag4可以通过`FTK Image`挂载并结合上述步骤获得，但是flag2和flag3就需要使用`Autopsy`工具进行辅助取证了
 
+首先是查看环境变量，Windows的环境变量保存在注册表`SYSTEM\CurrentControlSet001\Control\Session Manager\Environment`中，注册表在`C:\Windows\System32\config`目录下
 
+![](imgs/image-20241212113939533.png)
+
+然后我们在环境变量中发现了`u_can_get_flag2_here`，并且它的值指向了一个文件`C:\Program Files (x86)\Internet Explorer\SIGNUP\2`
+
+我们尝试把这个文件提取出来，看文件头发现是个zip压缩包
+
+改后缀为zip并打开，发现是加密的，但是注释中有关于密码的提示
+
+![](imgs/image-20241212114346468.png)
+
+然后我们可以在注册表中寻找上述问题的答案
+
+问题一的答案在`C:\Windows\System32\Config\SOFTWARE\Microsoft\Windows NT\CurrentVersion\RegisteredOwner`
+
+![](imgs/image-20241212114834870.png)
+
+问题二的答案在`C:\Windows\System32\Config\SOFTWARE\Microsoft\Windows NT\CurrentVersion\ProductName`
+
+![](imgs/image-20241212115003470.png)
+
+问题三的答案在`C:\Windows\System32\Config\SOFTWARE\Mozilla\Mozilla Firefox\CurrentVersion
+
+![](imgs/image-20241212115105918.png)
+
+综上，压缩包的密码就是`D0g3xGC_Windows_7_Ultimate_115.0`，解压后可以得到下面这段密文
+
+```vbe
+#@~^HAAAAA==W^lLyPb/P@#@&amp;4*.2{W!!x[mFC&amp;|0AcAAA==^#~@
+```
+
+赛后知道了这是vbe格式加密后的密文，直接使用以.vbe格式保存，再用[在线网站](https://master.ayra.ch/vbs/vbs.aspx)解密即可
+
+![](imgs/image-20241212115620811.png)
+
+打开解密完成的vbs文件即可得到flag2
+
+```
+flag2 is 
+h4V3_f0und_7H3_
+```
+
+然后回到Autopsy中继续看，可以找到一个加密的`Original.zip`
+
+![](imgs/image-20241212115852676.png)
+
+压缩包的路径为`C:/Users/D0g3xGC/Pictures/Original.zip`
+
+并且发现同一路径下还有一个`CatWatermark_666.png`的可疑图片
+
+![](imgs/image-20241212120049479.png)
+
+尝试把两个文件都提取出来，压缩包发现是一个加密的，注释中有关于密码的提示
+
+![](imgs/image-20241212120109646.png)
 
 
 
@@ -348,6 +402,13 @@ flag = libnum.b2s(bin_data)[:50]
 print(flag)
 # b&#39;D0g3xGC{U_4rE_4_WhI2_4t_Ste9An09r4pHY}############&#39;
 ```
+
+## 题目名称 保险柜的秘密
+
+
+
+
+
 
 ---
 

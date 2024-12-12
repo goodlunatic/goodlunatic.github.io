@@ -10,9 +10,9 @@
 <meta name="description" content="2024 国城杯网络安全挑战赛 Misc Writeup" /><meta name="keywords" content='CTF, Misc, Writeup' />
   <meta itemprop="name" content="2024 国城杯网络安全挑战赛 Misc Writeup">
   <meta itemprop="description" content="2024 国城杯网络安全挑战赛 Misc Writeup">
-  <meta itemprop="datePublished" content="2024-12-07T20:25:56+08:00">
-  <meta itemprop="dateModified" content="2024-12-07T20:25:56+08:00">
-  <meta itemprop="wordCount" content="1513">
+  <meta itemprop="datePublished" content="2024-12-12T11:25:56+08:00">
+  <meta itemprop="dateModified" content="2024-12-12T11:25:56+08:00">
+  <meta itemprop="wordCount" content="1544">
   <meta itemprop="keywords" content="CTF,Misc,Writeup"><meta property="og:url" content="http://localhost:1313/posts/7bf9cb0/">
   <meta property="og:site_name" content="⚡Lunatic BLOG⚡">
   <meta property="og:title" content="2024 国城杯网络安全挑战赛 Misc Writeup">
@@ -21,8 +21,8 @@
   <meta property="og:locale" content="en">
   <meta property="og:type" content="article">
   <meta property="article:section" content="posts">
-    <meta property="article:published_time" content="2024-12-07T20:25:56+08:00">
-    <meta property="article:modified_time" content="2024-12-07T20:25:56+08:00">
+    <meta property="article:published_time" content="2024-12-12T11:25:56+08:00">
+    <meta property="article:modified_time" content="2024-12-12T11:25:56+08:00">
     <meta property="article:tag" content="CTF">
     <meta property="article:tag" content="Misc">
     <meta property="article:tag" content="Writeup">
@@ -30,7 +30,7 @@
 <meta name="twitter:description" content="2024 国城杯网络安全挑战赛 Misc Writeup">
       <meta name="twitter:site" content="@https://twitter.com/goodlunatic007">
 <meta name="application-name" content="FixIt">
-<meta name="apple-mobile-web-app-title" content="FixIt"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="https://www.nssctf.cn/files/2024/4/28/8fdad6c6ee.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="http://localhost:1313/posts/7bf9cb0/" /><link rel="prev" href="http://localhost:1313/posts/9651477/" /><link rel="next" href="http://localhost:1313/posts/b70ab5c/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
+<meta name="apple-mobile-web-app-title" content="FixIt"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="https://www.nssctf.cn/files/2024/4/28/8fdad6c6ee.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="http://localhost:1313/posts/7bf9cb0/" /><link rel="prev" href="http://localhost:1313/posts/d0736a7/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
   {
@@ -41,8 +41,8 @@
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": "http:\/\/localhost:1313\/posts\/7bf9cb0\/"
-    },"genre": "posts","keywords": "CTF, Misc, Writeup","wordcount":  1513 ,
-    "url": "http:\/\/localhost:1313\/posts\/7bf9cb0\/","datePublished": "2024-12-07T20:25:56+08:00","dateModified": "2024-12-07T20:25:56+08:00","publisher": {
+    },"genre": "posts","keywords": "CTF, Misc, Writeup","wordcount":  1544 ,
+    "url": "http:\/\/localhost:1313\/posts\/7bf9cb0\/","datePublished": "2024-12-12T11:25:56+08:00","dateModified": "2024-12-12T11:25:56+08:00","publisher": {
       "@type": "Organization",
       "name": ""},"author": {
         "@type": "Person",
@@ -145,7 +145,7 @@
 <article class="page single">
   <div class="header"><h1 class="single-title animate__animated animate__flipInX"><span>2024 国城杯网络安全挑战赛 Misc Writeup</span>
     </h1></div><div class="post-meta">
-    <div class="post-meta-line"><span class="post-author"><a href="https://goodlunatic.github.io" title="Author"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><img loading="lazy" src="https://www.nssctf.cn/files/2024/4/28/7f130a1387.png" alt="Lunatic" data-title="Lunatic" class="avatar" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>&nbsp;Lunatic</a></span><span class="post-included-in">&nbsp;included in <a href="/categories/writeup/" class="post-category" title="Category - Writeup"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> Writeup</a></span></div><div class="post-meta-line"><span title="published on &lt;no value&gt;"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden="true"></i><time datetime="2024-12-07">2024-12-07</time></span>&nbsp;<span title=""><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>About 1600 words</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>8 minutes</span>&nbsp;</div>
+    <div class="post-meta-line"><span class="post-author"><a href="https://goodlunatic.github.io" title="Author"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><img loading="lazy" src="https://www.nssctf.cn/files/2024/4/28/7f130a1387.png" alt="Lunatic" data-title="Lunatic" class="avatar" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>&nbsp;Lunatic</a></span><span class="post-included-in">&nbsp;included in <a href="/categories/writeup/" class="post-category" title="Category - Writeup"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> Writeup</a></span></div><div class="post-meta-line"><span title="published on &lt;no value&gt;"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden="true"></i><time datetime="2024-12-12">2024-12-12</time></span>&nbsp;<span title=""><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>About 1600 words</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>8 minutes</span>&nbsp;</div>
   </div><div class="details toc" id="toc-static"
     data-kept="false">
     <div class="details-summary toc-title">
@@ -156,8 +156,8 @@
   <ul>
     <li><a href="#题目名称-tr4ffic_w1th_ste90">题目名称 Tr4ffIc_w1th_Ste90</a></li>
     <li><a href="#题目名称-just_f0r3n51cs">题目名称 Just_F0r3n51Cs</a></li>
-    <li><a href="#题目名称-保险柜的秘密">题目名称 保险柜的秘密</a></li>
     <li><a href="#题目名称-ez_steg0">题目名称 eZ_Steg0</a></li>
+    <li><a href="#题目名称-保险柜的秘密">题目名称 保险柜的秘密</a></li>
   </ul>
 </nav></div>
   </div><div class="content" id="content"><p><strong>2024 国城杯网络安全挑战赛 Misc Writeup</strong></p>
@@ -342,8 +342,7 @@
 <p>参考链接：https://gryffinbit.top/2020/11/14/%E4%B8%80%E4%BA%9B%E6%9D%82%E4%B9%B1%E7%9A%84%E5%AF%86%E7%A0%81/#PGP%E8%AF%8D%E6%B1%87%E8%A1%A8-%EF%BC%88%E7%94%9F%E7%89%A9%E8%AF%86%E5%88%AB%E8%AF%8D%E6%B1%87%E8%A1%A8%EF%BC%89</p>
 </blockquote>
 <h2 id="题目名称-just_f0r3n51cs" class="heading-element">
-  <a href="#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-just_f0r3n51cs" class="heading-mark"></a>题目名称 Just_F0r3n51Cs</h2><h2 id="题目名称-保险柜的秘密" class="heading-element">
-  <a href="#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-%e4%bf%9d%e9%99%a9%e6%9f%9c%e7%9a%84%e7%a7%98%e5%af%86" class="heading-mark"></a>题目名称 保险柜的秘密</h2><p>题目附件给了一个<code>E01</code>的磁盘镜像，可以使用<code>FTK image</code>进行挂载</p>
+  <a href="#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-just_f0r3n51cs" class="heading-mark"></a>题目名称 Just_F0r3n51Cs</h2><p>题目附件给了一个<code>E01</code>的磁盘镜像，可以使用<code>FTK image</code>进行挂载</p>
 <p><img loading="lazy" src="imgs/image-20241211200047575.png" alt="imgs/image-20241211200047575.png" srcset="imgs/image-20241211200047575.png?size=small, imgs/image-20241211200047575.png?size=medium 1.5x, imgs/image-20241211200047575.png?size=large 2x" data-title="imgs/image-20241211200047575.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>虽然会提示报错，但是依旧是可以成功挂载的</p>
 <p><img loading="lazy" src="imgs/image-20241211200131377.png" alt="imgs/image-20241211200131377.png" srcset="imgs/image-20241211200131377.png?size=small, imgs/image-20241211200131377.png?size=medium 1.5x, imgs/image-20241211200131377.png?size=large 2x" data-title="imgs/image-20241211200131377.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
@@ -463,15 +462,56 @@
 </span></span><span class="line"><span class="cl">    <span class="n">encrypted_file</span> <span class="o">=</span> <span class="s2">&#34;flag4_encrypted.bin&#34;</span>
 </span></span><span class="line"><span class="cl">    <span class="n">encrypt_file</span><span class="p">(</span><span class="n">input_file</span><span class="p">,</span> <span class="n">encrypted_file</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span></span></span></code></pre></td></tr></table>
 </div>
-</div><p>其实就是一个简单的逐字节异或，看懂加密逻辑后直接CyberChef解密即可得到：``</p>
+</div><p>其实就是一个简单的逐字节异或，看懂加密逻辑后直接CyberChef解密即可得到：<code>F0R3N51c5_Ch4Ll3N93}</code></p>
 <p><img loading="lazy" src="imgs/image-20241211203417686.png" alt="imgs/image-20241211203417686.png" srcset="imgs/image-20241211203417686.png?size=small, imgs/image-20241211203417686.png?size=medium 1.5x, imgs/image-20241211203417686.png?size=large 2x" data-title="imgs/image-20241211203417686.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>flag1和flag4可以通过<code>FTK Image</code>挂载并结合上述步骤获得，但是flag2和flag3就需要使用<code>Autopsy</code>工具进行辅助取证了</p>
+<p>首先是查看环境变量，Windows的环境变量保存在注册表<code>SYSTEM\CurrentControlSet001\Control\Session Manager\Environment</code>中，注册表在<code>C:\Windows\System32\config</code>目录下</p>
+<p><img loading="lazy" src="imgs/image-20241212113939533.png" alt="imgs/image-20241212113939533.png" srcset="imgs/image-20241212113939533.png?size=small, imgs/image-20241212113939533.png?size=medium 1.5x, imgs/image-20241212113939533.png?size=large 2x" data-title="imgs/image-20241212113939533.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>然后我们在环境变量中发现了<code>u_can_get_flag2_here</code>，并且它的值指向了一个文件<code>C:\Program Files (x86)\Internet Explorer\SIGNUP\2</code></p>
+<p>我们尝试把这个文件提取出来，看文件头发现是个zip压缩包</p>
+<p>改后缀为zip并打开，发现是加密的，但是注释中有关于密码的提示</p>
+<p><img loading="lazy" src="imgs/image-20241212114346468.png" alt="imgs/image-20241212114346468.png" srcset="imgs/image-20241212114346468.png?size=small, imgs/image-20241212114346468.png?size=medium 1.5x, imgs/image-20241212114346468.png?size=large 2x" data-title="imgs/image-20241212114346468.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>然后我们可以在注册表中寻找上述问题的答案</p>
+<p>问题一的答案在<code>C:\Windows\System32\Config\SOFTWARE\Microsoft\Windows NT\CurrentVersion\RegisteredOwner</code></p>
+<p><img loading="lazy" src="imgs/image-20241212114834870.png" alt="imgs/image-20241212114834870.png" srcset="imgs/image-20241212114834870.png?size=small, imgs/image-20241212114834870.png?size=medium 1.5x, imgs/image-20241212114834870.png?size=large 2x" data-title="imgs/image-20241212114834870.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>问题二的答案在<code>C:\Windows\System32\Config\SOFTWARE\Microsoft\Windows NT\CurrentVersion\ProductName</code></p>
+<p><img loading="lazy" src="imgs/image-20241212115003470.png" alt="imgs/image-20241212115003470.png" srcset="imgs/image-20241212115003470.png?size=small, imgs/image-20241212115003470.png?size=medium 1.5x, imgs/image-20241212115003470.png?size=large 2x" data-title="imgs/image-20241212115003470.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>问题三的答案在`C:\Windows\System32\Config\SOFTWARE\Mozilla\Mozilla Firefox\CurrentVersion</p>
+<p><img loading="lazy" src="imgs/image-20241212115105918.png" alt="imgs/image-20241212115105918.png" srcset="imgs/image-20241212115105918.png?size=small, imgs/image-20241212115105918.png?size=medium 1.5x, imgs/image-20241212115105918.png?size=large 2x" data-title="imgs/image-20241212115105918.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>综上，压缩包的密码就是<code>D0g3xGC_Windows_7_Ultimate_115.0</code>，解压后可以得到下面这段密文</p>
+<div class="highlight" id="id-5"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">#@~^HAAAAA==W^lLyPb/P@#@&amp;4*.2{W!!x[mFC&amp;|0AcAAA==^#~@</span></span></code></pre></td></tr></table>
+</div>
+</div><p>赛后知道了这是vbe格式加密后的密文，直接使用以.vbe格式保存，再用<a href="https://master.ayra.ch/vbs/vbs.aspx"target="_blank" rel="external nofollow noopener noreferrer">在线网站</a>解密即可</p>
+<p><img loading="lazy" src="imgs/image-20241212115620811.png" alt="imgs/image-20241212115620811.png" srcset="imgs/image-20241212115620811.png?size=small, imgs/image-20241212115620811.png?size=medium 1.5x, imgs/image-20241212115620811.png?size=large 2x" data-title="imgs/image-20241212115620811.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>打开解密完成的vbs文件即可得到flag2</p>
+<div class="highlight" id="id-6"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">flag2 is 
+</span></span><span class="line"><span class="cl">h4V3_f0und_7H3_</span></span></code></pre></td></tr></table>
+</div>
+</div><p>然后回到Autopsy中继续看，可以找到一个加密的<code>Original.zip</code></p>
+<p><img loading="lazy" src="imgs/image-20241212115852676.png" alt="imgs/image-20241212115852676.png" srcset="imgs/image-20241212115852676.png?size=small, imgs/image-20241212115852676.png?size=medium 1.5x, imgs/image-20241212115852676.png?size=large 2x" data-title="imgs/image-20241212115852676.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>压缩包的路径为<code>C:/Users/D0g3xGC/Pictures/Original.zip</code></p>
+<p>并且发现同一路径下还有一个<code>CatWatermark_666.png</code>的可疑图片</p>
+<p><img loading="lazy" src="imgs/image-20241212120049479.png" alt="imgs/image-20241212120049479.png" srcset="imgs/image-20241212120049479.png?size=small, imgs/image-20241212120049479.png?size=medium 1.5x, imgs/image-20241212120049479.png?size=large 2x" data-title="imgs/image-20241212120049479.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>尝试把两个文件都提取出来，压缩包发现是一个加密的，注释中有关于密码的提示</p>
+<p><img loading="lazy" src="imgs/image-20241212120109646.png" alt="imgs/image-20241212120109646.png" srcset="imgs/image-20241212120109646.png?size=small, imgs/image-20241212120109646.png?size=medium 1.5x, imgs/image-20241212120109646.png?size=large 2x" data-title="imgs/image-20241212120109646.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <h2 id="题目名称-ez_steg0" class="heading-element">
   <a href="#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-ez_steg0" class="heading-mark"></a>题目名称 eZ_Steg0</h2><p>解压题目附件，可以得到以下几个文件，其中key.zip是加密的，猜测密码藏在图片中</p>
 <p><img loading="lazy" src="imgs/image-20241211161300773.png" alt="imgs/image-20241211161300773.png" srcset="imgs/image-20241211161300773.png?size=small, imgs/image-20241211161300773.png?size=medium 1.5x, imgs/image-20241211161300773.png?size=large 2x" data-title="imgs/image-20241211161300773.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>打开01.png，发现都是二值化的图像</p>
 <p><img loading="lazy" src="imgs/image-20241211161327316.png" alt="imgs/image-20241211161327316.png" srcset="imgs/image-20241211161327316.png?size=small, imgs/image-20241211161327316.png?size=medium 1.5x, imgs/image-20241211161327316.png?size=large 2x" data-title="imgs/image-20241211161327316.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>写一个脚本提取一下里面的数据，发现是PNG图片的十六进制数据</p>
-<div class="highlight" id="id-5"><div class="chroma">
+<div class="highlight" id="id-7"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -546,7 +586,7 @@
 <p>然后根据题面的提示，猜测是wav文件的LSB隐写</p>
 <p>参考文章：<a href="https://sumit-arora.medium.com/audio-steganography-the-art-of-hiding-secrets-within-earshot-part-2-of-2-c76b1be719b3"target="_blank" rel="external nofollow noopener noreferrer">Audio Steganography : The art of hiding secrets within earshot (part 2 of 2) | by Sumit Kumar Arora | Medium</a></p>
 <p>编写以下脚本提取隐写的内容即可得到flag：<code>D0g3xGC{U_4rE_4_WhI2_4t_Ste9An09r4pHY}</code></p>
-<div class="highlight" id="id-6"><div class="chroma">
+<div class="highlight" id="id-8"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -583,11 +623,12 @@
 </span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">flag</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="c1"># b&#39;D0g3xGC{U_4rE_4_WhI2_4t_Ste9An09r4pHY}############&#39;</span></span></span></code></pre></td></tr></table>
 </div>
-</div></div><div class="post-footer" id="post-footer">
+</div><h2 id="题目名称-保险柜的秘密" class="heading-element">
+  <a href="#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-%e4%bf%9d%e9%99%a9%e6%9f%9c%e7%9a%84%e7%a7%98%e5%af%86" class="heading-mark"></a>题目名称 保险柜的秘密</h2></div><div class="post-footer" id="post-footer">
   <div class="post-info">
     <div class="post-info-line">
       <div class="post-info-mod">
-        <span title="Updated on 2024-12-07 20:25:56">Updated on 2024-12-07&nbsp;</span>
+        <span title="Updated on 2024-12-12 11:25:56">Updated on 2024-12-12&nbsp;</span>
       </div></div><div class="post-info-line">
         <div class="post-info-md"><span><a href="/posts/7bf9cb0/index.md" title="Read Markdown" class="link-to-markdown">Read Markdown</a></span></div>
         <div class="post-info-share">
@@ -605,8 +646,7 @@
     </section>
   </div>
 
-  <div class="post-nav"><a href="/posts/9651477/" class="post-nav-item" rel="prev" title="2024 HITCTF安天杯网络安全国际邀请赛 Misc Writeup"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>2024 HITCTF安天杯网络安全国际邀请赛 Misc Writeup</a>
-      <a href="/posts/b70ab5c/" class="post-nav-item" rel="next" title="2024 深育杯大学生网络安全大赛 Writeup">2024 深育杯大学生网络安全大赛 Writeup<i class="fa-solid fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+  <div class="post-nav"><a href="/posts/d0736a7/" class="post-nav-item" rel="prev" title="CTF-Misc &#34;雅&#34;题共赏"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>CTF-Misc &#34;雅&#34;题共赏</a></div>
 </div>
 </article>
 
