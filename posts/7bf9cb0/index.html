@@ -284,7 +284,7 @@
 </span></span><span class="line"><span class="cl">    <span class="n">main</span><span class="p">()</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>运行上面的脚本爆破一下seed</p>
-<div class="highlight" id="id-1"><div class="chroma">
+<div class="highlight" id="id-2"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
@@ -302,7 +302,7 @@
 <p>crumpled chairlift freedom chisel island dashboard crucial kickoff crucial chairlift drifter classroom highchair cranky clamshell edict drainage fallout clamshell chatter chairlift goldfish chopper eyetooth endow chairlift edict eyetooth deadbolt fallout egghead chisel eyetooth cranky crucial deadbolt chatter chisel egghead chisel crumpled eyetooth clamshell deadbolt chatter chopper eyetooth classroom chairlift fallout drainage klaxon</p>
 </blockquote>
 <p>最后找个PGP词汇表解密脚本解密即可得到flag：<code>D0g3xGC{C0N9rA7ULa710n5_Y0U_HaV3_ACH13V3D_7H15_90aL}</code></p>
-<div class="highlight" id="id-2"><div class="chroma">
+<div class="highlight" id="id-3"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -390,7 +390,7 @@
 <p><code>uncompyle6</code>可以直接使用 <code>pip install</code> 进行安装</p>
 <p><img loading="lazy" src="imgs/image-20241211202951277.png" alt="imgs/image-20241211202951277.png" srcset="imgs/image-20241211202951277.png?size=small, imgs/image-20241211202951277.png?size=medium 1.5x, imgs/image-20241211202951277.png?size=large 2x" data-title="imgs/image-20241211202951277.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>反编译成功后可以得到如下代码</p>
-<div class="highlight" id="id-3"><div class="chroma">
+<div class="highlight" id="id-1"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -484,7 +484,7 @@
 <p>问题三的答案在`C:\Windows\System32\Config\SOFTWARE\Mozilla\Mozilla Firefox\CurrentVersion</p>
 <p><img loading="lazy" src="imgs/image-20241212115105918.png" alt="imgs/image-20241212115105918.png" srcset="imgs/image-20241212115105918.png?size=small, imgs/image-20241212115105918.png?size=medium 1.5x, imgs/image-20241212115105918.png?size=large 2x" data-title="imgs/image-20241212115105918.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>综上，压缩包的密码就是<code>D0g3xGC_Windows_7_Ultimate_115.0</code>，解压后可以得到下面这段密文</p>
-<div class="highlight" id="id-4"><div class="chroma">
+<div class="highlight" id="id-2"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
@@ -494,7 +494,7 @@
 </div><p>赛后知道了这是vbe格式加密后的密文，直接使用以.vbe格式保存，再用<a href="https://master.ayra.ch/vbs/vbs.aspx"target="_blank" rel="external nofollow noopener noreferrer">在线网站</a>解密即可</p>
 <p><img loading="lazy" src="imgs/image-20241212115620811.png" alt="imgs/image-20241212115620811.png" srcset="imgs/image-20241212115620811.png?size=small, imgs/image-20241212115620811.png?size=medium 1.5x, imgs/image-20241212115620811.png?size=large 2x" data-title="imgs/image-20241212115620811.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>打开解密完成的vbs文件即可得到flag2</p>
-<div class="highlight" id="id-5"><div class="chroma">
+<div class="highlight" id="id-3"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -522,7 +522,7 @@
 <p>因此最后的解压密码为<code>qwe123!@#_Y0u_f1Nd^_^m3_233</code>，解压压缩包后得到一张<code>Original.png</code></p>
 <p>结合之前的提示<code>CatWatermark_666.png</code>，可以使用<a href="https://github.com/Konano/CatWatermark"target="_blank" rel="external nofollow noopener noreferrer">CatWatermark</a>这个开源项目进行解密</p>
 <p>参考项目中的Usage，发现解密需要提供<code>arnold_dx arnold_dy arnold_rd</code>这三个参数，结合图片名称，猜测三个参数应该就是<code>6 6 6</code></p>
-<div class="highlight" id="id-6"><div class="chroma">
+<div class="highlight" id="id-4"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -536,7 +536,7 @@
 </span></span><span class="line"><span class="cl">python3 decode.py original_image watermarked_image output_image arnold_dx arnold_dy arnold_rd</span></span></code></pre></td></tr></table>
 </div>
 </div><p>所以直接把项目下载到本地然后Decode即可得到flag3：<code>F1N4L_s3CR3t_0F_Th15_</code></p>
-<div class="highlight" id="id-7"><div class="chroma">
+<div class="highlight" id="id-5"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
@@ -556,7 +556,7 @@
 <p>打开01.png，发现都是二值化的图像</p>
 <p><img loading="lazy" src="imgs/image-20241211161327316.png" alt="imgs/image-20241211161327316.png" srcset="imgs/image-20241211161327316.png?size=small, imgs/image-20241211161327316.png?size=medium 1.5x, imgs/image-20241211161327316.png?size=large 2x" data-title="imgs/image-20241211161327316.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>写一个脚本提取一下里面的数据，发现是PNG图片的十六进制数据</p>
-<div class="highlight" id="id-8"><div class="chroma">
+<div class="highlight" id="id-6"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -631,7 +631,7 @@
 <p>然后根据题面的提示，猜测是wav文件的LSB隐写</p>
 <p>参考文章：<a href="https://sumit-arora.medium.com/audio-steganography-the-art-of-hiding-secrets-within-earshot-part-2-of-2-c76b1be719b3"target="_blank" rel="external nofollow noopener noreferrer">Audio Steganography : The art of hiding secrets within earshot (part 2 of 2) | by Sumit Kumar Arora | Medium</a></p>
 <p>编写以下脚本提取隐写的内容即可得到flag：<code>D0g3xGC{U_4rE_4_WhI2_4t_Ste9An09r4pHY}</code></p>
-<div class="highlight" id="id-9"><div class="chroma">
+<div class="highlight" id="id-7"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -680,7 +680,7 @@
 <p>IDA32中打开反编译可以得到加密逻辑</p>
 <p><img loading="lazy" src="imgs/image-20241212195923876.png" alt="imgs/image-20241212195923876.png" srcset="imgs/image-20241212195923876.png?size=small, imgs/image-20241212195923876.png?size=medium 1.5x, imgs/image-20241212195923876.png?size=large 2x" data-title="imgs/image-20241212195923876.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p><img loading="lazy" src="imgs/image-20241212195425884.png" alt="imgs/image-20241212195425884.png" srcset="imgs/image-20241212195425884.png?size=small, imgs/image-20241212195425884.png?size=medium 1.5x, imgs/image-20241212195425884.png?size=large 2x" data-title="imgs/image-20241212195425884.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
-<div class="highlight" id="id-10"><div class="chroma">
+<div class="highlight" id="id-8"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
