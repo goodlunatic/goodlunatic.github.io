@@ -899,6 +899,17 @@ for i in ccc:
 print(ddd)
 ```
 
+### VBS加密
+
+例题1-2024国城杯-Just_F0r3n51Cs
+
+`enc.vbe`内容如下
+```
+#@~^HAAAAA==W^lLyPb/P@#@&amp;4*.2{W!!x[mFC&amp;|0AcAAA==^#~@
+```
+
+直接使用[在线网站](https://master.ayra.ch/vbs/vbs.aspx)解密为vbs即可
+
 ## 各种文件头/尾：
 
 这里要注意，出题人可能会把文件头的小写字母偷偷改成大写，例如：Rar -&gt; RAR
@@ -1761,6 +1772,10 @@ olevba .\attachment.doc &gt; test.txt
 ### 3、利用行距来隐写（例：ISCC2023-汤姆历险记）
 
 word中可能有一段是1倍行距，可能又有一段是1.5倍行距，需要根据不同行距敲出摩斯电码（单倍转为.多倍转为-空行转为空格或者分隔符）
+
+### 4、docx中有emf和oleobject
+
+可以直接双击word中那个emf图标，激活相关内容(如音频文件)然后再进一步分析
 
 ## Misc——txt题思路：
 

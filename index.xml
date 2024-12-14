@@ -4,9 +4,25 @@
     <link>http://localhost:1313/</link>
     <description>Welcome to Lunatic&#39;s BLOG ^_^</description>
     <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>goodlunatic0@gmail.com (Lunatic)</managingEditor>
-      <webMaster>goodlunatic0@gmail.com (Lunatic)</webMaster><lastBuildDate>Thu, 12 Dec 2024 19:25:56 &#43;0800</lastBuildDate>
+      <webMaster>goodlunatic0@gmail.com (Lunatic)</webMaster><lastBuildDate>Sat, 14 Dec 2024 11:34:12 &#43;0800</lastBuildDate>
       <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
     <item>
+  <title>Misc-Forensics</title>
+  <link>http://localhost:1313/posts/761da51/</link>
+  <pubDate>Sat, 14 Dec 2024 11:34:12 &#43;0800</pubDate>
+  <author>Lunatic</author>
+  <guid>http://localhost:1313/posts/761da51/</guid>
+  <description><![CDATA[<p><strong>This is a simple summary of digital forensics .</strong></p>]]></description>
+</item>
+<item>
+  <title>CTF-Misc Guide</title>
+  <link>http://localhost:1313/posts/1ad9200/</link>
+  <pubDate>Sat, 14 Dec 2024 11:30:17 &#43;0800</pubDate>
+  <author>Lunatic</author>
+  <guid>http://localhost:1313/posts/1ad9200/</guid>
+  <description><![CDATA[<p><strong>This is a simple Guide for CTF in Misc Area.</strong></p>]]></description>
+</item>
+<item>
   <title>2024 国城杯网络安全挑战赛 Misc Writeup</title>
   <link>http://localhost:1313/posts/7bf9cb0/</link>
   <pubDate>Thu, 12 Dec 2024 19:25:56 &#43;0800</pubDate>
@@ -65,14 +81,6 @@
   <description><![CDATA[<p><strong>2024 古剑山全国大学生网络攻防大赛 Misc Writeup</strong></p>]]></description>
 </item>
 <item>
-  <title>CTF-Misc Guide</title>
-  <link>http://localhost:1313/posts/1ad9200/</link>
-  <pubDate>Fri, 29 Nov 2024 22:30:17 &#43;0800</pubDate>
-  <author>Lunatic</author>
-  <guid>http://localhost:1313/posts/1ad9200/</guid>
-  <description><![CDATA[<p><strong>This is a simple Guide for CTF in Misc Area.</strong></p>]]></description>
-</item>
-<item>
   <title>CTF-数据安全</title>
   <link>http://localhost:1313/posts/c49ae8a/</link>
   <pubDate>Mon, 25 Nov 2024 14:56:54 &#43;0800</pubDate>
@@ -80,14 +88,6 @@
   <guid>http://localhost:1313/posts/c49ae8a/</guid>
   <description><![CDATA[<p>最近的CTF比赛中经常出现数据安全的板块，个人感觉这种东西是可以靠平常积累来提升解题速度的</p>
 <p>因此准备写这样一篇博客来总结一下常见的考点</p>]]></description>
-</item>
-<item>
-  <title>2024 浙江省大学生网络与信息安全竞赛 Misc Writeup</title>
-  <link>http://localhost:1313/posts/c216d58/</link>
-  <pubDate>Sun, 10 Nov 2024 10:45:20 &#43;0800</pubDate>
-  <author>Lunatic</author>
-  <guid>http://localhost:1313/posts/c216d58/</guid>
-  <description><![CDATA[<p><strong>2024 浙江省大学生网络与信息安全竞赛 Misc Writeup</strong></p>]]></description>
 </item>
 </channel>
 </rss>
