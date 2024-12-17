@@ -269,7 +269,7 @@
 </div>
 </div><p>其实这里可以直接右击想要过滤的字段，然后作为过滤器选中，上面就会自己跳出来过滤的表达式了（这里也可以使用或选中和且选中）</p>
 <p>有了这个表达式，就可以带入下面的 tshark 命令一键提取所有过滤出来的帧的指定字段的数据了</p>
-<p><img loading="lazy" src="imgs/N1.png" alt="imgs/N1.png" srcset="imgs/N1.png?size=small, imgs/N1.png?size=medium 1.5x, imgs/N1.png?size=large 2x" data-title="imgs/N1.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><img loading="lazy" src="/posts/5422d65/imgs/N1.png" alt="/posts/5422d65/imgs/N1.png" srcset="/posts/5422d65/imgs/N1.png?size=small, /posts/5422d65/imgs/N1.png?size=medium 1.5x, /posts/5422d65/imgs/N1.png?size=large 2x" data-title="/posts/5422d65/imgs/N1.png" style="--width: 2557px;--aspect-ratio: 2557 / 1597;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <h2 id="tshark使用教程" class="heading-element">
   <a href="#tshark%e4%bd%bf%e7%94%a8%e6%95%99%e7%a8%8b" class="heading-mark"></a>tshark使用教程</h2><p>导出流量包中所有POST数据包的data数据</p>
 <div class="highlight" id="id-3"><div class="chroma">
@@ -1009,7 +1009,7 @@
   <a href="#%e5%93%a5%e6%96%af%e6%8b%89%e6%b5%81%e9%87%8f%e5%88%86%e6%9e%90" class="heading-mark"></a>哥斯拉流量分析</h3><h4 id="303版本" class="heading-element">
   <a href="#303%e7%89%88%e6%9c%ac" class="heading-mark"></a>3.03版本</h4><p>哥斯拉的连接需要填写密码和密钥，加密过程中使用的是密钥MD5的前16位</p>
 <p><strong>Request解密脚本</strong></p>
-<div class="highlight" id="id-1"><div class="chroma">
+<div class="highlight" id="id-19"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1049,7 +1049,7 @@
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">echo</span> <span class="nx">gzdecode</span><span class="p">(</span><span class="nx">encode</span><span class="p">(</span><span class="nx">base64_decode</span><span class="p">(</span><span class="nx">urldecode</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)),</span> <span class="nv">$key</span><span class="p">));</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p><strong>Response解密脚本</strong></p>
-<div class="highlight" id="id-2"><div class="chroma">
+<div class="highlight" id="id-20"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1084,7 +1084,7 @@
 </div>
 </div><p><strong>解密的例子</strong></p>
 <p>request解密</p>
-<div class="highlight" id="id-3"><div class="chroma">
+<div class="highlight" id="id-21"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -1102,7 +1102,7 @@
 </span></span></span><span class="line"><span class="cl"><span class="sd">execCommand**/</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>Response解密</p>
-<div class="highlight" id="id-4"><div class="chroma">
+<div class="highlight" id="id-22"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -1119,18 +1119,18 @@
 简要解密过程（响应）</p>
 <p>解密过程反过来即可</p>
 <p>从流量包中的HTTP数据包中获取key和data，然后用CyberChef解密即可</p>
-<p><img loading="lazy" src="imgs/N2.png" alt="imgs/N2.png" srcset="imgs/N2.png?size=small, imgs/N2.png?size=medium 1.5x, imgs/N2.png?size=large 2x" data-title="imgs/N2.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
-<p><img loading="lazy" src="imgs/N3.png" alt="imgs/N3.png" srcset="imgs/N3.png?size=small, imgs/N3.png?size=medium 1.5x, imgs/N3.png?size=large 2x" data-title="imgs/N3.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
-<p><img loading="lazy" src="imgs/N4.png" alt="imgs/N4.png" srcset="imgs/N4.png?size=small, imgs/N4.png?size=medium 1.5x, imgs/N4.png?size=large 2x" data-title="imgs/N4.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><img loading="lazy" src="/posts/5422d65/imgs/N2.png" alt="/posts/5422d65/imgs/N2.png" srcset="/posts/5422d65/imgs/N2.png?size=small, /posts/5422d65/imgs/N2.png?size=medium 1.5x, /posts/5422d65/imgs/N2.png?size=large 2x" data-title="/posts/5422d65/imgs/N2.png" style="--width: 3822px;--aspect-ratio: 3822 / 1344;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><img loading="lazy" src="/posts/5422d65/imgs/N3.png" alt="/posts/5422d65/imgs/N3.png" srcset="/posts/5422d65/imgs/N3.png?size=small, /posts/5422d65/imgs/N3.png?size=medium 1.5x, /posts/5422d65/imgs/N3.png?size=large 2x" data-title="/posts/5422d65/imgs/N3.png" style="--width: 2040px;--aspect-ratio: 2040 / 971;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><img loading="lazy" src="/posts/5422d65/imgs/N4.png" alt="/posts/5422d65/imgs/N4.png" srcset="/posts/5422d65/imgs/N4.png?size=small, /posts/5422d65/imgs/N4.png?size=medium 1.5x, /posts/5422d65/imgs/N4.png?size=large 2x" data-title="/posts/5422d65/imgs/N4.png" style="--width: 2036px;--aspect-ratio: 2036 / 844;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>这里如果想要偷懒，对于冰蝎和哥斯拉流量可以直接用 风二西 师傅的 承影_哥斯拉冰蝎解码工具 一把梭了</p>
 <p>直接将木马中的密钥复制到工具中，然后 Ctrl+A 全选加密的数据，再右键选择对应的解密方式即可</p>
-<p><img loading="lazy" src="imgs/N5.png" alt="imgs/N5.png" srcset="imgs/N5.png?size=small, imgs/N5.png?size=medium 1.5x, imgs/N5.png?size=large 2x" data-title="imgs/N5.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><img loading="lazy" src="/posts/5422d65/imgs/N5.png" alt="/posts/5422d65/imgs/N5.png" srcset="/posts/5422d65/imgs/N5.png?size=small, /posts/5422d65/imgs/N5.png?size=medium 1.5x, /posts/5422d65/imgs/N5.png?size=large 2x" data-title="/posts/5422d65/imgs/N5.png" style="--width: 2551px;--aspect-ratio: 2551 / 1589;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <h3 id="蚁剑流量分析" class="heading-element">
   <a href="#%e8%9a%81%e5%89%91%e6%b5%81%e9%87%8f%e5%88%86%e6%9e%90" class="heading-mark"></a>蚁剑流量分析</h3><p>蚁剑流量分析需要注意的地方：</p>
 <p>1、路径base64字符串需要去除前两个字符后再解码</p>
 <p>2、响应数据的头尾有额外的字符，需要先去除然后再base64解码</p>
 <p>蚁剑webshell样本</p>
-<div class="highlight" id="id-5"><div class="chroma">
+<div class="highlight" id="id-23"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1315,7 +1315,7 @@
 </div><p>这里总结一下我手动分析蚁剑流量的步骤：</p>
 <p>1、首先url解码请求包，然后base64解码其中的php文件和该文件执行的命令</p>
 <p>2、找到php文件中asoutput函数的标识字符串</p>
-<div class="highlight" id="id-6"><div class="chroma">
+<div class="highlight" id="id-24"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -1343,7 +1343,7 @@
 <h3 id="cobalstrike流量分析" class="heading-element">
   <a href="#cobalstrike%e6%b5%81%e9%87%8f%e5%88%86%e6%9e%90" class="heading-mark"></a>CobalStrike流量分析</h3><p>先从流量包中导出key文件</p>
 <p>然后在 cs-scripts中运行 python3 parse_beacon_keys.py 得到私钥</p>
-<div class="highlight" id="id-7"><div class="chroma">
+<div class="highlight" id="id-25"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1378,7 +1378,7 @@
 </div>
 </div><p>在数据包的HTTP请求中获得Cookie，然后修改CS_Decrypt中的 Beacon_metadata_RSA_Decrypt.py 的私钥和Cookie</p>
 <p>运行即可得到 AES和HMAC key</p>
-<div class="highlight" id="id-8"><div class="chroma">
+<div class="highlight" id="id-26"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -1401,14 +1401,14 @@
 NTLMv2 Response是从ntlmProofStr开始，因此从NTLMv2的响应中要删除ntlmProofStr。</p>
 <p>最后，在过滤器中输入ntlmssp.ntlmserverchallenge，查找NTLM Server Challenge字段，通常这个数据包是在NTLM_Auth数据包之前，将该值作为十六进制字符串复制到文本文档。</p>
 <p>把上面三部分的参数按以下格式保存到hash.txt</p>
-<div class="highlight" id="id-9"><div class="chroma">
+<div class="highlight" id="id-27"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">username::domain:ServerChallenge:NTproofstring:modifiedntlmv2response</span></span></code></pre></td></tr></table>
 </div>
-</div><div class="highlight" id="id-10"><div class="chroma">
+</div><div class="highlight" id="id-28"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
@@ -1416,14 +1416,14 @@ NTLMv2 Response是从ntlmProofStr开始，因此从NTLMv2的响应中要删除nt
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">administrator::WIN2008:9a88373dbb4f5e36:4eb74543b9962bb2ca36e938909bb930:0101000000000000d23c83f972f7d9015e866dc6343b804400000000020008004800410043004b000100040044004300040010006800610063006b002e0063006f006d0003001600440043002e006800610063006b002e0063006f006d00050010006800610063006b002e0063006f006d0007000800d23c83f972f7d9010600040002000000080030003000000000000000000000000030000046fc5f0d124bc9b99b5b560c14cd7c7e217f08f22ef5f223679ec2c576230fa30a001000000000000000000000000000000000000900240063006900660073002f003100390032002e003100360038002e00310036002e0031003000000000000000000000000000</span></span></code></pre></td></tr></table>
 </div>
 </div><p>最后使用 hashcat 进行爆破</p>
-<div class="highlight" id="id-11"><div class="chroma">
+<div class="highlight" id="id-29"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">hashcat -m 5600 hash.txt rockyou.txt</span></span></code></pre></td></tr></table>
 </div>
-</div><div class="highlight" id="id-12"><div class="chroma">
+</div><div class="highlight" id="id-30"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -1435,14 +1435,14 @@ NTLMv2 Response是从ntlmProofStr开始，因此从NTLMv2的响应中要删除nt
 </div><h3 id="提取-ntlmv2-哈希值并破解http协议" class="heading-element">
   <a href="#%e6%8f%90%e5%8f%96-ntlmv2-%e5%93%88%e5%b8%8c%e5%80%bc%e5%b9%b6%e7%a0%b4%e8%a7%a3http%e5%8d%8f%e8%ae%ae" class="heading-mark"></a>提取 NTLMv2 哈希值并破解（HTTP协议）</h3><p>大致步骤和SMB协议的差不多，就是NTLM信息放在了 hypertext transport protocol 中
 按照之前的步骤提取出来，然后 hashcat 爆破即可</p>
-<div class="highlight" id="id-13"><div class="chroma">
+<div class="highlight" id="id-31"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">username::domain:ServerChallenge:NTproofstring:modifiedntlmv2response</span></span></code></pre></td></tr></table>
 </div>
-</div><div class="highlight" id="id-14"><div class="chroma">
+</div><div class="highlight" id="id-32"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
@@ -1451,7 +1451,7 @@ NTLMv2 Response是从ntlmProofStr开始，因此从NTLMv2的响应中要删除nt
 </div>
 </div><h3 id="提取-ntlmv2-哈希值并破解smtp协议" class="heading-element">
   <a href="#%e6%8f%90%e5%8f%96-ntlmv2-%e5%93%88%e5%b8%8c%e5%80%bc%e5%b9%b6%e7%a0%b4%e8%a7%a3smtp%e5%8d%8f%e8%ae%ae" class="heading-mark"></a>提取 NTLMv2 哈希值并破解（SMTP协议）</h3><p>这里的NTLM流量信息可能base64编码过了，所以分析前需要base64解码：</p>
-<p><img loading="lazy" src="imgs/N6.png" alt="imgs/N6.png" srcset="imgs/N6.png?size=small, imgs/N6.png?size=medium 1.5x, imgs/N6.png?size=large 2x" data-title="imgs/N6.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><img loading="lazy" src="/posts/5422d65/imgs/N6.png" alt="/posts/5422d65/imgs/N6.png" srcset="/posts/5422d65/imgs/N6.png?size=small, /posts/5422d65/imgs/N6.png?size=medium 1.5x, /posts/5422d65/imgs/N6.png?size=large 2x" data-title="/posts/5422d65/imgs/N6.png" style="--width: 2560px;--aspect-ratio: 2560 / 1600;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>后续步骤就和之前一样了，提取信息然后用 hashcat 爆破</p>
 <h2 id="工控流量分析" class="heading-element">
   <a href="#%e5%b7%a5%e6%8e%a7%e6%b5%81%e9%87%8f%e5%88%86%e6%9e%90" class="heading-mark"></a>工控流量分析</h2><p>参考连接：https://blog.csdn.net/song123sh/article/details/128387982</p>
@@ -1489,14 +1489,14 @@ NTLMv2 Response是从ntlmProofStr开始，因此从NTLMv2的响应中要删除nt
 </blockquote>
 <h4 id="例题1-hngk-modbus流量分析" class="heading-element">
   <a href="#%e4%be%8b%e9%a2%981-hngk-modbus%e6%b5%81%e9%87%8f%e5%88%86%e6%9e%90" class="heading-mark"></a>例题1 HNGK-Modbus流量分析</h4><p>使用下面这个过滤器命令即可得到 flag</p>
-<div class="highlight" id="id-15"><div class="chroma">
+<div class="highlight" id="id-33"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">(((_ws.col.protocol == &#34;Modbus/TCP&#34;) ) &amp;&amp; (modbus.byte_cnt)) &amp;&amp; (modbus.func_code == 16)</span></span></code></pre></td></tr></table>
 </div>
-</div><p><img loading="lazy" src="imgs/image-20240430142133329.png" alt="imgs/image-20240430142133329.png" srcset="imgs/image-20240430142133329.png?size=small, imgs/image-20240430142133329.png?size=medium 1.5x, imgs/image-20240430142133329.png?size=large 2x" data-title="imgs/image-20240430142133329.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>
+</div><p><img loading="lazy" src="/posts/5422d65/imgs/image-20240430142133329.png" alt="/posts/5422d65/imgs/image-20240430142133329.png" srcset="/posts/5422d65/imgs/image-20240430142133329.png?size=small, /posts/5422d65/imgs/image-20240430142133329.png?size=medium 1.5x, /posts/5422d65/imgs/image-20240430142133329.png?size=large 2x" data-title="/posts/5422d65/imgs/image-20240430142133329.png" style="--width: 3842px;--aspect-ratio: 3842 / 2160;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>
 flag{TheModbusProtocolIsFunny!}</p>
 <h3 id="s7comm-协议分析" class="heading-element">
   <a href="#s7comm-%e5%8d%8f%e8%ae%ae%e5%88%86%e6%9e%90" class="heading-mark"></a>S7comm 协议分析</h3><blockquote>
@@ -1509,35 +1509,35 @@ Userdata：用户自定义数据区，也包含功能指令</p>
 </blockquote>
 <h4 id="例题1-2020icsc湖州站工控协议数据分析" class="heading-element">
   <a href="#%e4%be%8b%e9%a2%981-2020icsc%e6%b9%96%e5%b7%9e%e7%ab%99%e5%b7%a5%e6%8e%a7%e5%8d%8f%e8%ae%ae%e6%95%b0%e6%8d%ae%e5%88%86%e6%9e%90" class="heading-mark"></a>例题1 2020ICSC湖州站—工控协议数据分析</h4><p>首先过滤出S7协议的数据包，发现在一些Ack_Data的数据包中传输了二进制数据
-<img loading="lazy" src="imgs/image-20240430111822297.png" alt="imgs/image-20240430111822297.png" srcset="imgs/image-20240430111822297.png?size=small, imgs/image-20240430111822297.png?size=medium 1.5x, imgs/image-20240430111822297.png?size=large 2x" data-title="imgs/image-20240430111822297.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>
+<img loading="lazy" src="/posts/5422d65/imgs/image-20240430111822297.png" alt="/posts/5422d65/imgs/image-20240430111822297.png" srcset="/posts/5422d65/imgs/image-20240430111822297.png?size=small, /posts/5422d65/imgs/image-20240430111822297.png?size=medium 1.5x, /posts/5422d65/imgs/image-20240430111822297.png?size=large 2x" data-title="/posts/5422d65/imgs/image-20240430111822297.png" style="--width: 3842px;--aspect-ratio: 3842 / 2160;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>
 因此，我们将所有带有二进制数据的数据包都过滤出来，发现一些Job的数据包中也有二进制数据
-<img loading="lazy" src="imgs/image-20240430112312109.png" alt="imgs/image-20240430112312109.png" srcset="imgs/image-20240430112312109.png?size=small, imgs/image-20240430112312109.png?size=medium 1.5x, imgs/image-20240430112312109.png?size=large 2x" data-title="imgs/image-20240430112312109.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>
+<img loading="lazy" src="/posts/5422d65/imgs/image-20240430112312109.png" alt="/posts/5422d65/imgs/image-20240430112312109.png" srcset="/posts/5422d65/imgs/image-20240430112312109.png?size=small, /posts/5422d65/imgs/image-20240430112312109.png?size=medium 1.5x, /posts/5422d65/imgs/image-20240430112312109.png?size=large 2x" data-title="/posts/5422d65/imgs/image-20240430112312109.png" style="--width: 3842px;--aspect-ratio: 3842 / 2160;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>
 然后我们尝试将所有带有二进制数据的Job数据包都过滤出来并导出特定分组，过滤器代码如下</p>
-<div class="highlight" id="id-16"><div class="chroma">
+<div class="highlight" id="id-34"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="o">((</span>s7comm<span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="o">(</span>s7comm.resp.data<span class="o">))</span> <span class="o">&amp;&amp;</span> <span class="o">(</span>s7comm.param.func <span class="o">==</span> 0x05<span class="o">)</span></span></span></code></pre></td></tr></table>
 </div>
-</div><p><img loading="lazy" src="imgs/image-20240430112740044.png" alt="imgs/image-20240430112740044.png" srcset="imgs/image-20240430112740044.png?size=small, imgs/image-20240430112740044.png?size=medium 1.5x, imgs/image-20240430112740044.png?size=large 2x" data-title="imgs/image-20240430112740044.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+</div><p><img loading="lazy" src="/posts/5422d65/imgs/image-20240430112740044.png" alt="/posts/5422d65/imgs/image-20240430112740044.png" srcset="/posts/5422d65/imgs/image-20240430112740044.png?size=small, /posts/5422d65/imgs/image-20240430112740044.png?size=medium 1.5x, /posts/5422d65/imgs/image-20240430112740044.png?size=large 2x" data-title="/posts/5422d65/imgs/image-20240430112740044.png" style="--width: 3838px;--aspect-ratio: 3838 / 2154;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>然后使用 tshark 提取数据</p>
-<div class="highlight" id="id-17"><div class="chroma">
+<div class="highlight" id="id-35"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">tshark -r 1.pcap -T fields -e s7comm.resp.data | uniq</span></span></code></pre></td></tr></table>
 </div>
-</div><p><img loading="lazy" src="imgs/image-20240430112936680.png" alt="imgs/image-20240430112936680.png" srcset="imgs/image-20240430112936680.png?size=small, imgs/image-20240430112936680.png?size=medium 1.5x, imgs/image-20240430112936680.png?size=large 2x" data-title="imgs/image-20240430112936680.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+</div><p><img loading="lazy" src="/posts/5422d65/imgs/image-20240430112936680.png" alt="/posts/5422d65/imgs/image-20240430112936680.png" srcset="/posts/5422d65/imgs/image-20240430112936680.png?size=small, /posts/5422d65/imgs/image-20240430112936680.png?size=medium 1.5x, /posts/5422d65/imgs/image-20240430112936680.png?size=large 2x" data-title="/posts/5422d65/imgs/image-20240430112936680.png" style="--width: 1731px;--aspect-ratio: 1731 / 675;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>最后 CyberChef 解码二进制即可得到 flag
-<img loading="lazy" src="imgs/image-20240430113016466.png" alt="imgs/image-20240430113016466.png" srcset="imgs/image-20240430113016466.png?size=small, imgs/image-20240430113016466.png?size=medium 1.5x, imgs/image-20240430113016466.png?size=large 2x" data-title="imgs/image-20240430113016466.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<img loading="lazy" src="/posts/5422d65/imgs/image-20240430113016466.png" alt="/posts/5422d65/imgs/image-20240430113016466.png" srcset="/posts/5422d65/imgs/image-20240430113016466.png?size=small, /posts/5422d65/imgs/image-20240430113016466.png?size=medium 1.5x, /posts/5422d65/imgs/image-20240430113016466.png?size=large 2x" data-title="/posts/5422d65/imgs/image-20240430113016466.png" style="--width: 2296px;--aspect-ratio: 2296 / 1197;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <h4 id="例题2-2020icsc济南站被篡改的数据" class="heading-element">
   <a href="#%e4%be%8b%e9%a2%982-2020icsc%e6%b5%8e%e5%8d%97%e7%ab%99%e8%a2%ab%e7%af%a1%e6%94%b9%e7%9a%84%e6%95%b0%e6%8d%ae" class="heading-mark"></a>例题2 2020ICSC济南站—被篡改的数据</h4><p>翻看流量包，发现很多 S7COMM 数据包，使用过滤器过滤，发现 s7comm.resp.data 字段传了很多 66 数据
 使用过滤器过滤出传了 s7comm.resp.data 字段数据但数据不是 66 的 S7 数据包
 发现了疑似 flag 的数据，为了防止 flag 中含有 f 字符而被过滤
 因此我们使用下面这个过滤命令进行过滤，然后导出特定分组</p>
-<div class="highlight" id="id-18"><div class="chroma">
+<div class="highlight" id="id-36"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
@@ -1548,7 +1548,7 @@ Userdata：用户自定义数据区，也包含功能指令</p>
 <h4 id="例题3-枢网智盾2021异常流分析" class="heading-element">
   <a href="#%e4%be%8b%e9%a2%983-%e6%9e%a2%e7%bd%91%e6%99%ba%e7%9b%be2021%e5%bc%82%e5%b8%b8%e6%b5%81%e5%88%86%e6%9e%90" class="heading-mark"></a>例题3 枢网智盾2021—异常流分析</h4><p>打开流量包，发现很多 S7comm 流量，然后稍微过滤一下，发现是写入数据的流量
 然后写入的数据几乎都是 ffff 开头的，因此我们直接查看不是 ffff 开头的数据</p>
-<div class="highlight" id="id-19"><div class="chroma">
+<div class="highlight" id="id-37"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
@@ -1557,23 +1557,23 @@ Userdata：用户自定义数据区，也包含功能指令</p>
 </div>
 </div><p>即可得到 flag：flag{ffad28a0ce69db34751f}</p>
 <h4 id="例题4-枢网智盾2021工控协议分析" class="heading-element">
-  <a href="#%e4%be%8b%e9%a2%984-%e6%9e%a2%e7%bd%91%e6%99%ba%e7%9b%be2021%e5%b7%a5%e6%8e%a7%e5%8d%8f%e8%ae%ae%e5%88%86%e6%9e%90" class="heading-mark"></a>例题4 枢网智盾2021—工控协议分析</h4><div class="highlight" id="id-20"><div class="chroma">
+  <a href="#%e4%be%8b%e9%a2%984-%e6%9e%a2%e7%bd%91%e6%99%ba%e7%9b%be2021%e5%b7%a5%e6%8e%a7%e5%8d%8f%e8%ae%ae%e5%88%86%e6%9e%90" class="heading-mark"></a>例题4 枢网智盾2021—工控协议分析</h4><div class="highlight" id="id-38"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">(_ws.col.protocol == &#34;S7COMM&#34;) &amp;&amp; (frame.number == 418)</span></span></code></pre></td></tr></table>
 </div>
-</div><p><img loading="lazy" src="imgs/image-20240430135813366.png" alt="imgs/image-20240430135813366.png" srcset="imgs/image-20240430135813366.png?size=small, imgs/image-20240430135813366.png?size=medium 1.5x, imgs/image-20240430135813366.png?size=large 2x" data-title="imgs/image-20240430135813366.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>
+</div><p><img loading="lazy" src="/posts/5422d65/imgs/image-20240430135813366.png" alt="/posts/5422d65/imgs/image-20240430135813366.png" srcset="/posts/5422d65/imgs/image-20240430135813366.png?size=small, /posts/5422d65/imgs/image-20240430135813366.png?size=medium 1.5x, /posts/5422d65/imgs/image-20240430135813366.png?size=large 2x" data-title="/posts/5422d65/imgs/image-20240430135813366.png" style="--width: 2560px;--aspect-ratio: 2560 / 1600;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>
 然后直接把明文传输的数据 base64 解码即可
-<img loading="lazy" src="imgs/image-20240430135958048.png" alt="imgs/image-20240430135958048.png" srcset="imgs/image-20240430135958048.png?size=small, imgs/image-20240430135958048.png?size=medium 1.5x, imgs/image-20240430135958048.png?size=large 2x" data-title="imgs/image-20240430135958048.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>
+<img loading="lazy" src="/posts/5422d65/imgs/image-20240430135958048.png" alt="/posts/5422d65/imgs/image-20240430135958048.png" srcset="/posts/5422d65/imgs/image-20240430135958048.png?size=small, /posts/5422d65/imgs/image-20240430135958048.png?size=medium 1.5x, /posts/5422d65/imgs/image-20240430135958048.png?size=large 2x" data-title="/posts/5422d65/imgs/image-20240430135958048.png" style="--width: 2292px;--aspect-ratio: 2292 / 1225;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>
 flag{hncome66!}</p>
 <h2 id="蓝牙流量分析" class="heading-element">
   <a href="#%e8%93%9d%e7%89%99%e6%b5%81%e9%87%8f%e5%88%86%e6%9e%90" class="heading-mark"></a>蓝牙流量分析</h2><h3 id="obex协议" class="heading-element">
   <a href="#obex%e5%8d%8f%e8%ae%ae" class="heading-mark"></a>OBEX协议</h3><p>过滤器中输入<code>OBEX</code>，然后导出传输的压缩包，然后再在搜索中输入<code>PIN Code</code>选择分组列表和字符串即可找到解压密码</p>
 <h3 id="att协议" class="heading-element">
   <a href="#att%e5%8d%8f%e8%ae%ae" class="heading-mark"></a>ATT协议</h3><p>例题1-low_energy_crypto</p>
-<div class="highlight" id="id-21"><div class="chroma">
+<div class="highlight" id="id-39"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -1590,9 +1590,9 @@ flag{hncome66!}</p>
 </span></span><span class="line"><span class="cl"><span class="c1"># 公钥和密文都有了之后，就可以直接用RsaCtfTool解密密文了，这里的密文后面如果有多余\x00，可以用010手动去除，要不然可能解密失败</span>
 </span></span><span class="line"><span class="cl">python3 /home/kali/RsaCtfTool/RsaCtfTool.py --publickey ./pub.key --decryptfile ./enc.txt</span></span></code></pre></td></tr></table>
 </div>
-</div><p><img loading="lazy" src="imgs/image-20241202135717254.png" alt="imgs/image-20241202135717254.png" srcset="imgs/image-20241202135717254.png?size=small, imgs/image-20241202135717254.png?size=medium 1.5x, imgs/image-20241202135717254.png?size=large 2x" data-title="imgs/image-20241202135717254.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+</div><p><img loading="lazy" src="/posts/5422d65/imgs/image-20241202135717254.png" alt="/posts/5422d65/imgs/image-20241202135717254.png" srcset="/posts/5422d65/imgs/image-20241202135717254.png?size=small, /posts/5422d65/imgs/image-20241202135717254.png?size=medium 1.5x, /posts/5422d65/imgs/image-20241202135717254.png?size=large 2x" data-title="/posts/5422d65/imgs/image-20241202135717254.png" style="--width: 1599px;--aspect-ratio: 1599 / 498;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>例题2-BLE_crypto</p>
-<div class="highlight" id="id-22"><div class="chroma">
+<div class="highlight" id="id-40"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -1609,7 +1609,7 @@ flag{hncome66!}</p>
 </span></span><span class="line"><span class="cl"><span class="c1"># 公钥和密文都有了之后，就可以直接用RsaCtfTool解密密文了</span>
 </span></span><span class="line"><span class="cl">python3 /home/kali/RsaCtfTool/RsaCtfTool.py --publickey ./pub.key --decryptfile ./enc</span></span></code></pre></td></tr></table>
 </div>
-</div><p><img loading="lazy" src="imgs/image-20241202140503314.png" alt="imgs/image-20241202140503314.png" srcset="imgs/image-20241202140503314.png?size=small, imgs/image-20241202140503314.png?size=medium 1.5x, imgs/image-20241202140503314.png?size=large 2x" data-title="imgs/image-20241202140503314.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+</div><p><img loading="lazy" src="/posts/5422d65/imgs/image-20241202140503314.png" alt="/posts/5422d65/imgs/image-20241202140503314.png" srcset="/posts/5422d65/imgs/image-20241202140503314.png?size=small, /posts/5422d65/imgs/image-20241202140503314.png?size=medium 1.5x, /posts/5422d65/imgs/image-20241202140503314.png?size=large 2x" data-title="/posts/5422d65/imgs/image-20241202140503314.png" style="--width: 1889px;--aspect-ratio: 1889 / 571;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <h3 id="smp协议" class="heading-element">
   <a href="#smp%e5%8d%8f%e8%ae%ae" class="heading-mark"></a>SMP协议</h3><p>SMP协议的全称是Secure Manager Protocol，用来定义蓝牙的配对和密钥的分发</p>
 <p>配对完成后传输的数据是加密的，我们需要用(Crakle)[https://github.com/mikeryan/crackle]这个项目进行解密</p>
@@ -1618,16 +1618,16 @@ flag{hncome66!}</p>
 <p>参考链接：https://cloud.tencent.com/developer/article/2159878</p>
 </blockquote>
 <p>安装好项目后直接运行一下命令解密流量包即可</p>
-<div class="highlight" id="id-23"><div class="chroma">
+<div class="highlight" id="id-41"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">crackle -i uploads_2022_04_11_h5kAcZEg_ble.pcapng -o dec.pcapng</span></span></code></pre></td></tr></table>
 </div>
-</div><p><img loading="lazy" src="imgs/image-20241202141020218.png" alt="imgs/image-20241202141020218.png" srcset="imgs/image-20241202141020218.png?size=small, imgs/image-20241202141020218.png?size=medium 1.5x, imgs/image-20241202141020218.png?size=large 2x" data-title="imgs/image-20241202141020218.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+</div><p><img loading="lazy" src="/posts/5422d65/imgs/image-20241202141020218.png" alt="/posts/5422d65/imgs/image-20241202141020218.png" srcset="/posts/5422d65/imgs/image-20241202141020218.png?size=small, /posts/5422d65/imgs/image-20241202141020218.png?size=medium 1.5x, /posts/5422d65/imgs/image-20241202141020218.png?size=large 2x" data-title="/posts/5422d65/imgs/image-20241202141020218.png" style="--width: 643px;--aspect-ratio: 643 / 387;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>SMP协议解密完成后，我们可以在ATT协议中发现传输的数据，用以下命令导出</p>
-<div class="highlight" id="id-24"><div class="chroma">
+<div class="highlight" id="id-42"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
@@ -1644,9 +1644,9 @@ flag{hncome66!}</p>
 执行命令解码：airdecap-ng -p password1 ctf.pcap -e ctf -o 1.pcap
 然后打开解码后的文件，查找flag</p>
 <h2 id="dns流量分析" class="heading-element">
-  <a href="#dns%e6%b5%81%e9%87%8f%e5%88%86%e6%9e%90" class="heading-mark"></a>DNS流量分析</h2><p><img loading="lazy" src="imgs/image-20241120165643159.png" alt="imgs/image-20241120165643159.png" srcset="imgs/image-20241120165643159.png?size=small, imgs/image-20241120165643159.png?size=medium 1.5x, imgs/image-20241120165643159.png?size=large 2x" data-title="imgs/image-20241120165643159.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+  <a href="#dns%e6%b5%81%e9%87%8f%e5%88%86%e6%9e%90" class="heading-mark"></a>DNS流量分析</h2><p><img loading="lazy" src="/posts/5422d65/imgs/image-20241120165643159.png" alt="/posts/5422d65/imgs/image-20241120165643159.png" srcset="/posts/5422d65/imgs/image-20241120165643159.png?size=small, /posts/5422d65/imgs/image-20241120165643159.png?size=medium 1.5x, /posts/5422d65/imgs/image-20241120165643159.png?size=large 2x" data-title="/posts/5422d65/imgs/image-20241120165643159.png" style="--width: 1920px;--aspect-ratio: 1920 / 1032;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>直接使用tshark导出DNS外带的数据</p>
-<div class="highlight" id="id-25"><div class="chroma">
+<div class="highlight" id="id-43"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
@@ -1661,15 +1661,15 @@ flag{hncome66!}</p>
 <p>例题-BUU 第九章TLS流量分析</p>
 <p>打开流量包发现有 TLS 数据包，然后还有一些红黑条纹，猜测是被加密了</p>
 <p>翻看流量包，追踪 TCP 流，发现流7中POST了一个 sslkey.log 日志文件</p>
-<p><img loading="lazy" src="imgs/N7.png" alt="imgs/N7.png" srcset="imgs/N7.png?size=small, imgs/N7.png?size=medium 1.5x, imgs/N7.png?size=large 2x" data-title="imgs/N7.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><img loading="lazy" src="/posts/5422d65/imgs/N7.png" alt="/posts/5422d65/imgs/N7.png" srcset="/posts/5422d65/imgs/N7.png?size=small, /posts/5422d65/imgs/N7.png?size=medium 1.5x, /posts/5422d65/imgs/N7.png?size=large 2x" data-title="/posts/5422d65/imgs/N7.png" style="--width: 3836px;--aspect-ratio: 3836 / 2158;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>导出 sslkey.log 日志文件，然后按上面的步骤导入解密</p>
-<p><img loading="lazy" src="imgs/N8.png" alt="imgs/N8.png" srcset="imgs/N8.png?size=small, imgs/N8.png?size=medium 1.5x, imgs/N8.png?size=large 2x" data-title="imgs/N8.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><img loading="lazy" src="/posts/5422d65/imgs/N8.png" alt="/posts/5422d65/imgs/N8.png" srcset="/posts/5422d65/imgs/N8.png?size=small, /posts/5422d65/imgs/N8.png?size=medium 1.5x, /posts/5422d65/imgs/N8.png?size=large 2x" data-title="/posts/5422d65/imgs/N8.png" style="--width: 3838px;--aspect-ratio: 3838 / 2160;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>解密完后直接搜索 flag{ 字符串即可找到 flag{e3364403651e775bfb9b3ffa06b69994}</p>
-<p><img loading="lazy" src="imgs/N9.png" alt="imgs/N9.png" srcset="imgs/N9.png?size=small, imgs/N9.png?size=medium 1.5x, imgs/N9.png?size=large 2x" data-title="imgs/N9.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><img loading="lazy" src="/posts/5422d65/imgs/N9.png" alt="/posts/5422d65/imgs/N9.png" srcset="/posts/5422d65/imgs/N9.png?size=small, /posts/5422d65/imgs/N9.png?size=medium 1.5x, /posts/5422d65/imgs/N9.png?size=large 2x" data-title="/posts/5422d65/imgs/N9.png" style="--width: 3840px;--aspect-ratio: 3840 / 2160;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>例题-DDCTF2018 流量分析</p>
 <p>直接在 TLS 加载 RSA 私钥解密即可</p>
 <p>私钥的格式如下：</p>
-<div class="highlight" id="id-26"><div class="chroma">
+<div class="highlight" id="id-44"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1707,14 +1707,14 @@ flag{hncome66!}</p>
 </div><p>例题-2024铁三初赛 流量分析</p>
 <h2 id="icmp流量分析" class="heading-element">
   <a href="#icmp%e6%b5%81%e9%87%8f%e5%88%86%e6%9e%90" class="heading-mark"></a>ICMP流量分析</h2><p>flag 可能藏在每一帧的长度中</p>
-<div class="highlight" id="id-27"><div class="chroma">
+<div class="highlight" id="id-45"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">tshark -r 1.pcapng -Y &#34;icmp&#34; -T fields -e frame.len | uniq &gt; data.txt</span></span></code></pre></td></tr></table>
 </div>
-</div><div class="highlight" id="id-28"><div class="chroma">
+</div><div class="highlight" id="id-46"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -1735,7 +1735,7 @@ flag{hncome66!}</p>
 <h2 id="vpn流量分析" class="heading-element">
   <a href="#vpn%e6%b5%81%e9%87%8f%e5%88%86%e6%9e%90" class="heading-mark"></a>VPN流量分析</h2><h3 id="shadowsocks流量分析" class="heading-element">
   <a href="#shadowsocks%e6%b5%81%e9%87%8f%e5%88%86%e6%9e%90" class="heading-mark"></a>Shadowsocks流量分析</h3><p>例题-2023强网杯-谍影重重3.0</p>
-<div class="highlight" id="id-29"><div class="chroma">
+<div class="highlight" id="id-47"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1853,7 +1853,7 @@ flag{hncome66!}</p>
 在参考链接：https://gitee.com/wangmin-gf/ads-b 看到了与tcp.payload中相似的数据
 使用tshark提取出流量包中的数据，然后使用这个脚本批量解密找speed最快的即可</p>
 <p>tshark -r attach.pcapng -T fields -e &ldquo;tcp.payload&rdquo; | sed &lsquo;/^\s*$/d&rsquo; &gt; tshark.txt</p>
-<div class="highlight" id="id-30"><div class="chroma">
+<div class="highlight" id="id-48"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -1876,7 +1876,7 @@ flag{hncome66!}</p>
 </span></span><span class="line"><span class="cl">        <span class="n">res</span> <span class="o">=</span> <span class="n">pyModeS</span><span class="o">.</span><span class="n">tell</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">strip</span><span class="p">()[</span><span class="mi">18</span><span class="p">:</span><span class="mi">46</span><span class="p">])</span>
 </span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;===========================================================================&#34;</span><span class="p">)</span></span></span></code></pre></td></tr></table>
 </div>
-</div><div class="highlight" id="id-31"><div class="chroma">
+</div><div class="highlight" id="id-49"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1906,7 +1906,7 @@ flag{hncome66!}</p>
 </div><h2 id="损坏的流量包分析" class="heading-element">
   <a href="#%e6%8d%9f%e5%9d%8f%e7%9a%84%e6%b5%81%e9%87%8f%e5%8c%85%e5%88%86%e6%9e%90" class="heading-mark"></a>损坏的流量包分析</h2><p>例题-第一届“百度杯”信息安全攻防总决赛 find the flag（flag藏在 frame29-41 的 ip.id 字段中）</p>
 <p>打开流量包后发现有如下的报错</p>
-<p><img loading="lazy" src="imgs/N10.png" alt="imgs/N10.png" srcset="imgs/N10.png?size=small, imgs/N10.png?size=medium 1.5x, imgs/N10.png?size=large 2x" data-title="imgs/N10.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><img loading="lazy" src="/posts/5422d65/imgs/N10.png" alt="/posts/5422d65/imgs/N10.png" srcset="/posts/5422d65/imgs/N10.png?size=small, /posts/5422d65/imgs/N10.png?size=medium 1.5x, /posts/5422d65/imgs/N10.png?size=large 2x" data-title="/posts/5422d65/imgs/N10.png" style="--width: 2557px;--aspect-ratio: 2557 / 1600;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>可以直接使用 <a href="https://f00l.de/hacking/pcapfix.php"target="_blank" rel="external nofollow noopener noreferrer">在线网站</a> 修复</p>
 <p>修复完成以后就是正常的流量分析了</p>
 <h2 id="从流量包中找异常流量" class="heading-element">
