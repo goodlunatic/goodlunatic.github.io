@@ -1,7 +1,12 @@
 # 2024 HITCTF安天杯网络安全国际邀请赛 Misc Writeup
 
-**2024 HITCTF安天杯网络安全国际邀请赛 Misc Writeup**
+**比赛结束后有师傅来问里面的题，后面才知道原来是哈工大的邀请赛**
+
+**羡慕能被邀请的学校，啥时候能顺便邀请一下A1natas呢 QAQ**
 &lt;!--more--&gt;
+
+题目附件： https://pan.baidu.com/s/1tBDoLrWYncp_Q7dTIfIvrA?pwd=dtej 提取码: dtej
+
 ## 题目名称 BOMB
 
 解压附件压缩包，可以得到一个`Bomb.exe`，010打开发现里面藏了一个压缩包

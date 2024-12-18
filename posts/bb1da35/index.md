@@ -129,12 +129,125 @@ new_img.save(r&#34;flag.png&#34;)
 
 ## 题目名称 图的点很奇怪
 
+题目附件： https://pan.baidu.com/s/1FVmXBTGCCiYSCToXlcUOcg?pwd=i2jz 提取码: i2jz
 
+题目附件给了一张PNG图片还有一个加密的ZIP压缩包，猜测需要从PNG图片中获取压缩包的解压密码
 
+![](imgs/image-20241218193239301.png)
 
+用010打开这张PNG图片，提示报错，仔细观察发现是图片chunk的CTYPE被修改了，尝试改回IDAT
 
+![](imgs/image-20241218193434241.png)
 
-## 题目名称 cat
+然后发现图片末尾有多余的数据，尝试删除多余的数据
+
+![](imgs/image-20241218193558124.png)
+
+多余的数据删除后，图片就可以正常显示了，010中打开也没有报错了
+
+放大图片查看，发现图片中有很多间隔相同的小点，猜测是隐写了另一张图片
+
+![](imgs/image-20241218193727094.png)
+
+因此我们尝试提取等距像素点，可以提取出来下面这张图片
+
+![](imgs/image-20241218193916026.png)
+
+因此压缩包的解压密码就是：`$df&amp;vK1RGqoj`，用得到的压缩包密码解压后可以得到下图
+
+![](imgs/image-20241218194027697.png)
+
+010打开上图，发现末尾藏了一张数据逆置后的PNG图片
+
+![](imgs/image-20241218194114298.png)
+
+直接把末尾的数据复制出来CyberChef转换一下即可得到flag：`flag{d4405ce1-3aac-ffb1-68af11-7d93e2066a}`
+
+![](imgs/image-20241218194211209.png)
+
+## 题目名称 cat(山东省&#34;技能兴鲁&#34;职业技能竞赛)
+
+题目附件： https://pan.baidu.com/s/1FVmXBTGCCiYSCToXlcUOcg?pwd=i2jz 提取码: i2jz
+
+题目附件给了一个cat_encode.py还有一张cat.png
+
+![](imgs/image-20241218194619452.png)
+
+cat_encode.py的内容如下
+
+```python
+def arnold_encode(image, shuffle_times, a, b):
+    arnold_image = np.zeros(shape=image.shape)
+    h, w = image.shape[0], image.shape[1]
+    N = h
+    for time in range(shuffle_times):
+        for ori_x in range(h):
+            for ori_y in range(w):
+
+                new_x = (1*ori_x &#43; b*ori_y)% N
+                new_y = (a*ori_x &#43; (a*b&#43;1)*ori_y) % N
+
+                arnold_image[new_x, new_y, :] = image[ori_x, ori_y, :]
+
+        image = np.copy(arnold_image)
+    cv2.imwrite(&#39;cat.png&#39;, arnold_image, [int(cv2.IMWRITE_PNG_COMPRESSION), 0])
+    return arnold_image
+```
+
+很明显就是经典的arnold猫脸变换了，但是没有给我们shuffle_times、a、b
+
+因此猜测需要我们进行爆破，编写以下脚本进行爆破即可，当然能爆破的前提是三个值都不会太大
+
+```python
+import matplotlib.pyplot as plt
+import cv2
+import numpy as np
+
+def arnold_decode(image, shuffle_times, a, b):
+    &#34;&#34;&#34; decode for rgb image that encoded by Arnold
+    Args:
+        image: rgb image encoded by Arnold
+        shuffle_times: how many times to shuffle
+    Returns:
+        decode image
+    &#34;&#34;&#34;
+    # 1:创建新图像
+    decode_image = np.zeros(shape=image.shape)
+    # 2：计算N
+    h, w = image.shape[0], image.shape[1]
+    N = h  # 或N=w
+
+    # 3：遍历像素坐标变换
+    for time in range(shuffle_times):
+        for ori_x in range(h):
+            for ori_y in range(w):
+                # 按照公式坐标变换
+                new_x = ((a * b &#43; 1) * ori_x &#43; (-b) * ori_y) % N
+                new_y = ((-a) * ori_x &#43; ori_y) % N
+                decode_image[new_x, new_y, :] = image[ori_x, ori_y, :]
+        image = np.copy(decode_image)
+        
+    return image
+
+def arnold_brute(image,shuffle_times_range,a_range,b_range):
+    for c in range(shuffle_times_range[0],shuffle_times_range[1]):
+        for a in range(a_range[0],a_range[1]):
+            for b in range(b_range[0],b_range[1]):
+                print(f&#34;[&#43;] Trying shuffle_times={c} a={a} b={b}&#34;)
+                decoded_img = arnold_decode(image,c,a,b)
+                output_filename = f&#34;flag_decodedc{c}_a{a}_b{b}.png&#34;
+                cv2.imwrite(output_filename, decoded_img, [int(cv2.IMWRITE_PNG_COMPRESSION), 0])
+                
+if __name__ == &#34;__main__&#34;:
+    img = cv2.imread(&#34;cat.png&#34;)
+    arnold_brute(img, (1,6), (1,11), (1,11))
+```
+
+最后发现当shuffle_times=3、a=6、b=9时可以得到下图
+
+![](imgs/image-20241218200611778.png)
+
+因此最后的flag就是：`flag{022ae0e0-c61e-428c-9f76-2eb089a58348}`
 
 ## 题目名称 被偷梁换柱的镜像
 

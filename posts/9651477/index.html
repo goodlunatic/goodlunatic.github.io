@@ -7,16 +7,19 @@
     <meta name="robots" content="noodp" />
     <title>2024 HITCTF安天杯网络安全国际邀请赛 Misc Writeup - ⚡Lunatic BLOG⚡</title><meta name="author" content="Lunatic">
 <meta name="author-link" content="https://goodlunatic.github.io">
-<meta name="description" content="2024 HITCTF安天杯网络安全国际邀请赛 Misc Writeup" /><meta name="keywords" content='CTF, Misc, Writeup' />
+<meta name="description" content="比赛结束后有师傅来问里面的题，后面才知道原来是哈工大的邀请赛
+羡慕能被邀请的学校，啥时候能顺便邀请一下A1natas呢 QAQ" /><meta name="keywords" content='CTF, Misc, Writeup' />
   <meta itemprop="name" content="2024 HITCTF安天杯网络安全国际邀请赛 Misc Writeup">
-  <meta itemprop="description" content="2024 HITCTF安天杯网络安全国际邀请赛 Misc Writeup">
+  <meta itemprop="description" content="比赛结束后有师傅来问里面的题，后面才知道原来是哈工大的邀请赛
+羡慕能被邀请的学校，啥时候能顺便邀请一下A1natas呢 QAQ">
   <meta itemprop="datePublished" content="2024-12-04T19:18:13+08:00">
   <meta itemprop="dateModified" content="2024-12-04T19:18:13+08:00">
-  <meta itemprop="wordCount" content="116">
+  <meta itemprop="wordCount" content="119">
   <meta itemprop="keywords" content="CTF,Misc,Writeup"><meta property="og:url" content="http://localhost:1313/posts/9651477/">
   <meta property="og:site_name" content="⚡Lunatic BLOG⚡">
   <meta property="og:title" content="2024 HITCTF安天杯网络安全国际邀请赛 Misc Writeup">
-  <meta property="og:description" content="2024 HITCTF安天杯网络安全国际邀请赛 Misc Writeup
+  <meta property="og:description" content="比赛结束后有师傅来问里面的题，后面才知道原来是哈工大的邀请赛
+羡慕能被邀请的学校，啥时候能顺便邀请一下A1natas呢 QAQ
 ">
   <meta property="og:locale" content="en">
   <meta property="og:type" content="article">
@@ -27,7 +30,8 @@
     <meta property="article:tag" content="Misc">
     <meta property="article:tag" content="Writeup">
 <meta name="twitter:card" content="summary"><meta name="twitter:title" content="2024 HITCTF安天杯网络安全国际邀请赛 Misc Writeup">
-<meta name="twitter:description" content="2024 HITCTF安天杯网络安全国际邀请赛 Misc Writeup">
+<meta name="twitter:description" content="比赛结束后有师傅来问里面的题，后面才知道原来是哈工大的邀请赛
+羡慕能被邀请的学校，啥时候能顺便邀请一下A1natas呢 QAQ">
       <meta name="twitter:site" content="@https://twitter.com/goodlunatic007">
 <meta name="application-name" content="FixIt">
 <meta name="apple-mobile-web-app-title" content="FixIt"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="https://www.nssctf.cn/files/2024/4/28/8fdad6c6ee.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="http://localhost:1313/posts/9651477/" /><link rel="prev" href="http://localhost:1313/posts/3ab0c1d/" /><link rel="next" href="http://localhost:1313/posts/b70ab5c/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
@@ -41,7 +45,7 @@
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": "http:\/\/localhost:1313\/posts\/9651477\/"
-    },"genre": "posts","keywords": "CTF, Misc, Writeup","wordcount":  116 ,
+    },"genre": "posts","keywords": "CTF, Misc, Writeup","wordcount":  119 ,
     "url": "http:\/\/localhost:1313\/posts\/9651477\/","datePublished": "2024-12-04T19:18:13+08:00","dateModified": "2024-12-04T19:18:13+08:00","publisher": {
       "@type": "Organization",
       "name": ""},"author": {
@@ -161,7 +165,9 @@
     <li><a href="#题目名称-payment">题目名称 payment</a></li>
   </ul>
 </nav></div>
-  </div><div class="content" id="content"><p><strong>2024 HITCTF安天杯网络安全国际邀请赛 Misc Writeup</strong></p>
+  </div><div class="content" id="content"><p><strong>比赛结束后有师傅来问里面的题，后面才知道原来是哈工大的邀请赛</strong></p>
+<p><strong>羡慕能被邀请的学校，啥时候能顺便邀请一下A1natas呢 QAQ</strong></p>
+<p>题目附件： <a href="https://pan.baidu.com/s/1tBDoLrWYncp_Q7dTIfIvrA?pwd=dtej"target="_blank" rel="external nofollow noopener noreferrer">https://pan.baidu.com/s/1tBDoLrWYncp_Q7dTIfIvrA?pwd=dtej</a> 提取码: dtej</p>
 <h2 id="题目名称-bomb" class="heading-element">
   <a href="#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-bomb" class="heading-mark"></a>题目名称 BOMB</h2><p>解压附件压缩包，可以得到一个<code>Bomb.exe</code>，010打开发现里面藏了一个压缩包</p>
 <p><img loading="lazy" src="/posts/9651477/imgs/image-20241204192205067.png" alt="/posts/9651477/imgs/image-20241204192205067.png" srcset="/posts/9651477/imgs/image-20241204192205067.png?size=small, /posts/9651477/imgs/image-20241204192205067.png?size=medium 1.5x, /posts/9651477/imgs/image-20241204192205067.png?size=large 2x" data-title="/posts/9651477/imgs/image-20241204192205067.png" style="--width: 1920px;--aspect-ratio: 1920 / 1032;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
