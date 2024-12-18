@@ -2,9 +2,16 @@
 
 **其实感觉时常做做群友给的题，对自我实力提升其实帮助挺大的**
 &lt;!--more--&gt;
-## 题目名称 大威天龙
 
-题目附件： https://pan.baidu.com/s/1F-88ZgXGLi2iEuQI0kVVWg?pwd=x64u 提取码: x64u
+{{&lt; admonition type=success title=&#34;阅前须知&#34; open=true &gt;}}
+
+**因为本文的题目大都来源于群友的提问，因此我文章中就不放具体的附件下载链接了**
+
+**如果有需要题目附件的师傅，可以进我的交流群获取附件下载链接^\_^**
+
+{{&lt; /admonition &gt;}}
+
+## 题目名称 大威天龙
 
 题目附件给了一个DOC和一个加密的RAR压缩包
 
@@ -129,8 +136,6 @@ new_img.save(r&#34;flag.png&#34;)
 
 ## 题目名称 图的点很奇怪
 
-题目附件： https://pan.baidu.com/s/1FVmXBTGCCiYSCToXlcUOcg?pwd=i2jz 提取码: i2jz
-
 题目附件给了一张PNG图片还有一个加密的ZIP压缩包，猜测需要从PNG图片中获取压缩包的解压密码
 
 ![](imgs/image-20241218193239301.png)
@@ -166,8 +171,6 @@ new_img.save(r&#34;flag.png&#34;)
 ![](imgs/image-20241218194211209.png)
 
 ## 题目名称 cat(山东省&#34;技能兴鲁&#34;职业技能竞赛)
-
-题目附件： https://pan.baidu.com/s/1FVmXBTGCCiYSCToXlcUOcg?pwd=i2jz 提取码: i2jz
 
 题目附件给了一个cat_encode.py还有一张cat.png
 
@@ -250,8 +253,6 @@ if __name__ == &#34;__main__&#34;:
 因此最后的flag就是：`flag{022ae0e0-c61e-428c-9f76-2eb089a58348}`
 
 ## 题目名称 被偷梁换柱的镜像
-
-题目附件： https://pan.baidu.com/s/17dB-bJqONydQpRWtpvJwJQ?pwd=urrm 提取码: urrm
 
 题目背景如下：
 
