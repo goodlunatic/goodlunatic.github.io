@@ -5,44 +5,42 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
     <meta name="robots" content="noodp" />
-    <title>2024 深育杯大学生网络安全大赛 Writeup - ⚡Lunatic BLOG⚡</title><meta name="author" content="Lunatic">
+    <title>4G5G通信相关内容的研究 - ⚡Lunatic BLOG⚡</title><meta name="author" content="Lunatic">
 <meta name="author-link" content="https://goodlunatic.github.io">
-<meta name="description" content="2024 深育杯大学生网络安全大赛 Writeup" /><meta name="keywords" content='CTF, Writeup, Misc' />
-  <meta itemprop="name" content="2024 深育杯大学生网络安全大赛 Writeup">
-  <meta itemprop="description" content="2024 深育杯大学生网络安全大赛 Writeup">
-  <meta itemprop="datePublished" content="2024-12-07T20:26:08+08:00">
-  <meta itemprop="dateModified" content="2024-12-07T20:26:08+08:00">
-  <meta itemprop="wordCount" content="11">
-  <meta itemprop="keywords" content="CTF,Writeup,Misc"><meta property="og:url" content="http://localhost:1313/posts/b70ab5c/">
+<meta name="description" content="4G5G通信相关内容的研究" /><meta name="keywords" content='Research' />
+  <meta itemprop="name" content="4G5G通信相关内容的研究">
+  <meta itemprop="description" content="4G5G通信相关内容的研究">
+  <meta itemprop="datePublished" content="2024-12-19T09:29:58+08:00">
+  <meta itemprop="dateModified" content="2024-12-19T09:29:58+08:00">
+  <meta itemprop="wordCount" content="19">
+  <meta itemprop="keywords" content="Research"><meta property="og:url" content="http://localhost:1313/posts/342f304/">
   <meta property="og:site_name" content="⚡Lunatic BLOG⚡">
-  <meta property="og:title" content="2024 深育杯大学生网络安全大赛 Writeup">
-  <meta property="og:description" content="2024 深育杯大学生网络安全大赛 Writeup
+  <meta property="og:title" content="4G5G通信相关内容的研究">
+  <meta property="og:description" content="4G5G通信相关内容的研究
 ">
   <meta property="og:locale" content="en">
   <meta property="og:type" content="article">
   <meta property="article:section" content="posts">
-    <meta property="article:published_time" content="2024-12-07T20:26:08+08:00">
-    <meta property="article:modified_time" content="2024-12-07T20:26:08+08:00">
-    <meta property="article:tag" content="CTF">
-    <meta property="article:tag" content="Writeup">
-    <meta property="article:tag" content="Misc">
-<meta name="twitter:card" content="summary"><meta name="twitter:title" content="2024 深育杯大学生网络安全大赛 Writeup">
-<meta name="twitter:description" content="2024 深育杯大学生网络安全大赛 Writeup">
+    <meta property="article:published_time" content="2024-12-19T09:29:58+08:00">
+    <meta property="article:modified_time" content="2024-12-19T09:29:58+08:00">
+    <meta property="article:tag" content="Research">
+<meta name="twitter:card" content="summary"><meta name="twitter:title" content="4G5G通信相关内容的研究">
+<meta name="twitter:description" content="4G5G通信相关内容的研究">
       <meta name="twitter:site" content="@https://twitter.com/goodlunatic007">
 <meta name="application-name" content="FixIt">
-<meta name="apple-mobile-web-app-title" content="FixIt"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="https://www.nssctf.cn/files/2024/4/28/8fdad6c6ee.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="http://localhost:1313/posts/b70ab5c/" /><link rel="prev" href="http://localhost:1313/posts/9651477/" /><link rel="next" href="http://localhost:1313/posts/7bf9cb0/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
+<meta name="apple-mobile-web-app-title" content="FixIt"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="https://www.nssctf.cn/files/2024/4/28/8fdad6c6ee.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="http://localhost:1313/posts/342f304/" /><link rel="prev" href="http://localhost:1313/posts/bb1da35/" /><link rel="next" href="http://localhost:1313/posts/d0736a7/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
   {
     "@context": "http://schema.org",
     "@type": "BlogPosting",
-    "headline": "2024 深育杯大学生网络安全大赛 Writeup",
+    "headline": "4G5G通信相关内容的研究",
     "inLanguage": "en",
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id": "http:\/\/localhost:1313\/posts\/b70ab5c\/"
-    },"genre": "posts","keywords": "CTF, Writeup, Misc","wordcount":  11 ,
-    "url": "http:\/\/localhost:1313\/posts\/b70ab5c\/","datePublished": "2024-12-07T20:26:08+08:00","dateModified": "2024-12-07T20:26:08+08:00","publisher": {
+      "@id": "http:\/\/localhost:1313\/posts\/342f304\/"
+    },"genre": "posts","keywords": "Research","wordcount":  19 ,
+    "url": "http:\/\/localhost:1313\/posts\/342f304\/","datePublished": "2024-12-19T09:29:58+08:00","dateModified": "2024-12-19T09:29:58+08:00","publisher": {
       "@type": "Organization",
       "name": ""},"author": {
         "@type": "Person",
@@ -143,9 +141,9 @@
 </header><main class="container"><aside class="aside-collection animate__animated animate__fadeIn animate__faster" aria-label=""></aside>
 
 <article class="page single">
-  <div class="header"><h1 class="single-title animate__animated animate__flipInX"><span>2024 深育杯大学生网络安全大赛 Writeup</span>
+  <div class="header"><h1 class="single-title animate__animated animate__flipInX"><span>4G5G通信相关内容的研究</span>
     </h1></div><div class="post-meta">
-    <div class="post-meta-line"><span class="post-author"><a href="https://goodlunatic.github.io" title="Author"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><img loading="lazy" src="https://www.nssctf.cn/files/2024/4/28/7f130a1387.png" alt="Lunatic" data-title="Lunatic" class="avatar" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>&nbsp;Lunatic</a></span><span class="post-included-in">&nbsp;included in <a href="/categories/writeup/" class="post-category" title="Category - Writeup"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> Writeup</a></span></div><div class="post-meta-line"><span title="published on &lt;no value&gt;"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden="true"></i><time datetime="2024-12-07">2024-12-07</time></span>&nbsp;<span title=""><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>About 100 words</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>One minute</span>&nbsp;</div>
+    <div class="post-meta-line"><span class="post-author"><a href="https://goodlunatic.github.io" title="Author"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><img loading="lazy" src="https://www.nssctf.cn/files/2024/4/28/7f130a1387.png" alt="Lunatic" data-title="Lunatic" class="avatar" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>&nbsp;Lunatic</a></span><span class="post-included-in">&nbsp;included in <a href="/categories/research/" class="post-category" title="Category - Research"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> Research</a></span></div><div class="post-meta-line"><span title="published on &lt;no value&gt;"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden="true"></i><time datetime="2024-12-19">2024-12-19</time></span>&nbsp;<span title=""><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>About 100 words</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>One minute</span>&nbsp;</div>
   </div><div class="details toc" id="toc-static"
     data-kept="false">
     <div class="details-summary toc-title">
@@ -154,43 +152,60 @@
     </div>
     <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
   <ul>
-    <li><a href="#题目名称-木马排查">题目名称 木马排查</a></li>
-    <li><a href="#题目名称-miner">题目名称 miner</a></li>
-    <li><a href="#题目名称-ddos">题目名称 DDOS</a></li>
-    <li><a href="#题目名称">题目名称</a></li>
-    <li><a href="#题目名称-1">题目名称</a></li>
+    <li><a href="#基础概念">基础概念</a></li>
   </ul>
 </nav></div>
-  </div><div class="content" id="content"><p><strong>2024 深育杯大学生网络安全大赛 Writeup</strong></p>
-<h2 id="题目名称-木马排查" class="heading-element">
-  <a href="#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-%e6%9c%a8%e9%a9%ac%e6%8e%92%e6%9f%a5" class="heading-mark"></a>题目名称 木马排查</h2><h2 id="题目名称-miner" class="heading-element">
-  <a href="#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-miner" class="heading-mark"></a>题目名称 miner</h2><h2 id="题目名称-ddos" class="heading-element">
-  <a href="#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-ddos" class="heading-mark"></a>题目名称 DDOS</h2><h2 id="题目名称" class="heading-element">
-  <a href="#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0" class="heading-mark"></a>题目名称</h2><h2 id="题目名称-1" class="heading-element">
-  <a href="#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-1" class="heading-mark"></a>题目名称</h2></div><div class="post-footer" id="post-footer">
+  </div><div class="content" id="content"><p><strong>4G5G通信相关内容的研究</strong></p>
+<h2 id="基础概念" class="heading-element">
+  <a href="#%e5%9f%ba%e7%a1%80%e6%a6%82%e5%bf%b5" class="heading-mark"></a>基础概念</h2><table>
+<thead>
+<tr>
+<th>概念名称</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>信令风暴</td>
+<td>信令风暴（Signaling Storm）通常指的是在通信网络中，由于大量的控制信令（如呼叫建立、注册、认证等）快速且重复地传递，导致网络负载过重，系统资源耗尽，从而影响正常通信的情况。信令风暴最常见于电信网络中，尤其是在移动通信、VoIP（Voice over IP）系统、以及IMS（IP Multimedia Subsystem）等系统中。</td>
+</tr>
+<tr>
+<td>SIB</td>
+<td>SIB（System Information Block，系统信息块是移动通信网络中用于传输网络系统配置信息的一种数据结构，主要用于传递一些与网络状态和参数有关的重要信息。SIB通常用于LTE（Long Term Evolution）和5G NR（New Radio）等现代通信网络中。它的作用是帮助终端设备（如手机、物联网设备等）获取网络的基本配置信息，从而能够顺利连接网络并进行通信。</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table></div><div class="post-footer" id="post-footer">
   <div class="post-info">
     <div class="post-info-line">
       <div class="post-info-mod">
-        <span title="Updated on 2024-12-07 20:26:08">Updated on 2024-12-07&nbsp;</span>
+        <span title="Updated on 2024-12-19 09:29:58">Updated on 2024-12-19&nbsp;</span>
       </div></div><div class="post-info-line">
-        <div class="post-info-md"><span><a href="/posts/b70ab5c/index.md" title="Read Markdown" class="link-to-markdown">Read Markdown</a></span></div>
+        <div class="post-info-md"><span><a href="/posts/342f304/index.md" title="Read Markdown" class="link-to-markdown">Read Markdown</a></span></div>
         <div class="post-info-share">
-          <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="http://localhost:1313/posts/b70ab5c/" data-title="2024 深育杯大学生网络安全大赛 Writeup" data-via="https://twitter.com/goodlunatic007" data-hashtags="CTF,Writeup,Misc"><i class="fa-brands fa-twitter fa-fw" aria-hidden="true"></i></a>
-  <a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="http://localhost:1313/posts/b70ab5c/" data-hashtag="CTF"><i class="fa-brands fa-facebook-square fa-fw" aria-hidden="true"></i></a>
-  <a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="http://localhost:1313/posts/b70ab5c/" data-title="2024 深育杯大学生网络安全大赛 Writeup"><i class="fa-brands fa-weibo fa-fw" aria-hidden="true"></i></a>
+          <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="http://localhost:1313/posts/342f304/" data-title="4G5G通信相关内容的研究" data-via="https://twitter.com/goodlunatic007" data-hashtags="Research"><i class="fa-brands fa-twitter fa-fw" aria-hidden="true"></i></a>
+  <a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="http://localhost:1313/posts/342f304/" data-hashtag="Research"><i class="fa-brands fa-facebook-square fa-fw" aria-hidden="true"></i></a>
+  <a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="http://localhost:1313/posts/342f304/" data-title="4G5G通信相关内容的研究"><i class="fa-brands fa-weibo fa-fw" aria-hidden="true"></i></a>
   </span>
         </div>
       </div></div>
 
   <div class="post-info-more">
-    <section class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href="/tags/ctf/" class="post-tag" title="Tags - CTF">CTF</a><a href="/tags/writeup/" class="post-tag" title="Tags - Writeup">Writeup</a><a href="/tags/misc/" class="post-tag" title="Tags - Misc">Misc</a></section>
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href="/tags/research/" class="post-tag" title="Tags - Research">Research</a></section>
     <section>
       <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
     </section>
   </div>
 
-  <div class="post-nav"><a href="/posts/9651477/" class="post-nav-item" rel="prev" title="2024 HITCTF安天杯网络安全国际邀请赛 Misc Writeup"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>2024 HITCTF安天杯网络安全国际邀请赛 Misc Writeup</a>
-      <a href="/posts/7bf9cb0/" class="post-nav-item" rel="next" title="2024 国城杯网络安全挑战赛 Misc Writeup">2024 国城杯网络安全挑战赛 Misc Writeup<i class="fa-solid fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+  <div class="post-nav"><a href="/posts/bb1da35/" class="post-nav-item" rel="prev" title="群友们问的一些来路不明的题"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>群友们问的一些来路不明的题</a>
+      <a href="/posts/d0736a7/" class="post-nav-item" rel="next" title="CTF-Misc &#34;雅&#34;题共赏">CTF-Misc &#34;雅&#34;题共赏<i class="fa-solid fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
 </div>
 </article>
 
