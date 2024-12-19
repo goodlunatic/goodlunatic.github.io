@@ -14,7 +14,7 @@
 如果师傅们有进一步的想法或者做出来了，可以联系我一起交流一下解题思路">
   <meta itemprop="datePublished" content="2024-12-19T19:39:58+08:00">
   <meta itemprop="dateModified" content="2024-12-19T19:39:58+08:00">
-  <meta itemprop="wordCount" content="651">
+  <meta itemprop="wordCount" content="658">
   <meta itemprop="keywords" content="CTF,Misc"><meta property="og:url" content="http://localhost:1313/posts/d0736a7/">
   <meta property="og:site_name" content="⚡Lunatic BLOG⚡">
   <meta property="og:title" content="CTF-Misc &#34;雅&#34;题共赏">
@@ -44,7 +44,7 @@
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": "http:\/\/localhost:1313\/posts\/d0736a7\/"
-    },"genre": "posts","keywords": "CTF, Misc","wordcount":  651 ,
+    },"genre": "posts","keywords": "CTF, Misc","wordcount":  658 ,
     "url": "http:\/\/localhost:1313\/posts\/d0736a7\/","datePublished": "2024-12-19T19:39:58+08:00","dateModified": "2024-12-19T19:39:58+08:00","publisher": {
       "@type": "Organization",
       "name": ""},"author": {
@@ -307,6 +307,12 @@
 </span></span><span class="line"><span class="cl">(254, 255, 255, 255)</span></span></code></pre></td></tr></table>
 </div>
 </div><p>其中<code>(255, 255, 255, 255)</code>像素是没有隐写数据的，然后另外几个像素分别按照254的位置用四进制隐写了数据</p>
+<blockquote>
+<p>这里为啥能想到<code>(255, 255, 255, 255)</code>像素是没有隐写数据的呢？</p>
+<p>因为如果师傅们尝试把不同像素的坐标打出来，可以发现这个像素是主要集中在前两列和第三列的前16个像素的</p>
+<p>因此比较有经验的Misc师傅就会感觉到，大段连在一起的相同像素是不存在隐写数据的，因此需要把这个像素剔除</p>
+<p>并且这里这样的排列方式，也提示了我们后续步骤中提取像素点需要按列提取</p>
+</blockquote>
 <p>具体的对照表如下：</p>
 <div class="highlight" id="id-4"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
