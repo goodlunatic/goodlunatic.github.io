@@ -170,7 +170,7 @@ new_img.save(r&#34;flag.png&#34;)
 
 ![](imgs/image-20241218194211209.png)
 
-## 题目名称 cat(山东省&#34;技能兴鲁&#34;职业技能竞赛)
+## 题目名称 cat(技能兴鲁)
 
 题目附件给了一个cat_encode.py还有一张cat.png
 
@@ -389,7 +389,32 @@ print(f&#34;File decrypted successfully! Output saved as {output_file}&#34;)
 
 ![](imgs/image-20241218133121093.png)
 
+## 题目名称 莉可丽丝(迅岚安全杯)
 
+题目附件给了一个压缩包，解压后可以得到一张`莉可丽丝 .jpg`
+
+![](imgs/image-20241221163917350.png)
+
+010打开发现末尾藏了一个7z压缩包
+
+![](imgs/image-20241221163939567.png)
+
+提取出来后尝试使用弱密码爆破，得到解压密码`1234567890`
+
+&gt; Tips：7z的弱密码爆破可能会有点慢，使用`passware kit`爆破可能会稍微快一点
+
+![](imgs/image-20241221163949601.png)
+
+解压后得到一个类似于PPTX结构的文件夹，因此我们压缩为zip并改后缀为.pptx
+
+![](imgs/image-20241221164016806.png)
+
+打开PPTX文件，删除覆盖在上面的文字和图片，发现最下面有一行白色的文字，改个颜色即可得到flag：`flag{geigei_zhen_de_hao_li_hai}
+`
+![](imgs/image-20241221164132989.png)
+
+
+## 题目名称
 
 ---
 
