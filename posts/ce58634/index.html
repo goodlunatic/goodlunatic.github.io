@@ -7,16 +7,19 @@
     <meta name="robots" content="noodp" />
     <title>2024 全国大学生信息安全竞赛暨长城杯铁人三项赛初赛 Misc Writeup - ⚡Lunatic BLOG⚡</title><meta name="author" content="Lunatic">
 <meta name="author-link" content="https://goodlunatic.github.io">
-<meta name="description" content="2024 全国大学生信息安全竞赛暨长城杯铁人三项赛初赛 Misc Writeup" /><meta name="keywords" content='CTF, Misc, Writeup' />
+<meta name="description" content="这次比赛的Misc题好像主要是威胁检测与网络流量分析
+与往年的风格有点不同，可能是和铁三一起办的原因吧" /><meta name="keywords" content='CTF, Misc, Writeup' />
   <meta itemprop="name" content="2024 全国大学生信息安全竞赛暨长城杯铁人三项赛初赛 Misc Writeup">
-  <meta itemprop="description" content="2024 全国大学生信息安全竞赛暨长城杯铁人三项赛初赛 Misc Writeup">
+  <meta itemprop="description" content="这次比赛的Misc题好像主要是威胁检测与网络流量分析
+与往年的风格有点不同，可能是和铁三一起办的原因吧">
   <meta itemprop="datePublished" content="2024-12-18T13:39:44+08:00">
   <meta itemprop="dateModified" content="2024-12-18T13:39:44+08:00">
-  <meta itemprop="wordCount" content="8">
+  <meta itemprop="wordCount" content="40">
   <meta itemprop="keywords" content="CTF,Misc,Writeup"><meta property="og:url" content="http://localhost:1313/posts/ce58634/">
   <meta property="og:site_name" content="⚡Lunatic BLOG⚡">
   <meta property="og:title" content="2024 全国大学生信息安全竞赛暨长城杯铁人三项赛初赛 Misc Writeup">
-  <meta property="og:description" content="2024 全国大学生信息安全竞赛暨长城杯铁人三项赛初赛 Misc Writeup
+  <meta property="og:description" content="这次比赛的Misc题好像主要是威胁检测与网络流量分析
+与往年的风格有点不同，可能是和铁三一起办的原因吧
 ">
   <meta property="og:locale" content="en">
   <meta property="og:type" content="article">
@@ -27,7 +30,8 @@
     <meta property="article:tag" content="Misc">
     <meta property="article:tag" content="Writeup">
 <meta name="twitter:card" content="summary"><meta name="twitter:title" content="2024 全国大学生信息安全竞赛暨长城杯铁人三项赛初赛 Misc Writeup">
-<meta name="twitter:description" content="2024 全国大学生信息安全竞赛暨长城杯铁人三项赛初赛 Misc Writeup">
+<meta name="twitter:description" content="这次比赛的Misc题好像主要是威胁检测与网络流量分析
+与往年的风格有点不同，可能是和铁三一起办的原因吧">
       <meta name="twitter:site" content="@https://twitter.com/goodlunatic007">
 <meta name="application-name" content="FixIt">
 <meta name="apple-mobile-web-app-title" content="FixIt"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="https://www.nssctf.cn/files/2024/4/28/8fdad6c6ee.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="http://localhost:1313/posts/ce58634/" /><link rel="prev" href="http://localhost:1313/posts/761da51/" /><link rel="next" href="http://localhost:1313/posts/342f304/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
@@ -41,7 +45,7 @@
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": "http:\/\/localhost:1313\/posts\/ce58634\/"
-    },"genre": "posts","keywords": "CTF, Misc, Writeup","wordcount":  8 ,
+    },"genre": "posts","keywords": "CTF, Misc, Writeup","wordcount":  40 ,
     "url": "http:\/\/localhost:1313\/posts\/ce58634\/","datePublished": "2024-12-18T13:39:44+08:00","dateModified": "2024-12-18T13:39:44+08:00","publisher": {
       "@type": "Organization",
       "name": ""},"author": {
@@ -154,18 +158,49 @@
     </div>
     <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
   <ul>
-    <li><a href="#题目名称">题目名称</a></li>
-    <li><a href="#题目名称-1">题目名称</a></li>
-    <li><a href="#题目名称-2">题目名称</a></li>
-    <li><a href="#题目名称-3">题目名称</a></li>
+    <li><a href="#题目名称-zeroshell_1">题目名称 zeroshell_1</a></li>
+    <li><a href="#题目名称-zeroshell_2">题目名称 zeroshell_2</a></li>
+    <li><a href="#题目名称-zeroshell_3">题目名称 zeroshell_3</a></li>
+    <li><a href="#题目名称-zeroshell_4">题目名称 zeroshell_4</a></li>
+    <li><a href="#题目名称-zeroshell_5">题目名称 zeroshell_5</a></li>
+    <li><a href="#题目名称-zeroshell_6">题目名称 zeroshell_6</a></li>
+    <li><a href="#题目名称-winft_1">题目名称 WinFT_1</a></li>
+    <li><a href="#题目名称-winft_2">题目名称 WinFT_2</a></li>
+    <li><a href="#题目名称-winft_3">题目名称 WinFT_3</a></li>
+    <li><a href="#题目名称-winft_4">题目名称 WinFT_4</a></li>
+    <li><a href="#题目名称-winft_5">题目名称 WinFT_5</a></li>
+    <li><a href="#题目名称-winft_6">题目名称 WinFT_6</a></li>
+    <li><a href="#题目名称-sc05_1">题目名称 sc05_1</a></li>
+    <li><a href="#题目名称-sc05_2">题目名称 sc05_2</a></li>
+    <li><a href="#题目名称-sc05_3">题目名称 sc05_3</a></li>
+    <li><a href="#题目名称-sc05_4">题目名称 sc05_4</a></li>
+    <li><a href="#题目名称-sc05_5">题目名称 sc05_5</a></li>
+    <li><a href="#题目名称-kiwi">题目名称 Kiwi</a></li>
+    <li><a href="#题目名称-sxmisc">题目名称 sxmisc</a></li>
   </ul>
 </nav></div>
-  </div><div class="content" id="content"><p><strong>2024 全国大学生信息安全竞赛暨长城杯铁人三项赛初赛 Misc Writeup</strong></p>
-<h2 id="题目名称" class="heading-element">
-  <a href="#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0" class="heading-mark"></a>题目名称</h2><h2 id="题目名称-1" class="heading-element">
-  <a href="#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-1" class="heading-mark"></a>题目名称</h2><h2 id="题目名称-2" class="heading-element">
-  <a href="#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-2" class="heading-mark"></a>题目名称</h2><h2 id="题目名称-3" class="heading-element">
-  <a href="#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-3" class="heading-mark"></a>题目名称</h2></div><div class="post-footer" id="post-footer">
+  </div><div class="content" id="content"><p><strong>这次比赛的Misc题好像主要是威胁检测与网络流量分析</strong></p>
+<p><strong>与往年的风格有点不同，可能是和铁三一起办的原因吧</strong></p>
+<h2 id="题目名称-zeroshell_1" class="heading-element">
+  <a href="#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-zeroshell_1" class="heading-mark"></a>题目名称 zeroshell_1</h2><h2 id="题目名称-zeroshell_2" class="heading-element">
+  <a href="#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-zeroshell_2" class="heading-mark"></a>题目名称 zeroshell_2</h2><h2 id="题目名称-zeroshell_3" class="heading-element">
+  <a href="#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-zeroshell_3" class="heading-mark"></a>题目名称 zeroshell_3</h2><h2 id="题目名称-zeroshell_4" class="heading-element">
+  <a href="#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-zeroshell_4" class="heading-mark"></a>题目名称 zeroshell_4</h2><h2 id="题目名称-zeroshell_5" class="heading-element">
+  <a href="#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-zeroshell_5" class="heading-mark"></a>题目名称 zeroshell_5</h2><h2 id="题目名称-zeroshell_6" class="heading-element">
+  <a href="#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-zeroshell_6" class="heading-mark"></a>题目名称 zeroshell_6</h2><h2 id="题目名称-winft_1" class="heading-element">
+  <a href="#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-winft_1" class="heading-mark"></a>题目名称 WinFT_1</h2><h2 id="题目名称-winft_2" class="heading-element">
+  <a href="#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-winft_2" class="heading-mark"></a>题目名称 WinFT_2</h2><h2 id="题目名称-winft_3" class="heading-element">
+  <a href="#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-winft_3" class="heading-mark"></a>题目名称 WinFT_3</h2><h2 id="题目名称-winft_4" class="heading-element">
+  <a href="#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-winft_4" class="heading-mark"></a>题目名称 WinFT_4</h2><h2 id="题目名称-winft_5" class="heading-element">
+  <a href="#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-winft_5" class="heading-mark"></a>题目名称 WinFT_5</h2><h2 id="题目名称-winft_6" class="heading-element">
+  <a href="#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-winft_6" class="heading-mark"></a>题目名称 WinFT_6</h2><h2 id="题目名称-sc05_1" class="heading-element">
+  <a href="#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-sc05_1" class="heading-mark"></a>题目名称 sc05_1</h2><h2 id="题目名称-sc05_2" class="heading-element">
+  <a href="#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-sc05_2" class="heading-mark"></a>题目名称 sc05_2</h2><h2 id="题目名称-sc05_3" class="heading-element">
+  <a href="#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-sc05_3" class="heading-mark"></a>题目名称 sc05_3</h2><h2 id="题目名称-sc05_4" class="heading-element">
+  <a href="#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-sc05_4" class="heading-mark"></a>题目名称 sc05_4</h2><h2 id="题目名称-sc05_5" class="heading-element">
+  <a href="#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-sc05_5" class="heading-mark"></a>题目名称 sc05_5</h2><h2 id="题目名称-kiwi" class="heading-element">
+  <a href="#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-kiwi" class="heading-mark"></a>题目名称 Kiwi</h2><h2 id="题目名称-sxmisc" class="heading-element">
+  <a href="#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-sxmisc" class="heading-mark"></a>题目名称 sxmisc</h2></div><div class="post-footer" id="post-footer">
   <div class="post-info">
     <div class="post-info-line">
       <div class="post-info-mod">
