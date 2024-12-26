@@ -413,6 +413,157 @@ print(f&#34;File decrypted successfully! Output saved as {output_file}&#34;)
 `
 ![](imgs/image-20241221164132989.png)
 
+## 题目名称 电音
+
+附件给了一个wav和一个加密的压缩包
+
+wav用au打开查看频谱图可以看到一个二维码
+
+![](imgs/image-20241225235620648.png)
+
+截个图然后用PPT拼一下可以得到下面这张二维码，扫码得到`qr1sc0ol&amp;`
+
+![](imgs/image-20241225235752506.png)
+
+因此猜测还有后半段的解压密码，仔细查看那个wav文件，尝试把前面二维码的内容删除
+
+把剩下的内容`效果器-音量与压缩-增幅`，然后再播放，发现是DTMF电话音
+
+直接用[GitHub - ribt/dtmf-decoder](https://github.com/ribt/dtmf-decoder) 这个项目识别一下可以得到：`3863334447777222666666555`
+
+
+![](imgs/image-20241226000856436.png)
+
+然后联想到手机键盘密码，根据下面这个对照表得到`dtmfiscool`
+
+感谢烛影✌提供的对照表
+
+![](imgs/image-20241226092225804.jpeg)
+
+```
+3 8 6 333 444 7777 222 666 666 555
+d t m f    i    s   c   o   o   l
+```
+
+因此压缩包的解压密码为`qr1sc0ol&amp;dtmfiscool`，解压即可得到flag：`flag{b606eea7-16e4-4b41-9efc-ca000429480f}`
+
+## 题目名称 Coffee_loving_cat(天权信安CTF)
+
+整场比赛Misc的完整wp：[首届“天权信安&amp;catf1ag”网络安全联合公开赛-部分misc-CSDN博客](https://blog.csdn.net/weixin_52365980/article/details/128338404)
+
+附件给了一个压缩包，里面一共有四个文件，其中三个文件是加密的
+
+![](imgs/image-20241225205715776.png)
+
+但是下面这张文件没有加密，猜测需要从下面这张图片中获取解压密码
+
+![](imgs/image-20241225205550609.jpeg)
+
+发现这张图片主要是讲咖啡价格的，因此密码与咖啡有关，上网搜索可以找到下面这篇文章
+
+星巴克杯子上字母的含义：https://www.mopress.io/food/olejRNQWej
+
+```
+1. L - 一般拿铁（Latte）
+2. VL - 香草拿铁（Vanilla Latte）
+3. HL - 榛子拿铁（Hazelnut Latte）
+4. FW - 馥芮白（Flat white）
+5. CM - 焦糖玛奇朵（Caramel Macchiato）
+6. M - 摩卡（Mocha）
+7. C加横杠 - 卡布奇诺（Cappuccino）
+8. A - 美式咖啡（Americano）
+```
+
+根据这个对应关系和上面那张图可以得到：`ALCMCMFW`
+
+然后把上面咖啡的价格以此相加`6&#43;9&#43;12&#43;10&#43;14&#43;11 = 62`联想到base62编码
+
+之前得到的内容base62编码一下可以得到解压密码`5bZuRXL0Mjf`
+
+解压后可以得到两张图片，里面有两张二维码
+
+![](imgs/image-20241225212423398.png)
+
+![](imgs/image-20241225212429255.png)
+
+扫码后可以得到如下内容
+
+```
+Megrez is yyds!!!
+
+Megrez is my god!!!
+```
+
+然后我们看另一张图片，结合题目名称中的cat，猜测是Arnold猫脸变换
+
+因为shuffle_times、a、b三个参数都未知，因此我们尝试爆破一下
+
+最后发现正确的shuffle_times、a、b分别为 12、0、9
+
+&gt; Tips：这里因为图片不是正方形，所以需要分别取模宽和高
+
+```python
+import cv2
+import numpy as np
+
+def arnold_decode(image, shuffle_times, a, b):
+    decode_image = np.zeros(shape=image.shape)
+    h, w = image.shape[0], image.shape[1]
+    for time in range(shuffle_times):
+        for ori_x in range(h):
+            for ori_y in range(w):
+                new_x = ((a * b &#43; 1) * ori_x &#43; (-b) * ori_y) % h
+                new_y = ((-a) * ori_x &#43; ori_y) % w
+                decode_image[new_x, new_y, :] = image[ori_x, ori_y, :]
+        image = np.copy(decode_image)
+    return image
+
+if __name__ == &#34;__main__&#34;:
+    img = cv2.imread(&#34;fla@.bmp&#34;)
+    decode_img = arnold_decode(img, 12, 0, 9)
+    cv2.imwrite(&#39;flag.png&#39;,decode_img)
+```
+
+运行以上脚本后即可得到flag：`flag{512ed05a-629a-11ed-ae9d-ac1203fb3249}`
+
+![](imgs/image-20241225215512617.png)
+
+## 题目名称 简单的图片(XSCTF联合招新赛)
+
+附件给了下面这张图片
+
+![](imgs/image-20241225220056396.png)
+
+zsteg扫一下，发现LSB隐写了数据
+
+![](imgs/image-20241225220153184.png)
+
+尝试用`zsteg -e b1,bgr,lsb,xy IM.png &gt; data.txt`导出可以得到如下数据
+
+```
+[&#39;xxfxc&#39;, &#39;xxfst&#39;, &#39;xxtfc&#39;, &#39;xxfxt&#39;, &#39;xxfft&#39;, &#39;xxttc&#39;, &#39;xxffs&#39;, &#39;xxsft&#39;, &#39;xxftc&#39;, &#39;xxtfx&#39;, &#39;xxtfc&#39;, &#39;xxfcf&#39;, &#39;xxfxs&#39;, &#39;xxtfx&#39;, &#39;xxctx&#39;, &#39;xxfcx&#39;, &#39;xxtfx&#39;, &#39;xxsff&#39;, &#39;xxfsf&#39;, &#39;xxtfc&#39;, &#39;xxfxt&#39;, &#39;xxcxs&#39;, &#39;xxtfx&#39;, &#39;xxfsf&#39;, &#39;xxtfc&#39;, &#39;xxftx&#39;, &#39;xxfts&#39;, &#39;xxfxs&#39;, &#39;xxfcf&#39;, &#39;xxsfc&#39;, &#39;xsxxx&#39;]
+```
+
+仔细观察上面的数据，发现都是x开头的，然后每个字符串的长度都是5，并且字符集就是`xsctf`这五个字符
+
+因此猜测是五进制，结合最后一个字符`xsxxx`对应`01000(125)`刚刚好是`{`，更加确定是五进制了
+
+因此我们写一个脚本转换一下即可得到flag：`flag{\y0u_are_An_1mag3_master/}`
+
+```python
+lst = [&#39;xxfxc&#39;, &#39;xxfst&#39;, &#39;xxtfc&#39;, &#39;xxfxt&#39;, &#39;xxfft&#39;, &#39;xxttc&#39;, &#39;xxffs&#39;, &#39;xxsft&#39;, &#39;xxftc&#39;, &#39;xxtfx&#39;, &#39;xxtfc&#39;, &#39;xxfcf&#39;, &#39;xxfxs&#39;, &#39;xxtfx&#39;, &#39;xxctx&#39;, &#39;xxfcx&#39;, &#39;xxtfx&#39;, &#39;xxsff&#39;, &#39;xxfsf&#39;, &#39;xxtfc&#39;, &#39;xxfxt&#39;, &#39;xxcxs&#39;, &#39;xxtfx&#39;, &#39;xxfsf&#39;, &#39;xxtfc&#39;, &#39;xxftx&#39;, &#39;xxfts&#39;, &#39;xxfxs&#39;, &#39;xxfcf&#39;, &#39;xxsfc&#39;, &#39;xsxxx&#39;]
+
+trans = str.maketrans(&#34;xsctf&#34;,&#34;01234&#34;)
+
+flag = &#34;&#34;
+for item in lst:
+    flag &#43;= chr(int(item.translate(trans),5))
+    
+print(flag)
+# flag{\y0u_are_An_1mag3_master/}
+```
+
+
 
 ## 题目名称
 
