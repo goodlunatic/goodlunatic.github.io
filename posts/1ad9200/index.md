@@ -2518,10 +2518,19 @@ sstv -d flag.wav
 
 ### 6、电话音分析(DTMF)
 
-用在线网站:http://www.dialabc.com/sound/detect/
+用在线网站解码:http://www.dialabc.com/sound/detect/
 
-或者在dtmf2num.exe里使用dtmf2num -o C:\Desktop\1.wav命令
+或者在Windows下使用[ribt/dtmf-decoder](https://github.com/ribt/dtmf-decoder)这个开源项目解密
 
+上面工具的识别可能有误差，如果想要更加精确，可以尝试按照下面这个对照表用肉眼去看
+
+&gt; 参考链接：https://blog.csdn.net/qawsedrf123lala/article/details/132084646
+
+![](imgs/image-20241229101546924.png)
+
+![](imgs/image-20241229102346611.png)
+
+&gt; Tips：如果音频中看不出来可以尝试在Au中把音频增幅，要求能看到两条白线
 
 ### 7、wav可能是业余无线电文件：
 

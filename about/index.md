@@ -37,6 +37,7 @@
 | **[Xunflash](https://www.xunflash.top/)** | **6.66 x 💎**  |
 |      **[C3ngH](https://c3ngh.top)**       | **6.66 x 💎**  |
 |                **1uxu4y**                 | **6.66 x 💎**  |
+|               **酒醉太平**                | **6.66 x 💎**  |
 |  **[AsaL1n](https://asal1n.github.io/)**  | **0.99 x 💎**  |
 |                **洗衣液**                 | **0.10 x 💎**  |
 |                  **GQ**                   | **0.10 x 💎**  |
