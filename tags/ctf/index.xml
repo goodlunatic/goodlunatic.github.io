@@ -4,21 +4,30 @@
     <link>http://localhost:1313/tags/ctf/</link>
     <description>CTF - Tag | ⚡Lunatic BLOG⚡</description>
     <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>goodlunatic0@gmail.com (Lunatic)</managingEditor>
-      <webMaster>goodlunatic0@gmail.com (Lunatic)</webMaster><lastBuildDate>Sun, 29 Dec 2024 08:19:11 &#43;0800</lastBuildDate><atom:link href="http://localhost:1313/tags/ctf/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>goodlunatic0@gmail.com (Lunatic)</webMaster><lastBuildDate>Sun, 29 Dec 2024 15:30:17 &#43;0800</lastBuildDate><atom:link href="http://localhost:1313/tags/ctf/" rel="self" type="application/rss+xml" /><item>
+  <title>CTF-Misc Guide</title>
+  <link>http://localhost:1313/posts/1ad9200/</link>
+  <pubDate>Sun, 29 Dec 2024 15:30:17 &#43;0800</pubDate>
+  <author>Lunatic</author>
+  <guid>http://localhost:1313/posts/1ad9200/</guid>
+  <description><![CDATA[<p><strong>This is a simple Guide for CTF in Misc Area.</strong></p>]]></description>
+</item>
+<item>
+  <title>2024 楚慧杯网络与数据安全实践能力竞赛 Misc Writeup</title>
+  <link>http://localhost:1313/posts/69e332a/</link>
+  <pubDate>Sun, 29 Dec 2024 14:05:04 &#43;0800</pubDate>
+  <author>Lunatic</author>
+  <guid>http://localhost:1313/posts/69e332a/</guid>
+  <description><![CDATA[<p><strong>这比赛本身没啥好说的，竟然出现了这么多的原题，非常的难评只能说</strong></p>
+<p><strong>但是如果就涉及到的题目本身而言，还是可以稍微记录一下的</strong></p>]]></description>
+</item>
+<item>
   <title>群友们问的一些来路不明的题</title>
   <link>http://localhost:1313/posts/bb1da35/</link>
   <pubDate>Sun, 29 Dec 2024 08:19:11 &#43;0800</pubDate>
   <author>Lunatic</author>
   <guid>http://localhost:1313/posts/bb1da35/</guid>
   <description><![CDATA[<p><strong>其实感觉时常做做群友给的题，对自我实力提升其实帮助挺大的</strong></p>]]></description>
-</item>
-<item>
-  <title>CTF-Misc Guide</title>
-  <link>http://localhost:1313/posts/1ad9200/</link>
-  <pubDate>Thu, 26 Dec 2024 08:30:17 &#43;0800</pubDate>
-  <author>Lunatic</author>
-  <guid>http://localhost:1313/posts/1ad9200/</guid>
-  <description><![CDATA[<p><strong>This is a simple Guide for CTF in Misc Area.</strong></p>]]></description>
 </item>
 <item>
   <title>CTF-Misc &#34;雅&#34;题共赏</title>
@@ -79,14 +88,6 @@
   <author>Lunatic</author>
   <guid>http://localhost:1313/posts/3ab0c1d/</guid>
   <description><![CDATA[<p><strong>2024 吾杯网络安全大赛 Misc Writeup</strong></p>]]></description>
-</item>
-<item>
-  <title>Misc-Network Traffic Analysis</title>
-  <link>http://localhost:1313/posts/5422d65/</link>
-  <pubDate>Mon, 02 Dec 2024 12:15:27 &#43;0800</pubDate>
-  <author>Lunatic</author>
-  <guid>http://localhost:1313/posts/5422d65/</guid>
-  <description><![CDATA[<p><strong>This is a Simple Guide for Network Traffic Analysis.</strong></p>]]></description>
 </item>
 </channel>
 </rss>

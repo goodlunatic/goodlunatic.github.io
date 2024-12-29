@@ -1292,7 +1292,7 @@ print(res)
 
 参考链接：https://1cepeak.cn/post/arnold/
 
-解密需要提供`a`和`b`，然后直接使用下面这个脚本恢复即可
+如果已经得到了`shuffle_times`、`a`和`b`，然后直接使用下面这个脚本恢复即可
 
 ```python
 import matplotlib.pyplot as plt
@@ -1303,58 +1303,30 @@ from PIL import Image
 img = cv2.imread(&#39;flag.png&#39;)
 
 def arnold_encode(image, shuffle_times, a, b):
-    &#34;&#34;&#34; Arnold shuffle for rgb image
-    Args:
-        image: input original rgb image
-        shuffle_times: how many times to shuffle
-    Returns:
-        Arnold encode image
-    &#34;&#34;&#34;
-    # 1:创建新图像
     arnold_image = np.zeros(shape=image.shape)
-    
-    # 2：计算N
     h, w = image.shape[0], image.shape[1]
     N = h   # 或N=w
-    
-    # 3：遍历像素坐标变换
+
     for time in range(shuffle_times):
         for ori_x in range(h):
             for ori_y in range(w):
-                # 按照公式坐标变换
                 new_x = (1*ori_x &#43; b*ori_y)% N
                 new_y = (a*ori_x &#43; (a*b&#43;1)*ori_y) % N
-
-                # 像素赋值
-                # print(image[ori_x, ori_y, :])
-                # print(arnold_image[new_x, new_y, :])
                 arnold_image[new_x, new_y, :] = image[ori_x, ori_y, :]
-        
-        # 更新坐标
+
         image = np.copy(arnold_image)
 
     cv2.imwrite(&#39;flag_arnold_encode.png&#39;, arnold_image, [int(cv2.IMWRITE_PNG_COMPRESSION), 0])
     return arnold_image
 
 def arnold_decode(image, shuffle_times, a, b):
-    &#34;&#34;&#34; decode for rgb image that encoded by Arnold
-    Args:
-        image: rgb image encoded by Arnold
-        shuffle_times: how many times to shuffle
-    Returns:
-        decode image
-    &#34;&#34;&#34;
-    # 1:创建新图像
     decode_image = np.zeros(shape=image.shape)
-    # 2：计算N
     h, w = image.shape[0], image.shape[1]
     N = h  # 或N=w
 
-    # 3：遍历像素坐标变换
     for time in range(shuffle_times):
         for ori_x in range(h):
             for ori_y in range(w):
-                # 按照公式坐标变换
                 new_x = ((a * b &#43; 1) * ori_x &#43; (-b) * ori_y) % N
                 new_y = ((-a) * ori_x &#43; ori_y) % N
                 decode_image[new_x, new_y, :] = image[ori_x, ori_y, :]
@@ -1364,6 +1336,68 @@ def arnold_decode(image, shuffle_times, a, b):
 
 # arnold_encode(img, 1, 2, 3)
 arnold_decode(img, 1, 29294, 7302244)
+```
+
+如果题目没有给我们上面的三个参数，我可以尝试爆破一下
+
+例题-cat(技能兴鲁)
+
+```python
+import matplotlib.pyplot as plt
+import cv2
+import numpy as np
+
+def arnold_decode(image, shuffle_times, a, b):
+    decode_image = np.zeros(shape=image.shape)
+    h, w = image.shape[0], image.shape[1]
+    N = h  # 或N=w
+    for time in range(shuffle_times):
+        for ori_x in range(h):
+            for ori_y in range(w):
+                # 按照公式坐标变换
+                new_x = ((a * b &#43; 1) * ori_x &#43; (-b) * ori_y) % N
+                new_y = ((-a) * ori_x &#43; ori_y) % N
+                decode_image[new_x, new_y, :] = image[ori_x, ori_y, :]
+        image = np.copy(decode_image)
+        
+    return image
+
+def arnold_brute(image,shuffle_times_range,a_range,b_range):
+    for c in range(shuffle_times_range[0],shuffle_times_range[1]):
+        for a in range(a_range[0],a_range[1]):
+            for b in range(b_range[0],b_range[1]):
+                print(f&#34;[&#43;] Trying shuffle_times={c} a={a} b={b}&#34;)
+                decoded_img = arnold_decode(image,c,a,b)
+                output_filename = f&#34;flag_decodedc{c}_a{a}_b{b}.png&#34;
+                cv2.imwrite(output_filename, decoded_img, [int(cv2.IMWRITE_PNG_COMPRESSION), 0])
+                
+if __name__ == &#34;__main__&#34;:
+    img = cv2.imread(&#34;cat.png&#34;)
+    arnold_brute(img, (1,6), (1,11), (1,11))
+```
+
+**正常来说猫脸变换的图像长和宽都是相等的，如果遇到抽象的长宽不相等的图像，脚本中的N需要改一下**
+
+```python
+import cv2
+import numpy as np
+
+def arnold_decode(image, shuffle_times, a, b):
+    decode_image = np.zeros(shape=image.shape)
+    h, w = image.shape[0], image.shape[1]
+    for time in range(shuffle_times):
+        for ori_x in range(h):
+            for ori_y in range(w):
+                new_x = ((a * b &#43; 1) * ori_x &#43; (-b) * ori_y) % h
+                new_y = ((-a) * ori_x &#43; ori_y) % w
+                decode_image[new_x, new_y, :] = image[ori_x, ori_y, :]
+        image = np.copy(decode_image)
+    return image
+
+if __name__ == &#34;__main__&#34;:
+    img = cv2.imread(&#34;fla@.bmp&#34;)
+    decode_img = arnold_decode(img, 12, 0, 9)
+    cv2.imwrite(&#39;flag.png&#39;,decode_img)
 ```
 
 ### PNG思路
@@ -1484,6 +1518,14 @@ stegpy 1.png -p
 ```bash
 .\npiet.exe -tpic solved.png
 ```
+
+
+#### 10、Image Steganography隐写
+
+直接使用`Image Steganography`工具解密即可，如果需要密码，就勾选上`Decrypt`选项
+
+![](imgs/image-20241229152552878.png)
+
 
 ### JPG思路
 
@@ -1785,6 +1827,12 @@ with open(&#39;flag.zip&#39;, &#39;wb&#39;) as f:
 
 6、使用PS打开，里面可能有多个图层(例题1-2024古剑山-jpg)
 
+7、若PDF加密，可以尝试使用`pdfcrack`爆破一下密码（Ubuntu下可以直接apt install）
+
+```bash
+pdfcrack -f enc.pdf -w rockyou.txt
+```
+
 ## Misc——MS-Office题思路
 
 ### Excel文件：.xls .xlsx
@@ -1796,9 +1844,9 @@ with open(&#39;flag.zip&#39;, &#39;wb&#39;) as f:
 
 ### Word文件：.doc .docx
 
-### 1、直接foremost出隐藏文件
+#### 1、直接foremost出隐藏文件
 
-### 2、与宏有关系的各种攻击与隐写
+#### 2、与宏有关系的各种攻击与隐写
 
 分析word中的宏需要用到这样一个工具：oletools
 
@@ -1812,11 +1860,11 @@ with open(&#39;flag.zip&#39;, &#39;wb&#39;) as f:
 olevba .\attachment.doc &gt; test.txt
 ```
 
-### 3、利用行距来隐写（例：ISCC2023-汤姆历险记）
+#### 3、利用行距来隐写（例：ISCC2023-汤姆历险记）
 
 word中可能有一段是1倍行距，可能又有一段是1.5倍行距，需要根据不同行距敲出摩斯电码（单倍转为.多倍转为-空行转为空格或者分隔符）
 
-### 4、docx中有emf和oleobject
+#### 4、docx中有emf和oleobject
 
 可以直接双击word中那个emf图标，激活相关内容(如音频文件)然后再进一步分析
 
