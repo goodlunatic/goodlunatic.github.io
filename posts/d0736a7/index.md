@@ -47,7 +47,45 @@ bc3cf1722bf8f617acc85ba7169649ecd70c7e9575c05ef04cde5bd8eb79120a756e1a7755acb17d
 
 
 
-## 题目名称 单机取证
+## 题目名称 tag(2023年福建省职业院校技能大赛高职组信息安全管理与评估)
+
+题目附件：https://pan.baidu.com/s/1TJrAnVSDirjdl3xk6wJRHA?pwd=ee6p 提取码: ee6p
+
+&gt; 参考链接：https://blog.csdn.net/m0_45155797/article/details/135027395
+
+题目的内容就是要从下面这张图片中找出`evidence2`的字样
+
+![](imgs/image-20241230185454044.jpeg)
+
+已经知道答案，但是不知道这个`evidence2`被出题人藏哪了，感觉是内幕题。。
+
+## 题目名称 Misc01(2024ISCC博弈对抗赛)
+
+题目附件：https://pan.baidu.com/s/1GAhnDyy_2yplJeWibRsadg?pwd=py7u 提取码: py7u
+
+附件给了一张图片和一个TXT，其中TXT内容如下
+
+&gt; 不要忘记我们的接头暗号:58,20,36,40,32,60,48,88,42,46,70,21,42, 6,51,71,40,14,30,4,37,25,28,7,39,46,20,33
+
+![](imgs/image-20241230190828836.png)
+
+图片打开内容如下
+
+![](imgs/image-20241230190908870.png)
+
+用010打开发现图片末尾藏了以下数据，并且提示了后面那串base64是加密后的
+
+&gt; IHaveEncryptedTheSignalToPreventLeakage:U2FsdGVkX18SCg3hRbbWKiIXLrevGD0Sv0aCNfGr5YEBzPi8f7oWRq5vQ5QziXjuYrfShzuxlEQe9qAN0SYZUU&#43;cQLB3wREFNCyhjvhHTlt3dmTjDFElG3okDzg3Eu4Xj&#43;2AINbme9zgOjdsJgpVZg==
+
+![](imgs/image-20241230191013242.png)
+
+解密需要密钥，但是找不到密钥，猜测会和图片中的那个时间有关系，但是不知道具体什么关系。。
+
+
+
+## 题目名称 Misc02(2024ISCC博弈对抗赛)
+
+题目附件： https://pan.baidu.com/s/1dyDJ_az_smtX6exFLinavg?pwd=pnet 提取码: pnet
 
 ---
 

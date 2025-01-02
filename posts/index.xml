@@ -4,7 +4,17 @@
     <link>http://localhost:1313/posts/</link>
     <description>All Posts | ⚡Lunatic BLOG⚡</description>
     <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>goodlunatic0@gmail.com (Lunatic)</managingEditor>
-      <webMaster>goodlunatic0@gmail.com (Lunatic)</webMaster><lastBuildDate>Sun, 29 Dec 2024 15:30:17 &#43;0800</lastBuildDate><atom:link href="http://localhost:1313/posts/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>goodlunatic0@gmail.com (Lunatic)</webMaster><lastBuildDate>Thu, 02 Jan 2025 12:00:00 &#43;0800</lastBuildDate><atom:link href="http://localhost:1313/posts/" rel="self" type="application/rss+xml" /><item>
+  <title>2024 年终总结</title>
+  <link>http://localhost:1313/posts/6f0ed5c/</link>
+  <pubDate>Thu, 02 Jan 2025 12:00:00 &#43;0800</pubDate>
+  <author>Lunatic</author>
+  <guid>http://localhost:1313/posts/6f0ed5c/</guid>
+  <description><![CDATA[<p><strong>自己这一年也是真的经历了好多事，也算是忙碌而充实的一年吧</strong></p>
+<p><strong>很早就有写年终总结的想法，无奈文笔退化地实在太烂</strong></p>
+<p><strong>最后也是终于断断续续地写完了这篇年终总结</strong></p>]]></description>
+</item>
+<item>
   <title>CTF-Misc Guide</title>
   <link>http://localhost:1313/posts/1ad9200/</link>
   <pubDate>Sun, 29 Dec 2024 15:30:17 &#43;0800</pubDate>
@@ -79,15 +89,6 @@
   <author>Lunatic</author>
   <guid>http://localhost:1313/posts/b70ab5c/</guid>
   <description><![CDATA[<p><strong>2024 深育杯大学生网络安全大赛 Writeup</strong></p>]]></description>
-</item>
-<item>
-  <title>2024 HITCTF安天杯网络安全国际邀请赛 Misc Writeup</title>
-  <link>http://localhost:1313/posts/9651477/</link>
-  <pubDate>Wed, 04 Dec 2024 19:18:13 &#43;0800</pubDate>
-  <author>Lunatic</author>
-  <guid>http://localhost:1313/posts/9651477/</guid>
-  <description><![CDATA[<p><strong>比赛结束后有师傅来问里面的题，后面才知道原来是哈工大的邀请赛</strong></p>
-<p><strong>羡慕能被邀请的学校，啥时候能顺便邀请一下A1natas呢 QAQ</strong></p>]]></description>
 </item>
 </channel>
 </rss>
