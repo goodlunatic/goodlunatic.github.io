@@ -663,5 +663,5 @@ print(flag)
 ---
 
 > Author: [Lunatic](https://goodlunatic.github.io)  
-> URL: http://localhost:1313/posts/bb1da35/  
+> URL: https://goodlunatic.github.io/posts/bb1da35/  
 

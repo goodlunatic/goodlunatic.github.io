@@ -507,5 +507,5 @@ void __noreturn sub_8000850()
 ---
 
 > Author: [Lunatic](https://goodlunatic.github.io)  
-> URL: http://localhost:1313/posts/7bf9cb0/  
+> URL: https://goodlunatic.github.io/posts/7bf9cb0/  
 

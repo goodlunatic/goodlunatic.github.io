@@ -1041,5 +1041,5 @@ python3 Get_Pixels.py -f 1.png -p 5x5&#43;1915x1075 -n 10x10
 ---
 
 > Author: [Lunatic](https://goodlunatic.github.io)  
-> URL: http://localhost:1313/posts/c216d58/  
+> URL: https://goodlunatic.github.io/posts/c216d58/  
 

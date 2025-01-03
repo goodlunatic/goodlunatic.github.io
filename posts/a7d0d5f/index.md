@@ -1007,5 +1007,5 @@ len(dns.qry.name) &gt;65
 ---
 
 > Author: [Lunatic](https://goodlunatic.github.io)  
-> URL: http://localhost:1313/posts/a7d0d5f/  
+> URL: https://goodlunatic.github.io/posts/a7d0d5f/  
 

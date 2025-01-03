@@ -584,5 +584,5 @@ print(libnum.b2s(res))
 ---
 
 > Author: [Lunatic](https://goodlunatic.github.io)  
-> URL: http://localhost:1313/posts/de8e2be/  
+> URL: https://goodlunatic.github.io/posts/de8e2be/  
 

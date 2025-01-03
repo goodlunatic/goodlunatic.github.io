@@ -274,5 +274,5 @@ for i in range(5):
 ---
 
 > Author: [Lunatic](https://goodlunatic.github.io)  
-> URL: http://localhost:1313/posts/db7acab/  
+> URL: https://goodlunatic.github.io/posts/db7acab/  
 

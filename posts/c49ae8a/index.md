@@ -247,5 +247,5 @@ with open(&#39;output.csv&#39;, &#39;w&#39;, newline=&#39;&#39;, encoding=&#34;u
 ---
 
 > Author: [Lunatic](https://goodlunatic.github.io)  
-> URL: http://localhost:1313/posts/c49ae8a/  
+> URL: https://goodlunatic.github.io/posts/c49ae8a/  
 
