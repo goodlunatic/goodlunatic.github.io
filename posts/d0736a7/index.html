@@ -14,7 +14,7 @@
 如果师傅们有进一步的想法或者做出来了，可以联系我一起交流一下解题思路">
   <meta itemprop="datePublished" content="2024-12-19T19:39:58+08:00">
   <meta itemprop="dateModified" content="2024-12-19T19:39:58+08:00">
-  <meta itemprop="wordCount" content="218">
+  <meta itemprop="wordCount" content="276">
   <meta itemprop="keywords" content="CTF,Misc"><meta property="og:url" content="https://goodlunatic.github.io/posts/d0736a7/">
   <meta property="og:site_name" content="⚡Lunatic BLOG⚡">
   <meta property="og:title" content="CTF-Misc &#34;雅&#34;题共赏">
@@ -44,7 +44,7 @@
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": "https:\/\/goodlunatic.github.io\/posts\/d0736a7\/"
-    },"genre": "posts","keywords": "CTF, Misc","wordcount":  218 ,
+    },"genre": "posts","keywords": "CTF, Misc","wordcount":  276 ,
     "url": "https:\/\/goodlunatic.github.io\/posts\/d0736a7\/","datePublished": "2024-12-19T19:39:58+08:00","dateModified": "2024-12-19T19:39:58+08:00","publisher": {
       "@type": "Organization",
       "name": ""},"author": {
@@ -274,7 +274,44 @@
 </span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">res</span><span class="p">,</span><span class="nb">hex</span><span class="p">(</span><span class="n">res</span><span class="p">),</span><span class="nb">hex</span><span class="p">(</span><span class="n">res</span><span class="p">)[</span><span class="mi">2</span><span class="p">:])</span>
 </span></span><span class="line"><span class="cl"><span class="c1"># 242049370517768 0xdc2482bf7108 dc2482bf7108</span></span></span></code></pre></td></tr></table>
 </div>
-</div><p>尝试使用得到的答案去解压压缩包，但是发现不是解压密码，因此到这里就卡住了</p>
+</div><p>尝试使用得到的答案去解压压缩包，但是发现不是解压密码，不知道哪里出问题了，因此打算直接爆破了</p>
+<p>先用下面这个脚本生成所有可能的结果，然后把结果输出到一个字典中</p>
+<p>用在线网站或者<code>7z2john</code>生成压缩包的hash，然后使用hashcat进行爆破</p>
+<div class="highlight" id="id-3"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">lst</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="mi">22002245</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">22002245</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">lst</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">i</span> <span class="o">*</span> <span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">lst</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">i</span> <span class="o">*</span> <span class="n">i</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="nb">hex</span><span class="p">(</span><span class="n">lst</span><span class="p">[</span><span class="n">i</span><span class="p">])[</span><span class="mi">2</span><span class="p">:])</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><img loading="lazy" src="/posts/d0736a7/imgs/image-20250107200433630.png" alt="/posts/d0736a7/imgs/image-20250107200433630.png" srcset="/posts/d0736a7/imgs/image-20250107200433630.png?size=small, /posts/d0736a7/imgs/image-20250107200433630.png?size=medium 1.5x, /posts/d0736a7/imgs/image-20250107200433630.png?size=large 2x" data-title="/posts/d0736a7/imgs/image-20250107200433630.png" style="--width: 2559px;--aspect-ratio: 2559 / 1472;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<div class="highlight" id="id-4"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">python3 1.py &gt; dic.txt
+</span></span><span class="line"><span class="cl">hashcat -a <span class="m">0</span> -m <span class="m">11600</span> hash.txt dic.txt </span></span></code></pre></td></tr></table>
+</div>
+</div><p><img loading="lazy" src="/posts/d0736a7/imgs/image-20250107195608287.png" alt="/posts/d0736a7/imgs/image-20250107195608287.png" srcset="/posts/d0736a7/imgs/image-20250107195608287.png?size=small, /posts/d0736a7/imgs/image-20250107195608287.png?size=medium 1.5x, /posts/d0736a7/imgs/image-20250107195608287.png?size=large 2x" data-title="/posts/d0736a7/imgs/image-20250107195608287.png" style="--width: 1966px;--aspect-ratio: 1966 / 1296;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>爆破即可得到<code>皮箱左边.7z</code>压缩包的解压密码：<code>5a2dd7b80</code>，这个数字转十进制是<code>24207260544</code>，是数列的第<code>220033</code>项</p>
+<p>解压后可以得到下面这5张二维码碎片</p>
+<p><img loading="lazy" src="/posts/d0736a7/imgs/image-20250107201342425.png" alt="/posts/d0736a7/imgs/image-20250107201342425.png" srcset="/posts/d0736a7/imgs/image-20250107201342425.png?size=small, /posts/d0736a7/imgs/image-20250107201342425.png?size=medium 1.5x, /posts/d0736a7/imgs/image-20250107201342425.png?size=large 2x" data-title="/posts/d0736a7/imgs/image-20250107201342425.png" style="--width: 872px;--aspect-ratio: 872 / 187;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p><code>皮箱封条2.txt</code>的内容如下：</p>
 <blockquote>
 <p>203879 * 203879 = 41566646641,</p>
@@ -284,7 +321,7 @@
 <p>在1000000以内具有这样特点的6位数还有一个，两数相乘是多少？</p>
 </blockquote>
 <p>解决该问题的脚本如下，可以得到另一个数为<code>639172</code>两数相乘的结果为<code>130313748188</code></p>
-<div class="highlight" id="id-3"><div class="chroma">
+<div class="highlight" id="id-5"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2

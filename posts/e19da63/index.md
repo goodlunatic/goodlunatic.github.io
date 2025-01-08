@@ -862,8 +862,7 @@ def draw2pic2():
         img.save(f&#34;./out1/{idx}.png&#34;) 
 ```
 
-#### puzipper模块的使用
-
+#### pyzipper模块的使用
 
 ##### 比赛中的使用记录
 
