@@ -26,10 +26,12 @@
 
 ## CTFer
 
-|                                                              |                                                     |                                                              |                                                              |
-| :----------------------------------------------------------: | :-------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: |
-| &lt;img src=&#34;https://www.nssctf.cn/files/2024/12/2/ceaca7b7bf.jpeg&#34; width=&#34;150pxpx&#34; height=&#34;150pxpx&#34;&gt; | **[yichen](https://www.yuque.com/hxfqg9) - 全栈佬** | &lt;img src=&#34;https://www.nssctf.cn/files/2024/12/4/7b9f61c61b.jpeg&#34; width=&#34;150pxpx&#34; height=&#34;150pxpx&#34;&gt; | **[w3nx1z1](https://w3nx1z1.github.io/) - Misc [@W&amp;M](https://wm-team.cn/)** |
-| &lt;img src=&#34;https://www.nssctf.cn/files/2024/11/10/8d59621379.jpeg&#34; width=&#34;150pxpx&#34; height=&#34;150pxpx&#34;&gt; |        **[秋雨渐冷](https://yiqing.asia/)**         | &lt;img src=&#34;https://baozongwi.xyz/images/acvtar.jpg&#34; width=&#34;150pxpx&#34; height=&#34;150pxpx&#34;&gt; | **[baozongwi](https://baozongwi.xyz/) - 包师傅 [@SU](https://su-team.cn/)** |
+|                                                              |                                                              |                                                              |                                                              |
+| :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: |
+| &lt;img src=&#34;https://blog.xinshi.fun/assets/avatar.png&#34; width=&#34;150pxpx&#34; height=&#34;150pxpx&#34;&gt; | **[LilRan](https://blog.xinshi.fun/) - Re &amp; Musc [@S1uM4i](https://blog.s1um4i.com/)**&lt;br /&gt;**今日启程 无畏向前** | &lt;img src=&#34;https://z3n1th1.com/images/avatar.jpg&#34; width=&#34;150pxpx&#34; height=&#34;150pxpx&#34;&gt; | **[Z3n1th](https://z3n1th1.com/) - Misc大佬 [@r3kapig](https://r3kapig.com/)** |
+| &lt;img src=&#34;https://www.n1ght.cn/images/tx.jpg&#34; width=&#34;150pxpx&#34; height=&#34;150pxpx&#34;&gt; | **[N1ght](https://www.n1ght.cn/) - Web [@星盟安全](https://www.xmcve.com/)** | &lt;img src=&#34;https://www.nssctf.cn/files/2024/12/4/7b9f61c61b.jpeg&#34; width=&#34;150pxpx&#34; height=&#34;150pxpx&#34;&gt; | **[w3nx1z1](https://w3nx1z1.github.io/) - Misc [@W&amp;M](https://wm-team.cn/)** |
+| &lt;img src=&#34;https://www.nssctf.cn/files/2024/12/2/ceaca7b7bf.jpeg&#34; width=&#34;150pxpx&#34; height=&#34;150pxpx&#34;&gt; |     **[yichen](https://www.yuque.com/hxfqg9) - 全栈佬**      | &lt;img src=&#34;https://baozongwi.xyz/images/acvtar.jpg&#34; width=&#34;150pxpx&#34; height=&#34;150pxpx&#34;&gt; | **[baozongwi](https://baozongwi.xyz/) - 包师傅 [@SU](https://su-team.cn/)**&lt;br /&gt;**Hacking the future** |
+| &lt;img src=&#34;https://www.nssctf.cn/files/2024/11/10/8d59621379.jpeg&#34; width=&#34;150pxpx&#34; height=&#34;150pxpx&#34;&gt; |             **[秋雨渐冷](https://yiqing.asia/)**             |                                                              |                                                              |
 
 
 
