@@ -2114,14 +2114,14 @@ Wrote unlocked archive.
 
 ```
 至少已知明文的12个字节及偏移，其中至少8字节需要连续。
-明文对应的文件加密方式为 ZipCrypto Store(有时候Deflate也可以)
+明文对应的文件加密方式为 ZipCrypto Store
 Tips：进行明文攻击前要判断制作压缩包的压缩工具，然后对已知明文使用特定工具进行压缩，再进行明文攻击
 例子：bkcrack -C \$R9EG7XR.zip -c flag.txt -k 958597ea b9f7740b 622aed5e -d flag.txt
 ```
 
 如何判断压缩工具（参考自B神的博客）
 
-|     压缩攻击     | VersionMadeBy(压缩所用版本) |
+|     压缩工具     | VersionMadeBy(压缩所用版本) |
 | :----------: | :-------------------: |
 | Bandzip 7.06 |          20           |
 |  Windows自带   |          20           |
