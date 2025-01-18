@@ -4,7 +4,23 @@
     <link>https://goodlunatic.github.io/tags/writeup/</link>
     <description>Writeup - Tag | ⚡Lunatic BLOG⚡</description>
     <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>goodlunatic0@gmail.com (Lunatic)</managingEditor>
-      <webMaster>goodlunatic0@gmail.com (Lunatic)</webMaster><lastBuildDate>Sun, 29 Dec 2024 14:05:04 &#43;0800</lastBuildDate><atom:link href="https://goodlunatic.github.io/tags/writeup/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>goodlunatic0@gmail.com (Lunatic)</webMaster><lastBuildDate>Sun, 19 Jan 2025 00:00:40 &#43;0800</lastBuildDate><atom:link href="https://goodlunatic.github.io/tags/writeup/" rel="self" type="application/rss+xml" /><item>
+  <title>2025 XCTF分站赛-SUCTF Misc Writeup</title>
+  <link>https://goodlunatic.github.io/posts/754b8e7/</link>
+  <pubDate>Sun, 19 Jan 2025 00:00:40 &#43;0800</pubDate>
+  <author>Lunatic</author>
+  <guid>https://goodlunatic.github.io/posts/754b8e7/</guid>
+  <description><![CDATA[]]></description>
+</item>
+<item>
+  <title>2025 第八届西湖论剑网络安全技能大赛 Misc Writeup</title>
+  <link>https://goodlunatic.github.io/posts/f002407/</link>
+  <pubDate>Sat, 18 Jan 2025 23:35:37 &#43;0800</pubDate>
+  <author>Lunatic</author>
+  <guid>https://goodlunatic.github.io/posts/f002407/</guid>
+  <description><![CDATA[<p><strong>周末抽时间看了看题，感觉今年西湖论剑的题也是比较有意思</strong></p>]]></description>
+</item>
+<item>
   <title>2024 楚慧杯网络与数据安全实践能力竞赛 Misc Writeup</title>
   <link>https://goodlunatic.github.io/posts/69e332a/</link>
   <pubDate>Sun, 29 Dec 2024 14:05:04 &#43;0800</pubDate>
@@ -71,22 +87,6 @@
   <author>Lunatic</author>
   <guid>https://goodlunatic.github.io/posts/c216d58/</guid>
   <description><![CDATA[<p><strong>2024 浙江省大学生网络与信息安全竞赛 Misc Writeup</strong></p>]]></description>
-</item>
-<item>
-  <title>2024 某金融系统内部赛 Misc Writeup</title>
-  <link>https://goodlunatic.github.io/posts/69280be/</link>
-  <pubDate>Tue, 05 Nov 2024 10:21:35 &#43;0800</pubDate>
-  <author>Lunatic</author>
-  <guid>https://goodlunatic.github.io/posts/69280be/</guid>
-  <description><![CDATA[<p><strong>不知道具体是什么比赛，但是赛题还是有一定的强度的</strong></p>]]></description>
-</item>
-<item>
-  <title>2024 网鼎杯网络安全大赛青龙组 Misc Writeup</title>
-  <link>https://goodlunatic.github.io/posts/1a285be/</link>
-  <pubDate>Thu, 31 Oct 2024 09:56:08 &#43;0800</pubDate>
-  <author>Lunatic</author>
-  <guid>https://goodlunatic.github.io/posts/1a285be/</guid>
-  <description><![CDATA[<p><strong>2024 网鼎杯网络安全大赛青龙组 Misc Writeup</strong></p>]]></description>
 </item>
 </channel>
 </rss>

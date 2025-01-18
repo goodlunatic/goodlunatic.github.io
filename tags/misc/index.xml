@@ -4,7 +4,23 @@
     <link>https://goodlunatic.github.io/tags/misc/</link>
     <description>Misc - Tag | ⚡Lunatic BLOG⚡</description>
     <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>goodlunatic0@gmail.com (Lunatic)</managingEditor>
-      <webMaster>goodlunatic0@gmail.com (Lunatic)</webMaster><lastBuildDate>Sun, 29 Dec 2024 15:30:17 &#43;0800</lastBuildDate><atom:link href="https://goodlunatic.github.io/tags/misc/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>goodlunatic0@gmail.com (Lunatic)</webMaster><lastBuildDate>Sun, 19 Jan 2025 00:00:40 &#43;0800</lastBuildDate><atom:link href="https://goodlunatic.github.io/tags/misc/" rel="self" type="application/rss+xml" /><item>
+  <title>2025 XCTF分站赛-SUCTF Misc Writeup</title>
+  <link>https://goodlunatic.github.io/posts/754b8e7/</link>
+  <pubDate>Sun, 19 Jan 2025 00:00:40 &#43;0800</pubDate>
+  <author>Lunatic</author>
+  <guid>https://goodlunatic.github.io/posts/754b8e7/</guid>
+  <description><![CDATA[]]></description>
+</item>
+<item>
+  <title>2025 第八届西湖论剑网络安全技能大赛 Misc Writeup</title>
+  <link>https://goodlunatic.github.io/posts/f002407/</link>
+  <pubDate>Sat, 18 Jan 2025 23:35:37 &#43;0800</pubDate>
+  <author>Lunatic</author>
+  <guid>https://goodlunatic.github.io/posts/f002407/</guid>
+  <description><![CDATA[<p><strong>周末抽时间看了看题，感觉今年西湖论剑的题也是比较有意思</strong></p>]]></description>
+</item>
+<item>
   <title>CTF-Misc Guide</title>
   <link>https://goodlunatic.github.io/posts/1ad9200/</link>
   <pubDate>Sun, 29 Dec 2024 15:30:17 &#43;0800</pubDate>
@@ -71,23 +87,6 @@
   <author>Lunatic</author>
   <guid>https://goodlunatic.github.io/posts/b70ab5c/</guid>
   <description><![CDATA[<p><strong>2024 深育杯大学生网络安全大赛 Writeup</strong></p>]]></description>
-</item>
-<item>
-  <title>2024 HITCTF安天杯网络安全国际邀请赛 Misc Writeup</title>
-  <link>https://goodlunatic.github.io/posts/9651477/</link>
-  <pubDate>Wed, 04 Dec 2024 19:18:13 &#43;0800</pubDate>
-  <author>Lunatic</author>
-  <guid>https://goodlunatic.github.io/posts/9651477/</guid>
-  <description><![CDATA[<p><strong>比赛结束后有师傅来问里面的题，后面才知道原来是哈工大的邀请赛</strong></p>
-<p><strong>羡慕能被邀请的学校，啥时候能顺便邀请一下A1natas呢 QAQ</strong></p>]]></description>
-</item>
-<item>
-  <title>2024 吾杯网络安全大赛 Misc Writeup</title>
-  <link>https://goodlunatic.github.io/posts/3ab0c1d/</link>
-  <pubDate>Tue, 03 Dec 2024 15:23:21 &#43;0800</pubDate>
-  <author>Lunatic</author>
-  <guid>https://goodlunatic.github.io/posts/3ab0c1d/</guid>
-  <description><![CDATA[<p><strong>2024 吾杯网络安全大赛 Misc Writeup</strong></p>]]></description>
 </item>
 </channel>
 </rss>
