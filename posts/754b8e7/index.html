@@ -5,18 +5,22 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
     <meta name="robots" content="noodp" />
-    <title>2025 XCTF分站赛-SUCTF Misc Writeup - ⚡Lunatic BLOG⚡</title><meta name="author" content="Lunatic">
+    <title>2025 XCTF国际网络攻防联赛-SUCTF分站赛 Misc Writeup - ⚡Lunatic BLOG⚡</title><meta name="author" content="Lunatic">
 <meta name="author-link" content="https://goodlunatic.github.io">
-<meta name="description" content="Welcome to Lunatic&#39;s BLOG ^_^" /><meta name="keywords" content='CTF, Misc, Writeup' />
-  <meta itemprop="name" content="2025 XCTF分站赛-SUCTF Misc Writeup">
-  <meta itemprop="description" content="Welcome to Lunatic&#39;s BLOG ^_^">
+<meta name="description" content="这次分站赛的时间点卡的比较好，刚刚好队友们都考完期末考了
+然后时间上也没有和别的比赛冲突，因此就一起上号看了看题" /><meta name="keywords" content='CTF, Misc, Writeup' />
+  <meta itemprop="name" content="2025 XCTF国际网络攻防联赛-SUCTF分站赛 Misc Writeup">
+  <meta itemprop="description" content="这次分站赛的时间点卡的比较好，刚刚好队友们都考完期末考了
+然后时间上也没有和别的比赛冲突，因此就一起上号看了看题">
   <meta itemprop="datePublished" content="2025-01-19T00:00:40+08:00">
   <meta itemprop="dateModified" content="2025-01-19T00:00:40+08:00">
-  <meta itemprop="wordCount" content="697">
+  <meta itemprop="wordCount" content="699">
   <meta itemprop="keywords" content="CTF,Misc,Writeup"><meta property="og:url" content="https://goodlunatic.github.io/posts/754b8e7/">
   <meta property="og:site_name" content="⚡Lunatic BLOG⚡">
-  <meta property="og:title" content="2025 XCTF分站赛-SUCTF Misc Writeup">
-  <meta property="og:description" content="Welcome to Lunatic&#39;s BLOG ^_^">
+  <meta property="og:title" content="2025 XCTF国际网络攻防联赛-SUCTF分站赛 Misc Writeup">
+  <meta property="og:description" content="这次分站赛的时间点卡的比较好，刚刚好队友们都考完期末考了
+然后时间上也没有和别的比赛冲突，因此就一起上号看了看题
+">
   <meta property="og:locale" content="en">
   <meta property="og:type" content="article">
   <meta property="article:section" content="posts">
@@ -25,8 +29,9 @@
     <meta property="article:tag" content="CTF">
     <meta property="article:tag" content="Misc">
     <meta property="article:tag" content="Writeup">
-<meta name="twitter:card" content="summary"><meta name="twitter:title" content="2025 XCTF分站赛-SUCTF Misc Writeup">
-<meta name="twitter:description" content="">
+<meta name="twitter:card" content="summary"><meta name="twitter:title" content="2025 XCTF国际网络攻防联赛-SUCTF分站赛 Misc Writeup">
+<meta name="twitter:description" content="这次分站赛的时间点卡的比较好，刚刚好队友们都考完期末考了
+然后时间上也没有和别的比赛冲突，因此就一起上号看了看题">
       <meta name="twitter:site" content="@https://twitter.com/goodlunatic007">
 <meta name="application-name" content="FixIt">
 <meta name="apple-mobile-web-app-title" content="FixIt"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="https://www.nssctf.cn/files/2024/4/28/8fdad6c6ee.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="https://goodlunatic.github.io/posts/754b8e7/" /><link rel="prev" href="https://goodlunatic.github.io/posts/f002407/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
@@ -35,12 +40,12 @@
   {
     "@context": "http://schema.org",
     "@type": "BlogPosting",
-    "headline": "2025 XCTF分站赛-SUCTF Misc Writeup",
+    "headline": "2025 XCTF国际网络攻防联赛-SUCTF分站赛 Misc Writeup",
     "inLanguage": "en",
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": "https:\/\/goodlunatic.github.io\/posts\/754b8e7\/"
-    },"genre": "posts","keywords": "CTF, Misc, Writeup","wordcount":  697 ,
+    },"genre": "posts","keywords": "CTF, Misc, Writeup","wordcount":  699 ,
     "url": "https:\/\/goodlunatic.github.io\/posts\/754b8e7\/","datePublished": "2025-01-19T00:00:40+08:00","dateModified": "2025-01-19T00:00:40+08:00","publisher": {
       "@type": "Organization",
       "name": ""},"author": {
@@ -142,7 +147,7 @@
 </header><main class="container"><aside class="aside-collection animate__animated animate__fadeIn animate__faster" aria-label=""></aside>
 
 <article class="page single">
-  <div class="header"><h1 class="single-title animate__animated animate__flipInX"><span>2025 XCTF分站赛-SUCTF Misc Writeup</span>
+  <div class="header"><h1 class="single-title animate__animated animate__flipInX"><span>2025 XCTF国际网络攻防联赛-SUCTF分站赛 Misc Writeup</span>
     </h1></div><div class="post-meta">
     <div class="post-meta-line"><span class="post-author"><a href="https://goodlunatic.github.io" title="Author"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><img loading="lazy" src="https://www.nssctf.cn/files/2024/4/28/7f130a1387.png" alt="Lunatic" data-title="Lunatic" class="avatar" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>&nbsp;Lunatic</a></span><span class="post-included-in">&nbsp;included in <a href="/categories/writeup/" class="post-category" title="Category - Writeup"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> Writeup</a></span></div><div class="post-meta-line"><span title="published on &lt;no value&gt;"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden="true"></i><time datetime="2025-01-19">2025-01-19</time></span>&nbsp;<span title=""><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>About 700 words</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>4 minutes</span>&nbsp;</div>
   </div><div class="details toc" id="toc-static"
@@ -160,7 +165,9 @@
     <li><a href="#题目名称-su_voip">题目名称 SU_VOIP</a></li>
   </ul>
 </nav></div>
-  </div><div class="content" id="content"><table>
+  </div><div class="content" id="content"><p><strong>这次分站赛的时间点卡的比较好，刚刚好队友们都考完期末考了</strong></p>
+<p><strong>然后时间上也没有和别的比赛冲突，因此就一起上号看了看题</strong></p>
+<table>
 <thead>
 <tr>
 <th style="text-align:center"><img loading="lazy" src="imgs/image-20250119000219739.png" alt="imgs/image-20250119000219739.png" srcset="imgs/image-20250119000219739.png?size=small, imgs/image-20250119000219739.png?size=medium 1.5x, imgs/image-20250119000219739.png?size=large 2x" data-title="imgs/image-20250119000219739.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/><br><br></th>
@@ -584,9 +591,9 @@ bkfish在自己的虚拟机里运行了某些命令之后用&quot;sudo reboot&qu
       </div></div><div class="post-info-line">
         <div class="post-info-md"><span><a href="/posts/754b8e7/index.md" title="Read Markdown" class="link-to-markdown">Read Markdown</a></span></div>
         <div class="post-info-share">
-          <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://goodlunatic.github.io/posts/754b8e7/" data-title="2025 XCTF分站赛-SUCTF Misc Writeup" data-via="https://twitter.com/goodlunatic007" data-hashtags="CTF,Misc,Writeup"><i class="fa-brands fa-twitter fa-fw" aria-hidden="true"></i></a>
+          <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://goodlunatic.github.io/posts/754b8e7/" data-title="2025 XCTF国际网络攻防联赛-SUCTF分站赛 Misc Writeup" data-via="https://twitter.com/goodlunatic007" data-hashtags="CTF,Misc,Writeup"><i class="fa-brands fa-twitter fa-fw" aria-hidden="true"></i></a>
   <a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://goodlunatic.github.io/posts/754b8e7/" data-hashtag="CTF"><i class="fa-brands fa-facebook-square fa-fw" aria-hidden="true"></i></a>
-  <a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://goodlunatic.github.io/posts/754b8e7/" data-title="2025 XCTF分站赛-SUCTF Misc Writeup"><i class="fa-brands fa-weibo fa-fw" aria-hidden="true"></i></a>
+  <a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://goodlunatic.github.io/posts/754b8e7/" data-title="2025 XCTF国际网络攻防联赛-SUCTF分站赛 Misc Writeup"><i class="fa-brands fa-weibo fa-fw" aria-hidden="true"></i></a>
   </span>
         </div>
       </div></div>
