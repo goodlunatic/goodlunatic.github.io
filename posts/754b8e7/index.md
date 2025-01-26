@@ -1,6 +1,6 @@
 # 2025 XCTF国际网络攻防联赛-SUCTF分站赛 Misc Writeup
 
-**这次分站赛的时间点卡的比较好，刚刚好队友们都考完期末考了**
+**这次分站赛的时间卡的比较好，刚刚好队友们都考完期末考了**
 
 **然后时间上也没有和别的比赛冲突，因此就一起上号看了看题**
 &lt;!--more--&gt;
@@ -275,6 +275,139 @@ print(dic)
 #  &#39;100dfaec51061f9d69ecbbfa87d0ef3d&#39;: 179,
 #  &#39;279a7e86da10953b77671a3cacf8b087&#39;: 32}
 ```
+
+发现除掉黑色的背景后一共27字符，因此猜测是26个字符&#43;空格
+
+我们不去管每种字符的对应方式，出现次数最多的字符肯定是空格，因此我们先随意做一个对照表
+
+然后根据对照表生成图片中表示的密文，具体脚本如下：
+
+```python
+from PIL import Image
+import hashlib
+import os
+
+
+table = {&#39;a92114d80fb8d9f051267093ff31f652&#39;: &#39;A&#39;, &#39;643a1412425e02202bc739ed381fc2ce&#39;: &#39; &#39;, &#39;c2ba6829d6b89fe4d95f59143f5dab09&#39;: &#39;B&#39;, &#39;0ea52827f2cd163ec0abd5c138bd8d52&#39;: &#39;C&#39;, &#39;6cfc1169ffd57fcccf6c9deb2c9b8a81&#39;: &#39;D&#39;, &#39;a733e9655b25c318db40ee3e4e6fc9b7&#39;: &#39;E&#39;, &#39;78ea7aa8bad5966f51d34ce68f9bb1a4&#39;: &#39;F&#39;, &#39;274d11fd91b261ea9a4dfbfcfccc5caf&#39;: &#39;G&#39;, &#39;0b27aed76fc735518d8400ec44888b17&#39;: &#39;H&#39;, &#39;345cfeee944eff97baecafc30f998be8&#39;: &#39;I&#39;, &#39;a54cbc7076fe3385ec19e5844ede06d8&#39;: &#39;J&#39;, &#39;01288ae944ad4fa589fa7f8c8921c6db&#39;: &#39;K&#39;, &#39;d3b493d9622e43c2fd0932cbc8eb4242&#39;: &#39;L&#39;, &#39;09298a31ed656279970cbdb61e220fce&#39;: &#39;M&#39;, &#39;5650d4328599806e228163b9f3883b76&#39;: &#39;N&#39;, &#39;902d339e136a450f8dcf5912acf3908b&#39;: &#39;O&#39;, &#39;ec3995e91d6770d86f31c91fb9f1f18c&#39;: &#39;P&#39;, &#39;d3405ba0628f6c5a7847172b75c96e24&#39;: &#39;Q&#39;, &#39;97071255bca34a123d21c8077326e849&#39;: &#39;R&#39;, &#39;463a505a8bde3e32d3215ac582545ade&#39;: &#39;S&#39;, &#39;2c5eeaa83376135696cdf14ee2e65527&#39;: &#39;T&#39;, &#39;972487ddb0c7427f86244525c765ceb1&#39;: &#39;U&#39;, &#39;b656951ad9063e1e714eb5066e355043&#39;: &#39;V&#39;, &#39;6f891cd850e8e2e75ca95565793730a5&#39;: &#39;W&#39;, &#39;8b4bc073bc7a2526cf3b197537c8d299&#39;: &#39;X&#39;, &#39;87b5f6ccfa6d7c9c733b1c665fb138ca&#39;: &#39;Y&#39;, &#39;279a7e86da10953b77671a3cacf8b087&#39;: &#39;Z&#39;}
+
+def calculate_md5(filename):  
+    # 计算文件的 MD5 值  
+    hasher = hashlib.md5()  
+    with open(filename, &#39;rb&#39;) as f:  
+        for chunk in iter(lambda: f.read(4096), b&#34;&#34;):  
+            hasher.update(chunk)  
+    return str(hasher.hexdigest()) 
+
+
+def get_text():
+    if os.path.exists(&#34;out&#34;):
+        print(&#34;[&#43;] out 目录已存在&#34;)
+    else:
+        os.mkdir(&#34;out&#34;)
+        print(&#34;[&#43;] out 目录创建成功&#34;)
+
+    img = Image.open(&#34;1.png&#34;)
+    width, height = img.size # 9522, 1296
+    print(f&#34;图片尺寸: {width}x{height}&#34;)
+
+    crop_width = 137
+    crop_height = 107
+
+    cols = (width - 0) // crop_width
+    rows = (height - 0) // crop_height
+    print(f&#34;可分割的列数: {cols}, 行数: {rows}&#34;)
+
+    index = 1
+    text = &#34;&#34;
+    for row in range(rows):
+        for col in range(cols):
+            # 计算裁剪区域的坐标
+            file_path = f&#34;out/{index}.png&#34;
+            left = 0 &#43; col * (crop_width &#43; 1)
+            upper = 0 &#43; row * (crop_height &#43; 1)
+            right = left &#43; crop_width
+            lower = upper &#43; crop_height
+            cropped_img = img.crop((left, upper, right, lower))
+            cropped_img.save(file_path)
+            hash_value = calculate_md5(file_path)
+            print(hash_value)
+            if hash_value == &#34;100dfaec51061f9d69ecbbfa87d0ef3d&#34;:
+                text &#43;= &#39;\n&#39;
+                break
+            else:
+                text &#43;= table[hash_value]
+            if col == cols-1:
+                text &#43;= &#39;\n&#39;
+            print(f&#34;[&#43;] out/{index}.png 保存成功 (区域: {left},{upper} -&gt; {right},{lower})&#34;)
+            index &#43;= 1
+    return text
+
+
+if __name__ == &#34;__main__&#34;:
+    text = get_text()
+    print(text)
+```
+
+运行以上脚本后可以得到如下内容
+
+&gt; A BCDEF GHIJKL MNOP QHRDST UAVW XDY
+&gt; 
+&gt; VLHU ZIHEDANDGHU DS WJH XOM OV YAFDST QHLK BAMANDZWDE PAR WOKZ
+&gt; 
+&gt; ZDR VLHSGDHU FDSTZ QOPHU WO AMONDZJ YK BCDWH IDWDVCN XOCZWZ
+&gt; 
+&gt; YAK XO HBCAN YK VOONDZJ LHEOLU MK ZONQDST ZDR ICGGNHZ A PHHF
+&gt; 
+&gt; JALLK DZ XOTTDST BCDEFNK PJDEJ ARHU GHS YOSFZ PDWJ AMCSUASW QAIOL
+&gt; 
+&gt; UCYIK FDMDWGHL XDSTNHZ AZ BCDROWDE OQHLVNOPZ
+&gt; 
+&gt; SKYIJ ZDST VOL BCDEF XDTZ QHR MCU DS GHZWVCN WPDNDTJW
+&gt; 
+&gt; ZDYINH VOR JHNU BCALWG UCEF XCZW MK PDST
+&gt; 
+&gt; ZWLOST MLDEF BCDG PJASTZ XCYIK VOR QDQDUNK
+&gt; 
+&gt; TJOZWZ DS YHYOLK IDEFZ CI BCALWG ASU QANCAMNH OSKR XHPHNZ
+&gt; 
+&gt; IHSZDQH PDGALUZ YAFH WORDE MLHP VOL WJH HQDN BAWALD FDST ASU PLK XAEF
+&gt; 
+&gt; ANN OCWUAWHU BCHLK AZFHU MK VDQH PAWEJ HRIHLWZ AYAGHU WJH XCUTH
+&gt; 
+
+这个东西看起来很眼熟对吧，很容易就能想到quipquip字频爆破
+
+![](imgs/image-20250126122828118.png)
+
+爆破后可以得到如下内容
+
+&gt; A QUICK ZEPHYR BLOW VEXING DAFT JIM
+&gt; 
+&gt; FRED SPECIALIZED IN THE JOB OF MAKING VERY QABALISTIC WAX TOYS
+&gt; 
+&gt; SIX FRENZIED KINGS VOWED TO ABOLISH MY QUITE PITIFUL JOUSTS 
+&gt; 
+&gt; MAY JO EQUAL MY FOOLISH RECORD BY SOLVING SIX PUZZLES A WEEK
+&gt; 
+&gt; HARRY IS JOGGING QUICKLY WHICH AXED ZEN MONKS WITH ABUNDANT VAPOR 
+&gt; 
+&gt; DUMPY KIBITZER JINGLES AS QUIXOTIC OVERFLOWS
+&gt; 
+&gt; NYMPH SING FOR QUICK JIGS VEX BUD IN ZESTFUL TWILIGHT 
+&gt; 
+&gt; SIMPLE FOX HELD QUARTZ DUCK JUST BY WING
+&gt; 
+&gt; STRONG BRICK QUIZ WHANGS JUMPY FOX VIVIDLY
+&gt; 
+&gt; GHOSTS IN MEMORY PICKS UP QUARTZ AND VALUABLE ONYX JEWELS 
+&gt; 
+&gt; PENSIVE WIZARDS MAKE TOXIC BREW FOR THE EVIL QATARI KING AND WRY JACK
+&gt; 
+&gt; ALL OUTDATED QUERY ASKED BY FIVE WATCH EXPERTS AMAZED THE JUDGE
+
+仔细观察这个格式可以想到一个比较经典的Pangram(全字母句子)：The quick brown fox jumps over the lazy dog
+
+因此把每一行中缺少的那个字母组合起来即可得到最后flag：`SUCTF{HAVEFUN}`
 
 ## 题目名称 SU_AD
 
