@@ -410,9 +410,21 @@ if __name__ == &#34;__main__&#34;:
 因此把每一行中缺少的那个字母组合起来即可得到最后flag：`SUCTF{HAVEFUN}`
 
 ## 题目名称 SU_AD
+参考链接：
+&gt; https://z3n1th1.com/2025/01/suctf2025-writeup/#su_voip
+&gt; 
+&gt; https://kcno7cq8euks.feishu.cn/wiki/PKx0w2LrtiVo99k3tEDc0xBnnre
+&gt; 
+&gt; https://jk64eb0pjs.feishu.cn/docx/O6OUd1iSro8XcpxlpDAc0si5n5e
+
+
+
 
 
 ## 题目名称 SU_VOIP
+
+
+
 
 
 ---
