@@ -4,7 +4,16 @@
     <link>https://goodlunatic.github.io/tags/writeup/</link>
     <description>Writeup - Tag | ⚡Lunatic BLOG⚡</description>
     <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>goodlunatic0@gmail.com (Lunatic)</managingEditor>
-      <webMaster>goodlunatic0@gmail.com (Lunatic)</webMaster><lastBuildDate>Sun, 19 Jan 2025 00:00:40 &#43;0800</lastBuildDate><atom:link href="https://goodlunatic.github.io/tags/writeup/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>goodlunatic0@gmail.com (Lunatic)</webMaster><lastBuildDate>Wed, 26 Feb 2025 23:37:29 &#43;0800</lastBuildDate><atom:link href="https://goodlunatic.github.io/tags/writeup/" rel="self" type="application/rss+xml" /><item>
+  <title>2025 西湖论剑·中国杭州网络安全技能大赛 Misc Writeup</title>
+  <link>https://goodlunatic.github.io/posts/-inf/</link>
+  <pubDate>Wed, 26 Feb 2025 23:37:29 &#43;0800</pubDate>
+  <author>Lunatic</author>
+  <guid>https://goodlunatic.github.io/posts/-inf/</guid>
+  <description><![CDATA[<p>最近这一段时间一直被科研和毕设上的事拖着，因此就有段时间没有做Misc题了</p>
+<p>趁着写毕设没啥思路和动力的功夫，来稍微复盘下今年西湖论剑的题</p>]]></description>
+</item>
+<item>
   <title>2025 XCTF国际网络攻防联赛-SUCTF分站赛 Misc Writeup</title>
   <link>https://goodlunatic.github.io/posts/754b8e7/</link>
   <pubDate>Sun, 19 Jan 2025 00:00:40 &#43;0800</pubDate>
@@ -80,14 +89,6 @@
   <author>Lunatic</author>
   <guid>https://goodlunatic.github.io/posts/1618f6c/</guid>
   <description><![CDATA[<p><strong>2024 古剑山全国大学生网络攻防大赛 Misc Writeup</strong></p>]]></description>
-</item>
-<item>
-  <title>2024 浙江省大学生网络与信息安全竞赛 Misc Writeup</title>
-  <link>https://goodlunatic.github.io/posts/c216d58/</link>
-  <pubDate>Sun, 10 Nov 2024 10:45:20 &#43;0800</pubDate>
-  <author>Lunatic</author>
-  <guid>https://goodlunatic.github.io/posts/c216d58/</guid>
-  <description><![CDATA[<p><strong>2024 浙江省大学生网络与信息安全竞赛 Misc Writeup</strong></p>]]></description>
 </item>
 </channel>
 </rss>

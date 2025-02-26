@@ -880,6 +880,29 @@ python3 /home/kali/RsaCtfTool/RsaCtfTool.py --publickey ./pub.key --decryptfile 
 
 ![](imgs/image-20241202140503314.png)
 
+**手动解析RSA公钥，并爆破生成私钥：**
+
+ 1. 解析公钥: `openssl rsa -in pub.key -text -inform PEM -pubin`
+
+![](imgs/image-20250226232852559.png)
+
+2. 十六进制转十进制并分解n
+
+![](imgs/image-20250226233215942.png)
+
+3. 使用 rsatool.py 导出私钥 priv.key
+
+```bash
+python rsatool.py -p 7605291443685150594150190909345113655196508809219162555499789316232908573154196070425269090153291952292016936024761413150455793038505322748933150548026527 -q 7605291443685150594150190909345113655196508809219162555499789316232908573154196070425269090153291952292016936024761413150455793038505322748933150548026221 -e 65537
+```
+
+![](imgs/image-20250226233503658.png)
+
+4. 使用私钥来解密密文
+```bash
+openssl rsautl -decrypt -raw -inkey priv.key -in flag
+openssl pkeyutl -decrypt -in flag -out decrypted_flag -inkey priv.key
+```
 
 ### SMP协议
 
