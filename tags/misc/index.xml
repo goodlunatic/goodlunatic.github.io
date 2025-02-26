@@ -4,14 +4,14 @@
     <link>https://goodlunatic.github.io/tags/misc/</link>
     <description>Misc - Tag | ⚡Lunatic BLOG⚡</description>
     <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>goodlunatic0@gmail.com (Lunatic)</managingEditor>
-      <webMaster>goodlunatic0@gmail.com (Lunatic)</webMaster><lastBuildDate>Wed, 26 Feb 2025 23:37:29 &#43;0800</lastBuildDate><atom:link href="https://goodlunatic.github.io/tags/misc/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>goodlunatic0@gmail.com (Lunatic)</webMaster><lastBuildDate>Wed, 26 Feb 2025 23:35:37 &#43;0800</lastBuildDate><atom:link href="https://goodlunatic.github.io/tags/misc/" rel="self" type="application/rss+xml" /><item>
   <title>2025 西湖论剑·中国杭州网络安全技能大赛 Misc Writeup</title>
-  <link>https://goodlunatic.github.io/posts/-inf/</link>
-  <pubDate>Wed, 26 Feb 2025 23:37:29 &#43;0800</pubDate>
+  <link>https://goodlunatic.github.io/posts/f002407/</link>
+  <pubDate>Wed, 26 Feb 2025 23:35:37 &#43;0800</pubDate>
   <author>Lunatic</author>
-  <guid>https://goodlunatic.github.io/posts/-inf/</guid>
-  <description><![CDATA[<p>最近这一段时间一直被科研和毕设上的事拖着，因此就有段时间没有做Misc题了</p>
-<p>趁着写毕设没啥思路和动力的功夫，来稍微复盘下今年西湖论剑的题</p>]]></description>
+  <guid>https://goodlunatic.github.io/posts/f002407/</guid>
+  <description><![CDATA[<p><strong>最近这一段时间一直被科研和毕设上的事拖着，因此就有段时间没有做Misc题了</strong></p>
+<p><strong>趁着写毕设没啥思路和动力的功夫，来稍微复盘下今年西湖论剑的题</strong></p>]]></description>
 </item>
 <item>
   <title>Misc-Network Traffic Analysis</title>
@@ -37,14 +37,6 @@
   <guid>https://goodlunatic.github.io/posts/754b8e7/</guid>
   <description><![CDATA[<p><strong>这次分站赛的时间卡的比较好，刚刚好队友们都考完期末考了</strong></p>
 <p><strong>然后时间上也没有和别的比赛冲突，因此就一起上号看了看题</strong></p>]]></description>
-</item>
-<item>
-  <title>2025 第八届西湖论剑网络安全技能大赛 Misc Writeup</title>
-  <link>https://goodlunatic.github.io/posts/f002407/</link>
-  <pubDate>Sat, 18 Jan 2025 23:35:37 &#43;0800</pubDate>
-  <author>Lunatic</author>
-  <guid>https://goodlunatic.github.io/posts/f002407/</guid>
-  <description><![CDATA[<p><strong>周末抽时间看了看题，感觉今年西湖论剑的题也是比较有意思</strong></p>]]></description>
 </item>
 <item>
   <title>2024 楚慧杯网络与数据安全实践能力竞赛 Misc Writeup</title>
@@ -88,6 +80,15 @@
   <author>Lunatic</author>
   <guid>https://goodlunatic.github.io/posts/761da51/</guid>
   <description><![CDATA[<p><strong>This is a simple summary of digital forensics .</strong></p>]]></description>
+</item>
+<item>
+  <title>2024 国城杯网络安全挑战赛 Misc Writeup</title>
+  <link>https://goodlunatic.github.io/posts/7bf9cb0/</link>
+  <pubDate>Thu, 12 Dec 2024 19:25:56 &#43;0800</pubDate>
+  <author>Lunatic</author>
+  <guid>https://goodlunatic.github.io/posts/7bf9cb0/</guid>
+  <description><![CDATA[<p><strong>忙里抽闲，简单地看了看题，感觉这场比赛的取证确实出得挺好的</strong></p>
+<p><strong>给取证题 Just_F0r3n51Cs 的出题人点个赞👍</strong></p>]]></description>
 </item>
 </channel>
 </rss>
