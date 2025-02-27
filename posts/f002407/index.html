@@ -12,9 +12,9 @@
   <meta itemprop="name" content="2025 西湖论剑·中国杭州网络安全技能大赛 Misc Writeup">
   <meta itemprop="description" content="最近这一段时间一直被科研和毕设上的事拖着，因此就有段时间没有做Misc题了
 趁着写毕设没啥思路和动力的功夫，来稍微复盘下今年西湖论剑的题">
-  <meta itemprop="datePublished" content="2025-02-26T23:35:37+08:00">
-  <meta itemprop="dateModified" content="2025-02-26T23:35:37+08:00">
-  <meta itemprop="wordCount" content="433">
+  <meta itemprop="datePublished" content="2025-02-27T21:35:37+08:00">
+  <meta itemprop="dateModified" content="2025-02-27T21:35:37+08:00">
+  <meta itemprop="wordCount" content="1887">
   <meta itemprop="keywords" content="CTF,Misc,Writeup"><meta property="og:url" content="https://goodlunatic.github.io/posts/f002407/">
   <meta property="og:site_name" content="⚡Lunatic BLOG⚡">
   <meta property="og:title" content="2025 西湖论剑·中国杭州网络安全技能大赛 Misc Writeup">
@@ -24,8 +24,8 @@
   <meta property="og:locale" content="en">
   <meta property="og:type" content="article">
   <meta property="article:section" content="posts">
-    <meta property="article:published_time" content="2025-02-26T23:35:37+08:00">
-    <meta property="article:modified_time" content="2025-02-26T23:35:37+08:00">
+    <meta property="article:published_time" content="2025-02-27T21:35:37+08:00">
+    <meta property="article:modified_time" content="2025-02-27T21:35:37+08:00">
     <meta property="article:tag" content="CTF">
     <meta property="article:tag" content="Misc">
     <meta property="article:tag" content="Writeup">
@@ -45,8 +45,8 @@
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": "https:\/\/goodlunatic.github.io\/posts\/f002407\/"
-    },"genre": "posts","keywords": "CTF, Misc, Writeup","wordcount":  433 ,
-    "url": "https:\/\/goodlunatic.github.io\/posts\/f002407\/","datePublished": "2025-02-26T23:35:37+08:00","dateModified": "2025-02-26T23:35:37+08:00","publisher": {
+    },"genre": "posts","keywords": "CTF, Misc, Writeup","wordcount":  1887 ,
+    "url": "https:\/\/goodlunatic.github.io\/posts\/f002407\/","datePublished": "2025-02-27T21:35:37+08:00","dateModified": "2025-02-27T21:35:37+08:00","publisher": {
       "@type": "Organization",
       "name": ""},"author": {
         "@type": "Person",
@@ -149,7 +149,7 @@
 <article class="page single">
   <div class="header"><h1 class="single-title animate__animated animate__flipInX"><span>2025 西湖论剑·中国杭州网络安全技能大赛 Misc Writeup</span>
     </h1></div><div class="post-meta">
-    <div class="post-meta-line"><span class="post-author"><a href="https://goodlunatic.github.io" title="Author"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><img loading="lazy" src="https://www.nssctf.cn/files/2024/4/28/7f130a1387.png" alt="Lunatic" data-title="Lunatic" class="avatar" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>&nbsp;Lunatic</a></span><span class="post-included-in">&nbsp;included in <a href="/categories/writeup/" class="post-category" title="Category - Writeup"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> Writeup</a></span></div><div class="post-meta-line"><span title="published on &lt;no value&gt;"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden="true"></i><time datetime="2025-02-26">2025-02-26</time></span>&nbsp;<span title=""><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>About 500 words</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>3 minutes</span>&nbsp;</div>
+    <div class="post-meta-line"><span class="post-author"><a href="https://goodlunatic.github.io" title="Author"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><img loading="lazy" src="https://www.nssctf.cn/files/2024/4/28/7f130a1387.png" alt="Lunatic" data-title="Lunatic" class="avatar" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>&nbsp;Lunatic</a></span><span class="post-included-in">&nbsp;included in <a href="/categories/writeup/" class="post-category" title="Category - Writeup"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> Writeup</a></span></div><div class="post-meta-line"><span title="published on &lt;no value&gt;"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden="true"></i><time datetime="2025-02-27">2025-02-27</time></span>&nbsp;<span title=""><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>About 1900 words</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>9 minutes</span>&nbsp;</div>
   </div><div class="details toc" id="toc-static"
     data-kept="false">
     <div class="details-summary toc-title">
@@ -406,11 +406,366 @@
 <p>Tips:</p>
 <p>/cm：心跳包主要用于C2服务端要求客户端执行命令</p>
 <p>/submit.php：主要用于传输客户端回传的执行结果</p>
-</blockquote></div><div class="post-footer" id="post-footer">
+</blockquote>
+<p><strong>解密心跳包中传输的数据</strong></p>
+<div class="highlight" id="id-4"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">hmac</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">binascii</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">base64</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">hexdump</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">Crypto.Cipher</span> <span class="kn">import</span> <span class="n">AES</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">decrypt</span><span class="p">(</span><span class="n">encrypted_data</span><span class="p">,</span> <span class="n">iv_bytes</span><span class="p">,</span> <span class="n">signature</span><span class="p">,</span> <span class="n">shared_key</span><span class="p">,</span> <span class="n">hmac_key</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">hmac</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">hmac_key</span><span class="p">,</span> <span class="n">encrypted_data</span><span class="p">,</span> <span class="n">digestmod</span><span class="o">=</span><span class="s2">&#34;sha256&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">digest</span><span class="p">()[:</span><span class="mi">16</span><span class="p">]</span> <span class="o">!=</span> <span class="n">signature</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;message authentication failed&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cipher</span> <span class="o">=</span> <span class="n">AES</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">shared_key</span><span class="p">,</span> <span class="n">AES</span><span class="o">.</span><span class="n">MODE_CBC</span><span class="p">,</span> <span class="n">iv_bytes</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">cipher</span><span class="o">.</span><span class="n">decrypt</span><span class="p">(</span><span class="n">encrypted_data</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&#34;__main__&#34;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">SHARED_KEY</span> <span class="o">=</span> <span class="n">binascii</span><span class="o">.</span><span class="n">unhexlify</span><span class="p">(</span><span class="s2">&#34;9fe14473479a283821241e2af78017e8&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">HMAC_KEY</span> <span class="o">=</span> <span class="n">binascii</span><span class="o">.</span><span class="n">unhexlify</span><span class="p">(</span><span class="s2">&#34;1e3d54f1b9f0e106773a59b7c379a89d&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;data.txt&#39;</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">data</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="n">encrypt_data</span> <span class="o">=</span> <span class="nb">bytes</span><span class="o">.</span><span class="n">fromhex</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">encrypt_data_length</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">encrypt_data</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;[+] 数据总长度为：</span><span class="si">{</span><span class="n">encrypt_data_length</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># encrypt_data_length = int.from_bytes(encrypt_data[:4], byteorder=&#39;big&#39;, signed=False)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">data</span> <span class="o">=</span> <span class="n">encrypt_data</span><span class="p">[:</span><span class="n">encrypt_data_length</span><span class="o">-</span><span class="mi">16</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="n">signature</span> <span class="o">=</span> <span class="n">encrypt_data</span><span class="p">[</span><span class="n">encrypt_data_length</span><span class="o">-</span><span class="mi">16</span><span class="p">:]</span>
+</span></span><span class="line"><span class="cl">    <span class="n">iv_bytes</span> <span class="o">=</span> <span class="sa">b</span><span class="s2">&#34;abcdefghijklmnop&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">dec</span> <span class="o">=</span> <span class="n">decrypt</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">iv_bytes</span><span class="p">,</span> <span class="n">signature</span><span class="p">,</span> <span class="n">SHARED_KEY</span><span class="p">,</span> <span class="n">HMAC_KEY</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;</span><span class="si">{</span><span class="s1">&#39;=&#39;</span><span class="o">*</span><span class="mi">80</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;[+] counter: </span><span class="si">{}</span><span class="s2">&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">int</span><span class="o">.</span><span class="n">from_bytes</span><span class="p">(</span><span class="n">dec</span><span class="p">[:</span><span class="mi">4</span><span class="p">],</span> <span class="n">byteorder</span><span class="o">=</span><span class="s1">&#39;big&#39;</span><span class="p">,</span> <span class="n">signed</span><span class="o">=</span><span class="kc">False</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;[+] 任务返回长度: </span><span class="si">{}</span><span class="s2">&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">int</span><span class="o">.</span><span class="n">from_bytes</span><span class="p">(</span><span class="n">dec</span><span class="p">[</span><span class="mi">4</span><span class="p">:</span><span class="mi">8</span><span class="p">],</span> <span class="n">byteorder</span><span class="o">=</span><span class="s1">&#39;big&#39;</span><span class="p">,</span> <span class="n">signed</span><span class="o">=</span><span class="kc">False</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;[+] 任务输出类型: </span><span class="si">{}</span><span class="s2">&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">int</span><span class="o">.</span><span class="n">from_bytes</span><span class="p">(</span><span class="n">dec</span><span class="p">[</span><span class="mi">8</span><span class="p">:</span><span class="mi">12</span><span class="p">],</span> <span class="n">byteorder</span><span class="o">=</span><span class="s1">&#39;big&#39;</span><span class="p">,</span> <span class="n">signed</span><span class="o">=</span><span class="kc">False</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl">    <span class="n">pcapng_data</span> <span class="o">=</span> <span class="n">dec</span><span class="p">[</span><span class="mi">64</span><span class="p">:</span><span class="o">-</span><span class="mi">60</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&#34;out.pcapng&#34;</span><span class="p">,</span><span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">pcapng_data</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="n">hexdump</span><span class="o">.</span><span class="n">hexdump</span><span class="p">(</span><span class="n">pcapng_data</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># output = dec[12:int.from_bytes(dec[4:8], byteorder=&#39;big&#39;, signed=False)].decode(&#39;gbk&#39;,errors=&#39;ignore&#39;)</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># print(output)</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>解密submit.php中回传的数据</strong></p>
+<div class="highlight" id="id-5"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">hmac</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">binascii</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">base64</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">hexdump</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">Crypto.Cipher</span> <span class="kn">import</span> <span class="n">AES</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">decrypt</span><span class="p">(</span><span class="n">encrypted_data</span><span class="p">,</span> <span class="n">iv_bytes</span><span class="p">,</span> <span class="n">signature</span><span class="p">,</span> <span class="n">shared_key</span><span class="p">,</span> <span class="n">hmac_key</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">hmac</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">hmac_key</span><span class="p">,</span> <span class="n">encrypted_data</span><span class="p">,</span> <span class="n">digestmod</span><span class="o">=</span><span class="s2">&#34;sha256&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">digest</span><span class="p">()[:</span><span class="mi">16</span><span class="p">]</span> <span class="o">!=</span> <span class="n">signature</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;message authentication failed&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cipher</span> <span class="o">=</span> <span class="n">AES</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">shared_key</span><span class="p">,</span> <span class="n">AES</span><span class="o">.</span><span class="n">MODE_CBC</span><span class="p">,</span> <span class="n">iv_bytes</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">cipher</span><span class="o">.</span><span class="n">decrypt</span><span class="p">(</span><span class="n">encrypted_data</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&#34;__main__&#34;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">SHARED_KEY</span> <span class="o">=</span> <span class="n">binascii</span><span class="o">.</span><span class="n">unhexlify</span><span class="p">(</span><span class="s2">&#34;9fe14473479a283821241e2af78017e8&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">HMAC_KEY</span> <span class="o">=</span> <span class="n">binascii</span><span class="o">.</span><span class="n">unhexlify</span><span class="p">(</span><span class="s2">&#34;1e3d54f1b9f0e106773a59b7c379a89d&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">encrypt_datas</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&#34;00000040efeda3e57f7d7fd589d11640ea0f9a4fe6bc91332723ffc5f43f78b37c21cc7485c44d6c8eb6af74fc7044046059c76519e493e351c9f631d6785d5c07eae9e3&#34;</span><span class="p">,</span><span class="s2">&#34;000001602a99f7cc51face35199e8b1a4a5616e0301591b6f1f48b1d000149cb83d6a81e9659849a52c4f50a8629b0dfb7c036df406b44d449e40fe18df3594721e1f5849662271c1ea18b18c8eb58af5ee2c3a784852dd1c4a5c699f9518d2e2fc70d756cd68361ac794eed4eae6b062be6c31651caf93954f2a89b10e25b1fd9757ec17ee8b97038c4babb73c4f21688f5d235797844c2c9c288fac3fd2bd9cf5373956389b7e5232e35b6f268f9d67ba54f3e7e1606d4cb4020d5f480c6e5f4409b8d87e0443ae0bcfe93d286291ba6bfd0c7f37593581d90bb4ab7cfb065b4421a727f120fb491c2dc01797e38996dfc123fb120c5ed312577cc917d8a435b73c25b6d29ef0bad595100256c9aa5571e5c0ce0a8ea2c173ca1fae577fa924506b75b86522052f019d6843d74dc6fbdf2219b77e020a049c4e77df3658c80bcb703f8f878ff2f70c5c69d0cf6f4efb5a755ba854dfa5777a23989286770da6e0444d0&#34;</span><span class="p">,</span><span class="s2">&#34;000000d0c72ef8b74a7d8acc332695b62448280f9a4eaa12457de4adcad279b0563f2d4cb0707f7e2853c45acf28a365d905cf8ca421d557bd7655cbd50aafbdbe5f3f570c9c3d876d0c21b661ca5c46e09f987f7e1263f6d33c34db28a2fd342fe48e5801d1a97fb88e00f0c648ec889f6b72d71edd2eed5affd32bc8d51e27fcc148d16823c1bc235b0e16d9d477bd0b4582941db373e171cce78b10c869eb987baf3fd9f879b236be6f3af43b7742f6241dfe02ab696c96f1779d0003d6b2720d1c93890e75fcce939f1c8e0922ce5044bc3a&#34;</span><span class="p">,</span><span class="s2">&#34;00000100f24f15cd6f33c36e70ca228d10babfac1cf6bfbb9b6923a7828c9ed30b76d3ce1cb3d8f97c358bf90004e771ac646b1b996fd248ac8f0b460e0a36950dffcde04f3bae831982b528393f3a3c771310ba0c0bb7418ba5e8734a6bd37bc8a51cc0683c0904e0f404180e4c4c34720a3e5d6767c435f1746e6b93a13a2ecdc8074089e684b90748fc1a7e24e66bd637673437d9e24a37ce6f584b478e2f0485f3c05414dd4c35eb9ecfed8d4fbdab54db4233258f4fea6ed515a1030feeb184db94a4841236b491d2f7379e10f52d50ae573cd6f4504aa9750da273fa65c2a9eaf9b9bb014cafc53a9e9f0042bfcd5d24fc1b29173fd3308ff08d30b2a7d42132d4&#34;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">encrypt_data</span> <span class="ow">in</span> <span class="n">encrypt_datas</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># encrypt_data = base64.b64decode(encrypt_data)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">encrypt_data</span> <span class="o">=</span> <span class="nb">bytes</span><span class="o">.</span><span class="n">fromhex</span><span class="p">(</span><span class="n">encrypt_data</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">encrypt_data_length</span> <span class="o">=</span> <span class="nb">int</span><span class="o">.</span><span class="n">from_bytes</span><span class="p">(</span><span class="n">encrypt_data</span><span class="p">[:</span><span class="mi">4</span><span class="p">],</span> <span class="n">byteorder</span><span class="o">=</span><span class="s1">&#39;big&#39;</span><span class="p">,</span> <span class="n">signed</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">encrypt_data_l</span> <span class="o">=</span> <span class="n">encrypt_data</span><span class="p">[</span><span class="mi">4</span><span class="p">:]</span>
+</span></span><span class="line"><span class="cl">        <span class="n">data1</span> <span class="o">=</span> <span class="n">encrypt_data_l</span><span class="p">[:</span><span class="n">encrypt_data_length</span><span class="o">-</span><span class="mi">16</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">        <span class="n">signature</span> <span class="o">=</span> <span class="n">encrypt_data_l</span><span class="p">[</span><span class="n">encrypt_data_length</span><span class="o">-</span><span class="mi">16</span><span class="p">:]</span>
+</span></span><span class="line"><span class="cl">        <span class="n">iv_bytes</span> <span class="o">=</span> <span class="sa">b</span><span class="s2">&#34;abcdefghijklmnop&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">dec</span> <span class="o">=</span> <span class="n">decrypt</span><span class="p">(</span><span class="n">data1</span><span class="p">,</span> <span class="n">iv_bytes</span><span class="p">,</span> <span class="n">signature</span><span class="p">,</span> <span class="n">SHARED_KEY</span><span class="p">,</span> <span class="n">HMAC_KEY</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;</span><span class="si">{</span><span class="s1">&#39;=&#39;</span><span class="o">*</span><span class="mi">80</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;[+] counter: </span><span class="si">{}</span><span class="s2">&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">int</span><span class="o">.</span><span class="n">from_bytes</span><span class="p">(</span><span class="n">dec</span><span class="p">[:</span><span class="mi">4</span><span class="p">],</span> <span class="n">byteorder</span><span class="o">=</span><span class="s1">&#39;big&#39;</span><span class="p">,</span> <span class="n">signed</span><span class="o">=</span><span class="kc">False</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;[+] 任务返回长度: </span><span class="si">{}</span><span class="s2">&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">int</span><span class="o">.</span><span class="n">from_bytes</span><span class="p">(</span><span class="n">dec</span><span class="p">[</span><span class="mi">4</span><span class="p">:</span><span class="mi">8</span><span class="p">],</span> <span class="n">byteorder</span><span class="o">=</span><span class="s1">&#39;big&#39;</span><span class="p">,</span> <span class="n">signed</span><span class="o">=</span><span class="kc">False</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;[+] 任务输出类型: </span><span class="si">{}</span><span class="s2">&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">int</span><span class="o">.</span><span class="n">from_bytes</span><span class="p">(</span><span class="n">dec</span><span class="p">[</span><span class="mi">8</span><span class="p">:</span><span class="mi">12</span><span class="p">],</span> <span class="n">byteorder</span><span class="o">=</span><span class="s1">&#39;big&#39;</span><span class="p">,</span> <span class="n">signed</span><span class="o">=</span><span class="kc">False</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl">        <span class="n">output</span> <span class="o">=</span> <span class="n">dec</span><span class="p">[</span><span class="mi">12</span><span class="p">:</span><span class="nb">int</span><span class="o">.</span><span class="n">from_bytes</span><span class="p">(</span><span class="n">dec</span><span class="p">[</span><span class="mi">4</span><span class="p">:</span><span class="mi">8</span><span class="p">],</span> <span class="n">byteorder</span><span class="o">=</span><span class="s1">&#39;big&#39;</span><span class="p">,</span> <span class="n">signed</span><span class="o">=</span><span class="kc">False</span><span class="p">)]</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;gbk&#39;</span><span class="p">,</span><span class="n">errors</span><span class="o">=</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="n">hexdump</span><span class="o">.</span><span class="n">hexdump</span><span class="p">(</span><span class="n">dec</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="n">output</span><span class="p">)</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>上面两个代码的主要区别就在于：第二个代码中的加密数据是从源数据的第四字节开始的</p>
+<p>我们用第二个代码解密<code>submit.php</code>的数据，可以得到如下内容，并且发现里面有个<code>secret.pcapng</code></p>
+<div class="highlight" id="id-6"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span><span class="lnt">73
+</span><span class="lnt">74
+</span><span class="lnt">75
+</span><span class="lnt">76
+</span><span class="lnt">77
+</span><span class="lnt">78
+</span><span class="lnt">79
+</span><span class="lnt">80
+</span><span class="lnt">81
+</span><span class="lnt">82
+</span><span class="lnt">83
+</span><span class="lnt">84
+</span><span class="lnt">85
+</span><span class="lnt">86
+</span><span class="lnt">87
+</span><span class="lnt">88
+</span><span class="lnt">89
+</span><span class="lnt">90
+</span><span class="lnt">91
+</span><span class="lnt">92
+</span><span class="lnt">93
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">================================================================================
+</span></span><span class="line"><span class="cl">[+] counter: 2
+</span></span><span class="line"><span class="cl">[+] 任务返回长度: 35
+</span></span><span class="line"><span class="cl">[+] 任务输出类型: 30
+</span></span><span class="line"><span class="cl">00000000: 00 00 00 02 00 00 00 23  00 00 00 1E 77 69 6E 2D  .......#....win-
+</span></span><span class="line"><span class="cl">00000010: 72 72 69 39 74 39 73 6E  38 35 64 5C 61 64 6D 69  rri9t9sn85d\admi
+</span></span><span class="line"><span class="cl">00000020: 6E 69 73 74 72 61 74 6F  72 0D 0A 00 5C 00 44 00  nistrator...\.D.
+</span></span><span class="line"><span class="cl">None
+</span></span><span class="line"><span class="cl">win-rri9t9sn85d\adminis
+</span></span><span class="line"><span class="cl">================================================================================
+</span></span><span class="line"><span class="cl">[+] counter: 3
+</span></span><span class="line"><span class="cl">[+] 任务返回长度: 324
+</span></span><span class="line"><span class="cl">[+] 任务输出类型: 30
+</span></span><span class="line"><span class="cl">00000000: 00 00 00 03 00 00 01 44  00 00 00 1E 20 C7 FD B6  .......D.... ...
+</span></span><span class="line"><span class="cl">00000010: AF C6 F7 20 43 20 D6 D0  B5 C4 BE ED C3 BB D3 D0  ... C ..........
+</span></span><span class="line"><span class="cl">00000020: B1 EA C7 A9 A1 A3 0D 0A  20 BE ED B5 C4 D0 F2 C1  ........ .......
+</span></span><span class="line"><span class="cl">00000030: D0 BA C5 CA C7 20 31 38  37 30 2D 33 35 35 33 0D  ..... 1870-3553.
+</span></span><span class="line"><span class="cl">00000040: 0A 0D 0A 20 43 3A 5C 55  73 65 72 73 5C 41 64 6D  ... C:\Users\Adm
+</span></span><span class="line"><span class="cl">00000050: 69 6E 69 73 74 72 61 74  6F 72 5C 44 65 73 6B 74  inistrator\Deskt
+</span></span><span class="line"><span class="cl">00000060: 6F 70 20 B5 C4 C4 BF C2  BC 0D 0A 0D 0A 32 30 32  op ..........202
+</span></span><span class="line"><span class="cl">00000070: 34 2F 31 32 2F 31 36 20  20 31 35 3A 30 35 20 20  4/12/16  15:05
+</span></span><span class="line"><span class="cl">00000080: 20 20 3C 44 49 52 3E 20  20 20 20 20 20 20 20 20    &lt;DIR&gt;
+</span></span><span class="line"><span class="cl">00000090: 20 2E 0D 0A 32 30 32 34  2F 31 32 2F 31 36 20 20   ...2024/12/16
+</span></span><span class="line"><span class="cl">000000A0: 31 35 3A 30 35 20 20 20  20 3C 44 49 52 3E 20 20  15:05    &lt;DIR&gt;
+</span></span><span class="line"><span class="cl">000000B0: 20 20 20 20 20 20 20 20  2E 2E 0D 0A 32 30 32 34          ....2024
+</span></span><span class="line"><span class="cl">000000C0: 2F 31 32 2F 31 36 20 20  31 35 3A 30 35 20 20 20  /12/16  15:05
+</span></span><span class="line"><span class="cl">000000D0: 20 20 20 20 20 20 20 20  20 31 37 2C 39 32 30 20           17,920
+</span></span><span class="line"><span class="cl">000000E0: 61 72 74 69 66 61 63 74  2E 65 78 65 0D 0A 20 20  artifact.exe..
+</span></span><span class="line"><span class="cl">000000F0: 20 20 20 20 20 20 20 20  20 20 20 20 20 31 20 B8               1 .
+</span></span><span class="line"><span class="cl">00000100: F6 CE C4 BC FE 20 20 20  20 20 20 20 20 20 31 37  .....         17
+</span></span><span class="line"><span class="cl">00000110: 2C 39 32 30 20 D7 D6 BD  DA 0D 0A 20 20 20 20 20  ,920 ......
+</span></span><span class="line"><span class="cl">00000120: 20 20 20 20 20 20 20 20  20 20 32 20 B8 F6 C4 BF            2 ....
+</span></span><span class="line"><span class="cl">00000130: C2 BC 20 35 31 2C 31 36  36 2C 36 30 31 2C 32 31  .. 51,166,601,21
+</span></span><span class="line"><span class="cl">00000140: 36 20 BF C9 D3 C3 D7 D6  BD DA 0D 0A 00 00 00 00  6 ..............
+</span></span><span class="line"><span class="cl">None
+</span></span><span class="line"><span class="cl"> 驱动器 C 中的卷没有标签。
+</span></span><span class="line"><span class="cl"> 卷的序列号是 1870-3553
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> C:\Users\Administrator\Desktop 的目录
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">2024/12/16  15:05    &lt;DIR&gt;          .
+</span></span><span class="line"><span class="cl">2024/12/16  15:05    &lt;DIR&gt;          ..
+</span></span><span class="line"><span class="cl">2024/12/16  15:05            17,920 artifact.exe
+</span></span><span class="line"><span class="cl">               1 个文件         17,920 字节
+</span></span><span class="line"><span class="cl">               2 个目录 51,166,601,216 可
+</span></span><span class="line"><span class="cl">================================================================================
+</span></span><span class="line"><span class="cl">[+] counter: 4
+</span></span><span class="line"><span class="cl">[+] 任务返回长度: 173
+</span></span><span class="line"><span class="cl">[+] 任务输出类型: 22
+</span></span><span class="line"><span class="cl">00000000: 00 00 00 04 00 00 00 AD  00 00 00 16 00 00 00 01  ................
+</span></span><span class="line"><span class="cl">00000010: 43 3A 5C 55 73 65 72 73  5C 41 64 6D 69 6E 69 73  C:\Users\Adminis
+</span></span><span class="line"><span class="cl">00000020: 74 72 61 74 6F 72 5C 44  65 73 6B 74 6F 70 5C 2A  trator\Desktop\*
+</span></span><span class="line"><span class="cl">00000030: 0A 44 09 30 09 31 32 2F  31 36 2F 32 30 32 34 20  .D.0.12/16/2024
+</span></span><span class="line"><span class="cl">00000040: 31 35 3A 30 35 3A 34 32  09 2E 0A 44 09 30 09 31  15:05:42...D.0.1
+</span></span><span class="line"><span class="cl">00000050: 32 2F 31 36 2F 32 30 32  34 20 31 35 3A 30 35 3A  2/16/2024 15:05:
+</span></span><span class="line"><span class="cl">00000060: 34 32 09 2E 2E 0A 46 09  31 37 39 32 30 09 31 32  42....F.17920.12
+</span></span><span class="line"><span class="cl">00000070: 2F 31 36 2F 32 30 32 34  20 31 35 3A 30 35 3A 33  /16/2024 15:05:3
+</span></span><span class="line"><span class="cl">00000080: 30 09 61 72 74 69 66 61  63 74 2E 65 78 65 0A 46  0.artifact.exe.F
+</span></span><span class="line"><span class="cl">00000090: 09 32 38 32 09 30 38 2F  32 33 2F 32 30 31 37 20  .282.08/23/2017
+</span></span><span class="line"><span class="cl">000000A0: 31 34 3A 31 38 3A 33 35  09 64 65 73 6B 74 6F 70  14:18:35.desktop
+</span></span><span class="line"><span class="cl">000000B0: 2E 69 6E 69 0A 00 00 00  00 00 00 00 00 00 00 00  .ini............
+</span></span><span class="line"><span class="cl">None
+</span></span><span class="line"><span class="cl">C:\Users\Administrator\Desktop\*
+</span></span><span class="line"><span class="cl">D       0       12/16/2024 15:05:42     .
+</span></span><span class="line"><span class="cl">D       0       12/16/2024 15:05:42     ..
+</span></span><span class="line"><span class="cl">F       17920   12/16/2024 15:05:30     artifact.exe
+</span></span><span class="line"><span class="cl">F       282     08/23/2017 14:18:35     desk
+</span></span><span class="line"><span class="cl">================================================================================
+</span></span><span class="line"><span class="cl">[+] counter: 5
+</span></span><span class="line"><span class="cl">[+] 任务返回长度: 216
+</span></span><span class="line"><span class="cl">[+] 任务输出类型: 22
+</span></span><span class="line"><span class="cl">00000000: 00 00 00 05 00 00 00 D8  00 00 00 16 00 00 00 02  ................
+</span></span><span class="line"><span class="cl">00000010: 43 3A 5C 55 73 65 72 73  5C 41 64 6D 69 6E 69 73  C:\Users\Adminis
+</span></span><span class="line"><span class="cl">00000020: 74 72 61 74 6F 72 5C 44  65 73 6B 74 6F 70 5C 2A  trator\Desktop\*
+</span></span><span class="line"><span class="cl">00000030: 0A 44 09 30 09 31 32 2F  31 36 2F 32 30 32 34 20  .D.0.12/16/2024
+</span></span><span class="line"><span class="cl">00000040: 31 35 3A 30 38 3A 33 31  09 2E 0A 44 09 30 09 31  15:08:31...D.0.1
+</span></span><span class="line"><span class="cl">00000050: 32 2F 31 36 2F 32 30 32  34 20 31 35 3A 30 38 3A  2/16/2024 15:08:
+</span></span><span class="line"><span class="cl">00000060: 33 31 09 2E 2E 0A 46 09  31 37 39 32 30 09 31 32  31....F.17920.12
+</span></span><span class="line"><span class="cl">00000070: 2F 31 36 2F 32 30 32 34  20 31 35 3A 30 35 3A 33  /16/2024 15:05:3
+</span></span><span class="line"><span class="cl">00000080: 30 09 61 72 74 69 66 61  63 74 2E 65 78 65 0A 46  0.artifact.exe.F
+</span></span><span class="line"><span class="cl">00000090: 09 32 38 32 09 30 38 2F  32 33 2F 32 30 31 37 20  .282.08/23/2017
+</span></span><span class="line"><span class="cl">000000A0: 31 34 3A 31 38 3A 33 35  09 64 65 73 6B 74 6F 70  14:18:35.desktop
+</span></span><span class="line"><span class="cl">000000B0: 2E 69 6E 69 0A 46 09 33  34 39 35 38 38 09 31 32  .ini.F.349588.12
+</span></span><span class="line"><span class="cl">000000C0: 2F 31 36 2F 32 30 32 34  20 31 35 3A 30 38 3A 33  /16/2024 15:08:3
+</span></span><span class="line"><span class="cl">000000D0: 31 09 73 65 63 72 65 74  2E 70 63 61 70 6E 67 0A  1.secret.pcapng.
+</span></span><span class="line"><span class="cl">000000E0: 00 00 00 00 00 00 00 00  40 6F CC FE FE 07 00 00  ........@o......
+</span></span><span class="line"><span class="cl">None
+</span></span><span class="line"><span class="cl">C:\Users\Administrator\Desktop\*
+</span></span><span class="line"><span class="cl">D       0       12/16/2024 15:08:31     .
+</span></span><span class="line"><span class="cl">D       0       12/16/2024 15:08:31     ..
+</span></span><span class="line"><span class="cl">F       17920   12/16/2024 15:05:30     artifact.exe
+</span></span><span class="line"><span class="cl">F       282     08/23/2017 14:18:35     desktop.ini
+</span></span><span class="line"><span class="cl">F       349588  12/16/2024 15:08:31     secret</span></span></code></pre></td></tr></table>
+</div>
+</div><p>我们用第一个代码解密<code>C2服务端(10.11.4.3)</code>要求客户端执行命令的数据包，可以得到一个<code>pacpng</code>流量包文件</p>
+<p>结合第二个代码解密出来的<code>submit.php</code>的数据，应该就是那个<code>secret.pcapng</code>了</p>
+<p><img loading="lazy" src="imgs/image-20250227214140287.png" alt="imgs/image-20250227214140287.png" srcset="imgs/image-20250227214140287.png?size=small, imgs/image-20250227214140287.png?size=medium 1.5x, imgs/image-20250227214140287.png?size=large 2x" data-title="imgs/image-20250227214140287.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>将得到的流量包文件保存为<code>secret.pcapng</code>，打开翻看，发现主要是UDP流量</p>
+<p><img loading="lazy" src="imgs/image-20250227214805641.png" alt="imgs/image-20250227214805641.png" srcset="imgs/image-20250227214805641.png?size=small, imgs/image-20250227214805641.png?size=medium 1.5x, imgs/image-20250227214805641.png?size=large 2x" data-title="imgs/image-20250227214805641.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><img loading="lazy" src="imgs/image-20250227214831328.png" alt="imgs/image-20250227214831328.png" srcset="imgs/image-20250227214831328.png?size=small, imgs/image-20250227214831328.png?size=medium 1.5x, imgs/image-20250227214831328.png?size=large 2x" data-title="imgs/image-20250227214831328.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>赛后和师傅们交流后知道了是<code>CS1.6</code>的流量，这里的出题思路参考自 <a href="https://www.anquanke.com/post/id/261339#h2-0"target="_blank" rel="external nofollow noopener noreferrer">2021L3HCTF Lambda</a></p>
+<p>这也呼应了题目名(CSCS)，CS流量里套了一个CS1.6流量</p></div><div class="post-footer" id="post-footer">
   <div class="post-info">
     <div class="post-info-line">
       <div class="post-info-mod">
-        <span title="Updated on 2025-02-26 23:35:37">Updated on 2025-02-26&nbsp;</span>
+        <span title="Updated on 2025-02-27 21:35:37">Updated on 2025-02-27&nbsp;</span>
       </div></div><div class="post-info-line">
         <div class="post-info-md"><span><a href="/posts/f002407/index.md" title="Read Markdown" class="link-to-markdown">Read Markdown</a></span></div>
         <div class="post-info-share">
