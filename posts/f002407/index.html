@@ -12,9 +12,9 @@
   <meta itemprop="name" content="2025 西湖论剑·中国杭州网络安全技能大赛 Misc Writeup">
   <meta itemprop="description" content="最近这一段时间一直被科研和毕设上的事拖着，因此就有段时间没有做Misc题了
 趁着写毕设没啥思路和动力的功夫，来稍微复盘下今年西湖论剑的题">
-  <meta itemprop="datePublished" content="2025-02-27T21:35:37+08:00">
-  <meta itemprop="dateModified" content="2025-02-27T21:35:37+08:00">
-  <meta itemprop="wordCount" content="1887">
+  <meta itemprop="datePublished" content="2025-02-28T14:35:37+08:00">
+  <meta itemprop="dateModified" content="2025-02-28T14:35:37+08:00">
+  <meta itemprop="wordCount" content="2667">
   <meta itemprop="keywords" content="CTF,Misc,Writeup"><meta property="og:url" content="https://goodlunatic.github.io/posts/f002407/">
   <meta property="og:site_name" content="⚡Lunatic BLOG⚡">
   <meta property="og:title" content="2025 西湖论剑·中国杭州网络安全技能大赛 Misc Writeup">
@@ -24,8 +24,8 @@
   <meta property="og:locale" content="en">
   <meta property="og:type" content="article">
   <meta property="article:section" content="posts">
-    <meta property="article:published_time" content="2025-02-27T21:35:37+08:00">
-    <meta property="article:modified_time" content="2025-02-27T21:35:37+08:00">
+    <meta property="article:published_time" content="2025-02-28T14:35:37+08:00">
+    <meta property="article:modified_time" content="2025-02-28T14:35:37+08:00">
     <meta property="article:tag" content="CTF">
     <meta property="article:tag" content="Misc">
     <meta property="article:tag" content="Writeup">
@@ -45,8 +45,8 @@
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": "https:\/\/goodlunatic.github.io\/posts\/f002407\/"
-    },"genre": "posts","keywords": "CTF, Misc, Writeup","wordcount":  1887 ,
-    "url": "https:\/\/goodlunatic.github.io\/posts\/f002407\/","datePublished": "2025-02-27T21:35:37+08:00","dateModified": "2025-02-27T21:35:37+08:00","publisher": {
+    },"genre": "posts","keywords": "CTF, Misc, Writeup","wordcount":  2667 ,
+    "url": "https:\/\/goodlunatic.github.io\/posts\/f002407\/","datePublished": "2025-02-28T14:35:37+08:00","dateModified": "2025-02-28T14:35:37+08:00","publisher": {
       "@type": "Organization",
       "name": ""},"author": {
         "@type": "Person",
@@ -149,7 +149,7 @@
 <article class="page single">
   <div class="header"><h1 class="single-title animate__animated animate__flipInX"><span>2025 西湖论剑·中国杭州网络安全技能大赛 Misc Writeup</span>
     </h1></div><div class="post-meta">
-    <div class="post-meta-line"><span class="post-author"><a href="https://goodlunatic.github.io" title="Author"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><img loading="lazy" src="https://www.nssctf.cn/files/2024/4/28/7f130a1387.png" alt="Lunatic" data-title="Lunatic" class="avatar" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>&nbsp;Lunatic</a></span><span class="post-included-in">&nbsp;included in <a href="/categories/writeup/" class="post-category" title="Category - Writeup"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> Writeup</a></span></div><div class="post-meta-line"><span title="published on &lt;no value&gt;"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden="true"></i><time datetime="2025-02-27">2025-02-27</time></span>&nbsp;<span title=""><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>About 1900 words</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>9 minutes</span>&nbsp;</div>
+    <div class="post-meta-line"><span class="post-author"><a href="https://goodlunatic.github.io" title="Author"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><img loading="lazy" src="https://www.nssctf.cn/files/2024/4/28/7f130a1387.png" alt="Lunatic" data-title="Lunatic" class="avatar" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>&nbsp;Lunatic</a></span><span class="post-included-in">&nbsp;included in <a href="/categories/writeup/" class="post-category" title="Category - Writeup"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> Writeup</a></span></div><div class="post-meta-line"><span title="published on &lt;no value&gt;"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden="true"></i><time datetime="2025-02-28">2025-02-28</time></span>&nbsp;<span title=""><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>About 2700 words</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>13 minutes</span>&nbsp;</div>
   </div><div class="details toc" id="toc-static"
     data-kept="false">
     <div class="details-summary toc-title">
@@ -754,18 +754,375 @@
 </span></span><span class="line"><span class="cl">F       282     08/23/2017 14:18:35     desktop.ini
 </span></span><span class="line"><span class="cl">F       349588  12/16/2024 15:08:31     secret</span></span></code></pre></td></tr></table>
 </div>
-</div><p>我们用第一个代码解密<code>C2服务端(10.11.4.3)</code>要求客户端执行命令的数据包，可以得到一个<code>pacpng</code>流量包文件</p>
+</div><p>我们用第一个代码解密<code>C2服务端(10.11.4.3)</code>要求客户端执行命令的最大的那个数据包，可以得到一个<code>pacpng</code>流量包文件</p>
 <p>结合第二个代码解密出来的<code>submit.php</code>的数据，应该就是那个<code>secret.pcapng</code>了</p>
 <p><img loading="lazy" src="imgs/image-20250227214140287.png" alt="imgs/image-20250227214140287.png" srcset="imgs/image-20250227214140287.png?size=small, imgs/image-20250227214140287.png?size=medium 1.5x, imgs/image-20250227214140287.png?size=large 2x" data-title="imgs/image-20250227214140287.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
-<p>将得到的流量包文件保存为<code>secret.pcapng</code>，打开翻看，发现主要是UDP流量</p>
+<p>用以下代码解其余心跳包的数据可以得到攻击者要求受害客户端执行的其他命令</p>
+<div class="highlight" id="id-7"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">hmac</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">binascii</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">base64</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">hexdump</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">Crypto.Cipher</span> <span class="kn">import</span> <span class="n">AES</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">decrypt</span><span class="p">(</span><span class="n">encrypted_data</span><span class="p">,</span> <span class="n">iv_bytes</span><span class="p">,</span> <span class="n">signature</span><span class="p">,</span> <span class="n">shared_key</span><span class="p">,</span> <span class="n">hmac_key</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">hmac</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">hmac_key</span><span class="p">,</span> <span class="n">encrypted_data</span><span class="p">,</span> <span class="n">digestmod</span><span class="o">=</span><span class="s2">&#34;sha256&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">digest</span><span class="p">()[:</span><span class="mi">16</span><span class="p">]</span> <span class="o">!=</span> <span class="n">signature</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;message authentication failed&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cipher</span> <span class="o">=</span> <span class="n">AES</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">shared_key</span><span class="p">,</span> <span class="n">AES</span><span class="o">.</span><span class="n">MODE_CBC</span><span class="p">,</span> <span class="n">iv_bytes</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">cipher</span><span class="o">.</span><span class="n">decrypt</span><span class="p">(</span><span class="n">encrypted_data</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&#34;__main__&#34;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">SHARED_KEY</span> <span class="o">=</span> <span class="n">binascii</span><span class="o">.</span><span class="n">unhexlify</span><span class="p">(</span><span class="s2">&#34;9fe14473479a283821241e2af78017e8&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">HMAC_KEY</span> <span class="o">=</span> <span class="n">binascii</span><span class="o">.</span><span class="n">unhexlify</span><span class="p">(</span><span class="s2">&#34;1e3d54f1b9f0e106773a59b7c379a89d&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&#34;75c02fc5b995a17bc6aa35cb218d77673c2779496c263e60ad2e72308f04c7fc45945bc005c0581f68cde2d86f427559&#34;</span><span class="p">,</span><span class="s2">&#34;2861dcee3abe0beb543a42a83f765f8e8447799da043820c2fa534f47ef86e84bcb75dbab2b13772c66626d9461b64dffbd222ab8cb6098675785d68a054580a&#34;</span><span class="p">,</span><span class="s2">&#34;01f629f493a28c3f2c4fe5aa660bba59d58aa1f464c1d359d6682f6f166e8c2c0a8b8639a577108a7ba285fa2314ee0b3cf150f69ad4311680e15b55994a0260&#34;</span><span class="p">,</span><span class="s2">&#34;7277c5f144e04d2eaefa418ad6003a2350e8dfabb3e295b4d427679198881b6a12207b0b9d99831218db551b8469f577&#34;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">encrypt_data</span> <span class="o">=</span> <span class="nb">bytes</span><span class="o">.</span><span class="n">fromhex</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">encrypt_data_length</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">encrypt_data</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;[+] 数据总长度为：</span><span class="si">{</span><span class="n">encrypt_data_length</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># encrypt_data_length = int.from_bytes(encrypt_data[:4], byteorder=&#39;big&#39;, signed=False)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">data</span> <span class="o">=</span> <span class="n">encrypt_data</span><span class="p">[:</span><span class="n">encrypt_data_length</span><span class="o">-</span><span class="mi">16</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">        <span class="n">signature</span> <span class="o">=</span> <span class="n">encrypt_data</span><span class="p">[</span><span class="n">encrypt_data_length</span><span class="o">-</span><span class="mi">16</span><span class="p">:]</span>
+</span></span><span class="line"><span class="cl">        <span class="n">iv_bytes</span> <span class="o">=</span> <span class="sa">b</span><span class="s2">&#34;abcdefghijklmnop&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">dec</span> <span class="o">=</span> <span class="n">decrypt</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">iv_bytes</span><span class="p">,</span> <span class="n">signature</span><span class="p">,</span> <span class="n">SHARED_KEY</span><span class="p">,</span> <span class="n">HMAC_KEY</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;</span><span class="si">{</span><span class="s1">&#39;=&#39;</span><span class="o">*</span><span class="mi">80</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;[+] counter: </span><span class="si">{}</span><span class="s2">&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">int</span><span class="o">.</span><span class="n">from_bytes</span><span class="p">(</span><span class="n">dec</span><span class="p">[:</span><span class="mi">4</span><span class="p">],</span> <span class="n">byteorder</span><span class="o">=</span><span class="s1">&#39;big&#39;</span><span class="p">,</span> <span class="n">signed</span><span class="o">=</span><span class="kc">False</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;[+] 任务返回长度: </span><span class="si">{}</span><span class="s2">&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">int</span><span class="o">.</span><span class="n">from_bytes</span><span class="p">(</span><span class="n">dec</span><span class="p">[</span><span class="mi">4</span><span class="p">:</span><span class="mi">8</span><span class="p">],</span> <span class="n">byteorder</span><span class="o">=</span><span class="s1">&#39;big&#39;</span><span class="p">,</span> <span class="n">signed</span><span class="o">=</span><span class="kc">False</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;[+] 任务输出类型: </span><span class="si">{}</span><span class="s2">&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">int</span><span class="o">.</span><span class="n">from_bytes</span><span class="p">(</span><span class="n">dec</span><span class="p">[</span><span class="mi">8</span><span class="p">:</span><span class="mi">12</span><span class="p">],</span> <span class="n">byteorder</span><span class="o">=</span><span class="s1">&#39;big&#39;</span><span class="p">,</span> <span class="n">signed</span><span class="o">=</span><span class="kc">False</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="n">hexdump</span><span class="o">.</span><span class="n">hexdump</span><span class="p">(</span><span class="n">dec</span><span class="p">))</span></span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight" id="id-8"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="p">[</span><span class="o">+</span><span class="p">]</span> <span class="n">数据总长度为</span><span class="err">：</span><span class="mi">48</span>
+</span></span><span class="line"><span class="cl"><span class="o">================================================================================</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="o">+</span><span class="p">]</span> <span class="n">counter</span><span class="p">:</span> <span class="mi">1734332826</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="o">+</span><span class="p">]</span> <span class="n">任务返回长度</span><span class="p">:</span> <span class="mi">16</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="o">+</span><span class="p">]</span> <span class="n">任务输出类型</span><span class="p">:</span> <span class="mi">4</span>
+</span></span><span class="line"><span class="cl"><span class="mi">00000000</span><span class="p">:</span> <span class="mi">67</span> <span class="mi">5</span><span class="n">F</span> <span class="n">D1</span> <span class="mi">9</span><span class="n">A</span> <span class="mi">00</span> <span class="mi">00</span> <span class="mi">00</span> <span class="mi">10</span>  <span class="mi">00</span> <span class="mi">00</span> <span class="mi">00</span> <span class="mi">04</span> <span class="mi">00</span> <span class="mi">00</span> <span class="mi">00</span> <span class="mi">08</span>  <span class="n">g_</span><span class="o">..............</span>
+</span></span><span class="line"><span class="cl"><span class="mi">00000010</span><span class="p">:</span> <span class="mi">00</span> <span class="mi">00</span> <span class="mi">00</span> <span class="mi">64</span> <span class="mi">00</span> <span class="mi">00</span> <span class="mi">00</span> <span class="mi">5</span><span class="n">A</span>  <span class="mi">41</span> <span class="mi">41</span> <span class="mi">41</span> <span class="mi">41</span> <span class="mi">41</span> <span class="mi">41</span> <span class="mi">41</span> <span class="mi">41</span>  <span class="o">...</span><span class="n">d</span><span class="o">...</span><span class="n">ZAAAAAAAA</span>
+</span></span><span class="line"><span class="cl"><span class="kc">None</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="o">+</span><span class="p">]</span> <span class="n">数据总长度为</span><span class="err">：</span><span class="mi">64</span>
+</span></span><span class="line"><span class="cl"><span class="o">================================================================================</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="o">+</span><span class="p">]</span> <span class="n">counter</span><span class="p">:</span> <span class="mi">1734332874</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="o">+</span><span class="p">]</span> <span class="n">任务返回长度</span><span class="p">:</span> <span class="mi">37</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="o">+</span><span class="p">]</span> <span class="n">任务输出类型</span><span class="p">:</span> <span class="mi">78</span>
+</span></span><span class="line"><span class="cl"><span class="mi">00000000</span><span class="p">:</span> <span class="mi">67</span> <span class="mi">5</span><span class="n">F</span> <span class="n">D1</span> <span class="n">CA</span> <span class="mi">00</span> <span class="mi">00</span> <span class="mi">00</span> <span class="mi">25</span>  <span class="mi">00</span> <span class="mi">00</span> <span class="mi">00</span> <span class="mi">4</span><span class="n">E</span> <span class="mi">00</span> <span class="mi">00</span> <span class="mi">00</span> <span class="mi">1</span><span class="n">D</span>  <span class="n">g_</span><span class="o">.....%...</span><span class="n">N</span><span class="o">....</span>
+</span></span><span class="line"><span class="cl"><span class="mi">00000010</span><span class="p">:</span> <span class="mi">00</span> <span class="mi">00</span> <span class="mi">00</span> <span class="mi">09</span> <span class="mi">25</span> <span class="mi">43</span> <span class="mi">4</span><span class="n">F</span> <span class="mi">4</span><span class="n">D</span>  <span class="mi">53</span> <span class="mi">50</span> <span class="mi">45</span> <span class="mi">43</span> <span class="mi">25</span> <span class="mi">00</span> <span class="mi">00</span> <span class="mi">00</span>  <span class="o">....%</span><span class="n">COMSPEC</span><span class="o">%...</span>
+</span></span><span class="line"><span class="cl"><span class="mi">00000020</span><span class="p">:</span> <span class="mi">0</span><span class="n">A</span> <span class="mi">20</span> <span class="mi">2</span><span class="n">F</span> <span class="mi">43</span> <span class="mi">20</span> <span class="mi">77</span> <span class="mi">68</span> <span class="mi">6</span><span class="n">F</span>  <span class="mi">61</span> <span class="mi">6</span><span class="n">D</span> <span class="mi">69</span> <span class="mi">00</span> <span class="mi">00</span> <span class="mi">41</span> <span class="mi">41</span> <span class="mi">41</span>  <span class="o">.</span> <span class="o">/</span><span class="n">C</span> <span class="n">whoami</span><span class="o">..</span><span class="n">AAA</span>
+</span></span><span class="line"><span class="cl"><span class="kc">None</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="o">+</span><span class="p">]</span> <span class="n">数据总长度为</span><span class="err">：</span><span class="mi">64</span>
+</span></span><span class="line"><span class="cl"><span class="o">================================================================================</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="o">+</span><span class="p">]</span> <span class="n">counter</span><span class="p">:</span> <span class="mi">1734332876</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="o">+</span><span class="p">]</span> <span class="n">任务返回长度</span><span class="p">:</span> <span class="mi">34</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="o">+</span><span class="p">]</span> <span class="n">任务输出类型</span><span class="p">:</span> <span class="mi">78</span>
+</span></span><span class="line"><span class="cl"><span class="mi">00000000</span><span class="p">:</span> <span class="mi">67</span> <span class="mi">5</span><span class="n">F</span> <span class="n">D1</span> <span class="n">CC</span> <span class="mi">00</span> <span class="mi">00</span> <span class="mi">00</span> <span class="mi">22</span>  <span class="mi">00</span> <span class="mi">00</span> <span class="mi">00</span> <span class="mi">4</span><span class="n">E</span> <span class="mi">00</span> <span class="mi">00</span> <span class="mi">00</span> <span class="mi">1</span><span class="n">A</span>  <span class="n">g_</span><span class="o">.....</span><span class="s2">&#34;...N....</span>
+</span></span><span class="line"><span class="cl"><span class="mi">00000010</span><span class="p">:</span> <span class="mi">00</span> <span class="mi">00</span> <span class="mi">00</span> <span class="mi">09</span> <span class="mi">25</span> <span class="mi">43</span> <span class="mi">4</span><span class="n">F</span> <span class="mi">4</span><span class="n">D</span>  <span class="mi">53</span> <span class="mi">50</span> <span class="mi">45</span> <span class="mi">43</span> <span class="mi">25</span> <span class="mi">00</span> <span class="mi">00</span> <span class="mi">00</span>  <span class="o">....%</span><span class="n">COMSPEC</span><span class="o">%...</span>
+</span></span><span class="line"><span class="cl"><span class="mi">00000020</span><span class="p">:</span> <span class="mi">07</span> <span class="mi">20</span> <span class="mi">2</span><span class="n">F</span> <span class="mi">43</span> <span class="mi">20</span> <span class="mi">64</span> <span class="mi">69</span> <span class="mi">72</span>  <span class="mi">00</span> <span class="mi">00</span> <span class="mi">41</span> <span class="mi">41</span> <span class="mi">41</span> <span class="mi">41</span> <span class="mi">41</span> <span class="mi">41</span>  <span class="o">.</span> <span class="o">/</span><span class="n">C</span> <span class="nb">dir</span><span class="o">..</span><span class="n">AAAAAA</span>
+</span></span><span class="line"><span class="cl"><span class="kc">None</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="o">+</span><span class="p">]</span> <span class="n">数据总长度为</span><span class="err">：</span><span class="mi">48</span>
+</span></span><span class="line"><span class="cl"><span class="o">================================================================================</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="o">+</span><span class="p">]</span> <span class="n">counter</span><span class="p">:</span> <span class="mi">1734332896</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="o">+</span><span class="p">]</span> <span class="n">任务返回长度</span><span class="p">:</span> <span class="mi">19</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="o">+</span><span class="p">]</span> <span class="n">任务输出类型</span><span class="p">:</span> <span class="mi">53</span>
+</span></span><span class="line"><span class="cl"><span class="mi">00000000</span><span class="p">:</span> <span class="mi">67</span> <span class="mi">5</span><span class="n">F</span> <span class="n">D1</span> <span class="n">E0</span> <span class="mi">00</span> <span class="mi">00</span> <span class="mi">00</span> <span class="mi">13</span>  <span class="mi">00</span> <span class="mi">00</span> <span class="mi">00</span> <span class="mi">35</span> <span class="mi">00</span> <span class="mi">00</span> <span class="mi">00</span> <span class="mi">0</span><span class="n">B</span>  <span class="n">g_</span><span class="o">........</span><span class="mf">.5</span><span class="o">....</span>
+</span></span><span class="line"><span class="cl"><span class="mi">00000010</span><span class="p">:</span> <span class="mi">00</span> <span class="mi">00</span> <span class="mi">00</span> <span class="mi">01</span> <span class="mi">00</span> <span class="mi">00</span> <span class="mi">00</span> <span class="mi">03</span>  <span class="mi">2</span><span class="n">E</span> <span class="mi">5</span><span class="n">C</span> <span class="mi">2</span><span class="n">A</span> <span class="mi">41</span> <span class="mi">41</span> <span class="mi">41</span> <span class="mi">41</span> <span class="mi">41</span>  <span class="o">.........</span>\<span class="o">*</span><span class="n">AAAAA</span>
+</span></span><span class="line"><span class="cl"><span class="kc">None</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>仔细观察以上数据其实可以发现攻击者一共就要求执行了<code>whoami</code>和<code>dir</code>这两个命令</p>
+<p>然后我们将解密得到的流量包文件保存为<code>secret.pcapng</code>，打开翻看，发现主要是UDP流量</p>
 <p><img loading="lazy" src="imgs/image-20250227214805641.png" alt="imgs/image-20250227214805641.png" srcset="imgs/image-20250227214805641.png?size=small, imgs/image-20250227214805641.png?size=medium 1.5x, imgs/image-20250227214805641.png?size=large 2x" data-title="imgs/image-20250227214805641.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p><img loading="lazy" src="imgs/image-20250227214831328.png" alt="imgs/image-20250227214831328.png" srcset="imgs/image-20250227214831328.png?size=small, imgs/image-20250227214831328.png?size=medium 1.5x, imgs/image-20250227214831328.png?size=large 2x" data-title="imgs/image-20250227214831328.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
-<p>赛后和师傅们交流后知道了是<code>CS1.6</code>的流量，这里的出题思路参考自 <a href="https://www.anquanke.com/post/id/261339#h2-0"target="_blank" rel="external nofollow noopener noreferrer">2021L3HCTF Lambda</a></p>
-<p>这也呼应了题目名(CSCS)，CS流量里套了一个CS1.6流量</p></div><div class="post-footer" id="post-footer">
+<p>赛后和师傅们交流后知道了是<code>CS(反恐精英)1.6</code>的流量，这里的出题思路参考自 <a href="https://www.anquanke.com/post/id/261339#h2-0"target="_blank" rel="external nofollow noopener noreferrer">2021L3HCTF Lambda</a></p>
+<p>这也呼应了题目名(CSCS)，CS流量里套了一个<code>CS(反恐精英)1.6</code>流量</p>
+<blockquote>
+<p><a href="https://github.com/rehlds/ReHLDS/"target="_blank" rel="external nofollow noopener noreferrer">ReHLDS</a> 是一个 C++ 开源项目，它是 HLDS（Half-Life Dedicated Server）的一个优化版本</p>
+<p>专门用来搭建 反恐精英1.6（CS 1.6）等基于 Half-Life 引擎的游戏服务器。</p>
+</blockquote>
+<p>但是这道题没有2021L3HCTF那题那么复杂，因为这里的数据包带的数据都比较短</p>
+<p>因此这里直接一个个包解码过去就行，也不用根据解密后数据的长度进行分块处理</p>
+<p>首先把解密的CPP代码在Linux下编译成.so文件</p>
+<div class="highlight" id="id-9"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">extern</span> <span class="s">&#34;C&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="nf">_LongSwap</span><span class="p">(</span><span class="kt">int</span> <span class="n">l</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">res</span> <span class="o">=</span> <span class="n">__builtin_bswap32</span><span class="p">(</span><span class="o">*</span><span class="p">(</span><span class="kt">unsigned</span> <span class="kt">int</span> <span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">l</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="o">*</span><span class="p">(</span><span class="kt">int</span> <span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="p">(</span><span class="n">res</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">const</span> <span class="kt">unsigned</span> <span class="kt">char</span> <span class="n">mungify_table2</span><span class="p">[]</span> <span class="o">=</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="mh">0x05</span><span class="p">,</span> <span class="mh">0x61</span><span class="p">,</span> <span class="mh">0x7A</span><span class="p">,</span> <span class="mh">0xED</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="mh">0x1B</span><span class="p">,</span> <span class="mh">0xCA</span><span class="p">,</span> <span class="mh">0x0D</span><span class="p">,</span> <span class="mh">0x9B</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="mh">0x4A</span><span class="p">,</span> <span class="mh">0xF1</span><span class="p">,</span> <span class="mh">0x64</span><span class="p">,</span> <span class="mh">0xC7</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="mh">0xB5</span><span class="p">,</span> <span class="mh">0x8E</span><span class="p">,</span> <span class="mh">0xDF</span><span class="p">,</span> <span class="mh">0xA0</span><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kt">void</span> <span class="nf">COM_UnMunge2</span><span class="p">(</span><span class="kt">unsigned</span> <span class="kt">char</span> <span class="o">*</span><span class="n">data</span><span class="p">,</span> <span class="kt">int</span> <span class="n">len</span><span class="p">,</span> <span class="kt">int</span> <span class="n">seq</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">mungelen</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">c</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="o">*</span><span class="n">pc</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">unsigned</span> <span class="kt">char</span> <span class="o">*</span><span class="n">p</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">j</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">mungelen</span> <span class="o">=</span> <span class="n">len</span> <span class="o">&amp;</span> <span class="o">~</span><span class="mi">3</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">mungelen</span> <span class="o">/=</span> <span class="mi">4</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">mungelen</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">pc</span> <span class="o">=</span> <span class="p">(</span><span class="kt">int</span> <span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">data</span><span class="p">[</span><span class="n">i</span> <span class="o">*</span> <span class="mi">4</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">            <span class="n">c</span> <span class="o">=</span> <span class="o">*</span><span class="n">pc</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">c</span> <span class="o">^=</span> <span class="n">seq</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="n">p</span> <span class="o">=</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">char</span> <span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">c</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="k">for</span> <span class="p">(</span><span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="mi">4</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="o">*</span><span class="n">p</span><span class="o">++</span> <span class="o">^=</span> <span class="p">(</span><span class="mh">0xa5</span> <span class="o">|</span> <span class="p">(</span><span class="n">j</span> <span class="o">&lt;&lt;</span> <span class="n">j</span><span class="p">)</span> <span class="o">|</span> <span class="n">j</span> <span class="o">|</span> <span class="n">mungify_table2</span><span class="p">[(</span><span class="n">i</span> <span class="o">+</span> <span class="n">j</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mh">0x0f</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="n">c</span> <span class="o">=</span> <span class="n">_LongSwap</span><span class="p">(</span><span class="n">c</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">c</span> <span class="o">^=</span> <span class="o">~</span><span class="n">seq</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="o">*</span><span class="n">pc</span> <span class="o">=</span> <span class="n">c</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight" id="id-10"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">g++ -shared -fPIC -o a.so a.cpp
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># g++：使用 C++ 编译器进行编译。</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># -shared：指示编译器生成共享库（.so 文件）。</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># -fPIC：生成位置无关代码（Position Independent Code），这是生成共享库所必需的。</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># -o libcom_unmunge.so：指定输出文件名为 libcom_unmunge.so。</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># com_unmunge.cpp：源代码文件名。</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>Linux下输入以上命令即可编译得到 a.so</p>
+<div class="highlight" id="id-11"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">json</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">ctypes</span> <span class="kn">import</span> <span class="o">*</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">subprocess</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">tshark_path</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&#34;tshark&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">lib</span><span class="o">=</span><span class="n">CDLL</span><span class="p">(</span><span class="s1">&#39;./a.so&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">COM_UnMunge</span><span class="o">=</span><span class="n">lib</span><span class="o">.</span><span class="n">COM_UnMunge2</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">solve</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="n">command</span> <span class="o">=</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">        <span class="n">tshark_path</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s1">&#39;-r&#39;</span><span class="p">,</span> <span class="s2">&#34;secret.pcapng&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s1">&#39;-Y&#39;</span><span class="p">,</span> <span class="s1">&#39;udp&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s1">&#39;-T&#39;</span><span class="p">,</span> <span class="s1">&#39;json&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s1">&#39;-e&#39;</span><span class="p">,</span> <span class="s1">&#39;ip.src&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s1">&#39;-e&#39;</span><span class="p">,</span> <span class="s1">&#39;ip.dst&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s1">&#39;-e&#39;</span><span class="p">,</span> <span class="s1">&#39;data.data&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="n">res</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">command</span><span class="p">,</span> <span class="n">stdout</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">PIPE</span><span class="p">,</span> <span class="n">stderr</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">PIPE</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">json_out</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">stdout</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">packet</span> <span class="ow">in</span> <span class="n">json_out</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">try</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">layers</span> <span class="o">=</span> <span class="n">packet</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;_source&#39;</span><span class="p">,</span> <span class="p">{})</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;layers&#39;</span><span class="p">,</span> <span class="p">{})</span>
+</span></span><span class="line"><span class="cl">            <span class="n">ip_src</span> <span class="o">=</span> <span class="n">layers</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;ip.src&#39;</span><span class="p">,</span> <span class="p">[</span><span class="kc">None</span><span class="p">])[</span><span class="mi">0</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">            <span class="n">ip_dst</span> <span class="o">=</span> <span class="n">layers</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;ip.dst&#39;</span><span class="p">,</span> <span class="p">[</span><span class="kc">None</span><span class="p">])[</span><span class="mi">0</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">            <span class="n">data</span> <span class="o">=</span> <span class="n">layers</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;data.data&#39;</span><span class="p">,</span> <span class="p">[</span><span class="kc">None</span><span class="p">])[</span><span class="mi">0</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="ow">not</span> <span class="nb">all</span><span class="p">([</span><span class="n">ip_src</span><span class="p">,</span> <span class="n">ip_dst</span><span class="p">,</span> <span class="n">data</span><span class="p">]):</span>
+</span></span><span class="line"><span class="cl">                <span class="k">continue</span>
+</span></span><span class="line"><span class="cl">            <span class="n">bytes_data</span> <span class="o">=</span> <span class="nb">bytes</span><span class="o">.</span><span class="n">fromhex</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="n">enc_data</span> <span class="o">=</span> <span class="n">bytes_data</span><span class="p">[</span><span class="mi">8</span><span class="p">:]</span>
+</span></span><span class="line"><span class="cl">            <span class="n">seq</span> <span class="o">=</span> <span class="n">bytes_data</span><span class="p">[:</span><span class="mi">4</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">            <span class="n">buf</span><span class="o">=</span><span class="n">create_string_buffer</span><span class="p">(</span><span class="n">enc_data</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="n">COM_UnMunge</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">enc_data</span><span class="p">),</span><span class="n">seq</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">            <span class="n">buf</span> <span class="o">=</span> <span class="nb">bytes</span><span class="p">(</span><span class="n">buf</span><span class="p">)</span> <span class="c1"># 这里要先把 C-String 类型转为 bytes 类型</span>
+</span></span><span class="line"><span class="cl">            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;[+] </span><span class="si">{</span><span class="n">ip_src</span><span class="si">}</span><span class="s2"> ==&gt; </span><span class="si">{</span><span class="n">ip_dst</span><span class="si">}</span><span class="s2">:</span><span class="se">\n</span><span class="si">{</span><span class="nb">bytes</span><span class="p">(</span><span class="n">buf</span><span class="p">)</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="sa">b</span><span class="s1">&#39;DASCTF&#39;</span> <span class="ow">in</span> <span class="n">buf</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                <span class="k">break</span>
+</span></span><span class="line"><span class="cl">        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;[x] </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&#34;__main__&#34;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">solve</span><span class="p">()</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>最后Linux下运行以上代码即可得到最后的flag：<code>DASCTF{C0UnT3R_S7R1K3_4nD_C0BaLt_57RIK3_4LL_FUN}</code></p>
+<p><img loading="lazy" src="imgs/image-20250228152411061.png" alt="imgs/image-20250228152411061.png" srcset="imgs/image-20250228152411061.png?size=small, imgs/image-20250228152411061.png?size=medium 1.5x, imgs/image-20250228152411061.png?size=large 2x" data-title="imgs/image-20250228152411061.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p></div><div class="post-footer" id="post-footer">
   <div class="post-info">
     <div class="post-info-line">
       <div class="post-info-mod">
-        <span title="Updated on 2025-02-27 21:35:37">Updated on 2025-02-27&nbsp;</span>
+        <span title="Updated on 2025-02-28 14:35:37">Updated on 2025-02-28&nbsp;</span>
       </div></div><div class="post-info-line">
         <div class="post-info-md"><span><a href="/posts/f002407/index.md" title="Read Markdown" class="link-to-markdown">Read Markdown</a></span></div>
         <div class="post-info-share">

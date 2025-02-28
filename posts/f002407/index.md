@@ -384,24 +384,217 @@ F       282     08/23/2017 14:18:35     desktop.ini
 F       349588  12/16/2024 15:08:31     secret
 ```
 
-我们用第一个代码解密`C2服务端(10.11.4.3)`要求客户端执行命令的数据包，可以得到一个`pacpng`流量包文件
+我们用第一个代码解密`C2服务端(10.11.4.3)`要求客户端执行命令的最大的那个数据包，可以得到一个`pacpng`流量包文件
 
 结合第二个代码解密出来的`submit.php`的数据，应该就是那个`secret.pcapng`了
 
 ![](imgs/image-20250227214140287.png)
 
+用以下代码解其余心跳包的数据可以得到攻击者要求受害客户端执行的其他命令
 
-将得到的流量包文件保存为`secret.pcapng`，打开翻看，发现主要是UDP流量
+```python
+import hmac
+import binascii
+import base64
+import hexdump
+from Crypto.Cipher import AES
+
+def decrypt(encrypted_data, iv_bytes, signature, shared_key, hmac_key):
+    if hmac.new(hmac_key, encrypted_data, digestmod=&#34;sha256&#34;).digest()[:16] != signature:
+        print(&#34;message authentication failed&#34;)
+        return
+    cipher = AES.new(shared_key, AES.MODE_CBC, iv_bytes)
+    return cipher.decrypt(encrypted_data)
+
+if __name__ == &#34;__main__&#34;:
+    SHARED_KEY = binascii.unhexlify(&#34;9fe14473479a283821241e2af78017e8&#34;)
+    HMAC_KEY = binascii.unhexlify(&#34;1e3d54f1b9f0e106773a59b7c379a89d&#34;)
+    data = [&#34;75c02fc5b995a17bc6aa35cb218d77673c2779496c263e60ad2e72308f04c7fc45945bc005c0581f68cde2d86f427559&#34;,&#34;2861dcee3abe0beb543a42a83f765f8e8447799da043820c2fa534f47ef86e84bcb75dbab2b13772c66626d9461b64dffbd222ab8cb6098675785d68a054580a&#34;,&#34;01f629f493a28c3f2c4fe5aa660bba59d58aa1f464c1d359d6682f6f166e8c2c0a8b8639a577108a7ba285fa2314ee0b3cf150f69ad4311680e15b55994a0260&#34;,&#34;7277c5f144e04d2eaefa418ad6003a2350e8dfabb3e295b4d427679198881b6a12207b0b9d99831218db551b8469f577&#34;]
+    for item in data:
+        encrypt_data = bytes.fromhex(item)
+        encrypt_data_length = len(encrypt_data)
+        print(f&#34;[&#43;] 数据总长度为：{encrypt_data_length}&#34;)
+        # encrypt_data_length = int.from_bytes(encrypt_data[:4], byteorder=&#39;big&#39;, signed=False)
+        data = encrypt_data[:encrypt_data_length-16]
+        signature = encrypt_data[encrypt_data_length-16:]
+        iv_bytes = b&#34;abcdefghijklmnop&#34;
+
+        dec = decrypt(data, iv_bytes, signature, SHARED_KEY, HMAC_KEY)
+        print(f&#34;{&#39;=&#39;*80}&#34;)
+        print(&#34;[&#43;] counter: {}&#34;.format(int.from_bytes(dec[:4], byteorder=&#39;big&#39;, signed=False)))
+        print(&#34;[&#43;] 任务返回长度: {}&#34;.format(int.from_bytes(dec[4:8], byteorder=&#39;big&#39;, signed=False)))
+        print(&#34;[&#43;] 任务输出类型: {}&#34;.format(int.from_bytes(dec[8:12], byteorder=&#39;big&#39;, signed=False)))
+        print(hexdump.hexdump(dec))
+```
+
+```python
+[&#43;] 数据总长度为：48
+================================================================================
+[&#43;] counter: 1734332826
+[&#43;] 任务返回长度: 16
+[&#43;] 任务输出类型: 4
+00000000: 67 5F D1 9A 00 00 00 10  00 00 00 04 00 00 00 08  g_..............
+00000010: 00 00 00 64 00 00 00 5A  41 41 41 41 41 41 41 41  ...d...ZAAAAAAAA
+None
+[&#43;] 数据总长度为：64
+================================================================================
+[&#43;] counter: 1734332874
+[&#43;] 任务返回长度: 37
+[&#43;] 任务输出类型: 78
+00000000: 67 5F D1 CA 00 00 00 25  00 00 00 4E 00 00 00 1D  g_.....%...N....
+00000010: 00 00 00 09 25 43 4F 4D  53 50 45 43 25 00 00 00  ....%COMSPEC%...
+00000020: 0A 20 2F 43 20 77 68 6F  61 6D 69 00 00 41 41 41  . /C whoami..AAA
+None
+[&#43;] 数据总长度为：64
+================================================================================
+[&#43;] counter: 1734332876
+[&#43;] 任务返回长度: 34
+[&#43;] 任务输出类型: 78
+00000000: 67 5F D1 CC 00 00 00 22  00 00 00 4E 00 00 00 1A  g_.....&#34;...N....
+00000010: 00 00 00 09 25 43 4F 4D  53 50 45 43 25 00 00 00  ....%COMSPEC%...
+00000020: 07 20 2F 43 20 64 69 72  00 00 41 41 41 41 41 41  . /C dir..AAAAAA
+None
+[&#43;] 数据总长度为：48
+================================================================================
+[&#43;] counter: 1734332896
+[&#43;] 任务返回长度: 19
+[&#43;] 任务输出类型: 53
+00000000: 67 5F D1 E0 00 00 00 13  00 00 00 35 00 00 00 0B  g_.........5....
+00000010: 00 00 00 01 00 00 00 03  2E 5C 2A 41 41 41 41 41  .........\*AAAAA
+None
+```
+
+仔细观察以上数据其实可以发现攻击者一共就要求执行了`whoami`和`dir`这两个命令
+
+然后我们将解密得到的流量包文件保存为`secret.pcapng`，打开翻看，发现主要是UDP流量
 
 ![](imgs/image-20250227214805641.png)
 
 
 ![](imgs/image-20250227214831328.png)
 
-赛后和师傅们交流后知道了是`CS1.6`的流量，这里的出题思路参考自 [2021L3HCTF Lambda](https://www.anquanke.com/post/id/261339#h2-0)
+赛后和师傅们交流后知道了是`CS(反恐精英)1.6`的流量，这里的出题思路参考自 [2021L3HCTF Lambda](https://www.anquanke.com/post/id/261339#h2-0)
 
-这也呼应了题目名(CSCS)，CS流量里套了一个CS1.6流量
+这也呼应了题目名(CSCS)，CS流量里套了一个`CS(反恐精英)1.6`流量
 
+&gt; [ReHLDS](https://github.com/rehlds/ReHLDS/) 是一个 C&#43;&#43; 开源项目，它是 HLDS（Half-Life Dedicated Server）的一个优化版本
+&gt; 
+&gt; 专门用来搭建 反恐精英1.6（CS 1.6）等基于 Half-Life 引擎的游戏服务器。
+
+但是这道题没有2021L3HCTF那题那么复杂，因为这里的数据包带的数据都比较短
+
+因此这里直接一个个包解码过去就行，也不用根据解密后数据的长度进行分块处理
+
+首先把解密的CPP代码在Linux下编译成.so文件
+
+```cpp
+extern &#34;C&#34;
+{
+    int _LongSwap(int l)
+    {
+        unsigned int res = __builtin_bswap32(*(unsigned int *)&amp;l);
+        return *(int *)&amp;(res);
+    }
+
+    const unsigned char mungify_table2[] =
+        {
+            0x05, 0x61, 0x7A, 0xED,
+            0x1B, 0xCA, 0x0D, 0x9B,
+            0x4A, 0xF1, 0x64, 0xC7,
+            0xB5, 0x8E, 0xDF, 0xA0};
+
+    void COM_UnMunge2(unsigned char *data, int len, int seq)
+    {
+        int i;
+        int mungelen;
+        int c;
+        int *pc;
+        unsigned char *p;
+        int j;
+
+        mungelen = len &amp; ~3;
+        mungelen /= 4;
+
+        for (i = 0; i &lt; mungelen; i&#43;&#43;)
+        {
+            pc = (int *)&amp;data[i * 4];
+            c = *pc;
+            c ^= seq;
+
+            p = (unsigned char *)&amp;c;
+            for (j = 0; j &lt; 4; j&#43;&#43;)
+            {
+                *p&#43;&#43; ^= (0xa5 | (j &lt;&lt; j) | j | mungify_table2[(i &#43; j) &amp; 0x0f]);
+            }
+
+            c = _LongSwap(c);
+            c ^= ~seq;
+            *pc = c;
+        }
+    }
+}
+```
+
+```bash
+g&#43;&#43; -shared -fPIC -o a.so a.cpp
+
+# g&#43;&#43;：使用 C&#43;&#43; 编译器进行编译。
+# -shared：指示编译器生成共享库（.so 文件）。
+# -fPIC：生成位置无关代码（Position Independent Code），这是生成共享库所必需的。
+# -o libcom_unmunge.so：指定输出文件名为 libcom_unmunge.so。
+# com_unmunge.cpp：源代码文件名。
+```
+
+Linux下输入以上命令即可编译得到 a.so
+
+```python
+import json
+from ctypes import *
+import subprocess
+
+tshark_path = r&#34;tshark&#34;
+lib=CDLL(&#39;./a.so&#39;)
+COM_UnMunge=lib.COM_UnMunge2
+
+def solve():
+    command = [
+        tshark_path,
+        &#39;-r&#39;, &#34;secret.pcapng&#34;,
+        &#39;-Y&#39;, &#39;udp&#39;,
+        &#39;-T&#39;, &#39;json&#39;,
+        &#39;-e&#39;, &#39;ip.src&#39;,
+        &#39;-e&#39;, &#39;ip.dst&#39;,
+        &#39;-e&#39;, &#39;data.data&#39;,
+    ]
+    res = subprocess.run(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+    json_out = json.loads(res.stdout)
+    for packet in json_out:
+        try:
+            layers = packet.get(&#39;_source&#39;, {}).get(&#39;layers&#39;, {})
+            ip_src = layers.get(&#39;ip.src&#39;, [None])[0]
+            ip_dst = layers.get(&#39;ip.dst&#39;, [None])[0]
+            data = layers.get(&#39;data.data&#39;, [None])[0]
+            if not all([ip_src, ip_dst, data]):
+                continue
+            bytes_data = bytes.fromhex(data)
+            enc_data = bytes_data[8:]
+            seq = bytes_data[:4]
+            buf=create_string_buffer(enc_data)
+            COM_UnMunge(buf,len(enc_data),seq[0])
+            buf = bytes(buf) # 这里要先把 C-String 类型转为 bytes 类型
+            print(f&#34;[&#43;] {ip_src} ==&gt; {ip_dst}:\n{bytes(buf)}&#34;)
+            if b&#39;DASCTF&#39; in buf:
+                break
+        except Exception as e:
+            print(f&#34;[x] {e}&#34;)
+
+if __name__ == &#34;__main__&#34;:
+    solve()
+```
+
+最后Linux下运行以上代码即可得到最后的flag：`DASCTF{C0UnT3R_S7R1K3_4nD_C0BaLt_57RIK3_4LL_FUN}`
+
+![](imgs/image-20250228152411061.png)
 
 
 
