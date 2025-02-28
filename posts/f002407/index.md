@@ -20,7 +20,7 @@
 
 题目附件给了 access.log 和 error.log 两个日志文件
 
-简单翻看后，我们重点关注error.log，发现传了一个蚁剑的PHP Webshell
+简单翻看后，我们重点关注error.log，发现传了一个PHP的Webshell
 
 ![](imgs/image-20250118234608767.png)
 

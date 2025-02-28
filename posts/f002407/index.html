@@ -14,7 +14,7 @@
 趁着写毕设没啥思路和动力的功夫，来稍微复盘下今年西湖论剑的题">
   <meta itemprop="datePublished" content="2025-02-28T14:35:37+08:00">
   <meta itemprop="dateModified" content="2025-02-28T14:35:37+08:00">
-  <meta itemprop="wordCount" content="2667">
+  <meta itemprop="wordCount" content="2666">
   <meta itemprop="keywords" content="CTF,Misc,Writeup"><meta property="og:url" content="https://goodlunatic.github.io/posts/f002407/">
   <meta property="og:site_name" content="⚡Lunatic BLOG⚡">
   <meta property="og:title" content="2025 西湖论剑·中国杭州网络安全技能大赛 Misc Writeup">
@@ -45,7 +45,7 @@
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": "https:\/\/goodlunatic.github.io\/posts\/f002407\/"
-    },"genre": "posts","keywords": "CTF, Misc, Writeup","wordcount":  2667 ,
+    },"genre": "posts","keywords": "CTF, Misc, Writeup","wordcount":  2666 ,
     "url": "https:\/\/goodlunatic.github.io\/posts\/f002407\/","datePublished": "2025-02-28T14:35:37+08:00","dateModified": "2025-02-28T14:35:37+08:00","publisher": {
       "@type": "Organization",
       "name": ""},"author": {
@@ -185,7 +185,7 @@
 请你对附件中的日志文件进行分析，找出“张三”的身份证号和手机号，譬如其身份证号是119795199308186673，手机号是73628276413，则提交的flag为“119795199308186673_73628276413”。</p>
 </blockquote>
 <p>题目附件给了 access.log 和 error.log 两个日志文件</p>
-<p>简单翻看后，我们重点关注error.log，发现传了一个蚁剑的PHP Webshell</p>
+<p>简单翻看后，我们重点关注error.log，发现传了一个PHP的Webshell</p>
 <p><img loading="lazy" src="imgs/image-20250118234608767.png" alt="imgs/image-20250118234608767.png" srcset="imgs/image-20250118234608767.png?size=small, imgs/image-20250118234608767.png?size=medium 1.5x, imgs/image-20250118234608767.png?size=large 2x" data-title="imgs/image-20250118234608767.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>继续翻看日志文件，可以发现出题人传了一个压缩包还有一个JPG图片</p>
 <p><img loading="lazy" src="imgs/image-20250118234928372.png" alt="imgs/image-20250118234928372.png" srcset="imgs/image-20250118234928372.png?size=small, imgs/image-20250118234928372.png?size=medium 1.5x, imgs/image-20250118234928372.png?size=large 2x" data-title="imgs/image-20250118234928372.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
