@@ -4,9 +4,17 @@
     <link>https://goodlunatic.github.io/</link>
     <description>Welcome to Lunatic&#39;s BLOG ^_^</description>
     <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>goodlunatic0@gmail.com (Lunatic)</managingEditor>
-      <webMaster>goodlunatic0@gmail.com (Lunatic)</webMaster><lastBuildDate>Fri, 28 Feb 2025 14:35:37 &#43;0800</lastBuildDate>
+      <webMaster>goodlunatic0@gmail.com (Lunatic)</webMaster><lastBuildDate>Sun, 02 Mar 2025 10:34:12 &#43;0800</lastBuildDate>
       <atom:link href="https://goodlunatic.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
+  <title>Misc-Forensics</title>
+  <link>https://goodlunatic.github.io/posts/761da51/</link>
+  <pubDate>Sun, 02 Mar 2025 10:34:12 &#43;0800</pubDate>
+  <author>Lunatic</author>
+  <guid>https://goodlunatic.github.io/posts/761da51/</guid>
+  <description><![CDATA[<p><strong>This is a simple summary of digital forensics .</strong></p>]]></description>
+</item>
+<item>
   <title>2025 西湖论剑·中国杭州网络安全技能大赛 Misc Writeup</title>
   <link>https://goodlunatic.github.io/posts/f002407/</link>
   <pubDate>Fri, 28 Feb 2025 14:35:37 &#43;0800</pubDate>
@@ -83,15 +91,6 @@
   <guid>https://goodlunatic.github.io/posts/d0736a7/</guid>
   <description><![CDATA[<p><strong>用这篇博客来记录一下本人在比赛中遇到的一些疑难题（本人尚未解出的题）</strong></p>
 <p><strong>如果师傅们有进一步的想法或者做出来了，可以联系我一起交流一下解题思路</strong></p>]]></description>
-</item>
-<item>
-  <title>2024 全国大学生信息安全竞赛暨长城杯铁人三项赛初赛 Misc Writeup</title>
-  <link>https://goodlunatic.github.io/posts/ce58634/</link>
-  <pubDate>Wed, 18 Dec 2024 13:39:44 &#43;0800</pubDate>
-  <author>Lunatic</author>
-  <guid>https://goodlunatic.github.io/posts/ce58634/</guid>
-  <description><![CDATA[<p><strong>这次比赛的Misc题好像主要是威胁检测与网络流量分析</strong></p>
-<p><strong>与往年的风格有点不同，可能是和铁三一起办的原因吧</strong></p>]]></description>
 </item>
 </channel>
 </rss>

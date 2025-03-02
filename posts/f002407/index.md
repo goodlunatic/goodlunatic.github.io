@@ -115,6 +115,8 @@ sudo mdadm --create /dev/md127 --level=0 --raid-devices=5 /dev/loop0 /dev/loop1 
 
 但是当我尝试在kali上执行以上操作的时候，它不会自动识别 `RAID` 阵列并自动挂载
 
+![](imgs/image-20250302111821199.png)
+
 因此还是建议在Ubuntu系统下进行以上操作
 
 ## 题目名称 DSASignatureData

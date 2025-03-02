@@ -624,6 +624,60 @@ vhd 是 Virtual Hard Disk 虚拟磁盘的缩写，是一种用于存储虚拟机
 2、如果显示有BitLocker加密，可以先用`x-ways Forensics`转换为DD文件，然后用`PasswareKit`结合内存镜像爆破密钥
 例题1-NewStarCTF Week4-擅长加密的小明
 
+### img文件
+
+#### raid0磁盘挂载
+
+##### 方法一：(UFS直接重组)
+
+软件下载链接：[UFS Explorer Professional Recovery 9.18](https://cangshui.net/5257.html)
+
+直接用UFS打开五个img文件即可，软件会自动重组，然后点击最下面那个kali
+
+![](imgs/image-20250228162941848.png)
+
+##### 方法二：在Ubuntu下用losetup和mdadm进行组装挂载
+
+在WSL2(Ubuntu20.04)中运行一下命令即可成功挂载
+
+```bash
+sudo losetup -fP m8X4exzG.img  # 绑定第一个镜像文件到一个空闲的 loop 设备，并解析其分区表
+sudo losetup -fP Fsiq6lKn.img
+sudo losetup -fP gSoNiXLC.img
+sudo losetup -fP suPVGqm6.img
+sudo losetup -fP uGZ85OzT.img
+sudo losetup -a  # 查看当前所有已绑定的 loop 设备及其对应的文件
+cat /proc/mdstat  # 查看当前系统中已组装的 RAID 设备状态
+sudo mount /dev/md127 tmp  # 挂载 RAID 设备 md127 到 tmp 目录，尝试访问其内容
+ls -al tmp
+sudo umount tmp  # 卸载 tmp 目录，释放 md127 设备的挂载
+sudo mdadm --stop /dev/md127  # 停止 RAID 设备 md127，释放相关 loop 设备的占用
+sudo losetup -d /dev/loop0  # 解除 loop0 设备的绑定
+sudo losetup -d /dev/loop1
+sudo losetup -d /dev/loop2
+sudo losetup -d /dev/loop3
+sudo losetup -d /dev/loop4
+
+# 检查 /dev/loop0 至 /dev/loop4 上的每个设备的 RAID 元数据（查看设备是否是 RAID 阵列的一部分）
+sudo mdadm --examine /dev/loop0 /dev/loop1 /dev/loop2 /dev/loop3 /dev/loop4   
+# 创建一个名为 /dev/md127 的 RAID 0 阵列，包含 5 个设备（/dev/loop0 至 /dev/loop4）
+sudo mdadm --create /dev/md127 --level=0 --raid-devices=5 /dev/loop0 /dev/loop1 /dev/loop2 /dev/loop3 /dev/loop4   
+
+```
+
+&gt; Tips:这里我的WSL2可能启用了 `mdadm` 的 **自动检测和组装**，因此会在发现 `RAID` 元数据时自动创建 `/dev/md127`
+
+![](imgs/image-20250302105806686.png)
+
+但是当我尝试在kali上执行以上操作的时候，它不会自动识别 `RAID` 阵列并自动挂载
+
+![](imgs/image-20250302111821199.png)
+
+因此还是建议在Ubuntu系统下进行以上操作
+
+例题1-2025西湖论剑-糟糕的磁盘
+
+
 ### 磁盘取证的一些思路
 
 ### 查看Powershell的历史记录

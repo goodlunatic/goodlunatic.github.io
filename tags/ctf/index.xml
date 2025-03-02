@@ -4,7 +4,15 @@
     <link>https://goodlunatic.github.io/tags/ctf/</link>
     <description>CTF - Tag | ⚡Lunatic BLOG⚡</description>
     <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>goodlunatic0@gmail.com (Lunatic)</managingEditor>
-      <webMaster>goodlunatic0@gmail.com (Lunatic)</webMaster><lastBuildDate>Fri, 28 Feb 2025 14:35:37 &#43;0800</lastBuildDate><atom:link href="https://goodlunatic.github.io/tags/ctf/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>goodlunatic0@gmail.com (Lunatic)</webMaster><lastBuildDate>Sun, 02 Mar 2025 10:34:12 &#43;0800</lastBuildDate><atom:link href="https://goodlunatic.github.io/tags/ctf/" rel="self" type="application/rss+xml" /><item>
+  <title>Misc-Forensics</title>
+  <link>https://goodlunatic.github.io/posts/761da51/</link>
+  <pubDate>Sun, 02 Mar 2025 10:34:12 &#43;0800</pubDate>
+  <author>Lunatic</author>
+  <guid>https://goodlunatic.github.io/posts/761da51/</guid>
+  <description><![CDATA[<p><strong>This is a simple summary of digital forensics .</strong></p>]]></description>
+</item>
+<item>
   <title>2025 西湖论剑·中国杭州网络安全技能大赛 Misc Writeup</title>
   <link>https://goodlunatic.github.io/posts/f002407/</link>
   <pubDate>Fri, 28 Feb 2025 14:35:37 &#43;0800</pubDate>
@@ -72,14 +80,6 @@
   <guid>https://goodlunatic.github.io/posts/ce58634/</guid>
   <description><![CDATA[<p><strong>这次比赛的Misc题好像主要是威胁检测与网络流量分析</strong></p>
 <p><strong>与往年的风格有点不同，可能是和铁三一起办的原因吧</strong></p>]]></description>
-</item>
-<item>
-  <title>Misc-Forensics</title>
-  <link>https://goodlunatic.github.io/posts/761da51/</link>
-  <pubDate>Sat, 14 Dec 2024 11:34:12 &#43;0800</pubDate>
-  <author>Lunatic</author>
-  <guid>https://goodlunatic.github.io/posts/761da51/</guid>
-  <description><![CDATA[<p><strong>This is a simple summary of digital forensics .</strong></p>]]></description>
 </item>
 <item>
   <title>2024 国城杯网络安全挑战赛 Misc Writeup</title>
