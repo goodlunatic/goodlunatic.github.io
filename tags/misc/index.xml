@@ -4,7 +4,16 @@
     <link>https://goodlunatic.github.io/tags/misc/</link>
     <description>Misc - Tag | ⚡Lunatic BLOG⚡</description>
     <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>goodlunatic0@gmail.com (Lunatic)</managingEditor>
-      <webMaster>goodlunatic0@gmail.com (Lunatic)</webMaster><lastBuildDate>Sun, 02 Mar 2025 18:34:12 &#43;0800</lastBuildDate><atom:link href="https://goodlunatic.github.io/tags/misc/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>goodlunatic0@gmail.com (Lunatic)</webMaster><lastBuildDate>Sun, 02 Mar 2025 23:16:19 &#43;0800</lastBuildDate><atom:link href="https://goodlunatic.github.io/tags/misc/" rel="self" type="application/rss+xml" /><item>
+  <title>2024 强网拟态防御国际精英挑战赛初赛 Misc Writeup</title>
+  <link>https://goodlunatic.github.io/posts/de8e2be/</link>
+  <pubDate>Sun, 02 Mar 2025 23:16:19 &#43;0800</pubDate>
+  <author>Lunatic</author>
+  <guid>https://goodlunatic.github.io/posts/de8e2be/</guid>
+  <description><![CDATA[<p><strong>这比赛虽然有些Misc题比较搞心态，但是不得不说题目质量还是在的</strong></p>
+<p><strong>出题师傅的水平还是挺可以的，然后经验啥的感觉还是比较老练</strong></p>]]></description>
+</item>
+<item>
   <title>Misc-Forensics</title>
   <link>https://goodlunatic.github.io/posts/761da51/</link>
   <pubDate>Sun, 02 Mar 2025 18:34:12 &#43;0800</pubDate>
@@ -80,15 +89,6 @@
   <guid>https://goodlunatic.github.io/posts/ce58634/</guid>
   <description><![CDATA[<p><strong>这次比赛的Misc题好像主要是威胁检测与网络流量分析</strong></p>
 <p><strong>与往年的风格有点不同，可能是和铁三一起办的原因吧</strong></p>]]></description>
-</item>
-<item>
-  <title>2024 国城杯网络安全挑战赛 Misc Writeup</title>
-  <link>https://goodlunatic.github.io/posts/7bf9cb0/</link>
-  <pubDate>Thu, 12 Dec 2024 19:25:56 &#43;0800</pubDate>
-  <author>Lunatic</author>
-  <guid>https://goodlunatic.github.io/posts/7bf9cb0/</guid>
-  <description><![CDATA[<p><strong>忙里抽闲，简单地看了看题，感觉这场比赛的取证确实出得挺好的</strong></p>
-<p><strong>给取证题 Just_F0r3n51Cs 的出题人点个赞👍</strong></p>]]></description>
 </item>
 </channel>
 </rss>

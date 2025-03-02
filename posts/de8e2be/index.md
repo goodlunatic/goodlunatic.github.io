@@ -570,15 +570,96 @@ print(libnum.b2s(res))
 
 ![](imgs/image-20241204223043046.png)
 
-因此猜测重点不在图片上，赛后参考了WM战队师傅的Writeup后知道了可以用`010`diff一下这几个文件
+因此猜测重点不在图片上，赛后参考了WM师傅的Writeup后知道了可以用`010editor`diff一下这几个文件
 
 ![](imgs/image-20241204223403680.png)
 
 然后发现`0x3B140`前面的数据都是一样的，因此我们需要重点关注后面的数据
 
-赛后知道了后面不一样的内容每个都是btrfs(B-tree文件系统)的磁盘镜像 【长见识了】
+把每个文件从`0x3B140`开始的数据都提取出来，提取出来的数据大小如下
 
-因此我们尝试在Linux中挂载这个磁盘镜像
+![](imgs/image-20250302213148633.png)
+
+然后拉到`Kali`虚拟机里(这里最好用`kali`，因为经过测试，发现我WSL2中的Ubuntu20.04是无法准备识别这几个文件的）
+
+![WSL2-Ubuntu20.04](imgs/image-20250302213331633.png)
+
+![Kali-Linux](imgs/image-20250302213429891.png)
+然后我们使用以下几个命令挂载一下上面文件格式为`BTRFS`磁盘
+
+```bash
+sudo losetup -fP Cr6cHso43mZM.btr
+sudo losetup -fP LaQrxw9UCsuj.btr
+sudo losetup -fP UljsvrCJUkfX.btr
+sudo losetup -fP mkZEnww8DePD.btr
+sudo losetup -fP yRvRjpac8Lxo.btr
+sudo mkdir tmp
+sudo mount -o degraded /dev/loop1 tmp # 用于强制挂载可能降级（设备丢失或损坏）的Btrfs文件系统
+```
+
+![](imgs/image-20250302231559934.png)
+
+![](imgs/image-20250302231614957.png)
+
+然后发现有一个`roll1`的文件以及一些输入法的配置文件
+
+用010打开`roll1`没有发现什么有用的信息
+
+![](imgs/image-20250302232013754.png)
+
+然后再翻看输入法的配置文件
+
+`README.txt`中的内容如下，发现是桃花源记
+
+&gt; 便舍船，从口入。初极狭，才通人。复行数十步，豁然开朗。土地平旷，屋舍俨然。有良田美池桑竹之属。阡陌交通，鸡犬相闻。其中往来种作，男女衣著，悉如外人。
+
+根据这个输入法的配置文件，猜测对应关系藏在输入法的用户词库中
+
+我们去网上搜`rime`输入法，可以搜到一个小狼毫输入法，我们尝试在windows下安装
+
+![](imgs/image-20250302232435573.png)
+
+
+把配置文件复制到用户文件夹中
+
+![](imgs/image-20250302232414410.png)
+
+然后打开用户词典管理-导出文本码表
+
+![](imgs/image-20250302232548367.png)
+
+导出后即可得到如下内容
+
+```
+# Rime user dictionary export
+#@/db_name	meow_emoji
+#@/db_type	userdb
+#@/rime_version	1.11.2
+#@/tick	20
+#@/user_id	364e1e09-5ee6-4cef-8e69-1a6a587b431e
+ｆ	bian	1
+２－	bu	1
+３ａ	cai tong	1
+ｅａ	chu ji	1
+ｇ(９	cong kou	3
+ｇａ	cong tong	1
+ａｆｄｄ	fu xing	1
+８０８ａ	huo ran	1
+－ｃ８８	kai lang	1
+ｃｂ６ａ	ping kuang	1
+ｅ－	ren	2
+ｅ	ru	1
+ｌａ	she chuan	1
+－４０８	shu shi	1
+０６ａ８	tu di	1
+８) ｌ	wu she	1
+１	xia	1
+```
+
+最后对照这个码表替换一下上面`README.txt`中的内容即可得到flag：`flag{9eea13ae-afdd-4082-808a-c8806a8icb6a8}`
+
+![](imgs/image-20250302232746556.png)
+
 
 
 ---

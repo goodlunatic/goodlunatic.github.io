@@ -917,6 +917,158 @@ def read_qrcode(imgname):
     return res
 ```
 
+#### subprocess模块的使用
+
+##### subprocess.run() 函数的基本用法：
+
+&gt; `subprocess.run()` 用来启动一个子进程，并等待该进程执行完毕。它的返回值是一个 `CompletedProcess` 对象，包含了子进程的返回码、标准输出、标准错误等信息。
+
+函数签名：
+```python
+subprocess.run(args, *, stdin=None, stdout=None, stderr=None, input=None, capture_output=False, timeout=None, check=False, shell=False, cwd=None, env=None, universal_newlines=False, text=None, encoding=None, errors=None, bufsize=-1, pass_fds=(), preexec_fn=None, close_fds=True, shell=True)
+```
+
+常见参数：
+```
+args：表示命令和参数，通常是一个字符串（如果shell=True）或一个列表（如果shell=False）。
+stdout：指定标准输出的流，通常是一个文件对象或subprocess.PIPE（捕获输出）。
+stderr：指定标准错误的流，通常是一个文件对象或subprocess.PIPE（捕获错误输出）。
+shell：如果是True，命令会通过shell执行，可以使用shell特性（如管道、重定向等）。
+capture_output：如果是True，会捕获标准输出和标准错误的内容。可以用来替代stdout=subprocess.PIPE和stderr=subprocess.PIPE。
+check：如果是True，当命令返回非零退出码时会抛出subprocess.CalledProcessError异常。
+```
+
+返回值：
+
+subprocess.run()会返回一个CompletedProcess对象，其中包含以下信息：
+```
+args：传入的命令和参数。
+returncode：子进程的退出码。
+stdout：标准输出（如果使用了capture_output=True）。
+stderr：标准错误输出（如果使用了capture_output=True）。
+```
+
+举例：
+
+1、简单的命令执行
+
+```python
+import subprocess
+
+# 执行命令，返回结果并打印
+result = subprocess.run([&#34;ls&#34;, &#34;-l&#34;], capture_output=True, text=True)
+print(&#34;命令输出：&#34;, result.stdout)
+print(&#34;返回码：&#34;, result.returncode)
+```
+
+这个例子中，`subprocess.run()` 执行了 `ls -l` 命令，捕获了命令的标准输出，并打印出来。如果命令执行成功，返回码 `returncode` 会是 0。
+
+2、使用 `shell=True` 执行复杂的命令
+
+```python
+import subprocess
+
+# 使用shell执行命令，允许使用管道
+result = subprocess.run(&#34;echo &#39;Hello World&#39; | grep &#39;Hello&#39;&#34;, shell=True, capture_output=True, text=True)
+print(&#34;命令输出：&#34;, result.stdout)
+print(&#34;返回码：&#34;, result.returncode)
+```
+
+这里使用了 `shell=True`，可以在命令中使用管道（`|`）。命令 `echo &#39;Hello World&#39; | grep &#39;Hello&#39;` 会输出 `Hello World`，因为 `grep &#39;Hello&#39;` 会过滤出包含 &#34;Hello&#34; 的行。
+
+3、捕获标准错误
+
+```python
+import subprocess
+
+# 运行一个不存在的命令
+result = subprocess.run([&#34;nonexistent_command&#34;], capture_output=True, text=True)
+
+# 打印标准错误
+print(&#34;标准错误：&#34;, result.stderr)
+```
+
+在这个例子中，我们尝试执行一个不存在的命令。`subprocess.run()` 会捕获标准错误，并将其存储在 `stderr` 中。可以通过 `result.stderr` 打印出来。
+
+4、检查命令是否成功执行（`check=True`）
+
+```python
+import subprocess
+
+# 运行一个可能失败的命令，使用 check=True
+try:
+    result = subprocess.run([&#34;ls&#34;, &#34;non_existent_directory&#34;], check=True, capture_output=True, text=True)
+except subprocess.CalledProcessError as e:
+    print(f&#34;命令失败！返回码：{e.returncode}&#34;)
+    print(f&#34;标准错误：{e.stderr}&#34;)
+```
+
+在这个例子中，命令 `ls non_existent_directory` 会失败（因为目录不存在）。设置 `check=True` 后，`subprocess.run()` 会在命令返回非零退出码时抛出 `CalledProcessError` 异常。
+
+5、设置超时（`timeout`）
+
+```python
+import subprocess
+
+# 设置超时，如果命令运行超过5秒，会抛出 TimeoutExpired 异常
+try:
+    result = subprocess.run([&#34;sleep&#34;, &#34;10&#34;], timeout=5)
+except subprocess.TimeoutExpired as e:
+    print(f&#34;命令超时！命令：{e.cmd}&#34;)
+```
+
+在这个例子中，`sleep 10` 会执行 10 秒，但因为设置了 `timeout=5`，它会在 5 秒后超时并抛出 `TimeoutExpired` 异常。
+
+6、与输入交互（`input` 参数）
+
+```python
+import subprocess
+
+# 向命令传递输入数据
+result = subprocess.run([&#34;grep&#34;, &#34;Hello&#34;], input=&#34;Hello World\nHello Python&#34;, capture_output=True, text=True)
+
+print(&#34;命令输出：&#34;, result.stdout)
+```
+
+这个例子中，我们通过 `input=&#34;Hello World\nHello Python&#34;` 向 `grep` 命令传递了输入数据，`grep` 会搜索包含 &#34;Hello&#34; 的行并输出。
+
+##### 使用subprocess运行tshark处理流量包
+
+```python
+tshark_path = r&#34;D:\MD\CTF\Tools\Misc\Wireshark\tshark.exe&#34;
+output = &#34;&#34;
+command = [
+	tshark_path,  # 使用完整的 tshark 路径
+	&#39;-r&#39;, file_path,  # 读取指定的 pcapng 文件
+	&#39;-Y&#39;, &#39;http&#39;,  # 过滤出 HTTP 数据包
+	&#39;-T&#39;, &#39;json&#39;,  # 输出为 JSON 格式
+	&#39;-e&#39;, &#39;http.request.method&#39;,  # 请求方法
+	&#39;-e&#39;, &#39;http.host&#39;,  # 请求主机
+	&#39;-e&#39;, &#39;http.request.uri&#39;,  # 请求 URI
+	&#39;-e&#39;, &#39;http.user_agent&#39;,  # 用户代理
+	&#39;-e&#39;, &#39;http.file_data&#39;,  # 请求中的文件数据（POST 请求的内容）
+	&#39;-e&#39;, &#39;http.response.code&#39;,  # 响应代码
+	&#39;-e&#39;, &#39;http.response.phrase&#39;,  # 响应短语
+	&#39;-e&#39;, &#39;http.content_type&#39;  # 响应内容类型
+]
+	result = subprocess.run(
+		command, check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+	json_output = json.loads(result.stdout)
+	# print(json.dumps(json_output, indent=4))  # 这个输出是用来调试的，可以移除
+	
+	# 遍历 JSON 数据并提取字段
+	for packet in json_output:
+		layers = packet.get(&#39;_source&#39;, {}).get(&#39;layers&#39;, {})
+		# 提取请求方法、主机、URI等字段
+		request_method = layers.get(&#39;http.request.method&#39;, [&#39;None&#39;])[0]
+		request_host = layers.get(&#39;http.host&#39;, [&#39;None&#39;])[0]
+		request_uri = layers.get(&#39;http.request.uri&#39;, [&#39;None&#39;])[0]
+		user_agent = layers.get(&#39;http.user_agent&#39;, [&#39;None&#39;])[0]
+		file_data = layers.get(&#39;http.file_data&#39;, [&#39;None&#39;])[0]
+		response_code = layers.get(&#39;http.response.code&#39;, [&#39;None&#39;])[0]
+		response_phrase = layers.get(&#39;http.response.phrase&#39;, [&#39;None&#39;])[0]
+		content_type = layers.get(&#39;http.content_type&#39;, [&#39;None&#39;])[0]
+```
 
 #### CSV模块的使用
 
@@ -1207,11 +1359,34 @@ print(libnum.b2s(res))
 # b&#39;the flag3 is -13891ba324da}\xff\xff\xff\xff\xff\xe0&#39;
 ```
 
-#### wave模块的使用
+#### urllib模块
+URL编码和解码
+```python
+import urllib.parse
+
+encoded_text = urllib.parse.quote(text)
+decoded_str = urllib.parse.unquote(encoded_str)
+```
+
+#### urllib3模块
+使用 urllib3 模块禁用 SSL 警告
+```python
+import requests
+import urllib3
+
+# 禁用 SSL 警告
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+
+response = requests.get(&#39;https://example.com&#39;, verify=False)
+print(response.text)
+
+```
+
+#### wave模块
 
 TODO...
 
-#### librosa模块的使用
+#### librosa模块
 
 ##### 比赛中的使用记录
 
@@ -1643,6 +1818,29 @@ print(response.status_code)
 print(response.text)
 ```
 
+##### 关闭SSL警告
+
+方法一：使用 verify=False 关闭 SSL 验证
+```python
+import requests
+
+response = requests.get(&#39;https://example.com&#39;, verify=False)
+print(response.text)
+
+```
+
+方法二：使用urllib3模块禁用 SSL 警告
+```python
+import requests
+import urllib3
+
+# 禁用 SSL 警告
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+
+response = requests.get(&#39;https://example.com&#39;, verify=False)
+print(response.text)
+
+```
 #### requests-html模块的使用
 
 **基本用法**
@@ -2298,33 +2496,6 @@ async def main():
 
 if __name__ == &#34;__main__&#34;:
     asyncio.run(main())
-```
-
-#### subprocess模块的使用
-
-##### Windows下执行命令
-
-```python
-import subprocess
-with open(&#39;output.txt&#39;,&#39;w&#39;) as f:
-    p = subprocess.run([&#39;dir&#39;],shell=True,capture_output=True,text=True)
-print(p.args)
-print(p.stdout)
-```
-
-```python
-import subprocess
-with open(&#39;output.txt&#39;,&#39;w&#39;) as f:
-    p = subprocess.run([&#39;dir&#39;],shell=True,stdout=f,text=True)
-```
-
-```python
-import subprocess
-option = &#39;--help&#39;
-p = subprocess.run([&#39;ciphey&#39;,option],shell=True,capture_output=True,text=True)
-## p = subprocess.run([&#39;.\shentou.rdp&#39;],shell=True,capture_output=True,text=True)
-print(p.args)
-print(p.stdout)
 ```
 
 #### pydocx库的使用
