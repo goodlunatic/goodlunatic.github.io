@@ -10,9 +10,9 @@
 <meta name="description" content="This is a simple summary of digital forensics ." /><meta name="keywords" content='CTF, Misc, Forensics' />
   <meta itemprop="name" content="Misc-Forensics">
   <meta itemprop="description" content="This is a simple summary of digital forensics .">
-  <meta itemprop="datePublished" content="2025-03-02T10:34:12+08:00">
-  <meta itemprop="dateModified" content="2025-03-02T10:34:12+08:00">
-  <meta itemprop="wordCount" content="2265">
+  <meta itemprop="datePublished" content="2025-03-02T18:34:12+08:00">
+  <meta itemprop="dateModified" content="2025-03-02T18:34:12+08:00">
+  <meta itemprop="wordCount" content="2583">
   <meta itemprop="keywords" content="CTF,Misc,Forensics"><meta property="og:url" content="https://goodlunatic.github.io/posts/761da51/">
   <meta property="og:site_name" content="⚡Lunatic BLOG⚡">
   <meta property="og:title" content="Misc-Forensics">
@@ -21,8 +21,8 @@
   <meta property="og:locale" content="en">
   <meta property="og:type" content="article">
   <meta property="article:section" content="posts">
-    <meta property="article:published_time" content="2025-03-02T10:34:12+08:00">
-    <meta property="article:modified_time" content="2025-03-02T10:34:12+08:00">
+    <meta property="article:published_time" content="2025-03-02T18:34:12+08:00">
+    <meta property="article:modified_time" content="2025-03-02T18:34:12+08:00">
     <meta property="article:tag" content="CTF">
     <meta property="article:tag" content="Misc">
     <meta property="article:tag" content="Forensics">
@@ -41,8 +41,8 @@
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": "https:\/\/goodlunatic.github.io\/posts\/761da51\/"
-    },"genre": "posts","keywords": "CTF, Misc, Forensics","wordcount":  2265 ,
-    "url": "https:\/\/goodlunatic.github.io\/posts\/761da51\/","datePublished": "2025-03-02T10:34:12+08:00","dateModified": "2025-03-02T10:34:12+08:00","publisher": {
+    },"genre": "posts","keywords": "CTF, Misc, Forensics","wordcount":  2583 ,
+    "url": "https:\/\/goodlunatic.github.io\/posts\/761da51\/","datePublished": "2025-03-02T18:34:12+08:00","dateModified": "2025-03-02T18:34:12+08:00","publisher": {
       "@type": "Organization",
       "name": ""},"author": {
         "@type": "Person",
@@ -145,7 +145,7 @@
 <article class="page single">
   <div class="header"><h1 class="single-title animate__animated animate__flipInX"><span>Misc-Forensics</span>
     </h1></div><div class="post-meta">
-    <div class="post-meta-line"><span class="post-author"><a href="https://goodlunatic.github.io" title="Author"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><img loading="lazy" src="https://www.nssctf.cn/files/2024/4/28/7f130a1387.png" alt="Lunatic" data-title="Lunatic" class="avatar" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>&nbsp;Lunatic</a></span><span class="post-included-in">&nbsp;included in <a href="/categories/ctf/" class="post-category" title="Category - CTF"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> CTF</a></span></div><div class="post-meta-line"><span title="published on &lt;no value&gt;"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden="true"></i><time datetime="2025-03-02">2025-03-02</time></span>&nbsp;<span title=""><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>About 2300 words</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>11 minutes</span>&nbsp;</div>
+    <div class="post-meta-line"><span class="post-author"><a href="https://goodlunatic.github.io" title="Author"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><img loading="lazy" src="https://www.nssctf.cn/files/2024/4/28/7f130a1387.png" alt="Lunatic" data-title="Lunatic" class="avatar" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>&nbsp;Lunatic</a></span><span class="post-included-in">&nbsp;included in <a href="/categories/ctf/" class="post-category" title="Category - CTF"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> CTF</a></span></div><div class="post-meta-line"><span title="published on &lt;no value&gt;"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden="true"></i><time datetime="2025-03-02">2025-03-02</time></span>&nbsp;<span title=""><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>About 2600 words</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>13 minutes</span>&nbsp;</div>
   </div><div class="details toc" id="toc-static"
     data-kept="false">
     <div class="details-summary toc-title">
@@ -206,8 +206,19 @@
             </li>
           </ul>
         </li>
-        <li><a href="#磁盘取证的一些思路">磁盘取证的一些思路</a></li>
-        <li><a href="#查看powershell的历史记录">查看Powershell的历史记录</a></li>
+        <li><a href="#磁盘取证的一些思路">磁盘取证的一些思路</a>
+          <ul>
+            <li><a href="#1-获取主机的系统名">1. 获取主机的系统名</a></li>
+            <li><a href="#2-查看powershell的历史记录">2. 查看Powershell的历史记录</a></li>
+            <li><a href="#3-获取用户的登录密码">3. 获取用户的登录密码</a></li>
+            <li><a href="#4-获取定时任务的内容">4. 获取定时任务的内容</a></li>
+            <li><a href="#5-获取docker容器中的关键信息">5. 获取Docker容器中的关键信息</a></li>
+            <li><a href="#6-获取主机的环境变量">6. 获取主机的环境变量</a></li>
+            <li><a href="#7-获取计算机注册时的用户名">7. 获取计算机注册时的用户名</a></li>
+            <li><a href="#8-获取计算机当前操作系统的产品名称">8. 获取计算机当前操作系统的产品名称</a></li>
+            <li><a href="#9-获取当前firefox浏览器的版本">9. 获取当前FireFox浏览器的版本</a></li>
+          </ul>
+        </li>
       </ul>
     </li>
     <li><a href="#网站取证">网站取证</a></li>
@@ -218,14 +229,24 @@
     </li>
     <li><a href="#其他">其他</a>
       <ul>
-        <li><a href="#1磁盘恢复">1、磁盘恢复</a></li>
+        <li><a href="#1磁盘恢复">1、磁盘恢复</a>
+          <ul>
+            <li><a href="#恢复-ext3-或-ext4-文件系统中已删除的文件">恢复 ext3 或 ext4 文件系统中已删除的文件</a></li>
+            <li><a href="#直接diskgenius打开恢复文件">直接DiskGenius打开恢复文件</a></li>
+          </ul>
+        </li>
         <li><a href="#2浏览器登录凭证破解">2、浏览器登录凭证破解</a></li>
-        <li><a href="#3dpapi破解">3、DPAPI破解</a></li>
-        <li><a href="#4veracrypt加密">4、VeraCrypt加密</a></li>
-        <li><a href="#5trueceypt加密">5、TrueCeypt加密</a></li>
-        <li><a href="#6encfs加密">6、Encfs加密</a></li>
-        <li><a href="#7gpg--pgp-加密">7、GPG / PGP 加密</a></li>
-        <li><a href="#8cipher加密">8、Cipher加密</a></li>
+        <li><a href="#3邮件取证">3、邮件取证</a>
+          <ul>
+            <li><a href="#foxmail取证">FoxMail取证</a></li>
+          </ul>
+        </li>
+        <li><a href="#4dpapi破解">4、DPAPI破解</a></li>
+        <li><a href="#5veracrypt加密">5、VeraCrypt加密</a></li>
+        <li><a href="#6trueceypt加密">6、TrueCeypt加密</a></li>
+        <li><a href="#7encfs加密">7、Encfs加密</a></li>
+        <li><a href="#8gpg--pgp-加密">8、GPG / PGP 加密</a></li>
+        <li><a href="#9cipher加密">9、Cipher加密</a></li>
       </ul>
     </li>
   </ul>
@@ -1177,16 +1198,121 @@
 <p>因此还是建议在Ubuntu系统下进行以上操作</p>
 <p>例题1-2025西湖论剑-糟糕的磁盘</p>
 <h3 id="磁盘取证的一些思路" class="heading-element">
-  <a href="#%e7%a3%81%e7%9b%98%e5%8f%96%e8%af%81%e7%9a%84%e4%b8%80%e4%ba%9b%e6%80%9d%e8%b7%af" class="heading-mark"></a>磁盘取证的一些思路</h3><h3 id="查看powershell的历史记录" class="heading-element">
-  <a href="#%e6%9f%a5%e7%9c%8bpowershell%e7%9a%84%e5%8e%86%e5%8f%b2%e8%ae%b0%e5%bd%95" class="heading-mark"></a>查看Powershell的历史记录</h3><p>用户的powershell历史记录会保存在这个路径下
-\Users\test\AppData\Roaming\Microsoft\Windows\PowerShell\PSReadLine\ConsoleHost_history.txt</p>
+  <a href="#%e7%a3%81%e7%9b%98%e5%8f%96%e8%af%81%e7%9a%84%e4%b8%80%e4%ba%9b%e6%80%9d%e8%b7%af" class="heading-mark"></a>磁盘取证的一些思路</h3><h4 id="1-获取主机的系统名" class="heading-element">
+  <a href="#1-%e8%8e%b7%e5%8f%96%e4%b8%bb%e6%9c%ba%e7%9a%84%e7%b3%bb%e7%bb%9f%e5%90%8d" class="heading-mark"></a>1. 获取主机的系统名</h4><p><code>/etc/issue</code>或<code>/usr/lib/os.release</code>下可以得到</p>
+<h4 id="2-查看powershell的历史记录" class="heading-element">
+  <a href="#2-%e6%9f%a5%e7%9c%8bpowershell%e7%9a%84%e5%8e%86%e5%8f%b2%e8%ae%b0%e5%bd%95" class="heading-mark"></a>2. 查看Powershell的历史记录</h4><p>用户的powershell历史记录会保存在这个路径下
+<code>\Users\test\AppData\Roaming\Microsoft\Windows\PowerShell\PSReadLine\ConsoleHost_history.txt</code></p>
+<h4 id="3-获取用户的登录密码" class="heading-element">
+  <a href="#3-%e8%8e%b7%e5%8f%96%e7%94%a8%e6%88%b7%e7%9a%84%e7%99%bb%e5%bd%95%e5%af%86%e7%a0%81" class="heading-mark"></a>3. 获取用户的登录密码</h4><p>Linux下密码以哈希的形式保存在<code>/etc/shadow</code>或者<code>/etc/passwd(老版本)</code>中</p>
+<p>提取出来然后使用<code>Hashcat</code>爆破即可</p>
+<p><code>shadow_hash.txt</code>内容及对应<code>hashcat</code>的命令如下</p>
+<div class="highlight" id="id-29"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">snowflakes:<span class="nv">$6$k6sgCBLM2Qzkreq6$l1OrqaIUNDxrv5g14BljA</span>.FkX.BQt5sulAlaR0QMyFR/wQMLA4Cebk1dw8xIiZU3tmMW9mKlOV2xeoXwrDnbk1:18760:0:99999:7:::
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">hashcat -m <span class="m">1800</span> -a <span class="m">0</span> shadow_hash.txt rockyou.txt --force</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight" id="id-30"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">root:<span class="nv">$1$NAkZFH1u$byy9Vl8PSU3dJl5MicArx1</span>:18446:0:99999:7:::
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">hashcat -m <span class="m">500</span> -a <span class="m">0</span> shadow_hash.txt rockyou.txt --force</span></span></code></pre></td></tr></table>
+</div>
+</div><p>但是如果遇到的是以下这种hash类型，就必须要用john来进行爆破了</p>
+<div class="highlight" id="id-31"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">l0v3miku:$y$j9T$Me1sc6HllhxzlxG2YpNXi0$8oums.4ZpbnCsK0a.lmkodOFeCtpC2daRGLz.jAoKI0:20113:0:99999:7:::
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">john shadow --format=crypt --wordlist=rockyou.txt</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="4-获取定时任务的内容" class="heading-element">
+  <a href="#4-%e8%8e%b7%e5%8f%96%e5%ae%9a%e6%97%b6%e4%bb%bb%e5%8a%a1%e7%9a%84%e5%86%85%e5%ae%b9" class="heading-mark"></a>4. 获取定时任务的内容</h4><p>定时任务保存在 <code>/etc/crontab</code> 文件下，这里举个例子</p>
+<div class="highlight" id="id-32"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># /etc/crontab: system-wide crontab</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Unlike any other crontab you don&#39;t have to run the `crontab&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># command to install the new version when you edit this file</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># and files in /etc/cron.d. These files also have username fields,</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># that none of the other crontabs do.</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nv">SHELL</span><span class="o">=</span>/bin/sh
+</span></span><span class="line"><span class="cl"><span class="c1"># You can also override PATH, but by default, newer versions inherit it from the environment</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Example of job definition:</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># .---------------- minute (0 - 59)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># |  .------------- hour (0 - 23)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># |  |  .---------- day of month (1 - 31)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># |  |  |  .------- month (1 - 12) OR jan,feb,mar,apr ...</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># |  |  |  |  .---- day of week (0 - 6) (Sunday=0 or 7) OR sun,mon,tue,wed,thu,fri,sat</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># |  |  |  |  |</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># *  *  *  *  * user-name command to be executed</span>
+</span></span><span class="line"><span class="cl"><span class="m">17</span> *	* * *	root	<span class="nb">cd</span> / <span class="o">&amp;&amp;</span> run-parts --report /etc/cron.hourly
+</span></span><span class="line"><span class="cl"><span class="m">25</span> 6	* * *	root	<span class="nb">test</span> -x /usr/sbin/anacron <span class="o">||</span> <span class="o">{</span> <span class="nb">cd</span> / <span class="o">&amp;&amp;</span> run-parts --report /etc/cron.daily<span class="p">;</span> <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="m">47</span> 6	* * 7	root	<span class="nb">test</span> -x /usr/sbin/anacron <span class="o">||</span> <span class="o">{</span> <span class="nb">cd</span> / <span class="o">&amp;&amp;</span> run-parts --report /etc/cron.weekly<span class="p">;</span> <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="m">52</span> 6	<span class="m">1</span> * *	root	<span class="nb">test</span> -x /usr/sbin/anacron <span class="o">||</span> <span class="o">{</span> <span class="nb">cd</span> / <span class="o">&amp;&amp;</span> run-parts --report /etc/cron.monthly<span class="p">;</span> <span class="o">}</span>
+</span></span><span class="line"><span class="cl">*/2 * * * * root /usr/bin/python3 /usr/local/share/xml/entities/a.py
+</span></span><span class="line"><span class="cl"><span class="c1"># 每 2 分钟执行一次 Python 脚本 /usr/local/share/xml/entities/a.py</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="5-获取docker容器中的关键信息" class="heading-element">
+  <a href="#5-%e8%8e%b7%e5%8f%96docker%e5%ae%b9%e5%99%a8%e4%b8%ad%e7%9a%84%e5%85%b3%e9%94%ae%e4%bf%a1%e6%81%af" class="heading-mark"></a>5. 获取Docker容器中的关键信息</h4><p>Docker容器保存在<code>/var/lib/docker/containers/</code>路径下</p>
+<h4 id="6-获取主机的环境变量" class="heading-element">
+  <a href="#6-%e8%8e%b7%e5%8f%96%e4%b8%bb%e6%9c%ba%e7%9a%84%e7%8e%af%e5%a2%83%e5%8f%98%e9%87%8f" class="heading-mark"></a>6. 获取主机的环境变量</h4><p><code>Windows</code>的环境变量保存在<code>注册表SYSTEM\CurrentControlSet001\Control\Session Manager\Environment</code>中，注册表在<code>C:\Windows\System32\config</code>目录下</p>
+<h4 id="7-获取计算机注册时的用户名" class="heading-element">
+  <a href="#7-%e8%8e%b7%e5%8f%96%e8%ae%a1%e7%ae%97%e6%9c%ba%e6%b3%a8%e5%86%8c%e6%97%b6%e7%9a%84%e7%94%a8%e6%88%b7%e5%90%8d" class="heading-mark"></a>7. 获取计算机注册时的用户名</h4><p>该信息保存在<code>C:\Windows\System32\Config\SOFTWARE\Microsoft\Windows NT\CurrentVersion\RegisteredOwner</code></p>
+<h4 id="8-获取计算机当前操作系统的产品名称" class="heading-element">
+  <a href="#8-%e8%8e%b7%e5%8f%96%e8%ae%a1%e7%ae%97%e6%9c%ba%e5%bd%93%e5%89%8d%e6%93%8d%e4%bd%9c%e7%b3%bb%e7%bb%9f%e7%9a%84%e4%ba%a7%e5%93%81%e5%90%8d%e7%a7%b0" class="heading-mark"></a>8. 获取计算机当前操作系统的产品名称</h4><p>该信息保存在<code>C:\Windows\System32\Config\SOFTWARE\Microsoft\Windows NT\CurrentVersion\ProductName</code></p>
+<h4 id="9-获取当前firefox浏览器的版本" class="heading-element">
+  <a href="#9-%e8%8e%b7%e5%8f%96%e5%bd%93%e5%89%8dfirefox%e6%b5%8f%e8%a7%88%e5%99%a8%e7%9a%84%e7%89%88%e6%9c%ac" class="heading-mark"></a>9. 获取当前FireFox浏览器的版本</h4><p>该信息保存在<code>C:\Windows\System32\Config\SOFTWARE\Mozilla\Mozilla Firefox\CurrentVersion</code></p>
 <h2 id="网站取证" class="heading-element">
   <a href="#%e7%bd%91%e7%ab%99%e5%8f%96%e8%af%81" class="heading-mark"></a>网站取证</h2><p>1、直接拿D_safe扫描可疑文件</p>
 <h2 id="服务器取证" class="heading-element">
   <a href="#%e6%9c%8d%e5%8a%a1%e5%99%a8%e5%8f%96%e8%af%81" class="heading-mark"></a>服务器取证</h2><p>硬盘镜像文件后缀: .qcow2</p>
 <h3 id="mysql57-数据库从qpxb文件恢复数据" class="heading-element">
   <a href="#mysql57-%e6%95%b0%e6%8d%ae%e5%ba%93%e4%bb%8eqpxb%e6%96%87%e4%bb%b6%e6%81%a2%e5%a4%8d%e6%95%b0%e6%8d%ae" class="heading-mark"></a>Mysql5.7 数据库从qp.xb文件恢复数据</h3><p>需要安装并使用qpress和xtrabackup</p>
-<div class="highlight" id="id-29"><div class="chroma">
+<div class="highlight" id="id-33"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -1195,7 +1321,7 @@
 <pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">wget <span class="s2">&#34;http://docs-aliyun.cn-hangzhou.oss.aliyun-inc.com/assets/attach/183466/cn_zh/1608011575185/qpress-11-linux-x64.tar&#34;</span>
 </span></span><span class="line"><span class="cl">wget https://www.percona.com/downloads/XtraBackup/Percona-XtraBackup-2.4.9/binary/redhat/7/x86_64/percona-xtrabackup-24-2.4.9-1.el7.x86_64.rpm</span></span></code></pre></td></tr></table>
 </div>
-</div><div class="highlight" id="id-30"><div class="chroma">
+</div><div class="highlight" id="id-34"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1222,21 +1348,35 @@
 </div>
 </div><h2 id="其他" class="heading-element">
   <a href="#%e5%85%b6%e4%bb%96" class="heading-mark"></a>其他</h2><h3 id="1磁盘恢复" class="heading-element">
-  <a href="#1%e7%a3%81%e7%9b%98%e6%81%a2%e5%a4%8d" class="heading-mark"></a>1、磁盘恢复</h3><p>拉到 kali 中用 extundelete</p>
-<p>extundelete &ndash;restore-all disk-image</p>
-<p>之后在所在目录会生成一个恢复文件</p>
-<h3 id="2浏览器登录凭证破解" class="heading-element">
+  <a href="#1%e7%a3%81%e7%9b%98%e6%81%a2%e5%a4%8d" class="heading-mark"></a>1、磁盘恢复</h3><h4 id="恢复-ext3-或-ext4-文件系统中已删除的文件" class="heading-element">
+  <a href="#%e6%81%a2%e5%a4%8d-ext3-%e6%88%96-ext4-%e6%96%87%e4%bb%b6%e7%b3%bb%e7%bb%9f%e4%b8%ad%e5%b7%b2%e5%88%a0%e9%99%a4%e7%9a%84%e6%96%87%e4%bb%b6" class="heading-mark"></a>恢复 ext3 或 ext4 文件系统中已删除的文件</h4><div class="highlight" id="id-35"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 拉到 kali 中用 extundelete</span>
+</span></span><span class="line"><span class="cl">extundelete --restore-all disk-image
+</span></span><span class="line"><span class="cl"><span class="c1"># 之后在所在目录会生成一个恢复文件</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="直接diskgenius打开恢复文件" class="heading-element">
+  <a href="#%e7%9b%b4%e6%8e%a5diskgenius%e6%89%93%e5%bc%80%e6%81%a2%e5%a4%8d%e6%96%87%e4%bb%b6" class="heading-mark"></a>直接DiskGenius打开恢复文件</h4><h3 id="2浏览器登录凭证破解" class="heading-element">
   <a href="#2%e6%b5%8f%e8%a7%88%e5%99%a8%e7%99%bb%e5%bd%95%e5%87%ad%e8%af%81%e7%a0%b4%e8%a7%a3" class="heading-mark"></a>2、浏览器登录凭证破解</h3><p>Firefox登录凭证破解</p>
 <p>使用<a href="https://github.com/lclevy/firepwd"target="_blank" rel="external nofollow noopener noreferrer">Firepwd工具</a>破解，将key4.db、logins.json复制到firepwd目录下，用firepwd.py破解</p>
-<div class="highlight" id="id-31"><div class="chroma">
+<div class="highlight" id="id-36"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">python</span> <span class="n">firepwd</span><span class="o">.</span><span class="n">py</span> <span class="n">logins</span><span class="o">.</span><span class="n">json</span></span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="3dpapi破解" class="heading-element">
-  <a href="#3dpapi%e7%a0%b4%e8%a7%a3" class="heading-mark"></a>3、DPAPI破解</h3><p>Windows DPAPI 是一种用于在 Windows 操作系统中存储和保护用户敏感数据的加密技术。它可以用于加密密码、证书、浏览器凭据等用户数据。</p>
+</div><h3 id="3邮件取证" class="heading-element">
+  <a href="#3%e9%82%ae%e4%bb%b6%e5%8f%96%e8%af%81" class="heading-mark"></a>3、邮件取证</h3><h4 id="foxmail取证" class="heading-element">
+  <a href="#foxmail%e5%8f%96%e8%af%81" class="heading-mark"></a>FoxMail取证</h4><p>本地下个Foxmail，然后在<code>Foxmail 7.2\FMstorage.list</code>中添加Storage的存储路径然后再启动就可以了</p>
+<p>存储目录应该是一个以邮箱地址命名的文件夹</p>
+<h3 id="4dpapi破解" class="heading-element">
+  <a href="#4dpapi%e7%a0%b4%e8%a7%a3" class="heading-mark"></a>4、DPAPI破解</h3><p>Windows DPAPI 是一种用于在 Windows 操作系统中存储和保护用户敏感数据的加密技术。它可以用于加密密码、证书、浏览器凭据等用户数据。</p>
 <p>可以使用 DPAPImk2john.py 将这个数据转换为 john 可识别的格式，然后使用 john 爆破</p>
 <p><img loading="lazy" src="imgs/DPAPI1.png" alt="imgs/DPAPI1.png" srcset="imgs/DPAPI1.png?size=small, imgs/DPAPI1.png?size=medium 1.5x, imgs/DPAPI1.png?size=large 2x" data-title="imgs/DPAPI1.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p><img loading="lazy" src="imgs/DPAPI2.png" alt="imgs/DPAPI2.png" srcset="imgs/DPAPI2.png?size=small, imgs/DPAPI2.png?size=medium 1.5x, imgs/DPAPI2.png?size=large 2x" data-title="imgs/DPAPI2.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
@@ -1248,18 +1388,18 @@
 5、Windows CardSpace
 6、Windows Vault
 </code></pre>
-<h3 id="4veracrypt加密" class="heading-element">
-  <a href="#4veracrypt%e5%8a%a0%e5%af%86" class="heading-mark"></a>4、VeraCrypt加密</h3><p>用 VeraCrypt 解密并挂载即可，加密的密钥可能是一串密码，也可能是某个密钥文件</p>
+<h3 id="5veracrypt加密" class="heading-element">
+  <a href="#5veracrypt%e5%8a%a0%e5%af%86" class="heading-mark"></a>5、VeraCrypt加密</h3><p>用 VeraCrypt 解密并挂载即可，加密的密钥可能是一串密码，也可能是某个密钥文件</p>
 <p>也有可能同时需要密码+密钥文件才能正常解密并挂载（例题1-2024浙江省赛决赛-天命人）</p>
-<h3 id="5trueceypt加密" class="heading-element">
-  <a href="#5trueceypt%e5%8a%a0%e5%af%86" class="heading-mark"></a>5、TrueCeypt加密</h3><p>TrueCrypt 的加密卷也可以使用 VeraCrypt 解密并挂载，只要把模式调整成 TrueCrypt 即可</p>
-<h3 id="6encfs加密" class="heading-element">
-  <a href="#6encfs%e5%8a%a0%e5%af%86" class="heading-mark"></a>6、Encfs加密</h3><p>在windows下用 Encfs4win 来挂载即可，解密这个加密卷，需要 .encfs6.xml和解密的密码</p>
+<h3 id="6trueceypt加密" class="heading-element">
+  <a href="#6trueceypt%e5%8a%a0%e5%af%86" class="heading-mark"></a>6、TrueCeypt加密</h3><p>TrueCrypt 的加密卷也可以使用 VeraCrypt 解密并挂载，只要把模式调整成 TrueCrypt 即可</p>
+<h3 id="7encfs加密" class="heading-element">
+  <a href="#7encfs%e5%8a%a0%e5%af%86" class="heading-mark"></a>7、Encfs加密</h3><p>在windows下用 Encfs4win 来挂载即可，解密这个加密卷，需要 .encfs6.xml和解密的密码</p>
 <p>例题-2024 NKCTF cain_is_hacker</p>
-<h3 id="7gpg--pgp-加密" class="heading-element">
-  <a href="#7gpg--pgp-%e5%8a%a0%e5%af%86" class="heading-mark"></a>7、GPG / PGP 加密</h3><p>这个加密可以使用 Linux 下的 GPG 解密，也可以使用 Windows 下的 Kleopatra 解密</p>
+<h3 id="8gpg--pgp-加密" class="heading-element">
+  <a href="#8gpg--pgp-%e5%8a%a0%e5%af%86" class="heading-mark"></a>8、GPG / PGP 加密</h3><p>这个加密可以使用 Linux 下的 GPG 解密，也可以使用 Windows 下的 Kleopatra 解密</p>
 <p>Linux 下解密的流程如下</p>
-<div class="highlight" id="id-32"><div class="chroma">
+<div class="highlight" id="id-37"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1290,14 +1430,14 @@
 </div>
 </div><p>例题1-i春秋 Pretty Good Privacy</p>
 <p>例题2-2024 CISCN初赛 Tough-DNS</p>
-<h3 id="8cipher加密" class="heading-element">
-  <a href="#8cipher%e5%8a%a0%e5%af%86" class="heading-mark"></a>8、Cipher加密</h3><p>Windows自带的 Cipher 加密（EFS加密算法）</p>
+<h3 id="9cipher加密" class="heading-element">
+  <a href="#9cipher%e5%8a%a0%e5%af%86" class="heading-mark"></a>9、Cipher加密</h3><p>Windows自带的 Cipher 加密（EFS加密算法）</p>
 <p>直接使用 Advanced efs data recovery 解密即可，解密需要密钥和密码</p>
 <p>例题-2024 DubheCTF Cipher</p></div><div class="post-footer" id="post-footer">
   <div class="post-info">
     <div class="post-info-line">
       <div class="post-info-mod">
-        <span title="Updated on 2025-03-02 10:34:12">Updated on 2025-03-02&nbsp;</span>
+        <span title="Updated on 2025-03-02 18:34:12">Updated on 2025-03-02&nbsp;</span>
       </div></div><div class="post-info-line">
         <div class="post-info-md"><span><a href="/posts/761da51/index.md" title="Read Markdown" class="link-to-markdown">Read Markdown</a></span></div>
         <div class="post-info-share">

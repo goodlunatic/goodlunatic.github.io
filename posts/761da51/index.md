@@ -680,10 +680,92 @@ sudo mdadm --create /dev/md127 --level=0 --raid-devices=5 /dev/loop0 /dev/loop1 
 
 ### 磁盘取证的一些思路
 
-### 查看Powershell的历史记录
+#### 1. 获取主机的系统名
+
+`/etc/issue`或`/usr/lib/os.release`下可以得到
+
+#### 2. 查看Powershell的历史记录
 
 用户的powershell历史记录会保存在这个路径下
-\Users\test\AppData\Roaming\Microsoft\Windows\PowerShell\PSReadLine\ConsoleHost_history.txt
+`\Users\test\AppData\Roaming\Microsoft\Windows\PowerShell\PSReadLine\ConsoleHost_history.txt`
+
+#### 3. 获取用户的登录密码
+
+Linux下密码以哈希的形式保存在`/etc/shadow`或者`/etc/passwd(老版本)`中
+
+提取出来然后使用`Hashcat`爆破即可
+
+`shadow_hash.txt`内容及对应`hashcat`的命令如下
+
+```bash
+snowflakes:$6$k6sgCBLM2Qzkreq6$l1OrqaIUNDxrv5g14BljA.FkX.BQt5sulAlaR0QMyFR/wQMLA4Cebk1dw8xIiZU3tmMW9mKlOV2xeoXwrDnbk1:18760:0:99999:7:::
+
+hashcat -m 1800 -a 0 shadow_hash.txt rockyou.txt --force
+```
+
+```bash
+root:$1$NAkZFH1u$byy9Vl8PSU3dJl5MicArx1:18446:0:99999:7:::
+
+hashcat -m 500 -a 0 shadow_hash.txt rockyou.txt --force
+```
+
+但是如果遇到的是以下这种hash类型，就必须要用john来进行爆破了
+```
+l0v3miku:$y$j9T$Me1sc6HllhxzlxG2YpNXi0$8oums.4ZpbnCsK0a.lmkodOFeCtpC2daRGLz.jAoKI0:20113:0:99999:7:::
+
+john shadow --format=crypt --wordlist=rockyou.txt
+```
+
+#### 4. 获取定时任务的内容
+
+定时任务保存在 `/etc/crontab` 文件下，这里举个例子
+
+```bash
+# /etc/crontab: system-wide crontab
+# Unlike any other crontab you don&#39;t have to run the `crontab&#39;
+# command to install the new version when you edit this file
+# and files in /etc/cron.d. These files also have username fields,
+# that none of the other crontabs do.
+
+SHELL=/bin/sh
+# You can also override PATH, but by default, newer versions inherit it from the environment
+#PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+
+# Example of job definition:
+# .---------------- minute (0 - 59)
+# |  .------------- hour (0 - 23)
+# |  |  .---------- day of month (1 - 31)
+# |  |  |  .------- month (1 - 12) OR jan,feb,mar,apr ...
+# |  |  |  |  .---- day of week (0 - 6) (Sunday=0 or 7) OR sun,mon,tue,wed,thu,fri,sat
+# |  |  |  |  |
+# *  *  *  *  * user-name command to be executed
+17 *	* * *	root	cd / &amp;&amp; run-parts --report /etc/cron.hourly
+25 6	* * *	root	test -x /usr/sbin/anacron || { cd / &amp;&amp; run-parts --report /etc/cron.daily; }
+47 6	* * 7	root	test -x /usr/sbin/anacron || { cd / &amp;&amp; run-parts --report /etc/cron.weekly; }
+52 6	1 * *	root	test -x /usr/sbin/anacron || { cd / &amp;&amp; run-parts --report /etc/cron.monthly; }
+*/2 * * * * root /usr/bin/python3 /usr/local/share/xml/entities/a.py
+# 每 2 分钟执行一次 Python 脚本 /usr/local/share/xml/entities/a.py
+```
+
+#### 5. 获取Docker容器中的关键信息
+
+Docker容器保存在`/var/lib/docker/containers/`路径下
+
+#### 6. 获取主机的环境变量
+
+`Windows`的环境变量保存在`注册表SYSTEM\CurrentControlSet001\Control\Session Manager\Environment`中，注册表在`C:\Windows\System32\config`目录下
+
+#### 7. 获取计算机注册时的用户名
+
+该信息保存在`C:\Windows\System32\Config\SOFTWARE\Microsoft\Windows NT\CurrentVersion\RegisteredOwner`
+
+#### 8. 获取计算机当前操作系统的产品名称
+
+该信息保存在`C:\Windows\System32\Config\SOFTWARE\Microsoft\Windows NT\CurrentVersion\ProductName`
+
+#### 9. 获取当前FireFox浏览器的版本
+
+该信息保存在`C:\Windows\System32\Config\SOFTWARE\Mozilla\Mozilla Firefox\CurrentVersion`
 
 
 ## 网站取证
@@ -720,11 +802,15 @@ chown -R mysql:mysql /www/server/data
 
 ### 1、磁盘恢复
 
-拉到 kali 中用 extundelete
+#### 恢复 ext3 或 ext4 文件系统中已删除的文件
 
+```bash
+# 拉到 kali 中用 extundelete
 extundelete --restore-all disk-image
+# 之后在所在目录会生成一个恢复文件
+```
 
-之后在所在目录会生成一个恢复文件
+#### 直接DiskGenius打开恢复文件
 
 ### 2、浏览器登录凭证破解
 
@@ -736,7 +822,14 @@ Firefox登录凭证破解
 python firepwd.py logins.json
 ```
 
-### 3、DPAPI破解
+### 3、邮件取证
+#### FoxMail取证
+
+本地下个Foxmail，然后在`Foxmail 7.2\FMstorage.list`中添加Storage的存储路径然后再启动就可以了
+
+存储目录应该是一个以邮箱地址命名的文件夹
+
+### 4、DPAPI破解
 
 Windows DPAPI 是一种用于在 Windows 操作系统中存储和保护用户敏感数据的加密技术。它可以用于加密密码、证书、浏览器凭据等用户数据。
 
@@ -755,23 +848,23 @@ DPAPI的应用：
     5、Windows CardSpace
     6、Windows Vault
 
-### 4、VeraCrypt加密
+### 5、VeraCrypt加密
 
 用 VeraCrypt 解密并挂载即可，加密的密钥可能是一串密码，也可能是某个密钥文件
 
 也有可能同时需要密码&#43;密钥文件才能正常解密并挂载（例题1-2024浙江省赛决赛-天命人）
 
-### 5、TrueCeypt加密
+### 6、TrueCeypt加密
 
 TrueCrypt 的加密卷也可以使用 VeraCrypt 解密并挂载，只要把模式调整成 TrueCrypt 即可
 
-### 6、Encfs加密
+### 7、Encfs加密
 
 在windows下用 Encfs4win 来挂载即可，解密这个加密卷，需要 .encfs6.xml和解密的密码
 
 例题-2024 NKCTF cain_is_hacker
 
-### 7、GPG / PGP 加密
+### 8、GPG / PGP 加密
 
 这个加密可以使用 Linux 下的 GPG 解密，也可以使用 Windows 下的 Kleopatra 解密
 
@@ -795,7 +888,7 @@ gpg --delete-keys CISCN2016@gmail.com
 例题1-i春秋 Pretty Good Privacy
 
 例题2-2024 CISCN初赛 Tough-DNS
-### 8、Cipher加密
+### 9、Cipher加密
 
 Windows自带的 Cipher 加密（EFS加密算法）
 

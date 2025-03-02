@@ -269,7 +269,7 @@ flag1和flag4可以通过`FTK Image`挂载并结合上述步骤获得，但是fl
 
 ![](imgs/image-20241212115003470.png)
 
-问题三的答案在`C:\Windows\System32\Config\SOFTWARE\Mozilla\Mozilla Firefox\CurrentVersion
+问题三的答案在`C:\Windows\System32\Config\SOFTWARE\Mozilla\Mozilla Firefox\CurrentVersion`
 
 ![](imgs/image-20241212115105918.png)
 
