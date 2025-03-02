@@ -342,7 +342,7 @@
 </div>
 </div><p>很明显就是经典的arnold猫脸变换了，但是没有给我们shuffle_times、a、b</p>
 <p>因此猜测需要我们进行爆破，编写以下脚本进行爆破即可，当然能爆破的前提是三个值都不会太大</p>
-<div class="highlight" id="id-3"><div class="chroma">
+<div class="highlight" id="id-1"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -447,7 +447,7 @@
 <p>第一层解压可以得到<code>rootfs.img</code>，再解压一层即可得到Linux的文件系统</p>
 <p><img loading="lazy" src="imgs/image-20241218132121101.png" alt="imgs/image-20241218132121101.png" srcset="imgs/image-20241218132121101.png?size=small, imgs/image-20241218132121101.png?size=medium 1.5x, imgs/image-20241218132121101.png?size=large 2x" data-title="imgs/image-20241218132121101.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>然后我们在<code>\rootfs\var\adm</code>路径下可以得到一个<code>runrunrun.bash</code>，内容如下</p>
-<div class="highlight" id="id-4"><div class="chroma">
+<div class="highlight" id="id-2"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -464,7 +464,7 @@
 <p>Tips：在做取证题过程中如果发现文件较多，其实可以把文件按照时间排序一下，这样可以大大缩短定位时间</p>
 </blockquote>
 <p>是一个加了混淆的bash脚本，代码不长，我们可以手动解一下这个混淆</p>
-<div class="highlight" id="id-5"><div class="chroma">
+<div class="highlight" id="id-3"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -496,7 +496,7 @@
 <p>所以我们使用<code>Disk Genius</code>的恢复文件功能去恢复加密的压缩包以及里面的加密代码</p>
 <p><img loading="lazy" src="imgs/image-20241218132716931.png" alt="imgs/image-20241218132716931.png" srcset="imgs/image-20241218132716931.png?size=small, imgs/image-20241218132716931.png?size=medium 1.5x, imgs/image-20241218132716931.png?size=large 2x" data-title="imgs/image-20241218132716931.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>改后缀为.zip，然后使用得到的压缩包密码解压即可得到加密代码，内容如下：</p>
-<div class="highlight" id="id-6"><div class="chroma">
+<div class="highlight" id="id-4"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -555,7 +555,7 @@
 </div>
 </div><p>代码逻辑并不复杂，就是用时间戳MD5值的前16位作为key去进行AES-CBC加密，然后IV保存在加密后文件的前16字节中</p>
 <p>解密的思路也比较简单，懒得自己手写了，直接GPT秒了</p>
-<div class="highlight" id="id-7"><div class="chroma">
+<div class="highlight" id="id-5"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -657,7 +657,7 @@
 <p>然后联想到手机键盘密码，根据下面这个对照表得到<code>dtmfiscool</code></p>
 <p>感谢烛影✌提供的对照表</p>
 <p><img loading="lazy" src="imgs/image-20241226092225804.jpeg" alt="imgs/image-20241226092225804.jpeg" srcset="imgs/image-20241226092225804.jpeg?size=small, imgs/image-20241226092225804.jpeg?size=medium 1.5x, imgs/image-20241226092225804.jpeg?size=large 2x" data-title="imgs/image-20241226092225804.jpeg" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
-<div class="highlight" id="id-8"><div class="chroma">
+<div class="highlight" id="id-6"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -675,7 +675,7 @@
 <p><img loading="lazy" src="imgs/image-20241225205550609.jpeg" alt="imgs/image-20241225205550609.jpeg" srcset="imgs/image-20241225205550609.jpeg?size=small, imgs/image-20241225205550609.jpeg?size=medium 1.5x, imgs/image-20241225205550609.jpeg?size=large 2x" data-title="imgs/image-20241225205550609.jpeg" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>发现这张图片主要是讲咖啡价格的，因此密码与咖啡有关，上网搜索可以找到下面这篇文章</p>
 <p>星巴克杯子上字母的含义：https://www.mopress.io/food/olejRNQWej</p>
-<div class="highlight" id="id-9"><div class="chroma">
+<div class="highlight" id="id-7"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -703,7 +703,7 @@
 <p><img loading="lazy" src="imgs/image-20241225212423398.png" alt="imgs/image-20241225212423398.png" srcset="imgs/image-20241225212423398.png?size=small, imgs/image-20241225212423398.png?size=medium 1.5x, imgs/image-20241225212423398.png?size=large 2x" data-title="imgs/image-20241225212423398.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p><img loading="lazy" src="imgs/image-20241225212429255.png" alt="imgs/image-20241225212429255.png" srcset="imgs/image-20241225212429255.png?size=small, imgs/image-20241225212429255.png?size=medium 1.5x, imgs/image-20241225212429255.png?size=large 2x" data-title="imgs/image-20241225212429255.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>扫码后可以得到如下内容</p>
-<div class="highlight" id="id-10"><div class="chroma">
+<div class="highlight" id="id-8"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -720,7 +720,7 @@
 <blockquote>
 <p>Tips：这里因为图片不是正方形，所以需要分别取模宽和高</p>
 </blockquote>
-<div class="highlight" id="id-11"><div class="chroma">
+<div class="highlight" id="id-9"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -771,7 +771,7 @@
 <p>zsteg扫一下，发现LSB隐写了数据</p>
 <p><img loading="lazy" src="imgs/image-20241225220153184.png" alt="imgs/image-20241225220153184.png" srcset="imgs/image-20241225220153184.png?size=small, imgs/image-20241225220153184.png?size=medium 1.5x, imgs/image-20241225220153184.png?size=large 2x" data-title="imgs/image-20241225220153184.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>尝试用<code>zsteg -e b1,bgr,lsb,xy IM.png &gt; data.txt</code>导出可以得到如下数据</p>
-<div class="highlight" id="id-12"><div class="chroma">
+<div class="highlight" id="id-10"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
@@ -781,7 +781,7 @@
 </div><p>仔细观察上面的数据，发现都是x开头的，然后每个字符串的长度都是5，并且字符集就是<code>xsctf</code>这五个字符</p>
 <p>因此猜测是五进制，结合最后一个字符<code>xsxxx</code>对应<code>01000(125)</code>刚刚好是<code>{</code>，更加确定是五进制了</p>
 <p>因此我们写一个脚本转换一下即可得到flag：<code>flag{\y0u_are_An_1mag3_master/}</code></p>
-<div class="highlight" id="id-13"><div class="chroma">
+<div class="highlight" id="id-11"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -872,7 +872,7 @@
 </table>
 <p>然后根据题目提示，可知当 $p=13$ $q=19$ 的时候，$phi=(p-1)*(q-1)$</p>
 <p>e要求与$phi$互素，因此可以写一个脚本来遍历e的所有可能情况</p>
-<div class="highlight" id="id-1"><div class="chroma">
+<div class="highlight" id="id-12"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -904,14 +904,14 @@
 </div><p>然后去查看<code>hint.jpg</code>，用脚本读取其中像素的RGB值，发现刚刚好都是在e的取值范围里的(如果e的范围扩展到1-255)</p>
 <p>写了一个脚本统计了一下每种e出现的次数，发现数值都是在可打印字符的范围内的</p>
 <p>转ASCII后可以得到如下字符串，目前思路就卡在这里了</p>
-<div class="highlight" id="id-2"><div class="chroma">
+<div class="highlight" id="id-13"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl"> Y[IZ^OVO[Peo]XSiKdX`VbSV^XTXdS_acU\Z\RVMSgW]eR[fT[KULZX[R\`bVHJbGk[VNWVESXeFQQV_T_]VU</span></span></code></pre></td></tr></table>
 </div>
-</div><div class="highlight" id="id-3"><div class="chroma">
+</div><div class="highlight" id="id-14"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2

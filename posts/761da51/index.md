@@ -677,6 +677,29 @@ sudo mdadm --create /dev/md127 --level=0 --raid-devices=5 /dev/loop0 /dev/loop1 
 
 例题1-2025西湖论剑-糟糕的磁盘
 
+### btr文件
+
+把文件拉到`Kali`虚拟机里(这里最好用`kali`，因为经过测试，发现我WSL2中的Ubuntu20.04是无法准备识别这几个文件的）
+
+![WSL2-Ubuntu20.04](imgs/image-20250302213331633.png)
+
+![Kali-Linux](imgs/image-20250302213429891.png)
+然后我们使用以下几个命令挂载一下上面文件格式为`BTRFS`磁盘
+
+```bash
+sudo losetup -fP Cr6cHso43mZM.btr
+sudo losetup -fP LaQrxw9UCsuj.btr
+sudo losetup -fP UljsvrCJUkfX.btr
+sudo losetup -fP mkZEnww8DePD.btr
+sudo losetup -fP yRvRjpac8Lxo.btr
+sudo mkdir tmp
+sudo mount -o degraded /dev/loop1 tmp # 用于强制挂载可能降级（设备丢失或损坏）的Btrfs文件系统
+```
+
+![](imgs/image-20250302231559934.png)
+
+例题1-2024强网拟态-Input Page Walk
+
 
 ### 磁盘取证的一些思路
 

@@ -6,9 +6,10 @@
 
 &lt;!--more--&gt;
 
-![](imgs/image-20241021155322167.png)
 
-&gt; 题目附件下载地址： https://pan.baidu.com/s/1TNckSzEMj9XsOo8aGRyKqA?pwd=9jdh 提取码: 9jdh
+|                    ![](imgs/image-20241021155322167.png)                     |
+| :--------------------------------------------------------------------------: |
+| 题目附件下载地址： https://pan.baidu.com/s/1TNckSzEMj9XsOo8aGRyKqA?pwd=9jdh 提取码: 9jdh |
 
 ## 题目名称 ezflag
 打开流量包，发现直接传输了一个zip压缩包
