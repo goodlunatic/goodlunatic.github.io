@@ -14,7 +14,7 @@
 趁着写毕设没啥思路和动力的功夫，来稍微复盘下今年西湖论剑的题">
   <meta itemprop="datePublished" content="2025-02-28T14:35:37+08:00">
   <meta itemprop="dateModified" content="2025-02-28T14:35:37+08:00">
-  <meta itemprop="wordCount" content="2666">
+  <meta itemprop="wordCount" content="2853">
   <meta itemprop="keywords" content="CTF,Misc,Writeup"><meta property="og:url" content="https://goodlunatic.github.io/posts/f002407/">
   <meta property="og:site_name" content="⚡Lunatic BLOG⚡">
   <meta property="og:title" content="2025 西湖论剑·中国杭州网络安全技能大赛 Misc Writeup">
@@ -45,7 +45,7 @@
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": "https:\/\/goodlunatic.github.io\/posts\/f002407\/"
-    },"genre": "posts","keywords": "CTF, Misc, Writeup","wordcount":  2666 ,
+    },"genre": "posts","keywords": "CTF, Misc, Writeup","wordcount":  2853 ,
     "url": "https:\/\/goodlunatic.github.io\/posts\/f002407\/","datePublished": "2025-02-28T14:35:37+08:00","dateModified": "2025-02-28T14:35:37+08:00","publisher": {
       "@type": "Organization",
       "name": ""},"author": {
@@ -149,7 +149,7 @@
 <article class="page single">
   <div class="header"><h1 class="single-title animate__animated animate__flipInX"><span>2025 西湖论剑·中国杭州网络安全技能大赛 Misc Writeup</span>
     </h1></div><div class="post-meta">
-    <div class="post-meta-line"><span class="post-author"><a href="https://goodlunatic.github.io" title="Author"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><img loading="lazy" src="https://www.nssctf.cn/files/2024/4/28/7f130a1387.png" alt="Lunatic" data-title="Lunatic" class="avatar" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>&nbsp;Lunatic</a></span><span class="post-included-in">&nbsp;included in <a href="/categories/writeup/" class="post-category" title="Category - Writeup"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> Writeup</a></span></div><div class="post-meta-line"><span title="published on &lt;no value&gt;"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden="true"></i><time datetime="2025-02-28">2025-02-28</time></span>&nbsp;<span title=""><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>About 2700 words</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>13 minutes</span>&nbsp;</div>
+    <div class="post-meta-line"><span class="post-author"><a href="https://goodlunatic.github.io" title="Author"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><img loading="lazy" src="https://www.nssctf.cn/files/2024/4/28/7f130a1387.png" alt="Lunatic" data-title="Lunatic" class="avatar" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>&nbsp;Lunatic</a></span><span class="post-included-in">&nbsp;included in <a href="/categories/writeup/" class="post-category" title="Category - Writeup"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> Writeup</a></span></div><div class="post-meta-line"><span title="published on &lt;no value&gt;"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden="true"></i><time datetime="2025-02-28">2025-02-28</time></span>&nbsp;<span title=""><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>About 2900 words</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>14 minutes</span>&nbsp;</div>
   </div><div class="details toc" id="toc-static"
     data-kept="false">
     <div class="details-summary toc-title">
@@ -159,7 +159,12 @@
     <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
   <ul>
     <li><a href="#题目名称-easydatalog">题目名称 easydatalog</a></li>
-    <li><a href="#题目名称-糟糕的磁盘">题目名称 糟糕的磁盘</a></li>
+    <li><a href="#题目名称-糟糕的磁盘">题目名称 糟糕的磁盘</a>
+      <ul>
+        <li><a href="#方法一ufs直接重组">方法一：(UFS直接重组)</a></li>
+        <li><a href="#方法二在ubuntu下用losetup和mdadm进行组装挂载">方法二：在Ubuntu下用losetup和mdadm进行组装挂载</a></li>
+      </ul>
+    </li>
     <li><a href="#题目名称-dsasignaturedata">题目名称 DSASignatureData</a></li>
     <li><a href="#题面名称-easyrawencode">题面名称 easyrawencode</a></li>
     <li><a href="#题目名称-cscs">题目名称 cscs</a></li>
@@ -198,7 +203,77 @@
 <p><img loading="lazy" src="imgs/image-20250118235359515.png" alt="imgs/image-20250118235359515.png" srcset="imgs/image-20250118235359515.png?size=small, imgs/image-20250118235359515.png?size=medium 1.5x, imgs/image-20250118235359515.png?size=large 2x" data-title="imgs/image-20250118235359515.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>使用得到的密码解压压缩包即可得到张三的信息，即flag：<code>DASCTF{30601319731003117X_79159498824}</code></p>
 <h2 id="题目名称-糟糕的磁盘" class="heading-element">
-  <a href="#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-%e7%b3%9f%e7%b3%95%e7%9a%84%e7%a3%81%e7%9b%98" class="heading-mark"></a>题目名称 糟糕的磁盘</h2><h2 id="题目名称-dsasignaturedata" class="heading-element">
+  <a href="#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-%e7%b3%9f%e7%b3%95%e7%9a%84%e7%a3%81%e7%9b%98" class="heading-mark"></a>题目名称 糟糕的磁盘</h2><p>题目附件给了五个img文件，查看后发现是Linux下RAID格式的磁盘文件</p>
+<p><img loading="lazy" src="imgs/image-20250228162745234.png" alt="imgs/image-20250228162745234.png" srcset="imgs/image-20250228162745234.png?size=small, imgs/image-20250228162745234.png?size=medium 1.5x, imgs/image-20250228162745234.png?size=large 2x" data-title="imgs/image-20250228162745234.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><img loading="lazy" src="imgs/image-20250228162829496.png" alt="imgs/image-20250228162829496.png" srcset="imgs/image-20250228162829496.png?size=small, imgs/image-20250228162829496.png?size=medium 1.5x, imgs/image-20250228162829496.png?size=large 2x" data-title="imgs/image-20250228162829496.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>压缩包注释中也给了提示：<code>I only remember the block size is 512KB</code></p>
+<h3 id="方法一ufs直接重组" class="heading-element">
+  <a href="#%e6%96%b9%e6%b3%95%e4%b8%80ufs%e7%9b%b4%e6%8e%a5%e9%87%8d%e7%bb%84" class="heading-mark"></a>方法一：(UFS直接重组)</h3><p>软件下载链接：<a href="https://cangshui.net/5257.html"target="_blank" rel="external nofollow noopener noreferrer">UFS Explorer Professional Recovery 9.18</a></p>
+<p>直接用UFS打开五个img文件即可，软件会自动重组，然后点击最下面那个kali</p>
+<p><img loading="lazy" src="imgs/image-20250228162941848.png" alt="imgs/image-20250228162941848.png" srcset="imgs/image-20250228162941848.png?size=small, imgs/image-20250228162941848.png?size=medium 1.5x, imgs/image-20250228162941848.png?size=large 2x" data-title="imgs/image-20250228162941848.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>发现里面有一张<code>key.png</code>和一个<code>secret</code>文件，其中<code>secret</code>文件大小为10MB</p>
+<p>因此猜测是VC创建的加密镜像，密钥就是<code>key.png</code></p>
+<p>尝试使用<code>key.png</code>作为密钥挂载，挂载成功后得到<code>flag.txt</code></p>
+<p><img loading="lazy" src="imgs/image-20250228163404243.png" alt="imgs/image-20250228163404243.png" srcset="imgs/image-20250228163404243.png?size=small, imgs/image-20250228163404243.png?size=medium 1.5x, imgs/image-20250228163404243.png?size=large 2x" data-title="imgs/image-20250228163404243.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><img loading="lazy" src="imgs/image-20250228163328475.png" alt="imgs/image-20250228163328475.png" srcset="imgs/image-20250228163328475.png?size=small, imgs/image-20250228163328475.png?size=medium 1.5x, imgs/image-20250228163328475.png?size=large 2x" data-title="imgs/image-20250228163328475.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>打开即可得到flag：<code>DASCTF{R41D_4ND_D15K_M4573R}</code></p>
+<p><img loading="lazy" src="imgs/image-20250228163309963.png" alt="imgs/image-20250228163309963.png" srcset="imgs/image-20250228163309963.png?size=small, imgs/image-20250228163309963.png?size=medium 1.5x, imgs/image-20250228163309963.png?size=large 2x" data-title="imgs/image-20250228163309963.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<h3 id="方法二在ubuntu下用losetup和mdadm进行组装挂载" class="heading-element">
+  <a href="#%e6%96%b9%e6%b3%95%e4%ba%8c%e5%9c%a8ubuntu%e4%b8%8b%e7%94%a8losetup%e5%92%8cmdadm%e8%bf%9b%e8%a1%8c%e7%bb%84%e8%a3%85%e6%8c%82%e8%bd%bd" class="heading-mark"></a>方法二：在Ubuntu下用losetup和mdadm进行组装挂载</h3><p>在WSL2(Ubuntu20.04)中运行一下命令即可成功挂载</p>
+<div class="highlight" id="id-1"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo losetup -fP m8X4exzG.img  <span class="c1"># 绑定第一个镜像文件到一个空闲的 loop 设备，并解析其分区表</span>
+</span></span><span class="line"><span class="cl">sudo losetup -fP Fsiq6lKn.img
+</span></span><span class="line"><span class="cl">sudo losetup -fP gSoNiXLC.img
+</span></span><span class="line"><span class="cl">sudo losetup -fP suPVGqm6.img
+</span></span><span class="line"><span class="cl">sudo losetup -fP uGZ85OzT.img
+</span></span><span class="line"><span class="cl">sudo losetup -a  <span class="c1"># 查看当前所有已绑定的 loop 设备及其对应的文件</span>
+</span></span><span class="line"><span class="cl">cat /proc/mdstat  <span class="c1"># 查看当前系统中已组装的 RAID 设备状态</span>
+</span></span><span class="line"><span class="cl">sudo mount /dev/md127 tmp  <span class="c1"># 挂载 RAID 设备 md127 到 tmp 目录，尝试访问其内容</span>
+</span></span><span class="line"><span class="cl">ls -al tmp
+</span></span><span class="line"><span class="cl">sudo umount tmp  <span class="c1"># 卸载 tmp 目录，释放 md127 设备的挂载</span>
+</span></span><span class="line"><span class="cl">sudo mdadm --stop /dev/md127  <span class="c1"># 停止 RAID 设备 md127，释放相关 loop 设备的占用</span>
+</span></span><span class="line"><span class="cl">sudo losetup -d /dev/loop0  <span class="c1"># 解除 loop0 设备的绑定</span>
+</span></span><span class="line"><span class="cl">sudo losetup -d /dev/loop1
+</span></span><span class="line"><span class="cl">sudo losetup -d /dev/loop2
+</span></span><span class="line"><span class="cl">sudo losetup -d /dev/loop3
+</span></span><span class="line"><span class="cl">sudo losetup -d /dev/loop4
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 检查 /dev/loop0 至 /dev/loop4 上的每个设备的 RAID 元数据（查看设备是否是 RAID 阵列的一部分）</span>
+</span></span><span class="line"><span class="cl">sudo mdadm --examine /dev/loop0 /dev/loop1 /dev/loop2 /dev/loop3 /dev/loop4   
+</span></span><span class="line"><span class="cl"><span class="c1"># 创建一个名为 /dev/md127 的 RAID 0 阵列，包含 5 个设备（/dev/loop0 至 /dev/loop4）</span>
+</span></span><span class="line"><span class="cl">sudo mdadm --create /dev/md127 --level<span class="o">=</span><span class="m">0</span> --raid-devices<span class="o">=</span><span class="m">5</span> /dev/loop0 /dev/loop1 /dev/loop2 /dev/loop3 /dev/loop4   </span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>Tips:这里我的WSL2可能启用了 <code>mdadm</code> 的 <strong>自动检测和组装</strong>，因此会在发现 <code>RAID</code> 元数据时自动创建 <code>/dev/md127</code></p>
+</blockquote>
+<p><img loading="lazy" src="imgs/image-20250302105806686.png" alt="imgs/image-20250302105806686.png" srcset="imgs/image-20250302105806686.png?size=small, imgs/image-20250302105806686.png?size=medium 1.5x, imgs/image-20250302105806686.png?size=large 2x" data-title="imgs/image-20250302105806686.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>但是当我尝试在kali上执行以上操作的时候，它不会自动识别 <code>RAID</code> 阵列并自动挂载</p>
+<p>因此还是建议在Ubuntu系统下进行以上操作</p>
+<h2 id="题目名称-dsasignaturedata" class="heading-element">
   <a href="#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-dsasignaturedata" class="heading-mark"></a>题目名称 DSASignatureData</h2><blockquote>
 <p>题面信息如下：
 请你对附件中的流量文件进行分析，在该流量里有一些个人信息数据。附件中还有一份个人信息的签名数据 data-sign.csv（其中签名算法采用 DSA，哈希算法采用 SHA256）和一组公钥文件（位于 public 文件夹中，文件名格式为 public-XXXX.pem，其中 XXXX 为 userid 左侧补零至四位数，即个人用户对应的公钥文件）。由于数据可能在传输过程中被篡改过，因此需要你进行签名验证，验证数据是否被篡改。找出被篡改过的个人信息数据并保存到新的 csv 文件中（文件编码 utf-8，文件格式和 data.csv 保持一致），并将该文件上传至该题的校验平台（在该校验平台里可以下载该题的示例文件 example.csv，可作为该题的格式参考），校验达标即可拿到 flag。</p>
@@ -224,7 +299,7 @@
 <p><img loading="lazy" src="imgs/image-20250226235842380.png" alt="imgs/image-20250226235842380.png" srcset="imgs/image-20250226235842380.png?size=small, imgs/image-20250226235842380.png?size=medium 1.5x, imgs/image-20250226235842380.png?size=large 2x" data-title="imgs/image-20250226235842380.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>我们可以在解析结果中得到公钥，用CyberChef转换一下，并补上PEM的开头和结尾</p>
 <p><img loading="lazy" src="imgs/image-20250227000008671.png" alt="imgs/image-20250227000008671.png" srcset="imgs/image-20250227000008671.png?size=small, imgs/image-20250227000008671.png?size=medium 1.5x, imgs/image-20250227000008671.png?size=large 2x" data-title="imgs/image-20250227000008671.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
-<div class="highlight" id="id-1"><div class="chroma">
+<div class="highlight" id="id-2"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -241,7 +316,7 @@
 <p><img loading="lazy" src="imgs/image-20250227000303830.png" alt="imgs/image-20250227000303830.png" srcset="imgs/image-20250227000303830.png?size=small, imgs/image-20250227000303830.png?size=medium 1.5x, imgs/image-20250227000303830.png?size=large 2x" data-title="imgs/image-20250227000303830.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>我们使用<code>rsatool.py</code>结合得到的 p 和 q 生成一下PEM格式的私钥</p>
 <p><img loading="lazy" src="imgs/image-20250227000531067.png" alt="imgs/image-20250227000531067.png" srcset="imgs/image-20250227000531067.png?size=small, imgs/image-20250227000531067.png?size=medium 1.5x, imgs/image-20250227000531067.png?size=large 2x" data-title="imgs/image-20250227000531067.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
-<div class="highlight" id="id-2"><div class="chroma">
+<div class="highlight" id="id-3"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -278,7 +353,7 @@
 </div>
 </div><p>然后后续的步骤就和常规的CobalStrike流量分析一样了</p>
 <p>首先使用私钥去解密心跳包中的cookie信息得到<code>AES_KEY</code>和<code>HMAC_KEY</code></p>
-<div class="highlight" id="id-3"><div class="chroma">
+<div class="highlight" id="id-4"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -408,7 +483,7 @@
 <p>/submit.php：主要用于传输客户端回传的执行结果</p>
 </blockquote>
 <p><strong>解密心跳包中传输的数据</strong></p>
-<div class="highlight" id="id-4"><div class="chroma">
+<div class="highlight" id="id-5"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -488,7 +563,7 @@
 </span></span><span class="line"><span class="cl">    <span class="c1"># print(output)</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p><strong>解密submit.php中回传的数据</strong></p>
-<div class="highlight" id="id-5"><div class="chroma">
+<div class="highlight" id="id-6"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -563,7 +638,7 @@
 </div>
 </div><p>上面两个代码的主要区别就在于：第二个代码中的加密数据是从源数据的第四字节开始的</p>
 <p>我们用第二个代码解密<code>submit.php</code>的数据，可以得到如下内容，并且发现里面有个<code>secret.pcapng</code></p>
-<div class="highlight" id="id-6"><div class="chroma">
+<div class="highlight" id="id-7"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -758,7 +833,7 @@
 <p>结合第二个代码解密出来的<code>submit.php</code>的数据，应该就是那个<code>secret.pcapng</code>了</p>
 <p><img loading="lazy" src="imgs/image-20250227214140287.png" alt="imgs/image-20250227214140287.png" srcset="imgs/image-20250227214140287.png?size=small, imgs/image-20250227214140287.png?size=medium 1.5x, imgs/image-20250227214140287.png?size=large 2x" data-title="imgs/image-20250227214140287.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>用以下代码解其余心跳包的数据可以得到攻击者要求受害客户端执行的其他命令</p>
-<div class="highlight" id="id-7"><div class="chroma">
+<div class="highlight" id="id-8"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -827,7 +902,7 @@
 </span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;[+] 任务输出类型: </span><span class="si">{}</span><span class="s2">&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">int</span><span class="o">.</span><span class="n">from_bytes</span><span class="p">(</span><span class="n">dec</span><span class="p">[</span><span class="mi">8</span><span class="p">:</span><span class="mi">12</span><span class="p">],</span> <span class="n">byteorder</span><span class="o">=</span><span class="s1">&#39;big&#39;</span><span class="p">,</span> <span class="n">signed</span><span class="o">=</span><span class="kc">False</span><span class="p">)))</span>
 </span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="n">hexdump</span><span class="o">.</span><span class="n">hexdump</span><span class="p">(</span><span class="n">dec</span><span class="p">))</span></span></span></code></pre></td></tr></table>
 </div>
-</div><div class="highlight" id="id-8"><div class="chroma">
+</div><div class="highlight" id="id-9"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -913,7 +988,7 @@
 <p>但是这道题没有2021L3HCTF那题那么复杂，因为这里的数据包带的数据都比较短</p>
 <p>因此这里直接一个个包解码过去就行，也不用根据解密后数据的长度进行分块处理</p>
 <p>首先把解密的CPP代码在Linux下编译成.so文件</p>
-<div class="highlight" id="id-9"><div class="chroma">
+<div class="highlight" id="id-10"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1008,7 +1083,7 @@
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
-</div><div class="highlight" id="id-10"><div class="chroma">
+</div><div class="highlight" id="id-11"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -1028,7 +1103,7 @@
 </span></span><span class="line"><span class="cl"><span class="c1"># com_unmunge.cpp：源代码文件名。</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>Linux下输入以上命令即可编译得到 a.so</p>
-<div class="highlight" id="id-11"><div class="chroma">
+<div class="highlight" id="id-12"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2

@@ -2834,7 +2834,7 @@ sox -t wav latlong.wav -esigned-integer -b16 -r 22050 -t raw latlong.raw
 
 multimon-ng -t raw -a AFSK1200 latlong.raw 
 
-### 8、steghide
+### 8、WAV可能是steghide隐写(可以无密码)
 
 ```bash
 #如果密码已经知道了
@@ -2863,7 +2863,7 @@ done
 stegseek filename rockyou.txt
 ```
 
-### 9、MP3音频(mp3stego隐写)
+### 9、MP3可能是mp3stego隐写(可以无密码)
 
 使用前需要先把要处理的文件放到 mp3stego 目录下
 
