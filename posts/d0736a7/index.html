@@ -14,7 +14,7 @@
 如果师傅们有进一步的想法或者做出来了，可以联系我一起交流一下解题思路">
   <meta itemprop="datePublished" content="2025-03-05T19:39:58+08:00">
   <meta itemprop="dateModified" content="2025-03-05T19:39:58+08:00">
-  <meta itemprop="wordCount" content="934">
+  <meta itemprop="wordCount" content="937">
   <meta itemprop="keywords" content="CTF,Misc"><meta property="og:url" content="https://goodlunatic.github.io/posts/d0736a7/">
   <meta property="og:site_name" content="⚡Lunatic BLOG⚡">
   <meta property="og:title" content="CTF-Misc &#34;雅&#34;题共赏">
@@ -44,7 +44,7 @@
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": "https:\/\/goodlunatic.github.io\/posts\/d0736a7\/"
-    },"genre": "posts","keywords": "CTF, Misc","wordcount":  934 ,
+    },"genre": "posts","keywords": "CTF, Misc","wordcount":  937 ,
     "url": "https:\/\/goodlunatic.github.io\/posts\/d0736a7\/","datePublished": "2025-03-05T19:39:58+08:00","dateModified": "2025-03-05T19:39:58+08:00","publisher": {
       "@type": "Organization",
       "name": ""},"author": {
@@ -669,6 +669,8 @@
 </div>
 </div><p><img loading="lazy" src="imgs/image-20250107195608287.png" alt="imgs/image-20250107195608287.png" srcset="imgs/image-20250107195608287.png?size=small, imgs/image-20250107195608287.png?size=medium 1.5x, imgs/image-20250107195608287.png?size=large 2x" data-title="imgs/image-20250107195608287.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>爆破即可得到<code>皮箱左边.7z</code>压缩包的解压密码：<code>5a2dd7b80</code>，这个数字转十进制是<code>24207260544</code>，是数列的第<code>220033</code>项</p>
+<p>当然，这里也可以用 <code>PasswareKit</code> 进行爆破，大概要爆个十分钟左右也能得到压缩包的解压密码</p>
+<p><img loading="lazy" src="imgs/image-20250305212946653.png" alt="imgs/image-20250305212946653.png" srcset="imgs/image-20250305212946653.png?size=small, imgs/image-20250305212946653.png?size=medium 1.5x, imgs/image-20250305212946653.png?size=large 2x" data-title="imgs/image-20250305212946653.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>解压后可以得到下面这5张二维码碎片</p>
 <p><img loading="lazy" src="imgs/image-20250107201342425.png" alt="imgs/image-20250107201342425.png" srcset="imgs/image-20250107201342425.png?size=small, imgs/image-20250107201342425.png?size=medium 1.5x, imgs/image-20250107201342425.png?size=large 2x" data-title="imgs/image-20250107201342425.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>对二维码比较熟悉的师傅可以看出来，<code>兑不兑呢？</code>这个图片的位置好像有点不对劲</p>
@@ -683,7 +685,7 @@
 <p>平方后的所有数位上都不出现组成它自身的数字。</p>
 <p>在1000000以内具有这样特点的6位数还有一个，两数相乘是多少？</p>
 </blockquote>
-<p>解决该问题的脚本如下，可以得到另一个数为<code>639172</code>两数相乘的结果为<code>130313748188</code></p>
+<p>解决该问题的脚本如下，可以得到另一个数为<code>639172</code>，因此和<code>203879</code>相乘的结果为<code>130313748188</code></p>
 <div class="highlight" id="id-11"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
