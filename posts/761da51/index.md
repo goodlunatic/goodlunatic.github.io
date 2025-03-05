@@ -165,7 +165,7 @@ vol3.py -f dacong.raw windows.pstree
 
 便签：StikyNot.exe （.snt 文件路径在C:\Users\XXX\AppData\Roaming\Microsoft\Sticky Notes\）【这个文件需要用Win7的便签或者记事本打开】
 
-画图：mspaint.exe（这个进程可以用 memdump 导出 dmp 文件，然后改后缀为.data拖入Gimp中调整位移和分辨率，例：2024 NKCTF）
+画图：mspaint.exe（这个进程可以用 `memdump -p &lt;PID&gt; --dump-dir=./` 导出 dmp 文件，然后改后缀为.data拖入Gimp中调整位移和分辨率，例：2024 NKCTF）
 
 联系人：wab.exe （.contact 文件）
 

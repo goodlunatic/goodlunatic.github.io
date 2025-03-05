@@ -4,7 +4,16 @@
     <link>https://goodlunatic.github.io/posts/</link>
     <description>All Posts | ⚡Lunatic BLOG⚡</description>
     <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>goodlunatic0@gmail.com (Lunatic)</managingEditor>
-      <webMaster>goodlunatic0@gmail.com (Lunatic)</webMaster><lastBuildDate>Sun, 02 Mar 2025 23:16:19 &#43;0800</lastBuildDate><atom:link href="https://goodlunatic.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>goodlunatic0@gmail.com (Lunatic)</webMaster><lastBuildDate>Wed, 05 Mar 2025 09:39:58 &#43;0800</lastBuildDate><atom:link href="https://goodlunatic.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+  <title>CTF-Misc &#34;雅&#34;题共赏</title>
+  <link>https://goodlunatic.github.io/posts/d0736a7/</link>
+  <pubDate>Wed, 05 Mar 2025 09:39:58 &#43;0800</pubDate>
+  <author>Lunatic</author>
+  <guid>https://goodlunatic.github.io/posts/d0736a7/</guid>
+  <description><![CDATA[<p><strong>用这篇博客来记录一下本人在比赛中遇到的一些疑难题（本人尚未解出的题）</strong></p>
+<p><strong>如果师傅们有进一步的想法或者做出来了，可以联系我一起交流一下解题思路</strong></p>]]></description>
+</item>
+<item>
   <title>2024 强网拟态防御国际精英挑战赛初赛 Misc Writeup</title>
   <link>https://goodlunatic.github.io/posts/de8e2be/</link>
   <pubDate>Sun, 02 Mar 2025 23:16:19 &#43;0800</pubDate>
@@ -81,14 +90,6 @@
   <author>Lunatic</author>
   <guid>https://goodlunatic.github.io/posts/bb1da35/</guid>
   <description><![CDATA[<p><strong>其实感觉时常做做群友给的题，对自我实力提升其实帮助挺大的</strong></p>]]></description>
-</item>
-<item>
-  <title>4G5G网络安全相关内容的研究</title>
-  <link>https://goodlunatic.github.io/posts/342f304/</link>
-  <pubDate>Tue, 24 Dec 2024 19:29:58 &#43;0800</pubDate>
-  <author>Lunatic</author>
-  <guid>https://goodlunatic.github.io/posts/342f304/</guid>
-  <description><![CDATA[<p><strong>4G5G网络安全相关内容的研究</strong></p>]]></description>
 </item>
 </channel>
 </rss>

@@ -12,7 +12,7 @@
   <meta itemprop="description" content="This is a simple summary of digital forensics .">
   <meta itemprop="datePublished" content="2025-03-02T18:34:12+08:00">
   <meta itemprop="dateModified" content="2025-03-02T18:34:12+08:00">
-  <meta itemprop="wordCount" content="2626">
+  <meta itemprop="wordCount" content="2629">
   <meta itemprop="keywords" content="CTF,Misc,Forensics"><meta property="og:url" content="https://goodlunatic.github.io/posts/761da51/">
   <meta property="og:site_name" content="⚡Lunatic BLOG⚡">
   <meta property="og:title" content="Misc-Forensics">
@@ -41,7 +41,7 @@
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": "https:\/\/goodlunatic.github.io\/posts\/761da51\/"
-    },"genre": "posts","keywords": "CTF, Misc, Forensics","wordcount":  2626 ,
+    },"genre": "posts","keywords": "CTF, Misc, Forensics","wordcount":  2629 ,
     "url": "https:\/\/goodlunatic.github.io\/posts\/761da51\/","datePublished": "2025-03-02T18:34:12+08:00","dateModified": "2025-03-02T18:34:12+08:00","publisher": {
       "@type": "Organization",
       "name": ""},"author": {
@@ -511,7 +511,7 @@
 </div>
 </div><p><strong>一些特殊进程</strong></p>
 <p>便签：StikyNot.exe （.snt 文件路径在C:\Users\XXX\AppData\Roaming\Microsoft\Sticky Notes\）【这个文件需要用Win7的便签或者记事本打开】</p>
-<p>画图：mspaint.exe（这个进程可以用 memdump 导出 dmp 文件，然后改后缀为.data拖入Gimp中调整位移和分辨率，例：2024 NKCTF）</p>
+<p>画图：mspaint.exe（这个进程可以用 <code>memdump -p &lt;PID&gt; --dump-dir=./</code> 导出 dmp 文件，然后改后缀为.data拖入Gimp中调整位移和分辨率，例：2024 NKCTF）</p>
 <p>联系人：wab.exe （.contact 文件）</p>
 <p><strong>一些特殊文件</strong></p>
 <p>evtx - Windows系统日志</p>
