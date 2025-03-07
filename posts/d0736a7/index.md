@@ -512,6 +512,92 @@ for num in range(100000, 1000000):
 &gt; 
 &gt; **不知道有没有和我一样一直在等待这道题答案的师傅，但是人海茫茫，还是感谢师傅们能看到这里！**
 
+## 题目名称 QRSACode
+
+题目附件： https://pan.baidu.com/s/1Jtgzh2AOcR4J7A-Wa-83LQ?pwd=8zcj 提取码: 8zcj
+
+题面信息如下
+
+&gt; 描述：p = 13,q = 19,e = ?
+
+解压附件给的压缩包，可以得到如下两张图片，其中`task.png`中隐约可以看到一张二维码
+
+![](imgs/image-20250307114638056.png)
+
+然后结合题面的信息，我们知道在RSA中`e`要和`phi`互质，其中`phi=(q-1)*(p-1)`
+
+因此我们可以写个脚本得到`e`所有可能的取值范围
+
+```python
+import gmpy2
+
+def cal_e():
+    p = 13
+    q = 19
+    phi = (p - 1) * (q - 1)
+    res = [e for e in range(2, 256) if gmpy2.gcd(e, phi) == 1]
+    # print(len(res)) # 84
+    # print(res)
+    return res
+```
+
+得到`e`所有可能的取值如下，一共84种可能取值：
+
+```
+[5, 7, 11, 13, 17, 19, 23, 25, 29, 31, 35, 37, 41, 43, 47, 49, 53, 55, 59, 61, 65, 67, 71, 73, 77, 79, 83, 85, 89, 91, 95, 97, 101, 103, 107, 109, 113, 115, 119, 121, 125, 127, 131, 133, 137, 139, 143, 145, 149, 151, 155, 157, 161, 163, 167, 169, 173, 175, 179, 181, 185, 187, 191, 193, 197, 199, 203, 205, 209, 211, 215, 217, 221, 223, 227, 229, 233, 235, 239, 241, 245, 247, 251, 253]
+```
+
+然后我们尝试去读取`hint.png`中的像素点
+
+```python
+def func1():
+    dic = {}
+    img1 = Image.open(&#34;hint.png&#34;)
+    width,height = img1.size # 50 50
+    for y in range(height):
+        for x in range(width):
+            pixel = img1.getpixel((x,y))
+            if pixel not in dic:
+                dic[pixel] = 1
+            else:
+                dic[pixel] &#43;= 1
+    # print(len(dic)) # 2496
+    print(dic)
+```
+
+发现2500个像素点中有2496种像素，并且只有以下两种像素出现了2次，别的像素都是只出现一次
+
+```
+(133, 167, 215): 2
+(31, 163, 119): 2
+```
+
+我们把所有像素打印出来可以发现，每个像素的RGB值都是取自我们之前得到的`e`的取值范围中
+
+然后我们再去看`task.png`，发现图像时RGBA格式的，只不过A通道的值都是255
+
+```python
+def solve():
+    dic = {}
+    img1 = Image.open(&#34;task.png&#34;)
+    width,height = img1.size # 50 50
+    for y in range(height):
+        for x in range(width):
+            pixel = img1.getpixel((x,y))
+            if pixel not in dic:
+                dic[pixel] = 1
+            else:
+                dic[pixel] &#43;= 1
+    # print(len(dic)) # 1112
+    # print(dic)
+```
+
+发现一共有1112种不同的像素
+
+并且背景接近白色的像素点的RGBA的值为`(246, 246, 246, 255)`，黑色像素点的RGBA值为`(0, 0, 0, 255)`
+
+&gt; 目前的想法是：题目需要我们根据像素的某种规律，去除`task.png`种的干扰像素，复原原始的二维码
+
 
 
 ---
