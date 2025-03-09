@@ -711,7 +711,7 @@ if __name__ == &#34;__main__&#34;:
 
 运行以上脚本后，即可得到左上和右下两个二维码，分别对应一半的flag
 
-最后把两段flag组合即可得到最后的flag：`DASCTF{Unb0x_a_Fil3_t0_Get_a_Fl4g`
+最后把两段flag组合即可得到最后的flag：`DASCTF{Unb0x_a_Fil3_t0_Get_a_Fl4g}`
 
 ![](imgs/image-20250309152607609.png)
 

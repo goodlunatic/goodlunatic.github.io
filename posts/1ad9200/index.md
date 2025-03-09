@@ -1698,7 +1698,30 @@ if __name__ == &#39;__main__&#39;:
 
 ### GIF思路
 
-#### 1、分帧提取GIF(在线网站或者工具)
+做GIF图像的相关的隐写题之前，我们首先需要对GIF图像大概的参数又一定的了解
+
+下图我用Linux下的`identify`工具提取了一张GIF图像的一些参数
+
+![](imgs/image-20250309155001150.png)
+
+这里简要介绍一下每一行中的参数
+```
+ flag.gif[195]     GIF      465x294      481x305&#43;8&#43;11          8-bit            sRGB 
+图像名称及对应帧数  图像格式  帧的实际尺寸  画布尺寸及xy的偏移量  图像使用 8 位色深  颜色空间为标准 RGB
+
+      16c                   0.010u                         0:00.080
+使用了 16 种颜色  处理该图像消耗的 CPU 用户时间，单位是秒  处理该图像所用的总时间，单位是秒
+
+```
+
+#### 1、GIF分帧(在线网站或者工具)
+
+**[推荐] Linux下使用`convert`提取**
+
+```bash
+convert flag.gif flag.png
+```
+
 使用`ffmpeg`提取（如果帧间隔不同，提取出来会有问题）
 ```bash
 # 在Windows或者WSL中执行以下命令进行分离
@@ -1711,19 +1734,85 @@ ffmpeg -i filename.gif frame%04d.png
 
 #### 2、帧间隔隐写
 
-直接使用`PuzzleSolver`一把梭了
+**[推荐] 方法一：直接使用`PuzzleSolver`提取帧间隔**
+
+![](imgs/image-20241111093420194.png)
+
+方法二：使用`identify`提取
+
+```bash
+identify -format &#34;%s %T \n&#34; flag.gif  #格式：帧序号 时间间隔（单位是1/100秒）
+```
+
+![](imgs/image-20250309155841569.png)
 
 例题1-2024羊城杯初赛-checkin
 
 例题2-2024浙江省赛决赛-非黑即白
 
-![](imgs/image-20241111093420194.png)
+#### GIF图像每帧的XY偏移量隐写
 
-或者使用以下命令提取帧间隔
+使用`identify`提取出偏移量然后再分析
 
 ```bash
-identify -format &#34;%s %T \n&#34; 100.gif  	#格式：帧序号 间隔
+identify flag.gif
 ```
+
+例题1-Boxing Boxer
+
+```python
+import subprocess
+from PIL import Image
+from datetime import datetime
+
+time_space = [...]
+
+def get_pos(gif_file):
+    offset_x = []
+    offset_y = []
+    pic_width = []
+    pic_height = []
+    cmd = f&#39;identify {gif_file}&#39;
+    res = subprocess.run(cmd,shell=True,stdout=subprocess.PIPE,stderr=subprocess.PIPE,text=True)
+    output = res.stdout
+    lines = output.strip().split(&#39;\n&#39;)
+    
+    for line in lines:
+        tmp_lst = line.split(&#39; &#39;)
+        frame_size,tmp_x,tmp_y = tmp_lst[3].split(&#39;&#43;&#39;)
+        offset_x.append(int(tmp_x))
+        offset_y.append(int(tmp_y))
+        tmp_x,tmp_y = tmp_lst[2].split(&#39;x&#39;)
+        pic_width.append(int(tmp_x))
+        pic_height.append(int(tmp_y))
+        
+    return offset_x,offset_y,pic_width,pic_height
+
+def draw2pic(offset_x,offset_y,pic_width,pic_height):
+    img = Image.new(&#34;RGB&#34;,(500,500),(255,255,255)) # 新建一张尺寸为500x500的RGB图像
+    for idx,item in enumerate(time_space):
+        if item == &#39;70&#39;:
+            continue
+        elif item == &#39;50&#39;:
+            img.putpixel((offset_x[idx],offset_y[idx]),(255,255,255))
+            img.putpixel((offset_x[idx]&#43;pic_width[idx],offset_y[idx]&#43;pic_height[idx]),(255,255,255))
+        elif item == &#39;60&#39;:
+            img.putpixel((offset_x[idx],offset_y[idx]),(0,0,0))
+            img.putpixel((offset_x[idx]&#43;pic_width[idx],offset_y[idx]&#43;pic_height[idx]),(0,0,0))
+            
+    timestamp = datetime.now().strftime(&#34;%Y%m%d%H%M%S&#34;)
+    print(timestamp)
+    img.save(f&#34;{timestamp}.png&#34;)
+
+if __name__ == &#34;__main__&#34;:
+    gif_file = &#34;flag.gif&#34;
+    offset_x,offset_y,pic_width,pic_height = get_pos(gif_file)
+    draw2pic(offset_x,offset_y,pic_width,pic_height)
+```
+
+#### GIF图像每帧的实际尺寸隐写
+
+例题1-Boxing Boxer
 
 ### Webp思路
 
