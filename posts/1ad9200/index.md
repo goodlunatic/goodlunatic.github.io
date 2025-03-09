@@ -953,6 +953,18 @@ print(ddd)
 
 直接使用[在线网站](https://master.ayra.ch/vbs/vbs.aspx)解密为vbs即可
 
+### 日历密码
+
+例题1-QHCTF For Year 2025
+
+![](imgs/image-20250307145358642.png)
+
+### Twitter Secret Messages
+
+特点就是密文中有很多Unicode字符，直接用在线网站解密即可：https://holloway.nz/steg/
+
+![](imgs/image-20250307145735098.png)
+
 ## 各种文件头/尾：
 
 这里要注意，出题人可能会把文件头的小写字母偷偷改成大写，例如：Rar -&gt; RAR
