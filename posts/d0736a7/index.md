@@ -38,7 +38,7 @@ bc3cf1722bf8f617acc85ba7169649ecd70c7e9575c05ef04cde5bd8eb79120a756e1a7755acb17d
 
 发现每行长度都一样，然后结合one联想到可能是一个密钥加密的，一开始猜测是OPT或者MPT但是发现做不出来
 
-## 题目名称 nothing (2024 蓝桥杯全国总决赛)  [SOLVED]
+## [SOLVED] 题目名称 nothing (2024 蓝桥杯全国总决赛)
 
 题目附件： https://pan.baidu.com/s/1eGIfajRXx3uqjlk54CaZ1g?pwd=ax6g 提取码: ax6g
 
@@ -313,7 +313,7 @@ if __name__ == &#34;__main__&#34;:
 
 
 
-## 题目名称 道可道，非常道 (2024 ISCC 博弈对抗赛) [SOLVED]
+## [SOLVED] 题目名称 道可道，非常道 (2024 ISCC 博弈对抗赛)
 
 &gt; 非常感谢 @Aura 师傅最后的奇思妙想，发现了频谱图中的二维码需要旋转，给这道题画上了圆满的句号。
 
@@ -600,7 +600,7 @@ def solve():
 
 
 
-## 题目名称 Boxing Boxer [SOLVED]
+## [SOLVED] 题目名称 Boxing Boxer
 
 题目附件： https://pan.baidu.com/s/195It-h7CBEXJ53-cV9MkoA?pwd=dahr 提取码: dahr
 
