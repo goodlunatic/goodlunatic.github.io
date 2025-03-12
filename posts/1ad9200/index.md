@@ -1104,9 +1104,19 @@ im.show()
 
 还有可能是给了两张二维码，需要两个二维码每个像素亦或，直接用CTFD中的像素亦或脚本即可
 
-#### 8、OurSecret隐写
+#### 8、OurSecret隐写(可以无密码)
 
-拉入OurSecret，输入密码解密，得到隐藏文件
+拉入OurSecret，输入密码(也可以无密码)解密，得到隐藏文件
+
+&gt; OurSecret隐写的特征非常明显，如下图中标蓝的那40字节
+
+```
+9E 97 BA 2A 00 80 88 C9 A3 70 97 5B A2 E4 99 B8
+C1 78 72 0F 88 DD DC 34 2B 4E 7D 31 7F B5 E8 70
+39 A8 B8 42 75 68 71 91
+```
+
+![](imgs/image-20250312191643162.png)
 
 #### 9、拼图题
 
@@ -1412,6 +1422,59 @@ if __name__ == &#34;__main__&#34;:
     cv2.imwrite(&#39;flag.png&#39;,decode_img)
 ```
 
+#### 22、像素点RGB值转图片
+
+题目提供了类似如下的数据：
+
+```python
+(255,255,255)
+(255,255,255)
+(255,255,255)
+(255,255,255)
+(255,255,255)
+(255,255,255)
+(255,255,255)
+(255,255,255)
+(255,255,255)
+(255,255,255)
+(255,255,255)
+(255,255,255)
+(255,255,255)
+(255,255,255)
+(255,255,255)
+```
+
+直接写一个Python脚本爆破宽高并还原图像即可
+
+```python
+import numpy as np
+import math
+from PIL import Image
+
+with open(&#39;basic.txt&#39;, &#39;r&#39;) as file:
+    lines = file.readlines()
+
+# 将每行数据转换为元组，并存储在列表中
+data = [eval(line.strip()) for line in lines]
+
+# 将列表转换为NumPy数组，形状为 (N, 3)
+data = np.array(data, dtype=np.uint8)
+
+data_length = len(data)
+sqrt_length = int(math.sqrt(data_length))
+for i in range(sqrt_length, 0, -1):
+    if data_length % i == 0:  # 如果长度可以整除
+        rows = i
+        cols = data_length // i
+        print(f&#34;尝试重塑为 {rows} 行, {cols} 列&#34;)
+        try:
+            reshaped_data = data.reshape(rows, cols, 3)
+            image = Image.fromarray(reshaped_data, &#39;RGB&#39;)
+            image.save(f&#34;{rows}x{cols}.png&#34;)
+        except Exception as e:
+            print(f&#34;无法重塑为 {rows} 行, {cols} 列: {e}&#34;)
+```
+
 ### PNG思路
 
 ####  1、CRC错误(不能乱改)，改宽高，17~20是宽，21~24是高(可用Pictools脚本快速爆破)
@@ -1555,7 +1618,7 @@ stegpy 1.png -p
 
 导出步骤 Select File --&gt; seek --&gt; demo.txt --&gt; Save the file
 
-#### 3、steghide隐写
+#### 3、steghide隐写(可以无密码)
 
 ```bash
 #如果密码已经知道了

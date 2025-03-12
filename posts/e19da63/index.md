@@ -1295,6 +1295,38 @@ print(np.concatenate((a, b), axis=1))
 ##  [ 4  5  6  7  8  9]]
 ```
 
+##### 使用numpy处理图像
+
+根据RGB值爆破宽高并还原图像
+```python
+import numpy as np
+import math
+from PIL import Image
+
+with open(&#39;basic.txt&#39;, &#39;r&#39;) as file:
+    lines = file.readlines()
+
+# 将每行数据转换为元组，并存储在列表中
+data = [eval(line.strip()) for line in lines]
+
+# 将列表转换为NumPy数组，形状为 (N, 3)
+data = np.array(data, dtype=np.uint8)
+
+data_length = len(data)
+sqrt_length = int(math.sqrt(data_length))
+for i in range(sqrt_length, 0, -1):
+    if data_length % i == 0:  # 如果长度可以整除
+        rows = i
+        cols = data_length // i
+        print(f&#34;尝试重塑为 {rows} 行, {cols} 列&#34;)
+        try:
+            reshaped_data = data.reshape(rows, cols, 3)
+            image = Image.fromarray(reshaped_data, &#39;RGB&#39;)
+            image.save(f&#34;{rows}x{cols}.png&#34;)
+        except Exception as e:
+            print(f&#34;无法重塑为 {rows} 行, {cols} 列: {e}&#34;)
+```
+
 #### cv2模块的使用
 
 ##### 比赛中的使用记录
