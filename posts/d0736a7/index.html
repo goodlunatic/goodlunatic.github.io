@@ -612,7 +612,7 @@
 <p>最后请求出第22002244位是多少？（好像他比较喜欢十六进制）</p>
 </blockquote>
 <p>解决该问题的脚本如下，最后算出答案是<code>242049370517768</code>，十六进制是<code>dc2482bf7108</code></p>
-<div class="highlight" id="id-8"><div class="chroma">
+<div class="highlight" id="id-1"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -642,7 +642,7 @@
 </div><p>尝试使用得到的答案去解压压缩包，但是发现不是解压密码，不知道哪里出问题了，因此打算直接爆破了</p>
 <p>先用下面这个脚本生成所有可能的结果，然后把结果输出到一个字典中</p>
 <p>用在线网站或者<code>7z2john</code>生成压缩包的hash，然后使用hashcat进行爆破</p>
-<div class="highlight" id="id-9"><div class="chroma">
+<div class="highlight" id="id-2"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -664,7 +664,7 @@
 </span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="nb">hex</span><span class="p">(</span><span class="n">lst</span><span class="p">[</span><span class="n">i</span><span class="p">])[</span><span class="mi">2</span><span class="p">:])</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p><img loading="lazy" src="imgs/image-20250107200433630.png" alt="imgs/image-20250107200433630.png" srcset="imgs/image-20250107200433630.png?size=small, imgs/image-20250107200433630.png?size=medium 1.5x, imgs/image-20250107200433630.png?size=large 2x" data-title="imgs/image-20250107200433630.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
-<div class="highlight" id="id-10"><div class="chroma">
+<div class="highlight" id="id-3"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -692,7 +692,7 @@
 <p>在1000000以内具有这样特点的6位数还有一个，两数相乘是多少？</p>
 </blockquote>
 <p>解决该问题的脚本如下，可以得到另一个数为<code>639172</code>，因此和<code>203879</code>相乘的结果为<code>130313748188</code></p>
-<div class="highlight" id="id-11"><div class="chroma">
+<div class="highlight" id="id-4"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -820,7 +820,7 @@
 <p><img loading="lazy" src="imgs/image-20250307114638056.png" alt="imgs/image-20250307114638056.png" srcset="imgs/image-20250307114638056.png?size=small, imgs/image-20250307114638056.png?size=medium 1.5x, imgs/image-20250307114638056.png?size=large 2x" data-title="imgs/image-20250307114638056.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>然后结合题面的信息，我们知道在RSA中<code>e</code>要和<code>phi</code>互质，其中<code>phi=(q-1)*(p-1)</code></p>
 <p>因此我们可以写个脚本得到<code>e</code>所有可能的取值范围</p>
-<div class="highlight" id="id-12"><div class="chroma">
+<div class="highlight" id="id-5"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -846,7 +846,7 @@
 </span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">res</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>得到<code>e</code>所有可能的取值如下，一共84种可能取值：</p>
-<div class="highlight" id="id-13"><div class="chroma">
+<div class="highlight" id="id-6"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
@@ -854,7 +854,7 @@
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">[5, 7, 11, 13, 17, 19, 23, 25, 29, 31, 35, 37, 41, 43, 47, 49, 53, 55, 59, 61, 65, 67, 71, 73, 77, 79, 83, 85, 89, 91, 95, 97, 101, 103, 107, 109, 113, 115, 119, 121, 125, 127, 131, 133, 137, 139, 143, 145, 149, 151, 155, 157, 161, 163, 167, 169, 173, 175, 179, 181, 185, 187, 191, 193, 197, 199, 203, 205, 209, 211, 215, 217, 221, 223, 227, 229, 233, 235, 239, 241, 245, 247, 251, 253]</span></span></code></pre></td></tr></table>
 </div>
 </div><p>然后我们尝试去读取<code>hint.png</code>中的像素点</p>
-<div class="highlight" id="id-14"><div class="chroma">
+<div class="highlight" id="id-7"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -886,7 +886,7 @@
 </span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="n">dic</span><span class="p">)</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>发现2500个像素点中有2496种像素，并且只有以下两种像素出现了2次，别的像素都是只出现一次</p>
-<div class="highlight" id="id-15"><div class="chroma">
+<div class="highlight" id="id-8"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -897,7 +897,7 @@
 </div>
 </div><p>我们把所有像素打印出来可以发现，每个像素的RGB值都是取自我们之前得到的<code>e</code>的取值范围中</p>
 <p>然后我们再去看<code>task.png</code>，发现图像时RGBA格式的，只不过A通道的值都是255</p>
-<div class="highlight" id="id-16"><div class="chroma">
+<div class="highlight" id="id-9"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -949,7 +949,7 @@
 <p><img loading="lazy" src="imgs/image-20250307133401161.png" alt="imgs/image-20250307133401161.png" srcset="imgs/image-20250307133401161.png?size=small, imgs/image-20250307133401161.png?size=medium 1.5x, imgs/image-20250307133401161.png?size=large 2x" data-title="imgs/image-20250307133401161.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>尝试用<code>stegsolve</code>查看每张图片的LSB信息，并没有发现什么特殊的信息</p>
 <p>然后尝试提取出GIF每一帧的间隔，可以得到如下内容，发现开头和结尾都是70，一共<code>32+31=63</code>个</p>
-<div class="highlight" id="id-17"><div class="chroma">
+<div class="highlight" id="id-10"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
@@ -960,7 +960,7 @@
 <p>所以我们猜测可能隐写了一张二维码，我们尝试把50和60转为0和1，然后尝试绘制二维码，可以得到下面这些图片</p>
 <p><img loading="lazy" src="imgs/image-20250307133820417.png" alt="imgs/image-20250307133820417.png" srcset="imgs/image-20250307133820417.png?size=small, imgs/image-20250307133820417.png?size=medium 1.5x, imgs/image-20250307133820417.png?size=large 2x" data-title="imgs/image-20250307133820417.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>转换出来后发现并不是二维码，并且尝试直接二进制转字符串也得不到什么有效的信息</p>
-<div class="highlight" id="id-18"><div class="chroma">
+<div class="highlight" id="id-11"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -986,7 +986,7 @@
 <blockquote>
 <p>Tips：以下脚本需要在Linux中运行</p>
 </blockquote>
-<div class="highlight" id="id-19"><div class="chroma">
+<div class="highlight" id="id-12"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2

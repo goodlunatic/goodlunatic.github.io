@@ -12,7 +12,7 @@
   <meta itemprop="description" content="This is a simple summary of digital forensics .">
   <meta itemprop="datePublished" content="2025-03-05T18:34:12+08:00">
   <meta itemprop="dateModified" content="2025-03-05T18:34:12+08:00">
-  <meta itemprop="wordCount" content="2377">
+  <meta itemprop="wordCount" content="2625">
   <meta itemprop="keywords" content="CTF,Misc,Forensics"><meta property="og:url" content="https://goodlunatic.github.io/posts/761da51/">
   <meta property="og:site_name" content="⚡Lunatic BLOG⚡">
   <meta property="og:title" content="Misc-Forensics">
@@ -41,7 +41,7 @@
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": "https:\/\/goodlunatic.github.io\/posts\/761da51\/"
-    },"genre": "posts","keywords": "CTF, Misc, Forensics","wordcount":  2377 ,
+    },"genre": "posts","keywords": "CTF, Misc, Forensics","wordcount":  2625 ,
     "url": "https:\/\/goodlunatic.github.io\/posts\/761da51\/","datePublished": "2025-03-05T18:34:12+08:00","dateModified": "2025-03-05T18:34:12+08:00","publisher": {
       "@type": "Organization",
       "name": ""},"author": {
@@ -145,7 +145,7 @@
 <article class="page single">
   <div class="header"><h1 class="single-title animate__animated animate__flipInX"><span>Misc-Forensics</span>
     </h1></div><div class="post-meta">
-    <div class="post-meta-line"><span class="post-author"><a href="https://goodlunatic.github.io" title="Author"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><img loading="lazy" src="https://www.nssctf.cn/files/2024/4/28/7f130a1387.png" alt="Lunatic" data-title="Lunatic" class="avatar" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>&nbsp;Lunatic</a></span><span class="post-included-in">&nbsp;included in <a href="/categories/ctf/" class="post-category" title="Category - CTF"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> CTF</a></span></div><div class="post-meta-line"><span title="published on &lt;no value&gt;"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden="true"></i><time datetime="2025-03-05">2025-03-05</time></span>&nbsp;<span title=""><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>About 2400 words</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>12 minutes</span>&nbsp;</div>
+    <div class="post-meta-line"><span class="post-author"><a href="https://goodlunatic.github.io" title="Author"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><img loading="lazy" src="https://www.nssctf.cn/files/2024/4/28/7f130a1387.png" alt="Lunatic" data-title="Lunatic" class="avatar" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>&nbsp;Lunatic</a></span><span class="post-included-in">&nbsp;included in <a href="/categories/ctf/" class="post-category" title="Category - CTF"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> CTF</a></span></div><div class="post-meta-line"><span title="published on &lt;no value&gt;"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden="true"></i><time datetime="2025-03-05">2025-03-05</time></span>&nbsp;<span title=""><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>About 2700 words</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>13 minutes</span>&nbsp;</div>
   </div><div class="details toc" id="toc-static"
     data-kept="false">
     <div class="details-summary toc-title">
@@ -212,6 +212,7 @@
             <li><a href="#1-获取主机的系统名">1. 获取主机的系统名</a></li>
             <li><a href="#2-查看powershell的历史记录">2. 查看Powershell的历史记录</a></li>
             <li><a href="#3-获取用户的登录密码">3. 获取用户的登录密码</a></li>
+            <li><a href="#4-获取定时任务的内容">4. 获取定时任务的内容</a></li>
             <li><a href="#5-获取docker容器中的关键信息">5. 获取Docker容器中的关键信息</a></li>
             <li><a href="#6-获取主机的环境变量">6. 获取主机的环境变量</a></li>
             <li><a href="#7-获取计算机注册时的用户名">7. 获取计算机注册时的用户名</a></li>
@@ -288,8 +289,8 @@
   <a href="#%e5%86%85%e5%ad%98%e5%8f%96%e8%af%81" class="heading-mark"></a>内存取证</h2><p>常见文件后缀：.vmem / .dump / .raw / .img</p>
 <p>内存取证除了常用的 Vol 以外，也可以尝试一下 R-Stdio 这个工具，提取文件的时候不一定哪个可以用</p>
 <p>打开 R-Stdio -&gt; 驱动器 -&gt; 打开镜像 -&gt; 扫描</p>
-<p><img loading="lazy" src="imgs/Rstdio1.png" alt="imgs/Rstdio1.png" srcset="imgs/Rstdio1.png?size=small, imgs/Rstdio1.png?size=medium 1.5x, imgs/Rstdio1.png?size=large 2x" data-title="imgs/Rstdio1.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
-<p><img loading="lazy" src="imgs/Rstdio2.png" alt="imgs/Rstdio2.png" srcset="imgs/Rstdio2.png?size=small, imgs/Rstdio2.png?size=medium 1.5x, imgs/Rstdio2.png?size=large 2x" data-title="imgs/Rstdio2.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><img loading="lazy" src="/posts/761da51/imgs/Rstdio1.png" alt="/posts/761da51/imgs/Rstdio1.png" srcset="/posts/761da51/imgs/Rstdio1.png?size=small, /posts/761da51/imgs/Rstdio1.png?size=medium 1.5x, /posts/761da51/imgs/Rstdio1.png?size=large 2x" data-title="/posts/761da51/imgs/Rstdio1.png" style="--width: 2104px;--aspect-ratio: 2104 / 1433;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><img loading="lazy" src="/posts/761da51/imgs/Rstdio2.png" alt="/posts/761da51/imgs/Rstdio2.png" srcset="/posts/761da51/imgs/Rstdio2.png?size=small, /posts/761da51/imgs/Rstdio2.png?size=medium 1.5x, /posts/761da51/imgs/Rstdio2.png?size=large 2x" data-title="/posts/761da51/imgs/Rstdio2.png" style="--width: 3842px;--aspect-ratio: 3842 / 2160;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>vol.py &ndash;info 可以查看插件</p>
 <div class="highlight" id="id-3"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -689,7 +690,7 @@
 </div><p>SSH连接容器映射出来的端口，将 dwarf 文件复制出来，然后和之前的 systemmap 文件一起打包为 Debian_5.10.0-21-amd64_profile.zip</p>
 <p>最后将这个 zip 文件放到 ~/volatility/volatility/plugins/overlays/linux/ 路径下即可</p>
 <p>使用 vol.py &ndash;info | grep Profile | grep Linux 命令查看 profile 是否成功加载</p>
-<p><img loading="lazy" src="imgs/profile1.png" alt="imgs/profile1.png" srcset="imgs/profile1.png?size=small, imgs/profile1.png?size=medium 1.5x, imgs/profile1.png?size=large 2x" data-title="imgs/profile1.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><img loading="lazy" src="/posts/761da51/imgs/profile1.png" alt="/posts/761da51/imgs/profile1.png" srcset="/posts/761da51/imgs/profile1.png?size=small, /posts/761da51/imgs/profile1.png?size=medium 1.5x, /posts/761da51/imgs/profile1.png?size=large 2x" data-title="/posts/761da51/imgs/profile1.png" style="--width: 1734px;--aspect-ratio: 1734 / 957;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <h4 id="制作--symbolsvol3--的详细过程" class="heading-element">
   <a href="#%e5%88%b6%e4%bd%9c--symbolsvol3--%e7%9a%84%e8%af%a6%e7%bb%86%e8%bf%87%e7%a8%8b" class="heading-mark"></a>制作  symbols(Vol3)  的详细过程</h4><p><strong>识别内存镜像的系统版本</strong></p>
 <div class="highlight" id="id-15"><div class="chroma">
@@ -1044,7 +1045,7 @@
   <a href="#volatility3-2" class="heading-mark"></a>Volatility3</h4><h3 id="识别不出内存镜像版本的取证" class="heading-element">
   <a href="#%e8%af%86%e5%88%ab%e4%b8%8d%e5%87%ba%e5%86%85%e5%ad%98%e9%95%9c%e5%83%8f%e7%89%88%e6%9c%ac%e7%9a%84%e5%8f%96%e8%af%81" class="heading-mark"></a>识别不出内存镜像版本的取证</h3><p>直接使用 010 手搓或者用 Strings 命令把可打印字符保存到文本文件中再手搓</p>
 <p>需要从内存中找到 AES 解密的 key 的情况：可以使用 findaes.exe 工具辅助查找</p>
-<p><img loading="lazy" src="imgs/findaes.png" alt="imgs/findaes.png" srcset="imgs/findaes.png?size=small, imgs/findaes.png?size=medium 1.5x, imgs/findaes.png?size=large 2x" data-title="imgs/findaes.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><img loading="lazy" src="/posts/761da51/imgs/findaes.png" alt="/posts/761da51/imgs/findaes.png" srcset="/posts/761da51/imgs/findaes.png?size=small, /posts/761da51/imgs/findaes.png?size=medium 1.5x, /posts/761da51/imgs/findaes.png?size=large 2x" data-title="/posts/761da51/imgs/findaes.png" style="--width: 1351px;--aspect-ratio: 1351 / 343;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <h3 id="用来制作内存镜像的工具" class="heading-element">
   <a href="#%e7%94%a8%e6%9d%a5%e5%88%b6%e4%bd%9c%e5%86%85%e5%ad%98%e9%95%9c%e5%83%8f%e7%9a%84%e5%b7%a5%e5%85%b7" class="heading-mark"></a>用来制作内存镜像的工具</h3><p>1、Volatility
 2、FTK Imager
@@ -1099,7 +1100,7 @@
 <h3 id="veracrypt" class="heading-element">
   <a href="#veracrypt" class="heading-mark"></a>VeraCrypt</h3><p>解密&amp;挂载磁盘的步骤：</p>
 <p>1.选择要挂载的加密盘，然后选择一个没有被占用的盘符再点击左下角的加载</p>
-<p><img loading="lazy" src="imgs/VeraCrypt1-17142941155649.png" alt="imgs/VeraCrypt1-17142941155649.png" srcset="imgs/VeraCrypt1-17142941155649.png?size=small, imgs/VeraCrypt1-17142941155649.png?size=medium 1.5x, imgs/VeraCrypt1-17142941155649.png?size=large 2x" data-title="imgs/VeraCrypt1-17142941155649.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><img loading="lazy" src="/posts/761da51/imgs/VeraCrypt1-17142941155649.png" alt="/posts/761da51/imgs/VeraCrypt1-17142941155649.png" srcset="/posts/761da51/imgs/VeraCrypt1-17142941155649.png?size=small, /posts/761da51/imgs/VeraCrypt1-17142941155649.png?size=medium 1.5x, /posts/761da51/imgs/VeraCrypt1-17142941155649.png?size=large 2x" data-title="/posts/761da51/imgs/VeraCrypt1-17142941155649.png" style="--width: 569px;--aspect-ratio: 569 / 489;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>2.输入加密盘的密钥，或者直接使用密钥文件(图片文件也可以)</p>
 <p>​	如果这里加载失败，可以点击下面的加密卷工具，把密钥给改了，然后使用自己更改后的密钥挂载</p>
 <p>3.如果不知道解密的密钥，也可以尝试用 <code>Forensics Passware Kit</code> 进行爆破</p>
@@ -1222,7 +1223,7 @@
 </span></span><span class="line"><span class="cl">sudo mkdir tmp
 </span></span><span class="line"><span class="cl">sudo mount -o degraded /dev/loop1 tmp <span class="c1"># 用于强制挂载可能降级（设备丢失或损坏）的Btrfs文件系统</span></span></span></code></pre></td></tr></table>
 </div>
-</div><p><img loading="lazy" src="imgs/image-20250302231559934.png" alt="imgs/image-20250302231559934.png" srcset="imgs/image-20250302231559934.png?size=small, imgs/image-20250302231559934.png?size=medium 1.5x, imgs/image-20250302231559934.png?size=large 2x" data-title="imgs/image-20250302231559934.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+</div><p><img loading="lazy" src="/posts/761da51/imgs/image-20250302231559934.png" alt="/posts/761da51/imgs/image-20250302231559934.png" srcset="/posts/761da51/imgs/image-20250302231559934.png?size=small, /posts/761da51/imgs/image-20250302231559934.png?size=medium 1.5x, /posts/761da51/imgs/image-20250302231559934.png?size=large 2x" data-title="/posts/761da51/imgs/image-20250302231559934.png" style="--width: 2560px;--aspect-ratio: 2560 / 1528;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>例题1-2024强网拟态-Input Page Walk</p>
 <h3 id="磁盘取证的一些思路" class="heading-element">
   <a href="#%e7%a3%81%e7%9b%98%e5%8f%96%e8%af%81%e7%9a%84%e4%b8%80%e4%ba%9b%e6%80%9d%e8%b7%af" class="heading-mark"></a>磁盘取证的一些思路</h3><h4 id="1-获取主机的系统名" class="heading-element">
@@ -1256,6 +1257,61 @@
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">hashcat -m <span class="m">500</span> -a <span class="m">0</span> shadow_hash.txt rockyou.txt --force</span></span></code></pre></td></tr></table>
 </div>
+</div><h4 id="4-获取定时任务的内容" class="heading-element">
+  <a href="#4-%e8%8e%b7%e5%8f%96%e5%ae%9a%e6%97%b6%e4%bb%bb%e5%8a%a1%e7%9a%84%e5%86%85%e5%ae%b9" class="heading-mark"></a>4. 获取定时任务的内容</h4><p>定时任务保存在 <code>/etc/crontab</code> 文件下，这里举个例子</p>
+<div class="highlight" id="id-32"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># /etc/crontab: system-wide crontab</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Unlike any other crontab you don&#39;t have to run the `crontab&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># command to install the new version when you edit this file</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># and files in /etc/cron.d. These files also have username fields,</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># that none of the other crontabs do.</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nv">SHELL</span><span class="o">=</span>/bin/sh
+</span></span><span class="line"><span class="cl"><span class="c1"># You can also override PATH, but by default, newer versions inherit it from the environment</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Example of job definition:</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># .---------------- minute (0 - 59)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># |  .------------- hour (0 - 23)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># |  |  .---------- day of month (1 - 31)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># |  |  |  .------- month (1 - 12) OR jan,feb,mar,apr ...</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># |  |  |  |  .---- day of week (0 - 6) (Sunday=0 or 7) OR sun,mon,tue,wed,thu,fri,sat</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># |  |  |  |  |</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># *  *  *  *  * user-name command to be executed</span>
+</span></span><span class="line"><span class="cl"><span class="m">17</span> *	* * *	root	<span class="nb">cd</span> / <span class="o">&amp;&amp;</span> run-parts --report /etc/cron.hourly
+</span></span><span class="line"><span class="cl"><span class="m">25</span> 6	* * *	root	<span class="nb">test</span> -x /usr/sbin/anacron <span class="o">||</span> <span class="o">{</span> <span class="nb">cd</span> / <span class="o">&amp;&amp;</span> run-parts --report /etc/cron.daily<span class="p">;</span> <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="m">47</span> 6	* * 7	root	<span class="nb">test</span> -x /usr/sbin/anacron <span class="o">||</span> <span class="o">{</span> <span class="nb">cd</span> / <span class="o">&amp;&amp;</span> run-parts --report /etc/cron.weekly<span class="p">;</span> <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="m">52</span> 6	<span class="m">1</span> * *	root	<span class="nb">test</span> -x /usr/sbin/anacron <span class="o">||</span> <span class="o">{</span> <span class="nb">cd</span> / <span class="o">&amp;&amp;</span> run-parts --report /etc/cron.monthly<span class="p">;</span> <span class="o">}</span>
+</span></span><span class="line"><span class="cl">*/2 * * * * root /usr/bin/python3 /usr/local/share/xml/entities/a.py
+</span></span><span class="line"><span class="cl"><span class="c1"># 每 2 分钟执行一次 Python 脚本 /usr/local/share/xml/entities/a.py</span></span></span></code></pre></td></tr></table>
+</div>
 </div><h4 id="5-获取docker容器中的关键信息" class="heading-element">
   <a href="#5-%e8%8e%b7%e5%8f%96docker%e5%ae%b9%e5%99%a8%e4%b8%ad%e7%9a%84%e5%85%b3%e9%94%ae%e4%bf%a1%e6%81%af" class="heading-mark"></a>5. 获取Docker容器中的关键信息</h4><p>Docker容器保存在<code>/var/lib/docker/containers/</code>路径下</p>
 <h4 id="6-获取主机的环境变量" class="heading-element">
@@ -1272,7 +1328,7 @@
   <a href="#%e6%9c%8d%e5%8a%a1%e5%99%a8%e5%8f%96%e8%af%81" class="heading-mark"></a>服务器取证</h2><p>硬盘镜像文件后缀: .qcow2</p>
 <h3 id="mysql57-数据库从qpxb文件恢复数据" class="heading-element">
   <a href="#mysql57-%e6%95%b0%e6%8d%ae%e5%ba%93%e4%bb%8eqpxb%e6%96%87%e4%bb%b6%e6%81%a2%e5%a4%8d%e6%95%b0%e6%8d%ae" class="heading-mark"></a>Mysql5.7 数据库从qp.xb文件恢复数据</h3><p>需要安装并使用qpress和xtrabackup</p>
-<div class="highlight" id="id-32"><div class="chroma">
+<div class="highlight" id="id-33"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -1281,7 +1337,7 @@
 <pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">wget <span class="s2">&#34;http://docs-aliyun.cn-hangzhou.oss.aliyun-inc.com/assets/attach/183466/cn_zh/1608011575185/qpress-11-linux-x64.tar&#34;</span>
 </span></span><span class="line"><span class="cl">wget https://www.percona.com/downloads/XtraBackup/Percona-XtraBackup-2.4.9/binary/redhat/7/x86_64/percona-xtrabackup-24-2.4.9-1.el7.x86_64.rpm</span></span></code></pre></td></tr></table>
 </div>
-</div><div class="highlight" id="id-33"><div class="chroma">
+</div><div class="highlight" id="id-34"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1309,7 +1365,7 @@
 </div><h2 id="其他" class="heading-element">
   <a href="#%e5%85%b6%e4%bb%96" class="heading-mark"></a>其他</h2><h3 id="1磁盘恢复" class="heading-element">
   <a href="#1%e7%a3%81%e7%9b%98%e6%81%a2%e5%a4%8d" class="heading-mark"></a>1、磁盘恢复</h3><h4 id="恢复-ext3-或-ext4-文件系统中已删除的文件" class="heading-element">
-  <a href="#%e6%81%a2%e5%a4%8d-ext3-%e6%88%96-ext4-%e6%96%87%e4%bb%b6%e7%b3%bb%e7%bb%9f%e4%b8%ad%e5%b7%b2%e5%88%a0%e9%99%a4%e7%9a%84%e6%96%87%e4%bb%b6" class="heading-mark"></a>恢复 ext3 或 ext4 文件系统中已删除的文件</h4><div class="highlight" id="id-34"><div class="chroma">
+  <a href="#%e6%81%a2%e5%a4%8d-ext3-%e6%88%96-ext4-%e6%96%87%e4%bb%b6%e7%b3%bb%e7%bb%9f%e4%b8%ad%e5%b7%b2%e5%88%a0%e9%99%a4%e7%9a%84%e6%96%87%e4%bb%b6" class="heading-mark"></a>恢复 ext3 或 ext4 文件系统中已删除的文件</h4><div class="highlight" id="id-35"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -1324,7 +1380,7 @@
   <a href="#%e7%9b%b4%e6%8e%a5diskgenius%e6%89%93%e5%bc%80%e6%81%a2%e5%a4%8d%e6%96%87%e4%bb%b6" class="heading-mark"></a>直接DiskGenius打开恢复文件</h4><h3 id="2浏览器登录凭证破解" class="heading-element">
   <a href="#2%e6%b5%8f%e8%a7%88%e5%99%a8%e7%99%bb%e5%bd%95%e5%87%ad%e8%af%81%e7%a0%b4%e8%a7%a3" class="heading-mark"></a>2、浏览器登录凭证破解</h3><p>Firefox登录凭证破解</p>
 <p>使用<a href="https://github.com/lclevy/firepwd"target="_blank" rel="external nofollow noopener noreferrer">Firepwd工具</a>破解，将key4.db、logins.json复制到firepwd目录下，用firepwd.py破解</p>
-<div class="highlight" id="id-35"><div class="chroma">
+<div class="highlight" id="id-36"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
@@ -1338,8 +1394,8 @@
 <h3 id="4dpapi破解" class="heading-element">
   <a href="#4dpapi%e7%a0%b4%e8%a7%a3" class="heading-mark"></a>4、DPAPI破解</h3><p>Windows DPAPI 是一种用于在 Windows 操作系统中存储和保护用户敏感数据的加密技术。它可以用于加密密码、证书、浏览器凭据等用户数据。</p>
 <p>可以使用 DPAPImk2john.py 将这个数据转换为 john 可识别的格式，然后使用 john 爆破</p>
-<p><img loading="lazy" src="imgs/DPAPI1.png" alt="imgs/DPAPI1.png" srcset="imgs/DPAPI1.png?size=small, imgs/DPAPI1.png?size=medium 1.5x, imgs/DPAPI1.png?size=large 2x" data-title="imgs/DPAPI1.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
-<p><img loading="lazy" src="imgs/DPAPI2.png" alt="imgs/DPAPI2.png" srcset="imgs/DPAPI2.png?size=small, imgs/DPAPI2.png?size=medium 1.5x, imgs/DPAPI2.png?size=large 2x" data-title="imgs/DPAPI2.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><img loading="lazy" src="/posts/761da51/imgs/DPAPI1.png" alt="/posts/761da51/imgs/DPAPI1.png" srcset="/posts/761da51/imgs/DPAPI1.png?size=small, /posts/761da51/imgs/DPAPI1.png?size=medium 1.5x, /posts/761da51/imgs/DPAPI1.png?size=large 2x" data-title="/posts/761da51/imgs/DPAPI1.png" style="--width: 1734px;--aspect-ratio: 1734 / 421;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><img loading="lazy" src="/posts/761da51/imgs/DPAPI2.png" alt="/posts/761da51/imgs/DPAPI2.png" srcset="/posts/761da51/imgs/DPAPI2.png?size=small, /posts/761da51/imgs/DPAPI2.png?size=medium 1.5x, /posts/761da51/imgs/DPAPI2.png?size=large 2x" data-title="/posts/761da51/imgs/DPAPI2.png" style="--width: 1353px;--aspect-ratio: 1353 / 438;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>DPAPI的应用：</p>
 <pre><code>1、EFS文件加密(Cipher)
 2、存储无线连接密码
@@ -1359,7 +1415,7 @@
 <h3 id="8gpg--pgp-加密" class="heading-element">
   <a href="#8gpg--pgp-%e5%8a%a0%e5%af%86" class="heading-mark"></a>8、GPG / PGP 加密</h3><p>这个加密可以使用 Linux 下的 GPG 解密，也可以使用 Windows 下的 Kleopatra 解密</p>
 <p>Linux 下解密的流程如下</p>
-<div class="highlight" id="id-36"><div class="chroma">
+<div class="highlight" id="id-37"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2

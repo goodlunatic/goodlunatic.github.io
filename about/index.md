@@ -5,7 +5,9 @@
 
 - **ID：Lunatic (Sometimes use Citanul)**
 
-- **CTF@Misc | BUPT-SCSS 研0 | 4th captain of [A1natas Team](https://www.a1natas.com/)**
+- **CTF@Misc | Pre-Master’s Student in BUPT-SCSS | 4th Captain of [A1natas Team](https://www.a1natas.com/)**
+
+- **Current Research Interest：Mobile Internet Security | 4G/5G Network Security | ...**
 
 # **💬 Contact Me**
 
@@ -13,9 +15,15 @@
 | :----------------------: | :-------------------------------: |
 | **QQ：MTI5MDAxODcxNA==** | **Email：goodlunatic0@gmail.com** |
 
-# **📝 Current research interest**
+# **🏆 Awards**
 
-- **Mobile Internet Security | 4G/5G Network Security | Vulnerability mining | ...** 
+- **National Second Prize, China Collegiate Cybersecurity Competition (CISCN), 2024** 
+- **Honorable Mention, Mathematical Contest in Modeling (MCM), USA, 2023**
+- **Top 10 Outstanding Students of the School of Computer Science and Technology, 2023, 2024**
+- **Zhejiang Provincial Government Scholarship, 2022, 2023, 2024**
+- **First-Class Scholarship for Outstanding Students, 2022, 2023, 2024**
+- **Research and Innovation Scholarship, 2024**
+- **. . .**
 
 # **✨️ Sponsors**
 
