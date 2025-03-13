@@ -1422,7 +1422,35 @@ if __name__ == &#34;__main__&#34;:
     cv2.imwrite(&#39;flag.png&#39;,decode_img)
 ```
 
-#### 22、像素点RGB值转图片
+#### 22、二进制数据转图片
+
+```python
+import os
+import math
+from PIL import Image
+
+bin_data = &#34;010000001010101101110001000010001110010110101100111010011101001010111011111101111111110110100100011001001100011001000001010111100001101000001010001011101111000100001010110110101101100111010000010000110101100001100110010100010011100011100011010100100000111101111111010010111101100010001100100010111111111001011101011101000000110111011000001001010011001001110101111111010110011011001000101010010110101011011111001010100011100001100001011010011&#34;
+
+data_len = len(bin_data)
+sqrt_len = int(math.sqrt(data_len))
+os.makedirs(&#34;pic_out&#34;,exist_ok=True)
+for i in range(sqrt_len, 0, -1):
+    if data_len % i == 0:
+        width, height = i, data_len // i
+        print(f&#34;尝试图像尺寸: {width} x {height}&#34;)
+        img = Image.new(&#34;L&#34;, (width, height), 255)          # 原始图像
+        inverted_img = Image.new(&#34;L&#34;, (width, height), 0)   # 反色图像
+        for idx, item in enumerate(bin_data):
+            y, x = idx // width, idx % width
+            color = 0 if item == &#39;1&#39; else 255
+            img.putpixel((x, y), color)
+            inverted_img.putpixel((x, y), 255 - color)  # 反色
+
+        img.save(f&#34;pic_out/{width}x{height}.png&#34;)
+        inverted_img.save(f&#34;pic_out/{width}x{height}_inverted.png&#34;)
+```
+
+#### 23、像素点RGB值转图片
 
 题目提供了类似如下的数据：
 

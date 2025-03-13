@@ -512,9 +512,11 @@ for num in range(100000, 1000000):
 &gt; 
 &gt; **不知道有没有和我一样一直在等待这道题答案的师傅，但是人海茫茫，还是感谢师傅们能看到这里！**
 
-## 题目名称 QRSACode
+## [SOLVED] 题目名称 QRSACode
 
 题目附件： https://pan.baidu.com/s/1Jtgzh2AOcR4J7A-Wa-83LQ?pwd=8zcj 提取码: 8zcj
+
+&gt; 这道题要感谢 @Aura 师傅的奇思妙想，发现了`hint.png`中的每个像素其实都是RSA中的`e`
 
 题面信息如下
 
@@ -596,8 +598,73 @@ def solve():
 
 并且背景接近白色的像素点的RGBA的值为`(246, 246, 246, 255)`，黑色像素点的RGBA值为`(0, 0, 0, 255)`
 
-&gt; 目前的想法是：题目需要我们根据像素的某种规律，去除`task.png`种的干扰像素，复原原始的二维码
+&gt; 后来在 `@Aura` 师傅的帮助下，发现了其实图片中的每个像素的每个RGB的值都是RSA加密中的参数
 
+因为我们之前得到了，`hint.png`中每个像素的每个RGB值都在`e`的取值范围中
+
+然后`hint.png`和`task.png`的长宽是一样的，也就是说像素的个数以及RGB值的个数也是一样的，所以是一一对应的
+
+因此我们可以联想到，把每个像素的每个RGB值都做一次RSA解密，`hint.png`中的是`e`，`task.png`中的是密文`c`
+
+最后把我们RSA解密得到的`m`转为RGB值塞回图像中即可复原出二维码，扫码即可得到最后的flag：`DASCTF{R54_W1th_Cv_1s_Fun}`
+
+
+![](imgs/image-20250313101353466.png)
+
+
+![](imgs/image-20250313101321442.png)
+
+最终的解题脚本如下：
+
+```python
+from PIL import Image
+import gmpy2
+import numpy as np
+
+p = 13
+q = 19
+n = p * q # 247
+phi = (p-1)*(q-1) # 216
+
+def get_e():
+    e_list = []
+    img1 = Image.open(&#34;hint.png&#34;)
+    width,height = img1.size
+    for y in range(height):
+        for x in range(width):
+            pixel = img1.getpixel((x,y))
+            for item in pixel:
+                e_list.append(item)
+    print(len(e_list))
+    return e_list
+
+def func1(e_list):
+    c_list = []
+    m_list = []
+    img1 = Image.open(&#34;task.png&#34;)
+    width,height = img1.size # 50 50
+    for y in range(height):
+        for x in range(width):
+            r,g,b,a = img1.getpixel((x,y))
+            c_list.append(r)
+            c_list.append(g)
+            c_list.append(b)
+    print(len(c_list))
+    for idx,e in enumerate(e_list):
+        c = c_list[idx]
+        d = gmpy2.invert(e, phi)
+        m = pow(c, d, n)
+        m_list.append(m)
+    print(len(m_list))
+    pixel_array = np.array(m_list, dtype=np.uint8).reshape((height, width, 3))
+    img2 = Image.fromarray(pixel_array, mode=&#34;RGB&#34;)
+    img2.save(&#34;decrypted.png&#34;)
+    print(&#34;[&#43;] 处理完成，已保存为 decrypted.png&#34;)
+    
+if __name__ == &#34;__main__&#34;:
+    e_list = get_e()
+    func1(e_list)
+```
 
 
 ## [SOLVED] 题目名称 Boxing Boxer
