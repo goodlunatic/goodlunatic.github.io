@@ -807,6 +807,40 @@ if __name__ == &#34;__main__&#34;:
 ![](imgs/image-20250309153718186.png)
 
 
+## 题目名称 Cyclone Joker
+
+题目附件： https://pan.baidu.com/s/11DkgyTOBwumhHzIh5TKfNA?pwd=c2rb 提取码: c2rb
+
+题面信息如下：
+
+&gt; W is for double.
+
+解压附件压缩包，可以得到下面这张`flag.jpg`的图片
+
+![](imgs/image-20250315154954770.jpeg)
+
+用010打开图片，发现末尾藏了个rar，手动给它提取出来，发现rar是加密的，并且里面有个`flag.bmp`
+
+![](imgs/image-20250315155147055.png)
+
+
+![](imgs/image-20250315155102163.png)
+
+猜测需要我们去那张`flag.jpg`中寻找压缩包的解压密码
+
+尝试用PS打开图片，仔细观察可以发现最后两列的像素明显与之前的像素不同，因此猜测有内容隐写在了这里
+
+![](imgs/image-20250315155342383.png)
+
+但是尝试了多种方法提取像素里的信息，都没有发现明显的压缩包密码
+
+不知道这里提取像素中的信息是否需要用到题面中的 `W is for double` ，具体又该如何使用呢？
+
+
+
+
+
+
 ---
 
 > Author: [Lunatic](https://goodlunatic.github.io)  

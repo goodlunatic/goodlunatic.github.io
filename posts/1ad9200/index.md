@@ -28,11 +28,38 @@
 
 ```python
 # 要搜索的字符列表
-search_terms = [
+search_items = [
     &#34;key&#34;, &#34;password&#34;, &#34;dasctf&#34;, &#34;k3y&#34;, &#34;p@ssword&#34;, &#34;passw0rd&#34;,
     &#34;p@ssw0rd&#34;, &#34;secret&#34;, &#34;s3cret&#34;, &#34;s3cr3t&#34;, &#34;s3cre4&#34;,&#34;F14ggg&#34;
     # 遇到⼀个加⼀个，CTFer的好习惯
 ]
+```
+
+查找的Python代码：
+
+```python
+import re
+
+# 要搜索的字符列表
+search_items = [
+    b&#34;key&#34;, b&#34;password&#34;, b&#34;dasctf&#34;, b&#34;k3y&#34;, b&#34;p@ssword&#34;, b&#34;passw0rd&#34;,
+    b&#34;p@ssw0rd&#34;, b&#34;secret&#34;, b&#34;s3cret&#34;, b&#34;s3cr3t&#34;, b&#34;s3cre4&#34;,b&#34;F14ggg&#34;
+    # 遇到⼀个加⼀个，CTFer的好习惯
+]
+
+file_path = &#34;test.txt&#34;
+
+with open(file_path,&#39;rb&#39;) as f:
+    data = f.read()
+    
+for item in search_items:
+    # re.escape(item) 用于转义 item 中的特殊字符, 确保它们被当作普通字符处理
+    # re.IGNORECASE 标志使得匹配不区分大小写。
+    regex = re.compile(re.escape(item) &#43; b&#39;.*&#39;, re.IGNORECASE)
+    for match in regex.finditer(data): # finditer 返回一个迭代器，每次迭代返回一个匹配对象
+        matched_text = match.group() # 返回匹配到的完整文本
+        # 若匹配到，则显示前50个字节
+        print(f&#34;[&#43;] Found {item.decode()} match: {matched_text[:50]}...&#34;)
 ```
 
 ```python
@@ -46,6 +73,7 @@ password                      cGFzc3dvc
 PNG文件头                      iVBORw0KGgo
 ZIP文件头                      UEsDBA
 ```
+
 ## 各种加密/编码：
 
 ### base家族
@@ -964,6 +992,18 @@ print(ddd)
 特点就是密文中有很多Unicode字符，直接用在线网站解密即可：https://holloway.nz/steg/
 
 ![](imgs/image-20250307145735098.png)
+
+
+### 盲文
+
+![](imgs/image-20250315122344020.png)
+
+
+### 瓦坎达文字对照表
+
+![](imgs/image-20250315123245293.png)
+
+
 
 ## 各种文件头/尾：
 
