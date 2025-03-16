@@ -2067,6 +2067,21 @@ pdfcrack -f enc.pdf -w rockyou.txt
 
 ## Misc——MS-Office题思路
 
+有时候会遇到不知道是MS-Office中具体什么类型的情况，如下图
+
+![](imgs/image-20250315203340810.png)
+
+并且这个文件还是加密的，我们可以尝试把后缀改成`docx`或者`pptx`，然后用`PasswareKit`先爆破出密码
+
+再用`msoffcrypto-tool`输入密码解密一下：https://github.com/nolze/msoffcrypto-tool
+
+```bash
+pip install msoffcrypto-tool
+msoffcrypto-tool encrypted.docx decrypted.docx -p Passw0rd
+```
+
+解密完成后010打开就能判断出准确的文件类型了
+
 ### Excel文件：.xls .xlsx
 
 1、拉入010或者记事本，查找flag

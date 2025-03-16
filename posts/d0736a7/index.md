@@ -264,6 +264,128 @@ if __name__ == &#34;__main__&#34;:
     print(res)
 ```
 
+B站讲解视频中的脚本如下：
+
+```python
+from PIL import Image
+from itertools import permutations
+from Crypto.Util.number import long_to_bytes
+
+def func1():
+    img = Image.open(&#34;image1.png&#34;)
+    width, height = img.size # 34 34 
+    pixel_dic = {}
+
+    for y in range(height):
+        for x in range(width):
+            pixel = img.getpixel((x,y))
+            if pixel not in pixel_dic:
+                pixel_dic[pixel] = 1
+            else:
+                pixel_dic[pixel] &#43;= 1
+                
+    print(pixel_dic)
+
+
+def func2():
+    img = Image.open(&#34;image1.png&#34;)
+    width, height = img.size
+    img2 = Image.new(&#34;RGBA&#34;,(width,height),(0,0,0,255))
+    for y in range(height):
+        for x in range(width):
+            pixel = img.getpixel((x,y))
+            # if pixel == (255, 255, 255, 255):
+                # img2.putpixel((x,y),(255,255,255,255))
+            # if pixel == (255, 255, 255, 254):
+            #     img2.putpixel((x,y),(255,255,255,254))
+            # if pixel == (255, 255, 254, 255):
+            #     img2.putpixel((x,y),(255,255,254,255))
+            # if pixel == (255, 254, 255, 255):
+            #     img2.putpixel((x,y),(255,254,255,255))
+            # if pixel == (254, 255, 255, 255):
+            #     img2.putpixel((x,y),(254,255,255,255))
+    img2.show()
+    
+    
+def deocde_img(perm):
+    img = Image.open(&#34;image1.png&#34;)
+    width, height = img.size # 34 34 
+    res = 0
+    # ** 注意需要按列提取 **
+    for x in range(width):
+        for y in range(height):
+            pixel = img.getpixel((x,y))
+            if pixel != (255, 255, 255, 255):
+                for idx,item in enumerate(perm):
+                    if pixel == item:
+                        res = res*4 &#43; idx
+    print(f&#34;{&#39;=&#39;*20} {perm} {&#39;=&#39;*20}&#34;)
+    print(res)
+    print(long_to_bytes(res))    
+    
+    
+def func3():
+    table_list = [(255, 255, 255, 254),(255, 255, 254, 255),(255, 254, 255, 255),(254, 255, 255, 255)]
+    for perm in permutations(table_list):
+        # print(perm)
+        deocde_img(perm)
+    
+    
+def func4():
+    perm = [(255, 255, 255, 254),(255, 255, 254, 255),(255, 254, 255, 255),(254, 255, 255, 255)]
+    img = Image.open(&#34;image1.png&#34;)
+    width, height = img.size # 34 34 
+    res = 0
+    # ** 注意需要按列提取 **
+    for x in range(width):
+        for y in range(height):
+            pixel = img.getpixel((x,y))
+            if pixel != (255, 255, 255, 255):
+                for idx,item in enumerate(perm):
+                    if pixel == item:
+                        res = res*4 &#43; idx
+    print(res)
+    print(long_to_bytes(res))
+    
+    with open(&#34;1.zip&#34;,&#39;wb&#39;) as f:
+        f.write(long_to_bytes(res))        
+
+
+def decode_cipher(perm):
+    res = 0
+    with open(&#34;flag&#34;,&#39;rb&#39;) as f:
+        data = f.read()
+    # print(data)
+    for item in data:
+        for idx,elem in enumerate(perm):
+            if item == elem:
+                res = 4 * res &#43; idx
+
+    print(f&#34;{&#39;=&#39;*20} {perm} {&#39;=&#39;*20}&#34;)
+    print(res)
+    print(long_to_bytes(res))
+                
+        
+def func5():
+    with open(&#34;flag&#34;,&#34;rb&#34;) as f:
+        data = f.read()
+    # print(data)
+    
+    elem_list = [ord(&#39;\n&#39;),ord(&#39;\t&#39;),ord(&#39; &#39;),ord(&#39;\r&#39;)]
+    for perm in permutations(elem_list):
+        # print(perm)
+        decode_cipher(perm)
+
+
+if __name__ == &#34;__main__&#34;:
+    # func1()
+    # func2()
+    # func3()
+    # func4()
+    func5()
+```
+
+
 ## 题目名称 pingping (2024 蓝桥杯全国总决赛) 
 
 题目附件： https://pan.baidu.com/s/1nE4F_kVzgRaDulA0xOjiWQ?pwd=33tm 提取码: 33tm
@@ -836,8 +958,26 @@ if __name__ == &#34;__main__&#34;:
 
 不知道这里提取像素中的信息是否需要用到题面中的 `W is for double` ，具体又该如何使用呢？
 
+```python
+from PIL import Image
+import libnum
+
+img = Image.open(&#34;flag.jpg&#34;)
+pixel_list = []
+res = &#34;&#34;
 
 
+width, height = img.size # 378 222
+for y in range(height):
+    for x in range(376,378):
+        r,g,b = img.getpixel((x,y))
+        res &#43;= str(b&amp;1)
+        # res &#43;= str(r&amp;1) &#43; str(g&amp;1) &#43; str(b&amp;1)
+        
+print(len(res))
+print(res)
+print(libnum.b2s(res))
+```
 
 
 
