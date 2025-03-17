@@ -929,9 +929,11 @@ if __name__ == &#34;__main__&#34;:
 ![](imgs/image-20250309153718186.png)
 
 
-## 题目名称 Cyclone Joker
+## [SOLVED] 题目名称 Cyclone Joker
 
 题目附件： https://pan.baidu.com/s/11DkgyTOBwumhHzIh5TKfNA?pwd=c2rb 提取码: c2rb
+
+&gt; 本题的成功解出离不开 `@Aura` `@zysgmzb` `@八神` `@李上网来` 这几位师傅的帮助，师傅们都太强了！【膜拜】
 
 题面信息如下：
 
@@ -978,6 +980,174 @@ print(len(res))
 print(res)
 print(libnum.b2s(res))
 ```
+
+后来在`@八神`的指点下，知道了`JPG`图片还存在宽度(width)隐写
+
+&gt; JPEG（jpg）图像的最小编码单元（MCU，Minimum Coded Unit）是 8×8 像素的块。换句话说，JPEG 压缩过程中会把图像划分为 8×8 的小方块进行处理。但如果宽度 **不是 8 的倍数**，JPEG 编码时通常会在 **右边补足** 至最近的 8 的倍数，以符合 **8×8 MCU** 处理的要求。
+
+因此，我们尝试把上面那张JPG的宽度加到8的整数倍，即384
+
+![](imgs/image-20250317144333538.png)
+
+然后打开就能很清晰的看见后面隐藏的内容
+
+![](imgs/image-20250317143543572.png)
+
+发现主要是黑白像素块，因此我们写个脚本去提取里面的数据，并尝试转二进制为字符串
+
+```python
+from PIL import Image
+import libnum
+
+img = Image.open(&#34;flag.jpg&#34;)
+pixel_list = []
+res = &#34;&#34;
+
+width, height = img.size # 378 222
+# print(width,height)
+
+for y in range(height):
+    for x in range(380,384): # 因为最后4列像素才有黑色块，并且4是8的二分之一
+        r,g,b = img.getpixel((x,y))
+        # print(r,g,b)
+        if b &gt; 200:
+            res &#43;= &#34;0&#34;
+        else:
+            res &#43;= &#34;1&#34;
+            
+print(res)
+pwd = libnum.b2s(res)
+print(pwd)
+print(pwd.decode())
+# password:ysiUDvXg(20~lPZi#2\*&amp;)&lt;,nb7m)x;ZBeZo&#43;k*=t7npWGQ[w&amp;s;#&amp;yThd&#43;PHnmAOd7bf3~~?)#0bg29&#43;|F;E/u&gt;Evv0oML:R$07
+```
+
+运行以上脚本即可得到rar的解压密码：`ysiUDvXg(20~lPZi#2\*&amp;)&lt;,nb7m)x;ZBeZo&#43;k*=t7npWGQ[w&amp;s;#&amp;yThd&#43;PHnmAOd7bf3~~?)#0bg29&#43;|F;E/u&gt;Evv0oML:R$07`
+
+解压后可以得到下面这张bmp图片
+
+![](imgs/flag.bmp)
+
+尝试了常见的BMP的隐写后发现无果，然后发现BMP图片的宽度也不是8的整数倍
+
+因此猜测可能和上面一样，存在宽度隐写
+
+所以我们把BMP的图片也增加到8的整数倍，即在010中把宽度改为184
+
+![](imgs/image-20250317144223304.png)
+
+改完后就能清晰的看到隐写的像素
+
+![](imgs/image-20250317144253026.png)
+
+然后尝试用stegsolve去看看有没有LSB隐写的时候，发现了PNG文件的特征，只不过数据是逆置的
+
+![](imgs/image-20250317144529424.png)
+
+
+![](imgs/image-20250317144608196.png)
+
+
+![](imgs/image-20250317144619902.png)
+
+发现其实这里就是直接把PNG的十六进制数据转为bytes类型分三段隐写到RGB像素里了
+
+因此我们写个脚本把数据提取出来就行，但是这里要注意每段数据前后有多余的`\x00`
+
+```python
+from PIL import Image
+
+img = Image.open(&#34;flag.bmp&#34;)
+r_lst = []
+g_lst = []
+b_lst = []
+
+width, height = img.size # 184 107
+# print(width,height)
+for y in range(height):
+    for x in range(183,184):
+        r,g,b = img.getpixel((x,y))
+        r_lst.append(r)
+        g_lst.append(g)
+        b_lst.append(b)
+
+print(bytes(r_lst))
+print(bytes(g_lst))
+print(bytes(b_lst))
+part1 = bytes(r_lst)[::-1][7:-7]
+part2 = bytes(g_lst)[::-1][7:-7]
+part3 = bytes(b_lst)[::-1][7:-7]
+res = part3 &#43; part2 &#43; part1
+print(res)
+
+with open(&#34;flag.png&#34;,&#34;wb&#34;) as f:
+    f.write(res)
+```
+
+运行以上脚本后即可得到下图
+
+![](imgs/image-20250317144900585.png)
+
+经过尝试发现这张图片其实也和上面一样，用`width`隐写了内容（其实也可以说题面 `W (width) is double` 提示了这个）
+
+因此我们还是一样，把这张PNG图片的宽度加到8的倍数。即把宽度修改为`64`
+
+![](imgs/image-20250317145203105.png)
+
+然后就可以看到如下隐写的内容
+
+![](imgs/image-20250317145301256.png)
+
+因此我们写个脚本去提取里面的数据，但是在提取的过程中发现因为宽度被修改了，CRC校验会报错
+
+从而导致PIL和CV都无法识别这张图片，所以我们可以用PS重新导出一下这张PNG
+
+![](imgs/image-20250317145541736.png)
+
+重新导出后的图片就能被PIL正常识别了，然后我们看这道题的出题模板
+
+![](imgs/image-20250317145721493.png)
+
+很容易就能看出是安恒的题，因此猜测flag的前缀是`DASCTF{`
+
+因此我们转二进制，然后和图片对应起来看，很容易找到对应的规律：`黑色-0 白色-1`
+
+但是由于后面只有7列，因此我们需要在每一行的二进制数据前补0
+
+![](imgs/image-20250317145950183.png)
+
+最后写个脚本提取数据即可
+
+```python
+from PIL import Image, ImageFile
+import libnum
+
+
+img = Image.open(&#34;1.png&#34;)
+width, height = img.size # 184 107
+# print(width,height)
+res = &#34;&#34;
+for y in range(height):
+    res &#43;= &#39;0&#39;
+    for x in range(width-7,width):
+        r,g,b,a = img.getpixel((x,y))
+        if r &gt; 200:
+            res &#43;= &#34;1&#34;
+        else:
+            res &#43;= &#34;0&#34;
+print(res)
+# print(libnum.b2s(res))000000000100010001000001010100110100001101010100010001100111101101001110011011110111011100101100010111110110001101101111011101010110111001110100010111110111010101110000010111110111100101101111011101010111001001011111011100110110100101101110011100110010000101111101
+# b&#39;DASCTF{Now,_count_up_your_sins!}&#39;
+```
+
+运行以上脚本即可得到最后的flag：`DASCTF{Now,_count_up_your_sins!}`
+
+&gt; 这个flag翻译成中文就是：`现在，数一数你的罪过。`
+&gt; 
+&gt; 也许出题人也知道自己干了坏事，对那场比赛的选手心存愧疚吧
+&gt; 
+&gt; 至此，这道题也是圆满结束了，最后还是再次感谢`@Aura` `@zysgmzb` `@八神` `@李上网来` 这几位师傅的帮助
+
 
 
 
