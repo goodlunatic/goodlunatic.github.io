@@ -14,7 +14,7 @@
 如果师傅们有进一步的想法或者做出来了，可以联系我一起交流一下解题思路">
   <meta itemprop="datePublished" content="2025-03-17T14:39:58+08:00">
   <meta itemprop="dateModified" content="2025-03-17T14:39:58+08:00">
-  <meta itemprop="wordCount" content="3502">
+  <meta itemprop="wordCount" content="3504">
   <meta itemprop="keywords" content="CTF,Misc"><meta property="og:url" content="https://goodlunatic.github.io/posts/d0736a7/">
   <meta property="og:site_name" content="⚡Lunatic BLOG⚡">
   <meta property="og:title" content="CTF-Misc &#34;雅&#34;题共赏">
@@ -44,7 +44,7 @@
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": "https:\/\/goodlunatic.github.io\/posts\/d0736a7\/"
-    },"genre": "posts","keywords": "CTF, Misc","wordcount":  3502 ,
+    },"genre": "posts","keywords": "CTF, Misc","wordcount":  3504 ,
     "url": "https:\/\/goodlunatic.github.io\/posts\/d0736a7\/","datePublished": "2025-03-17T14:39:58+08:00","dateModified": "2025-03-17T14:39:58+08:00","publisher": {
       "@type": "Organization",
       "name": ""},"author": {
@@ -1682,6 +1682,7 @@
 </span><span class="lnt">17
 </span><span class="lnt">18
 </span><span class="lnt">19
+</span><span class="lnt">20
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span><span class="p">,</span> <span class="n">ImageFile</span>
@@ -1701,7 +1702,8 @@
 </span></span><span class="line"><span class="cl">        <span class="k">else</span><span class="p">:</span>
 </span></span><span class="line"><span class="cl">            <span class="n">res</span> <span class="o">+=</span> <span class="s2">&#34;0&#34;</span>
 </span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># print(libnum.b2s(res))000000000100010001000001010100110100001101010100010001100111101101001110011011110111011100101100010111110110001101101111011101010110111001110100010111110111010101110000010111110111100101101111011101010111001001011111011100110110100101101110011100110010000101111101</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">libnum</span><span class="o">.</span><span class="n">b2s</span><span class="p">(</span><span class="n">res</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 000000000100010001000001010100110100001101010100010001100111101101001110011011110111011100101100010111110110001101101111011101010110111001110100010111110111010101110000010111110111100101101111011101010111001001011111011100110110100101101110011100110010000101111101</span>
 </span></span><span class="line"><span class="cl"><span class="c1"># b&#39;DASCTF{Now,_count_up_your_sins!}&#39;</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>运行以上脚本即可得到最后的flag：<code>DASCTF{Now,_count_up_your_sins!}</code></p>
