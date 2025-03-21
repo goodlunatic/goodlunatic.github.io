@@ -1163,6 +1163,66 @@ print(libnum.b2s(res))
 &gt; 
 &gt; 至此，这道题也是圆满结束了，最后还是再次感谢`@Aura` `@zysgmzb` `@八神`这几位师傅的帮助
 
+## 题目名称 Sakura
+
+题目附件： https://pan.baidu.com/s/1qQ94akilsReXwJeAgjltjg?pwd=s9dh 提取码: s9dh
+
+题目附件给了一个`secret.pcapng`的流量包文件，打开发现主要是USBMS流量（U盘流量）
+
+![](imgs/image-20250321192933723.png)
+
+然后翻看一下流量包发现其中分段传输了一张很大的PNG图片，因此尝试写个Python提取出图片的数据
+
+```python
+import subprocess
+import os
+import json
+
+tshark_path = r&#34;tshark&#34;
+file_path = &#34;secret.pcapng&#34;
+output = &#34;&#34;
+command = [
+	tshark_path,  # 使用完整的 tshark 路径
+	&#39;-r&#39;, file_path,  # 读取指定的 pcapng 文件
+	&#39;-Y&#39;, &#39;frame.len == 65563&#39;,  # 过滤出 HTTP 数据包
+	&#39;-T&#39;, &#39;jsonraw&#39;,  # 输出为 JSON 格式
+]
+result = subprocess.run(
+    command, check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+json_output = json.loads(result.stdout)
+# print(json.dumps(json_output, indent=4))  # 这个输出是用来调试的，可以移除
+
+# 遍历 JSON 数据并提取字段
+for packet in json_output:
+    layers = packet.get(&#39;_source&#39;, {}).get(&#39;layers&#39;, {})
+    
+    data = layers.get(&#39;frame_raw&#39;, [&#39;None&#39;])[0]
+    # print(data[54:100])
+    output &#43;= data[54:]
+
+pic_data = bytes.fromhex(output)
+with open(&#34;output.png&#34;, &#34;wb&#34;) as f:
+    f.write(pic_data)
+```
+
+图片最后一段的数据需要手动提取一下，把所有图片数据都提取出来后可以得到下图
+
+![](imgs/image-20250321193130917.png)
+
+图片的像素看起来很复杂，然后`zsteg`和`stegsolve`也都试过了，感觉不存在LSB隐写，当前的思路就卡在这里了
+
+
+## 题目名称 Ste9ano9raphy 6inary（2022CISCN 华南分区赛）
+
+题目附件： https://pan.baidu.com/s/1-yjWWcdAwGmNDsGxAA8Gow?pwd=93bs 提取码: 93bs
+
+附件压缩包中有一张PNG图片和一个加密的wav文件，猜测需要我们从png文件中找到压缩包的解压密码
+
+![](imgs/image-20250321193247844.png)
+
+其中 `996.png` 那张图片的内容如下：
+
+![](imgs/image-20250321193335358.png)
 
 
 
