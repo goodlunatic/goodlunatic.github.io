@@ -1525,7 +1525,7 @@ flag{hncome66!}</p>
 <ol start="4">
 <li>使用私钥来解密密文</li>
 </ol>
-<div class="highlight" id="id-35"><div class="chroma">
+<div class="highlight" id="id-1"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -1542,7 +1542,7 @@ flag{hncome66!}</p>
 <p>参考链接：https://cloud.tencent.com/developer/article/2159878</p>
 </blockquote>
 <p>安装好项目后直接运行一下命令解密流量包即可</p>
-<div class="highlight" id="id-36"><div class="chroma">
+<div class="highlight" id="id-2"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
@@ -1551,7 +1551,7 @@ flag{hncome66!}</p>
 </div>
 </div><p><img loading="lazy" src="imgs/image-20241202141020218.png" alt="imgs/image-20241202141020218.png" srcset="imgs/image-20241202141020218.png?size=small, imgs/image-20241202141020218.png?size=medium 1.5x, imgs/image-20241202141020218.png?size=large 2x" data-title="imgs/image-20241202141020218.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>SMP协议解密完成后，我们可以在ATT协议中发现传输的数据，用以下命令导出</p>
-<div class="highlight" id="id-37"><div class="chroma">
+<div class="highlight" id="id-3"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
@@ -1571,7 +1571,7 @@ flag{hncome66!}</p>
   <a href="#dns%e6%b5%81%e9%87%8f%e5%88%86%e6%9e%90" class="heading-mark"></a>DNS流量分析</h2><h3 id="dnslog外带的流量" class="heading-element">
   <a href="#dnslog%e5%a4%96%e5%b8%a6%e7%9a%84%e6%b5%81%e9%87%8f" class="heading-mark"></a>DNSlog外带的流量</h3><p><img loading="lazy" src="imgs/image-20241120165643159.png" alt="imgs/image-20241120165643159.png" srcset="imgs/image-20241120165643159.png?size=small, imgs/image-20241120165643159.png?size=medium 1.5x, imgs/image-20241120165643159.png?size=large 2x" data-title="imgs/image-20241120165643159.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>直接使用tshark导出DNS外带的数据</p>
-<div class="highlight" id="id-38"><div class="chroma">
+<div class="highlight" id="id-4"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
@@ -1611,7 +1611,7 @@ flag{hncome66!}</p>
 <p>例题-DDCTF2018 流量分析</p>
 <p>直接在 TLS 加载 RSA 私钥解密即可</p>
 <p>私钥的格式如下：</p>
-<div class="highlight" id="id-39"><div class="chroma">
+<div class="highlight" id="id-5"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1649,14 +1649,14 @@ flag{hncome66!}</p>
 </div><p>例题2-2024铁三初赛 流量分析</p>
 <h2 id="icmp流量分析" class="heading-element">
   <a href="#icmp%e6%b5%81%e9%87%8f%e5%88%86%e6%9e%90" class="heading-mark"></a>ICMP流量分析</h2><p>flag 可能藏在每一帧的长度中</p>
-<div class="highlight" id="id-40"><div class="chroma">
+<div class="highlight" id="id-6"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">tshark -r 1.pcapng -Y <span class="s2">&#34;icmp&#34;</span> -T fields -e frame.len <span class="p">|</span> uniq &gt; data.txt</span></span></code></pre></td></tr></table>
 </div>
-</div><div class="highlight" id="id-41"><div class="chroma">
+</div><div class="highlight" id="id-7"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -1677,7 +1677,7 @@ flag{hncome66!}</p>
 <h2 id="vpn流量分析" class="heading-element">
   <a href="#vpn%e6%b5%81%e9%87%8f%e5%88%86%e6%9e%90" class="heading-mark"></a>VPN流量分析</h2><h3 id="shadowsocks流量分析" class="heading-element">
   <a href="#shadowsocks%e6%b5%81%e9%87%8f%e5%88%86%e6%9e%90" class="heading-mark"></a>Shadowsocks流量分析</h3><p>例题-2023强网杯-谍影重重3.0</p>
-<div class="highlight" id="id-42"><div class="chroma">
+<div class="highlight" id="id-8"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1795,7 +1795,7 @@ flag{hncome66!}</p>
 在参考链接：https://gitee.com/wangmin-gf/ads-b 看到了与tcp.payload中相似的数据
 使用tshark提取出流量包中的数据，然后使用这个脚本批量解密找speed最快的即可</p>
 <p>tshark -r attach.pcapng -T fields -e &ldquo;tcp.payload&rdquo; | sed &lsquo;/^\s*$/d&rsquo; &gt; tshark.txt</p>
-<div class="highlight" id="id-43"><div class="chroma">
+<div class="highlight" id="id-9"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -1818,7 +1818,7 @@ flag{hncome66!}</p>
 </span></span><span class="line"><span class="cl">        <span class="n">res</span> <span class="o">=</span> <span class="n">pyModeS</span><span class="o">.</span><span class="n">tell</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">strip</span><span class="p">()[</span><span class="mi">18</span><span class="p">:</span><span class="mi">46</span><span class="p">])</span>
 </span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;===========================================================================&#34;</span><span class="p">)</span></span></span></code></pre></td></tr></table>
 </div>
-</div><div class="highlight" id="id-44"><div class="chroma">
+</div><div class="highlight" id="id-10"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
