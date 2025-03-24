@@ -1490,6 +1490,18 @@ for i in range(sqrt_len, 0, -1):
         inverted_img.save(f&#34;pic_out/{width}x{height}_inverted.png&#34;)
 ```
 
+#### 23、 脚本提取LSB数据并分析
+
+```python
+def extract_lsb():
+    data = np.array(Image.open(&#34;flag.png&#34;))
+    r_lsb = (data[:,:,0] &amp; 1).flatten().astype(str)
+    g_lsb = (data[:,:,1] &amp; 1).flatten().astype(str)
+    b_lsb = (data[:,:,2] &amp; 1).flatten().astype(str)
+    # lsb_data = libnum.b2s(&#34;&#34;.join(r_lsb))
+    print(lsb_data)
+```
+
 #### 23、像素点RGB值转图片
 
 题目提供了类似如下的数据：
@@ -1542,6 +1554,77 @@ for i in range(sqrt_length, 0, -1):
         except Exception as e:
             print(f&#34;无法重塑为 {rows} 行, {cols} 列: {e}&#34;)
 ```
+
+#### 24、图片套娃
+
+图片的每个像素的RGB值其实都是另一张图片的字节数据
+
+例题1-2025软件系统安全赛
+
+附件给了下面这张图片
+
+![](imgs/image-20250324153749556.png)
+
+```python
+def func2():
+    with open(&#34;flag.png&#34;,&#34;rb&#34;) as f:
+        data = f.read()
+    data = np.array(Image.open(io.BytesIO(data))).flatten()
+    for i in data[:20]:
+        print((i,hex(i)[2:]),end=&#34; &#34;)
+```
+
+用以上脚本把像素的每个RGB值都转为hex，就可以在图片头几个像素发现PNG文件头
+
+![](imgs/image-20250324154302576.png)
+
+```python
+import io
+import numpy as np
+from PIL import Image
+
+def func1():
+    cnt = 1
+    img_file = &#34;flag.png&#34;
+    while True:
+        out = []
+        img = Image.open(img_file)
+        w,h = img.size
+        for y in range(h):
+            for x in range(w):
+                r,g,b = img.getpixel((x,y))
+                out.append(r)
+                out.append(g)
+                out.append(b)
+        outfile = f&#34;{cnt}.png&#34;
+        with open(outfile,&#39;wb&#39;) as f:
+            f.write(bytes(out))
+        print(f&#34;[&#43;] {cnt}.png 处理完毕&#34;)
+        img_file = f&#34;{cnt}.png&#34;
+        cnt &#43;= 1
+
+# 在利用io.BytesIO内存中处理文件数据：避免频繁读写磁盘，提高性能。
+def func2():
+    with open(&#34;flag.png&#34;,&#34;rb&#34;) as f:
+        data = f.read()
+    cnt = 1
+    while True:
+        try:
+            data = bytes(np.array(Image.open(io.BytesIO(data))).flatten()).rstrip(b&#39;\xff&#39;)
+            Image.open(io.BytesIO(data)).save(f&#34;{cnt}.png&#34;)
+            print(f&#34;[&#43;] {cnt}.png 处理完毕&#34;)
+        except:
+            break
+        cnt &#43;= 1
+
+if __name__ == &#34;__main__&#34;:
+    # func1()
+    func2()
+```
+
+运行以上脚本循环485次后即可得到flag
+
+![](imgs/image-20250324153842745.png)
 
 ### PNG思路
 

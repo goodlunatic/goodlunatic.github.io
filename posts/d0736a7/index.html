@@ -33,7 +33,7 @@
 如果师傅们有进一步的想法或者做出来了，可以联系我一起交流一下解题思路">
       <meta name="twitter:site" content="@goodlunatic007">
 <meta name="application-name" content="FixIt">
-<meta name="apple-mobile-web-app-title" content="FixIt"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="https://www.nssctf.cn/files/2024/4/28/8fdad6c6ee.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="https://goodlunatic.github.io/posts/d0736a7/" /><link rel="prev" href="https://goodlunatic.github.io/posts/1ad9200/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
+<meta name="apple-mobile-web-app-title" content="FixIt"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="https://www.nssctf.cn/files/2024/4/28/8fdad6c6ee.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="https://goodlunatic.github.io/posts/d0736a7/" /><link rel="prev" href="https://goodlunatic.github.io/posts/761da51/" /><link rel="next" href="https://goodlunatic.github.io/posts/1ad9200/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
   {
@@ -298,7 +298,7 @@
 </span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">()</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>后来在<code>@byxs20</code>师傅的帮助下，获得了新的解题思路，其实这张图片种一共就一下五种像素点</p>
-<div class="highlight" id="id-3"><div class="chroma">
+<div class="highlight" id="id-1"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -321,7 +321,7 @@
 <p>并且这里这样的排列方式，也提示了我们后续步骤中提取像素点需要按列提取</p>
 </blockquote>
 <p>具体的对照表如下：</p>
-<div class="highlight" id="id-4"><div class="chroma">
+<div class="highlight" id="id-2"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -339,7 +339,7 @@
 </span></span><span class="line"><span class="cl">    <span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>然后具体隐写的原理就是每轮的值x4，再加上当前的四进制值，最后可以得到一个长整型，具体解密代码如下：</p>
-<div class="highlight" id="id-5"><div class="chroma">
+<div class="highlight" id="id-3"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -401,7 +401,7 @@
 <p>因此我们在<strong>Linux</strong>下使用脚本解压并提取其中的内容（因为Windows下看不到文件名为空格的文件）</p>
 <p>然后里面内容的加密方式其实和上面的原理是一样的，也是四进制，就是具体的对照表是未知的</p>
 <p>但是因为一共就四种字符，所以我们可以直接爆破一下</p>
-<div class="highlight" id="id-6"><div class="chroma">
+<div class="highlight" id="id-4"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -443,7 +443,7 @@
 </div><p>爆破后即可得到正确的表和最后的flag：<code>flag{46eade75-846b-4d26-98f7-2cb3cb4686ed}</code></p>
 <p><img loading="lazy" src="imgs/image-20241219202718201.png" alt="imgs/image-20241219202718201.png" srcset="imgs/image-20241219202718201.png?size=small, imgs/image-20241219202718201.png?size=medium 1.5x, imgs/image-20241219202718201.png?size=large 2x" data-title="imgs/image-20241219202718201.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>完整的解题脚本如下：</p>
-<div class="highlight" id="id-7"><div class="chroma">
+<div class="highlight" id="id-5"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -571,7 +571,7 @@
 </span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="n">res</span><span class="p">)</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>B站讲解视频中的脚本如下：</p>
-<div class="highlight" id="id-8"><div class="chroma">
+<div class="highlight" id="id-6"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">  1
 </span><span class="lnt">  2
@@ -837,7 +837,7 @@
 <p>解密需要密钥，但是找不到密钥，猜测会和图片中的那个时间有关系，但是不知道具体什么关系。。</p>
 <p>后来听去了线下颁奖的师傅说，主办方在赛后总结的时候说这道题好像和具体的<strong>经纬度</strong>有关系</p>
 <p>因此去网上搜了<strong>天安门广场</strong>的具体经纬度如下：</p>
-<div class="highlight" id="id-9"><div class="chroma">
+<div class="highlight" id="id-7"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -864,7 +864,7 @@
 <p>最后请求出第22002244位是多少？（好像他比较喜欢十六进制）</p>
 </blockquote>
 <p>解决该问题的脚本如下，最后算出答案是<code>242049370517768</code>，十六进制是<code>dc2482bf7108</code></p>
-<div class="highlight" id="id-10"><div class="chroma">
+<div class="highlight" id="id-8"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -894,7 +894,7 @@
 </div><p>尝试使用得到的答案去解压压缩包，但是发现不是解压密码，不知道哪里出问题了，因此打算直接爆破了</p>
 <p>先用下面这个脚本生成所有可能的结果，然后把结果输出到一个字典中</p>
 <p>用在线网站或者<code>7z2john</code>生成压缩包的hash，然后使用hashcat进行爆破</p>
-<div class="highlight" id="id-11"><div class="chroma">
+<div class="highlight" id="id-9"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -916,7 +916,7 @@
 </span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="nb">hex</span><span class="p">(</span><span class="n">lst</span><span class="p">[</span><span class="n">i</span><span class="p">])[</span><span class="mi">2</span><span class="p">:])</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p><img loading="lazy" src="imgs/image-20250107200433630.png" alt="imgs/image-20250107200433630.png" srcset="imgs/image-20250107200433630.png?size=small, imgs/image-20250107200433630.png?size=medium 1.5x, imgs/image-20250107200433630.png?size=large 2x" data-title="imgs/image-20250107200433630.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
-<div class="highlight" id="id-12"><div class="chroma">
+<div class="highlight" id="id-10"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -944,7 +944,7 @@
 <p>在1000000以内具有这样特点的6位数还有一个，两数相乘是多少？</p>
 </blockquote>
 <p>解决该问题的脚本如下，可以得到另一个数为<code>639172</code>，因此和<code>203879</code>相乘的结果为<code>130313748188</code></p>
-<div class="highlight" id="id-13"><div class="chroma">
+<div class="highlight" id="id-11"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1075,7 +1075,7 @@
 <p><img loading="lazy" src="imgs/image-20250307114638056.png" alt="imgs/image-20250307114638056.png" srcset="imgs/image-20250307114638056.png?size=small, imgs/image-20250307114638056.png?size=medium 1.5x, imgs/image-20250307114638056.png?size=large 2x" data-title="imgs/image-20250307114638056.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>然后结合题面的信息，我们知道在RSA中<code>e</code>要和<code>phi</code>互质，其中<code>phi=(q-1)*(p-1)</code></p>
 <p>因此我们可以写个脚本得到<code>e</code>所有可能的取值范围</p>
-<div class="highlight" id="id-14"><div class="chroma">
+<div class="highlight" id="id-12"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1101,7 +1101,7 @@
 </span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">res</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>得到<code>e</code>所有可能的取值如下，一共84种可能取值：</p>
-<div class="highlight" id="id-15"><div class="chroma">
+<div class="highlight" id="id-13"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
@@ -1109,7 +1109,7 @@
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">[5, 7, 11, 13, 17, 19, 23, 25, 29, 31, 35, 37, 41, 43, 47, 49, 53, 55, 59, 61, 65, 67, 71, 73, 77, 79, 83, 85, 89, 91, 95, 97, 101, 103, 107, 109, 113, 115, 119, 121, 125, 127, 131, 133, 137, 139, 143, 145, 149, 151, 155, 157, 161, 163, 167, 169, 173, 175, 179, 181, 185, 187, 191, 193, 197, 199, 203, 205, 209, 211, 215, 217, 221, 223, 227, 229, 233, 235, 239, 241, 245, 247, 251, 253]</span></span></code></pre></td></tr></table>
 </div>
 </div><p>然后我们尝试去读取<code>hint.png</code>中的像素点</p>
-<div class="highlight" id="id-16"><div class="chroma">
+<div class="highlight" id="id-14"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1141,7 +1141,7 @@
 </span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="n">dic</span><span class="p">)</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>发现2500个像素点中有2496种像素，并且只有以下两种像素出现了2次，别的像素都是只出现一次</p>
-<div class="highlight" id="id-17"><div class="chroma">
+<div class="highlight" id="id-15"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -1152,7 +1152,7 @@
 </div>
 </div><p>我们把所有像素打印出来可以发现，每个像素的RGB值都是取自我们之前得到的<code>e</code>的取值范围中</p>
 <p>然后我们再去看<code>task.png</code>，发现图像时RGBA格式的，只不过A通道的值都是255</p>
-<div class="highlight" id="id-18"><div class="chroma">
+<div class="highlight" id="id-16"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1195,7 +1195,7 @@
 <p><img loading="lazy" src="imgs/image-20250313101353466.png" alt="imgs/image-20250313101353466.png" srcset="imgs/image-20250313101353466.png?size=small, imgs/image-20250313101353466.png?size=medium 1.5x, imgs/image-20250313101353466.png?size=large 2x" data-title="imgs/image-20250313101353466.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p><img loading="lazy" src="imgs/image-20250313101321442.png" alt="imgs/image-20250313101321442.png" srcset="imgs/image-20250313101321442.png?size=small, imgs/image-20250313101321442.png?size=medium 1.5x, imgs/image-20250313101321442.png?size=large 2x" data-title="imgs/image-20250313101321442.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>最终的解题脚本如下：</p>
-<div class="highlight" id="id-19"><div class="chroma">
+<div class="highlight" id="id-17"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1310,7 +1310,7 @@
 <p><img loading="lazy" src="imgs/image-20250307133401161.png" alt="imgs/image-20250307133401161.png" srcset="imgs/image-20250307133401161.png?size=small, imgs/image-20250307133401161.png?size=medium 1.5x, imgs/image-20250307133401161.png?size=large 2x" data-title="imgs/image-20250307133401161.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>尝试用<code>stegsolve</code>查看每张图片的LSB信息，并没有发现什么特殊的信息</p>
 <p>然后尝试提取出GIF每一帧的间隔，可以得到如下内容，发现开头和结尾都是70，一共<code>32+31=63</code>个</p>
-<div class="highlight" id="id-20"><div class="chroma">
+<div class="highlight" id="id-18"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
@@ -1321,7 +1321,7 @@
 <p>所以我们猜测可能隐写了一张二维码，我们尝试把50和60转为0和1，然后尝试绘制二维码，可以得到下面这些图片</p>
 <p><img loading="lazy" src="imgs/image-20250307133820417.png" alt="imgs/image-20250307133820417.png" srcset="imgs/image-20250307133820417.png?size=small, imgs/image-20250307133820417.png?size=medium 1.5x, imgs/image-20250307133820417.png?size=large 2x" data-title="imgs/image-20250307133820417.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>转换出来后发现并不是二维码，并且尝试直接二进制转字符串也得不到什么有效的信息</p>
-<div class="highlight" id="id-21"><div class="chroma">
+<div class="highlight" id="id-19"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -1347,7 +1347,7 @@
 <blockquote>
 <p>Tips：以下脚本需要在Linux中运行</p>
 </blockquote>
-<div class="highlight" id="id-22"><div class="chroma">
+<div class="highlight" id="id-20"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1482,7 +1482,7 @@
 <p><img loading="lazy" src="imgs/image-20250315155342383.png" alt="imgs/image-20250315155342383.png" srcset="imgs/image-20250315155342383.png?size=small, imgs/image-20250315155342383.png?size=medium 1.5x, imgs/image-20250315155342383.png?size=large 2x" data-title="imgs/image-20250315155342383.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>但是尝试了多种方法提取像素里的信息，都没有发现明显的压缩包密码</p>
 <p>不知道这里提取像素中的信息是否需要用到题面中的 <code>W is for double</code> ，具体又该如何使用呢？</p>
-<div class="highlight" id="id-23"><div class="chroma">
+<div class="highlight" id="id-21"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1532,7 +1532,7 @@
 <p>然后打开就能很清晰的看见后面隐藏的内容</p>
 <p><img loading="lazy" src="imgs/image-20250317143543572.png" alt="imgs/image-20250317143543572.png" srcset="imgs/image-20250317143543572.png?size=small, imgs/image-20250317143543572.png?size=medium 1.5x, imgs/image-20250317143543572.png?size=large 2x" data-title="imgs/image-20250317143543572.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>发现主要是黑白像素块，因此我们写个脚本去提取里面的数据，并尝试转二进制为字符串</p>
-<div class="highlight" id="id-24"><div class="chroma">
+<div class="highlight" id="id-22"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1600,7 +1600,7 @@
 <p><img loading="lazy" src="imgs/image-20250317144619902.png" alt="imgs/image-20250317144619902.png" srcset="imgs/image-20250317144619902.png?size=small, imgs/image-20250317144619902.png?size=medium 1.5x, imgs/image-20250317144619902.png?size=large 2x" data-title="imgs/image-20250317144619902.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>发现其实这里就是直接把PNG的十六进制数据转为bytes类型分三段隐写到RGB像素里了</p>
 <p>因此我们写个脚本把数据提取出来就行，但是这里要注意每段数据前后有多余的<code>\x00</code></p>
-<div class="highlight" id="id-25"><div class="chroma">
+<div class="highlight" id="id-23"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1676,7 +1676,7 @@
 <p>但是由于后面只有7列，因此我们需要在每一行的二进制数据前补0</p>
 <p><img loading="lazy" src="imgs/image-20250317145950183.png" alt="imgs/image-20250317145950183.png" srcset="imgs/image-20250317145950183.png?size=small, imgs/image-20250317145950183.png?size=medium 1.5x, imgs/image-20250317145950183.png?size=large 2x" data-title="imgs/image-20250317145950183.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>最后写个脚本提取数据即可</p>
-<div class="highlight" id="id-26"><div class="chroma">
+<div class="highlight" id="id-24"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1732,7 +1732,7 @@
 <p>题目附件给了一个<code>secret.pcapng</code>的流量包文件，打开发现主要是USBMS流量（U盘流量）</p>
 <p><img loading="lazy" src="imgs/image-20250321192933723.png" alt="imgs/image-20250321192933723.png" srcset="imgs/image-20250321192933723.png?size=small, imgs/image-20250321192933723.png?size=medium 1.5x, imgs/image-20250321192933723.png?size=large 2x" data-title="imgs/image-20250321192933723.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>然后翻看一下流量包发现其中分段传输了一张很大的PNG图片，因此尝试写个Python提取出图片的数据</p>
-<div class="highlight" id="id-27"><div class="chroma">
+<div class="highlight" id="id-25"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1825,7 +1825,8 @@
     </section>
   </div>
 
-  <div class="post-nav"><a href="/posts/1ad9200/" class="post-nav-item" rel="prev" title="CTF-Misc Guide"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>CTF-Misc Guide</a></div>
+  <div class="post-nav"><a href="/posts/761da51/" class="post-nav-item" rel="prev" title="Misc-Forensics"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>Misc-Forensics</a>
+      <a href="/posts/1ad9200/" class="post-nav-item" rel="next" title="CTF-Misc Guide">CTF-Misc Guide<i class="fa-solid fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
 </div>
 <div id="comments"><div id="disqus_thread" class="comment"></div><noscript>
         Please enable JavaScript to view the comments powered by <a href="https://disqus.com/?ref_noscript" rel="external nofollow noopener noreferrer">Disqus</a>.
