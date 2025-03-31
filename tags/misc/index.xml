@@ -4,7 +4,15 @@
     <link>https://goodlunatic.github.io/tags/misc/</link>
     <description>Misc - Tag | ⚡Lunatic BLOG⚡</description>
     <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>goodlunatic0@gmail.com (Lunatic)</managingEditor>
-      <webMaster>goodlunatic0@gmail.com (Lunatic)</webMaster><lastBuildDate>Mon, 24 Mar 2025 15:30:17 &#43;0800</lastBuildDate><atom:link href="https://goodlunatic.github.io/tags/misc/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>goodlunatic0@gmail.com (Lunatic)</webMaster><lastBuildDate>Wed, 26 Mar 2025 13:43:45 &#43;0800</lastBuildDate><atom:link href="https://goodlunatic.github.io/tags/misc/" rel="self" type="application/rss+xml" /><item>
+  <title>2025 XCTF国际网络攻防联赛-TPCTF分站赛 Misc Writeup</title>
+  <link>https://goodlunatic.github.io/posts/5a9004d/</link>
+  <pubDate>Wed, 26 Mar 2025 13:43:45 &#43;0800</pubDate>
+  <author>Lunatic</author>
+  <guid>https://goodlunatic.github.io/posts/5a9004d/</guid>
+  <description><![CDATA[<p><strong>经典脑王系列，周末抽空上去看了看题</strong></p>]]></description>
+</item>
+<item>
   <title>CTF-Misc Guide</title>
   <link>https://goodlunatic.github.io/posts/1ad9200/</link>
   <pubDate>Mon, 24 Mar 2025 15:30:17 &#43;0800</pubDate>
@@ -80,15 +88,6 @@
   <author>Lunatic</author>
   <guid>https://goodlunatic.github.io/posts/bb1da35/</guid>
   <description><![CDATA[<p><strong>其实感觉时常做做群友给的题，对自我实力提升其实帮助挺大的</strong></p>]]></description>
-</item>
-<item>
-  <title>2024 全国大学生信息安全竞赛暨长城杯铁人三项赛初赛 Misc Writeup</title>
-  <link>https://goodlunatic.github.io/posts/ce58634/</link>
-  <pubDate>Wed, 18 Dec 2024 13:39:44 &#43;0800</pubDate>
-  <author>Lunatic</author>
-  <guid>https://goodlunatic.github.io/posts/ce58634/</guid>
-  <description><![CDATA[<p><strong>这次比赛的Misc题好像主要是威胁检测与网络流量分析</strong></p>
-<p><strong>与往年的风格有点不同，可能是和铁三一起办的原因吧</strong></p>]]></description>
 </item>
 </channel>
 </rss>

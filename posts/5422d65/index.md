@@ -523,10 +523,13 @@ function asoutput()
 4、按照上面的步骤逐个分析流量包
 
 ### 冰蝎流量分析
+
+冰蝎的默认密钥为：e45e329feb5d925b（md5(rebeyond)的前16位）
+
 #### xor_base64
 
 
-#### AES
+#### AES_ECB
 
 简要加密过程（请求）
 
@@ -557,6 +560,8 @@ base64 -&gt; AES(key = ？？？ IV = 0123456789abcdef) -&gt; base64
 ### CobalStrike流量分析
 
 &gt; 参考链接：https://5ime.cn/cobaltstrike-decrypt.html
+
+#### 密钥对文件的情况
 
 先从流量包中导出key文件
 
@@ -687,6 +692,160 @@ if __name__ == &#34;__main__&#34;:
         decrypt_submit_data(SHARED_KEY,HMAC_KEY,encrypt_data)
     
 ```
+
+#### 给Beacon的情况
+
+1、使用 [1768.py](https://github.com/minhangxiaohui/CSthing/blob/master/1768_v0_0_8/1768.py) 去解析 Beacon 文件
+
+2、解析公钥，爆破n生成私钥
+
+3、使用私钥去解密心跳包中的cookie信息得到`AES_KEY`和`HMAC_KEY`
+
+```python
+import base64
+import hashlib
+import hexdump
+from Crypto.PublicKey import RSA
+from Crypto.Cipher import PKCS1_v1_5
+
+
+privateKey = &#39;&#39;&#39;-----BEGIN RSA PRIVATE KEY-----
+MIICWgIBAAKBgFJeF4Hy8C0TKngYptJput2/OTUsjSApDsIpT75Nd&#43;ZUnvR2bYsO
+FiAACt&#43;9ev&#43;ZzXLwViPrDe8gImXPYx3YlazV6YHahCTAOilYlcgZSjFkHy7s1ahx
+XKic2/lDPF1DdTh2dmbDvbD4YpVVN1tXT&#43;QIqUroL5KWAIXUFjdPFlSzAgMBAAEC
+gYApWVrrvY2c0zZKu/VjQ/ivQUPy0b63GmVyS1Lg8frzAiAaESnE2Pl6bwsGbxTE
+I&#43;3jeYuE1IdWOAeMnKPhY80fOSgws6vSri7CcxnMUEEn3AMw4YSwBIaBGkdLnfxf
+pbS/kUUb/z7/A1SRtNq1n4hZYinnG2NpUuiO1WqwHqOGoQJBAJE14&#43;VVt8ONGIZ1
+qIf4cqAnAmtonPhyDNdYZQC0IlxNzyixo/lnlTc80b3jYUA4w8GGQQZea70op4RS
+fIJV5J8CQQCRNePlVbfDjRiGdaiH&#43;HKgJwJraJz4cgzXWGUAtCJcTc8osaP5Z5U3
+PNG942FAOMPBhkEGXmu9KKeEUnyCVeNtAkAhlDeuCcNj6hXYyg592tsO49ZwZhGe
+dik4Bw3cOsuTUr7r5yBHBUgBLQRHh/QuOLIz50rUITOC24rZU4XNUfV7AkB6vJQu
+Ke&#43;zaDVMoXKbyxIH8DEJXFkhXjUgZ&#43;SnXZqVbmclPFEe48Cp&#43;cxGtkRjJhfAIZwg
+p/pk3lIJdDctay9ZAkBukZv1vD/LR3Y64R5xkoLIliyCTtHgUCY44xkJvQfCGchn
+xSu0tBnGgSI3El1K1eOyT6NKSZGeQUGlLGcsBtcT
+-----END RSA PRIVATE KEY-----&#39;&#39;&#39;
+
+publicKey = &#39;&#39;&#39;-----BEGIN PUBLIC KEY-----
+MIGeMA0GCSqGSIb3DQEBAQUAA4GMADCBiAKBgFJeF4Hy8C0TKngYptJput2/OTUsjSApDsIpT75N
+d&#43;ZUnvR2bYsOFiAACt&#43;9ev&#43;ZzXLwViPrDe8gImXPYx3YlazV6YHahCTAOilYlcgZSjFkHy7s1ahx
+XKic2/lDPF1DdTh2dmbDvbD4YpVVN1tXT&#43;QIqUroL5KWAIXUFjdPFlSzAgMBAAE=
+-----END PUBLIC KEY-----&#39;&#39;&#39;
+    
+def get_AES_HMAC_key(PRIVATE_KEY,encode_data):
+    # 提取协商密钥和主机信息
+    private_key = RSA.import_key(PRIVATE_KEY.encode())
+    cipher = PKCS1_v1_5.new(private_key)
+    ciphertext = cipher.decrypt(base64.b64decode(encode_data), 0)
+    if ciphertext[0:4] == b&#39;\x00\x00\xBE\xEF&#39;:
+        raw_aes_keys = ciphertext[8:24]
+        raw_aes_hash256 = hashlib.sha256(raw_aes_keys).digest()
+        aes_key = raw_aes_hash256[0:16]
+        hmac_key = raw_aes_hash256[16:]
+        hexdump.hexdump(ciphertext) # 主机信息
+        return aes_key.hex(),hmac_key.hex()
+    
+
+if __name__ == &#34;__main__&#34;:
+    # 协商密钥和主机信息用RSA公钥加密之后放在了心跳包的cookie中
+    cookie_data = &#34;SLHAIOj8/1icVtP6fImtJz6B6wR0t/XwLg1G0Y3AxoxnseBfPONxoyjAWCCOH84IJULnCZZrO7cIRxJPS2PtmDD4MvD8/PIpoW8Gj8536vhwd&#43;tyXjNKyLNyNYcj&#43;JgO4N5FTnKtkONgv7KnsMjJC3E0eI0ctqmZll8SrXLUS9k=&#34;
+    SHARED_KEY,HMAC_KEY = get_AES_HMAC_key(privateKey,cookie_data)
+    print(f&#34;AES key: {SHARED_KEY}&#34;)
+    print(f&#34;HMAC key: {HMAC_KEY}&#34;)
+
+# 00000000: 00 00 BE EF 00 00 00 5D  28 AB 95 1F C9 6B CB 93  .......](....k..
+# 00000010: EC 13 CF 9D D5 F2 13 73  A8 03 A8 03 43 50 DF EC  .......s....CP..
+# 00000020: 00 00 0B 50 00 00 0E 06  01 1D B0 00 00 00 00 77  ...P...........w
+# 00000030: 02 04 D0 77 02 34 70 8C  B8 A8 C0 57 49 4E 2D 52  ...w.4p....WIN-R
+# 00000040: 52 49 39 54 39 53 4E 38  35 44 09 41 64 6D 69 6E  RI9T9SN85D.Admin
+# 00000050: 69 73 74 72 61 74 6F 72  09 61 72 74 69 66 61 63  istrator.artifac
+# 00000060: 74 2E 65 78 65                                    t.exe
+# AES key: 9fe14473479a283821241e2af78017e8
+# HMAC key: 1e3d54f1b9f0e106773a59b7c379a89d
+```
+
+4、解密心跳包 /cm 中传输的数据
+
+```python
+import hmac
+import binascii
+import base64
+import hexdump
+from Crypto.Cipher import AES
+
+def decrypt(encrypted_data, iv_bytes, signature, shared_key, hmac_key):
+    if hmac.new(hmac_key, encrypted_data, digestmod=&#34;sha256&#34;).digest()[:16] != signature:
+        print(&#34;message authentication failed&#34;)
+        return
+    cipher = AES.new(shared_key, AES.MODE_CBC, iv_bytes)
+    return cipher.decrypt(encrypted_data)
+
+if __name__ == &#34;__main__&#34;:
+    SHARED_KEY = binascii.unhexlify(&#34;9fe14473479a283821241e2af78017e8&#34;)
+    HMAC_KEY = binascii.unhexlify(&#34;1e3d54f1b9f0e106773a59b7c379a89d&#34;)
+    with open(&#39;data.txt&#39;,&#39;r&#39;) as f:
+        data = f.read()
+    encrypt_data = bytes.fromhex(data)
+    encrypt_data_length = len(encrypt_data)
+    print(f&#34;[&#43;] 数据总长度为：{encrypt_data_length}&#34;)
+    # encrypt_data_length = int.from_bytes(encrypt_data[:4], byteorder=&#39;big&#39;, signed=False)
+    data = encrypt_data[:encrypt_data_length-16]
+    signature = encrypt_data[encrypt_data_length-16:]
+    iv_bytes = b&#34;abcdefghijklmnop&#34;
+
+    dec = decrypt(data, iv_bytes, signature, SHARED_KEY, HMAC_KEY)
+    print(f&#34;{&#39;=&#39;*80}&#34;)
+    print(&#34;[&#43;] counter: {}&#34;.format(int.from_bytes(dec[:4], byteorder=&#39;big&#39;, signed=False)))
+    print(&#34;[&#43;] 任务返回长度: {}&#34;.format(int.from_bytes(dec[4:8], byteorder=&#39;big&#39;, signed=False)))
+    print(&#34;[&#43;] 任务输出类型: {}&#34;.format(int.from_bytes(dec[8:12], byteorder=&#39;big&#39;, signed=False)))
+    pcapng_data = dec[64:-60]
+    with open(&#34;out.pcapng&#34;,&#39;wb&#39;) as f:
+        f.write(pcapng_data)
+    print(hexdump.hexdump(pcapng_data))
+    # output = dec[12:int.from_bytes(dec[4:8], byteorder=&#39;big&#39;, signed=False)].decode(&#39;gbk&#39;,errors=&#39;ignore&#39;)
+    # print(output)
+```
+
+5、解密submit.php中回传的数据
+
+```python
+import hmac
+import binascii
+import base64
+import hexdump
+from Crypto.Cipher import AES
+
+def decrypt(encrypted_data, iv_bytes, signature, shared_key, hmac_key):
+    if hmac.new(hmac_key, encrypted_data, digestmod=&#34;sha256&#34;).digest()[:16] != signature:
+        print(&#34;message authentication failed&#34;)
+        return
+    cipher = AES.new(shared_key, AES.MODE_CBC, iv_bytes)
+    return cipher.decrypt(encrypted_data)
+
+if __name__ == &#34;__main__&#34;:
+    SHARED_KEY = binascii.unhexlify(&#34;9fe14473479a283821241e2af78017e8&#34;)
+    HMAC_KEY = binascii.unhexlify(&#34;1e3d54f1b9f0e106773a59b7c379a89d&#34;)
+    encrypt_datas = [&#34;00000040efeda3e57f7d7fd589d11640ea0f9a4fe6bc91332723ffc5f43f78b37c21cc7485c44d6c8eb6af74fc7044046059c76519e493e351c9f631d6785d5c07eae9e3&#34;,&#34;000001602a99f7cc51face35199e8b1a4a5616e0301591b6f1f48b1d000149cb83d6a81e9659849a52c4f50a8629b0dfb7c036df406b44d449e40fe18df3594721e1f5849662271c1ea18b18c8eb58af5ee2c3a784852dd1c4a5c699f9518d2e2fc70d756cd68361ac794eed4eae6b062be6c31651caf93954f2a89b10e25b1fd9757ec17ee8b97038c4babb73c4f21688f5d235797844c2c9c288fac3fd2bd9cf5373956389b7e5232e35b6f268f9d67ba54f3e7e1606d4cb4020d5f480c6e5f4409b8d87e0443ae0bcfe93d286291ba6bfd0c7f37593581d90bb4ab7cfb065b4421a727f120fb491c2dc01797e38996dfc123fb120c5ed312577cc917d8a435b73c25b6d29ef0bad595100256c9aa5571e5c0ce0a8ea2c173ca1fae577fa924506b75b86522052f019d6843d74dc6fbdf2219b77e020a049c4e77df3658c80bcb703f8f878ff2f70c5c69d0cf6f4efb5a755ba854dfa5777a23989286770da6e0444d0&#34;,&#34;000000d0c72ef8b74a7d8acc332695b62448280f9a4eaa12457de4adcad279b0563f2d4cb0707f7e2853c45acf28a365d905cf8ca421d557bd7655cbd50aafbdbe5f3f570c9c3d876d0c21b661ca5c46e09f987f7e1263f6d33c34db28a2fd342fe48e5801d1a97fb88e00f0c648ec889f6b72d71edd2eed5affd32bc8d51e27fcc148d16823c1bc235b0e16d9d477bd0b4582941db373e171cce78b10c869eb987baf3fd9f879b236be6f3af43b7742f6241dfe02ab696c96f1779d0003d6b2720d1c93890e75fcce939f1c8e0922ce5044bc3a&#34;,&#34;00000100f24f15cd6f33c36e70ca228d10babfac1cf6bfbb9b6923a7828c9ed30b76d3ce1cb3d8f97c358bf90004e771ac646b1b996fd248ac8f0b460e0a36950dffcde04f3bae831982b528393f3a3c771310ba0c0bb7418ba5e8734a6bd37bc8a51cc0683c0904e0f404180e4c4c34720a3e5d6767c435f1746e6b93a13a2ecdc8074089e684b90748fc1a7e24e66bd637673437d9e24a37ce6f584b478e2f0485f3c05414dd4c35eb9ecfed8d4fbdab54db4233258f4fea6ed515a1030feeb184db94a4841236b491d2f7379e10f52d50ae573cd6f4504aa9750da273fa65c2a9eaf9b9bb014cafc53a9e9f0042bfcd5d24fc1b29173fd3308ff08d30b2a7d42132d4&#34;]
+    for encrypt_data in encrypt_datas:
+        # encrypt_data = base64.b64decode(encrypt_data)
+        encrypt_data = bytes.fromhex(encrypt_data)
+        encrypt_data_length = int.from_bytes(encrypt_data[:4], byteorder=&#39;big&#39;, signed=False)
+        encrypt_data_l = encrypt_data[4:]
+        data1 = encrypt_data_l[:encrypt_data_length-16]
+        signature = encrypt_data_l[encrypt_data_length-16:]
+        iv_bytes = b&#34;abcdefghijklmnop&#34;
+
+        dec = decrypt(data1, iv_bytes, signature, SHARED_KEY, HMAC_KEY)
+        print(f&#34;{&#39;=&#39;*80}&#34;)
+        print(&#34;[&#43;] counter: {}&#34;.format(int.from_bytes(dec[:4], byteorder=&#39;big&#39;, signed=False)))
+        print(&#34;[&#43;] 任务返回长度: {}&#34;.format(int.from_bytes(dec[4:8], byteorder=&#39;big&#39;, signed=False)))
+        print(&#34;[&#43;] 任务输出类型: {}&#34;.format(int.from_bytes(dec[8:12], byteorder=&#39;big&#39;, signed=False)))
+        output = dec[12:int.from_bytes(dec[4:8], byteorder=&#39;big&#39;, signed=False)].decode(&#39;gbk&#39;,errors=&#39;ignore&#39;)
+        print(hexdump.hexdump(dec))
+        print(output)
+```
+
+例题1-2024西湖论剑初赛-cscs
+
 
 ## NTLM流量分析
 

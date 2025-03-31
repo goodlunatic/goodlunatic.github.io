@@ -755,7 +755,7 @@ if a == &#34;2&#34;:
     os.system(&#34;pause&#34;)
 ```
 
-### 键盘坐标密码
+### 电脑键盘坐标密码
 
 ```
   1 2 3 4 5 6 7 8 9 0
@@ -769,6 +769,15 @@ if a == &#34;2&#34;:
 ```
 flag{11 21 31 18 27 33 34}
 flag{QAZIJCV}
+```
+
+### 电脑键盘QWE加密
+
+![](imgs/image-20250331164724999.jpeg)
+
+```
+密文：tewatnolzsarffuykjydyayd
+明文：ecbkeyistlkdnngfrqfmfkfm
 ```
 
 ### 手机九宫格键盘密码
@@ -1625,6 +1634,15 @@ if __name__ == &#34;__main__&#34;:
 运行以上脚本循环485次后即可得到flag
 
 ![](imgs/image-20250324153842745.png)
+#### Java-BlindWatermark
+
+1、直接用`Byxs20`写的`PuzzleSolver`一把梭
+
+2、Github上的开源项目：https://github.com/ww23/BlindWatermark
+
+```bash
+java -jar .\BlindWatermark-v0.0.3-windows-x86_64.jar decode -c .\password.png output.png
+```
 
 ### PNG思路
 

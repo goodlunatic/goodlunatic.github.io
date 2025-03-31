@@ -14,7 +14,7 @@
 给取证题 Just_F0r3n51Cs 的出题人点个赞👍">
   <meta itemprop="datePublished" content="2024-12-12T19:25:56+08:00">
   <meta itemprop="dateModified" content="2024-12-12T19:25:56+08:00">
-  <meta itemprop="wordCount" content="1766">
+  <meta itemprop="wordCount" content="1789">
   <meta itemprop="keywords" content="CTF,Misc,Writeup"><meta property="og:url" content="https://goodlunatic.github.io/posts/7bf9cb0/">
   <meta property="og:site_name" content="⚡Lunatic BLOG⚡">
   <meta property="og:title" content="2024 国城杯网络安全挑战赛 Misc Writeup">
@@ -45,7 +45,7 @@
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": "https:\/\/goodlunatic.github.io\/posts\/7bf9cb0\/"
-    },"genre": "posts","keywords": "CTF, Misc, Writeup","wordcount":  1766 ,
+    },"genre": "posts","keywords": "CTF, Misc, Writeup","wordcount":  1789 ,
     "url": "https:\/\/goodlunatic.github.io\/posts\/7bf9cb0\/","datePublished": "2024-12-12T19:25:56+08:00","dateModified": "2024-12-12T19:25:56+08:00","publisher": {
       "@type": "Organization",
       "name": ""},"author": {
@@ -158,18 +158,38 @@
     </div>
     <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
   <ul>
-    <li><a href="#题目名称-tr4ffic_w1th_ste90">题目名称 Tr4ffIc_w1th_Ste90</a></li>
-    <li><a href="#题目名称-just_f0r3n51cs">题目名称 Just_F0r3n51Cs</a></li>
-    <li><a href="#题目名称-ez_steg0">题目名称 eZ_Steg0</a></li>
-    <li><a href="#题目名称-保险柜的秘密固件逆向">题目名称 保险柜的秘密(固件逆向)</a></li>
+    <li><a href="#线上初赛">线上初赛</a>
+      <ul>
+        <li><a href="#题目名称-tr4ffic_w1th_ste90">题目名称 Tr4ffIc_w1th_Ste90</a></li>
+        <li><a href="#题目名称-just_f0r3n51cs">题目名称 Just_F0r3n51Cs</a></li>
+        <li><a href="#题目名称-ez_steg0">题目名称 eZ_Steg0</a></li>
+        <li><a href="#题目名称-保险柜的秘密固件逆向">题目名称 保险柜的秘密(固件逆向)</a></li>
+      </ul>
+    </li>
+    <li><a href="#线下决赛">线下决赛</a>
+      <ul>
+        <li><a href="#题目名称-d0_u_kn0w_j4v4">题目名称 d0_U_kn0w_J4v4</a></li>
+      </ul>
+    </li>
   </ul>
 </nav></div>
   </div><div class="content" id="content"><p><strong>忙里抽闲，简单地看了看题，感觉这场比赛的取证确实出得挺好的</strong></p>
 <p><strong>给取证题 Just_F0r3n51Cs 的出题人点个赞👍</strong></p>
-<p><img loading="lazy" src="/posts/7bf9cb0/imgs/image-20241211164828734.png" alt="/posts/7bf9cb0/imgs/image-20241211164828734.png" srcset="/posts/7bf9cb0/imgs/image-20241211164828734.png?size=small, /posts/7bf9cb0/imgs/image-20241211164828734.png?size=medium 1.5x, /posts/7bf9cb0/imgs/image-20241211164828734.png?size=large 2x" data-title="/posts/7bf9cb0/imgs/image-20241211164828734.png" style="--width: 1080px;--aspect-ratio: 1080 / 608;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
-<p>题目附件下载： <a href="https://pan.baidu.com/s/10jfYCo2y19sFcZyQoAgv2g?pwd=gu59"target="_blank" rel="external nofollow noopener noreferrer">https://pan.baidu.com/s/10jfYCo2y19sFcZyQoAgv2g?pwd=gu59</a> 提取码: gu59</p>
-<h2 id="题目名称-tr4ffic_w1th_ste90" class="heading-element">
-  <a href="#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-tr4ffic_w1th_ste90" class="heading-mark"></a>题目名称 Tr4ffIc_w1th_Ste90</h2><p>解压附件压缩包，可以得到一个流量包和一个加密的压缩包</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"><img loading="lazy" src="/posts/7bf9cb0/imgs/image-20241211164828734.png" alt="/posts/7bf9cb0/imgs/image-20241211164828734.png" srcset="/posts/7bf9cb0/imgs/image-20241211164828734.png?size=small, /posts/7bf9cb0/imgs/image-20241211164828734.png?size=medium 1.5x, /posts/7bf9cb0/imgs/image-20241211164828734.png?size=large 2x" data-title="/posts/7bf9cb0/imgs/image-20241211164828734.png" style="--width: 1080px;--aspect-ratio: 1080 / 608;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">题目附件下载： <a href="https://pan.baidu.com/s/10jfYCo2y19sFcZyQoAgv2g?pwd=gu59"target="_blank" rel="external nofollow noopener noreferrer">https://pan.baidu.com/s/10jfYCo2y19sFcZyQoAgv2g?pwd=gu59</a> 提取码: gu59</td>
+</tr>
+</tbody>
+</table>
+<h2 id="线上初赛" class="heading-element">
+  <a href="#%e7%ba%bf%e4%b8%8a%e5%88%9d%e8%b5%9b" class="heading-mark"></a>线上初赛</h2><h3 id="题目名称-tr4ffic_w1th_ste90" class="heading-element">
+  <a href="#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-tr4ffic_w1th_ste90" class="heading-mark"></a>题目名称 Tr4ffIc_w1th_Ste90</h3><p>解压附件压缩包，可以得到一个流量包和一个加密的压缩包</p>
 <p><img loading="lazy" src="/posts/7bf9cb0/imgs/image-20241207211703547.png" alt="/posts/7bf9cb0/imgs/image-20241207211703547.png" srcset="/posts/7bf9cb0/imgs/image-20241207211703547.png?size=small, /posts/7bf9cb0/imgs/image-20241207211703547.png?size=medium 1.5x, /posts/7bf9cb0/imgs/image-20241207211703547.png?size=large 2x" data-title="/posts/7bf9cb0/imgs/image-20241207211703547.png" style="--width: 1462px;--aspect-ratio: 1462 / 227;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>打开流量包，发现主要是UDP流量，然后还有H264的视频数据</p>
 <p>直接追踪UDP流，复制原始Hex数据，用Cyberchef转换一下</p>
@@ -346,8 +366,8 @@
 </div><blockquote>
 <p>参考链接：https://gryffinbit.top/2020/11/14/%E4%B8%80%E4%BA%9B%E6%9D%82%E4%B9%B1%E7%9A%84%E5%AF%86%E7%A0%81/#PGP%E8%AF%8D%E6%B1%87%E8%A1%A8-%EF%BC%88%E7%94%9F%E7%89%A9%E8%AF%86%E5%88%AB%E8%AF%8D%E6%B1%87%E8%A1%A8%EF%BC%89</p>
 </blockquote>
-<h2 id="题目名称-just_f0r3n51cs" class="heading-element">
-  <a href="#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-just_f0r3n51cs" class="heading-mark"></a>题目名称 Just_F0r3n51Cs</h2><p>题目附件给了一个<code>E01</code>的磁盘镜像，可以使用<code>FTK image</code>进行挂载</p>
+<h3 id="题目名称-just_f0r3n51cs" class="heading-element">
+  <a href="#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-just_f0r3n51cs" class="heading-mark"></a>题目名称 Just_F0r3n51Cs</h3><p>题目附件给了一个<code>E01</code>的磁盘镜像，可以使用<code>FTK image</code>进行挂载</p>
 <p><img loading="lazy" src="/posts/7bf9cb0/imgs/image-20241211200047575.png" alt="/posts/7bf9cb0/imgs/image-20241211200047575.png" srcset="/posts/7bf9cb0/imgs/image-20241211200047575.png?size=small, /posts/7bf9cb0/imgs/image-20241211200047575.png?size=medium 1.5x, /posts/7bf9cb0/imgs/image-20241211200047575.png?size=large 2x" data-title="/posts/7bf9cb0/imgs/image-20241211200047575.png" style="--width: 1900px;--aspect-ratio: 1900 / 1021;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>虽然会提示报错，但是依旧是可以成功挂载的</p>
 <p><img loading="lazy" src="/posts/7bf9cb0/imgs/image-20241211200131377.png" alt="/posts/7bf9cb0/imgs/image-20241211200131377.png" srcset="/posts/7bf9cb0/imgs/image-20241211200131377.png?size=small, /posts/7bf9cb0/imgs/image-20241211200131377.png?size=medium 1.5x, /posts/7bf9cb0/imgs/image-20241211200131377.png?size=large 2x" data-title="/posts/7bf9cb0/imgs/image-20241211200131377.png" style="--width: 1900px;--aspect-ratio: 1900 / 1021;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
@@ -550,8 +570,8 @@
 <p>感觉这题取证确实出的挺好的，可以看出来出题人花了挺多心思，结合了挺多知识点</p>
 <p>感觉可以作为一道考察取证基础的典型例题了</p>
 </blockquote>
-<h2 id="题目名称-ez_steg0" class="heading-element">
-  <a href="#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-ez_steg0" class="heading-mark"></a>题目名称 eZ_Steg0</h2><p>解压题目附件，可以得到以下几个文件，其中key.zip是加密的，猜测密码藏在图片中</p>
+<h3 id="题目名称-ez_steg0" class="heading-element">
+  <a href="#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-ez_steg0" class="heading-mark"></a>题目名称 eZ_Steg0</h3><p>解压题目附件，可以得到以下几个文件，其中key.zip是加密的，猜测密码藏在图片中</p>
 <p><img loading="lazy" src="/posts/7bf9cb0/imgs/image-20241211161300773.png" alt="/posts/7bf9cb0/imgs/image-20241211161300773.png" srcset="/posts/7bf9cb0/imgs/image-20241211161300773.png?size=small, /posts/7bf9cb0/imgs/image-20241211161300773.png?size=medium 1.5x, /posts/7bf9cb0/imgs/image-20241211161300773.png?size=large 2x" data-title="/posts/7bf9cb0/imgs/image-20241211161300773.png" style="--width: 2196px;--aspect-ratio: 2196 / 355;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>打开01.png，发现都是二值化的图像</p>
 <p><img loading="lazy" src="/posts/7bf9cb0/imgs/image-20241211161327316.png" alt="/posts/7bf9cb0/imgs/image-20241211161327316.png" srcset="/posts/7bf9cb0/imgs/image-20241211161327316.png?size=small, /posts/7bf9cb0/imgs/image-20241211161327316.png?size=medium 1.5x, /posts/7bf9cb0/imgs/image-20241211161327316.png?size=large 2x" data-title="/posts/7bf9cb0/imgs/image-20241211161327316.png" style="--width: 500px;--aspect-ratio: 500 / 331;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
@@ -668,8 +688,8 @@
 </span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">flag</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="c1"># b&#39;D0g3xGC{U_4rE_4_WhI2_4t_Ste9An09r4pHY}############&#39;</span></span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="题目名称-保险柜的秘密固件逆向" class="heading-element">
-  <a href="#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-%e4%bf%9d%e9%99%a9%e6%9f%9c%e7%9a%84%e7%a7%98%e5%af%86%e5%9b%ba%e4%bb%b6%e9%80%86%e5%90%91" class="heading-mark"></a>题目名称 保险柜的秘密(固件逆向)</h2><p>附件给了一个<code>demo1.hex</code>和一个<code>tips.txt</code>，其中<code>tips</code>内容如下</p>
+</div><h3 id="题目名称-保险柜的秘密固件逆向" class="heading-element">
+  <a href="#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-%e4%bf%9d%e9%99%a9%e6%9f%9c%e7%9a%84%e7%a7%98%e5%af%86%e5%9b%ba%e4%bb%b6%e9%80%86%e5%90%91" class="heading-mark"></a>题目名称 保险柜的秘密(固件逆向)</h3><p>附件给了一个<code>demo1.hex</code>和一个<code>tips.txt</code>，其中<code>tips</code>内容如下</p>
 <blockquote>
 <ul>
 <li>这是一个提取自普通功耗的，使用Cortex-M3内核的72Mhz，48引脚，64kb闪存的保险柜芯片</li>
@@ -759,7 +779,32 @@
 </span></span><span class="line"><span class="cl">  <span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
-</div></div><div class="post-footer" id="post-footer">
+</div><h2 id="线下决赛" class="heading-element">
+  <a href="#%e7%ba%bf%e4%b8%8b%e5%86%b3%e8%b5%9b" class="heading-mark"></a>线下决赛</h2><h3 id="题目名称-d0_u_kn0w_j4v4" class="heading-element">
+  <a href="#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-d0_u_kn0w_j4v4" class="heading-mark"></a>题目名称 d0_U_kn0w_J4v4</h3><p>解压附件压缩包得到下图和一个加密的压缩包，猜测需要从图片中获得压缩包的解压密码</p>
+<p><img loading="lazy" src="/posts/7bf9cb0/imgs/image-20250331170929789.png" alt="/posts/7bf9cb0/imgs/image-20250331170929789.png" srcset="/posts/7bf9cb0/imgs/image-20250331170929789.png?size=small, /posts/7bf9cb0/imgs/image-20250331170929789.png?size=medium 1.5x, /posts/7bf9cb0/imgs/image-20250331170929789.png?size=large 2x" data-title="/posts/7bf9cb0/imgs/image-20250331170929789.png" style="--width: 686px;--aspect-ratio: 686 / 892;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>题目名称和图片的信息很明显的提示了我们是Java盲水印</p>
+<p>因此我们直接用开源项目解密即可</p>
+<p><a href="https://github.com/ww23/BlindWatermark"target="_blank" rel="external nofollow noopener noreferrer">https://github.com/ww23/BlindWatermark</a></p>
+<div class="highlight" id="id-12"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">java -jar .\BlindWatermark-v0.0.3-windows-x86_64.jar decode -c .\password.png output.png</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img loading="lazy" src="/posts/7bf9cb0/imgs/image-20250331171326943.png" alt="/posts/7bf9cb0/imgs/image-20250331171326943.png" srcset="/posts/7bf9cb0/imgs/image-20250331171326943.png?size=small, /posts/7bf9cb0/imgs/image-20250331171326943.png?size=medium 1.5x, /posts/7bf9cb0/imgs/image-20250331171326943.png?size=large 2x" data-title="/posts/7bf9cb0/imgs/image-20250331171326943.png" style="--width: 686px;--aspect-ratio: 686 / 892;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>得到压缩包的解压密码：<code>A7f#9xQ!r3b$T</code></p>
+<p>解压后得到一张名为<code>reverse.png</code>的二维码和一个<code>flag.txt</code></p>
+<p>我们给二维码反色然后扫码，用微信扫码甚至可以不用反色</p>
+<p><img loading="lazy" src="/posts/7bf9cb0/imgs/image-20250331171518871.png" alt="/posts/7bf9cb0/imgs/image-20250331171518871.png" srcset="/posts/7bf9cb0/imgs/image-20250331171518871.png?size=small, /posts/7bf9cb0/imgs/image-20250331171518871.png?size=medium 1.5x, /posts/7bf9cb0/imgs/image-20250331171518871.png?size=large 2x" data-title="/posts/7bf9cb0/imgs/image-20250331171518871.png" style="--width: 2274px;--aspect-ratio: 2274 / 1451;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>扫码得到：<code>qwe：tewatnolzsarffuykjydyayd</code></p>
+<p>然后在<code>flag.txt</code>中得到如下内容：</p>
+<p>1b4ca7febefae20c5386205caefb85a9a7dbce284563b24afde4a1c9624a9e75</p>
+<p>由qwe联想到键盘QWE密码，对照解密后得到：<code>ecbkeyistlkdnngfrqfmfkfm</code></p>
+<p><img loading="lazy" src="/posts/7bf9cb0/imgs/image-20250331184805847.jpeg" alt="/posts/7bf9cb0/imgs/image-20250331184805847.jpeg" srcset="/posts/7bf9cb0/imgs/image-20250331184805847.jpeg?size=small, /posts/7bf9cb0/imgs/image-20250331184805847.jpeg?size=medium 1.5x, /posts/7bf9cb0/imgs/image-20250331184805847.jpeg?size=large 2x" data-title="/posts/7bf9cb0/imgs/image-20250331184805847.jpeg" style="--width: 461px;--aspect-ratio: 461 / 277;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>因此最后用得到的密钥解一个AES即可得到最后的flag：<code>D0g3xGC{Hat5_0ff_t0_y0U!!!}</code></p>
+<p><img loading="lazy" src="/posts/7bf9cb0/imgs/image-20250331184902223.png" alt="/posts/7bf9cb0/imgs/image-20250331184902223.png" srcset="/posts/7bf9cb0/imgs/image-20250331184902223.png?size=small, /posts/7bf9cb0/imgs/image-20250331184902223.png?size=medium 1.5x, /posts/7bf9cb0/imgs/image-20250331184902223.png?size=large 2x" data-title="/posts/7bf9cb0/imgs/image-20250331184902223.png" style="--width: 2267px;--aspect-ratio: 2267 / 1449;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p></div><div class="post-footer" id="post-footer">
   <div class="post-info">
     <div class="post-info-line">
       <div class="post-info-mod">

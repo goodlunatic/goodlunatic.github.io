@@ -5,11 +5,13 @@
 **给取证题 Just_F0r3n51Cs 的出题人点个赞👍**
 &lt;!--more--&gt;
 
-![](imgs/image-20241211164828734.png)
+|                   ![](imgs/image-20241211164828734.png)                    |
+| :------------------------------------------------------------------------: |
+| 题目附件下载： https://pan.baidu.com/s/10jfYCo2y19sFcZyQoAgv2g?pwd=gu59 提取码: gu59 |
 
-题目附件下载： https://pan.baidu.com/s/10jfYCo2y19sFcZyQoAgv2g?pwd=gu59 提取码: gu59
+## 线上初赛
 
-## 题目名称 Tr4ffIc_w1th_Ste90
+### 题目名称 Tr4ffIc_w1th_Ste90
 
 解压附件压缩包，可以得到一个流量包和一个加密的压缩包
 
@@ -122,7 +124,7 @@ print(ddd)
 
 &gt; 参考链接：https://gryffinbit.top/2020/11/14/%E4%B8%80%E4%BA%9B%E6%9D%82%E4%B9%B1%E7%9A%84%E5%AF%86%E7%A0%81/#PGP%E8%AF%8D%E6%B1%87%E8%A1%A8-%EF%BC%88%E7%94%9F%E7%89%A9%E8%AF%86%E5%88%AB%E8%AF%8D%E6%B1%87%E8%A1%A8%EF%BC%89
 
-## 题目名称 Just_F0r3n51Cs
+### 题目名称 Just_F0r3n51Cs
 
 题目附件给了一个`E01`的磁盘镜像，可以使用`FTK image`进行挂载
 
@@ -351,7 +353,7 @@ python decode.py Original.png CatWatermark_666.png out.png 6 6 6
 &gt; 
 &gt; 感觉可以作为一道考察取证基础的典型例题了
 
-## 题目名称 eZ_Steg0
+### 题目名称 eZ_Steg0
 
 解压题目附件，可以得到以下几个文件，其中key.zip是加密的，猜测密码藏在图片中
 
@@ -449,7 +451,7 @@ print(flag)
 # b&#39;D0g3xGC{U_4rE_4_WhI2_4t_Ste9An09r4pHY}############&#39;
 ```
 
-## 题目名称 保险柜的秘密(固件逆向)
+### 题目名称 保险柜的秘密(固件逆向)
 
 附件给了一个`demo1.hex`和一个`tips.txt`，其中`tips`内容如下
 
@@ -503,6 +505,51 @@ void __noreturn sub_8000850()
   }
 }
 ```
+
+## 线下决赛
+
+### 题目名称 d0_U_kn0w_J4v4
+
+解压附件压缩包得到下图和一个加密的压缩包，猜测需要从图片中获得压缩包的解压密码
+
+![](imgs/image-20250331170929789.png)
+
+题目名称和图片的信息很明显的提示了我们是Java盲水印
+
+因此我们直接用开源项目解密即可
+
+https://github.com/ww23/BlindWatermark
+
+```
+java -jar .\BlindWatermark-v0.0.3-windows-x86_64.jar decode -c .\password.png output.png
+```
+
+![](imgs/image-20250331171326943.png)
+
+得到压缩包的解压密码：`A7f#9xQ!r3b$T`
+
+解压后得到一张名为`reverse.png`的二维码和一个`flag.txt`
+
+我们给二维码反色然后扫码，用微信扫码甚至可以不用反色
+
+![](imgs/image-20250331171518871.png)
+
+扫码得到：`qwe：tewatnolzsarffuykjydyayd`
+
+然后在`flag.txt`中得到如下内容：
+
+1b4ca7febefae20c5386205caefb85a9a7dbce284563b24afde4a1c9624a9e75
+
+由qwe联想到键盘QWE密码，对照解密后得到：`ecbkeyistlkdnngfrqfmfkfm`
+
+![](imgs/image-20250331184805847.jpeg)
+
+因此最后用得到的密钥解一个AES即可得到最后的flag：`D0g3xGC{Hat5_0ff_t0_y0U!!!}`
+
+![](imgs/image-20250331184902223.png)
+
+
+
 
 ---
 
