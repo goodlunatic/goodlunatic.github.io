@@ -1225,6 +1225,139 @@ with open(&#34;output.png&#34;, &#34;wb&#34;) as f:
 ![](imgs/image-20250321193335358.png)
 
 
+## 题目名称 Steganography_challenges0.3（2025 西湖论剑全国总决赛）
+
+题目附件： https://pan.baidu.com/s/1Io4ThWd7UQhF2fH6rQmjXw?pwd=8cvm 提取码: 8cvm
+
+解压附件压缩包，可以得到一个`encrypt.py`和一张PNG图片，内容如下所示
+
+```python
+from PIL import Image
+from Crypto.Cipher import ARC4
+
+def rc4_encrypt(data, key):
+    cipher = ARC4.new(key.encode())
+    return cipher.encrypt(data)
+
+image = Image.open(&#39;flag1.png&#39;).convert(&#39;RGB&#39;)
+width, height = image.size
+
+new_image = Image.new(&#39;RGB&#39;, (width, height))
+
+key = &#39;&#39;#ps:Passwords are common passwords (weak passwords) that may be required...
+
+for y in range(height):
+    for x in range(width):
+        r, g, b = image.getpixel((x, y))
+        rgb_bytes = bytes([r, g, b])
+        encrypted_rgb = rc4_encrypt(rgb_bytes, key)
+        new_image.putpixel((x, y), (encrypted_rgb[0], encrypted_rgb[1], encrypted_rgb[2]))
+
+new_image.save(&#39;Steganography_challenges0.3.png&#39;)
+
+```
+
+![](imgs/image-20250331201515898.png)
+
+
+发现是用弱密码简单加密了一下图片，然后我们用stegsolve打开图片可以发现图片存在LSB隐写
+
+![](imgs/image-20250331201900614.png)
+
+因此我们根据LSB隐写的内容写个脚本爆破一下密钥即可
+
+```python
+def func1():
+    with open(&#34;rockyou.txt&#34;,&#39;r&#39;,errors=&#39;ignore&#39;) as f:
+        keys = f.read().split()
+    for key in keys:
+        img = Image.open(&#34;1.png&#34;)
+        w,h = img.size
+        img1 = Image.new(&#39;RGB&#39;,(w,h))
+        for y in range(h):
+            for x in range(w):
+                r,g,b = img.getpixel((x,y))
+                rgb_bytes = bytes([r,g,b])
+                dec_rgb = rc4_decrypt(rgb_bytes,key)
+                img1.putpixel((x,y),(dec_rgb[0],dec_rgb[1],dec_rgb[2]))
+        # img1.show()
+        bin_data = (np.array(img1) &amp; 1).flatten().astype(str)
+        res = libnum.b2s(&#39;&#39;.join(bin_data))
+        print(res[:100])
+        if b&#39;flag&#39; in res or b&#39;DASCTF&#39; in res:
+            print(f&#34;[&#43;] 爆破成功，密钥是 {key}&#34;)
+            print(res[:150])
+            break
+    # [&#43;] 爆破成功，密钥是 password
+    # DASCTF{01d0eed8-2e4b,Do you know DWT-QIM? Now I&#39;ll give you the key information,
+    # next_information_length = 102,block_size = 8,delta=8,Green channel
+```
+
+运行以上脚本后即可得到第一段flag：`DASCTF{01d0eed8-2e4b`，以及下一步的提示
+
+并且可以用爆破出来的密码还原图片，还原后的图片如下
+
+![](imgs/image-20250331201753939.png)
+
+然后去网上搜`DWT-QIM`相关的内容，可以搜到[2024WMCTF-steg_allInOne](https://blog.wm-team.cn/index.php/archives/80/#steg_allInOne)这道题
+
+发现整体思路和这道题差不多，猜测出题人的出题思路也是来源于这道题
+
+跟着上面那道题的wp，改了一下提取水印的脚本，但是运行后得不到有效的信息
+
+```python
+def extract_qim(block, delta):
+    block_flat = block.flatten()
+    avg = np.mean(block_flat)
+    mod_value = avg % delta
+    if mod_value &lt; delta / 4 or mod_value &gt; 3 * delta / 4:
+        return &#39;0&#39;
+    else:
+        return &#39;1&#39;
+
+def extract_watermark1(G_watermarked, watermark_length, delta):
+    watermark_bits = []
+    block_size = 8
+    k = 0
+    for i in range(0, G_watermarked.shape[0], block_size):
+        for j in range(0, G_watermarked.shape[1], block_size):
+            if k &lt; watermark_length * 8:
+                block = G_watermarked[i:i&#43;block_size, j:j&#43;block_size]
+                if block.shape != (block_size, block_size):
+                    continue
+                coeffs = pywt.dwt2(block, &#39;haar&#39;)
+                LL, (LH, HL, HH) = coeffs
+                bit = extract_qim(LL, delta)
+                watermark_bits.append(bit)
+                k &#43;= 1
+
+    watermark_str = &#39;&#39;.join(watermark_bits)
+    return watermark_str
+
+def func2():
+    p = Image.open(&#39;dec.png&#39;).convert(&#39;RGB&#39;)
+    p_data = np.array(p)
+    G = p_data[:,:,1].astype(np.float32)
+    print(libnum.b2s(extract_watermark1(G,102,8)))
+```
+
+暂时不知道是哪里出问题了，然后我们继续去看题目附件给的图片，010打开发现末尾藏了一张base64编码后的图片
+
+![](imgs/image-20250331202512217.png)
+
+base64解码后可以得到下图，根据分辨率很明显可以发现图片最下面是缺了一大块的
+
+![](imgs/image-20250331202638312.png)
+
+010打开这张图片，发现图片最后一块IDAT是有问题的，并且丢失了PNG的文件尾
+
+![](imgs/image-20250331202739100.png)
+
+
+
+
+
+
 
 ---
 
