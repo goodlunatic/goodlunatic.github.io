@@ -10,10 +10,10 @@
 | :---------------------------------------------------------------------------: |
 | **题目附件下载：https://pan.baidu.com/s/1vXVrxFeokGB4ETv9Bs7TAQ?pwd=nxaj 提取码: nxaj** |
 
+## 线上初赛
 
 
-
-## 题目名称 easydatalog
+### 题目名称 easydatalog
 
 &gt; 题面信息如下：
 &gt; 请你对附件中的日志文件进行分析，找出“张三”的身份证号和手机号，譬如其身份证号是119795199308186673，手机号是73628276413，则提交的flag为“119795199308186673_73628276413”。
@@ -45,7 +45,7 @@
 
 使用得到的密码解压压缩包即可得到张三的信息，即flag：`DASCTF{30601319731003117X_79159498824}`
 
-## 题目名称 糟糕的磁盘
+### 题目名称 糟糕的磁盘
 
 题目附件给了五个img文件，查看后发现是Linux下RAID格式的磁盘文件
 
@@ -55,7 +55,7 @@
 
 压缩包注释中也给了提示：`I only remember the block size is 512KB`
 
-### 方法一：(UFS直接重组)
+#### 方法一：(UFS直接重组)
 
 软件下载链接：[UFS Explorer Professional Recovery 9.18](https://cangshui.net/5257.html)
 
@@ -79,7 +79,7 @@
 
 ![](imgs/image-20250228163309963.png)
 
-### 方法二：在Ubuntu下用losetup和mdadm进行组装挂载
+#### 方法二：在Ubuntu下用losetup和mdadm进行组装挂载
 
 在WSL2(Ubuntu20.04)中运行一下命令即可成功挂载
 
@@ -118,17 +118,17 @@ sudo mdadm --create /dev/md127 --level=0 --raid-devices=5 /dev/loop0 /dev/loop1 
 
 因此还是建议在Ubuntu系统下进行以上操作
 
-## 题目名称 DSASignatureData
+### 题目名称 DSASignatureData
 
 &gt; 题面信息如下：
 &gt; 请你对附件中的流量文件进行分析，在该流量里有一些个人信息数据。附件中还有一份个人信息的签名数据 data-sign.csv（其中签名算法采用 DSA，哈希算法采用 SHA256）和一组公钥文件（位于 public 文件夹中，文件名格式为 public-XXXX.pem，其中 XXXX 为 userid 左侧补零至四位数，即个人用户对应的公钥文件）。由于数据可能在传输过程中被篡改过，因此需要你进行签名验证，验证数据是否被篡改。找出被篡改过的个人信息数据并保存到新的 csv 文件中（文件编码 utf-8，文件格式和 data.csv 保持一致），并将该文件上传至该题的校验平台（在该校验平台里可以下载该题的示例文件 example.csv，可作为该题的格式参考），校验达标即可拿到 flag。
 
 
 
-## 题面名称 easyrawencode
+### 题面名称 easyrawencode
 
 
-## 题目名称 cscs
+### 题目名称 cscs
 
 题目附件给了一个流量包，稍微翻看了一下发现主要是HTTP流量
 
@@ -667,7 +667,182 @@ if __name__ == &#34;__main__&#34;:
 
 ![](imgs/image-20250228152411061.png)
 
+## 线下决赛
 
+### 只留清白在人间
+
+### IceWater
+
+### 并非乱ping
+
+
+### 题目名称 Steganography_challenges0.3
+
+&gt; 题目附件： https://pan.baidu.com/s/1F6ZBdr-Nnhw0UmjF3_9DzA?pwd=f83m 提取码: f83m
+&gt; 
+&gt; 附件已更新，原来的附件是损坏的，感谢`@IcePeak`师傅的提醒，要不然对着坏的附件，这题这辈子都做不出来了
+
+&gt; 本题的成功解出离不开`@IcePeak`师傅的帮助
+
+解压附件压缩包，可以得到一个`encrypt.py`和一张PNG图片，内容如下所示
+
+```python
+from PIL import Image
+from Crypto.Cipher import ARC4
+
+def rc4_encrypt(data, key):
+    cipher = ARC4.new(key.encode())
+    return cipher.encrypt(data)
+
+image = Image.open(&#39;flag1.png&#39;).convert(&#39;RGB&#39;)
+width, height = image.size
+
+new_image = Image.new(&#39;RGB&#39;, (width, height))
+
+key = &#39;&#39;#ps:Passwords are common passwords (weak passwords) that may be required...
+
+for y in range(height):
+    for x in range(width):
+        r, g, b = image.getpixel((x, y))
+        rgb_bytes = bytes([r, g, b])
+        encrypted_rgb = rc4_encrypt(rgb_bytes, key)
+        new_image.putpixel((x, y), (encrypted_rgb[0], encrypted_rgb[1], encrypted_rgb[2]))
+
+new_image.save(&#39;Steganography_challenges0.3.png&#39;)
+```
+
+![](imgs/image-20250331201515898.png)
+
+
+发现是用弱密码简单加密了一下图片，然后我们用stegsolve打开图片可以发现图片存在LSB隐写
+
+![](imgs/image-20250331201900614.png)
+
+因此我们根据LSB隐写的内容写个脚本爆破一下密钥即可
+
+```python
+def func1():
+    with open(&#34;rockyou.txt&#34;,&#39;r&#39;,errors=&#39;ignore&#39;) as f:
+        keys = f.read().split()
+    for key in keys:
+        img = Image.open(&#34;1.png&#34;)
+        w,h = img.size
+        img1 = Image.new(&#39;RGB&#39;,(w,h))
+        for y in range(h):
+            for x in range(w):
+                r,g,b = img.getpixel((x,y))
+                rgb_bytes = bytes([r,g,b])
+                dec_rgb = rc4_decrypt(rgb_bytes,key)
+                img1.putpixel((x,y),(dec_rgb[0],dec_rgb[1],dec_rgb[2]))
+        # img1.show()
+        bin_data = (np.array(img1) &amp; 1).flatten().astype(str)
+        res = libnum.b2s(&#39;&#39;.join(bin_data))
+        print(res[:100])
+        if b&#39;flag&#39; in res or b&#39;DASCTF&#39; in res:
+            print(f&#34;[&#43;] 爆破成功，密钥是 {key}&#34;)
+            print(res[:150])
+            break
+# [&#43;] 爆破成功，密钥是 password
+# b&#34;DASCTF{01d0eed8-2e4b,Do you know DWT-QIM? Now I&#39;ll give you the key information,
+# next_information_length = 102,block_size = 8,delta=8,Green channel
+```
+
+运行以上脚本后即可得到第一段flag：`DASCTF{01d0eed8-2e4b`，以及下一步的提示
+
+并且可以用爆破出来的密码还原图片，还原后的图片如下
+
+![](imgs/image-20250331201753939.png)
+
+然后去网上搜`DWT-QIM`相关的内容，可以搜到[2024WMCTF-steg_allInOne](https://blog.wm-team.cn/index.php/archives/80/#steg_allInOne)这道题
+
+发现整体思路和这道题差不多，猜测出题人的出题思路也是来源于这道题
+
+然后我们010打开附件给的那张PNG，发现图片的末尾藏了一张base64编码后的图片
+
+![](imgs/image-20250401183123671.png)
+
+提取出来base64解码即可得到下图
+
+![](imgs/image-20250401183228651.png)
+
+参考上面`2024WMCTF`那道题的wp，改一下提取水印的脚本
+
+```python
+from PIL import Image
+import numpy as np
+import libnum
+import pywt
+
+def extract_qim(block, delta):
+    block_flat = block.flatten()
+    avg = np.mean(block_flat)
+    mod_value = avg % delta
+    if mod_value &lt; delta / 4 or mod_value &gt; 3 * delta / 4:
+        return &#39;0&#39;
+    else:
+        return &#39;1&#39;
+
+def extract_watermark1(G_watermarked, watermark_length, delta):
+    watermark_bits = []
+    block_size = 8
+    k = 0
+    for i in range(0, G_watermarked.shape[0], block_size):
+        for j in range(0, G_watermarked.shape[1], block_size):
+            if k &lt; watermark_length * 8:
+                block = G_watermarked[i:i&#43;block_size, j:j&#43;block_size]
+                if block.shape != (block_size, block_size):
+                    continue
+                coeffs = pywt.dwt2(block, &#39;haar&#39;)
+                LL, (LH, HL, HH) = coeffs
+                bit = extract_qim(LL, delta)
+                watermark_bits.append(bit)
+                k &#43;= 1
+
+    watermark_str = &#39;&#39;.join(watermark_bits)
+    return watermark_str
+
+if __name__ == &#34;__main__&#34;:
+    p = Image.open(&#39;download.png&#39;).convert(&#39;RGB&#39;)
+    p_data = np.array(p)
+    G = p_data[:,:,1].astype(np.float32)
+    print(libnum.b2s(extract_watermark1(G,102,8)))
+# b&#34;Hey boy, I&#39;m here to help you, now you&#39;ze one step away from successl let me |ell you key:79557c2d8f94&#34;
+```
+
+运行后可以得到如下内容，提示了我们一个key：`79557c2d8f94`
+
+```
+b&#34;Hey boy, I&#39;m here to help you, now you&#39;ze one step away from successl let me |ell you key:79557c2d8f94&#34;
+```
+
+
+然后我们010打开提取得到的图片，发现有一块异常的`IDAT chunk`
+
+![](imgs/image-20250401183350583.png)
+
+尝试给他单独提取出来，发现按照`2024WMCTF`的思路做得不到有用的东西
+
+然后也尝试了异或密钥，也没有得到有效的信息，在`@IcePeak`师傅的提醒下，查看了这块数据的大小
+
+发现刚刚好是300kb，因此结合题目给了密钥，联想到可能是VeraCrypt加密容器
+
+![](imgs/image-20250401184416937.png)
+
+然后这里提取这块数据的时候要注意，不要把表示数据长度的那四个字节也提取出来
+
+我们要从下图中高亮的位置后面开始提取
+
+![](imgs/image-20250401184348934.png)
+
+提取出来后，用VC挂载即可得到flag2：`-4dc6-9152-ffe56b0f70b4}`
+
+![](imgs/image-20250401184736460.png)
+
+综上，将得到的两段flag拼起来即可得到最后的flag：`DASCTF{01d0eed8-2e4b-4dc6-9152-ffe56b0f70b4}`
+
+&gt; 一些碎碎念：出题人最后套了一个VC加密容器确实会比较难想到，需要选手结合数据的长度和密钥进行联想
+&gt; 
+&gt; 但也正是出题人这最后套了一下VC加密容器，让这道题更贴合“数据安全”这个分类吧
 
 ---
 

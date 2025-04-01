@@ -4,7 +4,16 @@
     <link>https://goodlunatic.github.io/categories/writeup/</link>
     <description>Writeup - Category | ⚡Lunatic BLOG⚡</description>
     <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>goodlunatic0@gmail.com (Lunatic)</managingEditor>
-      <webMaster>goodlunatic0@gmail.com (Lunatic)</webMaster><lastBuildDate>Wed, 26 Mar 2025 13:43:45 &#43;0800</lastBuildDate><atom:link href="https://goodlunatic.github.io/categories/writeup/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>goodlunatic0@gmail.com (Lunatic)</webMaster><lastBuildDate>Tue, 01 Apr 2025 12:35:37 &#43;0800</lastBuildDate><atom:link href="https://goodlunatic.github.io/categories/writeup/" rel="self" type="application/rss+xml" /><item>
+  <title>2025 西湖论剑·中国杭州网络安全技能大赛 Misc Writeup</title>
+  <link>https://goodlunatic.github.io/posts/f002407/</link>
+  <pubDate>Tue, 01 Apr 2025 12:35:37 &#43;0800</pubDate>
+  <author>Lunatic</author>
+  <guid>https://goodlunatic.github.io/posts/f002407/</guid>
+  <description><![CDATA[<p><strong>最近这一段时间一直被科研和毕设上的事拖着，因此就有段时间没有做Misc题了</strong></p>
+<p><strong>趁着写毕设没啥思路和动力的功夫，来稍微复盘下今年西湖论剑的题</strong></p>]]></description>
+</item>
+<item>
   <title>2025 XCTF国际网络攻防联赛-TPCTF分站赛 Misc Writeup</title>
   <link>https://goodlunatic.github.io/posts/5a9004d/</link>
   <pubDate>Wed, 26 Mar 2025 13:43:45 &#43;0800</pubDate>
@@ -20,15 +29,6 @@
   <guid>https://goodlunatic.github.io/posts/de8e2be/</guid>
   <description><![CDATA[<p><strong>这比赛虽然有些Misc题比较搞心态，但是不得不说题目质量还是在的</strong></p>
 <p><strong>出题师傅的水平还是挺可以的，然后经验啥的感觉还是比较老练</strong></p>]]></description>
-</item>
-<item>
-  <title>2025 西湖论剑·中国杭州网络安全技能大赛 Misc Writeup</title>
-  <link>https://goodlunatic.github.io/posts/f002407/</link>
-  <pubDate>Fri, 28 Feb 2025 14:35:37 &#43;0800</pubDate>
-  <author>Lunatic</author>
-  <guid>https://goodlunatic.github.io/posts/f002407/</guid>
-  <description><![CDATA[<p><strong>最近这一段时间一直被科研和毕设上的事拖着，因此就有段时间没有做Misc题了</strong></p>
-<p><strong>趁着写毕设没啥思路和动力的功夫，来稍微复盘下今年西湖论剑的题</strong></p>]]></description>
 </item>
 <item>
   <title>2025 XCTF国际网络攻防联赛-SUCTF分站赛 Misc Writeup</title>
