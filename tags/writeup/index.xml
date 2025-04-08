@@ -14,30 +14,46 @@
 <p><strong>趁着写毕设没啥思路和动力的功夫，来稍微复盘下今年西湖论剑的题</strong></p>]]></description>
 </item>
 <item>
-  <title>2025 XCTF国际网络攻防联赛-TPCTF分站赛 Misc Writeup</title>
-  <link>https://goodlunatic.github.io/posts/5a9004d/</link>
-  <pubDate>Wed, 26 Mar 2025 13:43:45 &#43;0800</pubDate>
+  <title>2025 XCTF国际网络攻防联赛-SUCTF分站赛 Misc Writeup</title>
+  <link>https://goodlunatic.github.io/posts/754b8e7/</link>
+  <pubDate>Tue, 01 Apr 2025 00:00:40 &#43;0800</pubDate>
   <author>Lunatic</author>
-  <guid>https://goodlunatic.github.io/posts/5a9004d/</guid>
-  <description><![CDATA[<p><strong>经典脑王系列，周末抽空上去看了看题</strong></p>]]></description>
+  <guid>https://goodlunatic.github.io/posts/754b8e7/</guid>
+  <description><![CDATA[<p><strong>这次分站赛的时间卡的比较好，刚刚好队友们都考完期末考了</strong></p>
+<p><strong>然后时间上也没有和别的比赛冲突，因此就一起上号看了看题</strong></p>]]></description>
 </item>
 <item>
   <title>2024 强网拟态防御国际精英挑战赛初赛 Misc Writeup</title>
   <link>https://goodlunatic.github.io/posts/de8e2be/</link>
-  <pubDate>Sun, 02 Mar 2025 23:16:19 &#43;0800</pubDate>
+  <pubDate>Sat, 29 Mar 2025 23:16:19 &#43;0800</pubDate>
   <author>Lunatic</author>
   <guid>https://goodlunatic.github.io/posts/de8e2be/</guid>
   <description><![CDATA[<p><strong>这比赛虽然有些Misc题比较搞心态，但是不得不说题目质量还是在的</strong></p>
 <p><strong>出题师傅的水平还是挺可以的，然后经验啥的感觉还是比较老练</strong></p>]]></description>
 </item>
 <item>
-  <title>2025 XCTF国际网络攻防联赛-SUCTF分站赛 Misc Writeup</title>
-  <link>https://goodlunatic.github.io/posts/754b8e7/</link>
-  <pubDate>Sun, 19 Jan 2025 00:00:40 &#43;0800</pubDate>
+  <title>2024 网鼎杯网络安全大赛青龙组 Misc Writeup</title>
+  <link>https://goodlunatic.github.io/posts/1a285be/</link>
+  <pubDate>Thu, 27 Mar 2025 09:56:08 &#43;0800</pubDate>
   <author>Lunatic</author>
-  <guid>https://goodlunatic.github.io/posts/754b8e7/</guid>
-  <description><![CDATA[<p><strong>这次分站赛的时间卡的比较好，刚刚好队友们都考完期末考了</strong></p>
-<p><strong>然后时间上也没有和别的比赛冲突，因此就一起上号看了看题</strong></p>]]></description>
+  <guid>https://goodlunatic.github.io/posts/1a285be/</guid>
+  <description><![CDATA[<p><strong>2024 网鼎杯网络安全大赛青龙组 Misc Writeup</strong></p>]]></description>
+</item>
+<item>
+  <title>2024 浙江省大学生网络与信息安全竞赛 Misc Writeup</title>
+  <link>https://goodlunatic.github.io/posts/c216d58/</link>
+  <pubDate>Wed, 26 Mar 2025 10:45:20 &#43;0800</pubDate>
+  <author>Lunatic</author>
+  <guid>https://goodlunatic.github.io/posts/c216d58/</guid>
+  <description><![CDATA[<p><strong>2024 浙江省大学生网络与信息安全竞赛 Misc Writeup</strong></p>]]></description>
+</item>
+<item>
+  <title>2025 XCTF国际网络攻防联赛-TPCTF分站赛 Misc Writeup</title>
+  <link>https://goodlunatic.github.io/posts/5a9004d/</link>
+  <pubDate>Thu, 06 Mar 2025 13:43:45 &#43;0800</pubDate>
+  <author>Lunatic</author>
+  <guid>https://goodlunatic.github.io/posts/5a9004d/</guid>
+  <description><![CDATA[<p><strong>经典脑王系列，周末抽空上去看了看题</strong></p>]]></description>
 </item>
 <item>
   <title>2024 楚慧杯网络与数据安全实践能力竞赛 Misc Writeup</title>
@@ -73,23 +89,6 @@
   <author>Lunatic</author>
   <guid>https://goodlunatic.github.io/posts/b70ab5c/</guid>
   <description><![CDATA[<p><strong>2024 深育杯大学生网络安全大赛 Writeup</strong></p>]]></description>
-</item>
-<item>
-  <title>2024 HITCTF安天杯网络安全国际邀请赛 Misc Writeup</title>
-  <link>https://goodlunatic.github.io/posts/9651477/</link>
-  <pubDate>Wed, 04 Dec 2024 19:18:13 &#43;0800</pubDate>
-  <author>Lunatic</author>
-  <guid>https://goodlunatic.github.io/posts/9651477/</guid>
-  <description><![CDATA[<p><strong>比赛结束后有师傅来问里面的题，后面才知道原来是哈工大的邀请赛</strong></p>
-<p><strong>羡慕能被邀请的学校，啥时候能顺便邀请一下A1natas呢 QAQ</strong></p>]]></description>
-</item>
-<item>
-  <title>2024 吾杯网络安全大赛 Misc Writeup</title>
-  <link>https://goodlunatic.github.io/posts/3ab0c1d/</link>
-  <pubDate>Tue, 03 Dec 2024 15:23:21 &#43;0800</pubDate>
-  <author>Lunatic</author>
-  <guid>https://goodlunatic.github.io/posts/3ab0c1d/</guid>
-  <description><![CDATA[<p><strong>2024 吾杯网络安全大赛 Misc Writeup</strong></p>]]></description>
 </item>
 </channel>
 </rss>

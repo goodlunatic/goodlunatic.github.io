@@ -34,7 +34,7 @@
 趁着写毕设没啥思路和动力的功夫，来稍微复盘下今年西湖论剑的题">
       <meta name="twitter:site" content="@goodlunatic007">
 <meta name="application-name" content="FixIt">
-<meta name="apple-mobile-web-app-title" content="FixIt"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="https://www.nssctf.cn/files/2024/4/28/8fdad6c6ee.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="https://goodlunatic.github.io/posts/f002407/" /><link rel="prev" href="https://goodlunatic.github.io/posts/5a9004d/" /><link rel="next" href="https://goodlunatic.github.io/posts/d0736a7/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
+<meta name="apple-mobile-web-app-title" content="FixIt"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="https://www.nssctf.cn/files/2024/4/28/8fdad6c6ee.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="https://goodlunatic.github.io/posts/f002407/" /><link rel="prev" href="https://goodlunatic.github.io/posts/754b8e7/" /><link rel="next" href="https://goodlunatic.github.io/posts/1ad9200/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
   {
@@ -916,7 +916,7 @@
 </span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;[+] 任务输出类型: </span><span class="si">{}</span><span class="s2">&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">int</span><span class="o">.</span><span class="n">from_bytes</span><span class="p">(</span><span class="n">dec</span><span class="p">[</span><span class="mi">8</span><span class="p">:</span><span class="mi">12</span><span class="p">],</span> <span class="n">byteorder</span><span class="o">=</span><span class="s1">&#39;big&#39;</span><span class="p">,</span> <span class="n">signed</span><span class="o">=</span><span class="kc">False</span><span class="p">)))</span>
 </span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="n">hexdump</span><span class="o">.</span><span class="n">hexdump</span><span class="p">(</span><span class="n">dec</span><span class="p">))</span></span></span></code></pre></td></tr></table>
 </div>
-</div><div class="highlight" id="id-9"><div class="chroma">
+</div><div class="highlight" id="id-1"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1002,7 +1002,7 @@
 <p>但是这道题没有2021L3HCTF那题那么复杂，因为这里的数据包带的数据都比较短</p>
 <p>因此这里直接一个个包解码过去就行，也不用根据解密后数据的长度进行分块处理</p>
 <p>首先把解密的CPP代码在Linux下编译成.so文件</p>
-<div class="highlight" id="id-10"><div class="chroma">
+<div class="highlight" id="id-2"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1097,7 +1097,7 @@
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
-</div><div class="highlight" id="id-11"><div class="chroma">
+</div><div class="highlight" id="id-3"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -1117,7 +1117,7 @@
 </span></span><span class="line"><span class="cl"><span class="c1"># com_unmunge.cpp：源代码文件名。</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>Linux下输入以上命令即可编译得到 a.so</p>
-<div class="highlight" id="id-12"><div class="chroma">
+<div class="highlight" id="id-4"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1221,7 +1221,7 @@
 <p>本题的成功解出离不开<code>@IcePeak</code>师傅的帮助</p>
 </blockquote>
 <p>解压附件压缩包，可以得到一个<code>encrypt.py</code>和一张PNG图片，内容如下所示</p>
-<div class="highlight" id="id-13"><div class="chroma">
+<div class="highlight" id="id-5"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1274,7 +1274,7 @@
 <p>发现是用弱密码简单加密了一下图片，然后我们用stegsolve打开图片可以发现图片存在LSB隐写</p>
 <p><img loading="lazy" src="imgs/image-20250331201900614.png" alt="imgs/image-20250331201900614.png" srcset="imgs/image-20250331201900614.png?size=small, imgs/image-20250331201900614.png?size=medium 1.5x, imgs/image-20250331201900614.png?size=large 2x" data-title="imgs/image-20250331201900614.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>因此我们根据LSB隐写的内容写个脚本爆破一下密钥即可</p>
-<div class="highlight" id="id-14"><div class="chroma">
+<div class="highlight" id="id-6"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1337,7 +1337,7 @@
 <p>提取出来base64解码即可得到下图</p>
 <p><img loading="lazy" src="imgs/image-20250401183228651.png" alt="imgs/image-20250401183228651.png" srcset="imgs/image-20250401183228651.png?size=small, imgs/image-20250401183228651.png?size=medium 1.5x, imgs/image-20250401183228651.png?size=large 2x" data-title="imgs/image-20250401183228651.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>参考上面<code>2024WMCTF</code>那道题的wp，改一下提取水印的脚本</p>
-<div class="highlight" id="id-15"><div class="chroma">
+<div class="highlight" id="id-7"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1421,7 +1421,7 @@
 </span></span><span class="line"><span class="cl"><span class="c1"># b&#34;Hey boy, I&#39;m here to help you, now you&#39;ze one step away from successl let me |ell you key:79557c2d8f94&#34;</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>运行后可以得到如下内容，提示了我们一个key：<code>79557c2d8f94</code></p>
-<div class="highlight" id="id-16"><div class="chroma">
+<div class="highlight" id="id-8"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
@@ -1465,8 +1465,8 @@
     </section>
   </div>
 
-  <div class="post-nav"><a href="/posts/5a9004d/" class="post-nav-item" rel="prev" title="2025 XCTF国际网络攻防联赛-TPCTF分站赛 Misc Writeup"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>2025 XCTF国际网络攻防联赛-TPCTF分站赛 Misc Writeup</a>
-      <a href="/posts/d0736a7/" class="post-nav-item" rel="next" title="CTF-Misc &#34;雅&#34;题共赏">CTF-Misc &#34;雅&#34;题共赏<i class="fa-solid fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+  <div class="post-nav"><a href="/posts/754b8e7/" class="post-nav-item" rel="prev" title="2025 XCTF国际网络攻防联赛-SUCTF分站赛 Misc Writeup"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>2025 XCTF国际网络攻防联赛-SUCTF分站赛 Misc Writeup</a>
+      <a href="/posts/1ad9200/" class="post-nav-item" rel="next" title="CTF-Misc Guide">CTF-Misc Guide<i class="fa-solid fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
 </div>
 <div id="comments"><div id="disqus_thread" class="comment"></div><noscript>
         Please enable JavaScript to view the comments powered by <a href="https://disqus.com/?ref_noscript" rel="external nofollow noopener noreferrer">Disqus</a>.
