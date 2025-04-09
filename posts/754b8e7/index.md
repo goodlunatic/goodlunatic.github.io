@@ -1,8 +1,6 @@
 # 2025 XCTF国际网络攻防联赛-SUCTF分站赛 Misc Writeup
 
-**这次分站赛的时间卡的比较好，刚刚好队友们都考完期末考了**
-
-**然后时间上也没有和别的比赛冲突，因此就一起上号看了看题**
+**2025 XCTF国际网络攻防联赛-SUCTF分站赛 Misc Writeup**
 &lt;!--more--&gt;
 
 |                 ![](imgs/image-20250119000219739.png)&lt;br&gt;&lt;br&gt;                 |

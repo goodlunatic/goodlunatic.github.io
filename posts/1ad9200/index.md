@@ -1634,7 +1634,7 @@ if __name__ == &#34;__main__&#34;:
 运行以上脚本循环485次后即可得到flag
 
 ![](imgs/image-20250324153842745.png)
-#### Java-BlindWatermark
+#### 25、Java-BlindWatermark
 
 1、直接用`Byxs20`写的`PuzzleSolver`一把梭
 
@@ -1642,6 +1642,15 @@ if __name__ == &#34;__main__&#34;:
 
 ```bash
 java -jar .\BlindWatermark-v0.0.3-windows-x86_64.jar decode -c .\password.png output.png
+```
+
+#### 26、在线网站一把梭
+
+&gt; 这种情况常常发生在某些Misc出题人水平不够，图片隐写道行不够的情况
+
+```bash
+# 在线网站：
+https://www.a.tools/Tool.php?Id=100
 ```
 
 ### PNG思路
