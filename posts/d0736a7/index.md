@@ -1245,7 +1245,7 @@ b&#34;Hey boy, I&#39;m here to help you, now you&#39;ze one step away from succe
 &gt; 
 &gt; 但也正是出题人这最后套了一下VC加密容器，让这道题更贴合“数据安全”这个分类吧
 
-## [SOLVED] 题目名称 Just Not Good
+## 题目名称 Just Not Good
 
 题目附件： https://pan.baidu.com/s/12j_kEm7Vw0PETvJ8GSiC8g?pwd=u7q6 提取码: u7q6
 
