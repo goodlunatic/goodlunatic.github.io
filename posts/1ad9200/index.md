@@ -2291,35 +2291,60 @@ Tips：压缩包的密码可以是中英文字符和符号
 
 **文件源数据区**
 
-| HEX 数据    | 描述                                            | 010Editor 模板数据          |
-| :---------- | :---------------------------------------------- | :-------------------------- |
-| 50 4B 03 04 | zip 文件头标记，看文本的话就是 PK 开头          | char frSignature[4]         |
-| 0A 00       | 解压文件所需 pkware 版本                        | ushort frVersion            |
-| 00 00       | 全局方式位标记（有无加密），头文件标记后 2bytes | ushort frFlags              |
-| 00 00       | 压缩方式                                        | enum COMPTYPE frCompression |
-| E8 A6       | 最后修改文件时间                                | DOSTIME frFileTime          |
-| 32 53       | 最后修改文件日期                                | DOSDATE frFileDate          |
-| 0C 7E 7F D8 | CRC-32 校验                                     | uint frCrc                  |
+
+|        字段名称        |              字段描述              |
+| :----------------: | :----------------------------: |
+|    frSignature     |       ZIP文件头，固定值504B0304       |
+|     frVersion      |        解压所需的 pkware 版本         |
+|      frFLags       | 全局方式位标记，最低位的1bit是1表示加密，是0表示未加密 |
+|   frCompression    |    压缩方法（具体值如Store、Deflate等）    |
+|     frFileTime     |          被压缩文件的最后修改时间          |
+|     frFileDate     |          被压缩文件的最后修改日期          |
+|       frCrc        |        文件压缩前 CRC-32 的值         |
+|  frCompressedSize  |          被压缩文件压缩后的大小           |
+| frUncompressedSize |          被压缩文件压缩前的大小           |
+|  frFileNameLength  |          被压缩文件的文件名长度           |
+| frExtraFieldLength |         扩展字段长度（具体值如0等）         |
+|     frFileName     |           被压缩文件的文件名            |
+|       frData       |          被压缩文件压缩后的数据           |
 
 **文件目录区**
 
-| HEX 数据    | 描述                                              | 010Editor 模板数据          |
-| ----------- | ------------------------------------------------- | --------------------------- |
-| 50 4B 01 02 | 目录中文件文件头标记                              | char deSignature[4]         |
-| 3F 00       | 压缩使用的 pkware 版本                            | ushort deVersionMadeBy      |
-| 0A 00       | 解压文件所需 pkware 版本                          | ushort deVersionToExtract   |
-| 00 00       | 全局方式位标记（有无加密），目录文件标记后 4bytes | ushort frFlags              |
-| 00 00       | 压缩方式                                          | enum COMPTYPE frCompression |
-| E8 A6       | 最后修改文件时间                                  | DOSTIME frFileTime          |
-| 32 53       | 最后修改文件日期                                  | DOSDATE frFileDate          |
-| 0C 7E 7F D8 | CRC-32 校验                                       | uint frCrc                  |
+|         字段名称         |                              字段描述                               |
+| :------------------: | :-------------------------------------------------------------: |
+|     deSignature      |                         签名，通常是504B0102                          |
+|   deVersionMadeBy    |                         制作于哪个 pkware 版本                         |
+|  deVersionToExtract  |                  解析该目录需要的版本号，与数据区frVersion的值一致                  |
+|       deFLags        |                      一般标志位，与数据区frFlags的值一致                      |
+|    deCompression     |                   压缩方法，与数据区frCompression的值一致                    |
+|      deFileTime      |                   被压缩文件的最后修改时间，与数据区中对应字段的值一致                    |
+|      deFileDate      |                   被压缩文件的最后修改日期，与数据区中对应字段的值一致                    |
+|        deCrc         |                         文件压缩前 CRC-32 的值                         |
+|   deCompressedSize   |                           被压缩文件压缩后的大小                           |
+|  deUncompressedSize  |                           被压缩文件压缩前的大小                           |
+|   deFileNameLength   |                           被压缩文件的文件名长度                           |
+|  deExtraFieldLength  |                      扩展字段长度（与数据区的对应值可能不一致）                      |
+| deFileCommentLength  |                             文件备注长度                              |
+|  deDiskNumberStart   |               文件起始位置所在的磁盘编号（早期磁盘很小的情况下，压缩包可能跨磁盘）                |
+| deInternalAttributes |                             内部文件属性                              |
+| deExternalAttributes |                             外部文件属性                              |
+| uint deHeaderOffset  | 本目录指向的entry相对于第一个entry的起始位置，单位byte，这也就限制了ZIP文件最大也就是4G了，再大就无法定位了 |
+|      deFileName      |                            被压缩文件的文件名                            |
+|     deExtraField     |                              扩展字段                               |
 
 **文件目录结束**
 
-| 50 4B 05 06 | 目录结束标记       | char elSignature[4]      |
-| ----------- | ------------------ | ------------------------ |
-| 00 00       | 当前磁盘编号       | ushort elDiskNumber      |
-| 00 00       | 目录区开始磁盘编号 | ushort elStartDiskNumber |
+|         字段名称         |         字段描述         |
+| :------------------: | :------------------: |
+|     elSignature      |    签名，通常是504B0506    |
+|     elDiskNumber     |        当前磁盘编号        |
+|  elStartDiskNumber   |      中央目录起始磁盘编号      |
+|   elEntriesOnDisk    |    当前磁盘上的中央目录记录数     |
+| elEntriesInDirectory |       中央目录总条目数       |
+|   elDirectorySize    |       中央目录的总大小       |
+|  elDirectoryOffset   | 中央目录相对于第一个entry的起始位置 |
+|   elCommentLength    |         注释长度         |
+|    char elComment    |        压缩包注释         |
 
 #### 常见报错及对应解决方法（借助010的模板功能）
 
