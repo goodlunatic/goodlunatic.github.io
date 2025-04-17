@@ -12,9 +12,9 @@
   <meta itemprop="name" content="2025 西湖论剑·中国杭州网络安全技能大赛 Misc Writeup">
   <meta itemprop="description" content="最近这一段时间一直被科研和毕设上的事拖着，因此就有段时间没有做Misc题了
 趁着写毕设没啥思路和动力的功夫，来稍微复盘下今年西湖论剑的题">
-  <meta itemprop="datePublished" content="2025-04-01T12:35:37+08:00">
-  <meta itemprop="dateModified" content="2025-04-01T12:35:37+08:00">
-  <meta itemprop="wordCount" content="3292">
+  <meta itemprop="datePublished" content="2025-04-17T12:35:37+08:00">
+  <meta itemprop="dateModified" content="2025-04-17T12:35:37+08:00">
+  <meta itemprop="wordCount" content="3736">
   <meta itemprop="keywords" content="CTF,Misc,Writeup"><meta property="og:url" content="https://goodlunatic.github.io/posts/f002407/">
   <meta property="og:site_name" content="⚡Lunatic BLOG⚡">
   <meta property="og:title" content="2025 西湖论剑·中国杭州网络安全技能大赛 Misc Writeup">
@@ -24,8 +24,8 @@
   <meta property="og:locale" content="en">
   <meta property="og:type" content="article">
   <meta property="article:section" content="posts">
-    <meta property="article:published_time" content="2025-04-01T12:35:37+08:00">
-    <meta property="article:modified_time" content="2025-04-01T12:35:37+08:00">
+    <meta property="article:published_time" content="2025-04-17T12:35:37+08:00">
+    <meta property="article:modified_time" content="2025-04-17T12:35:37+08:00">
     <meta property="article:tag" content="CTF">
     <meta property="article:tag" content="Misc">
     <meta property="article:tag" content="Writeup">
@@ -34,7 +34,7 @@
 趁着写毕设没啥思路和动力的功夫，来稍微复盘下今年西湖论剑的题">
       <meta name="twitter:site" content="@goodlunatic007">
 <meta name="application-name" content="FixIt">
-<meta name="apple-mobile-web-app-title" content="FixIt"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="https://www.nssctf.cn/files/2024/4/28/8fdad6c6ee.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="https://goodlunatic.github.io/posts/f002407/" /><link rel="prev" href="https://goodlunatic.github.io/posts/754b8e7/" /><link rel="next" href="https://goodlunatic.github.io/posts/d0736a7/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
+<meta name="apple-mobile-web-app-title" content="FixIt"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="https://www.nssctf.cn/files/2024/4/28/8fdad6c6ee.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="https://goodlunatic.github.io/posts/f002407/" /><link rel="prev" href="https://goodlunatic.github.io/posts/1ad9200/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
   {
@@ -45,8 +45,8 @@
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": "https:\/\/goodlunatic.github.io\/posts\/f002407\/"
-    },"genre": "posts","keywords": "CTF, Misc, Writeup","wordcount":  3292 ,
-    "url": "https:\/\/goodlunatic.github.io\/posts\/f002407\/","datePublished": "2025-04-01T12:35:37+08:00","dateModified": "2025-04-01T12:35:37+08:00","publisher": {
+    },"genre": "posts","keywords": "CTF, Misc, Writeup","wordcount":  3736 ,
+    "url": "https:\/\/goodlunatic.github.io\/posts\/f002407\/","datePublished": "2025-04-17T12:35:37+08:00","dateModified": "2025-04-17T12:35:37+08:00","publisher": {
       "@type": "Organization",
       "name": ""},"author": {
         "@type": "Person",
@@ -149,7 +149,7 @@
 <article class="page single">
   <div class="header"><h1 class="single-title animate__animated animate__flipInX"><span>2025 西湖论剑·中国杭州网络安全技能大赛 Misc Writeup</span>
     </h1></div><div class="post-meta">
-    <div class="post-meta-line"><span class="post-author"><a href="https://goodlunatic.github.io" title="Author"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><img loading="lazy" src="https://www.nssctf.cn/files/2024/4/28/7f130a1387.png" alt="Lunatic" data-title="Lunatic" class="avatar" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>&nbsp;Lunatic</a></span><span class="post-included-in">&nbsp;included in <a href="/categories/writeup/" class="post-category" title="Category - Writeup"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> Writeup</a></span></div><div class="post-meta-line"><span title="published on &lt;no value&gt;"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden="true"></i><time datetime="2025-04-01">2025-04-01</time></span>&nbsp;<span title=""><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>About 3300 words</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>16 minutes</span>&nbsp;</div>
+    <div class="post-meta-line"><span class="post-author"><a href="https://goodlunatic.github.io" title="Author"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><img loading="lazy" src="https://www.nssctf.cn/files/2024/4/28/7f130a1387.png" alt="Lunatic" data-title="Lunatic" class="avatar" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>&nbsp;Lunatic</a></span><span class="post-included-in">&nbsp;included in <a href="/categories/writeup/" class="post-category" title="Category - Writeup"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> Writeup</a></span></div><div class="post-meta-line"><span title="published on &lt;no value&gt;"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden="true"></i><time datetime="2025-04-17">2025-04-17</time></span>&nbsp;<span title=""><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>About 3800 words</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>18 minutes</span>&nbsp;</div>
   </div><div class="details toc" id="toc-static"
     data-kept="false">
     <div class="details-summary toc-title">
@@ -174,9 +174,9 @@
     </li>
     <li><a href="#线下决赛">线下决赛</a>
       <ul>
-        <li><a href="#只留清白在人间">只留清白在人间</a></li>
-        <li><a href="#icewater">IceWater</a></li>
-        <li><a href="#并非乱ping">并非乱ping</a></li>
+        <li><a href="#题目名称-只留清白在人间">题目名称 只留清白在人间</a></li>
+        <li><a href="#题目名称-icewater">题目名称 IceWater</a></li>
+        <li><a href="#题目名称-并非乱ping">题目名称 并非乱ping</a></li>
         <li><a href="#题目名称-steganography_challenges03">题目名称 Steganography_challenges0.3</a></li>
       </ul>
     </li>
@@ -1209,10 +1209,288 @@
 </div><p>最后Linux下运行以上代码即可得到最后的flag：<code>DASCTF{C0UnT3R_S7R1K3_4nD_C0BaLt_57RIK3_4LL_FUN}</code></p>
 <p><img loading="lazy" src="imgs/image-20250228152411061.png" alt="imgs/image-20250228152411061.png" srcset="imgs/image-20250228152411061.png?size=small, imgs/image-20250228152411061.png?size=medium 1.5x, imgs/image-20250228152411061.png?size=large 2x" data-title="imgs/image-20250228152411061.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <h2 id="线下决赛" class="heading-element">
-  <a href="#%e7%ba%bf%e4%b8%8b%e5%86%b3%e8%b5%9b" class="heading-mark"></a>线下决赛</h2><h3 id="只留清白在人间" class="heading-element">
-  <a href="#%e5%8f%aa%e7%95%99%e6%b8%85%e7%99%bd%e5%9c%a8%e4%ba%ba%e9%97%b4" class="heading-mark"></a>只留清白在人间</h3><h3 id="icewater" class="heading-element">
-  <a href="#icewater" class="heading-mark"></a>IceWater</h3><h3 id="并非乱ping" class="heading-element">
-  <a href="#%e5%b9%b6%e9%9d%9e%e4%b9%b1ping" class="heading-mark"></a>并非乱ping</h3><h3 id="题目名称-steganography_challenges03" class="heading-element">
+  <a href="#%e7%ba%bf%e4%b8%8b%e5%86%b3%e8%b5%9b" class="heading-mark"></a>线下决赛</h2><h3 id="题目名称-只留清白在人间" class="heading-element">
+  <a href="#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-%e5%8f%aa%e7%95%99%e6%b8%85%e7%99%bd%e5%9c%a8%e4%ba%ba%e9%97%b4" class="heading-mark"></a>题目名称 只留清白在人间</h3><p>解压附件压缩包，得到一个位置后缀的文件，因此尝试file识别一下</p>
+<p><img loading="lazy" src="imgs/image-20250417193834317.png" alt="imgs/image-20250417193834317.png" srcset="imgs/image-20250417193834317.png?size=small, imgs/image-20250417193834317.png?size=medium 1.5x, imgs/image-20250417193834317.png?size=large 2x" data-title="imgs/image-20250417193834317.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>发现是磁盘文件，因此我们尝试直接用r-stdio打开</p>
+<p><img loading="lazy" src="imgs/image-20250417193952651.png" alt="imgs/image-20250417193952651.png" srcset="imgs/image-20250417193952651.png?size=small, imgs/image-20250417193952651.png?size=medium 1.5x, imgs/image-20250417193952651.png?size=large 2x" data-title="imgs/image-20250417193952651.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>发现有一个<code>The flag is here.zip</code>，尝试恢复，发现可以正常恢复出来</p>
+<p><img loading="lazy" src="imgs/image-20250417194045254.png" alt="imgs/image-20250417194045254.png" srcset="imgs/image-20250417194045254.png?size=small, imgs/image-20250417194045254.png?size=medium 1.5x, imgs/image-20250417194045254.png?size=large 2x" data-title="imgs/image-20250417194045254.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>打开发现里面有很多的目录，当我们按照时间早晚进行排序的时候，发现了明显的zip压缩包的PK头(504B0304)</p>
+<p>因此尝试写一个Python脚本进行提取</p>
+<div class="highlight" id="id-13"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">pyzipper</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">func1</span><span class="p">(</span><span class="n">zip_file_path</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">res</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">file_list</span> <span class="o">=</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl">    <span class="k">with</span> <span class="n">pyzipper</span><span class="o">.</span><span class="n">AESZipFile</span><span class="p">(</span><span class="n">zip_file_path</span><span class="p">)</span> <span class="k">as</span> <span class="n">zip_file</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="n">file_info</span> <span class="ow">in</span> <span class="n">zip_file</span><span class="o">.</span><span class="n">infolist</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">            <span class="n">filename</span> <span class="o">=</span> <span class="n">file_info</span><span class="o">.</span><span class="n">filename</span>
+</span></span><span class="line"><span class="cl">            <span class="c1"># 跳过目录项</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="n">filename</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">                <span class="k">continue</span>
+</span></span><span class="line"><span class="cl">            <span class="c1"># 将修改时间转换为 datetime 对象</span>
+</span></span><span class="line"><span class="cl">            <span class="n">mod_time</span> <span class="o">=</span> <span class="n">datetime</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">                <span class="n">file_info</span><span class="o">.</span><span class="n">date_time</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>  <span class="c1"># 年</span>
+</span></span><span class="line"><span class="cl">                <span class="n">file_info</span><span class="o">.</span><span class="n">date_time</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>  <span class="c1"># 月</span>
+</span></span><span class="line"><span class="cl">                <span class="n">file_info</span><span class="o">.</span><span class="n">date_time</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span>  <span class="c1"># 日</span>
+</span></span><span class="line"><span class="cl">                <span class="n">file_info</span><span class="o">.</span><span class="n">date_time</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span>  <span class="c1"># 时</span>
+</span></span><span class="line"><span class="cl">                <span class="n">file_info</span><span class="o">.</span><span class="n">date_time</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span>  <span class="c1"># 分</span>
+</span></span><span class="line"><span class="cl">                <span class="n">file_info</span><span class="o">.</span><span class="n">date_time</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span>   <span class="c1"># 秒</span>
+</span></span><span class="line"><span class="cl">            <span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="n">file_list</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">filename</span><span class="p">,</span> <span class="n">mod_time</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">        <span class="n">file_list</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="c1"># 按照修改时间排序</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">file_list</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">res</span> <span class="o">+=</span> <span class="n">item</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="n">zip_data</span> <span class="o">=</span> <span class="nb">bytes</span><span class="o">.</span><span class="n">fromhex</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&#34;flag.zip&#34;</span><span class="p">,</span><span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">zip_data</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&#34;__main__&#34;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">zip_path</span> <span class="o">=</span> <span class="s2">&#34;The flag is here.zip&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">func1</span><span class="p">(</span><span class="n">zip_path</span><span class="p">)</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>运行以上脚本提取出压缩包后，解压即可得到flag：<code>DASCTF{Q29uZ3JhdHVsYXRpb25z}</code></p>
+<p><img loading="lazy" src="imgs/image-20250417194244861.png" alt="imgs/image-20250417194244861.png" srcset="imgs/image-20250417194244861.png?size=small, imgs/image-20250417194244861.png?size=medium 1.5x, imgs/image-20250417194244861.png?size=large 2x" data-title="imgs/image-20250417194244861.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>当然，如果这里不会写脚本提取，我们也可以尝试用winrar的报告功能生成报告</p>
+<p><img loading="lazy" src="imgs/image-20250417194400019.png" alt="imgs/image-20250417194400019.png" srcset="imgs/image-20250417194400019.png?size=small, imgs/image-20250417194400019.png?size=medium 1.5x, imgs/image-20250417194400019.png?size=large 2x" data-title="imgs/image-20250417194400019.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><img loading="lazy" src="imgs/image-20250417194456142.png" alt="imgs/image-20250417194456142.png" srcset="imgs/image-20250417194456142.png?size=small, imgs/image-20250417194456142.png?size=medium 1.5x, imgs/image-20250417194456142.png?size=large 2x" data-title="imgs/image-20250417194456142.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>然后我们再写一个脚本对报告中的数据进行处理即可</p>
+<div class="highlight" id="id-14"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">func2</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="n">res</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&#34;The flag is here.txt&#34;</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">data</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="s1">&#39;flag.txt&#39;</span> <span class="ow">in</span> <span class="n">line</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="c1"># print(line)</span>
+</span></span><span class="line"><span class="cl">            <span class="n">res</span> <span class="o">+=</span> <span class="n">line</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="n">res</span><span class="p">)</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="题目名称-icewater" class="heading-element">
+  <a href="#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-icewater" class="heading-mark"></a>题目名称 IceWater</h3><h3 id="题目名称-并非乱ping" class="heading-element">
+  <a href="#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-%e5%b9%b6%e9%9d%9e%e4%b9%b1ping" class="heading-mark"></a>题目名称 并非乱ping</h3><p>题目附件给了一个加密的压缩包、一个wav以及一个<code>hide.py</code></p>
+<p><img loading="lazy" src="imgs/image-20250417201252117.png" alt="imgs/image-20250417201252117.png" srcset="imgs/image-20250417201252117.png?size=small, imgs/image-20250417201252117.png?size=medium 1.5x, imgs/image-20250417201252117.png?size=large 2x" data-title="imgs/image-20250417201252117.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>其中<code>hide.py</code>的内容如下</p>
+<div class="highlight" id="id-15"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">wave</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">hide_message</span><span class="p">(</span><span class="n">input_wav</span><span class="p">,</span> <span class="n">output_wav</span><span class="p">,</span> <span class="n">message</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">with</span> <span class="n">wave</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">input_wav</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">wav</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">params</span> <span class="o">=</span> <span class="n">wav</span><span class="o">.</span><span class="n">getparams</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="n">frames</span> <span class="o">=</span> <span class="n">wav</span><span class="o">.</span><span class="n">readframes</span><span class="p">(</span><span class="n">wav</span><span class="o">.</span><span class="n">getnframes</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">message_binary</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">format</span><span class="p">(</span><span class="nb">ord</span><span class="p">(</span><span class="n">char</span><span class="p">),</span> <span class="s1">&#39;08b&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">char</span> <span class="ow">in</span> <span class="n">message</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">message_binary</span> <span class="o">+=</span> <span class="s1">&#39;00000000&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">frames_array</span> <span class="o">=</span> <span class="nb">bytearray</span><span class="p">(</span><span class="n">frames</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">message_binary</span><span class="p">)</span> <span class="o">&gt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">frames_array</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&#34;Message is too long to hide in the given audio file.&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">message_binary</span><span class="p">)):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">frames_array</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">frames_array</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&amp;</span> <span class="mi">253</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">message_binary</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">&lt;&lt;</span> <span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">with</span> <span class="n">wave</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">output_wav</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">output_wav_file</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">output_wav_file</span><span class="o">.</span><span class="n">setparams</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">output_wav_file</span><span class="o">.</span><span class="n">writeframes</span><span class="p">(</span><span class="n">frames_array</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;successfully!&#34;</span><span class="p">)</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>发现是一个利用wav二进制倒数第3位进行LSB隐写的脚本，因此我们写个脚本提取一下隐写的数据即可</p>
+<div class="highlight" id="id-16"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">wave</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">extract_message</span><span class="p">(</span><span class="n">input_wav</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">with</span> <span class="n">wave</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">input_wav</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">wav</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">frames</span> <span class="o">=</span> <span class="n">wav</span><span class="o">.</span><span class="n">readframes</span><span class="p">(</span><span class="n">wav</span><span class="o">.</span><span class="n">getnframes</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">    <span class="n">frames_array</span> <span class="o">=</span> <span class="nb">bytearray</span><span class="p">(</span><span class="n">frames</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">binary_message</span> <span class="o">=</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl">    <span class="n">end_marker</span> <span class="o">=</span> <span class="s1">&#39;00000000&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">current_byte</span> <span class="o">=</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">byte</span> <span class="ow">in</span> <span class="n">frames_array</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># 提取每个字节的第2位 (从0开始计数)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">bit</span> <span class="o">=</span> <span class="p">(</span><span class="n">byte</span> <span class="o">&gt;&gt;</span> <span class="mi">1</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">        <span class="n">current_byte</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">bit</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">current_byte</span><span class="p">)</span> <span class="o">==</span> <span class="mi">8</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">byte_str</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">current_byte</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="n">byte_str</span> <span class="o">==</span> <span class="n">end_marker</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                <span class="k">break</span>
+</span></span><span class="line"><span class="cl">            <span class="n">binary_message</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">byte_str</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="n">current_byte</span> <span class="o">=</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl">    <span class="n">message</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="nb">chr</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">binary_message</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">message</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&#34;__main__&#34;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">input_file</span> <span class="o">=</span> <span class="s2">&#34;1.wav&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">hidden_message</span> <span class="o">=</span> <span class="n">extract_message</span><span class="p">(</span><span class="n">input_file</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="n">hidden_message</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="c1"># password_is_oSthinggg</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>运行后即可得到解压密码：<code>password_is_oSthinggg</code></p>
+<p>解压后得到一个未知后缀的文件，010打开发现文件存在数据逆置的特征</p>
+<p>因此尝试用CyberChef逆置一下，发现是一个流量包文件</p>
+<p><img loading="lazy" src="imgs/image-20250417201650812.png" alt="imgs/image-20250417201650812.png" srcset="imgs/image-20250417201650812.png?size=small, imgs/image-20250417201650812.png?size=medium 1.5x, imgs/image-20250417201650812.png?size=large 2x" data-title="imgs/image-20250417201650812.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>打开流量包，结合题目名字很容易知道解题关键在ping上，即ICMP流量中</p>
+<p>翻看流量包的相关字段，猜测flag是被隐藏在了ICMP流量的ttl时延中</p>
+<p><img loading="lazy" src="imgs/image-20250417201804808.png" alt="imgs/image-20250417201804808.png" srcset="imgs/image-20250417201804808.png?size=small, imgs/image-20250417201804808.png?size=medium 1.5x, imgs/image-20250417201804808.png?size=large 2x" data-title="imgs/image-20250417201804808.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<div class="highlight" id="id-17"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">tshark -r download.pcapng -Y <span class="s1">&#39;(icmp) &amp;&amp; (ip.src == 192.168.1.1)&#39;</span> -T fields -e <span class="s1">&#39;ip.ttl&#39;</span> &gt; 1.txt</span></span></code></pre></td></tr></table>
+</div>
+</div><p>然后结合flag的前缀<code>DASCTF{</code>，发现flag被隐藏在ttl二进制的前两位中</p>
+<p><img loading="lazy" src="imgs/image-20250417203304205.png" alt="imgs/image-20250417203304205.png" srcset="imgs/image-20250417203304205.png?size=small, imgs/image-20250417203304205.png?size=medium 1.5x, imgs/image-20250417203304205.png?size=large 2x" data-title="imgs/image-20250417203304205.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>因此写个脚本提取ttl二进制的前两位，连起来转字符串即可得到最后的flag：<code>DASCTF{627848c0-759c-11ef-999f-000c290c196e}</code></p>
+<div class="highlight" id="id-18"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">libnum</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">func1</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="n">res</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&#34;1.txt&#34;</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">data</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">bin_data</span> <span class="o">=</span> <span class="nb">bin</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">item</span><span class="p">))[</span><span class="mi">2</span><span class="p">:]</span><span class="o">.</span><span class="n">zfill</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">res</span> <span class="o">+=</span> <span class="n">bin_data</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="n">libnum</span><span class="o">.</span><span class="n">b2s</span><span class="p">(</span><span class="n">res</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># b&#39;DASCTF{627848c0-759c-11ef-999f-000c290c196e}&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&#34;__main__&#34;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">func1</span><span class="p">()</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="题目名称-steganography_challenges03" class="heading-element">
   <a href="#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-steganography_challenges03" class="heading-mark"></a>题目名称 Steganography_challenges0.3</h3><blockquote>
 <p>题目附件： <a href="https://pan.baidu.com/s/1F6ZBdr-Nnhw0UmjF3_9DzA?pwd=f83m"target="_blank" rel="external nofollow noopener noreferrer">https://pan.baidu.com/s/1F6ZBdr-Nnhw0UmjF3_9DzA?pwd=f83m</a> 提取码: f83m</p>
 <p>附件已更新，原来的附件是损坏的，感谢<code>@IcePeak</code>师傅的提醒，要不然对着坏的附件，这题这辈子都做不出来了</p>
@@ -1221,7 +1499,7 @@
 <p>本题的成功解出离不开<code>@IcePeak</code>师傅的帮助</p>
 </blockquote>
 <p>解压附件压缩包，可以得到一个<code>encrypt.py</code>和一张PNG图片，内容如下所示</p>
-<div class="highlight" id="id-1"><div class="chroma">
+<div class="highlight" id="id-19"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1274,7 +1552,7 @@
 <p>发现是用弱密码简单加密了一下图片，然后我们用stegsolve打开图片可以发现图片存在LSB隐写</p>
 <p><img loading="lazy" src="imgs/image-20250331201900614.png" alt="imgs/image-20250331201900614.png" srcset="imgs/image-20250331201900614.png?size=small, imgs/image-20250331201900614.png?size=medium 1.5x, imgs/image-20250331201900614.png?size=large 2x" data-title="imgs/image-20250331201900614.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>因此我们根据LSB隐写的内容写个脚本爆破一下密钥即可</p>
-<div class="highlight" id="id-2"><div class="chroma">
+<div class="highlight" id="id-20"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1337,7 +1615,7 @@
 <p>提取出来base64解码即可得到下图</p>
 <p><img loading="lazy" src="imgs/image-20250401183228651.png" alt="imgs/image-20250401183228651.png" srcset="imgs/image-20250401183228651.png?size=small, imgs/image-20250401183228651.png?size=medium 1.5x, imgs/image-20250401183228651.png?size=large 2x" data-title="imgs/image-20250401183228651.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>参考上面<code>2024WMCTF</code>那道题的wp，改一下提取水印的脚本</p>
-<div class="highlight" id="id-3"><div class="chroma">
+<div class="highlight" id="id-21"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1421,7 +1699,7 @@
 </span></span><span class="line"><span class="cl"><span class="c1"># b&#34;Hey boy, I&#39;m here to help you, now you&#39;ze one step away from successl let me |ell you key:79557c2d8f94&#34;</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>运行后可以得到如下内容，提示了我们一个key：<code>79557c2d8f94</code></p>
-<div class="highlight" id="id-4"><div class="chroma">
+<div class="highlight" id="id-22"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
@@ -1447,7 +1725,7 @@
   <div class="post-info">
     <div class="post-info-line">
       <div class="post-info-mod">
-        <span title="Updated on 2025-04-01 12:35:37">Updated on 2025-04-01&nbsp;</span>
+        <span title="Updated on 2025-04-17 12:35:37">Updated on 2025-04-17&nbsp;</span>
       </div></div><div class="post-info-line">
         <div class="post-info-md"><span><a href="/posts/f002407/index.md" title="Read Markdown" class="link-to-markdown">Read Markdown</a></span></div>
         <div class="post-info-share">
@@ -1465,8 +1743,7 @@
     </section>
   </div>
 
-  <div class="post-nav"><a href="/posts/754b8e7/" class="post-nav-item" rel="prev" title="2025 XCTF国际网络攻防联赛-SUCTF分站赛 Misc Writeup"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>2025 XCTF国际网络攻防联赛-SUCTF分站赛 Misc Writeup</a>
-      <a href="/posts/d0736a7/" class="post-nav-item" rel="next" title="CTF-Misc &#34;雅&#34;题共赏">CTF-Misc &#34;雅&#34;题共赏<i class="fa-solid fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+  <div class="post-nav"><a href="/posts/1ad9200/" class="post-nav-item" rel="prev" title="CTF-Misc Guide"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>CTF-Misc Guide</a></div>
 </div>
 <div id="comments"><div id="disqus_thread" class="comment"></div><noscript>
         Please enable JavaScript to view the comments powered by <a href="https://disqus.com/?ref_noscript" rel="external nofollow noopener noreferrer">Disqus</a>.

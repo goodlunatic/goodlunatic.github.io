@@ -669,12 +669,195 @@ if __name__ == &#34;__main__&#34;:
 
 ## 线下决赛
 
-### 只留清白在人间
+### 题目名称 只留清白在人间
 
-### IceWater
+解压附件压缩包，得到一个位置后缀的文件，因此尝试file识别一下
 
-### 并非乱ping
+![](imgs/image-20250417193834317.png)
 
+发现是磁盘文件，因此我们尝试直接用r-stdio打开
+
+![](imgs/image-20250417193952651.png)
+
+发现有一个`The flag is here.zip`，尝试恢复，发现可以正常恢复出来
+
+![](imgs/image-20250417194045254.png)
+
+打开发现里面有很多的目录，当我们按照时间早晚进行排序的时候，发现了明显的zip压缩包的PK头(504B0304)
+
+因此尝试写一个Python脚本进行提取
+
+```python
+import pyzipper
+from datetime import datetime
+
+def func1(zip_file_path):
+    res = &#39;&#39;
+    file_list = []
+    with pyzipper.AESZipFile(zip_file_path) as zip_file:
+        for file_info in zip_file.infolist():
+            filename = file_info.filename
+            # 跳过目录项
+            if filename.endswith(&#39;/&#39;):
+                continue
+            # 将修改时间转换为 datetime 对象
+            mod_time = datetime(
+                file_info.date_time[0],  # 年
+                file_info.date_time[1],  # 月
+                file_info.date_time[2],  # 日
+                file_info.date_time[3],  # 时
+                file_info.date_time[4],  # 分
+                file_info.date_time[5]   # 秒
+            )
+            file_list.append((filename, mod_time))
+        file_list.sort(key=lambda x: x[1]) # 按照修改时间排序
+    for item in file_list:
+        res &#43;= item[0][0]
+    zip_data = bytes.fromhex(res)
+    with open(&#34;flag.zip&#34;,&#39;wb&#39;) as f:
+        f.write(zip_data)
+
+
+if __name__ == &#34;__main__&#34;:
+    zip_path = &#34;The flag is here.zip&#34;
+    func1(zip_path)
+```
+
+运行以上脚本提取出压缩包后，解压即可得到flag：`DASCTF{Q29uZ3JhdHVsYXRpb25z}`
+
+![](imgs/image-20250417194244861.png)
+
+当然，如果这里不会写脚本提取，我们也可以尝试用winrar的报告功能生成报告
+
+![](imgs/image-20250417194400019.png)
+
+![](imgs/image-20250417194456142.png)
+
+然后我们再写一个脚本对报告中的数据进行处理即可
+
+```python
+def func2():
+    res = &#34;&#34;
+    with open(&#34;The flag is here.txt&#34;,&#39;r&#39;) as f:
+        data = f.read().split()
+    for line in data:
+        if &#39;flag.txt&#39; in line:
+            # print(line)
+            res &#43;= line[0]
+    print(res)
+```
+
+### 题目名称 IceWater
+
+### 题目名称 并非乱ping
+
+题目附件给了一个加密的压缩包、一个wav以及一个`hide.py`
+
+![](imgs/image-20250417201252117.png)
+
+其中`hide.py`的内容如下
+
+```python
+import wave
+
+def hide_message(input_wav, output_wav, message):
+    with wave.open(input_wav, &#39;rb&#39;) as wav:
+        params = wav.getparams()
+        frames = wav.readframes(wav.getnframes())
+
+    message_binary = &#39;&#39;.join(format(ord(char), &#39;08b&#39;) for char in message)
+
+    message_binary &#43;= &#39;00000000&#39;
+
+    frames_array = bytearray(frames)
+
+    if len(message_binary) &gt; len(frames_array):
+        raise ValueError(&#34;Message is too long to hide in the given audio file.&#34;)
+
+    for i in range(len(message_binary)):
+        frames_array[i] = (frames_array[i] &amp; 253) | (int(message_binary[i]) &lt;&lt; 1)
+
+    with wave.open(output_wav, &#39;wb&#39;) as output_wav_file:
+        output_wav_file.setparams(params)
+        output_wav_file.writeframes(frames_array)
+
+    print(&#34;successfully!&#34;)
+```
+
+发现是一个利用wav二进制倒数第3位进行LSB隐写的脚本，因此我们写个脚本提取一下隐写的数据即可
+
+```python
+import wave
+
+def extract_message(input_wav):
+    with wave.open(input_wav, &#39;rb&#39;) as wav:
+        frames = wav.readframes(wav.getnframes())
+    frames_array = bytearray(frames)
+    binary_message = []
+    end_marker = &#39;00000000&#39;
+    current_byte = []
+    for byte in frames_array:
+        # 提取每个字节的第2位 (从0开始计数)
+        bit = (byte &gt;&gt; 1) &amp; 1
+        current_byte.append(str(bit))
+        if len(current_byte) == 8:
+            byte_str = &#39;&#39;.join(current_byte)
+            if byte_str == end_marker:
+                break
+            binary_message.append(byte_str)
+            current_byte = []
+    message = &#39;&#39;.join([chr(int(b, 2)) for b in binary_message])
+    return message
+
+if __name__ == &#34;__main__&#34;:
+    input_file = &#34;1.wav&#34;
+    hidden_message = extract_message(input_file)
+    print(hidden_message)
+	# password_is_oSthinggg
+```
+
+运行后即可得到解压密码：`password_is_oSthinggg`
+
+解压后得到一个未知后缀的文件，010打开发现文件存在数据逆置的特征
+
+因此尝试用CyberChef逆置一下，发现是一个流量包文件
+
+![](imgs/image-20250417201650812.png)
+
+打开流量包，结合题目名字很容易知道解题关键在ping上，即ICMP流量中
+
+翻看流量包的相关字段，猜测flag是被隐藏在了ICMP流量的ttl时延中
+
+![](imgs/image-20250417201804808.png)
+
+```bash
+tshark -r download.pcapng -Y &#39;(icmp) &amp;&amp; (ip.src == 192.168.1.1)&#39; -T fields -e &#39;ip.ttl&#39; &gt; 1.txt
+```
+
+然后结合flag的前缀`DASCTF{`，发现flag被隐藏在ttl二进制的前两位中
+
+![](imgs/image-20250417203304205.png)
+
+因此写个脚本提取ttl二进制的前两位，连起来转字符串即可得到最后的flag：`DASCTF{627848c0-759c-11ef-999f-000c290c196e}`
+
+```python
+import libnum
+
+def func1():
+    res = &#34;&#34;
+    with open(&#34;1.txt&#34;,&#39;r&#39;) as f:
+        data = f.read().split()
+    for item in data:
+        bin_data = bin(int(item))[2:].zfill(8)
+        res &#43;= bin_data[:2]
+    print(res)
+    print(libnum.b2s(res))
+    # b&#39;DASCTF{627848c0-759c-11ef-999f-000c290c196e}&#39;
+
+
+if __name__ == &#34;__main__&#34;:
+    func1()
+```
 
 ### 题目名称 Steganography_challenges0.3
 
