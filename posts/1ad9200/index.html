@@ -3198,7 +3198,7 @@ flag{RRRRRRE}</p>
 <p>下图我用Linux下的<code>identify</code>工具提取了一张GIF图像的一些参数</p>
 <p><img loading="lazy" src="imgs/image-20250309155001150.png" alt="imgs/image-20250309155001150.png" srcset="imgs/image-20250309155001150.png?size=small, imgs/image-20250309155001150.png?size=medium 1.5x, imgs/image-20250309155001150.png?size=large 2x" data-title="imgs/image-20250309155001150.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>这里简要介绍一下每一行中的参数</p>
-<div class="highlight" id="id-80"><div class="chroma">
+<div class="highlight" id="id-1"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -3215,7 +3215,7 @@ flag{RRRRRRE}</p>
 </div>
 </div><h4 id="1gif分帧在线网站或者工具" class="heading-element">
   <a href="#1gif%e5%88%86%e5%b8%a7%e5%9c%a8%e7%ba%bf%e7%bd%91%e7%ab%99%e6%88%96%e8%80%85%e5%b7%a5%e5%85%b7" class="heading-mark"></a>1、GIF分帧(在线网站或者工具)</h4><p><strong>[推荐] Linux下使用<code>convert</code>提取</strong></p>
-<div class="highlight" id="id-81"><div class="chroma">
+<div class="highlight" id="id-2"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
@@ -3223,7 +3223,7 @@ flag{RRRRRRE}</p>
 <pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">convert flag.gif flag.png</span></span></code></pre></td></tr></table>
 </div>
 </div><p>使用<code>ffmpeg</code>提取（如果帧间隔不同，提取出来会有问题）</p>
-<div class="highlight" id="id-82"><div class="chroma">
+<div class="highlight" id="id-3"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -3238,7 +3238,7 @@ flag{RRRRRRE}</p>
   <a href="#2%e5%b8%a7%e9%97%b4%e9%9a%94%e9%9a%90%e5%86%99" class="heading-mark"></a>2、帧间隔隐写</h4><p><strong>[推荐] 方法一：直接使用<code>PuzzleSolver</code>提取帧间隔</strong></p>
 <p><img loading="lazy" src="imgs/image-20241111093420194.png" alt="imgs/image-20241111093420194.png" srcset="imgs/image-20241111093420194.png?size=small, imgs/image-20241111093420194.png?size=medium 1.5x, imgs/image-20241111093420194.png?size=large 2x" data-title="imgs/image-20241111093420194.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>方法二：使用<code>identify</code>提取</p>
-<div class="highlight" id="id-83"><div class="chroma">
+<div class="highlight" id="id-4"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
@@ -3250,7 +3250,7 @@ flag{RRRRRRE}</p>
 <p>例题2-2024浙江省赛决赛-非黑即白</p>
 <h4 id="gif图像每帧的xy偏移量隐写" class="heading-element">
   <a href="#gif%e5%9b%be%e5%83%8f%e6%af%8f%e5%b8%a7%e7%9a%84xy%e5%81%8f%e7%a7%bb%e9%87%8f%e9%9a%90%e5%86%99" class="heading-mark"></a>GIF图像每帧的XY偏移量隐写</h4><p>使用<code>identify</code>提取出偏移量然后再分析</p>
-<div class="highlight" id="id-84"><div class="chroma">
+<div class="highlight" id="id-5"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
@@ -3258,7 +3258,7 @@ flag{RRRRRRE}</p>
 <pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">identify flag.gif</span></span></code></pre></td></tr></table>
 </div>
 </div><p>例题1-Boxing Boxer</p>
-<div class="highlight" id="id-85"><div class="chroma">
+<div class="highlight" id="id-6"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -3362,7 +3362,7 @@ flag{RRRRRRE}</p>
 <h3 id="webp思路" class="heading-element">
   <a href="#webp%e6%80%9d%e8%b7%af" class="heading-mark"></a>Webp思路</h3><p>webp文件用电脑自带的图片看可能会有点问题，建议用浏览器打开这种文件</p>
 <p>webp可能是动图，可以用下面这个脚本分离webp中的每帧图片</p>
-<div class="highlight" id="id-86"><div class="chroma">
+<div class="highlight" id="id-7"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -3383,7 +3383,7 @@ flag{RRRRRRE}</p>
 </div>
 </div><h3 id="bpg图像文件" class="heading-element">
   <a href="#bpg%e5%9b%be%e5%83%8f%e6%96%87%e4%bb%b6" class="heading-mark"></a>BPG图像文件</h3><p>使用<code>bpg-0.9.8-win64</code>转换为PNG图片即可</p>
-<div class="highlight" id="id-87"><div class="chroma">
+<div class="highlight" id="id-8"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
@@ -3395,7 +3395,7 @@ flag{RRRRRRE}</p>
   <a href="#1raw%e7%9a%84lsb%e9%9a%90%e5%86%99" class="heading-mark"></a>1、RAW的LSB隐写</h4><p>ARW文件是 Sony 相机的原始数据格式</p>
 <p>可以使用 rawpy 模块读取图片的像素数据，查看是否存在LSB隐写【例：2024 L3HCTF RAWatermark】</p>
 <p>示例脚本如下：</p>
-<div class="highlight" id="id-88"><div class="chroma">
+<div class="highlight" id="id-9"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -3451,7 +3451,7 @@ flag{RRRRRRE}</p>
   <a href="#%e4%ba%8c%e7%bb%b4%e7%a0%81%e6%80%9d%e8%b7%af" class="heading-mark"></a>二维码思路</h3><h4 id="1bmp转二维码" class="heading-element">
   <a href="#1bmp%e8%bd%ac%e4%ba%8c%e7%bb%b4%e7%a0%81" class="heading-mark"></a>1、bmp转二维码</h4><h4 id="216进制转pyc" class="heading-element">
   <a href="#216%e8%bf%9b%e5%88%b6%e8%bd%acpyc" class="heading-mark"></a>2、16进制转pyc</h4><h4 id="3字符串制作二维码" class="heading-element">
-  <a href="#3%e5%ad%97%e7%ac%a6%e4%b8%b2%e5%88%b6%e4%bd%9c%e4%ba%8c%e7%bb%b4%e7%a0%81" class="heading-mark"></a>3、字符串制作二维码</h4><div class="highlight" id="id-89"><div class="chroma">
+  <a href="#3%e5%ad%97%e7%ac%a6%e4%b8%b2%e5%88%b6%e4%bd%9c%e4%ba%8c%e7%bb%b4%e7%a0%81" class="heading-mark"></a>3、字符串制作二维码</h4><div class="highlight" id="id-10"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -3482,7 +3482,7 @@ flag{RRRRRRE}</p>
 <p>可以直接使用 DeEgger Embedder 工具 extract files</p>
 <p>6、使用PS打开，里面可能有多个图层(例题1-2024古剑山-jpg)</p>
 <p>7、若PDF加密，可以尝试使用<code>pdfcrack</code>爆破一下密码（Ubuntu下可以直接apt install）</p>
-<div class="highlight" id="id-90"><div class="chroma">
+<div class="highlight" id="id-11"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
@@ -3494,7 +3494,7 @@ flag{RRRRRRE}</p>
 <p><img loading="lazy" src="imgs/image-20250315203340810.png" alt="imgs/image-20250315203340810.png" srcset="imgs/image-20250315203340810.png?size=small, imgs/image-20250315203340810.png?size=medium 1.5x, imgs/image-20250315203340810.png?size=large 2x" data-title="imgs/image-20250315203340810.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>并且这个文件还是加密的，我们可以尝试把后缀改成<code>docx</code>或者<code>pptx</code>，然后用<code>PasswareKit</code>先爆破出密码</p>
 <p>再用<code>msoffcrypto-tool</code>输入密码解密一下：https://github.com/nolze/msoffcrypto-tool</p>
-<div class="highlight" id="id-91"><div class="chroma">
+<div class="highlight" id="id-12"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -3516,7 +3516,7 @@ flag{RRRRRRE}</p>
 <p>这个工具直接在pip中安装即可使用: pip3 install oletools</p>
 <h4 id="doc格式可以不需要文档密码直接提取其中的vba宏代码" class="heading-element">
   <a href="#doc%e6%a0%bc%e5%bc%8f%e5%8f%af%e4%bb%a5%e4%b8%8d%e9%9c%80%e8%a6%81%e6%96%87%e6%a1%a3%e5%af%86%e7%a0%81%e7%9b%b4%e6%8e%a5%e6%8f%90%e5%8f%96%e5%85%b6%e4%b8%ad%e7%9a%84vba%e5%ae%8f%e4%bb%a3%e7%a0%81" class="heading-mark"></a>doc格式可以不需要文档密码直接提取其中的vba宏代码</h4><p>安装好oletools后直接运行以下代码提取即可，可能加密文档的加密算法就在期中</p>
-<div class="highlight" id="id-92"><div class="chroma">
+<div class="highlight" id="id-13"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
@@ -3544,7 +3544,7 @@ flag{RRRRRRE}</p>
 <p>附件下载链接：https://pan.baidu.com/s/1EMAMOeot_aKXIs5pckTQfQ?pwd=93np 提取码：93np</p>
 <p>解密需要用到<a href="https://github.com/TryCatchHCF/Cloakify"target="_blank" rel="external nofollow noopener noreferrer">Cloakify</a>这个项目</p>
 <p>拿到密文和字典后，直接Python运行解密即可</p>
-<div class="highlight" id="id-93"><div class="chroma">
+<div class="highlight" id="id-14"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
@@ -3898,7 +3898,7 @@ flag{RRRRRRE}</p>
 <p>可以直接用网上的脚本爆破，但是要注意有些脚本只能提取zip压缩包的CRC32：</p>
 <p><a href="https://github.com/AabyssZG/CRC32-Tools"target="_blank" rel="external nofollow noopener noreferrer">https://github.com/AabyssZG/CRC32-Tools</a></p>
 <p><a href="https://github.com/theonlypwner/crc32"target="_blank" rel="external nofollow noopener noreferrer">https://github.com/theonlypwner/crc32</a></p>
-<div class="highlight" id="id-94"><div class="chroma">
+<div class="highlight" id="id-15"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
@@ -3906,7 +3906,7 @@ flag{RRRRRRE}</p>
 <pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">python3 crc32.py reverse 0x7c2df918</span></span></code></pre></td></tr></table>
 </div>
 </div><p>发现网上大部分的脚本只能爆破可打印字符的结果，因此这里我自己写了一个包含不可打印字符的脚本</p>
-<div class="highlight" id="id-95"><div class="chroma">
+<div class="highlight" id="id-16"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">  1
 </span><span class="lnt">  2
@@ -4154,7 +4154,7 @@ flag{RRRRRRE}</p>
 <ol>
 <li>生成待爆破的Hash值</li>
 </ol>
-<div class="highlight" id="id-96"><div class="chroma">
+<div class="highlight" id="id-17"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -4165,7 +4165,7 @@ flag{RRRRRRE}</p>
 </div>
 </div><p>2.找到对应的Hash类型：https://hashcat.net/wiki/doku.php?id=example_hashes</p>
 <p>3.使用Hashcat进行爆破</p>
-<div class="highlight" id="id-97"><div class="chroma">
+<div class="highlight" id="id-18"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -4189,7 +4189,7 @@ flag{RRRRRRE}</p>
 </blockquote>
 <h3 id="4压缩包套娃解套" class="heading-element">
   <a href="#4%e5%8e%8b%e7%bc%a9%e5%8c%85%e5%a5%97%e5%a8%83%e8%a7%a3%e5%a5%97" class="heading-mark"></a>4、压缩包套娃解套</h3><p>压缩包套娃可能会包含多种类型的压缩混合套娃，但是流程都差不多，这里就贴一下我写的脚本吧</p>
-<div class="highlight" id="id-98"><div class="chroma">
+<div class="highlight" id="id-19"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -4302,7 +4302,7 @@ flag{RRRRRRE}</p>
 </span></span><span class="line"><span class="cl">        <span class="k">else</span><span class="p">:</span>
 </span></span><span class="line"><span class="cl">            <span class="k">break</span></span></span></code></pre></td></tr></table>
 </div>
-</div><div class="highlight" id="id-99"><div class="chroma">
+</div><div class="highlight" id="id-20"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -4444,7 +4444,7 @@ flag{RRRRRRE}</p>
 </blockquote>
 <h3 id="5分卷压缩包合并" class="heading-element">
   <a href="#5%e5%88%86%e5%8d%b7%e5%8e%8b%e7%bc%a9%e5%8c%85%e5%90%88%e5%b9%b6" class="heading-mark"></a>5、分卷压缩包合并</h3><p>使用以下命令合并或者直接<code>Bandizip</code>打开</p>
-<div class="highlight" id="id-100"><div class="chroma">
+<div class="highlight" id="id-21"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
@@ -4462,7 +4462,7 @@ flag{RRRRRRE}</p>
 <h3 id="8压缩包密码是不可见字符" class="heading-element">
   <a href="#8%e5%8e%8b%e7%bc%a9%e5%8c%85%e5%af%86%e7%a0%81%e6%98%af%e4%b8%8d%e5%8f%af%e8%a7%81%e5%ad%97%e7%ac%a6" class="heading-mark"></a>8、压缩包密码是不可见字符</h3><h4 id="字节数很短的情况" class="heading-element">
   <a href="#%e5%ad%97%e8%8a%82%e6%95%b0%e5%be%88%e7%9f%ad%e7%9a%84%e6%83%85%e5%86%b5" class="heading-mark"></a>字节数很短的情况</h4><p>直接写个Python脚本爆破即可</p>
-<div class="highlight" id="id-101"><div class="chroma">
+<div class="highlight" id="id-22"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -4519,7 +4519,7 @@ flag{RRRRRRE}</p>
 </div>
 </div><h4 id="字节数较长的情况" class="heading-element">
   <a href="#%e5%ad%97%e8%8a%82%e6%95%b0%e8%be%83%e9%95%bf%e7%9a%84%e6%83%85%e5%86%b5" class="heading-mark"></a>字节数较长的情况</h4><p>需要先把密码base64编码一下，然后再base64解码成byte类型作为密码</p>
-<div class="highlight" id="id-102"><div class="chroma">
+<div class="highlight" id="id-23"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -4558,7 +4558,7 @@ flag{RRRRRRE}</p>
 <p>把相同文件按照对应的压缩方法，压缩成压缩包，然后使用bkcrack破解即可</p>
 </blockquote>
 <p>例题1-2023古剑山-幸运饼干</p>
-<div class="highlight" id="id-103"><div class="chroma">
+<div class="highlight" id="id-24"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -4586,7 +4586,7 @@ flag{RRRRRRE}</p>
 <p>先从部分伪加密的压缩包中分离出<code>serect.pdf</code>，然后从PDF中 foremost 出了加密压缩包中的<code>sha512.txt</code></p>
 <p>将<code>sha512.txt</code>压缩成<code>sha512.zip</code>，然后使用下面的命令进行明文攻击即可：</p>
 </blockquote>
-<div class="highlight" id="id-104"><div class="chroma">
+<div class="highlight" id="id-25"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -4682,7 +4682,7 @@ flag{RRRRRRE}</p>
 </tbody>
 </table>
 <p><strong>bkcrack常用参数</strong></p>
-<div class="highlight" id="id-105"><div class="chroma">
+<div class="highlight" id="id-26"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -4706,14 +4706,14 @@ flag{RRRRRRE}</p>
 </span></span><span class="line"><span class="cl">-U 修改压缩包密码并导出	bkcrack -C flag.zip -c hint.jpg -k afb9fee3 f8795353 f6de1d4e -U out.zip <span class="m">114514</span></span></span></code></pre></td></tr></table>
 </div>
 </div><h5 id="1利用明文文本破解" class="heading-element">
-  <a href="#1%e5%88%a9%e7%94%a8%e6%98%8e%e6%96%87%e6%96%87%e6%9c%ac%e7%a0%b4%e8%a7%a3" class="heading-mark"></a>1)利用明文文本破解</h5><div class="highlight" id="id-106"><div class="chroma">
+  <a href="#1%e5%88%a9%e7%94%a8%e6%98%8e%e6%96%87%e6%96%87%e6%9c%ac%e7%a0%b4%e8%a7%a3" class="heading-mark"></a>1)利用明文文本破解</h5><div class="highlight" id="id-27"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">已知 flag{16e371fa-0555-47fc-b343-74f6754f6c01} 字符串中的flag{16e*********************74f6********</span></span></code></pre></td></tr></table>
 </div>
-</div><div class="highlight" id="id-107"><div class="chroma">
+</div><div class="highlight" id="id-28"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -4737,7 +4737,7 @@ flag{RRRRRRE}</p>
 </span></span><span class="line"><span class="cl"><span class="c1"># -x 指定的明文需要转成十六进制</span></span></span></code></pre></td></tr></table>
 </div>
 </div><h5 id="2利用png图片文件头破解" class="heading-element">
-  <a href="#2%e5%88%a9%e7%94%a8png%e5%9b%be%e7%89%87%e6%96%87%e4%bb%b6%e5%a4%b4%e7%a0%b4%e8%a7%a3" class="heading-mark"></a>2)利用PNG图片文件头破解</h5><div class="highlight" id="id-108"><div class="chroma">
+  <a href="#2%e5%88%a9%e7%94%a8png%e5%9b%be%e7%89%87%e6%96%87%e4%bb%b6%e5%a4%b4%e7%a0%b4%e8%a7%a3" class="heading-mark"></a>2)利用PNG图片文件头破解</h5><div class="highlight" id="id-29"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -4757,7 +4757,7 @@ flag{RRRRRRE}</p>
 <p>ZIP本身文件头：50 4B 03 04 ，4字节</p>
 <p>满足12字节的要求</p>
 </blockquote>
-<div class="highlight" id="id-109"><div class="chroma">
+<div class="highlight" id="id-30"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -4772,7 +4772,7 @@ flag{RRRRRRE}</p>
 <p>Tips：如果这里用 <code>XXXXX.txt</code>作为明文无法破解成功，可以试试直接去掉后缀<code>.txt</code></p>
 </blockquote>
 <p>例题1-NKCTF2023——五年Misc，三年模拟</p>
-<div class="highlight" id="id-110"><div class="chroma">
+<div class="highlight" id="id-31"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -4790,7 +4790,7 @@ flag{RRRRRRE}</p>
 <p>大部分exe中都有这相同一段，且偏移固定为64：</p>
 </blockquote>
 <p><img loading="lazy" src="https://image.3001.net/images/20201117/1605593956_5fb36b64db62588f96dcc.png!small" alt="img" srcset="https://image.3001.net/images/20201117/1605593956_5fb36b64db62588f96dcc.png!small?size=small, https://image.3001.net/images/20201117/1605593956_5fb36b64db62588f96dcc.png!small?size=medium 1.5x, https://image.3001.net/images/20201117/1605593956_5fb36b64db62588f96dcc.png!small?size=large 2x" data-title="img" class="suffix-invalid suffix-invalid__small suffix-invalid__large" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
-<div class="highlight" id="id-111"><div class="chroma">
+<div class="highlight" id="id-32"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -4802,7 +4802,7 @@ flag{RRRRRRE}</p>
 </span></span><span class="line"><span class="cl">bkcrack -C 7-5.zip -c nc64.exe -k b21e5df4 ab9a9430 8c336475  -U out.zip <span class="m">123</span></span></span></code></pre></td></tr></table>
 </div>
 </div><h5 id="5利用pcapng格式破解" class="heading-element">
-  <a href="#5%e5%88%a9%e7%94%a8pcapng%e6%a0%bc%e5%bc%8f%e7%a0%b4%e8%a7%a3" class="heading-mark"></a>5)利用pcapng格式破解</h5><div class="highlight" id="id-112"><div class="chroma">
+  <a href="#5%e5%88%a9%e7%94%a8pcapng%e6%a0%bc%e5%bc%8f%e7%a0%b4%e8%a7%a3" class="heading-mark"></a>5)利用pcapng格式破解</h5><div class="highlight" id="id-33"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -4814,7 +4814,7 @@ flag{RRRRRRE}</p>
 </span></span><span class="line"><span class="cl">bkcrack -C 7-6.zip -c capture.pcapng  -k 2c795462 fe9163bf 53086712  -U out.zip <span class="m">123</span></span></span></code></pre></td></tr></table>
 </div>
 </div><h5 id="6利用xml文件格式破解" class="heading-element">
-  <a href="#6%e5%88%a9%e7%94%a8xml%e6%96%87%e4%bb%b6%e6%a0%bc%e5%bc%8f%e7%a0%b4%e8%a7%a3" class="heading-mark"></a>6)利用XML文件格式破解</h5><div class="highlight" id="id-113"><div class="chroma">
+  <a href="#6%e5%88%a9%e7%94%a8xml%e6%96%87%e4%bb%b6%e6%a0%bc%e5%bc%8f%e7%a0%b4%e8%a7%a3" class="heading-mark"></a>6)利用XML文件格式破解</h5><div class="highlight" id="id-34"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -4825,7 +4825,7 @@ flag{RRRRRRE}</p>
 </span></span><span class="line"><span class="cl">html文件开头通常是 &lt;!DOCTYPE html&gt;
 </span></span><span class="line"><span class="cl">xml文件开头通常是&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;</span></span></code></pre></td></tr></table>
 </div>
-</div><div class="highlight" id="id-114"><div class="chroma">
+</div><div class="highlight" id="id-35"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -4837,7 +4837,7 @@ flag{RRRRRRE}</p>
 </span></span><span class="line"><span class="cl">bkcrack -C 7-7.zip -c 123/web.xml  -k e0be8d5d 70bb3140 7e983fff  -U out.zip <span class="m">123</span></span></span></code></pre></td></tr></table>
 </div>
 </div><h5 id="7利用svg文件格式破解" class="heading-element">
-  <a href="#7%e5%88%a9%e7%94%a8svg%e6%96%87%e4%bb%b6%e6%a0%bc%e5%bc%8f%e7%a0%b4%e8%a7%a3" class="heading-mark"></a>7)利用SVG文件格式破解</h5><div class="highlight" id="id-115"><div class="chroma">
+  <a href="#7%e5%88%a9%e7%94%a8svg%e6%96%87%e4%bb%b6%e6%a0%bc%e5%bc%8f%e7%a0%b4%e8%a7%a3" class="heading-mark"></a>7)利用SVG文件格式破解</h5><div class="highlight" id="id-36"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -4851,7 +4851,7 @@ flag{RRRRRRE}</p>
 </span></span><span class="line"><span class="cl">bkcrack -C 7-8.zip -c advice.jpg -k c4038591 d5ff449d d3b0c696 -U out.zip <span class="m">123</span></span></span></code></pre></td></tr></table>
 </div>
 </div><h5 id="8利用vmdk文件格式破解" class="heading-element">
-  <a href="#8%e5%88%a9%e7%94%a8vmdk%e6%96%87%e4%bb%b6%e6%a0%bc%e5%bc%8f%e7%a0%b4%e8%a7%a3" class="heading-mark"></a>8)利用VMDK文件格式破解</h5><div class="highlight" id="id-116"><div class="chroma">
+  <a href="#8%e5%88%a9%e7%94%a8vmdk%e6%96%87%e4%bb%b6%e6%a0%bc%e5%bc%8f%e7%a0%b4%e8%a7%a3" class="heading-mark"></a>8)利用VMDK文件格式破解</h5><div class="highlight" id="id-37"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -4864,7 +4864,7 @@ flag{RRRRRRE}</p>
 </div>
 </div><p><strong>有时候直接给你部分明文的情况（2023 DASCTFxCBCTF）</strong></p>
 <p>直接在bkcrack中使用以下命令即可，key是题目给的压缩包中被压缩文件的部分明文</p>
-<div class="highlight" id="id-117"><div class="chroma">
+<div class="highlight" id="id-38"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
@@ -4873,7 +4873,7 @@ flag{RRRRRRE}</p>
 </div>
 </div><h4 id="得到密钥后使用bkcrack修改压缩包密码" class="heading-element">
   <a href="#%e5%be%97%e5%88%b0%e5%af%86%e9%92%a5%e5%90%8e%e4%bd%bf%e7%94%a8bkcrack%e4%bf%ae%e6%94%b9%e5%8e%8b%e7%bc%a9%e5%8c%85%e5%af%86%e7%a0%81" class="heading-mark"></a>得到密钥后使用bkcrack修改压缩包密码</h4><p>破解出压缩包的三段密钥后，可以用 -U 参数修改压缩包密码并导出</p>
-<div class="highlight" id="id-118"><div class="chroma">
+<div class="highlight" id="id-39"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -4889,7 +4889,7 @@ flag{RRRRRRE}</p>
 </span></span><span class="line"><span class="cl">Wrote unlocked archive.</span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="得到密钥后反向爆破压缩包密码" class="heading-element">
-  <a href="#%e5%be%97%e5%88%b0%e5%af%86%e9%92%a5%e5%90%8e%e5%8f%8d%e5%90%91%e7%88%86%e7%a0%b4%e5%8e%8b%e7%bc%a9%e5%8c%85%e5%af%86%e7%a0%81" class="heading-mark"></a>得到密钥后反向爆破压缩包密码</h4><div class="highlight" id="id-119"><div class="chroma">
+  <a href="#%e5%be%97%e5%88%b0%e5%af%86%e9%92%a5%e5%90%8e%e5%8f%8d%e5%90%91%e7%88%86%e7%a0%b4%e5%8e%8b%e7%bc%a9%e5%8c%85%e5%af%86%e7%a0%81" class="heading-mark"></a>得到密钥后反向爆破压缩包密码</h4><div class="highlight" id="id-40"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -4912,7 +4912,7 @@ flag{RRRRRRE}</p>
 </div>
 </div><h4 id="在比赛中的使用记录" class="heading-element">
   <a href="#%e5%9c%a8%e6%af%94%e8%b5%9b%e4%b8%ad%e7%9a%84%e4%bd%bf%e7%94%a8%e8%ae%b0%e5%bd%95" class="heading-mark"></a>在比赛中的使用记录</h4><p><strong>2022 西湖论剑zipeasy</strong></p>
-<div class="highlight" id="id-120"><div class="chroma">
+<div class="highlight" id="id-41"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
@@ -4921,7 +4921,7 @@ flag{RRRRRRE}</p>
 </div>
 </div><p><strong>2023 DASCTFxCBCTF</strong></p>
 <p>利用bkcrack反向爆破密钥</p>
-<div class="highlight" id="id-121"><div class="chroma">
+<div class="highlight" id="id-42"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -4979,7 +4979,7 @@ flag{RRRRRRE}</p>
   <a href="#misc%e8%a7%86%e9%a2%91%e9%a2%98%e6%80%9d%e8%b7%af" class="heading-mark"></a>Misc——视频题思路：</h2><p>1、可能有音频隐写，用mkvtool分离出音频，再拉入Au看频谱图</p>
 <p>2、可能是视频中的每一帧图片都有LSB隐写（2023 WMCTF）</p>
 <p>3、循环读取视频每一帧图像中指定列的指定像素（2023 极客大挑战）</p>
-<div class="highlight" id="id-122"><div class="chroma">
+<div class="highlight" id="id-43"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -5099,7 +5099,7 @@ flag{RRRRRRE}</p>
 <p>执行：john 1.txt</p>
 <h3 id="5sstv慢扫描电视" class="heading-element">
   <a href="#5sstv%e6%85%a2%e6%89%ab%e6%8f%8f%e7%94%b5%e8%a7%86" class="heading-mark"></a>5、SSTV慢扫描电视：</h3><p><strong>SSTV识别可以直接用这个项目里的脚本：https://github.com/colaclanth/sstv</strong></p>
-<div class="highlight" id="id-123"><div class="chroma">
+<div class="highlight" id="id-44"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -5117,7 +5117,7 @@ flag{RRRRRRE}</p>
 </div><p><img loading="lazy" src="imgs/image-20241108232143418.png" alt="imgs/image-20241108232143418.png" srcset="imgs/image-20241108232143418.png?size=small, imgs/image-20241108232143418.png?size=medium 1.5x, imgs/image-20241108232143418.png?size=large 2x" data-title="imgs/image-20241108232143418.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <h4 id="windows中使用rx-sstv" class="heading-element">
   <a href="#windows%e4%b8%ad%e4%bd%bf%e7%94%a8rx-sstv" class="heading-mark"></a>Windows中使用RX-SSTV</h4><p>使用前还要安装虚拟声卡 Virtual Audio Cable</p>
-<div class="highlight" id="id-124"><div class="chroma">
+<div class="highlight" id="id-45"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -5151,7 +5151,7 @@ flag{RRRRRRE}</p>
 <p>再用multimon-ng分析:</p>
 <p>multimon-ng -t raw -a AFSK1200 latlong.raw</p>
 <h3 id="8wav可能是steghide隐写可以无密码" class="heading-element">
-  <a href="#8wav%e5%8f%af%e8%83%bd%e6%98%afsteghide%e9%9a%90%e5%86%99%e5%8f%af%e4%bb%a5%e6%97%a0%e5%af%86%e7%a0%81" class="heading-mark"></a>8、WAV可能是steghide隐写(可以无密码)</h3><div class="highlight" id="id-125"><div class="chroma">
+  <a href="#8wav%e5%8f%af%e8%83%bd%e6%98%afsteghide%e9%9a%90%e5%86%99%e5%8f%af%e4%bb%a5%e6%97%a0%e5%af%86%e7%a0%81" class="heading-mark"></a>8、WAV可能是steghide隐写(可以无密码)</h3><div class="highlight" id="id-46"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -5161,7 +5161,7 @@ flag{RRRRRRE}</p>
 </span></span><span class="line"><span class="cl">steghide extract -sf filename -p passwd</span></span></code></pre></td></tr></table>
 </div>
 </div><p>在WSL或者kali里用Stegseek跑（字典在wordlist里）</p>
-<div class="highlight" id="id-126"><div class="chroma">
+<div class="highlight" id="id-47"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -5190,7 +5190,7 @@ flag{RRRRRRE}</p>
 </span></span><span class="line"><span class="cl">    <span class="k">fi</span>
 </span></span><span class="line"><span class="cl"><span class="k">done</span></span></span></code></pre></td></tr></table>
 </div>
-</div><div class="highlight" id="id-127"><div class="chroma">
+</div><div class="highlight" id="id-48"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -5201,7 +5201,7 @@ flag{RRRRRRE}</p>
 </div>
 </div><h3 id="9mp3可能是mp3stego隐写可以无密码" class="heading-element">
   <a href="#9mp3%e5%8f%af%e8%83%bd%e6%98%afmp3stego%e9%9a%90%e5%86%99%e5%8f%af%e4%bb%a5%e6%97%a0%e5%af%86%e7%a0%81" class="heading-mark"></a>9、MP3可能是mp3stego隐写(可以无密码)</h3><p>使用前需要先把要处理的文件放到 mp3stego 目录下</p>
-<div class="highlight" id="id-128"><div class="chroma">
+<div class="highlight" id="id-49"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -5231,7 +5231,7 @@ flag{RRRRRRE}</p>
 <h3 id="11stegpy隐写" class="heading-element">
   <a href="#11stegpy%e9%9a%90%e5%86%99" class="heading-mark"></a>11、stegpy隐写</h3><p><a href="https://github.com/izcoser/stegpy"target="_blank" rel="external nofollow noopener noreferrer"> stegpy 开源地址</a> 下载好后直接用WSL输入以下命令并输入密码解密即可</p>
 <p>也可以直接用 pip 安装： pip3 install stegpy</p>
-<div class="highlight" id="id-129"><div class="chroma">
+<div class="highlight" id="id-50"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
@@ -5241,7 +5241,7 @@ flag{RRRRRRE}</p>
 </div><h3 id="12deegger-embedder隐写" class="heading-element">
   <a href="#12deegger-embedder%e9%9a%90%e5%86%99" class="heading-mark"></a>12、DeEgger Embedder隐写</h3><p>可以直接使用 DeEgger Embedder 工具 extract files</p>
 <h3 id="13分析左右声道的差值" class="heading-element">
-  <a href="#13%e5%88%86%e6%9e%90%e5%b7%a6%e5%8f%b3%e5%a3%b0%e9%81%93%e7%9a%84%e5%b7%ae%e5%80%bc" class="heading-mark"></a>13、分析左右声道的差值</h3><div class="highlight" id="id-130"><div class="chroma">
+  <a href="#13%e5%88%86%e6%9e%90%e5%b7%a6%e5%8f%b3%e5%a3%b0%e9%81%93%e7%9a%84%e5%b7%ae%e5%80%bc" class="heading-mark"></a>13、分析左右声道的差值</h3><div class="highlight" id="id-51"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -5299,7 +5299,7 @@ flag{RRRRRRE}</p>
 </span></span><span class="line"><span class="cl">    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">res</span><span class="p">)</span></span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="14使用脚本提取数据进行分析" class="heading-element">
-  <a href="#14%e4%bd%bf%e7%94%a8%e8%84%9a%e6%9c%ac%e6%8f%90%e5%8f%96%e6%95%b0%e6%8d%ae%e8%bf%9b%e8%a1%8c%e5%88%86%e6%9e%90" class="heading-mark"></a>14、使用脚本提取数据进行分析</h3><div class="highlight" id="id-131"><div class="chroma">
+  <a href="#14%e4%bd%bf%e7%94%a8%e8%84%9a%e6%9c%ac%e6%8f%90%e5%8f%96%e6%95%b0%e6%8d%ae%e8%bf%9b%e8%a1%8c%e5%88%86%e6%9e%90" class="heading-mark"></a>14、使用脚本提取数据进行分析</h3><div class="highlight" id="id-52"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -5428,7 +5428,7 @@ flag{RRRRRRE}</p>
 </div>
 </div><h3 id="15提取两个音频中的浮点集并分析" class="heading-element">
   <a href="#15%e6%8f%90%e5%8f%96%e4%b8%a4%e4%b8%aa%e9%9f%b3%e9%a2%91%e4%b8%ad%e7%9a%84%e6%b5%ae%e7%82%b9%e9%9b%86%e5%b9%b6%e5%88%86%e6%9e%90" class="heading-mark"></a>15、提取两个音频中的浮点集并分析</h3><p>例题1-2024极客大挑战-音乐大师</p>
-<div class="highlight" id="id-132"><div class="chroma">
+<div class="highlight" id="id-53"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -5479,7 +5479,7 @@ flag{RRRRRRE}</p>
   <a href="#1%e7%94%a8yandex%e8%af%86%e5%9b%be" class="heading-mark"></a>1.用yandex识图</h3><h2 id="others" class="heading-element">
   <a href="#others" class="heading-mark"></a>Others：</h2><h3 id="字节序" class="heading-element">
   <a href="#%e5%ad%97%e8%8a%82%e5%ba%8f" class="heading-mark"></a>字节序</h3><p><strong>字节的排列方式有两个通用规则:</strong></p>
-<div class="highlight" id="id-133"><div class="chroma">
+<div class="highlight" id="id-54"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -5489,7 +5489,7 @@ flag{RRRRRRE}</p>
 </span></span><span class="line"><span class="cl">小端序（Little-Endian），将一个多位数的低位放在较小的地址处，高位放在较大的地址处，则称小端序。小端序与人类的阅读习惯相反，但更符合计算机读取内存的方式，因为CPU读取内存中的数据时，是从低地址向高地址方向进行读取的。</span></span></code></pre></td></tr></table>
 </div>
 </div><p><strong>例子：</strong></p>
-<div class="highlight" id="id-134"><div class="chroma">
+<div class="highlight" id="id-55"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -5507,7 +5507,7 @@ flag{RRRRRRE}</p>
 </span></span><span class="line"><span class="cl">0x0D 0x0C 0xB 0xA</span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="为何要有字节序" class="heading-element">
-  <a href="#%e4%b8%ba%e4%bd%95%e8%a6%81%e6%9c%89%e5%ad%97%e8%8a%82%e5%ba%8f" class="heading-mark"></a>为何要有字节序</h3><div class="highlight" id="id-135"><div class="chroma">
+  <a href="#%e4%b8%ba%e4%bd%95%e8%a6%81%e6%9c%89%e5%ad%97%e8%8a%82%e5%ba%8f" class="heading-mark"></a>为何要有字节序</h3><div class="highlight" id="id-56"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
@@ -5515,7 +5515,7 @@ flag{RRRRRRE}</p>
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">因为计算机电路先处理低位字节，效率比较高，因为计算都是从低位开始的。所以，计算机的内部处理都是小端字节序。在计算机内部，小端序被广泛应用于现代 CPU 内部存储数据；而在其他场景，比如网络传输和文件存储则使用大端序。</span></span></code></pre></td></tr></table>
 </div>
 </div><p><strong>使用Python中的struct模块来处理大小端序</strong></p>
-<div class="highlight" id="id-136"><div class="chroma">
+<div class="highlight" id="id-57"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -5633,7 +5633,7 @@ flag{RRRRRRE}</p>
 </span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s2">&#34;</span><span class="se">\n</span><span class="s2">Data integrity maintained!&#34;</span><span class="p">)</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p><strong>十六进制数据大小端序转换</strong></p>
-<div class="highlight" id="id-137"><div class="chroma">
+<div class="highlight" id="id-58"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -5688,7 +5688,7 @@ flag{RRRRRRE}</p>
 </div>
 </div><h3 id="linux-tar命令" class="heading-element">
   <a href="#linux-tar%e5%91%bd%e4%bb%a4" class="heading-mark"></a>Linux tar命令</h3><h4 id="打包压缩" class="heading-element">
-  <a href="#%e6%89%93%e5%8c%85%e5%8e%8b%e7%bc%a9" class="heading-mark"></a>打包压缩</h4><div class="highlight" id="id-138"><div class="chroma">
+  <a href="#%e6%89%93%e5%8c%85%e5%8e%8b%e7%bc%a9" class="heading-mark"></a>打包压缩</h4><div class="highlight" id="id-59"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -5712,7 +5712,7 @@ flag{RRRRRRE}</p>
 </span></span><span class="line"><span class="cl">tar -czvf out.tar.gz ./*</span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="解压提取" class="heading-element">
-  <a href="#%e8%a7%a3%e5%8e%8b%e6%8f%90%e5%8f%96" class="heading-mark"></a>解压提取</h4><div class="highlight" id="id-139"><div class="chroma">
+  <a href="#%e8%a7%a3%e5%8e%8b%e6%8f%90%e5%8f%96" class="heading-mark"></a>解压提取</h4><div class="highlight" id="id-60"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
