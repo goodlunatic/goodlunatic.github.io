@@ -1245,6 +1245,44 @@ b&#34;Hey boy, I&#39;m here to help you, now you&#39;ze one step away from succe
 &gt; 
 &gt; 但也正是出题人这最后套了一下VC加密容器，让这道题更贴合“数据安全”这个分类吧
 
+## [SOLVED] 题目名称 扫一扫 (2025 安徽省赛)
+
+题目附件： https://pan.baidu.com/s/1Xuo8ACEdarB8Z4D989Ytvw?pwd=hbph 提取码: hbph
+
+解压附件压缩包，得到一张`flag.png`,是张二维码，扫码后可以得到：`123`
+
+![](imgs/image-20250420153541878.png)
+
+010打开，发现末尾藏了另一张二维码还有一个加密的压缩包，二维码提取出来扫码后得到：`qwe`
+
+![](imgs/image-20250420153618119.png)
+
+用密码`123qwe`解压压缩包，可以得到一个`flag.pcap.pcapng`流量包文件
+
+![](imgs/image-20250420153744285.png)
+
+追踪流发现只有一个HTTP请求，但是没有看到响应
+
+010打开流量包，发现里面有一串AES加密后的密文
+
+![](imgs/image-20250420153913383.png)
+
+用密钥`123qwe`作为密钥去解密这段密文，可以得到一串Base64
+
+![](imgs/image-20250420154001050.png)
+
+Base64解码后可以得到一串32位的字符串，经过尝试发现是MD5
+
+![](imgs/image-20250420154018750.png)
+
+最后，用somd5反查MD5即可得到最后的flag：`flag{you_are_the_best}`
+
+![](imgs/image-20250420154120585.png)
+
+&gt; 这道题本身出的没啥水平，最后一步反查MD5更是典中典(听说赛后才能查得到)
+&gt; 
+&gt; 把它挂在这里也就是想记录一下这场比赛的某些主办方丑陋的行径
+
 ## 题目名称 Just Not Good
 
 题目附件： https://pan.baidu.com/s/12j_kEm7Vw0PETvJ8GSiC8g?pwd=u7q6 提取码: u7q6

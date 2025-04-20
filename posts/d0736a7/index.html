@@ -14,7 +14,7 @@
 如果师傅们有进一步的想法或者做出来了，可以联系我一起交流一下解题思路">
   <meta itemprop="datePublished" content="2025-04-11T14:39:58+08:00">
   <meta itemprop="dateModified" content="2025-04-11T14:39:58+08:00">
-  <meta itemprop="wordCount" content="4112">
+  <meta itemprop="wordCount" content="4130">
   <meta itemprop="keywords" content="CTF,Misc"><meta property="og:url" content="https://goodlunatic.github.io/posts/d0736a7/">
   <meta property="og:site_name" content="⚡Lunatic BLOG⚡">
   <meta property="og:title" content="CTF-Misc &#34;雅&#34;题共赏">
@@ -44,7 +44,7 @@
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": "https:\/\/goodlunatic.github.io\/posts\/d0736a7\/"
-    },"genre": "posts","keywords": "CTF, Misc","wordcount":  4112 ,
+    },"genre": "posts","keywords": "CTF, Misc","wordcount":  4130 ,
     "url": "https:\/\/goodlunatic.github.io\/posts\/d0736a7\/","datePublished": "2025-04-11T14:39:58+08:00","dateModified": "2025-04-11T14:39:58+08:00","publisher": {
       "@type": "Organization",
       "name": ""},"author": {
@@ -163,6 +163,7 @@
     <li><a href="#solved-题目名称-boxing-boxer">[SOLVED] 题目名称 Boxing Boxer</a></li>
     <li><a href="#solved-题目名称-cyclone-joker">[SOLVED] 题目名称 Cyclone Joker</a></li>
     <li><a href="#solved-题目名称-steganography_challenges032025-西湖论剑全国总决赛">[SOLVED] 题目名称 Steganography_challenges0.3（2025 西湖论剑全国总决赛）</a></li>
+    <li><a href="#solved-题目名称-扫一扫-2025-安徽省赛">[SOLVED] 题目名称 扫一扫 (2025 安徽省赛)</a></li>
     <li><a href="#题目名称-just-not-good">题目名称 Just Not Good</a></li>
     <li><a href="#题目名称-fingers_play-2024-iscc-个人挑战赛">题目名称 Fingers_play (2024 ISCC 个人挑战赛)</a></li>
     <li><a href="#题目名称-one-2024-古剑山">题目名称 one (2024 古剑山)</a></li>
@@ -1890,6 +1891,27 @@
 <blockquote>
 <p>一些碎碎念：出题人最后套了一个VC加密容器确实会比较难想到，需要选手结合数据的长度和密钥进行联想</p>
 <p>但也正是出题人这最后套了一下VC加密容器，让这道题更贴合“数据安全”这个分类吧</p>
+</blockquote>
+<h2 id="solved-题目名称-扫一扫-2025-安徽省赛" class="heading-element">
+  <a href="#solved-%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-%e6%89%ab%e4%b8%80%e6%89%ab-2025-%e5%ae%89%e5%be%bd%e7%9c%81%e8%b5%9b" class="heading-mark"></a>[SOLVED] 题目名称 扫一扫 (2025 安徽省赛)</h2><p>题目附件： <a href="https://pan.baidu.com/s/1Xuo8ACEdarB8Z4D989Ytvw?pwd=hbph"target="_blank" rel="external nofollow noopener noreferrer">https://pan.baidu.com/s/1Xuo8ACEdarB8Z4D989Ytvw?pwd=hbph</a> 提取码: hbph</p>
+<p>解压附件压缩包，得到一张<code>flag.png</code>,是张二维码，扫码后可以得到：<code>123</code></p>
+<p><img loading="lazy" src="/posts/d0736a7/imgs/image-20250420153541878.png" alt="/posts/d0736a7/imgs/image-20250420153541878.png" srcset="/posts/d0736a7/imgs/image-20250420153541878.png?size=small, /posts/d0736a7/imgs/image-20250420153541878.png?size=medium 1.5x, /posts/d0736a7/imgs/image-20250420153541878.png?size=large 2x" data-title="/posts/d0736a7/imgs/image-20250420153541878.png" style="--width: 1902px;--aspect-ratio: 1902 / 1108;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>010打开，发现末尾藏了另一张二维码还有一个加密的压缩包，二维码提取出来扫码后得到：<code>qwe</code></p>
+<p><img loading="lazy" src="/posts/d0736a7/imgs/image-20250420153618119.png" alt="/posts/d0736a7/imgs/image-20250420153618119.png" srcset="/posts/d0736a7/imgs/image-20250420153618119.png?size=small, /posts/d0736a7/imgs/image-20250420153618119.png?size=medium 1.5x, /posts/d0736a7/imgs/image-20250420153618119.png?size=large 2x" data-title="/posts/d0736a7/imgs/image-20250420153618119.png" style="--width: 1902px;--aspect-ratio: 1902 / 1108;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>用密码<code>123qwe</code>解压压缩包，可以得到一个<code>flag.pcap.pcapng</code>流量包文件</p>
+<p><img loading="lazy" src="/posts/d0736a7/imgs/image-20250420153744285.png" alt="/posts/d0736a7/imgs/image-20250420153744285.png" srcset="/posts/d0736a7/imgs/image-20250420153744285.png?size=small, /posts/d0736a7/imgs/image-20250420153744285.png?size=medium 1.5x, /posts/d0736a7/imgs/image-20250420153744285.png?size=large 2x" data-title="/posts/d0736a7/imgs/image-20250420153744285.png" style="--width: 2560px;--aspect-ratio: 2560 / 1528;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>追踪流发现只有一个HTTP请求，但是没有看到响应</p>
+<p>010打开流量包，发现里面有一串AES加密后的密文</p>
+<p><img loading="lazy" src="/posts/d0736a7/imgs/image-20250420153913383.png" alt="/posts/d0736a7/imgs/image-20250420153913383.png" srcset="/posts/d0736a7/imgs/image-20250420153913383.png?size=small, /posts/d0736a7/imgs/image-20250420153913383.png?size=medium 1.5x, /posts/d0736a7/imgs/image-20250420153913383.png?size=large 2x" data-title="/posts/d0736a7/imgs/image-20250420153913383.png" style="--width: 2560px;--aspect-ratio: 2560 / 1528;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>用密钥<code>123qwe</code>作为密钥去解密这段密文，可以得到一串Base64</p>
+<p><img loading="lazy" src="/posts/d0736a7/imgs/image-20250420154001050.png" alt="/posts/d0736a7/imgs/image-20250420154001050.png" srcset="/posts/d0736a7/imgs/image-20250420154001050.png?size=small, /posts/d0736a7/imgs/image-20250420154001050.png?size=medium 1.5x, /posts/d0736a7/imgs/image-20250420154001050.png?size=large 2x" data-title="/posts/d0736a7/imgs/image-20250420154001050.png" style="--width: 2559px;--aspect-ratio: 2559 / 1453;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>Base64解码后可以得到一串32位的字符串，经过尝试发现是MD5</p>
+<p><img loading="lazy" src="/posts/d0736a7/imgs/image-20250420154018750.png" alt="/posts/d0736a7/imgs/image-20250420154018750.png" srcset="/posts/d0736a7/imgs/image-20250420154018750.png?size=small, /posts/d0736a7/imgs/image-20250420154018750.png?size=medium 1.5x, /posts/d0736a7/imgs/image-20250420154018750.png?size=large 2x" data-title="/posts/d0736a7/imgs/image-20250420154018750.png" style="--width: 2558px;--aspect-ratio: 2558 / 944;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>最后，用somd5反查MD5即可得到最后的flag：<code>flag{you_are_the_best}</code></p>
+<p><img loading="lazy" src="/posts/d0736a7/imgs/image-20250420154120585.png" alt="/posts/d0736a7/imgs/image-20250420154120585.png" srcset="/posts/d0736a7/imgs/image-20250420154120585.png?size=small, /posts/d0736a7/imgs/image-20250420154120585.png?size=medium 1.5x, /posts/d0736a7/imgs/image-20250420154120585.png?size=large 2x" data-title="/posts/d0736a7/imgs/image-20250420154120585.png" style="--width: 2559px;--aspect-ratio: 2559 / 997;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<blockquote>
+<p>这道题本身出的没啥水平，最后一步反查MD5更是典中典(听说赛后才能查得到)</p>
+<p>把它挂在这里也就是想记录一下这场比赛的某些主办方丑陋的行径</p>
 </blockquote>
 <h2 id="题目名称-just-not-good" class="heading-element">
   <a href="#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-just-not-good" class="heading-mark"></a>题目名称 Just Not Good</h2><p>题目附件： <a href="https://pan.baidu.com/s/12j_kEm7Vw0PETvJ8GSiC8g?pwd=u7q6"target="_blank" rel="external nofollow noopener noreferrer">https://pan.baidu.com/s/12j_kEm7Vw0PETvJ8GSiC8g?pwd=u7q6</a> 提取码: u7q6</p>

@@ -75,6 +75,54 @@ PNG文件头                      iVBORw0KGgo
 ZIP文件头                      UEsDBA
 ```
 
+
+## 各种文件头/尾：
+
+这里要注意，出题人可能会把文件头的小写字母偷偷改成大写，例如：Rar -&gt; RAR
+
+```python
+zip 文件头：50 4B 03 04 14 00 08 00
+rar 文件头：52 61 72 21 (Rar!)               文件尾：C4 3D 7B 00 40 07 00
+7z  文件头：37 7A BC AF 27 1C
+gz 文件头：1F 8B 08 00
+
+png 文件头：89504E47 0D0A1A0A 0000000D 49484452   文件尾：00000000 49454E44 AE426082
+jpg 文件头：FF D8 FF E0 00 10 4A 46 49 46 00 01
+gif 文件头：47 49 46 38 39 61（GIF89A）或 47 49 46 38 37 61（GIF87A）    文件尾：00 3B
+bmp 文件头：42 4D
+psd 文件头：38 42 50 53
+TIFF 文件头：49 49 2A 00
+
+mp3 文件头：49 44 33 03 00 00 00 00
+wav 文件头：57 41 56 45 或 52 49 46 46
+mid 文件头：4D 54 68 64
+avi 文件头：41 56 49 20
+mov 文件头：00 00 00 20 66 74 79 70 71 74 20 20 20 05 03 00
+swf 文件头：46 57 53 08 AC 43 00 00
+
+pyc 文件头：03 F3 0D 0A
+MS-Office2003 文件头：D0 CF 11 E0
+xml 文件头：3C 3F 78 6D 6C
+html 文件头：68 74 6D 6C 3E
+CAD (dwg)，文件头：41433130
+Rich Text Format (rtf)，文件头：7B5C727466
+Email [thorough only] (eml)，文件头：44656C69766572792D646174653A
+Outlook Express (dbx)，文件头：CFAD12FEC5FD746F
+Outlook (pst)，文件头：2142444E
+MS Access (mdb)，文件头：5374616E64617264204A
+WordPerfect (wpd)，文件头：FF575043
+Postscript (eps.or.ps)，文件头：252150532D41646F6265
+Adobe Acrobat (pdf)，文件头：255044462D312E
+Quicken (qdf)，文件头：AC9EBD8F
+Windows Password (pwl)，文件头：E3828596
+Real Audio (ram)，文件头：2E7261FD
+Real Media (rm)，文件头：2E524D46
+MPEG (mpg)，文件头：000001BA 或 000001B3
+Quicktime (mov)，文件头：6D6F6F76
+Windows Media (asf)，文件头：3026B2758E66CF11
+M4a，文件头：00000018667479704D3441
+```
+
 ## 各种加密/编码：
 
 ### base家族
@@ -1012,54 +1060,6 @@ print(ddd)
 ### 瓦坎达文字对照表
 
 ![](imgs/image-20250315123245293.png)
-
-
-
-## 各种文件头/尾：
-
-这里要注意，出题人可能会把文件头的小写字母偷偷改成大写，例如：Rar -&gt; RAR
-
-```python
-zip 文件头：50 4B 03 04 14 00 08 00
-rar 文件头：52 61 72 21 (Rar!)               文件尾：C4 3D 7B 00 40 07 00
-7z  文件头：37 7A BC AF 27 1C
-png 文件头：89504E47 0D0A1A0A 0000000D 49484452   文件尾：00000000 49454E44 AE426082
-jpg 文件头：FF D8 FF E0 00 10 4A 46 49 46 00 01
-gif 文件头：47 49 46 38 39 61（GIF89A）或 47 49 46 38 37 61（GIF87A）    文件尾：00 3B
-Windows [Bitmap](https://so.csdn.net/so/search?q=Bitmap&amp;spm=1001.2101.3001.7020) (bmp)，文件头：42 4D
-psd 文件头：38 42 50 53
-TIFF (tif)，文件头：49 49 2A 00
-mp3 文件头：49 44 33 03 00 00 00 00
-wav 文件头1：57 41 56 45
-wav 文件头2：52 49 46 46
-mov 文件头：00 00 00 20 66 74 79 70 71 74 20 20 20 05 03 00
-swf 文件头：46 57 53 08 AC 43 00 00
-gz 文件头：1F 8B 08 00
-pyc的文件头：03 F3 0D 0A
-CAD (dwg)，文件头：41433130
-Rich Text Format (rtf)，文件头：7B5C727466
-XML (xml)，文件头：3C3F786D6C
-HTML (html)，文件头：68746D6C3E
-Email [thorough only] (eml)，文件头：44656C69766572792D646174653A
-Outlook Express (dbx)，文件头：CFAD12FEC5FD746F
-Outlook (pst)，文件头：2142444E
-MS Word/Excel (xls.or.doc)，文件头：D0CF11E0
-MS Access (mdb)，文件头：5374616E64617264204A
-WordPerfect (wpd)，文件头：FF575043
-Postscript (eps.or.ps)，文件头：252150532D41646F6265
-Adobe Acrobat (pdf)，文件头：255044462D312E
-Quicken (qdf)，文件头：AC9EBD8F
-Windows Password (pwl)，文件头：E3828596
-AVI (avi)，文件头：41564920
-Real Audio (ram)，文件头：2E7261FD
-Real Media (rm)，文件头：2E524D46
-MPEG (mpg)，文件头：000001BA
-MPEG (mpg)，文件头：000001B3
-Quicktime (mov)，文件头：6D6F6F76
-Windows Media (asf)，文件头：3026B2758E66CF11
-MIDI (mid)，文件头：4D546864
-M4a，文件头：00000018667479704D3441
-```
 
 ## Misc——流量分析
 
