@@ -186,8 +186,42 @@ if __name__ == &#34;__main__&#34;:
 
 ### 从json中读取数据并实现脱敏
 
-```
+```python
+import json
+from scapy.all import *
 
+# 解析JSON文件，建立IP到域名的映射
+ip_domain = {}
+with open(&#39;国外敏感域名清单.json&#39;, &#39;r&#39;) as f:
+    data = json.load(f)
+    for category in data[&#39;categories&#39;].values():
+        domains = category[&#39;domains&#39;]
+        for domain, ip in domains.items():
+            ip_domain[ip] = domain
+
+# 解析PCAP文件，统计目标IP访问次数
+ip_count = {}
+packets = rdpcap(&#39;某流量审计平台导出的镜像流量.pcap&#39;)
+for pkt in packets:
+    if IP in pkt:
+        dst_ip = pkt[IP].dst
+        if dst_ip in ip_domain:
+            ip_count[dst_ip] = ip_count.get(dst_ip, 0) &#43; 1
+
+# 找出访问次数最多的IP
+max_ip = None
+max_count = 0
+for ip, count in ip_count.items():
+    if count &gt; max_count:
+        max_count = count
+        max_ip = ip
+
+# 生成结果
+if max_ip:
+    domain = ip_domain[max_ip]
+    print(f&#34;{domain}:{max_ip}:{max_count}&#34;)
+else:
+    print(&#34;无访问记录&#34;)
 ```
 
 ## 数据脱敏
@@ -448,9 +482,6 @@ with open(&#39;output.csv&#39;, &#39;w&#39;, newline=&#39;&#39;, encoding=&#34;u
 ```
 
 ```python
-# -*- coding: utf-8 -*-
-# @Author  : 1cePeak
-
 import pandas as pd
 import hashlib
 import re

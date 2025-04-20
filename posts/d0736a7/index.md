@@ -1445,7 +1445,9 @@ with open(&#34;output.png&#34;, &#34;wb&#34;) as f:
 
 ![](imgs/image-20250321193130917.png)
 
-图片的像素看起来很复杂，然后`zsteg`和`stegsolve`也都试过了，感觉不存在LSB隐写，当前的思路就卡在这里了
+图片的像素看起来很复杂，然后尝试了`zsteg`和`stegsolve`，感觉不存在LSB隐写
+
+也尝试了单图盲水印，没有得到什么有用的信息
 
 
 ## 题目名称 Ste9ano9raphy 6inary（2022CISCN 华南分区赛）
