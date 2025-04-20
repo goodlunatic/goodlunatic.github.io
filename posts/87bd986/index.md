@@ -64,7 +64,82 @@ print(res)
 
 ## 题目名称 alarm_clock
 
+解压附件压缩包，得到一个`alarm_clock.vmdk`，我们尝试用`DiskGnuis`挂载并恢复被删除的文件
 
+![](imgs/image-20250420210509855.png)
+
+恢复可以得到一个wav文件和一个加密的压缩包
+
+打开wav文件听一下，发现是SSTV，用工具识别后可以得到压缩包的解压密码：`z@Wa1uDu0`
+
+![](imgs/image-20250420210600141.png)
+
+解压后可以得到一个`data.txt`，里面的数据格式如下：
+
+![](imgs/image-20250420210721133.png)
+
+结合上面扫出来的SSTV图像种的时钟，猜测数字代表的就是时钟上刻度的方向，有几个数字就代表往这个方向前进几格
+
+然后每一行都是从原点开始，因此我们写一个脚本按照数字的顺序画轨迹图
+
+```python
+import matplotlib.pyplot as plt
+import math
+import os
+
+def number_to_angle(num):
+    return (int(num) * 30) % 360
+
+def angle_to_coord(angle):
+    rad = math.radians(angle - 90)
+    return (math.cos(rad), math.sin(rad))
+
+def func1(data):
+    os.makedirs(&#34;output&#34;, exist_ok=True)
+    for i, path in enumerate(data):
+        plt.figure(figsize=(8, 8))
+        ax = plt.gca()
+        ax.set_aspect(&#39;equal&#39;, adjustable=&#39;box&#39;)
+        plt.title(f&#39;Figure {i&#43;1}&#39;)
+        
+        x_coords = [0]
+        y_coords = [0]
+        current_x, current_y = 0, 0
+        
+        for num in path:
+            angle = number_to_angle(num)
+            dx, dy = angle_to_coord(angle)
+            current_x &#43;= dx
+            current_y &#43;= dy
+            x_coords.append(current_x)
+            y_coords.append(-1 * current_y)
+        
+        plt.plot(x_coords, y_coords, marker=&#39;o&#39;, markersize=3, color=&#39;blue&#39;)
+        plt.grid(True, alpha=0.3)
+        plt.xlim(-8, 8)
+        plt.ylim(-8, 8)
+        filename = f&#39;output/{i&#43;1:02d}.png&#39;
+        plt.savefig(filename, dpi=100, bbox_inches=&#39;tight&#39;)
+        plt.close()
+        print(f&#39;Saved: {filename}&#39;)
+
+if __name__ == &#34;__main__&#34;:
+    data = []
+    with open(&#34;data.txt&#34;, &#39;r&#39;) as f:
+        lines = f.read().split()
+    for line in lines:
+        data.append(line.split(&#39;,&#39;))
+    # print(data)
+    func1(data)
+```
+
+![](imgs/image-20250420210952391.png)
+
+运行脚本画图后即可得到最后的flag：`flag{5879016c-301b-4840-95bf-be72b379b21e}`
+
+## 题目名称 Bluetooth
+
+## 题目名称 USB
 
 
 
