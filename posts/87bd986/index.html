@@ -10,9 +10,9 @@
 <meta name="description" content="2025 能源网络安全大赛 Misc Writeup" /><meta name="keywords" content='CTF, Misc, Writeup' />
   <meta itemprop="name" content="2025 能源网络安全大赛 Misc Writeup">
   <meta itemprop="description" content="2025 能源网络安全大赛 Misc Writeup">
-  <meta itemprop="datePublished" content="2025-04-20T20:45:35+08:00">
-  <meta itemprop="dateModified" content="2025-04-20T20:45:35+08:00">
-  <meta itemprop="wordCount" content="252">
+  <meta itemprop="datePublished" content="2025-04-20T22:25:35+08:00">
+  <meta itemprop="dateModified" content="2025-04-20T22:25:35+08:00">
+  <meta itemprop="wordCount" content="438">
   <meta itemprop="keywords" content="CTF,Misc,Writeup"><meta property="og:url" content="https://goodlunatic.github.io/posts/87bd986/">
   <meta property="og:site_name" content="⚡Lunatic BLOG⚡">
   <meta property="og:title" content="2025 能源网络安全大赛 Misc Writeup">
@@ -21,8 +21,8 @@
   <meta property="og:locale" content="en">
   <meta property="og:type" content="article">
   <meta property="article:section" content="posts">
-    <meta property="article:published_time" content="2025-04-20T20:45:35+08:00">
-    <meta property="article:modified_time" content="2025-04-20T20:45:35+08:00">
+    <meta property="article:published_time" content="2025-04-20T22:25:35+08:00">
+    <meta property="article:modified_time" content="2025-04-20T22:25:35+08:00">
     <meta property="article:tag" content="CTF">
     <meta property="article:tag" content="Misc">
     <meta property="article:tag" content="Writeup">
@@ -30,7 +30,7 @@
 <meta name="twitter:description" content="2025 能源网络安全大赛 Misc Writeup">
       <meta name="twitter:site" content="@goodlunatic007">
 <meta name="application-name" content="FixIt">
-<meta name="apple-mobile-web-app-title" content="FixIt"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="https://www.nssctf.cn/files/2024/4/28/8fdad6c6ee.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="https://goodlunatic.github.io/posts/87bd986/" /><link rel="prev" href="https://goodlunatic.github.io/posts/c49ae8a/" /><link rel="next" href="https://goodlunatic.github.io/posts/e9c4fc7/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
+<meta name="apple-mobile-web-app-title" content="FixIt"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="https://www.nssctf.cn/files/2024/4/28/8fdad6c6ee.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="https://goodlunatic.github.io/posts/87bd986/" /><link rel="prev" href="https://goodlunatic.github.io/posts/e9c4fc7/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
   {
@@ -41,8 +41,8 @@
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": "https:\/\/goodlunatic.github.io\/posts\/87bd986\/"
-    },"genre": "posts","keywords": "CTF, Misc, Writeup","wordcount":  252 ,
-    "url": "https:\/\/goodlunatic.github.io\/posts\/87bd986\/","datePublished": "2025-04-20T20:45:35+08:00","dateModified": "2025-04-20T20:45:35+08:00","publisher": {
+    },"genre": "posts","keywords": "CTF, Misc, Writeup","wordcount":  438 ,
+    "url": "https:\/\/goodlunatic.github.io\/posts\/87bd986\/","datePublished": "2025-04-20T22:25:35+08:00","dateModified": "2025-04-20T22:25:35+08:00","publisher": {
       "@type": "Organization",
       "name": ""},"author": {
         "@type": "Person",
@@ -145,7 +145,7 @@
 <article class="page single">
   <div class="header"><h1 class="single-title animate__animated animate__flipInX"><span>2025 能源网络安全大赛 Misc Writeup</span>
     </h1></div><div class="post-meta">
-    <div class="post-meta-line"><span class="post-author"><a href="https://goodlunatic.github.io" title="Author"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><img loading="lazy" src="https://www.nssctf.cn/files/2024/4/28/7f130a1387.png" alt="Lunatic" data-title="Lunatic" class="avatar" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>&nbsp;Lunatic</a></span><span class="post-included-in">&nbsp;included in <a href="/categories/writeup/" class="post-category" title="Category - Writeup"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> Writeup</a></span></div><div class="post-meta-line"><span title="published on &lt;no value&gt;"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden="true"></i><time datetime="2025-04-20">2025-04-20</time></span>&nbsp;<span title=""><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>About 300 words</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>2 minutes</span>&nbsp;</div>
+    <div class="post-meta-line"><span class="post-author"><a href="https://goodlunatic.github.io" title="Author"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><img loading="lazy" src="https://www.nssctf.cn/files/2024/4/28/7f130a1387.png" alt="Lunatic" data-title="Lunatic" class="avatar" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>&nbsp;Lunatic</a></span><span class="post-included-in">&nbsp;included in <a href="/categories/writeup/" class="post-category" title="Category - Writeup"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> Writeup</a></span></div><div class="post-meta-line"><span title="published on &lt;no value&gt;"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden="true"></i><time datetime="2025-04-20">2025-04-20</time></span>&nbsp;<span title=""><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>About 500 words</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>3 minutes</span>&nbsp;</div>
   </div><div class="details toc" id="toc-static"
     data-kept="false">
     <div class="details-summary toc-title">
@@ -330,12 +330,88 @@
 </div><p><img loading="lazy" src="imgs/image-20250420210952391.png" alt="imgs/image-20250420210952391.png" srcset="imgs/image-20250420210952391.png?size=small, imgs/image-20250420210952391.png?size=medium 1.5x, imgs/image-20250420210952391.png?size=large 2x" data-title="imgs/image-20250420210952391.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>运行脚本画图后即可得到最后的flag：<code>flag{5879016c-301b-4840-95bf-be72b379b21e}</code></p>
 <h2 id="题目名称-bluetooth" class="heading-element">
-  <a href="#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-bluetooth" class="heading-mark"></a>题目名称 Bluetooth</h2><h2 id="题目名称-usb" class="heading-element">
+  <a href="#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-bluetooth" class="heading-mark"></a>题目名称 Bluetooth</h2><p>翻看流量包，发现有很多个从<code>remote()</code>发到<code>localhost()</code>的数据包</p>
+<p>并且仔细比较可以发现，长度为52的数据包，<code>payload</code>变化的数据主要在倒数第三位</p>
+<p><img loading="lazy" src="imgs/image-20250420222020969.png" alt="imgs/image-20250420222020969.png" srcset="imgs/image-20250420222020969.png?size=small, imgs/image-20250420222020969.png?size=medium 1.5x, imgs/image-20250420222020969.png?size=large 2x" data-title="imgs/image-20250420222020969.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>我们尝试使用<code>tshark</code>把长度为52的数据包的<code>payload</code>提取出来分析</p>
+<div class="highlight" id="id-3"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">tshark -r Bluetooth.pcapng -Y <span class="s1">&#39;(_ws.col.protocol == &#34;L2CAP&#34;) &amp;&amp; (frame.len == 52)&#39;</span> -T fields -e <span class="s1">&#39;btl2cap.payload&#39;</span> &gt; 1.txt</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img loading="lazy" src="imgs/image-20250420222254946.png" alt="imgs/image-20250420222254946.png" srcset="imgs/image-20250420222254946.png?size=small, imgs/image-20250420222254946.png?size=medium 1.5x, imgs/image-20250420222254946.png?size=large 2x" data-title="imgs/image-20250420222254946.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>然后我们在vscode中把倒数第三位的值单独提取出来分析，发现数据主要是由01248这几个数字构成的</p>
+<p>看到这几个数字，第一反应是云影密码，但是经过尝试发现解密后得不到有用的信息</p>
+<p>后面解密的步骤就需要一点脑洞了，需要对数字进行一些猜测和尝试</p>
+<p><img loading="lazy" src="imgs/image-20250420222336708.png" alt="imgs/image-20250420222336708.png" srcset="imgs/image-20250420222336708.png?size=small, imgs/image-20250420222336708.png?size=medium 1.5x, imgs/image-20250420222336708.png?size=large 2x" data-title="imgs/image-20250420222336708.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>当我们去除换行符，并且把0作为空格分隔符后</p>
+<p>可以发现数据就剩下了 <code>11</code> <code>111</code> <code>22</code> <code>222</code> <code>44</code> <code>444</code> <code>88</code> <code>888</code> 这几种</p>
+<blockquote>
+<p>因为一共就剩下了1248这四种数字，所以我们根据做题经验会往四进制转换上联想</p>
+</blockquote>
+<p>我们尝试在<code>CyberChef</code>中把两位三位的数字都替换成一位，并转换到四进制数上后可以得到如下数据</p>
+<blockquote>
+<p>Tips：四进制数的对应关系如下</p>
+<p>1 -&gt; 0</p>
+<p>2 -&gt; 1</p>
+<p>4 -&gt; 2</p>
+<p>8 -&gt; 3</p>
+</blockquote>
+<p><img loading="lazy" src="imgs/image-20250420222734487.png" alt="imgs/image-20250420222734487.png" srcset="imgs/image-20250420222734487.png?size=small, imgs/image-20250420222734487.png?size=medium 1.5x, imgs/image-20250420222734487.png?size=large 2x" data-title="imgs/image-20250420222734487.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<div class="highlight" id="id-4"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">121212301201121313230311120103100320030212011210121102310301030012111210023103100321030003110231120103200320031202310303031203210320031003121210030203131201030003201331</span></span></code></pre></td></tr></table>
+</div>
+</div><p>然后我们写一个脚本，两位为一组转成四进制可以得到 <code>6 6 6 12</code>，这刚刚好对应flag开头的<code>666c</code></p>
+<div class="highlight" id="id-5"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">tmp</span> <span class="o">=</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl"><span class="n">res</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">data</span> <span class="o">=</span> <span class="s2">&#34;121212301201121313230311120103100320030212011210121102310301030012111210023103100321030003110231120103200320031202310303031203210320031003121210030203131201030003201331&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">),</span><span class="mi">2</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">tmp</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">i</span><span class="o">+</span><span class="mi">2</span><span class="p">],</span><span class="mi">4</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">tmp</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># [6, 6, 6, 12, 6, 1, 6, 7, 7, 11, 3, 5, 6, 1, 3, 4, 3, 8, 3, 2, 6, 1, 6, 4, 6, 5, 2, 13, 3, 1, 3, 0, 6, 5, 6, 4, 2, 13, 3, 4, 3, 9, 3, 0, 3, 5, 2, 13, 6, 1, 3, 8, 3, 8, 3, 6, 2, 13, 3, 3, 3, 6, 3, 9, 3, 8, 3, 4, 3, 6, 6, 4, 3, 2, 3, 7, 6, 1, 3, 0, 3, 8, 7, 13]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">tmp</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">res</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&#34;</span><span class="si">{</span><span class="n">item</span><span class="si">:</span><span class="s2">x</span><span class="si">}</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 666c61677b35613438326164652d313065642d343930352d613838362d3336393834366432376130387d</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="nb">bytes</span><span class="o">.</span><span class="n">fromhex</span><span class="p">(</span><span class="n">res</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># b&#39;flag{5a482ade-10ed-4905-a886-369846d27a08}&#39;</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>因此我们再转为十六进制，然后转字符串即可得到最后的flag：<code>flag{5a482ade-10ed-4905-a886-369846d27a08}</code></p>
+<h2 id="题目名称-usb" class="heading-element">
   <a href="#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-usb" class="heading-mark"></a>题目名称 USB</h2></div><div class="post-footer" id="post-footer">
   <div class="post-info">
     <div class="post-info-line">
       <div class="post-info-mod">
-        <span title="Updated on 2025-04-20 20:45:35">Updated on 2025-04-20&nbsp;</span>
+        <span title="Updated on 2025-04-20 22:25:35">Updated on 2025-04-20&nbsp;</span>
       </div></div><div class="post-info-line">
         <div class="post-info-md"><span><a href="/posts/87bd986/index.md" title="Read Markdown" class="link-to-markdown">Read Markdown</a></span></div>
         <div class="post-info-share">
@@ -353,10 +429,11 @@
     </section>
   </div>
 
-  <div class="post-nav"><a href="/posts/c49ae8a/" class="post-nav-item" rel="prev" title="CTF-数据安全"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>CTF-数据安全</a>
-      <a href="/posts/e9c4fc7/" class="post-nav-item" rel="next" title="2025 UCSCCTF Misc Writeup">2025 UCSCCTF Misc Writeup<i class="fa-solid fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+  <div class="post-nav"><a href="/posts/e9c4fc7/" class="post-nav-item" rel="prev" title="2025 UCSCCTF Misc Writeup"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>2025 UCSCCTF Misc Writeup</a></div>
 </div>
-</article>
+<div id="comments"><div id="disqus_thread" class="comment"></div><noscript>
+        Please enable JavaScript to view the comments powered by <a href="https://disqus.com/?ref_noscript" rel="external nofollow noopener noreferrer">Disqus</a>.
+      </noscript></div></article>
 
 <aside class="toc" id="toc-auto" aria-label=""><h2 class="toc-title">Contents&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
   <div
@@ -367,8 +444,8 @@
             <span itemprop="copyrightYear">2024 - 2025</span><span class="author" itemprop="copyrightHolder">
               <a href="https://goodlunatic.github.io"target="_blank" rel="external nofollow noopener noreferrer">Lunatic</a></span></div></div>
   </footer></div><div class="widgets"><div class="fixed-buttons animate__faster d-none"><div class="fixed-button back-to-top" role="button" aria-label="Back to Top"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i><span class="variant-numeric d-none">0%</span>
-        </div></div><div id="mask"></div><noscript>
+        </div><div class="fixed-button view-comments d-none" role="button" aria-label="View Comments"><i class="fa-solid fa-comment fa-fw" aria-hidden="true"></i></div></div><div id="mask"></div><noscript>
     <div class="noscript-warning">Theme FixIt works best with JavaScript enabled.</div>
   </noscript>
-</div><script src="/lib/sharer/sharer.min.js" async defer></script><script src="/lib/typeit/index.umd.js" defer></script><script>window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":1000},"comment":{"enable":false},"data":{"typeit-header-desktop":"Lunatic BLOG","typeit-header-title-mobile":"Lunatic BLOG"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"typeit-header-desktop":["typeit-header-desktop"],"typeit-header-subtitle-desktop":["typeit-header-subtitle-desktop"],"typeit-header-subtitle-mobile":["typeit-header-subtitle-mobile"],"typeit-header-title-mobile":["typeit-header-title-mobile"]},"duration":-1,"loop":false,"speed":100}};</script><script src="/js/theme.min.js" defer></script></body>
+</div><script src="https://goodlunatic.disqus.com/embed.js" defer></script><script src="/lib/sharer/sharer.min.js" async defer></script><script src="/lib/typeit/index.umd.js" defer></script><script>window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":1000},"comment":{"enable":true,"expired":false},"data":{"typeit-header-desktop":"Lunatic BLOG","typeit-header-title-mobile":"Lunatic BLOG"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"typeit-header-desktop":["typeit-header-desktop"],"typeit-header-subtitle-desktop":["typeit-header-subtitle-desktop"],"typeit-header-subtitle-mobile":["typeit-header-subtitle-mobile"],"typeit-header-title-mobile":["typeit-header-title-mobile"]},"duration":-1,"loop":false,"speed":100}};</script><script src="/js/theme.min.js" defer></script></body>
 </html>
