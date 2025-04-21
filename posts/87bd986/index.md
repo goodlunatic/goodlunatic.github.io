@@ -198,6 +198,18 @@ print(long_to_bytes(int(data,4)))
 
 ## 题目名称 USB
 
+题面信息如下：
+
+&gt; 小明是一家新能源汽车制造厂的运维人员，每天的工作是在电脑前对数据进行运维，由于操作失误，导致系统出现故障。请根据维修人员捕获的流量包，分析当天小明执行了什么指令，导致的系统故障。
+&gt; 
+&gt; flag格式为：flag{执行指令}。
+&gt; 
+&gt; 例如执行的指令为ipconfig /all，则答案为flag{ipconfig /all}
+
+直接`CTF-NetA`一把梭了：`flag{whoami &amp;&amp; rm -rf /opt}`
+
+![](imgs/image-20250421185044893.png)
+
 
 
 ---
