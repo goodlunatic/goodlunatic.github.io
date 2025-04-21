@@ -234,71 +234,76 @@ with open(&#39;./result.txt&#39;,&#39;r&#39;) as f:
 Tips：十六位其实就是取32位的8-24位
 ```
 
-MD5 加密后的密文应该是 纯数字&#43;纯字符
+MD5 加密后的密文都是十六进制字符
 
-有些 MD5 的 HASH 值可以直接在 somd5 或者 cmd5 上查
-
-### python中str类型和byte类型：
-
-```bash
-\&gt;&gt;&gt; a = &#39;寒鸦小站&#39;
-\&gt;&gt;&gt; type(a)
-&lt;class &#39;str&#39;&gt;
-\&gt;&gt;&gt; b = a.encode()
-\&gt;&gt;&gt; b
-b&#39;\xe5\xaf\x92\xe9\xb8\xa6\xe5\xb0\x8f\xe7\xab\x99&#39;
-\&gt;&gt;&gt; type(b)
-&lt;class &#39;bytes&#39;&gt;
-```
+可以尝试在[somd5](https://www.somd5.com/)或者[CMD5](https://cmd5.com/)上反查MD5
 
 ### emoji-aes加密：
 
-密文由一大串emoji表情组成，解密需要密钥，例如
+密文由一大串emoji表情组成，解密需要密钥
 
-已知key：th1sisKey，直接使用在线网站解密即可，在线网站源码也可以下载到本地
+例如已知key：`th1sisKey`，直接使用[在线网站](https://aghorler.github.io/emoji-aes/)解密即可，也可以下载源码然后本地解密
 
 ```
 🙃💵🌿🎤🚪🌏🐎🥋🚫😆😍🔬👣🖐🌏😇🥋😇😊🍎🏹👌🌊☃🦓🌏🐅🥋🚨📮🐍🎈📮📂✅🐍⏩⌨🎈😍🌊😇🐍☺💧🥋🍌🎤🍍😇👁🦓😇🍍📮📂🎅😡🍵✖✉🏹⌨🍵🎤😆🍵🚹🏹🍎🚨ℹ☃👑🎤🚪💵😎😀😎🔬💵🦓🏹👉🦓✖😀🐘🔪⌨🎈🥋👌🍌🚹😂✉🍎🍌🏎👌🏹💵👌👁🎃🗒
 ```
 
-https://aghorler.github.io/emoji-aes/
-
 ### 词频分析：
 
-一堆文字，看着什么编码都不像的，可能是词频分析，用在线网站跑https://quipqiup.com/
+给一段字符串，看着什么编码都不像然后也没啥规律的，可能是词频爆破
+
+可以尝试用在线网站[quipquip](https://quipqiup.com/)进行词频爆破
+
+&gt; 这个的爆破原理就是，我们平常可读的字符串中，某些字母出现的频率是差不多的
+&gt; 
+&gt; 当我们在解某段密文时不知道具体单表替换的表，也可以尝试直接词频爆破
+
+例题1-2025SUCTF-SU_forensics
 
 ### 字频分析：
 
-用随波逐流直接分析
+直接用`随波逐流CTF编码工具`统计每个字母出现的次数就行
 
 ### 摩斯电码：
 
-```bash
-#第一种情况，只有.-或者只有01
+&gt; 从原理上来说，只要是三种字符构成的编码都有可能是摩斯电码
+
+用 `空格` 或者 `/` 做分隔符，然后字符可以用 `0和1` 或者 `.和-`
+
+下面举几个典型例子：
+
+```
+..-. .-.. .- --.  - .... .. ... ..--.- .. ... ..--.- - . ... - ..--.- ..-. .-.. .- --. 
 ```
 
 ```bash
-#第二种情况，加入/或者空格来替换换行符
 .--/./.-../-.-./---/--/./-/---/-./-.-/-.-./-/..-./--..--/-/...././.--./.-/.../.../.--/---/.-./-../../.../.----/-..../-.../-.--/-/./.../.-./.-/-./-../---/--/.-../-.--/--././-././.-./.-/-/./-../--..-
+```
+
+```
+# C替换为-, P替换为., D替换为空格即可
+CCPPDPCCCDCPDPPCDCPCPDCDPPCPDDCPCPDPCCPDCPPDCPPDPPCCPCDPCCCCDPPPDPPCCPCDCCDCCCCCDPPPCCDPPPDPD
 ```
 
 ### vigenere(维吉尼亚)密码：
 
-1.给了密文和Key
+1、给了密文和密钥：
 
-直接拉到cyberchef中解密即可
+可以用`cyberchef`或者[在线网站](https://ctf.bugku.com/tool/vigenere)解密
 
-2.给了密文，没给密钥，但是知道目标明文的格式
+2、给了密文，没给密钥：
 
-先用B神的脚本爆破出Key，然后再把这个Key放到cyberchef中解密
+可以尝试用[在线网站](https://www.guballa.de/vigenere-solver)爆破
 
-3.根据对照表，手搓密钥的前几位
+3、给了密文，没给密钥，但是知道明文的前几位：
+
+可以根据对照表，手搓密钥的前几位，说不定就找到规律直接解出来了
 
 ![vigenere](imgs/vigenere.png)
-4.Python代码解密/爆破维吉尼亚加密
+4、给了密钥字典，直接写脚本爆破
+
 ```python
 from pycipher import Vigenere
-
 
 cipher = &#34;rla xymijgpf ppsoto wq u nncwel ff tfqlgnxwzz sgnlwduzmy vcyg ib bhfbe u tnaxua ff satzmpibf vszqen eyvlatq cnzhk dk hfy mnciuzj ou s yygusfp bl dq e okcvpa hmsz vi wdimyfqqjqubzc hmpmbgxifbgi qs lciyaktb jf clntkspy drywuz wucfm&#34;
 
@@ -326,15 +331,17 @@ for line in lines:
 密钥：3 4 19 11
 ```
 
-### Rabbit密码：
+### Rabbit加密：
 
-已知密文和密钥，密文有点像base64编码的(可能有&#43;号)
+通常题目会提示是用`Rabbit加密`，然后密文通常以`U2FsdGVkX1`开头，其实就是`Salted`加盐了
+
+直接[在线网站](https://www.sojson.com/encrypt_rabbit.html)解密即可
 
 ### 云隐密码：
 
 特征是：密文只由01248组成
 
-用随波逐流或者CTFD中的脚本直接跑
+用`随波逐流CTF编码工具`解密或者CTFD中的脚本直接跑
 
 ### 曼彻斯特与差分曼彻斯特编码:
 
@@ -438,43 +445,35 @@ print(hex(int(flag, 2))[2:].upper())
 
 ### 社会主义核心价值观密码：
 
-解密网址：http://www.hiencode.com/cvencode.html
+密文由社会主义核心价值观种的词语构成
 
-公正民主公正文明公正和谐：abc
+直接用[在线网站](https://ctf.bugku.com/tool/cvecode)或者`随波逐流CTF编码工具`解密即可
 
-### outguess解密图片：
+当然也可以写Python脚本调用第三方模块解密
 
-在kali中下载outguess：outguess -k &#39;abc&#39; -r mmm.jpg -t flag.txt 
+### 音乐符号加密：
 
-outguess -k &#39;key&#39; -r 加密后的图片.jpg -t 明文.txt 
-
-### 盲文：
-
-使用https://www.qqxiuzi.cn/bianma/wenbenjiami.php?s=mangwen在线翻译
-
-### 文本加密为音乐符号：
-
-Tips：这里要注意，加密的密文一定是以=结尾的，有时候需要自己把=加上
+&gt; Tips：这里要注意，加密的密文一定是以 = 结尾的，有时候需要自己把=加上
 
 eg：♭♯♪‖¶♬♭♭♪♭‖‖♭♭♬‖♫♪‖♩♬‖♬♬♭♭♫‖♩♫‖♬♪♭♭♭‖¶∮‖‖‖‖♩♬‖♬♪‖♩♫♭♭♭♭♭§‖♩♩♭♭♫♭♭♭‖♬♭‖¶§♭♭♯‖♫∮‖♬¶‖¶∮‖♬♫‖♫♬‖♫♫§=
 
-直接用在线网站解密：https://www.qqxiuzi.cn/bianma/wenbenjiami.php?s=yinyue
+直接用在线网站解密即可：https://www.qqxiuzi.cn/bianma/wenbenjiami.php?s=yinyue
 
-敲击码：
+### 敲击码：
 
 ![敲击码](imgs/敲击码.jpeg)
-
-..... ../... ./... ./... ../ 
+```
 5,2   3,1  3,1  3,2 
-W    L   L   M
+ W     L    L    M
+```
 
-### Polybius密码(详见CTFwiki)
+### Polybius密码(波利比奥斯方针密码)
 
-类似于11，22，11，24这样的
+类似于`11，22，11，24`这样的
 
-去逗号改成空格，拉入随波逐流直接解密
+逗号改成空格，拉入随波逐流CTF编码工具直接解密即可
 
-### DES加密算法
+### DES加密
 
 例子：
 ```
@@ -482,21 +481,24 @@ W    L   L   M
 密钥：hristina
 ```
 
+直接用在线网站解密即可
+
 ![](imgs/image-20241105212634286.png)
 
 ### AES加密算法
 
-在线网站解密：
-1. https://tool.lmeee.com/jiami/aes
-2. https://www.sojson.com/encrypt_aes.html
+可以尝试用`CyberChef`或者在线网站解密：
+```
+https://tool.lmeee.com/jiami/aes
+https://www.sojson.com/encrypt_aes.html
+https://the-x.cn/cryptography/aes.aspx
+```
 
 #### AES-ECB(不需要IV)
 
-CyberChef解密AES-ECB时需要将IV设置为`\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00`
-
 如果 `key` 不足16字节可以尝试在后面补0
 
-#### AES-CBC(需要填写IV)
+#### AES-CBC(需要IV)
 
 &gt; Tips: CBC模式下key的长度必须是16bytes的整数倍，但是IV不一定
 
@@ -508,23 +510,48 @@ CyberChef解密AES-ECB时需要将IV设置为`\x00\x00\x00\x00\x00\x00\x00\x00\x
 
 ![](imgs/aes1.png)
 
-可以将密文和key拉入`CaptfEncoder-win-x64-1.3.0`解密
+也可以用`CaptfEncoder-win-x64-1.3.0`解密
 
 ![](imgs/aes2.png)
 
 ### 使用openssl进行加解密
+
 ```bash
-# 加密
+# ==================== 加密命令 ====================
 tar -czvf - flag | openssl des3 -salt -k th1sisKey -out ./flag.tar.gz
-# 解密
+# 功能：打包压缩文件并用3DES加密
+# 参数说明：
+#   tar: 
+#     -c 创建归档
+#     -z 使用gzip压缩 
+#     -v 显示过程
+#     -f - 输出到stdout
+#   openssl:
+#     des3 使用3DES算法
+#     -salt 添加随机盐值
+#     -k 密码(此处为th1sisKey)
+#     -out 输出文件
+
+# ==================== 解密命令 ==================== 
 openssl des3 -d -salt -k th1sisKey -in ./flag.tar.gz -out decrypted_file
+# 功能：解密3DES加密的文件
+# 参数说明：
+#   openssl:
+#     -d 解密模式
+#     -in 输入文件
+#     -out 输出文件
 ```
 
 ### 埃特巴什码(Atbash)
 
-类似于：(&#43;w)v&amp;LdG_FhgKhdFfhgahJfKcgcKdc_eeIJ_gFN
+例如下面这段密文
 
-拉入厨子直接解密
+```
+WZHXGU{5v0u98z95u79829y7z484z54066xy08u}
+DASCTF{5e0f98a95f79829b7a484a54066cb08f}
+```
+
+直接用`CyberChef`或者`随波逐流CTF编码工具`解密即可
 
 ```
 flag{ ==&gt; Atbash加密 ==&gt; UOZT{
@@ -589,7 +616,7 @@ DNA编码在线解密：https://earthsciweb.org/js/bio/dna-writer/
 
 ### Text Encoding Brute Force
 
-如果赛博厨子转完两次Hex后依然是乱码，可以用Text Encoding Brute Force爆破试试看
+如果赛博厨子转完两次Hex后依然是乱码，可以用`Text Encoding Brute Force`爆破试试看
 
 例子：红明谷杯2023——阿尼亚
 
@@ -597,27 +624,115 @@ DNA编码在线解密：https://earthsciweb.org/js/bio/dna-writer/
 
 正常的 Decabit编码 是十个字符一组的，如果不是十个一组，就很可能不是 Decabit编码
 
+```
 &#43;-&#43;-&#43;&#43;--&#43;- &#43;&#43;---&#43;-&#43;&#43;- -&#43;--&#43;&#43;-&#43;&#43;- &#43;--&#43;&#43;-&#43;&#43;-- --&#43;&#43;&#43;&#43;&#43;--- &#43;&#43;-&#43;&#43;---&#43;- &#43;&#43;&#43;-&#43;-&#43;--- &#43;-&#43;-&#43;---&#43;&#43; ---&#43;&#43;&#43;-&#43;&#43;- -&#43;--&#43;&#43;-&#43;&#43;- -&#43;--&#43;&#43;&#43;-&#43;- -&#43;--&#43;&#43;-&#43;&#43;- -&#43;--&#43;&#43;-&#43;&#43;- &#43;&#43;-&#43;-&#43;-&#43;-- -&#43;--&#43;&#43;&#43;-&#43;- &#43;&#43;-&#43;&#43;---&#43;- -&#43;&#43;&#43;&#43;---&#43;- -&#43;--&#43;&#43;-&#43;&#43;- &#43;&#43;-&#43;-&#43;-&#43;-- &#43;-&#43;&#43;&#43;---&#43;- &#43;&#43;&#43;-&#43;&#43;---- ---&#43;&#43;&#43;-&#43;&#43;- &#43;-&#43;-&#43;---&#43;&#43; &#43;&#43;-&#43;-&#43;-&#43;-- &#43;-&#43;-&#43;--&#43;&#43;- &#43;&#43;--&#43;--&#43;&#43;- -&#43;&#43;&#43;&#43;---&#43;- &#43;---&#43;&#43;&#43;-&#43;- &#43;&#43;-&#43;-&#43;-&#43;-- -&#43;&#43;&#43;&#43;---&#43;- -&#43;--&#43;&#43;&#43;-&#43;- &#43;--&#43;-&#43;-&#43;&#43;- &#43;&#43;&#43;-&#43;-&#43;--- &#43;-&#43;&#43;&#43;---&#43;- -&#43;--&#43;-&#43;&#43;&#43;- -&#43;--&#43;&#43;-&#43;&#43;- ---&#43;&#43;&#43;-&#43;&#43;- &#43;&#43;&#43;&#43;----&#43;- -&#43;&#43;&#43;&#43;---&#43;- -&#43;--&#43;&#43;&#43;-&#43;- -&#43;--&#43;&#43;-&#43;&#43;- ----&#43;&#43;&#43;&#43;&#43;-
+```
 
 直接使用 [在线网站](https://www.dcode.fr/decabit-code) 解密即可
 
-如果不是Decabit编码，可以试试看把&#43;-分别用01替换 [2023 楚慧杯-Easy_zip]
+如果不是Decabit编码，可以试试看把&#43;-分别用01替换 (例题1-2023楚慧杯-Easy_zip）
 
 ### 仿射密码
 
-有两个key，key-a为必须是(1,3,5,7,9,11,15,17,19,21,23,25)中的一个,key-b是0~25的数字
+密钥有两个参数a和b，a为必须是`1,3,5,7,9,11,15,17,19,21,23,25`中的一个(与26互质)
 
-可以使用在线网站[CTF在线工具-在线仿射密码加密|在线仿射密码解密|仿射密码算法|Affine Cipher (hiencode.com)](http://www.hiencode.com/affine.html)或者随波逐流解密
+b可以是0到25之间的任意整数
+
+可以使用[在线网站](http://www.hiencode.com/affine.html)或者`随波逐流CTF编码工具`解密
 
 ```
 gezx{j13p5oznp_1t_z_900y_k3z771h_k001}
-key-a=17	key-b=77
+密钥：a=17 b=77
 flag{w13e5hake_1s_a_900d_t3a771c_t001}
 ```
 
-### BrainFuck编码
+### Brainfuck和Ook!编码
 
-可以直接使用在线网站解码，但是flag可能会藏在内存中然后被删去导致无法输出flag，因此可以用下面这个代码输出之前放在内存中的flag
+可以直接用[在线网站](https://www.splitbrain.org/services/ook)解密
+
+![](imgs/image-20250421200218788.png)
+
+#### Brainfuck
+
+```
+&#43;&#43;&#43;&#43;&#43; &#43;&#43;&#43;&#43;&#43; [-&gt;&#43;&#43; &#43;&#43;&#43;&#43;&#43; &#43;&#43;&#43;&lt;] &gt;&#43;&#43;.&#43; &#43;&#43;&#43;&#43;&#43; .&lt;&#43;&#43;&#43; [-&gt;-- -&lt;]&gt;- -.&#43;&#43;&#43; &#43;&#43;&#43;.&lt;
+&#43;&#43;&#43;&#43;[ -&gt;&#43;&#43;&#43; &#43;&lt;]&gt;&#43; &#43;&#43;&#43;.- ----- -.&lt;&#43;&#43; &#43;[-&gt;- --&lt;]&gt; ---.&#43; .&lt;&#43;&#43;&#43; [-&gt;&#43;&#43; &#43;&lt;]&gt;&#43;
+.&lt;&#43;&#43;&#43; &#43;[-&gt;- ---&lt;] &gt;---- .&lt;&#43;&#43;&#43; [-&gt;&#43;&#43; &#43;&lt;]&gt;&#43; .&lt;&#43;&#43;&#43; [-&gt;&#43;&#43; &#43;&lt;]&gt;&#43; .&lt;&#43;&#43;&#43; &#43;[-&gt;-
+---&lt;] &gt;---- .&lt;&#43;&#43;&#43; &#43;[-&gt;&#43; &#43;&#43;&#43;&lt;] &gt;&#43;&#43;&#43;&#43; &#43;.&lt;&#43;&#43; &#43;[-&gt;- --&lt;]&gt; ----- -.&lt;&#43;&#43; &#43;[-&gt;&#43;
+&#43;&#43;&lt;]&gt; &#43;&#43;&#43;&#43;&#43; .&#43;.&lt;&#43; &#43;&#43;&#43;[- &gt;---- &lt;]&gt;-- ---.&#43; &#43;&#43;&#43;&#43;&#43; &#43;.&#43;&#43;&#43; &#43;&#43;&#43;.&lt; &#43;&#43;&#43;[- &gt;---&lt;
+]&gt;--. &#43;&#43;&#43;&#43;&#43; &#43;.&lt;&#43;&#43; &#43;&#43;[-&gt; &#43;&#43;&#43;&#43;&lt; ]&gt;&#43;&#43;&#43; &#43;&#43;&#43;.&lt; 
+```
+
+#### Ook!
+
+```
+Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook.
+Ook. Ook. Ook. Ook. Ook. Ook! Ook? Ook! Ook! Ook. Ook? Ook. Ook. Ook. Ook.
+Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook.
+Ook. Ook? Ook. Ook? Ook! Ook. Ook? Ook. Ook. Ook. Ook. Ook! Ook. Ook. Ook.
+Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook! Ook. Ook? Ook. Ook.
+Ook. Ook. Ook. Ook. Ook. Ook! Ook? Ook! Ook! Ook. Ook? Ook! Ook! Ook! Ook!
+Ook! Ook! Ook? Ook. Ook? Ook! Ook. Ook? Ook! Ook! Ook! Ook! Ook! Ook. Ook.
+Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook! Ook. Ook? Ook.
+Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook! Ook? Ook! Ook! Ook. Ook? Ook.
+Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook? Ook. Ook? Ook! Ook. Ook? Ook. Ook.
+Ook. Ook. Ook. Ook. Ook. Ook. Ook! Ook. Ook! Ook! Ook! Ook! Ook! Ook! Ook!
+Ook! Ook! Ook! Ook! Ook! Ook! Ook! Ook! Ook. Ook? Ook. Ook. Ook. Ook. Ook.
+Ook. Ook. Ook! Ook? Ook! Ook! Ook. Ook? Ook! Ook! Ook! Ook! Ook! Ook! Ook?
+Ook. Ook? Ook! Ook. Ook? Ook! Ook! Ook! Ook! Ook! Ook! Ook! Ook. Ook. Ook.
+Ook! Ook. Ook? Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook! Ook? Ook! Ook! Ook.
+Ook? Ook. Ook. Ook. Ook. Ook. Ook. Ook? Ook. Ook? Ook! Ook. Ook? Ook. Ook.
+Ook! Ook. Ook? Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook! Ook? Ook!
+Ook! Ook. Ook? Ook! Ook! Ook! Ook! Ook! Ook! Ook! Ook! Ook? Ook. Ook? Ook!
+Ook. Ook? Ook! Ook! Ook! Ook! Ook! Ook! Ook! Ook! Ook! Ook. Ook? Ook. Ook.
+Ook. Ook. Ook. Ook. Ook. Ook! Ook? Ook! Ook! Ook. Ook? Ook. Ook. Ook. Ook.
+Ook. Ook. Ook? Ook. Ook? Ook! Ook. Ook? Ook. Ook. Ook! Ook. Ook? Ook. Ook.
+Ook. Ook. Ook. Ook. Ook. Ook! Ook? Ook! Ook! Ook. Ook? Ook. Ook. Ook. Ook.
+Ook. Ook. Ook? Ook. Ook? Ook! Ook. Ook? Ook. Ook. Ook! Ook. Ook? Ook. Ook.
+Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook! Ook? Ook! Ook! Ook. Ook? Ook! Ook!
+Ook! Ook! Ook! Ook! Ook! Ook! Ook? Ook. Ook? Ook! Ook. Ook? Ook! Ook! Ook!
+Ook! Ook! Ook! Ook! Ook! Ook! Ook. Ook? Ook. Ook. Ook. Ook. Ook. Ook. Ook.
+Ook. Ook. Ook! Ook? Ook! Ook! Ook. Ook? Ook. Ook. Ook. Ook. Ook. Ook. Ook.
+Ook. Ook? Ook. Ook? Ook! Ook. Ook? Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook.
+Ook. Ook. Ook! Ook. Ook? Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook! Ook? Ook!
+Ook! Ook. Ook? Ook! Ook! Ook! Ook! Ook! Ook! Ook? Ook. Ook? Ook! Ook. Ook?
+Ook! Ook! Ook! Ook! Ook! Ook! Ook! Ook! Ook! Ook! Ook! Ook! Ook! Ook. Ook?
+Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook! Ook? Ook! Ook! Ook. Ook? Ook. Ook.
+Ook. Ook. Ook. Ook. Ook? Ook. Ook? Ook! Ook. Ook? Ook. Ook. Ook. Ook. Ook.
+Ook. Ook. Ook. Ook. Ook. Ook! Ook. Ook. Ook. Ook! Ook. Ook? Ook. Ook. Ook.
+Ook. Ook. Ook. Ook. Ook. Ook. Ook! Ook? Ook! Ook! Ook. Ook? Ook! Ook! Ook!
+Ook! Ook! Ook! Ook! Ook! Ook? Ook. Ook? Ook! Ook. Ook? Ook! Ook! Ook! Ook!
+Ook! Ook! Ook! Ook! Ook! Ook! Ook! Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook.
+Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook! Ook. Ook. Ook. Ook. Ook. Ook. Ook.
+Ook. Ook. Ook. Ook. Ook. Ook. Ook! Ook. Ook? Ook. Ook. Ook. Ook. Ook. Ook.
+Ook. Ook! Ook? Ook! Ook! Ook. Ook? Ook! Ook! Ook! Ook! Ook! Ook! Ook? Ook.
+Ook? Ook! Ook. Ook? Ook! Ook! Ook! Ook! Ook! Ook. Ook. Ook. Ook. Ook. Ook.
+Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook! Ook. Ook? Ook. Ook. Ook. Ook. Ook.
+Ook. Ook. Ook. Ook. Ook! Ook? Ook! Ook! Ook. Ook? Ook. Ook. Ook. Ook. Ook.
+Ook. Ook. Ook. Ook? Ook. Ook? Ook! Ook. Ook? Ook. Ook. Ook. Ook. Ook. Ook.
+Ook. Ook. Ook. Ook. Ook. Ook. Ook! Ook. Ook? Ook. 
+```
+
+#### short Ook!
+
+```
+..... ..... ..... ..... !?!!. ?.... ..... ..... ..... .?.?! .?... .!...
+..... ..... !.?.. ..... !?!!. ?!!!! !!?.? !.?!! !!!.. ..... ..... .!.?.
+..... ...!? !!.?. ..... ..?.? !.?.. ..... .!.!! !!!!! !!!!! !!!.? .....
+..!?! !.?!! !!!!? .?!.? !!!!! !!... !.?.. ..... !?!!. ?.... ..?.? !.?..
+!.?.. ..... ..!?! !.?!! !!!!! !?.?! .?!!! !!!!! !.?.. ..... !?!!. ?....
+..?.? !.?.. !.?.. ..... !?!!. ?.... ..?.? !.?.. !.?.. ..... ..!?! !.?!!
+!!!!! !?.?! .?!!! !!!!! !.?.. ..... ..!?! !.?.. ..... .?.?! .?... .....
+..!.? ..... ..!?! !.?!! !!!!? .?!.? !!!!! !!!!! !!!.? ..... ..!?! !.?..
+....? .?!.? ..... ..... !...! .?... ..... .!?!! .?!!! !!!!! ?.?!. ?!!!!
+!!!!! !!... ..... ..... ..!.. ..... ..... .!.?. ..... .!?!! .?!!! !!!?.
+?!.?! !!!!. ..... ..... ..!.? ..... ....! ?!!.? ..... ...?. ?!.?. .....
+..... .!.?. 
+```
+
+有时候flag可能会被删去，导致直接在线网站解密看不到flag，需要我们到内存中查看被删除的内容
+
+因此可以用下面这个代码输出之前放在内存中的内容
 
 ```c
 #define  _CRT_SECURE_NO_WARNINGS
@@ -699,7 +814,9 @@ int main()
 
 ### Gronsfeld密码
 
-可以直接使用这个在线网站解密&amp;爆破：https://www.boxentriq.com/code-breaking/gronsfeld-cipher
+1、可以直接使用这个[在线网站](https://www.boxentriq.com/code-breaking/gronsfeld-cipher)解密或爆破
+
+2、也可以写Python脚本解密
 
 ```python
 # 解密脚本
@@ -714,7 +831,7 @@ print(secret)
 
 ### UUencode编码
 
-看起来有点像base85，直接使用在线网站解密即可
+看起来有点像base85编码，可以直接使用[在线网站](https://ctf.bugku.com/tool/uuencode)或者`随波逐流CTF编码工具`解密
 
 ```
 =8S4U,3DR8SDY,C`S-F5F-C(S,S&lt;R-C`Q9F8S87T`
@@ -723,44 +840,70 @@ print(secret)
 
 ### AAencode编码
 
+可以直接使用[在线网站](https://ctf.bugku.com/tool/uuencode)或者`随波逐流CTF编码工具`解密
+
 ### XXencode编码
 
-随波逐流直接解密即可 [2023 浙江省赛决赛]
+可以直接使用[在线网站](https://ctf.bugku.com/tool/uuencode)或者`随波逐流CTF编码工具`解密
+
+例题1-2023浙江省赛决赛-签到
 
 ### 无字天书(whitespace)或者snow隐写
 
 一个文件打开都是空白字符
 
-可以使用在线网站解密：https://vii5ard.github.io/whitespace/ 复制进去直接run即可
+whitespace可以使用[在线网站](https://vii5ard.github.io/whitespace/)解密，复制进去直接run即可
 
-snow隐写，到snowdos32工具目录下运行 SNOW.EXE -C -p password flag.txt 命令即可
+snow隐写可以下载源码，然后到根目录下运行 `SNOW.EXE -C -p password flag.txt` 命令即可
+
+&gt; Tips：snow隐写有时候可以不全是空白字符，然后也可以无密码，如果懒得敲命令行可以直接用下面这个工具
+
+![](imgs/image-20250421200534255.png)
 
 ### 零宽字符隐写
 
-这个建议直接用B神的 PuzzleSolver 一把梭了
+可以用在线网站解密，也可以用`PuzzleSolver`解密
+
+![](imgs/image-20250421200734831.png)
+
+```
+# 几个解零宽比较好用的在线网站，也可以下载源码到本地
+https://www.wetools.com/text-cloaking
+https://330k.github.io/misc_tools/unicode_steganography.html
+https://www.mzy0.com/ctftools/zerowidth1/
+https://yuanfux.github.io/zero-width-web/
+```
 
 
 ### 中文电报（中文电码）
 
-类似于下面这种四位数一组的编码，直接在线网站解码即可
+类似于下面这种四位数一组的编码，直接在线网站或`随波逐流CTF编码工具`解码即可
 
+```
 5337 5337 2448 2448 0001 2448 0001 2161 1721 1869 6671 0008 3296 4430 0001 3945 0260 3945 1869 4574 5337 0344 2448 0037 5337 5337 0260 0668 5337 6671 0008 3296 1869 6671 0008 3296 1869 2161 1721 
+```
+
+```
+艾艾斯斯一斯一括弧恩达不溜科一由偶由恩第艾克斯之艾艾偶可艾达不溜恩达不溜恩括弧
+ISCC{NWQOUNDXJLKWNWN}
+```
 
 ### Quote-Printable编码
 
-类似于下面这样的编码，直接使用 [在线网站](https://try8.cn/tool/code/qp) 解密即可
+类似于下面这样的编码，直接使用 [在线网站](https://try8.cn/tool/code/qp) 或`随波逐流CTF编码工具`解密即可
 
+```
 flag{ichunqiu_=E6=8A=80=E6=9C=AF=E6=9C=89=E6=B8=A9=E5=BA=A6}
-
 flag{ichunqiu_技术有温度}
+```
 
 ### Unicode编码
 
 这个编码有很多种格式，比如`&#43;U、\u、\x、&amp;#`啥的
 
-![](imgs/image-20241101155218913.png)
-
 可以使用这个在线网站解码：https://r12a.github.io/app-conversion/
+
+![](imgs/image-20241101155218913.png)
 
 ### 中文ascii码
 
@@ -768,7 +911,7 @@ flag{ichunqiu_技术有温度}
 27880 30693 25915 21892 38450 23454 39564 23460 21457 36865 112 108 98 99 116 102 33719 21462 21069 27573 102 108 97 103 20851 27880 79 110 101 45 70 111 120 23433 20840 22242 38431 22238 22797 112 108 98 99 116 102 33719 21462 21518 27573 102 108 97 103
 ```
 
-加上&amp;#和分号，直接 CyberChef 或者 [在线网站](https://www.xuhuhu.com/beautify/ascii/) 解密即可
+加上&amp;#和分号，直接`CyberChef`或者 [在线网站](https://www.xuhuhu.com/beautify/ascii/) 解密即可
 
 ```
 &amp;#27880;&amp;#30693;&amp;#25915;&amp;#21892;&amp;#38450;&amp;#23454;&amp;#39564;&amp;#23460;&amp;#21457;&amp;#36865;&amp;#112;&amp;#108;&amp;#98;&amp;#99;&amp;#116;&amp;#102;&amp;#33719;&amp;#21462;&amp;#21069;&amp;#27573;&amp;#102;&amp;#108;&amp;#97;&amp;#103;&amp;#20851;&amp;#27880;&amp;#79;&amp;#110;&amp;#101;&amp;#45;&amp;#70;&amp;#111;&amp;#120;&amp;#23433;&amp;#20840;&amp;#22242;&amp;#38431;&amp;#22238;&amp;#22797;&amp;#112;&amp;#108;&amp;#98;&amp;#99;&amp;#116;&amp;#102;&amp;#33719;&amp;#21462;&amp;#21518;&amp;#27573;&amp;#102;&amp;#108;&amp;#97;&amp;#103;
@@ -776,13 +919,15 @@ flag{ichunqiu_技术有温度}
 
 ### 培根密码
 
-由 a、b 或者 A、B 或者 0、1 组成的密文，密文中只有两种字符，可以直接使用 随波逐流 解密
+密文由`ab`或者`AB`或者`01`组成，密文中只有两种字符，可以直接使用`随波逐流CTF编码工具`解密
 
-Tips：CyberChef 的培根密码解密可能会有点问题，这里建议用随波逐流解密
+&gt; Tips：CyberChef 的培根密码解密可能会有点问题，这里建议用随波逐流解密
 
 ### 锟斤拷
 
-这个东西的成因是  Unicode 的替换字符（Replacement Character，�）于 UTF-8 编码下的结果 EF BF BD 重复，在 GBK 编码中被解释为汉字 “锟斤拷”（EF BF BD EF BF BD）
+这个东西的成因是`Unicode`的替换字符与`UTF-8`编码下的结果`EF BF BD`重复
+
+然后这几个字符在`GBK`编码中被解码为汉字 “锟斤拷”（EF BF BD EF BF BD）
 
 ```python
 import os
@@ -804,7 +949,9 @@ if a == &#34;2&#34;:
     os.system(&#34;pause&#34;)
 ```
 
-### 电脑键盘坐标密码
+### 电脑键盘密码
+
+#### 电脑键盘坐标密码
 
 ```
   1 2 3 4 5 6 7 8 9 0
@@ -820,7 +967,7 @@ flag{11 21 31 18 27 33 34}
 flag{QAZIJCV}
 ```
 
-### 电脑键盘QWE加密
+#### 电脑键盘QWE加密
 
 ![](imgs/image-20250331164724999.jpeg)
 
@@ -829,8 +976,39 @@ flag{QAZIJCV}
 明文：ecbkeyistlkdnngfrqfmfkfm
 ```
 
-### 手机九宫格键盘密码
-#### 第一种手机键盘密码
+#### 电脑键盘位移加密
+
+```
+&amp;&amp;&amp;* &amp;&amp;&amp;!! %%%!! @@^^* %%# ^^!!( ##* $$!!^^^%%
+思路：符号代表了位置，重复的次数代表了键盘上，向下移动的格数。&amp;&amp;&amp;就代表了字母M，而*则代表字母I
+mi ma ba shi ge hao di fang
+```
+
+### 手机键盘密码
+
+#### 26键键盘密码
+
+字母对应上档的数字
+
+```
+ooo yyy ii w uuu ee iii ee uuu ooo r yyy yyy e
+999 666 88 2 777 33 888 33 777 999 4 666 666 3
+```
+
+![](imgs/image-20250421202022903.jpeg)
+
+然后数字对应九键上的按键，出现次数对应第几个字母
+```
+999 666 88 2 777 33 888 33 777 999 4 666 666 3
+ y   o  u  a  r  e   v   e  r  y   g  o   o  d
+```
+
+![](imgs/image-20250421202056717.jpeg)
+
+
+#### 九宫格键盘密码
+
+##### 第一种
 
 参考链接：[https://blog.csdn.net/qq_55011640/article/details/123626280](https://blog.csdn.net/qq_55011640/article/details/123626280)
 
@@ -854,11 +1032,14 @@ flag{QAZIJCV}
 | 52  |  k  | 94  |  z  |
 | 53  |  l  |     |     |
 
-下面举个栗子就理解了：
-82  73  42  31  22  31  33  41  32
-U     R    H   D    B     D   F    G    E
+举个栗子就理解了：
 
-#### 第二种键盘密码
+```
+82  73  42  31  22  31  33  41  32
+ U   R   H   D   B   D   F   G   E
+```
+
+##### 第二种
 
 仔细看看就会发现其实和上面那种是一样的，就是这种情况下是用数字出现的次数表示方格中的位置
 
@@ -903,34 +1084,30 @@ U     R    H   D    B     D   F    G    E
 
 ![](imgs/image-20241113151902536.png)
 
-例题-2023台州市赛初赛 Black Mamba
+例题-2023台州市赛初赛-Black Mamba
 
-### 棋盘密码((ADFGVX,ADFGX,Polybius)
+### 棋盘密码(ADFGVX,ADFGX,Polybius)
 
 ![](imgs/image-20241018145022295.png)
 
 直接使用CaptfEncoder或者随波逐流等工具输入密文和密钥解密即可
 ![](imgs/image-20241018145101804.png)
 
-ADFGVX密码 默认棋盘：ph0qg64mea1yl2nofdxkr3cvs5zw7bj9uti8 默认密钥：german
-ADFGX密码 默认棋盘：phqgmeaynofdxkrcvszwbutil 默认密钥：german
-波利比奥斯方阵密码 密钥：随机 默认密文字符：ABCDE
+ADFGVX密码 默认棋盘：`ph0qg64mea1yl2nofdxkr3cvs5zw7bj9uti8` 默认密钥：`german`
 
-### 福尔摩斯密码
+ADFGX密码 默认棋盘：`phqgmeaynofdxkrcvszwbutil` 默认密钥：`german`
 
-```
-·-· ·-· ·-· ·-· ·-· ·-· ·
-```
-
-直接网上查找福尔摩斯密码对照表即可
- flag{RRRRRRE}
+波利比奥斯方阵密码 密钥：随机 默认密文字符：`ABCDE`
 
 ### 利用编程代码画图
 
-1. LOGO编程语言【例题-\[RCTF2019\]draw 】
-	在线编译器：https://www.calormen.com/jslogo/
-2. CFRS编程语言【例题-2024宁波市赛初赛 Misc2】
-	在线画图网站：https://susam.net/cfrs.html
+1、LOGO编程语言【例题-RCTF2019-draw】
+
+在线编译器：https://www.calormen.com/jslogo/
+
+2、CFRS编程语言【例题-2024宁波市赛初赛-Misc2】
+
+在线画图网站：https://susam.net/cfrs.html
 
 ### 通过拼音和声调进行编码
 
@@ -972,7 +1149,7 @@ if __name__ == &#39;__main__&#39;:
 
 ```
 王夫 井工 夫口 由中人 井中 夫夫 由中大
-67   84   70   123   82   77   125
+ 67  84  70   123   82  77   125
 ```
 
 ### 简/繁体汉字笔画编码
@@ -1047,10 +1224,9 @@ print(ddd)
 
 ### Twitter Secret Messages
 
-特点就是密文中有很多Unicode字符，直接用在线网站解密即可：https://holloway.nz/steg/
+特点就是密文中有很多`Unicode`字符，直接用在线网站解密即可：https://holloway.nz/steg/
 
 ![](imgs/image-20250307145735098.png)
-
 
 ### 盲文
 
@@ -1060,6 +1236,14 @@ print(ddd)
 ### 瓦坎达文字对照表
 
 ![](imgs/image-20250315123245293.png)
+
+### 喜羊羊与灰太狼-羊文对照表
+
+![](imgs/image-20250421190228589.png)
+
+### 旗语
+
+![](imgs/image-20250421203306482.png)
 
 ## Misc——流量分析
 
@@ -1078,19 +1262,21 @@ print(ddd)
 
 #### 1、查看图片属性的详细信息(可能关键信息就在里面)
 
-#### 2、拉入010，查看文件头尾，可能会有不同类型文件文件头混用
+#### 2、拉入010，查看文件头尾
 
 #### 3、foremost 或者 binwalk
 
-如果 foremost 没有提取出东西，可以用 binwalk 试一下，可能 binwalk可以提取出东西
+如果`foremost`没有提取出东西，可以用`binwalk`试一下，可能`binwalk`可以提取出东西
 
-例题 - i春秋 CTF Misc class10
+例题-i春秋CTF-Misc-class10
 
 #### 4、盲水印隐写(可能是一张图片或者两张图片)
 
+可以直接用`PuzzleSolver`处理
+
 **一张图片的情况**
 
-可以使用 隐形水印工具V1.2 或者 WaterMark 来提取水印
+可以使用`隐形水印工具V1.2`或者`WaterMark`工具来提取水印
 
 ![](imgs/bw1.png)
 
@@ -1117,7 +1303,7 @@ Tips:这里还会出现FFT（傅里叶盲水印）:直接运行CTFD中的FFT.py
 
 (2)使用在线网站分解：https://tu.sioe.cn/gj/fenjie/
 
-(3)用py脚本跑
+(3)用Python脚本跑
 
 ```python
 import os
@@ -1132,29 +1318,17 @@ for i in FILE_NAME:
 im.show()
 ```
 
-#### 6、像素点合成
-
-注：Linux wc命令用于计算字数。
-
--l或–lines 显示行数。
-
--w或–words 只显示字数。
-
--c或–bytes或–chars 只显示Bytes数。
-
-可以改个标题后用在线网站将txt转换为ppm文件
-
-#### 7、Image conbiner(两张图片)
+#### 6、Image conbiner(两张图片)
 
  两张图片可能有部分残缺（可以互补）
 
- 给了两张图片时，用Stegsolve.jar，打开其中一张，
+ 给了两张图片时，用`Stegsolve`打开其中一张，
 
- 然后再Analyze-Image conbiner打开另一张图片
+ 然后再`Analyze`-`Image conbiner`打开另一张图片
 
-还有可能是给了两张二维码，需要两个二维码每个像素亦或，直接用CTFD中的像素亦或脚本即可
+还有可能是给了两张二维码，需要两个二维码每个像素亦或
 
-#### 8、OurSecret隐写(可以无密码)
+#### 7、OurSecret隐写(可以无密码)
 
 拉入OurSecret，输入密码(也可以无密码)解密，得到隐藏文件
 
@@ -1168,7 +1342,7 @@ C1 78 72 0F 88 DD DC 34 2B 4E 7D 31 7F B5 E8 70
 
 ![](imgs/image-20250312191643162.png)
 
-#### 9、拼图题
+#### 8、拼图题
 
 **碎图片合成一张图片**
 
@@ -1218,7 +1392,7 @@ gaps --image=flag.jpg --generations=50 --population=180 --size=125 --verbose
 --verbose 实时显示
 ```
 
-#### 10、提取图中等距像素点/近邻法缩放图片
+#### 9、提取图中等距像素点/近邻法缩放图片
 参考链接：
 
 https://www.bilibili.com/video/BV1Lf4y1r7dZ/?spm_id_from=333.999.0.0
@@ -1250,27 +1424,19 @@ Tips:在PS中按F8就可以看到每个像素点的具体坐标了
 
 ![](imgs/image-20241120172043964.png)
 
-#### 11、pixeljihad（有密码）
+#### 10、pixeljihad（有密码）
 
 直接使用在线网站解密即可：[PixelJihad (sekao.net)](https://sekao.net/pixeljihad/)
 
-#### 12、隐写文本可能藏在原图片和隐写文件的中间
+#### 11、隐写文本可能藏在原图片和隐写文件的中间
 
-直接在010中搜索IEND，然后查看后面有没有额外内容即可
+直接在010中运行对应文件类型的模板，依次查看文件头尾有无额外内容即可
 
-#### 13、silenteye隐写
-
-特征：放大图像后会有行列不对齐的小灰块
-
-直接用 silenteye 打开输入密钥decode即可，默认密钥是 silenteye
-
-#### 14、图片报错改宽高后图片无变化，可以再 foremost 一下
-
-#### 15、DeEgger Embedder隐写
+#### 12、DeEgger Embedder隐写
 
 可以直接使用 DeEgger Embedder 工具 extract files
 
-#### 16、flag可能藏在 exif 中
+#### 13、flag可能藏在 exif 中
 
 直接在 WSL 中输入以下命令查看即可，如果偷懒也可以直接使用 破空 flag 查找工具 进行查找
 
@@ -1278,7 +1444,7 @@ Tips:在PS中按F8就可以看到每个像素点的具体坐标了
 exiftool 3.jpg
 ```
 
-#### 17、给了两张图片，flag藏在每行不同像素的个数中
+#### 14、给了两张图片，flag藏在每行不同像素的个数中
 
 例题1-2023羊城杯初赛-两支老虎
 
@@ -1320,7 +1486,7 @@ for y in range(heigth1):
 # DASCTF{tWo_t1gers_rUn_f@st}
 ```
 
-#### 18、两张图片，用StegSolve中的Image Conbiner合成为一张bmp
+#### 15、两张图片，用StegSolve中的Image Conbiner合成为一张bmp
 
 ![](imgs/image-20241106154249826.png)
 
@@ -1328,9 +1494,9 @@ for y in range(heigth1):
 
 ![](imgs/image-20241106154358962.png)
 
-#### 19、图片多个通道存在LSB隐写，StegSolve中把背景颜色相同的勾选上
+#### 16、图片多个通道存在LSB隐写，StegSolve中把背景颜色相同的勾选上
 
-#### 20、把小说藏进图片
+#### 17、把小说藏进图片
 
 参考链接：https://www.bilibili.com/video/BV1Ai4y1V7rg/?spm_id_from=333.999.0.0&amp;vd_source=31399c09aa0c93655468bde7b13fcc03
 
@@ -1360,7 +1526,7 @@ res = bytes(array(Image.open(&#39;1.bmp&#39;))[:, :, ::2].flatten()).rstrip(b&#3
 print(res)
 ```
 
-#### 21、Arnold猫脸变换
+#### 18、Arnold猫脸变换
 
 参考链接：https://1cepeak.cn/post/arnold/
 
@@ -1472,7 +1638,7 @@ if __name__ == &#34;__main__&#34;:
     cv2.imwrite(&#39;flag.png&#39;,decode_img)
 ```
 
-#### 22、二进制数据转图片
+#### 19、二进制数据转图片
 
 ```python
 import os
@@ -1500,7 +1666,7 @@ for i in range(sqrt_len, 0, -1):
         inverted_img.save(f&#34;pic_out/{width}x{height}_inverted.png&#34;)
 ```
 
-#### 23、 脚本提取LSB数据并分析
+#### 20、 脚本提取LSB数据并分析
 
 ```python
 def extract_lsb():
@@ -1512,7 +1678,7 @@ def extract_lsb():
     print(lsb_data)
 ```
 
-#### 23、像素点RGB值转图片
+#### 21、像素点RGB值转图片
 
 题目提供了类似如下的数据：
 
@@ -1565,7 +1731,7 @@ for i in range(sqrt_length, 0, -1):
             print(f&#34;无法重塑为 {rows} 行, {cols} 列: {e}&#34;)
 ```
 
-#### 24、图片套娃
+#### 22、图片套娃
 
 图片的每个像素的RGB值其实都是另一张图片的字节数据
 
@@ -1635,7 +1801,7 @@ if __name__ == &#34;__main__&#34;:
 运行以上脚本循环485次后即可得到flag
 
 ![](imgs/image-20250324153842745.png)
-#### 25、Java-BlindWatermark
+#### 23、Java-BlindWatermark
 
 1、直接用`Byxs20`写的`PuzzleSolver`一把梭
 
@@ -1645,7 +1811,7 @@ if __name__ == &#34;__main__&#34;:
 java -jar .\BlindWatermark-v0.0.3-windows-x86_64.jar decode -c .\password.png output.png
 ```
 
-#### 26、在线网站一把梭
+#### 24、在线网站一把梭
 
 &gt; 这种情况常常发生在某些Misc出题人水平不够，图片隐写道行不够的情况
 
@@ -1656,38 +1822,46 @@ https://www.a.tools/Tool.php?Id=100
 
 ### PNG思路
 
-####  1、CRC错误(不能乱改)，改宽高，17~20是宽，21~24是高(可用Pictools脚本快速爆破)
+#### 1、PNG图片宽高被篡改
 
-#### 2、LSB(最低有效位)隐写:
+010打开图片改宽高即可，17~20字节是宽，21~24字节是高
+
+当然也可以用老铜匠的脚本直接爆破图片宽高
+
+#### 2、LSB隐写:
 
 **没有密钥的情况**
 
 ```bash
 # 用zsteg快速查看
-zsteg -a (文件名)  #查看各个通道的lsb
--b的位数是从1开始的 zsteg zlib.bmp -b 1 -o xy -v
-提取文件并导出 zsteg -e b1,r,lsb,xy 3.png &gt; 123.jpg
+zsteg -a (文件名)  #查看各个通道的lsb数据
+# 提取文件并导出
+zsteg -e b1,r,lsb,xy 3.png &gt; 123.jpg
 ```
 
-信息藏在图片中有时候会看不出来，所以还是要用stegsolve.jar过一遍
+有时候LSB会隐写图片，zsteg容易看漏，所以还是要用`stegsolve.jar`过一遍
 
  **有密钥的情况（cloacked-pixel）**
 
-lsb隐写的可能是加密后的数据，i春秋最喜欢的**cloacked-pixel**
+直接下载开源项目到本地，输入命令解密即可
 
-拉到kali/WSL里用cloacked-pixel命令解密出数据
+如果懒得敲命令行，也可以用`PuzzleSolver`解密
+
+```
+# 原项目
+https://github.com/livz/cloacked-pixel
+# Python3重写的版本
+https://github.com/Grazee/cloacked-pixel-python3
+```
 
 ```bash
 python2 cloacked-pixel-master/lsb.py extract 0.png out.data f78dcd383f1b574b
+# 0.png是隐写后的图片
+# out.data是隐写内容保存的位置
+# f78dcd383f1b574b是密钥
 ```
 
-0.png是隐写后的图片；out.data是隐写内容保存的位置；f78dcd383f1b574b是密钥
-
-#### 3、LSB低位隐写
-
-用CTFD中的脚本跑出隐藏的图片
-
-#### 4、IDAT块隐写
+#### 3、IDAT块隐写
 
 **(1) 解压zlib获得原始数据**
 
@@ -1741,24 +1915,26 @@ Tips：这里有时候也可以不用补文件尾
 
 例题2-DASCTF2024 暑期挑战赛-png_master
 
-#### 5、png数据末尾藏zip
+#### 4、PNG末尾隐藏内容
 
-补上压缩包的文件头，然后提取出来，解压(可用stegpy得到解压密码)。
 
-或者直接foremost提取
+010打开PNG，根据PNG模板定位到文件尾，看看后面有没有多余的数据
 
-#### 6、apngdis_gui
+当然，也可以尝试直接`binwalk`或者`foremost`提取（但是如果隐藏文件的文件结构不完整可能识别不出来）
 
-一张png图片还可能是apng，直接用apngdis_gui跑一下，可以分出两张相似的png
+#### 5、apngdis_gui
 
-#### 7、CVE-2023-28303 截图工具漏洞
+一张png图片还可能是apng，直接用`apngdis_gui`跑一下，可以分出两张相似的png
+
+#### 6、CVE-2023-28303 截图工具漏洞
+
 一张图片如果有两个`IEND`块：`AE 42 60 82` 
 
 就很有可能考察的是这个漏洞
 
-可以使用[Github上大佬写好的工具](https://github.com/frankthetank-music/Acropalypse-Multi-Tool)一把梭，前提是需要知道原图的分辨率
+可以使用[Github上大佬写好的工具](https://github.com/frankthetank-music/Acropalypse-Multi-Tool)一把梭，恢复完整图片前需要知道原图的分辨率
 
-#### 8、stegpy隐写
+#### 7、stegpy隐写
 
 [ stegpy 开源地址](https://github.com/izcoser/stegpy) 下载好后直接用WSL输入以下命令并输入密码解密即可
 
@@ -1768,7 +1944,7 @@ Tips：这里有时候也可以不用补文件尾
 stegpy 1.png -p
 ```
 
-#### 9、npiet编程语言
+#### 8、npiet编程语言
 
 **白底**&#43;很多彩色的小像素点组成的图片，形如下图
 
@@ -1783,26 +1959,32 @@ stegpy 1.png -p
 ```
 
 
-#### 10、Image Steganography隐写
+#### 9、Image Steganography隐写
 
 直接使用`Image Steganography`工具解密即可，如果需要密码，就勾选上`Decrypt`选项
+
+&gt; 当然也可以直接用PuzzleSolver解密
 
 ![](imgs/image-20241229152552878.png)
 
 
 ### JPG思路
 
-#### 1、可以试试用stegdectet看看是什么加密：
+#### 1、LSB隐写
 
+用`StegSolve`打开查看即可
+
+#### 2、可以试试用stegdectet看看是什么加密：
+
+```
 .\stegdetect.exe -t jopi -s 10.0 .\0.jpg
+```
 
 ![stegdectet](imgs/stegdectet-171427285283031.gif)
 
 出现三颗星不一定就代表一定是这种加密方式
 
-#### 2、JPHS隐写
-
-有可能会有密码
+#### 2、JPHS隐写(可以无密码)
 
 导出步骤 Select File --&gt; seek --&gt; demo.txt --&gt; Save the file
 
@@ -1835,7 +2017,11 @@ done
 stegseek filename rockyou.txt
 ```
 
-#### 4、outguess隐写
+#### 4、Silenteye隐写
+
+直接用`silenteye`打开输入密钥decode即可，默认密钥是`silenteye`，也可以填入自己的密钥
+
+#### 5、outguess隐写
 
 ```bash
 outguess -k &#34;abc&#34; -r mmm.jpg flag.txt
@@ -1843,7 +2029,7 @@ outguess -k &#34;abc&#34; -r mmm.jpg flag.txt
 #flag.txt是解密后数据保存的位置
 ```
 
-#### 5、F5-steganography-master
+#### 6、F5-steganography-master
 
 把要解密的图片拉到F5文件夹中
 
@@ -1855,7 +2041,7 @@ java Extract beautiful.jpg
 #解密出来的数据会放到F5文件夹下的output.txt中
 ```
 
-#### 6、JPG宽高隐写
+#### 7、JPG宽高隐写
 010打开JPG图片，找到 struct SOF 块数据，手动调整宽高即可
 
 ![](imgs/image-20240911103611924.png)
@@ -1940,12 +2126,13 @@ if __name__ == &#39;__main__&#39;:
     time.sleep(1)
 ```
 
-#### 2、wbStego4open隐写
+#### 2、wbStego4open隐写(可以无密钥)
 
-用wbStego4open直接decode
-#### 3、silenteye隐写
+用`wbStego4open`输入密钥后decode即可
 
-直接拉入 silenteye 解密即可
+#### 3、Silenteye隐写
+
+直接用`silenteye`打开输入密钥decode即可，默认密钥是`silenteye`，可以填入自己的密钥
 
 ### GIF思路
 
@@ -2095,7 +2282,7 @@ for i in range(n_frame):
 
 ARW文件是 Sony 相机的原始数据格式
 
-可以使用 rawpy 模块读取图片的像素数据，查看是否存在LSB隐写【例：2024 L3HCTF RAWatermark】
+可以使用 rawpy 模块读取图片的像素数据，查看是否存在LSB隐写(例题1-2024-L3HCTF-RAWatermark)
 
 示例脚本如下：
 
@@ -2125,7 +2312,7 @@ with open(&#39;flag.zip&#39;, &#39;wb&#39;) as f:
     f.write(data)
 ```
 
-#### 2、直接改后缀为.data，然后拖入Gimp即可
+#### 2、直接改后缀为.data，然后拖入Gimp调整即可
 
 ### 二维码思路
 
@@ -2147,39 +2334,43 @@ with open(&#39;flag.zip&#39;, &#39;wb&#39;) as f:
 
 我们平常见的最多的二维码就是QRcode，但是实际上还有很多不同类型的二维码，这里就简单举几个例子：
 
-![](imgs/azteccode.gif)
+![AztecCode](imgs/image-20250421205934212.png)
 
-![](imgs/DataMatrix.png)
+![DataMatrix](imgs/image-20250421210022191.png)
 
-![](imgs/GridMatrix.png)
+![GridMatrix](imgs/image-20250421210051456.png)
 
-![](imgs/汉信码.png)
+![汉信码](imgs/image-20250421210117218.png)
 
-![](imgs/PDF417code.png)
+&gt; 汉信码这里要注意，左下角的那块定位块的方向和另外几块是不一样的
+&gt; 
+&gt; 有时候题目会把这块定位块反过来
 
-这里要注意的是，出题人可能会把图片反相导致无法直接扫描，因此我们可以先将图片拉入 PS 先进行反相处理
+![PDF417code](imgs/image-20250421210137589.png)
+
+这里要注意的是，出题人可能会把图片反相导致无法直接扫描
+
+因此我们可以先将二维码拉入`StegSolve`或者`PS`进行反相处理，再扫描
 
 #### QRcode 二维码的一些考点
 
-详见我博客里的[这篇文章](https://goodlunatic.github.io/posts/1e26f78/)
+详见作者博客里的[QRcode二维码标准及常见考点详解](https://goodlunatic.github.io/posts/1e26f78/)这篇文章
 
 ## Misc——PDF题思路：
 
-1、直接binwalk或者foremost解出隐藏文件
+1、直接`binwalk`或者`foremost`提取出隐藏文件
 
-2、可能是wbStego4open隐写，用wbStego4open直接decode
+2、可能是`wbStego4open`隐写，用`wbStego4open`输入密钥直接decode
 
-3、PDF中可能携带了什么文件，可以在Firefox或者别的PDF软件中打开并提取
+3、PDF中可能携带了什么文件，可以在`firefox`或者别的PDF软件中打开并提取
 
 4、PDF中可能有透明的文字，直接全选复制然后粘贴到记事本中查看即可
 
-5、DeEgger Embedder隐写
-
-可以直接使用 DeEgger Embedder 工具 extract files
+5、使用`DeEgger Embedder`工具`extract files`
 
 6、使用PS打开，里面可能有多个图层(例题1-2024古剑山-jpg)
 
-7、若PDF加密，可以尝试使用`pdfcrack`爆破一下密码（Ubuntu下可以直接apt install）
+7、若PDF加密，可以尝试使用`pdfcrack`爆破一下密码（Ubuntu下可以直接 apt install）
 
 ```bash
 pdfcrack -f enc.pdf -w rockyou.txt
@@ -2205,8 +2396,11 @@ msoffcrypto-tool encrypted.docx decrypted.docx -p Passw0rd
 ### Excel文件：.xls .xlsx
 
 1、拉入010或者记事本，查找flag
+
 2、取消隐藏先前隐藏的行和列
+
 3、条件格式里设置突出显示某些单元格(黑白后可能会有图案)
+
 4、要先将数据按照行列排序后再进行处理
 
 ### Word文件：.doc .docx
@@ -2277,11 +2471,11 @@ python2 decloakify.py cipher.txt passwd.txt
 
 ## Misc——html题思路：
 
-1、可能是wbStego4open隐写，用wbStego4open直接decode
+1、可能是`wbStego4open`隐写，用`wbStego4open`直接输入密钥decode
 
 ## Misc——压缩包思路：
 
-Tips：压缩包的密码可以是中英文字符和符号
+Tips：压缩包的密码可以是可打印字符(中英文数字&#43;特殊符号)，也可以是不可打印字符
 
 ​没有思路时可以直接纯数字/字母暴力爆破一下
 
@@ -2290,7 +2484,6 @@ Tips：压缩包的密码可以是中英文字符和符号
 三部分：压缩文件源数据区 &#43; 压缩源文件目录区 &#43; 压缩源文件目录结束标志
 
 **文件源数据区**
-
 
 |        字段名称        |              字段描述              |
 | :----------------: | :----------------------------: |
@@ -2729,8 +2922,6 @@ while True:
 ```bash
 copy /B topic.zip.001 &#43; topic.zip.002&#43;topic.zip.003&#43;topic.zip.004&#43;topic.zip.005&#43;topic.zip.006 topic.zip
 ```
-
-
 
 ### 6、压缩包炸弹
 
