@@ -1074,7 +1074,7 @@
 </span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="n">dic</span><span class="p">)</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>发现2500个像素点中有2496种像素，并且只有以下两种像素出现了2次，别的像素都是只出现一次</p>
-<div class="highlight" id="id-1"><div class="chroma">
+<div class="highlight" id="id-15"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -1085,7 +1085,7 @@
 </div>
 </div><p>我们把所有像素打印出来可以发现，每个像素的RGB值都是取自我们之前得到的<code>e</code>的取值范围中</p>
 <p>然后我们再去看<code>task.png</code>，发现图像时RGBA格式的，只不过A通道的值都是255</p>
-<div class="highlight" id="id-2"><div class="chroma">
+<div class="highlight" id="id-16"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1128,7 +1128,7 @@
 <p><img loading="lazy" src="imgs/image-20250313101353466.png" alt="imgs/image-20250313101353466.png" srcset="imgs/image-20250313101353466.png?size=small, imgs/image-20250313101353466.png?size=medium 1.5x, imgs/image-20250313101353466.png?size=large 2x" data-title="imgs/image-20250313101353466.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p><img loading="lazy" src="imgs/image-20250313101321442.png" alt="imgs/image-20250313101321442.png" srcset="imgs/image-20250313101321442.png?size=small, imgs/image-20250313101321442.png?size=medium 1.5x, imgs/image-20250313101321442.png?size=large 2x" data-title="imgs/image-20250313101321442.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>最终的解题脚本如下：</p>
-<div class="highlight" id="id-3"><div class="chroma">
+<div class="highlight" id="id-17"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1243,7 +1243,7 @@
 <p><img loading="lazy" src="imgs/image-20250307133401161.png" alt="imgs/image-20250307133401161.png" srcset="imgs/image-20250307133401161.png?size=small, imgs/image-20250307133401161.png?size=medium 1.5x, imgs/image-20250307133401161.png?size=large 2x" data-title="imgs/image-20250307133401161.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>尝试用<code>stegsolve</code>查看每张图片的LSB信息，并没有发现什么特殊的信息</p>
 <p>然后尝试提取出GIF每一帧的间隔，可以得到如下内容，发现开头和结尾都是70，一共<code>32+31=63</code>个</p>
-<div class="highlight" id="id-4"><div class="chroma">
+<div class="highlight" id="id-18"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
@@ -1254,7 +1254,7 @@
 <p>所以我们猜测可能隐写了一张二维码，我们尝试把50和60转为0和1，然后尝试绘制二维码，可以得到下面这些图片</p>
 <p><img loading="lazy" src="imgs/image-20250307133820417.png" alt="imgs/image-20250307133820417.png" srcset="imgs/image-20250307133820417.png?size=small, imgs/image-20250307133820417.png?size=medium 1.5x, imgs/image-20250307133820417.png?size=large 2x" data-title="imgs/image-20250307133820417.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>转换出来后发现并不是二维码，并且尝试直接二进制转字符串也得不到什么有效的信息</p>
-<div class="highlight" id="id-5"><div class="chroma">
+<div class="highlight" id="id-19"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -1280,7 +1280,7 @@
 <blockquote>
 <p>Tips：以下脚本需要在Linux中运行</p>
 </blockquote>
-<div class="highlight" id="id-6"><div class="chroma">
+<div class="highlight" id="id-20"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1415,7 +1415,7 @@
 <p><img loading="lazy" src="imgs/image-20250315155342383.png" alt="imgs/image-20250315155342383.png" srcset="imgs/image-20250315155342383.png?size=small, imgs/image-20250315155342383.png?size=medium 1.5x, imgs/image-20250315155342383.png?size=large 2x" data-title="imgs/image-20250315155342383.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>但是尝试了多种方法提取像素里的信息，都没有发现明显的压缩包密码</p>
 <p>不知道这里提取像素中的信息是否需要用到题面中的 <code>W is for double</code> ，具体又该如何使用呢？</p>
-<div class="highlight" id="id-7"><div class="chroma">
+<div class="highlight" id="id-21"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1465,7 +1465,7 @@
 <p>然后打开就能很清晰的看见后面隐藏的内容</p>
 <p><img loading="lazy" src="imgs/image-20250317143543572.png" alt="imgs/image-20250317143543572.png" srcset="imgs/image-20250317143543572.png?size=small, imgs/image-20250317143543572.png?size=medium 1.5x, imgs/image-20250317143543572.png?size=large 2x" data-title="imgs/image-20250317143543572.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>发现主要是黑白像素块，因此我们写个脚本去提取里面的数据，并尝试转二进制为字符串</p>
-<div class="highlight" id="id-8"><div class="chroma">
+<div class="highlight" id="id-22"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1533,7 +1533,7 @@
 <p><img loading="lazy" src="imgs/image-20250317144619902.png" alt="imgs/image-20250317144619902.png" srcset="imgs/image-20250317144619902.png?size=small, imgs/image-20250317144619902.png?size=medium 1.5x, imgs/image-20250317144619902.png?size=large 2x" data-title="imgs/image-20250317144619902.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>发现其实这里就是直接把PNG的十六进制数据转为bytes类型分三段隐写到RGB像素里了</p>
 <p>因此我们写个脚本把数据提取出来就行，但是这里要注意每段数据前后有多余的<code>\x00</code></p>
-<div class="highlight" id="id-9"><div class="chroma">
+<div class="highlight" id="id-23"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1609,7 +1609,7 @@
 <p>但是由于后面只有7列，因此我们需要在每一行的二进制数据前补0</p>
 <p><img loading="lazy" src="imgs/image-20250317145950183.png" alt="imgs/image-20250317145950183.png" srcset="imgs/image-20250317145950183.png?size=small, imgs/image-20250317145950183.png?size=medium 1.5x, imgs/image-20250317145950183.png?size=large 2x" data-title="imgs/image-20250317145950183.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>最后写个脚本提取数据即可</p>
-<div class="highlight" id="id-10"><div class="chroma">
+<div class="highlight" id="id-24"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1669,7 +1669,7 @@
 <p>本题的成功解出离不开<code>@IcePeak</code>师傅的帮助</p>
 </blockquote>
 <p>解压附件压缩包，可以得到一个<code>encrypt.py</code>和一张PNG图片，内容如下所示</p>
-<div class="highlight" id="id-11"><div class="chroma">
+<div class="highlight" id="id-25"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1722,7 +1722,7 @@
 <p>发现是用弱密码简单加密了一下图片，然后我们用stegsolve打开图片可以发现图片存在LSB隐写</p>
 <p><img loading="lazy" src="imgs/image-20250331201900614.png" alt="imgs/image-20250331201900614.png" srcset="imgs/image-20250331201900614.png?size=small, imgs/image-20250331201900614.png?size=medium 1.5x, imgs/image-20250331201900614.png?size=large 2x" data-title="imgs/image-20250331201900614.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>因此我们根据LSB隐写的内容写个脚本爆破一下密钥即可</p>
-<div class="highlight" id="id-12"><div class="chroma">
+<div class="highlight" id="id-26"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1785,7 +1785,7 @@
 <p>提取出来base64解码即可得到下图</p>
 <p><img loading="lazy" src="imgs/image-20250401183228651.png" alt="imgs/image-20250401183228651.png" srcset="imgs/image-20250401183228651.png?size=small, imgs/image-20250401183228651.png?size=medium 1.5x, imgs/image-20250401183228651.png?size=large 2x" data-title="imgs/image-20250401183228651.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>参考上面<code>2024WMCTF</code>那道题的wp，改一下提取水印的脚本</p>
-<div class="highlight" id="id-13"><div class="chroma">
+<div class="highlight" id="id-27"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1869,7 +1869,7 @@
 </span></span><span class="line"><span class="cl"><span class="c1"># b&#34;Hey boy, I&#39;m here to help you, now you&#39;ze one step away from successl let me |ell you key:79557c2d8f94&#34;</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>运行后可以得到如下内容，提示了我们一个key：<code>79557c2d8f94</code></p>
-<div class="highlight" id="id-14"><div class="chroma">
+<div class="highlight" id="id-28"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
@@ -1935,7 +1935,7 @@
   <a href="#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-one-2024-%e5%8f%a4%e5%89%91%e5%b1%b1" class="heading-mark"></a>题目名称 one (2024 古剑山)</h2><p>题目附件： <a href="https://pan.baidu.com/s/1iSL1P1Z1Oa8WB0tXRWjSmg?pwd=vc66"target="_blank" rel="external nofollow noopener noreferrer">https://pan.baidu.com/s/1iSL1P1Z1Oa8WB0tXRWjSmg?pwd=vc66</a> 提取码: vc66</p>
 <p>题目附件给了一个<code>cnc.txt</code>，内容是10000行每行114个字符的十六进制数据</p>
 <p>部分内容如下：</p>
-<div class="highlight" id="id-15"><div class="chroma">
+<div class="highlight" id="id-1"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1990,7 +1990,7 @@
 <p>解密需要密钥，但是找不到密钥，猜测会和图片中的那个时间有关系，但是不知道具体什么关系。。</p>
 <p>后来听去了线下颁奖的师傅说，主办方在赛后总结的时候说这道题好像和具体的<strong>经纬度</strong>有关系</p>
 <p>因此去网上搜了<strong>天安门广场</strong>的具体经纬度如下：</p>
-<div class="highlight" id="id-16"><div class="chroma">
+<div class="highlight" id="id-2"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -2004,7 +2004,7 @@
 <p>题目附件给了一个<code>secret.pcapng</code>的流量包文件，打开发现主要是USBMS流量（U盘流量）</p>
 <p><img loading="lazy" src="imgs/image-20250321192933723.png" alt="imgs/image-20250321192933723.png" srcset="imgs/image-20250321192933723.png?size=small, imgs/image-20250321192933723.png?size=medium 1.5x, imgs/image-20250321192933723.png?size=large 2x" data-title="imgs/image-20250321192933723.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>然后翻看一下流量包发现其中分段传输了一张很大的PNG图片，因此尝试写个Python提取出图片的数据</p>
-<div class="highlight" id="id-17"><div class="chroma">
+<div class="highlight" id="id-3"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
