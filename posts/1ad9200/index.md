@@ -338,11 +338,28 @@ for line in lines:
 
 直接[在线网站](https://www.sojson.com/encrypt_rabbit.html)解密即可
 
-### 云隐密码：
+### 云影密码：
 
 特征是：密文只由01248组成
 
-用`随波逐流CTF编码工具`解密或者CTFD中的脚本直接跑
+用`随波逐流CTF编码工具`解密或者用下面的脚本解密
+
+&gt; 云影密码的原理就是：以0作为分隔符分组，然后把每组数字相加得到一个数字，这个数字对应的就是26字母中的下标
+
+```python
+# 云影密码
+ciphey=&#34;8842101220480224404014224202480122&#34;
+enc_list=ciphey.split(&#39;0&#39;)
+res=[]
+print(enc_list)
+for item in enc_list:
+    sum=0
+    for num in item:
+        sum &#43;= int(num)
+    res.append(chr(sum&#43;64))
+print(&#39;&#39;.join(res))
+
+```
 
 ### 曼彻斯特与差分曼彻斯特编码:
 
