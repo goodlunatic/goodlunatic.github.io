@@ -1,15 +1,16 @@
 # CTF-Misc Guide
 
+**最开始接触CTF时，学的最多的就是Misc，各种编码与加密还有各种软件的使用等等**
 
-**This is a simple Guide for CTF in Misc Area.**
+**但Misc涉及的范围实在太广了，于是就想着一边学习一边记录，因而就有了这篇文章。**
 
 &lt;!--more--&gt;
 
 {{&lt; admonition type=success title=&#34;Misc Guide&#34; open=true &gt;}}
 
-**最开始接触CTF时，学的最多的就是Misc，各种编码各种加密还有各种软件的使用...**
+**最开始接触CTF时，学的最多的就是Misc，各种编码与加密还有各种软件的使用等等**
 
-**但无奈MIsc涉及的范围实在太广了，于是就萌生了一边学习一边记录的想法，甚至还想为此写一本指南。**
+**但Misc涉及的范围实在太广了，于是就想着一边学习一边记录，因而就有了这篇文章。**
 {{&lt; /admonition &gt;}}
 
 ## 一些奇奇怪怪的经历：

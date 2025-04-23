@@ -12,7 +12,7 @@
   <pubDate>Wed, 23 Apr 2025 10:51:27 &#43;0800</pubDate>
   <author>Lunatic</author>
   <guid>https://goodlunatic.github.io/posts/e393438/</guid>
-  <description><![CDATA[<p><strong>最近科研上遇到一些项目需要使用C/C++开发，因此打算学习并一下</strong></p>]]></description>
+  <description><![CDATA[<p><strong>最近科研上遇到一些项目需要使用C/C++开发，因此打算学习并记录一下</strong></p>]]></description>
 </item>
 <item>
   <title>DASCTF 2024最后一战 Misc Writeup</title>
@@ -28,7 +28,8 @@
   <pubDate>Mon, 21 Apr 2025 20:30:17 &#43;0800</pubDate>
   <author>Lunatic</author>
   <guid>https://goodlunatic.github.io/posts/1ad9200/</guid>
-  <description><![CDATA[<p><strong>This is a simple Guide for CTF in Misc Area.</strong></p>]]></description>
+  <description><![CDATA[<p><strong>最开始接触CTF时，学的最多的就是Misc，各种编码与加密还有各种软件的使用等等</strong></p>
+<p><strong>但Misc涉及的范围实在太广了，于是就想着一边学习一边记录，因而就有了这篇文章。</strong></p>]]></description>
 </item>
 <item>
   <title>2025 能源网络安全大赛 Misc Writeup</title>
