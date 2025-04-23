@@ -4,9 +4,18 @@
     <link>https://goodlunatic.github.io/</link>
     <description>Welcome to Lunatic&#39;s BLOG ^_^</description>
     <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>goodlunatic0@gmail.com (Lunatic)</managingEditor>
-      <webMaster>goodlunatic0@gmail.com (Lunatic)</webMaster><lastBuildDate>Wed, 23 Apr 2025 10:51:27 &#43;0800</lastBuildDate>
+      <webMaster>goodlunatic0@gmail.com (Lunatic)</webMaster><lastBuildDate>Wed, 23 Apr 2025 14:12:43 &#43;0800</lastBuildDate>
       <atom:link href="https://goodlunatic.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
+  <title>Qualcomm高通 诊断日志分析工具的安装及使用</title>
+  <link>https://goodlunatic.github.io/posts/95cea53/</link>
+  <pubDate>Wed, 23 Apr 2025 14:12:43 &#43;0800</pubDate>
+  <author>Lunatic</author>
+  <guid>https://goodlunatic.github.io/posts/95cea53/</guid>
+  <description><![CDATA[<p><strong>复现论文实验的时候需要用到Qualcomm高通的套件</strong></p>
+<p><strong>软件安装和使用过程中遇到了很多的问题，因此打算记录一下遇到的问题和对应的解决方案</strong></p>]]></description>
+</item>
+<item>
   <title>C/C&#43;&#43;程序开发学习记录</title>
   <link>https://goodlunatic.github.io/posts/e393438/</link>
   <pubDate>Wed, 23 Apr 2025 10:51:27 &#43;0800</pubDate>
@@ -29,7 +38,7 @@
   <author>Lunatic</author>
   <guid>https://goodlunatic.github.io/posts/1ad9200/</guid>
   <description><![CDATA[<p><strong>最开始接触CTF时，学的最多的就是Misc，各种编码与加密还有各种软件的使用等等</strong></p>
-<p><strong>但Misc涉及的范围实在太广了，于是就想着一边学习一边记录，因而就有了这篇文章。</strong></p>]]></description>
+<p><strong>但Misc涉及的范围实在太广了，于是就想着一边学习一边记录，因而就有了这篇文章</strong></p>]]></description>
 </item>
 <item>
   <title>2025 能源网络安全大赛 Misc Writeup</title>
@@ -81,14 +90,6 @@
   <guid>https://goodlunatic.github.io/posts/f002407/</guid>
   <description><![CDATA[<p><strong>最近这一段时间一直被科研和毕设上的事拖着，因此就有段时间没有做Misc题了</strong></p>
 <p><strong>趁着写毕设没啥思路和动力的功夫，来稍微复盘下今年西湖论剑的题</strong></p>]]></description>
-</item>
-<item>
-  <title>Misc-Forensics</title>
-  <link>https://goodlunatic.github.io/posts/761da51/</link>
-  <pubDate>Mon, 14 Apr 2025 18:34:12 &#43;0800</pubDate>
-  <author>Lunatic</author>
-  <guid>https://goodlunatic.github.io/posts/761da51/</guid>
-  <description><![CDATA[<p><strong>This is a simple summary of digital forensics .</strong></p>]]></description>
 </item>
 </channel>
 </rss>

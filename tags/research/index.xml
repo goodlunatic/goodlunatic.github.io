@@ -4,7 +4,16 @@
     <link>https://goodlunatic.github.io/tags/research/</link>
     <description>Research - Tag | ⚡Lunatic BLOG⚡</description>
     <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>goodlunatic0@gmail.com (Lunatic)</managingEditor>
-      <webMaster>goodlunatic0@gmail.com (Lunatic)</webMaster><lastBuildDate>Tue, 24 Dec 2024 19:29:58 &#43;0800</lastBuildDate><atom:link href="https://goodlunatic.github.io/tags/research/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>goodlunatic0@gmail.com (Lunatic)</webMaster><lastBuildDate>Wed, 23 Apr 2025 14:12:43 &#43;0800</lastBuildDate><atom:link href="https://goodlunatic.github.io/tags/research/" rel="self" type="application/rss+xml" /><item>
+  <title>Qualcomm高通 诊断日志分析工具的安装及使用</title>
+  <link>https://goodlunatic.github.io/posts/95cea53/</link>
+  <pubDate>Wed, 23 Apr 2025 14:12:43 &#43;0800</pubDate>
+  <author>Lunatic</author>
+  <guid>https://goodlunatic.github.io/posts/95cea53/</guid>
+  <description><![CDATA[<p><strong>复现论文实验的时候需要用到Qualcomm高通的套件</strong></p>
+<p><strong>软件安装和使用过程中遇到了很多的问题，因此打算记录一下遇到的问题和对应的解决方案</strong></p>]]></description>
+</item>
+<item>
   <title>4G5G网络安全相关内容的研究</title>
   <link>https://goodlunatic.github.io/posts/342f304/</link>
   <pubDate>Tue, 24 Dec 2024 19:29:58 &#43;0800</pubDate>
