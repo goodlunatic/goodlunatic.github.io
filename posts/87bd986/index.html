@@ -12,7 +12,7 @@
   <meta itemprop="description" content="2025 能源网络安全大赛 Misc Writeup">
   <meta itemprop="datePublished" content="2025-04-21T18:50:35+08:00">
   <meta itemprop="dateModified" content="2025-04-21T18:50:35+08:00">
-  <meta itemprop="wordCount" content="330">
+  <meta itemprop="wordCount" content="366">
   <meta itemprop="keywords" content="CTF,Misc,Writeup"><meta property="og:url" content="https://goodlunatic.github.io/posts/87bd986/">
   <meta property="og:site_name" content="⚡Lunatic BLOG⚡">
   <meta property="og:title" content="2025 能源网络安全大赛 Misc Writeup">
@@ -41,7 +41,7 @@
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": "https:\/\/goodlunatic.github.io\/posts\/87bd986\/"
-    },"genre": "posts","keywords": "CTF, Misc, Writeup","wordcount":  330 ,
+    },"genre": "posts","keywords": "CTF, Misc, Writeup","wordcount":  366 ,
     "url": "https:\/\/goodlunatic.github.io\/posts\/87bd986\/","datePublished": "2025-04-21T18:50:35+08:00","dateModified": "2025-04-21T18:50:35+08:00","publisher": {
       "@type": "Organization",
       "name": ""},"author": {
@@ -330,7 +330,13 @@
 </div><p><img loading="lazy" src="imgs/image-20250420210952391.png" alt="imgs/image-20250420210952391.png" srcset="imgs/image-20250420210952391.png?size=small, imgs/image-20250420210952391.png?size=medium 1.5x, imgs/image-20250420210952391.png?size=large 2x" data-title="imgs/image-20250420210952391.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>运行脚本画图后即可得到最后的flag：<code>flag{5879016c-301b-4840-95bf-be72b379b21e}</code></p>
 <h2 id="题目名称-bluetooth" class="heading-element">
-  <a href="#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-bluetooth" class="heading-mark"></a>题目名称 Bluetooth</h2><p>翻看流量包，发现有很多个从<code>remote()</code>发到<code>localhost()</code>的数据包</p>
+  <a href="#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-bluetooth" class="heading-mark"></a>题目名称 Bluetooth</h2><p>用<code>Wireshark</code>打开流量包，发现会报错</p>
+<p><img loading="lazy" src="imgs/image-20250423195447415.png" alt="imgs/image-20250423195447415.png" srcset="imgs/image-20250423195447415.png?size=small, imgs/image-20250423195447415.png?size=medium 1.5x, imgs/image-20250423195447415.png?size=large 2x" data-title="imgs/image-20250423195447415.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>因此我们尝试用010打开，发现文件末尾有多余的数据：<code>quaternary</code></p>
+<p><img loading="lazy" src="imgs/image-20250423195525556.png" alt="imgs/image-20250423195525556.png" srcset="imgs/image-20250423195525556.png?size=small, imgs/image-20250423195525556.png?size=medium 1.5x, imgs/image-20250423195525556.png?size=large 2x" data-title="imgs/image-20250423195525556.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><img loading="lazy" src="imgs/image-20250423195550070.png" alt="imgs/image-20250423195550070.png" srcset="imgs/image-20250423195550070.png?size=small, imgs/image-20250423195550070.png?size=medium 1.5x, imgs/image-20250423195550070.png?size=large 2x" data-title="imgs/image-20250423195550070.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>有道翻译一下，发现这个词有四进制的意思</p>
+<p>删除末尾多余数据后再翻看流量包，发现有很多个从<code>remote()</code>发到<code>localhost()</code>的数据包</p>
 <p>并且仔细比较可以发现，长度为52的数据包，<code>payload</code>变化的数据主要在倒数第三位</p>
 <p><img loading="lazy" src="imgs/image-20250420222020969.png" alt="imgs/image-20250420222020969.png" srcset="imgs/image-20250420222020969.png?size=small, imgs/image-20250420222020969.png?size=medium 1.5x, imgs/image-20250420222020969.png?size=large 2x" data-title="imgs/image-20250420222020969.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>我们尝试使用<code>tshark</code>把长度为52的数据包的<code>payload</code>提取出来分析</p>
@@ -344,14 +350,42 @@
 </div><p><img loading="lazy" src="imgs/image-20250420222254946.png" alt="imgs/image-20250420222254946.png" srcset="imgs/image-20250420222254946.png?size=small, imgs/image-20250420222254946.png?size=medium 1.5x, imgs/image-20250420222254946.png?size=large 2x" data-title="imgs/image-20250420222254946.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>然后我们在vscode中把倒数第三位的值单独提取出来分析，发现数据主要是由01248这几个数字构成的</p>
 <p>看到这几个数字，第一反应是云影密码，但是经过尝试发现解密后得不到有用的信息</p>
-<p>后面解密的步骤就需要一点脑洞了，需要对数字进行一些猜测和尝试</p>
+<div class="highlight" id="id-4"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 云影密码</span>
+</span></span><span class="line"><span class="cl"><span class="n">ciphey</span><span class="o">=</span><span class="s2">&#34;0222000444000222000444000222000444008880001110002220004400011100222000222000444000222000888000222000888000444000888000111008880002220002200022200444000111022200111000888000220001110001110008880004440011100111000888000111000444000222000444000110002220002220004440002220001110022200044400022200022200011100044000888000222000111000888000111000222000111008880011100111000222000444000222000220002220044400022200011100011100044400088800222000111000888000222000111000111000888004440002220001110008880011100011100111000888002220002220001110004440008880002220002220004440001110222000111000888000444001100011100088800044400011100011100088800022200044400011000444000888000222000111000888000111000888000111008880002220004440001110088800044400222000111000888000444000111000111000888000222001110011100088000222000444000220004440022200011100011100088800011100044400111000888000222000888000222000444000111000222000111000888000111000111000111000888000444000111002220008880008880002220&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">enc_list</span><span class="o">=</span><span class="n">ciphey</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;0&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">res</span><span class="o">=</span><span class="p">[]</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">enc_list</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">enc_list</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">sum</span><span class="o">=</span><span class="mi">0</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="n">item</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">sum</span> <span class="o">+=</span> <span class="nb">int</span><span class="p">(</span><span class="n">num</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">res</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">chr</span><span class="p">(</span><span class="nb">sum</span><span class="o">+</span><span class="mi">64</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">res</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># @F@@L@@F@@L@@F@@L@X@@C@@F@@H@@C@F@@F@@L@@F@@X@@F@@X@@L@@X@@C@X@@F@@D@@F@L@@CF@C@@X@@D@@C@@C@@X@@L@C@C@@X@@C@@L@@F@@L@@B@@F@@F@@L@@F@@C@F@@L@@F@@F@@C@@H@@X@@F@@C@@X@@C@@F@@C@X@C@C@@F@@L@@F@@D@@F@L@@F@@C@@C@@L@@X@F@@C@@X@@F@@C@@C@@X@L@@F@@C@@X@C@@C@C@@X@F@@F@@C@@L@@X@@F@@F@@L@@CF@@C@@X@@L@B@@C@@X@@L@@C@@C@@X@@F@@L@@B@@L@@X@@F@@C@@X@@C@@X@@C@X@@F@@L@@C@X@@L@F@@C@@X@@L@@C@@C@@X@@F@C@C@@P@@F@@L@@D@@L@F@@C@@C@@X@@C@@L@C@@X@@F@@X@@F@@L@@C@@F@@C@@X@@C@@C@@C@@X@@L@@C@F@@X@@X@@F@</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>然后我们联想到之前得到的提示:<code>quaternary-四进制</code></p>
 <p><img loading="lazy" src="imgs/image-20250420222336708.png" alt="imgs/image-20250420222336708.png" srcset="imgs/image-20250420222336708.png?size=small, imgs/image-20250420222336708.png?size=medium 1.5x, imgs/image-20250420222336708.png?size=large 2x" data-title="imgs/image-20250420222336708.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
-<p>当我们去除换行符，并且把0作为空格分隔符后</p>
-<p>可以发现数据就剩下了 <code>11</code> <code>111</code> <code>22</code> <code>222</code> <code>44</code> <code>444</code> <code>88</code> <code>888</code> 这几种</p>
+<p>当我们把0作为空格分隔符后，可以发现数据就剩下了 <code>11</code> <code>111</code> <code>22</code> <code>222</code> <code>44</code> <code>444</code> <code>88</code> <code>888</code> 这几种</p>
 <blockquote>
-<p>因为一共就剩下了1248这四种数字，所以我们根据做题经验会往四进制转换上联想</p>
+<p>因为一共就剩下了1248这四种数字，刚刚好符合我们之前得到的提示<code>quaternary-四进制</code>的规律</p>
 </blockquote>
-<p>我们尝试在<code>CyberChef</code>中把两位三位的数字都替换成一位，并转换到四进制数上后可以得到如下数据</p>
+<p>因此我们尝试在<code>CyberChef</code>中把两位三位的数字都替换成一位，并转换到四进制数上后可以得到如下数据</p>
 <blockquote>
 <p>Tips：四进制数的对应关系如下</p>
 <p>1 -&gt; 0</p>
@@ -360,7 +394,7 @@
 <p>8 -&gt; 3</p>
 </blockquote>
 <p><img loading="lazy" src="imgs/image-20250420222734487.png" alt="imgs/image-20250420222734487.png" srcset="imgs/image-20250420222734487.png?size=small, imgs/image-20250420222734487.png?size=medium 1.5x, imgs/image-20250420222734487.png?size=large 2x" data-title="imgs/image-20250420222734487.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
-<div class="highlight" id="id-4"><div class="chroma">
+<div class="highlight" id="id-5"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
@@ -368,7 +402,7 @@
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">121212301201121313230311120103100320030212011210121102310301030012111210023103100321030003110231120103200320031202310303031203210320031003121210030203131201030003201331</span></span></code></pre></td></tr></table>
 </div>
 </div><p>最后我们写个脚本，把上面的四进制数据转为字符串即可得到最后的flag：<code>flag{5a482ade-10ed-4905-a886-369846d27a08}</code></p>
-<div class="highlight" id="id-5"><div class="chroma">
+<div class="highlight" id="id-6"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
