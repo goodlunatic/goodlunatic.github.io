@@ -1081,9 +1081,9 @@ print(libnum.b2s(res))
 
 &gt; 题目附件： https://pan.baidu.com/s/1F6ZBdr-Nnhw0UmjF3_9DzA?pwd=f83m 提取码: f83m
 &gt; 
-&gt; 附件已更新，原来的附件是损坏的，感谢`@IcePeak`师傅的提醒，要不然对着坏的附件，这题这辈子都做不出来了
+&gt; 附件已更新，原来的附件是损坏的，感谢`@1cePeak`师傅的提醒，要不然对着坏的附件，这题这辈子都做不出来了
 
-&gt; 本题的成功解出离不开`@IcePeak`师傅的帮助
+&gt; 本题的成功解出离不开`@1cePeak`师傅的帮助
 
 解压附件压缩包，可以得到一个`encrypt.py`和一张PNG图片，内容如下所示
 
