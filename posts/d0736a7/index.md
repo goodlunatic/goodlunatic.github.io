@@ -12,7 +12,7 @@
 
 ## [SOLVED] 题目名称 nothing (2024 蓝桥杯全国总决赛)
 
-题目附件： https://pan.baidu.com/s/1eGIfajRXx3uqjlk54CaZ1g?pwd=ax6g 提取码: ax6g
+&gt; 题目附件： https://pan.baidu.com/s/1eGIfajRXx3uqjlk54CaZ1g?pwd=ax6g 提取码: ax6g
 
 下载附件，得到一个`noting.zip`，打开发现是DOCX的结构
 
@@ -360,8 +360,8 @@ if __name__ == &#34;__main__&#34;:
 ## [SOLVED] 题目名称 道可道，非常道 (2024 ISCC 博弈对抗赛)
 
 &gt; 非常感谢 @Aura 师傅最后的奇思妙想，发现了频谱图中的二维码需要旋转，给这道题画上了圆满的句号。
-
-题目附件： https://pan.baidu.com/s/1dyDJ_az_smtX6exFLinavg?pwd=pnet 提取码: pnet
+&gt; 
+&gt; 题目附件： https://pan.baidu.com/s/1dyDJ_az_smtX6exFLinavg?pwd=pnet 提取码: pnet
 
 赛后主办方给出了本题考察的知识点：
 
@@ -558,8 +558,8 @@ for num in range(100000, 1000000):
 
 ## [SOLVED] 题目名称 QRSACode
 
-题目附件： https://pan.baidu.com/s/1Jtgzh2AOcR4J7A-Wa-83LQ?pwd=8zcj 提取码: 8zcj
-
+&gt; 题目附件： https://pan.baidu.com/s/1Jtgzh2AOcR4J7A-Wa-83LQ?pwd=8zcj 提取码: 8zcj
+&gt; 
 &gt; 这道题要感谢 @Aura 师傅的奇思妙想，发现了`hint.png`中的每个像素其实都是RSA中的`e`
 
 题面信息如下
@@ -713,8 +713,8 @@ if __name__ == &#34;__main__&#34;:
 
 ## [SOLVED] 题目名称 Boxing Boxer
 
-题目附件： https://pan.baidu.com/s/195It-h7CBEXJ53-cV9MkoA?pwd=dahr 提取码: dahr
-
+&gt; 题目附件： https://pan.baidu.com/s/195It-h7CBEXJ53-cV9MkoA?pwd=dahr 提取码: dahr
+&gt; 
 &gt; 这道题的成功解决要感谢`@烛影摇红`师傅提供的解题思路
 
 题面信息如下：
@@ -858,8 +858,8 @@ if __name__ == &#34;__main__&#34;:
 
 ## [SOLVED] 题目名称 Cyclone Joker
 
-题目附件： https://pan.baidu.com/s/11DkgyTOBwumhHzIh5TKfNA?pwd=c2rb 提取码: c2rb
-
+&gt; 题目附件： https://pan.baidu.com/s/11DkgyTOBwumhHzIh5TKfNA?pwd=c2rb 提取码: c2rb
+&gt; 
 &gt; 本题的成功解出离不开 `@Aura` `@zysgmzb` `@八神`这几位师傅的帮助，师傅们都太强了！【膜拜】
 
 题面信息如下：
@@ -1247,7 +1247,7 @@ b&#34;Hey boy, I&#39;m here to help you, now you&#39;ze one step away from succe
 
 ## [SOLVED] 题目名称 扫一扫 (2025 安徽省赛)
 
-题目附件： https://pan.baidu.com/s/1Xuo8ACEdarB8Z4D989Ytvw?pwd=hbph 提取码: hbph
+&gt; 题目附件： https://pan.baidu.com/s/1Xuo8ACEdarB8Z4D989Ytvw?pwd=hbph 提取码: hbph
 
 解压附件压缩包，得到一张`flag.png`,是张二维码，扫码后可以得到：`123`
 
@@ -1282,6 +1282,114 @@ Base64解码后可以得到一串32位的字符串，经过尝试发现是MD5
 &gt; 这道题本身出的没啥水平，最后一步反查MD5更是典中典(听说赛后才能查得到)
 &gt; 
 &gt; 把它挂在这里也就是想记录一下这场比赛的某些主办方丑陋的行径
+
+## [SOLVED] 题目名称 discretedpoint
+
+&gt; 题目附件： https://pan.baidu.com/s/1V9ndTVFoiFWzdndj18N92w?pwd=8ppa 提取码: 8ppa
+
+解压附件压缩包，可以得到下面这张比较杂乱的图片
+
+![](imgs/image-20250429141528394.png)
+
+010打开提示报错，发现是图片高度被篡改了，因此我们爆破一下图片宽高并修复，可以得到下面这张图片
+
+![](imgs/image-20250429141646786.png)
+
+可以看到一串红色的字符串：`DL5aRqTz39`
+
+然后我们用PS打开分析这张图片，从像素点上看我们可以发现出题人应该是把两张图片合到一起了
+
+合成的方法应该是提取一列像素，然后以一定的间隔合成，我们仔细观察下面的黑色像素，就可以知道间隔是3
+
+![](imgs/image-20250429141842307.png)
+
+因此我们可以尝试以3作为间隔，写个脚本提取一下上图中黑色像素构成的图像
+
+```python
+from PIL import Image
+import numpy as np
+
+def fix_png():
+    img = Image.open(&#39;1.png&#39;)
+    w,h = img.size
+    # print(w,h) # 840 598
+    for y in range(h):
+        for x in range(0,w,4):
+            r,g,b,a = img.getpixel((x,y))
+            pixel_list.append([r,g,b,a])
+
+    new_wifth = len(pixel_list) // h
+    print(np.array(pixel_list,dtype=np.uint8))
+    img_pixel = np.array(pixel_list,dtype=np.uint8).reshape(h,new_wifth,4)
+    fix_img = Image.fromarray(img_pixel,&#39;RGBA&#39;)
+    fix_img.save(&#34;fixed.png&#34;)
+
+if __name__ == &#34;__main__&#34;:
+    fix_png()
+```
+
+运行以上脚本后即可得到下图
+
+![](imgs/image-20250429142156924.png)
+
+然后我们继续关注剩下的像素，尝试把像素点的RGBA值打印出来，看看是否有什么规律
+
+![](imgs/image-20250429142407257.png)
+
+首先我们观察图像的最后几列，发现彩色的像素数据到倒数第二列中间就中断了
+
+因此猜测我们需要按列来遍历像素
+
+![](imgs/image-20250429142338767.png)
+
+然后当我们按列遍历像素，并把RGBA值转为十六进制打印出来的时候
+
+发现了明显的压缩包的PK头(504B0304)，因此我们写个脚本提取一下数据
+
+```python
+from PIL import Image
+import numpy as np
+
+r_list = []
+g_list = []
+b_list = []
+a_list = []
+pixel_list = []
+
+def extract_data():
+    hex_data = &#34;&#34;
+    img = Image.open(&#39;1.png&#39;)
+    w,h = img.size
+    # print(w,h) # 840 598
+    for r in range(1,w,4):
+        for x in range(r,r&#43;3):
+            for y in range(h):
+                r,g,b,a = img.getpixel((x,y))
+                r_list.append(f&#34;{r:02x}&#34;)
+                g_list.append(f&#34;{g:02x}&#34;)
+                b_list.append(f&#34;{b:02x}&#34;)
+                a_list.append(f&#34;{a:02x}&#34;)
+
+    print(r_list[:30])
+    print(g_list[:30])
+    print(b_list[:30])
+    print(a_list[:30])
+
+    for i in range(len(r_list)):
+        hex_data &#43;= r_list[i]&#43;g_list[i]&#43;b_list[i]&#43;a_list[i]
+
+    with open(&#34;flag.zip&#34;,&#39;wb&#39;) as f:
+        f.write(bytes.fromhex(hex_data))
+
+if __name__ == &#34;__main__&#34;:
+    extract_data()
+```
+
+运行以上脚本即可得到一个加密的压缩包，然后用之前得到的`DL5aRqTz39`作为解压密码解压
+
+即可得到最后的flag：`DASCTF{8ea740d3c5fc1022739fdb6c055eb8cb}`
+
+![](imgs/image-20250429142819946.png)
 
 ## 题目名称 Just Not Good
 
@@ -1454,13 +1562,19 @@ with open(&#34;output.png&#34;, &#34;wb&#34;) as f:
 
 题目附件： https://pan.baidu.com/s/1-yjWWcdAwGmNDsGxAA8Gow?pwd=93bs 提取码: 93bs
 
-附件压缩包中有一张PNG图片和一个加密的wav文件，猜测需要我们从png文件中找到压缩包的解压密码
+附件压缩包中有一张PNG图片和一个看起来是加密的wav文件
 
 ![](imgs/image-20250321193247844.png)
 
 其中 `996.png` 那张图片的内容如下：
 
 ![](imgs/image-20250321193335358.png)
+
+直接`zsteg`扫一下，发现LSB隐写了第一段的flag：`Part1:dasctf{D0_U_`
+
+![](imgs/image-20250429141301854.png)
+
+然后经过尝试，发现了上面压缩包中的那个wav是伪加密的，010打开压缩包改一下加密位即可正常解压
 
 
 

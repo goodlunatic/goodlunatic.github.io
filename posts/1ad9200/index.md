@@ -2411,7 +2411,9 @@ msoffcrypto-tool encrypted.docx decrypted.docx -p Passw0rd
 
 解密完成后010打开就能判断出准确的文件类型了
 
-### Excel文件：.xls .xlsx
+### 新版本的文件类型(docx/xlsx/pptx)
+
+#### Excel文件：.xls .xlsx
 
 1、拉入010或者记事本，查找flag
 
@@ -2421,31 +2423,110 @@ msoffcrypto-tool encrypted.docx decrypted.docx -p Passw0rd
 
 4、要先将数据按照行列排序后再进行处理
 
-### Word文件：.doc .docx
+#### Word文件：.doc .docx
 
-#### 1、直接foremost出隐藏文件
+1、直接foremost出隐藏文件
 
-#### 2、与宏有关系的各种攻击与隐写
+2、与宏有关系的各种攻击与隐写
 
+```bash
 分析word中的宏需要用到这样一个工具：oletools
-
 这个工具直接在pip中安装即可使用: pip3 install oletools
-
-#### doc格式可以不需要文档密码直接提取其中的vba宏代码
-
+doc格式可以不需要文档密码直接提取其中的vba宏代码
 安装好oletools后直接运行以下代码提取即可，可能加密文档的加密算法就在期中
-
-```
 olevba .\attachment.doc &gt; test.txt
 ```
 
-#### 3、利用行距来隐写（例：ISCC2023-汤姆历险记）
+3、利用行距来隐写（例：ISCC2023-汤姆历险记）
 
+```
 word中可能有一段是1倍行距，可能又有一段是1.5倍行距，需要根据不同行距敲出摩斯电码（单倍转为.多倍转为-空行转为空格或者分隔符）
+```
 
-#### 4、docx中有emf和oleobject
+4、docx中有emf和oleobject
 
+```
 可以直接双击word中那个emf图标，激活相关内容(如音频文件)然后再进一步分析
+```
+
+### MS-Office97-2003
+
+#### OLEHeader修复
+
+| 字段名称      | 偏移量       | 字段描述                                                         |
+| --------- | --------- | ------------------------------------------------------------ |
+| 文件签名      | 0x0-0-x7  | 固定值：D0CF11E0A1B11AE100                                       |
+| 对象标识符     | 0x8-0x17  | 通常全为0                                                        |
+| 次要版本号     | 0x18-0x19 | 通常为固定值：3E00                                                  |
+| DLL版本号    | 0x1A-0x1B | 通常为固定值：0300                                                  |
+| 字节序       | 0x1C-0x1D | 通常为小段序：FEFF                                                  |
+| 每个扇区的大小   | 0x1E-0x1F | 通常为固定值0900（即2的9次方=512字节）                                     |
+| 迷你扇区大小    | 0x20-0x21 | 通常为固定值0600（即2的6次方=64字节）                                      |
+| 保留字段      | 0x22-0x23 | 通常为0000                                                      |
+| 保留字段      | 0x24-0x27 | 通常为00000000                                                  |
+| 目录扇区的数量   | 0x28-0x2B | 通常为00000000                                                  |
+| FAT表扇区的数量 | 0x2C-0x2F | 存储文件分配表（FAT）占用的扇区数量（01000000）                                |
+| 根目录扇区索引   | 0x30-0x33 | 根目录所在扇区的索引号，找RootEntry所载的扇区，计算时需要把第一个扇区排除0x6800/0x200-1=0x33 |
+
+```
+6800  52 00 6F 00 6F 00 74 00 20 00 45 00 6E 00 74 00  R.o.o.t. .E.n.t. 
+6810  72 00 79 00 00 00 00 00 00 00 00 00 00 00 00 00  r.y............. 
+6820  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................ 
+6830  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................ 
+6840  16 00 05 01 FF FF FF FF FF FF FF FF 03 00 00 00  ....ÿÿÿÿÿÿÿÿ.... 
+6850  06 09 02 00 00 00 00 00 C0 00 00 00 00 00 00 46  ........À......F
+```
+
+| 事务签名           | 0x34-0x37 | 通常为固定值：00000000                                                      |
+| -------------- | --------- | -------------------------------------------------------------------- |
+| 迷你流最大大小        | 0x38-0x3B | 通常为固定值：00010000                                                      |
+| 第一个迷你 FAT 扇区索引 | 0x3C-0x3F | 短扇区分配表的扇区位置,一般紧接着RootEntry,得看RootEntry占用多少扇区,这里是占用两个扇区,因此这里的值应该填0x35 |
+| 迷你 FAT 扇区数量    | 0x40-0x43 | 短扇区分配表占用的扇区数，这里长度为0x200，因此只占用了一个扇区                                   |
+
+```
+6C00  01 00 00 00 FE FF FF FF FF FF FF FF FF FF FF FF  ....þÿÿÿÿÿÿÿÿÿÿÿ 
+6C10  FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF  ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ 
+6C20  FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF  ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ 
+6C30  FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF  ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ 
+6C40  FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF  ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ 
+6C50  FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF  ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ 
+6C60  FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF  ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ 
+...
+6DB0  FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF  ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ 
+6DC0  FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF  ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ 
+6DD0  FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF  ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ 
+6DE0  FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF  ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ 
+6DF0  FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF  ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ
+```
+
+| 第一个 DIFAT 扩展扇区索引 | 0x44-0x47 | 指向第一个 DIFAT（双 FAT）扇区的起始位置（FAT 索引） |
+| ---------------- | --------- | --------------------------------- |
+| DIFAT 扇区数量       | 0x48-0x4B | 存储 DIFAT（双 FAT）表占用的扇区数量           |
+
+0x44-0x4B：主扇区分配表的扩展部分的索引以及其数量，因为文件比较小没有用到扩展部分，第一个应该是-2即0xFEFFFFFF，然后数量为0
+
+| DIFAT 表 | 0x4C-0x1FF | 主扇区分配表，因为文件不是很大,基本只有前面几个字节是有意义的,后面都是0xFF，取值和RootEntry的扇区号有关，一般就是root扇区倒着写，因为root为0x33,这里我们填一个0x32000000 |
+| ------- | ---------- | ------------------------------------------------------------------------------------------------------- |
+
+最后修复完整后的OLEHeader如下
+
+```
+0000  D0 CF 11 E0 A1 B1 1A E1 00 00 00 00 00 00 00 00  ÐÏ.à¡±.á........ 
+0010  00 00 00 00 00 00 00 00 3E 00 03 00 FE FF 09 00  ........&gt;...þÿ.. 
+0020  06 00 00 00 00 00 00 00 00 00 00 00 01 00 00 00  ................ 
+0030  33 00 00 00 00 00 00 00 00 10 00 00 35 00 00 00  3...........5... 
+0040  01 00 00 00 FE FF FF FF 00 00 00 00 32 00 00 00  ....þÿÿÿ....2... 
+0050  FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF  ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ 
+0060  FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF  ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ 
+0070  FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF  ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ 
+0080  FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF  ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ 
+0090  FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF  ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ 
+...
+01C0  FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF  ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ 
+01D0  FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF  ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ 
+01E0  FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF  ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ 
+01F0  FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF  ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ
+```
 
 ## Misc——txt题思路：
 
@@ -3325,7 +3406,16 @@ as text: ���
 
 ## Misc——视频题思路：
 
-1、可能有音频隐写，用mkvtool分离出音频，再拉入Au看频谱图
+1、视频中的音频存在隐写
+
+```bash
+# 用 mkvtool 分离出 mka 音频，拉入Au看频谱图
+# 也可以用 ffmpeg 分离出 mp3 或者 wav 音频，然后拉入Au看频谱图
+ffmpeg -i lion.mp4
+ffmpeg -i lion.mp4 -map 0:2 -q:a 0 output.wav
+```
+
+![](imgs/image-20250429115745570.png)
 
 2、可能是视频中的每一帧图片都有LSB隐写（2023 WMCTF）
 

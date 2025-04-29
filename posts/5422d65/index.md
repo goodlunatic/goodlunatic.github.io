@@ -4,7 +4,6 @@
 **This is a Simple Guide for Network Traffic Analysis.** 
 
 &lt;!--more--&gt;
-
 拿到流量包后，第一件事就是可以先 `strings | grep flag{` 一下，说不定 flag 就直接出了
 
 当然也可以使用`@凤二西`师傅的 `破空_flag查找工具3.5.exe` 来搜索 flag
@@ -448,6 +447,12 @@ echo substr(md5($pass.$key),16);
 ### 冰蝎流量分析
 
 &gt; 冰蝎的默认密钥为：e45e329feb5d925b（md5(rebeyond)的前16位）
+&gt; 
+&gt; ！！当找不到密钥或者密钥未知的时候可以尝试直接用默认密钥解密试一下！！
+
+或者也可以尝试用`PuzzleSolver`爆破一下密钥
+
+![](imgs/image-20250424172707884.png)
 
 冰蝎流量的加密方式主要包括异或和AES，异或加密的话是和哥斯拉一样的
 
@@ -492,7 +497,7 @@ session_start();
 
 当加密器用的是AES加密的时候就需要注意了
 
-可能会有两种情况，一种是AES-EBC（没有IV），一种是AES-CBC（有IV）
+可能会有两种情况，一种是AES-ECB（没有IV），一种是AES-CBC（有IV）
 
 然后这里如果有IV，IV也可能有以下两种情况
 
@@ -965,11 +970,15 @@ if __name__ == &#34;__main__&#34;:
 
 例题1-2024西湖论剑初赛-cscs
 
-## NTLM流量分析
+## NTLMv2流量分析
 
-NTLM流量分析需要的信息，在追踪流中是找不到的，需要我们深入分析具体的每个流量包
+NTLMv2流量分析需要的信息，在追踪流中是找不到的，需要我们深入分析具体的每个流量包
 
-可以用关键字 ntlmssp 过滤流量包，然后看每个流量包右侧的 info 栏快速定位NTLM信息的位置
+可以在Wireshark中用关键字 ntlmssp 过滤，然后在成功认证的流量包的分组详情中提取我们需要的字段
+
+当然也可以用这个[开源项目](https://github.com/mlgualtieri/NTLMRawUnHide/blob/master/NTLMRawUnHide.py)中的脚本自动识别并提取
+
+![](imgs/图片.webp)
 
 ### 提取 NTLMv2 哈希值并破解（SMB协议）
 
