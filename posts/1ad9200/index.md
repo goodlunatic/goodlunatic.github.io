@@ -3488,7 +3488,11 @@ out.show()
 
 ### 3、Silenteye隐写
 
-wav音频文件可能是 silenteye 隐写，可以拿默认密码 silenteye 解密试试看
+wav音频文件可能是`silenteye`隐写，可以拿`silenteye`用默认密码解密试试看
+
+当然如果已知密钥的话就用密钥去解密
+
+![](imgs/image-20250429203026980.png)
 
 ### 4、Deepsound隐写
 
@@ -3618,7 +3622,33 @@ stegpy 1.wav -p
 
 可以直接使用 DeEgger Embedder 工具 extract files
 
-### 13、分析左右声道的差值
+### 13、提取WAV中LSB隐写的数据
+
+```python
+import wave
+import libnum
+
+wav = wave.open(&#39;996.wav&#39;, &#39;r&#39;)
+
+# 读取前1000帧的音频数据并将其转换为十六进制字符串
+# readframes()返回的是字节数据，.hex()将其转换为十六进制表示
+frames_data = wav.readframes(1000).hex()
+res = &#39;&#39;
+
+# 遍历十六进制数据，每次处理4个字符(2字节)
+# 因为WAV文件通常使用16位(2字节)采样
+for i in range(0, len(frames_data), 4):
+    data = frames_data[i:i&#43;4]
+    # 将数据从小端序转换为大端序，因为WAV文件使用小端序存储数据
+    data_rev = int(data[2:] &#43; data[:2], 16)
+    # 使用位与运算(&amp;)获取最低有效位(LSB)
+    res &#43;= str(data_rev &amp; 1)
+    
+print(libnum.b2s(res))
+# 7avpassword:NO996!=
+```
+
+### 14、分析WAV左右声道的差值
 
 ```python
 # 导入模块wavfile
@@ -3649,7 +3679,7 @@ with open(&#39;res.txt&#39;, &#39;w&#39;) as f:
     f.write(res)
 ```
 
-### 14、使用脚本提取数据进行分析
+### 15、使用脚本提取WAV数据进行分析
 
 ```python
 # 2023 DASCTFxCBCTF
@@ -3715,7 +3745,7 @@ if __name__ == &#39;__main__&#39;:
     # DASCTF{Wh1stling_t0_Convey_informat1on!!!}
 ```
 
-### 15、提取两个音频中的浮点集并分析
+### 16、提取两个WAV音频中的浮点集并分析
 
 例题1-2024极客大挑战-音乐大师
 

@@ -1391,6 +1391,62 @@ if __name__ == &#34;__main__&#34;:
 
 ![](imgs/image-20250429142819946.png)
 
+
+## [SOLVED] 题目名称 Ste9ano9raphy 6inary（2022CISCN 华南分区赛）
+
+&gt; 题目附件： https://pan.baidu.com/s/1-yjWWcdAwGmNDsGxAA8Gow?pwd=93bs 提取码: 93bs
+&gt; 
+&gt; 本题的成功解出，离不开`@1cePeak`师傅的帮助
+
+附件压缩包中有一张PNG图片和一个看起来是加密的wav文件
+
+![](imgs/image-20250321193247844.png)
+
+其中 `996.png` 那张图片的内容如下：
+
+![](imgs/image-20250321193335358.png)
+
+直接`zsteg`扫一下，发现LSB隐写了第一段的flag：`Part1:dasctf{D0_U_`
+
+![](imgs/image-20250429141301854.png)
+
+然后经过尝试，发现了上面压缩包中的那个wav是伪加密的，010打开压缩包改一下加密位即可正常解压
+
+然后在`@1cePeak`师傅的帮助下，知道了这个WAV音频存在LSB隐写
+
+因此写个脚本提取出其中的LSB数据后可以得到一个密码：`password:NO996!`
+
+```python
+import wave
+import libnum
+
+wav = wave.open(&#39;996.wav&#39;, &#39;r&#39;)
+
+# 读取前1000帧的音频数据并将其转换为十六进制字符串
+# readframes()返回的是字节数据，.hex()将其转换为十六进制表示
+frames_data = wav.readframes(1000).hex()
+res = &#39;&#39;
+
+# 遍历十六进制数据，每次处理4个字符(2字节)
+# 因为WAV文件通常使用16位(2字节)采样
+for i in range(0, len(frames_data), 4):
+    data = frames_data[i:i&#43;4]
+    # 将数据从小端序转换为大端序，因为WAV文件使用小端序存储数据
+    data_rev = int(data[2:] &#43; data[:2], 16)
+    # 使用位与运算(&amp;)获取最低有效位(LSB)
+    res &#43;= str(data_rev &amp; 1)
+    
+print(libnum.b2s(res))
+# 7avpassword:NO996!=
+```
+
+然后用上面得到的密码去`Silenteye`中解密即可得到第二段的flag：`like_996?}`
+
+最后，把两段flag合起来就是本题最后的flag：`dasctf{D0_U_like_996?}`
+
+![](imgs/image-20250429203549843.png)
+
+
 ## 题目名称 Just Not Good
 
 题目附件： https://pan.baidu.com/s/12j_kEm7Vw0PETvJ8GSiC8g?pwd=u7q6 提取码: u7q6
@@ -1556,25 +1612,6 @@ with open(&#34;output.png&#34;, &#34;wb&#34;) as f:
 图片的像素看起来很复杂，然后尝试了`zsteg`和`stegsolve`，感觉不存在LSB隐写
 
 也尝试了单图盲水印，没有得到什么有用的信息
-
-
-## 题目名称 Ste9ano9raphy 6inary（2022CISCN 华南分区赛）
-
-题目附件： https://pan.baidu.com/s/1-yjWWcdAwGmNDsGxAA8Gow?pwd=93bs 提取码: 93bs
-
-附件压缩包中有一张PNG图片和一个看起来是加密的wav文件
-
-![](imgs/image-20250321193247844.png)
-
-其中 `996.png` 那张图片的内容如下：
-
-![](imgs/image-20250321193335358.png)
-
-直接`zsteg`扫一下，发现LSB隐写了第一段的flag：`Part1:dasctf{D0_U_`
-
-![](imgs/image-20250429141301854.png)
-
-然后经过尝试，发现了上面压缩包中的那个wav是伪加密的，010打开压缩包改一下加密位即可正常解压
 
 
 
