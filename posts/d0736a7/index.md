@@ -1446,6 +1446,89 @@ print(libnum.b2s(res))
 
 ![](imgs/image-20250429203549843.png)
 
+## 题目名称 环环相扣
+
+&gt; 题目附件： https://pan.baidu.com/s/1WRXY2Ki_BCZTlUnrZhnQWA?pwd=8jjq 提取码: 8jjq
+
+解压附件压缩包可以得到下面这张`001.png`，其中有文字 `无情哈拉少zbc`
+
+![](imgs/image-20250429214719757.png)
+
+010打开图片，发现图片存在明显`OurSecret`隐写的痕迹，并且末尾藏了一个压缩包
+
+![](imgs/image-20250429214847922.png)
+
+我们把压缩包提取出来后打开，发现里面有如下几个文件
+
+![](imgs/image-20250429214925406.png)
+
+我们从flag.pdf中可以得到flag1.zip的解压密码：`3f9ed0gw2jk`
+``
+![](imgs/image-20250429215014389.png)
+
+解压后可以得到一个flag.txt
+
+![](imgs/image-20250429215054764.png)
+
+经过尝试，发现存在snow隐写，并且snow隐写的密钥就是之前的 `无情哈拉少zbc`
+
+![](imgs/image-20250429215204134.png)
+
+snow隐写提取得到的内容如下：
+
+```
+11011 10101 10101 10101 11111 01110 11011 10101 10111 10101 00111 00111 11111 11001 11011 10000 00111 00001 10110 00111 00111 00111 00111 00111 00111 10000
+```
+
+然后我们用随波逐流梭一把，发现`博多baudot码`可以正常解码得到`666C`开头的十六进制字符串
+
+![](imgs/image-20250429215315518.png)
+
+把解码后得到的十六进制数据转字符串即可得到第一段flag：`flag{W0www`
+
+![](imgs/image-20250430104705645.png)
+
+然后我们再把注意力集中到压缩包中那几个没有内容txt文件中，猜测是文件创建时间戳隐写
+
+因此我们写个脚本，提取一下时间戳，并尝试通过某种方式转换到Ascii码上
+
+```python
+import pyzipper
+import datetime
+
+def get_zip_timestamps(zip_path):
+    timestamps = []
+    with pyzipper.ZipFile(zip_path) as zip_file:
+        for file_info in zip_file.infolist():
+            filename = file_info.filename
+            modified_datetime = datetime.datetime(*file_info.date_time)
+            modified_timestamp = modified_datetime.timestamp()
+            timestamps.append({
+                &#39;filename&#39;: filename,
+                &#39;modified_timestamp&#39;: modified_timestamp
+            })
+    return timestamps
+
+def translate_data(timestamps):
+    for entry in timestamps:
+        # print(f&#34;{entry[&#39;filename&#39;]} {entry[&#39;modified_timestamp&#39;]}&#34;)
+        if &#39;.txt&#39; in entry[&#39;filename&#39;]:
+            print(chr(int(entry[&#39;modified_timestamp&#39;]) - 1737276000&#43;1),end=&#39;&#39;)
+            # YUKWOU9sUYeWSU5qUUKOaA==
+
+if __name__ == &#39;__main__&#39;:
+    zip_file_path = &#39;1.zip&#39;
+    timestamps = get_zip_timestamps(zip_file_path)
+    translate_data(timestamps)
+```
+
+发现提取出来的数据，最后两个字符是相同的，因此猜测可能是Base64编码中的==
+
+按照这个想法，将每个字符的Ascii码后移一位即可得到：`YUKWOU9sUYeWSU5qUUKOaA==`
+
+但是发现没有办法正常Base64解码，当前的思路就卡在这里了
+
+后续的内容我猜测应该就是解码这个Base64得到密钥，然后用这个密钥去解密之前的`OurSecret`
 
 ## 题目名称 Just Not Good
 
