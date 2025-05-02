@@ -1694,7 +1694,139 @@ bc3cf1722bf8f617acc85ba7169649ecd70c7e9575c05ef04cde5bd8eb79120a756e1a7755acb17d
 
 ## 题目名称 pingping (2024 蓝桥杯全国总决赛) 
 
-题目附件： https://pan.baidu.com/s/1nE4F_kVzgRaDulA0xOjiWQ?pwd=33tm 提取码: 33tm
+&gt; 题目附件： https://pan.baidu.com/s/1nE4F_kVzgRaDulA0xOjiWQ?pwd=33tm 提取码: 33tm
+
+&gt; 题面信息如下：
+&gt; 
+&gt; 你是一个网络安全管理员，负责监控公司内部网络的安全性。
+&gt; 
+&gt; 最近，你收到了关于内部网络存在异常 ICMP 流量的报告。
+&gt; 
+&gt; 你决定分析这些流量，以确定是否将公司的机密信息传输到了外部。
+
+题目附件给了一个流量包文件，首先看了HTTP流量，发现没有什么关键信息
+
+结合题目名`pingping`，猜测关键信息在`icmp`协议的流量中
+
+因此结合过滤器查看，发现果然有关键信息，如下图中压缩包的PK头(504B0304)
+
+![](imgs/image-20250502163730487.png)
+
+因此我们尝试使用`tshark`把不同`icmp.idnt`流量包的数据都提取出来
+
+```bash
+tshark -r 1.pcap -Y &#39;((_ws.col.protocol == &#34;ICMP&#34;) &amp;&amp; (ip.src == 10.211.55.4)) &amp;&amp; (icmp.ident == 44329)&#39; -T fields -e &#39;data&#39; &gt; ad29.txt
+tshark -r 1.pcap -Y &#39;((_ws.col.protocol == &#34;ICMP&#34;) &amp;&amp; (ip.src == 10.211.55.4)) &amp;&amp; (icmp.ident == 5930)&#39; -T fields -e &#39;data&#39; &gt; 172a.txt
+tshark -r 1.pcap -Y &#39;((_ws.col.protocol == &#34;ICMP&#34;) &amp;&amp; (ip.src == 10.211.55.4)) &amp;&amp; (icmp.ident == 16429)&#39; -T fields -e &#39;data&#39; &gt; 402d.txt
+tshark -r 1.pcap -Y &#39;((_ws.col.protocol == &#34;ICMP&#34;) &amp;&amp; (ip.src == 10.211.55.4)) &amp;&amp; (icmp.ident == 41517)&#39; -T fields -e &#39;data&#39; &gt; a22d.txt
+tshark -r 1.pcap -Y &#39;((_ws.col.protocol == &#34;ICMP&#34;) &amp;&amp; (ip.src == 10.211.55.4)) &amp;&amp; (icmp.ident == 21038)&#39; -T fields -e &#39;data&#39; &gt; 522e.txt
+tshark -r 1.pcap -Y &#39;((_ws.col.protocol == &#34;ICMP&#34;) &amp;&amp; (ip.src == 10.211.55.4)) &amp;&amp; (icmp.ident == 29237)&#39; -T fields -e &#39;data&#39; &gt; 7235.txt
+tshark -r 1.pcap -Y &#39;((_ws.col.protocol == &#34;ICMP&#34;) &amp;&amp; (ip.src == 10.211.55.4)) &amp;&amp; (icmp.ident == 55349)&#39; -T fields -e &#39;data&#39; &gt; d835.txt
+```
+
+数据提取出来，解码Hex可以得到多个zip压缩包，解压后可以得到多张PNG图片
+
+经过比较MD5值去重后，一共可以得到下面这25张大部分像素为蓝色并且大小为`20x20`的PNG图片
+
+&gt; 这里其实只要提取 `icmp.ident == 0x522e` 的数据包就行，直接可以提出来所有的图片
+
+![](imgs/image-20250502164419287.png)
+
+每张图片的文件名长度都是32，因此猜测可能是MD5的哈希值
+
+经过尝试发现，其实就是字符1-25的MD5哈希值，因此我们可以把图片重命名一下
+
+```python
+import os
+import hashlib
+
+files = [f for f in os.listdir(&#39;.&#39;) if f.endswith(&#39;.png&#39;)]
+
+md5_map = {}
+for i in range(1, 26):
+    md5_hash = hashlib.md5(str(i).encode(&#39;utf-8&#39;)).hexdigest()
+    md5_map[md5_hash &#43; &#39;.png&#39;] = f&#39;{i}.png&#39;
+
+for filename in files:
+    if filename in md5_map:
+        new_name = md5_map[filename]
+        os.rename(filename, new_name)
+        print(f&#39;Renamed: {filename} -&gt; {new_name}&#39;)
+```
+
+观察到某些图片并不是全是蓝色像素`(0,0,255)`，因此写了个脚本提取像素点并转为Ascii码
+
+```python
+from PIL import Image
+
+def func1():
+    res = &#34;&#34;
+    for i in range(1,26):
+        img_name = f&#34;{i}.png&#34;
+        img = Image.open(img_name)
+        w,h = img.size
+        tmp_list = []
+        pixel_list = []
+
+        for y in range(h):
+            for x in range(w):
+                pixel = img.getpixel((x,y))
+                pixel_list.append(pixel)
+                if pixel != (0,0,255):
+                    tmp_list.append((pixel[0],chr(pixel[0]),(x,y)))
+                    res &#43;= chr(pixel[0])
+        print(f&#34;{img_name}: {tmp_list}&#34;)
+        # print(pixel_list)
+    print(res)
+
+if __name__ == &#34;__main__&#34;:
+    func1()
+```
+
+运行以上脚本后得到如下内容（我打印输出了RGB值、Ascii码转换后的字符、像素的坐标）：
+
+```python
+1.png: [(45, &#39;-&#39;, (13, 3)), (0, &#39;\x00&#39;, (4, 7))]
+2.png: [(101, &#39;e&#39;, (4, 3))]
+3.png: [(98, &#39;b&#39;, (7, 15))]
+4.png: [(103, &#39;g&#39;, (0, 7)), (56, &#39;8&#39;, (12, 17))]
+5.png: [(54, &#39;6&#39;, (7, 12))]
+6.png: [(53, &#39;5&#39;, (10, 0)), (55, &#39;7&#39;, (5, 3)), (52, &#39;4&#39;, (16, 19))]
+7.png: [(125, &#39;}&#39;, (13, 7)), (51, &#39;3&#39;, (5, 16))]
+8.png: [(48, &#39;0&#39;, (5, 3))]
+9.png: [(45, &#39;-&#39;, (6, 0)), (100, &#39;d&#39;, (19, 6)), (51, &#39;3&#39;, (2, 11)), (102, &#39;f&#39;, (11, 17)), (123, &#39;{&#39;, (19, 17))]
+10.png: [(50, &#39;2&#39;, (13, 10))]
+11.png: []
+12.png: [(99, &#39;c&#39;, (6, 0)), (100, &#39;d&#39;, (16, 2)), (97, &#39;a&#39;, (3, 6)), (102, &#39;f&#39;, (16, 7)), (45, &#39;-&#39;, (4, 19))]
+13.png: [(45, &#39;-&#39;, (16, 0)), (100, &#39;d&#39;, (3, 19)), (99, &#39;c&#39;, (10, 19))]
+14.png: [(52, &#39;4&#39;, (3, 1)), (52, &#39;4&#39;, (18, 1)), (98, &#39;b&#39;, (6, 3))]
+15.png: [(97, &#39;a&#39;, (0, 0))]
+16.png: [(53, &#39;5&#39;, (9, 15))]
+17.png: []
+18.png: []
+19.png: [(108, &#39;l&#39;, (12, 6)), (97, &#39;a&#39;, (1, 12))]
+20.png: [(57, &#39;9&#39;, (16, 12)), (101, &#39;e&#39;, (10, 15)), (101, &#39;e&#39;, (19, 15))]
+21.png: [(99, &#39;c&#39;, (5, 10)), (49, &#39;1&#39;, (15, 12))]
+22.png: [(99, &#39;c&#39;, (1, 3)), (101, &#39;e&#39;, (6, 4))]
+23.png: [(52, &#39;4&#39;, (3, 3))]
+24.png: []
+25.png: [(57, &#39;9&#39;, (19, 10))]
+-ebg86574}30-d3f{2cdaf--dc44ba5la9eec1ce49
+```
+
+结合字符查看得到的字符串，很明显flag就是藏在这里了，但是不知道flag具体的排列规律
+
+结合题面的信息，猜测肯定是有内网的主机向外网通信了，使用过滤器过滤一下
+
+发现ip地址为`10.211.55.7`的主机嫌疑最大
+
+![](imgs/image-20250502174412404.png)
+
+然后发现`10.211.55.7`主要和`185.125.188.55`和`91.189.91.43`这两个主机通信了
+
+并且通信的数据包还都是`TLSv1.3`加密的，因此猜测需要我们解密这些数据包才能得到flag的排列规律
+
+
 
 
 ## 题目名称 tag (2023 福建省职业院校技能大赛高职组信息安全管理与评估)
