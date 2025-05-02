@@ -1263,6 +1263,14 @@ print(ddd)
 
 ![](imgs/image-20250421203306482.png)
 
+### 博多码
+
+```
+11011 10101 10101 10101 11111 01110 11011 10101 10111 10101 00111 00111 11111 11001 11011 10000 00111 00001 10110 00111 00111 00111 00111 00111 00111 10000 11111 01101 11011 01010 11111 01001 11011 00001 10111 00111 00001 10101 00001 10000 11111 01101 11011 01010 11111 01001 11011 01010 10110 00111 00001 00111 01010 00001 00001 00111 10011 00001 00001 00001 00001 00001 00001 10011 10111 10011 10111 10011 10111 00111 11111 01001
+```
+
+直接用`随波逐流CTF编码工具`解密即可
+
 ## Misc——流量分析
 
 详见作者博客中的 **[Network Traffic Analysis](https://goodlunatic.github.io/posts/5422d65/)** 这篇文章
@@ -3388,7 +3396,7 @@ as text: ���
 
 例题1-2025TGCTF-ez_zip
 
-11、把加密的压缩包篡改成伪加密的情况
+### 11、把加密的压缩包篡改成伪加密的情况
 
 解决方案：将加密位修改回来即可
 
@@ -3403,6 +3411,120 @@ as text: ���
 &gt; 实际数据会以额外的12或16字节结构出现在压缩数据后面，把一个实际上没有数据描述符的压缩包的flags倒数第四bit改成1
 &gt; 
 &gt; 会导致软件被指示去读取一个不存在的描述符片段，从而导致后续的数据读取全部错乱
+
+### 12、压缩包文件时间戳隐写
+
+如果是加密的压缩包，可以用下面的脚本提取时间戳，然后尝试转Ascii码
+
+```python
+import pyzipper
+import datetime
+
+def get_zip_timestamps(zip_path):
+    timestamps = []
+    with pyzipper.ZipFile(zip_path) as zip_file:
+        for file_info in zip_file.infolist():
+            filename = file_info.filename
+            modified_datetime = datetime.datetime(*file_info.date_time)
+            modified_timestamp = modified_datetime.timestamp()
+            timestamps.append({
+                &#39;filename&#39;: filename,
+                &#39;modified_timestamp&#39;: modified_timestamp
+            })
+    return timestamps
+
+def translate_data(timestamps):
+    for entry in timestamps:
+        # print(f&#34;{entry[&#39;filename&#39;]} {entry[&#39;modified_timestamp&#39;]}&#34;)
+        if &#39;.txt&#39; in entry[&#39;filename&#39;]:
+            print(chr(int(entry[&#39;modified_timestamp&#39;]) - 1737276000&#43;1),end=&#39;&#39;)
+            # YUKWOU9sUYeWSU5qUUKOaA==
+
+if __name__ == &#39;__main__&#39;:
+    zip_file_path = &#39;1.zip&#39;
+    timestamps = get_zip_timestamps(zip_file_path)
+    translate_data(timestamps)
+```
+
+如果压缩包没有加密，并且用上面的脚本提不出来有用的信息
+
+可以尝试先解压到一个目录中，然后写脚本读取目录中所有文件修改时间的时间戳
+
+```python
+import os
+import base64
+from datetime import datetime
+
+def get_numeric_part(filename):
+    try:
+        base_name = os.path.splitext(filename)[0]
+        return int(base_name)
+    except ValueError:
+        return float(&#39;inf&#39;)
+
+def get_file_timestamps(directory):
+    file_timestamps = {}
+    file_list = []
+    
+    for root, dirs, files in os.walk(directory):
+        for filename in files:
+            filepath = os.path.join(root, filename)
+            file_list.append((filename, filepath))
+    
+    file_list.sort(key=lambda x: get_numeric_part(x[0]))
+    
+    for filename, filepath in file_list:
+        try:
+
+            stat_info = os.stat(filepath)
+            # 获取修改时间和创建时间
+            modified_time = stat_info.st_mtime
+            if os.name == &#39;nt&#39;:
+                created_time = stat_info.st_ctime
+            else:
+                created_time = stat_info.st_ctime
+            
+            # 转换为datetime对象
+            modified_dt = datetime.fromtimestamp(modified_time)
+            created_dt = datetime.fromtimestamp(created_time)
+            
+            file_timestamps[filepath] = {
+                &#39;created_unix&#39;: created_time,
+                &#39;modified_unix&#39;: modified_time,
+                &#39;created_datetime&#39;: created_dt.strftime(&#39;%Y-%m-%d %H:%M:%S&#39;),
+                &#39;modified_datetime&#39;: modified_dt.strftime(&#39;%Y-%m-%d %H:%M:%S&#39;)
+            }
+        except Exception as e:
+            print(f&#34;无法获取文件 {filepath} 的时间戳: {str(e)}&#34;)
+            continue
+    
+    # 按排序后的顺序打印
+    for filename, filepath in file_list:
+        if filepath in file_timestamps:
+            time_info = file_timestamps[filepath]
+            print(f&#34;{filepath} 创建时间: {time_info[&#39;created_unix&#39;]} 修改时间: {time_info[&#39;modified_unix&#39;]}&#34;)
+    
+    return file_timestamps
+
+def extract_data(timestamps):
+    res = &#34;&#34;
+    # 按文件名中的数字排序，会把字典中的键值对转为元组列表
+    sorted_files = sorted(timestamps.items(), key=lambda x: get_numeric_part(os.path.basename(x[0])))
+    # print(sorted_files)
+    for filepath, time_info in sorted_files:
+        res &#43;= chr(int(time_info[&#39;modified_unix&#39;]-1737276000))
+    print(res)
+
+if __name__ == &#34;__main__&#34;:
+    target_directory = &#34;out&#34;
+    timestamps = get_file_timestamps(target_directory)
+    extract_data(timestamps)
+    # YTJWNU9sTXdVRU5qTTJNaA==
+```
+
+例题1-2024ISCC-时间刺客
+
+例题2-环环相扣
 
 ## Misc——视频题思路：
 

@@ -1446,9 +1446,11 @@ print(libnum.b2s(res))
 
 ![](imgs/image-20250429203549843.png)
 
-## 题目名称 环环相扣
+## [SOLVED] 题目名称 环环相扣
 
 &gt; 题目附件： https://pan.baidu.com/s/1WRXY2Ki_BCZTlUnrZhnQWA?pwd=8jjq 提取码: 8jjq
+&gt; 
+&gt; 本题的成功解出，需要感谢`@烛影摇红`师傅提供的思路
 
 解压附件压缩包可以得到下面这张`001.png`，其中有文字 `无情哈拉少zbc`
 
@@ -1526,9 +1528,107 @@ if __name__ == &#39;__main__&#39;:
 
 按照这个想法，将每个字符的Ascii码后移一位即可得到：`YUKWOU9sUYeWSU5qUUKOaA==`
 
-但是发现没有办法正常Base64解码，当前的思路就卡在这里了
+这里需要感谢`@烛影摇红`师傅提供的思路，这里读取时间戳需要把压缩包中的`.txt`文件先解压到一个目录中
 
-后续的内容我猜测应该就是解码这个Base64得到密钥，然后用这个密钥去解密之前的`OurSecret`
+然后再读取目录中所有`.txt`文件修改时间的时间戳
+
+```python
+import os
+import base64
+from datetime import datetime
+
+def get_numeric_part(filename):
+    try:
+        base_name = os.path.splitext(filename)[0]
+        return int(base_name)
+    except ValueError:
+        return float(&#39;inf&#39;)
+
+def get_file_timestamps(directory):
+    file_timestamps = {}
+    file_list = []
+    
+    for root, dirs, files in os.walk(directory):
+        for filename in files:
+            filepath = os.path.join(root, filename)
+            file_list.append((filename, filepath))
+    
+    file_list.sort(key=lambda x: get_numeric_part(x[0]))
+    
+    for filename, filepath in file_list:
+        try:
+
+            stat_info = os.stat(filepath)
+            # 获取修改时间和创建时间
+            modified_time = stat_info.st_mtime
+            if os.name == &#39;nt&#39;:
+                created_time = stat_info.st_ctime
+            else:
+                created_time = stat_info.st_ctime
+            
+            # 转换为datetime对象
+            modified_dt = datetime.fromtimestamp(modified_time)
+            created_dt = datetime.fromtimestamp(created_time)
+            
+            file_timestamps[filepath] = {
+                &#39;created_unix&#39;: created_time,
+                &#39;modified_unix&#39;: modified_time,
+                &#39;created_datetime&#39;: created_dt.strftime(&#39;%Y-%m-%d %H:%M:%S&#39;),
+                &#39;modified_datetime&#39;: modified_dt.strftime(&#39;%Y-%m-%d %H:%M:%S&#39;)
+            }
+        except Exception as e:
+            print(f&#34;无法获取文件 {filepath} 的时间戳: {str(e)}&#34;)
+            continue
+    
+    # 按排序后的顺序打印
+    for filename, filepath in file_list:
+        if filepath in file_timestamps:
+            time_info = file_timestamps[filepath]
+            print(f&#34;{filepath} 创建时间: {time_info[&#39;created_unix&#39;]} 修改时间: {time_info[&#39;modified_unix&#39;]}&#34;)
+    
+    return file_timestamps
+
+def extract_data(timestamps):
+    res = &#34;&#34;
+    # 按文件名中的数字排序，会把字典中的键值对转为元组列表
+    sorted_files = sorted(timestamps.items(), key=lambda x: get_numeric_part(os.path.basename(x[0])))
+    # print(sorted_files)
+    for filepath, time_info in sorted_files:
+        res &#43;= chr(int(time_info[&#39;modified_unix&#39;]-1737276000))
+    print(res)
+
+if __name__ == &#34;__main__&#34;:
+    target_directory = &#34;out&#34;
+    timestamps = get_file_timestamps(target_directory)
+    extract_data(timestamps)
+    # YTJWNU9sTXdVRU5qTTJNaA==
+```
+
+读取出来后可以得到一串base64编码，解两次base64后即可得到密钥：`key:S0PCc3c!`
+
+![](imgs/image-20250502144812573.png)
+
+然后用这个密钥去解密`Oursecret`即可得到`flag2.txt`
+
+![](imgs/image-20250502144841492.png)
+
+`flag2.txt`中的内容如下：
+
+```
+11111 01101 11011 01010 11111 01001 11011 00001 10111 00111 00001 10101 00001 10000 11111 01101 11011 01010 11111 01001 11011 01010 10110 00111 00001 00111 01010 00001 00001 00111 10011 00001 00001 00001 00001 00001 00001 10011 10111 10011 10111 10011 10111 00111 11111 01001
+```
+
+猜测是和之前一样的博多码，因此我们把两段密文合起来，然后用随波逐流解密
+
+```
+11011 10101 10101 10101 11111 01110 11011 10101 10111 10101 00111 00111 11111 11001 11011 10000 00111 00001 10110 00111 00111 00111 00111 00111 00111 10000 11111 01101 11011 01010 11111 01001 11011 00001 10111 00111 00001 10101 00001 10000 11111 01101 11011 01010 11111 01001 11011 01010 10110 00111 00001 00111 01010 00001 00001 00111 10011 00001 00001 00001 00001 00001 00001 10011 10111 10011 10111 10011 10111 00111 11111 01001
+```
+
+![](imgs/image-20250502145008947.png)
+
+最后把十六进制转字符串即可得到最后的flag：`flag{W0www_M1sc_M@st3r333!!!}`
+
+![](imgs/image-20250502145045075.png)
 
 ## 题目名称 Just Not Good
 
