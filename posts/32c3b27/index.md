@@ -199,6 +199,79 @@ tshark -r 13.pcapng -Y &#39;(usb.src == &#34;2.8.2&#34;) &amp;&amp; (frame.len =
 
 ![](imgs/image-20250509115049942.png)
 
+然后我们尝试根据数据的特征，去分析其中的规律
+
+参考链接：https://blog.csdn.net/weixin_51914644/article/details/136098281
+
+![](imgs/image-20250509115708599.png)
+
+发现前八字节中只有第三字节的数据是单调递增且每次固定加一的，因此不是我们想要的数据
+
+然后发现再变化的数据主要就下图中的这几个位置
+
+![](imgs/image-20250509205422432.png)
+
+
+从上面的参考链接中我们知道，手柄的关键数据主要就四个：左扳机、右扳机、左摇杆、右摇杆
+
+看了[赛后官方WP](https://www.yuque.com/chuangfeimeiyigeren/eeii37/oxv3gaim7fr89ed2?sessionid=-1256592792)后知道，第9字节是左扳机的数据（按下去后数值会变大，最大到0xff），第10字节是右扳机的数据
+
+然后第11-14字节是左摇杆的数据，第15-18字节是右摇杆的数据，xy的偏移量分别占其中的两字节
+
+![](imgs/image-20250509210325161.png)
+
+知道了具体数据的位置后，后续的步骤就和鼠标流量分析一样了，通过偏移量计算坐标然后画图
+
+根据数据特征可以看出来这里右摇杆其实是不动的，只有左摇杆在移动
+
+因此我们可以尝试画出所有左扳机按下时，左摇杆的移动轨迹图
+
+```python
+from matplotlib import pyplot as plt
+
+
+def func1():
+    mouse_x, mouse_y = 0, 0
+    trajectory = []
+    plot_count = 0
+
+    with open(&#34;data.txt&#34;, &#34;r&#34;) as f:
+        lines = f.read().split()
+
+    for line in lines:
+        left_trigger = int(line[16:18], 16)  # 左扳机值
+        left_x_offset = int(line[20:24], 16)  # X的偏移量
+        left_y_offset = int(line[24:28], 16)  # Y的偏移量
+        right_trigger = int(line[18:20], 16) # 右扳机值
+        mouse_x &#43;= left_x_offset
+        mouse_y &#43;= left_y_offset
+        if left_trigger == 255:
+            trajectory.append((mouse_x, mouse_y))
+        elif left_trigger == 0 and trajectory:
+            plot_trajectory(trajectory, plot_count)
+            plot_count &#43;= 1
+            trajectory = []
+
+def plot_trajectory(trajectory, plot_id):
+    x = [point[0] for point in trajectory]
+    y = [-point[1] for point in trajectory]
+
+    plt.figure(figsize=(8, 6))
+    plt.plot(x, y, &#39;b-&#39;, marker=&#39;o&#39;, markersize=3)  # 蓝色线条&#43;圆点标记
+    plt.title(f&#34;Mouse Trajectory (Trigger Press #{plot_id &#43; 1})&#34;)
+    plt.xlabel(&#34;X Position&#34;)
+    plt.ylabel(&#34;Y Position&#34;)
+    plt.axis(&#39;equal&#39;)  # 保持纵横比一致
+    plt.savefig(f&#34;trajectory_{plot_id}.png&#34;)  # 保存为PNG
+    plt.close()  # 关闭当前图形，避免内存泄漏
+
+if __name__ == &#34;__main__&#34;:
+    func1()
+```
+
+&gt; 这里的脚本还有点问题，待改进
+
+运行以上脚本画出轨迹图后即可得到最后的flag：`DASCTF{you_are_shouba_master}`
 
 
 ---
