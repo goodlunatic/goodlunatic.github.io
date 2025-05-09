@@ -12,7 +12,7 @@
   <meta itemprop="description" content="This is a simple summary of digital forensics .">
   <meta itemprop="datePublished" content="2025-04-14T18:34:12+08:00">
   <meta itemprop="dateModified" content="2025-04-14T18:34:12+08:00">
-  <meta itemprop="wordCount" content="2636">
+  <meta itemprop="wordCount" content="2640">
   <meta itemprop="keywords" content="CTF,Misc,Forensics"><meta property="og:url" content="https://goodlunatic.github.io/posts/761da51/">
   <meta property="og:site_name" content="⚡Lunatic BLOG⚡">
   <meta property="og:title" content="Misc-Forensics">
@@ -41,7 +41,7 @@
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": "https:\/\/goodlunatic.github.io\/posts\/761da51\/"
-    },"genre": "posts","keywords": "CTF, Misc, Forensics","wordcount":  2636 ,
+    },"genre": "posts","keywords": "CTF, Misc, Forensics","wordcount":  2640 ,
     "url": "https:\/\/goodlunatic.github.io\/posts\/761da51\/","datePublished": "2025-04-14T18:34:12+08:00","dateModified": "2025-04-14T18:34:12+08:00","publisher": {
       "@type": "Organization",
       "name": ""},"author": {
@@ -1100,7 +1100,11 @@
 <h2 id="磁盘取证" class="heading-element">
   <a href="#%e7%a3%81%e7%9b%98%e5%8f%96%e8%af%81" class="heading-mark"></a>磁盘取证</h2><p>Tips：1、同一个镜像文件，不同的密码可以挂载出不同的盘，里面的数据也不同</p>
 <h3 id="veracrypt" class="heading-element">
-  <a href="#veracrypt" class="heading-mark"></a>VeraCrypt</h3><p>解密&amp;挂载磁盘的步骤：</p>
+  <a href="#veracrypt" class="heading-mark"></a>VeraCrypt</h3><blockquote>
+<p>同一个VC加密卷，使用不同的密钥或者密钥文件，加载出来的卷可能不一样(存在隐藏卷的情况)</p>
+</blockquote>
+<p>例题1-DASCTF-2024最后一战 1z_F0r3ns1cs_1</p>
+<p>解密&amp;挂载磁盘的步骤：</p>
 <p>1.选择要挂载的加密盘，然后选择一个没有被占用的盘符再点击左下角的加载</p>
 <p><img loading="lazy" src="/posts/761da51/imgs/VeraCrypt1-17142941155649.png" alt="/posts/761da51/imgs/VeraCrypt1-17142941155649.png" srcset="/posts/761da51/imgs/VeraCrypt1-17142941155649.png?size=small, /posts/761da51/imgs/VeraCrypt1-17142941155649.png?size=medium 1.5x, /posts/761da51/imgs/VeraCrypt1-17142941155649.png?size=large 2x" data-title="/posts/761da51/imgs/VeraCrypt1-17142941155649.png" style="--width: 569px;--aspect-ratio: 569 / 489;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>2.输入加密盘的密钥，或者直接使用密钥文件(图片文件也可以)</p>

@@ -4,7 +4,15 @@
     <link>https://goodlunatic.github.io/categories/writeup/</link>
     <description>Writeup - Category | ⚡Lunatic BLOG⚡</description>
     <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>goodlunatic0@gmail.com (Lunatic)</managingEditor>
-      <webMaster>goodlunatic0@gmail.com (Lunatic)</webMaster><lastBuildDate>Mon, 21 Apr 2025 18:50:35 &#43;0800</lastBuildDate><atom:link href="https://goodlunatic.github.io/categories/writeup/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>goodlunatic0@gmail.com (Lunatic)</webMaster><lastBuildDate>Thu, 08 May 2025 20:10:26 &#43;0800</lastBuildDate><atom:link href="https://goodlunatic.github.io/categories/writeup/" rel="self" type="application/rss+xml" /><item>
+  <title>DASCTF 2024最后一战 Misc Writeup</title>
+  <link>https://goodlunatic.github.io/posts/32c3b27/</link>
+  <pubDate>Thu, 08 May 2025 20:10:26 &#43;0800</pubDate>
+  <author>Lunatic</author>
+  <guid>https://goodlunatic.github.io/posts/32c3b27/</guid>
+  <description><![CDATA[<p><strong>有师傅来问这场比赛里的题，然后稍微看了一下，发现Misc题确实出的挺好，于是打算记录一下</strong></p>]]></description>
+</item>
+<item>
   <title>2025 能源网络安全大赛 Misc Writeup</title>
   <link>https://goodlunatic.github.io/posts/87bd986/</link>
   <pubDate>Mon, 21 Apr 2025 18:50:35 &#43;0800</pubDate>
@@ -77,15 +85,6 @@
   <guid>https://goodlunatic.github.io/posts/69e332a/</guid>
   <description><![CDATA[<p><strong>这比赛本身没啥好说的，竟然出现了这么多的原题，非常的难评只能说</strong></p>
 <p><strong>但是如果就涉及到的题目本身而言，还是可以稍微记录一下的</strong></p>]]></description>
-</item>
-<item>
-  <title>2024 全国大学生信息安全竞赛暨长城杯铁人三项赛初赛 Misc Writeup</title>
-  <link>https://goodlunatic.github.io/posts/ce58634/</link>
-  <pubDate>Wed, 18 Dec 2024 13:39:44 &#43;0800</pubDate>
-  <author>Lunatic</author>
-  <guid>https://goodlunatic.github.io/posts/ce58634/</guid>
-  <description><![CDATA[<p><strong>这次比赛的Misc题好像主要是威胁检测与网络流量分析</strong></p>
-<p><strong>与往年的风格有点不同，可能是和铁三一起办的原因吧</strong></p>]]></description>
 </item>
 </channel>
 </rss>

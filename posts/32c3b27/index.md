@@ -95,7 +95,111 @@ share::MicrosoftAccount:0a08d9f15eb53eea:a20aec951c89961f2e81bf0917d8990a:010100
 
 ## 题目名称 1z_F0r3ns1cs_1
 
+题目附件给了一个`1z.vmdk`虚拟磁盘文件，因此我们直接用`DiskGenius`打开并恢复被删除的文件
+
+![](imgs/image-20250508235824719.png)
+
+可以得到一个`秘籍.docx`还有一个txt文件
+
+改docx文件后缀为zip并解压，可以在`/word/theme`中得到一个bat文件
+
+![](imgs/image-20250508235934832.png)
+
+![](imgs/image-20250508235955140.png)
+
+打开后可以得到一串base64编码，解码后可以得到如下内容：
+
+&gt; th1s_14_y0ur_key!!!!2333
+&gt; 
+&gt; WHAT YOU&#39;RE GONNA DO WITH IT?
+
+![](imgs/image-20250509000033027.png)
+
+提示了我们一个密钥，然后我们回头去看另一个txt文件，发现文件大小正好是3MB
+
+因此猜测可能是VC加密容器，上面的密钥就是VC的加密密钥
+
+![](imgs/image-20250509001220330.png)
+
+使用VC挂载后可以得到两个txt文件，还有一张jpg图片
+
+`flag(.txt`文件中没有什么关键的信息，因此我们把目光集中到另一个txt上
+
+这里可能需要亿点点脑洞，当我们把`dead_end.txt`作为密钥文件去挂载之前的那个txt的时候
+
+可以得到一个隐藏卷
+
+![](imgs/image-20250509001516548.png)
+
+打开后可以得到一个`t0p_s1cr3t.txt`，内容如下：
+
+&gt; YOU ARE AWESOME!!!!BUT NOT ENOUGH,Here is flag1:
+&gt; 
+&gt; DASCTF{N0w_u_knOw_H1dden_v0lum3_
+&gt; 
+&gt; AND HERE IS A LITTLE REMINDER,THE MASK IS:
+&gt; 
+&gt; U????Klsq
+&gt; 
+&gt; ONLY LOWERCASE AT 1 AND NUMBERS AT 2,3,4
+
+得到了第一段的flag以及一个掩码，联想到之前得到的那张jpg
+
+猜测需要我们通过掩码生成字典，然后去解密`steghide`
+
+因此我们写个脚本按照掩码的格式生成一下字典
+
+```python
+from string import digits, ascii_lowercase
+
+mask = &#34;U?u?d?d?dKlsq&#34;
+for a in ascii_lowercase:
+    for b in digits:
+        for c in digits:
+            for d in digits:
+                passwd = f&#34;U{a}{b}{c}{d}Klsq&#34;
+                print(passwd)
+```
+
+然后直接用`stegseek`爆破即可得到第二段flag：`Of_v3r@cr1pt&amp;90_0nnnnnnnnnnn!!!a&gt;?#P2}`
+
+![](imgs/image-20250509001830890.png)
+
+把两段flag合起来即可得到最后的flag：`DASCTF{N0w_u_knOw_H1dden_v0lum3_Of_v3r@cr1pt&amp;90_0nnnnnnnnnnn!!!a&gt;?#P2}`
+
 ## 题目名称 手把天尊
+
+&gt; 不说别的了，这样吧你先按住RT&#43;B使出看破斩，随后RT&#43;A特殊纳刀，然后轻触RT使用聚合拔刀气刃斩，最后RT&#43;Y打出气刃突刺，派生气刃兜割。别忘了把flag小写包上DASCTF。
+
+附件给了一个流量包文件，打开发现主要是USB流量
+
+因此首先拿`CTF-NetA`梭一把，发现一共有七个IP
+
+![](imgs/image-20250509094628797.png)
+
+发现解出来的信息里没有什么关键的内容，画出来的鼠标轨迹图也是
+
+然后我们结合题面信息，猜测题面考察的是游戏手柄的流量
+
+然后看CTF-NetA输出的结果，猜测主要是在2.8.2或2.4.2这两个IP传的数据中
+
+然后Wireshark打开，发现2.4.2传的数据不多
+
+![](imgs/image-20250509095219803.png)
+
+然后查看2.8.2时，发现传输的数据包较多，传输的大部分数据长度都为75
+
+![](imgs/image-20250509095239523.png)
+
+因此这个就是游戏手柄的流量，和平常分析USB流量一样，先用tshark导出传输的数据
+
+```bash
+tshark -r 13.pcapng -Y &#39;(usb.src == &#34;2.8.2&#34;) &amp;&amp; (frame.len == 75)&#39; -T fields -e usb.capdata &gt; data.txt
+```
+
+![](imgs/image-20250509115049942.png)
+
+
 
 ---
 
