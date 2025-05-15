@@ -15,5 +15,5 @@
 ---
 
 > Author: [Lunatic](https://goodlunatic.github.io)  
-> URL: http://localhost:1313/posts/b70ab5c/  
+> URL: https://goodlunatic.github.io/posts/b70ab5c/  
 

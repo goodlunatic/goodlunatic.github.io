@@ -414,5 +414,5 @@ print(long_to_bytes(m))
 ---
 
 > Author: [Lunatic](https://goodlunatic.github.io)  
-> URL: http://localhost:1313/posts/a4ba07e/  
+> URL: https://goodlunatic.github.io/posts/a4ba07e/  
 

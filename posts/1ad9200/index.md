@@ -4071,5 +4071,5 @@ tar -xzvf file.tar.gz
 ---
 
 > Author: [Lunatic](https://goodlunatic.github.io)  
-> URL: http://localhost:1313/posts/1ad9200/  
+> URL: https://goodlunatic.github.io/posts/1ad9200/  
 

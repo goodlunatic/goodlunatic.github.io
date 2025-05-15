@@ -160,5 +160,5 @@ bc3cf1722bf8f617acc85ba7169649ecd70c7e9575c05ef04cde5bd8eb79120a756e1a7755acb17d
 ---
 
 > Author: [Lunatic](https://goodlunatic.github.io)  
-> URL: http://localhost:1313/posts/1618f6c/  
+> URL: https://goodlunatic.github.io/posts/1618f6c/  
 

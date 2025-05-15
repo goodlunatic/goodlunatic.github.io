@@ -41,5 +41,5 @@ python bwmforpy3.py decode lena.png wm.png lena_with_wm.png
 ---
 
 > Author: [Lunatic](https://goodlunatic.github.io)  
-> URL: http://localhost:1313/posts/f0ec4d6/  
+> URL: https://goodlunatic.github.io/posts/f0ec4d6/  
 

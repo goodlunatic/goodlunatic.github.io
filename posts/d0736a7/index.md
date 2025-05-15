@@ -1933,5 +1933,5 @@ with open(&#34;output.png&#34;, &#34;wb&#34;) as f:
 ---
 
 > Author: [Lunatic](https://goodlunatic.github.io)  
-> URL: http://localhost:1313/posts/d0736a7/  
+> URL: https://goodlunatic.github.io/posts/d0736a7/  
 
