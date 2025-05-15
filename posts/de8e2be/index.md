@@ -673,5 +673,5 @@ sudo losetup -d /dev/loop4
 ---
 
 > Author: [Lunatic](https://goodlunatic.github.io)  
-> URL: https://goodlunatic.github.io/posts/de8e2be/  
+> URL: http://localhost:1313/posts/de8e2be/  
 

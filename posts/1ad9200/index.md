@@ -666,7 +666,14 @@ flag{w13e5hake_1s_a_900d_t3a771c_t001}
 
 ### Brainfuck和Ook!编码
 
-可以直接用[在线网站](https://www.splitbrain.org/services/ook)解密
+可以直接用以下几个在线网站解密：
+
+https://www.splitbrain.org/services/ook
+
+https://www.geocachingtoolbox.com/index.php?lang=en&amp;page=brainfuckOok
+
+https://www.cachesleuth.com/bfook.html
+
 
 ![](imgs/image-20250421200218788.png)
 
@@ -4064,5 +4071,5 @@ tar -xzvf file.tar.gz
 ---
 
 > Author: [Lunatic](https://goodlunatic.github.io)  
-> URL: https://goodlunatic.github.io/posts/1ad9200/  
+> URL: http://localhost:1313/posts/1ad9200/  
 

@@ -70,5 +70,5 @@ python .\pyinstxtractor.py .\reverse_1_PyHaHa.pyc
 ---
 
 > Author: [Lunatic](https://goodlunatic.github.io)  
-> URL: https://goodlunatic.github.io/posts/690000000000000000000000000000000000000000000000000000000000000/  
+> URL: http://localhost:1313/posts/690000000000000000000000000000000000000000000000000000000000000/  
 

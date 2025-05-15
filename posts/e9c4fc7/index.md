@@ -174,5 +174,5 @@ USB键盘流量分析，CTF-NetA一把梭：`flag{ebdfea9b-3469-41c7-9070-d7833e
 ---
 
 > Author: [Lunatic](https://goodlunatic.github.io)  
-> URL: https://goodlunatic.github.io/posts/e9c4fc7/  
+> URL: http://localhost:1313/posts/e9c4fc7/  
 

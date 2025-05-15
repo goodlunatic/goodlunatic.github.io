@@ -171,5 +171,5 @@ TODO...
 ---
 
 > Author: [Lunatic](https://goodlunatic.github.io)  
-> URL: https://goodlunatic.github.io/posts/b36b466/  
+> URL: http://localhost:1313/posts/b36b466/  
 

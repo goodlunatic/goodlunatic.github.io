@@ -518,5 +518,5 @@ flag.txt是一串未知的二进制数据，但是根据文件大小，猜测就
 ---
 
 > Author: [Lunatic](https://goodlunatic.github.io)  
-> URL: https://goodlunatic.github.io/posts/940b876/  
+> URL: http://localhost:1313/posts/940b876/  
 

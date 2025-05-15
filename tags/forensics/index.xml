@@ -1,15 +1,15 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
   <channel>
     <title>Forensics - Tag - ⚡Lunatic BLOG⚡</title>
-    <link>https://goodlunatic.github.io/tags/forensics/</link>
+    <link>http://localhost:1313/tags/forensics/</link>
     <description>Forensics - Tag | ⚡Lunatic BLOG⚡</description>
     <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>goodlunatic0@gmail.com (Lunatic)</managingEditor>
-      <webMaster>goodlunatic0@gmail.com (Lunatic)</webMaster><lastBuildDate>Mon, 14 Apr 2025 18:34:12 &#43;0800</lastBuildDate><atom:link href="https://goodlunatic.github.io/tags/forensics/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>goodlunatic0@gmail.com (Lunatic)</webMaster><lastBuildDate>Mon, 14 Apr 2025 18:34:12 &#43;0800</lastBuildDate><atom:link href="http://localhost:1313/tags/forensics/" rel="self" type="application/rss+xml" /><item>
   <title>Misc-Forensics</title>
-  <link>https://goodlunatic.github.io/posts/761da51/</link>
+  <link>http://localhost:1313/posts/761da51/</link>
   <pubDate>Mon, 14 Apr 2025 18:34:12 &#43;0800</pubDate>
   <author>Lunatic</author>
-  <guid>https://goodlunatic.github.io/posts/761da51/</guid>
+  <guid>http://localhost:1313/posts/761da51/</guid>
   <description><![CDATA[<p><strong>This is a simple summary of digital forensics .</strong></p>]]></description>
 </item>
 </channel>

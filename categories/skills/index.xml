@@ -1,48 +1,48 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
   <channel>
     <title>Skills - Category - ⚡Lunatic BLOG⚡</title>
-    <link>https://goodlunatic.github.io/categories/skills/</link>
+    <link>http://localhost:1313/categories/skills/</link>
     <description>Skills - Category | ⚡Lunatic BLOG⚡</description>
     <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>goodlunatic0@gmail.com (Lunatic)</managingEditor>
-      <webMaster>goodlunatic0@gmail.com (Lunatic)</webMaster><lastBuildDate>Wed, 23 Apr 2025 10:51:27 &#43;0800</lastBuildDate><atom:link href="https://goodlunatic.github.io/categories/skills/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>goodlunatic0@gmail.com (Lunatic)</webMaster><lastBuildDate>Wed, 23 Apr 2025 10:51:27 &#43;0800</lastBuildDate><atom:link href="http://localhost:1313/categories/skills/" rel="self" type="application/rss+xml" /><item>
   <title>C/C&#43;&#43;程序开发学习记录</title>
-  <link>https://goodlunatic.github.io/posts/e393438/</link>
+  <link>http://localhost:1313/posts/e393438/</link>
   <pubDate>Wed, 23 Apr 2025 10:51:27 &#43;0800</pubDate>
   <author>Lunatic</author>
-  <guid>https://goodlunatic.github.io/posts/e393438/</guid>
+  <guid>http://localhost:1313/posts/e393438/</guid>
   <description><![CDATA[<p><strong>最近科研上遇到一些项目需要使用C/C++开发，因此打算学习并记录一下</strong></p>]]></description>
 </item>
 <item>
   <title>IOT Security Research</title>
-  <link>https://goodlunatic.github.io/posts/848cf69/</link>
+  <link>http://localhost:1313/posts/848cf69/</link>
   <pubDate>Fri, 25 Oct 2024 13:44:52 &#43;0800</pubDate>
   <author>Lunatic</author>
-  <guid>https://goodlunatic.github.io/posts/848cf69/</guid>
+  <guid>http://localhost:1313/posts/848cf69/</guid>
   <description><![CDATA[<p>A simple blog for IOT Security Research.</p>]]></description>
 </item>
 <item>
   <title>Preparation For Programming Proficiency Exam</title>
-  <link>https://goodlunatic.github.io/posts/552060f/</link>
+  <link>http://localhost:1313/posts/552060f/</link>
   <pubDate>Sun, 08 Sep 2024 21:35:29 &#43;0800</pubDate>
   <author>Lunatic</author>
-  <guid>https://goodlunatic.github.io/posts/552060f/</guid>
+  <guid>http://localhost:1313/posts/552060f/</guid>
   <description><![CDATA[<p>时间过得真快呀，回想上次做算法题应该是大一的时候了</p>
 <p>没想到现在回过头来，依旧需要重新拾起自己的算法功底</p>]]></description>
 </item>
 <item>
   <title>线切割-Windows98&amp;WindowsXP折腾记录</title>
-  <link>https://goodlunatic.github.io/posts/4b500cc/</link>
+  <link>http://localhost:1313/posts/4b500cc/</link>
   <pubDate>Wed, 07 Feb 2024 18:16:16 &#43;0800</pubDate>
   <author>Lunatic</author>
-  <guid>https://goodlunatic.github.io/posts/4b500cc/</guid>
+  <guid>http://localhost:1313/posts/4b500cc/</guid>
   <description><![CDATA[<p><strong>最近放假回家了，闲来无事，就折腾了一下家里的老电脑，顺便优化更新一下店里的老东西</strong></p>]]></description>
 </item>
 <item>
   <title>从零开始，快速入门Git</title>
-  <link>https://goodlunatic.github.io/posts/0d2a7eb/</link>
+  <link>http://localhost:1313/posts/0d2a7eb/</link>
   <pubDate>Fri, 08 Dec 2023 15:53:54 &#43;0800</pubDate>
   <author>Lunatic</author>
-  <guid>https://goodlunatic.github.io/posts/0d2a7eb/</guid>
+  <guid>http://localhost:1313/posts/0d2a7eb/</guid>
   <description><![CDATA[<p><strong>对程序员来说Git是一个不得不用的东西，因此打算好好学习一下</strong></p>]]></description>
 </item>
 </channel>

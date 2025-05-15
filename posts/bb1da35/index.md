@@ -763,5 +763,5 @@ if __name__ == &#34;__main__&#34;:
 ---
 
 > Author: [Lunatic](https://goodlunatic.github.io)  
-> URL: https://goodlunatic.github.io/posts/bb1da35/  
+> URL: http://localhost:1313/posts/bb1da35/  
 
