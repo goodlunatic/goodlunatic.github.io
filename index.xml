@@ -4,9 +4,18 @@
     <link>https://goodlunatic.github.io/</link>
     <description>Welcome to Lunatic&#39;s BLOG ^_^</description>
     <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>goodlunatic0@gmail.com (Lunatic)</managingEditor>
-      <webMaster>goodlunatic0@gmail.com (Lunatic)</webMaster><lastBuildDate>Thu, 15 May 2025 10:15:27 &#43;0800</lastBuildDate>
+      <webMaster>goodlunatic0@gmail.com (Lunatic)</webMaster><lastBuildDate>Sat, 17 May 2025 00:33:26 &#43;0800</lastBuildDate>
       <atom:link href="https://goodlunatic.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
+  <title>Frida Learning Record</title>
+  <link>https://goodlunatic.github.io/posts/ca974cb/</link>
+  <pubDate>Sat, 17 May 2025 00:33:26 &#43;0800</pubDate>
+  <author>Lunatic</author>
+  <guid>https://goodlunatic.github.io/posts/ca974cb/</guid>
+  <description><![CDATA[<p>在学习爬虫的过程中，发现有时候需要用到Frida，因此就想着学习一下</p>
+<p>之前经常听到队友念叨 FridaHook，现在终于有机会来学一下里面具体的内容了</p>]]></description>
+</item>
+<item>
   <title>Misc-Network Traffic Analysis</title>
   <link>https://goodlunatic.github.io/posts/5422d65/</link>
   <pubDate>Thu, 15 May 2025 10:15:27 &#43;0800</pubDate>
@@ -81,15 +90,6 @@
   <guid>https://goodlunatic.github.io/posts/c49ae8a/</guid>
   <description><![CDATA[<p>最近的CTF比赛中经常出现数据安全的板块(尤其是安恒承办的比赛)</p>
 <p>感觉这类题目是可以靠积累来提升解题速度的，因此准备写这样一篇博客来总结一下常见的考点</p>]]></description>
-</item>
-<item>
-  <title>2025 西湖论剑·中国杭州网络安全技能大赛 Misc Writeup</title>
-  <link>https://goodlunatic.github.io/posts/f002407/</link>
-  <pubDate>Sat, 19 Apr 2025 15:35:37 &#43;0800</pubDate>
-  <author>Lunatic</author>
-  <guid>https://goodlunatic.github.io/posts/f002407/</guid>
-  <description><![CDATA[<p><strong>最近这一段时间一直被科研和毕设上的事拖着，因此就有段时间没有做Misc题了</strong></p>
-<p><strong>趁着写毕设没啥思路和动力的功夫，来稍微复盘下今年西湖论剑的题</strong></p>]]></description>
 </item>
 </channel>
 </rss>

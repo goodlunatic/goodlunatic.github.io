@@ -4,7 +4,16 @@
     <link>https://goodlunatic.github.io/categories/ctf/</link>
     <description>CTF - Category | ⚡Lunatic BLOG⚡</description>
     <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>goodlunatic0@gmail.com (Lunatic)</managingEditor>
-      <webMaster>goodlunatic0@gmail.com (Lunatic)</webMaster><lastBuildDate>Thu, 15 May 2025 10:15:27 &#43;0800</lastBuildDate><atom:link href="https://goodlunatic.github.io/categories/ctf/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>goodlunatic0@gmail.com (Lunatic)</webMaster><lastBuildDate>Sat, 17 May 2025 00:33:26 &#43;0800</lastBuildDate><atom:link href="https://goodlunatic.github.io/categories/ctf/" rel="self" type="application/rss+xml" /><item>
+  <title>Frida Learning Record</title>
+  <link>https://goodlunatic.github.io/posts/ca974cb/</link>
+  <pubDate>Sat, 17 May 2025 00:33:26 &#43;0800</pubDate>
+  <author>Lunatic</author>
+  <guid>https://goodlunatic.github.io/posts/ca974cb/</guid>
+  <description><![CDATA[<p>在学习爬虫的过程中，发现有时候需要用到Frida，因此就想着学习一下</p>
+<p>之前经常听到队友念叨 FridaHook，现在终于有机会来学一下里面具体的内容了</p>]]></description>
+</item>
+<item>
   <title>Misc-Network Traffic Analysis</title>
   <link>https://goodlunatic.github.io/posts/5422d65/</link>
   <pubDate>Thu, 15 May 2025 10:15:27 &#43;0800</pubDate>
@@ -79,15 +88,6 @@
   <guid>https://goodlunatic.github.io/posts/417c7ba/</guid>
   <description><![CDATA[<p>越来越多的线下赛开始考察实战渗透了，一直想学渗透来着</p>
 <p>但无奈一直被耽搁，回过头来的时候发现自己已经要退役了</p>]]></description>
-</item>
-<item>
-  <title>QRcode二维码标准及常见考点详解</title>
-  <link>https://goodlunatic.github.io/posts/1e26f78/</link>
-  <pubDate>Mon, 01 Jul 2024 00:43:10 &#43;0800</pubDate>
-  <author>Lunatic</author>
-  <guid>https://goodlunatic.github.io/posts/1e26f78/</guid>
-  <description><![CDATA[<p>在Misc题里QRcode出现的频率很高，然后现在出题也越来越偏向考察QRcode的原理</p>
-<p>因此打算详细学习一下QRcode的标准，顺便总结一下常见考点</p>]]></description>
 </item>
 </channel>
 </rss>
