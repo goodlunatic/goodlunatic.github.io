@@ -2079,6 +2079,12 @@ java Extract beautiful.jpg
 
 ![](imgs/image-20240911103611924.png)
 
+#### 8、jsteg
+
+JPG图片的`jsteg隐写`可以直接用下面这个工具一把梭
+
+![](imgs/image-20250524115606248.png)
+
 ### BMP思路
 
 #### 1、bmp宽高爆破：
