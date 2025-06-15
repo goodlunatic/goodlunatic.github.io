@@ -4,9 +4,19 @@
     <link>https://goodlunatic.github.io/</link>
     <description>Welcome to Lunatic&#39;s BLOG ^_^</description>
     <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>goodlunatic0@gmail.com (Lunatic)</managingEditor>
-      <webMaster>goodlunatic0@gmail.com (Lunatic)</webMaster><lastBuildDate>Sat, 17 May 2025 00:33:26 &#43;0800</lastBuildDate>
+      <webMaster>goodlunatic0@gmail.com (Lunatic)</webMaster><lastBuildDate>Wed, 28 May 2025 10:29:38 &#43;0800</lastBuildDate>
       <atom:link href="https://goodlunatic.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
+  <title>强网杯-谍影重重系列赛题详解</title>
+  <link>https://goodlunatic.github.io/posts/1a152f0/</link>
+  <pubDate>Wed, 28 May 2025 10:29:38 &#43;0800</pubDate>
+  <author>Lunatic</author>
+  <guid>https://goodlunatic.github.io/posts/1a152f0/</guid>
+  <description><![CDATA[<p>一直觉得每年强网杯的<code>谍影重重</code>这个系列挺有意思的</p>
+<p>因此就打算详细复盘一下历年谍影重重系列的赛题</p>
+<p>这里手动艾特一下出题人<a href="https://1cepeak.cn/posts/qwb2022/"target="_blank" rel="external nofollow noopener noreferrer">@1cePeak</a>，感谢冰峰师傅出的题</p>]]></description>
+</item>
+<item>
   <title>Frida Learning Record</title>
   <link>https://goodlunatic.github.io/posts/ca974cb/</link>
   <pubDate>Sat, 17 May 2025 00:33:26 &#43;0800</pubDate>
@@ -81,15 +91,6 @@
   <author>Lunatic</author>
   <guid>https://goodlunatic.github.io/posts/e9c4fc7/</guid>
   <description><![CDATA[<p><strong>周末闲来无事，找了个比赛练练手，Misc题整体上来说出的还是比较传统，光速AK下机</strong></p>]]></description>
-</item>
-<item>
-  <title>CTF-数据安全</title>
-  <link>https://goodlunatic.github.io/posts/c49ae8a/</link>
-  <pubDate>Sun, 20 Apr 2025 14:56:54 &#43;0800</pubDate>
-  <author>Lunatic</author>
-  <guid>https://goodlunatic.github.io/posts/c49ae8a/</guid>
-  <description><![CDATA[<p>最近的CTF比赛中经常出现数据安全的板块(尤其是安恒承办的比赛)</p>
-<p>感觉这类题目是可以靠积累来提升解题速度的，因此准备写这样一篇博客来总结一下常见的考点</p>]]></description>
 </item>
 </channel>
 </rss>

@@ -538,7 +538,7 @@
 <p><a href="https://docs.srsran.com/projects/project"target="_blank" rel="external nofollow noopener noreferrer">https://docs.srsran.com/projects/project</a></p>
 </blockquote>
 <p>首先跟着参考文档中的步骤安装<code>open5gs</code>(模拟核心网)</p>
-<div class="highlight" id="id-8"><div class="chroma">
+<div class="highlight" id="id-1"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -594,7 +594,7 @@
 </div><p>然后再安装<code>srsRAN_Project</code>(模拟基站)</p>
 <p>这里编译源码需要<code>GCC11</code>以上的版本，然而Ubuntu默认是<code>GCC9</code></p>
 <p>因此需要我们手动安装一下</p>
-<div class="highlight" id="id-9"><div class="chroma">
+<div class="highlight" id="id-2"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -614,7 +614,7 @@
 </span></span><span class="line"><span class="cl">sudo ln -s /usr/bin/g++-11 /usr/bin/g++</span></span></code></pre></td></tr></table>
 </div>
 </div><p>安装好<code>GCC11</code>后就可以继续<code>srsRAN</code>项目的编译安装了</p>
-<div class="highlight" id="id-10"><div class="chroma">
+<div class="highlight" id="id-3"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -637,7 +637,7 @@
 </div>
 </div><p>上面两个项目都安装好后我们就可以开始模拟了</p>
 <p>首先是启动核心网</p>
-<div class="highlight" id="id-11"><div class="chroma">
+<div class="highlight" id="id-4"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -647,7 +647,7 @@
 </span></span><span class="line"><span class="cl">sudo ./tests/app/5gc -c ./configs/sample.yaml</span></span></code></pre></td></tr></table>
 </div>
 </div><p>然后连上<code>B210</code>启动基站模拟，631和736代表的是模拟基站的编号，和所在的小区有关</p>
-<div class="highlight" id="id-12"><div class="chroma">
+<div class="highlight" id="id-5"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -659,7 +659,7 @@
 </span></span><span class="line"><span class="cl">sudo ./apps/gnb/gnb -c ../configs/gnb_pci_736.yml</span></span></code></pre></td></tr></table>
 </div>
 </div><p>然后我们可以另起一个终端，把模拟的数据保存下来</p>
-<div class="highlight" id="id-13"><div class="chroma">
+<div class="highlight" id="id-6"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -670,7 +670,7 @@
 </div>
 </div><p>保存的数据可以使用开源工具<a href="https://github.com/miek/inspectrum"target="_blank" rel="external nofollow noopener noreferrer">inspectrum</a> 查看</p>
 <p>具体安装步骤如下：</p>
-<div class="highlight" id="id-14"><div class="chroma">
+<div class="highlight" id="id-7"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2

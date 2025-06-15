@@ -4,7 +4,17 @@
     <link>https://goodlunatic.github.io/categories/ctf/</link>
     <description>CTF - Category | ⚡Lunatic BLOG⚡</description>
     <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>goodlunatic0@gmail.com (Lunatic)</managingEditor>
-      <webMaster>goodlunatic0@gmail.com (Lunatic)</webMaster><lastBuildDate>Sat, 17 May 2025 00:33:26 &#43;0800</lastBuildDate><atom:link href="https://goodlunatic.github.io/categories/ctf/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>goodlunatic0@gmail.com (Lunatic)</webMaster><lastBuildDate>Wed, 28 May 2025 10:29:38 &#43;0800</lastBuildDate><atom:link href="https://goodlunatic.github.io/categories/ctf/" rel="self" type="application/rss+xml" /><item>
+  <title>强网杯-谍影重重系列赛题详解</title>
+  <link>https://goodlunatic.github.io/posts/1a152f0/</link>
+  <pubDate>Wed, 28 May 2025 10:29:38 &#43;0800</pubDate>
+  <author>Lunatic</author>
+  <guid>https://goodlunatic.github.io/posts/1a152f0/</guid>
+  <description><![CDATA[<p>一直觉得每年强网杯的<code>谍影重重</code>这个系列挺有意思的</p>
+<p>因此就打算详细复盘一下历年谍影重重系列的赛题</p>
+<p>这里手动艾特一下出题人<a href="https://1cepeak.cn/posts/qwb2022/"target="_blank" rel="external nofollow noopener noreferrer">@1cePeak</a>，感谢冰峰师傅出的题</p>]]></description>
+</item>
+<item>
   <title>Frida Learning Record</title>
   <link>https://goodlunatic.github.io/posts/ca974cb/</link>
   <pubDate>Sat, 17 May 2025 00:33:26 &#43;0800</pubDate>
@@ -79,15 +89,6 @@
   <author>Lunatic</author>
   <guid>https://goodlunatic.github.io/posts/690000000000000000000000000000000000000000000000000000000000000/</guid>
   <description><![CDATA[<p><strong>感觉逆向真的是一个不得不学的领域呀</strong></p>]]></description>
-</item>
-<item>
-  <title>Pentesting Learning Record</title>
-  <link>https://goodlunatic.github.io/posts/417c7ba/</link>
-  <pubDate>Fri, 26 Jul 2024 15:12:02 &#43;0800</pubDate>
-  <author>Lunatic</author>
-  <guid>https://goodlunatic.github.io/posts/417c7ba/</guid>
-  <description><![CDATA[<p>越来越多的线下赛开始考察实战渗透了，一直想学渗透来着</p>
-<p>但无奈一直被耽搁，回过头来的时候发现自己已经要退役了</p>]]></description>
 </item>
 </channel>
 </rss>
