@@ -11,9 +11,10 @@
 
 # **💬 Contact Me**
 
-|                          |                                   |
-| :----------------------: | :-------------------------------: |
-| **QQ：MTI5MDAxODcxNA==** | **Email：goodlunatic0@gmail.com** |
+|                                            |                                                              |
+| :----------------------------------------: | :----------------------------------------------------------: |
+|          **QQ：MTI5MDAxODcxNA==**          |              **Email：goodlunatic0@gmail.com**               |
+| **Github：https://github.com/goodlunatic** | **bilibili：https://space.bilibili.com/431131926?spm_id_from=333.1007.0.0** |
 
 # **🏆 Awards**
 
@@ -51,6 +52,7 @@
 |                **1uxu4y**                 |  **6.66 x 💎**  |
 |               **酒醉太平**                |  **6.66 x 💎**  |
 |                **1ymt1c3**                |  **6.66 x 💎**  |
+|                **场_room**                |  **6.00 x 💎**  |
 |                 **\*儒**                  |  **5.00 x 💎**  |
 |                   **K**                   |  **5.00 x 💎**  |
 |  **[AsaL1n](https://asal1n.github.io/)**  |  **0.99 x 💎**  |
