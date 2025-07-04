@@ -1,4 +1,4 @@
-# 2024 XCTF-DubheCTF Misc Writeup
+# 2024 XCTF国际网络攻防联赛-DubheCTF分站赛 Misc Writeup
 
 **这两天打了 2024 DubheCTF 后突然感觉自己之前学的东西只不过是皮毛中的皮毛**
 
