@@ -7,14 +7,14 @@
 
 - **CTF@Misc | Pre-Master’s Student in BUPT-SCSS | 4th Captain of [A1natas Team](https://www.a1natas.com/)**
 
-- **Current Research Interest：Mobile Internet Security | 4G/5G Network Security | ...**
+- **Current Research Interest：Mobile Internet Security | Cellular Network Security | ...**
 
 # **💬 Contact Me**
 
-|                                            |                                                              |
-| :----------------------------------------: | :----------------------------------------------------------: |
-|          **QQ：MTI5MDAxODcxNA==**          |              **Email：goodlunatic0@gmail.com**               |
-| **Github：https://github.com/goodlunatic** | **bilibili：https://space.bilibili.com/431131926?spm_id_from=333.1007.0.0** |
+|                                            |                                                    |
+| :----------------------------------------: | :------------------------------------------------: |
+|          **QQ：MTI5MDAxODcxNA==**          |         **Email：goodlunatic0@gmail.com**          |
+| **Github：https://github.com/goodlunatic** | **bilibili：https://space.bilibili.com/431131926** |
 
 # **🏆 Awards**
 
