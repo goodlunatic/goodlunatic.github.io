@@ -271,7 +271,7 @@
 </div><p><img loading="lazy" src="imgs/image-20241029233417750.png" alt="imgs/image-20241029233417750.png" srcset="imgs/image-20241029233417750.png?size=small, imgs/image-20241029233417750.png?size=medium 1.5x, imgs/image-20241029233417750.png?size=large 2x" data-title="imgs/image-20241029233417750.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>做完符号文件后发现也扫不出东西，因此这道题我这里就直接打算用010手动提取了</p>
 <p>首先，我们先用<code>strings</code>看看用户桌面上有什么东西，当然这里也可以直接在<code>010</code>中搜字符串</p>
-<div class="highlight" id="id-3"><div class="chroma">
+<div class="highlight" id="id-1"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
@@ -280,7 +280,7 @@
 </div>
 </div><p><img loading="lazy" src="imgs/image-20241031103755088.png" alt="imgs/image-20241031103755088.png" srcset="imgs/image-20241031103755088.png?size=small, imgs/image-20241031103755088.png?size=medium 1.5x, imgs/image-20241031103755088.png?size=large 2x" data-title="imgs/image-20241031103755088.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>我们确定了用户名以及桌面的路径，便于我们缩小范围，过滤掉无效的干扰数据</p>
-<div class="highlight" id="id-4"><div class="chroma">
+<div class="highlight" id="id-2"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
@@ -298,14 +298,14 @@
 <p><img loading="lazy" src="imgs/image-20241029225746077.png" alt="imgs/image-20241029225746077.png" srcset="imgs/image-20241029225746077.png?size=small, imgs/image-20241029225746077.png?size=medium 1.5x, imgs/image-20241029225746077.png?size=large 2x" data-title="imgs/image-20241029225746077.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>依次查看，发现里面有好多个位置表示的都是同一张图片</p>
 <p>手动提取出Hex数据，注意这里建议提取Hex数据，直接提取右边的字符串可能会有问题（可能有不可打印字符）</p>
-<div class="highlight" id="id-5"><div class="chroma">
+<div class="highlight" id="id-3"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">69 56 42 4F 52 77 30 4B 47 67 6F 41 41 41 41 4E 53 55 68 45 55 67 41 41 41 51 41 41 41 41 45 41 43 41 49 41 41 41 44 54 45 44 38 78 41 41 41 43 76 55 6C 45 51 56 52 34 6E 4F 33 54 4D 51 45 41 49 41 7A 41 4D 4D 43 2F 35 79 46 6A 52 78 4D 46 66 58 70 6E 35 6B 44 56 32 77 36 41 54 51 59 67 7A 51 43 6B 47 59 41 30 41 35 42 6D 41 4E 49 4D 51 4A 6F 42 53 44 4D 41 61 51 59 67 7A 51 43 6B 47 59 41 30 41 35 42 6D 41 4E 49 4D 51 4A 6F 42 53 44 4D 41 61 51 59 67 7A 51 43 6B 47 59 41 30 41 35 42 6D 41 4E 49 4D 51 4A 6F 42 53 44 4D 41 61 51 59 67 7A 51 43 6B 47 59 41 30 41 35 42 6D 41 4E 49 4D 51 4A 6F 42 53 44 4D 41 61 51 59 67 7A 51 43 6B 47 59 41 30 41 35 42 6D 41 4E 49 4D 51 4A 6F 42 53 44 4D 41 61 51 59 67 7A 51 43 6B 47 59 41 30 41 35 42 6D 41 4E 49 4D 51 4A 6F 42 53 44 4D 41 61 51 59 67 7A 51 43 6B 47 59 41 30 41 35 42 6D 41 4E 49 4D 51 4A 6F 42 53 44 4D 41 61 51 59 67 7A 51 43 6B 47 59 41 30 41 35 42 6D 41 4E 49 4D 51 4A 6F 42 53 44 4D 41 61 51 59 67 7A 51 43 6B 47 59 41 30 41 35 42 6D 41 4E 49 4D 51 4A 6F 42 53 44 4D 41 61 51 59 67 7A 51 43 6B 47 59 41 30 41 35 42 6D 41 4E 49 4D 51 4A 6F 42 53 44 4D 41 61 51 59 67 7A 51 43 6B 47 59 41 30 41 35 42 6D 41 4E 49 4D 51 4A 6F 42 53 44 4D 41 61 51 59 67 7A 51 43 6B 47 59 41 30 41 35 42 6D 41 4E 49 4D 51 4A 6F 42 53 44 4D 41 61 51 59 67 7A 51 43 6B 47 59 41 30 41 35 42 6D 41 4E 49 4D 51 4A 6F 42 53 44 4D 41 61 51 59 67 7A 51 43 6B 47 59 41 30 41 35 42 6D 41 4E 49 4D 51 4A 6F 42 53 44 4D 41 61 51 59 67 7A 51 43 6B 47 59 41 30 41 35 42 6D 41 4E 49 4D 51 4A 6F 42 53 44 4D 41 61 51 59 67 7A 51 43 6B 47 59 41 30 41 35 42 6D 41 4E 49 4D 51 4A 6F 42 53 44 4D 41 61 51 59 67 7A 51 43 6B 47 59 41 30 41 35 42 6D 41 4E 49 4D 51 4A 6F 42 53 44 4D 41 61 51 59 67 7A 51 43 6B 47 59 41 30 41 35 42 6D 41 4E 49 4D 51 4A 6F 42 53 44 4D 41 61 51 59 67 7A 51 43 6B 47 59 41 30 41 35 42 6D 41 4E 49 4D 51 4A 6F 42 53 44 4D 41 61 51 59 67 7A 51 43 6B 47 59 41 30 41 35 42 6D 41 4E 49 4D 51 4A 6F 42 53 44 4D 41 61 51 59 67 7A 51 43 6B 47 59 41 30 41 35 42 6D 41 4E 49 4D 51 4A 6F 42 53 44 4D 41 61 51 59 67 7A 51 43 6B 47 59 41 30 41 35 42 6D 41 4E 49 4D 51 4A 6F 42 53 44 4D 41 61 51 59 67 7A 51 43 6B 47 59 41 30 41 35 42 6D 41 4E 49 4D 51 4A 6F 42 53 44 4D 41 61 51 59 67 7A 51 43 6B 47 59 41 30 41 35 42 6D 41 4E 49 4D 51 4A 6F 42 53 44 4D 41 61 51 59 67 7A 51 43 6B 47 59 41 30 41 35 42 6D 41 4E 49 4D 51 4A 6F 42 53 44 4D 41 61 51 59 67 7A 51 43 6B 47 59 41 30 41 35 42 6D 41 4E 49 4D 51 4A 6F 42 53 44 4D 41 61 51 59 67 7A 51 43 6B 47 59 41 30 41 35 42 6D 41 4E 49 4D 51 4A 6F 42 53 44 4D 41 61 51 59 67 7A 51 43 6B 47 59 41 30 41 35 42 6D 41 4E 49 4D 51 4A 6F 42 53 44 4D 41 61 51 59 67 7A 51 43 6B 47 59 41 30 41 35 42 6D 41 4E 49 4D 51 4A 6F 42 53 44 4D 41 61 51 59 67 7A 51 43 6B 47 59 41 30 41 35 42 6D 41 4E 49 4D 51 4A 6F 42 53 44 4D 41 61 51 59 67 7A 51 43 6B 47 59 41 30 41 35 42 6D 41 4E 49 4D 51 4A 6F 42 53 44 4D 41 61 51 59 67 7A 51 43 6B 47 59 41 30 41 35 42 6D 41 4E 49 4D 51 4E 6F 48 71 2B 67 45 2F 51 50 4E 4D 47 49 41 41 41 41 41 53 55 56 4F 52 4B 35 43 59 49 49 3D </span></span></code></pre></td></tr></table>
 </div>
-</div><div class="highlight" id="id-6"><div class="chroma">
+</div><div class="highlight" id="id-4"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
@@ -317,14 +317,14 @@
 <p>然后我们在010中继续往下看，可以把与上面这个图片有重合部分的base64的数据都删掉方便查看</p>
 <p>然后在下图这个位置发现了另一张图片，我尝试给它提取出来
 <img loading="lazy" src="imgs/image-20241029230407213.png" alt="imgs/image-20241029230407213.png" srcset="imgs/image-20241029230407213.png?size=small, imgs/image-20241029230407213.png?size=medium 1.5x, imgs/image-20241029230407213.png?size=large 2x" data-title="imgs/image-20241029230407213.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
-<div class="highlight" id="id-7"><div class="chroma">
+<div class="highlight" id="id-5"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">69 56 42 4F 52 77 30 4B 47 67 6F 41 41 41 41 4E 53 55 68 45 55 67 41 41 41 51 41 41 41 41 45 41 43 41 59 41 41 41 42 63 63 71 68 6D 41 41 41 42 47 32 6C 55 57 48 52 59 54 55 77 36 59 32 39 74 4C 6D 46 6B 62 32 4A 6C 4C 6E 68 74 63 41 41 41 41 41 41 41 50 44 39 34 63 47 46 6A 61 32 56 30 49 47 4A 6C 5A 32 6C 75 50 53 4C 76 75 37 38 69 49 47 6C 6B 50 53 4A 58 4E 55 30 77 54 58 42 44 5A 57 68 70 53 48 70 79 5A 56 4E 36 54 6C 52 6A 65 6D 74 6A 4F 57 51 69 50 7A 34 4B 50 48 67 36 65 47 31 77 62 57 56 30 59 53 42 34 62 57 78 75 63 7A 70 34 50 53 4A 68 5A 47 39 69 5A 54 70 75 63 7A 70 74 5A 58 52 68 4C 79 49 67 65 44 70 34 62 58 42 30 61 7A 30 69 57 45 31 51 49 45 4E 76 63 6D 55 67 4E 69 34 77 4C 6A 41 69 50 67 6F 67 50 48 4A 6B 5A 6A 70 53 52 45 59 67 65 47 31 73 62 6E 4D 36 63 6D 52 6D 50 53 4A 6F 64 48 52 77 4F 69 38 76 64 33 64 33 4C 6E 63 7A 4C 6D 39 79 5A 79 38 78 4F 54 6B 35 4C 7A 41 79 4C 7A 49 79 4C 58 4A 6B 5A 69 31 7A 65 57 35 30 59 58 67 74 62 6E 4D 6A 49 6A 34 4B 49 43 41 38 63 6D 52 6D 4F 6B 52 6C 63 32 4E 79 61 58 42 30 61 57 39 75 49 48 4A 6B 5A 6A 70 68 59 6D 39 31 64 44 30 69 49 69 38 2B 43 69 41 38 4C 33 4A 6B 5A 6A 70 53 52 45 59 2B 43 6A 77 76 65 44 70 34 62 58 42 74 5A 58 52 68 50 67 6F 38 50 33 68 77 59 57 4E 72 5A 58 51 67 5A 57 35 6B 50 53 4A 79 49 6A 38 2B 6C 31 76 70 43 67 41 41 49 37 4A 4A 52 45 46 55 65 4A 7A 74 58 55 32 53 56 54 65 79 31 72 56 66 6D 48 67 52 4A 70 36 66 43 63 38 38 4B 67 2F 65 46 75 77 6C 65 41 31 73 6A 2B 6F 6C 77 42 4A 67 45 31 55 39 67 42 46 51 51 4C 67 59 41 42 33 30 65 51 4F 6A 61 6C 32 56 66 76 49 2F 55 2B 66 65 4C 36 4B 6A 38 61 31 7A 70 46 52 4B 79 70 50 4B 50 78 33 2B 76 66 31 37 4F 32 77 70 62 65 6D 51 55 6B 6F 70 48 56 4A 4B 32 37 61 6C 51 7A 6F 63 30 69 46 74 61 64 73 4F 32 2B 47 77 48 64 4B 57 30 6E 5A 49 32 37 64 66 44 79 6B 64 30 69 46 74 57 30 6F 70 62 53 6B 64 44 69 6C 74 4B 61 58 44 64 76 66 37 34 5A 43 6D 2F 33 2F 47 47 57 66 34 34 62 74 44 4F 71 52 30 4F 4B 54 44 33 2F 2B 58 44 69 6D 6C 66 2F 7A 7A 33 65 48 77 54 53 42 38 6B 77 50 35 71 62 38 33 37 64 2F 2F 2B 76 76 76 68 35 51 4F 33 35 34 2B 66 42 4D 4B 2B 66 65 55 55 76 72 48 50 32 2B 4F 2F 72 76 2B 2F 31 50 45 35 66 57 4E 4E 77 6C 6F 63 47 6A 32 47 75 2B 7A 56 78 39 63 2B 75 58 67 78 5A 75 50 64 2F 2B 32 34 4E 74 33 72 52 38 66 58 7A 77 69 4E 58 5A 39 2B 35 6E 64 6C 75 53 67 53 32 5A 53 2B 74 52 61 51 46 7A 2B 65 6D 79 6F 47 63 30 6A 6D 68 35 66 50 41 4C 50 68 53 54 2B 2F 50 55 6E 38 7A 34 68 79 4C 78 71 38 65 7A 33 58 33 35 4D 4B 63 48 57 58 75 75 5A 47 5A 2F 76 39 62 6C 4E 38 50 7A 31 37 65 77 52 4D 4A 35 63 76 52 56 72 61 32 55 61 4B 4B 44 51 76 63 70 59 5A 33 53 57 66 38 65 4F 4B 54 2B 2F 43 69 38 34 6F 50 42 6D 4B 67 41 77 65 50 72 79 76 57 52 7A 5A 68 67 78 54 6C 49 41 72 6F 49 65 50 35 35 63 76 54 58 64 53 43 4D 36 52 72 2F 56 66 2B 38 4A 67 57 68 7A 57 39 4A 48 32 55 75 55 75 53 45 4C 41 4D 6E 4E 50 70 76 51 31 58 44 31 31 79 66 55 38 39 67 46 33 66 75 4E 30 35 38 6E 50 4F 6D 4A 7A 67 75 4D 64 6B 54 42 59 64 76 2B 74 75 4E 37 34 66 4C 36 68 6E 77 6D 50 75 4F 4D 45 73 39 65 66 62 67 </span></span></code></pre></td></tr></table>
 </div>
-</div><div class="highlight" id="id-8"><div class="chroma">
+</div><div class="highlight" id="id-6"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
@@ -337,7 +337,7 @@
 <p><img loading="lazy" src="imgs/image-20241029230836196.png" alt="imgs/image-20241029230836196.png" srcset="imgs/image-20241029230836196.png?size=small, imgs/image-20241029230836196.png?size=medium 1.5x, imgs/image-20241029230836196.png?size=large 2x" data-title="imgs/image-20241029230836196.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>尝试后发现是可以找到后面的数据的，因此我们以此类推，每次拼接后都搜索尾部的数据</p>
 <p>最后将所有的Hex数据都提取出来并解码可以得到</p>
-<div class="highlight" id="id-9"><div class="chroma">
+<div class="highlight" id="id-7"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
@@ -364,7 +364,7 @@
 <p>爆破后得到压缩包解压密码：<code>Y3p_Ke9_1s_29343</code></p>
 <p><img loading="lazy" src="imgs/image-20241029232814005.png" alt="imgs/image-20241029232814005.png" srcset="imgs/image-20241029232814005.png?size=small, imgs/image-20241029232814005.png?size=medium 1.5x, imgs/image-20241029232814005.png?size=large 2x" data-title="imgs/image-20241029232814005.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>解压压缩包后得到 <code>flag.txt</code> ，内容如下：</p>
-<div class="highlight" id="id-10"><div class="chroma">
+<div class="highlight" id="id-8"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">  1
 </span><span class="lnt">  2
@@ -768,7 +768,7 @@
 </span></span><span class="line"><span class="cl">encrypted_data:f2c85bd042247896b43345e589e3ad025fba1770e4ac0d274c1f7c2a670830379195aa5547d78bcee7ae649bc3b914da</span></span></code></pre></td></tr></table>
 </div>
 </div><p>发现是python的字节码，内容是加密了密钥然后用SM4算法加密了flag，手搓一个脚本逆向一下密钥</p>
-<div class="highlight" id="id-11"><div class="chroma">
+<div class="highlight" id="id-9"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -836,7 +836,7 @@
 <p><img loading="lazy" src="imgs/image-20241029235135379.png" alt="imgs/image-20241029235135379.png" srcset="imgs/image-20241029235135379.png?size=small, imgs/image-20241029235135379.png?size=medium 1.5x, imgs/image-20241029235135379.png?size=large 2x" data-title="imgs/image-20241029235135379.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>之前在某个群里好像有看到过类似的，感觉是希尔伯特-皮亚诺曲线</p>
 <p>根据<a href="https://almostgph.github.io/2024/01/08/IrisCTF2024/"target="_blank" rel="external nofollow noopener noreferrer">参考链接</a>中的脚本复原一下图片</p>
-<div class="highlight" id="id-12"><div class="chroma">
+<div class="highlight" id="id-10"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
