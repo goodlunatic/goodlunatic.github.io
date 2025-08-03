@@ -4,16 +4,7 @@
     <link>https://goodlunatic.github.io/categories/ctf/</link>
     <description>CTF - Category | ⚡Lunatic BLOG⚡</description>
     <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>goodlunatic0@gmail.com (Lunatic)</managingEditor>
-      <webMaster>goodlunatic0@gmail.com (Lunatic)</webMaster><lastBuildDate>Sat, 05 Jul 2025 00:00:36 &#43;0800</lastBuildDate><atom:link href="https://goodlunatic.github.io/categories/ctf/" rel="self" type="application/rss+xml" /><item>
-  <title>如何给Wireshark添加LTE和NR支持</title>
-  <link>https://goodlunatic.github.io/posts/4c7a04a/</link>
-  <pubDate>Sat, 05 Jul 2025 00:00:36 &#43;0800</pubDate>
-  <author>Lunatic</author>
-  <guid>https://goodlunatic.github.io/posts/4c7a04a/</guid>
-  <description><![CDATA[<p>最近在研究LTE和NR的空口流量分析，发现Wireshark默认是不支持解析这两种协议的</p>
-<p>因此需要我们手动进行一些操作来支持WIreshark对LTE和NR空口流量的解析</p>]]></description>
-</item>
-<item>
+      <webMaster>goodlunatic0@gmail.com (Lunatic)</webMaster><lastBuildDate>Wed, 28 May 2025 10:29:38 &#43;0800</lastBuildDate><atom:link href="https://goodlunatic.github.io/categories/ctf/" rel="self" type="application/rss+xml" /><item>
   <title>强网杯-谍影重重系列赛题详解</title>
   <link>https://goodlunatic.github.io/posts/1a152f0/</link>
   <pubDate>Wed, 28 May 2025 10:29:38 &#43;0800</pubDate>
@@ -90,6 +81,14 @@
   <author>Lunatic</author>
   <guid>https://goodlunatic.github.io/posts/01ebd40/</guid>
   <description><![CDATA[<p>越来越多的比赛中出现工控相关的赛题，因此打算借这个机会学习一下。</p>]]></description>
+</item>
+<item>
+  <title>CTF-Reverse Record</title>
+  <link>https://goodlunatic.github.io/posts/690000000000000000000000000000000000000000000000000000000000000/</link>
+  <pubDate>Fri, 18 Oct 2024 14:44:40 &#43;0800</pubDate>
+  <author>Lunatic</author>
+  <guid>https://goodlunatic.github.io/posts/690000000000000000000000000000000000000000000000000000000000000/</guid>
+  <description><![CDATA[<p><strong>感觉逆向真的是一个不得不学的领域呀</strong></p>]]></description>
 </item>
 </channel>
 </rss>

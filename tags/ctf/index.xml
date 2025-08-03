@@ -4,16 +4,7 @@
     <link>https://goodlunatic.github.io/tags/ctf/</link>
     <description>CTF - Tag | ⚡Lunatic BLOG⚡</description>
     <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>goodlunatic0@gmail.com (Lunatic)</managingEditor>
-      <webMaster>goodlunatic0@gmail.com (Lunatic)</webMaster><lastBuildDate>Sat, 05 Jul 2025 00:00:36 &#43;0800</lastBuildDate><atom:link href="https://goodlunatic.github.io/tags/ctf/" rel="self" type="application/rss+xml" /><item>
-  <title>如何给Wireshark添加LTE和NR支持</title>
-  <link>https://goodlunatic.github.io/posts/4c7a04a/</link>
-  <pubDate>Sat, 05 Jul 2025 00:00:36 &#43;0800</pubDate>
-  <author>Lunatic</author>
-  <guid>https://goodlunatic.github.io/posts/4c7a04a/</guid>
-  <description><![CDATA[<p>最近在研究LTE和NR的空口流量分析，发现Wireshark默认是不支持解析这两种协议的</p>
-<p>因此需要我们手动进行一些操作来支持WIreshark对LTE和NR空口流量的解析</p>]]></description>
-</item>
-<item>
+      <webMaster>goodlunatic0@gmail.com (Lunatic)</webMaster><lastBuildDate>Wed, 28 May 2025 10:29:38 &#43;0800</lastBuildDate><atom:link href="https://goodlunatic.github.io/tags/ctf/" rel="self" type="application/rss+xml" /><item>
   <title>强网杯-谍影重重系列赛题详解</title>
   <link>https://goodlunatic.github.io/posts/1a152f0/</link>
   <pubDate>Wed, 28 May 2025 10:29:38 &#43;0800</pubDate>
@@ -90,6 +81,15 @@
   <guid>https://goodlunatic.github.io/posts/c49ae8a/</guid>
   <description><![CDATA[<p>最近的CTF比赛中经常出现数据安全的板块(尤其是安恒承办的比赛)</p>
 <p>感觉这类题目是可以靠积累来提升解题速度的，因此准备写这样一篇博客来总结一下常见的考点</p>]]></description>
+</item>
+<item>
+  <title>2025 西湖论剑·中国杭州网络安全技能大赛 Misc Writeup</title>
+  <link>https://goodlunatic.github.io/posts/f002407/</link>
+  <pubDate>Sat, 19 Apr 2025 15:35:37 &#43;0800</pubDate>
+  <author>Lunatic</author>
+  <guid>https://goodlunatic.github.io/posts/f002407/</guid>
+  <description><![CDATA[<p><strong>最近这一段时间一直被科研和毕设上的事拖着，因此就有段时间没有做Misc题了</strong></p>
+<p><strong>趁着写毕设没啥思路和动力的功夫，来稍微复盘下今年西湖论剑的题</strong></p>]]></description>
 </item>
 </channel>
 </rss>
