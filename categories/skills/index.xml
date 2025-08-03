@@ -10,8 +10,8 @@
   <pubDate>Sat, 05 Jul 2025 00:00:36 &#43;0800</pubDate>
   <author>Lunatic</author>
   <guid>https://goodlunatic.github.io/posts/4c7a04a/</guid>
-  <description><![CDATA[<p>最近在研究LTE和NR的空口流量分析，发现Wireshark默认是不支持解析这两种协议的</p>
-<p>因此需要我们手动进行一些操作来支持WIreshark对LTE和NR空口流量的解析</p>]]></description>
+  <description><![CDATA[<p><strong>最近在研究LTE和NR的空口流量分析，发现Wireshark默认是不支持解析这两种协议的</strong></p>
+<p><strong>因此需要我们手动进行一些操作来支持WIreshark对LTE和NR空口流量的解析</strong></p>]]></description>
 </item>
 <item>
   <title>C/C&#43;&#43;程序开发学习记录</title>

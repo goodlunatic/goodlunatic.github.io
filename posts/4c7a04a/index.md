@@ -1,8 +1,8 @@
 # 如何给Wireshark添加LTE和NR支持
 
-最近在研究LTE和NR的空口流量分析，发现Wireshark默认是不支持解析这两种协议的
+**最近在研究LTE和NR的空口流量分析，发现Wireshark默认是不支持解析这两种协议的**
 
-因此需要我们手动进行一些操作来支持WIreshark对LTE和NR空口流量的解析
+**因此需要我们手动进行一些操作来支持WIreshark对LTE和NR空口流量的解析**
 &lt;!--more--&gt;
 
 首先需要依次点击 首选项(Preference) -&gt; 协议(Protocols) -&gt; DLT User
