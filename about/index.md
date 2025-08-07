@@ -19,6 +19,7 @@
 # **🏆 Awards**
 
 - **National Second Prize, China Collegiate Cybersecurity Competition (CISCN), 2024** 
+- **First Prize, CISCN Southeast China Regional Tournament 2024**
 - **Honorable Mention, Mathematical Contest in Modeling (MCM), USA, 2023**
 - **Top 10 Outstanding Students of the School of Computer Science and Technology, 2023, 2024**
 - **Zhejiang Provincial Government Scholarship, 2022, 2023, 2024**
@@ -47,6 +48,7 @@
 |                 **S\*e**                  |  **9.99 x 💎**  |
 |             **好故事慢慢来**              |  **8.88 x 💎**  |
 |                 **\*全**                  |  **8.88 x 💎**  |
+|                **Ynyrmm**                 |  **8.88 x 💎**  |
 | **[Xunflash](https://www.xunflash.top/)** |  **6.66 x 💎**  |
 |      **[C3ngH](https://c3ngh.top)**       |  **6.66 x 💎**  |
 |                **1uxu4y**                 |  **6.66 x 💎**  |
