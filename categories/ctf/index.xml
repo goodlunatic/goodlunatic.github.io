@@ -4,7 +4,16 @@
     <link>https://goodlunatic.github.io/categories/ctf/</link>
     <description>CTF - Category | ⚡Lunatic BLOG⚡</description>
     <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>goodlunatic0@gmail.com (Lunatic)</managingEditor>
-      <webMaster>goodlunatic0@gmail.com (Lunatic)</webMaster><lastBuildDate>Wed, 28 May 2025 10:29:38 &#43;0800</lastBuildDate><atom:link href="https://goodlunatic.github.io/categories/ctf/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>goodlunatic0@gmail.com (Lunatic)</webMaster><lastBuildDate>Fri, 08 Aug 2025 20:30:17 &#43;0800</lastBuildDate><atom:link href="https://goodlunatic.github.io/categories/ctf/" rel="self" type="application/rss+xml" /><item>
+  <title>CTF-Misc Guide</title>
+  <link>https://goodlunatic.github.io/posts/1ad9200/</link>
+  <pubDate>Fri, 08 Aug 2025 20:30:17 &#43;0800</pubDate>
+  <author>Lunatic</author>
+  <guid>https://goodlunatic.github.io/posts/1ad9200/</guid>
+  <description><![CDATA[<p><strong>最开始接触CTF时，学的最多的就是Misc，各种编码与加密还有各种软件的使用等等</strong></p>
+<p><strong>但Misc涉及的范围实在太广了，于是就想着一边学习一边记录，因而就有了这篇文章</strong></p>]]></description>
+</item>
+<item>
   <title>强网杯-谍影重重系列赛题详解</title>
   <link>https://goodlunatic.github.io/posts/1a152f0/</link>
   <pubDate>Wed, 28 May 2025 10:29:38 &#43;0800</pubDate>
@@ -30,15 +39,6 @@
   <author>Lunatic</author>
   <guid>https://goodlunatic.github.io/posts/5422d65/</guid>
   <description><![CDATA[<p><strong>This is a Simple Guide for Network Traffic Analysis.</strong></p>]]></description>
-</item>
-<item>
-  <title>CTF-Misc Guide</title>
-  <link>https://goodlunatic.github.io/posts/1ad9200/</link>
-  <pubDate>Fri, 02 May 2025 11:30:17 &#43;0800</pubDate>
-  <author>Lunatic</author>
-  <guid>https://goodlunatic.github.io/posts/1ad9200/</guid>
-  <description><![CDATA[<p><strong>最开始接触CTF时，学的最多的就是Misc，各种编码与加密还有各种软件的使用等等</strong></p>
-<p><strong>但Misc涉及的范围实在太广了，于是就想着一边学习一边记录，因而就有了这篇文章</strong></p>]]></description>
 </item>
 <item>
   <title>CTF-Misc &#34;雅&#34;题共赏</title>
