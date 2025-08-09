@@ -38,6 +38,7 @@
 |                **Sponsor**                |   **Amount**   |
 | :---------------------------------------: | :------------: |
 |                **洗衣液**                 | **520.00 x 💎** |
+|               **秋雨渐冷**                | **30.00 x 💎**  |
 |                 **x\*n**                  | **20.00 x 💎**  |
 |                 **\*沉**                  | **20.00 x 💎**  |
 |                 **yuyy**                  | **20.00 x 💎**  |
@@ -61,15 +62,10 @@
 |  **[AsaL1n](https://asal1n.github.io/)**  |  **0.99 x 💎**  |
 |                  **GQ**                   |  **0.10 x 💎**  |
 
-&lt;img align=&#34;left&#34; alt=&#34;img&#34; src=&#34;imgs/Wechat.jpg&#34; width=&#34;50%&#34; height=&#34;50%&#34; /&gt;
-
-&lt;img align=&#34;right&#34; alt=&#34;img&#34; src=&#34;imgs/Alipay.jpg&#34; width=&#34;50%&#34; height=&#34;50%&#34; /&gt;
 
 
-
-
-
-&amp;nbsp;&lt;br&gt;
+| &lt;img align=&#34;center&#34; alt=&#34;img&#34; src=&#34;imgs/Wechat.jpg&#34; /&gt; | &lt;img align=&#34;center&#34; alt=&#34;img&#34; src=&#34;imgs/Alipay.jpg&#34;/&gt; |
+| :----------------------------------------------------: | :---------------------------------------------------: |
 
 {{&lt; admonition type=success title=&#34;一些题外话&#34; open=true &gt;}}
 
