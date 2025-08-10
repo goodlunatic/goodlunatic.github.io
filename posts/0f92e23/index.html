@@ -14,7 +14,7 @@
 感觉是绕不开逆向了，因此打算猛猛突击一下">
   <meta itemprop="datePublished" content="2025-08-10T14:15:38+08:00">
   <meta itemprop="dateModified" content="2025-08-10T14:15:38+08:00">
-  <meta itemprop="wordCount" content="638">
+  <meta itemprop="wordCount" content="984">
   <meta itemprop="keywords" content="CTF,Reverse"><meta property="og:url" content="https://goodlunatic.github.io/posts/0f92e23/">
   <meta property="og:site_name" content="⚡Lunatic BLOG⚡">
   <meta property="og:title" content="CTF-Reverse学习记录">
@@ -44,7 +44,7 @@
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": "https:\/\/goodlunatic.github.io\/posts\/0f92e23\/"
-    },"genre": "posts","keywords": "CTF, Reverse","wordcount":  638 ,
+    },"genre": "posts","keywords": "CTF, Reverse","wordcount":  984 ,
     "url": "https:\/\/goodlunatic.github.io\/posts\/0f92e23\/","datePublished": "2025-08-10T14:15:38+08:00","dateModified": "2025-08-10T14:15:38+08:00","publisher": {
       "@type": "Organization",
       "name": ""},"author": {
@@ -148,7 +148,7 @@
 <article class="page single">
   <div class="header"><h1 class="single-title animate__animated animate__flipInX"><span>CTF-Reverse学习记录</span>
     </h1></div><div class="post-meta">
-    <div class="post-meta-line"><span class="post-author"><a href="https://goodlunatic.github.io" title="Author"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><img loading="lazy" src="https://www.nssctf.cn/files/2024/4/28/7f130a1387.png" alt="Lunatic" data-title="Lunatic" class="avatar" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>&nbsp;Lunatic</a></span><span class="post-included-in">&nbsp;included in <a href="/categories/ctf/" class="post-category" title="Category - CTF"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> CTF</a></span></div><div class="post-meta-line"><span title="published on &lt;no value&gt;"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden="true"></i><time datetime="2025-08-10">2025-08-10</time></span>&nbsp;<span title=""><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>About 700 words</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>3 minutes</span>&nbsp;</div>
+    <div class="post-meta-line"><span class="post-author"><a href="https://goodlunatic.github.io" title="Author"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><img loading="lazy" src="https://www.nssctf.cn/files/2024/4/28/7f130a1387.png" alt="Lunatic" data-title="Lunatic" class="avatar" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>&nbsp;Lunatic</a></span><span class="post-included-in">&nbsp;included in <a href="/categories/ctf/" class="post-category" title="Category - CTF"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> CTF</a></span></div><div class="post-meta-line"><span title="published on &lt;no value&gt;"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden="true"></i><time datetime="2025-08-10">2025-08-10</time></span>&nbsp;<span title=""><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>About 1000 words</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>5 minutes</span>&nbsp;</div>
   </div><div class="details toc" id="toc-static"
     data-kept="false">
     <div class="details-summary toc-title">
@@ -160,7 +160,6 @@
     <li><a href="#ida常用快捷键">IDA常用快捷键</a></li>
     <li><a href="#逆向中常见的数据类型">逆向中常见的数据类型</a></li>
     <li><a href="#汇编基础">汇编基础</a></li>
-    <li><a href="#python逆向">Python逆向</a></li>
     <li><a href="#常见的编码与加密">常见的编码与加密</a>
       <ul>
         <li><a href="#base64">base64</a></li>
@@ -172,6 +171,12 @@
     <li><a href="#常见的壳">常见的壳</a>
       <ul>
         <li><a href="#upx">upx</a></li>
+      </ul>
+    </li>
+    <li><a href="#python逆向">Python逆向</a></li>
+    <li><a href="#常用的一些逆向工具">常用的一些逆向工具</a>
+      <ul>
+        <li><a href="#z3-约束求解器">Z3 约束求解器</a></li>
       </ul>
     </li>
   </ul>
@@ -433,105 +438,9 @@
 </tr>
 </tbody>
 </table>
-<h2 id="python逆向" class="heading-element">
-  <a href="#python%e9%80%86%e5%90%91" class="heading-mark"></a>Python逆向</h2><p>有部分exe是由 pyinstaller 打包的，通常可以直接根据文件的图标看出来</p>
-<p>针对这种exe的逆向，我可以按照如下步骤：</p>
-<p>1、使用 pyinstxtractor 先进行解包</p>
-<blockquote>
-<p>pyinstxtractor: <a href="https://github.com/extremecoders-re/pyinstxtractor"target="_blank" rel="external nofollow noopener noreferrer">https://github.com/extremecoders-re/pyinstxtractor</a></p>
-</blockquote>
-<div class="highlight" id="id-1"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 可以用如下命令进行解包</span>
-</span></span><span class="line"><span class="cl"><span class="o">[</span>+<span class="o">]</span> Usage: pyinstxtractor.py &lt;filename&gt;
-</span></span><span class="line"><span class="cl"><span class="c1"># 这里要注意，如果本地版本和出题人打包用的版本不同，某些依赖可能无法正常解包</span></span></span></code></pre></td></tr></table>
-</div>
-</div><p>2、反编译解包后得到的 pyc 文件</p>
-<p>第一种方法是用如下的在线网站反编译：</p>
-<div class="highlight" id="id-2"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="k">tool</span><span class="o">.</span><span class="n">lu</span><span class="o">/</span><span class="n">pyc</span><span class="o">/</span>
-</span></span><span class="line"><span class="cl"><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">www</span><span class="o">.</span><span class="n">lddgo</span><span class="o">.</span><span class="n">net</span><span class="o">/</span><span class="n">string</span><span class="o">/</span><span class="n">pyc</span><span class="o">-</span><span class="n">compile</span><span class="o">-</span><span class="n">decompile</span>
-</span></span><span class="line"><span class="cl"><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">www</span><span class="o">.</span><span class="n">toolkk</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">tools</span><span class="o">/</span><span class="n">pyc</span><span class="o">-</span><span class="n">decomplie</span></span></span></code></pre></td></tr></table>
-</div>
-</div><p>第二中方法就是用本地工具进行反编译，这里有以下三个常用的反编译工具：</p>
-<p>uncompyle6: <a href="https://github.com/rocky/python-uncompyle6"target="_blank" rel="external nofollow noopener noreferrer">https://github.com/rocky/python-uncompyle6</a></p>
-<div class="highlight" id="id-3"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 直接 pip 安装即可</span>
-</span></span><span class="line"><span class="cl">pip3 install uncompyle6
-</span></span><span class="line"><span class="cl"><span class="c1"># 然后将 Script 目录添加到环境变量中</span>
-</span></span><span class="line"><span class="cl">C:<span class="se">\U</span>sers<span class="se">\X</span>XX<span class="se">\A</span>ppData<span class="se">\L</span>ocal<span class="se">\P</span>rograms<span class="se">\P</span>ython<span class="se">\P</span>ython38<span class="se">\S</span>cripts
-</span></span><span class="line"><span class="cl"><span class="c1"># 之后就可以直接在终端中使用了</span>
-</span></span><span class="line"><span class="cl">uncompyle6 filename.pyc &gt; decompile.py</span></span></code></pre></td></tr></table>
-</div>
-</div><p>pyinstxtractor: <a href="https://github.com/extremecoders-re/pyinstxtractor"target="_blank" rel="external nofollow noopener noreferrer">https://github.com/extremecoders-re/pyinstxtractor</a></p>
-<div class="highlight" id="id-4"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">python pyinstxtractor.py reverse_1_PyHaHa.pyc</span></span></code></pre></td></tr></table>
-</div>
-</div><p>pycdc: <a href="https://github.com/zrax/pycdc"target="_blank" rel="external nofollow noopener noreferrer">https://github.com/zrax/pycdc</a></p>
-<div class="highlight" id="id-5"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 下载并编译</span>
-</span></span><span class="line"><span class="cl">git clone https://github.com/zrax/pycdc.git
-</span></span><span class="line"><span class="cl">mkdir build <span class="o">&amp;&amp;</span> <span class="nb">cd</span> build
-</span></span><span class="line"><span class="cl">cmake ..
-</span></span><span class="line"><span class="cl">make -j<span class="k">$(</span>nproc<span class="k">)</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 使用方法</span>
-</span></span><span class="line"><span class="cl">Usage:  ./pycdc <span class="o">[</span>options<span class="o">]</span> input.pyc
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">Options:
-</span></span><span class="line"><span class="cl">  -o &lt;filename&gt;  Write output to &lt;filename&gt; <span class="o">(</span>default: stdout<span class="o">)</span>
-</span></span><span class="line"><span class="cl">  -c             Specify loading a compiled code object. Requires the version to be <span class="nb">set</span>
-</span></span><span class="line"><span class="cl">  -v &lt;x.y&gt;       Specify a Python version <span class="k">for</span> loading a compiled code object
-</span></span><span class="line"><span class="cl">  --help         Show this <span class="nb">help</span> text and <span class="k">then</span> exit</span></span></code></pre></td></tr></table>
-</div>
-</div><blockquote>
-<p>Tips:</p>
-<p>有时候会遇到pyc文件魔术头被修改的情况，可以复制解包后的struct.pyc到要反编译的pyc文件中（就是文件前16个字节）</p>
-</blockquote>
 <h2 id="常见的编码与加密" class="heading-element">
   <a href="#%e5%b8%b8%e8%a7%81%e7%9a%84%e7%bc%96%e7%a0%81%e4%b8%8e%e5%8a%a0%e5%af%86" class="heading-mark"></a>常见的编码与加密</h2><h3 id="base64" class="heading-element">
-  <a href="#base64" class="heading-mark"></a>base64</h3><div class="highlight" id="id-6"><div class="chroma">
+  <a href="#base64" class="heading-mark"></a>base64</h3><div class="highlight" id="id-1"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -615,7 +524,7 @@
   <a href="#%e5%b8%b8%e8%a7%81%e7%9a%84%e5%a3%b3" class="heading-mark"></a>常见的壳</h2><p>可以先把待逆向的文件拖入 <a href="https://github.com/horsicq/Detect-It-Easy"target="_blank" rel="external nofollow noopener noreferrer">DIE(Detect-It-Easy)</a> 中查看是用的什么壳</p>
 <h3 id="upx" class="heading-element">
   <a href="#upx" class="heading-mark"></a>upx</h3><p>一种压缩壳，可以尝试直接用upx脱壳</p>
-<div class="highlight" id="id-7"><div class="chroma">
+<div class="highlight" id="id-2"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -628,7 +537,254 @@
 </span></span><span class="line"><span class="cl"><span class="c1"># 使用方法</span>
 </span></span><span class="line"><span class="cl">upx -d re.exe</span></span></code></pre></td></tr></table>
 </div>
-</div><p>也可以尝试手动脱upx</p></div><div class="post-footer" id="post-footer">
+</div><p>也可以尝试手动脱upx</p>
+<h2 id="python逆向" class="heading-element">
+  <a href="#python%e9%80%86%e5%90%91" class="heading-mark"></a>Python逆向</h2><p>有部分exe是由 pyinstaller 打包的，通常可以直接根据文件的图标看出来</p>
+<p>针对这种exe的逆向，我可以按照如下步骤：</p>
+<p>1、使用 pyinstxtractor 先进行解包</p>
+<blockquote>
+<p>pyinstxtractor: <a href="https://github.com/extremecoders-re/pyinstxtractor"target="_blank" rel="external nofollow noopener noreferrer">https://github.com/extremecoders-re/pyinstxtractor</a></p>
+</blockquote>
+<div class="highlight" id="id-3"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 可以用如下命令进行解包</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>+<span class="o">]</span> Usage: pyinstxtractor.py &lt;filename&gt;
+</span></span><span class="line"><span class="cl"><span class="c1"># 这里要注意，如果本地版本和出题人打包用的版本不同，某些依赖可能无法正常解包</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>2、反编译解包后得到的 pyc 文件</p>
+<p>第一种方法是用如下的在线网站反编译：</p>
+<div class="highlight" id="id-4"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="k">tool</span><span class="o">.</span><span class="n">lu</span><span class="o">/</span><span class="n">pyc</span><span class="o">/</span>
+</span></span><span class="line"><span class="cl"><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">www</span><span class="o">.</span><span class="n">lddgo</span><span class="o">.</span><span class="n">net</span><span class="o">/</span><span class="n">string</span><span class="o">/</span><span class="n">pyc</span><span class="o">-</span><span class="n">compile</span><span class="o">-</span><span class="n">decompile</span>
+</span></span><span class="line"><span class="cl"><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">www</span><span class="o">.</span><span class="n">toolkk</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">tools</span><span class="o">/</span><span class="n">pyc</span><span class="o">-</span><span class="n">decomplie</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>第二中方法就是用本地工具进行反编译，这里有以下三个常用的反编译工具：</p>
+<p>uncompyle6: <a href="https://github.com/rocky/python-uncompyle6"target="_blank" rel="external nofollow noopener noreferrer">https://github.com/rocky/python-uncompyle6</a></p>
+<div class="highlight" id="id-5"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 直接 pip 安装即可</span>
+</span></span><span class="line"><span class="cl">pip3 install uncompyle6
+</span></span><span class="line"><span class="cl"><span class="c1"># 然后将 Script 目录添加到环境变量中</span>
+</span></span><span class="line"><span class="cl">C:<span class="se">\U</span>sers<span class="se">\X</span>XX<span class="se">\A</span>ppData<span class="se">\L</span>ocal<span class="se">\P</span>rograms<span class="se">\P</span>ython<span class="se">\P</span>ython38<span class="se">\S</span>cripts
+</span></span><span class="line"><span class="cl"><span class="c1"># 之后就可以直接在终端中使用了</span>
+</span></span><span class="line"><span class="cl">uncompyle6 filename.pyc &gt; decompile.py</span></span></code></pre></td></tr></table>
+</div>
+</div><p>pyinstxtractor: <a href="https://github.com/extremecoders-re/pyinstxtractor"target="_blank" rel="external nofollow noopener noreferrer">https://github.com/extremecoders-re/pyinstxtractor</a></p>
+<div class="highlight" id="id-6"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">python pyinstxtractor.py reverse_1_PyHaHa.pyc</span></span></code></pre></td></tr></table>
+</div>
+</div><p>pycdc: <a href="https://github.com/zrax/pycdc"target="_blank" rel="external nofollow noopener noreferrer">https://github.com/zrax/pycdc</a></p>
+<div class="highlight" id="id-7"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 下载并编译</span>
+</span></span><span class="line"><span class="cl">git clone https://github.com/zrax/pycdc.git
+</span></span><span class="line"><span class="cl">mkdir build <span class="o">&amp;&amp;</span> <span class="nb">cd</span> build
+</span></span><span class="line"><span class="cl">cmake ..
+</span></span><span class="line"><span class="cl">make -j<span class="k">$(</span>nproc<span class="k">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 使用方法</span>
+</span></span><span class="line"><span class="cl">Usage:  ./pycdc <span class="o">[</span>options<span class="o">]</span> input.pyc
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Options:
+</span></span><span class="line"><span class="cl">  -o &lt;filename&gt;  Write output to &lt;filename&gt; <span class="o">(</span>default: stdout<span class="o">)</span>
+</span></span><span class="line"><span class="cl">  -c             Specify loading a compiled code object. Requires the version to be <span class="nb">set</span>
+</span></span><span class="line"><span class="cl">  -v &lt;x.y&gt;       Specify a Python version <span class="k">for</span> loading a compiled code object
+</span></span><span class="line"><span class="cl">  --help         Show this <span class="nb">help</span> text and <span class="k">then</span> exit</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>Tips:</p>
+<p>有时候会遇到pyc文件魔术头被修改的情况，可以复制解包后的struct.pyc到要反编译的pyc文件中（就是文件前16个字节）</p>
+</blockquote>
+<h2 id="常用的一些逆向工具" class="heading-element">
+  <a href="#%e5%b8%b8%e7%94%a8%e7%9a%84%e4%b8%80%e4%ba%9b%e9%80%86%e5%90%91%e5%b7%a5%e5%85%b7" class="heading-mark"></a>常用的一些逆向工具</h2><h3 id="z3-约束求解器" class="heading-element">
+  <a href="#z3-%e7%ba%a6%e6%9d%9f%e6%b1%82%e8%a7%a3%e5%99%a8" class="heading-mark"></a>Z3 约束求解器</h3><blockquote>
+<p>Z3-solver是微软开发的自动定理证明器和约束求解器，能够将复杂问题转化为数学约束条件，然后自动寻找满足所有条件的解。它特别擅长处理包含布尔逻辑、算术运算、位运算等多种约束的复杂问题，广泛应用于程序验证、网络安全、人工智能等领域。Z3通过先进的符号推理和约束求解技术，能够解决传统方法难以处理的非线性约束和复杂逻辑关系，是一个强大的数学问题求解工具。</p>
+</blockquote>
+<p>安装方法: <code>pip3 install z3-solver</code></p>
+<p>基本用法如下，更多用法可以参考<a href="https://z3prover.github.io/api/html/index.html"target="_blank" rel="external nofollow noopener noreferrer">官方文档</a></p>
+<div class="highlight" id="id-8"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">z3</span> <span class="kn">import</span> <span class="o">*</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 1. 创建变量</span>
+</span></span><span class="line"><span class="cl"><span class="n">x</span> <span class="o">=</span> <span class="n">Int</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>      <span class="c1"># 整型变量</span>
+</span></span><span class="line"><span class="cl"><span class="n">y</span> <span class="o">=</span> <span class="n">Int</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>      <span class="c1"># 整型变量</span>
+</span></span><span class="line"><span class="cl"><span class="n">p</span> <span class="o">=</span> <span class="n">Bool</span><span class="p">(</span><span class="s1">&#39;p&#39;</span><span class="p">)</span>     <span class="c1"># 布尔变量p</span>
+</span></span><span class="line"><span class="cl"><span class="n">q</span> <span class="o">=</span> <span class="n">Bool</span><span class="p">(</span><span class="s1">&#39;q&#39;</span><span class="p">)</span>     <span class="c1"># 布尔变量q</span>
+</span></span><span class="line"><span class="cl"><span class="n">r</span> <span class="o">=</span> <span class="n">Bool</span><span class="p">(</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>     <span class="c1"># 布尔变量r</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 2. 创建求解器</span>
+</span></span><span class="line"><span class="cl"><span class="n">s</span> <span class="o">=</span> <span class="n">Solver</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 3. 添加约束条件</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 数值约束</span>
+</span></span><span class="line"><span class="cl"><span class="n">s</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">x</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>                    <span class="c1"># x必须大于0</span>
+</span></span><span class="line"><span class="cl"><span class="n">s</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">y</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>                    <span class="c1"># y必须大于0</span>
+</span></span><span class="line"><span class="cl"><span class="n">s</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">y</span> <span class="o">==</span> <span class="mi">10</span><span class="p">)</span>              <span class="c1"># x+y等于10</span>
+</span></span><span class="line"><span class="cl"><span class="n">s</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Implies</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="n">y</span><span class="p">))</span>        <span class="c1"># 如果p为真，则x&gt;y</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 逻辑约束</span>
+</span></span><span class="line"><span class="cl"><span class="n">s</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Implies</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">q</span><span class="p">))</span>            <span class="c1"># p → q (如果p为真，则q为真)</span>
+</span></span><span class="line"><span class="cl"><span class="n">s</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">r</span> <span class="o">==</span> <span class="n">Not</span><span class="p">(</span><span class="n">q</span><span class="p">))</span>              <span class="c1"># r = ¬q (r等于q的否定)</span>
+</span></span><span class="line"><span class="cl"><span class="n">s</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Or</span><span class="p">(</span><span class="n">Not</span><span class="p">(</span><span class="n">p</span><span class="p">),</span> <span class="n">r</span><span class="p">))</span>            <span class="c1"># ¬p ∨ r (p的否定或r为真)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 4. 检查约束是否可满足</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="n">s</span><span class="o">.</span><span class="n">check</span><span class="p">()</span> <span class="o">==</span> <span class="n">sat</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 5. 获取解</span>
+</span></span><span class="line"><span class="cl">    <span class="n">m</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">model</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;找到解：x = </span><span class="si">{</span><span class="n">m</span><span class="p">[</span><span class="n">x</span><span class="p">]</span><span class="si">}</span><span class="s2">, y = </span><span class="si">{</span><span class="n">m</span><span class="p">[</span><span class="n">y</span><span class="p">]</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;逻辑变量：p = </span><span class="si">{</span><span class="n">m</span><span class="p">[</span><span class="n">p</span><span class="p">]</span><span class="si">}</span><span class="s2">, q = </span><span class="si">{</span><span class="n">m</span><span class="p">[</span><span class="n">q</span><span class="p">]</span><span class="si">}</span><span class="s2">, r = </span><span class="si">{</span><span class="n">m</span><span class="p">[</span><span class="n">r</span><span class="p">]</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;约束不可满足&#34;</span><span class="p">)</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>示例代码：</p>
+<div class="highlight" id="id-9"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">z3</span> <span class="kn">import</span> <span class="o">*</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">enc</span> <span class="o">=</span> <span class="p">[</span><span class="mh">0x0000B1B0</span><span class="p">,</span> <span class="mh">0x00005678</span><span class="p">,</span> <span class="mh">0x00007FF2</span><span class="p">,</span> <span class="mh">0x0000A332</span><span class="p">,</span> <span class="mh">0x0000A0E8</span><span class="p">,</span> <span class="mh">0x0000364C</span><span class="p">,</span> <span class="mh">0x00002BD4</span><span class="p">,</span> <span class="mh">0x0000C8FE</span><span class="p">,</span> <span class="mh">0x00004A7C</span><span class="p">,</span> <span class="mh">0x00000018</span><span class="p">,</span> <span class="mh">0x00002BE4</span><span class="p">,</span> <span class="mh">0x00004144</span><span class="p">,</span> <span class="mh">0x00003BA6</span><span class="p">,</span> <span class="mh">0x0000BE8C</span><span class="p">,</span> <span class="mh">0x00008F7E</span><span class="p">,</span> <span class="mh">0x000035F8</span><span class="p">,</span> <span class="mh">0x000061AA</span><span class="p">,</span> <span class="mh">0x00002B4A</span><span class="p">,</span> <span class="mh">0x00006828</span><span class="p">,</span> <span class="mh">0x0000B39E</span><span class="p">,</span> <span class="mh">0x0000B542</span><span class="p">,</span> <span class="mh">0x000033EC</span><span class="p">,</span> <span class="mh">0x0000C7D8</span><span class="p">,</span> <span class="mh">0x0000448C</span><span class="p">,</span> <span class="mh">0x00009310</span><span class="p">,</span> <span class="mh">0x00008808</span><span class="p">,</span> <span class="mh">0x0000ADD4</span><span class="p">,</span> <span class="mh">0x00003CC2</span><span class="p">,</span> <span class="mh">0x00000796</span><span class="p">,</span> <span class="mh">0x0000C940</span><span class="p">,</span> <span class="mh">0x00004E32</span><span class="p">,</span> <span class="mh">0x00004E2E</span><span class="p">,</span> <span class="mh">0x0000924A</span><span class="p">,</span> <span class="mh">0x00005B5C</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">s</span> <span class="o">=</span> <span class="n">Solver</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">input</span> <span class="o">=</span> <span class="p">[</span><span class="n">BitVec</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;input</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">34</span><span class="p">)]</span> <span class="c1"># input0-input33 都是 0-255</span>
+</span></span><span class="line"><span class="cl"><span class="n">var</span> <span class="o">=</span> <span class="p">[</span><span class="n">BitVec</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;var</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">,</span><span class="mi">32</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">34</span><span class="p">)]</span> <span class="c1"># var0-var31 都是 0-4294967295</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 模拟加密算法</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">34</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">var</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">47806</span> <span class="o">*</span> <span class="p">(</span><span class="n">ZeroExt</span><span class="p">(</span><span class="mi">24</span><span class="p">,</span> <span class="nb">input</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">+</span> <span class="n">i</span><span class="p">)</span> <span class="c1"># 高位补零，将8位扩展至32位</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">i</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">var</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">^=</span> <span class="n">var</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">^</span> <span class="mh">0x114514</span>
+</span></span><span class="line"><span class="cl">    <span class="n">var</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">%=</span> <span class="mi">51966</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 添加约束条件</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">34</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">s</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">var</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">enc</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">s</span><span class="o">.</span><span class="n">check</span><span class="p">()</span> <span class="o">==</span> <span class="n">sat</span><span class="p">:</span> <span class="c1"># 找到解</span>
+</span></span><span class="line"><span class="cl">        <span class="n">m</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">model</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ascii_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">m</span><span class="p">[</span><span class="nb">input</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span><span class="o">.</span><span class="n">as_long</span><span class="p">()</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">34</span><span class="p">)]</span> <span class="c1"># 将Z3的符号值转换为Python的普通整数</span>
+</span></span><span class="line"><span class="cl">        <span class="n">flag</span> <span class="o">=</span> <span class="s2">&#34;moectf{&#34;</span>  <span class="o">+</span> <span class="s2">&#34;&#34;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">chr</span><span class="p">(</span><span class="n">ascii_list</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">34</span><span class="p">))</span> <span class="o">+</span> <span class="s2">&#34;}&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="n">flag</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1"># 添加阻塞条件，寻找下一个解</span>
+</span></span><span class="line"><span class="cl">        <span class="n">block</span> <span class="o">=</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">34</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">            <span class="n">block</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">input</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">!=</span> <span class="n">m</span><span class="p">[</span><span class="nb">input</span><span class="p">[</span><span class="n">i</span><span class="p">]])</span>
+</span></span><span class="line"><span class="cl">        <span class="n">s</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Or</span><span class="p">(</span><span class="n">block</span><span class="p">))</span> <span class="c1"># 至少有一个变量与当前解不同</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">break</span></span></span></code></pre></td></tr></table>
+</div>
+</div></div><div class="post-footer" id="post-footer">
   <div class="post-info">
     <div class="post-info-line">
       <div class="post-info-mod">

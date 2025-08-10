@@ -65,6 +65,73 @@
 |   PUSH   |        PUSH EAX         |                                      |          将EAX的值压入栈顶           |
 |   POP    |         POP EAX         |                                      |          将栈顶的值弹给EAX           |
 
+## 常见的编码与加密
+
+### base64
+
+```c&#43;&#43;
+char base64_table[] = &#34;ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789&#43;/&#34;
+int __fastcall base64_encode(char *Str2, char *Str)
+{
+  int v3; // [rsp&#43;24h] [rbp-1Ch]
+  int v4; // [rsp&#43;34h] [rbp-Ch]
+  int v5; // [rsp&#43;38h] [rbp-8h]
+  int v6; // [rsp&#43;3Ch] [rbp-4h]
+
+  v3 = strlen(Str);
+  if ( v3 % 3 )
+    v6 = 4 * (v3 / 3 &#43; 1);
+  else
+    v6 = 4 * (v3 / 3);
+  Str2[v6] = 0;
+  v5 = 0;
+  v4 = 0;
+  while ( v6 - 2 &gt; v5 )
+  {
+    Str2[v5] = base64_table[(unsigned __int8)Str[v4] &gt;&gt; 2]; // 右移2位，获得第一个字符前6位的数据
+    Str2[v5 &#43; 1] = base64_table[(16 * (Str[v4] &amp; 3)) | ((unsigned __int8)Str[v4 &#43; 1] &gt;&gt; 4)]; // 获取第二个6位
+    Str2[v5 &#43; 2] = base64_table[(4 * (Str[v4 &#43; 1] &amp; 0xF)) | ((unsigned __int8)Str[v4 &#43; 2] &gt;&gt; 6)]; // 获得第三个6位
+    Str2[v5 &#43; 3] = base64_table[Str[v4 &#43; 2] &amp; 0x3F]; // 获得第四个6位
+    v4 &#43;= 3;
+    v5 &#43;= 4;
+  }
+  if ( v3 % 3 == 1 )
+  {
+    Str2[v5 - 2] = &#34;=&#34;;
+    Str2[v5 - 1] = &#34;=&#34;;
+  }
+  else if ( v3 % 3 == 2 )
+  {
+    Str2[v5 - 1] = &#34;=&#34;;
+  }
+  return putchar(&#34;\n&#34;);
+}
+```
+
+
+### RC4
+
+### TEA XTEA XXTEA
+
+### MD5
+
+## 常见的壳
+
+可以先把待逆向的文件拖入 [DIE(Detect-It-Easy)](https://github.com/horsicq/Detect-It-Easy) 中查看是用的什么壳
+
+### upx
+
+一种压缩壳，可以尝试直接用upx脱壳
+
+```bash
+# 下载
+upx: https://github.com/upx/upx
+# 使用方法
+upx -d re.exe
+```
+
+也可以尝试手动脱upx
+
 ## Python逆向
 
 有部分exe是由 pyinstaller 打包的，通常可以直接根据文件的图标看出来
@@ -133,74 +200,89 @@ Options:
 &gt; 
 &gt; 有时候会遇到pyc文件魔术头被修改的情况，可以复制解包后的struct.pyc到要反编译的pyc文件中（就是文件前16个字节）
 
-## 常见的编码与加密
+## 常用的一些逆向工具
 
-### base64
+### Z3 约束求解器
 
-```c&#43;&#43;
-char base64_table[] = &#34;ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789&#43;/&#34;
-int __fastcall base64_encode(char *Str2, char *Str)
-{
-  int v3; // [rsp&#43;24h] [rbp-1Ch]
-  int v4; // [rsp&#43;34h] [rbp-Ch]
-  int v5; // [rsp&#43;38h] [rbp-8h]
-  int v6; // [rsp&#43;3Ch] [rbp-4h]
+&gt; Z3-solver是微软开发的自动定理证明器和约束求解器，能够将复杂问题转化为数学约束条件，然后自动寻找满足所有条件的解。它特别擅长处理包含布尔逻辑、算术运算、位运算等多种约束的复杂问题，广泛应用于程序验证、网络安全、人工智能等领域。Z3通过先进的符号推理和约束求解技术，能够解决传统方法难以处理的非线性约束和复杂逻辑关系，是一个强大的数学问题求解工具。
 
-  v3 = strlen(Str);
-  if ( v3 % 3 )
-    v6 = 4 * (v3 / 3 &#43; 1);
-  else
-    v6 = 4 * (v3 / 3);
-  Str2[v6] = 0;
-  v5 = 0;
-  v4 = 0;
-  while ( v6 - 2 &gt; v5 )
-  {
-    Str2[v5] = base64_table[(unsigned __int8)Str[v4] &gt;&gt; 2]; // 右移2位，获得第一个字符前6位的数据
-    Str2[v5 &#43; 1] = base64_table[(16 * (Str[v4] &amp; 3)) | ((unsigned __int8)Str[v4 &#43; 1] &gt;&gt; 4)]; // 获取第二个6位
-    Str2[v5 &#43; 2] = base64_table[(4 * (Str[v4 &#43; 1] &amp; 0xF)) | ((unsigned __int8)Str[v4 &#43; 2] &gt;&gt; 6)]; // 获得第三个6位
-    Str2[v5 &#43; 3] = base64_table[Str[v4 &#43; 2] &amp; 0x3F]; // 获得第四个6位
-    v4 &#43;= 3;
-    v5 &#43;= 4;
-  }
-  if ( v3 % 3 == 1 )
-  {
-    Str2[v5 - 2] = &#34;=&#34;;
-    Str2[v5 - 1] = &#34;=&#34;;
-  }
-  else if ( v3 % 3 == 2 )
-  {
-    Str2[v5 - 1] = &#34;=&#34;;
-  }
-  return putchar(&#34;\n&#34;);
-}
+安装方法: `pip3 install z3-solver`
+
+基本用法如下，更多用法可以参考[官方文档](https://z3prover.github.io/api/html/index.html)
+
+```python
+from z3 import *
+
+# 1. 创建变量
+x = Int(&#39;x&#39;)      # 整型变量
+y = Int(&#39;y&#39;)      # 整型变量
+p = Bool(&#39;p&#39;)     # 布尔变量p
+q = Bool(&#39;q&#39;)     # 布尔变量q
+r = Bool(&#39;r&#39;)     # 布尔变量r
+
+# 2. 创建求解器
+s = Solver()
+
+# 3. 添加约束条件
+# 数值约束
+s.add(x &gt; 0)                    # x必须大于0
+s.add(y &gt; 0)                    # y必须大于0
+s.add(x &#43; y == 10)              # x&#43;y等于10
+s.add(Implies(p, x &gt; y))        # 如果p为真，则x&gt;y
+
+# 逻辑约束
+s.add(Implies(p, q))            # p → q (如果p为真，则q为真)
+s.add(r == Not(q))              # r = ¬q (r等于q的否定)
+s.add(Or(Not(p), r))            # ¬p ∨ r (p的否定或r为真)
+
+# 4. 检查约束是否可满足
+if s.check() == sat:
+    # 5. 获取解
+    m = s.model()
+    print(f&#34;找到解：x = {m[x]}, y = {m[y]}&#34;)
+    print(f&#34;逻辑变量：p = {m[p]}, q = {m[q]}, r = {m[r]}&#34;)
+else:
+    print(&#34;约束不可满足&#34;)
 ```
 
+示例代码：
 
-### RC4
+```python
+from z3 import *
 
-### TEA XTEA XXTEA
+enc = [0x0000B1B0, 0x00005678, 0x00007FF2, 0x0000A332, 0x0000A0E8, 0x0000364C, 0x00002BD4, 0x0000C8FE, 0x00004A7C, 0x00000018, 0x00002BE4, 0x00004144, 0x00003BA6, 0x0000BE8C, 0x00008F7E, 0x000035F8, 0x000061AA, 0x00002B4A, 0x00006828, 0x0000B39E, 0x0000B542, 0x000033EC, 0x0000C7D8, 0x0000448C, 0x00009310, 0x00008808, 0x0000ADD4, 0x00003CC2, 0x00000796, 0x0000C940, 0x00004E32, 0x00004E2E, 0x0000924A, 0x00005B5C]
 
-### MD5
+s = Solver()
 
-## 常见的壳
+input = [BitVec(f&#34;input{i}&#34;, 8) for i in range(34)] # input0-input33 都是 0-255
+var = [BitVec(f&#34;var{i}&#34;,32) for i in range(34)] # var0-var31 都是 0-4294967295
 
-可以先把待逆向的文件拖入 [DIE(Detect-It-Easy)](https://github.com/horsicq/Detect-It-Easy) 中查看是用的什么壳
+# 模拟加密算法
+for i in range(34):
+    var[i] = 47806 * (ZeroExt(24, input[i]) &#43; i) # 高位补零，将8位扩展至32位
+    if i:
+        var[i] ^= var[i-1] ^ 0x114514
+    var[i] %= 51966
 
-### upx
+# 添加约束条件
+for i in range(34):
+    s.add(var[i] == enc[i])
 
-一种压缩壳，可以尝试直接用upx脱壳
+while True:
+    if s.check() == sat: # 找到解
+        m = s.model()
+        ascii_list = [m[input[i]].as_long() for i in range(34)] # 将Z3的符号值转换为Python的普通整数
+        flag = &#34;moectf{&#34;  &#43; &#34;&#34;.join(chr(ascii_list[i]) for i in range(34)) &#43; &#34;}&#34;
+        print(flag)
 
-```bash
-# 下载
-upx: https://github.com/upx/upx
-# 使用方法
-upx -d re.exe
+        # 添加阻塞条件，寻找下一个解
+        block = []
+        for i in range(34):
+            block.append(input[i] != m[input[i]])
+        s.add(Or(block)) # 至少有一个变量与当前解不同
+    else:
+        break
 ```
-
-也可以尝试手动脱upx
-
-
 
 ---
 
