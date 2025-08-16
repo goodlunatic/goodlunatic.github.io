@@ -5,7 +5,9 @@
 **感觉是绕不开逆向了，因此打算猛猛突击一下**
 &lt;!--more--&gt;
 
-## IDA常用快捷键
+## IDA使用基础
+
+### 常用快捷键
 
 |    快捷键    |         功能         |
 | :-------: | :----------------: |
@@ -30,6 +32,23 @@
 |     Y     |     指定当前函数的命名      |
 | Shift&#43;F12 |      打开字符串窗口       |
 |  Shift&#43;E  | 批量复制数据为字符串或者c数组格式  |
+### 正常显示中文字符串
+
+Options → Strings → Default 8-bit
+
+![](imgs/image-20250816213936073.png)
+
+点击UTF-8然后右键新插入一个gbk，然后选中并保存
+
+![](imgs/image-20250816213950452.png)
+
+最后点击字符串，然后按键盘上的ALT&#43;A，选中C-style即可
+
+如果修改后中文没有正常显示，可以尝试点击反编译后的变量按F5重新反编译
+
+![](imgs/image-20250816214008432.png)
+
+例题-BUU-内涵的软件
 
 ## 逆向中常见的数据类型
 
@@ -64,6 +83,22 @@
 |   CALL   | CALL printf&lt;br&gt;CALL $&#43;5 |                                      |    调用函数printf&lt;br&gt;跳转到下一条指令     |
 |   PUSH   |        PUSH EAX         |                                      |          将EAX的值压入栈顶           |
 |   POP    |         POP EAX         |                                      |          将栈顶的值弹给EAX           |
+
+一些常用的寄存器：
+
+| **32位 (x86)** | **64位 (x64)** | **用途**                           |
+| ------------- | ------------- | -------------------------------- |
+| **EAX**       | **RAX**       | 累加器（Accumulator），算术运算、函数返回值      |
+| **EBX**       | **RBX**       | 基址寄存器（Base），常用于存储指针              |
+| **ECX**       | **RCX**       | 计数器（Counter），LOOP指令、字符串操作        |
+| **EDX**       | **RDX**       | 数据寄存器（Data），辅助EAX（如MUL/DIV）      |
+| **ESI**       | **RSI**       | 源索引（Source Index），字符串/内存操作       |
+| **EDI**       | **RDI**       | 目标索引（Destination Index），字符串/内存操作 |
+| **ESP**       | **RSP**       | 栈指针（Stack Pointer），指向当前栈顶        |
+| **EBP**       | **RBP**       | 基址指针（Base Pointer），函数栈帧          |
+|               |               |                                  |
+| **EIP**       | **RIP**       | 存储下一条要执行的指令地址                    |
+| **EFLAGS**    | **RFLAGS**    | 存储 CPU 状态标志（如 ZF, CF, SF 等）      |
 
 ## 常见的编码与加密
 
@@ -114,6 +149,66 @@ int __fastcall base64_encode(char *Str2, char *Str)
 ### TEA XTEA XXTEA
 
 ### MD5
+
+## 常见的混淆
+
+### 花指令
+
+#### 永恒跳转
+
+构造代码如下
+
+```
+__asm {
+    _emit 0xE8
+    _emit 0xFF
+   //_emit 立即数：代表在这个位置插入一个数据，这里插入的是0xe8
+}
+```
+
+插入这些代码后，IDA反汇编就会得到如下内容
+
+![](imgs/image-20250816214208423.png)
+
+对于这种，我们只要将0xE8该成0x90(NOP指令)即可
+
+#### jnz和jz互补跳转
+
+构造代码如下
+
+```
+ __asm {
+        jz Label;
+		jnz Label;
+		_emit 0xC7;
+Label:
+```
+
+插入这些代码后，IDA反汇编就会得到如下内容
+
+![](imgs/image-20250816214221278.png)
+
+去除花指令的方法：
+
+在准备去除花指令之前，我们需要先调整操作码显示的字节数
+
+![](imgs/image-20250816214238985.png)
+
+1、点到跳转的那一行，按键盘上的u键，将其解析为数据，然后在E8上右键选择NOP，再按键盘上的c键重新解析为代码，最后在函数名(main)上按一下p键然后F5重新反汇编即可
+
+2、点到跳转的那一行，按键盘上的u键，将其解析为数据，然后点击菜单栏 Edit → Patch Program → Change byte，将0xE8改成0x90，再按键盘上的c键重新解析为代码，最后在函数名(main)上按一下p键然后F5重新反汇编即可
+
+例题1-[HNCTF 2022 WEEK2]e@sy_flower
+
+例题2-[NSSRound#3 Team]jump_by_jump_revenge
+
+例题3-[MoeCTF 2022]chicken_soup
+
+
+### 控制流平坦化
+
+#### OLLVM
+
 
 ## 常见的壳
 
@@ -196,9 +291,7 @@ Options:
   --help         Show this help text and then exit
 ```
 
-&gt; Tips:
-&gt; 
-&gt; 有时候会遇到pyc文件魔术头被修改的情况，可以复制解包后的struct.pyc到要反编译的pyc文件中（就是文件前16个字节）
+&gt; Tips: 有时候会遇到pyc文件魔术头被修改的情况，可以复制解包后的struct.pyc到要反编译的pyc文件中（就是文件前16个字节）
 
 ## 常用的一些逆向工具
 

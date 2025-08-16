@@ -12,9 +12,9 @@
   <meta itemprop="name" content="CTF-Reverse学习记录">
   <meta itemprop="description" content="未来的研究方向里有好多要用到逆向工程的地方
 感觉是绕不开逆向了，因此打算猛猛突击一下">
-  <meta itemprop="datePublished" content="2025-08-10T14:15:38+08:00">
-  <meta itemprop="dateModified" content="2025-08-10T14:15:38+08:00">
-  <meta itemprop="wordCount" content="984">
+  <meta itemprop="datePublished" content="2025-08-16T14:15:38+08:00">
+  <meta itemprop="dateModified" content="2025-08-16T14:15:38+08:00">
+  <meta itemprop="wordCount" content="1096">
   <meta itemprop="keywords" content="CTF,Reverse"><meta property="og:url" content="https://goodlunatic.github.io/posts/0f92e23/">
   <meta property="og:site_name" content="⚡Lunatic BLOG⚡">
   <meta property="og:title" content="CTF-Reverse学习记录">
@@ -24,8 +24,8 @@
   <meta property="og:locale" content="en">
   <meta property="og:type" content="article">
   <meta property="article:section" content="posts">
-    <meta property="article:published_time" content="2025-08-10T14:15:38+08:00">
-    <meta property="article:modified_time" content="2025-08-10T14:15:38+08:00">
+    <meta property="article:published_time" content="2025-08-16T14:15:38+08:00">
+    <meta property="article:modified_time" content="2025-08-16T14:15:38+08:00">
     <meta property="article:tag" content="CTF">
     <meta property="article:tag" content="Reverse">
 <meta name="twitter:card" content="summary"><meta name="twitter:title" content="CTF-Reverse学习记录">
@@ -44,8 +44,8 @@
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": "https:\/\/goodlunatic.github.io\/posts\/0f92e23\/"
-    },"genre": "posts","keywords": "CTF, Reverse","wordcount":  984 ,
-    "url": "https:\/\/goodlunatic.github.io\/posts\/0f92e23\/","datePublished": "2025-08-10T14:15:38+08:00","dateModified": "2025-08-10T14:15:38+08:00","publisher": {
+    },"genre": "posts","keywords": "CTF, Reverse","wordcount":  1096 ,
+    "url": "https:\/\/goodlunatic.github.io\/posts\/0f92e23\/","datePublished": "2025-08-16T14:15:38+08:00","dateModified": "2025-08-16T14:15:38+08:00","publisher": {
       "@type": "Organization",
       "name": ""},"author": {
         "@type": "Person",
@@ -148,7 +148,7 @@
 <article class="page single">
   <div class="header"><h1 class="single-title animate__animated animate__flipInX"><span>CTF-Reverse学习记录</span>
     </h1></div><div class="post-meta">
-    <div class="post-meta-line"><span class="post-author"><a href="https://goodlunatic.github.io" title="Author"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><img loading="lazy" src="https://www.nssctf.cn/files/2024/4/28/7f130a1387.png" alt="Lunatic" data-title="Lunatic" class="avatar" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>&nbsp;Lunatic</a></span><span class="post-included-in">&nbsp;included in <a href="/categories/ctf/" class="post-category" title="Category - CTF"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> CTF</a></span></div><div class="post-meta-line"><span title="published on &lt;no value&gt;"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden="true"></i><time datetime="2025-08-10">2025-08-10</time></span>&nbsp;<span title=""><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>About 1000 words</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>5 minutes</span>&nbsp;</div>
+    <div class="post-meta-line"><span class="post-author"><a href="https://goodlunatic.github.io" title="Author"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><img loading="lazy" src="https://www.nssctf.cn/files/2024/4/28/7f130a1387.png" alt="Lunatic" data-title="Lunatic" class="avatar" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>&nbsp;Lunatic</a></span><span class="post-included-in">&nbsp;included in <a href="/categories/ctf/" class="post-category" title="Category - CTF"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> CTF</a></span></div><div class="post-meta-line"><span title="published on &lt;no value&gt;"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden="true"></i><time datetime="2025-08-16">2025-08-16</time></span>&nbsp;<span title=""><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>About 1100 words</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>6 minutes</span>&nbsp;</div>
   </div><div class="details toc" id="toc-static"
     data-kept="false">
     <div class="details-summary toc-title">
@@ -157,7 +157,12 @@
     </div>
     <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
   <ul>
-    <li><a href="#ida常用快捷键">IDA常用快捷键</a></li>
+    <li><a href="#ida使用基础">IDA使用基础</a>
+      <ul>
+        <li><a href="#常用快捷键">常用快捷键</a></li>
+        <li><a href="#正常显示中文字符串">正常显示中文字符串</a></li>
+      </ul>
+    </li>
     <li><a href="#逆向中常见的数据类型">逆向中常见的数据类型</a></li>
     <li><a href="#汇编基础">汇编基础</a></li>
     <li><a href="#常见的编码与加密">常见的编码与加密</a>
@@ -166,6 +171,21 @@
         <li><a href="#rc4">RC4</a></li>
         <li><a href="#tea-xtea-xxtea">TEA XTEA XXTEA</a></li>
         <li><a href="#md5">MD5</a></li>
+      </ul>
+    </li>
+    <li><a href="#常见的混淆">常见的混淆</a>
+      <ul>
+        <li><a href="#花指令">花指令</a>
+          <ul>
+            <li><a href="#永恒跳转">永恒跳转</a></li>
+            <li><a href="#jnz和jz互补跳转">jnz和jz互补跳转</a></li>
+          </ul>
+        </li>
+        <li><a href="#控制流平坦化">控制流平坦化</a>
+          <ul>
+            <li><a href="#ollvm">OLLVM</a></li>
+          </ul>
+        </li>
       </ul>
     </li>
     <li><a href="#常见的壳">常见的壳</a>
@@ -183,8 +203,9 @@
 </nav></div>
   </div><div class="content" id="content"><p><strong>未来的研究方向里有好多要用到逆向工程的地方</strong></p>
 <p><strong>感觉是绕不开逆向了，因此打算猛猛突击一下</strong></p>
-<h2 id="ida常用快捷键" class="heading-element">
-  <a href="#ida%e5%b8%b8%e7%94%a8%e5%bf%ab%e6%8d%b7%e9%94%ae" class="heading-mark"></a>IDA常用快捷键</h2><table>
+<h2 id="ida使用基础" class="heading-element">
+  <a href="#ida%e4%bd%bf%e7%94%a8%e5%9f%ba%e7%a1%80" class="heading-mark"></a>IDA使用基础</h2><h3 id="常用快捷键" class="heading-element">
+  <a href="#%e5%b8%b8%e7%94%a8%e5%bf%ab%e6%8d%b7%e9%94%ae" class="heading-mark"></a>常用快捷键</h3><table>
 <thead>
 <tr>
 <th style="text-align:center">快捷键</th>
@@ -278,6 +299,15 @@
 </tr>
 </tbody>
 </table>
+<h3 id="正常显示中文字符串" class="heading-element">
+  <a href="#%e6%ad%a3%e5%b8%b8%e6%98%be%e7%a4%ba%e4%b8%ad%e6%96%87%e5%ad%97%e7%ac%a6%e4%b8%b2" class="heading-mark"></a>正常显示中文字符串</h3><p>Options → Strings → Default 8-bit</p>
+<p><img loading="lazy" src="imgs/image-20250816213936073.png" alt="imgs/image-20250816213936073.png" srcset="imgs/image-20250816213936073.png?size=small, imgs/image-20250816213936073.png?size=medium 1.5x, imgs/image-20250816213936073.png?size=large 2x" data-title="imgs/image-20250816213936073.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>点击UTF-8然后右键新插入一个gbk，然后选中并保存</p>
+<p><img loading="lazy" src="imgs/image-20250816213950452.png" alt="imgs/image-20250816213950452.png" srcset="imgs/image-20250816213950452.png?size=small, imgs/image-20250816213950452.png?size=medium 1.5x, imgs/image-20250816213950452.png?size=large 2x" data-title="imgs/image-20250816213950452.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>最后点击字符串，然后按键盘上的ALT+A，选中C-style即可</p>
+<p>如果修改后中文没有正常显示，可以尝试点击反编译后的变量按F5重新反编译</p>
+<p><img loading="lazy" src="imgs/image-20250816214008432.png" alt="imgs/image-20250816214008432.png" srcset="imgs/image-20250816214008432.png?size=small, imgs/image-20250816214008432.png?size=medium 1.5x, imgs/image-20250816214008432.png?size=large 2x" data-title="imgs/image-20250816214008432.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>例题-BUU-内涵的软件</p>
 <h2 id="逆向中常见的数据类型" class="heading-element">
   <a href="#%e9%80%86%e5%90%91%e4%b8%ad%e5%b8%b8%e8%a7%81%e7%9a%84%e6%95%b0%e6%8d%ae%e7%b1%bb%e5%9e%8b" class="heading-mark"></a>逆向中常见的数据类型</h2><table>
 <thead>
@@ -438,6 +468,73 @@
 </tr>
 </tbody>
 </table>
+<p>一些常用的寄存器：</p>
+<table>
+<thead>
+<tr>
+<th><strong>32位 (x86)</strong></th>
+<th><strong>64位 (x64)</strong></th>
+<th><strong>用途</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>EAX</strong></td>
+<td><strong>RAX</strong></td>
+<td>累加器（Accumulator），算术运算、函数返回值</td>
+</tr>
+<tr>
+<td><strong>EBX</strong></td>
+<td><strong>RBX</strong></td>
+<td>基址寄存器（Base），常用于存储指针</td>
+</tr>
+<tr>
+<td><strong>ECX</strong></td>
+<td><strong>RCX</strong></td>
+<td>计数器（Counter），LOOP指令、字符串操作</td>
+</tr>
+<tr>
+<td><strong>EDX</strong></td>
+<td><strong>RDX</strong></td>
+<td>数据寄存器（Data），辅助EAX（如MUL/DIV）</td>
+</tr>
+<tr>
+<td><strong>ESI</strong></td>
+<td><strong>RSI</strong></td>
+<td>源索引（Source Index），字符串/内存操作</td>
+</tr>
+<tr>
+<td><strong>EDI</strong></td>
+<td><strong>RDI</strong></td>
+<td>目标索引（Destination Index），字符串/内存操作</td>
+</tr>
+<tr>
+<td><strong>ESP</strong></td>
+<td><strong>RSP</strong></td>
+<td>栈指针（Stack Pointer），指向当前栈顶</td>
+</tr>
+<tr>
+<td><strong>EBP</strong></td>
+<td><strong>RBP</strong></td>
+<td>基址指针（Base Pointer），函数栈帧</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>EIP</strong></td>
+<td><strong>RIP</strong></td>
+<td>存储下一条要执行的指令地址</td>
+</tr>
+<tr>
+<td><strong>EFLAGS</strong></td>
+<td><strong>RFLAGS</strong></td>
+<td>存储 CPU 状态标志（如 ZF, CF, SF 等）</td>
+</tr>
+</tbody>
+</table>
 <h2 id="常见的编码与加密" class="heading-element">
   <a href="#%e5%b8%b8%e8%a7%81%e7%9a%84%e7%bc%96%e7%a0%81%e4%b8%8e%e5%8a%a0%e5%af%86" class="heading-mark"></a>常见的编码与加密</h2><h3 id="base64" class="heading-element">
   <a href="#base64" class="heading-mark"></a>base64</h3><div class="highlight" id="id-1"><div class="chroma">
@@ -520,11 +617,62 @@
 </div><h3 id="rc4" class="heading-element">
   <a href="#rc4" class="heading-mark"></a>RC4</h3><h3 id="tea-xtea-xxtea" class="heading-element">
   <a href="#tea-xtea-xxtea" class="heading-mark"></a>TEA XTEA XXTEA</h3><h3 id="md5" class="heading-element">
-  <a href="#md5" class="heading-mark"></a>MD5</h3><h2 id="常见的壳" class="heading-element">
+  <a href="#md5" class="heading-mark"></a>MD5</h3><h2 id="常见的混淆" class="heading-element">
+  <a href="#%e5%b8%b8%e8%a7%81%e7%9a%84%e6%b7%b7%e6%b7%86" class="heading-mark"></a>常见的混淆</h2><h3 id="花指令" class="heading-element">
+  <a href="#%e8%8a%b1%e6%8c%87%e4%bb%a4" class="heading-mark"></a>花指令</h3><h4 id="永恒跳转" class="heading-element">
+  <a href="#%e6%b0%b8%e6%81%92%e8%b7%b3%e8%bd%ac" class="heading-mark"></a>永恒跳转</h4><p>构造代码如下</p>
+<div class="highlight" id="id-2"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">__asm {
+</span></span><span class="line"><span class="cl">    _emit 0xE8
+</span></span><span class="line"><span class="cl">    _emit 0xFF
+</span></span><span class="line"><span class="cl">   //_emit 立即数：代表在这个位置插入一个数据，这里插入的是0xe8
+</span></span><span class="line"><span class="cl">}</span></span></code></pre></td></tr></table>
+</div>
+</div><p>插入这些代码后，IDA反汇编就会得到如下内容</p>
+<p><img loading="lazy" src="imgs/image-20250816214208423.png" alt="imgs/image-20250816214208423.png" srcset="imgs/image-20250816214208423.png?size=small, imgs/image-20250816214208423.png?size=medium 1.5x, imgs/image-20250816214208423.png?size=large 2x" data-title="imgs/image-20250816214208423.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>对于这种，我们只要将0xE8该成0x90(NOP指令)即可</p>
+<h4 id="jnz和jz互补跳转" class="heading-element">
+  <a href="#jnz%e5%92%8cjz%e4%ba%92%e8%a1%a5%e8%b7%b3%e8%bd%ac" class="heading-mark"></a>jnz和jz互补跳转</h4><p>构造代码如下</p>
+<div class="highlight" id="id-3"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl"> __asm {
+</span></span><span class="line"><span class="cl">        jz Label;
+</span></span><span class="line"><span class="cl">		jnz Label;
+</span></span><span class="line"><span class="cl">		_emit 0xC7;
+</span></span><span class="line"><span class="cl">Label:</span></span></code></pre></td></tr></table>
+</div>
+</div><p>插入这些代码后，IDA反汇编就会得到如下内容</p>
+<p><img loading="lazy" src="imgs/image-20250816214221278.png" alt="imgs/image-20250816214221278.png" srcset="imgs/image-20250816214221278.png?size=small, imgs/image-20250816214221278.png?size=medium 1.5x, imgs/image-20250816214221278.png?size=large 2x" data-title="imgs/image-20250816214221278.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>去除花指令的方法：</p>
+<p>在准备去除花指令之前，我们需要先调整操作码显示的字节数</p>
+<p><img loading="lazy" src="imgs/image-20250816214238985.png" alt="imgs/image-20250816214238985.png" srcset="imgs/image-20250816214238985.png?size=small, imgs/image-20250816214238985.png?size=medium 1.5x, imgs/image-20250816214238985.png?size=large 2x" data-title="imgs/image-20250816214238985.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>1、点到跳转的那一行，按键盘上的u键，将其解析为数据，然后在E8上右键选择NOP，再按键盘上的c键重新解析为代码，最后在函数名(main)上按一下p键然后F5重新反汇编即可</p>
+<p>2、点到跳转的那一行，按键盘上的u键，将其解析为数据，然后点击菜单栏 Edit → Patch Program → Change byte，将0xE8改成0x90，再按键盘上的c键重新解析为代码，最后在函数名(main)上按一下p键然后F5重新反汇编即可</p>
+<p>例题1-[HNCTF 2022 WEEK2]e@sy_flower</p>
+<p>例题2-[NSSRound#3 Team]jump_by_jump_revenge</p>
+<p>例题3-[MoeCTF 2022]chicken_soup</p>
+<h3 id="控制流平坦化" class="heading-element">
+  <a href="#%e6%8e%a7%e5%88%b6%e6%b5%81%e5%b9%b3%e5%9d%a6%e5%8c%96" class="heading-mark"></a>控制流平坦化</h3><h4 id="ollvm" class="heading-element">
+  <a href="#ollvm" class="heading-mark"></a>OLLVM</h4><h2 id="常见的壳" class="heading-element">
   <a href="#%e5%b8%b8%e8%a7%81%e7%9a%84%e5%a3%b3" class="heading-mark"></a>常见的壳</h2><p>可以先把待逆向的文件拖入 <a href="https://github.com/horsicq/Detect-It-Easy"target="_blank" rel="external nofollow noopener noreferrer">DIE(Detect-It-Easy)</a> 中查看是用的什么壳</p>
 <h3 id="upx" class="heading-element">
   <a href="#upx" class="heading-mark"></a>upx</h3><p>一种压缩壳，可以尝试直接用upx脱壳</p>
-<div class="highlight" id="id-2"><div class="chroma">
+<div class="highlight" id="id-4"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -545,7 +693,7 @@
 <blockquote>
 <p>pyinstxtractor: <a href="https://github.com/extremecoders-re/pyinstxtractor"target="_blank" rel="external nofollow noopener noreferrer">https://github.com/extremecoders-re/pyinstxtractor</a></p>
 </blockquote>
-<div class="highlight" id="id-3"><div class="chroma">
+<div class="highlight" id="id-5"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -558,7 +706,7 @@
 </div>
 </div><p>2、反编译解包后得到的 pyc 文件</p>
 <p>第一种方法是用如下的在线网站反编译：</p>
-<div class="highlight" id="id-4"><div class="chroma">
+<div class="highlight" id="id-6"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -571,7 +719,7 @@
 </div>
 </div><p>第二中方法就是用本地工具进行反编译，这里有以下三个常用的反编译工具：</p>
 <p>uncompyle6: <a href="https://github.com/rocky/python-uncompyle6"target="_blank" rel="external nofollow noopener noreferrer">https://github.com/rocky/python-uncompyle6</a></p>
-<div class="highlight" id="id-5"><div class="chroma">
+<div class="highlight" id="id-7"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -589,7 +737,7 @@
 </span></span><span class="line"><span class="cl">uncompyle6 filename.pyc &gt; decompile.py</span></span></code></pre></td></tr></table>
 </div>
 </div><p>pyinstxtractor: <a href="https://github.com/extremecoders-re/pyinstxtractor"target="_blank" rel="external nofollow noopener noreferrer">https://github.com/extremecoders-re/pyinstxtractor</a></p>
-<div class="highlight" id="id-6"><div class="chroma">
+<div class="highlight" id="id-8"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
@@ -597,7 +745,7 @@
 <pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">python pyinstxtractor.py reverse_1_PyHaHa.pyc</span></span></code></pre></td></tr></table>
 </div>
 </div><p>pycdc: <a href="https://github.com/zrax/pycdc"target="_blank" rel="external nofollow noopener noreferrer">https://github.com/zrax/pycdc</a></p>
-<div class="highlight" id="id-7"><div class="chroma">
+<div class="highlight" id="id-9"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -631,8 +779,7 @@
 </span></span><span class="line"><span class="cl">  --help         Show this <span class="nb">help</span> text and <span class="k">then</span> exit</span></span></code></pre></td></tr></table>
 </div>
 </div><blockquote>
-<p>Tips:</p>
-<p>有时候会遇到pyc文件魔术头被修改的情况，可以复制解包后的struct.pyc到要反编译的pyc文件中（就是文件前16个字节）</p>
+<p>Tips: 有时候会遇到pyc文件魔术头被修改的情况，可以复制解包后的struct.pyc到要反编译的pyc文件中（就是文件前16个字节）</p>
 </blockquote>
 <h2 id="常用的一些逆向工具" class="heading-element">
   <a href="#%e5%b8%b8%e7%94%a8%e7%9a%84%e4%b8%80%e4%ba%9b%e9%80%86%e5%90%91%e5%b7%a5%e5%85%b7" class="heading-mark"></a>常用的一些逆向工具</h2><h3 id="z3-约束求解器" class="heading-element">
@@ -641,7 +788,7 @@
 </blockquote>
 <p>安装方法: <code>pip3 install z3-solver</code></p>
 <p>基本用法如下，更多用法可以参考<a href="https://z3prover.github.io/api/html/index.html"target="_blank" rel="external nofollow noopener noreferrer">官方文档</a></p>
-<div class="highlight" id="id-8"><div class="chroma">
+<div class="highlight" id="id-10"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -711,7 +858,7 @@
 </span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;约束不可满足&#34;</span><span class="p">)</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>示例代码：</p>
-<div class="highlight" id="id-9"><div class="chroma">
+<div class="highlight" id="id-11"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -788,7 +935,7 @@
   <div class="post-info">
     <div class="post-info-line">
       <div class="post-info-mod">
-        <span title="Updated on 2025-08-10 14:15:38">Updated on 2025-08-10&nbsp;</span>
+        <span title="Updated on 2025-08-16 14:15:38">Updated on 2025-08-16&nbsp;</span>
       </div></div><div class="post-info-line">
         <div class="post-info-md"><span><a href="/posts/0f92e23/index.md" title="Read Markdown" class="link-to-markdown">Read Markdown</a></span></div>
         <div class="post-info-share">
