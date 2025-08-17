@@ -752,12 +752,247 @@ if __name__ == &#34;__main__&#34;:
 # Y[IZ^OVO[Peo]XSiKdX`VbSV^XTXdS_acU\Z\RVMSgW]eR[fT[KULZX[R\`bVHJbGk[VNWVESXeFQQV_T_]VU
 ```
 
+## 题目名称 to(2025天山固网)
+
+题目附件给了一个pcapng流量包
+
+翻看流量包，发现有一个`falg.rar`
+
+![](imgs/image-20250817224525993.png)
+
+尝试打开，发现需要密码，因此猜测我们还需要到流量包中寻找解压密码
+
+我们先将所有http对象导出，然后依此查看
+
+可以在hello.html中找到如下内容
+
+![](imgs/image-20250817224708469.png)
+
+一开始以为是密码字典，但是经过尝试发现并不是
+
+在导入过程中发现了这些字符组成了一个42x42的矩阵（正方形-&gt;猜测是二维码）
+
+然后发现最外围一圈全是小写字母，因此尝试把大小写字母转为0和1，再转为二维码可以得到下图
+
+![](imgs/image-20250817225004671.png)
+
+```python
+from PIL import Image
+
+def save_binary_to_png(data_str, out_file=&#34;output.png&#34;, scale=10):
+    h = 42
+    w = 42
+    img = Image.new(&#34;L&#34;, (w, h))
+    for y in range(h):
+        for x in range(w):
+            ch = data_str[y * w &#43; x]
+            if ch == &#34;1&#34;:
+                img.putpixel((x, y), 0)     # 黑色
+            else:
+                img.putpixel((x, y), 255)   # 白色
+    if scale &gt; 1:
+        img = img.resize((w*scale, h*scale), Image.NEAREST)
+
+    img.save(out_file)
+    print(f&#34;[&#43;] Saved: {out_file}&#34;)
+
+def solve():
+    flag = &#34;&#34;
+    data = &#39;&#39;&#39;
+    xwsoawzfknojzwejkrmsewynkoichlsgxiduinsklf
+    yPZUIQGHEadEGfohHeISleDsLvqleMaryIMUPMEAIc
+    aOzezoevMpeIZmUABHDDQNAFwhgqynYtbAntvgbhNq
+    dReTZSEuOjxCVRNGDvfzDZQmTTDZPfQwwYkEIEToDu
+    cFrJVUCvBndOJRMFXppxMSVmYQSINrLrzUyIKPBuMv
+    vJfLLPIgUnhjaFaiDafXIZnWlspnBSwmbSqKNGEjJt
+    lEfHPSMrKmpoZlolmYamKOJARccoxlMonFrNAXUuOs
+    tTrknqbzUnuTZAnzYlQxAJKUXhEHbxkgxOdbzcvbPe
+    fLKJSSGZVsiXyIoqKgBgPBuZhXuqZpEtsJDENSSUKh
+    zkyintuqwjfHOYCSiFSCbfMvTjYBlhDfgzfwryxfxf
+    mgorlmjgqwiYEKEOcHVGzcCdKfXTwiFyyxakvffvmb
+    pypIOXBuYdmRHfKYkqfkJEWrcqdwCaGDTETtdTYLBc
+    qaOYZtXKgnqLqTvbGWFfNABIULxdzJrNFWfjqglGLa
+    kpifniZqGmtGcwkwTbInapWDUSndLmYCEaRwbIZQjf
+    zcRsskImaaktyaAEQCYwEMgfsmqowSXguEcjFUYacy
+    cuXfchFnhrmppjNPDIPrZMtrkjfjaGZblQmhPVIxbu
+    wPZJICEiALOANFwaIEgsFIMMceQFWCNOMfJvzpjtYw
+    dOGMXoZPwERhAronbdWtURHrKuvhzOrhqExMCncXTp
+    uEadoMPxWdqiqKQQydQgHIcDQSxsisEQQtBArnfWaq
+    yZdNMVOQiLEqkIIEsWNgNGWknoAXlrSzymkMEiloNo
+    jpxBPJKXTKYWuIjvvDvNqzwPShhhFYRUQcSQlRQaOf
+    acjTBNFPQFZMsZrjzMjZcbhIHnmmCGYNMvEHtKMvHj
+    aJXVLJrWbxufHmcoDjPXitiddVvrxBjtgOwjvWPqwc
+    tpUvbIGZJnyxhYyxwYlxMLtfMRfvgjjebtaKNmvzhq
+    fBfXVdAcmHHLJIKJaEHkuyJBHlOCkhUOKiDtBDMXKf
+    niUOLbjbYgtDYqDQadcIhqsmoiszAgTkhzRHTgrtfu
+    jFqyrqOtlrlBxKfoqzOlPDigEKIVowuVNtwowQTzNe
+    wDpqogPjgpiInPbeycJfLKnpYSQRffcQAgbiqVHaHx
+    zKsSVYWXDOCyxpIAPQyAXClurmQIPVRaawZlXysWwh
+    aVibdxPPcwlVJzpvslGfLWnshkROmZsNVDwiYVCyOz
+    cPdMGJHtWYDqWhhcCknGusYXZJqmVXVKRPSAsqvpKt
+    kdbjynqdekdZseNYrEqYLFePAJDYYwHinccQndztIh
+    mfsqtjkdxcsDaaUJuGfFCPiUEYOBUsKpfggIjyvuJp
+    tJKWKWSHHokapfecpGfuyisXziSDkZPxhOoHMukVnk
+    rLfpalbeTxacxFRHRpHZftGjtMXTOKYsrckHBBCCPo
+    sXcHKNJkOgxURfidXZthchdBoTJTqbFYRJVIZemdXm
+    oTbCRVEoQyhZYSQCaVrsNLpEWlckAsoXVvOPuNDGsv
+    yTfMQCVxBiyTvvNRMibBGFDDNltjJOChlNpjALBoos
+    lKoUHLBdFveKvzFPBwvLTVQHDypjNOGxrJdaDIBdnh
+    rSobpwjtYkmwwawtRrHrFPMgzfobhntphVbFcAJmvn
+    nHHKBFFGMzywuXjwZDgtqnPQRWJPQBVlhqPdJFTJcc
+    bpvrwdbuhrgrgackekaotpwbeclbnlamzzuhrqmwjg
+    &#39;&#39;&#39;
+    for i in range(len(data)):
+        if data[i] &gt;= &#39;a&#39; and data[i] &lt;= &#39;z&#39;:
+            flag &#43;= &#39;0&#39;
+        elif data[i] &gt;= &#39;A&#39; and data[i] &lt;= &#39;Z&#39;:
+            flag &#43;= &#39;1&#39;
+    # print(flag)
+    save_binary_to_png(flag)
 
 
+if __name__ == &#34;__main__&#34;:
+    solve()
+```
 
+虽然这个二维码有点问题，但是用微信扫码可以得到：`ssdsahjkhsdfhhkjjhksdfjhds`
 
+但是这个也不是压缩包的解压密码，因此我们回头继续看流量包
 
+发现还传了一张jpg图片，并且jpg图片中有提示：`I&#39;ve heard of Dvorak`
 
+![](imgs/image-20250817225336021.png)
+
+Dvorak是一种键盘布局，详细内容可以看我博客里的 [Misc Guide](https://goodlunatic.github.io/posts/1ad9200/)
+
+因此结合之前得到的内容，猜测我们需要把扫码得到的字符串转换到Dvorak上
+
+或者是把扫码得到的字符串从Dvorak转换过来，我这里就直接写个脚本转了
+
+```python
+qwerty_lower = r&#34;&#34;&#34;qwertyuiop[]\asdfghjkl;&#39;zxcvbnm,./&#34;&#34;&#34;
+dvorak_lower = r&#34;&#34;&#34;&#39;,.pyfgcrl/=\aoeuidhtns-;qjkxbmwvz&#34;&#34;&#34;
+
+qwerty_upper = r&#34;&#34;&#34;QWERTYUIOP[]\ASDFGHJKL;&#39;ZXCVBNM,./&#34;&#34;&#34;
+dvorak_upper = r&#34;&#34;&#34;&#34;&lt;&gt;PYFGCRL?&#43;|AOEUIDHTNS_:QJKXBMWVZ&#34;&#34;&#34;
+
+# 构建映射字典
+d2q = str.maketrans(dvorak_lower &#43; dvorak_upper,
+                    qwerty_lower &#43; qwerty_upper)
+
+q2d = str.maketrans(qwerty_lower &#43; qwerty_upper,
+                    dvorak_lower &#43; dvorak_upper)
+
+def dvorak_to_qwerty(text: str) -&gt; str:
+    return text.translate(d2q)
+
+def qwerty_to_dvorak(text: str) -&gt; str:
+    return text.translate(q2d)
+
+if __name__ == &#34;__main__&#34;:
+    text = &#34;ssdsahjkhsdfhhkjjhksdfjhds&#34;
+    print(dvorak_to_qwerty(text))
+    print(qwerty_to_dvorak(text))
+    # ;;h;ajcvj;hyjjvccjv;hycjh;
+    # ooeoadhtdoeuddthhdtoeuhdeo
+```
+
+其中 `ooeoadhtdoeuddthhdtoeuhdeo` 就是rar的解压密码
+
+解压后即可得到最后的flag：`DASCTF{jhughudshhjg_qiwjains_jsmka}`
+
+## 题目名称 数字雨(2025天山固网)
+
+题目附件给了下面这张PNG（图片比较大，有40多兆，因为宽高是6000x4000）
+
+![](imgs/image-20250817223412543.png)
+
+我们用PS打开查看，发现每一列都有长度为80的同一绿色像素(18, 255, 2)
+
+![](imgs/image-20250817223617268.png)
+
+如果做过b01lers的image_adjustments这道题的师傅肯定一眼就知道图片的意图是啥了
+
+就是要我们为每列像素加一个偏移量，让每一列中的这80个绿色像素都对齐
+
+具体原理和步骤可以参考的我的另一篇博客：[2020 b01lers Misc image_adjustments 赛题详解](https://goodlunatic.github.io/posts/00658ee/)
+
+写个脚本对齐后，就可以得到下图
+
+![](imgs/image-20250817223934477.png)
+
+我们再次用PS打开查看
+
+![](imgs/image-20250817224022930.png)
+
+发现这次是每一行有80个同一绿色像素(18, 255, 2)了，因此我们和上面一样
+
+尝试计算偏移量并对齐每一行的绿色像素即可得到最后的flag: `DASCTF{herE_c0mes_thE_D1g1taL_ra1n}`
+
+![](imgs/image-20250817224156497.png)
+
+最后附上完整的解题脚本：
+
+```python
+import numpy as np
+from PIL import Image
+
+def process_image_cols(input_path, output_path):
+    # 打开图像并转换为NumPy数组
+    img = Image.open(input_path)
+    img_array = np.array(img)
+    h, w = img_array.shape[:2]
+
+    green_pixel = np.array([18, 255, 2], dtype=img_array.dtype)
+    
+    for x in range(w):
+        # 获取当前列的所有像素
+        column = img_array[:, x, :].copy()
+        
+        # 尝试所有可能的偏移量
+        for i in range(h):
+            # 应用偏移
+            shifted_column = np.roll(column, i, axis=0)
+            img_array[:, x, :] = shifted_column
+            # 检查前80行是否都是绿色像素
+            if np.all(img_array[:80, x, :] == green_pixel):
+                print(f&#34;[&#43;] {x} 列偏移量调整完毕: {i}&#34;)
+                break
+    
+    # 将NumPy数组转换回PIL图像并保存
+    result_img = Image.fromarray(img_array)
+    result_img.save(output_path)
+    result_img.show()
+
+def process_image_rows(input_path, output_path):
+    # 打开图像并转换为NumPy数组
+    img = Image.open(input_path)
+    img_array = np.array(img)
+    h, w = img_array.shape[:2]
+    
+    green_pixel = np.array([18, 255, 2], dtype=img_array.dtype)
+    
+    for y in range(h):
+        current_row = img_array[y, :, :].copy()
+        
+        # 尝试所有可能的水平偏移量
+        for shift in range(w):
+            shifted_row = np.roll(current_row, shift, axis=0)
+            
+            # 检查前80个像素是否全部是绿色
+            if np.all(shifted_row[:80] == green_pixel):
+                print(f&#34;[&#43;] {y} 行偏移量调整完毕: {shift}&#34;)
+                img_array[y, :, :] = shifted_row
+                break
+    
+    result_img = Image.fromarray(img_array)
+    result_img.save(output_path)
+    result_img.show()
+
+if __name__ == &#34;__main__&#34;:
+    process_image_cols(&#39;img.png&#39;, &#39;col_solved.png&#39;)
+    process_image_rows(&#39;col_solved.png&#39;,&#39;flag.png&#39;)
+```
 
 
 ---
