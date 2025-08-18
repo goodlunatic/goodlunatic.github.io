@@ -7,7 +7,9 @@
 
 **因为本文的题目大都来源于群友的提问，因此我文章中就不放具体的附件下载链接了**
 
-**如果有需要题目附件的师傅，可以进我的交流群获取附件下载链接^\_^**
+**如果有需要题目附件的师傅，可以进我的交流群获取附件下载链接**
+
+**进群方式可以参考博客中的[About](https://goodlunatic.github.io/about/)**
 
 {{&lt; /admonition &gt;}}
 
@@ -629,7 +631,7 @@ print(flag)
 
 
 
-## 题目名称 丢失的关键基础设施固件(TODO)
+## 题目名称 丢失的关键基础设施固件
 
 题面信息如下：
 &gt; 丢失的关键基础设施固件
@@ -661,95 +663,157 @@ print(flag)
 
 ![](imgs/image-20241229120112436.png)
 
-## 题目名称 QRSACode(TODO)
+回头仔细看那个压缩包，发现是Store&#43;Zipcrypto，因此可以用PNG的文件头进行明文攻击
 
-题面如下：
-&gt; 题目：QRSACode
-&gt; 
+用bkcrack明文攻击后即可得到最后的flag
+
+
+## 题目名称 QRSACode
+
+题面信息如下
+
 &gt; 描述：p = 13,q = 19,e = ?
 
-附件只给给了下面这两张图片，第一张是`hint.png`，另一张是`task.png`
+解压附件给的压缩包，可以得到如下两张图片，其中`task.png`中隐约可以看到一张二维码
 
-| ![](imgs/image-20250107092317630.png) | ![](imgs/image-20250107092321123.png) |
-| :-----------------------------------: | :-----------------------------------: |
+![](imgs/image-20250818213344866.png)
 
-然后根据题目提示，可知当 $p=13$ $q=19$ 的时候，$phi=(p-1)*(q-1)$
+然后结合题面的信息，我们知道在RSA中`e`要和`phi`互质，其中`phi=(q-1)*(p-1)`
 
-e要求与$phi$互素，因此可以写一个脚本来遍历e的所有可能情况
-
-```python
-def cal_e():
-    p = 13
-    q = 19
-    phi = (p-1)*(q-1)
-    res = []
-    # for e in range(1,phi&#43;1):
-    for e in range(1,phi):
-        if gmpy2.gcd(e,phi) == 1:
-            res.append(e)
-    return res
-    
-# [1, 5, 7, 11, 13, 17, 19, 23, 25, 29, 31, 35, 37, 41, 43, 47, 49, 53, 55, 59, 61, 65, 67, 71, 73, 77, 79, 83, 85, 89, 91, 95, 97, 101, 103, 107, 109, 113, 115, 119, 121, 125, 127, 131, 133, 137, 139, 143, 145, 149, 151, 155, 157, 161, 163, 167, 169, 173, 175, 179, 181, 185, 187, 191, 193, 197, 199, 203, 205, 209, 211, 215]
-```
-
-然后去查看`hint.jpg`，用脚本读取其中像素的RGB值，发现刚刚好都是在e的取值范围里的(如果e的范围扩展到1-255)
-
-写了一个脚本统计了一下每种e出现的次数，发现数值都是在可打印字符的范围内的
-
-转ASCII后可以得到如下字符串，目前思路就卡在这里了
-
-```
- Y[IZ^OVO[Peo]XSiKdX`VbSV^XTXdS_acU\Z\RVMSgW]eR[fT[KULZX[R\`bVHJbGk[VNWVESXeFQQV_T_]VU
-```
+因此我们可以写个脚本得到`e`所有可能的取值范围
 
 ```python
-# 题目：QRSACode
-# 描述：p = 13,q = 19,e = ?
-
 import gmpy2
-from PIL import Image
 
 def cal_e():
     p = 13
     q = 19
-    phi = (p-1)*(q-1)
-    res = []
-    # for e in range(1,phi&#43;1):
-    for e in range(1,256):
-        if gmpy2.gcd(e,phi) == 1:
-            res.append(e)
+    phi = (p - 1) * (q - 1)
+    res = [e for e in range(2, 256) if gmpy2.gcd(e, phi) == 1]
+    # print(len(res)) # 84
+    # print(res)
     return res
+```
 
-def solve():
+得到`e`所有可能的取值如下，一共84种可能取值：
+
+```
+[5, 7, 11, 13, 17, 19, 23, 25, 29, 31, 35, 37, 41, 43, 47, 49, 53, 55, 59, 61, 65, 67, 71, 73, 77, 79, 83, 85, 89, 91, 95, 97, 101, 103, 107, 109, 113, 115, 119, 121, 125, 127, 131, 133, 137, 139, 143, 145, 149, 151, 155, 157, 161, 163, 167, 169, 173, 175, 179, 181, 185, 187, 191, 193, 197, 199, 203, 205, 209, 211, 215, 217, 221, 223, 227, 229, 233, 235, 239, 241, 245, 247, 251, 253]
+```
+
+然后我们尝试去读取`hint.png`中的像素点
+
+```python
+def func1():
     dic = {}
-    img = Image.open(&#34;hint.png&#34;)
-    width,height = img.size
+    img1 = Image.open(&#34;hint.png&#34;)
+    width,height = img1.size # 50 50
     for y in range(height):
         for x in range(width):
-            pixel = img.getpixel((x,y))
+            pixel = img1.getpixel((x,y))
+            if pixel not in dic:
+                dic[pixel] = 1
+            else:
+                dic[pixel] &#43;= 1
+    # print(len(dic)) # 2496
+    print(dic)
+```
+
+发现2500个像素点中有2496种像素，并且只有以下两种像素出现了2次，别的像素都是只出现一次
+
+```
+(133, 167, 215): 2
+(31, 163, 119): 2
+```
+
+我们把所有像素打印出来可以发现，每个像素的RGB值都是取自我们之前得到的`e`的取值范围中
+
+然后我们再去看`task.png`，发现图像时RGBA格式的，只不过A通道的值都是255
+
+```python
+def solve():
+    dic = {}
+    img1 = Image.open(&#34;task.png&#34;)
+    width,height = img1.size # 50 50
+    for y in range(height):
+        for x in range(width):
+            pixel = img1.getpixel((x,y))
+            if pixel not in dic:
+                dic[pixel] = 1
+            else:
+                dic[pixel] &#43;= 1
+    # print(len(dic)) # 1112
+    # print(dic)
+```
+
+发现一共有1112种不同的像素
+
+并且背景接近白色的像素点的RGBA的值为`(246, 246, 246, 255)`，黑色像素点的RGBA值为`(0, 0, 0, 255)`
+
+&gt; 后来在 `@Aura` 师傅的帮助下，发现了其实图片中的每个像素的每个RGB的值都是RSA加密中的参数
+
+因为我们之前得到了，`hint.png`中每个像素的每个RGB值都在`e`的取值范围中
+
+然后`hint.png`和`task.png`的长宽是一样的，也就是说像素的个数以及RGB值的个数也是一样的，所以是一一对应的
+
+因此我们可以联想到，把每个像素的每个RGB值都做一次RSA解密，`hint.png`中的是`e`，`task.png`中的是密文`c`
+
+最后把我们RSA解密得到的`m`转为RGB值塞回图像中即可复原出二维码，扫码即可得到最后的flag：`DASCTF{R54_W1th_Cv_1s_Fun}`
+
+![](imgs/image-20250818213430714.png)
+
+![](imgs/image-20250818213401070.png)
+
+最终的解题脚本如下：
+
+```python
+from PIL import Image
+import gmpy2
+import numpy as np
+
+p = 13
+q = 19
+n = p * q # 247
+phi = (p-1)*(q-1) # 216
+
+def get_e():
+    e_list = []
+    img1 = Image.open(&#34;hint.png&#34;)
+    width,height = img1.size
+    for y in range(height):
+        for x in range(width):
+            pixel = img1.getpixel((x,y))
             for item in pixel:
-                if str(item) not in dic:
-                    dic[str(item)] = 1
-                else:
-                    dic[str(item)] &#43;= 1
-    return dic
+                e_list.append(item)
+    print(len(e_list))
+    return e_list
 
-
-if __name__ == &#34;__main__&#34;:
-    e_list = cal_e()
-    print(e_list)
-    tmp_dic = solve()
-    res = &#34;&#34;
-    for item in e_list:
-        print((item,tmp_dic[str(item)]),end=&#39; &#39;)
-        res &#43;= chr(tmp_dic[str(item)])
-    print(&#34;\n&#34;)
-    print(res)
+def func1(e_list):
+    c_list = []
+    m_list = []
+    img1 = Image.open(&#34;task.png&#34;)
+    width,height = img1.size # 50 50
+    for y in range(height):
+        for x in range(width):
+            r,g,b,a = img1.getpixel((x,y))
+            c_list.append(r)
+            c_list.append(g)
+            c_list.append(b)
+    print(len(c_list))
+    for idx,e in enumerate(e_list):
+        c = c_list[idx]
+        d = gmpy2.invert(e, phi)
+        m = pow(c, d, n)
+        m_list.append(m)
+    print(len(m_list))
+    pixel_array = np.array(m_list, dtype=np.uint8).reshape((height, width, 3))
+    img2 = Image.fromarray(pixel_array, mode=&#34;RGB&#34;)
+    img2.save(&#34;decrypted.png&#34;)
+    print(&#34;[&#43;] 处理完成，已保存为 decrypted.png&#34;)
     
-# [1, 5, 7, 11, 13, 17, 19, 23, 25, 29, 31, 35, 37, 41, 43, 47, 49, 53, 55, 59, 61, 65, 67, 71, 73, 77, 79, 83, 85, 89, 91, 95, 97, 101, 103, 107, 109, 113, 115, 119, 121, 125, 127, 131, 133, 137, 139, 143, 145, 149, 151, 155, 157, 161, 163, 167, 169, 173, 175, 179, 181, 185, 187, 191, 193, 197, 199, 203, 205, 209, 211, 215, 217, 221, 223, 227, 229, 233, 235, 239, 241, 245, 247, 251, 253]
-# (1, 89) (5, 91) (7, 73) (11, 90) (13, 94) (17, 79) (19, 86) (23, 79) (25, 91) (29, 80) (31, 101) (35, 111) (37, 93) (41, 88) (43, 83) (47, 105) (49, 75) (53, 100) (55, 88) (59, 96) (61, 86) (65, 98) (67, 83) (71, 86) (73, 94) (77, 88) (79, 84) (83, 88) (85, 100) (89, 83) (91, 95) (95, 97) (97, 99) (101, 85) (103, 92) (107, 90) (109, 92) (113, 82) (115, 86) (119, 77) (121, 83) (125, 103) (127, 87) (131, 93) (133, 101) (137, 82) (139, 91) (143, 102) (145, 84) (149, 91) (151, 75) (155, 85) (157, 76) (161, 90) (163, 88) (167, 91) (169, 82) (173, 92) (175, 96) (179, 98) (181, 86) (185, 72) (187, 74) (191, 98) (193, 71) (197, 107) (199, 91) (203, 86) (205, 78) (209, 87) (211, 86) (215, 69) (217, 83) (221, 88) (223, 101) (227, 70) (229, 81) (233, 81) (235, 86) (239, 95) (241, 84) (245, 95) (247, 93) (251, 86) (253, 85)
-
-# Y[IZ^OVO[Peo]XSiKdX`VbSV^XTXdS_acU\Z\RVMSgW]eR[fT[KULZX[R\`bVHJbGk[VNWVESXeFQQV_T_]VU
+if __name__ == &#34;__main__&#34;:
+    e_list = get_e()
+    func1(e_list)
 ```
 
 ## 题目名称 to(2025天山固网)
@@ -994,6 +1058,93 @@ if __name__ == &#34;__main__&#34;:
     process_image_rows(&#39;col_solved.png&#39;,&#39;flag.png&#39;)
 ```
 
+## 题目名称 capture(2025年浙江省信息通信业职业技能竟赛-数据安全管理员竞赛决赛-misc)
+
+题目附件给了一个很小的pcapng流量包（27kb）
+
+![](imgs/image-20250818225242004.png)
+
+打开翻看发现是100个UDP数据包，然后看样子是传了json一样的数据
+
+因此我们可以直接 `strings capture.pcapng &gt; 1.txt` 把里面的内容导出来
+
+导出来后，手动删去干扰的字符，可以得到如下内容：
+
+![](imgs/image-20250818225541825.png)
+
+提示了是DES-xxx加密算法，并且用了四个不同的密钥
+
+仔细观察可以发现，每个密文的前面部分内容都是一样的
+
+因此猜测明文的开头是一样的，并且key_id相同的密文，用的密钥也是一样的
+
+之前就听说过DES是由于安全性而被AES所替代了，并且在网上搜索过程中发现了下面这篇文章：
+
+https://noob-atbash.github.io/CTF-writeups/cyberwar/crypto/chal-5.html
+
+尝试用文中的四个弱密钥去解密，发现有一般的数据可以正常解出来
+
+并且可以得到解密后明文的开头是 `FLAG_HEADER:DATA`
+
+然后仔细看了[这篇帖子](https://crypto.stackexchange.com/questions/7938/may-the-problem-with-des-using-ofb-mode-be-generalized-for-all-feistel-ciphers)后，尝试用  `\x00 \xFF \x1E \xE` 去生成密钥爆破
+
+```python
+from Crypto.Cipher import DES
+from itertools import product
+from base64 import b64decode
+
+BYTES = [b&#39;\x1E&#39;, b&#39;\xE1&#39;, b&#39;\xF0&#39;, b&#39;\x0F&#39;, b&#39;\x00&#39;, b&#39;\xFF&#39;]
+
+def generate_keys():
+    byte_combinations = product(BYTES, repeat=8)
+    for combo in byte_combinations:
+        yield b&#39;&#39;.join(combo)
+
+def brute_force_decrypt(encrypted_data):
+    for key in generate_keys():
+        cipher = DES.new(key, DES.MODE_ECB)
+        try:
+            decrypted = cipher.decrypt(encrypted_data)
+            if decrypted.startswith(b&#34;FLAG&#34;):
+                print(f&#34;Found valid key: {key}&#34;)
+                print(f&#34;Decrypted data: {decrypted}&#34;)
+                return key
+        except:
+            continue
+    return None
+
+encrypted_data = b64decode(&#34;ftNbIBh&#43;yU8rzOhvbAplhB1hoQkblsKa&#43;uGaNnTudD2LGw0&#43;5fOHXycXZDujJFWwHZjIg5bfDpKFsqI18Ts7ZGG8dpqWAzar&#34;)
+found_key = brute_force_decrypt(encrypted_data)
+if not found_key:
+    print(&#34;No valid key found.&#34;)
+```
+
+发现一会就能爆破出密钥，用得到的密钥去解密即可得到最后的flag：`flag{9adee0d8d9db40fc99e8366bf2bd474d}`
+
+![](imgs/image-20250818230628193.png)
+
+```python
+from Crypto.Cipher import DES
+from base64 import *
+
+key_list = [b&#34;\x1E\x1E\x1E\x1E\x0F\x0F\x0F\x0F&#34;,b&#34;\xE1\xE1\xE1\xE1\xF0\xF0\xF0\xF0&#34;,b&#34;\xff\x00\xff\x00\xff\x00\xff\x00&#34;,b&#34;\x00\xff\x00\xff\x00\xff\x00\xff&#34;]
+
+def solve():
+    with open(&#39;2.txt&#39;,&#39;r&#39;) as f:
+        data = f.read().split()
+    for item in data:
+        ciphertext = b64decode(item)
+        for KEY in key_list:
+            a = DES.new(KEY, DES.MODE_ECB)
+            plaintext = a.decrypt(ciphertext)
+            # print(plaintext)
+            if b&#34;FLAG&#34; in plaintext:
+                print(plaintext)
+                # print(f&#34;[&#43;] 用密钥 {KEY} 解密成功:\n{plaintext}&#34;)   
+
+if __name__ == &#34;__main__&#34;:
+    solve()
+```
 
 ---
 

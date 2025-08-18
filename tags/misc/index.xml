@@ -4,10 +4,18 @@
     <link>https://goodlunatic.github.io/tags/misc/</link>
     <description>Misc - Tag | ⚡Lunatic BLOG⚡</description>
     <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>goodlunatic0@gmail.com (Lunatic)</managingEditor>
-      <webMaster>goodlunatic0@gmail.com (Lunatic)</webMaster><lastBuildDate>Sun, 17 Aug 2025 14:10:17 &#43;0800</lastBuildDate><atom:link href="https://goodlunatic.github.io/tags/misc/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>goodlunatic0@gmail.com (Lunatic)</webMaster><lastBuildDate>Mon, 18 Aug 2025 23:00:11 &#43;0800</lastBuildDate><atom:link href="https://goodlunatic.github.io/tags/misc/" rel="self" type="application/rss+xml" /><item>
+  <title>群友们问的一些来路不明的题</title>
+  <link>https://goodlunatic.github.io/posts/bb1da35/</link>
+  <pubDate>Mon, 18 Aug 2025 23:00:11 &#43;0800</pubDate>
+  <author>Lunatic</author>
+  <guid>https://goodlunatic.github.io/posts/bb1da35/</guid>
+  <description><![CDATA[<p><strong>其实感觉时常做做群友给的题，对自我实力提升其实帮助挺大的</strong></p>]]></description>
+</item>
+<item>
   <title>CTF-Misc Guide</title>
   <link>https://goodlunatic.github.io/posts/1ad9200/</link>
-  <pubDate>Sun, 17 Aug 2025 14:10:17 &#43;0800</pubDate>
+  <pubDate>Mon, 18 Aug 2025 14:10:17 &#43;0800</pubDate>
   <author>Lunatic</author>
   <guid>https://goodlunatic.github.io/posts/1ad9200/</guid>
   <description><![CDATA[<p><strong>最开始接触CTF时，学的最多的就是Misc，各种编码与加密还有各种软件的使用等等</strong></p>
@@ -80,15 +88,6 @@
   <guid>https://goodlunatic.github.io/posts/c49ae8a/</guid>
   <description><![CDATA[<p>最近的CTF比赛中经常出现数据安全的板块(尤其是安恒承办的比赛)</p>
 <p>感觉这类题目是可以靠积累来提升解题速度的，因此准备写这样一篇博客来总结一下常见的考点</p>]]></description>
-</item>
-<item>
-  <title>2025 西湖论剑·中国杭州网络安全技能大赛 Misc Writeup</title>
-  <link>https://goodlunatic.github.io/posts/f002407/</link>
-  <pubDate>Sat, 19 Apr 2025 15:35:37 &#43;0800</pubDate>
-  <author>Lunatic</author>
-  <guid>https://goodlunatic.github.io/posts/f002407/</guid>
-  <description><![CDATA[<p><strong>最近这一段时间一直被科研和毕设上的事拖着，因此就有段时间没有做Misc题了</strong></p>
-<p><strong>趁着写毕设没啥思路和动力的功夫，来稍微复盘下今年西湖论剑的题</strong></p>]]></description>
 </item>
 </channel>
 </rss>
