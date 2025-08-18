@@ -652,7 +652,7 @@
 </div>
 </div><p>上面两个代码的主要区别就在于：第二个代码中的加密数据是从源数据的第四字节开始的</p>
 <p>我们用第二个代码解密<code>submit.php</code>的数据，可以得到如下内容，并且发现里面有个<code>secret.pcapng</code></p>
-<div class="highlight" id="id-1"><div class="chroma">
+<div class="highlight" id="id-7"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -847,7 +847,7 @@
 <p>结合第二个代码解密出来的<code>submit.php</code>的数据，应该就是那个<code>secret.pcapng</code>了</p>
 <p><img loading="lazy" src="imgs/image-20250227214140287.png" alt="imgs/image-20250227214140287.png" srcset="imgs/image-20250227214140287.png?size=small, imgs/image-20250227214140287.png?size=medium 1.5x, imgs/image-20250227214140287.png?size=large 2x" data-title="imgs/image-20250227214140287.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>用以下代码解其余心跳包的数据可以得到攻击者要求受害客户端执行的其他命令</p>
-<div class="highlight" id="id-2"><div class="chroma">
+<div class="highlight" id="id-8"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -916,7 +916,7 @@
 </span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;[+] 任务输出类型: </span><span class="si">{}</span><span class="s2">&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">int</span><span class="o">.</span><span class="n">from_bytes</span><span class="p">(</span><span class="n">dec</span><span class="p">[</span><span class="mi">8</span><span class="p">:</span><span class="mi">12</span><span class="p">],</span> <span class="n">byteorder</span><span class="o">=</span><span class="s1">&#39;big&#39;</span><span class="p">,</span> <span class="n">signed</span><span class="o">=</span><span class="kc">False</span><span class="p">)))</span>
 </span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="n">hexdump</span><span class="o">.</span><span class="n">hexdump</span><span class="p">(</span><span class="n">dec</span><span class="p">))</span></span></span></code></pre></td></tr></table>
 </div>
-</div><div class="highlight" id="id-3"><div class="chroma">
+</div><div class="highlight" id="id-9"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1002,7 +1002,7 @@
 <p>但是这道题没有2021L3HCTF那题那么复杂，因为这里的数据包带的数据都比较短</p>
 <p>因此这里直接一个个包解码过去就行，也不用根据解密后数据的长度进行分块处理</p>
 <p>首先把解密的CPP代码在Linux下编译成.so文件</p>
-<div class="highlight" id="id-4"><div class="chroma">
+<div class="highlight" id="id-10"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1097,7 +1097,7 @@
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
-</div><div class="highlight" id="id-5"><div class="chroma">
+</div><div class="highlight" id="id-11"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -1117,7 +1117,7 @@
 </span></span><span class="line"><span class="cl"><span class="c1"># com_unmunge.cpp：源代码文件名。</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>Linux下输入以上命令即可编译得到 a.so</p>
-<div class="highlight" id="id-6"><div class="chroma">
+<div class="highlight" id="id-12"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1218,7 +1218,7 @@
 <p><img loading="lazy" src="imgs/image-20250417194045254.png" alt="imgs/image-20250417194045254.png" srcset="imgs/image-20250417194045254.png?size=small, imgs/image-20250417194045254.png?size=medium 1.5x, imgs/image-20250417194045254.png?size=large 2x" data-title="imgs/image-20250417194045254.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>打开发现里面有很多的目录，当我们按照时间早晚进行排序的时候，发现了明显的zip压缩包的PK头(504B0304)</p>
 <p>因此尝试写一个Python脚本进行提取</p>
-<div class="highlight" id="id-7"><div class="chroma">
+<div class="highlight" id="id-13"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1295,7 +1295,7 @@
 <p><img loading="lazy" src="imgs/image-20250417194400019.png" alt="imgs/image-20250417194400019.png" srcset="imgs/image-20250417194400019.png?size=small, imgs/image-20250417194400019.png?size=medium 1.5x, imgs/image-20250417194400019.png?size=large 2x" data-title="imgs/image-20250417194400019.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p><img loading="lazy" src="imgs/image-20250417194456142.png" alt="imgs/image-20250417194456142.png" srcset="imgs/image-20250417194456142.png?size=small, imgs/image-20250417194456142.png?size=medium 1.5x, imgs/image-20250417194456142.png?size=large 2x" data-title="imgs/image-20250417194456142.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>然后我们再写一个脚本对报告中的数据进行处理即可</p>
-<div class="highlight" id="id-8"><div class="chroma">
+<div class="highlight" id="id-14"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -1330,7 +1330,7 @@
 <p><img loading="lazy" src="imgs/image-20250419154537135.png" alt="imgs/image-20250419154537135.png" srcset="imgs/image-20250419154537135.png?size=small, imgs/image-20250419154537135.png?size=medium 1.5x, imgs/image-20250419154537135.png?size=large 2x" data-title="imgs/image-20250419154537135.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p><img loading="lazy" src="imgs/image-20250419154550735.png" alt="imgs/image-20250419154550735.png" srcset="imgs/image-20250419154550735.png?size=small, imgs/image-20250419154550735.png?size=medium 1.5x, imgs/image-20250419154550735.png?size=large 2x" data-title="imgs/image-20250419154550735.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p><img loading="lazy" src="imgs/image-20250419154618668.png" alt="imgs/image-20250419154618668.png" srcset="imgs/image-20250419154618668.png?size=small, imgs/image-20250419154618668.png?size=medium 1.5x, imgs/image-20250419154618668.png?size=large 2x" data-title="imgs/image-20250419154618668.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
-<div class="highlight" id="id-9"><div class="chroma">
+<div class="highlight" id="id-15"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1395,7 +1395,7 @@
 <p>猜测是这个图片比较大，攻击者分了好几次写入</p>
 <p><img loading="lazy" src="imgs/image-20250419155644798.png" alt="imgs/image-20250419155644798.png" srcset="imgs/image-20250419155644798.png?size=small, imgs/image-20250419155644798.png?size=medium 1.5x, imgs/image-20250419155644798.png?size=large 2x" data-title="imgs/image-20250419155644798.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>鉴于流量包中的请求比较多，因此我们把流7和流8的数据以文本的形式保存到本地，然后写个脚本匹配提取即可</p>
-<div class="highlight" id="id-10"><div class="chroma">
+<div class="highlight" id="id-16"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1521,7 +1521,7 @@
   <a href="#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-%e5%b9%b6%e9%9d%9e%e4%b9%b1ping" class="heading-mark"></a>题目名称 并非乱ping</h3><p>题目附件给了一个加密的压缩包、一个wav以及一个<code>hide.py</code></p>
 <p><img loading="lazy" src="imgs/image-20250417201252117.png" alt="imgs/image-20250417201252117.png" srcset="imgs/image-20250417201252117.png?size=small, imgs/image-20250417201252117.png?size=medium 1.5x, imgs/image-20250417201252117.png?size=large 2x" data-title="imgs/image-20250417201252117.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>其中<code>hide.py</code>的内容如下</p>
-<div class="highlight" id="id-11"><div class="chroma">
+<div class="highlight" id="id-17"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1575,7 +1575,7 @@
 </span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;successfully!&#34;</span><span class="p">)</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>发现是一个利用wav二进制倒数第3位进行LSB隐写的脚本，因此我们写个脚本提取一下隐写的数据即可</p>
-<div class="highlight" id="id-12"><div class="chroma">
+<div class="highlight" id="id-18"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1641,7 +1641,7 @@
 <p>打开流量包，结合题目名字很容易知道解题关键在ping上，即ICMP流量中</p>
 <p>翻看流量包的相关字段，猜测flag是被隐藏在了ICMP流量的ttl时延中</p>
 <p><img loading="lazy" src="imgs/image-20250417201804808.png" alt="imgs/image-20250417201804808.png" srcset="imgs/image-20250417201804808.png?size=small, imgs/image-20250417201804808.png?size=medium 1.5x, imgs/image-20250417201804808.png?size=large 2x" data-title="imgs/image-20250417201804808.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
-<div class="highlight" id="id-13"><div class="chroma">
+<div class="highlight" id="id-19"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
@@ -1651,7 +1651,7 @@
 </div><p>然后结合flag的前缀<code>DASCTF{</code>，发现flag被隐藏在ttl二进制的前两位中</p>
 <p><img loading="lazy" src="imgs/image-20250417203304205.png" alt="imgs/image-20250417203304205.png" srcset="imgs/image-20250417203304205.png?size=small, imgs/image-20250417203304205.png?size=medium 1.5x, imgs/image-20250417203304205.png?size=large 2x" data-title="imgs/image-20250417203304205.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>因此写个脚本提取ttl二进制的前两位，连起来转字符串即可得到最后的flag：<code>DASCTF{627848c0-759c-11ef-999f-000c290c196e}</code></p>
-<div class="highlight" id="id-14"><div class="chroma">
+<div class="highlight" id="id-20"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1697,7 +1697,7 @@
 <p>本题的成功解出离不开<code>@IcePeak</code>师傅的帮助</p>
 </blockquote>
 <p>解压附件压缩包，可以得到一个<code>encrypt.py</code>和一张PNG图片，内容如下所示</p>
-<div class="highlight" id="id-15"><div class="chroma">
+<div class="highlight" id="id-21"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1750,7 +1750,7 @@
 <p>发现是用弱密码简单加密了一下图片，然后我们用stegsolve打开图片可以发现图片存在LSB隐写</p>
 <p><img loading="lazy" src="imgs/image-20250331201900614.png" alt="imgs/image-20250331201900614.png" srcset="imgs/image-20250331201900614.png?size=small, imgs/image-20250331201900614.png?size=medium 1.5x, imgs/image-20250331201900614.png?size=large 2x" data-title="imgs/image-20250331201900614.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>因此我们根据LSB隐写的内容写个脚本爆破一下密钥即可</p>
-<div class="highlight" id="id-16"><div class="chroma">
+<div class="highlight" id="id-22"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1813,7 +1813,7 @@
 <p>提取出来base64解码即可得到下图</p>
 <p><img loading="lazy" src="imgs/image-20250401183228651.png" alt="imgs/image-20250401183228651.png" srcset="imgs/image-20250401183228651.png?size=small, imgs/image-20250401183228651.png?size=medium 1.5x, imgs/image-20250401183228651.png?size=large 2x" data-title="imgs/image-20250401183228651.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>参考上面<code>2024WMCTF</code>那道题的wp，改一下提取水印的脚本</p>
-<div class="highlight" id="id-17"><div class="chroma">
+<div class="highlight" id="id-23"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1897,7 +1897,7 @@
 </span></span><span class="line"><span class="cl"><span class="c1"># b&#34;Hey boy, I&#39;m here to help you, now you&#39;ze one step away from successl let me |ell you key:79557c2d8f94&#34;</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>运行后可以得到如下内容，提示了我们一个key：<code>79557c2d8f94</code></p>
-<div class="highlight" id="id-18"><div class="chroma">
+<div class="highlight" id="id-24"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
