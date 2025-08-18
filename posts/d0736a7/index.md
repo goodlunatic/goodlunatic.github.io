@@ -652,9 +652,7 @@ def solve():
 
 最后把我们RSA解密得到的`m`转为RGB值塞回图像中即可复原出二维码，扫码即可得到最后的flag：`DASCTF{R54_W1th_Cv_1s_Fun}`
 
-
-![](imgs/image-20250313101353466.png)
-
+![](imgs/image-20250818213444490.png)
 
 ![](imgs/image-20250313101321442.png)
 
