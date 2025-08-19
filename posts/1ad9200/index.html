@@ -14,7 +14,7 @@
 但Misc涉及的范围实在太广了，于是就想着一边学习一边记录，因而就有了这篇文章">
   <meta itemprop="datePublished" content="2025-08-18T14:10:17+08:00">
   <meta itemprop="dateModified" content="2025-08-18T14:10:17+08:00">
-  <meta itemprop="wordCount" content="11926">
+  <meta itemprop="wordCount" content="11968">
   <meta itemprop="keywords" content="Misc,CTF"><meta property="og:url" content="https://goodlunatic.github.io/posts/1ad9200/">
   <meta property="og:site_name" content="⚡Lunatic BLOG⚡">
   <meta property="og:title" content="CTF-Misc Guide">
@@ -44,7 +44,7 @@
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": "https:\/\/goodlunatic.github.io\/posts\/1ad9200\/"
-    },"genre": "posts","keywords": "Misc, CTF","wordcount":  11926 ,
+    },"genre": "posts","keywords": "Misc, CTF","wordcount":  11968 ,
     "url": "https:\/\/goodlunatic.github.io\/posts\/1ad9200\/","datePublished": "2025-08-18T14:10:17+08:00","dateModified": "2025-08-18T14:10:17+08:00","publisher": {
       "@type": "Organization",
       "name": ""},"author": {
@@ -148,7 +148,7 @@
 <article class="page single">
   <div class="header"><h1 class="single-title animate__animated animate__flipInX"><span>CTF-Misc Guide</span>
     </h1></div><div class="post-meta">
-    <div class="post-meta-line"><span class="post-author"><a href="https://goodlunatic.github.io" title="Author"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><img loading="lazy" src="https://www.nssctf.cn/files/2024/4/28/7f130a1387.png" alt="Lunatic" data-title="Lunatic" class="avatar" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>&nbsp;Lunatic</a></span><span class="post-included-in">&nbsp;included in <a href="/categories/ctf/" class="post-category" title="Category - CTF"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> CTF</a></span></div><div class="post-meta-line"><span title="published on &lt;no value&gt;"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden="true"></i><time datetime="2025-08-18">2025-08-18</time></span>&nbsp;<span title=""><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>About 12000 words</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>56 minutes</span>&nbsp;</div>
+    <div class="post-meta-line"><span class="post-author"><a href="https://goodlunatic.github.io" title="Author"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><img loading="lazy" src="https://www.nssctf.cn/files/2024/4/28/7f130a1387.png" alt="Lunatic" data-title="Lunatic" class="avatar" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>&nbsp;Lunatic</a></span><span class="post-included-in">&nbsp;included in <a href="/categories/ctf/" class="post-category" title="Category - CTF"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> CTF</a></span></div><div class="post-meta-line"><span title="published on &lt;no value&gt;"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden="true"></i><time datetime="2025-08-18">2025-08-18</time></span>&nbsp;<span title=""><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>About 12000 words</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>57 minutes</span>&nbsp;</div>
   </div><div class="details toc" id="toc-static"
     data-kept="false">
     <div class="details-summary toc-title">
@@ -186,6 +186,7 @@
           </ul>
         </li>
         <li><a href="#使用openssl进行加解密">使用openssl进行加解密</a></li>
+        <li><a href="#国密sm系列加密算法">国密(SM)系列加密算法</a></li>
         <li><a href="#埃特巴什码atbash">埃特巴什码(Atbash)</a></li>
         <li><a href="#dna编码">DNA编码</a></li>
         <li><a href="#金笛短信pdu编码">金笛短信PDU编码</a></li>
@@ -1313,7 +1314,63 @@
 </span></span><span class="line"><span class="cl"><span class="c1">#     -in 输入文件</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#     -out 输出文件</span></span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="埃特巴什码atbash" class="heading-element">
+</div><h3 id="国密sm系列加密算法" class="heading-element">
+  <a href="#%e5%9b%bd%e5%af%86sm%e7%b3%bb%e5%88%97%e5%8a%a0%e5%af%86%e7%ae%97%e6%b3%95" class="heading-mark"></a>国密(SM)系列加密算法</h3><table>
+<thead>
+<tr>
+<th style="text-align:center">算法</th>
+<th style="text-align:center">算法类型</th>
+<th style="text-align:center">密钥类型</th>
+<th style="text-align:center">长度（位）</th>
+<th style="text-align:center">长度（字节）</th>
+<th style="text-align:center">备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><strong>SM4</strong></td>
+<td style="text-align:center">对称加密</td>
+<td style="text-align:center">密钥</td>
+<td style="text-align:center">128 bits</td>
+<td style="text-align:center"><strong>16 字节</strong></td>
+<td style="text-align:center">固定长度</td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>SM2</strong></td>
+<td style="text-align:center">非对称加密</td>
+<td style="text-align:center">私钥</td>
+<td style="text-align:center">256 bits</td>
+<td style="text-align:center"><strong>32 字节</strong></td>
+<td style="text-align:center">固定长度（一个大整数）</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">公钥（原始值）</td>
+<td style="text-align:center">512 bits</td>
+<td style="text-align:center"><strong>64 字节</strong></td>
+<td style="text-align:center">两个32字节的整数（x，y）</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">公钥（编码后）</td>
+<td style="text-align:center">-</td>
+<td style="text-align:center">65 或 33 字节</td>
+<td style="text-align:center">常见带<code>0x04</code>前缀的为65字节</td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>SM9</strong></td>
+<td style="text-align:center">非对称加密</td>
+<td style="text-align:center">主密钥/用户密钥</td>
+<td style="text-align:center">可变</td>
+<td style="text-align:center"><strong>可变</strong></td>
+<td style="text-align:center">取决于安全参数，通常远长于SM2密钥</td>
+</tr>
+</tbody>
+</table>
+<p><img loading="lazy" src="imgs/image-20250819214101200.png" alt="imgs/image-20250819214101200.png" srcset="imgs/image-20250819214101200.png?size=small, imgs/image-20250819214101200.png?size=medium 1.5x, imgs/image-20250819214101200.png?size=large 2x" data-title="imgs/image-20250819214101200.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<h3 id="埃特巴什码atbash" class="heading-element">
   <a href="#%e5%9f%83%e7%89%b9%e5%b7%b4%e4%bb%80%e7%a0%81atbash" class="heading-mark"></a>埃特巴什码(Atbash)</h3><p>例如下面这段密文</p>
 <div class="highlight" id="id-26"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">

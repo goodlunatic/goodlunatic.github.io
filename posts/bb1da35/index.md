@@ -9,7 +9,7 @@
 
 **如果有需要题目附件的师傅，可以进我的交流群获取附件下载链接**
 
-**进群方式可以参考博客中的[About](https://goodlunatic.github.io/about/)**
+**进群方式可以参考博客中的 [About](https://goodlunatic.github.io/about/)**
 
 {{&lt; /admonition &gt;}}
 
