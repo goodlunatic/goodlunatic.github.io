@@ -1146,6 +1146,146 @@ if __name__ == &#34;__main__&#34;:
     solve()
 ```
 
+## 题目名称 压缩包3(金融业数字化转型技能大赛)
+
+![](imgs/image-20250820233240375.png)
+
+![](imgs/image-20250820233232700.png)
+
+打开题目附件的压缩包，发现`flag.txt`的长度不长，并且题面中告诉了我们flag的格式
+
+因此尝试直接写个脚本爆破CRC32即可，一开始我想着就尝试一下7位纯数字，没想到就爆出来了
+
+![](imgs/image-20250820234239279.png)
+
+```python
+import zlib
+import time
+import itertools
+from string import printable
+
+
+def calculate_crc32(data):
+    crc_value = zlib.crc32(data)
+    return crc_value &amp; 0xFFFFFFFF  # 直接返回整数而不是字符串
+
+def solve():
+    target_crc = 0xaf8ae817  # 使用整数而不是字符串进行比较
+    table = printable[:10]   # 只使用数字0-9
+    
+    print(f&#34;[*] 开始爆破CRC32: 0x{target_crc:08x}&#34;)
+    print(f&#34;[*] 字符集: {table}&#34;)
+    print(f&#34;[*] 长度: 10个字符&#34;)
+    
+    count = 0
+    start_time = time.time()
+    
+    # 预编码字符集
+    encoded_table = [c.encode() for c in table]
+    
+    # 使用itertools.product生成所有组合
+    for item in itertools.product(encoded_table, repeat=7):
+        count &#43;= 1
+        
+        # 每100万次显示一次进度
+        if count % 1000000 == 0:
+            elapsed = time.time() - start_time
+            rate = count / elapsed
+            print(f&#34;[*] 已尝试: {count} 组合, 速度: {rate:.0f} 次/秒&#34;)
+        
+        # 构建flag字节串
+        flag = b&#34;flag{&#34; &#43; b&#34;&#34;.join(item) &#43; b&#34;}&#34;
+        
+        # 计算CRC32
+        crc_value = calculate_crc32(flag)
+        
+        # 检查是否匹配
+        if crc_value == target_crc:
+            elapsed = time.time() - start_time
+            print(f&#34;\n[&#43;] CRC32碰撞成功! 用时: {elapsed:.2f}秒&#34;)
+            print(f&#34;[&#43;] Flag: {flag.decode()}&#34;)
+            print(f&#34;[&#43;] CRC32: 0x{crc_value:08x}&#34;)
+            return
+    
+    print(&#34;[-] 未找到匹配的CRC32值&#34;)
+
+if __name__ == &#39;__main__&#39;:
+    solve()
+```
+
+## 题目名称 带密码的zip(绿盟2017年出的题)
+
+![](imgs/image-20250820233447261.png)
+
+![](imgs/image-20250820233514709.png)
+
+打开附件压缩包，发现是 `Store` 和 `ZipCrypto`，因此猜测是考察zip压缩包的明文攻击
+
+但是结合题目发现，算上flag的前缀，已知的也就9字节，不满足明文攻击的要求
+
+一看题目创建时间是2017年，因此去尝试了弱密码字典爆破，发现出不来
+
+最后想着尝试根据CRC32去直接爆破一下flag，试了一下10位纯数字，没想到真爆出来了
+
+```python
+import zlib
+import time
+import itertools
+from string import printable
+
+
+def calculate_crc32(data):
+    crc_value = zlib.crc32(data)
+    return crc_value &amp; 0xFFFFFFFF  # 直接返回整数而不是字符串
+
+def solve():
+    target_crc = 0x87ba59e0  # 使用整数而不是字符串进行比较
+    table = printable[:10]   # 只使用数字0-9
+    
+    print(f&#34;[*] 开始爆破CRC32: 0x{target_crc:08x}&#34;)
+    print(f&#34;[*] 字符集: {table}&#34;)
+    print(f&#34;[*] 长度: 10个字符&#34;)
+    
+    count = 0
+    start_time = time.time()
+    
+    # 预编码字符集
+    encoded_table = [c.encode() for c in table]
+    
+    # 使用itertools.product生成所有组合
+    for item in itertools.product(encoded_table, repeat=10):
+        count &#43;= 1
+        
+        # 每100万次显示一次进度
+        if count % 1000000 == 0:
+            elapsed = time.time() - start_time
+            rate = count / elapsed
+            print(f&#34;[*] 已尝试: {count} 组合, 速度: {rate:.0f} 次/秒&#34;)
+        
+        # 构建flag字节串
+        flag = b&#34;nsfocus{&#34; &#43; b&#34;&#34;.join(item) &#43; b&#34;}&#34;
+        
+        # 计算CRC32
+        crc_value = calculate_crc32(flag)
+        
+        # 检查是否匹配
+        if crc_value == target_crc:
+            elapsed = time.time() - start_time
+            print(f&#34;\n[&#43;] CRC32碰撞成功! 用时: {elapsed:.2f}秒&#34;)
+            print(f&#34;[&#43;] Flag: {flag.decode()}&#34;)
+            print(f&#34;[&#43;] CRC32: 0x{crc_value:08x}&#34;)
+            return
+    
+    print(&#34;[-] 未找到匹配的CRC32值&#34;)
+
+if __name__ == &#39;__main__&#39;:
+    solve()
+```
+
+![](imgs/image-20250820233935457.png)
+
+&gt; 当然，这里还可以继续优化，写多线程或者用C代码去优化上面这个代码，提高爆破的速度
+
 ---
 
 > Author: [Lunatic](https://goodlunatic.github.io)  
