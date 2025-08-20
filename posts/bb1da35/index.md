@@ -1286,6 +1286,209 @@ if __name__ == &#39;__main__&#39;:
 
 &gt; 当然，这里还可以继续优化，写多线程或者用C代码去优化上面这个代码，提高爆破的速度
 
+```c
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;string.h&gt;
+#include &lt;pthread.h&gt;
+#include &lt;zlib.h&gt;
+#include &lt;time.h&gt;
+#include &lt;stdint.h&gt;
+#include &lt;unistd.h&gt;
+
+#define TARGET_CRC 0x87ba59e0
+#define CHARSET &#34;0123456789&#34;
+#define CHARSET_LENGTH 10
+#define PREFIX &#34;nsfocus{&#34;
+#define SUFFIX &#34;}&#34;
+#define PREFIX_LEN 8
+#define SUFFIX_LEN 1
+#define TOTAL_LENGTH 10
+#define FULL_LENGTH (PREFIX_LEN &#43; TOTAL_LENGTH &#43; SUFFIX_LEN)
+
+// 线程参数结构
+typedef struct {
+    int thread_id;
+    int num_threads;
+    uint64_t start_index;
+    uint64_t end_index;
+    uint64_t *combinations_tried;
+    int *found;
+    char *result;
+} thread_params_t;
+
+// 全局变量
+pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
+time_t start_time;
+uint64_t total_combinations = 0;
+
+// 计算组合数
+uint64_t power(uint64_t base, uint64_t exponent) {
+    uint64_t result = 1;
+    for (uint64_t i = 0; i &lt; exponent; i&#43;&#43;) {
+        result *= base;
+    }
+    return result;
+}
+
+// 将索引转换为对应的字符串组合
+void index_to_combination(uint64_t index, char *buffer) {
+    for (int i = TOTAL_LENGTH - 1; i &gt;= 0; i--) {
+        buffer[i] = CHARSET[index % CHARSET_LENGTH];
+        index /= CHARSET_LENGTH;
+    }
+    buffer[TOTAL_LENGTH] = &#39;\0&#39;;
+}
+
+// 计算CRC32
+uint32_t calculate_crc32(const char *data, size_t length) {
+    return crc32(0, (const Bytef *)data, length);
+}
+
+// 工作线程函数
+void *worker_thread(void *arg) {
+    thread_params_t *params = (thread_params_t *)arg;
+    char full_string[FULL_LENGTH &#43; 1];
+    char combination[TOTAL_LENGTH &#43; 1];
+    uint32_t crc_value;
+    uint64_t local_count = 0;
+    time_t last_report = time(NULL);
+    
+    // 准备前缀和后缀
+    memcpy(full_string, PREFIX, PREFIX_LEN);
+    memcpy(full_string &#43; PREFIX_LEN &#43; TOTAL_LENGTH, SUFFIX, SUFFIX_LEN);
+    full_string[FULL_LENGTH] = &#39;\0&#39;;
+    
+    for (uint64_t i = params-&gt;start_index; i &lt; params-&gt;end_index &amp;&amp; !(*params-&gt;found); i&#43;&#43;) {
+        // 将索引转换为字符串组合
+        index_to_combination(i, combination);
+        
+        // 构建完整字符串
+        memcpy(full_string &#43; PREFIX_LEN, combination, TOTAL_LENGTH);
+        
+        // 计算CRC32
+        crc_value = calculate_crc32(full_string, FULL_LENGTH);
+        
+        // 检查是否匹配
+        if (crc_value == TARGET_CRC) {
+            pthread_mutex_lock(&amp;mutex);
+            *params-&gt;found = 1;
+            strncpy(params-&gt;result, full_string, FULL_LENGTH &#43; 1);
+            pthread_mutex_unlock(&amp;mutex);
+            break;
+        }
+        
+        local_count&#43;&#43;;
+        
+        // 每100万次或每秒报告一次进度
+        time_t current_time = time(NULL);
+        if (current_time - last_report &gt;= 1 || local_count % 1000000 == 0) {
+            pthread_mutex_lock(&amp;mutex);
+            *params-&gt;combinations_tried &#43;= local_count;
+            local_count = 0;
+            
+            double elapsed = difftime(current_time, start_time);
+            if (elapsed &gt; 0) {
+                double rate = *params-&gt;combinations_tried / elapsed;
+                printf(&#34;[*] 已尝试: %lu 组合, 速度: %.0f 次/秒, 线程: %d\n&#34;, 
+                       *params-&gt;combinations_tried, rate, params-&gt;thread_id);
+            }
+            pthread_mutex_unlock(&amp;mutex);
+            
+            last_report = current_time;
+        }
+    }
+    
+    // 更新最终计数
+    pthread_mutex_lock(&amp;mutex);
+    *params-&gt;combinations_tried &#43;= local_count;
+    pthread_mutex_unlock(&amp;mutex);
+    
+    return NULL;
+}
+
+int main() {
+    int num_threads = sysconf(_SC_NPROCESSORS_ONLN);
+    pthread_t *threads;
+    thread_params_t *params;
+    uint64_t combinations_per_thread;
+    uint64_t total_tried = 0;
+    int found = 0;
+    char result[FULL_LENGTH &#43; 1] = {0};
+    
+    // 计算总组合数
+    total_combinations = power(CHARSET_LENGTH, TOTAL_LENGTH);
+    combinations_per_thread = total_combinations / num_threads;
+    
+    printf(&#34;[*] 开始爆破CRC32: 0x%08x\n&#34;, TARGET_CRC);
+    printf(&#34;[*] 字符集: %s\n&#34;, CHARSET);
+    printf(&#34;[*] 长度: %d个字符\n&#34;, TOTAL_LENGTH);
+    printf(&#34;[*] 总组合数: %lu\n&#34;, total_combinations);
+    printf(&#34;[*] 使用线程数: %d\n&#34;, num_threads);
+    
+    // 分配内存
+    threads = malloc(num_threads * sizeof(pthread_t));
+    params = malloc(num_threads * sizeof(thread_params_t));
+    
+    if (!threads || !params) {
+        fprintf(stderr, &#34;内存分配失败\n&#34;);
+        return 1;
+    }
+    
+    start_time = time(NULL);
+    
+    // 创建线程
+    for (int i = 0; i &lt; num_threads; i&#43;&#43;) {
+        params[i].thread_id = i;
+        params[i].num_threads = num_threads;
+        params[i].start_index = i * combinations_per_thread;
+        params[i].end_index = (i == num_threads - 1) ? total_combinations : (i &#43; 1) * combinations_per_thread;
+        params[i].combinations_tried = &amp;total_tried;
+        params[i].found = &amp;found;
+        params[i].result = result;
+        
+        if (pthread_create(&amp;threads[i], NULL, worker_thread, &amp;params[i]) != 0) {
+            fprintf(stderr, &#34;创建线程 %d 失败\n&#34;, i);
+            return 1;
+        }
+    }
+    
+    // 等待线程完成
+    for (int i = 0; i &lt; num_threads; i&#43;&#43;) {
+        pthread_join(threads[i], NULL);
+    }
+    
+    // 输出结果
+    double elapsed = difftime(time(NULL), start_time);
+    if (found) {
+        printf(&#34;\n[&#43;] CRC32碰撞成功! 用时: %.2f秒\n&#34;, elapsed);
+        printf(&#34;[&#43;] Flag: %s\n&#34;, result);
+        printf(&#34;[&#43;] CRC32: 0x%08x\n&#34;, TARGET_CRC);
+    } else {
+        printf(&#34;[-] 未找到匹配的CRC32值\n&#34;);
+        printf(&#34;[*] 总共尝试: %lu 组合\n&#34;, total_tried);
+    }
+    
+    // 清理
+    free(threads);
+    free(params);
+    pthread_mutex_destroy(&amp;mutex);
+    
+    return 0;
+}
+```
+
+
+复制上面的代码到 `crc32_cracker.c`，然后用以下命令编译运行即可
+```bash
+gcc -o crc32_cracker crc32_cracker.c -lz -lpthread
+./crc32_cracker
+```
+
+![](imgs/image-20250820235223242.png)
+
+可以看到爆破速度相比于之前的Python代码提升了不少
+
 ---
 
 > Author: [Lunatic](https://goodlunatic.github.io)  
