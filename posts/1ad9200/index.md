@@ -8,22 +8,19 @@
 
 {{&lt; admonition type=success title=&#34;Before All&#34; open=true &gt;}}
 
-**最开始接触CTF时，学的最多的就是Misc，各种编码与加密还有各种软件的使用等等**
+**文章创作不易，感谢你能看到这里，转载请标明出处**
 
-**但Misc涉及的范围实在太广了，于是就想着一边学习一边记录，因而就有了这篇文章。**
 {{&lt; /admonition &gt;}}
 
 ## 一些奇奇怪怪的经历：
 
-1、一段字符串，用base64异或脚本跑，找正常的字符串
+1、rockstar 编程语言，在github上面可以找到，然后在本地用pip安装库，把rock文件转换为py文件，运行即可得到flag
 
-2、rockstar 编程语言，在github上面可以找到，然后在本地用pip安装库，把rock文件转换为py文件，运行即可得到flag
+2、给你一个.exe安装包文件，flag藏在安装之前的一大串协议中
 
-3、给你一个.exe安装包文件，flag藏在安装之前的一大串协议中
+3、实在做不出来的时候，可以把flag的格式转其他的编码和题目中的信息比对找规律
 
-4、实在做不出来的时候，可以把flag的格式转其他的编码和题目中的信息比对找规律
-
-5、给你一个gpx文件，在线网站https://www.gpsvisualizer.com/map_input解密，然后地名的首字母连起来就是flag
+4、给你一个gpx文件，在线网站https://www.gpsvisualizer.com/map_input解密，然后地名的首字母连起来就是flag
 
 ## CTF中的常用关键词
 
@@ -3284,6 +3281,40 @@ with pyzipper.AESZipFile(target_zip, &#39;r&#39;) as f:
 
 ### 9、明文攻击
 
+压缩包使用明文攻击的具体要求如下：
+
+&gt; 1. 至少已知明文的12个字节及偏移，其中至少8字节需要连续
+&gt; 
+&gt; 2. 如果是已知**部分明文**进行明文攻击，对应的**加密算法**和**压缩算法**需要分别是：`ZipCrypto`和 `store`；如果是已知**全部明文或其中一个文件**，对应的压缩算法可以是 `deflate`（具体原理可以参考明文攻击的那篇论文）
+&gt; 
+&gt; 3. 需要知道出题人用的压缩工具
+
+如何判断压缩工具（参考自Byxs20的博客）
+
+|     压缩工具     | VersionMadeBy(压缩所用版本) |
+| :----------: | :-------------------: |
+| Bandzip 7.06 |          20           |
+|  Windows自带   |          20           |
+|    WinRAR    |          20           |
+| WinRAR 4.20  |          31           |
+| WinRAR 5.70  |          31           |
+|    7-Zip     |          63           |
+
+**bkcrack常用参数**
+
+```bash
+-c 要解密的文件
+-P 已知明文所在的压缩包
+-p 已知的明文部分
+-x 压缩包内目标文件的偏移地址  部分已知明文值
+-C 加密压缩包
+-o offset  -p参数指定的明文在压缩包内目标文件的偏移量
+-k 后面加破解出的三段密钥
+-d 后面加解密后数据的保存位置
+-U 修改压缩包密码并导出	bkcrack -C flag.zip -c hint.jpg -k afb9fee3 f8795353 f6de1d4e -U out.zip 114514
+```
+
+
 #### 已知所有的明文或三段密钥
 
 方法一、直接使用Advanced Archive Password Recovery破解
@@ -3347,46 +3378,6 @@ Wrote unlocked archive.
 &gt; -U 参数用于修改压缩包密码并导出
 
 #### 已知部分明文
-
-**利用bkcrack进行攻击**
-
-&gt; 参考资料:
-&gt; 
-&gt; https://www.freebuf.com/articles/network/255145.html
-&gt; 
-&gt; https://byxs20.github.io/posts/30731.html#%E6%80%BB%E7%BB%93
-
-该利用方法的具体要求如下：
-
-&gt; 1. 至少已知明文的12个字节及偏移，其中至少8字节需要连续
-&gt; 
-&gt; 2. 明文对应的**加密算法**需要是：`ZipCrypto`（Tips：**压缩算法**不一定要是`Store`，有时候`Deflate`也可以）
-&gt; 
-&gt; 1. 需要知道出题人用的压缩工具
-
-如何判断压缩工具（参考自Byxs20的博客）
-
-|     压缩工具     | VersionMadeBy(压缩所用版本) |
-| :----------: | :-------------------: |
-| Bandzip 7.06 |          20           |
-|  Windows自带   |          20           |
-| WinRAR 4.20  |          31           |
-| WinRAR 5.70  |          31           |
-|    7-Zip     |          63           |
-
-**bkcrack常用参数**
-
-```bash
--c 要解密的文件
--P 已知明文所在的压缩包
--p 已知的明文部分
--x 压缩包内目标文件的偏移地址  部分已知明文值
--C 加密压缩包
--o offset  -p参数指定的明文在压缩包内目标文件的偏移量
--k 后面加破解出的三段密钥
--d 后面加解密后数据的保存位置
--U 修改压缩包密码并导出	bkcrack -C flag.zip -c hint.jpg -k afb9fee3 f8795353 f6de1d4e -U out.zip 114514
-```
 
 ##### 1)利用明文文本破解
 
@@ -3564,7 +3555,13 @@ as text: ���
 &gt; 
 &gt; 2. 这里`echo -n xxx &gt; 1.txt`要注意在Windows下使用默认是`utf-16LE`编码，Linux下使用才是`utf-8`，这个原因也会导致攻击失败
 &gt; 
-&gt; 3. 这里密钥爆破成功后推荐使用-U改密码导出压缩包，不推荐使用-d直接解出对应文件，因为如果文件是`deflate`压缩的直接解出来会乱码
+&gt; 3. 这里密钥爆破成功后推荐使用-U改密码导出压缩包，不推荐使用-d直接解出对应文件，因为文件如果是`deflate`压缩的直接解出来会乱码
+
+&gt; 参考资料:
+&gt; 
+&gt; https://www.freebuf.com/articles/network/255145.html
+&gt; 
+&gt; https://byxs20.github.io/posts/30731.html#%E6%80%BB%E7%BB%93
 
 ### 10、直接补上Zlib头解压
 

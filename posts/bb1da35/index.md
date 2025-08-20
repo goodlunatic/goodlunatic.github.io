@@ -1082,11 +1082,11 @@ if __name__ == &#34;__main__&#34;:
 
 https://noob-atbash.github.io/CTF-writeups/cyberwar/crypto/chal-5.html
 
-尝试用文中的四个弱密钥去解密，发现有一般的数据可以正常解出来
+尝试用文中的四个弱密钥去解密，发现有一半的数据可以正常解出来
 
 并且可以得到解密后明文的开头是 `FLAG_HEADER:DATA`
 
-然后仔细看了[这篇帖子](https://crypto.stackexchange.com/questions/7938/may-the-problem-with-des-using-ofb-mode-be-generalized-for-all-feistel-ciphers)后，尝试用  `\x00 \xFF \x1E \xE` 去生成密钥爆破
+然后仔细看了[这篇帖子](https://crypto.stackexchange.com/questions/7938/may-the-problem-with-des-using-ofb-mode-be-generalized-for-all-feistel-ciphers)后，尝试用  `\x00 \xFF \xF0 \x0F \x1E \xE1` 去生成密钥爆破
 
 ```python
 from Crypto.Cipher import DES
