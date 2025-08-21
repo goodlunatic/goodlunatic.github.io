@@ -8,7 +8,13 @@
 
 {{&lt; admonition type=success title=&#34;Before All&#34; open=true &gt;}}
 
-**文章创作不易，感谢你能看到这里，转载请标明出处**
+**文章更新周期较长，如有疏漏，欢迎指正**
+
+**若你也对Misc感兴趣或者对本文中的内容有疑问，欢迎加入我的交流群**
+
+**进群后可第一时间获取文章后续更新，入群详见 [About](https://goodlunatic.github.io/about/)** 
+
+**文章创作不易，感谢你能看到这里，转载还请标明出处**
 
 {{&lt; /admonition &gt;}}
 
@@ -183,7 +189,7 @@ print(long_to_bytes(int(data,8)))
 6、base85                       flag         Ao(mg
 7、base91                       flag         @iH&lt;Z
 8、base92                       flag         F#S&lt;I
-9、base100                      flag         👝👣👘👞
+9、base100(emoji)               flag         👝👣👘👞
 10、base1024                    flag
 11、base2048                    flag         ڥڊװ
 12、base65535                   flag         ꍦ鱡

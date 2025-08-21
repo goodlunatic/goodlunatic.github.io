@@ -3,11 +3,13 @@
 
 # **🔥 Introduce**
 
-- **ID：Lunatic (Sometimes use Citanul)**
+  **ID：Lunatic (Sometimes use Citanul)**
 
-- **CTF@Misc | Pre-Master’s Student in BUPT-SCSS | 4th Captain of [A1natas Team](https://www.a1natas.com/)**
+**CTF@Misc | Master’s Student in BUPT-SCSS | 4th Captain of [A1natas Team](https://www.a1natas.com/)**
 
-- **Current Research Interest：Mobile Internet Security | Cellular Network Security | ...**
+**Current Research Interest：Mobile Internet Security | Cellular Network Security | ...**
+
+&gt; **Hi there! I’m a master&#39;s student in BUPT, College of Cyberspace Security, class of 2025(advised by Assoc. Prof. Junsong Fu). During my undergraduate studies, I played CTF competitions and was the 4th captain of the A1natas Team from Zhejiang Normal University, advised by Prof. Hao Peng and Dr. Ming Zhong, where I specialized in Misc challenges. I&#39;m an enthusiast of Steganography and Forensics, and I’ve also competed with union teams like Mini-Venom(ChaMD5) and XMCVE-Polaris(星盟安全). But Nowadays, I hack purely out of my own curiosity and passion.**
 
 # **💬 Contact Me**
 
@@ -59,6 +61,7 @@
 |               **酒醉太平**                |  **6.66 x 💎**  |
 |                **1ymt1c3**                |  **6.66 x 💎**  |
 |          **能给卑职一个明示吗**           |  **6.66 x 💎**  |
+|                  **飞**                   |  **6.66 x 💎**  |
 |                **场_room**                |  **6.00 x 💎**  |
 |                 **\*儒**                  |  **5.00 x 💎**  |
 |                   **K**                   |  **5.00 x 💎**  |
@@ -76,13 +79,13 @@
 
 **但是由于个人精力有限，我可能没法及时地逐一回复，因此打算建一个QQ交流群**
 
-**大家如果对我博客中的内容有任何问题，都可以在群里咨询，然后我也会发一些脚本工具啥的**
+**大家如果对我博客中的内容有任何问题，都可以在群里咨询，然后我也会发一些赛题和题解工具啥的**
 
 **目前群里唯一的一条群规就是：不存在任何的技术歧视（毕竟大家都是一点点学过来的）**
 
-**如果您喜欢我的博客，并且为我捐助了（数额不限），可以通过邮箱或者QQ联系我拉您进群**
+**如果您喜欢我的博客，并且为其捐赠了（数额不限），可以通过邮箱或者QQ联系我拉您进群**
 
-**博客我后续也还是会照常更新，感谢各位同好们的支持**
+**人海茫茫，相遇不易，感谢你能看到这里，博客后续也还是会照常更新，感谢各位同好们的支持**
 
 {{&lt; /admonition &gt;}}
 
