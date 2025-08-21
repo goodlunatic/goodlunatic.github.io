@@ -1208,6 +1208,36 @@ with open(&#39;possible_passwords.txt&#39;, &#39;w&#39;) as f:
 
 输入密码解压后即可得到最后的flag：`nsfocus{xiaoming13351231732}`
 
+## 题目名称 安全杂项1(交通运输行业大赛)
+
+解压附件压缩包，得到一个wav音频和一个加密的压缩包
+
+![](imgs/image-20250821104833581.png)
+
+用audacity打开音频查看频谱图，调一下频率上下限和灰度显示
+
+可以得到压缩包解压密码的正则
+
+![](imgs/image-20250821105003952.png)
+
+![](imgs/image-20250821105009023.png)
+
+然后掩码爆破即可得到压缩包的解压密码：`Kaelin0808`
+
+![](imgs/image-20250821105026931.png)
+
+用得到的密码解压后，msg.txt中的内容是一串emoji
+
+```
+👝👣👘👞👲👛👜🐰🐩👘👛👜🐪🐤🐫🐬👚🐭🐤🐮🐩👙🐯🐤🐩👝👝👛🐤👝🐭👚👚👙🐨👚🐧🐪👛👛🐪👴
+```
+
+直接base100解密即可得到最后的flag: `flag{de92ade3-45c6-72b8-2ffd-f6ccb1c03dd3}`
+
+![](imgs/image-20250821105123189.png)
+
+
+
 ---
 
 > Author: [Lunatic](https://goodlunatic.github.io)  
