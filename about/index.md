@@ -3,7 +3,7 @@
 
 # **🔥 Introduce**
 
-  **ID：Lunatic (Sometimes use Citanul)**
+**ID：Lunatic (Sometimes use Citanul)**
 
 **CTF@Misc | Master’s Student in BUPT-SCSS | 4th Captain of [A1natas Team](https://www.a1natas.com/)**
 
@@ -47,6 +47,7 @@
 |                 **yuyy**                  | **20.00 x 💎**  |
 |               **李上网来**                | **19.00 x 💎**  |
 |                  **biu**                  | **16.16 x 💎**  |
+|                **WALL·E**                 | **15.00 x 💎**  |
 |                 **cming**                 | **10.00 x 💎**  |
 |                **reverse**                | **10.00 x 💎**  |
 |                 **\*忘**                  |  **9.99 x 💎**  |
