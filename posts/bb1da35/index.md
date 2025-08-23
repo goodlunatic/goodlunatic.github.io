@@ -1236,6 +1236,42 @@ with open(&#39;possible_passwords.txt&#39;, &#39;w&#39;) as f:
 
 ![](imgs/image-20250821105123189.png)
 
+## 题目名称 file.png(某内部赛)
+
+解压附件压缩包，得到一张file.png，直接拿zsteg扫一下
+
+![](imgs/image-20250823102547525.png)
+
+发现LSB中隐写了一张PNG图片，尝试用`zsteg -e b3,bgr,lsb,xy file.png &gt; out.png`命令导出
+
+可以得到下面这张图片
+
+![](imgs/image-20250823102655772.png)
+
+010打开，发现末尾藏了一个压缩包
+
+![](imgs/image-20250823102741443.png)
+
+提取出来解压或者直接在010中提取，即可得到最后的flag：`flag{Least_Significant_Bit_Steganography}`
+
+## 题目名称 easy_crypto
+
+解压附件压缩包，可以得到一个key.txt还有一个加密的flag.rar
+
+key.txt中的内容如下：
+
+&gt; 1091091153210977773210977109457732774646324677831153277464546324611511545838377321098377
+
+将数字分割到32-126范围上转ASCII，然后再大小写 m 转成 - ，大小写 s 转成 . ，解摩斯得到压缩包解压密码：`GO0DLC$K`
+
+![](imgs/image-20250823103211907.png)
+
+解压rar后得到一个多层base64套娃，循环解base64即可得到flag：`DASCTF{a3dcb4d229de6fde0db5686dee47145d}`
+
+![](imgs/image-20250823103458023.png)
+
+
+
 
 
 ---
