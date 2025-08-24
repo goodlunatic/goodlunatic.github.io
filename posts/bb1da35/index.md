@@ -1320,6 +1320,113 @@ key.txt中的内容如下：
 ![](imgs/image-20250824105235178.png)
 
 
+## 题目名称 file2
+
+解压附件压缩包，得到一个camera.png还有一个flag.zip
+
+flag.zip中的文件如下
+
+![](imgs/image-20250824181312451.png)
+
+一眼明文攻击，010打开发现标志位是0x14，因此猜测是Bandizip或者WinRAR压缩的
+
+![](imgs/image-20250824181522089.png)
+
+经过尝试，发现Bandizip不行，用WinRAR压缩的能正常明文攻击
+
+![](imgs/image-20250824181627646.png)
+
+用修改后的密码123解压即可得到flag：`flag{33fe6D4cE7MLd}`
+
+![](imgs/image-20250824181716085.png)
+
+## 题目名称 二维码画图
+
+附件给了下面这张jpg
+
+![](imgs/image-20250824181820652.png)
+
+010打开发现末尾藏了一个文件头被篡改的rar压缩包
+
+![](imgs/image-20250824181904776.png)
+
+提取出来并把文件头修复 `Rar!(52617221)` ，解压可以得到很多个0和1的嵌套目录
+
+![](imgs/image-20250824182037937.png)
+
+![](imgs/image-20250824182119059.png)
+
+目录最底层是一个 _ 文件，其中是二进制数据，根据题目名称，猜测就是二进制转二维码
+
+写个脚本提取并转换一下
+
+```python
+import os
+import sys
+from PIL import Image
+
+def dfs_traverse(current_path, contents):
+    &#34;&#34;&#34;使用DFS遍历目录并提取_文件内容&#34;&#34;&#34;
+    # 检查当前路径是否有_文件
+    underscore_file = os.path.join(current_path, &#34;_&#34;)
+    if os.path.exists(underscore_file):
+        try:
+            with open(underscore_file, &#39;r&#39;) as f:
+                contents.append(f.read().strip())
+        except Exception as e:
+            contents.append(f&#34;Error reading {underscore_file}: {str(e)}&#34;)
+    
+    # 按顺序检查0和1子目录（先0后1）
+    for subdir in [&#39;0&#39;, &#39;1&#39;]:
+        subdir_path = os.path.join(current_path, subdir)
+        if os.path.exists(subdir_path) and os.path.isdir(subdir_path):
+            dfs_traverse(subdir_path, contents)
+
+def extract_file_contents(root_dir):
+    &#34;&#34;&#34;提取目录中所有_文件的内容&#34;&#34;&#34;
+    contents = []
+    dfs_traverse(root_dir, contents)
+    return &#39;&#39;.join(contents)
+
+def draw_qrcode(data):
+    img = Image.new(&#39;RGB&#39;, (59, 59))
+    w,h = 59,59
+    for i in range(len(data)):
+        x = i % w
+        y = i // w
+        if data[i] == &#39;0&#39;:
+            img.putpixel((x, y), (255, 255, 255))
+        else:
+            img.putpixel((x, y), (0, 0, 0))
+    resized_img = img.resize((590, 590), Image.NEAREST)
+    # resized_img.show()
+    resized_img.save(&#39;qrcode.png&#39;)
+
+def main():
+    root_dir = &#39;./&#39;
+    contents = extract_file_contents(root_dir)
+    print(contents)
+    draw_qrcode(contents)
+
+    # Welcome, Key: 2339649336ce442c
+
+if __name__ == &#34;__main__&#34;:
+    main()
+```
+
+![](imgs/image-20250824182241025.png)
+
+扫码得到：`Welcome, Key: 2339649336ce442c`
+
+![](imgs/image-20250824182330161.png)
+
+回头去看提取出来的rar，发现末尾还有一个加密的zip压缩包
+
+![](imgs/image-20250824182426296.png)
+
+提取出来，然后输入之前得到的密码解压即可得到最后的flag：`flag{b9c8ab267048488298648cc3793fc498}`
+
+
 
 ---
 

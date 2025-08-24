@@ -2034,6 +2034,10 @@ if __name__ == &#34;__main__&#34;:
 
 题目附件： https://pan.baidu.com/s/1qQ94akilsReXwJeAgjltjg?pwd=s9dh 提取码: s9dh
 
+题面信息如下：
+
+&gt; This is my favorite Sakura photo, There is also a secret hidden in it. I need to make a backup.
+
 题目附件给了一个`secret.pcapng`的流量包文件，打开发现主要是USBMS流量（U盘流量）
 
 ![](imgs/image-20250321192933723.png)
