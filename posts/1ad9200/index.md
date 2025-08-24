@@ -569,6 +569,17 @@ def binary_to_gray(binary_str):
 
 逗号改成空格，拉入随波逐流CTF编码工具直接解密即可
 
+
+### RC4加密算法
+
+举个例子：
+
+```
+密文：VWap58FvOtV1VNlmdcyKiaNVhPsWQRFYqt/duezhcddcVXmz5zhQyoc7
+密钥：20250606
+明文：flag{edb99a94-f84d-e175-8a7d-e7f658789447}
+```
+
 ### DES加密算法
 
 DES加密算法的密钥是8字节，举个例子：
@@ -2087,6 +2098,8 @@ python2 cloacked-pixel-master/lsb.py extract 0.png out.data f78dcd383f1b574b
 用010提取数据扔进zlib脚本解压获得原始数据
 
 将异常的IDAT数据块去头去尾之后使用以下脚本解压
+
+&gt; 这里要注意的是 zlib 压缩数据流的文件头不一定是789C，还有可能是785E
 
 ```python
 import zlib
