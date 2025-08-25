@@ -301,9 +301,9 @@ MD5 加密后的密文都是十六进制字符
 
 &gt; 如果题目给了emoji但是没给密钥，可能就是base100编码
 
-### 词频分析：
+### 字频爆破
 
-给一段字符串，看着什么编码都不像然后也没啥规律的，可能是词频爆破
+给一段字符串，看着什么编码都不像然后也没啥规律的，可能是字频爆破
 
 可以尝试用在线网站[quipquip](https://quipqiup.com/)进行词频爆破
 
@@ -313,7 +313,7 @@ MD5 加密后的密文都是十六进制字符
 
 例题1-2025SUCTF-SU_forensics
 
-### 字频分析
+### 字频统计
 
 直接用`随波逐流CTF编码工具`统计每个字母出现的次数就行
 
@@ -337,6 +337,24 @@ MD5 加密后的密文都是十六进制字符
 # C替换为-, P替换为., D替换为空格即可
 CCPPDPCCCDCPDPPCDCPCPDCDPPCPDDCPCPDPCCPDCPPDCPPDPPCCPCDPCCCCDPPPDPPCCPCDCCDCCCCCDPPPCCDPPPDPD
 ```
+
+### 栅栏(fence)密码
+
+所谓栅栏密码，就是把要加密的明文分成N个一组，然后把每组的第1个字连起来，形成一段无规律的话。栅栏密码可以分为标准型和W型
+
+可以直接用随波逐流或者[在线网站](https://ctf.bugku.com/tool/railfence)解密
+
+有时候题目提示了栅栏密码，不一定是栅栏密码解密，也有可能是要用栅栏密码加密
+
+举个例子：
+
+&gt; 密文: eXV5d2V4eDV0OHc2ejEwNXt5dTgwNXUzMzl5MjcxNDAydn00OHQ=
+&gt; 
+&gt; base64_deocde: yuywexx5t8w6z105{yu805u339y271402v}48t
+&gt; 
+&gt; W型栅栏加密(偏移量为3): yetz{03728uwx58615y8539210v4tyxw0uuy4}
+&gt; 
+&gt; 凯撒密码: flag{03728bde58615f8539210c4afed0bbf4}
 
 ### vigenere(维吉尼亚)密码
 
@@ -2161,7 +2179,15 @@ Tips：这里有时候也可以不用补文件尾
 
 #### 5、apngdis_gui
 
-一张png图片还可能是apng，直接用`apngdis_gui`跑一下，可以分出两张相似的png
+一张后缀为.png的图片，还可能是apng格式的
+
+可以用exiftool看一下，apng格式是支持动图的，我们可以用`apngdis_gui`将每一帧分离出来
+
+然后每一帧图片里可能藏了二维码或者有盲水印
+
+例题1-2021 GKCTF 你知道apng吗
+
+例题2-2022 HGAME Week4摆烂
 
 #### 6、CVE-2023-28303 截图工具漏洞
 

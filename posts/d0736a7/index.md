@@ -2164,6 +2164,51 @@ if __name__ == &#39;__main__&#39;:
 
 但是发现转换出来的图也并不是二维码
 
+## 题目名称 dd
+
+&gt; 题目附件： https://pan.baidu.com/s/1dprb5uPFR310ofJU6xFKrA?pwd=a1e5 提取码: a1e5
+
+附件给了一张dd.png，用exiftool看一下发现是apng
+
+![](imgs/image-20250825182425564.png)
+
+用 apngdis_gui 跑一下，分割后可以得到28张PNG图片
+
+尝试用zsteg、stegsolve、盲水印提取工具分析了一下得到的PNG图片，没有得到有效的信息
+
+## 题目名称 ezpng
+
+&gt; 题目附件： https://pan.baidu.com/s/1TfkbCACGFVLp6cWSlskP8g?pwd=jbgi 提取码: jbgi
+
+
+题目附件给了一个pocky.txt，内容大致如下
+
+![](imgs/image-20250825183038663.png)
+
+用CyberChef中的From Binary解码后可以得到下面这张JPG图片
+
+![](imgs/image-20250825183141730.png)
+
+010打开发现末尾藏了一个zip压缩包
+
+![](imgs/image-20250825183206571.png)
+
+提取出来后得到password.png和加密的cookies.zip
+
+其中password.png的数据被逆置了，而且删除了PNG头
+
+尝试修复后可以得到下图：
+
+![](imgs/image-20250825183354601.png)
+
+猜测需要从上图中获取压缩包的解压密码
+
+cookies.zip中的内容如下：
+
+![](imgs/image-20250825183448035.png)
+
+
+
 ---
 
 > Author: [Lunatic](https://goodlunatic.github.io)  

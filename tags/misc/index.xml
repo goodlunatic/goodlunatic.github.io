@@ -4,7 +4,16 @@
     <link>https://goodlunatic.github.io/tags/misc/</link>
     <description>Misc - Tag | ⚡Lunatic BLOG⚡</description>
     <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>goodlunatic0@gmail.com (Lunatic)</managingEditor>
-      <webMaster>goodlunatic0@gmail.com (Lunatic)</webMaster><lastBuildDate>Sun, 24 Aug 2025 18:20:11 &#43;0800</lastBuildDate><atom:link href="https://goodlunatic.github.io/tags/misc/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>goodlunatic0@gmail.com (Lunatic)</webMaster><lastBuildDate>Mon, 25 Aug 2025 12:10:17 &#43;0800</lastBuildDate><atom:link href="https://goodlunatic.github.io/tags/misc/" rel="self" type="application/rss+xml" /><item>
+  <title>CTF-Misc Guide</title>
+  <link>https://goodlunatic.github.io/posts/1ad9200/</link>
+  <pubDate>Mon, 25 Aug 2025 12:10:17 &#43;0800</pubDate>
+  <author>Lunatic</author>
+  <guid>https://goodlunatic.github.io/posts/1ad9200/</guid>
+  <description><![CDATA[<p><strong>最开始接触CTF时，学的最多的就是Misc，各种编码与加密还有各种软件的使用等等</strong></p>
+<p><strong>但Misc涉及的范围实在太广了，于是就想着一边学习一边记录，因而就有了这篇文章</strong></p>]]></description>
+</item>
+<item>
   <title>群友们问的一些来路不明的题</title>
   <link>https://goodlunatic.github.io/posts/bb1da35/</link>
   <pubDate>Sun, 24 Aug 2025 18:20:11 &#43;0800</pubDate>
@@ -20,15 +29,6 @@
   <guid>https://goodlunatic.github.io/posts/d0736a7/</guid>
   <description><![CDATA[<p><strong>用这篇博客来记录一下本人在比赛中遇到的一些疑难题（本人尚未解出的题）</strong></p>
 <p><strong>如果师傅们有进一步的想法或者做出来了，可以联系我一起交流一下解题思路</strong></p>]]></description>
-</item>
-<item>
-  <title>CTF-Misc Guide</title>
-  <link>https://goodlunatic.github.io/posts/1ad9200/</link>
-  <pubDate>Sat, 23 Aug 2025 12:10:17 &#43;0800</pubDate>
-  <author>Lunatic</author>
-  <guid>https://goodlunatic.github.io/posts/1ad9200/</guid>
-  <description><![CDATA[<p><strong>最开始接触CTF时，学的最多的就是Misc，各种编码与加密还有各种软件的使用等等</strong></p>
-<p><strong>但Misc涉及的范围实在太广了，于是就想着一边学习一边记录，因而就有了这篇文章</strong></p>]]></description>
 </item>
 <item>
   <title>2025 “天一永安杯”宁波市赛初赛 Misc Writeup</title>
