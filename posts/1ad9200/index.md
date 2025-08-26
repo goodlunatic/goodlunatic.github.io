@@ -2074,7 +2074,7 @@ https://www.a.tools/Tool.php?Id=100
 
 010打开图片改宽高即可，17~20字节是宽，21~24字节是高
 
-当然也可以用老铜匠的脚本直接爆破图片宽高
+当然也可以用PuzzleSolver或随波逐流工具直接爆破图片宽高
 
 #### 2、LSB隐写:
 
@@ -2082,31 +2082,149 @@ https://www.a.tools/Tool.php?Id=100
 
 ```bash
 # 用zsteg快速查看
-zsteg -a (文件名)  #查看各个通道的lsb数据
-# 提取文件并导出
+zsteg -a (文件名)
+# 提取数据并导出
 zsteg -e b1,r,lsb,xy 3.png &gt; 123.jpg
 ```
 
-有时候LSB会隐写图片，zsteg容易看漏，所以还是要用`stegsolve.jar`过一遍
+有时候图片隐写的内容，zsteg识别不出来，因此最保险的还是用`stegsolve`肉眼过一遍
+
+然后根据LSB隐写的痕迹尝试手动提取
+
+&gt; 这里详细讲一下zsteg扫出来的参数的含义：
+&gt; 
+&gt; 参考链接：https://www.anquanke.com/post/id/189154
+&gt; 
+&gt; -c：rgba的组合理解，r3g2b3则表示r通道的低3bit，g通道2bit，r通道3bit，如果设置为rbg不加数字的，则表示每个通道读取bit数相同，bit数由-b参数设置
+&gt; 
+&gt; -b：设置每个通道读取的bit数，从低位开始，如果不是顺序的低位开始，则可以使用掩码，比如取最低位和最高位，则可以-b 10000001或者-b 0x81
+&gt; 
+&gt; -o：设置行列的读取顺序，xy就是从上到下，从左到右，xy任意有大写的，表示倒序，其中当图片是BMP时，bY的顺序和xY是一样的，Yb和Yx的顺序是一样的
+&gt; 
+&gt; 行列顺序：zsteg可以通过-o选项设置8种组合（xy,xY,Xy,XY,yx,yX,Yx,YX），Stegsolve只有Extract By Row or Column，对应到zsteg的-o选项上就是xy和yx
+&gt; 
+&gt; 字节顺序：Stegsolve字节上的读取顺序与Bit Order选项有关，如果设置了MSBFirst，是从高位开始读取，LSBFirst是从低位开始读取。zsteg只能从高位开始读，比如-b 0x81，在读取不同通道数据时，都是先读取一个字节的高位，再读取该字节的低位。对应到Stegsolve就是MSBFirst的选项。
+&gt; 
+&gt; 组合顺序：zsteg的--lsb和--msb决定了组合顺序：lsb-大端存放，msb-小端存放。stegsolve的MSBFirst表示从高位读取到低位，LSBFirst表示从低位读取到高位。只有当通道勾选的Bit个数大于1时，该选项才会影响返回的结果。
 
  **有密钥的情况（cloacked-pixel）**
 
-直接下载开源项目到本地，输入命令解密即可
+直接下载开源项目到本地，根据`README`输入命令解密即可
 
-如果懒得敲命令行，也可以用`PuzzleSolver`解密
+如果懒得敲命令行，也可以用`PuzzleSolver`辅助解密
 
-```
-# 原项目
-https://github.com/livz/cloacked-pixel
-# Python3重写的版本
-https://github.com/Grazee/cloacked-pixel-python3
-```
+&gt; 原项目: https://github.com/livz/cloacked-pixel
+&gt; 
+&gt; Python3重写的版本: https://github.com/Grazee/cloacked-pixel-python3
+
 
 ```bash
 python2 cloacked-pixel-master/lsb.py extract 0.png out.data f78dcd383f1b574b
 # 0.png是隐写后的图片
 # out.data是隐写内容保存的位置
 # f78dcd383f1b574b是密钥
+```
+
+用Ai搓了一个爆破clocked-pixel密钥的脚本，将其放到clocked-pixel-python3目录下运行即可
+```python
+import struct
+from Crypto.Util.number import long_to_bytes
+from PIL import Image
+from crypt import AESCipher
+from concurrent.futures import ThreadPoolExecutor, as_completed
+import numpy as np
+
+# Assemble an array of bits into a binary file
+def assemble(v):
+    bs = b&#34;&#34;
+    length = len(v)
+    for idx in range(0, length, 8):
+        b = 0
+        end_idx = min(idx &#43; 8, length)
+        for i in range(idx, end_idx):
+            b = (b &lt;&lt; 1) &#43; v[i]
+        bs &#43;= long_to_bytes(b)
+    
+    try:
+        payload_size = struct.unpack(&#34;i&#34;, bs[:4])[0]
+        return bs[4: payload_size &#43; 4]
+    except:
+        return None
+
+# 批量解密函数
+def decrypt_batch(passwords, data_out):
+    results = []
+    for passwd in passwords:
+        try:
+            cipher = AESCipher(passwd)
+            data_dec = cipher.decrypt(data_out)
+            if data_dec and (b&#39;ctf{&#39; in data_dec or b&#39;CTF{&#39; in data_dec or b&#39;flag{&#39; in data_dec or b&#39;FLAG{&#39; in data_dec or b&#39;\x50\x4b\x03\x04&#39; in data_dec or b&#39;\x89\x50\x4e\x47&#39; in data_dec):
+                print(f&#39;[&#43;] Found password: {passwd}&#39;)
+                print(data_dec)
+        except:
+            continue
+    return None, None
+
+# Extract data embedded into LSB of the input file
+def burp_func(png_path,dic_path):
+    with open(dic_path, &#39;r&#39;) as f:
+        passwd_list = [p.strip() for p in f.readlines() if p.strip()]
+    print(f&#39;[&#43;] Loaded {len(passwd_list)} passwords&#39;)
+    
+    # 使用numpy加速图像处理
+    img = Image.open(png_path)
+    width, height = img.size
+    print(f&#34;[&#43;] Image size: {width}x{height} pixels.&#34;)
+    
+    # 转换为numpy数组进行快速处理
+    img_array = np.array(img.convert(&#34;RGBA&#34;))
+    
+    # 一次性提取所有LSB
+    v = []
+    # 使用numpy的位操作加速
+    red_lsb = (img_array[:, :, 0] &amp; 1).flatten()
+    green_lsb = (img_array[:, :, 1] &amp; 1).flatten()
+    blue_lsb = (img_array[:, :, 2] &amp; 1).flatten()
+    
+    # 交错排列RGB的LSB
+    v = np.empty(red_lsb.size &#43; green_lsb.size &#43; blue_lsb.size, dtype=np.uint8)
+    v[0::3] = red_lsb
+    v[1::3] = green_lsb
+    v[2::3] = blue_lsb
+    
+    data_out = assemble(v.tolist())
+    if data_out is None:
+        print(&#34;[-] Failed to assemble data from LSBs&#34;)
+        return
+
+    # 多线程爆破密码
+    num_threads = 8
+    batch_size = max(1, len(passwd_list) // num_threads)
+    
+    print(f&#34;[*] Starting multi-threaded decryption with {num_threads} threads...&#34;)
+    
+    with ThreadPoolExecutor(max_workers=num_threads) as executor:
+        futures = []
+        
+        # 分批处理密码
+        for i in range(0, len(passwd_list), batch_size):
+            batch = passwd_list[i:i &#43; batch_size]
+            futures.append(executor.submit(decrypt_batch, batch, data_out))
+        
+        # 等待结果
+        for future in as_completed(futures):
+            password, decrypted_data = future.result()
+            if password and decrypted_data:
+                print(f&#39;[&#43;] Found password: {password}&#39;)
+                print(decrypted_data)
+                # 立即关闭其他线程
+                executor.shutdown(wait=False)
+                return
+
+if __name__ == &#34;__main__&#34;:
+    png_path = &#39;steg.png&#39;
+    dic_path = &#39;passwd_list.txt&#39;
+    burp_func(png_path,dic_path)
 ```
 
 #### 3、IDAT块隐写
@@ -2322,6 +2440,8 @@ JPG图片的`jsteg隐写`可以直接用下面这个工具一把梭
 假如关键数据放到 jpg 文件尾前面，010可能不会报错，这时候就需要我们肉眼丁真手动提取
 
 ### BMP思路
+
+&gt; BMP图片通道排列顺序是BGR
 
 #### 1、bmp宽高爆破：
 
