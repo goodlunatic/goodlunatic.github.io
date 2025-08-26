@@ -442,18 +442,15 @@ For help on a specific command, type &#39;hh(&lt;command&gt;)&#39;
 #### Volatility3
 
 ```bash
-# 查看当前都有哪些 Profile 可用
-vol3.py IsfInfo | grep linux
-# 查看bash历史记录
-vol3.py -f 1.mem linux.bash
-# 扫描进程
-vol3.py -f 1.mem linux.pslist
-# 列出子进程
-vol3.py -f 1.mem linux.pstree
-# 扫描文件
-```
-
-```
+	# 查看当前都有哪些 Profile 可用
+	vol3.py IsfInfo | grep linux
+	# 查看bash历史记录
+	vol3.py -f 1.mem linux.bash
+	# 扫描进程
+	vol3.py -f 1.mem linux.pslist
+	# 列出子进程
+	vol3.py -f 1.mem linux.pstree
+	
     linux.bash.Bash     Recovers bash command history from memory.
     linux.capabilities.Capabilities
                         Lists process capabilities
