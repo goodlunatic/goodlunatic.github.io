@@ -4,7 +4,15 @@
     <link>https://goodlunatic.github.io/posts/</link>
     <description>All Posts | ⚡Lunatic BLOG⚡</description>
     <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>goodlunatic0@gmail.com (Lunatic)</managingEditor>
-      <webMaster>goodlunatic0@gmail.com (Lunatic)</webMaster><lastBuildDate>Mon, 25 Aug 2025 12:10:17 &#43;0800</lastBuildDate><atom:link href="https://goodlunatic.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>goodlunatic0@gmail.com (Lunatic)</webMaster><lastBuildDate>Wed, 27 Aug 2025 22:34:12 &#43;0800</lastBuildDate><atom:link href="https://goodlunatic.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+  <title>Misc-Forensics</title>
+  <link>https://goodlunatic.github.io/posts/761da51/</link>
+  <pubDate>Wed, 27 Aug 2025 22:34:12 &#43;0800</pubDate>
+  <author>Lunatic</author>
+  <guid>https://goodlunatic.github.io/posts/761da51/</guid>
+  <description><![CDATA[<p><strong>This is a simple summary of digital forensics .</strong></p>]]></description>
+</item>
+<item>
   <title>CTF-Misc Guide</title>
   <link>https://goodlunatic.github.io/posts/1ad9200/</link>
   <pubDate>Mon, 25 Aug 2025 12:10:17 &#43;0800</pubDate>
@@ -82,14 +90,6 @@
   <guid>https://goodlunatic.github.io/posts/ca974cb/</guid>
   <description><![CDATA[<p><strong>在学习爬虫的过程中，发现有时候需要用到Frida，因此就想着学习一下</strong></p>
 <p><strong>之前经常听到队友念叨 FridaHook，现在终于有机会来学一下里面具体的内容了</strong></p>]]></description>
-</item>
-<item>
-  <title>Misc-Network Traffic Analysis</title>
-  <link>https://goodlunatic.github.io/posts/5422d65/</link>
-  <pubDate>Thu, 15 May 2025 10:15:27 &#43;0800</pubDate>
-  <author>Lunatic</author>
-  <guid>https://goodlunatic.github.io/posts/5422d65/</guid>
-  <description><![CDATA[<p><strong>This is a Simple Guide for Network Traffic Analysis.</strong></p>]]></description>
 </item>
 </channel>
 </rss>

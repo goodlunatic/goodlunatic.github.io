@@ -181,126 +181,205 @@ dat - 无法导出可以加上 -u 参数：volatility -f mem.data dumpfiles -r p
 
 ### Linux内存取证
 
+&gt; Linux内存取证这一块，网上的教程大都比较乱，因此打算自己好好写一篇教程
+
 取证过程中一定要记得查看镜像桌面上的文件！
+
+不论是制作vol2还是vol3的符号文件，都可以先用vol3确定一下内存镜像的版本
+
+```bash
+python3 volatility3/vol.py -f Ez_Linux.mem banner
+
+Volatility 3 Framework 2.26.2
+Progress:  100.00		PDB scanning finished
+Offset	Banner
+
+0x536001a0	Linux version 5.4.0-100-generic (buildd@lcy02-amd64-002) (gcc version 9.3.0 (Ubuntu 9.3.0-17ubuntu1~20.04)) #113-Ubuntu SMP Thu Feb 3 18:43:29 UTC 2022 (Ubuntu 5.4.0-100.113-generic 5.4.166)
+0x5459fe14	Linux version 5.4.0-100-generic (buildd@lcy02-amd64-002) (gcc version 9.3.0 (Ubuntu 9.3.0-17ubuntu1~20.04)) #113-Ubuntu SMP Thu Feb 3 18:43:29 UTC 2022 (Ubuntu 5.4.0-100.113-generic 5.4.166)
+0x7272ccc8	Linux version 5.4.0-100-generic (buildd@lcy02-amd64-002) (gcc version 9.3.0 (Ubuntu 9.3.0-17ubuntu1~20.04)) #113-Ubuntu SMP Thu Feb 3 18:43:29 UTC 2022 (Ubuntu 5.4.0-100.113-generic 5.4.166)
+0x7bd00010	Linux version 5.4.0-100-generic (buildd@lcy02-amd64-002) (gcc version 9.3.0 (Ubuntu 9.3.0-17ubuntu1~20.04)) #113-Ubuntu SMP Thu Feb 3 18:43:29 UTC 2022 (Ubuntu 5.4.0-100.113-generic 5.4.166)
+```
+
 
 #### 制作  Profile(Vol2)  的详细过程
 
-**Identify the profile for Linux**
+&gt; 由于官方的vol2自带的一些原因，原版的vol2不支持Ubuntu22.04及以上版本Profile的制作及使用，但是可以根据以下参考链接对vol2进行一些修改，以便对Ubuntu22.04及以上版本提供支持
+&gt; 参考链接：
+&gt; 
+&gt; https://treasure-house.randark.site/blog/2023-10-25-MemoryForensic-Test
+&gt; 
+&gt; https://github.com/volatilityfoundation/volatility/issues/828
+&gt; 
+&gt; https://github.com/volatilityfoundation/volatility/pull/852
+
+**在自己动手制作Profile前，可以先去这个仓库找找有没有已经做好的 [Github](https://github.com/volatilityfoundation/profiles/tree/master/Linux)**
+
+**如果很遗憾找不到需要的Profile，就需要进行下面的步骤，自己手动制作Profile了**
+
+一个vol2的Profile的结构如下：其实一共就两个文件（system.map以及module.dwarf）
 
 ```bash
-strings mem | grep -i &#39;Linux version&#39; | uniq
+├── Ubuntu_5.4.0-100_5.4.0-100.113
+│   ├── module.dwarf
+│   └── System.map-5.4.0-100-generic
+```
+
+将 `module.dwarf` 和 `System.map` 用deflate压缩算法压缩成一个zip压缩包放到`volatility/volatility/plugins/overlays/linux`目录下即可
+
+因为懒得用Vmware虚拟机，所以我这里就用Docker来制作Profile了
+
+为了帮助读者理解Profile的制作过程，我就举了下面这几个例子
+
+**制作模版已开源在 [goodlunatic/Docker-ProfileMaker-vol2)](https://github.com/goodlunatic/Docker-ProfileMaker-vol2)**
+
+**这里制作的所有符号文件都已开源在 [goodlunatic/Profile-and-SymbolTables-For-Volatility](https://github.com/goodlunatic/Profile-and-SymbolTables-For-Volatility)**
+
+##### 2023 强网杯-你找到PNG了吗(Ubuntu20.04)
+
+&gt; Linux version 5.4.0-100-generic (buildd@lcy02-amd64-002) (gcc version 9.3.0 (Ubuntu 9.3.0-17ubuntu1~20.04)) #113-Ubuntu SMP Thu Feb 3 18:43:29 UTC 2022 (Ubuntu 5.4.0-100.113-generic 5.4.166)
+
+用Docker制作镜像一共需要以下几个文件，部分文件可以到下面这个链接中下载：
+
+https://mirrors.ustc.edu.cn/ubuntu/pool/main/l/linux/
+
+```bash
+├── dockerfile
+└── src
+    ├── linux-headers-5.4.0-100_5.4.0-100.113_all.deb
+    ├── linux-headers-5.4.0-100-generic_5.4.0-100.113_amd64.deb
+    ├── linux-modules-5.4.0-100-generic_5.4.0-100.113_amd64.deb
+    └── tools.zip
+# dockerfile是自己写的用于构建Docker镜像的脚本
+# tools.zip 是从 volatility/tools 保存并压缩的
+# linux-headers-5.4.0-100_5.4.0-100.113_all.deb 是通用内核头文件
+# linux-headers-5.4.0-100-generic_5.4.0-100.113_amd64.deb 是特定架构的内核头文件
+# linux-modules-5.4.0-100-generic_5.4.0-100.113_amd64.deb 是内核模块包
+```
+
+首先我们要去解压内核模块包：linux-modules-5.4.0-100-generic_5.4.0-100.113_amd64.deb
+
+从 `data/boot/System.map-5.4.0-100-generic` 提取system.map
+
+然后编写以下dockerfile构建镜像
+
+```dockerfile
+FROM ubuntu:20.04
+
+# 将环境设置为非交互环境
+ENV DEBIAN_FRONTEND=noninteractive
+
+COPY ./src/ /src/
+
+RUN sed -i &#39;s/archive.ubuntu.com/mirrors.ustc.edu.cn/g&#39; /etc/apt/sources.list \
+    &amp;&amp; sed -i &#39;s/security.ubuntu.com/mirrors.ustc.edu.cn/g&#39; /etc/apt/sources.list \
+	&amp;&amp; apt update --no-install-recommends \
+    &amp;&amp; apt install -y gcc dwarfdump build-essential unzip kmod linux-base
+
+WORKDIR /src
+
+RUN unzip tools.zip \
+    # 需要根据实际的内核版本修改此处
+    &amp;&amp; dpkg -i linux-headers-5.4.0-100_5.4.0-100.113_all.deb \
+    &amp;&amp; dpkg -i linux-headers-5.4.0-100-generic_5.4.0-100.113_amd64.deb
+
+WORKDIR /src/tools/linux
+
+RUN echo &#39;MODULE_LICENSE(&#34;GPL&#34;);&#39; &gt;&gt; module.c &amp;&amp; \
+    # 需要根据实际的内核版本修改此处
+    sed -i &#39;s/$(shell uname -r)/5.4.0-100-generic/g&#39; Makefile &amp;&amp; \
+    make &amp;&amp; \
+    mv module.dwarf /tmp
 ```
 
 ```bash
-Linux version 5.10.0-21-amd64 (debian-kernel@lists.debian.org) (gcc-10 (Debian 10.2.1-6) 10.2.1 20210110, GNU ld (GNU Binutils for Debian) 2.35.2) #1 SMP Debian 5.10.162-1 (2023-01-21)
+# 运行以下命令构建并运行容器，并把module.dwarf从/tmp目录中复制出来
+# 我这里由于用的是ARM架构的Macbook，所以需要指定平台，x86的设备可以不写
+docker build --platform linux/amd64 -t profile .
+docker run --platform linux/amd64 --rm -it profile /bin/bash
 ```
 
-**Tips: Ubuntu 22.04 目前是不支持用 Vol2 进行取证的，必须使用 Vol3**
+最后将 `module.dwarf` 和 `System.map` 用deflate压缩算法压缩成一个zip压缩包放到`volatility/volatility/plugins/overlays/linux`目录下即可
+
+可以使用 `vol.py --info` 命令查看 Profile 是否能被成功识别
+
+##### 2023 0xGame oh-my-linux(Debian10.2)
+
+&gt; Linux version 5.10.0-21-amd64 (debian-kernel@lists.debian.org) (gcc-10 (Debian 10.2.1-6) 10.2.1 20210110, GNU ld (GNU Binutils for Debian) 2.35.2) #1 SMP Debian 5.10.162-1 (2023-01-21)
+
+内核文件下载链接：
+
+https://debian.sipwise.com/debian-security/pool/main/l/linux/
+
+制作这个Profile需要以下这几个文件
 
 ```bash
-# 例题：2022 Sekai CTF | symbolic-needs 1
-# 题目附件的内核版本：
-Ubuntu 22.04 Linux-version 5.15.0-43-generic
+├── dockerfile
+└── src
+    ├── linux-headers-5.10.0-21-amd64_5.10.162-1_amd64.deb
+    ├── linux-headers-5.10.0-21-common_5.10.162-1_all.deb
+    ├── linux-image-5.10.0-21-amd64-dbg_5.10.162-1_amd64.deb
+    └── tools.zip
 ```
 
-**Try to find profile on [Github](https://github.com/volatilityfoundation/profiles/tree/master/Linux)**
 
-如果找不到需要的profile，就需要进行下面的步骤，自己手动制作profile了
-
-**Make the profile by yourself**
-
-一个profile的结构如下：其实一共就两个文件
-
-```
-Debian5010\boot\System.map-2.6.26-2-amd64
-Debian5010\volatility\tools\linux\module.dwarf
-```
-
-这里以 Linux version 5.10.0-21-amd64 这个内核为例
-
-示例项目已开源在 [作者的Github仓库](https://github.com/goodlunatic/Docker-ProfileMaker-vol2)
-
-参考资料：[巨魔大佬的博客](https://treasure-house.randark.site/blog/2023-10-26-0xGame2023-oh-my-linux/)
-
-首先要到 [官方仓库](https://debian.sipwise.com/debian-security/pool/main/l/linux/)下载以下几个文件
-
-```
-linux-headers-5.10.0-21-amd64_5.10.162-1_amd64.deb
-linux-headers-5.10.0-21-common_5.10.162-1_all.deb
-linux-image-5.10.0-21-amd64-dbg_5.10.162-1_amd64.deb
-linux-image-5.10.0-21-amd64-unsigned_5.10.162-1_amd64.deb
-```
-
-然后解压 linux-image-5.10.0-21-amd64-dbg_5.10.162-1_amd64.deb 这个文件
-
-将下面这个文件复制出来
+首先我们需要从 `linux-image-5.10.0-21-amd64-dbg_5.10.162-1_amd64.deb` 获取system.map
 
 ```
 linux-image-5.10.0-21-amd64-dbg_5.10.162-1_amd64\data\usr\lib\debug\boot\System.map-5.10.0-21-amd64
 ```
 
-然后用 Docker 构建镜像制作 dwarf 文件，用于构建的 Dockerfile 文件如下：修改自[巨魔的开源项目](https://github.com/CTF-Archives/profile-builder-Debian_5.10.0-21)
+如果从`linux-image-5.10.0-21-amd64-unsigned_5.10.162-1_amd64.deb`中获取system.map
 
-Tips:使用前需要把上面那四个文件放到 Dockerfile 同一目录下，构建好后进入容器，dwarf 文件在/app目录下
+我们会看到如下内容，很明显这个system.map是没法用的：
+
+![](imgs/image-20250828000702794.png)
 
 ```dockerfile
-FROM debian:11.8
+# 因为debian10.2中科大源停止维护了，所以改用debian11.2
+FROM debian:11.2
 
-COPY ./service/docker-entrypoint.sh /docker-entrypoint.sh
+# 将环境设置为非交互环境
+ENV DEBIAN_FRONTEND=noninteractive
+
 COPY ./src/ /src/
 
 RUN sed -i &#39;s/deb.debian.org/mirrors.ustc.edu.cn/g&#39; /etc/apt/sources.list \
     &amp;&amp; sed -i &#39;s/security.debian.org/mirrors.ustc.edu.cn/g&#39; /etc/apt/sources.list \
 	&amp;&amp; apt update --no-install-recommends\
-    &amp;&amp; apt install -y openssh-server linux-kbuild-5.10 gcc-10 dwarfdump build-essential unzip linux-compiler-gcc-10-x86 \
-    &amp;&amp; chmod &#43;x /docker-entrypoint.sh \
-    &amp;&amp; mkdir /app \
-    &amp;&amp; sed -i &#39;s/\#PermitRootLogin prohibit-password/PermitRootLogin yes/g&#39; /etc/ssh/sshd_config \
-    &amp;&amp; sed -i &#39;s/\#PasswordAuthentication yes/PasswordAuthentication yes/g&#39; /etc/ssh/sshd_config \
-    &amp;&amp; echo &#39;root:root&#39; | chpasswd \
-    &amp;&amp; systemctl enable ssh \
-    &amp;&amp; service ssh start
+    &amp;&amp; apt install -y gcc dwarfdump build-essential unzip linux-kbuild-5.10 linux-compiler-gcc-10-x86
 
 WORKDIR /src
 
-COPY linux-headers-5.10.0-21-amd64_5.10.162-1_amd64.deb linux-headers-5.10.0-21-amd64_5.10.162-1_amd64.deb
-COPY linux-headers-5.10.0-21-common_5.10.162-1_all.deb linux-headers-5.10.0-21-common_5.10.162-1_all.deb
-COPY linux-image-5.10.0-21-amd64-dbg_5.10.162-1_amd64.deb linux-image-5.10.0-21-amd64-dbg_5.10.162-1_amd64.deb
-COPY linux-image-5.10.0-21-amd64-unsigned_5.10.162-1_amd64.deb linux-image-5.10.0-21-amd64-unsigned_5.10.162-1_amd64.deb
-
-RUN unzip tool.zip \
+RUN unzip tools.zip \
+    # 需要根据实际的内核版本修改此处
+    # 内核包存在依赖关系，安装时需要注意顺序
     &amp;&amp; dpkg -i linux-headers-5.10.0-21-common_5.10.162-1_all.deb \
-    &amp;&amp; dpkg -i linux-image-5.10.0-21-amd64-dbg_5.10.162-1_amd64.deb \
-	&amp;&amp; dpkg -i linux-headers-5.10.0-21-amd64_5.10.162-1_amd64.deb
-	
-RUN apt --fix-broken install \
-    &amp;&amp; apt install -y kmod linux-base initramfs-tools \
-	&amp;&amp; dpkg -i linux-image-5.10.0-21-amd64-unsigned_5.10.162-1_amd64.deb \
-	&amp;&amp; apt --fix-broken install -y \
-	&amp;&amp; dpkg -i linux-image-5.10.0-21-amd64-unsigned_5.10.162-1_amd64.deb
+    &amp;&amp; dpkg -i linux-headers-5.10.0-21-amd64_5.10.162-1_amd64.deb
+    
 
-WORKDIR /src/linux
+WORKDIR /src/tools/linux
 
 RUN echo &#39;MODULE_LICENSE(&#34;GPL&#34;);&#39; &gt;&gt; module.c &amp;&amp; \
+    # 需要根据实际的内核版本修改此处
     sed -i &#39;s/$(shell uname -r)/5.10.0-21-amd64/g&#39; Makefile &amp;&amp; \
     make &amp;&amp; \
-    mv module.dwarf /app
-
-CMD [&#34;/bin/bash&#34;]
+    mv module.dwarf /tmp
 ```
 
 ```bash
-docker build --tag profile .
-docker run -p 2022:22  -it profile /bin/sh
+# 运行以下命令构建并运行容器，并把module.dwarf从/tmp目录中复制出来
+# 我这里由于用的是ARM架构的Macbook，所以需要指定平台，x86的设备可以不写
+docker build --platform linux/amd64 -t profile .
+docker run --platform linux/amd64 --rm -it profile /bin/bash
 ```
 
-SSH连接容器映射出来的端口，将 dwarf 文件复制出来，然后和之前的 systemmap 文件一起打包为 Debian_5.10.0-21-amd64_profile.zip
+最后将 `module.dwarf` 和 `System.map` 用deflate压缩算法压缩成一个zip压缩包放到`volatility/volatility/plugins/overlays/linux`目录下即可
 
-最后将这个 zip 文件放到 ~/volatility/volatility/plugins/overlays/linux/ 路径下即可
-
-使用 vol.py --info | grep Profile | grep Linux 命令查看 profile 是否成功加载
+可以使用 `vol.py --info` 命令查看 Profile 是否能被成功识别
 
 ![](imgs/profile1.png)
+
+
 
 #### 制作  symbols(Vol3)  的详细过程
 
