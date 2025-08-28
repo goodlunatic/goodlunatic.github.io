@@ -1448,6 +1448,160 @@ if __name__ == &#34;__main__&#34;:
 
 ![](imgs/image-20250825161519274.png)
 
+## 题目名称 flag\^galf
+
+题目附件给了一个Ubuntu flag.lime内存镜像
+
+拿到内存镜像，先用R-studio扫一下，发现没有扫到什么特别的信息
+
+![](imgs/image-20250828100619466.png)
+
+然后我们拿010打开内存镜像，尝试搜索几个常见的关键字，并用肉眼去扫一遍
+
+![](imgs/image-20250828100828915.png)
+
+发现出题人用enc.py去加密了一张图片，并且下面的定时任务也提示了我们用的可能是异或的方法
+
+至此我们大概就知道出题人的意图了，因此我们需要尝试从内存镜像中提取出这几张图片和加密脚本
+
+这个需要我们去制作vol2的Profile，然后去进行内存取证（vol3没办法导出文件）
+
+如何制作vol2的Profile可以查看我的这篇博客：[Misc-Forensics](https://goodlunatic.github.io/posts/761da51/)
+
+做好Profile后，打包为zip放到`volatility/volatility/plugins/overlays/linux`即可
+
+然后运行`python2 volatility/vol.py --info`，发现可以正常加载Profile
+
+![](imgs/image-20250828101336228.png)
+
+我们首先看一下命令行中的历史记录，可以看到出题人加密图片的命令
+
+```bash
+python2 ~/CTF/volatility/vol.py -f ubuntu.lime --profile=LinuxUbuntu_4_13_0-36_4_13_0-36_40x64 linux_bash &gt; linux_bash.txt
+```
+
+![](imgs/image-20250828101607699.png)
+
+然后尝试查找并导出这几张加密图片和脚本
+
+```bash
+python2 ~/CTF/volatility/vol.py -f ubuntu.lime --profile=LinuxUbuntu_4_13_0-36_4_13_0-36_40x64 linux_find_file -L | grep &#34;enc.py&#34;
+
+python2 ~/CTF/volatility/vol.py -f ubuntu.lime --profile=LinuxUbuntu_4_13_0-36_4_13_0-36_40x64 linux_find_file -i 0xffff8de7b8c92b18 -O ./enc.py
+
+python2 ~/CTF/volatility/vol.py -f ubuntu.lime --profile=LinuxUbuntu_4_13_0-36_4_13_0-36_40x64 linux_find_file -L | grep &#34;picture.png&#34;
+
+python2 ~/CTF/volatility/vol.py -f ubuntu.lime --profile=LinuxUbuntu_4_13_0-36_4_13_0-36_40x64 linux_find_file -i 0xffff8de7b8dab388 -O ./picture.png
+
+python2 ~/CTF/volatility/vol.py -f ubuntu.lime --profile=LinuxUbuntu_4_13_0-36_4_13_0-36_40x64 linux_find_file -L | grep &#34;encrypt.png&#34;
+
+python2 ~/CTF/volatility/vol.py -f ubuntu.lime --profile=LinuxUbuntu_4_13_0-36_4_13_0-36_40x64 linux_find_file -i 0xffff8de7b8daf708 -O ./encrypt.png
+```
+
+发现enc.py导出来是空的并且内存中找不到ori.png，但是picture.png和encrypt.png可以正常导出
+
+因此结合之前在定时任务中得到的提示，猜测出题人是要我们去分析这个图片异或加密算法了
+
+![](imgs/image-20250828102814331.png)
+
+先尝试写了一个脚本，直接把两张图片的像素异或一下，发现能看到flag的影子，但是不清晰
+
+```python
+from PIL import Image
+
+def func1():
+    img1 = Image.open(&#34;encrypt.png&#34;)
+    img2 = Image.open(&#34;picture.png&#34;)
+    w,h = img1.size
+    img3 = Image.new(&#34;RGB&#34;, (w,h))
+    for y in range(h):
+        for x in range(w):
+            r1,g1,b1,a1 = img1.getpixel((x,y))
+            r2,g2,b2,a2 = img2.getpixel((x,y))
+            r = r1 ^ r2
+            g = g1 ^ g2
+            b = b1 ^ b2
+            a = a1 ^ a2
+            img3.putpixel((x,y),(r,g,b,a))
+                
+    img3.show()
+    img3.save(&#34;img3.png&#34;)
+```
+
+![](imgs/image-20250828103341050.png)
+
+因此，尝试去分析了一下像素的规律，然后发现有部分连续像素点的rgba的异或结果相同
+
+然后尝试缩小了一下异或结果res的范围，发现`res&gt;=255`的时候（其实就是`res==255`的时候）
+
+可以得到清晰的flag图像
+
+```python
+def func2():
+    img1_pixles = []
+    img2_pixles = []
+    xor_pixles = []
+    img1 = Image.open(&#34;encrypt.png&#34;)
+    img2 = Image.open(&#34;picture.png&#34;)
+    w,h = img1.size
+    img3 = Image.new(&#34;RGB&#34;, (w,h))
+    for y in range(h):
+        for x in range(w):
+            r1,g1,b1,a1 = img1.getpixel((x,y))
+            r2,g2,b2,a2 = img2.getpixel((x,y))
+            r = r1 ^ r2
+            g = g1 ^ g2
+            b = b1 ^ b2
+            a = a1 ^ a2
+            res = r ^ g ^ b ^ a # 发现部分连续像素异或出来的结果相同
+            print(res,end=&#39; &#39;)
+            img1_pixles.append((bin(r1)[2:].rjust(8,&#39;0&#39;),bin(g1)[2:].rjust(8,&#39;0&#39;),bin(b1)[2:].rjust(8,&#39;0&#39;),bin(a1)[2:].rjust(8,&#39;0&#39;)))
+            r2,g2,b2,a2 = img2.getpixel((x,y))
+            img2_pixles.append((bin(r2)[2:].rjust(8,&#39;0&#39;),bin(g2)[2:].rjust(8,&#39;0&#39;),bin(b2)[2:].rjust(8,&#39;0&#39;),bin(a2)[2:].rjust(8,&#39;0&#39;)))
+            xor_pixles.append((bin(r)[2:].rjust(8,&#39;0&#39;),bin(g)[2:].rjust(8,&#39;0&#39;),bin(b)[2:].rjust(8,&#39;0&#39;),bin(a)[2:].rjust(8,&#39;0&#39;)))
+            if res &gt;= 255:
+                img3.putpixel((x,y),(0,0,0))
+            else:
+                img3.putpixel((x,y),(255,255,255))
+                
+    print(img1_pixles[:10])
+    print(img2_pixles[:10])
+    print(xor_pixles[:10])
+    img3.show()
+    img3.save(&#34;flag.png&#34;)
+```
+
+![](imgs/image-20250828103832643.png)
+
+当然以上只是我一开始的解题思路，后来回头联想了一下题目的名称 `flag ^ galf`
+
+想到出题人的真实意图应该是img1的rgba异或img2的abgr
+
+因此写了个脚本，复原出了出题人的ori.png，得到本题的flag: `DASCTF{9da98cbf7e99bff7c93ef066935f65ba}`
+
+```python
+def func3():
+    img1 = Image.open(&#34;encrypt.png&#34;)
+    img2 = Image.open(&#34;picture.png&#34;)
+    w,h = img1.size
+    img3 = Image.new(&#34;RGBA&#34;, (w,h))
+    for y in range(h):
+        for x in range(w):
+            r1,g1,b1,a1 = img1.getpixel((x,y))
+            r2,g2,b2,a2 = img2.getpixel((x,y))
+            r = r1 ^ a2
+            g = g1 ^ b2
+            b = b1 ^ g2
+            a = a1 ^ r2
+            img3.putpixel((x,y),(r,g,b,a))
+
+    img3.show()
+    img3.save(&#34;ori.png&#34;)
+```
+
+![](imgs/image-20250828104214940.png)
+
+
 
 
 ---
