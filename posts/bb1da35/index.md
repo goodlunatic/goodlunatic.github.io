@@ -1466,7 +1466,7 @@ if __name__ == &#34;__main__&#34;:
 
 这个需要我们去制作vol2的Profile，然后去进行内存取证（vol3没办法导出文件）
 
-如何制作vol2的Profile可以查看我的这篇博客：[Misc-Forensics](https://goodlunatic.github.io/posts/761da51/)
+如何制作vol2的Profile可以参考我的这篇博客：[Misc-Forensics](https://goodlunatic.github.io/posts/761da51/)
 
 做好Profile后，打包为zip放到`volatility/volatility/plugins/overlays/linux`即可
 
@@ -1600,6 +1600,28 @@ def func3():
 ```
 
 ![](imgs/image-20250828104214940.png)
+
+## 题目名称 base_2
+
+附件给了以下这张PNG，010打开发现末尾藏了一个ZIP压缩包
+
+![](imgs/image-20250828115022552.png)
+
+![](imgs/image-20250828115106700.png)
+
+提取出来解压，得到一个xor文件，内容是base64编码的字符串
+
+zsteg扫一下png，得到一串字符，长度刚刚好是32位
+
+![](imgs/image-20250828115217348.png)
+
+使用Cyberchef解码base64然后异或一下上面这个字符串即可得到一堆base32字符串
+
+![](imgs/image-20250828115255687.png)
+
+最后解base32隐写即可得到最后的flag: `DASCTF{e738d5d58f8e231f0523b768558cc959}`
+
+![](imgs/image-20250828115400614.png)
 
 
 

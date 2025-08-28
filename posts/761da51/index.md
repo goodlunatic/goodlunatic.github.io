@@ -200,7 +200,6 @@ Offset	Banner
 0x7bd00010	Linux version 5.4.0-100-generic (buildd@lcy02-amd64-002) (gcc version 9.3.0 (Ubuntu 9.3.0-17ubuntu1~20.04)) #113-Ubuntu SMP Thu Feb 3 18:43:29 UTC 2022 (Ubuntu 5.4.0-100.113-generic 5.4.166)
 ```
 
-
 #### 制作  Profile(Vol2)  的详细过程
 
 &gt; 由于官方的vol2自带的一些原因，原版的vol2不支持Ubuntu22.04及以上版本Profile的制作及使用，但是可以根据以下参考链接对vol2进行一些修改，以便对Ubuntu22.04及以上版本提供支持
@@ -230,7 +229,7 @@ Offset	Banner
 
 为了帮助读者理解Profile的制作过程，我就举了下面这几个例子
 
-**制作模版已开源在 [goodlunatic/Docker-ProfileMaker-vol2)](https://github.com/goodlunatic/Docker-ProfileMaker-vol2)**
+**制作模版已开源在 [goodlunatic/Docker-ProfileMaker-vol2](https://github.com/goodlunatic/Docker-ProfileMaker-vol2)**
 
 **这里制作的所有符号文件都已开源在 [goodlunatic/Profile-and-SymbolTables-For-Volatility](https://github.com/goodlunatic/Profile-and-SymbolTables-For-Volatility)**
 
@@ -298,7 +297,9 @@ docker build --platform linux/amd64 -t profile .
 docker run --platform linux/amd64 --rm -it profile /bin/bash
 ```
 
-最后将 `module.dwarf` 和 `System.map` 用deflate压缩算法压缩成一个zip压缩包放到`volatility/volatility/plugins/overlays/linux`目录下即可
+这里如果不想敲命令行去复制Docker容器中/tmp目录下的module.dwarf，也可以使用vscode的Docker插件或者Docker-Desktop辅助
+
+最后我们将 `module.dwarf` 和 `System.map` 用deflate压缩算法压缩成一个zip压缩包放到`volatility/volatility/plugins/overlays/linux`目录下即可
 
 可以使用 `vol.py --info` 命令查看 Profile 是否能被成功识别
 
@@ -379,35 +380,74 @@ docker run --platform linux/amd64 --rm -it profile /bin/bash
 
 ![](imgs/profile1.png)
 
+##### 安恒某比赛 flag\^galf(Ubuntu16.04)
 
+&gt; Linux version 4.13.0-36-generic (buildd@lgw01-amd64-033) (gcc version 5.4.0 20160609 (Ubuntu 5.4.0-6ubuntu1~16.04.9)) #40~16.04.1-Ubuntu SMP Fri Feb 16 23:25:58 UTC 2018 (Ubuntu 4.13.0-36.40~16.04.1-generic 4.13.13)
+
+```bash
+├── linux-headers-4.13.0-36_4.13.0-36.40~16.04.1_all.deb
+├── linux-headers-4.13.0-36-generic_4.13.0-36.40~16.04.1_amd64.deb
+├── linux-image-4.13.0-36-generic_4.13.0-36.40~16.04.1_amd64.deb
+└── tools.zip
+```
+
+从`linux-image-4.13.0-36-generic_4.13.0-36.40~16.04.1_amd64.deb`中提取system.map
+
+```dockerfile
+FROM ubuntu:16.04
+
+# 将环境设置为非交互环境
+ENV DEBIAN_FRONTEND=noninteractive
+
+COPY ./src/ /src/
+
+RUN sed -i &#39;s/archive.ubuntu.com/mirrors.ustc.edu.cn/g&#39; /etc/apt/sources.list \
+    &amp;&amp; sed -i &#39;s/security.ubuntu.com/mirrors.ustc.edu.cn/g&#39; /etc/apt/sources.list \
+	&amp;&amp; apt update --no-install-recommends \
+    &amp;&amp; apt install -y gcc dwarfdump build-essential unzip kmod linux-base libssl1.0.0
+
+WORKDIR /src
+
+RUN unzip tools.zip \
+    # 需要根据实际的内核版本修改此处
+    &amp;&amp; dpkg -i linux-headers-4.13.0-36_4.13.0-36.40~16.04.1_all.deb \
+    &amp;&amp; dpkg -i linux-headers-4.13.0-36-generic_4.13.0-36.40~16.04.1_amd64.deb
+
+WORKDIR /src/tools/linux
+
+RUN echo &#39;MODULE_LICENSE(&#34;GPL&#34;);&#39; &gt;&gt; module.c &amp;&amp; \
+    # 需要根据实际的内核版本修改此处
+    sed -i &#39;s/$(shell uname -r)/4.13.0-36-generic/g&#39; Makefile &amp;&amp; \
+    make &amp;&amp; \
+    mv module.dwarf /tmp
+```
 
 #### 制作  symbols(Vol3)  的详细过程
 
-**识别内存镜像的系统版本**
+一个vol3的SymbolTables其实就是一个json文件
+
+因为懒得用Vmware虚拟机，所以我这里就用Docker来制作SymbolTables了
+
+为了帮助读者理解SymbolTables的制作过程，我就举了下面这几个例子
+
+**制作模版已开源在 
+
+**这里制作的所有符号文件都已开源在 [goodlunatic/Profile-and-SymbolTables-For-Volatility](https://github.com/goodlunatic/Profile-and-SymbolTables-For-Volatility)**
+
+
+##### 安恒某比赛 flag\^galf(Ubuntu16.04)
+
+&gt; Linux version 4.13.0-36-generic (buildd@lgw01-amd64-033) (gcc version 5.4.0 20160609 (Ubuntu 5.4.0-6ubuntu1~16.04.9)) #40~16.04.1-Ubuntu SMP Fri Feb 16 23:25:58 UTC 2018 (Ubuntu 4.13.0-36.40~16.04.1-generic 4.13.13)
 
 ```bash
-strings mem | grep -i &#39;Linux version&#39; | uniq
+├── dockerfile
+└── src
+    ├── dwarf2json
+    └── linux-image-4.13.0-36-generic-dbgsym_4.13.0-36.40~16.04.1_amd64.ddeb
 ```
-
-```bash
-Linux version 5.4.0-100-generic (buildd@lcy02-amd64-002) (gcc version 9.3.0 (Ubuntu 9.3.0-17ubuntu1~20.04)) 
-# 113-Ubuntu SMP Thu Feb 3 18:43:29 UTC 2022 (Ubuntu 5.4.0-100.113-generic 5.4.166)
-```
-
-然后要找到和这个系统版本一模一样的内核，注意一定要一模一样
-
-内核文件类似于下面这样
-
-```
-linux-image-unsigned-5.4.0-100-generic-dbgsym_5.4.0-100.113_amd64.ddeb
-```
-
-Ubuntu的内核可以去这个网站上找：https://launchpad.net/ubuntu/&#43;source/linux/5.4.0-100.113
-
-找到内核文件之后的操作可以使用作者写的 [Dockerfile](https://github.com/goodlunatic/Docker-SymbolsMaker-vol3) 辅助完成
 
 ```dockerfile
-FROM ubuntu:20.04
+FROM ubuntu:16.04
 
 # 将环境设置为非交互环境
 ENV DEBIAN_FRONTEND=noninteractive
@@ -417,36 +457,27 @@ COPY ./src/ /src/
 RUN sed -i &#39;s/archive.ubuntu.com/mirrors.ustc.edu.cn/g&#39; /etc/apt/sources.list \
     &amp;&amp; sed -i &#39;s/security.ubuntu.com/mirrors.ustc.edu.cn/g&#39; /etc/apt/sources.list \
 	&amp;&amp; apt update --no-install-recommends\
-    &amp;&amp; apt install -y openssh-server gcc-10 dwarfdump build-essential unzip \
-    &amp;&amp; mkdir /app \
-    &amp;&amp; sed -i &#39;s/\#PermitRootLogin prohibit-password/PermitRootLogin yes/g&#39; /etc/ssh/sshd_config \
-    &amp;&amp; sed -i &#39;s/\#PasswordAuthentication yes/PasswordAuthentication yes/g&#39; /etc/ssh/sshd_config \
-    &amp;&amp; echo &#39;root:root&#39; | chpasswd \
-    &amp;&amp; systemctl enable ssh \
-    &amp;&amp; service ssh start
+    &amp;&amp; apt install -y gcc dwarfdump build-essential unzip libssl1.0.0
 
 WORKDIR /src
 
-# 这里的文件名需要根据系统版本进行修改
-COPY ./src/linux-image-unsigned-5.4.0-100-generic-dbgsym_5.4.0-100.113_amd64.ddeb linux-image-unsigned-5.4.0-100-generic-dbgsym_5.4.0-100.113_amd64.ddeb
-
-RUN dpkg -i linux-image-unsigned-5.4.0-100-generic-dbgsym_5.4.0-100.113_amd64.ddeb \
+RUN dpkg -i linux-image-4.13.0-36-generic-dbgsym_4.13.0-36.40~16.04.1_amd64.ddeb \
     &amp;&amp; chmod &#43;x dwarf2json \
     # 下面这里的文件名需要根据系统版本进行修改
-    &amp;&amp; ./dwarf2json linux --elf /usr/lib/debug/boot/vmlinux-5.4.0-100-generic &gt; linux-image-5.4.0-100-generic.json
-	
-
-CMD [&#34;/bin/bash&#34;]
+    &amp;&amp; ./dwarf2json linux --elf /usr/lib/debug/boot/vmlinux-4.13.0-36-generic &gt; linux-image-4.13.0-36-generic.json \
+    &amp;&amp; mv linux-image-4.13.0-36-generic.json /tmp
 ```
 
 ```bash
-docker build --tag profile .
-docker run -p 2022:22  -it profile /bin/sh
+# 运行以下命令构建并运行容器，并把module.dwarf从/tmp目录中复制出来
+# 我这里由于用的是ARM架构的Macbook，所以需要指定平台，x86的设备可以不写
+docker build --platform linux/amd64 -t profile .
+docker run --platform linux/amd64 --rm -it profile /bin/bash
 ```
 
-SSH连接容器映射出来的端口，然后将json文件放到 volatility3/volatility3/framework/symbols/linux/ 目录下即可
+最后将得到的 json文件放到 volatility3/volatility3/framework/symbols/linux/ 目录下即可
 
-#### Volatility2
+#### Volatility2相关命令
 
 **[官方文档](https://github.com/volatilityfoundation/volatility/wiki/Linux-Command-Reference)**
 
@@ -518,7 +549,7 @@ sc()                                     : Show the current context.
 For help on a specific command, type &#39;hh(&lt;command&gt;)&#39;
 ```
 
-#### Volatility3
+#### Volatility3相关命令
 
 ```bash
 	# 查看当前都有哪些 Profile 可用

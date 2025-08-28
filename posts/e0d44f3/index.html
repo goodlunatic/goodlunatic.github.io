@@ -14,7 +14,7 @@
 感觉 Misc 很大程度上还是看经验，自己见过的东西还是太少了">
   <meta itemprop="datePublished" content="2024-04-30T19:07:38+08:00">
   <meta itemprop="dateModified" content="2024-04-30T19:07:38+08:00">
-  <meta itemprop="wordCount" content="698">
+  <meta itemprop="wordCount" content="703">
   <meta itemprop="keywords" content="CTF,Misc,Writeup"><meta property="og:url" content="https://goodlunatic.github.io/posts/e0d44f3/">
   <meta property="og:site_name" content="⚡Lunatic BLOG⚡">
   <meta property="og:title" content="2024 NKCTF Misc Writeup">
@@ -45,7 +45,7 @@
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": "https:\/\/goodlunatic.github.io\/posts\/e0d44f3\/"
-    },"genre": "posts","keywords": "CTF, Misc, Writeup","wordcount":  698 ,
+    },"genre": "posts","keywords": "CTF, Misc, Writeup","wordcount":  703 ,
     "url": "https:\/\/goodlunatic.github.io\/posts\/e0d44f3\/","datePublished": "2024-04-30T19:07:38+08:00","dateModified": "2024-04-30T19:07:38+08:00","publisher": {
       "@type": "Organization",
       "name": ""},"author": {
@@ -149,7 +149,7 @@
 <article class="page single">
   <div class="header"><h1 class="single-title animate__animated animate__flipInX"><span>2024 NKCTF Misc Writeup</span>
     </h1></div><div class="post-meta">
-    <div class="post-meta-line"><span class="post-author"><a href="https://goodlunatic.github.io" title="Author"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><img loading="lazy" src="https://www.nssctf.cn/files/2024/4/28/7f130a1387.png" alt="Lunatic" data-title="Lunatic" class="avatar" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>&nbsp;Lunatic</a></span><span class="post-included-in">&nbsp;included in <a href="/categories/writeup/" class="post-category" title="Category - Writeup"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> Writeup</a></span></div><div class="post-meta-line"><span title="published on &lt;no value&gt;"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden="true"></i><time datetime="2024-04-30">2024-04-30</time></span>&nbsp;<span title=""><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>About 700 words</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>4 minutes</span>&nbsp;</div>
+    <div class="post-meta-line"><span class="post-author"><a href="https://goodlunatic.github.io" title="Author"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><img loading="lazy" src="https://www.nssctf.cn/files/2024/4/28/7f130a1387.png" alt="Lunatic" data-title="Lunatic" class="avatar" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>&nbsp;Lunatic</a></span><span class="post-included-in">&nbsp;included in <a href="/categories/writeup/" class="post-category" title="Category - Writeup"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> Writeup</a></span></div><div class="post-meta-line"><span title="published on &lt;no value&gt;"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden="true"></i><time datetime="2024-04-30">2024-04-30</time></span>&nbsp;<span title=""><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>About 800 words</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>4 minutes</span>&nbsp;</div>
   </div><div class="details toc" id="toc-static"
     data-kept="false">
     <div class="details-summary toc-title">
@@ -158,18 +158,18 @@
     </div>
     <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
   <ul>
-    <li><a href="#webshell_pro">Webshell_pro</a></li>
-    <li><a href="#minecraftseed">Minecraft:SEED</a></li>
-    <li><a href="#cain_is_hacker">cain_is_hacker</a></li>
-    <li><a href="#1z_f0r3ns1c5">1z_F0r3ns1c5</a></li>
-    <li><a href="#hackmycql">HackMyCQL</a></li>
+    <li><a href="#题目名称-webshell_pro">题目名称 Webshell_pro</a></li>
+    <li><a href="#题目名称-minecraftseed">题目名称 Minecraft:SEED</a></li>
+    <li><a href="#题目名称-cain_is_hacker">题目名称 cain_is_hacker</a></li>
+    <li><a href="#题目名称-1z_f0r3ns1c5">题目名称 1z_F0r3ns1c5</a></li>
+    <li><a href="#题目名称-hackmycql">题目名称 HackMyCQL</a></li>
   </ul>
 </nav></div>
   </div><div class="content" id="content"><p><strong>从这场比赛可以看出自己还是有很多东西需要去学</strong><br>
 <strong>感觉 Misc 很大程度上还是看经验，自己见过的东西还是太少了</strong></p>
 <p><img loading="lazy" src="/posts/e0d44f3/imgs/image-20240803101932804.png" alt="/posts/e0d44f3/imgs/image-20240803101932804.png" srcset="/posts/e0d44f3/imgs/image-20240803101932804.png?size=small, /posts/e0d44f3/imgs/image-20240803101932804.png?size=medium 1.5x, /posts/e0d44f3/imgs/image-20240803101932804.png?size=large 2x" data-title="/posts/e0d44f3/imgs/image-20240803101932804.png" style="--width: 1015px;--aspect-ratio: 1015 / 549;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
-<h2 id="webshell_pro" class="heading-element">
-  <a href="#webshell_pro" class="heading-mark"></a>Webshell_pro</h2><p>打开流量包，追踪TCP流，可以很明显的看出是一个webshell流量
+<h2 id="题目名称-webshell_pro" class="heading-element">
+  <a href="#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-webshell_pro" class="heading-mark"></a>题目名称 Webshell_pro</h2><p>打开流量包，追踪TCP流，可以很明显的看出是一个webshell流量
 用base64解码响应中的数据，一个个试过去，发现存在hint.py和小明的日记.txt
 以及后面才出现的flag.txt
 <img loading="lazy" src="/posts/e0d44f3/imgs/image-20240430190843840.png" alt="/posts/e0d44f3/imgs/image-20240430190843840.png" srcset="/posts/e0d44f3/imgs/image-20240430190843840.png?size=small, /posts/e0d44f3/imgs/image-20240430190843840.png?size=medium 1.5x, /posts/e0d44f3/imgs/image-20240430190843840.png?size=large 2x" data-title="/posts/e0d44f3/imgs/image-20240430190843840.png" style="--width: 2735px;--aspect-ratio: 2735 / 1199;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>
@@ -274,16 +274,16 @@
 <img loading="lazy" src="/posts/e0d44f3/imgs/image-20240430190952441.png" alt="/posts/e0d44f3/imgs/image-20240430190952441.png" srcset="/posts/e0d44f3/imgs/image-20240430190952441.png?size=small, /posts/e0d44f3/imgs/image-20240430190952441.png?size=medium 1.5x, /posts/e0d44f3/imgs/image-20240430190952441.png?size=large 2x" data-title="/posts/e0d44f3/imgs/image-20240430190952441.png" style="--width: 3025px;--aspect-ratio: 3025 / 1335;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>
 然后用这个密钥去AES解密上面得到的密文即可得到flag
 <img loading="lazy" src="/posts/e0d44f3/imgs/image-20240430191003341.png" alt="/posts/e0d44f3/imgs/image-20240430191003341.png" srcset="/posts/e0d44f3/imgs/image-20240430191003341.png?size=small, /posts/e0d44f3/imgs/image-20240430191003341.png?size=medium 1.5x, /posts/e0d44f3/imgs/image-20240430191003341.png?size=large 2x" data-title="/posts/e0d44f3/imgs/image-20240430191003341.png" style="--width: 1782px;--aspect-ratio: 1782 / 1041;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
-<h2 id="minecraftseed" class="heading-element">
-  <a href="#minecraftseed" class="heading-mark"></a>Minecraft:SEED</h2><p>服务器IP: nkctf-mc-01.shenghuo2.cn / nkctf-mc-02.shenghuo2.cn / nkctf-mc-03.shenghuo2.cn
-装一个 SeedCrackerX 和一个 Wurst 加速飞行跑图
-然后找到5个沉船就行，mod会自己开始爆破seed
-<img loading="lazy" src="/posts/e0d44f3/imgs/image-20240430191021053.png" alt="/posts/e0d44f3/imgs/image-20240430191021053.png" srcset="/posts/e0d44f3/imgs/image-20240430191021053.png?size=small, /posts/e0d44f3/imgs/image-20240430191021053.png?size=medium 1.5x, /posts/e0d44f3/imgs/image-20240430191021053.png?size=large 2x" data-title="/posts/e0d44f3/imgs/image-20240430191021053.png" style="--width: 631px;--aspect-ratio: 631 / 69;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>
-Seed: 2150463978431929967<br>
-然后输入/getflag 2150463978431929967即可得到flag
-<img loading="lazy" src="/posts/e0d44f3/imgs/image-20240430191027459.png" alt="/posts/e0d44f3/imgs/image-20240430191027459.png" srcset="/posts/e0d44f3/imgs/image-20240430191027459.png?size=small, /posts/e0d44f3/imgs/image-20240430191027459.png?size=medium 1.5x, /posts/e0d44f3/imgs/image-20240430191027459.png?size=large 2x" data-title="/posts/e0d44f3/imgs/image-20240430191027459.png" style="--width: 1252px;--aspect-ratio: 1252 / 65;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
-<h2 id="cain_is_hacker" class="heading-element">
-  <a href="#cain_is_hacker" class="heading-mark"></a>cain_is_hacker</h2><p>内存取证，经典开头用 vol_all_in_one 梭一把
+<h2 id="题目名称-minecraftseed" class="heading-element">
+  <a href="#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-minecraftseed" class="heading-mark"></a>题目名称 Minecraft:SEED</h2><p>服务器IP: nkctf-mc-01.shenghuo2.cn / nkctf-mc-02.shenghuo2.cn / nkctf-mc-03.shenghuo2.cn</p>
+<p>装一个 SeedCrackerX 和一个 Wurst 加速飞行跑图</p>
+<p>然后找到5个沉船就行，mod会自己开始爆破seed</p>
+<p><img loading="lazy" src="/posts/e0d44f3/imgs/image-20240430191021053.png" alt="/posts/e0d44f3/imgs/image-20240430191021053.png" srcset="/posts/e0d44f3/imgs/image-20240430191021053.png?size=small, /posts/e0d44f3/imgs/image-20240430191021053.png?size=medium 1.5x, /posts/e0d44f3/imgs/image-20240430191021053.png?size=large 2x" data-title="/posts/e0d44f3/imgs/image-20240430191021053.png" style="--width: 631px;--aspect-ratio: 631 / 69;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>Seed: 2150463978431929967</p>
+<p>然后输入/getflag 2150463978431929967即可得到flag</p>
+<p><img loading="lazy" src="/posts/e0d44f3/imgs/image-20240430191027459.png" alt="/posts/e0d44f3/imgs/image-20240430191027459.png" srcset="/posts/e0d44f3/imgs/image-20240430191027459.png?size=small, /posts/e0d44f3/imgs/image-20240430191027459.png?size=medium 1.5x, /posts/e0d44f3/imgs/image-20240430191027459.png?size=large 2x" data-title="/posts/e0d44f3/imgs/image-20240430191027459.png" style="--width: 1252px;--aspect-ratio: 1252 / 65;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<h2 id="题目名称-cain_is_hacker" class="heading-element">
+  <a href="#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-cain_is_hacker" class="heading-mark"></a>题目名称 cain_is_hacker</h2><p>内存取证，经典开头用 vol_all_in_one 梭一把
 <img loading="lazy" src="/posts/e0d44f3/imgs/image-20240430191057005.png" alt="/posts/e0d44f3/imgs/image-20240430191057005.png" srcset="/posts/e0d44f3/imgs/image-20240430191057005.png?size=small, /posts/e0d44f3/imgs/image-20240430191057005.png?size=medium 1.5x, /posts/e0d44f3/imgs/image-20240430191057005.png?size=large 2x" data-title="/posts/e0d44f3/imgs/image-20240430191057005.png" style="--width: 1280px;--aspect-ratio: 1280 / 1600;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>然后在 filescan 的结果中找到一个h4re.zip，尝试导出
 桌面上那个 raw 文件应该就是题目附件给我们的 raw 文件
@@ -344,8 +344,8 @@ StikyNot 的文件会保存在C:\Users\XXX\AppData\Roaming\Microsoft\Sticky Note
 <p>最后将之前保存的加密文件后缀改为.locked，输入密钥用HiddenTearDecrypter.exe解密即可得到flag
 <img loading="lazy" src="/posts/e0d44f3/imgs/image-20240430191358504.png" alt="/posts/e0d44f3/imgs/image-20240430191358504.png" srcset="/posts/e0d44f3/imgs/image-20240430191358504.png?size=small, /posts/e0d44f3/imgs/image-20240430191358504.png?size=medium 1.5x, /posts/e0d44f3/imgs/image-20240430191358504.png?size=large 2x" data-title="/posts/e0d44f3/imgs/image-20240430191358504.png" style="--width: 798px;--aspect-ratio: 798 / 435;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>
 NKCTF{C0ngr@tu1atiOns_On_coMpleting_t3e_Fo3eNs1cs_Ch41lenge_I_wi1l_giv4_y0u_A_cain!!!!}</p>
-<h2 id="1z_f0r3ns1c5" class="heading-element">
-  <a href="#1z_f0r3ns1c5" class="heading-mark"></a>1z_F0r3ns1c5</h2><p>给了一个1.raw内存镜像文件，直接 all_in_one 脚本开扫</p>
+<h2 id="题目名称-1z_f0r3ns1c5" class="heading-element">
+  <a href="#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-1z_f0r3ns1c5" class="heading-mark"></a>题目名称 1z_F0r3ns1c5</h2><p>给了一个1.raw内存镜像文件，直接 all_in_one 脚本开扫</p>
 <p><img loading="lazy" src="/posts/e0d44f3/imgs/image-20240430191420441.png" alt="/posts/e0d44f3/imgs/image-20240430191420441.png" srcset="/posts/e0d44f3/imgs/image-20240430191420441.png?size=small, /posts/e0d44f3/imgs/image-20240430191420441.png?size=medium 1.5x, /posts/e0d44f3/imgs/image-20240430191420441.png?size=large 2x" data-title="/posts/e0d44f3/imgs/image-20240430191420441.png" style="--width: 1280px;--aspect-ratio: 1280 / 1600;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>查看镜像的环境变量，发现有好多个叫做nowayback的变量</p>
 <p><img loading="lazy" src="/posts/e0d44f3/imgs/image-20240430191426322.png" alt="/posts/e0d44f3/imgs/image-20240430191426322.png" srcset="/posts/e0d44f3/imgs/image-20240430191426322.png?size=small, /posts/e0d44f3/imgs/image-20240430191426322.png?size=medium 1.5x, /posts/e0d44f3/imgs/image-20240430191426322.png?size=large 2x" data-title="/posts/e0d44f3/imgs/image-20240430191426322.png" style="--width: 2560px;--aspect-ratio: 2560 / 1600;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
@@ -603,8 +603,8 @@ C:\Users\XXX\AppData\Roaming\Code\User\settings.json
 </div>
 </div><p>VeraCrypt 用得到的密钥挂载附件中的 secret 文件即可得到flag3：c4f222879312
 最终的flag：nkctf{39c429eb-2faf-49a0-bd24-c4f222879312}</p>
-<h2 id="hackmycql" class="heading-element">
-  <a href="#hackmycql" class="heading-mark"></a>HackMyCQL</h2><p>没有火眼、弘连和取证大师【卑微】</p></div><div class="post-footer" id="post-footer">
+<h2 id="题目名称-hackmycql" class="heading-element">
+  <a href="#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-hackmycql" class="heading-mark"></a>题目名称 HackMyCQL</h2><p>没有火眼、弘连和取证大师【卑微】</p></div><div class="post-footer" id="post-footer">
   <div class="post-info">
     <div class="post-info-line">
       <div class="post-info-mod">

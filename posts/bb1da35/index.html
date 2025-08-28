@@ -12,7 +12,7 @@
   <meta itemprop="description" content="其实感觉时常做做群友给的题，对自我实力提升其实帮助挺大的">
   <meta itemprop="datePublished" content="2025-08-28T10:20:11+08:00">
   <meta itemprop="dateModified" content="2025-08-28T10:20:11+08:00">
-  <meta itemprop="wordCount" content="3039">
+  <meta itemprop="wordCount" content="3046">
   <meta itemprop="keywords" content="CTF,Misc"><meta property="og:url" content="https://goodlunatic.github.io/posts/bb1da35/">
   <meta property="og:site_name" content="⚡Lunatic BLOG⚡">
   <meta property="og:title" content="群友们问的一些来路不明的题">
@@ -29,7 +29,7 @@
 <meta name="twitter:description" content="其实感觉时常做做群友给的题，对自我实力提升其实帮助挺大的">
       <meta name="twitter:site" content="@goodlunatic007">
 <meta name="application-name" content="FixIt">
-<meta name="apple-mobile-web-app-title" content="FixIt"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="https://www.nssctf.cn/files/2024/4/28/7f130a1387.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="https://goodlunatic.github.io/posts/bb1da35/" /><link rel="prev" href="https://goodlunatic.github.io/posts/761da51/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
+<meta name="apple-mobile-web-app-title" content="FixIt"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="https://www.nssctf.cn/files/2024/4/28/7f130a1387.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="https://goodlunatic.github.io/posts/bb1da35/" /><link rel="prev" href="https://goodlunatic.github.io/posts/1ad9200/" /><link rel="next" href="https://goodlunatic.github.io/posts/761da51/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
   {
@@ -40,7 +40,7 @@
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": "https:\/\/goodlunatic.github.io\/posts\/bb1da35\/"
-    },"genre": "posts","keywords": "CTF, Misc","wordcount":  3039 ,
+    },"genre": "posts","keywords": "CTF, Misc","wordcount":  3046 ,
     "url": "https:\/\/goodlunatic.github.io\/posts\/bb1da35\/","datePublished": "2025-08-28T10:20:11+08:00","dateModified": "2025-08-28T10:20:11+08:00","publisher": {
       "@type": "Organization",
       "name": ""},"author": {
@@ -181,6 +181,7 @@
     <li><a href="#题目名称-二维码画图">题目名称 二维码画图</a></li>
     <li><a href="#题目名称-pic2">题目名称 PIC2</a></li>
     <li><a href="#题目名称-flaggalf">题目名称 flag^galf</a></li>
+    <li><a href="#题目名称-base_2">题目名称 base_2</a></li>
   </ul>
 </nav></div>
   </div><div class="content" id="content"><p><strong>其实感觉时常做做群友给的题，对自我实力提升其实帮助挺大的</strong></p>
@@ -1876,7 +1877,7 @@
 <p>发现出题人用enc.py去加密了一张图片，并且下面的定时任务也提示了我们用的可能是异或的方法</p>
 <p>至此我们大概就知道出题人的意图了，因此我们需要尝试从内存镜像中提取出这几张图片和加密脚本</p>
 <p>这个需要我们去制作vol2的Profile，然后去进行内存取证（vol3没办法导出文件）</p>
-<p>如何制作vol2的Profile可以查看我的这篇博客：<a href="https://goodlunatic.github.io/posts/761da51/"target="_blank" rel="external nofollow noopener noreferrer">Misc-Forensics</a></p>
+<p>如何制作vol2的Profile可以参考我的这篇博客：<a href="https://goodlunatic.github.io/posts/761da51/"target="_blank" rel="external nofollow noopener noreferrer">Misc-Forensics</a></p>
 <p>做好Profile后，打包为zip放到<code>volatility/volatility/plugins/overlays/linux</code>即可</p>
 <p>然后运行<code>python2 volatility/vol.py --info</code>，发现可以正常加载Profile</p>
 <p><img loading="lazy" src="imgs/image-20250828101336228.png" alt="imgs/image-20250828101336228.png" srcset="imgs/image-20250828101336228.png?size=small, imgs/image-20250828101336228.png?size=medium 1.5x, imgs/image-20250828101336228.png?size=large 2x" data-title="imgs/image-20250828101336228.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
@@ -2080,7 +2081,18 @@
 </span></span><span class="line"><span class="cl">    <span class="n">img3</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl">    <span class="n">img3</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">&#34;ori.png&#34;</span><span class="p">)</span></span></span></code></pre></td></tr></table>
 </div>
-</div><p><img loading="lazy" src="imgs/image-20250828104214940.png" alt="imgs/image-20250828104214940.png" srcset="imgs/image-20250828104214940.png?size=small, imgs/image-20250828104214940.png?size=medium 1.5x, imgs/image-20250828104214940.png?size=large 2x" data-title="imgs/image-20250828104214940.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p></div><div class="post-footer" id="post-footer">
+</div><p><img loading="lazy" src="imgs/image-20250828104214940.png" alt="imgs/image-20250828104214940.png" srcset="imgs/image-20250828104214940.png?size=small, imgs/image-20250828104214940.png?size=medium 1.5x, imgs/image-20250828104214940.png?size=large 2x" data-title="imgs/image-20250828104214940.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<h2 id="题目名称-base_2" class="heading-element">
+  <a href="#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-base_2" class="heading-mark"></a>题目名称 base_2</h2><p>附件给了以下这张PNG，010打开发现末尾藏了一个ZIP压缩包</p>
+<p><img loading="lazy" src="imgs/image-20250828115022552.png" alt="imgs/image-20250828115022552.png" srcset="imgs/image-20250828115022552.png?size=small, imgs/image-20250828115022552.png?size=medium 1.5x, imgs/image-20250828115022552.png?size=large 2x" data-title="imgs/image-20250828115022552.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><img loading="lazy" src="imgs/image-20250828115106700.png" alt="imgs/image-20250828115106700.png" srcset="imgs/image-20250828115106700.png?size=small, imgs/image-20250828115106700.png?size=medium 1.5x, imgs/image-20250828115106700.png?size=large 2x" data-title="imgs/image-20250828115106700.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>提取出来解压，得到一个xor文件，内容是base64编码的字符串</p>
+<p>zsteg扫一下png，得到一串字符，长度刚刚好是32位</p>
+<p><img loading="lazy" src="imgs/image-20250828115217348.png" alt="imgs/image-20250828115217348.png" srcset="imgs/image-20250828115217348.png?size=small, imgs/image-20250828115217348.png?size=medium 1.5x, imgs/image-20250828115217348.png?size=large 2x" data-title="imgs/image-20250828115217348.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>使用Cyberchef解码base64然后异或一下上面这个字符串即可得到一堆base32字符串</p>
+<p><img loading="lazy" src="imgs/image-20250828115255687.png" alt="imgs/image-20250828115255687.png" srcset="imgs/image-20250828115255687.png?size=small, imgs/image-20250828115255687.png?size=medium 1.5x, imgs/image-20250828115255687.png?size=large 2x" data-title="imgs/image-20250828115255687.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>最后解base32隐写即可得到最后的flag: <code>DASCTF{e738d5d58f8e231f0523b768558cc959}</code></p>
+<p><img loading="lazy" src="imgs/image-20250828115400614.png" alt="imgs/image-20250828115400614.png" srcset="imgs/image-20250828115400614.png?size=small, imgs/image-20250828115400614.png?size=medium 1.5x, imgs/image-20250828115400614.png?size=large 2x" data-title="imgs/image-20250828115400614.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p></div><div class="post-footer" id="post-footer">
   <div class="post-info">
     <div class="post-info-line">
       <div class="post-info-mod">
@@ -2102,7 +2114,8 @@
     </section>
   </div>
 
-  <div class="post-nav"><a href="/posts/761da51/" class="post-nav-item" rel="prev" title="Misc-Forensics"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>Misc-Forensics</a></div>
+  <div class="post-nav"><a href="/posts/1ad9200/" class="post-nav-item" rel="prev" title="CTF-Misc Guide"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>CTF-Misc Guide</a>
+      <a href="/posts/761da51/" class="post-nav-item" rel="next" title="Misc-Forensics">Misc-Forensics<i class="fa-solid fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
 </div>
 <div id="comments"></div></article>
 

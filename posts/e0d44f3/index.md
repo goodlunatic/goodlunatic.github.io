@@ -6,7 +6,7 @@
 
 ![](imgs/image-20240803101932804.png)
 
-## Webshell_pro
+## 题目名称 Webshell_pro
 打开流量包，追踪TCP流，可以很明显的看出是一个webshell流量
 用base64解码响应中的数据，一个个试过去，发现存在hint.py和小明的日记.txt
 以及后面才出现的flag.txt
@@ -67,15 +67,23 @@ if __name__ == &#39;__main__&#39;:
 ![](imgs/image-20240430190952441.png)
 然后用这个密钥去AES解密上面得到的密文即可得到flag
 ![](imgs/image-20240430191003341.png)
-## Minecraft:SEED
+
+## 题目名称 Minecraft:SEED
+
 服务器IP: nkctf-mc-01.shenghuo2.cn / nkctf-mc-02.shenghuo2.cn / nkctf-mc-03.shenghuo2.cn
+
 装一个 SeedCrackerX 和一个 Wurst 加速飞行跑图
+
 然后找到5个沉船就行，mod会自己开始爆破seed
+
 ![](imgs/image-20240430191021053.png)
-Seed: 2150463978431929967  
+
+Seed: 2150463978431929967 
+
 然后输入/getflag 2150463978431929967即可得到flag
+
 ![](imgs/image-20240430191027459.png)
-## cain_is_hacker
+## 题目名称 cain_is_hacker
 内存取证，经典开头用 vol_all_in_one 梭一把
 ![](imgs/image-20240430191057005.png)
 
@@ -154,7 +162,7 @@ StikyNot 的文件会保存在C:\Users\XXX\AppData\Roaming\Microsoft\Sticky Note
 最后将之前保存的加密文件后缀改为.locked，输入密钥用HiddenTearDecrypter.exe解密即可得到flag
 ![](imgs/image-20240430191358504.png)
 NKCTF{C0ngr@tu1atiOns_On_coMpleting_t3e_Fo3eNs1cs_Ch41lenge_I_wi1l_giv4_y0u_A_cain!!!!}
-## 1z_F0r3ns1c5
+## 题目名称 1z_F0r3ns1c5
 给了一个1.raw内存镜像文件，直接 all_in_one 脚本开扫
 
 ![](imgs/image-20240430191420441.png)
@@ -328,7 +336,7 @@ if __name__ == &#34;__main__&#34;:
 
 VeraCrypt 用得到的密钥挂载附件中的 secret 文件即可得到flag3：c4f222879312
 最终的flag：nkctf{39c429eb-2faf-49a0-bd24-c4f222879312}
-## HackMyCQL
+## 题目名称 HackMyCQL
 
 没有火眼、弘连和取证大师【卑微】
 
