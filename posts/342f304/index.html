@@ -209,8 +209,8 @@
 </tr>
 </tbody>
 </table>
-<p><img loading="lazy" src="/posts/342f304/imgs/image-20241224195414397.png" alt="/posts/342f304/imgs/image-20241224195414397.png" srcset="/posts/342f304/imgs/image-20241224195414397.png?size=small, /posts/342f304/imgs/image-20241224195414397.png?size=medium 1.5x, /posts/342f304/imgs/image-20241224195414397.png?size=large 2x" data-title="/posts/342f304/imgs/image-20241224195414397.png" style="--width: 1972px;--aspect-ratio: 1972 / 1283;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
-<p><img loading="lazy" src="/posts/342f304/imgs/image-20241224195435668.png" alt="/posts/342f304/imgs/image-20241224195435668.png" srcset="/posts/342f304/imgs/image-20241224195435668.png?size=small, /posts/342f304/imgs/image-20241224195435668.png?size=medium 1.5x, /posts/342f304/imgs/image-20241224195435668.png?size=large 2x" data-title="/posts/342f304/imgs/image-20241224195435668.png" style="--width: 831px;--aspect-ratio: 831 / 531;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><img loading="lazy" src="imgs/image-20241224195414397.png" alt="imgs/image-20241224195414397.png" srcset="imgs/image-20241224195414397.png?size=small, imgs/image-20241224195414397.png?size=medium 1.5x, imgs/image-20241224195414397.png?size=large 2x" data-title="imgs/image-20241224195414397.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><img loading="lazy" src="imgs/image-20241224195435668.png" alt="imgs/image-20241224195435668.png" srcset="imgs/image-20241224195435668.png?size=small, imgs/image-20241224195435668.png?size=medium 1.5x, imgs/image-20241224195435668.png?size=large 2x" data-title="imgs/image-20241224195435668.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <h2 id="ubuntu2004配置uhd并连接b210" class="heading-element">
   <a href="#ubuntu2004%e9%85%8d%e7%bd%aeuhd%e5%b9%b6%e8%bf%9e%e6%8e%a5b210" class="heading-mark"></a>Ubuntu20.04配置UHD并连接B210</h2><blockquote>
 <p>参考连接：</p>
@@ -250,7 +250,7 @@
 <p>Tips：如果发现uhd4.7.0.0无法识别USRP设备，可以把uhd的版本降低为uhd4.6.0.0</p>
 </blockquote>
 <p>编译并安全好后需要把以下环境变量的内容添加到<code>.zshrc</code>文件中</p>
-<div class="highlight" id="id-3"><div class="chroma">
+<div class="highlight" id="id-1"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
@@ -258,7 +258,7 @@
 <pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">LD_LIBRARY_PATH</span><span class="o">=</span>/usr/local/lib</span></span></code></pre></td></tr></table>
 </div>
 </div><p>UHD安装完成后我们还需要执行下面这个命令去下载<code>UHD FPGA Images</code>(可能需要科学上网)</p>
-<div class="highlight" id="id-4"><div class="chroma">
+<div class="highlight" id="id-2"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
@@ -266,7 +266,7 @@
 <pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo uhd_images_downloader</span></span></code></pre></td></tr></table>
 </div>
 </div><p>下载完成后我们需要把以下环境变量的内容添加到<code>.zshrc</code>文件中</p>
-<div class="highlight" id="id-5"><div class="chroma">
+<div class="highlight" id="id-3"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
@@ -274,7 +274,7 @@
 <pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">UHD_IMAGES_DIR</span><span class="o">=</span><span class="s2">&#34;/usr/local/share/uhd/images&#34;</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>上述工作完成后，我们将B210用USB连上电脑，然后执行以下命令</p>
-<div class="highlight" id="id-6"><div class="chroma">
+<div class="highlight" id="id-4"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -284,7 +284,7 @@
 </span></span><span class="line"><span class="cl">sudo uhd_find_devices</span></span></code></pre></td></tr></table>
 </div>
 </div><p>若输出类似于以下的内容，则说明环境配置成功，B210已经成功连接</p>
-<div class="highlight" id="id-7"><div class="chroma">
+<div class="highlight" id="id-5"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">  1
 </span><span class="lnt">  2
@@ -538,7 +538,7 @@
 <p><a href="https://docs.srsran.com/projects/project"target="_blank" rel="external nofollow noopener noreferrer">https://docs.srsran.com/projects/project</a></p>
 </blockquote>
 <p>首先跟着参考文档中的步骤安装<code>open5gs</code>(模拟核心网)</p>
-<div class="highlight" id="id-8"><div class="chroma">
+<div class="highlight" id="id-6"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -594,7 +594,7 @@
 </div><p>然后再安装<code>srsRAN_Project</code>(模拟基站)</p>
 <p>这里编译源码需要<code>GCC11</code>以上的版本，然而Ubuntu默认是<code>GCC9</code></p>
 <p>因此需要我们手动安装一下</p>
-<div class="highlight" id="id-9"><div class="chroma">
+<div class="highlight" id="id-7"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -614,7 +614,7 @@
 </span></span><span class="line"><span class="cl">sudo ln -s /usr/bin/g++-11 /usr/bin/g++</span></span></code></pre></td></tr></table>
 </div>
 </div><p>安装好<code>GCC11</code>后就可以继续<code>srsRAN</code>项目的编译安装了</p>
-<div class="highlight" id="id-10"><div class="chroma">
+<div class="highlight" id="id-8"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -637,7 +637,7 @@
 </div>
 </div><p>上面两个项目都安装好后我们就可以开始模拟了</p>
 <p>首先是启动核心网</p>
-<div class="highlight" id="id-11"><div class="chroma">
+<div class="highlight" id="id-9"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -647,7 +647,7 @@
 </span></span><span class="line"><span class="cl">sudo ./tests/app/5gc -c ./configs/sample.yaml</span></span></code></pre></td></tr></table>
 </div>
 </div><p>然后连上<code>B210</code>启动基站模拟，631和736代表的是模拟基站的编号，和所在的小区有关</p>
-<div class="highlight" id="id-12"><div class="chroma">
+<div class="highlight" id="id-10"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -659,7 +659,7 @@
 </span></span><span class="line"><span class="cl">sudo ./apps/gnb/gnb -c ../configs/gnb_pci_736.yml</span></span></code></pre></td></tr></table>
 </div>
 </div><p>然后我们可以另起一个终端，把模拟的数据保存下来</p>
-<div class="highlight" id="id-13"><div class="chroma">
+<div class="highlight" id="id-11"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -670,7 +670,7 @@
 </div>
 </div><p>保存的数据可以使用开源工具<a href="https://github.com/miek/inspectrum"target="_blank" rel="external nofollow noopener noreferrer">inspectrum</a> 查看</p>
 <p>具体安装步骤如下：</p>
-<div class="highlight" id="id-14"><div class="chroma">
+<div class="highlight" id="id-12"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -692,7 +692,7 @@
 </span></span><span class="line"><span class="cl">sudo make install</span></span></code></pre></td></tr></table>
 </div>
 </div><p>用<code>inspectrum</code>打开之前保存的数据，即可看到实验效果</p>
-<p><img loading="lazy" src="/posts/342f304/imgs/image-20241224194914545.png" alt="/posts/342f304/imgs/image-20241224194914545.png" srcset="/posts/342f304/imgs/image-20241224194914545.png?size=small, /posts/342f304/imgs/image-20241224194914545.png?size=medium 1.5x, /posts/342f304/imgs/image-20241224194914545.png?size=large 2x" data-title="/posts/342f304/imgs/image-20241224194914545.png" style="--width: 3841px;--aspect-ratio: 3841 / 1485;background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p></div><div class="post-footer" id="post-footer">
+<p><img loading="lazy" src="imgs/image-20241224194914545.png" alt="imgs/image-20241224194914545.png" srcset="imgs/image-20241224194914545.png?size=small, imgs/image-20241224194914545.png?size=medium 1.5x, imgs/image-20241224194914545.png?size=large 2x" data-title="imgs/image-20241224194914545.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p></div><div class="post-footer" id="post-footer">
   <div class="post-info">
     <div class="post-info-line">
       <div class="post-info-mod">
