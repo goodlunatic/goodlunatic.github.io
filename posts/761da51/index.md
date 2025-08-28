@@ -434,10 +434,13 @@ RUN echo &#39;MODULE_LICENSE(&#34;GPL&#34;);&#39; &gt;&gt; module.c &amp;&amp; \
 
 **这里制作的所有符号文件都已开源在 [goodlunatic/Profile-and-SymbolTables-For-Volatility](https://github.com/goodlunatic/Profile-and-SymbolTables-For-Volatility)**
 
-
 ##### 安恒某比赛 flag\^galf(Ubuntu16.04)
 
 &gt; Linux version 4.13.0-36-generic (buildd@lgw01-amd64-033) (gcc version 5.4.0 20160609 (Ubuntu 5.4.0-6ubuntu1~16.04.9)) #40~16.04.1-Ubuntu SMP Fri Feb 16 23:25:58 UTC 2018 (Ubuntu 4.13.0-36.40~16.04.1-generic 4.13.13)
+
+内核相关文件可以到下面这个网址中下载：
+
+https://launchpad.net/~canonical-kernel-team/&#43;archive/ubuntu/ppa/&#43;build/14361744
 
 ```bash
 ├── dockerfile
@@ -463,7 +466,7 @@ WORKDIR /src
 
 RUN dpkg -i linux-image-4.13.0-36-generic-dbgsym_4.13.0-36.40~16.04.1_amd64.ddeb \
     &amp;&amp; chmod &#43;x dwarf2json \
-    # 下面这里的文件名需要根据系统版本进行修改
+    # 下面这里的文件名需要根据系统版本进行修改，具体文件名可以通过解压上面的ddeb包得到
     &amp;&amp; ./dwarf2json linux --elf /usr/lib/debug/boot/vmlinux-4.13.0-36-generic &gt; linux-image-4.13.0-36-generic.json \
     &amp;&amp; mv linux-image-4.13.0-36-generic.json /tmp
 ```
@@ -476,6 +479,79 @@ docker run --platform linux/amd64 --rm -it profile /bin/bash
 ```
 
 最后将得到的 json文件放到 volatility3/volatility3/framework/symbols/linux/ 目录下即可
+
+##### 2023 强网杯-你找到PNG了吗(Ubuntu20.04)
+
+&gt; Linux version 5.4.0-100-generic (buildd@lcy02-amd64-002) (gcc version 9.3.0 (Ubuntu 9.3.0-17ubuntu1~20.04)) #113-Ubuntu SMP Thu Feb 3 18:43:29 UTC 2022 (Ubuntu 5.4.0-100.113-generic 5.4.166)
+
+```bash
+├── dockerfile
+└── src
+    ├── dwarf2json
+    └── linux-image-unsigned-5.4.0-100-generic-dbgsym_5.4.0-100.113_amd64.ddeb
+```
+
+```dockerfile
+FROM ubuntu:20.04
+
+# 将环境设置为非交互环境
+ENV DEBIAN_FRONTEND=noninteractive
+
+COPY ./src/ /src/
+
+RUN sed -i &#39;s/archive.ubuntu.com/mirrors.ustc.edu.cn/g&#39; /etc/apt/sources.list \
+    &amp;&amp; sed -i &#39;s/security.ubuntu.com/mirrors.ustc.edu.cn/g&#39; /etc/apt/sources.list \
+	&amp;&amp; apt update --no-install-recommends\
+    &amp;&amp; apt install -y gcc dwarfdump build-essential unzip
+
+WORKDIR /src
+
+RUN dpkg -i linux-image-unsigned-5.4.0-100-generic-dbgsym_5.4.0-100.113_amd64.ddeb  \
+    &amp;&amp; chmod &#43;x dwarf2json \
+    # 下面这里的文件名需要根据系统版本进行修改，具体文件名可以通过解压上面的ddeb包得到
+    &amp;&amp; ./dwarf2json linux --elf /usr/lib/debug/boot/vmlinux-5.4.0-100-generic &gt; Ubuntu_5.4.0-100-generic.json \
+    &amp;&amp; mv Ubuntu_5.4.0-100-generic.json /tmp
+```
+
+##### 2023 0xGame oh-my-linux(Debian10.2)
+
+&gt; Linux version 5.10.0-21-amd64 (debian-kernel@lists.debian.org) (gcc-10 (Debian 10.2.1-6) 10.2.1 20210110, GNU ld (GNU Binutils for Debian) 2.35.2) #1 SMP Debian 5.10.162-1 (2023-01-21)
+
+内核文件下载链接：
+
+https://debian.sipwise.com/debian-security/pool/main/l/linux/
+
+```bash
+├── dockerfile
+└── src
+    ├── dwarf2json
+    └── linux-image-5.10.0-21-amd64-dbg_5.10.162-1_amd64.deb
+```
+
+```dockerfile
+# 因为debian10.2中科大源停止维护了，所以改用debian11.2
+FROM debian:11.2
+
+# 将环境设置为非交互环境
+ENV DEBIAN_FRONTEND=noninteractive
+
+COPY ./src/ /src/
+
+RUN sed -i &#39;s/deb.debian.org/mirrors.ustc.edu.cn/g&#39; /etc/apt/sources.list \
+    &amp;&amp; sed -i &#39;s/security.debian.org/mirrors.ustc.edu.cn/g&#39; /etc/apt/sources.list \
+	&amp;&amp; apt update --no-install-recommends\
+    &amp;&amp; apt install -y gcc dwarfdump build-essential unzip linux-kbuild-5.10 linux-compiler-gcc-10-x86
+    
+WORKDIR /src
+
+RUN dpkg -i linux-image-5.10.0-21-amd64-dbg_5.10.162-1_amd64.deb  \
+    &amp;&amp; chmod &#43;x dwarf2json \
+    # 下面这里的文件名需要根据系统版本进行修改，具体文件名可以通过解压上面的ddeb包得到
+    &amp;&amp; ./dwarf2json linux --elf /usr/lib/debug/boot/vmlinux-5.10.0-21-amd64 &gt; Debian_5.10.0-21-amd64.json \
+    &amp;&amp; mv Debian_5.10.0-21-amd64.json /tmp
+```
+
+
 
 #### Volatility2相关命令
 
