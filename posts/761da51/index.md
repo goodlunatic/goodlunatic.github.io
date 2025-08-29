@@ -303,6 +303,93 @@ docker run --platform linux/amd64 --rm -it profile /bin/bash
 
 可以使用 `vol.py --info` 命令查看 Profile 是否能被成功识别
 
+##### 2023 祥云杯 strange_forensics(Ubuntu18.04)
+
+&gt; Linux version 5.4.0-84-generic (buildd@lcy01-amd64-007) (gcc version 7.5.0 (Ubuntu 7.5.0-3ubuntu1~18.04)) #94~18.04.1-Ubuntu SMP Thu Aug 26 23:17:46 UTC 2021 (Ubuntu 5.4.0-84.94~18.04.1-generic 5.4.133)
+
+首先我们需要解压 `linux-modules-5.4.0-84-generic_5.4.0-84.94_amd64.deb` 并提取system.map
+
+```bash
+├── dockerfile
+└── src
+    ├── linux-headers-5.4.0-84_5.4.0-84.94_all.deb
+    ├── linux-headers-5.4.0-84-generic_5.4.0-84.94_amd64.deb
+    ├── linux-modules-5.4.0-84-generic_5.4.0-84.94_amd64.deb
+    └── tools.zip
+```
+
+```dockerfile
+FROM ubuntu:18.04
+
+# 将环境设置为非交互环境
+ENV DEBIAN_FRONTEND=noninteractive
+
+COPY ./src/ /src/
+
+RUN sed -i &#39;s/archive.ubuntu.com/mirrors.ustc.edu.cn/g&#39; /etc/apt/sources.list \
+    &amp;&amp; sed -i &#39;s/security.ubuntu.com/mirrors.ustc.edu.cn/g&#39; /etc/apt/sources.list \
+	&amp;&amp; apt update --no-install-recommends \
+    &amp;&amp; apt install -y gcc dwarfdump build-essential unzip kmod linux-base
+
+WORKDIR /src
+
+RUN unzip tools.zip \
+    # 需要根据实际的内核版本修改此处
+    &amp;&amp; dpkg -i linux-headers-5.4.0-84_5.4.0-84.94_all.deb \
+    &amp;&amp; dpkg -i linux-headers-5.4.0-84-generic_5.4.0-84.94_amd64.deb
+
+WORKDIR /src/tools/linux
+
+RUN echo &#39;MODULE_LICENSE(&#34;GPL&#34;);&#39; &gt;&gt; module.c &amp;&amp; \
+    # 需要根据实际的内核版本修改此处
+    sed -i &#39;s/$(shell uname -r)/5.4.0-84-generic/g&#39; Makefile &amp;&amp; \
+    make &amp;&amp; \
+    mv module.dwarf /tmp
+```
+
+##### 安恒某比赛 flag\^galf(Ubuntu16.04)
+
+&gt; Linux version 4.13.0-36-generic (buildd@lgw01-amd64-033) (gcc version 5.4.0 20160609 (Ubuntu 5.4.0-6ubuntu1~16.04.9)) #40~16.04.1-Ubuntu SMP Fri Feb 16 23:25:58 UTC 2018 (Ubuntu 4.13.0-36.40~16.04.1-generic 4.13.13)
+
+```bash
+├── linux-headers-4.13.0-36_4.13.0-36.40~16.04.1_all.deb
+├── linux-headers-4.13.0-36-generic_4.13.0-36.40~16.04.1_amd64.deb
+├── linux-image-4.13.0-36-generic_4.13.0-36.40~16.04.1_amd64.deb
+└── tools.zip
+```
+
+从`linux-image-4.13.0-36-generic_4.13.0-36.40~16.04.1_amd64.deb`中提取system.map
+
+```dockerfile
+FROM ubuntu:16.04
+
+# 将环境设置为非交互环境
+ENV DEBIAN_FRONTEND=noninteractive
+
+COPY ./src/ /src/
+
+RUN sed -i &#39;s/archive.ubuntu.com/mirrors.ustc.edu.cn/g&#39; /etc/apt/sources.list \
+    &amp;&amp; sed -i &#39;s/security.ubuntu.com/mirrors.ustc.edu.cn/g&#39; /etc/apt/sources.list \
+	&amp;&amp; apt update --no-install-recommends \
+    &amp;&amp; apt install -y gcc dwarfdump build-essential unzip kmod linux-base libssl1.0.0
+
+WORKDIR /src
+
+RUN unzip tools.zip \
+    # 需要根据实际的内核版本修改此处
+    &amp;&amp; dpkg -i linux-headers-4.13.0-36_4.13.0-36.40~16.04.1_all.deb \
+    &amp;&amp; dpkg -i linux-headers-4.13.0-36-generic_4.13.0-36.40~16.04.1_amd64.deb
+
+WORKDIR /src/tools/linux
+
+RUN echo &#39;MODULE_LICENSE(&#34;GPL&#34;);&#39; &gt;&gt; module.c &amp;&amp; \
+    # 需要根据实际的内核版本修改此处
+    sed -i &#39;s/$(shell uname -r)/4.13.0-36-generic/g&#39; Makefile &amp;&amp; \
+    make &amp;&amp; \
+    mv module.dwarf /tmp
+```
+
+
 ##### 2023 0xGame oh-my-linux(Debian10.2)
 
 &gt; Linux version 5.10.0-21-amd64 (debian-kernel@lists.debian.org) (gcc-10 (Debian 10.2.1-6) 10.2.1 20210110, GNU ld (GNU Binutils for Debian) 2.35.2) #1 SMP Debian 5.10.162-1 (2023-01-21)
@@ -380,46 +467,64 @@ docker run --platform linux/amd64 --rm -it profile /bin/bash
 
 ![](imgs/profile1.png)
 
-##### 安恒某比赛 flag\^galf(Ubuntu16.04)
 
-&gt; Linux version 4.13.0-36-generic (buildd@lgw01-amd64-033) (gcc version 5.4.0 20160609 (Ubuntu 5.4.0-6ubuntu1~16.04.9)) #40~16.04.1-Ubuntu SMP Fri Feb 16 23:25:58 UTC 2018 (Ubuntu 4.13.0-36.40~16.04.1-generic 4.13.13)
+##### 某实验环境(Centos7)
+
+&gt; CentOS_3_10_0-1160_108_1_el7_x86_64
+
+用以下命令解压`kernel-3.10.0-1160.el7.x86_64.rpm `并从`boot`中提取`System.map-3.10.0-1160.el7.x86_64`
 
 ```bash
-├── linux-headers-4.13.0-36_4.13.0-36.40~16.04.1_all.deb
-├── linux-headers-4.13.0-36-generic_4.13.0-36.40~16.04.1_amd64.deb
-├── linux-image-4.13.0-36-generic_4.13.0-36.40~16.04.1_amd64.deb
-└── tools.zip
+mkdir test
+cp kernel-3.10.0-1160.el7.x86_64.rpm test
+cd test
+rpm2cpio kernel-3.10.0-1160.el7.x86_64.rpm | cpio -idmv
 ```
 
-从`linux-image-4.13.0-36-generic_4.13.0-36.40~16.04.1_amd64.deb`中提取system.map
+```bash
+├── dockerfile
+└── src
+    ├── kernel-3.10.0-1160.el7.x86_64.rpm
+    ├── kernel-devel-3.10.0-1160.el7.x86_64.rpm
+    ├── libdwarf-20201201.tar.gz
+    └── tools.zip
+```
 
 ```dockerfile
-FROM ubuntu:16.04
-
-# 将环境设置为非交互环境
-ENV DEBIAN_FRONTEND=noninteractive
+FROM centos:7
 
 COPY ./src/ /src/
 
-RUN sed -i &#39;s/archive.ubuntu.com/mirrors.ustc.edu.cn/g&#39; /etc/apt/sources.list \
-    &amp;&amp; sed -i &#39;s/security.ubuntu.com/mirrors.ustc.edu.cn/g&#39; /etc/apt/sources.list \
-	&amp;&amp; apt update --no-install-recommends \
-    &amp;&amp; apt install -y gcc dwarfdump build-essential unzip kmod linux-base libssl1.0.0
-
 WORKDIR /src
 
-RUN unzip tools.zip \
-    # 需要根据实际的内核版本修改此处
-    &amp;&amp; dpkg -i linux-headers-4.13.0-36_4.13.0-36.40~16.04.1_all.deb \
-    &amp;&amp; dpkg -i linux-headers-4.13.0-36-generic_4.13.0-36.40~16.04.1_amd64.deb
+RUN sed -i &#39;s/mirrorlist/#mirrorlist/g&#39; /etc/yum.repos.d/CentOS-*.repo \
+    &amp;&amp; sed -i &#39;s|#baseurl=http://mirror.centos.org/centos|baseurl=https://mirrors.aliyun.com/centos|g&#39; /etc/yum.repos.d/CentOS-*.repo \
+    &amp;&amp; sed -i &#39;s|baseurl=http://mirror.centos.org/centos|baseurl=https://mirrors.aliyun.com/centos|g&#39; /etc/yum.repos.d/CentOS-*.repo \
+    &amp;&amp; yum clean all \
+    &amp;&amp; yum makecache 
 
-WORKDIR /src/tools/linux
+RUN yum install -y gcc make unzip elfutils-libelf-devel
 
-RUN echo &#39;MODULE_LICENSE(&#34;GPL&#34;);&#39; &gt;&gt; module.c &amp;&amp; \
     # 需要根据实际的内核版本修改此处
-    sed -i &#39;s/$(shell uname -r)/4.13.0-36-generic/g&#39; Makefile &amp;&amp; \
-    make &amp;&amp; \
-    mv module.dwarf /tmp
+RUN yum localinstall -y kernel-3.10.0-1160.el7.x86_64.rpm \
+    &amp;&amp; yum localinstall -y kernel-devel-3.10.0-1160.el7.x86_64.rpm
+
+RUN tar -xzvf libdwarf-20201201.tar.gz \
+    &amp;&amp; cd libdwarf-20201201 \
+    &amp;&amp; chmod &#43;x * \
+    &amp;&amp; ./configure \
+    &amp;&amp; make install \
+    &amp;&amp; cd .. \
+    &amp;&amp; unzip tools.zip \
+    &amp;&amp; cd /src/tools/linux \
+    &amp;&amp; echo &#39;MODULE_LICENSE(&#34;GPL&#34;);&#39; &gt;&gt; module.c \
+    # 需要根据实际的内核版本修改此处
+    &amp;&amp; sed -i &#39;s/$(shell uname -r)/3.10.0-1160.el7.x86_64/g&#39; Makefile \
+    &amp;&amp; make \
+    &amp;&amp; mv module.dwarf /tmp/module.dwarf
+
+# 清理 yum 缓存以减小镜像体积
+RUN yum clean all
 ```
 
 #### 制作  symbols(Vol3)  的详细过程
@@ -433,6 +538,80 @@ RUN echo &#39;MODULE_LICENSE(&#34;GPL&#34;);&#39; &gt;&gt; module.c &amp;&amp; \
 **制作模版已开源在 
 
 **这里制作的所有符号文件都已开源在 [goodlunatic/Profile-and-SymbolTables-For-Volatility](https://github.com/goodlunatic/Profile-and-SymbolTables-For-Volatility)**
+
+##### 2023 强网杯-你找到PNG了吗(Ubuntu20.04)
+
+&gt; Linux version 5.4.0-100-generic (buildd@lcy02-amd64-002) (gcc version 9.3.0 (Ubuntu 9.3.0-17ubuntu1~20.04)) #113-Ubuntu SMP Thu Feb 3 18:43:29 UTC 2022 (Ubuntu 5.4.0-100.113-generic 5.4.166)
+
+```bash
+├── dockerfile
+└── src
+    ├── dwarf2json
+    └── linux-image-unsigned-5.4.0-100-generic-dbgsym_5.4.0-100.113_amd64.ddeb
+```
+
+```dockerfile
+FROM ubuntu:20.04
+
+# 将环境设置为非交互环境
+ENV DEBIAN_FRONTEND=noninteractive
+
+COPY ./src/ /src/
+
+RUN sed -i &#39;s/archive.ubuntu.com/mirrors.ustc.edu.cn/g&#39; /etc/apt/sources.list \
+    &amp;&amp; sed -i &#39;s/security.ubuntu.com/mirrors.ustc.edu.cn/g&#39; /etc/apt/sources.list \
+	&amp;&amp; apt update --no-install-recommends\
+    &amp;&amp; apt install -y gcc dwarfdump build-essential unzip
+
+WORKDIR /src
+
+RUN dpkg -i linux-image-unsigned-5.4.0-100-generic-dbgsym_5.4.0-100.113_amd64.ddeb  \
+    &amp;&amp; chmod &#43;x dwarf2json \
+    # 下面这里的文件名需要根据系统版本进行修改，具体文件名可以通过解压上面的ddeb包得到
+    &amp;&amp; ./dwarf2json linux --elf /usr/lib/debug/boot/vmlinux-5.4.0-100-generic &gt; Ubuntu_5.4.0-100-generic.json \
+    &amp;&amp; mv Ubuntu_5.4.0-100-generic.json /tmp
+```
+
+```bash
+# 运行以下命令构建并运行容器，并把json文件从/tmp目录中复制出来
+# 我这里由于用的是ARM架构的Macbook，所以需要指定平台，x86的设备可以不写
+docker build --platform linux/amd64 -t profile .
+docker run --platform linux/amd64 --rm -it profile /bin/bash
+```
+
+##### 2023 祥云杯 strange_forensics(Ubuntu18.04)
+
+&gt; Linux version 5.4.0-84-generic (buildd@lcy01-amd64-007) (gcc version 7.5.0 (Ubuntu 7.5.0-3ubuntu1~18.04)) #94~18.04.1-Ubuntu SMP Thu Aug 26 23:17:46 UTC 2021 (Ubuntu 5.4.0-84.94~18.04.1-generic 5.4.133)
+
+```bash
+├── dockerfile
+└── src
+    ├── dwarf2json
+    └── linux-image-unsigned-5.4.0-84-generic-dbgsym_5.4.0-84.94_amd64.ddeb
+```
+
+```dockerfile
+FROM ubuntu:20.04
+
+# 将环境设置为非交互环境
+ENV DEBIAN_FRONTEND=noninteractive
+
+COPY ./src/ /src/
+
+RUN sed -i &#39;s/archive.ubuntu.com/mirrors.ustc.edu.cn/g&#39; /etc/apt/sources.list \
+    &amp;&amp; sed -i &#39;s/security.ubuntu.com/mirrors.ustc.edu.cn/g&#39; /etc/apt/sources.list \
+	&amp;&amp; apt update --no-install-recommends\
+    &amp;&amp; apt install -y gcc dwarfdump build-essential unzip
+
+WORKDIR /src
+
+RUN dpkg -i linux-image-unsigned-5.4.0-84-generic-dbgsym_5.4.0-84.94_amd64.ddeb \
+    &amp;&amp; chmod &#43;x dwarf2json \
+    # 下面这里的文件名需要根据系统版本进行修改，具体文件名可以通过解压上面的ddeb包得到
+    &amp;&amp; ./dwarf2json linux --elf /usr/lib/debug/boot/vmlinux-5.4.0-84-generic &gt; Ubuntu_5.4.0-84-generic.json \
+    &amp;&amp; mv Ubuntu_5.4.0-84-generic.json /tmp
+```
+
 
 ##### 安恒某比赛 flag\^galf(Ubuntu16.04)
 
@@ -472,46 +651,13 @@ RUN dpkg -i linux-image-4.13.0-36-generic-dbgsym_4.13.0-36.40~16.04.1_amd64.ddeb
 ```
 
 ```bash
-# 运行以下命令构建并运行容器，并把module.dwarf从/tmp目录中复制出来
+# 运行以下命令构建并运行容器，并把json文件从/tmp目录中复制出来
 # 我这里由于用的是ARM架构的Macbook，所以需要指定平台，x86的设备可以不写
 docker build --platform linux/amd64 -t profile .
 docker run --platform linux/amd64 --rm -it profile /bin/bash
 ```
 
 最后将得到的 json文件放到 volatility3/volatility3/framework/symbols/linux/ 目录下即可
-
-##### 2023 强网杯-你找到PNG了吗(Ubuntu20.04)
-
-&gt; Linux version 5.4.0-100-generic (buildd@lcy02-amd64-002) (gcc version 9.3.0 (Ubuntu 9.3.0-17ubuntu1~20.04)) #113-Ubuntu SMP Thu Feb 3 18:43:29 UTC 2022 (Ubuntu 5.4.0-100.113-generic 5.4.166)
-
-```bash
-├── dockerfile
-└── src
-    ├── dwarf2json
-    └── linux-image-unsigned-5.4.0-100-generic-dbgsym_5.4.0-100.113_amd64.ddeb
-```
-
-```dockerfile
-FROM ubuntu:20.04
-
-# 将环境设置为非交互环境
-ENV DEBIAN_FRONTEND=noninteractive
-
-COPY ./src/ /src/
-
-RUN sed -i &#39;s/archive.ubuntu.com/mirrors.ustc.edu.cn/g&#39; /etc/apt/sources.list \
-    &amp;&amp; sed -i &#39;s/security.ubuntu.com/mirrors.ustc.edu.cn/g&#39; /etc/apt/sources.list \
-	&amp;&amp; apt update --no-install-recommends\
-    &amp;&amp; apt install -y gcc dwarfdump build-essential unzip
-
-WORKDIR /src
-
-RUN dpkg -i linux-image-unsigned-5.4.0-100-generic-dbgsym_5.4.0-100.113_amd64.ddeb  \
-    &amp;&amp; chmod &#43;x dwarf2json \
-    # 下面这里的文件名需要根据系统版本进行修改，具体文件名可以通过解压上面的ddeb包得到
-    &amp;&amp; ./dwarf2json linux --elf /usr/lib/debug/boot/vmlinux-5.4.0-100-generic &gt; Ubuntu_5.4.0-100-generic.json \
-    &amp;&amp; mv Ubuntu_5.4.0-100-generic.json /tmp
-```
 
 ##### 2023 0xGame oh-my-linux(Debian10.2)
 
@@ -551,7 +697,42 @@ RUN dpkg -i linux-image-5.10.0-21-amd64-dbg_5.10.162-1_amd64.deb  \
     &amp;&amp; mv Debian_5.10.0-21-amd64.json /tmp
 ```
 
+##### 某实验环境(Centos7)
 
+```bash
+├── dockerfile
+└── src
+    ├── dwarf2json
+    ├── kernel-debuginfo-3.10.0-1160.el7.x86_64.rpm
+    └── kernel-debuginfo-common-x86_64-3.10.0-1160.el7.x86_64.rpm
+```
+
+```dockerfile
+FROM centos:7
+
+COPY ./src/ /src/
+
+WORKDIR /src
+
+RUN sed -i &#39;s/mirrorlist/#mirrorlist/g&#39; /etc/yum.repos.d/CentOS-*.repo \
+    &amp;&amp; sed -i &#39;s|#baseurl=http://mirror.centos.org/centos|baseurl=https://mirrors.aliyun.com/centos|g&#39; /etc/yum.repos.d/CentOS-*.repo \
+    &amp;&amp; sed -i &#39;s|baseurl=http://mirror.centos.org/centos|baseurl=https://mirrors.aliyun.com/centos|g&#39; /etc/yum.repos.d/CentOS-*.repo \
+    &amp;&amp; yum clean all \
+    &amp;&amp; yum makecache 
+
+RUN yum install -y gcc make unzip elfutils-libelf-devel
+
+    # 需要根据实际的内核版本修改此处
+RUN yum localinstall -y kernel-debuginfo-common-x86_64-3.10.0-1160.el7.x86_64.rpm \
+    &amp;&amp; yum localinstall -y kernel-debuginfo-3.10.0-1160.el7.x86_64.rpm
+
+RUN chmod &#43;x dwarf2json \
+    &amp;&amp; ./dwarf2json linux --elf /usr/lib/debug/usr/lib/modules/3.10.0-1160.el7.x86_64/vmlinux &gt; Centos_3.10.0-1160.el7.x86_64.json \
+    &amp;&amp; mv Centos_3.10.0-1160.el7.x86_64.json /tmp
+
+# 清理 yum 缓存以减小镜像体积
+RUN yum clean all
+```
 
 #### Volatility2相关命令
 

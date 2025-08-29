@@ -1064,6 +1064,13 @@ https://www.mzy0.com/ctftools/zerowidth1/
 https://yuanfux.github.io/zero-width-web/
 ```
 
+如果网站默认的字符集解不出来，可以尝试先在vim里查看，看看都有哪些字符
+
+![](imgs/image-20250828223508020.png)
+
+然后再到解码网址上勾选对应字符
+
+![](imgs/image-20250828223608794.png)
 
 ### 中文电报（中文电码）
 
