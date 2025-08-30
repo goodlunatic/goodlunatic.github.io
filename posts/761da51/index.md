@@ -200,6 +200,7 @@ Offset	Banner
 0x7bd00010	Linux version 5.4.0-100-generic (buildd@lcy02-amd64-002) (gcc version 9.3.0 (Ubuntu 9.3.0-17ubuntu1~20.04)) #113-Ubuntu SMP Thu Feb 3 18:43:29 UTC 2022 (Ubuntu 5.4.0-100.113-generic 5.4.166)
 ```
 
+
 #### 制作  Profile(Vol2)  的详细过程
 
 &gt; 由于官方的vol2自带的一些原因，原版的vol2不支持Ubuntu22.04及以上版本Profile的制作及使用，但是可以根据以下参考链接对vol2进行一些修改，以便对Ubuntu22.04及以上版本提供支持
@@ -389,6 +390,76 @@ RUN echo &#39;MODULE_LICENSE(&#34;GPL&#34;);&#39; &gt;&gt; module.c &amp;&amp; \
     mv module.dwarf /tmp
 ```
 
+
+##### 2022 SEKAI Symbolic Needs 1(Ubuntu22.04)
+
+&gt; Linux version 5.15.0-43-generic (buildd@lcy02-amd64-076) (gcc (Ubuntu 11.2.0-19ubuntu1) 11.2.0, GNU ld (GNU Binutils for Ubuntu) 2.38) #46-Ubuntu SMP Tue Jul 12 10:30:17 UTC 2022 (Ubuntu 5.15.0-43.46-generic 5.15.39)
+
+这个版本其实是 Ubuntu22.04 的，然后这个版本的内核包不太好找，官方也删除了这个内核包，我最后也是根据版本代号 Jammy 去官网翻出来的：https://answers.launchpad.net/ubuntu/jammy/amd64/linux-image-unsigned-5.15.0-43-generic/
+
+参考链接：https://github.com/project-sekai-ctf/sekaictf-2022/tree/main/forensics/symbolic-needs/solution
+
+首先也是从`linux-modules-5.15.0-43-generic_5.15.0-43.46_amd64.deb`中提取 system.map
+
+```bash
+├── dockerfile
+└── src
+    ├── linux-headers-5.15.0-43_5.15.0-43.46_all.deb
+    ├── linux-headers-5.15.0-43-generic_5.15.0-43.46_amd64.deb
+    ├── linux-modules-5.15.0-43-generic_5.15.0-43.46_amd64.deb
+    └── tools.zip
+```
+
+```dockerfile
+FROM ubuntu:22.04
+
+# 将环境设置为非交互环境
+ENV DEBIAN_FRONTEND=noninteractive
+
+COPY ./src/ /src/
+
+RUN sed -i &#39;s/archive.ubuntu.com/mirrors.ustc.edu.cn/g&#39; /etc/apt/sources.list \
+    &amp;&amp; sed -i &#39;s/security.ubuntu.com/mirrors.ustc.edu.cn/g&#39; /etc/apt/sources.list \
+	&amp;&amp; apt update --no-install-recommends \
+    &amp;&amp; apt install -y gcc dwarfdump build-essential unzip kmod linux-base
+
+WORKDIR /src
+
+RUN unzip tools.zip \
+    # 需要根据实际的内核版本修改此处
+    &amp;&amp; dpkg -i linux-headers-5.15.0-43_5.15.0-43.46_all.deb \
+    &amp;&amp; dpkg -i linux-headers-5.15.0-43-generic_5.15.0-43.46_amd64.deb
+
+WORKDIR /src/tools/linux
+
+RUN echo &#39;MODULE_LICENSE(&#34;GPL&#34;);&#39; &gt;&gt; module.c &amp;&amp; \
+    # 需要根据实际的内核版本修改此处
+    sed -i &#39;s/$(shell uname -r)/5.15.0-43-generic/g&#39; Makefile &amp;&amp; \
+    make &amp;&amp; \
+    mv module.dwarf /tmp
+```
+
+构建好后运行容器，将 module.dwarf 提取出来，和 system.map 一起打包为 zip，然后放到 volatility/volatility/plugins/overlays/linux 目录下即可
+
+但是这里要注意一点就是，官方的 vol2 对于新版 dwarfdump 生成的 dwarf 文件的支持性不够
+
+因此需要参考[巨魔的这篇博客](https://treasure-house.randark.site/blog/2023-10-25-MemoryForensic-Test/) 对 vol2 的源码进行一些修改
+
+这里也可以直接下载[修改好的项目](https://github.com/goodlunatic/volatility2-enhanced)
+
+修改好后即可正常使用
+
+![](imgs/image-20250830021517234.png)
+
+参考链接：
+
+https://github.com/volatilityfoundation/volatility/issues/828
+
+https://github.com/volatilityfoundation/volatility/pull/852
+
+https://github.com/volatilityfoundation/volatility/pull/852/commits/9ff9e9bb9103d63cbb278e991209aa11cffc61ce
+
+https://github.com/volatilityfoundation/volatility/pull/852/commits/d07c69a7811d8e18ab186c9fbdf5b050529d06d2
 
 ##### 2023 0xGame oh-my-linux(Debian10.2)
 
@@ -658,6 +729,48 @@ docker run --platform linux/amd64 --rm -it profile /bin/bash
 ```
 
 最后将得到的 json文件放到 volatility3/volatility3/framework/symbols/linux/ 目录下即可
+
+##### 2022 SEKAI Symbolic Needs 1(Ubuntu22.04)
+
+&gt; Linux version 5.15.0-43-generic (buildd@lcy02-amd64-076) (gcc (Ubuntu 11.2.0-19ubuntu1) 11.2.0, GNU ld (GNU Binutils for Ubuntu) 2.38) #46-Ubuntu SMP Tue Jul 12 10:30:17 UTC 2022 (Ubuntu 5.15.0-43.46-generic 5.15.39)
+
+这个版本其实是 Ubuntu22.04 的，然后这个版本的内核包不太好找，官方也删除了这个内核包，我最后也是根据版本代号 Jammy 去官网翻出来的：https://answers.launchpad.net/ubuntu/jammy/amd64/linux-image-unsigned-5.15.0-43-generic/
+
+参考链接：https://github.com/project-sekai-ctf/sekaictf-2022/tree/main/forensics/symbolic-needs/solution
+
+```bash
+├── dockerfile
+└── src
+    ├── dwarf2json
+    └── linux-image-unsigned-5.15.0-43-generic-dbgsym_5.15.0-43.46_amd64.ddeb
+```
+
+```dockerfile
+FROM ubuntu:22.04
+
+# 将环境设置为非交互环境
+ENV DEBIAN_FRONTEND=noninteractive
+
+COPY ./src/ /src/
+
+RUN sed -i &#39;s/archive.ubuntu.com/mirrors.ustc.edu.cn/g&#39; /etc/apt/sources.list \
+    &amp;&amp; sed -i &#39;s/security.ubuntu.com/mirrors.ustc.edu.cn/g&#39; /etc/apt/sources.list \
+    &amp;&amp; apt update --no-install-recommends \
+    &amp;&amp; apt install -y gcc dwarfdump build-essential unzip linux-base kmod
+
+WORKDIR /src
+
+RUN dpkg -i linux-image-unsigned-5.15.0-43-generic-dbgsym_5.15.0-43.46_amd64.ddeb
+
+RUN chmod &#43;x dwarf2json \
+    &amp;&amp; ./dwarf2json linux --elf /usr/lib/debug/boot/vmlinux-5.15.0-43-generic &gt; Ubuntu_5.15.0-43-generic.json \
+    &amp;&amp; mv Ubuntu_5.15.0-43-generic.json /tmp
+```
+
+找到正确的内核包后，即可完美适配
+
+![](imgs/image-20250830014638054.png)
+
 
 ##### 2023 0xGame oh-my-linux(Debian10.2)
 
