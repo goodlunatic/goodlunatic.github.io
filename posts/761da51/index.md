@@ -606,7 +606,7 @@ RUN yum clean all
 
 为了帮助读者理解SymbolTables的制作过程，我就举了下面这几个例子
 
-**制作模版已开源在 
+**制作模版已开源在 [goodlunatic/Docker-SymbolsMaker-vol3](https://github.com/goodlunatic/Docker-SymbolsMaker-vol3)**
 
 **这里制作的所有符号文件都已开源在 [goodlunatic/Profile-and-SymbolTables-For-Volatility](https://github.com/goodlunatic/Profile-and-SymbolTables-For-Volatility)**
 
@@ -1409,6 +1409,7 @@ Windows自带的 Cipher 加密（EFS加密算法）
 直接使用 Advanced efs data recovery 解密即可，解密需要密钥和密码
 
 例题-2024 DubheCTF Cipher
+
 
 
 ---
