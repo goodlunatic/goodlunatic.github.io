@@ -200,6 +200,10 @@ Offset	Banner
 0x7bd00010	Linux version 5.4.0-100-generic (buildd@lcy02-amd64-002) (gcc version 9.3.0 (Ubuntu 9.3.0-17ubuntu1~20.04)) #113-Ubuntu SMP Thu Feb 3 18:43:29 UTC 2022 (Ubuntu 5.4.0-100.113-generic 5.4.166)
 ```
 
+推荐制作 vol2 的符号前先做一下 vol3 的符号文件，并放到指定symbol目录下
+
+因为 vol3 可以使用 `vol3.py IsfInfo` 命令查看我们找的内核文件是否与题目要求完全一致
+
 
 #### 制作  Profile(Vol2)  的详细过程
 
@@ -461,7 +465,55 @@ https://github.com/volatilityfoundation/volatility/pull/852/commits/9ff9e9bb9103
 
 https://github.com/volatilityfoundation/volatility/pull/852/commits/d07c69a7811d8e18ab186c9fbdf5b050529d06d2
 
-##### 2023 0xGame oh-my-linux(Debian10.2)
+##### 2022 WMCTF 1!5!(Debian10)
+
+&gt; Linux version 4.19.0-21-amd64 (debian-kernel@lists.debian.org) (gcc version 8.3.0 (Debian 8.3.0-6)) #1 SMP Debian 4.19.249-2 (2022-06-30)
+
+内核文件下载链接：
+
+https://debian.sipwise.com/debian-security/pool/main/l/linux/
+
+```bash
+├── dockerfile
+└── src
+    ├── linux-headers-4.19.0-21-amd64_4.19.249-2_amd64.deb
+    ├── linux-headers-4.19.0-21-common_4.19.249-2_all.deb
+    ├── linux-image-4.19.0-21-amd64-unsigned_4.19.249-2_amd64.deb
+    └── tools.zip
+```
+
+首先先从`linux-image-4.19.0-21-amd64-unsigned_4.19.249-2_amd64.deb`中提取 system.map
+
+然后用 Docker 安装内核头文件并编译 `module.dwarf` 
+
+```dockerfile
+FROM debian:10.13
+ENV DEBIAN_FRONTEND=noninteractive
+
+COPY ./src/ /src/
+
+# 使用Debian官方存档源
+RUN echo &#34;deb http://archive.debian.org/debian/ buster main&#34; &gt; /etc/apt/sources.list \
+    &amp;&amp; echo &#34;deb http://archive.debian.org/debian-security buster/updates main&#34; &gt;&gt; /etc/apt/sources.list
+
+RUN apt update --no-install-recommends \
+    &amp;&amp; apt install -y gcc dwarfdump build-essential unzip linux-kbuild-4.19 linux-compiler-gcc-8-x86
+
+WORKDIR /src
+RUN unzip tools.zip \
+    &amp;&amp; dpkg -i linux-headers-4.19.0-21-common_4.19.249-2_all.deb \
+    &amp;&amp; dpkg -i linux-headers-4.19.0-21-amd64_4.19.249-2_amd64.deb
+
+WORKDIR /src/tools/linux
+RUN echo &#39;MODULE_LICENSE(&#34;GPL&#34;);&#39; &gt;&gt; module.c &amp;&amp; \
+    sed -i &#39;s/$(shell uname -r)/4.19.0-21-amd64/g&#39; Makefile &amp;&amp; \
+    make &amp;&amp; \
+    mv module.dwarf /tmp
+```
+
+最后将 `module.dwarf` 和 `System.map` 用deflate压缩算法压缩成一个zip压缩包放到`volatility/volatility/plugins/overlays/linux`目录下即可
+
+##### 2023 0xGame oh-my-linux(Debian11)
 
 &gt; Linux version 5.10.0-21-amd64 (debian-kernel@lists.debian.org) (gcc-10 (Debian 10.2.1-6) 10.2.1 20210110, GNU ld (GNU Binutils for Debian) 2.35.2) #1 SMP Debian 5.10.162-1 (2023-01-21)
 
@@ -597,6 +649,7 @@ RUN tar -xzvf libdwarf-20201201.tar.gz \
 # 清理 yum 缓存以减小镜像体积
 RUN yum clean all
 ```
+
 
 #### 制作  symbols(Vol3)  的详细过程
 
@@ -771,8 +824,45 @@ RUN chmod &#43;x dwarf2json \
 
 ![](imgs/image-20250830014638054.png)
 
+##### 2022 WMCTF 1!5!(Debian10)
 
-##### 2023 0xGame oh-my-linux(Debian10.2)
+&gt; Linux version 4.19.0-21-amd64 (debian-kernel@lists.debian.org) (gcc version 8.3.0 (Debian 8.3.0-6)) #1 SMP Debian 4.19.249-2 (2022-06-30)
+
+内核文件下载链接：
+
+https://debian.sipwise.com/debian-security/pool/main/l/linux/
+
+```bash
+├── dockerfile
+└── src
+    ├── dwarf2json
+    └── linux-image-4.19.0-21-amd64-dbg_4.19.249-2_amd64.deb
+```
+
+```dockerfile
+# 因为debian10.2中科大源停止维护了，所以改用debian11.2
+FROM debian:11.2
+
+# 将环境设置为非交互环境
+ENV DEBIAN_FRONTEND=noninteractive
+
+COPY ./src/ /src/
+
+RUN sed -i &#39;s/deb.debian.org/mirrors.ustc.edu.cn/g&#39; /etc/apt/sources.list \
+    &amp;&amp; sed -i &#39;s/security.debian.org/mirrors.ustc.edu.cn/g&#39; /etc/apt/sources.list \
+	&amp;&amp; apt update --no-install-recommends\
+    &amp;&amp; apt install -y gcc dwarfdump build-essential unzip linux-kbuild-5.10 linux-compiler-gcc-10-x86
+    
+WORKDIR /src
+
+RUN dpkg -i linux-image-4.19.0-21-amd64-dbg_4.19.249-2_amd64.deb  \
+    &amp;&amp; chmod &#43;x dwarf2json \
+    # 下面这里的文件名需要根据系统版本进行修改，具体文件名可以通过解压上面的ddeb包得到
+    &amp;&amp; ./dwarf2json linux --elf /usr/lib/debug/boot/vmlinux-4.19.0-21-amd64 &gt; Debian_4.19.0-21-amd64.json \
+    &amp;&amp; mv Debian_4.19.0-21-amd64.json /tmp
+```
+
+##### 2023 0xGame oh-my-linux(Debian11)
 
 &gt; Linux version 5.10.0-21-amd64 (debian-kernel@lists.debian.org) (gcc-10 (Debian 10.2.1-6) 10.2.1 20210110, GNU ld (GNU Binutils for Debian) 2.35.2) #1 SMP Debian 5.10.162-1 (2023-01-21)
 
