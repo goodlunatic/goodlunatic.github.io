@@ -1699,6 +1699,81 @@ zsteg扫一下png，得到一串字符，长度刚刚好是32位
 
 ![](imgs/image-20250828115400614.png)
 
+## 题目名称 deep-with-deep
+
+题目附件给了一个 wav 文件，元数据中提示了密码是 deep
+
+![](imgs/image-20250831225722108.png)
+
+结合题目名称和 wav，很容易联想到是 deepsound
+
+输入密钥解密即可得到一张 png 图片
+
+![](imgs/image-20250831225904252.png)
+
+用 stegsolve 打开刚刚得到的 PNG，发现 Alpha Plane 2 有 LSB 隐写的痕迹 
+
+![](imgs/image-20250831230055487.png)
+
+因此我们写个脚本提取一下即可：`flag{225f667d9243201a6b2b35e008ebe3d3}`
+
+```python
+from PIL import Image
+
+def func1():
+    res = &#34;&#34;
+    flag = False
+    img = Image.open(&#34;deep.png&#34;)
+    w,h = img.size
+    for x in range(400,401):
+        for y in range(h):
+            r,g,b,a = img.getpixel((x,y))
+            # if a!=255:
+            #     print(a,(x,y))
+            #     break
+            if (a &gt;&gt; 2) &amp; 1 == 0:
+                res &#43;= &#39;0&#39;
+            else:
+                res &#43;= &#39;1&#39;
+    print(res)     
+    
+if __name__ == &#39;__main__&#39;:
+    func1()
+```
+
+![](imgs/image-20250831231637620.png)
+
+
+## 题目名称 python_jail
+
+题目所给附件如下
+
+![](imgs/image-20250831231949303.png)
+
+依次解密零宽和 whitespace 隐写即可得到压缩包解压密码：`a8e15220-7404-4269-812e-6418557b7dc2`
+
+![](imgs/image-20250831232032459.png)
+
+![](imgs/image-20250831232044134.png)
+
+![](imgs/image-20250831232154057.png)
+
+![](imgs/image-20250831232321966.png)
+
+解压后可以得到一张 PNG 图片，并且 PNG 图片 LSB 隐写了一个 python3.9 打包的 pyc 文件
+
+![](imgs/image-20250831232555879.png)
+
+直接导出然后用 pccdc 反编译一下即可
+
+```bash
+zsteg -e &#34;b1,rgb,lsb,xy&#34; SECRET1.png &gt; 1.pyc
+```
+
+![](imgs/image-20250831233012985.png)
+
+最后解个 base64 即可得到最后的 flag：`flag{b5bcfc87-5ca6-43f1-b384-57d09b886ca9}`
+
 ## 题目名称 bus
 
 题目附件给了一个`bus.cap`，Linux下 file 一下发现是 pcap 文件，直接 wireshark 打开
