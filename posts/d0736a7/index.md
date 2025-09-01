@@ -2080,9 +2080,39 @@ with open(&#34;output.png&#34;, &#34;wb&#34;) as f:
 
 ![](imgs/image-20250321193130917.png)
 
-图片的像素看起来很复杂，然后尝试了`zsteg`和`stegsolve`，感觉不存在LSB隐写
+图片的像素看起来很复杂，尝试了`zsteg`和`stegsolve`，没有得到什么有效的信息
 
-也尝试了单图盲水印，没有得到什么有用的信息
+也尝试了单图盲水印，也是没有得到什么有用的信息
+
+拿工具统计了一下像素的频次，发现纯黑色和纯红色的像素异常的多
+
+![](imgs/image-20250901004253430.png)
+
+写了个脚本输出了一下这两个像素的分布
+
+```python
+from PIL import Image
+
+def func1():
+    img = Image.open(&#34;output.png&#34;)
+    w,h = img.size
+    # print(w,h) # 1400 788
+    img1 = Image.new(&#34;RGB&#34;,(w,h),(255,255,255))
+    for y in range(h):
+        for x in range(w):
+            r,g,b = img.getpixel((x,y))
+            if (r,g,b) == (0,0,0):
+                img1.putpixel((x,y),(0,0,0))
+    img1.show()
+                
+    
+if __name__ == &#39;__main__&#39;:
+    func1()
+```
+
+![](imgs/image-20250901004452560.png)
+
+![](imgs/image-20250901004423770.png)
 
 ## 题目名称 1.png (2025 交通运输行业大赛)
 
@@ -2206,6 +2236,109 @@ if __name__ == &#39;__main__&#39;:
 cookies.zip中的内容如下：
 
 ![](imgs/image-20250825183448035.png)
+
+## 题目名称 itch&#43;years
+
+题目附件给了一个 7z 压缩包，手动解压几个发现是 7z套娃，并且发现里面的文件名都是 6 位大小写字母
+
+![](imgs/image-20250901102648422.png)
+
+
+于是写了个脚本解套，，发现 txt 中的内容一共有以下七种情况
+
+```python
+import py7zr
+import os
+import shutil
+
+def decompress_7z(archive_file):
+    global res  # 声明使用全局变量
+    global name_res
+    # 确保tmp目录存在且为空
+    if os.path.exists(&#34;tmp&#34;):
+        shutil.rmtree(&#34;tmp&#34;)
+    os.makedirs(&#34;tmp&#34;, exist_ok=True)
+    
+    new_archive_file = None
+    txt_filename = None
+    
+    try:
+        with py7zr.SevenZipFile(archive_file, &#39;r&#39;) as archive:
+            file_list = archive.list()
+            for file in file_list:
+                if file.filename.endswith(&#39;.7z&#39;):
+                    name_res.append(file.filename.split(&#39;.&#39;)[0])
+                    new_archive_file = file.filename
+                elif file.filename.endswith(&#39;.txt&#39;):
+                    txt_filename = file.filename
+                    name_res.append(file.filename.split(&#39;.&#39;)[0])
+        # 解压文件
+        with py7zr.SevenZipFile(archive_file, mode=&#39;r&#39;) as archive:
+            archive.extractall(&#34;tmp/&#34;)
+        
+        print(f&#34;[&#43;] {archive_file} 解压成功&#34;)
+        
+        # 读取txt文件内容
+        if txt_filename and os.path.exists(f&#34;./tmp/{txt_filename}&#34;):
+            with open(f&#34;./tmp/{txt_filename}&#34;, &#39;r&#39;) as f:
+                data = f.read().strip()
+                if data == &#39;Come on!&#39;:
+                    res &#43;= &#34;1 &#34;
+                elif data == &#39;Go ahead!&#39;:
+                    res &#43;= &#34;2 &#34;
+                elif data == &#39;Go for it.&#39;:
+                    res &#43;= &#34;3 &#34;
+                elif data == &#39;Keep it up.&#39;:
+                    res &#43;= &#34;4 &#34;
+                elif data == &#39;You can do it.&#39;:
+                    res &#43;= &#34;5 &#34;
+                elif data == &#39;Cheer up!&#39;:
+                    res &#43;= &#34;6 &#34;
+                elif data == &#39;Hang in there!&#39;:
+                    res &#43;= &#34;7 &#34;
+                else:
+                    print(f&#34;未知的内容: {data}&#34;)
+        
+        # 移动文件到当前目录
+        for filename in os.listdir(&#34;tmp&#34;):
+            src = os.path.join(&#34;tmp&#34;, filename)
+            dst = os.path.join(&#34;.&#34;, filename)
+            if os.path.exists(dst):
+                os.remove(dst)
+            shutil.move(src, dst)
+        
+        # 清理
+        shutil.rmtree(&#34;tmp&#34;)
+        os.remove(archive_file)
+        
+        return new_archive_file
+        
+    except Exception as e:
+        print(f&#34;解压 {archive_file} 时出错: {e}&#34;)
+        # 清理临时文件
+        if os.path.exists(&#34;tmp&#34;):
+            shutil.rmtree(&#34;tmp&#34;)
+        return None
+
+if __name__ == &#34;__main__&#34;:
+    res = &#34;&#34;  # 初始化全局变量
+    name_res = []
+    archive_file = &#34;flag.7z&#34;
+    
+    while True:
+        if archive_file and archive_file.endswith(&#39;.7z&#39;) and os.path.exists(archive_file):
+            archive_file = decompress_7z(archive_file)
+            if archive_file is None:
+                break
+        else:
+            break
+    
+    print(res)
+    print(name_res)
+```
+
+结合题目名的意思七年之痒，猜测最后的 flag 肯定和数字七有关了
+
 
 
 
