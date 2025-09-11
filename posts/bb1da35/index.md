@@ -1826,6 +1826,75 @@ XXencode 解码即可得到最后的 flag : `flag{aaabbbcccDDDzz}`
 
 ![](imgs/image-20250911201833891.png)
 
+## 题目名称 你知道我的密码吗？
+
+题目附件给了以下三个文件，猜测需要我们从这三个文件中恢复密码
+
+![](imgs/image-20250911222018399.png)
+
+结合文件名搜索到如下这篇文章：
+
+https://www.bordergate.co.uk/extracting-windows-credentials-using-native-tools/
+
+直接在 Kali-Linux 里用 impacket-secretsdump 导出 hash 即可
+
+![](imgs/image-20250911222509582.png)
+
+```bash
+$ impacket-secretsdump -sam &#39;./sam&#39; -system &#39;./sys&#39; -security &#39;./security&#39; LOCAL
+Impacket v0.12.0.dev1 - Copyright 2023 Fortra
+
+[*] Target system bootKey: 0xb503ddc9ee9d7745dea270d29a317d21
+[*] Dumping local SAM hashes (uid:rid:lmhash:nthash)
+Administrator:500:aad3b435b51404eeaad3b435b51404ee:31d6cfe0d16ae931b73c59d7e0c089c0:::
+Guest:501:aad3b435b51404eeaad3b435b51404ee:31d6cfe0d16ae931b73c59d7e0c089c0:::
+DefaultAccount:503:aad3b435b51404eeaad3b435b51404ee:31d6cfe0d16ae931b73c59d7e0c089c0:::
+WDAGUtilityAccount:504:aad3b435b51404eeaad3b435b51404ee:124c1eb810a265ea0eb2b12fe814c070:::
+Admin:1001:aad3b435b51404eeaad3b435b51404ee:ad70819c5bc807280974d80f45982011:::
+[*] Dumping cached domain logon information (domain/username:hash)
+[*] Dumping LSA Secrets
+[*] DPAPI_SYSTEM 
+dpapi_machinekey:0x0d1b5bdfc8d33c4fab65c842bddae69beca945b0
+dpapi_userkey:0xb55e67d132394e16d9678c344feb238628eef222
+[*] L$_SQSA_S-1-5-21-2002660762-2776537960-2635005223-1001 
+Security Questions for user S-1-5-21-2002660762-2776537960-2635005223-1001: 
+ - Version : 1
+ | Question: 你出生城市的名称是什么?
+ | |--&gt; Answer: ht
+ | Question: 你孩童时期的昵称是什么?
+ | |--&gt; Answer: ff
+ | Question: 你的母校名称是什么?
+ | |--&gt; Answer: cz
+[*] NL$KM 
+ 0000   DF 8C 5F 63 8E BD 17 89  B0 A1 0E A1 0A 4D 53 50   .._c.........MSP
+ 0010   03 92 03 AD 36 FC E2 89  67 93 63 27 B1 C4 4F E2   ....6...g.c&#39;..O.
+ 0020   79 82 BD F3 98 91 78 B1  C0 22 73 A9 DF B9 7C B4   y.....x..&#34;s...|.
+ 0030   56 F9 9D 84 82 FA 8A 0C  9E 9E 31 19 6C 85 40 9C   V.........1.l.@.
+NL$KM:df8c5f638ebd1789b0a10ea10a4d5350039203ad36fce28967936327b1c44fe27982bdf3989178b1c02273a9dfb97cb456f99d8482fa8a0c9e9e31196c85409c
+[*] RasDialParams!S-1-5-21-2002660762-2776537960-2635005223-1001#0 
+ 0000   32 00 33 00 32 00 35 00  33 00 35 00 37 00 31 00   2.3.2.5.3.5.7.1.
+ 0010   38 00 00 00 31 00 36 00  30 00 38 00 00 00 36 00   8...1.6.0.8...6.
+ 0020   31 00 00 00 00 00 2A 00  00 00 73 00 32 00 30 00   1.....*...s.2.0.
+ 0030   31 00 34 00 31 00 34 00  30 00 33 00 31 00 33 00   1.4.1.4.0.3.1.3.
+ 0040   30 00 00 00 00 00 00 00  31 00 00 00 00 00         0.......1.....
+RasDialParams!S-1-5-21-2002660762-2776537960-2635005223-1001#0:32003300320035003300350037003100380000003100360030003800000036003100000000002a000000730032003000310034003100340030003300310033003000000000000000310000000000
+[*] Cleaning up...
+
+```
+
+&gt; 这里网上也有直接单独用 secretsdump.py 提取的，但是我这里没成功
+
+提取出来后用 hashcat 爆破或者在线网站查询即可
+
+![](imgs/image-20250911222711072.png)
+
+这个 `31d6cfe0d16ae931b73c59d7e0c089c0` 爆破出来是空密码
+
+![](imgs/image-20250911222733560.png)
+
+![](imgs/image-20250911222904183.png)
+
+因为缺少题面信息，不知道 flag 要求的具体格式，但是我们已经得到了 Admin 用户的密码：`123qwe`
 
 
 ---
