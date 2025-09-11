@@ -1806,6 +1806,25 @@ zsteg -e &#34;b1,rgb,lsb,xy&#34; SECRET1.png &gt; 1.pyc
 
 ![](imgs/image-20250831224226272.png)
 
+## 题目名称 att
+
+题目附件给了一个压缩包，打开查看，很明显提示了明文攻击
+
+![](imgs/image-20250911201639523.png)
+
+![](imgs/image-20250911201453298.png)
+
+解压后得到一个加密的压缩包，尝试弱密码爆破得到解压密码：`123456`
+
+![](imgs/image-20250911201518426.png)
+
+解压后得到 flag.txt，内容如下：
+
+&gt; INalVNrhVMK3WMa7XMqB2F2FuSbo&#43;
+
+XXencode 解码即可得到最后的 flag : `flag{aaabbbcccDDDzz}`
+
+![](imgs/image-20250911201833891.png)
 
 
 
