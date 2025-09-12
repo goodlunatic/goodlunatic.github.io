@@ -2742,6 +2742,10 @@ with open(&#39;flag.zip&#39;, &#39;wb&#39;) as f:
 
 ![GridMatrix](imgs/image-20250421210051456.png)
 
+![MaxiCode](imgs/image-20250912223855981.png)
+
+![DotCode](imgs/image-20250912224010642.png)
+
 ![汉信码](imgs/image-20250421210117218.png)
 
 &gt; 汉信码这里要注意，左下角的那块定位块的方向和另外几块是不一样的
@@ -4437,6 +4441,7 @@ tar -xzvf file.tar.gz
 对隐写的内容进行提取即可
 
 ![](imgs/image-20241113181609346.png)
+
 
 
 
