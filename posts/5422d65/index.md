@@ -1274,6 +1274,41 @@ jack::WIDGETLLC:2af71b5ca7246268:2d1d24572b15fe544043431c59965d30:01010000000000
 
 后续步骤就和之前一样了，提取信息然后用 hashcat 爆破
 
+**NTLMv2 中 NTproofstring 生成过程如下：**
+
+```python
+import hashlib
+import hmac
+
+user_name = &#34;admin&#34;
+password = &#34;QUICAUTH-CCC123!@#&#34;
+domain_name = &#34;SecretServer&#34;
+
+# 使用MD4消息摘要算法得到16字节的 NTLM_HASH
+ntlm_hash = hashlib.new(&#34;md4&#34;, password.encode(&#34;utf-16-le&#34;)).digest().hex()
+print(f&#34;NTLM Hash: {ntlm_hash}&#34;)
+
+user_domain_name = user_name.upper().encode(&#34;utf-16-le&#34;)&#43;domain_name.upper().encode(&#34;utf-16-le&#34;)
+print(f&#34;User Domain Data: {user_domain_name}&#34;)
+
+# 使用 NTLM_HASH 作为密钥对用户名域名进行MD5加密
+firstHMAC = hmac.new(bytes.fromhex(ntlm_hash), user_domain_name, hashlib.md5).hexdigest()
+print(f&#34;First HMAC Result: {firstHMAC}&#34;)
+
+ntlm_authentication_data = &#34;d158262017948de9010100000000000058b2da67cbe0d001c575cfa48d38bec50000000002001600450047004900540049004d002d00500043003100340001001600450047004900540049004d002d00500043003100340004001600650067006900740069006d002d00500043003100340003001600650067006900740069006d002d0050004300310034000700080058b2da67cbe0d0010600040002000000080030003000000000000000000000000030000065d85a4000a167cdbbf6eff657941f52bc9ee2745e11f10c61bb24db541165800a001000000000000000000000000000000000000900240063006900660073002f003100390032002e003100360038002e0031002e00310030003700000000000000000000000000&#34;
+
+NTproofstring = hmac.new(bytes.fromhex(firstHMAC), bytes.fromhex(ntlm_authentication_data), hashlib.md5).hexdigest()
+print(NTproofstring)
+
+# NTLM Hash: 61a26d3fee855453bc125700bc8cf6f2
+# User Domain Data: b&#39;A\x00D\x00M\x00I\x00N\x00S\x00E\x00C\x00R\x00E\x00T\x00S\x00E\x00R\x00V\x00E\x00R\x00&#39;
+# First HMAC Result: 7d3ce509093fb2b7bcbbe7939fa8ee74
+# efa243f442b9d683eb1b00a2b1a0c9fc
+```
+
+例题1-2024数据安全产业人才积分争夺赛 Strangesystem
+
+
 ## 工控流量分析
 
 参考连接：https://blog.csdn.net/song123sh/article/details/128387982

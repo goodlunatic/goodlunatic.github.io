@@ -14,7 +14,7 @@
 但Misc涉及的范围实在太广了，于是就想着一边学习一边记录，因而就有了这篇文章">
   <meta itemprop="datePublished" content="2025-09-12T21:10:17+08:00">
   <meta itemprop="dateModified" content="2025-09-12T21:10:17+08:00">
-  <meta itemprop="wordCount" content="12592">
+  <meta itemprop="wordCount" content="12597">
   <meta itemprop="keywords" content="Misc,CTF"><meta property="og:url" content="https://goodlunatic.github.io/posts/1ad9200/">
   <meta property="og:site_name" content="⚡Lunatic BLOG⚡">
   <meta property="og:title" content="CTF-Misc Guide">
@@ -33,7 +33,7 @@
 但Misc涉及的范围实在太广了，于是就想着一边学习一边记录，因而就有了这篇文章">
       <meta name="twitter:site" content="@goodlunatic007">
 <meta name="application-name" content="FixIt">
-<meta name="apple-mobile-web-app-title" content="FixIt"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="https://www.nssctf.cn/files/2024/4/28/7f130a1387.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="https://goodlunatic.github.io/posts/1ad9200/" /><link rel="prev" href="https://goodlunatic.github.io/posts/bb1da35/" /><link rel="next" href="https://goodlunatic.github.io/posts/d0736a7/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
+<meta name="apple-mobile-web-app-title" content="FixIt"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="https://www.nssctf.cn/files/2024/4/28/7f130a1387.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="https://goodlunatic.github.io/posts/1ad9200/" /><link rel="prev" href="https://goodlunatic.github.io/posts/761da51/" /><link rel="next" href="https://goodlunatic.github.io/posts/d0736a7/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
   {
@@ -44,7 +44,7 @@
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": "https:\/\/goodlunatic.github.io\/posts\/1ad9200\/"
-    },"genre": "posts","keywords": "Misc, CTF","wordcount":  12592 ,
+    },"genre": "posts","keywords": "Misc, CTF","wordcount":  12597 ,
     "url": "https:\/\/goodlunatic.github.io\/posts\/1ad9200\/","datePublished": "2025-09-12T21:10:17+08:00","dateModified": "2025-09-12T21:10:17+08:00","publisher": {
       "@type": "Organization",
       "name": ""},"author": {
@@ -359,6 +359,14 @@
             <li><a href="#4四个ttl值转换一个字节的二进制数">4、四个TTL值转换一个字节的二进制数</a></li>
             <li><a href="#5aztec-codedatamatrixgridmatrix汉信码pdf417code等">5、Aztec code、DataMatrix、GridMatrix、汉信码、PDF417code等</a></li>
             <li><a href="#qrcode-二维码的一些考点">QRcode 二维码的一些考点</a></li>
+          </ul>
+        </li>
+        <li><a href="#信号和图像处理中的一些变换方法">信号和图像处理中的一些变换方法</a>
+          <ul>
+            <li><a href="#快速傅里叶变换fft">快速傅里叶变换（FFT）</a></li>
+            <li><a href="#离散傅里叶变换dft">离散傅里叶变换（DFT）</a></li>
+            <li><a href="#离散余弦变换dct">离散余弦变换（DCT）</a></li>
+            <li><a href="#离散小波变换dwt">离散小波变换（DWT）</a></li>
           </ul>
         </li>
       </ul>
@@ -4433,7 +4441,12 @@
 <p>因此我们可以先将二维码拉入<code>StegSolve</code>或者<code>PS</code>进行反相处理，再扫描</p>
 <h4 id="qrcode-二维码的一些考点" class="heading-element">
   <a href="#qrcode-%e4%ba%8c%e7%bb%b4%e7%a0%81%e7%9a%84%e4%b8%80%e4%ba%9b%e8%80%83%e7%82%b9" class="heading-mark"></a>QRcode 二维码的一些考点</h4><p>详见作者博客里的<a href="https://goodlunatic.github.io/posts/1e26f78/"target="_blank" rel="external nofollow noopener noreferrer">QRcode二维码标准及常见考点详解</a>这篇文章</p>
-<h2 id="miscpdf题思路" class="heading-element">
+<h3 id="信号和图像处理中的一些变换方法" class="heading-element">
+  <a href="#%e4%bf%a1%e5%8f%b7%e5%92%8c%e5%9b%be%e5%83%8f%e5%a4%84%e7%90%86%e4%b8%ad%e7%9a%84%e4%b8%80%e4%ba%9b%e5%8f%98%e6%8d%a2%e6%96%b9%e6%b3%95" class="heading-mark"></a>信号和图像处理中的一些变换方法</h3><h4 id="快速傅里叶变换fft" class="heading-element">
+  <a href="#%e5%bf%ab%e9%80%9f%e5%82%85%e9%87%8c%e5%8f%b6%e5%8f%98%e6%8d%a2fft" class="heading-mark"></a>快速傅里叶变换（FFT）</h4><h4 id="离散傅里叶变换dft" class="heading-element">
+  <a href="#%e7%a6%bb%e6%95%a3%e5%82%85%e9%87%8c%e5%8f%b6%e5%8f%98%e6%8d%a2dft" class="heading-mark"></a>离散傅里叶变换（DFT）</h4><h4 id="离散余弦变换dct" class="heading-element">
+  <a href="#%e7%a6%bb%e6%95%a3%e4%bd%99%e5%bc%a6%e5%8f%98%e6%8d%a2dct" class="heading-mark"></a>离散余弦变换（DCT）</h4><h4 id="离散小波变换dwt" class="heading-element">
+  <a href="#%e7%a6%bb%e6%95%a3%e5%b0%8f%e6%b3%a2%e5%8f%98%e6%8d%a2dwt" class="heading-mark"></a>离散小波变换（DWT）</h4><h2 id="miscpdf题思路" class="heading-element">
   <a href="#miscpdf%e9%a2%98%e6%80%9d%e8%b7%af" class="heading-mark"></a>Misc——PDF题思路：</h2><p>1、直接<code>binwalk</code>或者<code>foremost</code>提取出隐藏文件</p>
 <p>2、可能是<code>wbStego4open</code>隐写，用<code>wbStego4open</code>输入密钥直接decode</p>
 <p>3、PDF中可能携带了什么文件，可以在<code>firefox</code>或者别的PDF软件中打开并提取</p>
@@ -7215,7 +7228,7 @@
     </section>
   </div>
 
-  <div class="post-nav"><a href="/posts/bb1da35/" class="post-nav-item" rel="prev" title="群友们问的一些来路不明的题"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>群友们问的一些来路不明的题</a>
+  <div class="post-nav"><a href="/posts/761da51/" class="post-nav-item" rel="prev" title="Misc-Forensics"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>Misc-Forensics</a>
       <a href="/posts/d0736a7/" class="post-nav-item" rel="next" title="CTF-Misc &#34;雅&#34;题共赏">CTF-Misc &#34;雅&#34;题共赏<i class="fa-solid fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
 </div>
 <div id="comments"></div></article>

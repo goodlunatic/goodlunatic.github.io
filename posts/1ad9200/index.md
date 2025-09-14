@@ -2762,6 +2762,24 @@ with open(&#39;flag.zip&#39;, &#39;wb&#39;) as f:
 
 详见作者博客里的[QRcode二维码标准及常见考点详解](https://goodlunatic.github.io/posts/1e26f78/)这篇文章
 
+
+### 信号和图像处理中的一些变换方法
+
+#### 快速傅里叶变换（FFT）
+
+
+
+#### 离散傅里叶变换（DFT）
+
+
+
+#### 离散余弦变换（DCT）
+
+
+
+#### 离散小波变换（DWT）
+
+
 ## Misc——PDF题思路：
 
 1、直接`binwalk`或者`foremost`提取出隐藏文件
