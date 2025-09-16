@@ -2081,6 +2081,38 @@ for i in range(1,len(idx_list)):
 print(flag) # e25bd92141be945cfcdd1c65bb1b9375
 ```
 
+## 题目名称 未知
+
+题目附件给了一张 `pk.gif` 和一张 `浏览器？.png`，尝试给 GIF 分帧，发现其中一帧有可疑的字符串：`hello_Hier_qw5612`
+
+![](imgs/image-20250916200923042.png)
+
+然后在另一张PNG末尾可以提取出一个加密的rar压缩包，解压密码就是上面得到的那串字符串
+
+解压后可以得到一个完整的Chrome浏览器用户数据目录
+
+主要关注这两个sqlite文件：`Google\Chrome\User Data\Default\History.db\Login Data`、`Google\Chrome\User Data\Default\History.db\History`
+
+vscode中如果装了`SQlite Viewer`插件，可以直接把这俩文件后缀改成`.db`查看
+
+![](imgs/image-20250916201359259.png)
+
+![](imgs/image-20250916201419076.png)
+
+发现用户访问了希尔加密的网站，并且logins表中的两个用户名有点可疑
+
+&gt; .vyouhlvgbaryvxgjqknzbi,vgrqqrwbdxhximtq
+&gt; 
+&gt; bposqrclvjmzanfx
+
+上图中的那个希尔加密的网站好像已经寄了，于是我直接用新版随波逐流里的希尔加密了
+
+![](imgs/image-20250916201617439.png)
+
+![](imgs/image-20250916201628176.png)
+
+一开始尝试解密发现出不来，最后发现要用加密才能得到最后的flag: `DASCTF{principle_of_basic_matrix_theory}`
+
 
 
 ---
