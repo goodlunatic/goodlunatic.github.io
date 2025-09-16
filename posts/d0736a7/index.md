@@ -2660,6 +2660,194 @@ base32解码后得到：`flae hs lrt`
 9F 22 73 79 59 6E 74 25
 ```
 
+## 题目名称 Chaos and Torus 
+
+&gt; 题目附件： https://pan.baidu.com/s/11NwSPtcUEqk81m1-45Mr3g?pwd=2ihu 提取码: 2ihu 
+
+附件给了一个 cat.gif，gif 的内容表达的是 Aronld 变换，尝试分帧，发现一共有 70 帧
+
+![](imgs/image-20250916103500592.png)
+
+然后尝试提取了一下每帧的帧间隔和偏移量，但是没有发现什么有用的信息
+
+![](imgs/image-20250916103747949.png)
+
+## 题目名称 qrxor
+
+&gt; 题目附件： https://pan.baidu.com/s/1h8UsZXYmPvmoLG6DG4sOpA?pwd=g2vw 提取码: g2vw 
+
+题目附件给了下面这张被污染了的二维码
+
+![](imgs/image-20250916104220658.png)
+
+尝试手动修复了一下，并用红色标注了不确定的像素点
+ ![](imgs/image-20250916120141001.png)
+然后尝试搓了个 Python 脚本爆破不确定的位置，但是也没有爆破出来
+
+```python
+import cv2
+import numpy as np
+from pyzbar.pyzbar import decode
+from itertools import product
+import argparse
+import os
+
+def find_red_pixels(image_path):
+    img = cv2.imread(image_path)
+    
+    # 直接使用BGR颜色空间寻找纯红色像素 (B=0, G=0, R=255)
+    red_pixels = []
+    height, width, _ = img.shape
+    
+    for y in range(height):
+        for x in range(width):
+            b, g, r = img[y, x]
+            if r == 255 and g == 0 and b == 0:
+                red_pixels.append((x, y))
+    
+    return img, red_pixels
+
+def preprocess_image(image):
+    # 转换为灰度图像
+    gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+    
+    # 应用二值化
+    _, binary = cv2.threshold(gray, 128, 255, cv2.THRESH_BINARY)
+    
+    # 计算二维码的大致尺寸
+    height, width = binary.shape
+    qr_size = max(height, width)
+    
+    # 调整图像大小到标准二维码尺寸（推荐300x300以上）
+    target_size = max(400, qr_size * 2)  # 至少400像素，或者原尺寸的2倍
+    resized = cv2.resize(binary, (target_size, target_size), interpolation=cv2.INTER_NEAREST)
+    
+    return resized
+
+def try_decode(image):
+    # 预处理图像
+    processed = preprocess_image(image)
+    
+    # 尝试解码
+    decoded_objects = decode(processed)
+    
+    if decoded_objects:
+        return decoded_objects[0].data.decode(&#39;utf-8&#39;)
+    
+    # 如果第一次尝试失败，尝试其他预处理方法
+    # 方法2: 使用自适应阈值
+    gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+    adaptive = cv2.adaptiveThreshold(gray, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, 
+                                   cv2.THRESH_BINARY, 11, 2)
+    adaptive = cv2.resize(adaptive, (400, 400), interpolation=cv2.INTER_NEAREST)
+    
+    decoded_objects = decode(adaptive)
+    if decoded_objects:
+        return decoded_objects[0].data.decode(&#39;utf-8&#39;)
+    
+    # 方法3: 使用高斯模糊后二值化
+    blurred = cv2.GaussianBlur(gray, (5, 5), 0)
+    _, binary_blur = cv2.threshold(blurred, 0, 255, cv2.THRESH_BINARY &#43; cv2.THRESH_OTSU)
+    binary_blur = cv2.resize(binary_blur, (400, 400), interpolation=cv2.INTER_NEAREST)
+    
+    decoded_objects = decode(binary_blur)
+    if decoded_objects:
+        return decoded_objects[0].data.decode(&#39;utf-8&#39;)
+    
+    return None
+
+def brute_force_qr(image_path, output_dir=&#34;solutions&#34;):
+    # 创建输出目录
+    if not os.path.exists(output_dir):
+        os.makedirs(output_dir)
+    
+    # 找到红色像素
+    img, red_pixels = find_red_pixels(image_path)
+    print(f&#34;找到 {len(red_pixels)} 个红色像素点&#34;)
+    
+    if len(red_pixels) == 0:
+        print(&#34;未找到红色像素点，请检查图像中的红色标记是否为RGB(255,0,0)&#34;)
+        return [], []
+    
+    if len(red_pixels) &gt; 20:
+        print(f&#34;警告: 发现 {len(red_pixels)} 个红色像素点，爆破可能需要很长时间!&#34;)
+        print(&#34;考虑先手动修复一些明显可以确定的像素点&#34;)
+        response = input(&#34;是否继续? (y/n): &#34;)
+        if response.lower() != &#39;y&#39;:
+            return [], []
+    
+    # 生成所有可能的黑白组合
+    combinations = list(product([0, 255], repeat=len(red_pixels)))
+    print(f&#34;共有 {len(combinations)} 种可能组合需要尝试&#34;)
+    
+    solutions = []
+    
+    for i, combo in enumerate(combinations):
+        # 显示进度
+        if i % 100 == 0:
+            print(f&#34;尝试第 {i}/{len(combinations)} 种组合...&#34;)
+        
+        # 创建图像副本
+        test_img = img.copy()
+        
+        # 设置像素值
+        for j, (x, y) in enumerate(red_pixels):
+            color = combo[j]
+            test_img[y, x] = [color, color, color]  # 设置为黑白
+        
+        # 尝试解码
+        result = try_decode(test_img)
+        
+        if result:
+            print(f&#34;找到有效组合! 解码结果: {result}&#34;)
+            # 保存解决方案
+            output_path = os.path.join(output_dir, f&#34;solution_{i}.png&#34;)
+            cv2.imwrite(output_path, test_img)
+            
+            # 同时保存预处理后的图像
+            processed = preprocess_image(test_img)
+            processed_path = os.path.join(output_dir, f&#34;solution_{i}_processed.png&#34;)
+            cv2.imwrite(processed_path, processed)
+            
+            solutions.append((combo, result, output_path, processed_path))
+            
+            # 如果只需要一个解决方案，可以取消下面的break注释
+            # break
+    
+    return solutions, red_pixels
+
+if __name__ == &#34;__main__&#34;:
+    parser = argparse.ArgumentParser(description=&#34;爆破二维码中的不确定像素&#34;)
+    parser.add_argument(&#34;image_path&#34;, help=&#34;包含红色标记像素的二维码图像路径&#34;)
+    parser.add_argument(&#34;--output&#34;, &#34;-o&#34;, default=&#34;solutions&#34;, help=&#34;输出目录&#34;)
+    parser.add_argument(&#34;--size&#34;, &#34;-s&#34;, type=int, default=400, help=&#34;调整后的图像尺寸&#34;)
+    
+    args = parser.parse_args()
+    
+    if not os.path.exists(args.image_path):
+        print(f&#34;错误: 文件 {args.image_path} 不存在&#34;)
+        exit(1)
+    
+    solutions, red_pixels = brute_force_qr(args.image_path, args.output)
+    
+    if solutions:
+        print(f&#34;\n找到 {len(solutions)} 个解决方案:&#34;)
+        for i, (combo, result, path, processed_path) in enumerate(solutions):
+            print(f&#34;{i&#43;1}. 组合: {combo}&#34;)
+            print(f&#34;   结果: {result}&#34;)
+            print(f&#34;   原始图像: {path}&#34;)
+            print(f&#34;   预处理图像: {processed_path}&#34;)
+            print()
+    else:
+        print(&#34;未找到有效的解决方案&#34;)
+        print(&#34;建议尝试:&#34;)
+        print(&#34;1. 检查红色标记是否正确&#34;)
+        print(&#34;2. 确保二维码没有被过度损坏&#34;)
+        print(&#34;3. 尝试手动修复一些明显可以确定的像素点&#34;)
+```
+
+
+
 
 ---
 
