@@ -52,12 +52,17 @@ Options → Strings → Default 8-bit
 
 ## 逆向中常见的数据类型
 
-|              数据类型              |  位数  |
-| :----------------------------: | :--: |
-|         1 byte = 8 bit         | 8 位  |
-|        1 word = 2 byte         | 16 位 |
-| 1 dword(Double Word) = 2 word  | 32 位 |
-| 1 qword(Quadra Word) = 2 dword | 64 位 |
+|                  数据类型                   |  位数  |
+| :-------------------------------------: | :--: |
+|             1 byte = 8 bit              | 8 位  |
+|             1 word = 2 byte             | 16 位 |
+| 1 dword(Double Word) = 2 word = 4 byte  | 32 位 |
+| 1 qword(Quadra Word) = 2 dword = 8 byte | 64 位 |
+|                                         |      |
+|                uint32_t                 | 32 位 |
+|                uint64_t                 | 64 位 |
+|             char （-127-128）             | 8 位  |
+|          unsigned char （0-255）          | 8 位  |
 
 ## 汇编基础
 
@@ -144,9 +149,417 @@ int __fastcall base64_encode(char *Str2, char *Str)
 ```
 
 
-### RC4
+### RC4加密算法
 
-### TEA XTEA XXTEA
+### TEA系列加密算法
+
+#### TEA 
+
+加密和解密的示例代码
+
+```c&#43;&#43;
+void encrypt(unsigned int* v, unsigned int* key) {
+  unsigned int l = v[0], r = v[1], sum = 0, delta = 0x9e3779b9;
+  for (int i = 0; i &lt; 32; i&#43;&#43;) {
+    sum &#43;= delta;
+    l &#43;= ((r &lt;&lt; 4) &#43; key[0]) ^ (r &#43; sum) ^ ((r &gt;&gt; 5) &#43; key[1]);
+    r &#43;= ((l &lt;&lt; 4) &#43; key[2]) ^ (l &#43; sum) ^ ((l &gt;&gt; 5) &#43; key[3]);
+  }
+  v[0] = l;
+  v[1] = r;
+}
+ 
+void decrypt(unsigned int* v, unsigned int* key) {
+  unsigned int l = v[0], r = v[1], sum = 0, delta = 0x9e3779b9;
+  sum = delta *32;
+  for (int i = 0; i &lt; 32; i&#43;&#43;) {
+    r -= ((l &lt;&lt; 4) &#43; key[2]) ^ (l &#43; sum) ^ ((l &gt;&gt; 5) &#43; key[3]);
+    l -= ((r &lt;&lt; 4) &#43; key[0]) ^ (r &#43; sum) ^ ((r &gt;&gt; 5) &#43; key[1]);
+    sum -= delta;
+  }
+  v[0] = l;
+  v[1] = r;
+}
+```
+
+解密脚本
+
+```c&#43;&#43;
+#include&lt;stdio.h&gt;
+int main(){
+    int n;//pw的个数
+	unsigned int pw[]={};//可改
+	unsigned int v0;
+	unsigned int v1;
+	unsigned int sum;
+    unsigned int key[4]={1,2,3,4};//可改
+	for(int i=0;i&lt;n/2;i&#43;&#43;)
+	{
+		v0=pw[2*i];
+		v1=pw[2*i&#43;1];
+		sum=-32*0x61C88647;
+		for(int i=0;i&lt;32;i&#43;&#43;)
+		{
+			v1 -= ((v0 &gt;&gt; 5) &#43; key[3] )^ (16 * v0 &#43; key[2]) ^ (sum &#43; v0);//容易魔改	
+			v0 -= ((v1 &gt;&gt; 5) &#43; key[1]) ^ (16 * v1 &#43; key[0]) ^ (sum &#43; v1);
+			sum &#43;= 0x61C88647;//容易魔改
+		}
+		for (int j = 0; j&lt;=3; j&#43;&#43;)
+		{
+			printf(&#34;%c&#34;, (v0 &gt;&gt; (j * 8)) &amp; 0xFF);
+		}
+		for (int j = 0; j&lt;=3; j&#43;&#43;)
+		{
+			printf(&#34;%c&#34;, (v1 &gt;&gt; (j * 8)) &amp; 0xFF);
+		}
+	}
+}
+```
+
+比赛中用到的一些代码
+
+处理原始字节数据版本
+
+```python
+#include &lt;iostream&gt;
+#include &lt;cstdint&gt;
+
+void tea_decrypt(uint32_t* v, uint32_t* key) {
+    uint32_t l = v[0];
+    uint32_t r = v[1];
+    uint32_t sum = 32 * 0x414554; // 加密的总delta和
+    
+    for (int i = 0; i &lt; 32; &#43;&#43;i) {
+        r -= ((l &lt;&lt; 4) &#43; key[2]) ^ (l &#43; sum) ^ ((l &gt;&gt; 5) &#43; key[3]);
+        l -= ((r &lt;&lt; 4) &#43; key[0]) ^ (r &#43; sum) ^ ((r &gt;&gt; 5) &#43; key[1]);
+        sum -= 0x414554;
+    }
+    
+    v[0] = l;
+    v[1] = r;
+}
+
+int main() {
+    // 加密后的数据（小端序）
+    uint8_t encrypted[] = {
+        0xE4, 0x6E, 0x00, 0xF0, 
+        0x91, 0x73, 0x9A, 0xBE,
+        0xCA, 0xF1, 0x2A, 0x60, 
+        0x0E, 0x8F, 0x74, 0x83, 
+        0xE0, 0x8E, 0x6C, 0x34, 
+        0xD7, 0x99, 0xDE, 0x36, 
+        0x8B, 0x86, 0xC4, 0x90, 
+        0xC2, 0x0B, 0xC4, 0x59
+    };
+    
+    // 密钥（小端序）
+    uint8_t key_bytes[] = {
+        0xEF, 0xBE, 0xAD, 0xDE, 
+        0x0D, 0xF0, 0xAD, 0xBA, 
+        0xDE, 0xC0, 0xAD, 0xDE, 
+        0xCC, 0x10, 0xAD, 0xDE
+    };
+    
+    // 将字节数组转换为4个32位整数（注意小端序）
+    uint32_t key[4];
+    for (int i = 0; i &lt; 4; i&#43;&#43;) {
+        key[i] = (key_bytes[4*i&#43;3] &lt;&lt; 24) | (key_bytes[4*i&#43;2] &lt;&lt; 16) | 
+                 (key_bytes[4*i&#43;1] &lt;&lt; 8) | key_bytes[4*i];
+    }
+    // 0xDEADBEEF 0xBAADF00D 0xDEADC0DE 0xDEAD10CC
+
+    int num_blocks = sizeof(encrypted) / 8; // 8个32位整数
+    
+    for (int i = 0; i &lt; num_blocks; i&#43;&#43;) {
+        // 将加密数据转换为32位整数（小端序）
+        uint32_t v[2];
+        v[0] = (encrypted[8*i&#43;3] &lt;&lt; 24) | (encrypted[8*i&#43;2] &lt;&lt; 16) | 
+               (encrypted[8*i&#43;1] &lt;&lt; 8) | encrypted[8*i];
+        v[1] = (encrypted[8*i&#43;7] &lt;&lt; 24) | (encrypted[8*i&#43;6] &lt;&lt; 16) | 
+               (encrypted[8*i&#43;5] &lt;&lt; 8) | encrypted[8*i&#43;4];
+        
+        // 一次解密两个32位整数
+        tea_decrypt(v, key);
+        
+        // 输出解密结果（转换为字节）
+        for (int j = 0; j &lt; 4; j&#43;&#43;) {
+            printf(&#34;%c&#34;, (v[0] &gt;&gt; (j * 8)) &amp; 0xFF);
+        }
+        for (int j = 0; j &lt; 4; j&#43;&#43;) {
+            printf(&#34;%c&#34;, (v[1] &gt;&gt; (j * 8)) &amp; 0xFF);
+        }
+    }
+    return 0;
+}
+```
+
+
+#### XTEA 
+
+加密和解密的示例代码
+
+```c&#43;&#43;
+void xtea_encrypt(uint32_t* v, uint32_t* key) {
+    uint32_t v0 = v[0];
+    uint32_t v1 = v[1];
+    uint32_t sum = 0;
+    uint32_t delta = 0x9E3779B9; //0x9E3779B9=-0x61C88647
+    
+    for (int i = 0; i &lt; 32; i&#43;&#43;) {
+        v0 &#43;= (((v1 &lt;&lt; 4) ^ (v1 &gt;&gt; 5)) &#43; v1) ^ (sum &#43; key[sum &amp; 3]);
+        sum &#43;= delta; // 如果 delta=0x61C88647, 这里就是 sum -= delta
+        v1 &#43;= (((v0 &lt;&lt; 4) ^ (v0 &gt;&gt; 5)) &#43; v0) ^ (sum &#43; key[(sum &gt;&gt; 11) &amp; 3]);
+    }
+    
+    v[0] = v0;
+    v[1] = v1;
+}
+
+void xtea_decrypt(uint32_t* v, uint32_t* key) {
+    uint32_t v0 = v[0];
+    uint32_t v1 = v[1];
+    uint32_t sum = 32 * 0x9E3779B9; // 加密的总和
+    uint32_t delta = 0x9E3779B9;
+    
+    for (int i = 0; i &lt; 32; i&#43;&#43;) {
+        v1 -= (((v0 &lt;&lt; 4) ^ (v0 &gt;&gt; 5)) &#43; v0) ^ (sum &#43; key[(sum &gt;&gt; 11) &amp; 3]);
+        sum -= delta;
+        v0 -= (((v1 &lt;&lt; 4) ^ (v1 &gt;&gt; 5)) &#43; v1) ^ (sum &#43; key[sum &amp; 3]);
+    }
+    
+    v[0] = v0;
+    v[1] = v1;
+}
+```
+
+比赛中用到的一些脚本
+
+处理原始字节数据版本
+```c&#43;&#43;
+#include &lt;iostream&gt;
+#include &lt;cstdint&gt;
+
+void xtea_decrypt(uint32_t* v, uint32_t* key) {
+    uint32_t l = v[0];
+    uint32_t r = v[1];
+    uint32_t sum = 32 * 0x9E3779B9; // XTEA的总delta和（32轮）
+    uint32_t delta = 0x9E3779B9;
+    
+    for (int i = 0; i &lt; 32; &#43;&#43;i) {
+        r -= (((l &lt;&lt; 4) ^ (l &gt;&gt; 5)) &#43; l) ^ (key[(sum &gt;&gt; 11) &amp; 3] &#43; sum);
+        sum -= delta;
+        l -= (((r &lt;&lt; 4) ^ (r &gt;&gt; 5)) &#43; r) ^ (key[sum &amp; 3] &#43; sum);
+    }
+    
+    v[0] = l;
+    v[1] = r;
+}
+
+int main() {
+    // 加密后的数据（小端序）
+    uint8_t encrypted[] = {
+        0xD1, 0x36, 0x0D, 0x59, 
+        0xE2, 0xB5, 0xA9, 0x6F, 
+        0xAD, 0x90, 0x71, 0xDA, 
+        0xA0, 0x0A, 0x4B, 0xC5, 
+        0x54, 0xED, 0xA5, 0xAD,
+        0x84, 0x7F, 0xD0, 0x4A, 
+        0xC0, 0xF3, 0x4C, 0x8A, 
+        0x2F, 0xB2, 0xEF, 0x7F
+    };
+    
+    // 密钥（小端序）
+    uint8_t key_bytes[] = {
+        0x0D, 0x00, 0x00, 0x00, 
+        0x00, 0x00, 0x00, 0x00, 
+        0x07, 0x00, 0x00, 0x00, 
+        0x21, 0x00, 0x00, 0x00
+    };
+    
+    // 将字节数组转换为4个32位整数（小端序）
+    uint32_t key[4];
+    for (int i = 0; i &lt; 4; i&#43;&#43;) {
+        key[i] = (key_bytes[4*i&#43;3] &lt;&lt; 24) | (key_bytes[4*i&#43;2] &lt;&lt; 16) | 
+                 (key_bytes[4*i&#43;1] &lt;&lt; 8) | key_bytes[4*i];
+    }
+    
+    int num_blocks = sizeof(encrypted) / 8; // 每个块8字节
+    
+    for (int i = 0; i &lt; num_blocks; i&#43;&#43;) {
+        // 将加密数据转换为32位整数（小端序）
+        uint32_t v[2]; // 数组元素每个为4字节
+        v[0] = (encrypted[8*i&#43;3] &lt;&lt; 24) | (encrypted[8*i&#43;2] &lt;&lt; 16) | 
+               (encrypted[8*i&#43;1] &lt;&lt; 8) | encrypted[8*i];
+        v[1] = (encrypted[8*i&#43;7] &lt;&lt; 24) | (encrypted[8*i&#43;6] &lt;&lt; 16) | 
+               (encrypted[8*i&#43;5] &lt;&lt; 8) | encrypted[8*i&#43;4];
+        
+        // XTEA解密
+        xtea_decrypt(v, key);
+        
+        // 输出解密结果（转换为字节，小端序）
+        for (int j = 0; j &lt; 4; j&#43;&#43;) {
+            printf(&#34;%c&#34;, (v[0] &gt;&gt; (j * 8)) &amp; 0xFF);
+        }
+        for (int j = 0; j &lt; 4; j&#43;&#43;) {
+            printf(&#34;%c&#34;, (v[1] &gt;&gt; (j * 8)) &amp; 0xFF);
+        }
+    }
+    return 0;
+}
+```
+
+处理32位整数版本
+```c&#43;&#43;
+#include &lt;iostream&gt;
+
+void xtea_decrypt(uint32_t *v, uint32_t *key)
+{
+  uint32_t l = v[0];
+  uint32_t r = v[1];
+  uint32_t sum = 32 * 0x9E3779B9; // XTEA的总delta和（32轮）
+  uint32_t delta = 0x9E3779B9;
+
+  for (int i = 0; i &lt; 32; &#43;&#43;i)
+  {
+    r -= (((l &lt;&lt; 4) ^ (l &gt;&gt; 5)) &#43; l) ^ (key[(sum &gt;&gt; 11) &amp; 3] &#43; sum);
+    sum -= delta;
+    l -= (((r &lt;&lt; 4) ^ (r &gt;&gt; 5)) &#43; r) ^ (key[sum &amp; 3] &#43; sum);
+  }
+
+  v[0] = l;
+  v[1] = r;
+}
+
+int main()
+{
+  uint32_t enc[8] = 
+  {// 4x8=32字节
+    0x590D36D1, 0x6FA9B5E2, 0xDA7190AD, 0xC54B0AA0,
+    0xADA5ED54, 0x4AD07F84, 0x8A4CF3C0, 0x7FEFB22F
+  };
+  uint32_t key[4] = {0x0000000D, 0x00000000, 0x00000007, 0x00000021};
+
+  int num_blocks = sizeof(enc) / 8; // 每个块8字节, 所以这里的结果是4
+
+  for (int i = 0; i &lt; num_blocks; i&#43;&#43;)
+  {
+    uint32_t v[2];
+    v[0] = enc[2 * i];
+    v[1] = enc[2 * i &#43; 1];
+
+    xtea_decrypt(v, key);
+
+    // 输出解密结果（转换为字节，小端序）
+    for (int j = 0; j &lt; 4; j&#43;&#43;)
+    {
+      printf(&#34;%c&#34;, (v[0] &gt;&gt; (j * 8)) &amp; 0xFF);
+    }
+    for (int j = 0; j &lt; 4; j&#43;&#43;)
+    {
+      printf(&#34;%c&#34;, (v[1] &gt;&gt; (j * 8)) &amp; 0xFF);
+    } 
+  }
+  return 0;
+}
+```
+
+
+#### XXTEA
+
+加密和解密的示例代码
+
+```c&#43;&#43;
+void xxtea_encrypt(uint32_t* v, int n, uint32_t key[4]) {
+    uint32_t y, z, sum;
+    uint32_t delta = 0x9E3779B9;
+    uint32_t p, rounds, e;
+    
+    rounds = 6 &#43; 52 / n;
+    sum = 0;
+    z = v[n - 1];
+    
+    do {
+        sum &#43;= delta;
+        e = (sum &gt;&gt; 2) &amp; 3;
+        
+        for (p = 0; p &lt; n - 1; p&#43;&#43;) {
+            y = v[p &#43; 1];
+            v[p] &#43;= ((z &gt;&gt; 5 ^ y &lt;&lt; 2) &#43; (z &lt;&lt; 3 ^ y &gt;&gt; 4)) ^ ((sum ^ y) &#43; (key[(p &amp; 3) ^ e] ^ z));
+            z = v[p];
+        }
+        
+        y = v[0];
+        v[n - 1] &#43;= ((z &gt;&gt; 5 ^ y &lt;&lt; 2) &#43; (z &lt;&lt; 3 ^ y &gt;&gt; 4)) ^ ((sum ^ y) &#43; (key[(p &amp; 3) ^ e] ^ z));
+        z = v[n - 1];
+    } while (--rounds);
+}
+
+void xxtea_decrypt(uint32_t* v, int n, uint32_t key[4]) {
+    uint32_t y, z, sum;
+    uint32_t delta = 0x9E3779B9;
+    uint32_t p, rounds, e;
+    
+    rounds = 6 &#43; 52 / n;
+    sum = rounds * delta;
+    y = v[0];
+    
+    do {
+        e = (sum &gt;&gt; 2) &amp; 3;
+        
+        for (p = n - 1; p &gt; 0; p--) {
+            z = v[p - 1];
+            v[p] -= ((z &gt;&gt; 5 ^ y &lt;&lt; 2) &#43; (z &lt;&lt; 3 ^ y &gt;&gt; 4)) ^ ((sum ^ y) &#43; (key[(p &amp; 3) ^ e] ^ z));
+            y = v[p];
+        }
+        
+        z = v[n - 1];
+        v[0] -= ((z &gt;&gt; 5 ^ y &lt;&lt; 2) &#43; (z &lt;&lt; 3 ^ y &gt;&gt; 4)) ^ ((sum ^ y) &#43; (key[(p &amp; 3) ^ e] ^ z));
+        y = v[0];
+        sum -= delta;
+    } while (--rounds);
+}
+```
+
+解密脚本
+```c&#43;&#43;
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#define delta 0x9e3779b9
+ 
+int main()
+{
+    unsigned int v[8] = {0x10BD3B47, 0x6155E0F9, 0x6AF7EBC5, 0x8D23435F, 0x1A091605, 0xD43D40EF, 0xB4B16A67, 0x6B3578A9};//可改
+    unsigned int key[4] = {0x00001234, 0x00002345, 0x00004567, 0x00006789};//可改
+    unsigned int sum = 0;
+    unsigned int y,z,p,rounds,e;
+    int n = 8;//v的个数
+    int i = 0;
+    rounds = 6 &#43; 52/n;//容易魔改
+    y = v[0];
+    sum = rounds*delta;
+     do
+     {
+        e = sum &gt;&gt; 2 &amp; 3;
+        for(p=n-1;p&gt;0;p--)
+        {
+            z = v[p-1];
+            v[p] -= ((((z&gt;&gt;5)^(y&lt;&lt;2))&#43;((y&gt;&gt;3)^(z&lt;&lt;4))) ^ ((key[(p&amp;3)^e]^z)&#43;(y ^ sum)));//容易魔改
+            y = v[p];
+        }
+        z = v[n-1];
+        v[0] -= (((key[(p^e)&amp;3]^z)&#43;(y ^ sum)) ^ (((y&lt;&lt;2)^(z&gt;&gt;5))&#43;((z&lt;&lt;4)^(y&gt;&gt;3))));//容易魔改
+        y = v[0];
+        sum = sum-delta;
+     }while(--rounds);
+    for(i=0;i&lt;n;i&#43;&#43;)
+    {
+        printf(&#34;%c%c%c%c&#34;,*((char*)&amp;v[i]&#43;0),*((char*)&amp;v[i]&#43;1),*((char*)&amp;v[i]&#43;2),*((char*)&amp;v[i]&#43;3));
+        //printf(&#34;%c%c%c%c&#34;,*((char*)&amp;v[i]&#43;3),*((char*)&amp;v[i]&#43;2),*((char*)&amp;v[i]&#43;1),*((char*)&amp;v[i]&#43;0));
+    }
+    return 0;
+}
+```
+
 
 ### MD5
 
@@ -240,6 +653,7 @@ upx -d re.exe
 ```bash
 # 可以用如下命令进行解包
 [&#43;] Usage: pyinstxtractor.py &lt;filename&gt;
+python ~/CTF/Reverse/pyinstxtractor/pyinstxtractor.py pyc.exe
 # 这里要注意，如果本地版本和出题人打包用的版本不同，某些依赖可能无法正常解包
 ```
 
@@ -283,6 +697,7 @@ make -j$(nproc)
 
 # 使用方法
 Usage:  ./pycdc [options] input.pyc
+~/CTF/Reverse/pycdc/build/pycdc main.pyc
 
 Options:
   -o &lt;filename&gt;  Write output to &lt;filename&gt; (default: stdout)
@@ -292,6 +707,20 @@ Options:
 ```
 
 &gt; Tips: 有时候会遇到pyc文件魔术头被修改的情况，可以复制解包后的struct.pyc到要反编译的pyc文件中（就是文件前16个字节）
+
+## Unity游戏逆向
+
+参考文章：https://forum.butian.net/share/1294
+
+Unity 游戏的主逻辑一般都保存在 dll 文件中，因此我们需要下个 dnspy 来反编译
+
+然后我们需要打开并反编译 `data/Managed/Assembly-CSarp.dll` 这个文件
+
+我们可以在 dnspy 的编辑器中右键编辑类或者方法，编辑完后编译
+
+然后左上角-文件-全部保存即可保存我们的修改
+
+&gt; 一般就是修改分数或者判断逻辑等参数，从而获得 flag
 
 ## 常用的一些逆向工具
 
@@ -375,6 +804,38 @@ while True:
         s.add(Or(block)) # 至少有一个变量与当前解不同
     else:
         break
+```
+
+```python
+from z3 import *
+
+def solve():
+    a = [Int(&#39;a%d&#39; % i) for i in range(10)]
+    s = Solver()
+    s.add(2 * a[7] &#43; 8 * a[6] &#43; 8 * a[5] &#43; 2 * a[4] &#43; 4 * a[3] &#43; 5 * a[1] &#43; 2 * a[0] &#43; 6 * a[2] &#43; a[8] &#43; 5 * a[9] == 3976)
+    s.add(a[5] &#43; 9 * a[3] &#43; 7 * a[2] &#43; 5 * a[1] &#43; 3 * a[0] &#43; 7 * a[4] &#43; 4 * a[6] &#43; 6 * a[7] &#43; 8 * a[8] &#43; 5 * a[9] == 5265)
+    s.add(7 * a[8] &#43; 2 * a[6] &#43; 6 * a[4] &#43; 7 * a[3] &#43; 7 * a[2] &#43; 3 * a[1] &#43; 8 * a[0] &#43; 5 * a[5] &#43; 4 * a[7] &#43; 9 * a[9] == 5284)
+    s.add(7 * a[6] &#43; 5 * a[5] &#43; 6 * a[4] &#43; 3 * a[3] &#43; 9 * a[0] &#43; 6 * a[1] &#43; 4 * a[2] &#43; 9 * a[7] &#43; 8 * a[8] &#43; 7 * a[9] == 5925)
+    s.add(7 * a[8] &#43; 8 * a[6] &#43; 6 * a[4] &#43; a[2] &#43; 4 * a[1] &#43; 3 * a[0] &#43; 2 * a[3] &#43; 5 * a[5] &#43; 2 * a[7] &#43; 3 * a[9] == 4048)
+    s.add(3 * a[8] &#43; 9 * a[7] &#43; 7 * a[6] &#43; 4 * a[4] &#43; 4 * a[3] &#43; 5 * a[0] &#43; 8 * a[1] &#43; 6 * a[2] &#43; 4 * a[5] &#43; 7 * a[9] == 5072)
+    s.add(5 * a[7] &#43; 2 * a[3] &#43; 2 * (a[0] &#43; a[1]) &#43; 3 * a[2] &#43; a[4] &#43; 7 * a[5] &#43; 2 * a[6] &#43; 3 * a[8] &#43; 2 * a[9] == 2813)
+    s.add(3 * a[8] &#43; 5 * a[7] &#43; 7 * a[6] &#43; 3 * a[5] &#43; 7 * a[4] &#43; 7 * a[1] &#43; a[0] &#43; 7 * a[2] &#43; 8 * a[3] &#43; 6 * a[9] == 5004)
+    s.add(2 * a[8] &#43; 5 * a[6] &#43; 5 * a[5] &#43; 5 * a[4] &#43; 9 * a[3] &#43; 5 * a[0] &#43; 9 * a[1] &#43; a[2] &#43; 5 * a[7] &#43; a[9] == 4490)
+    s.add(6 * a[8] &#43; 7 * a[7] &#43; 5 * a[6] &#43; 6 * a[3] &#43; 4 * a[1] &#43; 6 * a[0] &#43; 8 * a[2] &#43; 6 * a[4] &#43; 8 * a[5] &#43; 7 * a[9] == 5936)
+    
+    for i in range(10):
+        s.add(a[i] &gt;= 32)
+        s.add(a[i] &lt;= 126)
+    if s.check() == sat:
+        model = s.model()
+        solution = [model.eval(a[i]).as_long() for i in range(10)]
+        print(solution)
+    for item in solution:
+        print(chr(item),end=&#39;&#39;)
+    
+
+if __name__ == &#34;__main__&#34;:
+    solve()
 ```
 
 ---
