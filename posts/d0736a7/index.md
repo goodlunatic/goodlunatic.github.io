@@ -2856,6 +2856,24 @@ if __name__ == &#34;__main__&#34;:
 
 首先用 7z 先解压，可以得到一个 vmdk 文件，然后这时候我们就可以用 DiskGenius 挂载了
 
+挂载后尝试恢复删除的文件，可以得到如下关键信息：
+
+![](imgs/image-20250918095108633.png)
+
+发现有个 flag.jpg 和 g-a-l-f-gpj.aze，然后发现 flag.jpg 也是可以直接提取出来的
+
+![](imgs/image-20250918095247548.png)
+
+并且还可以在 PNG 目录中发现如下这张图片：
+
+![](imgs/image-20250918095345468.png)
+
+目前得到的两段密文：
+
+&gt; OuzOzRy2XCH17sNCDownEpwIPjZ3HSfJ/EY48&#43;FqM&#43;nXQ5497BFOwA==
+&gt; 
+&gt; XhyDfF1j53ZPe3J8wtfp&#43;1G4b2M4verNcvANyQLpLmZN&#43;fDOyGa3h6kmerc84xb40mFVdJex/hw&#43;Vm9gqy/Bbw==
+
 
 
 
