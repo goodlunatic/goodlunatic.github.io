@@ -14,7 +14,7 @@
 感觉是绕不开逆向了，因此打算猛猛突击一下">
   <meta itemprop="datePublished" content="2025-08-16T14:15:38+08:00">
   <meta itemprop="dateModified" content="2025-08-16T14:15:38+08:00">
-  <meta itemprop="wordCount" content="3549">
+  <meta itemprop="wordCount" content="3554">
   <meta itemprop="keywords" content="CTF,Reverse"><meta property="og:url" content="https://goodlunatic.github.io/posts/0f92e23/">
   <meta property="og:site_name" content="⚡Lunatic BLOG⚡">
   <meta property="og:title" content="CTF-Reverse学习记录">
@@ -44,7 +44,7 @@
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": "https:\/\/goodlunatic.github.io\/posts\/0f92e23\/"
-    },"genre": "posts","keywords": "CTF, Reverse","wordcount":  3549 ,
+    },"genre": "posts","keywords": "CTF, Reverse","wordcount":  3554 ,
     "url": "https:\/\/goodlunatic.github.io\/posts\/0f92e23\/","datePublished": "2025-08-16T14:15:38+08:00","dateModified": "2025-08-16T14:15:38+08:00","publisher": {
       "@type": "Organization",
       "name": ""},"author": {
@@ -177,6 +177,7 @@
           </ul>
         </li>
         <li><a href="#md5">MD5</a></li>
+        <li><a href="#smc">SMC</a></li>
       </ul>
     </li>
     <li><a href="#常见的混淆">常见的混淆</a>
@@ -1413,7 +1414,12 @@
 </span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="md5" class="heading-element">
-  <a href="#md5" class="heading-mark"></a>MD5</h3><h2 id="常见的混淆" class="heading-element">
+  <a href="#md5" class="heading-mark"></a>MD5</h3><h3 id="smc" class="heading-element">
+  <a href="#smc" class="heading-mark"></a>SMC</h3><blockquote>
+<p>SMC，即Self Modifying Code，动态代码加密技术，指通过修改代码或数据，阻止别人直接静态分析，然后在动态运行程序时对代码进行解密，达到程序正常运行的效果。</p>
+<p>SMC一般有俩种破解方法，第一种是找到对代码或数据加密的函数后通过idapython写解密脚本。第二种是动态调试到SMC解密结束的地方dump出来。</p>
+</blockquote>
+<h2 id="常见的混淆" class="heading-element">
   <a href="#%e5%b8%b8%e8%a7%81%e7%9a%84%e6%b7%b7%e6%b7%86" class="heading-mark"></a>常见的混淆</h2><h3 id="花指令" class="heading-element">
   <a href="#%e8%8a%b1%e6%8c%87%e4%bb%a4" class="heading-mark"></a>花指令</h3><h4 id="永恒跳转" class="heading-element">
   <a href="#%e6%b0%b8%e6%81%92%e8%b7%b3%e8%bd%ac" class="heading-mark"></a>永恒跳转</h4><p>构造代码如下</p>
