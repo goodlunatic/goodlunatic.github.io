@@ -4,7 +4,16 @@
     <link>https://goodlunatic.github.io/posts/</link>
     <description>All Posts | ⚡Lunatic BLOG⚡</description>
     <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>goodlunatic0@gmail.com (Lunatic)</managingEditor>
-      <webMaster>goodlunatic0@gmail.com (Lunatic)</webMaster><lastBuildDate>Fri, 19 Sep 2025 09:10:58 &#43;0800</lastBuildDate><atom:link href="https://goodlunatic.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>goodlunatic0@gmail.com (Lunatic)</webMaster><lastBuildDate>Sat, 20 Sep 2025 18:27:15 &#43;0800</lastBuildDate><atom:link href="https://goodlunatic.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+  <title>2025 泰山杯线下决赛 Misc Writeup</title>
+  <link>https://goodlunatic.github.io/posts/58b2135/</link>
+  <pubDate>Sat, 20 Sep 2025 18:27:15 &#43;0800</pubDate>
+  <author>Lunatic</author>
+  <guid>https://goodlunatic.github.io/posts/58b2135/</guid>
+  <description><![CDATA[<p><strong>群里有很多师傅在问这个比赛的Misc题，就打算专门写一篇博客记录一下</strong></p>
+<p><strong>个人感觉这场比赛的Misc题出的还是可以的，出题人水平也在线，然后Misc附件还是动态的</strong></p>]]></description>
+</item>
+<item>
   <title>CTF-Misc &#34;雅&#34;题共赏</title>
   <link>https://goodlunatic.github.io/posts/d0736a7/</link>
   <pubDate>Fri, 19 Sep 2025 09:10:58 &#43;0800</pubDate>
@@ -81,15 +90,6 @@
   <description><![CDATA[<p><strong>一直觉得每年强网杯的谍影重重这个系列挺有意思的</strong></p>
 <p><strong>因此就打算详细复盘一下历年谍影重重系列的赛题</strong></p>
 <p><strong>这里手动艾特一下出题人@1cePeak，感谢冰峰师傅出的题</strong></p>]]></description>
-</item>
-<item>
-  <title>Frida Learning Record</title>
-  <link>https://goodlunatic.github.io/posts/ca974cb/</link>
-  <pubDate>Sat, 17 May 2025 00:33:26 &#43;0800</pubDate>
-  <author>Lunatic</author>
-  <guid>https://goodlunatic.github.io/posts/ca974cb/</guid>
-  <description><![CDATA[<p><strong>在学习爬虫的过程中，发现有时候需要用到Frida，因此就想着学习一下</strong></p>
-<p><strong>之前经常听到队友念叨 FridaHook，现在终于有机会来学一下里面具体的内容了</strong></p>]]></description>
 </item>
 </channel>
 </rss>
