@@ -664,6 +664,18 @@ https://www.sojson.com/encrypt_aes.html
 https://the-x.cn/cryptography/aes.aspx
 ```
 
+&gt; 因为 AES 的密钥长度可以是 16/24/32 字节，即 128/192/256位
+&gt; 
+&gt; 因此解不出来的时候可以试试 Padding \x00 到更长的位数
+&gt; 
+&gt; 例如下面这道题：
+&gt; 
+&gt; AES-ECB 密文：q8TTfmlBwyT1QPLiZS9ixWKzS5h7aYgOUlaxNMJmE763AIoZ66FRHXFeYYWZBbLn
+&gt; 
+&gt; AES-ECB 密钥：MySuperSecretKey!
+&gt; 
+&gt; 需要把密钥用 \x00 Padding 到 32 字节才能正确解密
+
 #### AES-ECB(不需要IV)
 
 如果 `key` 不足16字节可以尝试在后面补0
@@ -3646,6 +3658,18 @@ bkcrack -C 7-4.zip -c flag.zip -k b21e5df4 ab9a9430 8c336475  -U out.zip 123
 ```
 
 &gt; Tips：如果这里用 `XXXXX.txt`作为明文无法破解成功，可以试试直接去掉后缀`.txt`
+
+当然，这里还有另外一种攻击方式，因为 ZIP 压缩包的尾部 22 字节肯定是`504b050600000000`开头的
+
+所以当 ZIP 压缩包内压缩的是一个压缩包或者一个目录的时候，偏移量就等于`被压缩文件的大小-22`
+
+因此我们可以用 010 把 `504b050600000000` 导入 Hex 到 plain.txt 中做一个已知明文
+
+然后偏移量 -o 参数后跟上 `被压缩文件的大小-22`
+
+
+![](imgs/image-20250920222741333.png)
+
 
 例题1-NKCTF2023——五年Misc，三年模拟
 
