@@ -14,7 +14,7 @@
 个人感觉这场比赛的Misc题出的还是可以的，出题人水平也在线，然后Misc附件还是动态的">
   <meta itemprop="datePublished" content="2025-09-20T18:27:15+08:00">
   <meta itemprop="dateModified" content="2025-09-20T18:27:15+08:00">
-  <meta itemprop="wordCount" content="249">
+  <meta itemprop="wordCount" content="263">
   <meta itemprop="keywords" content="CTF,Misc,Writeup"><meta property="og:url" content="https://goodlunatic.github.io/posts/58b2135/">
   <meta property="og:site_name" content="⚡Lunatic BLOG⚡">
   <meta property="og:title" content="2025 泰山杯线下决赛 Misc Writeup">
@@ -45,7 +45,7 @@
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": "https:\/\/goodlunatic.github.io\/posts\/58b2135\/"
-    },"genre": "posts","keywords": "CTF, Misc, Writeup","wordcount":  249 ,
+    },"genre": "posts","keywords": "CTF, Misc, Writeup","wordcount":  263 ,
     "url": "https:\/\/goodlunatic.github.io\/posts\/58b2135\/","datePublished": "2025-09-20T18:27:15+08:00","dateModified": "2025-09-20T18:27:15+08:00","publisher": {
       "@type": "Organization",
       "name": ""},"author": {
@@ -370,7 +370,11 @@
 </span></span><span class="line"><span class="cl">    <span class="c1"># b&#39;q8TTfmlBwyT1QPLiZS9ixWKzS5h7aYgOUlaxNMJmE763AIoZ66FRHXFeYYWZBbLn\xces\x9a\xf6:P3\xdc\xea\xe28\xb8\x86\xe0Z\xc7\x19\x12\x93\x15K\x1c\xe2\x94=B\x1f\xa4\x13\x158j9Ot\xa0:_?\xbf\xad\xb3\\z\xb5\xac\xb7\x88[\x1a\xe7\xfd]\r\xf7\xad(\xd4\x95\x10J&#39;</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>得到密文：<code>q8TTfmlBwyT1QPLiZS9ixWKzS5h7aYgOUlaxNMJmE763AIoZ66FRHXFeYYWZBbLn</code> 和密钥：<code>MySuperSecretKey!</code></p>
-<p>但是直接去解<code>AES-ECB</code>，发现解不出来，猜测密文可能还有一步什么转换</p></div><div class="post-footer" id="post-footer">
+<p>最后将密钥转为 hex，并在后面 Padding \x00 到 32 字节：<code>4d7953757065725365637265744b657921000000000000000000000000000000</code></p>
+<p>最后解个 AES-ECB 即可得到最后的 flag：<code>flag{e394ed9b9c4b24e0fc0f1e6897bdf938}</code></p>
+<p><img loading="lazy" src="imgs/image-20250920220845770.png" alt="imgs/image-20250920220845770.png" srcset="imgs/image-20250920220845770.png?size=small, imgs/image-20250920220845770.png?size=medium 1.5x, imgs/image-20250920220845770.png?size=large 2x" data-title="imgs/image-20250920220845770.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>除此之外，用随波逐流把 AES 密钥的长度改为 256（32x8）位一样可以解出来</p>
+<p><img loading="lazy" src="imgs/image-20250920221204002.png" alt="imgs/image-20250920221204002.png" srcset="imgs/image-20250920221204002.png?size=small, imgs/image-20250920221204002.png?size=medium 1.5x, imgs/image-20250920221204002.png?size=large 2x" data-title="imgs/image-20250920221204002.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p></div><div class="post-footer" id="post-footer">
   <div class="post-info">
     <div class="post-info-line">
       <div class="post-info-mod">

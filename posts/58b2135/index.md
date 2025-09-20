@@ -198,7 +198,17 @@ if __name__ == &#34;__main__&#34;:
 
 得到密文：`q8TTfmlBwyT1QPLiZS9ixWKzS5h7aYgOUlaxNMJmE763AIoZ66FRHXFeYYWZBbLn` 和密钥：`MySuperSecretKey!`
 
-但是直接去解`AES-ECB`，发现解不出来，猜测密文可能还有一步什么转换
+最后将密钥转为 hex，并在后面 Padding \x00 到 32 字节：`4d7953757065725365637265744b657921000000000000000000000000000000`
+
+最后解个 AES-ECB 即可得到最后的 flag：`flag{e394ed9b9c4b24e0fc0f1e6897bdf938}`
+
+![](imgs/image-20250920220845770.png)
+
+除此之外，用随波逐流把 AES 密钥的长度改为 256（32x8）位一样可以解出来
+
+![](imgs/image-20250920221204002.png)
+
+
 
 ---
 
