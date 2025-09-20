@@ -14,7 +14,7 @@
 个人感觉这场比赛的Misc题出的还是可以的，出题人水平也在线，然后Misc附件还是动态的">
   <meta itemprop="datePublished" content="2025-09-20T18:27:15+08:00">
   <meta itemprop="dateModified" content="2025-09-20T18:27:15+08:00">
-  <meta itemprop="wordCount" content="263">
+  <meta itemprop="wordCount" content="282">
   <meta itemprop="keywords" content="CTF,Misc,Writeup"><meta property="og:url" content="https://goodlunatic.github.io/posts/58b2135/">
   <meta property="og:site_name" content="⚡Lunatic BLOG⚡">
   <meta property="og:title" content="2025 泰山杯线下决赛 Misc Writeup">
@@ -45,7 +45,7 @@
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": "https:\/\/goodlunatic.github.io\/posts\/58b2135\/"
-    },"genre": "posts","keywords": "CTF, Misc, Writeup","wordcount":  263 ,
+    },"genre": "posts","keywords": "CTF, Misc, Writeup","wordcount":  282 ,
     "url": "https:\/\/goodlunatic.github.io\/posts\/58b2135\/","datePublished": "2025-09-20T18:27:15+08:00","dateModified": "2025-09-20T18:27:15+08:00","publisher": {
       "@type": "Organization",
       "name": ""},"author": {
@@ -235,9 +235,9 @@
 <p>提取后可以得到：<code>autokey  RPYJVMJQ</code></p>
 <p><img loading="lazy" src="imgs/image-20250920180255647.png" alt="imgs/image-20250920180255647.png" srcset="imgs/image-20250920180255647.png?size=small, imgs/image-20250920180255647.png?size=medium 1.5x, imgs/image-20250920180255647.png?size=large 2x" data-title="imgs/image-20250920180255647.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>发现是autokey加密，我们拿到了密钥，但是没有密文，因此我们需要去寻找密文</p>
-<p>用PS打开这张PNG，发现除了第一行的隐写意外，第二行的白色像素也很可疑</p>
+<p>用PS打开这张PNG，发现除了第一行的隐写以外，第二行的白色像素也很可疑</p>
 <p><img loading="lazy" src="imgs/image-20250920180640892.png" alt="imgs/image-20250920180640892.png" srcset="imgs/image-20250920180640892.png?size=small, imgs/image-20250920180640892.png?size=medium 1.5x, imgs/image-20250920180640892.png?size=large 2x" data-title="imgs/image-20250920180640892.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
-<p>赛后和别的师傅交流了一下，知道了隐写的具体思路，我个人感觉挺难想到的，横坐标逐位做差，然后再逐位异或</p>
+<p>后来和别的师傅交流了一下，知道了隐写的具体思路，我个人感觉挺难想到的，横坐标逐位做差，然后再逐位异或</p>
 <div class="highlight" id="id-2"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -374,7 +374,13 @@
 <p>最后解个 AES-ECB 即可得到最后的 flag：<code>flag{e394ed9b9c4b24e0fc0f1e6897bdf938}</code></p>
 <p><img loading="lazy" src="imgs/image-20250920220845770.png" alt="imgs/image-20250920220845770.png" srcset="imgs/image-20250920220845770.png?size=small, imgs/image-20250920220845770.png?size=medium 1.5x, imgs/image-20250920220845770.png?size=large 2x" data-title="imgs/image-20250920220845770.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>除此之外，用随波逐流把 AES 密钥的长度改为 256（32x8）位一样可以解出来</p>
-<p><img loading="lazy" src="imgs/image-20250920221204002.png" alt="imgs/image-20250920221204002.png" srcset="imgs/image-20250920221204002.png?size=small, imgs/image-20250920221204002.png?size=medium 1.5x, imgs/image-20250920221204002.png?size=large 2x" data-title="imgs/image-20250920221204002.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p></div><div class="post-footer" id="post-footer">
+<p><img loading="lazy" src="imgs/image-20250920221204002.png" alt="imgs/image-20250920221204002.png" srcset="imgs/image-20250920221204002.png?size=small, imgs/image-20250920221204002.png?size=medium 1.5x, imgs/image-20250920221204002.png?size=large 2x" data-title="imgs/image-20250920221204002.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<blockquote>
+<p>其实之前也有遇到过这种在末尾 padding \x00 的情况，然后有在线网站和工具可以自动完成这个操作</p>
+<p>但是为啥在线网站和工具遇到这题就解不出来了呢？</p>
+<p>因为密钥长度是 17 字节，网站和工具可能默认 padding 到 24 字节(192 位)了，而不是 32 字节</p>
+<p>所以我个人感觉出题人这里没出好，要么密钥长度就给刚刚好（16/24/32 字节），要么就让密钥长度超过 24 字节</p>
+</blockquote></div><div class="post-footer" id="post-footer">
   <div class="post-info">
     <div class="post-info-line">
       <div class="post-info-mod">
