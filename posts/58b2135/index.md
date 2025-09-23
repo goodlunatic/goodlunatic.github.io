@@ -216,6 +216,144 @@ if __name__ == &#34;__main__&#34;:
 &gt; 
 &gt; 所以我个人感觉出题人这里没出好，要么密钥长度就给刚刚好（16/24/32 字节），要么就让密钥长度超过 24 字节
 
+## 题目名称 Scrambled_Base
+
+题目附件给了一个 txt 文件，内容如下：
+
+```
+CLJZMY3TCLJVMEYDMM,MZWGCZ33GA3WENRSGI,RQGE3DONDFG56Q====,3TCLJVGMYDILJUMEZD
+```
+
+看到连续的四个=，猜测可能是 base32，直接写个脚本爆破一下排列顺序，然后解 Base32 即可
+
+```python
+import base64
+import itertools
+
+base_part = &#34;CLJZMY3TCLJVMEYDMM,MZWGCZ33GA3WENRSGI,RQGE3DONDFG56Q====,3TCLJVGMYDILJUMEZD&#34;.split(&#39;,&#39;)
+# print(base_part)
+res_list = list(itertools.permutations(base_part))
+for item in res_list:
+    try:
+        res = base64.b32decode(&#39;&#39;.join(item))
+        if b&#39;flag&#39; in res:
+            print(res)
+    except:
+        pass
+# b&#39;flag{07b62271-5304-4a21-9f71-5a06201674e7}&#39;
+```
+
+`flag{07b62271-5304-4a21-9f71-5a06201674e7}`
+
+## 题目名称 ezpdf
+
+题目附件给了一个 pdf 文件，直接打开会提示文件已损坏
+
+尝试用 foremost 分类一下，可以得到一个新的 pdf 文件，这个是可以正常打开的
+
+![](imgs/image-20250923095239620.png)
+
+我们把上面的文字移开可以得到如下内容：
+
+&gt; A4k9icgydtiz3HvFSuNxr67fvWWHS6aGW
+
+解 base64 和 ROT13可以得到：`pass:Venus_G0oD_daY_????`
+
+![](imgs/image-20250923095707151.png)
+
+然后我们可以发现 foremost 分离出来的 PDF 明显比原 PDF 小，因此我们拿 010 diff 一下
+
+![](imgs/image-20250923100125802.png)
+
+结合 PDF 文件尾部的数据，我们很容易可以想到末尾还有一个压缩包，只不过文件头被篡改了
+
+![](imgs/image-20250923100153100.png)
+
+我们手动提取出来并修复文件头，发现是加密的
+
+用我们之前得到的掩码爆破一下可以得到解压密码：`Venus_G0oD_daY_2895`
+
+![](imgs/image-20250923100901393.png)
+
+解压后得到一个 zero 文件，010 打开，猜测是文件头被篡改了的 GIF 文件
+
+![](imgs/image-20250923101118688.png)
+
+补上文件头后改后缀为.gif，发现可以正常打开
+
+![](imgs/image-20250923101250135.png)
+
+然后提取帧间隔，转二进制后再转 ASCII 即可得到 flag: `flag{5dca56a63c65beb79a2e6a86843b7a9}`
+
+![](imgs/image-20250923101405883.png)
+
+![](imgs/image-20250923101559972.png)
+
+![](imgs/image-20250923101645977.png)
+
+&gt; Tips: 这里要注意到 259 / 7 = 37 ，因此我们要每 7 位二进制转 ASCII 才能得到正确的 flag
+
+## 题目名称 流量分析
+
+题面信息如下：
+
+&gt; 在某次攻防演练行动中集团系统被攻破，系统里面被植入后门账号。应急人员在溯源的时候发现是因为系统运维人员安全意识不足，使用姓名&#43;出生年月日设置密码（例如：zhangsan19900421），集团通讯录被泄露导致攻击者利用通讯录构造社工字典获取到了smb服务的密码，然后利用smb服务上传webshell，之后利用webshell植入后门账号。技术人员在安全设备上将流量下载下来了，请你分析，泄露的smb服务账号及密码以及植入的后门账号及密码。flag格式：flag{md5(泄露的smb服务账号_泄露的smb服务账号的密码_后门账号_后门账号的密码)}
+&gt; 
+&gt; 例如：
+&gt; 
+&gt; 泄露的smb服务账号：zhangsan
+&gt; 
+&gt; 泄露的smb服务密码：zhangsan19900421
+&gt; 
+&gt; 后门账号:hack
+&gt; 
+&gt; 后门账号密码:hack@123
+&gt; 
+&gt; md5(zhangsan_zhangsan19900421_hack_hack@123)=1f91fcaedeee961c094aa6dd6a71a7ad
+&gt; 
+&gt; flag为：flag{1f91fcaedeee961c094aa6dd6a71a7ad}
+
+打开流量包查看，发现 FTP 传了一个 xlsx 文件
+
+![](imgs/image-20250923101957359.png)
+
+提取出来，WPS 打开会提示报错，但是可以用 EXCEL 修复后打开
+
+![](imgs/image-20250923102117201.png)
+
+打开后即可得到姓名拼音列表，直接复制出来删去空格做成一个字典
+
+然后用 NTLMRawUnHide.py 提取 NTLMv2 的哈希
+
+```bash
+python3 NTLMRawUnHide.py -i 流量分析.pcapng -o hash.txt
+```
+
+![](imgs/image-20250923102423666.png)
+
+然后用 hashcat 爆破即可得到 SMB 服务账号的密码：`guyongyan19901221`
+
+![](imgs/image-20250923102547394.png)
+
+用 wireshark 输入这个密码解密 ntlmssp 后导出解密后的流量包
+
+最后直接用 CTF-NetA 一把梭解密哥斯拉流量即可
+
+
+综上，我们总结如下：
+
+&gt; 泄露的smb服务账号: administrator
+&gt; 
+&gt; 泄露的smb服务密码: guyongyan19901221
+&gt; 
+&gt; 后门账号: administrator
+&gt; 
+&gt; 后门账号密码: Admin@123$
+
+最后的 flag 为：`flag{3e21a36dcbe5e73ef68b45afa06c148f}`
+
+
+
 
 
 ---
