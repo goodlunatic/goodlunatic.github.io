@@ -346,11 +346,11 @@ python3 NTLMRawUnHide.py -i 流量分析.pcapng -o hash.txt
 &gt; 
 &gt; 泄露的smb服务密码: guyongyan19901221
 &gt; 
-&gt; 后门账号: administrator
+&gt; 后门账号: adm1n1strator
 &gt; 
 &gt; 后门账号密码: Admin@123$
 
-最后的 flag 为：`flag{3e21a36dcbe5e73ef68b45afa06c148f}`
+最后的 flag 为：`flag{54b9afb4d6a16be08ef1e62aabcf739d}`
 
 
 

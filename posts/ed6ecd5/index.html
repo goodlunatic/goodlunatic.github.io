@@ -1440,7 +1440,7 @@
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c">#use_cedron_f_est_alg = false</span></span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="user_dbcsv" class="heading-element">
-  <a href="#user_dbcsv" class="heading-mark"></a>user_db.csv</h3><div class="highlight" id="id-5"><div class="chroma">
+  <a href="#user_dbcsv" class="heading-mark"></a>user_db.csv</h3><div class="highlight" id="id-1"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1497,7 +1497,7 @@
 <p>然后UE上 设置-移动网络-移动数据-接入点名称(APN)-添加一个名称和APN为srsapn的接入点即可</p>
 <h2 id="运行srsran_4g" class="heading-element">
   <a href="#%e8%bf%90%e8%a1%8csrsran_4g" class="heading-mark"></a>运行srsRAN_4G</h2><p>先用以下命令将电脑CPU调整至高性能模式</p>
-<div class="highlight" id="id-6"><div class="chroma">
+<div class="highlight" id="id-2"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
@@ -1505,7 +1505,7 @@
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">echo &#34;performance&#34; | sudo tee /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor</span></span></code></pre></td></tr></table>
 </div>
 </div><p>启动NAT流量伪装</p>
-<div class="highlight" id="id-7"><div class="chroma">
+<div class="highlight" id="id-3"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -1519,7 +1519,7 @@
 </span></span><span class="line"><span class="cl">sudo iptables -t nat -A POSTROUTING -s 172.16.0.0/24 -o wlo1 -j MASQUERADE</span></span></code></pre></td></tr></table>
 </div>
 </div><p>启动核心网和基站</p>
-<div class="highlight" id="id-8"><div class="chroma">
+<div class="highlight" id="id-4"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -1534,7 +1534,7 @@
 <p><img loading="lazy" src="imgs/image-20250803165142335.png" alt="imgs/image-20250803165142335.png" srcset="imgs/image-20250803165142335.png?size=small, imgs/image-20250803165142335.png?size=medium 1.5x, imgs/image-20250803165142335.png?size=large 2x" data-title="imgs/image-20250803165142335.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>修改方向重新插入SIM卡后即可正常使用</p>
 <h3 id="epc读取user_dbcsv失败" class="heading-element">
-  <a href="#epc%e8%af%bb%e5%8f%96user_dbcsv%e5%a4%b1%e8%b4%a5" class="heading-mark"></a>EPC读取user_db.csv失败</h3><div class="highlight" id="id-9"><div class="chroma">
+  <a href="#epc%e8%af%bb%e5%8f%96user_dbcsv%e5%a4%b1%e8%b4%a5" class="heading-mark"></a>EPC读取user_db.csv失败</h3><div class="highlight" id="id-5"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1560,7 +1560,7 @@
 </span></span><span class="line"><span class="cl">Error initializing HSS</span></span></code></pre></td></tr></table>
 </div>
 </div><p>大概率是csv文件格式问题，检查其中是否有多余的空格，这里放一份可以正常使用的模板</p>
-<div class="highlight" id="id-10"><div class="chroma">
+<div class="highlight" id="id-6"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1615,7 +1615,7 @@
 <h3 id="ue可以连接到基站但是上不了网" class="heading-element">
   <a href="#ue%e5%8f%af%e4%bb%a5%e8%bf%9e%e6%8e%a5%e5%88%b0%e5%9f%ba%e7%ab%99%e4%bd%86%e6%98%af%e4%b8%8a%e4%b8%8d%e4%ba%86%e7%bd%91" class="heading-mark"></a>UE可以连接到基站，但是上不了网</h3><p>原因可能是 srsepc_if_masq.sh 这个脚本运行出错了，导致流量转发失败</p>
 <p>可以尝试用以下命令手动进行流量伪装</p>
-<div class="highlight" id="id-11"><div class="chroma">
+<div class="highlight" id="id-7"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -1635,7 +1635,7 @@
 </div><p>然后检查一下是否配置成功，如果能输出以下内容，则证明流量伪装成功</p>
 <p>这一定要注意，必须是 172.16.0.0/24 的流量，而不能是所有流量</p>
 <p><strong>当出现 wlo1 数据包数量84和总字节数6684不为0的时候即配置成功</strong></p>
-<div class="highlight" id="id-12"><div class="chroma">
+<div class="highlight" id="id-8"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1661,7 +1661,7 @@
 </span></span><span class="line"><span class="cl">   <span class="m">84</span>  <span class="m">6684</span> MASQUERADE  all  --  *      wlo1    172.16.0.0/24        0.0.0.0/0   </span></span></code></pre></td></tr></table>
 </div>
 </div><p>如果要删除规则可以用下面这个命令</p>
-<div class="highlight" id="id-13"><div class="chroma">
+<div class="highlight" id="id-9"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -1675,7 +1675,7 @@
 </span></span><span class="line"><span class="cl">sudo iptables -t nat -D POSTROUTING <span class="m">5</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>综上所述，可以解决这个问题的命令是</p>
-<div class="highlight" id="id-14"><div class="chroma">
+<div class="highlight" id="id-10"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
