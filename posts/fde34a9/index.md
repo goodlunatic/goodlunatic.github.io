@@ -3,7 +3,7 @@
 **2023 楚慧杯网络空间安全实践能力竞赛 Misc Writeup**
 &lt;!--more--&gt;
 
-**附件下载链接： https://pan.baidu.com/s/14GkEsQ2GK1FjDxxJRTl0gA?pwd=v9dz 提取码: v9dz**
+&gt; 本文中涉及的具体题目附件可以进我的交流群获取，进群详见 [About](https://goodlunatic.github.io/about/)
 
 ## 题目名称 ez_zip
 

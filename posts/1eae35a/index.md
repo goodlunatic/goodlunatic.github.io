@@ -7,7 +7,7 @@
 
 ![](imgs/image-20241021155152950.png)
 
-&gt; 题目附件下载地址： https://pan.baidu.com/s/1pwPzE8nTjgsj0uHMFtEQLg?pwd=cgpm 提取码: cgpm 
+&gt; 本文中涉及的具体题目附件可以进我的交流群获取，进群详见 [About](https://goodlunatic.github.io/about/)
 
 ## 题目名称 你是黑客么 
 题目附件给了一个加密的压缩包，经过尝试发现是弱密码：75067

@@ -5,7 +5,7 @@
 
 ![](imgs/image-20241203134212759.jpeg)
 
-附件下载链接： https://pan.baidu.com/s/1b5TedPnBTF9Z8ZfB7QWDaA?pwd=gbi9 提取码: gbi9
+&gt; 本文中涉及的具体题目附件可以进我的交流群获取，进群详见 [About](https://goodlunatic.github.io/about/)
 
 ## 题目名称 CS
 

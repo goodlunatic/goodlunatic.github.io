@@ -3,7 +3,7 @@
 **不知道具体是什么比赛，但是赛题还是有一定的强度的**
 &lt;!--more--&gt;
 
-&gt; 题目附件下载： https://pan.baidu.com/s/1lzDfkHm1f0iuEMqsC-JhcQ?pwd=63vh 提取码: 63vh 
+&gt; 本文中涉及的具体题目附件可以进我的交流群获取，进群详见 [About](https://goodlunatic.github.io/about/)
 
 ## 题目名称 X0r
 

@@ -8,7 +8,7 @@
 
 ## 题目名称 checkin
 
-**不愧是山海关-ChaMd5（查MD5获得flag）**
+**不愧是ChaMd5（查MD5获得flag）**
 **flag{We1c0m3_VCTF_2024}**
 
 ![](imgs/image-20240702182142614.png)

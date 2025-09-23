@@ -3,7 +3,7 @@
 **2024 吾杯网络安全大赛 Misc Writeup**
 &lt;!--more--&gt;
 
-附件下载链接： https://pan.baidu.com/s/1Pr79cstRSncaFAXsYx_CKg?pwd=iqus 提取码: iqus
+&gt; 本文中涉及的具体题目附件可以进我的交流群获取，进群详见 [About](https://goodlunatic.github.io/about/)
 
 ## 题目名称 Sign
 

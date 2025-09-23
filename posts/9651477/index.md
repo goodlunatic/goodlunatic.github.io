@@ -5,7 +5,7 @@
 **羡慕能被邀请的学校，啥时候能顺便邀请一下A1natas呢 QAQ**
 &lt;!--more--&gt;
 
-题目附件： https://pan.baidu.com/s/1tBDoLrWYncp_Q7dTIfIvrA?pwd=dtej 提取码: dtej
+&gt; 本文中涉及的具体题目附件可以进我的交流群获取，进群详见 [About](https://goodlunatic.github.io/about/)
 
 ## 题目名称 BOMB
 

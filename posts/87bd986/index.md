@@ -4,7 +4,7 @@
 
 &lt;!--more--&gt;
 
-&gt; 题目附件：https://github.com/CTF-Archives/energyCTF2025
+&gt; 本文中涉及的具体题目附件可以进我的交流群获取，进群详见 [About](https://goodlunatic.github.io/about/)
 
 ## 题目名称 black_white
 

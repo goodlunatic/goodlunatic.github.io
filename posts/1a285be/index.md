@@ -5,7 +5,7 @@
 
 ![](imgs/image-20241030001333378.png)
 
-&gt; 题目附件下载地址： https://pan.baidu.com/s/1HmsiauKm_0luI-oa2CvRBA?pwd=8vs5 提取码: 8vs5
+&gt; 本文中涉及的具体题目附件可以进我的交流群获取，进群详见 [About](https://goodlunatic.github.io/about/)
 
 ## 题目名称 Misc01
 

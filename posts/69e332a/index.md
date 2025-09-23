@@ -5,7 +5,7 @@
 **但是如果就涉及到的题目本身而言，还是可以稍微记录一下的**
 &lt;!--more--&gt;
 
-&gt; 题目附件：https://pan.baidu.com/s/1SEs1_aHqH1Rsvd7R1WhL-g?pwd=tiui 提取码: tiui
+&gt; 本文中涉及的具体题目附件可以进我的交流群获取，进群详见 [About](https://goodlunatic.github.io/about/)
 
 ## 题目名称 不良劫
 
