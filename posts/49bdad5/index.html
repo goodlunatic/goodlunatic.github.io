@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="en">
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <title>2025 第九届工业信息安全技能大赛-典型工业场景锦标赛 Misc Writeup - ⚡Lunatic BLOG⚡</title><meta name="author" content="Lunatic">
+<meta name="author-link" content="https://goodlunatic.github.io">
+<meta name="description" content="2025 第九届工业信息安全技能大赛-典型工业场景锦标赛 Writeup
+赛后有师傅来问这场比赛里的题，部分题目出的挺好的，有一定的难度，于是打算记录一下" /><meta name="keywords" content='CTF, Misc, Writeup' />
+  <meta itemprop="name" content="2025 第九届工业信息安全技能大赛-典型工业场景锦标赛 Misc Writeup">
+  <meta itemprop="description" content="2025 第九届工业信息安全技能大赛-典型工业场景锦标赛 Writeup
+赛后有师傅来问这场比赛里的题，部分题目出的挺好的，有一定的难度，于是打算记录一下">
+  <meta itemprop="datePublished" content="2025-09-23T23:00:45+08:00">
+  <meta itemprop="dateModified" content="2025-09-23T23:00:45+08:00">
+  <meta itemprop="wordCount" content="141">
+  <meta itemprop="keywords" content="CTF,Misc,Writeup"><meta property="og:url" content="https://goodlunatic.github.io/posts/49bdad5/">
+  <meta property="og:site_name" content="⚡Lunatic BLOG⚡">
+  <meta property="og:title" content="2025 第九届工业信息安全技能大赛-典型工业场景锦标赛 Misc Writeup">
+  <meta property="og:description" content="2025 第九届工业信息安全技能大赛-典型工业场景锦标赛 Writeup
+赛后有师傅来问这场比赛里的题，部分题目出的挺好的，有一定的难度，于是打算记录一下
+">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+  <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-09-23T23:00:45+08:00">
+    <meta property="article:modified_time" content="2025-09-23T23:00:45+08:00">
+    <meta property="article:tag" content="CTF">
+    <meta property="article:tag" content="Misc">
+    <meta property="article:tag" content="Writeup">
+<meta name="twitter:card" content="summary"><meta name="twitter:title" content="2025 第九届工业信息安全技能大赛-典型工业场景锦标赛 Misc Writeup">
+<meta name="twitter:description" content="2025 第九届工业信息安全技能大赛-典型工业场景锦标赛 Writeup
+赛后有师傅来问这场比赛里的题，部分题目出的挺好的，有一定的难度，于是打算记录一下">
+      <meta name="twitter:site" content="@goodlunatic007">
+<meta name="application-name" content="FixIt">
+<meta name="apple-mobile-web-app-title" content="FixIt"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="https://www.nssctf.cn/files/2024/4/28/7f130a1387.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="https://goodlunatic.github.io/posts/49bdad5/" /><link rel="prev" href="https://goodlunatic.github.io/posts/58b2135/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "2025 第九届工业信息安全技能大赛-典型工业场景锦标赛 Misc Writeup",
+    "inLanguage": "en",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https:\/\/goodlunatic.github.io\/posts\/49bdad5\/"
+    },"genre": "posts","keywords": "CTF, Misc, Writeup","wordcount":  141 ,
+    "url": "https:\/\/goodlunatic.github.io\/posts\/49bdad5\/","datePublished": "2025-09-23T23:00:45+08:00","dateModified": "2025-09-23T23:00:45+08:00","publisher": {
+      "@type": "Organization",
+      "name": ""},"author": {
+        "@type": "Person",
+        "name": "Lunatic"
+      },"description": ""
+  }
+  </script></head>
+  <body data-header-desktop="sticky" data-header-mobile="auto"><script>(window.localStorage?.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper" data-page-style="normal"><header class="desktop animate__faster" id="header-desktop">
+  <div class="header-wrapper">
+    <div class="header-title">
+      <a href="/" title="⚡Lunatic BLOG⚡"><span class="header-title-pre">⚡</span><span id="typeit-header-desktop" class="typeit"></span></a><span id="typeit-header-subtitle-desktop" class="typeit header-subtitle"></span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/archives/"
+                
+                
+              ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> Archives</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/categories/"
+                
+                
+              ><i class="fa-solid fa-folder-tree fa-fw fa-sm" aria-hidden="true"></i> Categories</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/tags/"
+                
+                
+              ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> Tags</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/friends/"
+                
+                
+              ><i class="fa-solid fa-chain fa-fw fa-sm" aria-hidden="true"></i> Friends</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/about/"
+                
+                
+              ><i class="fa-solid fa-graduation-cap fa-fw fa-sm" aria-hidden="true"></i> About</a></li><li class="menu-item delimiter"></li><li class="menu-item theme-switch" title="Switch Theme">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li></ul>
+    </nav>
+  </div>
+</header><header class="mobile animate__faster" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="⚡Lunatic BLOG⚡"><span class="header-title-pre">⚡</span><span id="typeit-header-title-mobile" class="typeit"></span></a><span id="typeit-header-subtitle-mobile" class="typeit header-subtitle"></span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/archives/"
+                  
+                  
+                ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> Archives</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/categories/"
+                  
+                  
+                ><i class="fa-solid fa-folder-tree fa-fw fa-sm" aria-hidden="true"></i> Categories</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/tags/"
+                  
+                  
+                ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> Tags</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/friends/"
+                  
+                  
+                ><i class="fa-solid fa-chain fa-fw fa-sm" aria-hidden="true"></i> Friends</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/about/"
+                  
+                  
+                ><i class="fa-solid fa-graduation-cap fa-fw fa-sm" aria-hidden="true"></i> About</a></li><li class="menu-item menu-system">
+          <span class="menu-system-item theme-switch" title="Switch Theme"><i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i></span></li>
+      </ul>
+    </nav>
+  </div>
+</header><main class="container"><aside class="aside-collection animate__animated animate__fadeIn animate__faster" aria-label=""></aside>
+
+<article class="page single">
+  <div class="header"><h1 class="single-title animate__animated animate__flipInX"><span>2025 第九届工业信息安全技能大赛-典型工业场景锦标赛 Misc Writeup</span>
+    </h1></div><div class="post-meta">
+    <div class="post-meta-line"><span class="post-author"><a href="https://goodlunatic.github.io" title="Author"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><img loading="lazy" src="https://www.nssctf.cn/files/2024/4/28/7f130a1387.png" alt="Lunatic" data-title="Lunatic" class="avatar" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>&nbsp;Lunatic</a></span><span class="post-included-in">&nbsp;included in <a href="/categories/writeup/" class="post-category" title="Category - Writeup"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> Writeup</a></span></div><div class="post-meta-line"><span title="published on &lt;no value&gt;"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden="true"></i><time datetime="2025-09-23">2025-09-23</time></span>&nbsp;<span title=""><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>About 200 words</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>One minute</span>&nbsp;</div>
+  </div><div class="details toc" id="toc-static"
+    data-kept="false">
+    <div class="details-summary toc-title">
+      <span>Contents</span>
+      <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+    </div>
+    <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#题目名称-开局一张图">题目名称 开局一张图</a></li>
+    <li><a href="#题目名称-设计图之秘">题目名称 设计图之秘</a></li>
+    <li><a href="#题目名称-抓内鬼啦">题目名称 抓内鬼啦</a></li>
+    <li><a href="#题目名称-固件分析-1">题目名称 固件分析 1</a></li>
+    <li><a href="#题目名称-图片的奥秘">题目名称 图片的奥秘</a></li>
+    <li><a href="#题目名称-工控宣传的隐秘信号">题目名称 工控宣传的隐秘信号</a></li>
+    <li><a href="#题目名称-工业日志分析">题目名称 工业日志分析</a></li>
+    <li><a href="#题目名称-工业控制协议流量分析-1">题目名称 工业控制协议流量分析 1</a></li>
+    <li><a href="#题目名称-工业控制协议流量分析-2">题目名称 工业控制协议流量分析 2</a></li>
+    <li><a href="#题目名称-工业控制协议流量分析-3">题目名称 工业控制协议流量分析 3</a></li>
+    <li><a href="#题目名称-异常的数据流量包">题目名称 异常的数据流量包</a></li>
+    <li><a href="#题目名称-音频隐写">题目名称 音频隐写</a></li>
+    <li><a href="#题目名称-所见即是开始">题目名称 所见即是开始</a></li>
+  </ul>
+</nav></div>
+  </div><div class="content" id="content"><p><strong>2025 第九届工业信息安全技能大赛-典型工业场景锦标赛 Writeup</strong></p>
+<p><strong>赛后有师傅来问这场比赛里的题，部分题目出的挺好的，有一定的难度，于是打算记录一下</strong></p>
+<blockquote>
+<p>本文中涉及的具体题目附件可以进我的交流群获取，进群详见 <a href="https://goodlunatic.github.io/about/"target="_blank" rel="external nofollow noopener noreferrer">About</a></p>
+</blockquote>
+<h2 id="题目名称-开局一张图" class="heading-element">
+  <a href="#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-%e5%bc%80%e5%b1%80%e4%b8%80%e5%bc%a0%e5%9b%be" class="heading-mark"></a>题目名称 开局一张图</h2><p>LSB 隐写，提取出来即可：<code>0fvx2enlh9k6ai4el2g960dd97c2f4805987fl3Aw4bZ0FGKJ2k6EDBqoYCiTWr8RXQdleg</code></p>
+<p><img loading="lazy" src="imgs/image-20250924094216987.png" alt="imgs/image-20250924094216987.png" srcset="imgs/image-20250924094216987.png?size=small, imgs/image-20250924094216987.png?size=medium 1.5x, imgs/image-20250924094216987.png?size=large 2x" data-title="imgs/image-20250924094216987.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<h2 id="题目名称-设计图之秘" class="heading-element">
+  <a href="#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-%e8%ae%be%e8%ae%a1%e5%9b%be%e4%b9%8b%e7%a7%98" class="heading-mark"></a>题目名称 设计图之秘</h2><p>steghide 隐写，直接用 stegseek 爆破密钥即可</p>
+<p><img loading="lazy" src="imgs/image-20250924100646435.png" alt="imgs/image-20250924100646435.png" srcset="imgs/image-20250924100646435.png?size=small, imgs/image-20250924100646435.png?size=medium 1.5x, imgs/image-20250924100646435.png?size=large 2x" data-title="imgs/image-20250924100646435.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>打开 .out 文件即可得到：<code>flk5lsdiaenorfa1yeag7d21c78ad28c3ae25V6swgqhSAc3eyHJoQzMWFr491xktO8dGYRTXmCiPZNufBpl7b2UDK0Larm</code></p>
+<h2 id="题目名称-抓内鬼啦" class="heading-element">
+  <a href="#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-%e6%8a%93%e5%86%85%e9%ac%bc%e5%95%a6" class="heading-mark"></a>题目名称 抓内鬼啦</h2><p>题目附件给了一个流量包，打开发现 HTTP 流量中上传了几个文件</p>
+<p>首先是传了了一张宽高被篡改过的 PNG 图片，并且图片末尾有段 base64，解码后可以得到宽高的提示</p>
+<p><img loading="lazy" src="imgs/image-20250923233438173.png" alt="imgs/image-20250923233438173.png" srcset="imgs/image-20250923233438173.png?size=small, imgs/image-20250923233438173.png?size=medium 1.5x, imgs/image-20250923233438173.png?size=large 2x" data-title="imgs/image-20250923233438173.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><img loading="lazy" src="imgs/image-20250923233454698.png" alt="imgs/image-20250923233454698.png" srcset="imgs/image-20250923233454698.png?size=small, imgs/image-20250923233454698.png?size=medium 1.5x, imgs/image-20250923233454698.png?size=large 2x" data-title="imgs/image-20250923233454698.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>010 打开修改好宽高后可以得到一张二维码</p>
+<p><img loading="lazy" src="imgs/image-20250923233708163.png" alt="imgs/image-20250923233708163.png" srcset="imgs/image-20250923233708163.png?size=small, imgs/image-20250923233708163.png?size=medium 1.5x, imgs/image-20250923233708163.png?size=large 2x" data-title="imgs/image-20250923233708163.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><img loading="lazy" src="imgs/image-20250923233714669.png" alt="imgs/image-20250923233714669.png" srcset="imgs/image-20250923233714669.png?size=small, imgs/image-20250923233714669.png?size=medium 1.5x, imgs/image-20250923233714669.png?size=large 2x" data-title="imgs/image-20250923233714669.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>扫码即可得到第一段的 flag: <code>Polis{W0w_Th1s_1s_f1agO1_</code></p>
+<p>然后流量中还传了一个 zip 压缩包，尝试提取出来，发现是伪加密的</p>
+<p>010 打开发现压缩大小和压缩前大小也被篡改了，修改为正确的大小并去除伪加密后打开</p>
+<p>即可得到第二段 flag: <code>Great_G0t_it!}</code></p>
+<p><img loading="lazy" src="imgs/image-20250923234803347.png" alt="imgs/image-20250923234803347.png" srcset="imgs/image-20250923234803347.png?size=small, imgs/image-20250923234803347.png?size=medium 1.5x, imgs/image-20250923234803347.png?size=large 2x" data-title="imgs/image-20250923234803347.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>综上，最后的 flag 为：<code>Polis{W0w_Th1s_1s_f1agO1_Great_G0t_it!}</code></p>
+<h2 id="题目名称-固件分析-1" class="heading-element">
+  <a href="#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-%e5%9b%ba%e4%bb%b6%e5%88%86%e6%9e%90-1" class="heading-mark"></a>题目名称 固件分析 1</h2><p>题目附件给了一个 img 文件，尝试直接用 DiskGenius 打开</p>
+<p><img loading="lazy" src="imgs/image-20250924101145956.png" alt="imgs/image-20250924101145956.png" srcset="imgs/image-20250924101145956.png?size=small, imgs/image-20250924101145956.png?size=medium 1.5x, imgs/image-20250924101145956.png?size=large 2x" data-title="imgs/image-20250924101145956.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><img loading="lazy" src="imgs/image-20250924101158256.png" alt="imgs/image-20250924101158256.png" srcset="imgs/image-20250924101158256.png?size=small, imgs/image-20250924101158256.png?size=medium 1.5x, imgs/image-20250924101158256.png?size=large 2x" data-title="imgs/image-20250924101158256.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><img loading="lazy" src="imgs/image-20250924101207127.png" alt="imgs/image-20250924101207127.png" srcset="imgs/image-20250924101207127.png?size=small, imgs/image-20250924101207127.png?size=medium 1.5x, imgs/image-20250924101207127.png?size=large 2x" data-title="imgs/image-20250924101207127.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>可以得到上面这几个文件，其中 7z 压缩包是加密的</p>
+<p>尝试直接 strings 一下 sh 和 motd 里面的内容，可以得到第一段 flag 和压缩包的解压密码：<code>Secret_PLC2025</code></p>
+<p><img loading="lazy" src="imgs/image-20250924101357328.png" alt="imgs/image-20250924101357328.png" srcset="imgs/image-20250924101357328.png?size=small, imgs/image-20250924101357328.png?size=medium 1.5x, imgs/image-20250924101357328.png?size=large 2x" data-title="imgs/image-20250924101357328.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>解压后可以得到一个 flag2.txt，内容如下：</p>
+<blockquote>
+<p>E4MC01MGE4LTRm</p>
+</blockquote>
+<p>但是发现拼不出完整的 flag，于是尝试直接 strings 整个 img，可以得到另外几段内容</p>
+<p><img loading="lazy" src="imgs/image-20250924101653034.png" alt="imgs/image-20250924101653034.png" srcset="imgs/image-20250924101653034.png?size=small, imgs/image-20250924101653034.png?size=medium 1.5x, imgs/image-20250924101653034.png?size=large 2x" data-title="imgs/image-20250924101653034.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>最后尝试在 CyberChef 中组合一下，把三段 base64 调整到相同的长度，然后解码即可得到完整的 flag</p>
+<p><code>flag{a6300a80-50a8-4f3f-b339-3ac9c76ae902}</code></p>
+<p><img loading="lazy" src="imgs/image-20250924101852975.png" alt="imgs/image-20250924101852975.png" srcset="imgs/image-20250924101852975.png?size=small, imgs/image-20250924101852975.png?size=medium 1.5x, imgs/image-20250924101852975.png?size=large 2x" data-title="imgs/image-20250924101852975.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<h2 id="题目名称-图片的奥秘" class="heading-element">
+  <a href="#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-%e5%9b%be%e7%89%87%e7%9a%84%e5%a5%a5%e7%a7%98" class="heading-mark"></a>题目名称 图片的奥秘</h2><p>附件给了一个加密的压缩包，首先尝试弱密码爆破，得到解压密码：<code>54450</code></p>
+<p><img loading="lazy" src="imgs/image-20250924102048066.png" alt="imgs/image-20250924102048066.png" srcset="imgs/image-20250924102048066.png?size=small, imgs/image-20250924102048066.png?size=medium 1.5x, imgs/image-20250924102048066.png?size=large 2x" data-title="imgs/image-20250924102048066.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>解压后得到一张 PNG 图片，010 打开提示报错，发现末尾有一张 base64 编码后的 PNG 图片</p>
+<p><img loading="lazy" src="imgs/image-20250924102620223.png" alt="imgs/image-20250924102620223.png" srcset="imgs/image-20250924102620223.png?size=small, imgs/image-20250924102620223.png?size=medium 1.5x, imgs/image-20250924102620223.png?size=large 2x" data-title="imgs/image-20250924102620223.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><img loading="lazy" src="imgs/image-20250924102223747.png" alt="imgs/image-20250924102223747.png" srcset="imgs/image-20250924102223747.png?size=small, imgs/image-20250924102223747.png?size=medium 1.5x, imgs/image-20250924102223747.png?size=large 2x" data-title="imgs/image-20250924102223747.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>提取出来解码后可以得到下图，扫码得到：<code>flag{asdf%^&amp;*ghjkl}</code></p>
+<p><img loading="lazy" src="imgs/image-20250924102338576.png" alt="imgs/image-20250924102338576.png" srcset="imgs/image-20250924102338576.png?size=small, imgs/image-20250924102338576.png?size=medium 1.5x, imgs/image-20250924102338576.png?size=large 2x" data-title="imgs/image-20250924102338576.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>但是我们常用 010 打开这张图片，发现末尾还有数据</p>
+<p><img loading="lazy" src="imgs/image-20250924102803864.png" alt="imgs/image-20250924102803864.png" srcset="imgs/image-20250924102803864.png?size=small, imgs/image-20250924102803864.png?size=medium 1.5x, imgs/image-20250924102803864.png?size=large 2x" data-title="imgs/image-20250924102803864.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>并且尝试搜索一下 PNG 文件尾，可以发现这里应该存在不止一张 PNG 图片</p>
+<p><img loading="lazy" src="imgs/image-20250924102908341.png" alt="imgs/image-20250924102908341.png" srcset="imgs/image-20250924102908341.png?size=small, imgs/image-20250924102908341.png?size=medium 1.5x, imgs/image-20250924102908341.png?size=large 2x" data-title="imgs/image-20250924102908341.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>把后面多余的数据提取出来后，尝试搜索了一下 PNG 文件头</p>
+<p><img loading="lazy" src="imgs/image-20250924103307043.png" alt="imgs/image-20250924103307043.png" srcset="imgs/image-20250924103307043.png?size=small, imgs/image-20250924103307043.png?size=medium 1.5x, imgs/image-20250924103307043.png?size=large 2x" data-title="imgs/image-20250924103307043.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<h2 id="题目名称-工控宣传的隐秘信号" class="heading-element">
+  <a href="#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-%e5%b7%a5%e6%8e%a7%e5%ae%a3%e4%bc%a0%e7%9a%84%e9%9a%90%e7%a7%98%e4%bf%a1%e5%8f%b7" class="heading-mark"></a>题目名称 工控宣传的隐秘信号</h2><p>附件给了一个 mp3 文件和一个加密的压缩包，直接用 audacity 倒放即可听到压缩包的解压密码：<code>s0803y0518</code></p>
+<p>解压后可以得到一张 GIF，尝试分帧，可在第 156 帧得到一个少了定位块的二维码</p>
+<p><img loading="lazy" src="imgs/image-20250924104432094.png" alt="imgs/image-20250924104432094.png" srcset="imgs/image-20250924104432094.png?size=small, imgs/image-20250924104432094.png?size=medium 1.5x, imgs/image-20250924104432094.png?size=large 2x" data-title="imgs/image-20250924104432094.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>补上定位块后扫码即可得到：<code>GNalVNrhVOLZjRK7pMrJjPn3x</code></p>
+<p><img loading="lazy" src="imgs/image-20250924104636303.png" alt="imgs/image-20250924104636303.png" srcset="imgs/image-20250924104636303.png?size=small, imgs/image-20250924104636303.png?size=medium 1.5x, imgs/image-20250924104636303.png?size=large 2x" data-title="imgs/image-20250924104636303.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>然后随波逐流解个 XXencode 即可得到最后的 flag: <code>flag{aiyoubucuoo1}</code></p>
+<p><img loading="lazy" src="imgs/image-20250924104717195.png" alt="imgs/image-20250924104717195.png" srcset="imgs/image-20250924104717195.png?size=small, imgs/image-20250924104717195.png?size=medium 1.5x, imgs/image-20250924104717195.png?size=large 2x" data-title="imgs/image-20250924104717195.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<h2 id="题目名称-工业日志分析" class="heading-element">
+  <a href="#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-%e5%b7%a5%e4%b8%9a%e6%97%a5%e5%bf%97%e5%88%86%e6%9e%90" class="heading-mark"></a>题目名称 工业日志分析</h2><p>附件给了一个 log 文件，直接 vscode 打开然后在里面找三段 base64</p>
+<p><img loading="lazy" src="imgs/image-20250924105106061.png" alt="imgs/image-20250924105106061.png" srcset="imgs/image-20250924105106061.png?size=small, imgs/image-20250924105106061.png?size=medium 1.5x, imgs/image-20250924105106061.png?size=large 2x" data-title="imgs/image-20250924105106061.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><img loading="lazy" src="imgs/image-20250924105217619.png" alt="imgs/image-20250924105217619.png" srcset="imgs/image-20250924105217619.png?size=small, imgs/image-20250924105217619.png?size=medium 1.5x, imgs/image-20250924105217619.png?size=large 2x" data-title="imgs/image-20250924105217619.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><img loading="lazy" src="imgs/image-20250924105129642.png" alt="imgs/image-20250924105129642.png" srcset="imgs/image-20250924105129642.png?size=small, imgs/image-20250924105129642.png?size=medium 1.5x, imgs/image-20250924105129642.png?size=large 2x" data-title="imgs/image-20250924105129642.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>然后 CyberChef 组合一下解 base64 即可得到最后的 flag：<code>flag{4e54fa7c-c530-4c5c-985e-2e15871ddf04}</code></p>
+<p><img loading="lazy" src="imgs/image-20250924105322109.png" alt="imgs/image-20250924105322109.png" srcset="imgs/image-20250924105322109.png?size=small, imgs/image-20250924105322109.png?size=medium 1.5x, imgs/image-20250924105322109.png?size=large 2x" data-title="imgs/image-20250924105322109.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<h2 id="题目名称-工业控制协议流量分析-1" class="heading-element">
+  <a href="#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-%e5%b7%a5%e4%b8%9a%e6%8e%a7%e5%88%b6%e5%8d%8f%e8%ae%ae%e6%b5%81%e9%87%8f%e5%88%86%e6%9e%90-1" class="heading-mark"></a>题目名称 工业控制协议流量分析 1</h2><h2 id="题目名称-工业控制协议流量分析-2" class="heading-element">
+  <a href="#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-%e5%b7%a5%e4%b8%9a%e6%8e%a7%e5%88%b6%e5%8d%8f%e8%ae%ae%e6%b5%81%e9%87%8f%e5%88%86%e6%9e%90-2" class="heading-mark"></a>题目名称 工业控制协议流量分析 2</h2><h2 id="题目名称-工业控制协议流量分析-3" class="heading-element">
+  <a href="#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-%e5%b7%a5%e4%b8%9a%e6%8e%a7%e5%88%b6%e5%8d%8f%e8%ae%ae%e6%b5%81%e9%87%8f%e5%88%86%e6%9e%90-3" class="heading-mark"></a>题目名称 工业控制协议流量分析 3</h2><h2 id="题目名称-异常的数据流量包" class="heading-element">
+  <a href="#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-%e5%bc%82%e5%b8%b8%e7%9a%84%e6%95%b0%e6%8d%ae%e6%b5%81%e9%87%8f%e5%8c%85" class="heading-mark"></a>题目名称 异常的数据流量包</h2><h2 id="题目名称-音频隐写" class="heading-element">
+  <a href="#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-%e9%9f%b3%e9%a2%91%e9%9a%90%e5%86%99" class="heading-mark"></a>题目名称 音频隐写</h2><h2 id="题目名称-所见即是开始" class="heading-element">
+  <a href="#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-%e6%89%80%e8%a7%81%e5%8d%b3%e6%98%af%e5%bc%80%e5%a7%8b" class="heading-mark"></a>题目名称 所见即是开始</h2></div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title="Updated on 2025-09-23 23:00:45">Updated on 2025-09-23&nbsp;</span>
+      </div></div><div class="post-info-line">
+        <div class="post-info-md"><span><a href="/posts/49bdad5/index.md" title="Read Markdown" class="link-to-markdown">Read Markdown</a></span></div>
+        <div class="post-info-share">
+          <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://goodlunatic.github.io/posts/49bdad5/" data-title="2025 第九届工业信息安全技能大赛-典型工业场景锦标赛 Misc Writeup" data-via="goodlunatic007" data-hashtags="CTF,Misc,Writeup"><i class="fa-brands fa-twitter fa-fw" aria-hidden="true"></i></a>
+  <a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://goodlunatic.github.io/posts/49bdad5/" data-hashtag="CTF"><i class="fa-brands fa-facebook-square fa-fw" aria-hidden="true"></i></a>
+  <a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://goodlunatic.github.io/posts/49bdad5/" data-title="2025 第九届工业信息安全技能大赛-典型工业场景锦标赛 Misc Writeup"><i class="fa-brands fa-weibo fa-fw" aria-hidden="true"></i></a>
+  </span>
+        </div>
+      </div></div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href="/tags/ctf/" class="post-tag" title="Tags - CTF">CTF</a><a href="/tags/misc/" class="post-tag" title="Tags - Misc">Misc</a><a href="/tags/writeup/" class="post-tag" title="Tags - Writeup">Writeup</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+    </section>
+  </div>
+
+  <div class="post-nav"><a href="/posts/58b2135/" class="post-nav-item" rel="prev" title="2025 泰山杯线下决赛 Misc Writeup"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>2025 泰山杯线下决赛 Misc Writeup</a></div>
+</div>
+</article>
+
+<aside class="toc" id="toc-auto" aria-label=""><h2 class="toc-title">Contents&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+  <div
+    class="toc-content"
+    id="toc-content-auto"></div></aside></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line powered">Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreferrer" title="Hugo 0.125.3">Hugo</a> | Theme - <a href="https://github.com/hugo-fixit/FixIt" target="_blank" rel="external" title="FixIt v0.3.2">FixIt</a>
+        </div><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
+            <span itemprop="copyrightYear">2024 - 2025</span><span class="author" itemprop="copyrightHolder">
+              <a href="https://goodlunatic.github.io"target="_blank" rel="external nofollow noopener noreferrer">Lunatic</a></span></div></div>
+  </footer></div><div class="widgets"><div class="fixed-buttons animate__faster d-none"><div class="fixed-button back-to-top" role="button" aria-label="Back to Top"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i><span class="variant-numeric d-none">0%</span>
+        </div></div><div id="mask"></div><noscript>
+    <div class="noscript-warning">Theme FixIt works best with JavaScript enabled.</div>
+  </noscript>
+</div><script src="/lib/sharer/sharer.min.js" async defer></script><script src="/lib/typeit/index.umd.js" defer></script><script>window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":1000},"comment":{"enable":false},"data":{"typeit-header-desktop":"Lunatic BLOG","typeit-header-title-mobile":"Lunatic BLOG"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"typeit-header-desktop":["typeit-header-desktop"],"typeit-header-subtitle-desktop":["typeit-header-subtitle-desktop"],"typeit-header-subtitle-mobile":["typeit-header-subtitle-mobile"],"typeit-header-title-mobile":["typeit-header-title-mobile"]},"duration":-1,"loop":false,"speed":100}};</script><script src="/js/theme.min.js" defer></script></body>
+</html>

@@ -4,7 +4,16 @@
     <link>https://goodlunatic.github.io/tags/ctf/</link>
     <description>CTF - Tag | ⚡Lunatic BLOG⚡</description>
     <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>goodlunatic0@gmail.com (Lunatic)</managingEditor>
-      <webMaster>goodlunatic0@gmail.com (Lunatic)</webMaster><lastBuildDate>Tue, 23 Sep 2025 10:27:15 &#43;0800</lastBuildDate><atom:link href="https://goodlunatic.github.io/tags/ctf/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>goodlunatic0@gmail.com (Lunatic)</webMaster><lastBuildDate>Tue, 23 Sep 2025 23:00:45 &#43;0800</lastBuildDate><atom:link href="https://goodlunatic.github.io/tags/ctf/" rel="self" type="application/rss+xml" /><item>
+  <title>2025 第九届工业信息安全技能大赛-典型工业场景锦标赛 Misc Writeup</title>
+  <link>https://goodlunatic.github.io/posts/49bdad5/</link>
+  <pubDate>Tue, 23 Sep 2025 23:00:45 &#43;0800</pubDate>
+  <author>Lunatic</author>
+  <guid>https://goodlunatic.github.io/posts/49bdad5/</guid>
+  <description><![CDATA[<p><strong>2025 第九届工业信息安全技能大赛-典型工业场景锦标赛 Writeup</strong></p>
+<p><strong>赛后有师傅来问这场比赛里的题，部分题目出的挺好的，有一定的难度，于是打算记录一下</strong></p>]]></description>
+</item>
+<item>
   <title>2025 泰山杯线下决赛 Misc Writeup</title>
   <link>https://goodlunatic.github.io/posts/58b2135/</link>
   <pubDate>Tue, 23 Sep 2025 10:27:15 &#43;0800</pubDate>
@@ -82,14 +91,6 @@
   <guid>https://goodlunatic.github.io/posts/ca974cb/</guid>
   <description><![CDATA[<p><strong>在学习爬虫的过程中，发现有时候需要用到Frida，因此就想着学习一下</strong></p>
 <p><strong>之前经常听到队友念叨 FridaHook，现在终于有机会来学一下里面具体的内容了</strong></p>]]></description>
-</item>
-<item>
-  <title>Misc-Network Traffic Analysis</title>
-  <link>https://goodlunatic.github.io/posts/5422d65/</link>
-  <pubDate>Thu, 15 May 2025 10:15:27 &#43;0800</pubDate>
-  <author>Lunatic</author>
-  <guid>https://goodlunatic.github.io/posts/5422d65/</guid>
-  <description><![CDATA[<p><strong>This is a Simple Guide for Network Traffic Analysis.</strong></p>]]></description>
 </item>
 </channel>
 </rss>

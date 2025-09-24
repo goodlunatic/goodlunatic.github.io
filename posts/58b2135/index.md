@@ -339,6 +339,7 @@ python3 NTLMRawUnHide.py -i 流量分析.pcapng -o hash.txt
 
 最后直接用 CTF-NetA 一把梭解密哥斯拉流量即可
 
+![](imgs/image-20250923232229237.png)
 
 综上，我们总结如下：
 
