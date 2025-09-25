@@ -14,7 +14,7 @@
 赛后有师傅来问这场比赛里的题，部分题目出的挺好的，有一定的难度，于是打算记录一下">
   <meta itemprop="datePublished" content="2025-09-23T23:00:45+08:00">
   <meta itemprop="dateModified" content="2025-09-23T23:00:45+08:00">
-  <meta itemprop="wordCount" content="1138">
+  <meta itemprop="wordCount" content="1139">
   <meta itemprop="keywords" content="CTF,Misc,Writeup"><meta property="og:url" content="https://goodlunatic.github.io/posts/49bdad5/">
   <meta property="og:site_name" content="⚡Lunatic BLOG⚡">
   <meta property="og:title" content="2025 第九届工业信息安全技能大赛-典型工业场景锦标赛 Misc Writeup">
@@ -45,7 +45,7 @@
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": "https:\/\/goodlunatic.github.io\/posts\/49bdad5\/"
-    },"genre": "posts","keywords": "CTF, Misc, Writeup","wordcount":  1138 ,
+    },"genre": "posts","keywords": "CTF, Misc, Writeup","wordcount":  1139 ,
     "url": "https:\/\/goodlunatic.github.io\/posts\/49bdad5\/","datePublished": "2025-09-23T23:00:45+08:00","dateModified": "2025-09-23T23:00:45+08:00","publisher": {
       "@type": "Organization",
       "name": ""},"author": {
@@ -172,7 +172,7 @@
     <li><a href="#题目名称-所见即是开始">题目名称 所见即是开始</a></li>
     <li><a href="#todo-题目名称-工业流量隐写分析">[TODO] 题目名称 工业流量隐写分析</a></li>
     <li><a href="#todo-题目名称-异常的数据流量包">[TODO] 题目名称 异常的数据流量包</a></li>
-    <li><a href="#题目名称-工控协议隐蔽通道分析附件">题目名称 工控协议隐蔽通道分析附件</a></li>
+    <li><a href="#todo-题目名称-工控协议隐蔽通道分析附件">[TODO] 题目名称 工控协议隐蔽通道分析附件</a></li>
     <li><a href="#todo-题目名称-文件分析">[TODO] 题目名称 文件分析</a></li>
     <li><a href="#todo-题目名称-勒索病毒攻击">[TODO] 题目名称 勒索病毒攻击</a></li>
     <li><a href="#todo-题目名称-多注意观察">[TODO] 题目名称 多注意观察</a></li>
@@ -667,8 +667,8 @@
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">tshark -r test.pcap -T fields -Y <span class="s1">&#39;((_ws.col.protocol == &#34;Modbus/TCP&#34;) &amp;&amp; (modbus.func_code == 3)) &amp;&amp; (modbus.request_frame)&#39;</span> -e <span class="s1">&#39;modbus.regval_uint16&#39;</span> &gt; out.txt</span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="题目名称-工控协议隐蔽通道分析附件" class="heading-element">
-  <a href="#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-%e5%b7%a5%e6%8e%a7%e5%8d%8f%e8%ae%ae%e9%9a%90%e8%94%bd%e9%80%9a%e9%81%93%e5%88%86%e6%9e%90%e9%99%84%e4%bb%b6" class="heading-mark"></a>题目名称 工控协议隐蔽通道分析附件</h2><p>题目附件给了个流量包，翻看了一下主要是 S7common 和 Modbus 流量</p>
+</div><h2 id="todo-题目名称-工控协议隐蔽通道分析附件" class="heading-element">
+  <a href="#todo-%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-%e5%b7%a5%e6%8e%a7%e5%8d%8f%e8%ae%ae%e9%9a%90%e8%94%bd%e9%80%9a%e9%81%93%e5%88%86%e6%9e%90%e9%99%84%e4%bb%b6" class="heading-mark"></a>[TODO] 题目名称 工控协议隐蔽通道分析附件</h2><p>题目附件给了个流量包，翻看了一下主要是 S7common 和 Modbus 流量</p>
 <p>然后发现还传了一个 PNG 和一个 ZIP 压缩包</p>
 <p>因为不知道具体的顺序，所以无法完整的提取出来</p>
 <p>尝试直接 strings 流量包，可以得到如下内容：</p>

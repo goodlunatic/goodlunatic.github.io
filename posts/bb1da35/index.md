@@ -2204,6 +2204,30 @@ if __name__ == &#34;__main__&#34;:
 
 ![](imgs/image-20250922230235662.png)
 
+## 题目名称 IEC104
+
+&gt; IEC104协议分析与利用，针对IEC104协议应用层U 帧、I帧、S帧进行分析，对I帧数据中的遥控数据进行篡改，获取遥控数据下写时的flag值。
+
+附件给了一个流量包，根据题面提示直接用 tshark 提取并分析I帧数据
+
+```bash
+tshark -r IEC-104.pcap -T fields -Y &#39;_ws.col.protocol == &#34;IEC 60870-5 ASDU&#34;&#39; -e &#39;iec60870_asdu.siq&#39; &gt; out.txt
+```
+
+然后 用 CyberChef 把 0x00 转为 0，0x01 转为 1
+
+![](imgs/image-20250925231620736.png)
+
+逆序一下，然后二进制转字符串，再逆序回来即可得到最后的 flag
+
+`flag{f8617e2a5e7df41823615de093b095de5175e2fce58e14af74bec73c81f0d77a}`
+
+![](imgs/image-20250925231658146.png)
+
+当然也可以直接用 PuzzleSolver 一把梭
+
+![](imgs/image-20250925231809222.png)
+
 
 
 
