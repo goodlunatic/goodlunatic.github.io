@@ -185,9 +185,73 @@ cc6d0000000901030446903963380d,e4
 
 ## 题目名称 工业控制协议流量分析 2
 
+附件给了一个流量包，打开翻看发现主要是 TPKT 协议
+
+尝试用 tshark 导出 tpkt.continuation_data
+
+```bash
+tshark -r 工业控制协议流量分析2.pcap -T fields -Y &#39;_ws.col.protocol == &#34;TPKT&#34;&#39; -e tpkt.continuation_data &gt; out.txt
+```
+
+![](imgs/image-20250925095605474.png)
+
+发现用很多数据是相同的，然后其中穿插了几个不同的数据，因此我们可以过滤一下再导出
+
+```bash
+tshark -r 工业控制协议流量分析2.pcap -T fields -Y &#39;!(tpkt.continuation_data == 4d:4d:53:5f:50:41:59:4c:4f:41:44:5f:4e:4f:52:4d:41:4c)&#39; -e tpkt.continuation_data &gt; out.txt
+```
+
+![](imgs/image-20250925095806676.png)
+
+第一行数据解 Hex 可以得到一串密码
+
+![](imgs/image-20250925095831203.png)
+
+然后我们主要观察剩下数据的倒数第二字节，可以发现有个 zip 压缩包
+
+![](imgs/image-20250925095937171.png)
+
+但是提取出来发现文件是不完整的，于是我们尝试用以下这个命令直接去提取 TCP 中的数据
+
+```bash
+tshark -r 工业控制协议流量分析2.pcap -T fields -Y &#39;!(tcp.payload == 4d:4d:53:5f:50:41:59:4c:4f:41:44:5f:4e:4f:52:4d:41:4c)&#39; -e tcp.payload &gt; out.txt
+```
+
+这个时候提取出来的 zip 数据就是完整的了，用`MMS12345`作为密码解压即可得到最后的 flag
+
+![](imgs/image-20250925100145539.png)
+
+![](imgs/image-20250925100300740.png)
+
+`flag{6a46756d-df7e-4b66-87e4-1b2661676e40}`
+
 ## 题目名称 工业控制协议流量分析 3
 
+附件给了一个流量包，打开发现存在 mqtt 流量，直接用以下命令导出 mqtt.msg
+
+```bash
+tshark -r protocal.pcapng -T fields -Y &#39;mqtt&#39; -e &#39;mqtt.msg&#39; &gt; out.txt
+```
+
+然后 CyberChef 转一下 Hex ，拉倒末尾即可看到 flag：`flag{ruEf6OmqhAlXIYxmnR1XLC6R1]}`
+
+![](imgs/image-20250925100707429.png)
+
 ## 题目名称 异常的数据流量包
+
+附件给了一个流量包，打开发现主要是 Modbus 流量，翻看一下发现传输了一个 PDF 文件
+
+![](imgs/image-20250925101138944.png)
+
+提取出 PDF 后，全选复制 PDF 里面的内容，粘贴到文本文件里，即可得到 flag`flag{MB03_40001}`
+
+&gt; 这里我提取出来的 PDF 文件还是有点问题，待完善
+
+用 tshark 提取的命令如下：
+
+```bash
+tshark -r test.pcap -T fields -Y &#39;((_ws.col.protocol == &#34;Modbus/TCP&#34;) &amp;&amp; (modbus.func_code == 3)) &amp;&amp; (modbus.request_frame)&#39; -e &#39;modbus.regval_uint16&#39; &gt; out.txt
+```
 
 ## 题目名称 音频隐写
 
