@@ -4,7 +4,17 @@
     <link>https://goodlunatic.github.io/tags/research/</link>
     <description>Research - Tag | ⚡Lunatic BLOG⚡</description>
     <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>goodlunatic0@gmail.com (Lunatic)</managingEditor>
-      <webMaster>goodlunatic0@gmail.com (Lunatic)</webMaster><lastBuildDate>Sun, 03 Aug 2025 16:48:15 &#43;0800</lastBuildDate><atom:link href="https://goodlunatic.github.io/tags/research/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>goodlunatic0@gmail.com (Lunatic)</webMaster><lastBuildDate>Thu, 25 Sep 2025 12:38:43 &#43;0800</lastBuildDate><atom:link href="https://goodlunatic.github.io/tags/research/" rel="self" type="application/rss+xml" /><item>
+  <title>利用 SCAT 实时捕获 4G-LTE 和 5G-NR 层三以上消息</title>
+  <link>https://goodlunatic.github.io/posts/a8aa439/</link>
+  <pubDate>Thu, 25 Sep 2025 12:38:43 &#43;0800</pubDate>
+  <author>Lunatic</author>
+  <guid>https://goodlunatic.github.io/posts/a8aa439/</guid>
+  <description><![CDATA[<p><strong>之前复现论文，做实验的时候想要实时查看 LTE 和 NR 的信令消息，只能通过 CelllularPro</strong></p>
+<p><strong>但是无奈这个软件是收费的，并且很多论文作者在实时捕获消息上并没有提到这个软件</strong></p>
+<p><strong>反而都是用 SCAT 这个开源项目进行实时捕获，因此打算写篇博客来记录一下配置过程</strong></p>]]></description>
+</item>
+<item>
   <title>如何基于 srsRAN_4G 搭建 LTE 基站</title>
   <link>https://goodlunatic.github.io/posts/ed6ecd5/</link>
   <pubDate>Sun, 03 Aug 2025 16:48:15 &#43;0800</pubDate>

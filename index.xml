@@ -4,9 +4,19 @@
     <link>https://goodlunatic.github.io/</link>
     <description>Welcome to Lunatic&#39;s BLOG ^_^</description>
     <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>goodlunatic0@gmail.com (Lunatic)</managingEditor>
-      <webMaster>goodlunatic0@gmail.com (Lunatic)</webMaster><lastBuildDate>Tue, 23 Sep 2025 23:00:45 &#43;0800</lastBuildDate>
+      <webMaster>goodlunatic0@gmail.com (Lunatic)</webMaster><lastBuildDate>Thu, 25 Sep 2025 12:38:43 &#43;0800</lastBuildDate>
       <atom:link href="https://goodlunatic.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
+  <title>利用 SCAT 实时捕获 4G-LTE 和 5G-NR 层三以上消息</title>
+  <link>https://goodlunatic.github.io/posts/a8aa439/</link>
+  <pubDate>Thu, 25 Sep 2025 12:38:43 &#43;0800</pubDate>
+  <author>Lunatic</author>
+  <guid>https://goodlunatic.github.io/posts/a8aa439/</guid>
+  <description><![CDATA[<p><strong>之前复现论文，做实验的时候想要实时查看 LTE 和 NR 的信令消息，只能通过 CelllularPro</strong></p>
+<p><strong>但是无奈这个软件是收费的，并且很多论文作者在实时捕获消息上并没有提到这个软件</strong></p>
+<p><strong>反而都是用 SCAT 这个开源项目进行实时捕获，因此打算写篇博客来记录一下配置过程</strong></p>]]></description>
+</item>
+<item>
   <title>2025 第九届工业信息安全技能大赛-典型工业场景锦标赛 Misc Writeup</title>
   <link>https://goodlunatic.github.io/posts/49bdad5/</link>
   <pubDate>Tue, 23 Sep 2025 23:00:45 &#43;0800</pubDate>
@@ -82,15 +92,6 @@
   <author>Lunatic</author>
   <guid>https://goodlunatic.github.io/posts/ed6ecd5/</guid>
   <description><![CDATA[<p><strong>记录一下如何基于 srsRAN_4G 搭建 LTE 基站</strong></p>]]></description>
-</item>
-<item>
-  <title>如何给Wireshark添加LTE和NR支持</title>
-  <link>https://goodlunatic.github.io/posts/4c7a04a/</link>
-  <pubDate>Sat, 05 Jul 2025 00:00:36 &#43;0800</pubDate>
-  <author>Lunatic</author>
-  <guid>https://goodlunatic.github.io/posts/4c7a04a/</guid>
-  <description><![CDATA[<p><strong>最近在研究LTE和NR的空口流量分析，发现Wireshark默认是不支持解析这两种协议的</strong></p>
-<p><strong>因此需要我们手动进行一些操作来支持WIreshark对LTE和NR空口流量的解析</strong></p>]]></description>
 </item>
 </channel>
 </rss>
