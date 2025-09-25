@@ -437,6 +437,44 @@ if __name__ == &#39;__main__&#39;:
 tshark -r test.pcap -T fields -Y &#39;((_ws.col.protocol == &#34;Modbus/TCP&#34;) &amp;&amp; (modbus.func_code == 3)) &amp;&amp; (modbus.request_frame)&#39; -e &#39;modbus.regval_uint16&#39; &gt; out.txt
 ```
 
+
+## 题目名称 工控协议隐蔽通道分析附件
+
+题目附件给了个流量包，翻看了一下主要是 S7common 和 Modbus 流量
+
+然后发现还传了一个 PNG 和一个 ZIP 压缩包
+
+因为不知道具体的顺序，所以无法完整的提取出来
+
+尝试直接 strings 流量包，可以得到如下内容：
+
+```
+ADDRESS_ORDER
+$ZIP_FILE_SCATTERED_ACROSS_FOUR_PARTS
+WARNING: READ_RESPONSES_CONTAIN_INVALID_DATA
+ZIP_PASSWORD_HINT
+NOT_THE_DROID
+ZIP_HINT_1
+CHECK_DB2_AND_M
+fl4g_k33p_
+flag{zip_ascii_values_of_&#39;flag&#39;}
+DATA_BEGIN_AT_ASCII_VALUES_OF_&#39;f&#39;
+CAES_l_3:V0F3PP34
+K_MAGIC_BYTE
+looking_at_M_area}
+READ_RESPONSES_ARE_INVALID_CHECK_WRITE_OPS
+FOCUS_ON_S7_WRITE_VARIABLE_OPERATIONS
+RED_HERRING
+JUST_NOISE
+HINT: PASSWORD_ENCRYPTED_WITH_CAESAR_SHIFT_3
+FOCUS_ON_S7_WRITE_VARIABLE_OPERATIONS_ONLY
+OT_IMPORTANT
+flag{n0t_
+ALL_DATA_FRAGMENTS_IN_M_AREA
+PASSWORD_IN_DB_AREA_ADDRESS_0x60_WITH_CAESAR_CIPHER
+```
+
+
 ## [TODO] 题目名称 文件分析
 
 附件给了一个 16个八戒.bin，010 打开查看
@@ -486,41 +524,6 @@ zsteg 扫一下这张 PNG，发现图片 LSB 隐写了一个文件
 发现 UDP 传输的数据都是 1118 字节，然后 010 diff 了一下，发现每段数据的差异还是挺大的
 
 
-## 题目名称 工控协议隐蔽通道分析附件
-
-题目附件给了个流量包，翻看了一下主要是 S7common 和 Modbus 流量
-
-然后发现还传了一个 PNG 和一个 ZIP 压缩包
-
-因为不知道具体的顺序，所以无法完整的提取出来
-
-尝试直接 strings 流量包，可以得到如下内容：
-
-```
-ADDRESS_ORDER
-$ZIP_FILE_SCATTERED_ACROSS_FOUR_PARTS
-WARNING: READ_RESPONSES_CONTAIN_INVALID_DATA
-ZIP_PASSWORD_HINT
-NOT_THE_DROID
-ZIP_HINT_1
-CHECK_DB2_AND_M
-fl4g_k33p_
-flag{zip_ascii_values_of_&#39;flag&#39;}
-DATA_BEGIN_AT_ASCII_VALUES_OF_&#39;f&#39;
-CAES_l_3:V0F3PP34
-K_MAGIC_BYTE
-looking_at_M_area}
-READ_RESPONSES_ARE_INVALID_CHECK_WRITE_OPS
-FOCUS_ON_S7_WRITE_VARIABLE_OPERATIONS
-RED_HERRING
-JUST_NOISE
-HINT: PASSWORD_ENCRYPTED_WITH_CAESAR_SHIFT_3
-FOCUS_ON_S7_WRITE_VARIABLE_OPERATIONS_ONLY
-OT_IMPORTANT
-flag{n0t_
-ALL_DATA_FRAGMENTS_IN_M_AREA
-PASSWORD_IN_DB_AREA_ADDRESS_0x60_WITH_CAESAR_CIPHER
-```
 
 ---
 

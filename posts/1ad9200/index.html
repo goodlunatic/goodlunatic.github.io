@@ -14,7 +14,7 @@
 但Misc涉及的范围实在太广了，于是就想着一边学习一边记录，因而就有了这篇文章">
   <meta itemprop="datePublished" content="2025-09-20T22:10:17+08:00">
   <meta itemprop="dateModified" content="2025-09-20T22:10:17+08:00">
-  <meta itemprop="wordCount" content="13057">
+  <meta itemprop="wordCount" content="13071">
   <meta itemprop="keywords" content="Misc,CTF"><meta property="og:url" content="https://goodlunatic.github.io/posts/1ad9200/">
   <meta property="og:site_name" content="⚡Lunatic BLOG⚡">
   <meta property="og:title" content="CTF-Misc Guide">
@@ -44,7 +44,7 @@
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": "https:\/\/goodlunatic.github.io\/posts\/1ad9200\/"
-    },"genre": "posts","keywords": "Misc, CTF","wordcount":  13057 ,
+    },"genre": "posts","keywords": "Misc, CTF","wordcount":  13071 ,
     "url": "https:\/\/goodlunatic.github.io\/posts\/1ad9200\/","datePublished": "2025-09-20T22:10:17+08:00","dateModified": "2025-09-20T22:10:17+08:00","publisher": {
       "@type": "Organization",
       "name": ""},"author": {
@@ -271,6 +271,8 @@
       </ul>
     </li>
     <li><a href="#misc流量分析题思路">Misc——流量分析题思路</a></li>
+    <li><a href="#misc工控题思路">Misc——工控题思路</a></li>
+    <li><a href="#misc数据安全题思路">Misc——数据安全题思路</a></li>
     <li><a href="#misc图片题思路">MIsc——图片题思路：</a>
       <ul>
         <li><a href="#通用思路">通用思路</a>
@@ -358,7 +360,7 @@
             <li><a href="#3字符串制作二维码">3、字符串制作二维码</a></li>
             <li><a href="#4四个ttl值转换一个字节的二进制数">4、四个TTL值转换一个字节的二进制数</a></li>
             <li><a href="#5aztec-codedatamatrixgridmatrix汉信码pdf417code等">5、Aztec code、DataMatrix、GridMatrix、汉信码、PDF417code等</a></li>
-            <li><a href="#qrcode-二维码的一些考点">QRcode 二维码的一些考点</a></li>
+            <li><a href="#qrcode-二维码标准的一些考点">QRcode 二维码标准的一些考点</a></li>
           </ul>
         </li>
         <li><a href="#信号和图像处理中的一些变换方法">信号和图像处理中的一些变换方法</a>
@@ -2699,6 +2701,10 @@
   <a href="#%e5%96%9c%e7%be%8a%e7%be%8a%e4%b8%8e%e7%81%b0%e5%a4%aa%e7%8b%bc-%e7%be%8a%e6%96%87%e5%af%b9%e7%85%a7%e8%a1%a8" class="heading-mark"></a>喜羊羊与灰太狼-羊文对照表</h4><p><img loading="lazy" src="imgs/image-20250421190228589.png" alt="imgs/image-20250421190228589.png" srcset="imgs/image-20250421190228589.png?size=small, imgs/image-20250421190228589.png?size=medium 1.5x, imgs/image-20250421190228589.png?size=large 2x" data-title="imgs/image-20250421190228589.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <h2 id="misc流量分析题思路" class="heading-element">
   <a href="#misc%e6%b5%81%e9%87%8f%e5%88%86%e6%9e%90%e9%a2%98%e6%80%9d%e8%b7%af" class="heading-mark"></a>Misc——流量分析题思路</h2><p>详见作者博客中的 <strong><a href="https://goodlunatic.github.io/posts/5422d65/"target="_blank" rel="external nofollow noopener noreferrer">Network Traffic Analysis</a></strong> 这篇文章</p>
+<h2 id="misc工控题思路" class="heading-element">
+  <a href="#misc%e5%b7%a5%e6%8e%a7%e9%a2%98%e6%80%9d%e8%b7%af" class="heading-mark"></a>Misc——工控题思路</h2><p>详见作者博客中的 <strong><a href="https://goodlunatic.github.io/posts/01ebd40/"target="_blank" rel="external nofollow noopener noreferrer">CTF-ICS Learning Record</a></strong> 这篇文章</p>
+<h2 id="misc数据安全题思路" class="heading-element">
+  <a href="#misc%e6%95%b0%e6%8d%ae%e5%ae%89%e5%85%a8%e9%a2%98%e6%80%9d%e8%b7%af" class="heading-mark"></a>Misc——数据安全题思路</h2><p>详见作者博客中的 <strong><a href="https://goodlunatic.github.io/posts/c49ae8a/"target="_blank" rel="external nofollow noopener noreferrer">CTF-数据安全</a></strong> 这篇文章</p>
 <h2 id="misc图片题思路" class="heading-element">
   <a href="#misc%e5%9b%be%e7%89%87%e9%a2%98%e6%80%9d%e8%b7%af" class="heading-mark"></a>MIsc——图片题思路：</h2><blockquote>
 <p>Tips：</p>
@@ -4449,8 +4455,14 @@
 <p><img loading="lazy" src="imgs/image-20250421210137589.png" alt="PDF417code" srcset="imgs/image-20250421210137589.png?size=small, imgs/image-20250421210137589.png?size=medium 1.5x, imgs/image-20250421210137589.png?size=large 2x" data-title="PDF417code" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>这里要注意的是，出题人可能会把图片反相导致无法直接扫描</p>
 <p>因此我们可以先将二维码拉入<code>StegSolve</code>或者<code>PS</code>进行反相处理，再扫描</p>
-<h4 id="qrcode-二维码的一些考点" class="heading-element">
-  <a href="#qrcode-%e4%ba%8c%e7%bb%b4%e7%a0%81%e7%9a%84%e4%b8%80%e4%ba%9b%e8%80%83%e7%82%b9" class="heading-mark"></a>QRcode 二维码的一些考点</h4><p>详见作者博客里的<a href="https://goodlunatic.github.io/posts/1e26f78/"target="_blank" rel="external nofollow noopener noreferrer">QRcode二维码标准及常见考点详解</a>这篇文章</p>
+<h4 id="qrcode-二维码标准的一些考点" class="heading-element">
+  <a href="#qrcode-%e4%ba%8c%e7%bb%b4%e7%a0%81%e6%a0%87%e5%87%86%e7%9a%84%e4%b8%80%e4%ba%9b%e8%80%83%e7%82%b9" class="heading-mark"></a>QRcode 二维码标准的一些考点</h4><blockquote>
+<p>参考链接：</p>
+<p><a href="https://note.tonycrane.cc/ctf/misc/qrcode/"target="_blank" rel="external nofollow noopener noreferrer">https://note.tonycrane.cc/ctf/misc/qrcode/</a></p>
+<p><a href="https://www.cnblogs.com/luogi/p/15469106.html"target="_blank" rel="external nofollow noopener noreferrer">https://www.cnblogs.com/luogi/p/15469106.html</a></p>
+</blockquote>
+<p>例题1-2022NCTF qrssssssss</p>
+<p>例题2-2023羊城杯决赛-LmqHmAsk</p>
 <h3 id="信号和图像处理中的一些变换方法" class="heading-element">
   <a href="#%e4%bf%a1%e5%8f%b7%e5%92%8c%e5%9b%be%e5%83%8f%e5%a4%84%e7%90%86%e4%b8%ad%e7%9a%84%e4%b8%80%e4%ba%9b%e5%8f%98%e6%8d%a2%e6%96%b9%e6%b3%95" class="heading-mark"></a>信号和图像处理中的一些变换方法</h3><h4 id="快速傅里叶变换fft" class="heading-element">
   <a href="#%e5%bf%ab%e9%80%9f%e5%82%85%e9%87%8c%e5%8f%b6%e5%8f%98%e6%8d%a2fft" class="heading-mark"></a>快速傅里叶变换（FFT）</h4><h4 id="离散傅里叶变换dft" class="heading-element">

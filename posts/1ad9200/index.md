@@ -1518,6 +1518,14 @@ out2.show()
 
 详见作者博客中的 **[Network Traffic Analysis](https://goodlunatic.github.io/posts/5422d65/)** 这篇文章
 
+## Misc——工控题思路
+
+详见作者博客中的 **[CTF-ICS Learning Record](https://goodlunatic.github.io/posts/01ebd40/)** 这篇文章
+
+## Misc——数据安全题思路
+
+详见作者博客中的 **[CTF-数据安全](https://goodlunatic.github.io/posts/c49ae8a/)** 这篇文章
+
 ## MIsc——图片题思路：
 
 &gt; Tips：
@@ -2772,9 +2780,18 @@ with open(&#39;flag.zip&#39;, &#39;wb&#39;) as f:
 
 因此我们可以先将二维码拉入`StegSolve`或者`PS`进行反相处理，再扫描
 
-#### QRcode 二维码的一些考点
+#### QRcode 二维码标准的一些考点
 
-详见作者博客里的[QRcode二维码标准及常见考点详解](https://goodlunatic.github.io/posts/1e26f78/)这篇文章
+&gt; 参考链接：
+&gt; 
+&gt; [https://note.tonycrane.cc/ctf/misc/qrcode/](https://note.tonycrane.cc/ctf/misc/qrcode/)
+&gt; 
+&gt; [https://www.cnblogs.com/luogi/p/15469106.html](https://www.cnblogs.com/luogi/p/15469106.html)
+
+
+例题1-2022NCTF qrssssssss
+
+例题2-2023羊城杯决赛-LmqHmAsk
 
 
 ### 信号和图像处理中的一些变换方法

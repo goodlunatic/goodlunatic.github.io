@@ -309,7 +309,23 @@ print(r)
 3. 西门子-博图软件
 4. STEP7 MicroWIN V4.0 SP9
 
-TODO
+软件下载及安装
+
+&gt; SIMATIC STEP 7 incl. Safety and WinCC V16 TRIAL Download:
+&gt; 
+&gt; https://support.industry.siemens.com/cs/document/109772803/simatic-step-7-incl-safety-and-wincc-v16-trial-download?dti=0&amp;lc=en-CN
+&gt; 
+&gt; 西门子TIA 博途V16安装详解及授权：
+&gt; 
+&gt; https://blog.csdn.net/shmp54/article/details/136840560
+&gt; 
+&gt; 西门子博途V16安装全网最详解教程：
+&gt; 
+&gt; https://zhuanlan.zhihu.com/p/304315391
+
+
+
+
 
 ---
 

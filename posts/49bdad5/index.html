@@ -172,11 +172,11 @@
     <li><a href="#题目名称-所见即是开始">题目名称 所见即是开始</a></li>
     <li><a href="#todo-题目名称-工业流量隐写分析">[TODO] 题目名称 工业流量隐写分析</a></li>
     <li><a href="#todo-题目名称-异常的数据流量包">[TODO] 题目名称 异常的数据流量包</a></li>
+    <li><a href="#题目名称-工控协议隐蔽通道分析附件">题目名称 工控协议隐蔽通道分析附件</a></li>
     <li><a href="#todo-题目名称-文件分析">[TODO] 题目名称 文件分析</a></li>
     <li><a href="#todo-题目名称-勒索病毒攻击">[TODO] 题目名称 勒索病毒攻击</a></li>
     <li><a href="#todo-题目名称-多注意观察">[TODO] 题目名称 多注意观察</a></li>
     <li><a href="#todo-题目名称-autopilot-ghost">[TODO] 题目名称 Autopilot Ghost</a></li>
-    <li><a href="#题目名称-工控协议隐蔽通道分析附件">题目名称 工控协议隐蔽通道分析附件</a></li>
   </ul>
 </nav></div>
   </div><div class="content" id="content"><p><strong>2025 第九届工业信息安全技能大赛-典型工业场景锦标赛 Writeup</strong></p>
@@ -667,31 +667,7 @@
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">tshark -r test.pcap -T fields -Y <span class="s1">&#39;((_ws.col.protocol == &#34;Modbus/TCP&#34;) &amp;&amp; (modbus.func_code == 3)) &amp;&amp; (modbus.request_frame)&#39;</span> -e <span class="s1">&#39;modbus.regval_uint16&#39;</span> &gt; out.txt</span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="todo-题目名称-文件分析" class="heading-element">
-  <a href="#todo-%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-%e6%96%87%e4%bb%b6%e5%88%86%e6%9e%90" class="heading-mark"></a>[TODO] 题目名称 文件分析</h2><p>附件给了一个 16个八戒.bin，010 打开查看</p>
-<p><img loading="lazy" src="imgs/image-20250925132928952.png" alt="imgs/image-20250925132928952.png" srcset="imgs/image-20250925132928952.png?size=small, imgs/image-20250925132928952.png?size=medium 1.5x, imgs/image-20250925132928952.png?size=large 2x" data-title="imgs/image-20250925132928952.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
-<p>strings 一下，根据可打印信息推测</p>
-<p>这可能是一个用于特定硬件的 OTA 远程升级固件包。</p>
-<h2 id="todo-题目名称-勒索病毒攻击" class="heading-element">
-  <a href="#todo-%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-%e5%8b%92%e7%b4%a2%e7%97%85%e6%af%92%e6%94%bb%e5%87%bb" class="heading-mark"></a>[TODO] 题目名称 勒索病毒攻击</h2><p>附件给了一个 <code>勒索事件截图.png</code>，还有一个 <code>车辆OEM厂商重要数据@Hack</code></p>
-<p>PNG 图片如下所示：</p>
-<p><img loading="lazy" src="imgs/image-20250925133301580.png" alt="imgs/image-20250925133301580.png" srcset="imgs/image-20250925133301580.png?size=small, imgs/image-20250925133301580.png?size=medium 1.5x, imgs/image-20250925133301580.png?size=large 2x" data-title="imgs/image-20250925133301580.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
-<p>010 打开另一个文件，发现其实是一个加密的 zip 压缩包</p>
-<p><img loading="lazy" src="imgs/image-20250925133326627.png" alt="imgs/image-20250925133326627.png" srcset="imgs/image-20250925133326627.png?size=small, imgs/image-20250925133326627.png?size=medium 1.5x, imgs/image-20250925133326627.png?size=large 2x" data-title="imgs/image-20250925133326627.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
-<p>zsteg 扫一下这张 PNG，发现图片 LSB 隐写了一个文件</p>
-<p><img loading="lazy" src="imgs/image-20250925133609217.png" alt="imgs/image-20250925133609217.png" srcset="imgs/image-20250925133609217.png?size=small, imgs/image-20250925133609217.png?size=medium 1.5x, imgs/image-20250925133609217.png?size=large 2x" data-title="imgs/image-20250925133609217.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
-<h2 id="todo-题目名称-多注意观察" class="heading-element">
-  <a href="#todo-%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-%e5%a4%9a%e6%b3%a8%e6%84%8f%e8%a7%82%e5%af%9f" class="heading-mark"></a>[TODO] 题目名称 多注意观察</h2><p>附件给了一个 flag.blf，010 打开查看发现其实是个 rar 压缩包</p>
-<p><img loading="lazy" src="imgs/image-20250925135138223.png" alt="imgs/image-20250925135138223.png" srcset="imgs/image-20250925135138223.png?size=small, imgs/image-20250925135138223.png?size=medium 1.5x, imgs/image-20250925135138223.png?size=large 2x" data-title="imgs/image-20250925135138223.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
-<p>改后缀为 .rar 后打开，发现是加密的，并且注释里有提示：<code>FFD8FFE000104A46494600</code></p>
-<p><img loading="lazy" src="imgs/image-20250925135252669.png" alt="imgs/image-20250925135252669.png" srcset="imgs/image-20250925135252669.png?size=small, imgs/image-20250925135252669.png?size=medium 1.5x, imgs/image-20250925135252669.png?size=large 2x" data-title="imgs/image-20250925135252669.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
-<p><code>FFD8FFE000104A46494600</code> 解码后发现其实是 JPG 的文件头</p>
-<h2 id="todo-题目名称-autopilot-ghost" class="heading-element">
-  <a href="#todo-%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-autopilot-ghost" class="heading-mark"></a>[TODO] 题目名称 Autopilot Ghost</h2><p>附件给了一个流量包，主要是 TCP 和 UDP 流量</p>
-<p><img loading="lazy" src="imgs/image-20250925140233657.png" alt="imgs/image-20250925140233657.png" srcset="imgs/image-20250925140233657.png?size=small, imgs/image-20250925140233657.png?size=medium 1.5x, imgs/image-20250925140233657.png?size=large 2x" data-title="imgs/image-20250925140233657.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
-<p>结合题目的提示，翻译为中文大致的意思是：自动驾驶的幽灵</p>
-<p>发现 UDP 传输的数据都是 1118 字节，然后 010 diff 了一下，发现每段数据的差异还是挺大的</p>
-<h2 id="题目名称-工控协议隐蔽通道分析附件" class="heading-element">
+</div><h2 id="题目名称-工控协议隐蔽通道分析附件" class="heading-element">
   <a href="#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-%e5%b7%a5%e6%8e%a7%e5%8d%8f%e8%ae%ae%e9%9a%90%e8%94%bd%e9%80%9a%e9%81%93%e5%88%86%e6%9e%90%e9%99%84%e4%bb%b6" class="heading-mark"></a>题目名称 工控协议隐蔽通道分析附件</h2><p>题目附件给了个流量包，翻看了一下主要是 S7common 和 Modbus 流量</p>
 <p>然后发现还传了一个 PNG 和一个 ZIP 压缩包</p>
 <p>因为不知道具体的顺序，所以无法完整的提取出来</p>
@@ -747,7 +723,30 @@
 </span></span><span class="line"><span class="cl">ALL_DATA_FRAGMENTS_IN_M_AREA
 </span></span><span class="line"><span class="cl">PASSWORD_IN_DB_AREA_ADDRESS_0x60_WITH_CAESAR_CIPHER</span></span></code></pre></td></tr></table>
 </div>
-</div></div><div class="post-footer" id="post-footer">
+</div><h2 id="todo-题目名称-文件分析" class="heading-element">
+  <a href="#todo-%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-%e6%96%87%e4%bb%b6%e5%88%86%e6%9e%90" class="heading-mark"></a>[TODO] 题目名称 文件分析</h2><p>附件给了一个 16个八戒.bin，010 打开查看</p>
+<p><img loading="lazy" src="imgs/image-20250925132928952.png" alt="imgs/image-20250925132928952.png" srcset="imgs/image-20250925132928952.png?size=small, imgs/image-20250925132928952.png?size=medium 1.5x, imgs/image-20250925132928952.png?size=large 2x" data-title="imgs/image-20250925132928952.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>strings 一下，根据可打印信息推测</p>
+<p>这可能是一个用于特定硬件的 OTA 远程升级固件包。</p>
+<h2 id="todo-题目名称-勒索病毒攻击" class="heading-element">
+  <a href="#todo-%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-%e5%8b%92%e7%b4%a2%e7%97%85%e6%af%92%e6%94%bb%e5%87%bb" class="heading-mark"></a>[TODO] 题目名称 勒索病毒攻击</h2><p>附件给了一个 <code>勒索事件截图.png</code>，还有一个 <code>车辆OEM厂商重要数据@Hack</code></p>
+<p>PNG 图片如下所示：</p>
+<p><img loading="lazy" src="imgs/image-20250925133301580.png" alt="imgs/image-20250925133301580.png" srcset="imgs/image-20250925133301580.png?size=small, imgs/image-20250925133301580.png?size=medium 1.5x, imgs/image-20250925133301580.png?size=large 2x" data-title="imgs/image-20250925133301580.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>010 打开另一个文件，发现其实是一个加密的 zip 压缩包</p>
+<p><img loading="lazy" src="imgs/image-20250925133326627.png" alt="imgs/image-20250925133326627.png" srcset="imgs/image-20250925133326627.png?size=small, imgs/image-20250925133326627.png?size=medium 1.5x, imgs/image-20250925133326627.png?size=large 2x" data-title="imgs/image-20250925133326627.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>zsteg 扫一下这张 PNG，发现图片 LSB 隐写了一个文件</p>
+<p><img loading="lazy" src="imgs/image-20250925133609217.png" alt="imgs/image-20250925133609217.png" srcset="imgs/image-20250925133609217.png?size=small, imgs/image-20250925133609217.png?size=medium 1.5x, imgs/image-20250925133609217.png?size=large 2x" data-title="imgs/image-20250925133609217.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<h2 id="todo-题目名称-多注意观察" class="heading-element">
+  <a href="#todo-%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-%e5%a4%9a%e6%b3%a8%e6%84%8f%e8%a7%82%e5%af%9f" class="heading-mark"></a>[TODO] 题目名称 多注意观察</h2><p>附件给了一个 flag.blf，010 打开查看发现其实是个 rar 压缩包</p>
+<p><img loading="lazy" src="imgs/image-20250925135138223.png" alt="imgs/image-20250925135138223.png" srcset="imgs/image-20250925135138223.png?size=small, imgs/image-20250925135138223.png?size=medium 1.5x, imgs/image-20250925135138223.png?size=large 2x" data-title="imgs/image-20250925135138223.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>改后缀为 .rar 后打开，发现是加密的，并且注释里有提示：<code>FFD8FFE000104A46494600</code></p>
+<p><img loading="lazy" src="imgs/image-20250925135252669.png" alt="imgs/image-20250925135252669.png" srcset="imgs/image-20250925135252669.png?size=small, imgs/image-20250925135252669.png?size=medium 1.5x, imgs/image-20250925135252669.png?size=large 2x" data-title="imgs/image-20250925135252669.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><code>FFD8FFE000104A46494600</code> 解码后发现其实是 JPG 的文件头</p>
+<h2 id="todo-题目名称-autopilot-ghost" class="heading-element">
+  <a href="#todo-%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-autopilot-ghost" class="heading-mark"></a>[TODO] 题目名称 Autopilot Ghost</h2><p>附件给了一个流量包，主要是 TCP 和 UDP 流量</p>
+<p><img loading="lazy" src="imgs/image-20250925140233657.png" alt="imgs/image-20250925140233657.png" srcset="imgs/image-20250925140233657.png?size=small, imgs/image-20250925140233657.png?size=medium 1.5x, imgs/image-20250925140233657.png?size=large 2x" data-title="imgs/image-20250925140233657.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>结合题目的提示，翻译为中文大致的意思是：自动驾驶的幽灵</p>
+<p>发现 UDP 传输的数据都是 1118 字节，然后 010 diff 了一下，发现每段数据的差异还是挺大的</p></div><div class="post-footer" id="post-footer">
   <div class="post-info">
     <div class="post-info-line">
       <div class="post-info-mod">
