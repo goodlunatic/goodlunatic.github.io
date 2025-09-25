@@ -14,7 +14,7 @@
 赛后有师傅来问这场比赛里的题，部分题目出的挺好的，有一定的难度，于是打算记录一下">
   <meta itemprop="datePublished" content="2025-09-23T23:00:45+08:00">
   <meta itemprop="dateModified" content="2025-09-23T23:00:45+08:00">
-  <meta itemprop="wordCount" content="335">
+  <meta itemprop="wordCount" content="1138">
   <meta itemprop="keywords" content="CTF,Misc,Writeup"><meta property="og:url" content="https://goodlunatic.github.io/posts/49bdad5/">
   <meta property="og:site_name" content="⚡Lunatic BLOG⚡">
   <meta property="og:title" content="2025 第九届工业信息安全技能大赛-典型工业场景锦标赛 Misc Writeup">
@@ -45,7 +45,7 @@
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": "https:\/\/goodlunatic.github.io\/posts\/49bdad5\/"
-    },"genre": "posts","keywords": "CTF, Misc, Writeup","wordcount":  335 ,
+    },"genre": "posts","keywords": "CTF, Misc, Writeup","wordcount":  1138 ,
     "url": "https:\/\/goodlunatic.github.io\/posts\/49bdad5\/","datePublished": "2025-09-23T23:00:45+08:00","dateModified": "2025-09-23T23:00:45+08:00","publisher": {
       "@type": "Organization",
       "name": ""},"author": {
@@ -149,7 +149,7 @@
 <article class="page single">
   <div class="header"><h1 class="single-title animate__animated animate__flipInX"><span>2025 第九届工业信息安全技能大赛-典型工业场景锦标赛 Misc Writeup</span>
     </h1></div><div class="post-meta">
-    <div class="post-meta-line"><span class="post-author"><a href="https://goodlunatic.github.io" title="Author"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><img loading="lazy" src="https://www.nssctf.cn/files/2024/4/28/7f130a1387.png" alt="Lunatic" data-title="Lunatic" class="avatar" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>&nbsp;Lunatic</a></span><span class="post-included-in">&nbsp;included in <a href="/categories/writeup/" class="post-category" title="Category - Writeup"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> Writeup</a></span></div><div class="post-meta-line"><span title="published on &lt;no value&gt;"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden="true"></i><time datetime="2025-09-23">2025-09-23</time></span>&nbsp;<span title=""><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>About 400 words</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>2 minutes</span>&nbsp;</div>
+    <div class="post-meta-line"><span class="post-author"><a href="https://goodlunatic.github.io" title="Author"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><img loading="lazy" src="https://www.nssctf.cn/files/2024/4/28/7f130a1387.png" alt="Lunatic" data-title="Lunatic" class="avatar" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>&nbsp;Lunatic</a></span><span class="post-included-in">&nbsp;included in <a href="/categories/writeup/" class="post-category" title="Category - Writeup"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> Writeup</a></span></div><div class="post-meta-line"><span title="published on &lt;no value&gt;"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden="true"></i><time datetime="2025-09-23">2025-09-23</time></span>&nbsp;<span title=""><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>About 1200 words</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>6 minutes</span>&nbsp;</div>
   </div><div class="details toc" id="toc-static"
     data-kept="false">
     <div class="details-summary toc-title">
@@ -168,9 +168,15 @@
     <li><a href="#题目名称-工业控制协议流量分析-1">题目名称 工业控制协议流量分析 1</a></li>
     <li><a href="#题目名称-工业控制协议流量分析-2">题目名称 工业控制协议流量分析 2</a></li>
     <li><a href="#题目名称-工业控制协议流量分析-3">题目名称 工业控制协议流量分析 3</a></li>
-    <li><a href="#题目名称-异常的数据流量包">题目名称 异常的数据流量包</a></li>
     <li><a href="#题目名称-音频隐写">题目名称 音频隐写</a></li>
     <li><a href="#题目名称-所见即是开始">题目名称 所见即是开始</a></li>
+    <li><a href="#todo-题目名称-工业流量隐写分析">[TODO] 题目名称 工业流量隐写分析</a></li>
+    <li><a href="#todo-题目名称-异常的数据流量包">[TODO] 题目名称 异常的数据流量包</a></li>
+    <li><a href="#todo-题目名称-文件分析">[TODO] 题目名称 文件分析</a></li>
+    <li><a href="#todo-题目名称-勒索病毒攻击">[TODO] 题目名称 勒索病毒攻击</a></li>
+    <li><a href="#todo-题目名称-多注意观察">[TODO] 题目名称 多注意观察</a></li>
+    <li><a href="#todo-题目名称-autopilot-ghost">[TODO] 题目名称 Autopilot Ghost</a></li>
+    <li><a href="#题目名称-工控协议隐蔽通道分析附件">题目名称 工控协议隐蔽通道分析附件</a></li>
   </ul>
 </nav></div>
   </div><div class="content" id="content"><p><strong>2025 第九届工业信息安全技能大赛-典型工业场景锦标赛 Writeup</strong></p>
@@ -349,24 +355,399 @@
 </div>
 </div><p>然后 CyberChef 转一下 Hex ，拉倒末尾即可看到 flag：<code>flag{ruEf6OmqhAlXIYxmnR1XLC6R1]}</code></p>
 <p><img loading="lazy" src="imgs/image-20250925100707429.png" alt="imgs/image-20250925100707429.png" srcset="imgs/image-20250925100707429.png?size=small, imgs/image-20250925100707429.png?size=medium 1.5x, imgs/image-20250925100707429.png?size=large 2x" data-title="imgs/image-20250925100707429.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
-<h2 id="题目名称-异常的数据流量包" class="heading-element">
-  <a href="#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-%e5%bc%82%e5%b8%b8%e7%9a%84%e6%95%b0%e6%8d%ae%e6%b5%81%e9%87%8f%e5%8c%85" class="heading-mark"></a>题目名称 异常的数据流量包</h2><p>附件给了一个流量包，打开发现主要是 Modbus 流量，翻看一下发现传输了一个 PDF 文件</p>
+<h2 id="题目名称-音频隐写" class="heading-element">
+  <a href="#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-%e9%9f%b3%e9%a2%91%e9%9a%90%e5%86%99" class="heading-mark"></a>题目名称 音频隐写</h2><p>附件给了一个 字符频率映射表.txt 还有一个 wav 文件，映射表中的内容如下：</p>
+<div class="highlight" id="id-8"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&#39;a&#39;: 440, &#39;b&#39;: 466, &#39;c&#39;: 494, &#39;d&#39;: 523, &#39;e&#39;: 554,
+</span></span><span class="line"><span class="cl">&#39;f&#39;: 587, &#39;g&#39;: 622, &#39;h&#39;: 659, &#39;i&#39;: 698, &#39;j&#39;: 740,
+</span></span><span class="line"><span class="cl">&#39;k&#39;: 784, &#39;l&#39;: 830, &#39;m&#39;: 880, &#39;n&#39;: 932, &#39;o&#39;: 988,
+</span></span><span class="line"><span class="cl">&#39;p&#39;: 1047, &#39;q&#39;: 1109, &#39;r&#39;: 1175, &#39;s&#39;: 1245, &#39;t&#39;: 1319,
+</span></span><span class="line"><span class="cl">&#39;u&#39;: 1397, &#39;v&#39;: 1480, &#39;w&#39;: 1568, &#39;x&#39;: 1661, &#39;y&#39;: 1760, &#39;z&#39;: 1865,
+</span></span><span class="line"><span class="cl">&#39;1&#39;: 1000, &#39;2&#39;: 2000, &#39;3&#39;: 3000, &#39;4&#39;: 4000, &#39;5&#39;: 5000,
+</span></span><span class="line"><span class="cl">&#39;6&#39;: 6000, &#39;7&#39;: 7000, &#39;8&#39;: 8000, &#39;9&#39;: 9000, &#39;0&#39;: 10000,
+</span></span><span class="line"><span class="cl">&#39;A&#39;: 445, &#39;B&#39;: 471, &#39;C&#39;: 499, &#39;D&#39;: 528, &#39;E&#39;: 559,
+</span></span><span class="line"><span class="cl">&#39;F&#39;: 592, &#39;G&#39;: 627, &#39;H&#39;: 664, &#39;I&#39;: 703, &#39;J&#39;: 745,
+</span></span><span class="line"><span class="cl">&#39;K&#39;: 789, &#39;L&#39;: 835, &#39;M&#39;: 885, &#39;N&#39;: 937, &#39;O&#39;: 993,
+</span></span><span class="line"><span class="cl">&#39;P&#39;: 1052, &#39;Q&#39;: 1114, &#39;R&#39;: 1180, &#39;S&#39;: 1250, &#39;T&#39;: 1324,
+</span></span><span class="line"><span class="cl">&#39;U&#39;: 1402, &#39;V&#39;: 1485, &#39;W&#39;: 1573, &#39;X&#39;: 1666, &#39;Y&#39;: 1765, &#39;Z&#39;: 1870,</span></span></code></pre></td></tr></table>
+</div>
+</div><p>因此我们写个脚本提取一下即可得到 flag: <code>FvoelrnoBjmFz1aknoF7U24gFe5204521Be19B3voh9BSaqhGRlyXio6m0xtkEZ21nUmhelP</code></p>
+<div class="highlight" id="id-9"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span><span class="lnt">73
+</span><span class="lnt">74
+</span><span class="lnt">75
+</span><span class="lnt">76
+</span><span class="lnt">77
+</span><span class="lnt">78
+</span><span class="lnt">79
+</span><span class="lnt">80
+</span><span class="lnt">81
+</span><span class="lnt">82
+</span><span class="lnt">83
+</span><span class="lnt">84
+</span><span class="lnt">85
+</span><span class="lnt">86
+</span><span class="lnt">87
+</span><span class="lnt">88
+</span><span class="lnt">89
+</span><span class="lnt">90
+</span><span class="lnt">91
+</span><span class="lnt">92
+</span><span class="lnt">93
+</span><span class="lnt">94
+</span><span class="lnt">95
+</span><span class="lnt">96
+</span><span class="lnt">97
+</span><span class="lnt">98
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">scipy.io</span> <span class="kn">import</span> <span class="n">wavfile</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 常量定义</span>
+</span></span><span class="line"><span class="cl"><span class="n">DEFAULT_CHUNK_DURATION_MS</span> <span class="o">=</span> <span class="mi">100</span>  <span class="c1"># 默认分析块时长（毫秒）</span>
+</span></span><span class="line"><span class="cl"><span class="n">FREQ_DIFF_THRESHOLD</span> <span class="o">=</span> <span class="mi">30</span>         <span class="c1"># 频率差异阈值</span>
+</span></span><span class="line"><span class="cl"><span class="n">LOW_FREQ_THRESHOLD</span> <span class="o">=</span> <span class="mi">100</span>         <span class="c1"># 低频噪声阈值</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 频率与字符的对照表</span>
+</span></span><span class="line"><span class="cl"><span class="n">FREQ_MAP</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 小写字母</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;a&#39;</span><span class="p">:</span> <span class="mi">440</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">:</span> <span class="mi">466</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">:</span> <span class="mi">494</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">:</span> <span class="mi">523</span><span class="p">,</span> <span class="s1">&#39;e&#39;</span><span class="p">:</span> <span class="mi">554</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;f&#39;</span><span class="p">:</span> <span class="mi">587</span><span class="p">,</span> <span class="s1">&#39;g&#39;</span><span class="p">:</span> <span class="mi">622</span><span class="p">,</span> <span class="s1">&#39;h&#39;</span><span class="p">:</span> <span class="mi">659</span><span class="p">,</span> <span class="s1">&#39;i&#39;</span><span class="p">:</span> <span class="mi">698</span><span class="p">,</span> <span class="s1">&#39;j&#39;</span><span class="p">:</span> <span class="mi">740</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;k&#39;</span><span class="p">:</span> <span class="mi">784</span><span class="p">,</span> <span class="s1">&#39;l&#39;</span><span class="p">:</span> <span class="mi">830</span><span class="p">,</span> <span class="s1">&#39;m&#39;</span><span class="p">:</span> <span class="mi">880</span><span class="p">,</span> <span class="s1">&#39;n&#39;</span><span class="p">:</span> <span class="mi">932</span><span class="p">,</span> <span class="s1">&#39;o&#39;</span><span class="p">:</span> <span class="mi">988</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;p&#39;</span><span class="p">:</span> <span class="mi">1047</span><span class="p">,</span> <span class="s1">&#39;q&#39;</span><span class="p">:</span> <span class="mi">1109</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">:</span> <span class="mi">1175</span><span class="p">,</span> <span class="s1">&#39;s&#39;</span><span class="p">:</span> <span class="mi">1245</span><span class="p">,</span> <span class="s1">&#39;t&#39;</span><span class="p">:</span> <span class="mi">1319</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;u&#39;</span><span class="p">:</span> <span class="mi">1397</span><span class="p">,</span> <span class="s1">&#39;v&#39;</span><span class="p">:</span> <span class="mi">1480</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">:</span> <span class="mi">1568</span><span class="p">,</span> <span class="s1">&#39;x&#39;</span><span class="p">:</span> <span class="mi">1661</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">:</span> <span class="mi">1760</span><span class="p">,</span> <span class="s1">&#39;z&#39;</span><span class="p">:</span> <span class="mi">1865</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="c1"># 数字</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;1&#39;</span><span class="p">:</span> <span class="mi">1000</span><span class="p">,</span> <span class="s1">&#39;2&#39;</span><span class="p">:</span> <span class="mi">2000</span><span class="p">,</span> <span class="s1">&#39;3&#39;</span><span class="p">:</span> <span class="mi">3000</span><span class="p">,</span> <span class="s1">&#39;4&#39;</span><span class="p">:</span> <span class="mi">4000</span><span class="p">,</span> <span class="s1">&#39;5&#39;</span><span class="p">:</span> <span class="mi">5000</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;6&#39;</span><span class="p">:</span> <span class="mi">6000</span><span class="p">,</span> <span class="s1">&#39;7&#39;</span><span class="p">:</span> <span class="mi">7000</span><span class="p">,</span> <span class="s1">&#39;8&#39;</span><span class="p">:</span> <span class="mi">8000</span><span class="p">,</span> <span class="s1">&#39;9&#39;</span><span class="p">:</span> <span class="mi">9000</span><span class="p">,</span> <span class="s1">&#39;0&#39;</span><span class="p">:</span> <span class="mi">10000</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="c1"># 大写字母（比对应小写字母稍高频率）</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="mi">445</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">:</span> <span class="mi">471</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">:</span> <span class="mi">499</span><span class="p">,</span> <span class="s1">&#39;D&#39;</span><span class="p">:</span> <span class="mi">528</span><span class="p">,</span> <span class="s1">&#39;E&#39;</span><span class="p">:</span> <span class="mi">559</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;F&#39;</span><span class="p">:</span> <span class="mi">592</span><span class="p">,</span> <span class="s1">&#39;G&#39;</span><span class="p">:</span> <span class="mi">627</span><span class="p">,</span> <span class="s1">&#39;H&#39;</span><span class="p">:</span> <span class="mi">664</span><span class="p">,</span> <span class="s1">&#39;I&#39;</span><span class="p">:</span> <span class="mi">703</span><span class="p">,</span> <span class="s1">&#39;J&#39;</span><span class="p">:</span> <span class="mi">745</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;K&#39;</span><span class="p">:</span> <span class="mi">789</span><span class="p">,</span> <span class="s1">&#39;L&#39;</span><span class="p">:</span> <span class="mi">835</span><span class="p">,</span> <span class="s1">&#39;M&#39;</span><span class="p">:</span> <span class="mi">885</span><span class="p">,</span> <span class="s1">&#39;N&#39;</span><span class="p">:</span> <span class="mi">937</span><span class="p">,</span> <span class="s1">&#39;O&#39;</span><span class="p">:</span> <span class="mi">993</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;P&#39;</span><span class="p">:</span> <span class="mi">1052</span><span class="p">,</span> <span class="s1">&#39;Q&#39;</span><span class="p">:</span> <span class="mi">1114</span><span class="p">,</span> <span class="s1">&#39;R&#39;</span><span class="p">:</span> <span class="mi">1180</span><span class="p">,</span> <span class="s1">&#39;S&#39;</span><span class="p">:</span> <span class="mi">1250</span><span class="p">,</span> <span class="s1">&#39;T&#39;</span><span class="p">:</span> <span class="mi">1324</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;U&#39;</span><span class="p">:</span> <span class="mi">1402</span><span class="p">,</span> <span class="s1">&#39;V&#39;</span><span class="p">:</span> <span class="mi">1485</span><span class="p">,</span> <span class="s1">&#39;W&#39;</span><span class="p">:</span> <span class="mi">1573</span><span class="p">,</span> <span class="s1">&#39;X&#39;</span><span class="p">:</span> <span class="mi">1666</span><span class="p">,</span> <span class="s1">&#39;Y&#39;</span><span class="p">:</span> <span class="mi">1765</span><span class="p">,</span> <span class="s1">&#39;Z&#39;</span><span class="p">:</span> <span class="mi">1870</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">find_closest_char</span><span class="p">(</span><span class="n">target_freq</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="ow">not</span> <span class="n">FREQ_MAP</span> <span class="ow">or</span> <span class="n">target_freq</span> <span class="o">&lt;</span> <span class="n">LOW_FREQ_THRESHOLD</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="kc">None</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="c1"># 找到最接近的频率对应的字符</span>
+</span></span><span class="line"><span class="cl">    <span class="n">closest_char</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">FREQ_MAP</span><span class="o">.</span><span class="n">keys</span><span class="p">(),</span> 
+</span></span><span class="line"><span class="cl">                      <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">char</span><span class="p">:</span> <span class="nb">abs</span><span class="p">(</span><span class="n">FREQ_MAP</span><span class="p">[</span><span class="n">char</span><span class="p">]</span> <span class="o">-</span> <span class="n">target_freq</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="c1"># 检查频率差异是否在可接受范围内</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">FREQ_MAP</span><span class="p">[</span><span class="n">closest_char</span><span class="p">]</span> <span class="o">-</span> <span class="n">target_freq</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">FREQ_DIFF_THRESHOLD</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="kc">None</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">closest_char</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">analyze_wav_sequentially</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="n">chunk_duration_ms</span><span class="o">=</span><span class="n">DEFAULT_CHUNK_DURATION_MS</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">sample_rate</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">wavfile</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 如果是立体声，只使用左声道</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">data</span><span class="o">.</span><span class="n">ndim</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="c1"># 计算每个块的大小（样本数）</span>
+</span></span><span class="line"><span class="cl">    <span class="n">chunk_size</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">sample_rate</span> <span class="o">*</span> <span class="n">chunk_duration_ms</span> <span class="o">/</span> <span class="mi">1000</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">num_chunks</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">//</span> <span class="n">chunk_size</span>
+</span></span><span class="line"><span class="cl">    <span class="n">decoded_chars</span> <span class="o">=</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl">    <span class="n">last_char</span> <span class="o">=</span> <span class="kc">None</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;[+] 采样率: </span><span class="si">{</span><span class="n">sample_rate</span><span class="si">}</span><span class="s2"> Hz, 块时长: </span><span class="si">{</span><span class="n">chunk_duration_ms</span><span class="si">}</span><span class="s2"> ms, 总块数: </span><span class="si">{</span><span class="n">num_chunks</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_chunks</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">start</span> <span class="o">=</span> <span class="n">i</span> <span class="o">*</span> <span class="n">chunk_size</span>
+</span></span><span class="line"><span class="cl">        <span class="n">end</span> <span class="o">=</span> <span class="n">start</span> <span class="o">+</span> <span class="n">chunk_size</span>
+</span></span><span class="line"><span class="cl">        <span class="n">chunk</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">start</span><span class="p">:</span><span class="n">end</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">        <span class="c1"># 对当前块进行 FFT 分析</span>
+</span></span><span class="line"><span class="cl">        <span class="n">fft_spectrum</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">rfft</span><span class="p">(</span><span class="n">chunk</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">fft_freq</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">rfftfreq</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">chunk</span><span class="p">),</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="n">sample_rate</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">        <span class="c1"># 找到主频率（忽略直流分量）</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">fft_spectrum</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">peak_index</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">fft_spectrum</span><span class="p">[</span><span class="mi">1</span><span class="p">:]))</span> <span class="o">+</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">            <span class="n">dominant_frequency</span> <span class="o">=</span> <span class="n">fft_freq</span><span class="p">[</span><span class="n">peak_index</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">            
+</span></span><span class="line"><span class="cl">            <span class="c1"># 查找对应的字符</span>
+</span></span><span class="line"><span class="cl">            <span class="n">char</span> <span class="o">=</span> <span class="n">find_closest_char</span><span class="p">(</span><span class="n">dominant_frequency</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            
+</span></span><span class="line"><span class="cl">            <span class="c1"># 为了避免一个长音被重复记录，只有当字符变化时才记录</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="n">char</span> <span class="ow">and</span> <span class="n">char</span> <span class="o">!=</span> <span class="n">last_char</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                <span class="n">decoded_chars</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">char</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                <span class="n">last_char</span> <span class="o">=</span> <span class="n">char</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="n">final_message</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">decoded_chars</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;[+] 解码出的字符序列: </span><span class="si">{</span><span class="n">final_message</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;[+] 字符数量: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">decoded_chars</span><span class="p">)</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">final_message</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">func</span><span class="p">():</span>    
+</span></span><span class="line"><span class="cl">    <span class="n">wav_file</span> <span class="o">=</span> <span class="s2">&#34;video.wav&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">analyze_wav_sequentially</span><span class="p">(</span><span class="n">wav_file</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&#34;__main__&#34;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">func</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># [+] 采样率: 44100 Hz, 块时长: 100 ms, 总块数: 73</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># [+] 解码出的字符序列: FvoelrnoBjmFz1aknoF7U24gFe5204521Be19B3voh9BSaqhGRlyXio6m0xtkEZ21nUmhelP</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># [+] 字符数量: 72</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="题目名称-所见即是开始" class="heading-element">
+  <a href="#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-%e6%89%80%e8%a7%81%e5%8d%b3%e6%98%af%e5%bc%80%e5%a7%8b" class="heading-mark"></a>题目名称 所见即是开始</h2><p>附件给了一个加密的 zip 压缩包还有下面这张 PNG</p>
+<p><img loading="lazy" src="imgs/image-20250925131246166.png" alt="imgs/image-20250925131246166.png" srcset="imgs/image-20250925131246166.png?size=small, imgs/image-20250925131246166.png?size=medium 1.5x, imgs/image-20250925131246166.png?size=large 2x" data-title="imgs/image-20250925131246166.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>结合图片中的提示，很容易联想到盲文</p>
+<p><img loading="lazy" src="imgs/image-20250925131419542.png" alt="imgs/image-20250925131419542.png" srcset="imgs/image-20250925131419542.png?size=small, imgs/image-20250925131419542.png?size=medium 1.5x, imgs/image-20250925131419542.png?size=large 2x" data-title="imgs/image-20250925131419542.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>结合上面这个对照表，得到解压密码：<code>hanoi floor is 9</code></p>
+<p>解压后可以得到一个 hint.txt 和一张 PNG 图片</p>
+<p><img loading="lazy" src="imgs/image-20250925131634540.png" alt="imgs/image-20250925131634540.png" srcset="imgs/image-20250925131634540.png?size=small, imgs/image-20250925131634540.png?size=medium 1.5x, imgs/image-20250925131634540.png?size=large 2x" data-title="imgs/image-20250925131634540.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>hint.txt 中的内容如下：</p>
+<blockquote>
+<p>所解即所得；</p>
+<p>一组格式为盘+当前柱+去往柱</p>
+</blockquote>
+<p>经典的汉诺塔问题，写个脚本递归一下即可</p>
+<div class="highlight" id="id-10"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">hanio</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">res</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">res</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&#34;</span><span class="si">{</span><span class="n">n</span><span class="si">}{</span><span class="n">a</span><span class="si">}{</span><span class="n">c</span><span class="si">}</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># 将n-1个盘从a通过c移动到b</span>
+</span></span><span class="line"><span class="cl">        <span class="n">res</span> <span class="o">+=</span> <span class="n">hanio</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># 将最大的盘从a移动到c</span>
+</span></span><span class="line"><span class="cl">        <span class="n">res</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&#34;</span><span class="si">{</span><span class="n">n</span><span class="si">}{</span><span class="n">a</span><span class="si">}{</span><span class="n">c</span><span class="si">}</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># 将n-1个盘从b通过a移动到c</span>
+</span></span><span class="line"><span class="cl">        <span class="n">res</span> <span class="o">+=</span> <span class="n">hanio</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">res</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">n</span> <span class="o">=</span> <span class="mi">9</span>
+</span></span><span class="line"><span class="cl">    <span class="n">result</span> <span class="o">=</span> <span class="n">hanio</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 1AC2AB1CB3AC1BA2BC1AC4AB1CB2CA1BA3CB1AC2AB1CB5AC1BA2BC1AC3BA1CB2CA1BA4BC1AC2AB1CB3AC1BA2BC1AC6AB1CB2CA1BA3CB1AC2AB1CB4CA1BA2BC1AC3BA1CB2CA1BA5CB1AC2AB1CB3AC1BA2BC1AC4AB1CB2CA1BA3CB1AC2AB1CB7AC1BA2BC1AC3BA1CB2CA1BA4BC1AC2AB1CB3AC1BA2BC1AC5BA1CB2CA1BA3CB1AC2AB1CB4CA1BA2BC1AC3BA1CB2CA1BA6BC1AC2AB1CB3AC1BA2BC1AC4AB1CB2CA1BA3CB1AC2AB1CB5AC1BA2BC1AC3BA1CB2CA1BA4BC1AC2AB1CB3AC1BA2BC1AC8AB1CB2CA1BA3CB1AC2AB1CB4CA1BA2BC1AC3BA1CB2CA1BA5CB1AC2AB1CB3AC1BA2BC1AC4AB1CB2CA1BA3CB1AC2AB1CB6CA1BA2BC1AC3BA1CB2CA1BA4BC1AC2AB1CB3AC1BA2BC1AC5BA1CB2CA1BA3CB1AC2AB1CB4CA1BA2BC1AC3BA1CB2CA1BA7CB1AC2AB1CB3AC1BA2BC1AC4AB1CB2CA1BA3CB1AC2AB1CB5AC1BA2BC1AC3BA1CB2CA1BA4BC1AC2AB1CB3AC1BA2BC1AC6AB1CB2CA1BA3CB1AC2AB1CB4CA1BA2BC1AC3BA1CB2CA1BA5CB1AC2AB1CB3AC1BA2BC1AC4AB1CB2CA1BA3CB1AC2AB1CB9AC1BA2BC1AC3BA1CB2CA1BA4BC1AC2AB1CB3AC1BA2BC1AC5BA1CB2CA1BA3CB1AC2AB1CB4CA1BA2BC1AC3BA1CB2CA1BA6BC1AC2AB1CB3AC1BA2BC1AC4AB1CB2CA1BA3CB1AC2AB1CB5AC1BA2BC1AC3BA1CB2CA1BA4BC1AC2AB1CB3AC1BA2BC1AC7BA1CB2CA1BA3CB1AC2AB1CB4CA1BA2BC1AC3BA1CB2CA1BA5CB1AC2AB1CB3AC1BA2BC1AC4AB1CB2CA1BA3CB1AC2AB1CB6CA1BA2BC1AC3BA1CB2CA1BA4BC1AC2AB1CB3AC1BA2BC1AC5BA1CB2CA1BA3CB1AC2AB1CB4CA1BA2BC1AC3BA1CB2CA1BA8BC1AC2AB1CB3AC1BA2BC1AC4AB1CB2CA1BA3CB1AC2AB1CB5AC1BA2BC1AC3BA1CB2CA1BA4BC1AC2AB1CB3AC1BA2BC1AC6AB1CB2CA1BA3CB1AC2AB1CB4CA1BA2BC1AC3BA1CB2CA1BA5CB1AC2AB1CB3AC1BA2BC1AC4AB1CB2CA1BA3CB1AC2AB1CB7AC1BA2BC1AC3BA1CB2CA1BA4BC1AC2AB1CB3AC1BA2BC1AC5BA1CB2CA1BA3CB1AC2AB1CB4CA1BA2BC1AC3BA1CB2CA1BA6BC1AC2AB1CB3AC1BA2BC1AC4AB1CB2CA1BA3CB1AC2AB1CB5AC1BA2BC1AC3BA1CB2CA1BA4BC1AC2AB1CB3AC1BA2BC1AC</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="todo-题目名称-工业流量隐写分析" class="heading-element">
+  <a href="#todo-%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-%e5%b7%a5%e4%b8%9a%e6%b5%81%e9%87%8f%e9%9a%90%e5%86%99%e5%88%86%e6%9e%90" class="heading-mark"></a>[TODO] 题目名称 工业流量隐写分析</h2><p>附件给了一张 <code>larger_lbCN3pEh1o</code>，是个二维码，扫码可以得到：<code>Fake_one</code></p>
+<p><img loading="lazy" src="imgs/image-20250925140651055.png" alt="imgs/image-20250925140651055.png" srcset="imgs/image-20250925140651055.png?size=small, imgs/image-20250925140651055.png?size=medium 1.5x, imgs/image-20250925140651055.png?size=large 2x" data-title="imgs/image-20250925140651055.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>010 打开，发现末尾也没有多的数据，因此尝试拿 stegsolve 查看一下</p>
+<p><img loading="lazy" src="imgs/image-20250925140758107.png" alt="imgs/image-20250925140758107.png" srcset="imgs/image-20250925140758107.png?size=small, imgs/image-20250925140758107.png?size=medium 1.5x, imgs/image-20250925140758107.png?size=large 2x" data-title="imgs/image-20250925140758107.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><img loading="lazy" src="imgs/image-20250925140807150.png" alt="imgs/image-20250925140807150.png" srcset="imgs/image-20250925140807150.png?size=small, imgs/image-20250925140807150.png?size=medium 1.5x, imgs/image-20250925140807150.png?size=large 2x" data-title="imgs/image-20250925140807150.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><img loading="lazy" src="imgs/image-20250925140815137.png" alt="imgs/image-20250925140815137.png" srcset="imgs/image-20250925140815137.png?size=small, imgs/image-20250925140815137.png?size=medium 1.5x, imgs/image-20250925140815137.png?size=large 2x" data-title="imgs/image-20250925140815137.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<h2 id="todo-题目名称-异常的数据流量包" class="heading-element">
+  <a href="#todo-%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-%e5%bc%82%e5%b8%b8%e7%9a%84%e6%95%b0%e6%8d%ae%e6%b5%81%e9%87%8f%e5%8c%85" class="heading-mark"></a>[TODO] 题目名称 异常的数据流量包</h2><p>附件给了一个流量包，打开发现主要是 Modbus 流量，翻看一下发现传输了一个 PDF 文件</p>
 <p><img loading="lazy" src="imgs/image-20250925101138944.png" alt="imgs/image-20250925101138944.png" srcset="imgs/image-20250925101138944.png?size=small, imgs/image-20250925101138944.png?size=medium 1.5x, imgs/image-20250925101138944.png?size=large 2x" data-title="imgs/image-20250925101138944.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>提取出 PDF 后，全选复制 PDF 里面的内容，粘贴到文本文件里，即可得到 flag<code>flag{MB03_40001}</code></p>
 <blockquote>
 <p>这里我提取出来的 PDF 文件还是有点问题，待完善</p>
 </blockquote>
 <p>用 tshark 提取的命令如下：</p>
-<div class="highlight" id="id-8"><div class="chroma">
+<div class="highlight" id="id-11"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">tshark -r test.pcap -T fields -Y <span class="s1">&#39;((_ws.col.protocol == &#34;Modbus/TCP&#34;) &amp;&amp; (modbus.func_code == 3)) &amp;&amp; (modbus.request_frame)&#39;</span> -e <span class="s1">&#39;modbus.regval_uint16&#39;</span> &gt; out.txt</span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="题目名称-音频隐写" class="heading-element">
-  <a href="#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-%e9%9f%b3%e9%a2%91%e9%9a%90%e5%86%99" class="heading-mark"></a>题目名称 音频隐写</h2><h2 id="题目名称-所见即是开始" class="heading-element">
-  <a href="#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-%e6%89%80%e8%a7%81%e5%8d%b3%e6%98%af%e5%bc%80%e5%a7%8b" class="heading-mark"></a>题目名称 所见即是开始</h2></div><div class="post-footer" id="post-footer">
+</div><h2 id="todo-题目名称-文件分析" class="heading-element">
+  <a href="#todo-%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-%e6%96%87%e4%bb%b6%e5%88%86%e6%9e%90" class="heading-mark"></a>[TODO] 题目名称 文件分析</h2><p>附件给了一个 16个八戒.bin，010 打开查看</p>
+<p><img loading="lazy" src="imgs/image-20250925132928952.png" alt="imgs/image-20250925132928952.png" srcset="imgs/image-20250925132928952.png?size=small, imgs/image-20250925132928952.png?size=medium 1.5x, imgs/image-20250925132928952.png?size=large 2x" data-title="imgs/image-20250925132928952.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>strings 一下，根据可打印信息推测</p>
+<p>这可能是一个用于特定硬件的 OTA 远程升级固件包。</p>
+<h2 id="todo-题目名称-勒索病毒攻击" class="heading-element">
+  <a href="#todo-%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-%e5%8b%92%e7%b4%a2%e7%97%85%e6%af%92%e6%94%bb%e5%87%bb" class="heading-mark"></a>[TODO] 题目名称 勒索病毒攻击</h2><p>附件给了一个 <code>勒索事件截图.png</code>，还有一个 <code>车辆OEM厂商重要数据@Hack</code></p>
+<p>PNG 图片如下所示：</p>
+<p><img loading="lazy" src="imgs/image-20250925133301580.png" alt="imgs/image-20250925133301580.png" srcset="imgs/image-20250925133301580.png?size=small, imgs/image-20250925133301580.png?size=medium 1.5x, imgs/image-20250925133301580.png?size=large 2x" data-title="imgs/image-20250925133301580.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>010 打开另一个文件，发现其实是一个加密的 zip 压缩包</p>
+<p><img loading="lazy" src="imgs/image-20250925133326627.png" alt="imgs/image-20250925133326627.png" srcset="imgs/image-20250925133326627.png?size=small, imgs/image-20250925133326627.png?size=medium 1.5x, imgs/image-20250925133326627.png?size=large 2x" data-title="imgs/image-20250925133326627.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>zsteg 扫一下这张 PNG，发现图片 LSB 隐写了一个文件</p>
+<p><img loading="lazy" src="imgs/image-20250925133609217.png" alt="imgs/image-20250925133609217.png" srcset="imgs/image-20250925133609217.png?size=small, imgs/image-20250925133609217.png?size=medium 1.5x, imgs/image-20250925133609217.png?size=large 2x" data-title="imgs/image-20250925133609217.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<h2 id="todo-题目名称-多注意观察" class="heading-element">
+  <a href="#todo-%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-%e5%a4%9a%e6%b3%a8%e6%84%8f%e8%a7%82%e5%af%9f" class="heading-mark"></a>[TODO] 题目名称 多注意观察</h2><p>附件给了一个 flag.blf，010 打开查看发现其实是个 rar 压缩包</p>
+<p><img loading="lazy" src="imgs/image-20250925135138223.png" alt="imgs/image-20250925135138223.png" srcset="imgs/image-20250925135138223.png?size=small, imgs/image-20250925135138223.png?size=medium 1.5x, imgs/image-20250925135138223.png?size=large 2x" data-title="imgs/image-20250925135138223.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>改后缀为 .rar 后打开，发现是加密的，并且注释里有提示：<code>FFD8FFE000104A46494600</code></p>
+<p><img loading="lazy" src="imgs/image-20250925135252669.png" alt="imgs/image-20250925135252669.png" srcset="imgs/image-20250925135252669.png?size=small, imgs/image-20250925135252669.png?size=medium 1.5x, imgs/image-20250925135252669.png?size=large 2x" data-title="imgs/image-20250925135252669.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><code>FFD8FFE000104A46494600</code> 解码后发现其实是 JPG 的文件头</p>
+<h2 id="todo-题目名称-autopilot-ghost" class="heading-element">
+  <a href="#todo-%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-autopilot-ghost" class="heading-mark"></a>[TODO] 题目名称 Autopilot Ghost</h2><p>附件给了一个流量包，主要是 TCP 和 UDP 流量</p>
+<p><img loading="lazy" src="imgs/image-20250925140233657.png" alt="imgs/image-20250925140233657.png" srcset="imgs/image-20250925140233657.png?size=small, imgs/image-20250925140233657.png?size=medium 1.5x, imgs/image-20250925140233657.png?size=large 2x" data-title="imgs/image-20250925140233657.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>结合题目的提示，翻译为中文大致的意思是：自动驾驶的幽灵</p>
+<p>发现 UDP 传输的数据都是 1118 字节，然后 010 diff 了一下，发现每段数据的差异还是挺大的</p>
+<h2 id="题目名称-工控协议隐蔽通道分析附件" class="heading-element">
+  <a href="#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-%e5%b7%a5%e6%8e%a7%e5%8d%8f%e8%ae%ae%e9%9a%90%e8%94%bd%e9%80%9a%e9%81%93%e5%88%86%e6%9e%90%e9%99%84%e4%bb%b6" class="heading-mark"></a>题目名称 工控协议隐蔽通道分析附件</h2><p>题目附件给了个流量包，翻看了一下主要是 S7common 和 Modbus 流量</p>
+<p>然后发现还传了一个 PNG 和一个 ZIP 压缩包</p>
+<p>因为不知道具体的顺序，所以无法完整的提取出来</p>
+<p>尝试直接 strings 流量包，可以得到如下内容：</p>
+<div class="highlight" id="id-12"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">ADDRESS_ORDER
+</span></span><span class="line"><span class="cl">$ZIP_FILE_SCATTERED_ACROSS_FOUR_PARTS
+</span></span><span class="line"><span class="cl">WARNING: READ_RESPONSES_CONTAIN_INVALID_DATA
+</span></span><span class="line"><span class="cl">ZIP_PASSWORD_HINT
+</span></span><span class="line"><span class="cl">NOT_THE_DROID
+</span></span><span class="line"><span class="cl">ZIP_HINT_1
+</span></span><span class="line"><span class="cl">CHECK_DB2_AND_M
+</span></span><span class="line"><span class="cl">fl4g_k33p_
+</span></span><span class="line"><span class="cl">flag{zip_ascii_values_of_&#39;flag&#39;}
+</span></span><span class="line"><span class="cl">DATA_BEGIN_AT_ASCII_VALUES_OF_&#39;f&#39;
+</span></span><span class="line"><span class="cl">CAES_l_3:V0F3PP34
+</span></span><span class="line"><span class="cl">K_MAGIC_BYTE
+</span></span><span class="line"><span class="cl">looking_at_M_area}
+</span></span><span class="line"><span class="cl">READ_RESPONSES_ARE_INVALID_CHECK_WRITE_OPS
+</span></span><span class="line"><span class="cl">FOCUS_ON_S7_WRITE_VARIABLE_OPERATIONS
+</span></span><span class="line"><span class="cl">RED_HERRING
+</span></span><span class="line"><span class="cl">JUST_NOISE
+</span></span><span class="line"><span class="cl">HINT: PASSWORD_ENCRYPTED_WITH_CAESAR_SHIFT_3
+</span></span><span class="line"><span class="cl">FOCUS_ON_S7_WRITE_VARIABLE_OPERATIONS_ONLY
+</span></span><span class="line"><span class="cl">OT_IMPORTANT
+</span></span><span class="line"><span class="cl">flag{n0t_
+</span></span><span class="line"><span class="cl">ALL_DATA_FRAGMENTS_IN_M_AREA
+</span></span><span class="line"><span class="cl">PASSWORD_IN_DB_AREA_ADDRESS_0x60_WITH_CAESAR_CIPHER</span></span></code></pre></td></tr></table>
+</div>
+</div></div><div class="post-footer" id="post-footer">
   <div class="post-info">
     <div class="post-info-line">
       <div class="post-info-mod">

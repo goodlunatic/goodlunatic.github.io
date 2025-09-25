@@ -14,7 +14,7 @@
 但Misc涉及的范围实在太广了，于是就想着一边学习一边记录，因而就有了这篇文章">
   <meta itemprop="datePublished" content="2025-09-20T22:10:17+08:00">
   <meta itemprop="dateModified" content="2025-09-20T22:10:17+08:00">
-  <meta itemprop="wordCount" content="12639">
+  <meta itemprop="wordCount" content="13057">
   <meta itemprop="keywords" content="Misc,CTF"><meta property="og:url" content="https://goodlunatic.github.io/posts/1ad9200/">
   <meta property="og:site_name" content="⚡Lunatic BLOG⚡">
   <meta property="og:title" content="CTF-Misc Guide">
@@ -44,7 +44,7 @@
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": "https:\/\/goodlunatic.github.io\/posts\/1ad9200\/"
-    },"genre": "posts","keywords": "Misc, CTF","wordcount":  12639 ,
+    },"genre": "posts","keywords": "Misc, CTF","wordcount":  13057 ,
     "url": "https:\/\/goodlunatic.github.io\/posts\/1ad9200\/","datePublished": "2025-09-20T22:10:17+08:00","dateModified": "2025-09-20T22:10:17+08:00","publisher": {
       "@type": "Organization",
       "name": ""},"author": {
@@ -148,7 +148,7 @@
 <article class="page single">
   <div class="header"><h1 class="single-title animate__animated animate__flipInX"><span>CTF-Misc Guide</span>
     </h1></div><div class="post-meta">
-    <div class="post-meta-line"><span class="post-author"><a href="https://goodlunatic.github.io" title="Author"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><img loading="lazy" src="https://www.nssctf.cn/files/2024/4/28/7f130a1387.png" alt="Lunatic" data-title="Lunatic" class="avatar" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>&nbsp;Lunatic</a></span><span class="post-included-in">&nbsp;included in <a href="/categories/ctf/" class="post-category" title="Category - CTF"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> CTF</a></span></div><div class="post-meta-line"><span title="published on &lt;no value&gt;"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden="true"></i><time datetime="2025-09-20">2025-09-20</time></span>&nbsp;<span title=""><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>About 12700 words</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>60 minutes</span>&nbsp;</div>
+    <div class="post-meta-line"><span class="post-author"><a href="https://goodlunatic.github.io" title="Author"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><img loading="lazy" src="https://www.nssctf.cn/files/2024/4/28/7f130a1387.png" alt="Lunatic" data-title="Lunatic" class="avatar" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>&nbsp;Lunatic</a></span><span class="post-included-in">&nbsp;included in <a href="/categories/ctf/" class="post-category" title="Category - CTF"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> CTF</a></span></div><div class="post-meta-line"><span title="published on &lt;no value&gt;"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden="true"></i><time datetime="2025-09-20">2025-09-20</time></span>&nbsp;<span title=""><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>About 13100 words</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>62 minutes</span>&nbsp;</div>
   </div><div class="details toc" id="toc-static"
     data-kept="false">
     <div class="details-summary toc-title">
@@ -473,6 +473,7 @@
         <li><a href="#14分析wav左右声道的差值">14、分析WAV左右声道的差值</a></li>
         <li><a href="#15使用脚本提取wav数据进行分析">15、使用脚本提取WAV数据进行分析</a></li>
         <li><a href="#16提取两个wav音频中的浮点集并分析">16、提取两个WAV音频中的浮点集并分析</a></li>
+        <li><a href="#17频率映射到字符">17、频率映射到字符</a></li>
       </ul>
     </li>
     <li><a href="#misc取证题思路">Misc——取证题思路：</a></li>
@@ -2601,7 +2602,8 @@
   <a href="#twitter-secret-messages" class="heading-mark"></a>Twitter Secret Messages</h3><p>特点就是密文中有很多<code>Unicode</code>字符，直接用在线网站解密即可：https://holloway.nz/steg/</p>
 <p><img loading="lazy" src="imgs/image-20250307145735098.png" alt="imgs/image-20250307145735098.png" srcset="imgs/image-20250307145735098.png?size=small, imgs/image-20250307145735098.png?size=medium 1.5x, imgs/image-20250307145735098.png?size=large 2x" data-title="imgs/image-20250307145735098.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <h3 id="盲文" class="heading-element">
-  <a href="#%e7%9b%b2%e6%96%87" class="heading-mark"></a>盲文</h3><p><img loading="lazy" src="imgs/image-20250315122344020.png" alt="imgs/image-20250315122344020.png" srcset="imgs/image-20250315122344020.png?size=small, imgs/image-20250315122344020.png?size=medium 1.5x, imgs/image-20250315122344020.png?size=large 2x" data-title="imgs/image-20250315122344020.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+  <a href="#%e7%9b%b2%e6%96%87" class="heading-mark"></a>盲文</h3><p><img loading="lazy" src="imgs/image-20250925131554313.png" alt="imgs/image-20250925131554313.png" srcset="imgs/image-20250925131554313.png?size=small, imgs/image-20250925131554313.png?size=medium 1.5x, imgs/image-20250925131554313.png?size=large 2x" data-title="imgs/image-20250925131554313.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><img loading="lazy" src="imgs/image-20250925131524373.png" alt="imgs/image-20250925131524373.png" srcset="imgs/image-20250925131524373.png?size=small, imgs/image-20250925131524373.png?size=medium 1.5x, imgs/image-20250925131524373.png?size=large 2x" data-title="imgs/image-20250925131524373.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <h3 id="旗语" class="heading-element">
   <a href="#%e6%97%97%e8%af%ad" class="heading-mark"></a>旗语</h3><p><img loading="lazy" src="imgs/image-20250421203306482.png" alt="imgs/image-20250421203306482.png" srcset="imgs/image-20250421203306482.png?size=small, imgs/image-20250421203306482.png?size=medium 1.5x, imgs/image-20250421203306482.png?size=large 2x" data-title="imgs/image-20250421203306482.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <h3 id="tupper自指公式" class="heading-element">
@@ -6956,6 +6958,200 @@
 </span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">libnum</span><span class="o">.</span><span class="n">b2s</span><span class="p">(</span><span class="n">flag</span><span class="p">))</span>
 </span></span><span class="line"><span class="cl"><span class="c1"># b&#39;SYC{wav_LSB_but_You_can_get_M3_Coll!}&#39;</span></span></span></code></pre></td></tr></table>
 </div>
+</div><h3 id="17频率映射到字符" class="heading-element">
+  <a href="#17%e9%a2%91%e7%8e%87%e6%98%a0%e5%b0%84%e5%88%b0%e5%ad%97%e7%ac%a6" class="heading-mark"></a>17、频率映射到字符</h3><div class="highlight" id="id-169"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span><span class="lnt">73
+</span><span class="lnt">74
+</span><span class="lnt">75
+</span><span class="lnt">76
+</span><span class="lnt">77
+</span><span class="lnt">78
+</span><span class="lnt">79
+</span><span class="lnt">80
+</span><span class="lnt">81
+</span><span class="lnt">82
+</span><span class="lnt">83
+</span><span class="lnt">84
+</span><span class="lnt">85
+</span><span class="lnt">86
+</span><span class="lnt">87
+</span><span class="lnt">88
+</span><span class="lnt">89
+</span><span class="lnt">90
+</span><span class="lnt">91
+</span><span class="lnt">92
+</span><span class="lnt">93
+</span><span class="lnt">94
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">scipy.io</span> <span class="kn">import</span> <span class="n">wavfile</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 常量定义</span>
+</span></span><span class="line"><span class="cl"><span class="n">DEFAULT_CHUNK_DURATION_MS</span> <span class="o">=</span> <span class="mi">100</span>  <span class="c1"># 默认分析块时长（毫秒）</span>
+</span></span><span class="line"><span class="cl"><span class="n">FREQ_DIFF_THRESHOLD</span> <span class="o">=</span> <span class="mi">30</span>         <span class="c1"># 频率差异阈值</span>
+</span></span><span class="line"><span class="cl"><span class="n">LOW_FREQ_THRESHOLD</span> <span class="o">=</span> <span class="mi">100</span>         <span class="c1"># 低频噪声阈值</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 频率与字符的对照表</span>
+</span></span><span class="line"><span class="cl"><span class="n">FREQ_MAP</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 小写字母</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;a&#39;</span><span class="p">:</span> <span class="mi">440</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">:</span> <span class="mi">466</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">:</span> <span class="mi">494</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">:</span> <span class="mi">523</span><span class="p">,</span> <span class="s1">&#39;e&#39;</span><span class="p">:</span> <span class="mi">554</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;f&#39;</span><span class="p">:</span> <span class="mi">587</span><span class="p">,</span> <span class="s1">&#39;g&#39;</span><span class="p">:</span> <span class="mi">622</span><span class="p">,</span> <span class="s1">&#39;h&#39;</span><span class="p">:</span> <span class="mi">659</span><span class="p">,</span> <span class="s1">&#39;i&#39;</span><span class="p">:</span> <span class="mi">698</span><span class="p">,</span> <span class="s1">&#39;j&#39;</span><span class="p">:</span> <span class="mi">740</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;k&#39;</span><span class="p">:</span> <span class="mi">784</span><span class="p">,</span> <span class="s1">&#39;l&#39;</span><span class="p">:</span> <span class="mi">830</span><span class="p">,</span> <span class="s1">&#39;m&#39;</span><span class="p">:</span> <span class="mi">880</span><span class="p">,</span> <span class="s1">&#39;n&#39;</span><span class="p">:</span> <span class="mi">932</span><span class="p">,</span> <span class="s1">&#39;o&#39;</span><span class="p">:</span> <span class="mi">988</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;p&#39;</span><span class="p">:</span> <span class="mi">1047</span><span class="p">,</span> <span class="s1">&#39;q&#39;</span><span class="p">:</span> <span class="mi">1109</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">:</span> <span class="mi">1175</span><span class="p">,</span> <span class="s1">&#39;s&#39;</span><span class="p">:</span> <span class="mi">1245</span><span class="p">,</span> <span class="s1">&#39;t&#39;</span><span class="p">:</span> <span class="mi">1319</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;u&#39;</span><span class="p">:</span> <span class="mi">1397</span><span class="p">,</span> <span class="s1">&#39;v&#39;</span><span class="p">:</span> <span class="mi">1480</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">:</span> <span class="mi">1568</span><span class="p">,</span> <span class="s1">&#39;x&#39;</span><span class="p">:</span> <span class="mi">1661</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">:</span> <span class="mi">1760</span><span class="p">,</span> <span class="s1">&#39;z&#39;</span><span class="p">:</span> <span class="mi">1865</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="c1"># 数字</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;1&#39;</span><span class="p">:</span> <span class="mi">1000</span><span class="p">,</span> <span class="s1">&#39;2&#39;</span><span class="p">:</span> <span class="mi">2000</span><span class="p">,</span> <span class="s1">&#39;3&#39;</span><span class="p">:</span> <span class="mi">3000</span><span class="p">,</span> <span class="s1">&#39;4&#39;</span><span class="p">:</span> <span class="mi">4000</span><span class="p">,</span> <span class="s1">&#39;5&#39;</span><span class="p">:</span> <span class="mi">5000</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;6&#39;</span><span class="p">:</span> <span class="mi">6000</span><span class="p">,</span> <span class="s1">&#39;7&#39;</span><span class="p">:</span> <span class="mi">7000</span><span class="p">,</span> <span class="s1">&#39;8&#39;</span><span class="p">:</span> <span class="mi">8000</span><span class="p">,</span> <span class="s1">&#39;9&#39;</span><span class="p">:</span> <span class="mi">9000</span><span class="p">,</span> <span class="s1">&#39;0&#39;</span><span class="p">:</span> <span class="mi">10000</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="c1"># 大写字母（比对应小写字母稍高频率）</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="mi">445</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">:</span> <span class="mi">471</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">:</span> <span class="mi">499</span><span class="p">,</span> <span class="s1">&#39;D&#39;</span><span class="p">:</span> <span class="mi">528</span><span class="p">,</span> <span class="s1">&#39;E&#39;</span><span class="p">:</span> <span class="mi">559</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;F&#39;</span><span class="p">:</span> <span class="mi">592</span><span class="p">,</span> <span class="s1">&#39;G&#39;</span><span class="p">:</span> <span class="mi">627</span><span class="p">,</span> <span class="s1">&#39;H&#39;</span><span class="p">:</span> <span class="mi">664</span><span class="p">,</span> <span class="s1">&#39;I&#39;</span><span class="p">:</span> <span class="mi">703</span><span class="p">,</span> <span class="s1">&#39;J&#39;</span><span class="p">:</span> <span class="mi">745</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;K&#39;</span><span class="p">:</span> <span class="mi">789</span><span class="p">,</span> <span class="s1">&#39;L&#39;</span><span class="p">:</span> <span class="mi">835</span><span class="p">,</span> <span class="s1">&#39;M&#39;</span><span class="p">:</span> <span class="mi">885</span><span class="p">,</span> <span class="s1">&#39;N&#39;</span><span class="p">:</span> <span class="mi">937</span><span class="p">,</span> <span class="s1">&#39;O&#39;</span><span class="p">:</span> <span class="mi">993</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;P&#39;</span><span class="p">:</span> <span class="mi">1052</span><span class="p">,</span> <span class="s1">&#39;Q&#39;</span><span class="p">:</span> <span class="mi">1114</span><span class="p">,</span> <span class="s1">&#39;R&#39;</span><span class="p">:</span> <span class="mi">1180</span><span class="p">,</span> <span class="s1">&#39;S&#39;</span><span class="p">:</span> <span class="mi">1250</span><span class="p">,</span> <span class="s1">&#39;T&#39;</span><span class="p">:</span> <span class="mi">1324</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;U&#39;</span><span class="p">:</span> <span class="mi">1402</span><span class="p">,</span> <span class="s1">&#39;V&#39;</span><span class="p">:</span> <span class="mi">1485</span><span class="p">,</span> <span class="s1">&#39;W&#39;</span><span class="p">:</span> <span class="mi">1573</span><span class="p">,</span> <span class="s1">&#39;X&#39;</span><span class="p">:</span> <span class="mi">1666</span><span class="p">,</span> <span class="s1">&#39;Y&#39;</span><span class="p">:</span> <span class="mi">1765</span><span class="p">,</span> <span class="s1">&#39;Z&#39;</span><span class="p">:</span> <span class="mi">1870</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">find_closest_char</span><span class="p">(</span><span class="n">target_freq</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="ow">not</span> <span class="n">FREQ_MAP</span> <span class="ow">or</span> <span class="n">target_freq</span> <span class="o">&lt;</span> <span class="n">LOW_FREQ_THRESHOLD</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="kc">None</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="c1"># 找到最接近的频率对应的字符</span>
+</span></span><span class="line"><span class="cl">    <span class="n">closest_char</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">FREQ_MAP</span><span class="o">.</span><span class="n">keys</span><span class="p">(),</span> 
+</span></span><span class="line"><span class="cl">                      <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">char</span><span class="p">:</span> <span class="nb">abs</span><span class="p">(</span><span class="n">FREQ_MAP</span><span class="p">[</span><span class="n">char</span><span class="p">]</span> <span class="o">-</span> <span class="n">target_freq</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="c1"># 检查频率差异是否在可接受范围内</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">FREQ_MAP</span><span class="p">[</span><span class="n">closest_char</span><span class="p">]</span> <span class="o">-</span> <span class="n">target_freq</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">FREQ_DIFF_THRESHOLD</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="kc">None</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">closest_char</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">analyze_wav_sequentially</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="n">chunk_duration_ms</span><span class="o">=</span><span class="n">DEFAULT_CHUNK_DURATION_MS</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">sample_rate</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">wavfile</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 如果是立体声，只使用左声道</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">data</span><span class="o">.</span><span class="n">ndim</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="c1"># 计算每个块的大小（样本数）</span>
+</span></span><span class="line"><span class="cl">    <span class="n">chunk_size</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">sample_rate</span> <span class="o">*</span> <span class="n">chunk_duration_ms</span> <span class="o">/</span> <span class="mi">1000</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">num_chunks</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">//</span> <span class="n">chunk_size</span>
+</span></span><span class="line"><span class="cl">    <span class="n">decoded_chars</span> <span class="o">=</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl">    <span class="n">last_char</span> <span class="o">=</span> <span class="kc">None</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;[+] 采样率: </span><span class="si">{</span><span class="n">sample_rate</span><span class="si">}</span><span class="s2"> Hz, 块时长: </span><span class="si">{</span><span class="n">chunk_duration_ms</span><span class="si">}</span><span class="s2"> ms, 总块数: </span><span class="si">{</span><span class="n">num_chunks</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_chunks</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">start</span> <span class="o">=</span> <span class="n">i</span> <span class="o">*</span> <span class="n">chunk_size</span>
+</span></span><span class="line"><span class="cl">        <span class="n">end</span> <span class="o">=</span> <span class="n">start</span> <span class="o">+</span> <span class="n">chunk_size</span>
+</span></span><span class="line"><span class="cl">        <span class="n">chunk</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">start</span><span class="p">:</span><span class="n">end</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">        <span class="c1"># 对当前块进行 FFT 分析</span>
+</span></span><span class="line"><span class="cl">        <span class="n">fft_spectrum</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">rfft</span><span class="p">(</span><span class="n">chunk</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">fft_freq</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">rfftfreq</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">chunk</span><span class="p">),</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="n">sample_rate</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">        <span class="c1"># 找到主频率（忽略直流分量）</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">fft_spectrum</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">peak_index</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">fft_spectrum</span><span class="p">[</span><span class="mi">1</span><span class="p">:]))</span> <span class="o">+</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">            <span class="n">dominant_frequency</span> <span class="o">=</span> <span class="n">fft_freq</span><span class="p">[</span><span class="n">peak_index</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">            
+</span></span><span class="line"><span class="cl">            <span class="c1"># 查找对应的字符</span>
+</span></span><span class="line"><span class="cl">            <span class="n">char</span> <span class="o">=</span> <span class="n">find_closest_char</span><span class="p">(</span><span class="n">dominant_frequency</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            
+</span></span><span class="line"><span class="cl">            <span class="c1"># 为了避免一个长音被重复记录，只有当字符变化时才记录</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="n">char</span> <span class="ow">and</span> <span class="n">char</span> <span class="o">!=</span> <span class="n">last_char</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                <span class="n">decoded_chars</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">char</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                <span class="n">last_char</span> <span class="o">=</span> <span class="n">char</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="n">final_message</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">decoded_chars</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;[+] 解码出的字符序列: </span><span class="si">{</span><span class="n">final_message</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;[+] 字符数量: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">decoded_chars</span><span class="p">)</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">final_message</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">func</span><span class="p">():</span>    
+</span></span><span class="line"><span class="cl">    <span class="n">wav_file</span> <span class="o">=</span> <span class="s2">&#34;video.wav&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">analyze_wav_sequentially</span><span class="p">(</span><span class="n">wav_file</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&#34;__main__&#34;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">func</span><span class="p">()</span></span></span></code></pre></td></tr></table>
+</div>
 </div><h2 id="misc取证题思路" class="heading-element">
   <a href="#misc%e5%8f%96%e8%af%81%e9%a2%98%e6%80%9d%e8%b7%af" class="heading-mark"></a>Misc——取证题思路：</h2><p>详见作者博客中的 <strong><a href="https://goodlunatic.github.io/posts/761da51/"target="_blank" rel="external nofollow noopener noreferrer">Misc-Forensics</a></strong> 这篇文章</p>
 <h2 id="git文件泄露" class="heading-element">
@@ -6966,7 +7162,7 @@
   <a href="#1%e7%94%a8yandex%e8%af%86%e5%9b%be" class="heading-mark"></a>1.用yandex识图</h3><h2 id="others" class="heading-element">
   <a href="#others" class="heading-mark"></a>Others：</h2><h3 id="字节序" class="heading-element">
   <a href="#%e5%ad%97%e8%8a%82%e5%ba%8f" class="heading-mark"></a>字节序</h3><p><strong>字节的排列方式有两个通用规则:</strong></p>
-<div class="highlight" id="id-169"><div class="chroma">
+<div class="highlight" id="id-170"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -6976,7 +7172,7 @@
 </span></span><span class="line"><span class="cl">小端序（Little-Endian），将一个多位数的低位放在较小的地址处，高位放在较大的地址处，则称小端序。小端序与人类的阅读习惯相反，但更符合计算机读取内存的方式，因为CPU读取内存中的数据时，是从低地址向高地址方向进行读取的。</span></span></code></pre></td></tr></table>
 </div>
 </div><p><strong>例子：</strong></p>
-<div class="highlight" id="id-170"><div class="chroma">
+<div class="highlight" id="id-171"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -6994,7 +7190,7 @@
 </span></span><span class="line"><span class="cl">0x0D 0x0C 0xB 0xA</span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="为何要有字节序" class="heading-element">
-  <a href="#%e4%b8%ba%e4%bd%95%e8%a6%81%e6%9c%89%e5%ad%97%e8%8a%82%e5%ba%8f" class="heading-mark"></a>为何要有字节序</h3><div class="highlight" id="id-171"><div class="chroma">
+  <a href="#%e4%b8%ba%e4%bd%95%e8%a6%81%e6%9c%89%e5%ad%97%e8%8a%82%e5%ba%8f" class="heading-mark"></a>为何要有字节序</h3><div class="highlight" id="id-172"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
@@ -7002,7 +7198,7 @@
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">因为计算机电路先处理低位字节，效率比较高，因为计算都是从低位开始的。所以，计算机的内部处理都是小端字节序。在计算机内部，小端序被广泛应用于现代 CPU 内部存储数据；而在其他场景，比如网络传输和文件存储则使用大端序。</span></span></code></pre></td></tr></table>
 </div>
 </div><p><strong>使用Python中的struct模块来处理大小端序</strong></p>
-<div class="highlight" id="id-172"><div class="chroma">
+<div class="highlight" id="id-173"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -7120,7 +7316,7 @@
 </span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s2">&#34;</span><span class="se">\n</span><span class="s2">Data integrity maintained!&#34;</span><span class="p">)</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p><strong>十六进制数据大小端序转换</strong></p>
-<div class="highlight" id="id-173"><div class="chroma">
+<div class="highlight" id="id-174"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -7175,7 +7371,7 @@
 </div>
 </div><h3 id="linux-tar命令" class="heading-element">
   <a href="#linux-tar%e5%91%bd%e4%bb%a4" class="heading-mark"></a>Linux tar命令</h3><h4 id="打包压缩" class="heading-element">
-  <a href="#%e6%89%93%e5%8c%85%e5%8e%8b%e7%bc%a9" class="heading-mark"></a>打包压缩</h4><div class="highlight" id="id-174"><div class="chroma">
+  <a href="#%e6%89%93%e5%8c%85%e5%8e%8b%e7%bc%a9" class="heading-mark"></a>打包压缩</h4><div class="highlight" id="id-175"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -7199,7 +7395,7 @@
 </span></span><span class="line"><span class="cl">tar -czvf out.tar.gz ./*</span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="解压提取" class="heading-element">
-  <a href="#%e8%a7%a3%e5%8e%8b%e6%8f%90%e5%8f%96" class="heading-mark"></a>解压提取</h4><div class="highlight" id="id-175"><div class="chroma">
+  <a href="#%e8%a7%a3%e5%8e%8b%e6%8f%90%e5%8f%96" class="heading-mark"></a>解压提取</h4><div class="highlight" id="id-176"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2

@@ -237,7 +237,191 @@ tshark -r protocal.pcapng -T fields -Y &#39;mqtt&#39; -e &#39;mqtt.msg&#39; &gt;
 
 ![](imgs/image-20250925100707429.png)
 
-## 题目名称 异常的数据流量包
+## 题目名称 音频隐写
+
+附件给了一个 字符频率映射表.txt 还有一个 wav 文件，映射表中的内容如下：
+
+```
+&#39;a&#39;: 440, &#39;b&#39;: 466, &#39;c&#39;: 494, &#39;d&#39;: 523, &#39;e&#39;: 554,
+&#39;f&#39;: 587, &#39;g&#39;: 622, &#39;h&#39;: 659, &#39;i&#39;: 698, &#39;j&#39;: 740,
+&#39;k&#39;: 784, &#39;l&#39;: 830, &#39;m&#39;: 880, &#39;n&#39;: 932, &#39;o&#39;: 988,
+&#39;p&#39;: 1047, &#39;q&#39;: 1109, &#39;r&#39;: 1175, &#39;s&#39;: 1245, &#39;t&#39;: 1319,
+&#39;u&#39;: 1397, &#39;v&#39;: 1480, &#39;w&#39;: 1568, &#39;x&#39;: 1661, &#39;y&#39;: 1760, &#39;z&#39;: 1865,
+&#39;1&#39;: 1000, &#39;2&#39;: 2000, &#39;3&#39;: 3000, &#39;4&#39;: 4000, &#39;5&#39;: 5000,
+&#39;6&#39;: 6000, &#39;7&#39;: 7000, &#39;8&#39;: 8000, &#39;9&#39;: 9000, &#39;0&#39;: 10000,
+&#39;A&#39;: 445, &#39;B&#39;: 471, &#39;C&#39;: 499, &#39;D&#39;: 528, &#39;E&#39;: 559,
+&#39;F&#39;: 592, &#39;G&#39;: 627, &#39;H&#39;: 664, &#39;I&#39;: 703, &#39;J&#39;: 745,
+&#39;K&#39;: 789, &#39;L&#39;: 835, &#39;M&#39;: 885, &#39;N&#39;: 937, &#39;O&#39;: 993,
+&#39;P&#39;: 1052, &#39;Q&#39;: 1114, &#39;R&#39;: 1180, &#39;S&#39;: 1250, &#39;T&#39;: 1324,
+&#39;U&#39;: 1402, &#39;V&#39;: 1485, &#39;W&#39;: 1573, &#39;X&#39;: 1666, &#39;Y&#39;: 1765, &#39;Z&#39;: 1870,
+```
+
+因此我们写个脚本提取一下即可得到 flag: `FvoelrnoBjmFz1aknoF7U24gFe5204521Be19B3voh9BSaqhGRlyXio6m0xtkEZ21nUmhelP`
+
+```python
+import numpy as np
+from scipy.io import wavfile
+
+# 常量定义
+DEFAULT_CHUNK_DURATION_MS = 100  # 默认分析块时长（毫秒）
+FREQ_DIFF_THRESHOLD = 30         # 频率差异阈值
+LOW_FREQ_THRESHOLD = 100         # 低频噪声阈值
+
+# 频率与字符的对照表
+FREQ_MAP = {
+    # 小写字母
+    &#39;a&#39;: 440, &#39;b&#39;: 466, &#39;c&#39;: 494, &#39;d&#39;: 523, &#39;e&#39;: 554,
+    &#39;f&#39;: 587, &#39;g&#39;: 622, &#39;h&#39;: 659, &#39;i&#39;: 698, &#39;j&#39;: 740,
+    &#39;k&#39;: 784, &#39;l&#39;: 830, &#39;m&#39;: 880, &#39;n&#39;: 932, &#39;o&#39;: 988,
+    &#39;p&#39;: 1047, &#39;q&#39;: 1109, &#39;r&#39;: 1175, &#39;s&#39;: 1245, &#39;t&#39;: 1319,
+    &#39;u&#39;: 1397, &#39;v&#39;: 1480, &#39;w&#39;: 1568, &#39;x&#39;: 1661, &#39;y&#39;: 1760, &#39;z&#39;: 1865,
+    
+    # 数字
+    &#39;1&#39;: 1000, &#39;2&#39;: 2000, &#39;3&#39;: 3000, &#39;4&#39;: 4000, &#39;5&#39;: 5000,
+    &#39;6&#39;: 6000, &#39;7&#39;: 7000, &#39;8&#39;: 8000, &#39;9&#39;: 9000, &#39;0&#39;: 10000,
+    
+    # 大写字母（比对应小写字母稍高频率）
+    &#39;A&#39;: 445, &#39;B&#39;: 471, &#39;C&#39;: 499, &#39;D&#39;: 528, &#39;E&#39;: 559,
+    &#39;F&#39;: 592, &#39;G&#39;: 627, &#39;H&#39;: 664, &#39;I&#39;: 703, &#39;J&#39;: 745,
+    &#39;K&#39;: 789, &#39;L&#39;: 835, &#39;M&#39;: 885, &#39;N&#39;: 937, &#39;O&#39;: 993,
+    &#39;P&#39;: 1052, &#39;Q&#39;: 1114, &#39;R&#39;: 1180, &#39;S&#39;: 1250, &#39;T&#39;: 1324,
+    &#39;U&#39;: 1402, &#39;V&#39;: 1485, &#39;W&#39;: 1573, &#39;X&#39;: 1666, &#39;Y&#39;: 1765, &#39;Z&#39;: 1870,
+}
+
+def find_closest_char(target_freq):
+    if not FREQ_MAP or target_freq &lt; LOW_FREQ_THRESHOLD:
+        return None
+    
+    # 找到最接近的频率对应的字符
+    closest_char = min(FREQ_MAP.keys(), 
+                      key=lambda char: abs(FREQ_MAP[char] - target_freq))
+    
+    # 检查频率差异是否在可接受范围内
+    if abs(FREQ_MAP[closest_char] - target_freq) &gt; FREQ_DIFF_THRESHOLD:
+        return None
+    
+    return closest_char
+
+
+def analyze_wav_sequentially(file_path, chunk_duration_ms=DEFAULT_CHUNK_DURATION_MS):
+    sample_rate, data = wavfile.read(file_path)
+    # 如果是立体声，只使用左声道
+    if data.ndim &gt; 1:
+        data = data[:, 0]
+    
+    # 计算每个块的大小（样本数）
+    chunk_size = int(sample_rate * chunk_duration_ms / 1000)
+    num_chunks = len(data) // chunk_size
+    decoded_chars = []
+    last_char = None
+    
+    print(f&#34;[&#43;] 采样率: {sample_rate} Hz, 块时长: {chunk_duration_ms} ms, 总块数: {num_chunks}&#34;)
+    
+    for i in range(num_chunks):
+        start = i * chunk_size
+        end = start &#43; chunk_size
+        chunk = data[start:end]
+        
+        # 对当前块进行 FFT 分析
+        fft_spectrum = np.fft.rfft(chunk)
+        fft_freq = np.fft.rfftfreq(len(chunk), 1.0 / sample_rate)
+        
+        # 找到主频率（忽略直流分量）
+        if len(fft_spectrum) &gt; 1:
+            peak_index = np.argmax(np.abs(fft_spectrum[1:])) &#43; 1
+            dominant_frequency = fft_freq[peak_index]
+            
+            # 查找对应的字符
+            char = find_closest_char(dominant_frequency)
+            
+            # 为了避免一个长音被重复记录，只有当字符变化时才记录
+            if char and char != last_char:
+                decoded_chars.append(char)
+                last_char = char
+    
+    final_message = &#34;&#34;.join(decoded_chars)
+    
+    print(f&#34;[&#43;] 解码出的字符序列: {final_message}&#34;)
+    print(f&#34;[&#43;] 字符数量: {len(decoded_chars)}&#34;)
+    return final_message
+
+
+def func():    
+    wav_file = &#34;video.wav&#34;
+    analyze_wav_sequentially(wav_file)
+    
+
+if __name__ == &#34;__main__&#34;:
+    func()
+
+# [&#43;] 采样率: 44100 Hz, 块时长: 100 ms, 总块数: 73
+# [&#43;] 解码出的字符序列: FvoelrnoBjmFz1aknoF7U24gFe5204521Be19B3voh9BSaqhGRlyXio6m0xtkEZ21nUmhelP
+# [&#43;] 字符数量: 72
+```
+
+## 题目名称 所见即是开始
+
+附件给了一个加密的 zip 压缩包还有下面这张 PNG
+
+![](imgs/image-20250925131246166.png)
+
+ 结合图片中的提示，很容易联想到盲文
+
+![](imgs/image-20250925131419542.png)
+
+结合上面这个对照表，得到解压密码：`hanoi floor is 9`
+
+解压后可以得到一个 hint.txt 和一张 PNG 图片
+
+![](imgs/image-20250925131634540.png)
+
+hint.txt 中的内容如下：
+
+&gt; 所解即所得；
+&gt; 
+&gt; 一组格式为盘&#43;当前柱&#43;去往柱
+
+经典的汉诺塔问题，写个脚本递归一下即可
+
+```python
+def hanio(n, a, b, c):
+    res = &#34;&#34;
+    if n == 1:
+        res &#43;= f&#34;{n}{a}{c}&#34;
+    else:
+        # 将n-1个盘从a通过c移动到b
+        res &#43;= hanio(n-1, a, c, b)
+        # 将最大的盘从a移动到c
+        res &#43;= f&#34;{n}{a}{c}&#34;
+        # 将n-1个盘从b通过a移动到c
+        res &#43;= hanio(n-1, b, a, c)
+    return res
+
+if __name__ == &#39;__main__&#39;:
+    n = 9
+    result = hanio(n, &#39;A&#39;, &#39;B&#39;, &#39;C&#39;)
+    print(result)
+
+# 1AC2AB1CB3AC1BA2BC1AC4AB1CB2CA1BA3CB1AC2AB1CB5AC1BA2BC1AC3BA1CB2CA1BA4BC1AC2AB1CB3AC1BA2BC1AC6AB1CB2CA1BA3CB1AC2AB1CB4CA1BA2BC1AC3BA1CB2CA1BA5CB1AC2AB1CB3AC1BA2BC1AC4AB1CB2CA1BA3CB1AC2AB1CB7AC1BA2BC1AC3BA1CB2CA1BA4BC1AC2AB1CB3AC1BA2BC1AC5BA1CB2CA1BA3CB1AC2AB1CB4CA1BA2BC1AC3BA1CB2CA1BA6BC1AC2AB1CB3AC1BA2BC1AC4AB1CB2CA1BA3CB1AC2AB1CB5AC1BA2BC1AC3BA1CB2CA1BA4BC1AC2AB1CB3AC1BA2BC1AC8AB1CB2CA1BA3CB1AC2AB1CB4CA1BA2BC1AC3BA1CB2CA1BA5CB1AC2AB1CB3AC1BA2BC1AC4AB1CB2CA1BA3CB1AC2AB1CB6CA1BA2BC1AC3BA1CB2CA1BA4BC1AC2AB1CB3AC1BA2BC1AC5BA1CB2CA1BA3CB1AC2AB1CB4CA1BA2BC1AC3BA1CB2CA1BA7CB1AC2AB1CB3AC1BA2BC1AC4AB1CB2CA1BA3CB1AC2AB1CB5AC1BA2BC1AC3BA1CB2CA1BA4BC1AC2AB1CB3AC1BA2BC1AC6AB1CB2CA1BA3CB1AC2AB1CB4CA1BA2BC1AC3BA1CB2CA1BA5CB1AC2AB1CB3AC1BA2BC1AC4AB1CB2CA1BA3CB1AC2AB1CB9AC1BA2BC1AC3BA1CB2CA1BA4BC1AC2AB1CB3AC1BA2BC1AC5BA1CB2CA1BA3CB1AC2AB1CB4CA1BA2BC1AC3BA1CB2CA1BA6BC1AC2AB1CB3AC1BA2BC1AC4AB1CB2CA1BA3CB1AC2AB1CB5AC1BA2BC1AC3BA1CB2CA1BA4BC1AC2AB1CB3AC1BA2BC1AC7BA1CB2CA1BA3CB1AC2AB1CB4CA1BA2BC1AC3BA1CB2CA1BA5CB1AC2AB1CB3AC1BA2BC1AC4AB1CB2CA1BA3CB1AC2AB1CB6CA1BA2BC1AC3BA1CB2CA1BA4BC1AC2AB1CB3AC1BA2BC1AC5BA1CB2CA1BA3CB1AC2AB1CB4CA1BA2BC1AC3BA1CB2CA1BA8BC1AC2AB1CB3AC1BA2BC1AC4AB1CB2CA1BA3CB1AC2AB1CB5AC1BA2BC1AC3BA1CB2CA1BA4BC1AC2AB1CB3AC1BA2BC1AC6AB1CB2CA1BA3CB1AC2AB1CB4CA1BA2BC1AC3BA1CB2CA1BA5CB1AC2AB1CB3AC1BA2BC1AC4AB1CB2CA1BA3CB1AC2AB1CB7AC1BA2BC1AC3BA1CB2CA1BA4BC1AC2AB1CB3AC1BA2BC1AC5BA1CB2CA1BA3CB1AC2AB1CB4CA1BA2BC1AC3BA1CB2CA1BA6BC1AC2AB1CB3AC1BA2BC1AC4AB1CB2CA1BA3CB1AC2AB1CB5AC1BA2BC1AC3BA1CB2CA1BA4BC1AC2AB1CB3AC1BA2BC1AC
+```
+
+## [TODO] 题目名称 工业流量隐写分析
+
+附件给了一张 `larger_lbCN3pEh1o`，是个二维码，扫码可以得到：`Fake_one`
+
+![](imgs/image-20250925140651055.png)
+
+010 打开，发现末尾也没有多的数据，因此尝试拿 stegsolve 查看一下
+
+![](imgs/image-20250925140758107.png)
+
+![](imgs/image-20250925140807150.png)
+
+![](imgs/image-20250925140815137.png)
+
+
+
+## [TODO] 题目名称 异常的数据流量包
 
 附件给了一个流量包，打开发现主要是 Modbus 流量，翻看一下发现传输了一个 PDF 文件
 
@@ -253,10 +437,90 @@ tshark -r protocal.pcapng -T fields -Y &#39;mqtt&#39; -e &#39;mqtt.msg&#39; &gt;
 tshark -r test.pcap -T fields -Y &#39;((_ws.col.protocol == &#34;Modbus/TCP&#34;) &amp;&amp; (modbus.func_code == 3)) &amp;&amp; (modbus.request_frame)&#39; -e &#39;modbus.regval_uint16&#39; &gt; out.txt
 ```
 
-## 题目名称 音频隐写
+## [TODO] 题目名称 文件分析
 
-## 题目名称 所见即是开始
+附件给了一个 16个八戒.bin，010 打开查看
 
+![](imgs/image-20250925132928952.png)
+
+strings 一下，根据可打印信息推测
+
+这可能是一个用于特定硬件的 OTA 远程升级固件包。
+
+## [TODO] 题目名称 勒索病毒攻击
+
+附件给了一个 `勒索事件截图.png`，还有一个 `车辆OEM厂商重要数据@Hack`
+
+PNG 图片如下所示：
+
+![](imgs/image-20250925133301580.png)
+
+010 打开另一个文件，发现其实是一个加密的 zip 压缩包
+
+![](imgs/image-20250925133326627.png)
+
+zsteg 扫一下这张 PNG，发现图片 LSB 隐写了一个文件
+
+![](imgs/image-20250925133609217.png)
+
+## [TODO] 题目名称 多注意观察
+
+附件给了一个 flag.blf，010 打开查看发现其实是个 rar 压缩包
+
+![](imgs/image-20250925135138223.png)
+
+改后缀为 .rar 后打开，发现是加密的，并且注释里有提示：`FFD8FFE000104A46494600`
+
+![](imgs/image-20250925135252669.png)
+
+`FFD8FFE000104A46494600` 解码后发现其实是 JPG 的文件头
+
+## [TODO] 题目名称 Autopilot Ghost
+
+附件给了一个流量包，主要是 TCP 和 UDP 流量
+
+![](imgs/image-20250925140233657.png)
+
+结合题目的提示，翻译为中文大致的意思是：自动驾驶的幽灵
+
+发现 UDP 传输的数据都是 1118 字节，然后 010 diff 了一下，发现每段数据的差异还是挺大的
+
+
+## 题目名称 工控协议隐蔽通道分析附件
+
+题目附件给了个流量包，翻看了一下主要是 S7common 和 Modbus 流量
+
+然后发现还传了一个 PNG 和一个 ZIP 压缩包
+
+因为不知道具体的顺序，所以无法完整的提取出来
+
+尝试直接 strings 流量包，可以得到如下内容：
+
+```
+ADDRESS_ORDER
+$ZIP_FILE_SCATTERED_ACROSS_FOUR_PARTS
+WARNING: READ_RESPONSES_CONTAIN_INVALID_DATA
+ZIP_PASSWORD_HINT
+NOT_THE_DROID
+ZIP_HINT_1
+CHECK_DB2_AND_M
+fl4g_k33p_
+flag{zip_ascii_values_of_&#39;flag&#39;}
+DATA_BEGIN_AT_ASCII_VALUES_OF_&#39;f&#39;
+CAES_l_3:V0F3PP34
+K_MAGIC_BYTE
+looking_at_M_area}
+READ_RESPONSES_ARE_INVALID_CHECK_WRITE_OPS
+FOCUS_ON_S7_WRITE_VARIABLE_OPERATIONS
+RED_HERRING
+JUST_NOISE
+HINT: PASSWORD_ENCRYPTED_WITH_CAESAR_SHIFT_3
+FOCUS_ON_S7_WRITE_VARIABLE_OPERATIONS_ONLY
+OT_IMPORTANT
+flag{n0t_
+ALL_DATA_FRAGMENTS_IN_M_AREA
+PASSWORD_IN_DB_AREA_ADDRESS_0x60_WITH_CAESAR_CIPHER
+```
 
 ---
 

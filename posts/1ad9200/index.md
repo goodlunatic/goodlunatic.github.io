@@ -1439,7 +1439,9 @@ print(ddd)
 
 ### 盲文
 
-![](imgs/image-20250315122344020.png)
+![](imgs/image-20250925131554313.png)
+
+![](imgs/image-20250925131524373.png)
 
 ### 旗语
 
@@ -4316,6 +4318,107 @@ for item in res:
 print(libnum.b2s(flag))
 # b&#39;SYC{wav_LSB_but_You_can_get_M3_Coll!}&#39;
 ```
+
+### 17、频率映射到字符
+
+```python
+import numpy as np
+from scipy.io import wavfile
+
+# 常量定义
+DEFAULT_CHUNK_DURATION_MS = 100  # 默认分析块时长（毫秒）
+FREQ_DIFF_THRESHOLD = 30         # 频率差异阈值
+LOW_FREQ_THRESHOLD = 100         # 低频噪声阈值
+
+# 频率与字符的对照表
+FREQ_MAP = {
+    # 小写字母
+    &#39;a&#39;: 440, &#39;b&#39;: 466, &#39;c&#39;: 494, &#39;d&#39;: 523, &#39;e&#39;: 554,
+    &#39;f&#39;: 587, &#39;g&#39;: 622, &#39;h&#39;: 659, &#39;i&#39;: 698, &#39;j&#39;: 740,
+    &#39;k&#39;: 784, &#39;l&#39;: 830, &#39;m&#39;: 880, &#39;n&#39;: 932, &#39;o&#39;: 988,
+    &#39;p&#39;: 1047, &#39;q&#39;: 1109, &#39;r&#39;: 1175, &#39;s&#39;: 1245, &#39;t&#39;: 1319,
+    &#39;u&#39;: 1397, &#39;v&#39;: 1480, &#39;w&#39;: 1568, &#39;x&#39;: 1661, &#39;y&#39;: 1760, &#39;z&#39;: 1865,
+    
+    # 数字
+    &#39;1&#39;: 1000, &#39;2&#39;: 2000, &#39;3&#39;: 3000, &#39;4&#39;: 4000, &#39;5&#39;: 5000,
+    &#39;6&#39;: 6000, &#39;7&#39;: 7000, &#39;8&#39;: 8000, &#39;9&#39;: 9000, &#39;0&#39;: 10000,
+    
+    # 大写字母（比对应小写字母稍高频率）
+    &#39;A&#39;: 445, &#39;B&#39;: 471, &#39;C&#39;: 499, &#39;D&#39;: 528, &#39;E&#39;: 559,
+    &#39;F&#39;: 592, &#39;G&#39;: 627, &#39;H&#39;: 664, &#39;I&#39;: 703, &#39;J&#39;: 745,
+    &#39;K&#39;: 789, &#39;L&#39;: 835, &#39;M&#39;: 885, &#39;N&#39;: 937, &#39;O&#39;: 993,
+    &#39;P&#39;: 1052, &#39;Q&#39;: 1114, &#39;R&#39;: 1180, &#39;S&#39;: 1250, &#39;T&#39;: 1324,
+    &#39;U&#39;: 1402, &#39;V&#39;: 1485, &#39;W&#39;: 1573, &#39;X&#39;: 1666, &#39;Y&#39;: 1765, &#39;Z&#39;: 1870,
+}
+
+def find_closest_char(target_freq):
+    if not FREQ_MAP or target_freq &lt; LOW_FREQ_THRESHOLD:
+        return None
+    
+    # 找到最接近的频率对应的字符
+    closest_char = min(FREQ_MAP.keys(), 
+                      key=lambda char: abs(FREQ_MAP[char] - target_freq))
+    
+    # 检查频率差异是否在可接受范围内
+    if abs(FREQ_MAP[closest_char] - target_freq) &gt; FREQ_DIFF_THRESHOLD:
+        return None
+    
+    return closest_char
+
+
+def analyze_wav_sequentially(file_path, chunk_duration_ms=DEFAULT_CHUNK_DURATION_MS):
+    sample_rate, data = wavfile.read(file_path)
+    # 如果是立体声，只使用左声道
+    if data.ndim &gt; 1:
+        data = data[:, 0]
+    
+    # 计算每个块的大小（样本数）
+    chunk_size = int(sample_rate * chunk_duration_ms / 1000)
+    num_chunks = len(data) // chunk_size
+    decoded_chars = []
+    last_char = None
+    
+    print(f&#34;[&#43;] 采样率: {sample_rate} Hz, 块时长: {chunk_duration_ms} ms, 总块数: {num_chunks}&#34;)
+    
+    for i in range(num_chunks):
+        start = i * chunk_size
+        end = start &#43; chunk_size
+        chunk = data[start:end]
+        
+        # 对当前块进行 FFT 分析
+        fft_spectrum = np.fft.rfft(chunk)
+        fft_freq = np.fft.rfftfreq(len(chunk), 1.0 / sample_rate)
+        
+        # 找到主频率（忽略直流分量）
+        if len(fft_spectrum) &gt; 1:
+            peak_index = np.argmax(np.abs(fft_spectrum[1:])) &#43; 1
+            dominant_frequency = fft_freq[peak_index]
+            
+            # 查找对应的字符
+            char = find_closest_char(dominant_frequency)
+            
+            # 为了避免一个长音被重复记录，只有当字符变化时才记录
+            if char and char != last_char:
+                decoded_chars.append(char)
+                last_char = char
+    
+    final_message = &#34;&#34;.join(decoded_chars)
+    
+    print(f&#34;[&#43;] 解码出的字符序列: {final_message}&#34;)
+    print(f&#34;[&#43;] 字符数量: {len(decoded_chars)}&#34;)
+    return final_message
+
+
+def func():    
+    wav_file = &#34;video.wav&#34;
+    analyze_wav_sequentially(wav_file)
+    
+
+if __name__ == &#34;__main__&#34;:
+    func()
+```
+
+
 
 ## Misc——取证题思路：
 
