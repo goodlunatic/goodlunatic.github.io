@@ -1942,12 +1942,19 @@ if __name__ == &#34;__main__&#34;:
 
 ![](imgs/image-20250411202601189.png)
 
+得到上述图片后，用010改一下图片的高度，即可得到部分 flag：
 
-得到上述图片后，用010改一下图片的高度，即可得到最后的flag：`DASCTF{fab6ce57e3131f1635b0c953debe67ac165f}`
+`ASCTF{fab6ce57e3131f1635b0`
+
+`c953debe67ac165f}`
 
 ![](imgs/image-20250411202746950.png)
 
 ![](imgs/image-20250411202652827.png)
+
+还剩下几个字符不知道，尝试回去看剩下的数据，发现剩下的数据其实是个 PNG 图片
+
+补上文件头，然后爆破宽高即可得到剩下的 flag
 
 
 ## 题目名称 one (2024 古剑山)
@@ -2881,7 +2888,17 @@ if __name__ == &#34;__main__&#34;:
 &gt; 
 &gt; XhyDfF1j53ZPe3J8wtfp&#43;1G4b2M4verNcvANyQLpLmZN&#43;fDOyGa3h6kmerc84xb40mFVdJex/hw&#43;Vm9gqy/Bbw==
 
+然后在 `@李上网来` 师傅的帮助下，用夜神模拟器打开镜像，在机主信息中发现了密钥：`0nEup6O7`
 
+![](imgs/image-20250926094626574.png)
+
+并且用 DiskGenius 挂载，可以在 `/data/com.amaze.filemanager/database` 中得到几个 db 文件
+
+![](imgs/image-20250926094926413.png)
+
+| id  |                     path                     |             password             |
+| :-: | :------------------------------------------: | :------------------------------: |
+|  1  | /storage/emulated/0/Pictures/g-a-l-f.gpj.aze | AVb8oli7E1rDBDoYma5MrhlDbFPTBWHo |
 
 
 
