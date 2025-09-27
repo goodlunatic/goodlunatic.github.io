@@ -63,6 +63,9 @@ Options → Strings → Default 8-bit
 |                uint64_t                 | 64 位 |
 |             char （-127-128）             | 8 位  |
 |          unsigned char （0-255）          | 8 位  |
+|                                         |      |
+|                  float                  | 32位  |
+|                 double                  | 64 位 |
 
 ## 汇编基础
 
