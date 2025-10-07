@@ -345,7 +345,7 @@
 <p><img loading="lazy" src="imgs/image-20241217163442113.png" alt="imgs/image-20241217163442113.png" srcset="imgs/image-20241217163442113.png?size=small, imgs/image-20241217163442113.png?size=medium 1.5x, imgs/image-20241217163442113.png?size=large 2x" data-title="imgs/image-20241217163442113.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p><img loading="lazy" src="imgs/image-20241217163637471.png" alt="imgs/image-20241217163637471.png" srcset="imgs/image-20241217163637471.png?size=small, imgs/image-20241217163637471.png?size=medium 1.5x, imgs/image-20241217163637471.png?size=large 2x" data-title="imgs/image-20241217163637471.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>因此直接写个脚本还原一下flag.png即可，还原后可以得到一张二维码</p>
-<div class="highlight" id="id-3"><div class="chroma">
+<div class="highlight" id="id-1"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -444,7 +444,7 @@
   <a href="#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-cat%e6%8a%80%e8%83%bd%e5%85%b4%e9%b2%81" class="heading-mark"></a>题目名称 cat(技能兴鲁)</h2><p>题目附件给了一个cat_encode.py还有一张cat.png</p>
 <p><img loading="lazy" src="imgs/image-20241218194619452.png" alt="imgs/image-20241218194619452.png" srcset="imgs/image-20241218194619452.png?size=small, imgs/image-20241218194619452.png?size=medium 1.5x, imgs/image-20241218194619452.png?size=large 2x" data-title="imgs/image-20241218194619452.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>cat_encode.py的内容如下</p>
-<div class="highlight" id="id-4"><div class="chroma">
+<div class="highlight" id="id-2"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -483,7 +483,7 @@
 </div>
 </div><p>很明显就是经典的arnold猫脸变换了，但是没有给我们shuffle_times、a、b</p>
 <p>因此猜测需要我们进行爆破，编写以下脚本进行爆破即可，当然能爆破的前提是三个值都不会太大</p>
-<div class="highlight" id="id-5"><div class="chroma">
+<div class="highlight" id="id-3"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -588,7 +588,7 @@
 <p>第一层解压可以得到<code>rootfs.img</code>，再解压一层即可得到Linux的文件系统</p>
 <p><img loading="lazy" src="imgs/image-20241218132121101.png" alt="imgs/image-20241218132121101.png" srcset="imgs/image-20241218132121101.png?size=small, imgs/image-20241218132121101.png?size=medium 1.5x, imgs/image-20241218132121101.png?size=large 2x" data-title="imgs/image-20241218132121101.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>然后我们在<code>\rootfs\var\adm</code>路径下可以得到一个<code>runrunrun.bash</code>，内容如下</p>
-<div class="highlight" id="id-6"><div class="chroma">
+<div class="highlight" id="id-4"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -605,7 +605,7 @@
 <p>Tips：在做取证题过程中如果发现文件较多，其实可以把文件按照时间排序一下，这样可以大大缩短定位时间</p>
 </blockquote>
 <p>是一个加了混淆的bash脚本，代码不长，我们可以手动解一下这个混淆</p>
-<div class="highlight" id="id-7"><div class="chroma">
+<div class="highlight" id="id-5"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -637,7 +637,7 @@
 <p>所以我们使用<code>Disk Genius</code>的恢复文件功能去恢复加密的压缩包以及里面的加密代码</p>
 <p><img loading="lazy" src="imgs/image-20241218132716931.png" alt="imgs/image-20241218132716931.png" srcset="imgs/image-20241218132716931.png?size=small, imgs/image-20241218132716931.png?size=medium 1.5x, imgs/image-20241218132716931.png?size=large 2x" data-title="imgs/image-20241218132716931.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>改后缀为.zip，然后使用得到的压缩包密码解压即可得到加密代码，内容如下：</p>
-<div class="highlight" id="id-8"><div class="chroma">
+<div class="highlight" id="id-6"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -696,7 +696,7 @@
 </div>
 </div><p>代码逻辑并不复杂，就是用时间戳MD5值的前16位作为key去进行AES-CBC加密，然后IV保存在加密后文件的前16字节中</p>
 <p>解密的思路也比较简单，懒得自己手写了，直接GPT秒了</p>
-<div class="highlight" id="id-9"><div class="chroma">
+<div class="highlight" id="id-7"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -798,7 +798,7 @@
 <p>然后联想到手机键盘密码，根据下面这个对照表得到<code>dtmfiscool</code></p>
 <p>感谢烛影✌提供的对照表</p>
 <p><img loading="lazy" src="imgs/image-20241226092225804.jpeg" alt="imgs/image-20241226092225804.jpeg" srcset="imgs/image-20241226092225804.jpeg?size=small, imgs/image-20241226092225804.jpeg?size=medium 1.5x, imgs/image-20241226092225804.jpeg?size=large 2x" data-title="imgs/image-20241226092225804.jpeg" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
-<div class="highlight" id="id-10"><div class="chroma">
+<div class="highlight" id="id-8"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -816,7 +816,7 @@
 <p><img loading="lazy" src="imgs/image-20241225205550609.jpeg" alt="imgs/image-20241225205550609.jpeg" srcset="imgs/image-20241225205550609.jpeg?size=small, imgs/image-20241225205550609.jpeg?size=medium 1.5x, imgs/image-20241225205550609.jpeg?size=large 2x" data-title="imgs/image-20241225205550609.jpeg" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>发现这张图片主要是讲咖啡价格的，因此密码与咖啡有关，上网搜索可以找到下面这篇文章</p>
 <p>星巴克杯子上字母的含义：https://www.mopress.io/food/olejRNQWej</p>
-<div class="highlight" id="id-11"><div class="chroma">
+<div class="highlight" id="id-9"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -844,7 +844,7 @@
 <p><img loading="lazy" src="imgs/image-20241225212423398.png" alt="imgs/image-20241225212423398.png" srcset="imgs/image-20241225212423398.png?size=small, imgs/image-20241225212423398.png?size=medium 1.5x, imgs/image-20241225212423398.png?size=large 2x" data-title="imgs/image-20241225212423398.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p><img loading="lazy" src="imgs/image-20241225212429255.png" alt="imgs/image-20241225212429255.png" srcset="imgs/image-20241225212429255.png?size=small, imgs/image-20241225212429255.png?size=medium 1.5x, imgs/image-20241225212429255.png?size=large 2x" data-title="imgs/image-20241225212429255.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>扫码后可以得到如下内容</p>
-<div class="highlight" id="id-12"><div class="chroma">
+<div class="highlight" id="id-10"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -861,7 +861,7 @@
 <blockquote>
 <p>Tips：这里因为图片不是正方形，所以需要分别取模宽和高</p>
 </blockquote>
-<div class="highlight" id="id-13"><div class="chroma">
+<div class="highlight" id="id-11"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -912,7 +912,7 @@
 <p>zsteg扫一下，发现LSB隐写了数据</p>
 <p><img loading="lazy" src="imgs/image-20241225220153184.png" alt="imgs/image-20241225220153184.png" srcset="imgs/image-20241225220153184.png?size=small, imgs/image-20241225220153184.png?size=medium 1.5x, imgs/image-20241225220153184.png?size=large 2x" data-title="imgs/image-20241225220153184.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>尝试用<code>zsteg -e b1,bgr,lsb,xy IM.png &gt; data.txt</code>导出可以得到如下数据</p>
-<div class="highlight" id="id-14"><div class="chroma">
+<div class="highlight" id="id-12"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
@@ -922,7 +922,7 @@
 </div><p>仔细观察上面的数据，发现都是x开头的，然后每个字符串的长度都是5，并且字符集就是<code>xsctf</code>这五个字符</p>
 <p>因此猜测是五进制，结合最后一个字符<code>xsxxx</code>对应<code>01000(125)</code>刚刚好是<code>{</code>，更加确定是五进制了</p>
 <p>因此我们写一个脚本转换一下即可得到flag：<code>flag{\y0u_are_An_1mag3_master/}</code></p>
-<div class="highlight" id="id-15"><div class="chroma">
+<div class="highlight" id="id-13"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1007,7 +1007,7 @@
 <p><img loading="lazy" src="imgs/image-20250818213344866.png" alt="imgs/image-20250818213344866.png" srcset="imgs/image-20250818213344866.png?size=small, imgs/image-20250818213344866.png?size=medium 1.5x, imgs/image-20250818213344866.png?size=large 2x" data-title="imgs/image-20250818213344866.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>然后结合题面的信息，我们知道在RSA中<code>e</code>要和<code>phi</code>互质，其中<code>phi=(q-1)*(p-1)</code></p>
 <p>因此我们可以写个脚本得到<code>e</code>所有可能的取值范围</p>
-<div class="highlight" id="id-16"><div class="chroma">
+<div class="highlight" id="id-14"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1033,7 +1033,7 @@
 </span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">res</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>得到<code>e</code>所有可能的取值如下，一共84种可能取值：</p>
-<div class="highlight" id="id-17"><div class="chroma">
+<div class="highlight" id="id-15"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
@@ -1041,7 +1041,7 @@
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">[5, 7, 11, 13, 17, 19, 23, 25, 29, 31, 35, 37, 41, 43, 47, 49, 53, 55, 59, 61, 65, 67, 71, 73, 77, 79, 83, 85, 89, 91, 95, 97, 101, 103, 107, 109, 113, 115, 119, 121, 125, 127, 131, 133, 137, 139, 143, 145, 149, 151, 155, 157, 161, 163, 167, 169, 173, 175, 179, 181, 185, 187, 191, 193, 197, 199, 203, 205, 209, 211, 215, 217, 221, 223, 227, 229, 233, 235, 239, 241, 245, 247, 251, 253]</span></span></code></pre></td></tr></table>
 </div>
 </div><p>然后我们尝试去读取<code>hint.png</code>中的像素点</p>
-<div class="highlight" id="id-18"><div class="chroma">
+<div class="highlight" id="id-16"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1073,7 +1073,7 @@
 </span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="n">dic</span><span class="p">)</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>发现2500个像素点中有2496种像素，并且只有以下两种像素出现了2次，别的像素都是只出现一次</p>
-<div class="highlight" id="id-19"><div class="chroma">
+<div class="highlight" id="id-17"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -1084,7 +1084,7 @@
 </div>
 </div><p>我们把所有像素打印出来可以发现，每个像素的RGB值都是取自我们之前得到的<code>e</code>的取值范围中</p>
 <p>然后我们再去看<code>task.png</code>，发现图像时RGBA格式的，只不过A通道的值都是255</p>
-<div class="highlight" id="id-20"><div class="chroma">
+<div class="highlight" id="id-18"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1127,7 +1127,7 @@
 <p><img loading="lazy" src="imgs/image-20250818213430714.png" alt="imgs/image-20250818213430714.png" srcset="imgs/image-20250818213430714.png?size=small, imgs/image-20250818213430714.png?size=medium 1.5x, imgs/image-20250818213430714.png?size=large 2x" data-title="imgs/image-20250818213430714.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p><img loading="lazy" src="imgs/image-20250818213401070.png" alt="imgs/image-20250818213401070.png" srcset="imgs/image-20250818213401070.png?size=small, imgs/image-20250818213401070.png?size=medium 1.5x, imgs/image-20250818213401070.png?size=large 2x" data-title="imgs/image-20250818213401070.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>最终的解题脚本如下：</p>
-<div class="highlight" id="id-21"><div class="chroma">
+<div class="highlight" id="id-19"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1238,7 +1238,7 @@
 <p>在导入过程中发现了这些字符组成了一个42x42的矩阵（正方形-&gt;猜测是二维码）</p>
 <p>然后发现最外围一圈全是小写字母，因此尝试把大小写字母转为0和1，再转为二维码可以得到下图</p>
 <p><img loading="lazy" src="imgs/image-20250817225004671.png" alt="imgs/image-20250817225004671.png" srcset="imgs/image-20250817225004671.png?size=small, imgs/image-20250817225004671.png?size=medium 1.5x, imgs/image-20250817225004671.png?size=large 2x" data-title="imgs/image-20250817225004671.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
-<div class="highlight" id="id-22"><div class="chroma">
+<div class="highlight" id="id-20"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1402,7 +1402,7 @@
 <p>Dvorak是一种键盘布局，详细内容可以看我博客里的 <a href="https://goodlunatic.github.io/posts/1ad9200/"target="_blank" rel="external nofollow noopener noreferrer">Misc Guide</a></p>
 <p>因此结合之前得到的内容，猜测我们需要把扫码得到的字符串转换到Dvorak上</p>
 <p>或者是把扫码得到的字符串从Dvorak转换过来，我这里就直接写个脚本转了</p>
-<div class="highlight" id="id-23"><div class="chroma">
+<div class="highlight" id="id-21"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1475,7 +1475,7 @@
 <p>尝试计算偏移量并对齐每一行的绿色像素即可得到最后的flag: <code>DASCTF{herE_c0mes_thE_D1g1taL_ra1n}</code></p>
 <p><img loading="lazy" src="imgs/image-20250817224156497.png" alt="imgs/image-20250817224156497.png" srcset="imgs/image-20250817224156497.png?size=small, imgs/image-20250817224156497.png?size=medium 1.5x, imgs/image-20250817224156497.png?size=large 2x" data-title="imgs/image-20250817224156497.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>最后附上完整的解题脚本：</p>
-<div class="highlight" id="id-24"><div class="chroma">
+<div class="highlight" id="id-22"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1611,7 +1611,7 @@
 <p>尝试用文中的四个弱密钥去解密，发现有一半的数据可以正常解出来</p>
 <p>并且可以得到解密后明文的开头是 <code>FLAG_HEADER:DATA</code></p>
 <p>然后仔细看了<a href="https://crypto.stackexchange.com/questions/7938/may-the-problem-with-des-using-ofb-mode-be-generalized-for-all-feistel-ciphers"target="_blank" rel="external nofollow noopener noreferrer">这篇帖子</a>后，尝试用  <code>\x00 \xFF \xF0 \x0F \x1E \xE1</code> 去生成密钥爆破</p>
-<div class="highlight" id="id-25"><div class="chroma">
+<div class="highlight" id="id-23"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1674,7 +1674,7 @@
 </div>
 </div><p>发现一会就能爆破出密钥，用得到的密钥去解密即可得到最后的flag：<code>flag{9adee0d8d9db40fc99e8366bf2bd474d}</code></p>
 <p><img loading="lazy" src="imgs/image-20250818230628193.png" alt="imgs/image-20250818230628193.png" srcset="imgs/image-20250818230628193.png?size=small, imgs/image-20250818230628193.png?size=medium 1.5x, imgs/image-20250818230628193.png?size=large 2x" data-title="imgs/image-20250818230628193.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
-<div class="highlight" id="id-26"><div class="chroma">
+<div class="highlight" id="id-24"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1734,7 +1734,7 @@
 </blockquote>
 <p><img loading="lazy" src="imgs/image-20250820233514709.png" alt="imgs/image-20250820233514709.png" srcset="imgs/image-20250820233514709.png?size=small, imgs/image-20250820233514709.png?size=medium 1.5x, imgs/image-20250820233514709.png?size=large 2x" data-title="imgs/image-20250820233514709.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>根据题面信息，直接写个脚本生成字典，然后爆破压缩包密码即可</p>
-<div class="highlight" id="id-27"><div class="chroma">
+<div class="highlight" id="id-25"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1791,7 +1791,7 @@
 <p>然后掩码爆破即可得到压缩包的解压密码：<code>Kaelin0808</code></p>
 <p><img loading="lazy" src="imgs/image-20250821105026931.png" alt="imgs/image-20250821105026931.png" srcset="imgs/image-20250821105026931.png?size=small, imgs/image-20250821105026931.png?size=medium 1.5x, imgs/image-20250821105026931.png?size=large 2x" data-title="imgs/image-20250821105026931.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>用得到的密码解压后，msg.txt中的内容是一串emoji</p>
-<div class="highlight" id="id-28"><div class="chroma">
+<div class="highlight" id="id-26"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
@@ -1870,7 +1870,7 @@
 <p><img loading="lazy" src="imgs/image-20250824182119059.png" alt="imgs/image-20250824182119059.png" srcset="imgs/image-20250824182119059.png?size=small, imgs/image-20250824182119059.png?size=medium 1.5x, imgs/image-20250824182119059.png?size=large 2x" data-title="imgs/image-20250824182119059.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>目录最底层是一个 _ 文件，其中是二进制数据，根据题目名称，猜测就是二进制转二维码</p>
 <p>写个脚本提取并转换一下</p>
-<div class="highlight" id="id-29"><div class="chroma">
+<div class="highlight" id="id-27"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -2008,7 +2008,7 @@
 <p>然后运行<code>python2 volatility/vol.py --info</code>，发现可以正常加载Profile</p>
 <p><img loading="lazy" src="imgs/image-20250828101336228.png" alt="imgs/image-20250828101336228.png" srcset="imgs/image-20250828101336228.png?size=small, imgs/image-20250828101336228.png?size=medium 1.5x, imgs/image-20250828101336228.png?size=large 2x" data-title="imgs/image-20250828101336228.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>我们首先看一下命令行中的历史记录，可以看到出题人加密图片的命令</p>
-<div class="highlight" id="id-30"><div class="chroma">
+<div class="highlight" id="id-28"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
@@ -2017,7 +2017,7 @@
 </div>
 </div><p><img loading="lazy" src="imgs/image-20250828101607699.png" alt="imgs/image-20250828101607699.png" srcset="imgs/image-20250828101607699.png?size=small, imgs/image-20250828101607699.png?size=medium 1.5x, imgs/image-20250828101607699.png?size=large 2x" data-title="imgs/image-20250828101607699.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>然后尝试查找并导出这几张加密图片和脚本</p>
-<div class="highlight" id="id-31"><div class="chroma">
+<div class="highlight" id="id-29"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -2048,7 +2048,7 @@
 <p>因此结合之前在定时任务中得到的提示，猜测出题人是要我们去分析这个图片异或加密算法了</p>
 <p><img loading="lazy" src="imgs/image-20250828102814331.png" alt="imgs/image-20250828102814331.png" srcset="imgs/image-20250828102814331.png?size=small, imgs/image-20250828102814331.png?size=medium 1.5x, imgs/image-20250828102814331.png?size=large 2x" data-title="imgs/image-20250828102814331.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>先尝试写了一个脚本，直接把两张图片的像素异或一下，发现能看到flag的影子，但是不清晰</p>
-<div class="highlight" id="id-32"><div class="chroma">
+<div class="highlight" id="id-30"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -2095,7 +2095,7 @@
 <p>因此，尝试去分析了一下像素的规律，然后发现有部分连续像素点的rgba的异或结果相同</p>
 <p>然后尝试缩小了一下异或结果res的范围，发现<code>res&gt;=255</code>的时候（其实就是<code>res==255</code>的时候）</p>
 <p>可以得到清晰的flag图像</p>
-<div class="highlight" id="id-33"><div class="chroma">
+<div class="highlight" id="id-31"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -2168,7 +2168,7 @@
 <p>当然以上只是我一开始的解题思路，后来回头联想了一下题目的名称 <code>flag ^ galf</code></p>
 <p>想到出题人的真实意图应该是img1的rgba异或img2的abgr</p>
 <p>因此写了个脚本，复原出了出题人的ori.png，得到本题的flag: <code>DASCTF{9da98cbf7e99bff7c93ef066935f65ba}</code></p>
-<div class="highlight" id="id-34"><div class="chroma">
+<div class="highlight" id="id-32"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -2228,7 +2228,7 @@
 <p>用 stegsolve 打开刚刚得到的 PNG，发现 Alpha Plane 2 有 LSB 隐写的痕迹</p>
 <p><img loading="lazy" src="imgs/image-20250831230055487.png" alt="imgs/image-20250831230055487.png" srcset="imgs/image-20250831230055487.png?size=small, imgs/image-20250831230055487.png?size=medium 1.5x, imgs/image-20250831230055487.png?size=large 2x" data-title="imgs/image-20250831230055487.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>因此我们写个脚本提取一下即可：<code>flag{225f667d9243201a6b2b35e008ebe3d3}</code></p>
-<div class="highlight" id="id-35"><div class="chroma">
+<div class="highlight" id="id-33"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -2287,7 +2287,7 @@
 <p>解压后可以得到一张 PNG 图片，并且 PNG 图片 LSB 隐写了一个 python3.9 打包的 pyc 文件</p>
 <p><img loading="lazy" src="imgs/image-20250831232555879.png" alt="imgs/image-20250831232555879.png" srcset="imgs/image-20250831232555879.png?size=small, imgs/image-20250831232555879.png?size=medium 1.5x, imgs/image-20250831232555879.png?size=large 2x" data-title="imgs/image-20250831232555879.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>直接导出然后用 pccdc 反编译一下即可</p>
-<div class="highlight" id="id-36"><div class="chroma">
+<div class="highlight" id="id-34"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
@@ -2331,7 +2331,7 @@
 <p><a href="https://www.bordergate.co.uk/extracting-windows-credentials-using-native-tools/"target="_blank" rel="external nofollow noopener noreferrer">https://www.bordergate.co.uk/extracting-windows-credentials-using-native-tools/</a></p>
 <p>直接在 Kali-Linux 里用 impacket-secretsdump 导出 hash 即可</p>
 <p><img loading="lazy" src="imgs/image-20250911222509582.png" alt="imgs/image-20250911222509582.png" srcset="imgs/image-20250911222509582.png?size=small, imgs/image-20250911222509582.png?size=medium 1.5x, imgs/image-20250911222509582.png?size=large 2x" data-title="imgs/image-20250911222509582.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
-<div class="highlight" id="id-37"><div class="chroma">
+<div class="highlight" id="id-35"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -2429,7 +2429,7 @@
 <p>因此我们尝试提取并把这三个文件分离开来，然后把sslkey.log导入</p>
 <p><img loading="lazy" src="imgs/image-20250913095236590.png" alt="image-20250913095236590" srcset="imgs/image-20250913095236590.png?size=small, imgs/image-20250913095236590.png?size=medium 1.5x, imgs/image-20250913095236590.png?size=large 2x" data-title="image-20250913095236590" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>这时候我们就能看到解密后的QUIC流量的内容了，可以得到如下关键信息</p>
-<div class="highlight" id="id-38"><div class="chroma">
+<div class="highlight" id="id-36"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -2444,7 +2444,7 @@
 <p>一个正常的 NTLMv2 Hash 格式应该是：<code>username::domain:ServerChallenge:NTproofstring:modifiedntlmv2response</code></p>
 <p>但是很明显这里的 <code>NTproofstring</code>有问题，因为都是xxx，猜测需要我们去恢复这个</p>
 <p>参考网上NTLM认证协议中的密钥派生过程，写个脚本生成一下</p>
-<div class="highlight" id="id-39"><div class="chroma">
+<div class="highlight" id="id-37"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -2507,7 +2507,7 @@
 <h2 id="题目名称-xxxxxx2022-dasctf-x-su-三月春季挑战赛" class="heading-element">
   <a href="#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-xxxxxx2022-dasctf-x-su-%e4%b8%89%e6%9c%88%e6%98%a5%e5%ad%a3%e6%8c%91%e6%88%98%e8%b5%9b" class="heading-mark"></a>题目名称 xxxxxx（2022 DASCTF X SU 三月春季挑战赛）</h2><p>题目附件给了一个 xxxxxx.bmp 和一个 xxxxxxEncrypt.py</p>
 <p>xxxxxxEncrypt.py 内容如下，发现是经过混淆的 DCT 变换</p>
-<div class="highlight" id="id-40"><div class="chroma">
+<div class="highlight" id="id-38"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -2569,7 +2569,7 @@
 </span></span><span class="line"><span class="cl"><span class="n">cv2</span><span class="o">.</span><span class="n">imwrite</span><span class="p">(</span><span class="s2">&#34;xxxxxx.bmp&#34;</span><span class="p">,</span> <span class="n">xxxxxxxxxxxxx</span><span class="p">)</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>因此我们需要先去混淆</p>
-<div class="highlight" id="id-41"><div class="chroma">
+<div class="highlight" id="id-39"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -2637,7 +2637,7 @@
 </span></span><span class="line"><span class="cl"><span class="n">cv2</span><span class="o">.</span><span class="n">imwrite</span><span class="p">(</span><span class="s2">&#34;xxxxxx.bmp&#34;</span><span class="p">,</span> <span class="n">new_img</span><span class="p">)</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>写个脚本提取数据</p>
-<div class="highlight" id="id-42"><div class="chroma">
+<div class="highlight" id="id-40"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -2687,7 +2687,7 @@
 </span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">res</span><span class="p">)</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>提取出来的数据发现是一堆连续的0和1，尝试统计一下每组0和1的个数，发现刚刚好在ASCII码的范围内</p>
-<div class="highlight" id="id-43"><div class="chroma">
+<div class="highlight" id="id-41"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
@@ -2695,7 +2695,7 @@
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000011111111111111111111111111111111111111111111111111000000000000000000000000000000000000000000000000000001111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001111111111111111111111111111111111111111111111111111111110000000000000000000000000000000000000000000000000011111111111111111111111111111111111111111111111110000000000000000000000000000000000000000000000000000111111111111111111111111111111111111111111111111100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111110000000000000000000000000000000000000000000000000000000001111111111111111111111111111111111111111111111111111000000000000000000000000000000000000000000000000000001111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111110000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111110000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111100000000000000000000000000000000000000000000000001111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111110000000000000000000000000000000000000000000000000000001111111111111111111111111111111111111111111111111111100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111110000000000000000000000000000000000000000000000000111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111110000000000000000000000000000000000000000000000000000000001111111111111111111111111111111111111111111111111110000000000000000000000000000000000000000000000000000000111111111111111111111111111111111111111111111111111110000000000111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111</span></span></code></pre></td></tr></table>
 </div>
 </div><p>因此直接写个脚本统计并转ASCII即可得到最后的flag: <code>e25bd92141be945cfcdd1c65bb1b9375</code></p>
-<div class="highlight" id="id-44"><div class="chroma">
+<div class="highlight" id="id-42"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -2769,7 +2769,7 @@
 <p>D 1l A 1h S 1g 23 1d 2k 32 26 1n 3r 1k 1i 1k 1l 1d 33 1l 31 1p 34 1k 1p 1i 31 35 1m 32 1d 1m 1m 35 32 1m 1k 33 31 1n 1d 1m 1k 3t</p>
 </blockquote>
 <p>发现有DAS这三个关键的字母，然后别的数据应该都是32进制，因此我们写个脚本转换一下</p>
-<div class="highlight" id="id-45"><div class="chroma">
+<div class="highlight" id="id-43"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -2824,7 +2824,7 @@
 <p>IEC104协议分析与利用，针对IEC104协议应用层U 帧、I帧、S帧进行分析，对I帧数据中的遥控数据进行篡改，获取遥控数据下写时的flag值。</p>
 </blockquote>
 <p>附件给了一个流量包，根据题面提示直接用 tshark 提取并分析I帧数据</p>
-<div class="highlight" id="id-46"><div class="chroma">
+<div class="highlight" id="id-44"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
