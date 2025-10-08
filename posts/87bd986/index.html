@@ -226,7 +226,7 @@
 <p><img loading="lazy" src="imgs/image-20250420210721133.png" alt="imgs/image-20250420210721133.png" srcset="imgs/image-20250420210721133.png?size=small, imgs/image-20250420210721133.png?size=medium 1.5x, imgs/image-20250420210721133.png?size=large 2x" data-title="imgs/image-20250420210721133.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>结合上面扫出来的SSTV图像种的时钟，猜测数字代表的就是时钟上刻度的方向，有几个数字就代表往这个方向前进几格</p>
 <p>然后每一行都是从原点开始，因此我们写一个脚本按照数字的顺序画轨迹图</p>
-<div class="highlight" id="id-2"><div class="chroma">
+<div class="highlight" id="id-1"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -340,7 +340,7 @@
 <p>并且仔细比较可以发现，长度为52的数据包，<code>payload</code>变化的数据主要在倒数第三位</p>
 <p><img loading="lazy" src="imgs/image-20250420222020969.png" alt="imgs/image-20250420222020969.png" srcset="imgs/image-20250420222020969.png?size=small, imgs/image-20250420222020969.png?size=medium 1.5x, imgs/image-20250420222020969.png?size=large 2x" data-title="imgs/image-20250420222020969.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>我们尝试使用<code>tshark</code>把长度为52的数据包的<code>payload</code>提取出来分析</p>
-<div class="highlight" id="id-3"><div class="chroma">
+<div class="highlight" id="id-2"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
@@ -350,7 +350,7 @@
 </div><p><img loading="lazy" src="imgs/image-20250420222254946.png" alt="imgs/image-20250420222254946.png" srcset="imgs/image-20250420222254946.png?size=small, imgs/image-20250420222254946.png?size=medium 1.5x, imgs/image-20250420222254946.png?size=large 2x" data-title="imgs/image-20250420222254946.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>然后我们在vscode中把倒数第三位的值单独提取出来分析，发现数据主要是由01248这几个数字构成的</p>
 <p>看到这几个数字，第一反应是云影密码，但是经过尝试发现解密后得不到有用的信息</p>
-<div class="highlight" id="id-4"><div class="chroma">
+<div class="highlight" id="id-3"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -394,7 +394,7 @@
 <p>8 -&gt; 3</p>
 </blockquote>
 <p><img loading="lazy" src="imgs/image-20250420222734487.png" alt="imgs/image-20250420222734487.png" srcset="imgs/image-20250420222734487.png?size=small, imgs/image-20250420222734487.png?size=medium 1.5x, imgs/image-20250420222734487.png?size=large 2x" data-title="imgs/image-20250420222734487.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
-<div class="highlight" id="id-5"><div class="chroma">
+<div class="highlight" id="id-4"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
@@ -402,7 +402,7 @@
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">121212301201121313230311120103100320030212011210121102310301030012111210023103100321030003110231120103200320031202310303031203210320031003121210030203131201030003201331</span></span></code></pre></td></tr></table>
 </div>
 </div><p>最后我们写个脚本，把上面的四进制数据转为字符串即可得到最后的flag：<code>flag{5a482ade-10ed-4905-a886-369846d27a08}</code></p>
-<div class="highlight" id="id-6"><div class="chroma">
+<div class="highlight" id="id-5"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
