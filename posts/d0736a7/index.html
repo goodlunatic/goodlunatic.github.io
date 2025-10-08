@@ -14,7 +14,7 @@
 如果师傅们有进一步的想法或者做出来了，可以联系我一起交流一下解题思路">
   <meta itemprop="datePublished" content="2025-10-07T09:10:58+08:00">
   <meta itemprop="dateModified" content="2025-10-07T09:10:58+08:00">
-  <meta itemprop="wordCount" content="8825">
+  <meta itemprop="wordCount" content="8828">
   <meta itemprop="keywords" content="CTF,Misc"><meta property="og:url" content="https://goodlunatic.github.io/posts/d0736a7/">
   <meta property="og:site_name" content="⚡Lunatic BLOG⚡">
   <meta property="og:title" content="CTF-Misc &#34;雅&#34;题共赏">
@@ -44,7 +44,7 @@
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": "https:\/\/goodlunatic.github.io\/posts\/d0736a7\/"
-    },"genre": "posts","keywords": "CTF, Misc","wordcount":  8825 ,
+    },"genre": "posts","keywords": "CTF, Misc","wordcount":  8828 ,
     "url": "https:\/\/goodlunatic.github.io\/posts\/d0736a7\/","datePublished": "2025-10-07T09:10:58+08:00","dateModified": "2025-10-07T09:10:58+08:00","publisher": {
       "@type": "Organization",
       "name": ""},"author": {
@@ -2787,8 +2787,8 @@ Hint: 暴力破解密码：iscc1234</p>
 <p>题目附件给了下面这张被污染了的二维码</p>
 <p><img loading="lazy" src="imgs/image-20250916104220658.png" alt="imgs/image-20250916104220658.png" srcset="imgs/image-20250916104220658.png?size=small, imgs/image-20250916104220658.png?size=medium 1.5x, imgs/image-20250916104220658.png?size=large 2x" data-title="imgs/image-20250916104220658.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>尝试手动修复了一下，并用红色标注了不确定的像素点
-<img loading="lazy" src="imgs/image-20250916120141001.png" alt="imgs/image-20250916120141001.png" srcset="imgs/image-20250916120141001.png?size=small, imgs/image-20250916120141001.png?size=medium 1.5x, imgs/image-20250916120141001.png?size=large 2x" data-title="imgs/image-20250916120141001.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>
-然后尝试搓了个 Python 脚本爆破不确定的位置，但是也没有爆破出来</p>
+<img loading="lazy" src="imgs/image-20250916120141001.png" alt="imgs/image-20250916120141001.png" srcset="imgs/image-20250916120141001.png?size=small, imgs/image-20250916120141001.png?size=medium 1.5x, imgs/image-20250916120141001.png?size=large 2x" data-title="imgs/image-20250916120141001.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>然后尝试搓了个 Python 脚本爆破不确定的位置，但是也没有爆破出来</p>
 <div class="highlight" id="id-45"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">  1
@@ -3112,7 +3112,8 @@ Hint: 暴力破解密码：iscc1234</p>
 </span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;2. 确保二维码没有被过度损坏&#34;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;3. 尝试手动修复一些明显可以确定的像素点&#34;</span><span class="p">)</span></span></span></code></pre></td></tr></table>
 </div>
-</div><p>最后这里要感谢<code>@烛影摇红</code>师傅，其实只要爆破一下掩码就能得到最后的 flag：<code>DASCTF{QrCoDEI5eAsy}</code></p>
+</div><p>最后这里要感谢<code>@烛影摇红</code>师傅，其实只要把上面不确定的红色像素都涂黑</p>
+<p>然后用 qrazybox 爆破一下二维码的掩码就能得到最后的 flag：<code>DASCTF{QrCoDEI5eAsy}</code></p>
 <p><img loading="lazy" src="imgs/image-20251007101154725.png" alt="imgs/image-20251007101154725.png" srcset="imgs/image-20251007101154725.png?size=small, imgs/image-20251007101154725.png?size=medium 1.5x, imgs/image-20251007101154725.png?size=large 2x" data-title="imgs/image-20251007101154725.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p><img loading="lazy" src="imgs/image-20251007101850811.png" alt="imgs/image-20251007101850811.png" srcset="imgs/image-20251007101850811.png?size=small, imgs/image-20251007101850811.png?size=medium 1.5x, imgs/image-20251007101850811.png?size=large 2x" data-title="imgs/image-20251007101850811.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p><img loading="lazy" src="imgs/image-20251007101119754.png" alt="imgs/image-20251007101119754.png" srcset="imgs/image-20251007101119754.png?size=small, imgs/image-20251007101119754.png?size=medium 1.5x, imgs/image-20251007101119754.png?size=large 2x" data-title="imgs/image-20251007101119754.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
