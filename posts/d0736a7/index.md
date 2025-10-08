@@ -2911,6 +2911,86 @@ base32解码后得到：`flae hs lrt`
 | :-: | :------------------------------------------: | :------------------------------: |
 |  1  | /storage/emulated/0/Pictures/g-a-l-f.gpj.aze | AVb8oli7E1rDBDoYma5MrhlDbFPTBWHo |
 
+## 题目名称 未知
+
+&gt; 题目附件： https://pan.baidu.com/s/1VmSVAmCKS_3xl4Z-22EvNg?pwd=3sx7 提取码: 3sx7
+
+题目附件给了一张 `1788x975` 的 JPG 图片，010 打开发现末尾有多余的数据
+
+![](imgs/image-20251008201546274.png)
+
+![](imgs/image-20251008201601461.png)
+
+并且得到了出题人给的提示：`something important:odd and even`，应该是要我们注意奇偶关系
+
+并且仔细观察可以发现后面的数据中有 pHYs 和 IDAT 字符，因此猜测后面的数据应该是一张 PNG 图片
+
+只不过文件头和文件尾被篡改和删除了
+
+我们知道 IDAT 数据才是真正存储 PNG 图像数据的地方，前面的 pHYs 和 pLTE 都是可选字段
+
+因此我们可以直接把每个 IDAT 块的长度和数据都复制出来，然后爆破一下图片的宽高
+
+![](imgs/image-20251008203502631.png)
+
+爆破后可以得到正确的宽高`1841x1026`和下面这张正常显示的 PNG 图片
+
+![](imgs/image-20251008203328688.png)
+
+尝试写了个脚本比较了一下奇数位和偶数位的像素，但是也没有得到什么有用的信息
+
+```python
+from PIL import Image
+
+
+def func():
+    pixel_list1 = []
+    odd_list = []
+    even_list = []
+    res = []
+    img1 = Image.open(&#39;fixed.png&#39;)
+    img2 = Image.open(&#39;1.jpg&#39;)
+    w1,h1 = img1.size # 1841 1026
+    w2,h2 = img2.size # 1788 975
+    for y in range(h1):
+        for x in range(w1):
+            pixel1 = img1.getpixel((x,y))
+            pixel_list1.append(pixel1)
+            
+    # print(len(pixel_list))
+    # print(pixel_list1[:20])
+    
+    for idx,pixel in enumerate(pixel_list1):
+        if idx % 2 == 0:
+            odd_list.append(pixel)
+        else:
+            even_list.append(pixel)
+    
+    # print(len(odd_list))
+    # print(len(even_list))
+    # print(odd_list[:10])
+    # print(even_list[:10])
+    
+    for i in range(len(odd_list)):
+        if odd_list[i] == even_list[i]:
+            res.append(&#39;0&#39;)
+        else:
+            res.append(&#39;1&#39;)
+            
+    print(&#34;&#34;.join(res)[:100])
+    flag = libnum.b2s(&#39;&#39;.join(res))
+    print(flag[:100])
+    
+    
+if __name__ == &#39;__main__&#39;:
+    func()
+```
+
+## 题目名称 Easyimg（2022天权信安杯）
+
+
+
+
 
 
 ---

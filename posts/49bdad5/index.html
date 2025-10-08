@@ -14,7 +14,7 @@
 赛后有师傅来问这场比赛里的题，部分题目出的挺好的，有一定的难度，于是打算记录一下">
   <meta itemprop="datePublished" content="2025-10-08T15:00:45+08:00">
   <meta itemprop="dateModified" content="2025-10-08T15:00:45+08:00">
-  <meta itemprop="wordCount" content="1161">
+  <meta itemprop="wordCount" content="1176">
   <meta itemprop="keywords" content="CTF,Misc,Writeup"><meta property="og:url" content="https://goodlunatic.github.io/posts/49bdad5/">
   <meta property="og:site_name" content="⚡Lunatic BLOG⚡">
   <meta property="og:title" content="2025 第九届工业信息安全技能大赛-典型工业场景锦标赛 Misc Writeup">
@@ -34,7 +34,7 @@
 赛后有师傅来问这场比赛里的题，部分题目出的挺好的，有一定的难度，于是打算记录一下">
       <meta name="twitter:site" content="@goodlunatic007">
 <meta name="application-name" content="FixIt">
-<meta name="apple-mobile-web-app-title" content="FixIt"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="https://www.nssctf.cn/files/2024/4/28/7f130a1387.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="https://goodlunatic.github.io/posts/49bdad5/" /><link rel="prev" href="https://goodlunatic.github.io/posts/d0736a7/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
+<meta name="apple-mobile-web-app-title" content="FixIt"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="https://www.nssctf.cn/files/2024/4/28/7f130a1387.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="https://goodlunatic.github.io/posts/49bdad5/" /><link rel="prev" href="https://goodlunatic.github.io/posts/d0736a7/" /><link rel="next" href="https://goodlunatic.github.io/posts/bb1da35/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
   {
@@ -45,7 +45,7 @@
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": "https:\/\/goodlunatic.github.io\/posts\/49bdad5\/"
-    },"genre": "posts","keywords": "CTF, Misc, Writeup","wordcount":  1161 ,
+    },"genre": "posts","keywords": "CTF, Misc, Writeup","wordcount":  1176 ,
     "url": "https:\/\/goodlunatic.github.io\/posts\/49bdad5\/","datePublished": "2025-10-08T15:00:45+08:00","dateModified": "2025-10-08T15:00:45+08:00","publisher": {
       "@type": "Organization",
       "name": ""},"author": {
@@ -667,6 +667,11 @@
 <p>综上，最后的flag为：<code>flag{S7_PLC-2025_#_ICS}</code></p>
 <p>当然，这里也可以尝试直接 strings 这个流量包，去快速定位关键信息</p>
 <p><img loading="lazy" src="imgs/image-20251008151746606.png" alt="imgs/image-20251008151746606.png" srcset="imgs/image-20251008151746606.png?size=small, imgs/image-20251008151746606.png?size=medium 1.5x, imgs/image-20251008151746606.png?size=large 2x" data-title="imgs/image-20251008151746606.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<blockquote>
+<p>这道题的 TCP 流量好像有部分是损坏的，所以导致追踪流的时候会看不全</p>
+<p>但是在分组字节流或者直接用 tshark 导出是可以看到的</p>
+<p>tshark -r industrial_traffic_with_flag.pcap -T fields -Y &rsquo;tcp&rsquo; -e &rsquo;tcp.segment_data'</p>
+</blockquote>
 <h2 id="todo-题目名称-异常的数据流量包" class="heading-element">
   <a href="#todo-%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-%e5%bc%82%e5%b8%b8%e7%9a%84%e6%95%b0%e6%8d%ae%e6%b5%81%e9%87%8f%e5%8c%85" class="heading-mark"></a>[TODO] 题目名称 异常的数据流量包</h2><p>附件给了一个流量包，打开发现主要是 Modbus 流量，翻看一下发现传输了一个 PDF 文件</p>
 <p><img loading="lazy" src="imgs/image-20250925101138944.png" alt="imgs/image-20250925101138944.png" srcset="imgs/image-20250925101138944.png?size=small, imgs/image-20250925101138944.png?size=medium 1.5x, imgs/image-20250925101138944.png?size=large 2x" data-title="imgs/image-20250925101138944.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
@@ -783,7 +788,8 @@
     </section>
   </div>
 
-  <div class="post-nav"><a href="/posts/d0736a7/" class="post-nav-item" rel="prev" title="CTF-Misc &#34;雅&#34;题共赏"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>CTF-Misc &#34;雅&#34;题共赏</a></div>
+  <div class="post-nav"><a href="/posts/d0736a7/" class="post-nav-item" rel="prev" title="CTF-Misc &#34;雅&#34;题共赏"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>CTF-Misc &#34;雅&#34;题共赏</a>
+      <a href="/posts/bb1da35/" class="post-nav-item" rel="next" title="群友们问的一些来路不明的题">群友们问的一些来路不明的题<i class="fa-solid fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
 </div>
 </article>
 

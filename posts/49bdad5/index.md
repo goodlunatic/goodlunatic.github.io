@@ -449,6 +449,11 @@ if __name__ == &#39;__main__&#39;:
 
 ![](imgs/image-20251008151746606.png)
 
+&gt; 这道题的 TCP 流量好像有部分是损坏的，所以导致追踪流的时候会看不全
+&gt; 
+&gt; 但是在分组字节流或者直接用 tshark 导出是可以看到的
+&gt; 
+&gt; tshark -r industrial_traffic_with_flag.pcap -T fields -Y &#39;tcp&#39; -e &#39;tcp.segment_data&#39;
 
 ## [TODO] 题目名称 异常的数据流量包
 
