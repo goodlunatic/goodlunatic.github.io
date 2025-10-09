@@ -144,5 +144,5 @@ img.show()
 ---
 
 > Author: [Lunatic](https://goodlunatic.github.io)  
-> URL: https://goodlunatic.github.io/posts/00658ee/  
+> URL: http://localhost:1313/posts/00658ee/  
 

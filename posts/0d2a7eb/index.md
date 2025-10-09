@@ -78,5 +78,5 @@ git commit -m &#34;change&#34;
 ---
 
 > Author: [Lunatic](https://goodlunatic.github.io)  
-> URL: https://goodlunatic.github.io/posts/0d2a7eb/  
+> URL: http://localhost:1313/posts/0d2a7eb/  
 

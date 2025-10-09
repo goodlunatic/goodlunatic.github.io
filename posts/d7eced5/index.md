@@ -2158,5 +2158,5 @@ io.interactive()
 ---
 
 > Author: [Lunatic](https://goodlunatic.github.io)  
-> URL: https://goodlunatic.github.io/posts/d7eced5/  
+> URL: http://localhost:1313/posts/d7eced5/  
 

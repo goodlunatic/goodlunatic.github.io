@@ -538,5 +538,5 @@ https://almostgph.github.io/2024/01/08/IrisCTF2024/
 ---
 
 > Author: [Lunatic](https://goodlunatic.github.io)  
-> URL: https://goodlunatic.github.io/posts/1a285be/  
+> URL: http://localhost:1313/posts/1a285be/  
 

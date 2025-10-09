@@ -183,5 +183,5 @@ TODO
 ---
 
 > Author: [Lunatic](https://goodlunatic.github.io)  
-> URL: https://goodlunatic.github.io/posts/bc64ef8/  
+> URL: http://localhost:1313/posts/bc64ef8/  
 

@@ -357,5 +357,5 @@ for ($i = 0; $i &lt; $length; $i&#43;&#43;) {
 ---
 
 > Author: [Lunatic](https://goodlunatic.github.io)  
-> URL: https://goodlunatic.github.io/posts/69e332a/  
+> URL: http://localhost:1313/posts/69e332a/  
 

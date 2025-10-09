@@ -2267,11 +2267,113 @@ tshark -r IEC-104.pcap -T fields -Y &#39;_ws.col.protocol == &#34;IEC 60870-5 AS
 ![](imgs/image-20251009035345183.png)
 
 
+## 题目名称 Easyimg（2022天权信安杯）
+
+题目附件给了一个加密的压缩包，尝试弱密码爆破，可以得到八位纯数字弱密码：`99999999`
+
+解压后得到一个 img.JPG，但是 010 打开发现其实是一张 PNG 图片
+
+![](imgs/image-20251009100032469.png)
+
+因此我们改后缀为 .png，再用 010 打开，发现 PNG 文件尾部数据被篡改（逆序）了
+
+![](imgs/image-20251009100117455.png)
+
+并且发现末尾的数据中存在 JPG 图像
+
+![](imgs/image-20251009130024555.png)
+
+尝试手动提取出来可以得到下图：
+
+![](imgs/image-20251009131646610.png)
+
+结合之前的 PNG 数据，一共 180 个 IDAT 块，18 个 IDAT 块作为一组，把每组数据的位置按照上图重置了
+
+因此我们尝试根据上图的提示按顺序提取一下 IDAT 块，重新排列一下即可得到下图
+
+```python
+data = [1,7,9,8,5,3,2,4,6,10]
+
+for idx,item in enumerate(data):
+    print(f&#34;组{item}: {(idx)*18&#43;1},{(idx&#43;1)*18}&#34;)
+    
+# 组1: 1,18
+# 组7: 19,36
+# 组9: 37,54
+# 组8: 55,72
+# 组5: 73,90
+# 组3: 91,108
+# 组2: 109,126
+# 组4: 127,144
+# 组6: 145,162
+# 组10: 163,180
+```
+
+![](imgs/image-20251009134242193.png)
+
+这张图片中的报错是 java 版本的报错，猜测后续的内容可能和 java 有关系
+
+用 stegsolve 打开修复得到的 PNG 图片，浏览一下不同通道的各个平面，在下面这个平面可以看到下图
+
+![](imgs/image-20251009134900263.png)
+
+看到这个，我感觉可能是左右两边按列提取数据然后异或，并且 29424 bits = 3678 bytes
+
+对于这种类型的隐写，我们从 stegsolve 中看出来是按行读取还是按列读取后
+
+可以用 PS 打开来确定两部分读取的顺序，就是通过看在哪里中断的来判断是从左向右还是从右向左
+
+![](imgs/image-20251009145226668.png)
+
+![](imgs/image-20251009145553006.png)
+
+确定好顺序后，我们直接写个脚本提取下并异或即可
+
+```python
+from PIL import Image
+from pwn import *
+import libnum
+
+
+def func():
+    img = Image.open(&#39;flag.png&#39;)
+    w,h = img.size
+    
+    a_list = []
+    for x in range(w):
+        for y in range(h):
+            r,g,b,a = img.getpixel((x,y))
+            a_list.append(str(a &gt;&gt; 1 &amp; 1))
+    data1 = libnum.b2s(&#39;&#39;.join(a_list[:29424]))
+
+    a_list = []
+    for x in range(w-1,0,-1):
+        for y in range(h):
+            r,g,b,a = img.getpixel((x,y))
+            a_list.append(str(a &gt;&gt; 1 &amp; 1))
+    data2 = libnum.b2s(&#39;&#39;.join(a_list[:29424]))
+
+    data3 = xor(data1,data2)
+    print(len(data3))
+    print(data3.decode())
+
+
+if __name__ == &#39;__main__&#39;:
+    func()
+# =AABFMQUWdXHAQQBDElV31RfkZjY3kjNlRjN0ATZtgDO0IWLiNGN00CM0Q2MtMGMjlzY3czM7dWYsZWAYn/sp8wkhKwAKQHe05ibhVXcuFWa0xAAAA4b0eKcgAgqEAgqLMgAo8q41zPAACYABUAAGUQAKUetSODABcgGhIXYSFA29Hn9NdvgCMgCyFmcuwKnm/ailDSLgwKnm/ailDSLgwKnm/ailDSLgwKnm/ailDSLgwKnm/ailDSLgwKnm/ailDSLgwKnm/ailDSLgwKnm/ailDSLgwKnm/ailDSLgwKnm/ailDSLgwKnm/ailDSLgwKnm/ailDSLg4WY1FnbhlGd4BAAAyR7zTDIAYPBAY/CDIQAUWpGR3IAEUwARZ1dd0HZ2I2N5YTZ0YDNwUWL4gDNi1iYjRDNtADNkNTLjBzY5M2N3MzenFGbmFA25PbKPMZoCMgC0hHdu4WY1FnbhlGdMAAAA&#43;GtnCHIAoKBAo6CDIAKvKe98DAgAGQAFAgBFEgClXrkzAQAHoRIyFmUBgd/xZfT3LoADogchJnLsyp5vmY5g0CIsyp5vmY5g0CIsyp5vmY5g0CIsyp5vmY5g0CIsyp5vmY5g0CIsyp5vmY5g0CIsyp5vmY5g0CIsyp5vmY5g0CIsyp5vmY5g0CIsyp5vmY5g0CIsyp5vmY5g0CIuFWdx5WYpR3bAAAgc0&#43;80AidEY3CDIQAJ2Hlr8FAEUwARZ1dd0HZ2I2N5YTZ0YDNwUWL4gDNi1iYjRDNtADNkNTLjBzY5M2N3MzenFGbmFA25PbKPMZoCMgC0hHdu4WY1FnbhlGdMAAAA&#43;GtnCHIAoKBAo6CDIAKvKe98DAgAGQAFAgBFEgClXrkzAQAHoRIyFmUBgd/xZfT3LoADogchJnLsyp5vmY5g0CIsyp5vmY5g0CIsyp5vmY5g0CIsyp5vmY5g0CIsyp5vmY5g0CIsyp5vmY5g0CIsyp5vmY5g0CIsyp5vmY5g0CIsyp5vmY5g0CIsyp5vmY5g0CIuFWdx5WYpRnZAAAgc0&#43;80AidEY3CDIQAAeJKARFAEUwARZ1dd0HZ2I2N5YTZ0YDNwUWL4gDNi1iYjRDNtADNkNTLjBzY5M2N3MzenFGbmFA25PbKPMZoCMgC0hHdu4WY1FnbhlGdMAAAA&#43;GtnCHIAoKBAo6CDIAKvKe98DAgAGQAFAgBFEgClXrkzAQAHoRIyFmUBgd/xZfT3LoADogchJnLsyp5vmY5g0CIsyp5vmY5g0CIsyp5vmY5g0CIsyp5vmY5g0CIsyp5vmY5g0CIsyp5vmY5g0CIsyp5vmY5g0CIsyp5vmY5g0CIsyp5vmY5g0CIuFWdx5WYpRXXAAAgc0&#43;80AidEY3CDIwd5hi26DABFMQUWdXH9RmNidTO2UGN2QDMl1CO4QjYtI2Y0QTLwQDZz0yYwMWOjdzNzs3ZhxmZBgd&#43;zmyDTGqADoAd4RnLuFWdx5WYpRHDAAAgvR7pwBCAqSAAquwACgyriXP/AAIgBEQBAYQBBoQ51K5MAEwBaEichJVAY3fc2309CKwAKIXYy5Crca&#43;rJWOItACrca&#43;rJWOItACrca&#43;rJWOItACrca&#43;rJWOItACrca&#43;rJWOItACrca&#43;rJWOItACrca&#43;rJWOItACrca&#43;rJWOItAibhVXcuFWa0RFAAAIHtPPNgYHB2twAC4m8iwDFAQQBDElV31RfkZjY3kjNlRjN0ATZtgDO0IWLiNGN00CM0Q2MtMGMjlzY3czM7dWYsZWAYn/sp8wkhKwAKQHe05ibhVXcuFWa0xAAAA4b0eKcgAgqEAgqLMgAo8q41zPAACYABUAAGUQAKUetSODABcgGhIXYSFA29Hn9NdvgCMgCyFmcuwKnm/ailDSLgwKnm/ailDSLgwKnm/ailDSLgwKnm/ailDSLgwKnm/ailDSLgwKnm/ailDSLgwKnm/ailDSLg4WY1FnbhlGdLBAAAyR7zTDI2RgdLMgAlxQzm6CAEUwARZ1dd0HZ2I2N5YTZ0YDNwUWL4gDNi1iYjRDNtADNkNTLjBzY5M2N3MzenFGbmFA25PbKPMZoCMgC0hHdu4WY1FnbhlGdMAAAA&#43;GtnCHIAoKBAo6CDIAKvKe98DAgAGQAFAgBFEgClXrkzAQAHoRIyFmUBgd/xZfT3LoADogchJnLsyp5vmY5g0CIsyp5vmY5g0CIsyp5vmY5g0CIsyp5vmY5g0CIsyp5vmY5g0CIsyp5vmY5g0CIuFWdx5WYpRnQAAAgc0&#43;80AidEY3CDIAXLlF1oAABFMQUWdXH9RmNidTO2UGN2QDMl1CO4QjYtI2Y0QTLwQDZz0yYwMWOjdzNzs3ZhxmZBgd&#43;zmyDTGqADoAd4RnLuFWdx5WYpRHDAAAgvR7pwBCAqSAAquwACgyriXP/AAIgBEQBAYQBBoQ51K5MAEwBaEichJVAY3fc2309CKwAKIXYy5Crca&#43;rJWOItACrca&#43;rJWOItACrca&#43;rJWOItACrca&#43;rJWOItACrca&#43;rJWOItAibhVXcuFWa0lDAAAIHtPPNgYHB2twACMF&#43;QjhIAQQBDElV31RfkZjY3kjNlRjN0ATZtgDO0IWLiNGN00CM0Q2MtMGMjlzY3czM7dWYsZWAYn/sp8wkhKwAKQHe05ibhVXcuFWa0xAAAA4b0eKcgAgqEAgqLMgAo8q41zPAACYABUAAGUQAKUetSODABcgGhIXYSFA29Hn9NdvgCMgCyFmcuwKnm/ailDSLgwKnm/ailDSLgwKnm/ailDSLgwKnm/ailDSLg4WY1FnbhlGdwAAAAyR7zTDI2RgdLMgAKF2wdaDAEUwARZ1dd0HZ2I2N5YTZ0YDNwUWL4gDNi1iYjRDNtADNkNTLjBzY5M2N3MzenFGbmFA25PbKPMZoCMgC0hHdu4WY1FnbhlGdMAAAA&#43;GtnCHIAoKBAo6CDIAKvKe98DAgAGQAFAgBFEgClXrkzAQAHoRIyFmUBgd/xZfT3LoADogchJnLsyp5vmY5g0CIsyp5vmY5g0CIsyp5vmY5g0CIuFWdx5WYpR3JAAAgc0&#43;80AidEY3CDIQQr0ioIAABFMQUWdXH9RmNidTO2UGN2QDMl1CO4QjYtI2Y0QTLwQDZz0yYwMWOjdzNzs3ZhxmZBgd&#43;zmyDTGqADoAd4RnLuFWdx5WYpRHDAAAgvR7pwBCAqSAAquwACgyriXP/AAIgBEQBAYQBBoQ51K5MAEwBaEichJVAY3fc2309CKwAKIXYy5Crca&#43;rJWOItACrca&#43;rJWOItAibhVXcuFWa05BAAAIHtPPNgYHB2twACgTCiTR2AQQBDElV31RfkZjY3kjNlRjN0ATZtgDO0IWLiNGN00CM0Q2MtMGMjlzY3czM7dWYsZWAYn/sp8wkhKwAKQHe05ibhVXcuFWa0xAAAA4b0eKcgAgqEAgqLMgAo8q41zPAACYABUAAGUQAKUetSODABcgGhIXYSFA29Hn9NdvgCMgCyFmcuwKnm/ailDSLg4WY1FnbhlGdVAAAAyR7zTDI2RgdLMgAvgeusZefkZjY3kjNlRjN0ATZtgDO0IWLiNGN00CM0Q2MtMGMjlzY3czM7dWYsZWAYn/sp8wkhKwAKQHe05ibhVXcuFWa0xAAAA4b0eKcgoCBqswACYC7LaHkAAIgAGQAGAwBFEwCrLY4zDQAHoRIyFmU
+```
+
+最后我们逆序一下得到的内容，再解码 base64 可以得到一个 rar 压缩包
+
+下载下来解压或者直接 Cybefchef 中看都能得到最后的 flag：`flag{377c9c0c-3d40-44cb-b488-e0464e697b6d}`
+
+![](imgs/image-20251009150012499.png)
+
 
 
 
 ---
 
 > Author: [Lunatic](https://goodlunatic.github.io)  
-> URL: https://goodlunatic.github.io/posts/bb1da35/  
+> URL: http://localhost:1313/posts/bb1da35/  
 

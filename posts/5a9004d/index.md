@@ -137,5 +137,5 @@ https://www.utf8-chartable.de/unicode-utf8-table.pl?start=917760
 ---
 
 > Author: [Lunatic](https://goodlunatic.github.io)  
-> URL: https://goodlunatic.github.io/posts/5a9004d/  
+> URL: http://localhost:1313/posts/5a9004d/  
 

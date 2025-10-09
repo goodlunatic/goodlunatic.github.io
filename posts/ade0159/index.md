@@ -72,5 +72,5 @@ plt.show()
 ---
 
 > Author: [Lunatic](https://goodlunatic.github.io)  
-> URL: https://goodlunatic.github.io/posts/ade0159/  
+> URL: http://localhost:1313/posts/ade0159/  
 

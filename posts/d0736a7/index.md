@@ -2986,15 +2986,9 @@ if __name__ == &#39;__main__&#39;:
     func()
 ```
 
-## 题目名称 Easyimg（2022天权信安杯）
-
-
-
-
-
 
 ---
 
 > Author: [Lunatic](https://goodlunatic.github.io)  
-> URL: https://goodlunatic.github.io/posts/d0736a7/  
+> URL: http://localhost:1313/posts/d0736a7/  
 
