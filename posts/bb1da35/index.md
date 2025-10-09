@@ -2311,8 +2311,6 @@ for idx,item in enumerate(data):
 
 ![](imgs/image-20251009134242193.png)
 
-这张图片中的报错是 java 版本的报错，猜测后续的内容可能和 java 有关系
-
 用 stegsolve 打开修复得到的 PNG 图片，浏览一下不同通道的各个平面，在下面这个平面可以看到下图
 
 ![](imgs/image-20251009134900263.png)
@@ -2375,5 +2373,5 @@ if __name__ == &#39;__main__&#39;:
 ---
 
 > Author: [Lunatic](https://goodlunatic.github.io)  
-> URL: http://localhost:1313/posts/bb1da35/  
+> URL: https://goodlunatic.github.io/posts/bb1da35/  
 

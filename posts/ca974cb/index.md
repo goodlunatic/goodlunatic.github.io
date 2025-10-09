@@ -85,5 +85,5 @@ Java.perform(function(){
 ---
 
 > Author: [Lunatic](https://goodlunatic.github.io)  
-> URL: http://localhost:1313/posts/ca974cb/  
+> URL: https://goodlunatic.github.io/posts/ca974cb/  
 

@@ -1,96 +1,96 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
   <channel>
     <title>⚡Lunatic BLOG⚡</title>
-    <link>http://localhost:1313/</link>
+    <link>https://goodlunatic.github.io/</link>
     <description>Welcome to Lunatic&#39;s BLOG ^_^</description>
     <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>goodlunatic0@gmail.com (Lunatic)</managingEditor>
       <webMaster>goodlunatic0@gmail.com (Lunatic)</webMaster><lastBuildDate>Wed, 08 Oct 2025 22:20:11 &#43;0800</lastBuildDate>
-      <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+      <atom:link href="https://goodlunatic.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
   <title>群友们问的一些来路不明的题</title>
-  <link>http://localhost:1313/posts/bb1da35/</link>
+  <link>https://goodlunatic.github.io/posts/bb1da35/</link>
   <pubDate>Wed, 08 Oct 2025 22:20:11 &#43;0800</pubDate>
   <author>Lunatic</author>
-  <guid>http://localhost:1313/posts/bb1da35/</guid>
+  <guid>https://goodlunatic.github.io/posts/bb1da35/</guid>
   <description><![CDATA[<p><strong>其实感觉时常做做群友给的题，对自我实力提升其实帮助挺大的</strong></p>]]></description>
 </item>
 <item>
   <title>2025 第九届工业信息安全技能大赛-典型工业场景锦标赛 Misc Writeup</title>
-  <link>http://localhost:1313/posts/49bdad5/</link>
+  <link>https://goodlunatic.github.io/posts/49bdad5/</link>
   <pubDate>Wed, 08 Oct 2025 15:00:45 &#43;0800</pubDate>
   <author>Lunatic</author>
-  <guid>http://localhost:1313/posts/49bdad5/</guid>
+  <guid>https://goodlunatic.github.io/posts/49bdad5/</guid>
   <description><![CDATA[<p><strong>2025 第九届工业信息安全技能大赛-典型工业场景锦标赛 Writeup</strong></p>
 <p><strong>赛后有师傅来问这场比赛里的题，部分题目出的挺好的，有一定的难度，于是打算记录一下</strong></p>]]></description>
 </item>
 <item>
   <title>CTF-Misc &#34;雅&#34;题共赏</title>
-  <link>http://localhost:1313/posts/d0736a7/</link>
+  <link>https://goodlunatic.github.io/posts/d0736a7/</link>
   <pubDate>Tue, 07 Oct 2025 09:10:58 &#43;0800</pubDate>
   <author>Lunatic</author>
-  <guid>http://localhost:1313/posts/d0736a7/</guid>
+  <guid>https://goodlunatic.github.io/posts/d0736a7/</guid>
   <description><![CDATA[<p><strong>用这篇博客来记录一下本人在比赛中遇到的一些疑难题（本人尚未解出的题）</strong></p>
 <p><strong>如果师傅们有进一步的想法或者做出来了，可以联系我一起交流一下解题思路</strong></p>]]></description>
 </item>
 <item>
   <title>CTF-Misc Guide</title>
-  <link>http://localhost:1313/posts/1ad9200/</link>
+  <link>https://goodlunatic.github.io/posts/1ad9200/</link>
   <pubDate>Mon, 06 Oct 2025 22:10:17 &#43;0800</pubDate>
   <author>Lunatic</author>
-  <guid>http://localhost:1313/posts/1ad9200/</guid>
+  <guid>https://goodlunatic.github.io/posts/1ad9200/</guid>
   <description><![CDATA[<p><strong>最开始接触CTF时，学的最多的就是Misc，各种编码与加密还有各种软件的使用等等</strong></p>
 <p><strong>但Misc涉及的范围实在太广了，于是就想着一边学习一边记录，因而就有了这篇文章</strong></p>]]></description>
 </item>
 <item>
   <title>利用 SCAT 实时捕获 4G-LTE 和 5G-NR 层三以上消息</title>
-  <link>http://localhost:1313/posts/a8aa439/</link>
+  <link>https://goodlunatic.github.io/posts/a8aa439/</link>
   <pubDate>Thu, 25 Sep 2025 12:38:43 &#43;0800</pubDate>
   <author>Lunatic</author>
-  <guid>http://localhost:1313/posts/a8aa439/</guid>
+  <guid>https://goodlunatic.github.io/posts/a8aa439/</guid>
   <description><![CDATA[<p><strong>之前复现论文，做实验的时候想要实时查看 LTE 和 NR 的信令消息，只能通过 CelllularPro</strong></p>
 <p><strong>但是无奈这个软件是收费的，并且很多论文作者在实时捕获消息上并没有提到这个软件</strong></p>
 <p><strong>反而都是用 SCAT 这个开源项目进行实时捕获，因此打算写篇博客来记录一下配置过程</strong></p>]]></description>
 </item>
 <item>
   <title>2025 泰山杯线下决赛 Misc Writeup</title>
-  <link>http://localhost:1313/posts/58b2135/</link>
+  <link>https://goodlunatic.github.io/posts/58b2135/</link>
   <pubDate>Tue, 23 Sep 2025 10:27:15 &#43;0800</pubDate>
   <author>Lunatic</author>
-  <guid>http://localhost:1313/posts/58b2135/</guid>
+  <guid>https://goodlunatic.github.io/posts/58b2135/</guid>
   <description><![CDATA[<p><strong>群里有很多师傅在问这个比赛的Misc题，就打算专门写一篇博客记录一下</strong></p>
 <p><strong>个人感觉这场比赛的Misc题出的还是可以的，出题人水平也在线，然后Misc附件还是动态的</strong></p>]]></description>
 </item>
 <item>
   <title>Misc-Forensics</title>
-  <link>http://localhost:1313/posts/761da51/</link>
+  <link>https://goodlunatic.github.io/posts/761da51/</link>
   <pubDate>Sat, 30 Aug 2025 22:50:12 &#43;0800</pubDate>
   <author>Lunatic</author>
-  <guid>http://localhost:1313/posts/761da51/</guid>
+  <guid>https://goodlunatic.github.io/posts/761da51/</guid>
   <description><![CDATA[<p><strong>This is a simple summary of digital forensics .</strong></p>]]></description>
 </item>
 <item>
   <title>2025 “天一永安杯”宁波市赛初赛 Misc Writeup</title>
-  <link>http://localhost:1313/posts/30d0764/</link>
+  <link>https://goodlunatic.github.io/posts/30d0764/</link>
   <pubDate>Sun, 17 Aug 2025 13:33:22 &#43;0800</pubDate>
   <author>Lunatic</author>
-  <guid>http://localhost:1313/posts/30d0764/</guid>
+  <guid>https://goodlunatic.github.io/posts/30d0764/</guid>
   <description><![CDATA[<p><strong>2025 “天一永安杯”宁波市赛初赛 Misc Writeup</strong></p>]]></description>
 </item>
 <item>
   <title>CTF-Reverse学习记录</title>
-  <link>http://localhost:1313/posts/0f92e23/</link>
+  <link>https://goodlunatic.github.io/posts/0f92e23/</link>
   <pubDate>Sat, 16 Aug 2025 14:15:38 &#43;0800</pubDate>
   <author>Lunatic</author>
-  <guid>http://localhost:1313/posts/0f92e23/</guid>
+  <guid>https://goodlunatic.github.io/posts/0f92e23/</guid>
   <description><![CDATA[<p><strong>未来的研究方向里有好多要用到逆向工程的地方</strong></p>
 <p><strong>感觉是绕不开逆向了，因此打算猛猛突击一下</strong></p>]]></description>
 </item>
 <item>
   <title>如何基于 srsRAN_4G 搭建 LTE 基站</title>
-  <link>http://localhost:1313/posts/ed6ecd5/</link>
+  <link>https://goodlunatic.github.io/posts/ed6ecd5/</link>
   <pubDate>Sun, 03 Aug 2025 16:48:15 &#43;0800</pubDate>
   <author>Lunatic</author>
-  <guid>http://localhost:1313/posts/ed6ecd5/</guid>
+  <guid>https://goodlunatic.github.io/posts/ed6ecd5/</guid>
   <description><![CDATA[<p><strong>记录一下如何基于 srsRAN_4G 搭建 LTE 基站</strong></p>]]></description>
 </item>
 </channel>

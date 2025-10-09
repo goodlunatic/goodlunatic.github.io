@@ -133,5 +133,5 @@ Linux version 5.4.0-100-generic (buildd@lcy02-amd64-002) (gcc version 9.3.0 (Ubu
 ---
 
 > Author: [Lunatic](https://goodlunatic.github.io)  
-> URL: http://localhost:1313/posts/5f3fb7a/  
+> URL: https://goodlunatic.github.io/posts/5f3fb7a/  
 

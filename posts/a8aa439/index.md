@@ -110,5 +110,5 @@ SCAT 项目本身提供了解析 GSMTAPv3 协议数据的 lua 插件，但是好
 ---
 
 > Author: [Lunatic](https://goodlunatic.github.io)  
-> URL: http://localhost:1313/posts/a8aa439/  
+> URL: https://goodlunatic.github.io/posts/a8aa439/  
 
