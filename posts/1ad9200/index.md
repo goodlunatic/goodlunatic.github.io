@@ -2786,17 +2786,25 @@ with open(&#39;flag.zip&#39;, &#39;wb&#39;) as f:
 
 #### QRcode 二维码标准的一些考点
 
+关于 QRcode标准可以出的考点实在是太多了，有时间的话还是建议直接去读官方标准，我 Github 上存了一份
+
+https://github.com/goodlunatic/ISO-IEC-18004-Standard
+
 &gt; 参考链接：
 &gt; 
 &gt; [https://note.tonycrane.cc/ctf/misc/qrcode/](https://note.tonycrane.cc/ctf/misc/qrcode/)
 &gt; 
 &gt; [https://www.cnblogs.com/luogi/p/15469106.html](https://www.cnblogs.com/luogi/p/15469106.html)
-
+&gt; 
+&gt; https://cabelis.ink/2023/01/16/crash-qrcode-by-hand/
 
 例题1-2022NCTF qrssssssss
 
 例题2-2023羊城杯决赛-LmqHmAsk
 
+例题3-GEEKCTF2024 QRcode2
+
+例题4-SHCTF2024 week2 练假成真
 
 ### 信号和图像处理中的一些变换方法
 

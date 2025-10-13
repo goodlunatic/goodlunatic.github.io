@@ -14,7 +14,7 @@
 但Misc涉及的范围实在太广了，于是就想着一边学习一边记录，因而就有了这篇文章">
   <meta itemprop="datePublished" content="2025-10-06T22:10:17+08:00">
   <meta itemprop="dateModified" content="2025-10-06T22:10:17+08:00">
-  <meta itemprop="wordCount" content="13073">
+  <meta itemprop="wordCount" content="13083">
   <meta itemprop="keywords" content="Misc,CTF"><meta property="og:url" content="https://goodlunatic.github.io/posts/1ad9200/">
   <meta property="og:site_name" content="⚡Lunatic BLOG⚡">
   <meta property="og:title" content="CTF-Misc Guide">
@@ -44,7 +44,7 @@
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": "https:\/\/goodlunatic.github.io\/posts\/1ad9200\/"
-    },"genre": "posts","keywords": "Misc, CTF","wordcount":  13073 ,
+    },"genre": "posts","keywords": "Misc, CTF","wordcount":  13083 ,
     "url": "https:\/\/goodlunatic.github.io\/posts\/1ad9200\/","datePublished": "2025-10-06T22:10:17+08:00","dateModified": "2025-10-06T22:10:17+08:00","publisher": {
       "@type": "Organization",
       "name": ""},"author": {
@@ -4460,13 +4460,18 @@
 <p>这里要注意的是，出题人可能会把图片反相导致无法直接扫描</p>
 <p>因此我们可以先将二维码拉入<code>StegSolve</code>或者<code>PS</code>进行反相处理，再扫描</p>
 <h4 id="qrcode-二维码标准的一些考点" class="heading-element">
-  <a href="#qrcode-%e4%ba%8c%e7%bb%b4%e7%a0%81%e6%a0%87%e5%87%86%e7%9a%84%e4%b8%80%e4%ba%9b%e8%80%83%e7%82%b9" class="heading-mark"></a>QRcode 二维码标准的一些考点</h4><blockquote>
+  <a href="#qrcode-%e4%ba%8c%e7%bb%b4%e7%a0%81%e6%a0%87%e5%87%86%e7%9a%84%e4%b8%80%e4%ba%9b%e8%80%83%e7%82%b9" class="heading-mark"></a>QRcode 二维码标准的一些考点</h4><p>关于 QRcode标准可以出的考点实在是太多了，有时间的话还是建议直接去读官方标准，我 Github 上存了一份</p>
+<p><a href="https://github.com/goodlunatic/ISO-IEC-18004-Standard"target="_blank" rel="external nofollow noopener noreferrer">https://github.com/goodlunatic/ISO-IEC-18004-Standard</a></p>
+<blockquote>
 <p>参考链接：</p>
 <p><a href="https://note.tonycrane.cc/ctf/misc/qrcode/"target="_blank" rel="external nofollow noopener noreferrer">https://note.tonycrane.cc/ctf/misc/qrcode/</a></p>
 <p><a href="https://www.cnblogs.com/luogi/p/15469106.html"target="_blank" rel="external nofollow noopener noreferrer">https://www.cnblogs.com/luogi/p/15469106.html</a></p>
+<p><a href="https://cabelis.ink/2023/01/16/crash-qrcode-by-hand/"target="_blank" rel="external nofollow noopener noreferrer">https://cabelis.ink/2023/01/16/crash-qrcode-by-hand/</a></p>
 </blockquote>
 <p>例题1-2022NCTF qrssssssss</p>
 <p>例题2-2023羊城杯决赛-LmqHmAsk</p>
+<p>例题3-GEEKCTF2024 QRcode2</p>
+<p>例题4-SHCTF2024 week2 练假成真</p>
 <h3 id="信号和图像处理中的一些变换方法" class="heading-element">
   <a href="#%e4%bf%a1%e5%8f%b7%e5%92%8c%e5%9b%be%e5%83%8f%e5%a4%84%e7%90%86%e4%b8%ad%e7%9a%84%e4%b8%80%e4%ba%9b%e5%8f%98%e6%8d%a2%e6%96%b9%e6%b3%95" class="heading-mark"></a>信号和图像处理中的一些变换方法</h3><h4 id="快速傅里叶变换fft" class="heading-element">
   <a href="#%e5%bf%ab%e9%80%9f%e5%82%85%e9%87%8c%e5%8f%b6%e5%8f%98%e6%8d%a2fft" class="heading-mark"></a>快速傅里叶变换（FFT）</h4><h4 id="离散傅里叶变换dft" class="heading-element">

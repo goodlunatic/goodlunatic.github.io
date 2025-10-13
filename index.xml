@@ -4,9 +4,19 @@
     <link>https://goodlunatic.github.io/</link>
     <description>Welcome to Lunatic&#39;s BLOG ^_^</description>
     <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>goodlunatic0@gmail.com (Lunatic)</managingEditor>
-      <webMaster>goodlunatic0@gmail.com (Lunatic)</webMaster><lastBuildDate>Wed, 08 Oct 2025 22:20:11 &#43;0800</lastBuildDate>
+      <webMaster>goodlunatic0@gmail.com (Lunatic)</webMaster><lastBuildDate>Fri, 10 Oct 2025 10:28:49 &#43;0800</lastBuildDate>
       <atom:link href="https://goodlunatic.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
+  <title>2025 TSCTF-J Writeup</title>
+  <link>https://goodlunatic.github.io/posts/443835e/</link>
+  <pubDate>Fri, 10 Oct 2025 10:28:49 &#43;0800</pubDate>
+  <author>Lunatic</author>
+  <guid>https://goodlunatic.github.io/posts/443835e/</guid>
+  <description><![CDATA[<p><strong>作为 BUPT 的新生，当然不能错过一年一届的 TSCTF-J，于是上号打了一下（虽然有点老登炸鱼的嫌疑</strong></p>
+<p><strong>自从大一那时候的校赛后，就没尝试过一个人打全方向的题了</strong></p>
+<p><strong>也算是一种复健运动吧，找找当初刚学 CTF 时那种热血的感觉</strong></p>]]></description>
+</item>
+<item>
   <title>群友们问的一些来路不明的题</title>
   <link>https://goodlunatic.github.io/posts/bb1da35/</link>
   <pubDate>Wed, 08 Oct 2025 22:20:11 &#43;0800</pubDate>
@@ -84,14 +94,6 @@
   <guid>https://goodlunatic.github.io/posts/0f92e23/</guid>
   <description><![CDATA[<p><strong>未来的研究方向里有好多要用到逆向工程的地方</strong></p>
 <p><strong>感觉是绕不开逆向了，因此打算猛猛突击一下</strong></p>]]></description>
-</item>
-<item>
-  <title>如何基于 srsRAN_4G 搭建 LTE 基站</title>
-  <link>https://goodlunatic.github.io/posts/ed6ecd5/</link>
-  <pubDate>Sun, 03 Aug 2025 16:48:15 &#43;0800</pubDate>
-  <author>Lunatic</author>
-  <guid>https://goodlunatic.github.io/posts/ed6ecd5/</guid>
-  <description><![CDATA[<p><strong>记录一下如何基于 srsRAN_4G 搭建 LTE 基站</strong></p>]]></description>
 </item>
 </channel>
 </rss>

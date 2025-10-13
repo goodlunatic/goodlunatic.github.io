@@ -2986,6 +2986,64 @@ if __name__ == &#39;__main__&#39;:
     func()
 ```
 
+## 题目名称 像素流量
+
+&gt; 题目附件： https://pan.baidu.com/s/1NnxJxEmW4zYa2MJdoSzNwA?pwd=dun9 提取码: dun9
+
+题目附件给了下面这张 PNG 图片
+
+![](imgs/image-20251009151912908.png)
+
+zsteg 扫一下可以发现隐写了一张 PNG 图片
+
+![](imgs/image-20251009152008762.png)
+
+提取出来后可以得到下图
+
+![](imgs/image-20251009152202734.png)
+
+猜测这张图片是被处理过的，我们需要结合之前那张图里的提示还原图片
+
+尝试爆破了一下图片 RGB 的排列顺序，也没有发现啥有用的信息
+
+```python
+from PIL import Image
+import itertools
+
+def try_all_rgb_permutations(input_path, output_prefix=&#34;output&#34;):
+    img = Image.open(input_path)
+    pixels = list(img.getdata())
+    permutations = list(itertools.permutations([0, 1, 2]))
+    
+    print(f&#34;尝试 {len(permutations)} 种RGB排列组合:&#34;)
+    
+    for i, perm in enumerate(permutations):
+        new_pixels = []
+        for pixel in pixels:
+            r, g, b = pixel
+            new_pixel = (pixel[perm[0]], pixel[perm[1]], pixel[perm[2]])
+
+        new_img = Image.new(img.mode, img.size)
+        new_img.putdata(new_pixels)
+        
+        output_path = f&#34;{output_prefix}_perm_{i}_{perm}.png&#34;
+        new_img.save(output_path)
+        print(f&#34;已保存: {output_path} - 排列: {perm}&#34;)
+        
+        perm_names = [&#39;R&#39;, &#39;G&#39;, &#39;B&#39;]
+        original = [&#39;R&#39;, &#39;G&#39;, &#39;B&#39;]
+        mapping = f&#34;{original} -&gt; [{perm_names[perm[0]]}, {perm_names[perm[1]]}, {perm_names[perm[2]]}]&#34;
+        print(f&#34;通道映射: {mapping}&#34;)
+
+
+if __name__ == &#39;__main__&#39;:
+    input_image = &#34;out.png&#34;
+    try_all_rgb_permutations(input_image, &#34;all_perm&#34;)
+```
+
+
+
+
 
 ---
 

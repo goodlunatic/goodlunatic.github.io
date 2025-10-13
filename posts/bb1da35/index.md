@@ -2367,7 +2367,29 @@ if __name__ == &#39;__main__&#39;:
 
 ![](imgs/image-20251009150012499.png)
 
+## 题目名称 modbus
 
+附件给了一个流量包，结合题目名称猜测关键信息应该在 modbus 流量中
+
+因此我们直接用 tshark 提取一下通过 modbus 传输的数据
+
+```bash
+tshark -r modbus.pcapng -T fields -Y &#39;(modbus.func_code != 3) &amp;&amp; (ip.src == 192.168.142.152)&#39; -e modbus.regval_uint16 &gt; 1.txt
+```
+
+提取出来后，可以得到一张 PNG 图片，并且 PNG 图片末尾还有一个加密的 zip 压缩包
+
+![](imgs/image-20251009161028218.png)
+
+提取出来的 PNG 显示可能有点问题，但是 IDAT 块都是正常的
+
+因此我们可以手动补上 PNG 文件头，然后爆破一下图片的宽高即可
+
+![](imgs/image-20251009161224647.png)
+
+![](imgs/image-20251009161159365.png)
+
+上面这张是工控里的梯形图，我们可以看到里面有 pass 和 key 两个输出
 
 
 

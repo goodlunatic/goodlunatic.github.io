@@ -4,7 +4,17 @@
     <link>https://goodlunatic.github.io/tags/ctf/</link>
     <description>CTF - Tag | ⚡Lunatic BLOG⚡</description>
     <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>goodlunatic0@gmail.com (Lunatic)</managingEditor>
-      <webMaster>goodlunatic0@gmail.com (Lunatic)</webMaster><lastBuildDate>Wed, 08 Oct 2025 22:20:11 &#43;0800</lastBuildDate><atom:link href="https://goodlunatic.github.io/tags/ctf/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>goodlunatic0@gmail.com (Lunatic)</webMaster><lastBuildDate>Fri, 10 Oct 2025 10:28:49 &#43;0800</lastBuildDate><atom:link href="https://goodlunatic.github.io/tags/ctf/" rel="self" type="application/rss+xml" /><item>
+  <title>2025 TSCTF-J Writeup</title>
+  <link>https://goodlunatic.github.io/posts/443835e/</link>
+  <pubDate>Fri, 10 Oct 2025 10:28:49 &#43;0800</pubDate>
+  <author>Lunatic</author>
+  <guid>https://goodlunatic.github.io/posts/443835e/</guid>
+  <description><![CDATA[<p><strong>作为 BUPT 的新生，当然不能错过一年一届的 TSCTF-J，于是上号打了一下（虽然有点老登炸鱼的嫌疑</strong></p>
+<p><strong>自从大一那时候的校赛后，就没尝试过一个人打全方向的题了</strong></p>
+<p><strong>也算是一种复健运动吧，找找当初刚学 CTF 时那种热血的感觉</strong></p>]]></description>
+</item>
+<item>
   <title>群友们问的一些来路不明的题</title>
   <link>https://goodlunatic.github.io/posts/bb1da35/</link>
   <pubDate>Wed, 08 Oct 2025 22:20:11 &#43;0800</pubDate>
@@ -82,15 +92,6 @@
   <description><![CDATA[<p><strong>一直觉得每年强网杯的谍影重重这个系列挺有意思的</strong></p>
 <p><strong>因此就打算详细复盘一下历年谍影重重系列的赛题</strong></p>
 <p><strong>这里手动艾特一下出题人@1cePeak，感谢冰峰师傅出的题</strong></p>]]></description>
-</item>
-<item>
-  <title>Frida Learning Record</title>
-  <link>https://goodlunatic.github.io/posts/ca974cb/</link>
-  <pubDate>Sat, 17 May 2025 00:33:26 &#43;0800</pubDate>
-  <author>Lunatic</author>
-  <guid>https://goodlunatic.github.io/posts/ca974cb/</guid>
-  <description><![CDATA[<p><strong>在学习爬虫的过程中，发现有时候需要用到Frida，因此就想着学习一下</strong></p>
-<p><strong>之前经常听到队友念叨 FridaHook，现在终于有机会来学一下里面具体的内容了</strong></p>]]></description>
 </item>
 </channel>
 </rss>
