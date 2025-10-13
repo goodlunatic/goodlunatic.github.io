@@ -47,13 +47,6 @@
 ```
 
 
-{{&lt; admonition info &#34;Notice&#34; true &gt;}}
-
-1. If you want to exchange link, you can send it to me by Email or QQ.
-2. Website failure, stop maintenance and improper content may be unlinked!
-
-{{&lt; /admonition &gt;}}
-
 
 ---
 

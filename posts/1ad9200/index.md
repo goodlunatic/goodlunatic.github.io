@@ -6,8 +6,6 @@
 
 &lt;!--more--&gt;
 
-{{&lt; admonition type=success title=&#34;Before All&#34; open=true &gt;}}
-
 **文章更新周期较长，如有疏漏，欢迎指正**
 
 **若你也对Misc感兴趣或者对本文中的内容有疑问，欢迎加入我的交流群**
@@ -15,8 +13,6 @@
 **进群后可第一时间获取文章后续更新，入群详见 [About](https://goodlunatic.github.io/about/)** 
 
 **文章创作不易，感谢你能看到这里，转载还请标明出处**
-
-{{&lt; /admonition &gt;}}
 
 ## 一些奇奇怪怪的经历：
 
