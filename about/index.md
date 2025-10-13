@@ -96,7 +96,7 @@
 | &lt;img align=&#34;center&#34; alt=&#34;img&#34; src=&#34;imgs/Wechat.jpg&#34; /&gt; | &lt;img align=&#34;center&#34; alt=&#34;img&#34; src=&#34;imgs/Alipay.jpg&#34;/&gt; |
 | :----------------------------------------------------: | :---------------------------------------------------: |
 
-{{&lt; admonition type=success title=&#34;一些题外话&#34; open=true &gt;}}
+{% include admonition.html type=&#34;success&#34; title=&#34;一些题外话&#34; open=&#34;true&#34; %}
 
 **承蒙各位大佬的推荐和转发，最近来找我交流的同好们越来越多了**
 
@@ -110,7 +110,7 @@
 
 **人海茫茫，相遇不易，感谢你能看到这里，博客后续也还是会照常更新，感谢各位同好们的支持**
 
-{{&lt; /admonition &gt;}}
+{% include end_admonition.html %}
 
 ---
 
