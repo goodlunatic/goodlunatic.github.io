@@ -3947,7 +3947,7 @@
 </div>
 </div><p>发现有 merge 函数，考察的是原型链污染，这里可以去污染 <code>SECRET_KEY</code>，也可以直接污染<code>__file__</code></p>
 <p>我这里是直接污染<code>__file__</code>为<code>/flag</code>，出题人很良心，没有改根目录下 flag 的文件名</p>
-<div class="highlight" id="id-1"><div class="chroma">
+<div class="highlight" id="id-37"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -4014,7 +4014,7 @@
 <p>在 server.js 中发现生成 cookie 的代码，需要用 SESSION_SECRET 进行签名，而 SESSION_SECRET 保存在 .env 中</p>
 <p><img loading="lazy" src="imgs/image-20251012115422086.png" alt="imgs/image-20251012115422086.png" srcset="imgs/image-20251012115422086.png?size=small, imgs/image-20251012115422086.png?size=medium 1.5x, imgs/image-20251012115422086.png?size=large 2x" data-title="imgs/image-20251012115422086.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>分析到这里，我们的思路就很清晰了，首先用软连接读出 SECRET_UUID_HERE 和 SESSION_SECRET</p>
-<div class="highlight" id="id-2"><div class="chroma">
+<div class="highlight" id="id-38"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -4028,7 +4028,7 @@
 </span></span><span class="line"><span class="cl">zip --symlinks test.zip server</span></span></code></pre></td></tr></table>
 </div>
 </div><p>然后上传我们压缩包的 zip，下载软连接即可得到 SECRET_UUID_HERE 和 SESSION_SECRET</p>
-<div class="highlight" id="id-3"><div class="chroma">
+<div class="highlight" id="id-39"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -4038,7 +4038,7 @@
 </span></span><span class="line"><span class="cl">SESSION_SECRET = TSCTF-J{th1s_i5_n0t_fl4g_bu7_c4n_b3_us3ful}</span></span></code></pre></td></tr></table>
 </div>
 </div><p>然后我们写个脚本伪造一下 cookie</p>
-<div class="highlight" id="id-4"><div class="chroma">
+<div class="highlight" id="id-40"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -4108,7 +4108,7 @@
 </div><p>用伪造的 cookie 传入 sessionId 去读取 flag 所在的目录</p>
 <p><img loading="lazy" src="imgs/image-20251012120002200.png" alt="imgs/image-20251012120002200.png" srcset="imgs/image-20251012120002200.png?size=small, imgs/image-20251012120002200.png?size=medium 1.5x, imgs/image-20251012120002200.png?size=large 2x" data-title="imgs/image-20251012120002200.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p><img loading="lazy" src="imgs/image-20251012120044943.png" alt="imgs/image-20251012120044943.png" srcset="imgs/image-20251012120044943.png?size=small, imgs/image-20251012120044943.png?size=medium 1.5x, imgs/image-20251012120044943.png?size=large 2x" data-title="imgs/image-20251012120044943.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
-<div class="highlight" id="id-5"><div class="chroma">
+<div class="highlight" id="id-41"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -4135,7 +4135,7 @@
 <p>此题很难通过梯度下降优化解出 建议直接逆向</p>
 </blockquote>
 <p>challenge.py 中的内容如下：</p>
-<div class="highlight" id="id-6"><div class="chroma">
+<div class="highlight" id="id-42"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -4219,7 +4219,7 @@
 </span></span><span class="line"><span class="cl">                <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>本人没学过模型反演攻击，把代码和提示一起发给 GPT，直接秒了。。</p>
-<div class="highlight" id="id-7"><div class="chroma">
+<div class="highlight" id="id-43"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">  1
 </span><span class="lnt">  2
@@ -4686,7 +4686,7 @@
 <h3 id="题目名称-rabbit-duck-puzzle三血" class="heading-element">
   <a href="#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-rabbit-duck-puzzle%e4%b8%89%e8%a1%80" class="heading-mark"></a>题目名称 Rabbit-Duck-Puzzle（三血）</h3><p>题目附件给了 challenge.py、gift.py、model.pkl、还有下面这张 origin_image.png</p>
 <p><img loading="lazy" src="imgs/image-20251012220735741.png" alt="imgs/image-20251012220735741.png" srcset="imgs/image-20251012220735741.png?size=small, imgs/image-20251012220735741.png?size=medium 1.5x, imgs/image-20251012220735741.png?size=large 2x" data-title="imgs/image-20251012220735741.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
-<div class="highlight" id="id-8"><div class="chroma">
+<div class="highlight" id="id-44"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">  1
 </span><span class="lnt">  2
@@ -4969,7 +4969,7 @@
 </span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
 </span></span><span class="line"><span class="cl">    <span class="n">main</span><span class="p">()</span></span></span></code></pre></td></tr></table>
 </div>
-</div><div class="highlight" id="id-9"><div class="chroma">
+</div><div class="highlight" id="id-45"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -5037,7 +5037,7 @@
 </span></span><span class="line"><span class="cl">    <span class="n">send_image</span><span class="p">(</span><span class="s2">&#34;your_image.png&#34;</span><span class="p">)</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>遛一遛 GPT 就出了。。</p>
-<div class="highlight" id="id-10"><div class="chroma">
+<div class="highlight" id="id-46"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">  1
 </span><span class="lnt">  2
