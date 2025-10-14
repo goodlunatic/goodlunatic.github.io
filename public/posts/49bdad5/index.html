@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html itemscope itemtype="http://schema.org/WebPage" lang="en">
-  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <head>
     
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -12,10 +12,10 @@
   <meta itemprop="name" content="2025 第九届工业信息安全技能大赛-典型工业场景锦标赛 Misc Writeup">
   <meta itemprop="description" content="2025 第九届工业信息安全技能大赛-典型工业场景锦标赛 Writeup
 赛后有师傅来问这场比赛里的题，部分题目出的挺好的，有一定的难度，于是打算记录一下">
-  <meta itemprop="datePublished" content="2025-10-08T15:00:45+08:00">
-  <meta itemprop="dateModified" content="2025-10-08T15:00:45+08:00">
-  <meta itemprop="wordCount" content="1210">
-  <meta itemprop="keywords" content="CTF,Misc,Writeup"><meta property="og:url" content="http://localhost:1313/posts/49bdad5/">
+  <meta itemprop="datePublished" content="2025-10-14T15:00:45+08:00">
+  <meta itemprop="dateModified" content="2025-10-14T15:00:45+08:00">
+  <meta itemprop="wordCount" content="2324">
+  <meta itemprop="keywords" content="CTF,Misc,Writeup"><meta property="og:url" content="https://goodlunatic.github.io/posts/49bdad5/">
   <meta property="og:site_name" content="⚡Lunatic BLOG⚡">
   <meta property="og:title" content="2025 第九届工业信息安全技能大赛-典型工业场景锦标赛 Misc Writeup">
   <meta property="og:description" content="2025 第九届工业信息安全技能大赛-典型工业场景锦标赛 Writeup
@@ -24,8 +24,8 @@
   <meta property="og:locale" content="en">
   <meta property="og:type" content="article">
   <meta property="article:section" content="posts">
-    <meta property="article:published_time" content="2025-10-08T15:00:45+08:00">
-    <meta property="article:modified_time" content="2025-10-08T15:00:45+08:00">
+    <meta property="article:published_time" content="2025-10-14T15:00:45+08:00">
+    <meta property="article:modified_time" content="2025-10-14T15:00:45+08:00">
     <meta property="article:tag" content="CTF">
     <meta property="article:tag" content="Misc">
     <meta property="article:tag" content="Writeup">
@@ -34,7 +34,7 @@
 赛后有师傅来问这场比赛里的题，部分题目出的挺好的，有一定的难度，于是打算记录一下">
       <meta name="twitter:site" content="@goodlunatic007">
 <meta name="application-name" content="FixIt">
-<meta name="apple-mobile-web-app-title" content="FixIt"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="https://www.nssctf.cn/files/2024/4/28/7f130a1387.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="http://localhost:1313/posts/49bdad5/" /><link rel="prev" href="http://localhost:1313/posts/d0736a7/" /><link rel="next" href="http://localhost:1313/posts/bb1da35/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
+<meta name="apple-mobile-web-app-title" content="FixIt"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="https://www.nssctf.cn/files/2024/4/28/7f130a1387.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="https://goodlunatic.github.io/posts/49bdad5/" /><link rel="prev" href="https://goodlunatic.github.io/posts/443835e/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
   {
@@ -44,9 +44,9 @@
     "inLanguage": "en",
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id": "http:\/\/localhost:1313\/posts\/49bdad5\/"
-    },"genre": "posts","keywords": "CTF, Misc, Writeup","wordcount":  1210 ,
-    "url": "http:\/\/localhost:1313\/posts\/49bdad5\/","datePublished": "2025-10-08T15:00:45+08:00","dateModified": "2025-10-08T15:00:45+08:00","publisher": {
+      "@id": "https:\/\/goodlunatic.github.io\/posts\/49bdad5\/"
+    },"genre": "posts","keywords": "CTF, Misc, Writeup","wordcount":  2324 ,
+    "url": "https:\/\/goodlunatic.github.io\/posts\/49bdad5\/","datePublished": "2025-10-14T15:00:45+08:00","dateModified": "2025-10-14T15:00:45+08:00","publisher": {
       "@type": "Organization",
       "name": ""},"author": {
         "@type": "Person",
@@ -149,7 +149,7 @@
 <article class="page single">
   <div class="header"><h1 class="single-title animate__animated animate__flipInX"><span>2025 第九届工业信息安全技能大赛-典型工业场景锦标赛 Misc Writeup</span>
     </h1></div><div class="post-meta">
-    <div class="post-meta-line"><span class="post-author"><a href="https://goodlunatic.github.io" title="Author"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><img loading="lazy" src="https://www.nssctf.cn/files/2024/4/28/7f130a1387.png" alt="Lunatic" data-title="Lunatic" class="avatar" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>&nbsp;Lunatic</a></span><span class="post-included-in">&nbsp;included in <a href="/categories/writeup/" class="post-category" title="Category - Writeup"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> Writeup</a></span></div><div class="post-meta-line"><span title="published on &lt;no value&gt;"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden="true"></i><time datetime="2025-10-08">2025-10-08</time></span>&nbsp;<span title=""><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>About 1300 words</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>6 minutes</span>&nbsp;</div>
+    <div class="post-meta-line"><span class="post-author"><a href="https://goodlunatic.github.io" title="Author"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><img loading="lazy" src="https://www.nssctf.cn/files/2024/4/28/7f130a1387.png" alt="Lunatic" data-title="Lunatic" class="avatar" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>&nbsp;Lunatic</a></span><span class="post-included-in">&nbsp;included in <a href="/categories/writeup/" class="post-category" title="Category - Writeup"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> Writeup</a></span></div><div class="post-meta-line"><span title="published on &lt;no value&gt;"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden="true"></i><time datetime="2025-10-14">2025-10-14</time></span>&nbsp;<span title=""><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>About 2400 words</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>11 minutes</span>&nbsp;</div>
   </div><div class="details toc" id="toc-static"
     data-kept="false">
     <div class="details-summary toc-title">
@@ -170,9 +170,10 @@
     <li><a href="#题目名称-音频隐写">题目名称 音频隐写</a></li>
     <li><a href="#题目名称-所见即是开始">题目名称 所见即是开始</a></li>
     <li><a href="#题目名称-工业流量隐写分析">题目名称 工业流量隐写分析</a></li>
+    <li><a href="#题目名称-工控协议隐蔽通道分析附件">题目名称 工控协议隐蔽通道分析附件</a></li>
+    <li><a href="#题目名称-异常的数据流量包">题目名称 异常的数据流量包</a></li>
+    <li><a href="#题目名称-why_not_substitution">题目名称 why_not_substitution</a></li>
     <li><a href="#todo-题目名称-图片的奥秘">[TODO] 题目名称 图片的奥秘</a></li>
-    <li><a href="#todo-题目名称-异常的数据流量包">[TODO] 题目名称 异常的数据流量包</a></li>
-    <li><a href="#todo-题目名称-工控协议隐蔽通道分析附件">[TODO] 题目名称 工控协议隐蔽通道分析附件</a></li>
     <li><a href="#todo-题目名称-文件分析">[TODO] 题目名称 文件分析</a></li>
     <li><a href="#todo-题目名称-勒索病毒攻击">[TODO] 题目名称 勒索病毒攻击</a></li>
     <li><a href="#todo-题目名称-多注意观察">[TODO] 题目名称 多注意观察</a></li>
@@ -658,41 +659,12 @@
 <p>但是在分组字节流或者直接用 tshark 导出是可以看到的</p>
 <p>tshark -r industrial_traffic_with_flag.pcap -T fields -Y &rsquo;tcp&rsquo; -e &rsquo;tcp.segment_data'</p>
 </blockquote>
-<h2 id="todo-题目名称-图片的奥秘" class="heading-element">
-  <a href="#todo-%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-%e5%9b%be%e7%89%87%e7%9a%84%e5%a5%a5%e7%a7%98" class="heading-mark"></a>[TODO] 题目名称 图片的奥秘</h2><p>附件给了一个加密的压缩包，首先尝试弱密码爆破，得到解压密码：<code>54450</code></p>
-<p><img loading="lazy" src="imgs/image-20250924102048066.png" alt="imgs/image-20250924102048066.png" srcset="imgs/image-20250924102048066.png?size=small, imgs/image-20250924102048066.png?size=medium 1.5x, imgs/image-20250924102048066.png?size=large 2x" data-title="imgs/image-20250924102048066.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
-<p>解压后得到一张 PNG 图片，010 打开提示报错，发现末尾有一张 base64 编码后的 PNG 图片</p>
-<p><img loading="lazy" src="imgs/image-20250924102620223.png" alt="imgs/image-20250924102620223.png" srcset="imgs/image-20250924102620223.png?size=small, imgs/image-20250924102620223.png?size=medium 1.5x, imgs/image-20250924102620223.png?size=large 2x" data-title="imgs/image-20250924102620223.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
-<p><img loading="lazy" src="imgs/image-20250924102223747.png" alt="imgs/image-20250924102223747.png" srcset="imgs/image-20250924102223747.png?size=small, imgs/image-20250924102223747.png?size=medium 1.5x, imgs/image-20250924102223747.png?size=large 2x" data-title="imgs/image-20250924102223747.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
-<p>提取出来解码后可以得到下图，扫码得到：<code>flag{asdf%^&amp;*ghjkl}</code></p>
-<p><img loading="lazy" src="imgs/image-20250924102338576.png" alt="imgs/image-20250924102338576.png" srcset="imgs/image-20250924102338576.png?size=small, imgs/image-20250924102338576.png?size=medium 1.5x, imgs/image-20250924102338576.png?size=large 2x" data-title="imgs/image-20250924102338576.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
-<p>但是我们常用 010 打开这张图片，发现末尾还有数据</p>
-<p><img loading="lazy" src="imgs/image-20250924102803864.png" alt="imgs/image-20250924102803864.png" srcset="imgs/image-20250924102803864.png?size=small, imgs/image-20250924102803864.png?size=medium 1.5x, imgs/image-20250924102803864.png?size=large 2x" data-title="imgs/image-20250924102803864.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
-<p>并且尝试搜索一下 PNG 文件尾，可以发现这里应该存在不止一张 PNG 图片</p>
-<p><img loading="lazy" src="imgs/image-20250924102908341.png" alt="imgs/image-20250924102908341.png" srcset="imgs/image-20250924102908341.png?size=small, imgs/image-20250924102908341.png?size=medium 1.5x, imgs/image-20250924102908341.png?size=large 2x" data-title="imgs/image-20250924102908341.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
-<p>把后面多余的数据提取出来后，尝试搜索了一下 PNG 文件头</p>
-<p><img loading="lazy" src="imgs/image-20250924103307043.png" alt="imgs/image-20250924103307043.png" srcset="imgs/image-20250924103307043.png?size=small, imgs/image-20250924103307043.png?size=medium 1.5x, imgs/image-20250924103307043.png?size=large 2x" data-title="imgs/image-20250924103307043.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
-<h2 id="todo-题目名称-异常的数据流量包" class="heading-element">
-  <a href="#todo-%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-%e5%bc%82%e5%b8%b8%e7%9a%84%e6%95%b0%e6%8d%ae%e6%b5%81%e9%87%8f%e5%8c%85" class="heading-mark"></a>[TODO] 题目名称 异常的数据流量包</h2><p>附件给了一个流量包，打开发现主要是 Modbus 流量，翻看一下发现传输了一个 PDF 文件</p>
-<p><img loading="lazy" src="imgs/image-20250925101138944.png" alt="imgs/image-20250925101138944.png" srcset="imgs/image-20250925101138944.png?size=small, imgs/image-20250925101138944.png?size=medium 1.5x, imgs/image-20250925101138944.png?size=large 2x" data-title="imgs/image-20250925101138944.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
-<p>提取出 PDF 后，全选复制 PDF 里面的内容，粘贴到文本文件里，即可得到 flag<code>flag{MB03_40001}</code></p>
-<blockquote>
-<p>这里我提取出来的 PDF 文件还是有点问题，待完善</p>
-</blockquote>
-<p>用 tshark 提取的命令如下：</p>
-<div class="highlight" id="id-11"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">tshark -r test.pcap -T fields -Y <span class="s1">&#39;((_ws.col.protocol == &#34;Modbus/TCP&#34;) &amp;&amp; (modbus.func_code == 3)) &amp;&amp; (modbus.request_frame)&#39;</span> -e <span class="s1">&#39;modbus.regval_uint16&#39;</span> &gt; out.txt</span></span></code></pre></td></tr></table>
-</div>
-</div><h2 id="todo-题目名称-工控协议隐蔽通道分析附件" class="heading-element">
-  <a href="#todo-%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-%e5%b7%a5%e6%8e%a7%e5%8d%8f%e8%ae%ae%e9%9a%90%e8%94%bd%e9%80%9a%e9%81%93%e5%88%86%e6%9e%90%e9%99%84%e4%bb%b6" class="heading-mark"></a>[TODO] 题目名称 工控协议隐蔽通道分析附件</h2><p>题目附件给了个流量包，翻看了一下主要是 S7common 和 Modbus 流量</p>
+<h2 id="题目名称-工控协议隐蔽通道分析附件" class="heading-element">
+  <a href="#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-%e5%b7%a5%e6%8e%a7%e5%8d%8f%e8%ae%ae%e9%9a%90%e8%94%bd%e9%80%9a%e9%81%93%e5%88%86%e6%9e%90%e9%99%84%e4%bb%b6" class="heading-mark"></a>题目名称 工控协议隐蔽通道分析附件</h2><p>题目附件给了个流量包，翻看了一下主要是 S7common 和 Modbus 流量</p>
 <p>然后发现还传了一个 PNG 和一个 ZIP 压缩包</p>
 <p>因为不知道具体的顺序，所以无法完整的提取出来</p>
 <p>尝试直接 strings 流量包，可以得到如下内容：</p>
-<div class="highlight" id="id-12"><div class="chroma">
+<div class="highlight" id="id-11"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -743,7 +715,565 @@
 </span></span><span class="line"><span class="cl">ALL_DATA_FRAGMENTS_IN_M_AREA
 </span></span><span class="line"><span class="cl">PASSWORD_IN_DB_AREA_ADDRESS_0x60_WITH_CAESAR_CIPHER</span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="todo-题目名称-文件分析" class="heading-element">
+</div><p>肉眼观察并手动组合一下，可以整理出如下内容</p>
+<div class="highlight" id="id-12"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">ADDRESS_ORDER
+</span></span><span class="line"><span class="cl">WARNING: READ_RESPONSES_CONTAIN_INVALID_DATA
+</span></span><span class="line"><span class="cl">READ_RESPONSES_ARE_INVALID_CHECK_WRITE_OPS
+</span></span><span class="line"><span class="cl">FOCUS_ON_S7_WRITE_VARIABLE_OPERATIONS
+</span></span><span class="line"><span class="cl">FOCUS_ON_S7_WRITE_VARIABLE_OPERATIONS_ONLY
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">ZIP_HINT_1
+</span></span><span class="line"><span class="cl">ZIP_FILE_SCATTERED_ACROSS_FOUR_PARTS
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">ZIP_PASSWORD_HINT
+</span></span><span class="line"><span class="cl">PASSWORD_IN_DB_AREA_ADDRESS_0x60_WITH_CAESAR_CIPHER
+</span></span><span class="line"><span class="cl">HINT: PASSWORD_ENCRYPTED_WITH_CAESAR_SHIFT_3
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">flag{n0t_fl4g_k33p_looking_at_M_area}
+</span></span><span class="line"><span class="cl">flag{zip_ascii_values_of_&#39;flag&#39;}
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">CAES_l_3:V0F3PP34
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">DATA_BEGIN_AT_ASCII_VALUES_OF_&#39;f&#39;
+</span></span><span class="line"><span class="cl">RED_HERRING
+</span></span><span class="line"><span class="cl">CHECK_DB2_AND_M
+</span></span><span class="line"><span class="cl">ALL_DATA_FRAGMENTS_IN_M_AREA
+</span></span><span class="line"><span class="cl">JUST_NOISE
+</span></span><span class="line"><span class="cl">OT_IMPORTANT
+</span></span><span class="line"><span class="cl">NOT_THE_DROID
+</span></span><span class="line"><span class="cl">K_MAGIC_BYTE
+</span></span><span class="line"><span class="cl">RED_HERRING</span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>FOCUS_ON_S7_WRITE_VARIABLE_OPERATIONS_ONLY</code> 和 <code>READ_RESPONSES_CONTAIN_INVALID_DATA</code> 提示了我们要主要关注 write 操作</p>
+<p>因此我们过滤了一下，并筛去了包长度小于 100 字节的干扰流量</p>
+<p><img loading="lazy" src="imgs/image-20251014145954432.png" alt="imgs/image-20251014145954432.png" srcset="imgs/image-20251014145954432.png?size=small, imgs/image-20251014145954432.png?size=medium 1.5x, imgs/image-20251014145954432.png?size=large 2x" data-title="imgs/image-20251014145954432.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><code>ZIP_FILE_SCATTERED_ACROSS_FOUR_PARTS</code> 提示了我们压缩包被拆成了四部分</p>
+<p>因此我们去上面过滤出来的几个包里找 zip 压缩包的数据，首先搜索 504B0304 和 504B0506 定位头尾</p>
+<p>然后中间两部分组合一下，最后提取出来压缩包的十六进制数据如下：</p>
+<div class="highlight" id="id-13"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">504b03041400010063008b81db5aea95ecdb8d0000007000000017000b00696e647573747269616c5f70726f746f636f6c2e74787401990700010041450308009ed176b901ca032e4951f509d6963e9c6678412c14325ca3d781cd0b63d2f857a53e1a96e550dca69ad0fe56ab00ac1f1326039ab18eee705724d6514ff791ce5e18f1d8b33dbf133b84216737ffd870bdae00e56084fdbd54a2c4c8227df5b4f425fa01090eb4e6c742ebf5bcd38156fd02815df6d8ab97fc5931469fd66034f1bbfc182f55f86693754da5e5504b010214031400010063008b81db5aea95ecdb8d0000007000000017000b000000000000000000ff8100000000696e647573747269616c5f70726f746f636f6c2e7478740199070001004145030800504b0506000000000100010050000000cd0000000000</span></span></code></pre></td></tr></table>
+</div>
+</div><p>提取出来的压缩包是加密的</p>
+<p>结合提示：<code>PASSWORD_ENCRYPTED_WITH_CAESAR_SHIFT_3</code>，我们写个脚本解密一下 <code>V0F3PP34</code></p>
+<p>因为 <code>CAES_l_3</code> 提示的是凯撒密码左减三位</p>
+<div class="highlight" id="id-14"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">caesar_decrypt</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">shift</span><span class="o">=</span><span class="mi">3</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">result</span> <span class="o">=</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">char</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">char</span><span class="o">.</span><span class="n">isdigit</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">            <span class="n">decrypted_digit</span> <span class="o">=</span> <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">char</span><span class="p">)</span> <span class="o">-</span> <span class="n">shift</span><span class="p">)</span> <span class="o">%</span> <span class="mi">10</span>
+</span></span><span class="line"><span class="cl">            <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">decrypted_digit</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">        <span class="k">elif</span> <span class="n">char</span><span class="o">.</span><span class="n">isalpha</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="n">char</span><span class="o">.</span><span class="n">isupper</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">                <span class="n">decrypted_char</span> <span class="o">=</span> <span class="nb">chr</span><span class="p">((</span><span class="nb">ord</span><span class="p">(</span><span class="n">char</span><span class="p">)</span> <span class="o">-</span> <span class="nb">ord</span><span class="p">(</span><span class="s1">&#39;A&#39;</span><span class="p">)</span> <span class="o">-</span> <span class="n">shift</span><span class="p">)</span> <span class="o">%</span> <span class="mi">26</span> <span class="o">+</span> <span class="nb">ord</span><span class="p">(</span><span class="s1">&#39;A&#39;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">            <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                <span class="n">decrypted_char</span> <span class="o">=</span> <span class="nb">chr</span><span class="p">((</span><span class="nb">ord</span><span class="p">(</span><span class="n">char</span><span class="p">)</span> <span class="o">-</span> <span class="nb">ord</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span> <span class="o">-</span> <span class="n">shift</span><span class="p">)</span> <span class="o">%</span> <span class="mi">26</span> <span class="o">+</span> <span class="nb">ord</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">            <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">decrypted_char</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="c1"># 其他字符保持不变</span>
+</span></span><span class="line"><span class="cl">            <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">char</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">data</span>  <span class="o">=</span> <span class="s2">&#34;V0F3PP34&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">caesar_decrypt</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># S7C0MM01</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>用<code>S7C0MM01</code>作为解压密码去解压即可得到最后的flag: <code>flag{S7c0mm_pr0t0col_st3g4n0graphy_mast3r}</code></p>
+<div class="highlight" id="id-15"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">恭喜你找到了S7comm协议的秘密通道！
+</span></span><span class="line"><span class="cl">这是真正的flag: flag{S7c0mm_pr0t0col_st3g4n0graphy_mast3r}</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="题目名称-异常的数据流量包" class="heading-element">
+  <a href="#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-%e5%bc%82%e5%b8%b8%e7%9a%84%e6%95%b0%e6%8d%ae%e6%b5%81%e9%87%8f%e5%8c%85" class="heading-mark"></a>题目名称 异常的数据流量包</h2><p>附件给了一个流量包，打开发现主要是 Modbus 流量，翻看一下发现传输了一个 PDF 文件</p>
+<p><img loading="lazy" src="imgs/image-20250925101138944.png" alt="imgs/image-20250925101138944.png" srcset="imgs/image-20250925101138944.png?size=small, imgs/image-20250925101138944.png?size=medium 1.5x, imgs/image-20250925101138944.png?size=large 2x" data-title="imgs/image-20250925101138944.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>观察可以发现有三个 ip 在传输 PDF，因此我们用以下命令提取一下传输的数据</p>
+<div class="highlight" id="id-16"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">tshark -r test.pcap -T fields -Y <span class="s1">&#39;(((ip.src == 192.168.1.200) || (ip.src == 192.168.1.201)) || (ip.src == 192.168.1.202)) &amp;&amp; (modbus.func_code == 3)&#39;</span> -e <span class="s1">&#39;tcp.payload&#39;</span> &gt; out.txt</span></span></code></pre></td></tr></table>
+</div>
+</div><p>观察可以发现提取出来数据的前 9 字节是无效数据，因此我们可以写个脚本处理一下</p>
+<div class="highlight" id="id-17"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;out.txt&#39;</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">data</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl"><span class="c1"># print(data)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">res</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">item</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">18</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">res</span> <span class="o">+=</span> <span class="n">item</span><span class="p">[</span><span class="mi">18</span><span class="p">:]</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">res</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="nb">bytes</span><span class="o">.</span><span class="n">fromhex</span><span class="p">(</span><span class="n">res</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&#34;out.pdf&#34;</span><span class="p">,</span><span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="nb">bytes</span><span class="o">.</span><span class="n">fromhex</span><span class="p">(</span><span class="n">res</span><span class="p">))</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>运行以上脚本后可以得到一个加密的 PDF 文件</p>
+<p>因此我们继续看流量包，在最后一个 TCP 流中发现传了一个网址：<code>https://wwfu.lanzouo.com/i6D1D2y2vy8h/</code></p>
+<p><img loading="lazy" src="imgs/image-20251014154815065.png" alt="imgs/image-20251014154815065.png" srcset="imgs/image-20251014154815065.png?size=small, imgs/image-20251014154815065.png?size=medium 1.5x, imgs/image-20251014154815065.png?size=large 2x" data-title="imgs/image-20251014154815065.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>访问并下载可以得到一个 <code>打开看看.txt</code> ，里面的内容如下：</p>
+<blockquote>
+<p>&hellip;.- &hellip;&ndash; &hellip;&ndash; &mdash;&ndash; &hellip;.. .&mdash;- &mdash;.. .. &hellip; .- &hellip; - .-. .. -. &ndash;. &mdash; ..-. ..- &hellip; . ..-. ..- .-.. -. ..- &ndash; -&hellip; . .-. &hellip;</p>
+</blockquote>
+<p>解摩斯可以得到：<code>4330518ISASTRINGOFUSEFULNUMBERS</code></p>
+<p><img loading="lazy" src="imgs/image-20251014155517112.png" alt="imgs/image-20251014155517112.png" srcset="imgs/image-20251014155517112.png?size=small, imgs/image-20251014155517112.png?size=medium 1.5x, imgs/image-20251014155517112.png?size=large 2x" data-title="imgs/image-20251014155517112.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>肉眼观察一下，手动拆分可以得到：<code>4330518 IS A STRING OF USEFUL NUMBERS</code></p>
+<p>用 <code>4330518</code> 作为密码，即可正常打开 PDF（感觉 7 位纯数字的弱密码，好像直接爆破也行</p>
+<p>打开 PDF 后移开上面的图片即可得到最后的 flag：<code>flag{MB03_40001}</code></p>
+<p><img loading="lazy" src="imgs/image-20251014160238184.png" alt="imgs/image-20251014160238184.png" srcset="imgs/image-20251014160238184.png?size=small, imgs/image-20251014160238184.png?size=medium 1.5x, imgs/image-20251014160238184.png?size=large 2x" data-title="imgs/image-20251014160238184.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<h2 id="题目名称-why_not_substitution" class="heading-element">
+  <a href="#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-why_not_substitution" class="heading-mark"></a>题目名称 why_not_substitution</h2><p>题目附件给了如下内容：</p>
+<div class="highlight" id="id-18"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">string</span> <span class="kn">import</span> <span class="n">ascii_lowercase</span><span class="p">,</span> <span class="n">digits</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">hashlib</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">flag</span> <span class="kn">import</span> <span class="n">flag</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">CHARSET</span> <span class="o">=</span> <span class="s2">&#34;!@#¥%&#34;</span> <span class="o">+</span> <span class="n">ascii_lowercase</span> <span class="o">+</span> <span class="n">digits</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">CHARSET</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">encrypt</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="n">f</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">chiper</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">msg</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">chiper</span> <span class="o">+=</span> <span class="n">CHARSET</span><span class="p">[</span><span class="n">f</span><span class="o">.</span><span class="n">substitute</span><span class="p">(</span><span class="n">CHARSET</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">m</span><span class="p">))]</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">chiper</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">P</span><span class="o">.&lt;</span><span class="n">x</span><span class="o">&gt;</span> <span class="o">=</span> <span class="n">PolynomialRing</span><span class="p">(</span><span class="n">GF</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="n">f</span> <span class="o">=</span> <span class="n">P</span><span class="o">.</span><span class="n">random_element</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">enc</span> <span class="o">=</span> <span class="n">encrypt</span><span class="p">(</span><span class="n">flag</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s2">&#34;flag[0:7]&#34;</span><span class="p">,</span> <span class="n">flag</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">7</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s2">&#34;enc&#34;</span><span class="p">,</span> <span class="n">enc</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s2">&#34;hash&#34;</span><span class="p">,</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">sha256</span><span class="p">(</span><span class="n">flag</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># flag[0:7] flkejiy</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># enc quw7f59u51q¥##w¥w6q6s¥¥#w#661d¥</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># hash 7d41757168a2199b32cb1744de130fdebda25271116bc64eccf4e397770d73c2</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>简单的密码题，GPT 直接一把梭了：<code>flkejiyliafg77c3c4f49335c711avg</code></p>
+<div class="highlight" id="id-19"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">  1
+</span><span class="lnt">  2
+</span><span class="lnt">  3
+</span><span class="lnt">  4
+</span><span class="lnt">  5
+</span><span class="lnt">  6
+</span><span class="lnt">  7
+</span><span class="lnt">  8
+</span><span class="lnt">  9
+</span><span class="lnt"> 10
+</span><span class="lnt"> 11
+</span><span class="lnt"> 12
+</span><span class="lnt"> 13
+</span><span class="lnt"> 14
+</span><span class="lnt"> 15
+</span><span class="lnt"> 16
+</span><span class="lnt"> 17
+</span><span class="lnt"> 18
+</span><span class="lnt"> 19
+</span><span class="lnt"> 20
+</span><span class="lnt"> 21
+</span><span class="lnt"> 22
+</span><span class="lnt"> 23
+</span><span class="lnt"> 24
+</span><span class="lnt"> 25
+</span><span class="lnt"> 26
+</span><span class="lnt"> 27
+</span><span class="lnt"> 28
+</span><span class="lnt"> 29
+</span><span class="lnt"> 30
+</span><span class="lnt"> 31
+</span><span class="lnt"> 32
+</span><span class="lnt"> 33
+</span><span class="lnt"> 34
+</span><span class="lnt"> 35
+</span><span class="lnt"> 36
+</span><span class="lnt"> 37
+</span><span class="lnt"> 38
+</span><span class="lnt"> 39
+</span><span class="lnt"> 40
+</span><span class="lnt"> 41
+</span><span class="lnt"> 42
+</span><span class="lnt"> 43
+</span><span class="lnt"> 44
+</span><span class="lnt"> 45
+</span><span class="lnt"> 46
+</span><span class="lnt"> 47
+</span><span class="lnt"> 48
+</span><span class="lnt"> 49
+</span><span class="lnt"> 50
+</span><span class="lnt"> 51
+</span><span class="lnt"> 52
+</span><span class="lnt"> 53
+</span><span class="lnt"> 54
+</span><span class="lnt"> 55
+</span><span class="lnt"> 56
+</span><span class="lnt"> 57
+</span><span class="lnt"> 58
+</span><span class="lnt"> 59
+</span><span class="lnt"> 60
+</span><span class="lnt"> 61
+</span><span class="lnt"> 62
+</span><span class="lnt"> 63
+</span><span class="lnt"> 64
+</span><span class="lnt"> 65
+</span><span class="lnt"> 66
+</span><span class="lnt"> 67
+</span><span class="lnt"> 68
+</span><span class="lnt"> 69
+</span><span class="lnt"> 70
+</span><span class="lnt"> 71
+</span><span class="lnt"> 72
+</span><span class="lnt"> 73
+</span><span class="lnt"> 74
+</span><span class="lnt"> 75
+</span><span class="lnt"> 76
+</span><span class="lnt"> 77
+</span><span class="lnt"> 78
+</span><span class="lnt"> 79
+</span><span class="lnt"> 80
+</span><span class="lnt"> 81
+</span><span class="lnt"> 82
+</span><span class="lnt"> 83
+</span><span class="lnt"> 84
+</span><span class="lnt"> 85
+</span><span class="lnt"> 86
+</span><span class="lnt"> 87
+</span><span class="lnt"> 88
+</span><span class="lnt"> 89
+</span><span class="lnt"> 90
+</span><span class="lnt"> 91
+</span><span class="lnt"> 92
+</span><span class="lnt"> 93
+</span><span class="lnt"> 94
+</span><span class="lnt"> 95
+</span><span class="lnt"> 96
+</span><span class="lnt"> 97
+</span><span class="lnt"> 98
+</span><span class="lnt"> 99
+</span><span class="lnt">100
+</span><span class="lnt">101
+</span><span class="lnt">102
+</span><span class="lnt">103
+</span><span class="lnt">104
+</span><span class="lnt">105
+</span><span class="lnt">106
+</span><span class="lnt">107
+</span><span class="lnt">108
+</span><span class="lnt">109
+</span><span class="lnt">110
+</span><span class="lnt">111
+</span><span class="lnt">112
+</span><span class="lnt">113
+</span><span class="lnt">114
+</span><span class="lnt">115
+</span><span class="lnt">116
+</span><span class="lnt">117
+</span><span class="lnt">118
+</span><span class="lnt">119
+</span><span class="lnt">120
+</span><span class="lnt">121
+</span><span class="lnt">122
+</span><span class="lnt">123
+</span><span class="lnt">124
+</span><span class="lnt">125
+</span><span class="lnt">126
+</span><span class="lnt">127
+</span><span class="lnt">128
+</span><span class="lnt">129
+</span><span class="lnt">130
+</span><span class="lnt">131
+</span><span class="lnt">132
+</span><span class="lnt">133
+</span><span class="lnt">134
+</span><span class="lnt">135
+</span><span class="lnt">136
+</span><span class="lnt">137
+</span><span class="lnt">138
+</span><span class="lnt">139
+</span><span class="lnt">140
+</span><span class="lnt">141
+</span><span class="lnt">142
+</span><span class="lnt">143
+</span><span class="lnt">144
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">hashlib</span> <span class="kn">import</span> <span class="n">sha256</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">product</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">multiprocessing</span> <span class="kn">import</span> <span class="n">Pool</span><span class="p">,</span> <span class="n">cpu_count</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">math</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">CHARSET</span> <span class="o">=</span> <span class="s2">&#34;!@#¥%&#34;</span> <span class="o">+</span> <span class="s2">&#34;abcdefghijklmnopqrstuvwxyz&#34;</span> <span class="o">+</span> <span class="s2">&#34;0123456789&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">p</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">CHARSET</span><span class="p">)</span>  <span class="c1"># 41</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">known_prefix</span> <span class="o">=</span> <span class="s2">&#34;flkejiy&#34;</span>  <span class="c1"># flag[0:7]</span>
+</span></span><span class="line"><span class="cl"><span class="n">enc</span> <span class="o">=</span> <span class="s2">&#34;quw7f59u51q¥##w¥w6q6s¥¥#w#661d¥&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">target_hash</span> <span class="o">=</span> <span class="s2">&#34;7d41757168a2199b32cb1744de130fdebda25271116bc64eccf4e397770d73c2&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">inv_mod</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">p</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">a</span> <span class="o">%=</span> <span class="n">p</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">a</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">raise</span> <span class="ne">ZeroDivisionError</span><span class="p">(</span><span class="s2">&#34;no inverse&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nb">pow</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">p</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>  <span class="c1"># p prime</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">lagrange_eval</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">xs</span><span class="p">,</span> <span class="n">ys</span><span class="p">,</span> <span class="n">p</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">total</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">    <span class="n">k</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">xs</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">k</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">xi</span><span class="p">,</span> <span class="n">yi</span> <span class="o">=</span> <span class="n">xs</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">ys</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">        <span class="n">num</span> <span class="o">=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">        <span class="n">den</span> <span class="o">=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">k</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="n">j</span> <span class="o">==</span> <span class="n">i</span><span class="p">:</span> <span class="k">continue</span>
+</span></span><span class="line"><span class="cl">            <span class="n">xj</span> <span class="o">=</span> <span class="n">xs</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">            <span class="n">num</span> <span class="o">=</span> <span class="p">(</span><span class="n">num</span> <span class="o">*</span> <span class="p">(</span><span class="n">t</span> <span class="o">-</span> <span class="n">xj</span><span class="p">))</span> <span class="o">%</span> <span class="n">p</span>
+</span></span><span class="line"><span class="cl">            <span class="n">den</span> <span class="o">=</span> <span class="p">(</span><span class="n">den</span> <span class="o">*</span> <span class="p">(</span><span class="n">xi</span> <span class="o">-</span> <span class="n">xj</span><span class="p">))</span> <span class="o">%</span> <span class="n">p</span>
+</span></span><span class="line"><span class="cl">        <span class="n">li</span> <span class="o">=</span> <span class="p">(</span><span class="n">num</span> <span class="o">*</span> <span class="n">inv_mod</span><span class="p">(</span><span class="n">den</span><span class="p">,</span> <span class="n">p</span><span class="p">))</span> <span class="o">%</span> <span class="n">p</span>
+</span></span><span class="line"><span class="cl">        <span class="n">total</span> <span class="o">=</span> <span class="p">(</span><span class="n">total</span> <span class="o">+</span> <span class="n">yi</span> <span class="o">*</span> <span class="n">li</span><span class="p">)</span> <span class="o">%</span> <span class="n">p</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">total</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">build_f_map</span><span class="p">(</span><span class="n">known_prefix</span><span class="p">,</span> <span class="n">enc_prefix</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">xs</span> <span class="o">=</span> <span class="p">[</span><span class="n">CHARSET</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">ch</span><span class="p">)</span> <span class="k">for</span> <span class="n">ch</span> <span class="ow">in</span> <span class="n">known_prefix</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ys</span> <span class="o">=</span> <span class="p">[</span><span class="n">CHARSET</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">ch</span><span class="p">)</span> <span class="k">for</span> <span class="n">ch</span> <span class="ow">in</span> <span class="n">enc_prefix</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="n">f_map</span> <span class="o">=</span> <span class="p">[</span><span class="n">lagrange_eval</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">xs</span><span class="p">,</span> <span class="n">ys</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">p</span><span class="p">)]</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">f_map</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">build_candidates</span><span class="p">(</span><span class="n">enc</span><span class="p">,</span> <span class="n">f_map</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cand_list</span> <span class="o">=</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">enc</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">c</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">CHARSET</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;cipher char </span><span class="si">{</span><span class="n">c</span><span class="si">!r}</span><span class="s2"> not in CHARSET&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">y</span> <span class="o">=</span> <span class="n">CHARSET</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">cands</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">f_map</span><span class="p">)</span> <span class="k">if</span> <span class="n">v</span> <span class="o">==</span> <span class="n">y</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">cands</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;No candidate for cipher char </span><span class="si">{</span><span class="n">c</span><span class="si">!r}</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">cand_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">cands</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">cand_list</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># single-worker search for product of candidates iterables</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">search_chunk</span><span class="p">(</span><span class="n">prefix_indices</span><span class="p">,</span> <span class="n">remaining_cands</span><span class="p">,</span> <span class="n">target_hash</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># prefix_indices: chosen indices for first k positions (list of ints)</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># remaining_cands: list of candidate-lists for positions k..end</span>
+</span></span><span class="line"><span class="cl">    <span class="n">prefix</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">CHARSET</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">prefix_indices</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># iterate remaining</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">tail</span> <span class="ow">in</span> <span class="n">product</span><span class="p">(</span><span class="o">*</span><span class="n">remaining_cands</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">candidate</span> <span class="o">=</span> <span class="n">prefix</span> <span class="o">+</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">CHARSET</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">tail</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">sha256</span><span class="p">(</span><span class="n">candidate</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s2">&#34;utf-8&#34;</span><span class="p">))</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()</span> <span class="o">==</span> <span class="n">target_hash</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="n">candidate</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="kc">None</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># helper for worker map: each worker gets a fixed prefix to extend</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">worker_task</span><span class="p">(</span><span class="n">args</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">prefix_indices</span><span class="p">,</span> <span class="n">remaining_cands</span><span class="p">,</span> <span class="n">target_hash</span> <span class="o">=</span> <span class="n">args</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">search_chunk</span><span class="p">(</span><span class="n">prefix_indices</span><span class="p">,</span> <span class="n">remaining_cands</span><span class="p">,</span> <span class="n">target_hash</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="n">workers</span> <span class="o">=</span> <span class="n">cpu_count</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;CHARSET:&#34;</span><span class="p">,</span> <span class="n">CHARSET</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;p:&#34;</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;known_prefix:&#34;</span><span class="p">,</span> <span class="n">known_prefix</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;enc:&#34;</span><span class="p">,</span> <span class="n">enc</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;target_hash:&#34;</span><span class="p">,</span> <span class="n">target_hash</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># build interpolation using known 7 pairs</span>
+</span></span><span class="line"><span class="cl">    <span class="n">f_map</span> <span class="o">=</span> <span class="n">build_f_map</span><span class="p">(</span><span class="n">known_prefix</span><span class="p">,</span> <span class="n">enc</span><span class="p">[:</span><span class="nb">len</span><span class="p">(</span><span class="n">known_prefix</span><span class="p">)])</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cand_list</span> <span class="o">=</span> <span class="n">build_candidates</span><span class="p">(</span><span class="n">enc</span><span class="p">,</span> <span class="n">f_map</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">counts</span> <span class="o">=</span> <span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">cand_list</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="n">total</span> <span class="o">=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">counts</span><span class="p">:</span> <span class="n">total</span> <span class="o">*=</span> <span class="n">c</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;candidate counts per position:&#34;</span><span class="p">,</span> <span class="n">counts</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;total combinations:&#34;</span><span class="p">,</span> <span class="n">total</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># if small, brute force single-thread</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">total</span> <span class="o">&lt;=</span> <span class="mi">5_000_000</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Total combinations small: using single-thread brute force...&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="n">combo</span> <span class="ow">in</span> <span class="n">product</span><span class="p">(</span><span class="o">*</span><span class="n">cand_list</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">            <span class="n">text</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">CHARSET</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">combo</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="n">sha256</span><span class="p">(</span><span class="n">text</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()</span> <span class="o">==</span> <span class="n">target_hash</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Found flag:&#34;</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                <span class="k">return</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Not found.&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># otherwise use multiprocessing by splitting on first k positions</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># choose k so that number of prefixes ~= workers * ~2000 (tunable)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">target_prefix_count</span> <span class="o">=</span> <span class="n">workers</span> <span class="o">*</span> <span class="mi">2000</span>
+</span></span><span class="line"><span class="cl">    <span class="n">k</span> <span class="o">=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="n">prefix_space</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">cand_list</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="n">prefix_space</span> <span class="o">&lt;</span> <span class="n">target_prefix_count</span> <span class="ow">and</span> <span class="n">k</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">cand_list</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">k</span> <span class="o">+=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">        <span class="n">prefix_space</span> <span class="o">*=</span> <span class="nb">len</span><span class="p">(</span><span class="n">cand_list</span><span class="p">[</span><span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;Splitting on first </span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s2"> positions -&gt; prefix count </span><span class="si">{</span><span class="n">prefix_space</span><span class="si">}</span><span class="s2">, using </span><span class="si">{</span><span class="n">workers</span><span class="si">}</span><span class="s2"> workers&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># generate all prefixes (could be large but manageable for typical sizes)</span>
+</span></span><span class="line"><span class="cl">    <span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">product</span>
+</span></span><span class="line"><span class="cl">    <span class="n">prefixes</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">product</span><span class="p">(</span><span class="o">*</span><span class="n">cand_list</span><span class="p">[:</span><span class="n">k</span><span class="p">]))</span>
+</span></span><span class="line"><span class="cl">    <span class="n">remaining</span> <span class="o">=</span> <span class="n">cand_list</span><span class="p">[</span><span class="n">k</span><span class="p">:]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># prepare tasks (each task: a fixed prefix)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">tasks</span> <span class="o">=</span> <span class="p">[(</span><span class="nb">list</span><span class="p">(</span><span class="n">pref</span><span class="p">),</span> <span class="n">remaining</span><span class="p">,</span> <span class="n">target_hash</span><span class="p">)</span> <span class="k">for</span> <span class="n">pref</span> <span class="ow">in</span> <span class="n">prefixes</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Starting pool...&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">found</span> <span class="o">=</span> <span class="kc">None</span>
+</span></span><span class="line"><span class="cl">    <span class="k">with</span> <span class="n">Pool</span><span class="p">(</span><span class="n">processes</span><span class="o">=</span><span class="n">workers</span><span class="p">)</span> <span class="k">as</span> <span class="n">pool</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="n">res</span> <span class="ow">in</span> <span class="n">pool</span><span class="o">.</span><span class="n">imap_unordered</span><span class="p">(</span><span class="n">worker_task</span><span class="p">,</span> <span class="n">tasks</span><span class="p">,</span> <span class="n">chunksize</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="n">res</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                <span class="n">found</span> <span class="o">=</span> <span class="n">res</span>
+</span></span><span class="line"><span class="cl">                <span class="n">pool</span><span class="o">.</span><span class="n">terminate</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">                <span class="k">break</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">found</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Found flag:&#34;</span><span class="p">,</span> <span class="n">found</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;SHA256:&#34;</span><span class="p">,</span> <span class="n">sha256</span><span class="p">(</span><span class="n">found</span><span class="o">.</span><span class="n">encode</span><span class="p">())</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Not found (tried full parallel search).&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&#34;__main__&#34;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">main</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># CHARSET: !@#¥%abcdefghijklmnopqrstuvwxyz0123456789</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># p: 41</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># known_prefix: flkejiy</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># enc: quw7f59u51q¥##w¥w6q6s¥¥#w#661d¥</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># target_hash: 7d41757168a2199b32cb1744de130fdebda25271116bc64eccf4e397770d73c2</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># candidate counts per position: [1, 1, 3, 2, 1, 4, 1, 1, 4, 1, 1, 2, 2, 2, 3, 2, 3, 2, 1, 2, 1, 2, 2, 2, 3, 2, 2, 2, 1, 4, 2]</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># total combinations: 84934656</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Splitting on first 18 positions -&gt; prefix count 27648, using 8 workers</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Starting pool...</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Found flag: flkejiyliafg77c3c4f49335c711avg</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># SHA256: 7d41757168a2199b32cb1744de130fdebda25271116bc64eccf4e397770d73c2</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="todo-题目名称-图片的奥秘" class="heading-element">
+  <a href="#todo-%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-%e5%9b%be%e7%89%87%e7%9a%84%e5%a5%a5%e7%a7%98" class="heading-mark"></a>[TODO] 题目名称 图片的奥秘</h2><p>附件给了一个加密的压缩包，首先尝试弱密码爆破，得到解压密码：<code>54450</code></p>
+<p><img loading="lazy" src="imgs/image-20250924102048066.png" alt="imgs/image-20250924102048066.png" srcset="imgs/image-20250924102048066.png?size=small, imgs/image-20250924102048066.png?size=medium 1.5x, imgs/image-20250924102048066.png?size=large 2x" data-title="imgs/image-20250924102048066.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>解压后得到一张 PNG 图片，010 打开提示报错，发现末尾有一张 base64 编码后的 PNG 图片</p>
+<p><img loading="lazy" src="imgs/image-20250924102620223.png" alt="imgs/image-20250924102620223.png" srcset="imgs/image-20250924102620223.png?size=small, imgs/image-20250924102620223.png?size=medium 1.5x, imgs/image-20250924102620223.png?size=large 2x" data-title="imgs/image-20250924102620223.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><img loading="lazy" src="imgs/image-20250924102223747.png" alt="imgs/image-20250924102223747.png" srcset="imgs/image-20250924102223747.png?size=small, imgs/image-20250924102223747.png?size=medium 1.5x, imgs/image-20250924102223747.png?size=large 2x" data-title="imgs/image-20250924102223747.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>提取出来解码后可以得到下图，扫码得到：<code>flag{asdf%^&amp;*ghjkl}</code></p>
+<p><img loading="lazy" src="imgs/image-20250924102338576.png" alt="imgs/image-20250924102338576.png" srcset="imgs/image-20250924102338576.png?size=small, imgs/image-20250924102338576.png?size=medium 1.5x, imgs/image-20250924102338576.png?size=large 2x" data-title="imgs/image-20250924102338576.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>但是我们常用 010 打开这张图片，发现末尾还有数据</p>
+<p><img loading="lazy" src="imgs/image-20250924102803864.png" alt="imgs/image-20250924102803864.png" srcset="imgs/image-20250924102803864.png?size=small, imgs/image-20250924102803864.png?size=medium 1.5x, imgs/image-20250924102803864.png?size=large 2x" data-title="imgs/image-20250924102803864.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>并且尝试搜索一下 PNG 文件尾，可以发现这里应该存在不止一张 PNG 图片</p>
+<p><img loading="lazy" src="imgs/image-20250924102908341.png" alt="imgs/image-20250924102908341.png" srcset="imgs/image-20250924102908341.png?size=small, imgs/image-20250924102908341.png?size=medium 1.5x, imgs/image-20250924102908341.png?size=large 2x" data-title="imgs/image-20250924102908341.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>把后面多余的数据提取出来后，尝试搜索了一下 PNG 文件头</p>
+<p><img loading="lazy" src="imgs/image-20250924103307043.png" alt="imgs/image-20250924103307043.png" srcset="imgs/image-20250924103307043.png?size=small, imgs/image-20250924103307043.png?size=medium 1.5x, imgs/image-20250924103307043.png?size=large 2x" data-title="imgs/image-20250924103307043.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<h2 id="todo-题目名称-文件分析" class="heading-element">
   <a href="#todo-%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-%e6%96%87%e4%bb%b6%e5%88%86%e6%9e%90" class="heading-mark"></a>[TODO] 题目名称 文件分析</h2><p>附件给了一个 16个八戒.bin，010 打开查看</p>
 <p><img loading="lazy" src="imgs/image-20250925132928952.png" alt="imgs/image-20250925132928952.png" srcset="imgs/image-20250925132928952.png?size=small, imgs/image-20250925132928952.png?size=medium 1.5x, imgs/image-20250925132928952.png?size=large 2x" data-title="imgs/image-20250925132928952.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>strings 一下，根据可打印信息推测</p>
@@ -788,13 +1318,13 @@
   <div class="post-info">
     <div class="post-info-line">
       <div class="post-info-mod">
-        <span title="Updated on 2025-10-08 15:00:45">Updated on 2025-10-08&nbsp;</span>
+        <span title="Updated on 2025-10-14 15:00:45">Updated on 2025-10-14&nbsp;</span>
       </div></div><div class="post-info-line">
         <div class="post-info-md"><span><a href="/posts/49bdad5/index.md" title="Read Markdown" class="link-to-markdown">Read Markdown</a></span></div>
         <div class="post-info-share">
-          <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="http://localhost:1313/posts/49bdad5/" data-title="2025 第九届工业信息安全技能大赛-典型工业场景锦标赛 Misc Writeup" data-via="goodlunatic007" data-hashtags="CTF,Misc,Writeup"><i class="fa-brands fa-twitter fa-fw" aria-hidden="true"></i></a>
-  <a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="http://localhost:1313/posts/49bdad5/" data-hashtag="CTF"><i class="fa-brands fa-facebook-square fa-fw" aria-hidden="true"></i></a>
-  <a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="http://localhost:1313/posts/49bdad5/" data-title="2025 第九届工业信息安全技能大赛-典型工业场景锦标赛 Misc Writeup"><i class="fa-brands fa-weibo fa-fw" aria-hidden="true"></i></a>
+          <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://goodlunatic.github.io/posts/49bdad5/" data-title="2025 第九届工业信息安全技能大赛-典型工业场景锦标赛 Misc Writeup" data-via="goodlunatic007" data-hashtags="CTF,Misc,Writeup"><i class="fa-brands fa-twitter fa-fw" aria-hidden="true"></i></a>
+  <a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://goodlunatic.github.io/posts/49bdad5/" data-hashtag="CTF"><i class="fa-brands fa-facebook-square fa-fw" aria-hidden="true"></i></a>
+  <a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://goodlunatic.github.io/posts/49bdad5/" data-title="2025 第九届工业信息安全技能大赛-典型工业场景锦标赛 Misc Writeup"><i class="fa-brands fa-weibo fa-fw" aria-hidden="true"></i></a>
   </span>
         </div>
       </div></div>
@@ -806,8 +1336,7 @@
     </section>
   </div>
 
-  <div class="post-nav"><a href="/posts/d0736a7/" class="post-nav-item" rel="prev" title="CTF-Misc &#34;雅&#34;题共赏"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>CTF-Misc &#34;雅&#34;题共赏</a>
-      <a href="/posts/bb1da35/" class="post-nav-item" rel="next" title="群友们问的一些来路不明的题">群友们问的一些来路不明的题<i class="fa-solid fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+  <div class="post-nav"><a href="/posts/443835e/" class="post-nav-item" rel="prev" title="2025 TSCTF-J Writeup"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>2025 TSCTF-J Writeup</a></div>
 </div>
 </article>
 

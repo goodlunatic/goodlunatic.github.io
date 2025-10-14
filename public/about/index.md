@@ -87,6 +87,7 @@
 |                   **Z**                   |  **4.99 x 💎**  |
 |                  **论**                   |  **3.00 x 💎**  |
 |                  **霞**                   |  **1.99 x 💎**  |
+|                  **ddl**                  |  **1.99 x 💎**  |
 |                 **悠然**                  |  **1.00 x 💎**  |
 |  **[AsaL1n](https://asal1n.github.io/)**  |  **0.99 x 💎**  |
 |                  **GQ**                   |  **0.10 x 💎**  |
@@ -115,5 +116,5 @@
 ---
 
 > Author:   
-> URL: http://localhost:1313/about/  
+> URL: https://goodlunatic.github.io/about/  
 

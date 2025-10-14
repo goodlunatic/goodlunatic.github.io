@@ -1177,5 +1177,5 @@ b&#34;Hey boy, I&#39;m here to help you, now you&#39;ze one step away from succe
 ---
 
 > Author: [Lunatic](https://goodlunatic.github.io)  
-> URL: http://localhost:1313/posts/f002407/  
+> URL: https://goodlunatic.github.io/posts/f002407/  
 

@@ -833,5 +833,5 @@ sudo iptables -t nat -A POSTROUTING -s 172.16.0.0/24 -o wlo1 -j MASQUERADE
 ---
 
 > Author: [Lunatic](https://goodlunatic.github.io)  
-> URL: http://localhost:1313/posts/ed6ecd5/  
+> URL: https://goodlunatic.github.io/posts/ed6ecd5/  
 

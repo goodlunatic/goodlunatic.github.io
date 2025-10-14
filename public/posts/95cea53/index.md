@@ -86,5 +86,5 @@ adb shell &#34;su -c &#39;setprop sys.usb.config diag,serial_cdev,rmnet,dpl,qdss
 ---
 
 > Author: [Lunatic](https://goodlunatic.github.io)  
-> URL: http://localhost:1313/posts/95cea53/  
+> URL: https://goodlunatic.github.io/posts/95cea53/  
 

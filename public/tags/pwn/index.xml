@@ -1,15 +1,15 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
   <channel>
     <title>Pwn - Tag - ⚡Lunatic BLOG⚡</title>
-    <link>http://localhost:1313/tags/pwn/</link>
+    <link>https://goodlunatic.github.io/tags/pwn/</link>
     <description>Pwn - Tag | ⚡Lunatic BLOG⚡</description>
     <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>goodlunatic0@gmail.com (Lunatic)</managingEditor>
-      <webMaster>goodlunatic0@gmail.com (Lunatic)</webMaster><lastBuildDate>Mon, 07 Aug 2023 08:57:29 &#43;0800</lastBuildDate><atom:link href="http://localhost:1313/tags/pwn/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>goodlunatic0@gmail.com (Lunatic)</webMaster><lastBuildDate>Mon, 07 Aug 2023 08:57:29 &#43;0800</lastBuildDate><atom:link href="https://goodlunatic.github.io/tags/pwn/" rel="self" type="application/rss+xml" /><item>
   <title>CTF-Pwn学习记录</title>
-  <link>http://localhost:1313/posts/5e91e89/</link>
+  <link>https://goodlunatic.github.io/posts/5e91e89/</link>
   <pubDate>Mon, 07 Aug 2023 08:57:29 &#43;0800</pubDate>
   <author>Lunatic</author>
-  <guid>http://localhost:1313/posts/5e91e89/</guid>
+  <guid>https://goodlunatic.github.io/posts/5e91e89/</guid>
   <description><![CDATA[<p><strong>Record of Pwn-Learning.</strong></p>]]></description>
 </item>
 </channel>

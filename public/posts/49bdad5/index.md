@@ -429,54 +429,7 @@ if __name__ == &#39;__main__&#39;:
 &gt; 
 &gt; tshark -r industrial_traffic_with_flag.pcap -T fields -Y &#39;tcp&#39; -e &#39;tcp.segment_data&#39;
 
-
-## [TODO] 题目名称 图片的奥秘
-
-附件给了一个加密的压缩包，首先尝试弱密码爆破，得到解压密码：`54450`
-
-![](imgs/image-20250924102048066.png)
-
-解压后得到一张 PNG 图片，010 打开提示报错，发现末尾有一张 base64 编码后的 PNG 图片
-
-![](imgs/image-20250924102620223.png)
-
-![](imgs/image-20250924102223747.png)
-
-提取出来解码后可以得到下图，扫码得到：`flag{asdf%^&amp;*ghjkl}`
-
-![](imgs/image-20250924102338576.png)
-
-但是我们常用 010 打开这张图片，发现末尾还有数据
-
-![](imgs/image-20250924102803864.png)
-
-并且尝试搜索一下 PNG 文件尾，可以发现这里应该存在不止一张 PNG 图片
-
-![](imgs/image-20250924102908341.png)
-
-把后面多余的数据提取出来后，尝试搜索了一下 PNG 文件头
-
-![](imgs/image-20250924103307043.png)
-
-
-## [TODO] 题目名称 异常的数据流量包
-
-附件给了一个流量包，打开发现主要是 Modbus 流量，翻看一下发现传输了一个 PDF 文件
-
-![](imgs/image-20250925101138944.png)
-
-提取出 PDF 后，全选复制 PDF 里面的内容，粘贴到文本文件里，即可得到 flag`flag{MB03_40001}`
-
-&gt; 这里我提取出来的 PDF 文件还是有点问题，待完善
-
-用 tshark 提取的命令如下：
-
-```bash
-tshark -r test.pcap -T fields -Y &#39;((_ws.col.protocol == &#34;Modbus/TCP&#34;) &amp;&amp; (modbus.func_code == 3)) &amp;&amp; (modbus.request_frame)&#39; -e &#39;modbus.regval_uint16&#39; &gt; out.txt
-```
-
-
-## [TODO] 题目名称 工控协议隐蔽通道分析附件
+## 题目名称 工控协议隐蔽通道分析附件
 
 题目附件给了个流量包，翻看了一下主要是 S7common 和 Modbus 流量
 
@@ -511,6 +464,355 @@ flag{n0t_
 ALL_DATA_FRAGMENTS_IN_M_AREA
 PASSWORD_IN_DB_AREA_ADDRESS_0x60_WITH_CAESAR_CIPHER
 ```
+
+肉眼观察并手动组合一下，可以整理出如下内容
+
+```
+ADDRESS_ORDER
+WARNING: READ_RESPONSES_CONTAIN_INVALID_DATA
+READ_RESPONSES_ARE_INVALID_CHECK_WRITE_OPS
+FOCUS_ON_S7_WRITE_VARIABLE_OPERATIONS
+FOCUS_ON_S7_WRITE_VARIABLE_OPERATIONS_ONLY
+
+ZIP_HINT_1
+ZIP_FILE_SCATTERED_ACROSS_FOUR_PARTS
+
+ZIP_PASSWORD_HINT
+PASSWORD_IN_DB_AREA_ADDRESS_0x60_WITH_CAESAR_CIPHER
+HINT: PASSWORD_ENCRYPTED_WITH_CAESAR_SHIFT_3
+
+flag{n0t_fl4g_k33p_looking_at_M_area}
+flag{zip_ascii_values_of_&#39;flag&#39;}
+
+CAES_l_3:V0F3PP34
+
+DATA_BEGIN_AT_ASCII_VALUES_OF_&#39;f&#39;
+RED_HERRING
+CHECK_DB2_AND_M
+ALL_DATA_FRAGMENTS_IN_M_AREA
+JUST_NOISE
+OT_IMPORTANT
+NOT_THE_DROID
+K_MAGIC_BYTE
+RED_HERRING
+```
+
+`FOCUS_ON_S7_WRITE_VARIABLE_OPERATIONS_ONLY` 和 `READ_RESPONSES_CONTAIN_INVALID_DATA` 提示了我们要主要关注 write 操作
+
+因此我们过滤了一下，并筛去了包长度小于 100 字节的干扰流量
+
+![](imgs/image-20251014145954432.png)
+
+`ZIP_FILE_SCATTERED_ACROSS_FOUR_PARTS` 提示了我们压缩包被拆成了四部分
+
+因此我们去上面过滤出来的几个包里找 zip 压缩包的数据，首先搜索 504B0304 和 504B0506 定位头尾
+
+然后中间两部分组合一下，最后提取出来压缩包的十六进制数据如下：
+
+```
+504b03041400010063008b81db5aea95ecdb8d0000007000000017000b00696e647573747269616c5f70726f746f636f6c2e74787401990700010041450308009ed176b901ca032e4951f509d6963e9c6678412c14325ca3d781cd0b63d2f857a53e1a96e550dca69ad0fe56ab00ac1f1326039ab18eee705724d6514ff791ce5e18f1d8b33dbf133b84216737ffd870bdae00e56084fdbd54a2c4c8227df5b4f425fa01090eb4e6c742ebf5bcd38156fd02815df6d8ab97fc5931469fd66034f1bbfc182f55f86693754da5e5504b010214031400010063008b81db5aea95ecdb8d0000007000000017000b000000000000000000ff8100000000696e647573747269616c5f70726f746f636f6c2e7478740199070001004145030800504b0506000000000100010050000000cd0000000000
+```
+
+提取出来的压缩包是加密的
+
+结合提示：`PASSWORD_ENCRYPTED_WITH_CAESAR_SHIFT_3`，我们写个脚本解密一下 `V0F3PP34`
+
+因为 `CAES_l_3` 提示的是凯撒密码左减三位
+
+```python
+def caesar_decrypt(data, shift=3):
+    result = []
+    for char in data:
+        if char.isdigit():
+            decrypted_digit = (int(char) - shift) % 10
+            result.append(str(decrypted_digit))
+        elif char.isalpha():
+            if char.isupper():
+                decrypted_char = chr((ord(char) - ord(&#39;A&#39;) - shift) % 26 &#43; ord(&#39;A&#39;))
+            else:
+                decrypted_char = chr((ord(char) - ord(&#39;a&#39;) - shift) % 26 &#43; ord(&#39;a&#39;))
+            result.append(decrypted_char)
+        else:
+            # 其他字符保持不变
+            result.append(char)
+    return &#39;&#39;.join(result)
+
+data  = &#34;V0F3PP34&#34;
+print(caesar_decrypt(data))
+# S7C0MM01
+```
+
+用`S7C0MM01`作为解压密码去解压即可得到最后的flag: `flag{S7c0mm_pr0t0col_st3g4n0graphy_mast3r}`
+
+```
+恭喜你找到了S7comm协议的秘密通道！
+这是真正的flag: flag{S7c0mm_pr0t0col_st3g4n0graphy_mast3r}
+```
+
+
+## 题目名称 异常的数据流量包
+
+附件给了一个流量包，打开发现主要是 Modbus 流量，翻看一下发现传输了一个 PDF 文件
+
+![](imgs/image-20250925101138944.png)
+
+观察可以发现有三个 ip 在传输 PDF，因此我们用以下命令提取一下传输的数据
+
+```bash
+tshark -r test.pcap -T fields -Y &#39;(((ip.src == 192.168.1.200) || (ip.src == 192.168.1.201)) || (ip.src == 192.168.1.202)) &amp;&amp; (modbus.func_code == 3)&#39; -e &#39;tcp.payload&#39; &gt; out.txt
+```
+
+观察可以发现提取出来数据的前 9 字节是无效数据，因此我们可以写个脚本处理一下
+
+```python
+with open(&#39;out.txt&#39;,&#39;r&#39;) as f:
+    data = f.read().split()
+    
+# print(data)
+
+res = &#34;&#34;
+for item in data:
+    if len(item) &gt; 18:
+        res &#43;= item[18:]
+        
+print(len(res))
+print(bytes.fromhex(res))
+
+with open(&#34;out.pdf&#34;,&#39;wb&#39;) as f:
+    f.write(bytes.fromhex(res))
+```
+
+运行以上脚本后可以得到一个加密的 PDF 文件
+
+因此我们继续看流量包，在最后一个 TCP 流中发现传了一个网址：`https://wwfu.lanzouo.com/i6D1D2y2vy8h/`
+
+![](imgs/image-20251014154815065.png)
+
+访问并下载可以得到一个 `打开看看.txt` ，里面的内容如下：
+
+&gt; ....- ...-- ...-- ----- ..... .---- ---.. .. ... .- ... - .-. .. -. --. --- ..-. ..- ... . ..-. ..- .-.. -. ..- -- -... . .-. ...
+
+解摩斯可以得到：`4330518ISASTRINGOFUSEFULNUMBERS`
+
+![](imgs/image-20251014155517112.png)
+
+肉眼观察一下，手动拆分可以得到：`4330518 IS A STRING OF USEFUL NUMBERS`
+
+用 `4330518` 作为密码，即可正常打开 PDF（感觉 7 位纯数字的弱密码，好像直接爆破也行
+
+打开 PDF 后移开上面的图片即可得到最后的 flag：`flag{MB03_40001}`
+
+![](imgs/image-20251014160238184.png)
+
+## 题目名称 why_not_substitution
+
+题目附件给了如下内容：
+
+```python
+from string import ascii_lowercase, digits
+import hashlib
+from flag import flag
+
+CHARSET = &#34;!@#¥%&#34; &#43; ascii_lowercase &#43; digits
+
+n = len(CHARSET)
+def encrypt(msg, f):
+    chiper = &#39;&#39;
+    for m in msg:
+        chiper &#43;= CHARSET[f.substitute(CHARSET.index(m))]
+    return chiper
+
+P.&lt;x&gt; = PolynomialRing(GF(n))
+f = P.random_element(6)
+
+
+enc = encrypt(flag, f)
+print(&#34;flag[0:7]&#34;, flag[0:7])
+print(&#34;enc&#34;, enc)
+print(&#34;hash&#34;, hashlib.sha256(flag.encode(&#39;utf-8&#39;)).hexdigest())
+
+
+# flag[0:7] flkejiy
+# enc quw7f59u51q¥##w¥w6q6s¥¥#w#661d¥
+# hash 7d41757168a2199b32cb1744de130fdebda25271116bc64eccf4e397770d73c2
+```
+
+简单的密码题，GPT 直接一把梭了：`flkejiyliafg77c3c4f49335c711avg`
+
+```python
+from hashlib import sha256
+from itertools import product
+from multiprocessing import Pool, cpu_count
+import math
+
+CHARSET = &#34;!@#¥%&#34; &#43; &#34;abcdefghijklmnopqrstuvwxyz&#34; &#43; &#34;0123456789&#34;
+p = len(CHARSET)  # 41
+
+known_prefix = &#34;flkejiy&#34;  # flag[0:7]
+enc = &#34;quw7f59u51q¥##w¥w6q6s¥¥#w#661d¥&#34;
+target_hash = &#34;7d41757168a2199b32cb1744de130fdebda25271116bc64eccf4e397770d73c2&#34;
+
+def inv_mod(a, p):
+    a %= p
+    if a == 0:
+        raise ZeroDivisionError(&#34;no inverse&#34;)
+    return pow(a, p-2, p)  # p prime
+
+def lagrange_eval(t, xs, ys, p):
+    total = 0
+    k = len(xs)
+    for i in range(k):
+        xi, yi = xs[i], ys[i]
+        num = 1
+        den = 1
+        for j in range(k):
+            if j == i: continue
+            xj = xs[j]
+            num = (num * (t - xj)) % p
+            den = (den * (xi - xj)) % p
+        li = (num * inv_mod(den, p)) % p
+        total = (total &#43; yi * li) % p
+    return total
+
+def build_f_map(known_prefix, enc_prefix):
+    xs = [CHARSET.index(ch) for ch in known_prefix]
+    ys = [CHARSET.index(ch) for ch in enc_prefix]
+    f_map = [lagrange_eval(i, xs, ys, p) for i in range(p)]
+    return f_map
+
+def build_candidates(enc, f_map):
+    cand_list = []
+    for c in enc:
+        if c not in CHARSET:
+            raise ValueError(f&#34;cipher char {c!r} not in CHARSET&#34;)
+        y = CHARSET.index(c)
+        cands = [i for i, v in enumerate(f_map) if v == y]
+        if len(cands) == 0:
+            raise ValueError(f&#34;No candidate for cipher char {c!r}&#34;)
+        cand_list.append(cands)
+    return cand_list
+
+# single-worker search for product of candidates iterables
+def search_chunk(prefix_indices, remaining_cands, target_hash):
+    # prefix_indices: chosen indices for first k positions (list of ints)
+    # remaining_cands: list of candidate-lists for positions k..end
+    prefix = &#39;&#39;.join(CHARSET[i] for i in prefix_indices)
+    # iterate remaining
+    for tail in product(*remaining_cands):
+        candidate = prefix &#43; &#39;&#39;.join(CHARSET[i] for i in tail)
+        if sha256(candidate.encode(&#34;utf-8&#34;)).hexdigest() == target_hash:
+            return candidate
+    return None
+
+# helper for worker map: each worker gets a fixed prefix to extend
+def worker_task(args):
+    prefix_indices, remaining_cands, target_hash = args
+    return search_chunk(prefix_indices, remaining_cands, target_hash)
+
+def main():
+    workers = cpu_count()
+    print(&#34;CHARSET:&#34;, CHARSET)
+    print(&#34;p:&#34;, p)
+    print(&#34;known_prefix:&#34;, known_prefix)
+    print(&#34;enc:&#34;, enc)
+    print(&#34;target_hash:&#34;, target_hash)
+    # build interpolation using known 7 pairs
+    f_map = build_f_map(known_prefix, enc[:len(known_prefix)])
+    cand_list = build_candidates(enc, f_map)
+    counts = [len(c) for c in cand_list]
+    total = 1
+    for c in counts: total *= c
+    print(&#34;candidate counts per position:&#34;, counts)
+    print(&#34;total combinations:&#34;, total)
+
+    # if small, brute force single-thread
+    if total &lt;= 5_000_000:
+        print(&#34;Total combinations small: using single-thread brute force...&#34;)
+        for combo in product(*cand_list):
+            text = &#39;&#39;.join(CHARSET[i] for i in combo)
+            if sha256(text.encode(&#39;utf-8&#39;)).hexdigest() == target_hash:
+                print(&#34;Found flag:&#34;, text)
+                return
+        print(&#34;Not found.&#34;)
+        return
+
+    # otherwise use multiprocessing by splitting on first k positions
+    # choose k so that number of prefixes ~= workers * ~2000 (tunable)
+
+    target_prefix_count = workers * 2000
+    k = 1
+    prefix_space = len(cand_list[0])
+    while prefix_space &lt; target_prefix_count and k &lt; len(cand_list):
+        k &#43;= 1
+        prefix_space *= len(cand_list[k-1])
+    print(f&#34;Splitting on first {k} positions -&gt; prefix count {prefix_space}, using {workers} workers&#34;)
+
+    # generate all prefixes (could be large but manageable for typical sizes)
+    from itertools import product
+    prefixes = list(product(*cand_list[:k]))
+    remaining = cand_list[k:]
+
+    # prepare tasks (each task: a fixed prefix)
+    tasks = [(list(pref), remaining, target_hash) for pref in prefixes]
+
+    print(&#34;Starting pool...&#34;)
+    found = None
+    with Pool(processes=workers) as pool:
+        for res in pool.imap_unordered(worker_task, tasks, chunksize=1):
+            if res:
+                found = res
+                pool.terminate()
+                break
+
+    if found:
+        print(&#34;Found flag:&#34;, found)
+        print(&#34;SHA256:&#34;, sha256(found.encode()).hexdigest())
+    else:
+        print(&#34;Not found (tried full parallel search).&#34;)
+
+if __name__ == &#34;__main__&#34;:
+    main()
+
+# CHARSET: !@#¥%abcdefghijklmnopqrstuvwxyz0123456789
+# p: 41
+# known_prefix: flkejiy
+# enc: quw7f59u51q¥##w¥w6q6s¥¥#w#661d¥
+# target_hash: 7d41757168a2199b32cb1744de130fdebda25271116bc64eccf4e397770d73c2
+# candidate counts per position: [1, 1, 3, 2, 1, 4, 1, 1, 4, 1, 1, 2, 2, 2, 3, 2, 3, 2, 1, 2, 1, 2, 2, 2, 3, 2, 2, 2, 1, 4, 2]
+# total combinations: 84934656
+# Splitting on first 18 positions -&gt; prefix count 27648, using 8 workers
+# Starting pool...
+# Found flag: flkejiyliafg77c3c4f49335c711avg
+# SHA256: 7d41757168a2199b32cb1744de130fdebda25271116bc64eccf4e397770d73c2
+```
+
+## [TODO] 题目名称 图片的奥秘
+
+附件给了一个加密的压缩包，首先尝试弱密码爆破，得到解压密码：`54450`
+
+![](imgs/image-20250924102048066.png)
+
+解压后得到一张 PNG 图片，010 打开提示报错，发现末尾有一张 base64 编码后的 PNG 图片
+
+![](imgs/image-20250924102620223.png)
+
+![](imgs/image-20250924102223747.png)
+
+提取出来解码后可以得到下图，扫码得到：`flag{asdf%^&amp;*ghjkl}`
+
+![](imgs/image-20250924102338576.png)
+
+但是我们常用 010 打开这张图片，发现末尾还有数据
+
+![](imgs/image-20250924102803864.png)
+
+并且尝试搜索一下 PNG 文件尾，可以发现这里应该存在不止一张 PNG 图片
+
+![](imgs/image-20250924102908341.png)
+
+把后面多余的数据提取出来后，尝试搜索了一下 PNG 文件头
+
+![](imgs/image-20250924103307043.png)
 
 
 ## [TODO] 题目名称 文件分析
@@ -600,5 +902,5 @@ zsteg 扫一下这张 PNG，发现图片 LSB 隐写了一个文件
 ---
 
 > Author: [Lunatic](https://goodlunatic.github.io)  
-> URL: http://localhost:1313/posts/49bdad5/  
+> URL: https://goodlunatic.github.io/posts/49bdad5/  
 

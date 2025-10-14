@@ -1,23 +1,23 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
   <channel>
     <title>Language - Tag - ⚡Lunatic BLOG⚡</title>
-    <link>http://localhost:1313/tags/language/</link>
+    <link>https://goodlunatic.github.io/tags/language/</link>
     <description>Language - Tag | ⚡Lunatic BLOG⚡</description>
     <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>goodlunatic0@gmail.com (Lunatic)</managingEditor>
-      <webMaster>goodlunatic0@gmail.com (Lunatic)</webMaster><lastBuildDate>Wed, 23 Apr 2025 10:51:27 &#43;0800</lastBuildDate><atom:link href="http://localhost:1313/tags/language/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>goodlunatic0@gmail.com (Lunatic)</webMaster><lastBuildDate>Wed, 23 Apr 2025 10:51:27 &#43;0800</lastBuildDate><atom:link href="https://goodlunatic.github.io/tags/language/" rel="self" type="application/rss+xml" /><item>
   <title>C/C&#43;&#43;程序开发学习记录</title>
-  <link>http://localhost:1313/posts/e393438/</link>
+  <link>https://goodlunatic.github.io/posts/e393438/</link>
   <pubDate>Wed, 23 Apr 2025 10:51:27 &#43;0800</pubDate>
   <author>Lunatic</author>
-  <guid>http://localhost:1313/posts/e393438/</guid>
+  <guid>https://goodlunatic.github.io/posts/e393438/</guid>
   <description><![CDATA[<p><strong>最近科研上遇到一些项目需要使用C/C++开发，因此打算学习并记录一下</strong></p>]]></description>
 </item>
 <item>
   <title>Python Basic Knowledge</title>
-  <link>http://localhost:1313/posts/e19da63/</link>
+  <link>https://goodlunatic.github.io/posts/e19da63/</link>
   <pubDate>Tue, 05 Nov 2024 16:51:48 &#43;0800</pubDate>
   <author>Lunatic</author>
-  <guid>http://localhost:1313/posts/e19da63/</guid>
+  <guid>https://goodlunatic.github.io/posts/e19da63/</guid>
   <description><![CDATA[<p>Basic knowledge of Python Language.</p>]]></description>
 </item>
 </channel>

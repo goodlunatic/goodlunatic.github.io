@@ -257,5 +257,5 @@ WKCTF{1111_2222_3333_4444_hhhh}
 ---
 
 > Author: [Lunatic](https://goodlunatic.github.io)  
-> URL: http://localhost:1313/posts/2125dc5/  
+> URL: https://goodlunatic.github.io/posts/2125dc5/  
 

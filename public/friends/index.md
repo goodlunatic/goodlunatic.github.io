@@ -57,5 +57,5 @@
 ---
 
 > Author:   
-> URL: http://localhost:1313/friends/  
+> URL: https://goodlunatic.github.io/friends/  
 
