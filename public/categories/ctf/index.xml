@@ -1,0 +1,95 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title>CTF - Category - ⚡Lunatic BLOG⚡</title>
+    <link>https://goodlunatic.github.io/categories/ctf/</link>
+    <description>CTF - Category | ⚡Lunatic BLOG⚡</description>
+    <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>goodlunatic0@gmail.com (Lunatic)</managingEditor>
+      <webMaster>goodlunatic0@gmail.com (Lunatic)</webMaster><lastBuildDate>Wed, 08 Oct 2025 22:20:11 &#43;0800</lastBuildDate><atom:link href="https://goodlunatic.github.io/categories/ctf/" rel="self" type="application/rss+xml" /><item>
+  <title>群友们问的一些来路不明的题</title>
+  <link>https://goodlunatic.github.io/posts/bb1da35/</link>
+  <pubDate>Wed, 08 Oct 2025 22:20:11 &#43;0800</pubDate>
+  <author>Lunatic</author>
+  <guid>https://goodlunatic.github.io/posts/bb1da35/</guid>
+  <description><![CDATA[<p><strong>其实感觉时常做做群友给的题，对自我实力提升其实帮助挺大的</strong></p>]]></description>
+</item>
+<item>
+  <title>CTF-Misc &#34;雅&#34;题共赏</title>
+  <link>https://goodlunatic.github.io/posts/d0736a7/</link>
+  <pubDate>Tue, 07 Oct 2025 09:10:58 &#43;0800</pubDate>
+  <author>Lunatic</author>
+  <guid>https://goodlunatic.github.io/posts/d0736a7/</guid>
+  <description><![CDATA[<p><strong>用这篇博客来记录一下本人在比赛中遇到的一些疑难题（本人尚未解出的题）</strong></p>
+<p><strong>如果师傅们有进一步的想法或者做出来了，可以联系我一起交流一下解题思路</strong></p>]]></description>
+</item>
+<item>
+  <title>CTF-Misc Guide</title>
+  <link>https://goodlunatic.github.io/posts/1ad9200/</link>
+  <pubDate>Mon, 06 Oct 2025 22:10:17 &#43;0800</pubDate>
+  <author>Lunatic</author>
+  <guid>https://goodlunatic.github.io/posts/1ad9200/</guid>
+  <description><![CDATA[<p><strong>最开始接触CTF时，学的最多的就是Misc，各种编码与加密还有各种软件的使用等等</strong></p>
+<p><strong>但Misc涉及的范围实在太广了，于是就想着一边学习一边记录，因而就有了这篇文章</strong></p>]]></description>
+</item>
+<item>
+  <title>Misc-Forensics</title>
+  <link>https://goodlunatic.github.io/posts/761da51/</link>
+  <pubDate>Sat, 30 Aug 2025 22:50:12 &#43;0800</pubDate>
+  <author>Lunatic</author>
+  <guid>https://goodlunatic.github.io/posts/761da51/</guid>
+  <description><![CDATA[<p><strong>This is a simple summary of digital forensics .</strong></p>]]></description>
+</item>
+<item>
+  <title>CTF-Reverse学习记录</title>
+  <link>https://goodlunatic.github.io/posts/0f92e23/</link>
+  <pubDate>Sat, 16 Aug 2025 14:15:38 &#43;0800</pubDate>
+  <author>Lunatic</author>
+  <guid>https://goodlunatic.github.io/posts/0f92e23/</guid>
+  <description><![CDATA[<p><strong>未来的研究方向里有好多要用到逆向工程的地方</strong></p>
+<p><strong>感觉是绕不开逆向了，因此打算猛猛突击一下</strong></p>]]></description>
+</item>
+<item>
+  <title>强网杯-谍影重重系列赛题详解</title>
+  <link>https://goodlunatic.github.io/posts/1a152f0/</link>
+  <pubDate>Wed, 28 May 2025 10:29:38 &#43;0800</pubDate>
+  <author>Lunatic</author>
+  <guid>https://goodlunatic.github.io/posts/1a152f0/</guid>
+  <description><![CDATA[<p><strong>一直觉得每年强网杯的谍影重重这个系列挺有意思的</strong></p>
+<p><strong>因此就打算详细复盘一下历年谍影重重系列的赛题</strong></p>
+<p><strong>这里手动艾特一下出题人@1cePeak，感谢冰峰师傅出的题</strong></p>]]></description>
+</item>
+<item>
+  <title>Frida Learning Record</title>
+  <link>https://goodlunatic.github.io/posts/ca974cb/</link>
+  <pubDate>Sat, 17 May 2025 00:33:26 &#43;0800</pubDate>
+  <author>Lunatic</author>
+  <guid>https://goodlunatic.github.io/posts/ca974cb/</guid>
+  <description><![CDATA[<p><strong>在学习爬虫的过程中，发现有时候需要用到Frida，因此就想着学习一下</strong></p>
+<p><strong>之前经常听到队友念叨 FridaHook，现在终于有机会来学一下里面具体的内容了</strong></p>]]></description>
+</item>
+<item>
+  <title>Misc-Network Traffic Analysis</title>
+  <link>https://goodlunatic.github.io/posts/5422d65/</link>
+  <pubDate>Thu, 15 May 2025 10:15:27 &#43;0800</pubDate>
+  <author>Lunatic</author>
+  <guid>https://goodlunatic.github.io/posts/5422d65/</guid>
+  <description><![CDATA[<p><strong>This is a Simple Guide for Network Traffic Analysis.</strong></p>]]></description>
+</item>
+<item>
+  <title>CTF-数据安全</title>
+  <link>https://goodlunatic.github.io/posts/c49ae8a/</link>
+  <pubDate>Sun, 20 Apr 2025 14:56:54 &#43;0800</pubDate>
+  <author>Lunatic</author>
+  <guid>https://goodlunatic.github.io/posts/c49ae8a/</guid>
+  <description><![CDATA[<p>最近的CTF比赛中经常出现数据安全的板块(尤其是安恒承办的比赛)</p>
+<p>感觉这类题目是可以靠积累来提升解题速度的，因此准备写这样一篇博客来总结一下常见的考点</p>]]></description>
+</item>
+<item>
+  <title>CTF-ICS Learning Record</title>
+  <link>https://goodlunatic.github.io/posts/01ebd40/</link>
+  <pubDate>Fri, 25 Oct 2024 16:57:39 &#43;0800</pubDate>
+  <author>Lunatic</author>
+  <guid>https://goodlunatic.github.io/posts/01ebd40/</guid>
+  <description><![CDATA[<p>越来越多的比赛中出现工控相关的赛题，因此打算借这个机会学习一下。</p>]]></description>
+</item>
+</channel>
+</rss>

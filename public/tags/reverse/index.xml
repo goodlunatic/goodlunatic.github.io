@@ -1,0 +1,17 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title>Reverse - Tag - ⚡Lunatic BLOG⚡</title>
+    <link>https://goodlunatic.github.io/tags/reverse/</link>
+    <description>Reverse - Tag | ⚡Lunatic BLOG⚡</description>
+    <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>goodlunatic0@gmail.com (Lunatic)</managingEditor>
+      <webMaster>goodlunatic0@gmail.com (Lunatic)</webMaster><lastBuildDate>Sat, 16 Aug 2025 14:15:38 &#43;0800</lastBuildDate><atom:link href="https://goodlunatic.github.io/tags/reverse/" rel="self" type="application/rss+xml" /><item>
+  <title>CTF-Reverse学习记录</title>
+  <link>https://goodlunatic.github.io/posts/0f92e23/</link>
+  <pubDate>Sat, 16 Aug 2025 14:15:38 &#43;0800</pubDate>
+  <author>Lunatic</author>
+  <guid>https://goodlunatic.github.io/posts/0f92e23/</guid>
+  <description><![CDATA[<p><strong>未来的研究方向里有好多要用到逆向工程的地方</strong></p>
+<p><strong>感觉是绕不开逆向了，因此打算猛猛突击一下</strong></p>]]></description>
+</item>
+</channel>
+</rss>

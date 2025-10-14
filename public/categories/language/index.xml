@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title>Language - Category - ⚡Lunatic BLOG⚡</title>
+    <link>https://goodlunatic.github.io/categories/language/</link>
+    <description>Language - Category | ⚡Lunatic BLOG⚡</description>
+    <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>goodlunatic0@gmail.com (Lunatic)</managingEditor>
+      <webMaster>goodlunatic0@gmail.com (Lunatic)</webMaster><lastBuildDate>Tue, 05 Nov 2024 16:51:48 &#43;0800</lastBuildDate><atom:link href="https://goodlunatic.github.io/categories/language/" rel="self" type="application/rss+xml" /><item>
+  <title>Python Basic Knowledge</title>
+  <link>https://goodlunatic.github.io/posts/e19da63/</link>
+  <pubDate>Tue, 05 Nov 2024 16:51:48 &#43;0800</pubDate>
+  <author>Lunatic</author>
+  <guid>https://goodlunatic.github.io/posts/e19da63/</guid>
+  <description><![CDATA[<p>Basic knowledge of Python Language.</p>]]></description>
+</item>
+</channel>
+</rss>

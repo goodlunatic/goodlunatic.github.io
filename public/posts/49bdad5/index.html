@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="en">
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <title>2025 第九届工业信息安全技能大赛-典型工业场景锦标赛 Misc Writeup - ⚡Lunatic BLOG⚡</title><meta name="author" content="Lunatic">
+<meta name="author-link" content="https://goodlunatic.github.io">
+<meta name="description" content="2025 第九届工业信息安全技能大赛-典型工业场景锦标赛 Writeup
+赛后有师傅来问这场比赛里的题，部分题目出的挺好的，有一定的难度，于是打算记录一下" /><meta name="keywords" content='CTF, Misc, Writeup' />
+  <meta itemprop="name" content="2025 第九届工业信息安全技能大赛-典型工业场景锦标赛 Misc Writeup">
+  <meta itemprop="description" content="2025 第九届工业信息安全技能大赛-典型工业场景锦标赛 Writeup
+赛后有师傅来问这场比赛里的题，部分题目出的挺好的，有一定的难度，于是打算记录一下">
+  <meta itemprop="datePublished" content="2025-10-08T15:00:45+08:00">
+  <meta itemprop="dateModified" content="2025-10-08T15:00:45+08:00">
+  <meta itemprop="wordCount" content="1210">
+  <meta itemprop="keywords" content="CTF,Misc,Writeup"><meta property="og:url" content="https://goodlunatic.github.io/posts/49bdad5/">
+  <meta property="og:site_name" content="⚡Lunatic BLOG⚡">
+  <meta property="og:title" content="2025 第九届工业信息安全技能大赛-典型工业场景锦标赛 Misc Writeup">
+  <meta property="og:description" content="2025 第九届工业信息安全技能大赛-典型工业场景锦标赛 Writeup
+赛后有师傅来问这场比赛里的题，部分题目出的挺好的，有一定的难度，于是打算记录一下
+">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+  <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-10-08T15:00:45+08:00">
+    <meta property="article:modified_time" content="2025-10-08T15:00:45+08:00">
+    <meta property="article:tag" content="CTF">
+    <meta property="article:tag" content="Misc">
+    <meta property="article:tag" content="Writeup">
+<meta name="twitter:card" content="summary"><meta name="twitter:title" content="2025 第九届工业信息安全技能大赛-典型工业场景锦标赛 Misc Writeup">
+<meta name="twitter:description" content="2025 第九届工业信息安全技能大赛-典型工业场景锦标赛 Writeup
+赛后有师傅来问这场比赛里的题，部分题目出的挺好的，有一定的难度，于是打算记录一下">
+      <meta name="twitter:site" content="@goodlunatic007">
+<meta name="application-name" content="FixIt">
+<meta name="apple-mobile-web-app-title" content="FixIt"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="https://www.nssctf.cn/files/2024/4/28/7f130a1387.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="https://goodlunatic.github.io/posts/49bdad5/" /><link rel="prev" href="https://goodlunatic.github.io/posts/d0736a7/" /><link rel="next" href="https://goodlunatic.github.io/posts/bb1da35/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "2025 第九届工业信息安全技能大赛-典型工业场景锦标赛 Misc Writeup",
+    "inLanguage": "en",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https:\/\/goodlunatic.github.io\/posts\/49bdad5\/"
+    },"genre": "posts","keywords": "CTF, Misc, Writeup","wordcount":  1210 ,
+    "url": "https:\/\/goodlunatic.github.io\/posts\/49bdad5\/","datePublished": "2025-10-08T15:00:45+08:00","dateModified": "2025-10-08T15:00:45+08:00","publisher": {
+      "@type": "Organization",
+      "name": ""},"author": {
+        "@type": "Person",
+        "name": "Lunatic"
+      },"description": ""
+  }
+  </script></head>
+  <body data-header-desktop="sticky" data-header-mobile="auto"><script>(window.localStorage?.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper" data-page-style="normal"><header class="desktop animate__faster" id="header-desktop">
+  <div class="header-wrapper">
+    <div class="header-title">
+      <a href="/" title="⚡Lunatic BLOG⚡"><span class="header-title-pre">⚡</span><span id="typeit-header-desktop" class="typeit"></span></a><span id="typeit-header-subtitle-desktop" class="typeit header-subtitle"></span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/archives/"
+                
+                
+              ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> Archives</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/categories/"
+                
+                
+              ><i class="fa-solid fa-folder-tree fa-fw fa-sm" aria-hidden="true"></i> Categories</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/tags/"
+                
+                
+              ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> Tags</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/friends/"
+                
+                
+              ><i class="fa-solid fa-chain fa-fw fa-sm" aria-hidden="true"></i> Friends</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/about/"
+                
+                
+              ><i class="fa-solid fa-graduation-cap fa-fw fa-sm" aria-hidden="true"></i> About</a></li><li class="menu-item delimiter"></li><li class="menu-item theme-switch" title="Switch Theme">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li></ul>
+    </nav>
+  </div>
+</header><header class="mobile animate__faster" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="⚡Lunatic BLOG⚡"><span class="header-title-pre">⚡</span><span id="typeit-header-title-mobile" class="typeit"></span></a><span id="typeit-header-subtitle-mobile" class="typeit header-subtitle"></span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/archives/"
+                  
+                  
+                ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> Archives</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/categories/"
+                  
+                  
+                ><i class="fa-solid fa-folder-tree fa-fw fa-sm" aria-hidden="true"></i> Categories</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/tags/"
+                  
+                  
+                ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> Tags</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/friends/"
+                  
+                  
+                ><i class="fa-solid fa-chain fa-fw fa-sm" aria-hidden="true"></i> Friends</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/about/"
+                  
+                  
+                ><i class="fa-solid fa-graduation-cap fa-fw fa-sm" aria-hidden="true"></i> About</a></li><li class="menu-item menu-system">
+          <span class="menu-system-item theme-switch" title="Switch Theme"><i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i></span></li>
+      </ul>
+    </nav>
+  </div>
+</header><main class="container"><aside class="aside-collection animate__animated animate__fadeIn animate__faster" aria-label=""></aside>
+
+<article class="page single">
+  <div class="header"><h1 class="single-title animate__animated animate__flipInX"><span>2025 第九届工业信息安全技能大赛-典型工业场景锦标赛 Misc Writeup</span>
+    </h1></div><div class="post-meta">
+    <div class="post-meta-line"><span class="post-author"><a href="https://goodlunatic.github.io" title="Author"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><img loading="lazy" src="https://www.nssctf.cn/files/2024/4/28/7f130a1387.png" alt="Lunatic" data-title="Lunatic" class="avatar" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/>&nbsp;Lunatic</a></span><span class="post-included-in">&nbsp;included in <a href="/categories/writeup/" class="post-category" title="Category - Writeup"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> Writeup</a></span></div><div class="post-meta-line"><span title="published on &lt;no value&gt;"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden="true"></i><time datetime="2025-10-08">2025-10-08</time></span>&nbsp;<span title=""><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>About 1300 words</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>6 minutes</span>&nbsp;</div>
+  </div><div class="details toc" id="toc-static"
+    data-kept="false">
+    <div class="details-summary toc-title">
+      <span>Contents</span>
+      <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+    </div>
+    <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#题目名称-开局一张图">题目名称 开局一张图</a></li>
+    <li><a href="#题目名称-设计图之秘">题目名称 设计图之秘</a></li>
+    <li><a href="#题目名称-抓内鬼啦">题目名称 抓内鬼啦</a></li>
+    <li><a href="#题目名称-固件分析-1">题目名称 固件分析 1</a></li>
+    <li><a href="#题目名称-工控宣传的隐秘信号">题目名称 工控宣传的隐秘信号</a></li>
+    <li><a href="#题目名称-工业日志分析">题目名称 工业日志分析</a></li>
+    <li><a href="#题目名称-工业控制协议流量分析-1">题目名称 工业控制协议流量分析 1</a></li>
+    <li><a href="#题目名称-工业控制协议流量分析-2">题目名称 工业控制协议流量分析 2</a></li>
+    <li><a href="#题目名称-工业控制协议流量分析-3">题目名称 工业控制协议流量分析 3</a></li>
+    <li><a href="#题目名称-音频隐写">题目名称 音频隐写</a></li>
+    <li><a href="#题目名称-所见即是开始">题目名称 所见即是开始</a></li>
+    <li><a href="#题目名称-工业流量隐写分析">题目名称 工业流量隐写分析</a></li>
+    <li><a href="#todo-题目名称-图片的奥秘">[TODO] 题目名称 图片的奥秘</a></li>
+    <li><a href="#todo-题目名称-异常的数据流量包">[TODO] 题目名称 异常的数据流量包</a></li>
+    <li><a href="#todo-题目名称-工控协议隐蔽通道分析附件">[TODO] 题目名称 工控协议隐蔽通道分析附件</a></li>
+    <li><a href="#todo-题目名称-文件分析">[TODO] 题目名称 文件分析</a></li>
+    <li><a href="#todo-题目名称-勒索病毒攻击">[TODO] 题目名称 勒索病毒攻击</a></li>
+    <li><a href="#todo-题目名称-多注意观察">[TODO] 题目名称 多注意观察</a></li>
+    <li><a href="#todo-题目名称-autopilot-ghost">[TODO] 题目名称 Autopilot Ghost</a></li>
+  </ul>
+</nav></div>
+  </div><div class="content" id="content"><p><strong>2025 第九届工业信息安全技能大赛-典型工业场景锦标赛 Writeup</strong></p>
+<p><strong>赛后有师傅来问这场比赛里的题，部分题目出的挺好的，有一定的难度，于是打算记录一下</strong></p>
+<blockquote>
+<p>本文中涉及的具体题目附件可以进我的交流群获取，进群详见 <a href="https://goodlunatic.github.io/about/"target="_blank" rel="external nofollow noopener noreferrer">About</a></p>
+</blockquote>
+<h2 id="题目名称-开局一张图" class="heading-element">
+  <a href="#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-%e5%bc%80%e5%b1%80%e4%b8%80%e5%bc%a0%e5%9b%be" class="heading-mark"></a>题目名称 开局一张图</h2><p>LSB 隐写，提取出来即可：<code>0fvx2enlh9k6ai4el2g960dd97c2f4805987fl3Aw4bZ0FGKJ2k6EDBqoYCiTWr8RXQdleg</code></p>
+<p><img loading="lazy" src="imgs/image-20250924094216987.png" alt="imgs/image-20250924094216987.png" srcset="imgs/image-20250924094216987.png?size=small, imgs/image-20250924094216987.png?size=medium 1.5x, imgs/image-20250924094216987.png?size=large 2x" data-title="imgs/image-20250924094216987.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<h2 id="题目名称-设计图之秘" class="heading-element">
+  <a href="#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-%e8%ae%be%e8%ae%a1%e5%9b%be%e4%b9%8b%e7%a7%98" class="heading-mark"></a>题目名称 设计图之秘</h2><p>steghide 隐写，直接用 stegseek 爆破密钥即可</p>
+<p><img loading="lazy" src="imgs/image-20250924100646435.png" alt="imgs/image-20250924100646435.png" srcset="imgs/image-20250924100646435.png?size=small, imgs/image-20250924100646435.png?size=medium 1.5x, imgs/image-20250924100646435.png?size=large 2x" data-title="imgs/image-20250924100646435.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>打开 .out 文件即可得到：<code>flk5lsdiaenorfa1yeag7d21c78ad28c3ae25V6swgqhSAc3eyHJoQzMWFr491xktO8dGYRTXmCiPZNufBpl7b2UDK0Larm</code></p>
+<h2 id="题目名称-抓内鬼啦" class="heading-element">
+  <a href="#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-%e6%8a%93%e5%86%85%e9%ac%bc%e5%95%a6" class="heading-mark"></a>题目名称 抓内鬼啦</h2><p>题目附件给了一个流量包，打开发现 HTTP 流量中上传了几个文件</p>
+<p>首先是传了了一张宽高被篡改过的 PNG 图片，并且图片末尾有段 base64，解码后可以得到宽高的提示</p>
+<p><img loading="lazy" src="imgs/image-20250923233438173.png" alt="imgs/image-20250923233438173.png" srcset="imgs/image-20250923233438173.png?size=small, imgs/image-20250923233438173.png?size=medium 1.5x, imgs/image-20250923233438173.png?size=large 2x" data-title="imgs/image-20250923233438173.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><img loading="lazy" src="imgs/image-20250923233454698.png" alt="imgs/image-20250923233454698.png" srcset="imgs/image-20250923233454698.png?size=small, imgs/image-20250923233454698.png?size=medium 1.5x, imgs/image-20250923233454698.png?size=large 2x" data-title="imgs/image-20250923233454698.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>010 打开修改好宽高后可以得到一张二维码</p>
+<p><img loading="lazy" src="imgs/image-20250923233708163.png" alt="imgs/image-20250923233708163.png" srcset="imgs/image-20250923233708163.png?size=small, imgs/image-20250923233708163.png?size=medium 1.5x, imgs/image-20250923233708163.png?size=large 2x" data-title="imgs/image-20250923233708163.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><img loading="lazy" src="imgs/image-20250923233714669.png" alt="imgs/image-20250923233714669.png" srcset="imgs/image-20250923233714669.png?size=small, imgs/image-20250923233714669.png?size=medium 1.5x, imgs/image-20250923233714669.png?size=large 2x" data-title="imgs/image-20250923233714669.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>扫码即可得到第一段的 flag: <code>Polis{W0w_Th1s_1s_f1agO1_</code></p>
+<p>然后流量中还传了一个 zip 压缩包，尝试提取出来，发现是伪加密的</p>
+<p>010 打开发现压缩大小和压缩前大小也被篡改了，修改为正确的大小并去除伪加密后打开</p>
+<p>即可得到第二段 flag: <code>Great_G0t_it!}</code></p>
+<p><img loading="lazy" src="imgs/image-20250923234803347.png" alt="imgs/image-20250923234803347.png" srcset="imgs/image-20250923234803347.png?size=small, imgs/image-20250923234803347.png?size=medium 1.5x, imgs/image-20250923234803347.png?size=large 2x" data-title="imgs/image-20250923234803347.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>综上，最后的 flag 为：<code>Polis{W0w_Th1s_1s_f1agO1_Great_G0t_it!}</code></p>
+<h2 id="题目名称-固件分析-1" class="heading-element">
+  <a href="#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-%e5%9b%ba%e4%bb%b6%e5%88%86%e6%9e%90-1" class="heading-mark"></a>题目名称 固件分析 1</h2><p>题目附件给了一个 img 文件，尝试直接用 DiskGenius 打开</p>
+<p><img loading="lazy" src="imgs/image-20250924101145956.png" alt="imgs/image-20250924101145956.png" srcset="imgs/image-20250924101145956.png?size=small, imgs/image-20250924101145956.png?size=medium 1.5x, imgs/image-20250924101145956.png?size=large 2x" data-title="imgs/image-20250924101145956.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><img loading="lazy" src="imgs/image-20250924101158256.png" alt="imgs/image-20250924101158256.png" srcset="imgs/image-20250924101158256.png?size=small, imgs/image-20250924101158256.png?size=medium 1.5x, imgs/image-20250924101158256.png?size=large 2x" data-title="imgs/image-20250924101158256.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><img loading="lazy" src="imgs/image-20250924101207127.png" alt="imgs/image-20250924101207127.png" srcset="imgs/image-20250924101207127.png?size=small, imgs/image-20250924101207127.png?size=medium 1.5x, imgs/image-20250924101207127.png?size=large 2x" data-title="imgs/image-20250924101207127.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>可以得到上面这几个文件，其中 7z 压缩包是加密的</p>
+<p>尝试直接 strings 一下 sh 和 motd 里面的内容，可以得到第一段 flag 和压缩包的解压密码：<code>Secret_PLC2025</code></p>
+<p><img loading="lazy" src="imgs/image-20250924101357328.png" alt="imgs/image-20250924101357328.png" srcset="imgs/image-20250924101357328.png?size=small, imgs/image-20250924101357328.png?size=medium 1.5x, imgs/image-20250924101357328.png?size=large 2x" data-title="imgs/image-20250924101357328.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>解压后可以得到一个 flag2.txt，内容如下：</p>
+<blockquote>
+<p>E4MC01MGE4LTRm</p>
+</blockquote>
+<p>但是发现拼不出完整的 flag，于是尝试直接 strings 整个 img，可以得到另外几段内容</p>
+<p><img loading="lazy" src="imgs/image-20250924101653034.png" alt="imgs/image-20250924101653034.png" srcset="imgs/image-20250924101653034.png?size=small, imgs/image-20250924101653034.png?size=medium 1.5x, imgs/image-20250924101653034.png?size=large 2x" data-title="imgs/image-20250924101653034.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>最后尝试在 CyberChef 中组合一下，把三段 base64 调整到相同的长度，然后解码即可得到完整的 flag</p>
+<p><code>flag{a6300a80-50a8-4f3f-b339-3ac9c76ae902}</code></p>
+<p><img loading="lazy" src="imgs/image-20250924101852975.png" alt="imgs/image-20250924101852975.png" srcset="imgs/image-20250924101852975.png?size=small, imgs/image-20250924101852975.png?size=medium 1.5x, imgs/image-20250924101852975.png?size=large 2x" data-title="imgs/image-20250924101852975.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<h2 id="题目名称-工控宣传的隐秘信号" class="heading-element">
+  <a href="#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-%e5%b7%a5%e6%8e%a7%e5%ae%a3%e4%bc%a0%e7%9a%84%e9%9a%90%e7%a7%98%e4%bf%a1%e5%8f%b7" class="heading-mark"></a>题目名称 工控宣传的隐秘信号</h2><p>附件给了一个 mp3 文件和一个加密的压缩包，直接用 audacity 倒放即可听到压缩包的解压密码：<code>s0803y0518</code></p>
+<p>解压后可以得到一张 GIF，尝试分帧，可在第 156 帧得到一个少了定位块的二维码</p>
+<p><img loading="lazy" src="imgs/image-20250924104432094.png" alt="imgs/image-20250924104432094.png" srcset="imgs/image-20250924104432094.png?size=small, imgs/image-20250924104432094.png?size=medium 1.5x, imgs/image-20250924104432094.png?size=large 2x" data-title="imgs/image-20250924104432094.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>补上定位块后扫码即可得到：<code>GNalVNrhVOLZjRK7pMrJjPn3x</code></p>
+<p><img loading="lazy" src="imgs/image-20250924104636303.png" alt="imgs/image-20250924104636303.png" srcset="imgs/image-20250924104636303.png?size=small, imgs/image-20250924104636303.png?size=medium 1.5x, imgs/image-20250924104636303.png?size=large 2x" data-title="imgs/image-20250924104636303.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>然后随波逐流解个 XXencode 即可得到最后的 flag: <code>flag{aiyoubucuoo1}</code></p>
+<p><img loading="lazy" src="imgs/image-20250924104717195.png" alt="imgs/image-20250924104717195.png" srcset="imgs/image-20250924104717195.png?size=small, imgs/image-20250924104717195.png?size=medium 1.5x, imgs/image-20250924104717195.png?size=large 2x" data-title="imgs/image-20250924104717195.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<h2 id="题目名称-工业日志分析" class="heading-element">
+  <a href="#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-%e5%b7%a5%e4%b8%9a%e6%97%a5%e5%bf%97%e5%88%86%e6%9e%90" class="heading-mark"></a>题目名称 工业日志分析</h2><p>附件给了一个 log 文件，直接 vscode 打开然后在里面找三段 base64</p>
+<p><img loading="lazy" src="imgs/image-20250924105106061.png" alt="imgs/image-20250924105106061.png" srcset="imgs/image-20250924105106061.png?size=small, imgs/image-20250924105106061.png?size=medium 1.5x, imgs/image-20250924105106061.png?size=large 2x" data-title="imgs/image-20250924105106061.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><img loading="lazy" src="imgs/image-20250924105217619.png" alt="imgs/image-20250924105217619.png" srcset="imgs/image-20250924105217619.png?size=small, imgs/image-20250924105217619.png?size=medium 1.5x, imgs/image-20250924105217619.png?size=large 2x" data-title="imgs/image-20250924105217619.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><img loading="lazy" src="imgs/image-20250924105129642.png" alt="imgs/image-20250924105129642.png" srcset="imgs/image-20250924105129642.png?size=small, imgs/image-20250924105129642.png?size=medium 1.5x, imgs/image-20250924105129642.png?size=large 2x" data-title="imgs/image-20250924105129642.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>然后 CyberChef 组合一下解 base64 即可得到最后的 flag：<code>flag{4e54fa7c-c530-4c5c-985e-2e15871ddf04}</code></p>
+<p><img loading="lazy" src="imgs/image-20250924105322109.png" alt="imgs/image-20250924105322109.png" srcset="imgs/image-20250924105322109.png?size=small, imgs/image-20250924105322109.png?size=medium 1.5x, imgs/image-20250924105322109.png?size=large 2x" data-title="imgs/image-20250924105322109.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<h2 id="题目名称-工业控制协议流量分析-1" class="heading-element">
+  <a href="#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-%e5%b7%a5%e4%b8%9a%e6%8e%a7%e5%88%b6%e5%8d%8f%e8%ae%ae%e6%b5%81%e9%87%8f%e5%88%86%e6%9e%90-1" class="heading-mark"></a>题目名称 工业控制协议流量分析 1</h2><p>题目附件给了一个流量包，打开发现主要是 TCP 流量，首先尝试用以下命令导出一下传输的数据</p>
+<div class="highlight" id="id-1"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">tshark -r 工业控制协议流量分析1.pcap -T fields -Y <span class="s1">&#39;tcp&#39;</span> -e <span class="s1">&#39;tcp.segment_data&#39;</span> &gt; out.txt</span></span></code></pre></td></tr></table>
+</div>
+</div><p>发现大多数数据的长度都是 13 字节，有少部分不是，因此我们重点关注这些长度不为 13 字节的数据</p>
+<p><img loading="lazy" src="imgs/image-20250924140703856.png" alt="imgs/image-20250924140703856.png" srcset="imgs/image-20250924140703856.png?size=small, imgs/image-20250924140703856.png?size=medium 1.5x, imgs/image-20250924140703856.png?size=large 2x" data-title="imgs/image-20250924140703856.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>用以下命令导出一下长度不为 13 字节的数据</p>
+<div class="highlight" id="id-2"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">tshark -r 工业控制协议流量分析1.pcap -T fields -Y <span class="s1">&#39;len(tcp.segment_data) != 13&#39;</span> -e <span class="s1">&#39;tcp.segment_data&#39;</span> &gt; out.txt</span></span></code></pre></td></tr></table>
+</div>
+</div><p>可以得到如下内容：</p>
+<div class="highlight" id="id-3"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">6e310000000901666c0304cdd0141e
+</span></span><span class="line"><span class="cl">0a400000000901030461677b399dde,e50e
+</span></span><span class="line"><span class="cl">187a00000009013437316603045f10,8121
+</span></span><span class="line"><span class="cl">792d000000096433322d010304bc9a,b5b0
+</span></span><span class="line"><span class="cl">224600000009010361353832042917,411e
+</span></span><span class="line"><span class="cl">5da500000009010304a42d3438c4e9,22
+</span></span><span class="line"><span class="cl">7b2800000009013834030445c76c42
+</span></span><span class="line"><span class="cl">5f92000000090103042d6239da0959,97
+</span></span><span class="line"><span class="cl">956500000009010304d82b39302db8,9e
+</span></span><span class="line"><span class="cl">073800000009010304b631306666a5,94
+</span></span><span class="line"><span class="cl">cc6d0000000901030446903963380d,e4
+</span></span><span class="line"><span class="cl">57960000006563090103045d644a1a
+</span></span><span class="line"><span class="cl">3b6c00000009010304d86438300785,87
+</span></span><span class="line"><span class="cl">8f4200000009010304c9307dbeea4f</span></span></code></pre></td></tr></table>
+</div>
+</div><p>拿 CyberChef 解一下 Hex 已经能看到部分 flag 了</p>
+<p><img loading="lazy" src="imgs/image-20250924141928161.png" alt="imgs/image-20250924141928161.png" srcset="imgs/image-20250924141928161.png?size=small, imgs/image-20250924141928161.png?size=medium 1.5x, imgs/image-20250924141928161.png?size=large 2x" data-title="imgs/image-20250924141928161.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>手动把不可打印字符和大写字符删去，即可得到最后的 flag：<code>flag{9471fd32-a582-4884-b990-10ff9c8dd800}</code></p>
+<p><img loading="lazy" src="imgs/image-20250924142020657.png" alt="imgs/image-20250924142020657.png" srcset="imgs/image-20250924142020657.png?size=small, imgs/image-20250924142020657.png?size=medium 1.5x, imgs/image-20250924142020657.png?size=large 2x" data-title="imgs/image-20250924142020657.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<h2 id="题目名称-工业控制协议流量分析-2" class="heading-element">
+  <a href="#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-%e5%b7%a5%e4%b8%9a%e6%8e%a7%e5%88%b6%e5%8d%8f%e8%ae%ae%e6%b5%81%e9%87%8f%e5%88%86%e6%9e%90-2" class="heading-mark"></a>题目名称 工业控制协议流量分析 2</h2><p>附件给了一个流量包，打开翻看发现主要是 TPKT 协议</p>
+<p>尝试用 tshark 导出 tpkt.continuation_data</p>
+<div class="highlight" id="id-4"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">tshark -r 工业控制协议流量分析2.pcap -T fields -Y <span class="s1">&#39;_ws.col.protocol == &#34;TPKT&#34;&#39;</span> -e tpkt.continuation_data &gt; out.txt</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img loading="lazy" src="imgs/image-20250925095605474.png" alt="imgs/image-20250925095605474.png" srcset="imgs/image-20250925095605474.png?size=small, imgs/image-20250925095605474.png?size=medium 1.5x, imgs/image-20250925095605474.png?size=large 2x" data-title="imgs/image-20250925095605474.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>发现用很多数据是相同的，然后其中穿插了几个不同的数据，因此我们可以过滤一下再导出</p>
+<div class="highlight" id="id-5"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">tshark -r 工业控制协议流量分析2.pcap -T fields -Y <span class="s1">&#39;!(tpkt.continuation_data == 4d:4d:53:5f:50:41:59:4c:4f:41:44:5f:4e:4f:52:4d:41:4c)&#39;</span> -e tpkt.continuation_data &gt; out.txt</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img loading="lazy" src="imgs/image-20250925095806676.png" alt="imgs/image-20250925095806676.png" srcset="imgs/image-20250925095806676.png?size=small, imgs/image-20250925095806676.png?size=medium 1.5x, imgs/image-20250925095806676.png?size=large 2x" data-title="imgs/image-20250925095806676.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>第一行数据解 Hex 可以得到一串密码</p>
+<p><img loading="lazy" src="imgs/image-20250925095831203.png" alt="imgs/image-20250925095831203.png" srcset="imgs/image-20250925095831203.png?size=small, imgs/image-20250925095831203.png?size=medium 1.5x, imgs/image-20250925095831203.png?size=large 2x" data-title="imgs/image-20250925095831203.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>然后我们主要观察剩下数据的倒数第二字节，可以发现有个 zip 压缩包</p>
+<p><img loading="lazy" src="imgs/image-20250925095937171.png" alt="imgs/image-20250925095937171.png" srcset="imgs/image-20250925095937171.png?size=small, imgs/image-20250925095937171.png?size=medium 1.5x, imgs/image-20250925095937171.png?size=large 2x" data-title="imgs/image-20250925095937171.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>但是提取出来发现文件是不完整的，于是我们尝试用以下这个命令直接去提取 TCP 中的数据</p>
+<div class="highlight" id="id-6"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">tshark -r 工业控制协议流量分析2.pcap -T fields -Y <span class="s1">&#39;!(tcp.payload == 4d:4d:53:5f:50:41:59:4c:4f:41:44:5f:4e:4f:52:4d:41:4c)&#39;</span> -e tcp.payload &gt; out.txt</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这个时候提取出来的 zip 数据就是完整的了，用<code>MMS12345</code>作为密码解压即可得到最后的 flag</p>
+<p><img loading="lazy" src="imgs/image-20250925100145539.png" alt="imgs/image-20250925100145539.png" srcset="imgs/image-20250925100145539.png?size=small, imgs/image-20250925100145539.png?size=medium 1.5x, imgs/image-20250925100145539.png?size=large 2x" data-title="imgs/image-20250925100145539.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><img loading="lazy" src="imgs/image-20250925100300740.png" alt="imgs/image-20250925100300740.png" srcset="imgs/image-20250925100300740.png?size=small, imgs/image-20250925100300740.png?size=medium 1.5x, imgs/image-20250925100300740.png?size=large 2x" data-title="imgs/image-20250925100300740.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><code>flag{6a46756d-df7e-4b66-87e4-1b2661676e40}</code></p>
+<h2 id="题目名称-工业控制协议流量分析-3" class="heading-element">
+  <a href="#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-%e5%b7%a5%e4%b8%9a%e6%8e%a7%e5%88%b6%e5%8d%8f%e8%ae%ae%e6%b5%81%e9%87%8f%e5%88%86%e6%9e%90-3" class="heading-mark"></a>题目名称 工业控制协议流量分析 3</h2><p>附件给了一个流量包，打开发现存在 mqtt 流量，直接用以下命令导出 mqtt.msg</p>
+<div class="highlight" id="id-7"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">tshark -r protocal.pcapng -T fields -Y <span class="s1">&#39;mqtt&#39;</span> -e <span class="s1">&#39;mqtt.msg&#39;</span> &gt; out.txt</span></span></code></pre></td></tr></table>
+</div>
+</div><p>然后 CyberChef 转一下 Hex ，拉倒末尾即可看到 flag：<code>flag{ruEf6OmqhAlXIYxmnR1XLC6R1]}</code></p>
+<p><img loading="lazy" src="imgs/image-20250925100707429.png" alt="imgs/image-20250925100707429.png" srcset="imgs/image-20250925100707429.png?size=small, imgs/image-20250925100707429.png?size=medium 1.5x, imgs/image-20250925100707429.png?size=large 2x" data-title="imgs/image-20250925100707429.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<h2 id="题目名称-音频隐写" class="heading-element">
+  <a href="#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-%e9%9f%b3%e9%a2%91%e9%9a%90%e5%86%99" class="heading-mark"></a>题目名称 音频隐写</h2><p>附件给了一个 字符频率映射表.txt 还有一个 wav 文件，映射表中的内容如下：</p>
+<div class="highlight" id="id-8"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&#39;a&#39;: 440, &#39;b&#39;: 466, &#39;c&#39;: 494, &#39;d&#39;: 523, &#39;e&#39;: 554,
+</span></span><span class="line"><span class="cl">&#39;f&#39;: 587, &#39;g&#39;: 622, &#39;h&#39;: 659, &#39;i&#39;: 698, &#39;j&#39;: 740,
+</span></span><span class="line"><span class="cl">&#39;k&#39;: 784, &#39;l&#39;: 830, &#39;m&#39;: 880, &#39;n&#39;: 932, &#39;o&#39;: 988,
+</span></span><span class="line"><span class="cl">&#39;p&#39;: 1047, &#39;q&#39;: 1109, &#39;r&#39;: 1175, &#39;s&#39;: 1245, &#39;t&#39;: 1319,
+</span></span><span class="line"><span class="cl">&#39;u&#39;: 1397, &#39;v&#39;: 1480, &#39;w&#39;: 1568, &#39;x&#39;: 1661, &#39;y&#39;: 1760, &#39;z&#39;: 1865,
+</span></span><span class="line"><span class="cl">&#39;1&#39;: 1000, &#39;2&#39;: 2000, &#39;3&#39;: 3000, &#39;4&#39;: 4000, &#39;5&#39;: 5000,
+</span></span><span class="line"><span class="cl">&#39;6&#39;: 6000, &#39;7&#39;: 7000, &#39;8&#39;: 8000, &#39;9&#39;: 9000, &#39;0&#39;: 10000,
+</span></span><span class="line"><span class="cl">&#39;A&#39;: 445, &#39;B&#39;: 471, &#39;C&#39;: 499, &#39;D&#39;: 528, &#39;E&#39;: 559,
+</span></span><span class="line"><span class="cl">&#39;F&#39;: 592, &#39;G&#39;: 627, &#39;H&#39;: 664, &#39;I&#39;: 703, &#39;J&#39;: 745,
+</span></span><span class="line"><span class="cl">&#39;K&#39;: 789, &#39;L&#39;: 835, &#39;M&#39;: 885, &#39;N&#39;: 937, &#39;O&#39;: 993,
+</span></span><span class="line"><span class="cl">&#39;P&#39;: 1052, &#39;Q&#39;: 1114, &#39;R&#39;: 1180, &#39;S&#39;: 1250, &#39;T&#39;: 1324,
+</span></span><span class="line"><span class="cl">&#39;U&#39;: 1402, &#39;V&#39;: 1485, &#39;W&#39;: 1573, &#39;X&#39;: 1666, &#39;Y&#39;: 1765, &#39;Z&#39;: 1870,</span></span></code></pre></td></tr></table>
+</div>
+</div><p>因此我们写个脚本提取一下即可得到 flag: <code>FvoelrnoBjmFz1aknoF7U24gFe5204521Be19B3voh9BSaqhGRlyXio6m0xtkEZ21nUmhelP</code></p>
+<div class="highlight" id="id-9"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span><span class="lnt">73
+</span><span class="lnt">74
+</span><span class="lnt">75
+</span><span class="lnt">76
+</span><span class="lnt">77
+</span><span class="lnt">78
+</span><span class="lnt">79
+</span><span class="lnt">80
+</span><span class="lnt">81
+</span><span class="lnt">82
+</span><span class="lnt">83
+</span><span class="lnt">84
+</span><span class="lnt">85
+</span><span class="lnt">86
+</span><span class="lnt">87
+</span><span class="lnt">88
+</span><span class="lnt">89
+</span><span class="lnt">90
+</span><span class="lnt">91
+</span><span class="lnt">92
+</span><span class="lnt">93
+</span><span class="lnt">94
+</span><span class="lnt">95
+</span><span class="lnt">96
+</span><span class="lnt">97
+</span><span class="lnt">98
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">scipy.io</span> <span class="kn">import</span> <span class="n">wavfile</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 常量定义</span>
+</span></span><span class="line"><span class="cl"><span class="n">DEFAULT_CHUNK_DURATION_MS</span> <span class="o">=</span> <span class="mi">100</span>  <span class="c1"># 默认分析块时长（毫秒）</span>
+</span></span><span class="line"><span class="cl"><span class="n">FREQ_DIFF_THRESHOLD</span> <span class="o">=</span> <span class="mi">30</span>         <span class="c1"># 频率差异阈值</span>
+</span></span><span class="line"><span class="cl"><span class="n">LOW_FREQ_THRESHOLD</span> <span class="o">=</span> <span class="mi">100</span>         <span class="c1"># 低频噪声阈值</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 频率与字符的对照表</span>
+</span></span><span class="line"><span class="cl"><span class="n">FREQ_MAP</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 小写字母</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;a&#39;</span><span class="p">:</span> <span class="mi">440</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">:</span> <span class="mi">466</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">:</span> <span class="mi">494</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">:</span> <span class="mi">523</span><span class="p">,</span> <span class="s1">&#39;e&#39;</span><span class="p">:</span> <span class="mi">554</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;f&#39;</span><span class="p">:</span> <span class="mi">587</span><span class="p">,</span> <span class="s1">&#39;g&#39;</span><span class="p">:</span> <span class="mi">622</span><span class="p">,</span> <span class="s1">&#39;h&#39;</span><span class="p">:</span> <span class="mi">659</span><span class="p">,</span> <span class="s1">&#39;i&#39;</span><span class="p">:</span> <span class="mi">698</span><span class="p">,</span> <span class="s1">&#39;j&#39;</span><span class="p">:</span> <span class="mi">740</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;k&#39;</span><span class="p">:</span> <span class="mi">784</span><span class="p">,</span> <span class="s1">&#39;l&#39;</span><span class="p">:</span> <span class="mi">830</span><span class="p">,</span> <span class="s1">&#39;m&#39;</span><span class="p">:</span> <span class="mi">880</span><span class="p">,</span> <span class="s1">&#39;n&#39;</span><span class="p">:</span> <span class="mi">932</span><span class="p">,</span> <span class="s1">&#39;o&#39;</span><span class="p">:</span> <span class="mi">988</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;p&#39;</span><span class="p">:</span> <span class="mi">1047</span><span class="p">,</span> <span class="s1">&#39;q&#39;</span><span class="p">:</span> <span class="mi">1109</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">:</span> <span class="mi">1175</span><span class="p">,</span> <span class="s1">&#39;s&#39;</span><span class="p">:</span> <span class="mi">1245</span><span class="p">,</span> <span class="s1">&#39;t&#39;</span><span class="p">:</span> <span class="mi">1319</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;u&#39;</span><span class="p">:</span> <span class="mi">1397</span><span class="p">,</span> <span class="s1">&#39;v&#39;</span><span class="p">:</span> <span class="mi">1480</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">:</span> <span class="mi">1568</span><span class="p">,</span> <span class="s1">&#39;x&#39;</span><span class="p">:</span> <span class="mi">1661</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">:</span> <span class="mi">1760</span><span class="p">,</span> <span class="s1">&#39;z&#39;</span><span class="p">:</span> <span class="mi">1865</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="c1"># 数字</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;1&#39;</span><span class="p">:</span> <span class="mi">1000</span><span class="p">,</span> <span class="s1">&#39;2&#39;</span><span class="p">:</span> <span class="mi">2000</span><span class="p">,</span> <span class="s1">&#39;3&#39;</span><span class="p">:</span> <span class="mi">3000</span><span class="p">,</span> <span class="s1">&#39;4&#39;</span><span class="p">:</span> <span class="mi">4000</span><span class="p">,</span> <span class="s1">&#39;5&#39;</span><span class="p">:</span> <span class="mi">5000</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;6&#39;</span><span class="p">:</span> <span class="mi">6000</span><span class="p">,</span> <span class="s1">&#39;7&#39;</span><span class="p">:</span> <span class="mi">7000</span><span class="p">,</span> <span class="s1">&#39;8&#39;</span><span class="p">:</span> <span class="mi">8000</span><span class="p">,</span> <span class="s1">&#39;9&#39;</span><span class="p">:</span> <span class="mi">9000</span><span class="p">,</span> <span class="s1">&#39;0&#39;</span><span class="p">:</span> <span class="mi">10000</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="c1"># 大写字母（比对应小写字母稍高频率）</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="mi">445</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">:</span> <span class="mi">471</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">:</span> <span class="mi">499</span><span class="p">,</span> <span class="s1">&#39;D&#39;</span><span class="p">:</span> <span class="mi">528</span><span class="p">,</span> <span class="s1">&#39;E&#39;</span><span class="p">:</span> <span class="mi">559</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;F&#39;</span><span class="p">:</span> <span class="mi">592</span><span class="p">,</span> <span class="s1">&#39;G&#39;</span><span class="p">:</span> <span class="mi">627</span><span class="p">,</span> <span class="s1">&#39;H&#39;</span><span class="p">:</span> <span class="mi">664</span><span class="p">,</span> <span class="s1">&#39;I&#39;</span><span class="p">:</span> <span class="mi">703</span><span class="p">,</span> <span class="s1">&#39;J&#39;</span><span class="p">:</span> <span class="mi">745</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;K&#39;</span><span class="p">:</span> <span class="mi">789</span><span class="p">,</span> <span class="s1">&#39;L&#39;</span><span class="p">:</span> <span class="mi">835</span><span class="p">,</span> <span class="s1">&#39;M&#39;</span><span class="p">:</span> <span class="mi">885</span><span class="p">,</span> <span class="s1">&#39;N&#39;</span><span class="p">:</span> <span class="mi">937</span><span class="p">,</span> <span class="s1">&#39;O&#39;</span><span class="p">:</span> <span class="mi">993</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;P&#39;</span><span class="p">:</span> <span class="mi">1052</span><span class="p">,</span> <span class="s1">&#39;Q&#39;</span><span class="p">:</span> <span class="mi">1114</span><span class="p">,</span> <span class="s1">&#39;R&#39;</span><span class="p">:</span> <span class="mi">1180</span><span class="p">,</span> <span class="s1">&#39;S&#39;</span><span class="p">:</span> <span class="mi">1250</span><span class="p">,</span> <span class="s1">&#39;T&#39;</span><span class="p">:</span> <span class="mi">1324</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;U&#39;</span><span class="p">:</span> <span class="mi">1402</span><span class="p">,</span> <span class="s1">&#39;V&#39;</span><span class="p">:</span> <span class="mi">1485</span><span class="p">,</span> <span class="s1">&#39;W&#39;</span><span class="p">:</span> <span class="mi">1573</span><span class="p">,</span> <span class="s1">&#39;X&#39;</span><span class="p">:</span> <span class="mi">1666</span><span class="p">,</span> <span class="s1">&#39;Y&#39;</span><span class="p">:</span> <span class="mi">1765</span><span class="p">,</span> <span class="s1">&#39;Z&#39;</span><span class="p">:</span> <span class="mi">1870</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">find_closest_char</span><span class="p">(</span><span class="n">target_freq</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="ow">not</span> <span class="n">FREQ_MAP</span> <span class="ow">or</span> <span class="n">target_freq</span> <span class="o">&lt;</span> <span class="n">LOW_FREQ_THRESHOLD</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="kc">None</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="c1"># 找到最接近的频率对应的字符</span>
+</span></span><span class="line"><span class="cl">    <span class="n">closest_char</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">FREQ_MAP</span><span class="o">.</span><span class="n">keys</span><span class="p">(),</span> 
+</span></span><span class="line"><span class="cl">                      <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">char</span><span class="p">:</span> <span class="nb">abs</span><span class="p">(</span><span class="n">FREQ_MAP</span><span class="p">[</span><span class="n">char</span><span class="p">]</span> <span class="o">-</span> <span class="n">target_freq</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="c1"># 检查频率差异是否在可接受范围内</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">FREQ_MAP</span><span class="p">[</span><span class="n">closest_char</span><span class="p">]</span> <span class="o">-</span> <span class="n">target_freq</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">FREQ_DIFF_THRESHOLD</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="kc">None</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">closest_char</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">analyze_wav_sequentially</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="n">chunk_duration_ms</span><span class="o">=</span><span class="n">DEFAULT_CHUNK_DURATION_MS</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">sample_rate</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">wavfile</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 如果是立体声，只使用左声道</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">data</span><span class="o">.</span><span class="n">ndim</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="c1"># 计算每个块的大小（样本数）</span>
+</span></span><span class="line"><span class="cl">    <span class="n">chunk_size</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">sample_rate</span> <span class="o">*</span> <span class="n">chunk_duration_ms</span> <span class="o">/</span> <span class="mi">1000</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">num_chunks</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">//</span> <span class="n">chunk_size</span>
+</span></span><span class="line"><span class="cl">    <span class="n">decoded_chars</span> <span class="o">=</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl">    <span class="n">last_char</span> <span class="o">=</span> <span class="kc">None</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;[+] 采样率: </span><span class="si">{</span><span class="n">sample_rate</span><span class="si">}</span><span class="s2"> Hz, 块时长: </span><span class="si">{</span><span class="n">chunk_duration_ms</span><span class="si">}</span><span class="s2"> ms, 总块数: </span><span class="si">{</span><span class="n">num_chunks</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_chunks</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">start</span> <span class="o">=</span> <span class="n">i</span> <span class="o">*</span> <span class="n">chunk_size</span>
+</span></span><span class="line"><span class="cl">        <span class="n">end</span> <span class="o">=</span> <span class="n">start</span> <span class="o">+</span> <span class="n">chunk_size</span>
+</span></span><span class="line"><span class="cl">        <span class="n">chunk</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">start</span><span class="p">:</span><span class="n">end</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">        <span class="c1"># 对当前块进行 FFT 分析</span>
+</span></span><span class="line"><span class="cl">        <span class="n">fft_spectrum</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">rfft</span><span class="p">(</span><span class="n">chunk</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">fft_freq</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">rfftfreq</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">chunk</span><span class="p">),</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="n">sample_rate</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">        <span class="c1"># 找到主频率（忽略直流分量）</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">fft_spectrum</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">peak_index</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">fft_spectrum</span><span class="p">[</span><span class="mi">1</span><span class="p">:]))</span> <span class="o">+</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">            <span class="n">dominant_frequency</span> <span class="o">=</span> <span class="n">fft_freq</span><span class="p">[</span><span class="n">peak_index</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">            
+</span></span><span class="line"><span class="cl">            <span class="c1"># 查找对应的字符</span>
+</span></span><span class="line"><span class="cl">            <span class="n">char</span> <span class="o">=</span> <span class="n">find_closest_char</span><span class="p">(</span><span class="n">dominant_frequency</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            
+</span></span><span class="line"><span class="cl">            <span class="c1"># 为了避免一个长音被重复记录，只有当字符变化时才记录</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="n">char</span> <span class="ow">and</span> <span class="n">char</span> <span class="o">!=</span> <span class="n">last_char</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                <span class="n">decoded_chars</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">char</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                <span class="n">last_char</span> <span class="o">=</span> <span class="n">char</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="n">final_message</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">decoded_chars</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;[+] 解码出的字符序列: </span><span class="si">{</span><span class="n">final_message</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;[+] 字符数量: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">decoded_chars</span><span class="p">)</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">final_message</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">func</span><span class="p">():</span>    
+</span></span><span class="line"><span class="cl">    <span class="n">wav_file</span> <span class="o">=</span> <span class="s2">&#34;video.wav&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">analyze_wav_sequentially</span><span class="p">(</span><span class="n">wav_file</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&#34;__main__&#34;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">func</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># [+] 采样率: 44100 Hz, 块时长: 100 ms, 总块数: 73</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># [+] 解码出的字符序列: FvoelrnoBjmFz1aknoF7U24gFe5204521Be19B3voh9BSaqhGRlyXio6m0xtkEZ21nUmhelP</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># [+] 字符数量: 72</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="题目名称-所见即是开始" class="heading-element">
+  <a href="#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-%e6%89%80%e8%a7%81%e5%8d%b3%e6%98%af%e5%bc%80%e5%a7%8b" class="heading-mark"></a>题目名称 所见即是开始</h2><p>附件给了一个加密的 zip 压缩包还有下面这张 PNG</p>
+<p><img loading="lazy" src="imgs/image-20250925131246166.png" alt="imgs/image-20250925131246166.png" srcset="imgs/image-20250925131246166.png?size=small, imgs/image-20250925131246166.png?size=medium 1.5x, imgs/image-20250925131246166.png?size=large 2x" data-title="imgs/image-20250925131246166.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>结合图片中的提示，很容易联想到盲文</p>
+<p><img loading="lazy" src="imgs/image-20250925131419542.png" alt="imgs/image-20250925131419542.png" srcset="imgs/image-20250925131419542.png?size=small, imgs/image-20250925131419542.png?size=medium 1.5x, imgs/image-20250925131419542.png?size=large 2x" data-title="imgs/image-20250925131419542.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>结合上面这个对照表，得到解压密码：<code>hanoi floor is 9</code></p>
+<p>解压后可以得到一个 hint.txt 和一张 PNG 图片</p>
+<p><img loading="lazy" src="imgs/image-20250925131634540.png" alt="imgs/image-20250925131634540.png" srcset="imgs/image-20250925131634540.png?size=small, imgs/image-20250925131634540.png?size=medium 1.5x, imgs/image-20250925131634540.png?size=large 2x" data-title="imgs/image-20250925131634540.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>hint.txt 中的内容如下：</p>
+<blockquote>
+<p>所解即所得；</p>
+<p>一组格式为盘+当前柱+去往柱</p>
+</blockquote>
+<p>经典的汉诺塔问题，写个脚本递归一下即可</p>
+<div class="highlight" id="id-10"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">hanio</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">res</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">res</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&#34;</span><span class="si">{</span><span class="n">n</span><span class="si">}{</span><span class="n">a</span><span class="si">}{</span><span class="n">c</span><span class="si">}</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># 将n-1个盘从a通过c移动到b</span>
+</span></span><span class="line"><span class="cl">        <span class="n">res</span> <span class="o">+=</span> <span class="n">hanio</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># 将最大的盘从a移动到c</span>
+</span></span><span class="line"><span class="cl">        <span class="n">res</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&#34;</span><span class="si">{</span><span class="n">n</span><span class="si">}{</span><span class="n">a</span><span class="si">}{</span><span class="n">c</span><span class="si">}</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># 将n-1个盘从b通过a移动到c</span>
+</span></span><span class="line"><span class="cl">        <span class="n">res</span> <span class="o">+=</span> <span class="n">hanio</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">res</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">n</span> <span class="o">=</span> <span class="mi">9</span>
+</span></span><span class="line"><span class="cl">    <span class="n">result</span> <span class="o">=</span> <span class="n">hanio</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 1AC2AB1CB3AC1BA2BC1AC4AB1CB2CA1BA3CB1AC2AB1CB5AC1BA2BC1AC3BA1CB2CA1BA4BC1AC2AB1CB3AC1BA2BC1AC6AB1CB2CA1BA3CB1AC2AB1CB4CA1BA2BC1AC3BA1CB2CA1BA5CB1AC2AB1CB3AC1BA2BC1AC4AB1CB2CA1BA3CB1AC2AB1CB7AC1BA2BC1AC3BA1CB2CA1BA4BC1AC2AB1CB3AC1BA2BC1AC5BA1CB2CA1BA3CB1AC2AB1CB4CA1BA2BC1AC3BA1CB2CA1BA6BC1AC2AB1CB3AC1BA2BC1AC4AB1CB2CA1BA3CB1AC2AB1CB5AC1BA2BC1AC3BA1CB2CA1BA4BC1AC2AB1CB3AC1BA2BC1AC8AB1CB2CA1BA3CB1AC2AB1CB4CA1BA2BC1AC3BA1CB2CA1BA5CB1AC2AB1CB3AC1BA2BC1AC4AB1CB2CA1BA3CB1AC2AB1CB6CA1BA2BC1AC3BA1CB2CA1BA4BC1AC2AB1CB3AC1BA2BC1AC5BA1CB2CA1BA3CB1AC2AB1CB4CA1BA2BC1AC3BA1CB2CA1BA7CB1AC2AB1CB3AC1BA2BC1AC4AB1CB2CA1BA3CB1AC2AB1CB5AC1BA2BC1AC3BA1CB2CA1BA4BC1AC2AB1CB3AC1BA2BC1AC6AB1CB2CA1BA3CB1AC2AB1CB4CA1BA2BC1AC3BA1CB2CA1BA5CB1AC2AB1CB3AC1BA2BC1AC4AB1CB2CA1BA3CB1AC2AB1CB9AC1BA2BC1AC3BA1CB2CA1BA4BC1AC2AB1CB3AC1BA2BC1AC5BA1CB2CA1BA3CB1AC2AB1CB4CA1BA2BC1AC3BA1CB2CA1BA6BC1AC2AB1CB3AC1BA2BC1AC4AB1CB2CA1BA3CB1AC2AB1CB5AC1BA2BC1AC3BA1CB2CA1BA4BC1AC2AB1CB3AC1BA2BC1AC7BA1CB2CA1BA3CB1AC2AB1CB4CA1BA2BC1AC3BA1CB2CA1BA5CB1AC2AB1CB3AC1BA2BC1AC4AB1CB2CA1BA3CB1AC2AB1CB6CA1BA2BC1AC3BA1CB2CA1BA4BC1AC2AB1CB3AC1BA2BC1AC5BA1CB2CA1BA3CB1AC2AB1CB4CA1BA2BC1AC3BA1CB2CA1BA8BC1AC2AB1CB3AC1BA2BC1AC4AB1CB2CA1BA3CB1AC2AB1CB5AC1BA2BC1AC3BA1CB2CA1BA4BC1AC2AB1CB3AC1BA2BC1AC6AB1CB2CA1BA3CB1AC2AB1CB4CA1BA2BC1AC3BA1CB2CA1BA5CB1AC2AB1CB3AC1BA2BC1AC4AB1CB2CA1BA3CB1AC2AB1CB7AC1BA2BC1AC3BA1CB2CA1BA4BC1AC2AB1CB3AC1BA2BC1AC5BA1CB2CA1BA3CB1AC2AB1CB4CA1BA2BC1AC3BA1CB2CA1BA6BC1AC2AB1CB3AC1BA2BC1AC4AB1CB2CA1BA3CB1AC2AB1CB5AC1BA2BC1AC3BA1CB2CA1BA4BC1AC2AB1CB3AC1BA2BC1AC</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="题目名称-工业流量隐写分析" class="heading-element">
+  <a href="#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-%e5%b7%a5%e4%b8%9a%e6%b5%81%e9%87%8f%e9%9a%90%e5%86%99%e5%88%86%e6%9e%90" class="heading-mark"></a>题目名称 工业流量隐写分析</h2><p>附件给了一张 <code>larger_lbCN3pEh1o</code>，是个二维码，扫码可以得到：<code>Fake_one</code></p>
+<p><img loading="lazy" src="imgs/image-20250925140651055.png" alt="imgs/image-20250925140651055.png" srcset="imgs/image-20250925140651055.png?size=small, imgs/image-20250925140651055.png?size=medium 1.5x, imgs/image-20250925140651055.png?size=large 2x" data-title="imgs/image-20250925140651055.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>010 打开，发现末尾也没有多的数据，因此尝试拿 stegsolve 查看一下</p>
+<p><img loading="lazy" src="imgs/image-20250925140758107.png" alt="imgs/image-20250925140758107.png" srcset="imgs/image-20250925140758107.png?size=small, imgs/image-20250925140758107.png?size=medium 1.5x, imgs/image-20250925140758107.png?size=large 2x" data-title="imgs/image-20250925140758107.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><img loading="lazy" src="imgs/image-20250925140807150.png" alt="imgs/image-20250925140807150.png" srcset="imgs/image-20250925140807150.png?size=small, imgs/image-20250925140807150.png?size=medium 1.5x, imgs/image-20250925140807150.png?size=large 2x" data-title="imgs/image-20250925140807150.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><img loading="lazy" src="imgs/image-20250925140815137.png" alt="imgs/image-20250925140815137.png" srcset="imgs/image-20250925140815137.png?size=small, imgs/image-20250925140815137.png?size=medium 1.5x, imgs/image-20250925140815137.png?size=large 2x" data-title="imgs/image-20250925140815137.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>然后尝试用 stegseek 爆破一下，发现用无密钥解密 steghide 可以得到一个文件</p>
+<p><img loading="lazy" src="imgs/image-20251008145141513.png" alt="imgs/image-20251008145141513.png" srcset="imgs/image-20251008145141513.png?size=small, imgs/image-20251008145141513.png?size=medium 1.5x, imgs/image-20251008145141513.png?size=large 2x" data-title="imgs/image-20251008145141513.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>010 打开查看，发现是个 zip 压缩包</p>
+<p><img loading="lazy" src="imgs/image-20251008145403581.png" alt="imgs/image-20251008145403581.png" srcset="imgs/image-20251008145403581.png?size=small, imgs/image-20251008145403581.png?size=medium 1.5x, imgs/image-20251008145403581.png?size=large 2x" data-title="imgs/image-20251008145403581.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>改后缀为 .zip 并解压可以得到一张二维码，和一个加密的压缩包</p>
+<p>二维码扫码可以得到：<code>wo_lei_ge_dou</code>，用这个作为密码去解压压缩包可以得到一个流量包文件</p>
+<p>追踪一下 TCP 流，发现可以得到前半段的 flag：<code>flag{S7_PLC</code></p>
+<p><img loading="lazy" src="imgs/image-20251008150613092.png" alt="imgs/image-20251008150613092.png" srcset="imgs/image-20251008150613092.png?size=small, imgs/image-20251008150613092.png?size=medium 1.5x, imgs/image-20251008150613092.png?size=large 2x" data-title="imgs/image-20251008150613092.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><img loading="lazy" src="imgs/image-20251008150543502.png" alt="imgs/image-20251008150543502.png" srcset="imgs/image-20251008150543502.png?size=small, imgs/image-20251008150543502.png?size=medium 1.5x, imgs/image-20251008150543502.png?size=large 2x" data-title="imgs/image-20251008150543502.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>然后再继续翻看一下，可以发现后半段 flag：<code>-2025_#_ICS}</code></p>
+<p><img loading="lazy" src="imgs/image-20251008151433511.png" alt="imgs/image-20251008151433511.png" srcset="imgs/image-20251008151433511.png?size=small, imgs/image-20251008151433511.png?size=medium 1.5x, imgs/image-20251008151433511.png?size=large 2x" data-title="imgs/image-20251008151433511.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><img loading="lazy" src="imgs/image-20251008151503783.png" alt="imgs/image-20251008151503783.png" srcset="imgs/image-20251008151503783.png?size=small, imgs/image-20251008151503783.png?size=medium 1.5x, imgs/image-20251008151503783.png?size=large 2x" data-title="imgs/image-20251008151503783.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>综上，最后的flag为：<code>flag{S7_PLC-2025_#_ICS}</code></p>
+<p>当然，这里也可以尝试直接 strings 这个流量包，去快速定位关键信息</p>
+<p><img loading="lazy" src="imgs/image-20251008151746606.png" alt="imgs/image-20251008151746606.png" srcset="imgs/image-20251008151746606.png?size=small, imgs/image-20251008151746606.png?size=medium 1.5x, imgs/image-20251008151746606.png?size=large 2x" data-title="imgs/image-20251008151746606.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<blockquote>
+<p>这道题的 TCP 流量好像有部分是损坏的，所以导致追踪流的时候会看不全</p>
+<p>但是在分组字节流或者直接用 tshark 导出是可以看到的</p>
+<p>tshark -r industrial_traffic_with_flag.pcap -T fields -Y &rsquo;tcp&rsquo; -e &rsquo;tcp.segment_data'</p>
+</blockquote>
+<h2 id="todo-题目名称-图片的奥秘" class="heading-element">
+  <a href="#todo-%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-%e5%9b%be%e7%89%87%e7%9a%84%e5%a5%a5%e7%a7%98" class="heading-mark"></a>[TODO] 题目名称 图片的奥秘</h2><p>附件给了一个加密的压缩包，首先尝试弱密码爆破，得到解压密码：<code>54450</code></p>
+<p><img loading="lazy" src="imgs/image-20250924102048066.png" alt="imgs/image-20250924102048066.png" srcset="imgs/image-20250924102048066.png?size=small, imgs/image-20250924102048066.png?size=medium 1.5x, imgs/image-20250924102048066.png?size=large 2x" data-title="imgs/image-20250924102048066.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>解压后得到一张 PNG 图片，010 打开提示报错，发现末尾有一张 base64 编码后的 PNG 图片</p>
+<p><img loading="lazy" src="imgs/image-20250924102620223.png" alt="imgs/image-20250924102620223.png" srcset="imgs/image-20250924102620223.png?size=small, imgs/image-20250924102620223.png?size=medium 1.5x, imgs/image-20250924102620223.png?size=large 2x" data-title="imgs/image-20250924102620223.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><img loading="lazy" src="imgs/image-20250924102223747.png" alt="imgs/image-20250924102223747.png" srcset="imgs/image-20250924102223747.png?size=small, imgs/image-20250924102223747.png?size=medium 1.5x, imgs/image-20250924102223747.png?size=large 2x" data-title="imgs/image-20250924102223747.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>提取出来解码后可以得到下图，扫码得到：<code>flag{asdf%^&amp;*ghjkl}</code></p>
+<p><img loading="lazy" src="imgs/image-20250924102338576.png" alt="imgs/image-20250924102338576.png" srcset="imgs/image-20250924102338576.png?size=small, imgs/image-20250924102338576.png?size=medium 1.5x, imgs/image-20250924102338576.png?size=large 2x" data-title="imgs/image-20250924102338576.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>但是我们常用 010 打开这张图片，发现末尾还有数据</p>
+<p><img loading="lazy" src="imgs/image-20250924102803864.png" alt="imgs/image-20250924102803864.png" srcset="imgs/image-20250924102803864.png?size=small, imgs/image-20250924102803864.png?size=medium 1.5x, imgs/image-20250924102803864.png?size=large 2x" data-title="imgs/image-20250924102803864.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>并且尝试搜索一下 PNG 文件尾，可以发现这里应该存在不止一张 PNG 图片</p>
+<p><img loading="lazy" src="imgs/image-20250924102908341.png" alt="imgs/image-20250924102908341.png" srcset="imgs/image-20250924102908341.png?size=small, imgs/image-20250924102908341.png?size=medium 1.5x, imgs/image-20250924102908341.png?size=large 2x" data-title="imgs/image-20250924102908341.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>把后面多余的数据提取出来后，尝试搜索了一下 PNG 文件头</p>
+<p><img loading="lazy" src="imgs/image-20250924103307043.png" alt="imgs/image-20250924103307043.png" srcset="imgs/image-20250924103307043.png?size=small, imgs/image-20250924103307043.png?size=medium 1.5x, imgs/image-20250924103307043.png?size=large 2x" data-title="imgs/image-20250924103307043.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<h2 id="todo-题目名称-异常的数据流量包" class="heading-element">
+  <a href="#todo-%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-%e5%bc%82%e5%b8%b8%e7%9a%84%e6%95%b0%e6%8d%ae%e6%b5%81%e9%87%8f%e5%8c%85" class="heading-mark"></a>[TODO] 题目名称 异常的数据流量包</h2><p>附件给了一个流量包，打开发现主要是 Modbus 流量，翻看一下发现传输了一个 PDF 文件</p>
+<p><img loading="lazy" src="imgs/image-20250925101138944.png" alt="imgs/image-20250925101138944.png" srcset="imgs/image-20250925101138944.png?size=small, imgs/image-20250925101138944.png?size=medium 1.5x, imgs/image-20250925101138944.png?size=large 2x" data-title="imgs/image-20250925101138944.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>提取出 PDF 后，全选复制 PDF 里面的内容，粘贴到文本文件里，即可得到 flag<code>flag{MB03_40001}</code></p>
+<blockquote>
+<p>这里我提取出来的 PDF 文件还是有点问题，待完善</p>
+</blockquote>
+<p>用 tshark 提取的命令如下：</p>
+<div class="highlight" id="id-11"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">tshark -r test.pcap -T fields -Y <span class="s1">&#39;((_ws.col.protocol == &#34;Modbus/TCP&#34;) &amp;&amp; (modbus.func_code == 3)) &amp;&amp; (modbus.request_frame)&#39;</span> -e <span class="s1">&#39;modbus.regval_uint16&#39;</span> &gt; out.txt</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="todo-题目名称-工控协议隐蔽通道分析附件" class="heading-element">
+  <a href="#todo-%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-%e5%b7%a5%e6%8e%a7%e5%8d%8f%e8%ae%ae%e9%9a%90%e8%94%bd%e9%80%9a%e9%81%93%e5%88%86%e6%9e%90%e9%99%84%e4%bb%b6" class="heading-mark"></a>[TODO] 题目名称 工控协议隐蔽通道分析附件</h2><p>题目附件给了个流量包，翻看了一下主要是 S7common 和 Modbus 流量</p>
+<p>然后发现还传了一个 PNG 和一个 ZIP 压缩包</p>
+<p>因为不知道具体的顺序，所以无法完整的提取出来</p>
+<p>尝试直接 strings 流量包，可以得到如下内容：</p>
+<div class="highlight" id="id-12"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">ADDRESS_ORDER
+</span></span><span class="line"><span class="cl">$ZIP_FILE_SCATTERED_ACROSS_FOUR_PARTS
+</span></span><span class="line"><span class="cl">WARNING: READ_RESPONSES_CONTAIN_INVALID_DATA
+</span></span><span class="line"><span class="cl">ZIP_PASSWORD_HINT
+</span></span><span class="line"><span class="cl">NOT_THE_DROID
+</span></span><span class="line"><span class="cl">ZIP_HINT_1
+</span></span><span class="line"><span class="cl">CHECK_DB2_AND_M
+</span></span><span class="line"><span class="cl">fl4g_k33p_
+</span></span><span class="line"><span class="cl">flag{zip_ascii_values_of_&#39;flag&#39;}
+</span></span><span class="line"><span class="cl">DATA_BEGIN_AT_ASCII_VALUES_OF_&#39;f&#39;
+</span></span><span class="line"><span class="cl">CAES_l_3:V0F3PP34
+</span></span><span class="line"><span class="cl">K_MAGIC_BYTE
+</span></span><span class="line"><span class="cl">looking_at_M_area}
+</span></span><span class="line"><span class="cl">READ_RESPONSES_ARE_INVALID_CHECK_WRITE_OPS
+</span></span><span class="line"><span class="cl">FOCUS_ON_S7_WRITE_VARIABLE_OPERATIONS
+</span></span><span class="line"><span class="cl">RED_HERRING
+</span></span><span class="line"><span class="cl">JUST_NOISE
+</span></span><span class="line"><span class="cl">HINT: PASSWORD_ENCRYPTED_WITH_CAESAR_SHIFT_3
+</span></span><span class="line"><span class="cl">FOCUS_ON_S7_WRITE_VARIABLE_OPERATIONS_ONLY
+</span></span><span class="line"><span class="cl">OT_IMPORTANT
+</span></span><span class="line"><span class="cl">flag{n0t_
+</span></span><span class="line"><span class="cl">ALL_DATA_FRAGMENTS_IN_M_AREA
+</span></span><span class="line"><span class="cl">PASSWORD_IN_DB_AREA_ADDRESS_0x60_WITH_CAESAR_CIPHER</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="todo-题目名称-文件分析" class="heading-element">
+  <a href="#todo-%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-%e6%96%87%e4%bb%b6%e5%88%86%e6%9e%90" class="heading-mark"></a>[TODO] 题目名称 文件分析</h2><p>附件给了一个 16个八戒.bin，010 打开查看</p>
+<p><img loading="lazy" src="imgs/image-20250925132928952.png" alt="imgs/image-20250925132928952.png" srcset="imgs/image-20250925132928952.png?size=small, imgs/image-20250925132928952.png?size=medium 1.5x, imgs/image-20250925132928952.png?size=large 2x" data-title="imgs/image-20250925132928952.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>strings 一下，根据可打印信息推测</p>
+<p>这可能是一个用于特定硬件的 OTA 远程升级固件包。</p>
+<h2 id="todo-题目名称-勒索病毒攻击" class="heading-element">
+  <a href="#todo-%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-%e5%8b%92%e7%b4%a2%e7%97%85%e6%af%92%e6%94%bb%e5%87%bb" class="heading-mark"></a>[TODO] 题目名称 勒索病毒攻击</h2><p>附件给了一个 <code>勒索事件截图.png</code>，还有一个 <code>车辆OEM厂商重要数据@Hack</code></p>
+<p>PNG 图片如下所示：</p>
+<p><img loading="lazy" src="imgs/image-20250925133301580.png" alt="imgs/image-20250925133301580.png" srcset="imgs/image-20250925133301580.png?size=small, imgs/image-20250925133301580.png?size=medium 1.5x, imgs/image-20250925133301580.png?size=large 2x" data-title="imgs/image-20250925133301580.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>010 打开另一个文件，发现其实是一个加密的 zip 压缩包</p>
+<p><img loading="lazy" src="imgs/image-20250925133326627.png" alt="imgs/image-20250925133326627.png" srcset="imgs/image-20250925133326627.png?size=small, imgs/image-20250925133326627.png?size=medium 1.5x, imgs/image-20250925133326627.png?size=large 2x" data-title="imgs/image-20250925133326627.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>zsteg 扫一下这张 PNG，发现图片 LSB 隐写了一个文件</p>
+<p><img loading="lazy" src="imgs/image-20250925133609217.png" alt="imgs/image-20250925133609217.png" srcset="imgs/image-20250925133609217.png?size=small, imgs/image-20250925133609217.png?size=medium 1.5x, imgs/image-20250925133609217.png?size=large 2x" data-title="imgs/image-20250925133609217.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<h2 id="todo-题目名称-多注意观察" class="heading-element">
+  <a href="#todo-%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-%e5%a4%9a%e6%b3%a8%e6%84%8f%e8%a7%82%e5%af%9f" class="heading-mark"></a>[TODO] 题目名称 多注意观察</h2><p>附件给了一个 flag.blf，010 打开查看发现其实是个 rar 压缩包</p>
+<p><img loading="lazy" src="imgs/image-20250925135138223.png" alt="imgs/image-20250925135138223.png" srcset="imgs/image-20250925135138223.png?size=small, imgs/image-20250925135138223.png?size=medium 1.5x, imgs/image-20250925135138223.png?size=large 2x" data-title="imgs/image-20250925135138223.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>改后缀为 .rar 后打开，发现是加密的，并且注释里有提示：<code>FFD8FFE000104A46494600</code></p>
+<p><img loading="lazy" src="imgs/image-20250925135252669.png" alt="imgs/image-20250925135252669.png" srcset="imgs/image-20250925135252669.png?size=small, imgs/image-20250925135252669.png?size=medium 1.5x, imgs/image-20250925135252669.png?size=large 2x" data-title="imgs/image-20250925135252669.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><code>FFD8FFE000104A46494600</code> 解码后发现其实是 JPG 的文件头</p>
+<p>后来尝试弱密码爆破，发现 rar 的解压密码是 <code>123456789</code>( rar 压缩包的爆破速度可能会有点慢&hellip;)</p>
+<p><img loading="lazy" src="imgs/image-20251013204751636.png" alt="imgs/image-20251013204751636.png" srcset="imgs/image-20251013204751636.png?size=small, imgs/image-20251013204751636.png?size=medium 1.5x, imgs/image-20251013204751636.png?size=large 2x" data-title="imgs/image-20251013204751636.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>解压后得到一个未知后缀的 flag 文件，010 打开后可以得到如下内容，很明显是文件头被篡改了的 JPG 图片</p>
+<p><img loading="lazy" src="imgs/image-20251013204942358.png" alt="imgs/image-20251013204942358.png" srcset="imgs/image-20251013204942358.png?size=small, imgs/image-20251013204942358.png?size=medium 1.5x, imgs/image-20251013204942358.png?size=large 2x" data-title="imgs/image-20251013204942358.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>我们把之前压缩包注释里的文件头给它补上，改后缀为.jpg 即可得到一张二维码</p>
+<p><img loading="lazy" src="imgs/image-20251013205038464.png" alt="imgs/image-20251013205038464.png" srcset="imgs/image-20251013205038464.png?size=small, imgs/image-20251013205038464.png?size=medium 1.5x, imgs/image-20251013205038464.png?size=large 2x" data-title="imgs/image-20251013205038464.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>扫码得到：<code>fxyj760umlfca9xdjl0cye7gde7d00c28da982d9ALW8InzKyYip6JShjP1qBVt9buXRMc4aZdlight</code></p>
+<p>然后我们在用 010 打开这张 JPG 图片，并加载 JPG 的模板，可以发现末尾有多余数据</p>
+<p><img loading="lazy" src="imgs/image-20251013205217447.png" alt="imgs/image-20251013205217447.png" srcset="imgs/image-20251013205217447.png?size=small, imgs/image-20251013205217447.png?size=medium 1.5x, imgs/image-20251013205217447.png?size=large 2x" data-title="imgs/image-20251013205217447.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>我们把字符集改成 UTF-8 就可以看到如下内容</p>
+<p><img loading="lazy" src="imgs/image-20251013205253863.png" alt="imgs/image-20251013205253863.png" srcset="imgs/image-20251013205253863.png?size=small, imgs/image-20251013205253863.png?size=medium 1.5x, imgs/image-20251013205253863.png?size=large 2x" data-title="imgs/image-20251013205253863.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>为了方便查看，我直接复制到 CyberChef 里了，CyberChef 右下角改成 UTF-8 即可正常显示</p>
+<blockquote>
+<p>车联网的内涵主要指：车辆上的车载设备通过无线通信技术，对信息网络平台中的所有车辆动态信息进行有效利用，在车辆运行中提供不同的功能服务。可以发现，车联网表现出以下几点特征：车联网能够为车与车之间的间距提供保障，降低车辆发生碰撞事故的几率；车联网可以帮助车主实时导航，并通过与其它车辆和网络系统的通信，提高交通运行的效率</p>
+</blockquote>
+<p><img loading="lazy" src="imgs/image-20251013205419271.png" alt="imgs/image-20251013205419271.png" srcset="imgs/image-20251013205419271.png?size=small, imgs/image-20251013205419271.png?size=medium 1.5x, imgs/image-20251013205419271.png?size=large 2x" data-title="imgs/image-20251013205419271.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p><img loading="lazy" src="imgs/image-20251013205432260.png" alt="imgs/image-20251013205432260.png" srcset="imgs/image-20251013205432260.png?size=small, imgs/image-20251013205432260.png?size=medium 1.5x, imgs/image-20251013205432260.png?size=large 2x" data-title="imgs/image-20251013205432260.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>在末尾可以得到这样一串字符串：<code>qwertyuisdfghdfghjasdfghasdfgh-----no</code></p>
+<h2 id="todo-题目名称-autopilot-ghost" class="heading-element">
+  <a href="#todo-%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-autopilot-ghost" class="heading-mark"></a>[TODO] 题目名称 Autopilot Ghost</h2><p>附件给了一个流量包，主要是 TCP 和 UDP 流量</p>
+<p><img loading="lazy" src="imgs/image-20250925140233657.png" alt="imgs/image-20250925140233657.png" srcset="imgs/image-20250925140233657.png?size=small, imgs/image-20250925140233657.png?size=medium 1.5x, imgs/image-20250925140233657.png?size=large 2x" data-title="imgs/image-20250925140233657.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>结合题目的提示，翻译为中文大致的意思是：自动驾驶的幽灵</p>
+<p>发现 UDP 传输的数据都是 1118 字节，然后 010 diff 了一下，发现每段数据的差异还是挺大的</p></div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title="Updated on 2025-10-08 15:00:45">Updated on 2025-10-08&nbsp;</span>
+      </div></div><div class="post-info-line">
+        <div class="post-info-md"><span><a href="/posts/49bdad5/index.md" title="Read Markdown" class="link-to-markdown">Read Markdown</a></span></div>
+        <div class="post-info-share">
+          <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://goodlunatic.github.io/posts/49bdad5/" data-title="2025 第九届工业信息安全技能大赛-典型工业场景锦标赛 Misc Writeup" data-via="goodlunatic007" data-hashtags="CTF,Misc,Writeup"><i class="fa-brands fa-twitter fa-fw" aria-hidden="true"></i></a>
+  <a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://goodlunatic.github.io/posts/49bdad5/" data-hashtag="CTF"><i class="fa-brands fa-facebook-square fa-fw" aria-hidden="true"></i></a>
+  <a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://goodlunatic.github.io/posts/49bdad5/" data-title="2025 第九届工业信息安全技能大赛-典型工业场景锦标赛 Misc Writeup"><i class="fa-brands fa-weibo fa-fw" aria-hidden="true"></i></a>
+  </span>
+        </div>
+      </div></div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href="/tags/ctf/" class="post-tag" title="Tags - CTF">CTF</a><a href="/tags/misc/" class="post-tag" title="Tags - Misc">Misc</a><a href="/tags/writeup/" class="post-tag" title="Tags - Writeup">Writeup</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+    </section>
+  </div>
+
+  <div class="post-nav"><a href="/posts/d0736a7/" class="post-nav-item" rel="prev" title="CTF-Misc &#34;雅&#34;题共赏"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>CTF-Misc &#34;雅&#34;题共赏</a>
+      <a href="/posts/bb1da35/" class="post-nav-item" rel="next" title="群友们问的一些来路不明的题">群友们问的一些来路不明的题<i class="fa-solid fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+</article>
+
+<aside class="toc" id="toc-auto" aria-label=""><h2 class="toc-title">Contents&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+  <div
+    class="toc-content"
+    id="toc-content-auto"></div></aside></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line powered">Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreferrer" title="Hugo 0.125.3">Hugo</a> | Theme - <a href="https://github.com/hugo-fixit/FixIt" target="_blank" rel="external" title="FixIt v0.3.2">FixIt</a>
+        </div><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
+            <span itemprop="copyrightYear">2024 - 2025</span><span class="author" itemprop="copyrightHolder">
+              <a href="https://goodlunatic.github.io"target="_blank" rel="external nofollow noopener noreferrer">Lunatic</a></span></div></div>
+  </footer></div><div class="widgets"><div class="fixed-buttons animate__faster d-none"><div class="fixed-button back-to-top" role="button" aria-label="Back to Top"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i><span class="variant-numeric d-none">0%</span>
+        </div></div><div id="mask"></div><noscript>
+    <div class="noscript-warning">Theme FixIt works best with JavaScript enabled.</div>
+  </noscript>
+</div><script src="/lib/sharer/sharer.min.js" async defer></script><script src="/lib/typeit/index.umd.js" defer></script><script>window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":1000},"comment":{"enable":false},"data":{"typeit-header-desktop":"Lunatic BLOG","typeit-header-title-mobile":"Lunatic BLOG"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"typeit-header-desktop":["typeit-header-desktop"],"typeit-header-subtitle-desktop":["typeit-header-subtitle-desktop"],"typeit-header-subtitle-mobile":["typeit-header-subtitle-mobile"],"typeit-header-title-mobile":["typeit-header-title-mobile"]},"duration":-1,"loop":false,"speed":100}};</script><script src="/js/theme.min.js" defer></script></body>
+</html>
