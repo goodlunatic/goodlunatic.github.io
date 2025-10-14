@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "2023 强网杯全国网络安全挑战赛 Misc Writeup/index.md",
+                "file": "CTF-Pwn刷题记录/index.md",
                 "mode": "source",
                 "source": false
               },
@@ -53,7 +53,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "碟影重重2.0",
+                "query": "5a9004d",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -108,7 +108,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "2023 强网杯全国网络安全挑战赛 Misc Writeup/index.md",
+                "file": "CTF-Pwn刷题记录/index.md",
                 "followCursor": true,
                 "showSearch": false,
                 "searchQuery": ""
@@ -170,7 +170,25 @@
   },
   "active": "bf83ee0a9dfb7d7b",
   "lastOpenFiles": [
+    "2025 XCTF国际网络攻防联赛-TPCTF分站赛 Misc Writeup.zip",
+    "强网杯-谍影重重系列赛题详解/imgs/image-20250528105254063.png",
+    "强网杯-谍影重重系列赛题详解/imgs/image-20250528105144980.png",
+    "强网杯-谍影重重系列赛题详解/imgs/image-20250528105001601.png",
+    "强网杯-谍影重重系列赛题详解/imgs/image-20250528104808736.png",
+    "强网杯-谍影重重系列赛题详解/imgs/image-20250528104032107.png",
     "强网杯-谍影重重系列赛题详解/index.md",
+    "强网杯-谍影重重系列赛题详解/imgs",
+    "强网杯-谍影重重系列赛题详解",
+    "2025 XCTF国际网络攻防联赛-TPCTF分站赛 Misc Writeup/index.md",
+    "CTF-Pwn刷题记录/index.md",
+    "Misc-Blind WaterMark/index.md",
+    "Misc-Blind WaterMark.zip",
+    "2024 XCTF国际网络攻防联赛-SCTF分站赛 Misc Writeup/index.md",
+    "2024 XCTF国际网络攻防联赛-SCTF分站赛 Misc Writeup.zip",
+    "DASCTF 2024最后一战 Misc Writeup/index.md",
+    "Misc-Forensics/index.md",
+    "群友们问的一些来路不明的题/index.md",
+    "2023 强网杯全国网络安全挑战赛 Misc Writeup/index.md",
     "Misc-Network Traffic Analysis/index.md",
     "CTF-Misc 雅题共赏/index.md",
     "2024 XCTF国际网络攻防联赛-DubheCTF分站赛 Misc Writeup/index.md",
@@ -183,16 +201,9 @@
     "2025 第九届工业信息安全技能大赛-典型工业场景锦标赛 Writeup/index.md",
     "2025 第九届工业信息安全技能大赛-典型工业场景锦标赛 Writeup/imgs/image-20251014160238184.png",
     "2025 第九届工业信息安全技能大赛-典型工业场景锦标赛 Writeup/imgs/image-20251014155517112.png",
-    "2025 第九届工业信息安全技能大赛-典型工业场景锦标赛 Writeup/imgs/image-20251014154731570.png",
-    "2025 第九届工业信息安全技能大赛-典型工业场景锦标赛 Writeup/imgs/image-20251014154815065.png",
-    "2025 第九届工业信息安全技能大赛-典型工业场景锦标赛 Writeup/imgs/image-20251014145954432.png",
-    "2025 TSCTF-J Writeup/imgs/image-20251014114436663.png",
     "CTF-Misc Guide/index.md",
-    "2025 TSCTF-J Writeup/imgs/image-20251013225738669.png",
     "CTF-Reverse学习记录/index.md",
     "2025 TSCTF-J Writeup/imgs",
-    "群友们问的一些来路不明的题/index.md",
-    "Misc-Forensics/index.md",
     "CTF-ICS Learning Record/index.md",
     "线切割-Windows98&WindowsXP折腾记录/index.md",
     "利用 SCAT 实时捕获 4G-LTE 和 5G-NR 层三以上消息/index.md",
@@ -201,21 +212,9 @@
     "2025 泰山杯线下决赛 Misc Writeup/index.md",
     "2024 VCTF Misc Writeup/index.md",
     "2024 帕鲁杯 Misc Writeup/index.md",
-    "2023 强网杯全国网络安全挑战赛 Misc Writeup/index.md",
     "2020 b01lers Misc image_adjustments 赛题详解/index.md",
-    "2023 楚慧杯网络空间安全实践能力竞赛 Misc Writeup/index.md",
-    "2023 安洵杯网络安全挑战赛 Misc Writeup/index.md",
-    "2022 浙江省大学生网络与信息安全竞赛 Writeup/index.md",
-    "2023 羊城杯网络安全大赛 Misc Writeup/index.md",
-    "2023 浙江省大学生网络与信息安全竞赛 Misc Writeup/index.md",
-    "2023 CISCN初赛 Misc 国粹 赛题详解/index.md",
     "2025 泰山杯线下决赛 Misc Writeup/imgs",
     "2025 泰山杯线下决赛 Misc Writeup/未命名文件夹",
-    "1",
-    "2025 “天一永安杯”宁波市赛初赛 Misc Writeup/imgs",
-    "CTF-Reverse学习记录/imgs",
-    "CTF-Reverse学习记录",
-    "基于 srsRAN_4G 搭建 LTE 基站/imgs",
     "未命名.canvas"
   ]
 }
