@@ -6,7 +6,7 @@
 
 &lt;!--more--&gt;
 
-{% include admonition.html type=&#34;success&#34; title=&#34;阅前须知&#34; open=&#34;true&#34; %}
+{{&lt; admonition type=success title=&#34;【重要】阅前须知&#34; open=true &gt;}}
 
 **文章更新周期较长，如有疏漏，欢迎指正**
 
@@ -16,7 +16,7 @@
 
 **文章创作不易，感谢你能看到这里，转载还请标明出处**
 
-{% include end_admonition.html %}
+{{&lt; /admonition &gt;}}
 
 ## 一些奇奇怪怪的经历：
 
