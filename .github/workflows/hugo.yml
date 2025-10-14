@@ -1,0 +1,41 @@
+name: Deploy Hugo site to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main  # 如果你的主分支叫 master，请改为 master
+  workflow_dispatch:
+  schedule:
+    # 每天早上 8 点（UTC+8）自动构建（UTC 0 点）
+    - cron: "0 0 * * *"
+
+permissions:
+  contents: write  # 允许推送到 gh-pages 分支
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v4
+        with:
+          submodules: true  # 如果主题是 git submodule，这行必须保留
+          fetch-depth: 0
+
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v3
+        with:
+          hugo-version: "0.125.3"
+          extended: true
+
+      - name: Build website
+        run: hugo --minify
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: ./public
+          commit_message: "🚀 Deploy from GitHub Actions: ${{ github.event.head_commit.message }}"
