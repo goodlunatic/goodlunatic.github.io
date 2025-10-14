@@ -212,5 +212,5 @@ TODO...
 ---
 
 > Author: [Lunatic](https://goodlunatic.github.io)  
-> URL: https://goodlunatic.github.io/posts/067cfbd/  
+> URL: http://localhost:1313/posts/067cfbd/  
 

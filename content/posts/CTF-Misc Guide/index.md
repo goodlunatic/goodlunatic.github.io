@@ -44,7 +44,7 @@ repost:
 
 <!--more-->
 
-{% include admonition.html type="success" title="阅前须知" open="true" %}
+{{< admonition type=success title="【重要】阅前须知" open=true >}}
 
 **文章更新周期较长，如有疏漏，欢迎指正**
 
@@ -54,7 +54,7 @@ repost:
 
 **文章创作不易，感谢你能看到这里，转载还请标明出处**
 
-{% include end_admonition.html %}
+{{< /admonition >}}
 
 ## 一些奇奇怪怪的经历：
 

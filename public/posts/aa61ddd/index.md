@@ -150,5 +150,5 @@ for f in itertools.product(fac, repeat=4):
 ---
 
 > Author: [Lunatic](https://goodlunatic.github.io)  
-> URL: https://goodlunatic.github.io/posts/aa61ddd/  
+> URL: http://localhost:1313/posts/aa61ddd/  
 

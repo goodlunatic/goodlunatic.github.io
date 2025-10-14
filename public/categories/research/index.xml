@@ -1,42 +1,42 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
   <channel>
     <title>Research - Category - ⚡Lunatic BLOG⚡</title>
-    <link>https://goodlunatic.github.io/categories/research/</link>
+    <link>http://localhost:1313/categories/research/</link>
     <description>Research - Category | ⚡Lunatic BLOG⚡</description>
     <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>goodlunatic0@gmail.com (Lunatic)</managingEditor>
-      <webMaster>goodlunatic0@gmail.com (Lunatic)</webMaster><lastBuildDate>Thu, 25 Sep 2025 12:38:43 &#43;0800</lastBuildDate><atom:link href="https://goodlunatic.github.io/categories/research/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>goodlunatic0@gmail.com (Lunatic)</webMaster><lastBuildDate>Thu, 25 Sep 2025 12:38:43 &#43;0800</lastBuildDate><atom:link href="http://localhost:1313/categories/research/" rel="self" type="application/rss+xml" /><item>
   <title>利用 SCAT 实时捕获 4G-LTE 和 5G-NR 层三以上消息</title>
-  <link>https://goodlunatic.github.io/posts/a8aa439/</link>
+  <link>http://localhost:1313/posts/a8aa439/</link>
   <pubDate>Thu, 25 Sep 2025 12:38:43 &#43;0800</pubDate>
   <author>Lunatic</author>
-  <guid>https://goodlunatic.github.io/posts/a8aa439/</guid>
+  <guid>http://localhost:1313/posts/a8aa439/</guid>
   <description><![CDATA[<p><strong>之前复现论文，做实验的时候想要实时查看 LTE 和 NR 的信令消息，只能通过 CelllularPro</strong></p>
 <p><strong>但是无奈这个软件是收费的，并且很多论文作者在实时捕获消息上并没有提到这个软件</strong></p>
 <p><strong>反而都是用 SCAT 这个开源项目进行实时捕获，因此打算写篇博客来记录一下配置过程</strong></p>]]></description>
 </item>
 <item>
   <title>如何基于 srsRAN_4G 搭建 LTE 基站</title>
-  <link>https://goodlunatic.github.io/posts/ed6ecd5/</link>
+  <link>http://localhost:1313/posts/ed6ecd5/</link>
   <pubDate>Sun, 03 Aug 2025 16:48:15 &#43;0800</pubDate>
   <author>Lunatic</author>
-  <guid>https://goodlunatic.github.io/posts/ed6ecd5/</guid>
+  <guid>http://localhost:1313/posts/ed6ecd5/</guid>
   <description><![CDATA[<p><strong>记录一下如何基于 srsRAN_4G 搭建 LTE 基站</strong></p>]]></description>
 </item>
 <item>
   <title>Qualcomm高通 诊断日志分析工具的安装及使用</title>
-  <link>https://goodlunatic.github.io/posts/95cea53/</link>
+  <link>http://localhost:1313/posts/95cea53/</link>
   <pubDate>Wed, 23 Apr 2025 14:12:43 &#43;0800</pubDate>
   <author>Lunatic</author>
-  <guid>https://goodlunatic.github.io/posts/95cea53/</guid>
+  <guid>http://localhost:1313/posts/95cea53/</guid>
   <description><![CDATA[<p><strong>复现论文实验的时候需要用到Qualcomm高通的套件</strong></p>
 <p><strong>软件安装和使用过程中遇到了很多的问题，因此打算记录一下遇到的问题和对应的解决方案</strong></p>]]></description>
 </item>
 <item>
   <title>4G5G网络安全相关内容的研究</title>
-  <link>https://goodlunatic.github.io/posts/342f304/</link>
+  <link>http://localhost:1313/posts/342f304/</link>
   <pubDate>Tue, 24 Dec 2024 19:29:58 &#43;0800</pubDate>
   <author>Lunatic</author>
-  <guid>https://goodlunatic.github.io/posts/342f304/</guid>
+  <guid>http://localhost:1313/posts/342f304/</guid>
   <description><![CDATA[<p><strong>4G5G网络安全相关内容的研究</strong></p>]]></description>
 </item>
 </channel>

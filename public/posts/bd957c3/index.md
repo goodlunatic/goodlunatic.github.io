@@ -488,5 +488,5 @@ print(s)
 ---
 
 > Author: [Lunatic](https://goodlunatic.github.io)  
-> URL: https://goodlunatic.github.io/posts/bd957c3/  
+> URL: http://localhost:1313/posts/bd957c3/  
 

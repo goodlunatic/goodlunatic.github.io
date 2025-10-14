@@ -600,5 +600,5 @@ zsteg 扫一下这张 PNG，发现图片 LSB 隐写了一个文件
 ---
 
 > Author: [Lunatic](https://goodlunatic.github.io)  
-> URL: https://goodlunatic.github.io/posts/49bdad5/  
+> URL: http://localhost:1313/posts/49bdad5/  
 

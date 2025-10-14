@@ -329,5 +329,5 @@ End Sub
 ---
 
 > Author: [Lunatic](https://goodlunatic.github.io)  
-> URL: https://goodlunatic.github.io/posts/e49ecc5/  
+> URL: http://localhost:1313/posts/e49ecc5/  
 

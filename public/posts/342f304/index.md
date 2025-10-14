@@ -319,5 +319,5 @@ sudo make install
 ---
 
 > Author: [Lunatic](https://goodlunatic.github.io)  
-> URL: https://goodlunatic.github.io/posts/342f304/  
+> URL: http://localhost:1313/posts/342f304/  
 

@@ -139,5 +139,5 @@ make
 ---
 
 > Author: [Lunatic](https://goodlunatic.github.io)  
-> URL: https://goodlunatic.github.io/posts/e393438/  
+> URL: http://localhost:1313/posts/e393438/  
 

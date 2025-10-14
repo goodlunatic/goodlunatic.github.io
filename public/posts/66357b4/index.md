@@ -186,5 +186,5 @@ D0g3{Th1s_REA11Y_MAX_F1A4_GGB0ND}
 ---
 
 > Author: [Lunatic](https://goodlunatic.github.io)  
-> URL: https://goodlunatic.github.io/posts/66357b4/  
+> URL: http://localhost:1313/posts/66357b4/  
 

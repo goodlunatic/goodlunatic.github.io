@@ -101,8 +101,7 @@ toc = false
 | <img align="center" alt="img" src="imgs/Wechat.jpg" /> | <img align="center" alt="img" src="imgs/Alipay.jpg"/> |
 | :----------------------------------------------------: | :---------------------------------------------------: |
 
-
-{% include admonition.html type="success" title="一些题外话" open="true" %}
+{{< admonition type=success title="一些题外话" open=true >}}
 
 **承蒙各位大佬的推荐和转发，最近来找我交流的同好们越来越多了**
 
@@ -116,4 +115,4 @@ toc = false
 
 **人海茫茫，相遇不易，感谢你能看到这里，博客后续也还是会照常更新，感谢各位同好们的支持**
 
-{% include end_admonition.html %}
+{{< /admonition >}}
