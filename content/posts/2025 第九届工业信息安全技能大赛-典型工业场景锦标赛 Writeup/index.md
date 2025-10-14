@@ -1,7 +1,7 @@
 ---
 title: 2025 第九届工业信息安全技能大赛-典型工业场景锦标赛 Misc Writeup
 subtitle:
-date: 2025-10-14T15:00:45+08:00
+date: 2025-10-14T20:00:45+08:00
 slug: 49bdad5
 draft: false
 author:
@@ -825,7 +825,8 @@ if __name__ == "__main__":
 # SHA256: 7d41757168a2199b32cb1744de130fdebda25271116bc64eccf4e397770d73c2
 ```
 
-## [TODO] 题目名称 图片的奥秘
+
+## 题目名称 图片的奥秘
 
 附件给了一个加密的压缩包，首先尝试弱密码爆破，得到解压密码：`54450`
 
@@ -853,6 +854,51 @@ if __name__ == "__main__":
 
 ![](imgs/image-20250924103307043.png)
 
+> 赛后据做出来的师傅说，后面是有 9 张 PNG 图片
+> 
+> 并且这 9 张图片可以按顺序拼成一个新的二维码，扫码即可得到最后的 flag，如下图所示
+
+![](imgs/image-20251014195822270.png)
+
+但是我自己做的时候，这些数据根据 PNG 文件头分段提取可以提出如下几段数据
+
+![](imgs/image-20251014195406977.png)
+
+很明显其中有俩 PNG 文件是能正常显示的，但是另外几个不能，并且根据文件大小来看，应该是有 9 张 PNG 图片
+
+我们用 010 来 diff 一下，发现是有部分段的数据是相同的，猜测这些应该就是变换后的 PNG 文件头
+
+![](imgs/image-20251014200022734.png)
+
+后来发现其实是一开始 base64 解码得到图片那一步弄错了
+
+其实原图后面跟着的不是一段 base64 编码，而是是十段 base64 编码，我们需要分别提取出来
+
+因此我们把原图末尾的 base64 保存到一个 txt 中，然后写个脚本提取一下即可
+
+```python
+import base64
+
+with open("base64code.txt",'r') as f:
+    data = f.read().split('data:image/png;base64,')
+    
+# print(len(data)) # 11
+
+for idx,item in enumerate(data):
+    png_name = f"{idx}.png"
+    png_data = base64.b64decode(item)
+    with open(png_name,'wb') as f:
+        f.write(png_data)
+    print(f"[+] {idx}.png 提取成功")
+```
+
+![](imgs/image-20251014202526166.png)
+
+然后我们把那九张二维码碎片拼一下
+
+![](imgs/image-20251014202902536.png)
+
+拼好后扫码即可得到最后的 flag：`fdvbpy4zl9klge9fb7n8caa0vz7g1600e557e2adb0b5eICphorM5FEDVW3LyOisUdX4kv9JtSmP01QxRBl6THjgAcnfYubGZqwKz7asnow`
 
 ## [TODO] 题目名称 文件分析
 
@@ -934,5 +980,4 @@ zsteg 扫一下这张 PNG，发现图片 LSB 隐写了一个文件
 结合题目的提示，翻译为中文大致的意思是：自动驾驶的幽灵
 
 发现 UDP 传输的数据都是 1118 字节，然后 010 diff 了一下，发现每段数据的差异还是挺大的
-
 
