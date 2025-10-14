@@ -16,7 +16,7 @@
 也算是一种复健运动吧，找找当初刚学 CTF 时那种热血的感觉">
   <meta itemprop="datePublished" content="2025-10-14T10:28:49+08:00">
   <meta itemprop="dateModified" content="2025-10-14T10:28:49+08:00">
-  <meta itemprop="wordCount" content="12485">
+  <meta itemprop="wordCount" content="12489">
   <meta itemprop="keywords" content="CTF,Writeup"><meta property="og:url" content="https://goodlunatic.github.io/posts/443835e/">
   <meta property="og:site_name" content="⚡Lunatic BLOG⚡">
   <meta property="og:title" content="2025 TSCTF-J Writeup">
@@ -48,7 +48,7 @@
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": "https:\/\/goodlunatic.github.io\/posts\/443835e\/"
-    },"genre": "posts","keywords": "CTF, Writeup","wordcount":  12485 ,
+    },"genre": "posts","keywords": "CTF, Writeup","wordcount":  12489 ,
     "url": "https:\/\/goodlunatic.github.io\/posts\/443835e\/","datePublished": "2025-10-14T10:28:49+08:00","dateModified": "2025-10-14T10:28:49+08:00","publisher": {
       "@type": "Organization",
       "name": ""},"author": {
@@ -1698,14 +1698,19 @@
 <p><img loading="lazy" src="imgs/image-20251013222642047.png" alt="imgs/image-20251013222642047.png" srcset="imgs/image-20251013222642047.png?size=small, imgs/image-20251013222642047.png?size=medium 1.5x, imgs/image-20251013222642047.png?size=large 2x" data-title="imgs/image-20251013222642047.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>发现加群需要正确回答问题，于是这一步才到 OSINT 社工的部分</p>
 <p><img loading="lazy" src="imgs/image-20251013222747240.png" alt="imgs/image-20251013222747240.png" srcset="imgs/image-20251013222747240.png?size=small, imgs/image-20251013222747240.png?size=medium 1.5x, imgs/image-20251013222747240.png?size=large 2x" data-title="imgs/image-20251013222747240.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
-<p>通过社工找到出题人的博客，点击<code>新生常见问题解答</code>这篇文章，可以发现招新赛跳转的链接是有问题的</p>
+<p>通过社工找到<a href="https://sus-morn.tech/"target="_blank" rel="external nofollow noopener noreferrer">出题人的博客</a>，点击<code>新生常见问题解答</code>这篇文章，可以发现招新赛跳转的链接是有问题的</p>
 <p>提示了我们一个 Github Commit 的 hash</p>
 <p><img loading="lazy" src="imgs/image-20251013225547631.png" alt="imgs/image-20251013225547631.png" srcset="imgs/image-20251013225547631.png?size=small, imgs/image-20251013225547631.png?size=medium 1.5x, imgs/image-20251013225547631.png?size=large 2x" data-title="imgs/image-20251013225547631.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>因此我们可以直接在 Github 上搜这个 hash</p>
 <p><img loading="lazy" src="imgs/image-20251013225738669.png" alt="imgs/image-20251013225738669.png" srcset="imgs/image-20251013225738669.png?size=small, imgs/image-20251013225738669.png?size=medium 1.5x, imgs/image-20251013225738669.png?size=large 2x" data-title="imgs/image-20251013225738669.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>可以定位到具体的仓库，最后在 URL 中的 commit 后跟上这个 hash 值即可得到群问题的答案：<code>‬‌‌‌‌‍‬‍‍u_answer_here</code></p>
-<p>加群即可得到最后的 flag</p>
 <p><img loading="lazy" src="imgs/image-20251013225511184.png" alt="imgs/image-20251013225511184.png" srcset="imgs/image-20251013225511184.png?size=small, imgs/image-20251013225511184.png?size=medium 1.5x, imgs/image-20251013225511184.png?size=large 2x" data-title="imgs/image-20251013225511184.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>直接复制这个答案加群会发现回答错误，仔细数了一下字数发现不太对</p>
+<p><img loading="lazy" src="imgs/image-20251014175818276.png" alt="imgs/image-20251014175818276.png" srcset="imgs/image-20251014175818276.png?size=small, imgs/image-20251014175818276.png?size=medium 1.5x, imgs/image-20251014175818276.png?size=large 2x" data-title="imgs/image-20251014175818276.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>原来是藏了零宽，手动输入答案 (13字符) 后即可成功加入群聊</p>
+<p><img loading="lazy" src="imgs/image-20251014175900071.png" alt="imgs/image-20251014175900071.png" srcset="imgs/image-20251014175900071.png?size=small, imgs/image-20251014175900071.png?size=medium 1.5x, imgs/image-20251014175900071.png?size=large 2x" data-title="imgs/image-20251014175900071.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>加入群聊后查看群公告即可得到最后的 flag：<code>TSCTF-J{f4k3_fl4g_f1nd_4n0nth3r_pl5!!!}</code></p>
+<p><img loading="lazy" src="imgs/image-20251014180133130.png" alt="imgs/image-20251014180133130.png" srcset="imgs/image-20251014180133130.png?size=small, imgs/image-20251014180133130.png?size=medium 1.5x, imgs/image-20251014180133130.png?size=large 2x" data-title="imgs/image-20251014180133130.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <h2 id="pwn" class="heading-element">
   <a href="#pwn" class="heading-mark"></a>Pwn</h2><h3 id="题目名称-ret" class="heading-element">
   <a href="#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-ret" class="heading-mark"></a>题目名称 ret</h3><p>ret2text，直接给了后门</p>
