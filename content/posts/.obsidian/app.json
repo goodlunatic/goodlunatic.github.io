@@ -1,0 +1,18 @@
+{
+  "promptDelete": false,
+  "attachmentFolderPath": "./imgs",
+  "showLineNumber": true,
+  "useMarkdownLinks": true,
+  "newLinkFormat": "relative",
+  "readableLineLength": false,
+  "foldHeading": true,
+  "spellcheck": false,
+  "pdfExportSettings": {
+    "includeName": false,
+    "pageSize": "Letter",
+    "landscape": false,
+    "margin": "0",
+    "downscalePercent": 100
+  },
+  "showInlineTitle": false
+}

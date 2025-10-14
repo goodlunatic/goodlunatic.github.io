@@ -1,0 +1,59 @@
+footer {
+  height: auto;
+  width: 100%;
+  text-align: center;
+  line-height: 1.25rem;
+  padding: 1rem 0;
+  @extend .print-d-none;
+
+  .footer-container {
+    display: flex;
+    flex-direction: column;
+    font-size: 0.875rem;
+
+    .footer-line {
+      width: 100%;
+
+      .footer-divider:not(:first-child)::before {
+        content: '|';
+        margin-left: 0.25rem;
+        margin-right: 0.25rem;
+      }
+
+      .animate-icon {
+        color: #dc143c;
+        animation: icon-animate 1.33s ease-in-out infinite;
+      }
+
+      .run-times {
+        font-variant-numeric: tabular-nums lining-nums;
+      }
+    }
+  }
+
+  @include blur;
+}
+
+@keyframes icon-animate {
+  0%,
+  100% {
+    @include transform(scale(1));
+  }
+
+  10%,
+  30% {
+    @include transform(scale(0.9));
+  }
+
+  20%,
+  40%,
+  60%,
+  80% {
+    @include transform(scale(1.1));
+  }
+
+  50%,
+  70% {
+    @include transform(scale(1.1));
+  }
+}

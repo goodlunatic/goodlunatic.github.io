@@ -1,0 +1,12 @@
+{{- $id := dict "Scratch" .Page.Scratch | partial "function/id.html" -}}
+{{- $wechatpay := (.Get "wechatpay") | default (.Get 0) -}}
+{{- $alipay := (.Get "alipay") | default (.Get 1) -}}
+{{- $paypal := (.Get "paypal") | default (.Get 2) -}}
+{{- $bitcoin := (.Get "bitcoin") | default (.Get 3) -}}
+{{- $author := (.Get "author") | default (.Get 4) -}}
+{{- $comment := (.Get "comment") | default (.Get 5) -}}
+{{- $mode := (.Get "mode") | default (.Get 6) -}}
+{{- $reward := dict "enable" true "comment" $comment "mode" $mode -}}
+{{- $reward = dict "wechatpay" $wechatpay "alipay" $alipay "paypal" $paypal "bitcoin" $bitcoin | dict "ways" | merge $reward -}}
+{{- $options := dict "Reward" $reward "Id" $id "Author" $author -}}
+{{- partial "plugin/reward.html" $options -}}

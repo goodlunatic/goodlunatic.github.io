@@ -1,0 +1,28 @@
+{{- define "title" -}}
+  {{- .Params.Title | default (T .Data.Plural) | default .Data.Plural | dict "Some" | T "allSome" -}}
+  {{- if .Site.Params.withSiteTitle }} {{ .Site.Params.titleDelimiter }} {{ .Site.Title }}{{- end -}}
+{{- end -}}
+
+{{- define "content" -}}
+  {{- $taxonomies := .Data.Plural -}}
+
+  <div class="page archive">
+    {{- $termsIcon := "" -}}
+    {{- if eq $taxonomies "categories" -}}
+      {{- $termsIcon = "fa-solid fa-folder-tree" -}}
+    {{- else if eq $taxonomies "tags" -}}
+      {{- $termsIcon = "fa-solid fa-tags" -}}
+    {{- else if eq $taxonomies "collections" -}}
+      {{- $termsIcon = "fa-solid fa-layer-group" -}}
+    {{- end -}}
+    {{- /* Title */ -}}
+    <h1 class="single-title animate__animated animate__pulse animate__faster">
+      {{- with $termsIcon -}}
+        {{- dict "Class" (add . " fa-fw me-1") | partial "plugin/icon.html" -}}
+      {{- end -}}
+      {{- .Params.Title | default (T $taxonomies) | default $taxonomies | dict "Some" | T "allSome" }} <sup>{{ len .Data.Terms.ByCount }}</sup>
+    </h1>
+    {{- /* Render miscellaneous terms */ -}}
+    {{- .Render (add "terms/" $taxonomies) -}}
+  </div>
+{{- end -}}

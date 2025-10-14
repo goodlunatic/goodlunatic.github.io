@@ -1,0 +1,22 @@
+{{- $Resources := .Resources | default page.Resources -}}
+{{- $resource := 0 -}}
+{{- $url := urls.Parse .Path -}}
+{{- if not $url.Host | and $url.Path | and (strings.HasSuffix $url.Path "/" | not) -}}
+  {{- if $Resources -}}
+    {{- with $Resources.GetMatch $url.Path -}}
+      {{- $resource = . -}}
+    {{- end -}}
+  {{- end -}}
+  {{- if not $resource -}}
+    {{- with resources.Get $url.Path -}}
+      {{- $resource = . -}}
+    {{- end -}}
+  {{- end -}}
+{{- else -}}
+  {{- $cacheRemoteImages := .CacheRemoteImages | default false -}}
+  {{- if $cacheRemoteImages -}}
+    {{- $resource = partial "function/get-remote-image.html" .Path -}}
+  {{- end -}}
+{{- end -}}
+
+{{- return $resource -}}

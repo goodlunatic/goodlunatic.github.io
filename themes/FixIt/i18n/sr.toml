@@ -1,0 +1,196 @@
+# Translations for Serbian
+# Превод на Српски
+# https://gohugo.io/content-management/multilingual/#translation-of-strings
+# TODO Some fields are waiting for your translation
+
+# === init ===
+[init]
+configurationError = ""
+compatibilityError = ""
+RCVersionWarn = ""
+devEnvWarn = ""
+quicklyUpgrade = ""
+# === init ===
+
+# === baseof ===
+[baseof]
+backToTop = "Назад на Врх"
+viewComments = "Погледај Коментаре"
+noscript = ""
+# === baseof ===
+
+# === Taxonomy ===
+[archives]
+other = ""
+
+[allSome]
+other = "Све {{ .Some }}"
+
+[category]
+other = "Категорија"
+
+[categories]
+other = "Категорије"
+
+[collection]
+other = ""
+
+[collections]
+other = ""
+
+[tag]
+other = "Таг"
+
+[tags]
+other = "Тагови"
+
+[posts]
+other = "Постови"
+# === Taxonomy ===
+
+# === Section ===
+[section]
+recentlyUpdated = "Недавно Ажурирано"
+
+[section.totalWordCount]
+one = ""
+other = ""
+
+[section.archiveCounter]
+one = ""
+other = ""
+# === Section ===
+
+# === Pagination ===
+[pagination]
+more = "Више"
+# === Pagination ===
+
+# === partials/header.html ===
+[header]
+selectLanguage = "Изабери Језик"
+noMoretTranslations = "Нема више превода"
+switchTheme = "Промени Тему"
+# === partials/header.html ===
+
+# === partials/footer.html ===
+[footer]
+poweredBySome = "Покреће {{ .Hugo }} | Тема - {{ .Theme }}"
+siteUV = "Укупно посетилаца"
+sitePV = "Укупно посета"
+siteRunning = "Website running ..."
+# === partials/footer.html ===
+
+# === partials/comment.html ===
+[comment]
+valineLang = "sr" # Valine не подржава српски
+valinePlaceholder = "Ваш коментар ..."
+facebookLanguageCode = "sr_RS"
+# === partials/comment.html ===
+
+# === partials/assets.html ===
+[assets]
+search = "Претрага"
+searchPlaceholder = "Претражи наслове или садржај..."
+clear = "Очисти"
+cancel = "Поништи"
+noResultsFound = "Без резултата"
+copyToClipboard = "Копирај на радну таблу"
+editLockTitle = "Закључај блок кода који се може уређивати"
+editUnLockTitle = "Откључајте блок кода који се може уређивати"
+cookieconsentMessage = "Ова веб локација користи Cookies да би побољшала ваше искуство."
+cookieconsentDismiss = "Договорити се"
+cookieconsentLink = "Сазнајте више"
+# === partials/assets.html ===
+
+# === partials/plugin/share.html ===
+[shareOn]
+other = "Подели на"
+# === partials/plugin/share.html ===
+
+# === posts/single.html ===
+[single]
+contents = "Садржаји"
+pin = ""
+repost = ""
+publishedOnDate = "објављено {{ .Date }}"
+views = "прегледа"
+comments = "коментари"
+author = "Аутор"
+updatedOnDate = "Ажурирано {{ .Date }}"
+readMarkdown = "Читај Markdown"
+viewSource = ""
+editThisPage = "Уреди ову страницу"
+reportIssue = ""
+back = "Назад"
+home = "Почетна"
+readMore = "Прочитај више"
+expirationReminder = "Овај чланак је последњи пут ажуриран {{ .Date }}, садржај је можда застарео."
+encryptedAbstract = ""
+encryptedMessage = ""
+password = "Паролица"
+encryptyAgain = ""
+relatedContent = "Повезани садржај"
+
+[single.includedIn]
+categories = "укључено {{ .Categories }}"
+collections = "укључено {{ .Collections }}"
+both = "укључено {{ .Categories }} и {{ .Collections }}"
+
+[single.wordCount]
+one = "Једна реч"
+other = "{{ .Count }} речи"
+
+[single.fuzzyWordCount]
+other = "Око {{ .Count }} речи"
+
+[single.readingTime]
+one = "Један минут"
+other = "{{ .Count }} минута"
+
+[single.reward]
+donate = ""
+wechatpay = ""
+alipay = ""
+paypal = ""
+bitcoin = ""
+# === posts/single.html ===
+
+# === 404.html ===
+[pageNotFound]
+other = "Страница није пронађена"
+
+[pageNotFoundText]
+other = "Страница коју тражите не постоји. Жао нам је."
+# === 404.html ===
+
+# === offline ===
+[offlineTitle]
+other = "Оффлине"
+
+[offlineText]
+other = "Нисте повезани на Интернет, биће доступне само кеширане странице."
+# === offline ===
+
+# === shortcodes/admonition.html ===
+[admonition]
+note = "Напомена"
+abstract = "Сажетак"
+info = "Инфо"
+tip = "Савет"
+success = "Успех"
+question = "Питање"
+warning = "Упозорење"
+failure = "Неуспех"
+danger = "Опасност"
+bug = "Грешка"
+example = "Пример"
+quote = "Цитат"
+# === shortcodes/admonition.html ===
+
+# === shortcodes/version.html ===
+[version]
+new = "НОВО"
+changed = "ПРОМЕЊЕНО"
+deleted = "ОБРИСАНО"
+# === shortcodes/version.html ===

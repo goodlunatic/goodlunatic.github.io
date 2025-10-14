@@ -1,0 +1,13 @@
+{
+  "accentColor": "",
+  "theme": "obsidian",
+  "interfaceFontFamily": "Cascadia Mono,Calibri",
+  "baseFontSize": 15,
+  "baseFontSizeAction": true,
+  "monospaceFontFamily": "Cascadia Mono,Calibri",
+  "textFontFamily": "Cascadia Mono,Calibri",
+  "showViewHeader": true,
+  "enabledCssSnippets": [],
+  "cssTheme": "Maple",
+  "showRibbon": false
+}

@@ -1,0 +1,196 @@
+# Translations for Russian
+# Переводы на русский
+# https://gohugo.io/content-management/multilingual/#translation-of-strings
+# TODO Some fields are waiting for your translation
+
+# === init ===
+[init]
+configurationError = ""
+compatibilityError = ""
+RCVersionWarn = ""
+devEnvWarn = ""
+quicklyUpgrade = ""
+# === init ===
+
+# === baseof ===
+[baseof]
+backToTop = "Наверх"
+viewComments = "Посмотреть комментарии"
+noscript = ""
+# === baseof ===
+
+# === Taxonomy ===
+[archives]
+other = ""
+
+[allSome]
+other = "Все {{ .Some }}"
+
+[category]
+other = "Категория"
+
+[categories]
+other = "Категории"
+
+[collection]
+other = ""
+
+[collections]
+other = ""
+
+[tag]
+other = "Тэг"
+
+[tags]
+other = "Тэги"
+
+[posts]
+other = "Статьи"
+# === Taxonomy ===
+
+# === Section ===
+[section]
+recentlyUpdated = "Недавно обновленные"
+
+[section.totalWordCount]
+one = ""
+other = ""
+
+[section.archiveCounter]
+one = ""
+other = ""
+# === Section ===
+
+# === Pagination ===
+[pagination]
+more = "Больше"
+# === Pagination ===
+
+# === partials/header.html ===
+[header]
+selectLanguage = "Выбор Языка"
+noMoretTranslations = "Нет больше переводов"
+switchTheme = "Сменить Тему"
+# === partials/header.html ===
+
+# === partials/footer.html ===
+[footer]
+poweredBySome = "Сделано {{ .Hugo }} | Тема - {{ .Theme }}"
+siteUV = "Всего посетителей"
+sitePV = "Всего посещений"
+siteRunning = "Website running ..."
+# === partials/footer.html ===
+
+# === partials/comment.html ===
+[comment]
+valineLang = "en" # Valine не поддерживает русский
+valinePlaceholder = "Ваш комментарий ..."
+facebookLanguageCode = "ru_RU"
+# === partials/comment.html ===
+
+# === partials/assets.html ===
+[assets]
+search = "Поиск"
+searchPlaceholder = "Поиск заголовков или содержимого ..."
+clear = "Очистить"
+cancel = "Отменить"
+noResultsFound = "Результатов не найдено"
+copyToClipboard = "Копировать в буфер обмена"
+editLockTitle = "Заблокировать редактируемый кодовый блок"
+editUnLockTitle = "Разблокировать редактируемый блок кода"
+cookieconsentMessage = "Этот сайт использует Cookies для улучшения вашего опыта."
+cookieconsentDismiss = "Согласен"
+cookieconsentLink = "Учить больше"
+# === partials/assets.html ===
+
+# === partials/plugin/share.html ===
+[shareOn]
+other = "Поделиться в"
+# === partials/plugin/share.html ===
+
+# === posts/single.html ===
+[single]
+contents = "Содержание"
+pin = ""
+repost = ""
+publishedOnDate = "Опубликовано {{ .Date }}"
+views = "просмотров"
+comments = "комментариев"
+author = "Автор"
+updatedOnDate = "Oбновлена {{ .Date }}"
+readMarkdown = "Читать Markdown"
+viewSource = ""
+editThisPage = "Редактировать эту страницу"
+reportIssue = ""
+back = "Назад"
+home = "Домой"
+readMore = "Читать больше"
+expirationReminder = "Эта статья последний раз обновлялась {{ .Date }}, содержание может быть устаревшим."
+encryptedAbstract = ""
+encryptedMessage = ""
+password = "арготизм"
+encryptyAgain = ""
+relatedContent = "Связанный контент"
+
+[single.includedIn]
+categories = "включен в {{ .Categories }}"
+collections = "включен в {{ .Collections }}"
+both = "включен в {{ .Categories }} и {{ .Collections }}"
+
+[single.wordCount]
+one = "Одно слово"
+other = "{{ .Count }} слов"
+
+[single.fuzzyWordCount]
+other = "Около {{ .Count }} слов"
+
+[single.readingTime]
+one = "Одна минута"
+other = "{{ .Count }} минут"
+
+[single.reward]
+donate = ""
+wechatpay = ""
+alipay = ""
+paypal = ""
+bitcoin = ""
+# === posts/single.html ===
+
+# === 404.html ===
+[pageNotFound]
+other = "Страница не найдена"
+
+[pageNotFoundText]
+other = "Страница, которую вы ищете, не существует. Приносим извинения."
+# === 404.html ===
+
+# === offline ===
+[offlineTitle]
+other = "Не в сети"
+
+[offlineText]
+other = "Вы не подключены к интернету, будут доступны только кешированные страницы."
+# === offline ===
+
+# === shortcodes/admonition.html ===
+[admonition]
+note = "Замечание"
+abstract = "Краткое описание"
+info = "Инфо"
+tip = "Совет"
+success = "Удачто"
+question = "Вопрос"
+warning = "Предупреждение"
+failure = "Отказ"
+danger = "Опасность"
+bug = "Ошибка"
+example = "Пример"
+quote = "Цитата"
+# === shortcodes/admonition.html ===
+
+# === shortcodes/version.html ===
+[version]
+new = "НОВЫЙ"
+changed = "ИЗМЕНЕН"
+deleted = "УДАЛЕН"
+# === shortcodes/version.html ===

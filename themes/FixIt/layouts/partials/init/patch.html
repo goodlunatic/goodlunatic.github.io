@@ -1,0 +1,40 @@
+{{- /* FixIt theme patches */ -}}
+{{- $params := .Scratch.Get "params" -}}
+
+{{- /* Toc data patch */ -}}
+{{- $toc := $params.toc -}}
+{{- if eq $toc true -}}
+  {{- $toc = dict "enable" true | merge .Site.Params.page.toc -}}
+{{- else if eq $toc false -}}
+  {{- $toc = dict "enable" false -}}
+{{- end -}}
+{{- .Scratch.Set "toc" $toc -}}
+
+{{- /* Reward data patch */ -}}
+{{- $reward := $params.reward -}}
+{{- if eq $reward true -}}
+  {{- $reward = dict "enable" true | merge .Site.Params.page.reward -}}
+{{- else if eq $reward false -}}
+  {{- $reward = dict "enable" false -}}
+{{- end -}}
+{{- .Scratch.Set "reward" $reward -}}
+
+{{- /* KaTeX data patch */ -}}
+{{- $math := $params.math -}}
+{{- if eq $math true -}}
+  {{- $math = dict "enable" true | merge .Site.Params.page.math -}}
+{{- else if eq $math false -}}
+  {{- $math = dict "enable" false -}}
+{{- end -}}
+{{- .Scratch.Set "math" $math -}}
+
+{{- /*  SiteTime config patch  */ -}}
+{{- $siteTime := dict "Animate" true "Icon" "fa-solid fa-heartbeat" -}}
+{{- with .Site.Params.footer.siteTime -}}
+  {{- if reflect.IsMap . -}}
+    {{- $siteTime = . -}}
+  {{- else -}}
+    {{- $siteTime = dict "enable" true "value" . | merge $siteTime -}}
+  {{- end -}}
+{{- end -}}
+{{- .Scratch.Set "siteTime" $siteTime -}}

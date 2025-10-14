@@ -1,0 +1,220 @@
+{
+  "main": {
+    "id": "7224428332d6b243",
+    "type": "split",
+    "children": [
+      {
+        "id": "52c1b57c2bde2408",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "bf83ee0a9dfb7d7b",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "2025 TSCTF-J Writeup/index.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "index"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "73e1b7b03ec6cc35",
+    "type": "split",
+    "children": [
+      {
+        "id": "001b8515689830a3",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "99f9e9ec092c925f",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "byModifiedTime",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "文件列表"
+            }
+          },
+          {
+            "id": "a679d595bca90dc3",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "443835e",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "搜索"
+            }
+          },
+          {
+            "id": "a5a14f89118648a6",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "书签"
+            }
+          }
+        ],
+        "currentTab": 1
+      }
+    ],
+    "direction": "horizontal",
+    "width": 265.5
+  },
+  "right": {
+    "id": "40a7df85e0bf099e",
+    "type": "split",
+    "children": [
+      {
+        "id": "8bb125b28befc58c",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "33f1f77b2d215439",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              },
+              "icon": "lucide-tags",
+              "title": "标签"
+            }
+          },
+          {
+            "id": "45ae32abed91f93b",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "2025 TSCTF-J Writeup/index.md",
+                "followCursor": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "index 的大纲"
+            }
+          },
+          {
+            "id": "53913be0f78f8bbc",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "攻防世界 Misc pyHAHA 题目详解/index.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "index 的反向链接列表"
+            }
+          },
+          {
+            "id": "4e472113cbdd67e9",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "攻防世界 Misc pyHAHA 题目详解/index.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "index 的出链列表"
+            }
+          }
+        ],
+        "currentTab": 1
+      }
+    ],
+    "direction": "horizontal",
+    "width": 293.5
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:打开快速切换": false,
+      "graph:查看关系图谱": false,
+      "canvas:新建白板": false,
+      "daily-notes:打开/创建今天的日记": false,
+      "templates:插入模板": false,
+      "command-palette:打开命令面板": false,
+      "bases:创建新数据库": false
+    }
+  },
+  "active": "bf83ee0a9dfb7d7b",
+  "lastOpenFiles": [
+    "CTF-Misc Guide/index.md",
+    "2025 TSCTF-J Writeup/index.md",
+    "CTF-Misc 雅题共赏/index.md",
+    "2025 TSCTF-J Writeup/imgs/image-20251013225738669.png",
+    "2025 TSCTF-J Writeup/imgs/image-20251013225547631.png",
+    "2025 TSCTF-J Writeup/imgs/image-20251013225511184.png",
+    "2025 TSCTF-J Writeup/imgs/image-20251013222747240.png",
+    "2025 TSCTF-J Writeup/imgs/image-20251013222642047.png",
+    "2025 第九届工业信息安全技能大赛-典型工业场景锦标赛 Writeup/index.md",
+    "2025 第九届工业信息安全技能大赛-典型工业场景锦标赛 Writeup/imgs/image-20251013205432260.png",
+    "2025 第九届工业信息安全技能大赛-典型工业场景锦标赛 Writeup/imgs/image-20251013205419271.png",
+    "2025 第九届工业信息安全技能大赛-典型工业场景锦标赛 Writeup/imgs/image-20251013205253863.png",
+    "2025 第九届工业信息安全技能大赛-典型工业场景锦标赛 Writeup/imgs/image-20251013205217447.png",
+    "2025 第九届工业信息安全技能大赛-典型工业场景锦标赛 Writeup/imgs/image-20251013205038464.png",
+    "CTF-Reverse学习记录/index.md",
+    "2025 TSCTF-J Writeup/imgs",
+    "群友们问的一些来路不明的题/index.md",
+    "Misc-Forensics/index.md",
+    "CTF-ICS Learning Record/index.md",
+    "Misc-Network Traffic Analysis/index.md",
+    "线切割-Windows98&WindowsXP折腾记录/index.md",
+    "利用 SCAT 实时捕获 4G-LTE 和 5G-NR 层三以上消息/index.md",
+    "利用 SCAT 实时捕获 4G-LTE 和 5G-NR 层三以上消息/imgs",
+    "2025 第九届工业信息安全技能大赛-典型工业场景锦标赛 Writeup/imgs",
+    "2025 泰山杯线下决赛 Misc Writeup/index.md",
+    "2024 VCTF Misc Writeup/index.md",
+    "2024 帕鲁杯 Misc Writeup/index.md",
+    "2023 强网杯全国网络安全挑战赛 Misc Writeup/index.md",
+    "2020 b01lers Misc image_adjustments 赛题详解/index.md",
+    "2023 楚慧杯网络空间安全实践能力竞赛 Misc Writeup/index.md",
+    "2023 安洵杯网络安全挑战赛 Misc Writeup/index.md",
+    "2022 浙江省大学生网络与信息安全竞赛 Writeup/index.md",
+    "2023 香山杯网络安全大赛 Misc Writeup/index.md",
+    "2023 羊城杯网络安全大赛 Misc Writeup/index.md",
+    "2023 浙江省大学生网络与信息安全竞赛 Misc Writeup/index.md",
+    "2023 CISCN初赛 Misc 国粹 赛题详解/index.md",
+    "2023&2024 红明谷初赛 Misc Writeup/index.md",
+    "2024 “天一永安杯”宁波市赛初赛 Misc Writeup/index.md",
+    "2025 泰山杯线下决赛 Misc Writeup/imgs",
+    "2025 泰山杯线下决赛 Misc Writeup/未命名文件夹",
+    "1",
+    "2025 “天一永安杯”宁波市赛初赛 Misc Writeup/imgs",
+    "CTF-Reverse学习记录/imgs",
+    "CTF-Reverse学习记录",
+    "基于 srsRAN_4G 搭建 LTE 基站/imgs",
+    "未命名.canvas"
+  ]
+}

@@ -1,0 +1,17 @@
+:root {
+  // Note: Custom variable values only support SassScript inside `#{}`.
+
+  // Theme colors varibles
+  @each $color, $value in $theme-colors {
+    --#{$prefix}#{$color}: #{$value};
+  }
+  @each $color, $value in $theme-colors {
+    --#{$prefix}#{$color}-dark: #{darken($value, 5%)};
+  }
+
+  // Scroll margin top and Stack sticky top related
+  --#{$prefix}scroll-mt: calc(#{$header-height} + #{$global-scroll-margin-top});
+
+  // Set breadcrumb height to 0px if breadcrumb is disabled
+  --#{$prefix}breadcrumb-height: 0px;
+}

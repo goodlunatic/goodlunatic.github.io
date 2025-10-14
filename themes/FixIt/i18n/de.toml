@@ -1,0 +1,196 @@
+# Translations for German
+# Übersetzung auf Deutsch
+# https://gohugo.io/content-management/multilingual/#translation-of-strings
+# TODO Some fields are waiting for your translation
+
+# === init ===
+[init]
+configurationError = ""
+compatibilityError = ""
+RCVersionWarn = ""
+devEnvWarn = ""
+quicklyUpgrade = ""
+# === init ===
+
+# === baseof ===
+[baseof]
+backToTop = "Nach oben"
+viewComments = "Kommentare anzeigen"
+noscript = ""
+# === baseof ===
+
+# === Taxonomy ===
+[archives]
+other = ""
+
+[allSome]
+other = "Alle {{ .Some }}"
+
+[category]
+other = "Kategorie"
+
+[categories]
+other = "Kategorien"
+
+[collection]
+other = ""
+
+[collections]
+other = ""
+
+[tag]
+other = "Tag"
+
+[tags]
+other = "Tags"
+
+[posts]
+other = "Artikel"
+# === Taxonomy ===
+
+# === Section ===
+[section]
+recentlyUpdated = "Zuletzt aktualisiert"
+
+[section.totalWordCount]
+one = ""
+other = ""
+
+[section.archiveCounter]
+one = ""
+other = ""
+# === Section ===
+
+# === Pagination ===
+[pagination]
+more = "Mehr"
+# === Pagination ===
+
+# === partials/header.html ===
+[header]
+selectLanguage = "Sprache wählen"
+noMoretTranslations = "Keine weiteren Übersetzungen"
+switchTheme = "Darstellung ändern"
+# === partials/header.html ===
+
+# === partials/footer.html ===
+[footer]
+poweredBySome = "Realisiert durch {{ .Hugo }} | Thema - {{ .Theme }}"
+siteUV = "Besucher insgesamt"
+sitePV = "Besuche insgesamt"
+siteRunning = "Website läuft ..."
+# === partials/footer.html ===
+
+# === partials/comment.html ===
+[comment]
+valineLang = "en" # Deutsch unterstützt Valine nicht
+valinePlaceholder = "Ihr Kommentar ..."
+facebookLanguageCode = "de_DE"
+# === partials/comment.html ===
+
+# === partials/assets.html ===
+[assets]
+search = "Suche"
+searchPlaceholder = "Suche nach Titel und Inhalt..."
+clear = "Leeren"
+cancel = "Abbrechen"
+noResultsFound = "Keine Ergebnisse gefunden"
+copyToClipboard = "In Zwischenablage kopieren"
+editLockTitle = "Bearbeitbaren Codeblock sperren"
+editUnLockTitle = "Bearbeiten des Codeblocks entsperren"
+cookieconsentMessage = "Diese Website verwendet Cookies, um Ihre Erfahrung zu verbessern."
+cookieconsentDismiss = "Zustimmen"
+cookieconsentLink = "Erfahren Sie mehr"
+# === partials/assets.html ===
+
+# === partials/plugin/share.html ===
+[shareOn]
+other = "Teilen auf"
+# === partials/plugin/share.html ===
+
+# === posts/single.html ===
+[single]
+contents = "Inhalt"
+pin = ""
+repost = ""
+publishedOnDate = "veröffentlicht an {{ .Date }}"
+views = "Aufrufe"
+comments = "Kommentare"
+author = "Autor"
+updatedOnDate = "Aktualisiert am {{ .Date }}"
+readMarkdown = "Markdown anzeigen"
+viewSource = ""
+editThisPage = "Diese Seite bearbeiten"
+reportIssue = ""
+back = "Zurück"
+home = "Startseite"
+readMore = "Mehr lesen"
+expirationReminder = "Dieser Artikel wurde zuletzt auf {{ .Date }} aktualisiert, der Inhalt kann veraltet sein."
+encryptedAbstract = ""
+encryptedMessage = ""
+password = "Passwort"
+encryptyAgain = ""
+relatedContent = "Ähnliche Inhalte"
+
+[single.includedIn]
+categories = "enthalten in {{ .Categories }}"
+collections = "enthalten in {{ .Collections }}"
+both = "enthalten in {{ .Categories }} und {{ .Collections }}"
+
+[single.wordCount]
+one = "Ein Wort"
+other = "{{ .Count }} Wörter"
+
+[single.fuzzywordcount]
+other = "{{ .Count }} Wörter (ungefähr)"
+
+[single.readingTime]
+one = "Eine Minute"
+other = "{{ .Count }} Minuten"
+
+[single.reward]
+donate = ""
+wechatpay = ""
+alipay = ""
+paypal = ""
+bitcoin = ""
+# === posts/single.html ===
+
+# === 404.html ===
+[pageNotFound]
+other = "Seite nicht gefunden"
+
+[pageNotFoundText]
+other = "Leider konnte die von Ihnen angeforderte Seite nicht aufgerufen werden."
+# === 404.html ===
+
+# === offline ===
+[offlineTitle]
+other = "Offline"
+
+[offlineText]
+other = "Sie sind nicht mit dem Internet verbunden, es stehen nur zwischengespeicherte Seiten zur Verfügung."
+# === offline ===
+
+# === shortcodes/admonition.html ===
+[admonition]
+note = "Notiz"
+abstract = "Kurzfassung"
+info = "Info"
+tip = "Tipp"
+success = "Erfolg"
+question = "Frage"
+warning = "Warnung"
+failure = "Fehler"
+danger = "Vorsicht"
+bug = "Bug"
+example = "Beispiel"
+quote = "Zitat"
+# === shortcodes/admonition.html ===
+
+# === shortcodes/version.html ===
+[version]
+new = "NEU"
+changed = "GEÄNDERT"
+deleted = "GELÖSCHT"
+# === shortcodes/version.html ===

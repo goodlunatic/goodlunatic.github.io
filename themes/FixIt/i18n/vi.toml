@@ -1,0 +1,195 @@
+# Translations for Vietnamese
+# https://gohugo.io/content-management/multilingual/#translation-of-strings
+# TODO Some fields are waiting for your translation
+
+# === init ===
+[init]
+configurationError = ""
+compatibilityError = ""
+RCVersionWarn = ""
+devEnvWarn = ""
+quicklyUpgrade = ""
+# === init ===
+
+# === baseof ===
+[baseof]
+backToTop = "Lên trên"
+viewComments = "Xem bình luận"
+noscript = ""
+# === baseof ===
+
+# === Taxonomy ===
+[archives]
+other = ""
+
+[allSome]
+other = "Tất cả {{ .Some }}"
+
+[category]
+other = "Danh mục"
+
+[categories]
+other = "Danh mục"
+
+[collection]
+other = ""
+
+[collections]
+other = ""
+
+[tag]
+other = "Nhãn"
+
+[tags]
+other = "Nhãn"
+
+[posts]
+other = "Bài viết"
+# === Taxonomy ===
+
+# === Section ===
+[section]
+recentlyUpdated = "Mới nhất"
+
+[section.totalWordCount]
+one = ""
+other = ""
+
+[section.archiveCounter]
+one = ""
+other = ""
+# === Section ===
+
+# === Pagination ===
+[pagination]
+more = "Thêm"
+# === Pagination ===
+
+# === partials/header.html ===
+[header]
+selectLanguage = "Chọn Ngôn ngữ"
+noMoretTranslations = "Không có nữa"
+switchTheme = "Đổi chủ đề"
+# === partials/header.html ===
+
+# === partials/footer.html ===
+[footer]
+poweredBySome = "Cung cấp bởi {{ .Hugo }} | Chủ đề - {{ .Theme }}"
+siteUV = "Tổng khách truy cập"
+sitePV = "Tổng lượt truy cập"
+siteRunning = "Trang web đang chạy ..."
+# === partials/footer.html ===
+
+# === partials/comment.html ===
+[comment]
+valineLang = "en" # Valine không hỗ trợ tiếng Việt
+valinePlaceholder = "Bình luận của bạn ..."
+facebookLanguageCode = "vi"
+# === partials/comment.html ===
+
+# === partials/assets.html ===
+[assets]
+search = "Tìm kiếm"
+searchPlaceholder = "Tìm tiêu đề hoặc nội dung..."
+clear = "Xoá"
+cancel = "Huỷ"
+noResultsFound = "Không tìm thấy"
+copyToClipboard = "Sao chép vào bộ nhớ tạm"
+editLockTitle = "Khóa khối mã có thể chỉnh sửa"
+editUnLockTitle = "Mở khóa khối mã có thể chỉnh sửa"
+cookieconsentMessage = "Trang web này sử dụng Cookies để cải thiện trải nghiệm của bạn."
+cookieconsentDismiss = "Đã hiểu!"
+cookieconsentLink = "Tìm hiểu thêm"
+# === partials/assets.html ===
+
+# === partials/plugin/share.html ===
+[shareOn]
+other = "Chia sẻ trên"
+# === partials/plugin/share.html ===
+
+# === posts/single.html ===
+[single]
+contents = "Nội dung"
+pin = ""
+repost = ""
+publishedOnDate = "đăng ngày {{ .Date }}"
+views = "lượt xem"
+comments = "bình luận"
+author = "Tác giả"
+updatedOnDate = "Cập nhật ngày {{ .Date }}"
+readMarkdown = "Đọc với định dạng Markdown"
+viewSource = ""
+editThisPage = "Chỉnh sửa trang này"
+reportIssue = ""
+back = "Quay lại"
+home = "Trang chủ"
+readMore = "Đọc thêm"
+expirationReminder = "Bài viết này được cập nhật lần cuối vào {{ .Date }}, nội dung có thể đã lỗi thời."
+encryptedAbstract = ""
+encryptedMessage = ""
+password = "Mật khẩu"
+encryptyAgain = ""
+relatedContent = "Nội dung liên quan"
+
+[single.includedIn]
+categories = "trong {{ .Categories }}"
+collections = "trong {{ .Collections }}"
+both = "trong {{ .Categories }} và {{ .Collections }}"
+
+[single.wordCount]
+one = "One word"
+other = "{{ .Count }} từ"
+
+[single.fuzzyWordCount]
+other = "Khoảng {{ .Count }} từ"
+
+[single.readingTime]
+one = "One minute"
+other = "{{ .Count }} phút"
+
+[single.reward]
+donate = ""
+wechatpay = ""
+alipay = ""
+paypal = ""
+bitcoin = ""
+# === posts/single.html ===
+
+# === 404.html ===
+[pageNotFound]
+other = "Không tìm thấy trang"
+
+[pageNotFoundText]
+other = "Trang bạn đang tìm kiếm không tồn tại. Xin lỗi."
+# === 404.html ===
+
+# === offline ===
+[offlineTitle]
+other = "ngoại tuyến"
+
+[offlineText]
+other = "Bạn chưa kết nối với Internet, chỉ các trang được lưu trong bộ nhớ cache sẽ khả dụng."
+# === offline ===
+
+# === shortcodes/admonition.html ===
+[admonition]
+note = "Ghi chú"
+abstract = "Tóm tắt"
+info = "Thông tin"
+tip = "Mẹo"
+success = "Thành công"
+question = "Câu hỏi"
+warning = "Cảnh báo"
+failure = "Thất bại"
+danger = "Nguy hiểm"
+bug = "Lỗi"
+example = "Ví dụ"
+quote = "Trích dẫn"
+# === shortcodes/admonition.html ===
+
+# === shortcodes/version.html ===
+[version]
+new = "MỚI"
+changed = "THAY ĐỔI"
+deleted = "XOÁ"
+# === shortcodes/version.html ===

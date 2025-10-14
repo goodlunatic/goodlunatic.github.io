@@ -1,0 +1,34 @@
+{{- /* Collection Navigation */ -}}
+{{- $params := .Scratch.Get "params" -}}
+
+{{- if .Params.collections | and $params.collectionNavigation | and (not $params.password) -}}
+  {{- $collectionTerms := .GetTerms "collections" -}}
+  {{- range $collectionTerms -}}
+    {{- $termLink := printf `<a href="%v">%v <span>%v・%v</span></span></a>`
+      (partial "function/escapeurl.html" .RelPermalink)
+      (dict "Class" "fa-solid fa-layer-group fa-fw" | partial "plugin/icon.html")
+      (T "collection")
+      .LinkTitle
+    -}}
+    <div class="collection-card">
+      <div class="collection-title text-secondary">
+        {{- dict "Collections" $termLink | T "single.includedIn.collections" | strings.FirstUpper | safeHTML }} {{ .Pages.Len -}}
+      </div>
+      <div class="collection-nav">
+        {{- $pages := (where .Pages "Params.Weight" "!=" nil) | append (where .Pages "Params.Weight" "eq" nil).ByDate -}}
+        {{- with $pages.Next $ -}}
+          <a href="{{ .RelPermalink }}" class="collection-nav-item" rel="prev" title="{{ .LinkTitle }}">
+            {{- dict "Class" "fa-solid fa-angle-left fa-fw" | partial "plugin/icon.html" -}}
+            <span>{{- .LinkTitle -}}</span>
+          </a>
+        {{- end -}}
+        {{- with $pages.Prev $ -}}
+          <a href="{{ .RelPermalink }}" class="collection-nav-item" rel="next" title="{{ .LinkTitle }}">
+            <span>{{- .LinkTitle -}}</span>
+            {{- dict "Class" "fa-solid fa-angle-right fa-fw" | partial "plugin/icon.html" -}}
+          </a>
+        {{- end -}}
+      </div>
+    </div>
+  {{- end -}}
+{{- end -}}

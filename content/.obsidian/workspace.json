@@ -1,0 +1,161 @@
+{
+  "main": {
+    "id": "97494b3542e3deea",
+    "type": "split",
+    "children": [
+      {
+        "id": "c4e3ae2bc19143fc",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "cb53a6cfda1f78f5",
+            "type": "leaf",
+            "state": {
+              "type": "empty",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "3b11bc41db3c2f91",
+    "type": "split",
+    "children": [
+      {
+        "id": "f5df7f75a7d349f3",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "f38445a39976d360",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "dd27c26f015d6c18",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "09f12c12778398e0",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "e7b0917ea2730858",
+    "type": "split",
+    "children": [
+      {
+        "id": "7c6fd5c7cb8a4a71",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "555762dc559333b2",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "00cf27a6ad7b2063",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "5ed60878229abb3b",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "98cb7b77136f2fa3",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "65eaad3e903aecfa.png"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:打开快速切换": false,
+      "graph:查看关系图谱": false,
+      "canvas:新建白板": false,
+      "daily-notes:打开/创建今天的日记": false,
+      "templates:插入模板": false,
+      "command-palette:打开命令面板": false
+    }
+  },
+  "active": "f38445a39976d360",
+  "lastOpenFiles": [
+    "posts/2024 DASCTF 暑期挑战赛 Misc Writeup/index.md",
+    "posts/2024 DASCTF 暑期挑战赛 Misc Writeup/imgs/image-20240726150742976.png",
+    "65eaad3e903aecfa.png",
+    "posts/Preparation For Programming Proficiency Exam/index.md",
+    "friends/index.md",
+    "posts/2020 b01lers Misc image_adjustments 赛题详解/index.md",
+    "about/index.md",
+    "posts/2024 WKCTF Misc Writeup/index.md",
+    "header.png",
+    "about/726/index.md",
+    "about/726",
+    "posts/726/index.md",
+    "posts/726",
+    "posts/未命名.canvas",
+    "about/test.md"
+  ]
+}

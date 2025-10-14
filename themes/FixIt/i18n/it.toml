@@ -1,0 +1,196 @@
+# Translations for Italian
+# Traduzioni per l'italiano
+# https://gohugo.io/content-management/multilingual/#translation-of-strings
+# TODO Some fields are waiting for your translation
+
+# === init ===
+[init]
+configurationError = ""
+compatibilityError = ""
+RCVersionWarn = ""
+devEnvWarn = ""
+quicklyUpgrade = ""
+# === init ===
+
+# === baseof ===
+[baseof]
+backToTop = "Torna all'inizio"
+viewComments = "Vedi commenti"
+noscript = ""
+# === baseof ===
+
+# === Taxonomy ===
+[archives]
+other = ""
+
+[allSome]
+other = "Tutti {{ .Some }}"
+
+[category]
+other = "Categoria"
+
+[categories]
+other = "Categorie"
+
+[collection]
+other = ""
+
+[collections]
+other = ""
+
+[tag]
+other = "Etichetta"
+
+[tags]
+other = "Etichette"
+
+[posts]
+other = "Articoli"
+# === Taxonomy ===
+
+# === Section ===
+[section]
+recentlyUpdated = "Aggiornati di recente"
+
+[section.totalWordCount]
+one = ""
+other = ""
+
+[section.archiveCounter]
+one = ""
+other = ""
+# === Section ===
+
+# === Pagination ===
+[pagination]
+more = "Più"
+# === Pagination ===
+
+# === partials/header.html ===
+[header]
+selectLanguage = "Scegliere la lingua"
+noMoretTranslations = "Non ci sono altre traduzioni"
+switchTheme = "Cambiare il tema"
+# === partials/header.html ===
+
+# === partials/footer.html ===
+[footer]
+poweredBySome = "Realizzato da {{ .Hugo }} | Tema - {{ .Theme }}"
+siteUV = "Visitatori totali"
+sitePV = "Visite totali"
+siteRunning = "Sito in esecuzione ..."
+# === partials/footer.html ===
+
+# === partials/comment.html ===
+[comment]
+valineLang = "en" # Valine non supporta l'italiano
+valinePlaceholder = "Il tuo commento ..."
+facebookLanguageCode = "it"
+# === partials/comment.html ===
+
+# === partials/assets.html ===
+[assets]
+search = "Cerca"
+searchPlaceholder = "Cerca il titolo o il contenuto dell'articolo ..."
+clear = "Chiaro"
+cancel = "Annulla"
+noResultsFound = "Nessun risultato trovato"
+copyToClipboard = "Copia negli appunti"
+editLockTitle = "Blocca blocco di codice modificabile"
+editUnLockTitle = "Sblocca il blocco di codice modificabile"
+cookieconsentMessage = "Questo sito Web utilizza i Cookies per migliorare la tua esperienza."
+cookieconsentDismiss = "Essere d'accordo"
+cookieconsentLink = "Per saperne di più"
+# === partials/assets.html ===
+
+# === partials/plugin/share.html ===
+[shareOn]
+other = "Condividi su"
+# === partials/plugin/share.html ===
+
+# === posts/single.html ===
+[single]
+contents = "Contenuti"
+pin = ""
+repost = ""
+publishedOnDate = "pubblicato su {{ .Date }}"
+views = "visualizzazioni"
+comments = "commenti"
+author = "Autore"
+updatedOnDate = "Aggiornato il {{ .Date }}"
+readMarkdown = "Leggi Markdown"
+viewSource = ""
+editThisPage = "Modifica questa pagina"
+reportIssue = ""
+back = "Indietro"
+home = "Home"
+readMore = "Leggi di più"
+expirationReminder = "Questo articolo è stato aggiornato l'ultima volta il {{ .Date }}, il contenuto potrebbe non essere aggiornato."
+encryptedAbstract = ""
+encryptedMessage = ""
+password = "Password"
+encryptyAgain = ""
+relatedContent = "Contenuti correlati"
+
+[single.includedIn]
+categories = "incluso in {{ .Categories }}"
+collections = "incluso in {{ .Collections }}"
+both = "incluso in {{ .Categories }} e {{ .Collections }}"
+
+[single.wordCount]
+one = "Una parola"
+other = "{{ .Count }} parole"
+
+[single.fuzzyWordCount]
+other = "circa {{ .Count }} parole"
+
+[single.readingTime]
+one = "Un minuto"
+other = "{{ .Count }} minuti"
+
+[single.reward]
+donate = ""
+wechatpay = ""
+alipay = ""
+paypal = ""
+bitcoin = ""
+# === posts/single.html ===
+
+# === 404.html ===
+[pageNotFound]
+other = "Pagina non trovata"
+
+[pageNotFoundText]
+other = "Mi spiace, la pagina cercata non esiste."
+# === 404.html ===
+
+# === offline ===
+[offlineTitle]
+other = "disconnesso"
+
+[offlineText]
+other = "Non sei connesso a Internet, saranno disponibili solo le pagine memorizzate nella cache."
+# === offline ===
+
+# === shortcodes/admonition.html ===
+[admonition]
+note = "Note"
+abstract = "Sommario"
+info = "Info"
+tip = "Suggerimenti"
+success = "Successo"
+question = "Domande"
+warning = "Avvertimento"
+failure = "Fallimento"
+danger = "Pericolo"
+bug = "Bug"
+example = "Esempio"
+quote = "Citazione"
+# === shortcodes/admonition.html ===
+
+# === shortcodes/version.html ===
+[version]
+new = "NUOVO"
+changed = "CAMBIATO"
+deleted = "CANCELLATO"
+# === shortcodes/version.html ===

@@ -1,0 +1,21 @@
+{
+  "maple-basic@@color-use-custom": false,
+  "maple-basic@@color-active-dark": "color-active-alt-dark",
+  "maple-workspace@@titlebar-colorful": false,
+  "maple-workspace@@tab-slide-up": false,
+  "maple-workspace@@labeled-nav": false,
+  "maple-workspace@@tab-title-bar-round": false,
+  "maple-workspace@@tab-title-bar-shadow": false,
+  "maple-editor@@code-mac-style-header": false,
+  "maple-editor@@code-theme": false,
+  "maple-editor@@code-preview-bg": false,
+  "maple-editor@@heading-h2-underline": false,
+  "maple-basic@@setting-accent-h-dark": 270,
+  "maple-basic@@setting-animation-time": 200,
+  "maple-workspace@@titlebar-button-style": false,
+  "maple-workspace@@status-bar-style-float": false,
+  "maple-workspace@@status-bar-enable": true,
+  "maple-workspace@@scrollbar-movein-animation-enable": false,
+  "maple-editor@@pdf-dark-hover": false,
+  "maple-editor@@prop-outline": false
+}

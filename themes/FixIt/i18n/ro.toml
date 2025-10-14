@@ -1,0 +1,196 @@
+# Translations for Romanian
+# Traduceri pentru limba română
+# https://gohugo.io/content-management/multilingual/#translation-of-strings
+# TODO Some fields are waiting for your translation
+
+# === init ===
+[init]
+configurationError = ""
+compatibilityError = ""
+RCVersionWarn = ""
+devEnvWarn = ""
+quicklyUpgrade = ""
+# === init ===
+
+# === baseof ===
+[baseof]
+backToTop = "Înapoi Sus"
+viewComments = "Vizualizare Comentarii"
+noscript = ""
+# === baseof ===
+
+# === Taxonomy ===
+[archives]
+other = ""
+
+[allSome]
+other = "Toate {{ .Some }}"
+
+[category]
+other = "Categorie"
+
+[categories]
+other = "Categorii"
+
+[collection]
+other = ""
+
+[collections]
+other = ""
+
+[tag]
+other = "Etichetă"
+
+[tags]
+other = "Etichete"
+
+[posts]
+other = "Articole"
+# === Taxonomy ===
+
+# === Section ===
+[section]
+recentlyUpdated = "Actualizat recent"
+
+[section.totalWordCount]
+one = ""
+other = ""
+
+[section.archiveCounter]
+one = ""
+other = ""
+# === Section ===
+
+# === Pagination ===
+[pagination]
+more = "Mai mult"
+# === Pagination ===
+
+# === partials/header.html ===
+[header]
+selectLanguage = "Selectare Limbă"
+noMoretTranslations = "Nu mai sunt traduceri disponibile"
+switchTheme = "Schimbare Temă"
+# === partials/header.html ===
+
+# === partials/footer.html ===
+[footer]
+poweredBySome = "Realizat de către {{ .Hugo }} | Temă - {{ .Theme }}"
+siteUV = "Total vizitatori"
+sitePV = "Total vizite"
+siteRunning = "Site-ul rulează ..."
+# === partials/footer.html ===
+
+# === partials/comment.html ===
+[comment]
+valineLang = "en" # Valine nu suporta romana
+valinePlaceholder = "Comentariul dvs ..."
+facebookLanguageCode = "ro_RO"
+# === partials/comment.html ===
+
+# === partials/assets.html ===
+[assets]
+search = "Căutare"
+searchPlaceholder = "Căutarea titlului sau conținutului articolului ..."
+clear = "Golire"
+cancel = "Anulare"
+noResultsFound = "Nici un rezultat gasit"
+copyToClipboard = "Copiați în clipboard"
+editLockTitle = "Blocați blocul de cod editabil"
+editUnLockTitle = "Deblocați blocul de cod editabil"
+cookieconsentMessage = "Acest site web utilizează Cookies pentru a vă îmbunătăți experiența."
+cookieconsentDismiss = "De acord"
+cookieconsentLink = "Aflați mai multe"
+# === partials/assets.html ===
+
+# === partials/plugin/share.html ===
+[shareOn]
+other = "Distribuie pe"
+# === partials/plugin/share.html ===
+
+# === posts/single.html ===
+[single]
+contents = "Cuprins"
+pin = ""
+repost = ""
+publishedOnDate = "publicat la {{ .Date }}"
+views = "vizualizări"
+comments = "comentarii"
+author = "Autor"
+updatedOnDate = "Actualizat la {{ .Date }}"
+readMarkdown = "Citire Markdown"
+viewSource = ""
+editThisPage = "Editați această pagină"
+reportIssue = ""
+back = "Înapoi"
+home = "Acasă"
+readMore = "Citește mai mult"
+expirationReminder = "Acest articol a fost actualizat ultima dată pe {{ .Date }}, conținutul poate fi depășit."
+encryptedAbstract = ""
+encryptedMessage = ""
+password = "Parolă"
+encryptyAgain = ""
+relatedContent = "Conținut înrudit"
+
+[single.includedIn]
+categories = "inclus în {{ .Categories }}"
+collections = "inclus în {{ .Collections }}"
+both = "inclus în {{ .Categories }} și {{ .Collections }}"
+
+[single.wordCount]
+one = "Un cuvânt"
+other = "{{ .Count }} cuvinte"
+
+[single.fuzzyWordCount]
+other = "Aproximativ {{ .Count }} cuvinte"
+
+[single.readingTime]
+one = "Un minut"
+other = "{{ .Count }} minute"
+
+[single.reward]
+donate = ""
+wechatpay = ""
+alipay = ""
+paypal = ""
+bitcoin = ""
+# === posts/single.html ===
+
+# === 404.html ===
+[pageNotFound]
+other = "Pagina nu a fost găsită"
+
+[pageNotFoundText]
+other = "Pagina pe care o căutați nu există. Ne cerem scuze."
+# === 404.html ===
+
+# === offline ===
+[offlineTitle]
+other = "Deconectat"
+
+[offlineText]
+other = "Nu sunteți conectat la Internet, vor fi disponibile doar paginile stocate în cache."
+# === offline ===
+
+# === shortcodes/admonition.html ===
+[admonition]
+note = "Notă"
+abstract = "Rezumat"
+info = "Info"
+tip = "Sfat"
+success = "Succes"
+question = "Întrebare"
+warning = "Avertizare"
+failure = "Eșec"
+danger = "Pericol"
+bug = "Bug"
+example = "Exemplu"
+quote = "Citat"
+# === shortcodes/admonition.html ===
+
+# === shortcodes/version.html ===
+[version]
+new = "NOU"
+changed = "SCHIMBAT"
+deleted = "ȘTERS"
+# === shortcodes/version.html ===

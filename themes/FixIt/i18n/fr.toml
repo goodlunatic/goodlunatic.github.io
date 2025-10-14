@@ -1,0 +1,195 @@
+# Translations for French
+# Traductions pour le français
+# https://gohugo.io/content-management/multilingual/#translation-of-strings
+
+# === init ===
+[init]
+configurationError = "Erreur de configuration\nVous n'avez pas configuré la version de FixIt correctement. Voir https://fixit.lruihao.cn/documentation/basics/#theme-configuration"
+compatibilityError = "Erreur de compatibilité ({{ .From }} -> {{ .To }}):\nVous avez une mise à jour incompatible. Voir https://github.com/hugo-fixit/FixIt/releases"
+RCVersionWarn = "Vous utilisez une version de développement de FixIt. Veuillez considérer l'utilisation d'une version stable.\nVoir https://github.com/hugo-fixit/FixIt/releases"
+devEnvWarn = "L'environnement actuel est \"développement\". Le \"système de commentaires\", le \"CDN\" et la \"prise d'empreinte\" seront désactivés."
+quicklyUpgrade = "La mise à jour rapide utilise la commande: "
+# === init ===
+
+# === baseof ===
+[baseof]
+backToTop = "Retour en Haut"
+viewComments = "Afficher les Commentaires"
+noscript = "Le thème FixIt fonctionne mieux quand JavaScript est activé."
+# === baseof ===
+
+# === Taxonomy ===
+[archives]
+other = ""
+
+[allSome]
+other = "Tous les {{ .Some }}"
+
+[category]
+other = "Catégorie"
+
+[categories]
+other = "Catégories"
+
+[collection]
+other = ""
+
+[collections]
+other = ""
+
+[tag]
+other = "Tag"
+
+[tags]
+other = "Tags"
+
+[posts]
+other = "Posts"
+# === Taxonomy ===
+
+# === Section ===
+[section]
+recentlyUpdated = "Récemment Modifié"
+
+[section.totalWordCount]
+one = "Nombre de mots: 1"
+other = "Nombre de mots: {{ .Count }}"
+
+[section.archiveCounter]
+one = ""
+other = ""
+# === Section ===
+
+# === Pagination ===
+[pagination]
+more = "Plus"
+# === Pagination ===
+
+# === partials/header.html ===
+[header]
+selectLanguage = "Choisir la langue"
+noMoretTranslations = "Plus de traductions"
+switchTheme = "Changer de Thème"
+# === partials/header.html ===
+
+# === partials/footer.html ===
+[footer]
+poweredBySome = "Propulsé par {{ .Hugo }} | Thème - {{ .Theme }}"
+siteUV = "Total de visiteurs"
+sitePV = "Total de visites"
+siteRunning = "Site en cours d'exécution ..."
+# === partials/footer.html ===
+
+# === partials/comment.html ===
+[comment]
+valineLang = "en" # French not supported by Valine
+valinePlaceholder = "Votre commentaire ..."
+facebookLanguageCode = "fr"
+# === partials/comment.html ===
+
+# === partials/assets.html ===
+[assets]
+search = "Chercher"
+searchPlaceholder = "Rechercher des titres, des contenus..."
+clear = "Effacer"
+cancel = "Annuler"
+noResultsFound = "Aucun résultat trouvé"
+copyToClipboard = "Copier dans le presse-papiers"
+editLockTitle = "Verrouiller le bloc de code modifiable"
+editUnLockTitle = "Déverrouiller le bloc de code modifiable"
+cookieconsentMessage = "Ce site Web utilise des Cookies pour améliorer votre expérience."
+cookieconsentDismiss = "J'ai compris !"
+cookieconsentLink = "En apprendre plus"
+# === partials/assets.html ===
+
+# === partials/plugin/share.html ===
+[shareOn]
+other = "Partager via"
+# === partials/plugin/share.html ===
+
+# === posts/single.html ===
+[single]
+contents = "Contenus"
+pin = ""
+repost = "Reposter"
+publishedOnDate = "publié le {{ .Date }}"
+views = "vues"
+comments = "commentaires"
+author = "Auteur"
+updatedOnDate = "Mis à jour le {{ .Date }}"
+readMarkdown = "Ouvrir le Markdown"
+viewSource = ""
+editThisPage = "Modifier cette page"
+reportIssue = ""
+back = "Retour"
+home = "Accueil"
+readMore = "En savoir plus"
+expirationReminder = "Cet article a été mis à jour pour la dernière fois le {{ .Date }}, son contenu est peut-être obsolète."
+encryptedAbstract = "Cet article a été chiffré, son contenu n'est donc pas lisible!"
+encryptedMessage = "Entrer le mot de passe"
+password = "Mot de passe"
+encryptyAgain = "Chiffrer à nouveau"
+relatedContent = "Contenu lié"
+
+[single.includedIn]
+categories = "inclus dans {{ .Categories }}"
+collections = "inclus dans {{ .Collections }}"
+both = "inclus dans {{ .Categories }} et {{ .Collections }}"
+
+[single.wordCount]
+one = "1 mot"
+other = "{{ .Count }} mots"
+
+[single.fuzzyWordCount]
+other = "environ {{ .Count }} mots"
+
+[single.readingTime]
+one = "1 minute"
+other = "{{ .Count }} minutes"
+
+[single.reward]
+donate = "Faire un don"
+wechatpay = "WeChat Pay"
+alipay = "Alipay"
+paypal = "PayPal"
+bitcoin = "Bitcoin"
+# === posts/single.html ===
+
+# === 404.html ===
+[pageNotFound]
+other = "Page introuvable"
+
+[pageNotFoundText]
+other = "Désolé, la page recherchée n'existe pas."
+# === 404.html ===
+
+# === offline ===
+[offlineTitle]
+other = "Hors ligne"
+
+[offlineText]
+other = "Vous n'êtes pas connecté à Internet, seules les pages mises en cache seront disponibles."
+# === offline ===
+
+# === shortcodes/admonition.html ===
+[admonition]
+note = "Remarque"
+abstract = "Résumé"
+info = "Info"
+tip = "Astuce"
+success = "Succès"
+question = "Question"
+warning = "Avertissement"
+failure = "Échec"
+danger = "Danger"
+bug = "Bug"
+example = "Exemple"
+quote = "Citation"
+# === shortcodes/admonition.html ===
+
+# === shortcodes/version.html ===
+[version]
+new = "NOUVEAU"
+changed = "MODIFIÉ"
+deleted = "SUPPRIMÉ"
+# === shortcodes/version.html ===
