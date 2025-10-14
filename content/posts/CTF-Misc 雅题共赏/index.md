@@ -43,9 +43,13 @@ repost:
 **如果师傅们有进一步的想法或者做出来了，可以联系我一起交流一下解题思路**
 <!--more-->
 
+{% include admonition.html type="danger" title="阅前须知" open="true" %}
+
 **这篇博客可以算是本人的求助贴，因此本文中的大部分内容并不适合刚接触Misc方向的新同学**
 
 **尝试本文中提到的相关题目可能会耗费大量时间，请各位读者量力而行【慎行】**
+
+{% include end_admonition.html %}
 
 ## [SOLVED] 题目名称 nothing (2024 蓝桥杯全国总决赛)
 

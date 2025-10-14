@@ -56,3 +56,9 @@ comment: true
   description: Mind and Hand :)
 ```
 
+{{< admonition info "Notice" true >}}
+
+1. If you want to exchange link, you can send it to me by Email or QQ.
+2. Website failure, stop maintenance and improper content may be unlinked!
+
+{{< /admonition >}}
