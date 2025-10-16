@@ -1,7 +1,7 @@
 ---
 title: CTF-Misc Guide
 subtitle:
-date: 2025-10-06T22:10:17+08:00
+date: 2025-10-16T12:10:17+08:00
 slug: 1ad9200
 draft: false
 author:
@@ -1597,11 +1597,17 @@ out2.show()
 
 **两张图片的情况**
 
+可以直接用`PuzzleSolver`处理
+
+也可以下载 [原项目](https://github.com/chishaxie/BlindWaterMark) 处理
+
+```bash
+# 先把要处理的图片拉入BlindWaterMark-master文件夹，然后使用如下命令
+python bwmforpy3.py decode day1.png day2.png flag.png --oldseed
+# Tips:这里还会出现FFT（傅里叶盲水印）:直接运行CTFD中的FFT.py
 ```
-先把要处理的图片拉入BlindWaterMark-master文件夹，然后使用如下命令
-py bwmforpy3.py decode day1.png day2.png flag.png --oldseed
-Tips:这里还会出现FFT（傅里叶盲水印）:直接运行CTFD中的FFT.py
-```
+
+> Tips：这里构成盲水印的两张图片不一定要都是 PNG 或者都是 JPG，有时候一张 JPG 一张 PNG，也可以构成 BWM 盲水印隐写
 
 #### 5、图片的分离和拼接
 
@@ -4653,6 +4659,5 @@ tar -xzvf file.tar.gz
 对隐写的内容进行提取即可
 
 ![](imgs/image-20241113181609346.png)
-
 
 
