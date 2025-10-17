@@ -900,33 +900,7 @@ for idx,item in enumerate(data):
 
 拼好后扫码即可得到最后的 flag：`fdvbpy4zl9klge9fb7n8caa0vz7g1600e557e2adb0b5eICphorM5FEDVW3LyOisUdX4kv9JtSmP01QxRBl6THjgAcnfYubGZqwKz7asnow`
 
-## [TODO] 题目名称 文件分析
-
-附件给了一个 16个八戒.bin，010 打开查看
-
-![](imgs/image-20250925132928952.png)
-
-strings 一下，根据可打印信息推测
-
-这可能是一个用于特定硬件的 OTA 远程升级固件包。
-
-## [TODO] 题目名称 勒索病毒攻击
-
-附件给了一个 `勒索事件截图.png`，还有一个 `车辆OEM厂商重要数据@Hack`
-
-PNG 图片如下所示：
-
-![](imgs/image-20250925133301580.png)
-
-010 打开另一个文件，发现其实是一个加密的 zip 压缩包
-
-![](imgs/image-20250925133326627.png)
-
-zsteg 扫一下这张 PNG，发现图片 LSB 隐写了一个文件
-
-![](imgs/image-20250925133609217.png)
-
-## [TODO] 题目名称 多注意观察
+## 题目名称 多注意观察
 
 附件给了一个 flag.blf，010 打开查看发现其实是个 rar 压缩包
 
@@ -970,6 +944,33 @@ zsteg 扫一下这张 PNG，发现图片 LSB 隐写了一个文件
 
 在末尾可以得到这样一串字符串：`qwertyuisdfghdfghjasdfghasdfgh-----no`
 
+> 因为比赛已经结束了，也没办法验证这个是不是就是最后的 flag
+
+## [TODO] 题目名称 文件分析
+
+附件给了一个 16个八戒.bin，010 打开查看
+
+![](imgs/image-20250925132928952.png)
+
+strings 一下，根据可打印信息推测
+
+这可能是一个用于特定硬件的 OTA 远程升级固件包。
+
+## [TODO] 题目名称 勒索病毒攻击
+
+附件给了一个 `勒索事件截图.png`，还有一个 `车辆OEM厂商重要数据@Hack`
+
+PNG 图片如下所示：
+
+![](imgs/image-20250925133301580.png)
+
+010 打开另一个文件，发现其实是一个加密的 zip 压缩包
+
+![](imgs/image-20250925133326627.png)
+
+zsteg 扫一下这张 PNG，发现图片 LSB 隐写了一个文件
+
+![](imgs/image-20250925133609217.png)
 
 ## [TODO] 题目名称 Autopilot Ghost
 

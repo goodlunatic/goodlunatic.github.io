@@ -14,7 +14,7 @@
 赛后有师傅来问这场比赛里的题，部分题目出的挺好的，有一定的难度，于是打算记录一下">
   <meta itemprop="datePublished" content="2025-10-14T20:00:45+08:00">
   <meta itemprop="dateModified" content="2025-10-14T20:00:45+08:00">
-  <meta itemprop="wordCount" content="2409">
+  <meta itemprop="wordCount" content="2410">
   <meta itemprop="keywords" content="CTF,Misc,Writeup"><meta property="og:url" content="https://goodlunatic.github.io/posts/49bdad5/">
   <meta property="og:site_name" content="⚡Lunatic BLOG⚡">
   <meta property="og:title" content="2025 第九届工业信息安全技能大赛-典型工业场景锦标赛 Misc Writeup">
@@ -45,7 +45,7 @@
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": "https:\/\/goodlunatic.github.io\/posts\/49bdad5\/"
-    },"genre": "posts","keywords": "CTF, Misc, Writeup","wordcount":  2409 ,
+    },"genre": "posts","keywords": "CTF, Misc, Writeup","wordcount":  2410 ,
     "url": "https:\/\/goodlunatic.github.io\/posts\/49bdad5\/","datePublished": "2025-10-14T20:00:45+08:00","dateModified": "2025-10-14T20:00:45+08:00","publisher": {
       "@type": "Organization",
       "name": ""},"author": {
@@ -174,9 +174,9 @@
     <li><a href="#题目名称-异常的数据流量包">题目名称 异常的数据流量包</a></li>
     <li><a href="#题目名称-why_not_substitution">题目名称 why_not_substitution</a></li>
     <li><a href="#题目名称-图片的奥秘">题目名称 图片的奥秘</a></li>
+    <li><a href="#题目名称-多注意观察">题目名称 多注意观察</a></li>
     <li><a href="#todo-题目名称-文件分析">[TODO] 题目名称 文件分析</a></li>
     <li><a href="#todo-题目名称-勒索病毒攻击">[TODO] 题目名称 勒索病毒攻击</a></li>
-    <li><a href="#todo-题目名称-多注意观察">[TODO] 题目名称 多注意观察</a></li>
     <li><a href="#todo-题目名称-autopilot-ghost">[TODO] 题目名称 Autopilot Ghost</a></li>
   </ul>
 </nav></div>
@@ -1321,21 +1321,8 @@
 <p>然后我们把那九张二维码碎片拼一下</p>
 <p><img loading="lazy" src="imgs/image-20251014202902536.png" alt="imgs/image-20251014202902536.png" srcset="imgs/image-20251014202902536.png?size=small, imgs/image-20251014202902536.png?size=medium 1.5x, imgs/image-20251014202902536.png?size=large 2x" data-title="imgs/image-20251014202902536.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>拼好后扫码即可得到最后的 flag：<code>fdvbpy4zl9klge9fb7n8caa0vz7g1600e557e2adb0b5eICphorM5FEDVW3LyOisUdX4kv9JtSmP01QxRBl6THjgAcnfYubGZqwKz7asnow</code></p>
-<h2 id="todo-题目名称-文件分析" class="heading-element">
-  <a href="#todo-%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-%e6%96%87%e4%bb%b6%e5%88%86%e6%9e%90" class="heading-mark"></a>[TODO] 题目名称 文件分析</h2><p>附件给了一个 16个八戒.bin，010 打开查看</p>
-<p><img loading="lazy" src="imgs/image-20250925132928952.png" alt="imgs/image-20250925132928952.png" srcset="imgs/image-20250925132928952.png?size=small, imgs/image-20250925132928952.png?size=medium 1.5x, imgs/image-20250925132928952.png?size=large 2x" data-title="imgs/image-20250925132928952.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
-<p>strings 一下，根据可打印信息推测</p>
-<p>这可能是一个用于特定硬件的 OTA 远程升级固件包。</p>
-<h2 id="todo-题目名称-勒索病毒攻击" class="heading-element">
-  <a href="#todo-%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-%e5%8b%92%e7%b4%a2%e7%97%85%e6%af%92%e6%94%bb%e5%87%bb" class="heading-mark"></a>[TODO] 题目名称 勒索病毒攻击</h2><p>附件给了一个 <code>勒索事件截图.png</code>，还有一个 <code>车辆OEM厂商重要数据@Hack</code></p>
-<p>PNG 图片如下所示：</p>
-<p><img loading="lazy" src="imgs/image-20250925133301580.png" alt="imgs/image-20250925133301580.png" srcset="imgs/image-20250925133301580.png?size=small, imgs/image-20250925133301580.png?size=medium 1.5x, imgs/image-20250925133301580.png?size=large 2x" data-title="imgs/image-20250925133301580.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
-<p>010 打开另一个文件，发现其实是一个加密的 zip 压缩包</p>
-<p><img loading="lazy" src="imgs/image-20250925133326627.png" alt="imgs/image-20250925133326627.png" srcset="imgs/image-20250925133326627.png?size=small, imgs/image-20250925133326627.png?size=medium 1.5x, imgs/image-20250925133326627.png?size=large 2x" data-title="imgs/image-20250925133326627.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
-<p>zsteg 扫一下这张 PNG，发现图片 LSB 隐写了一个文件</p>
-<p><img loading="lazy" src="imgs/image-20250925133609217.png" alt="imgs/image-20250925133609217.png" srcset="imgs/image-20250925133609217.png?size=small, imgs/image-20250925133609217.png?size=medium 1.5x, imgs/image-20250925133609217.png?size=large 2x" data-title="imgs/image-20250925133609217.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
-<h2 id="todo-题目名称-多注意观察" class="heading-element">
-  <a href="#todo-%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-%e5%a4%9a%e6%b3%a8%e6%84%8f%e8%a7%82%e5%af%9f" class="heading-mark"></a>[TODO] 题目名称 多注意观察</h2><p>附件给了一个 flag.blf，010 打开查看发现其实是个 rar 压缩包</p>
+<h2 id="题目名称-多注意观察" class="heading-element">
+  <a href="#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-%e5%a4%9a%e6%b3%a8%e6%84%8f%e8%a7%82%e5%af%9f" class="heading-mark"></a>题目名称 多注意观察</h2><p>附件给了一个 flag.blf，010 打开查看发现其实是个 rar 压缩包</p>
 <p><img loading="lazy" src="imgs/image-20250925135138223.png" alt="imgs/image-20250925135138223.png" srcset="imgs/image-20250925135138223.png?size=small, imgs/image-20250925135138223.png?size=medium 1.5x, imgs/image-20250925135138223.png?size=large 2x" data-title="imgs/image-20250925135138223.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>改后缀为 .rar 后打开，发现是加密的，并且注释里有提示：<code>FFD8FFE000104A46494600</code></p>
 <p><img loading="lazy" src="imgs/image-20250925135252669.png" alt="imgs/image-20250925135252669.png" srcset="imgs/image-20250925135252669.png?size=small, imgs/image-20250925135252669.png?size=medium 1.5x, imgs/image-20250925135252669.png?size=large 2x" data-title="imgs/image-20250925135252669.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
@@ -1358,6 +1345,22 @@
 <p><img loading="lazy" src="imgs/image-20251013205419271.png" alt="imgs/image-20251013205419271.png" srcset="imgs/image-20251013205419271.png?size=small, imgs/image-20251013205419271.png?size=medium 1.5x, imgs/image-20251013205419271.png?size=large 2x" data-title="imgs/image-20251013205419271.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p><img loading="lazy" src="imgs/image-20251013205432260.png" alt="imgs/image-20251013205432260.png" srcset="imgs/image-20251013205432260.png?size=small, imgs/image-20251013205432260.png?size=medium 1.5x, imgs/image-20251013205432260.png?size=large 2x" data-title="imgs/image-20251013205432260.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <p>在末尾可以得到这样一串字符串：<code>qwertyuisdfghdfghjasdfghasdfgh-----no</code></p>
+<blockquote>
+<p>因为比赛已经结束了，也没办法验证这个是不是就是最后的 flag</p>
+</blockquote>
+<h2 id="todo-题目名称-文件分析" class="heading-element">
+  <a href="#todo-%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-%e6%96%87%e4%bb%b6%e5%88%86%e6%9e%90" class="heading-mark"></a>[TODO] 题目名称 文件分析</h2><p>附件给了一个 16个八戒.bin，010 打开查看</p>
+<p><img loading="lazy" src="imgs/image-20250925132928952.png" alt="imgs/image-20250925132928952.png" srcset="imgs/image-20250925132928952.png?size=small, imgs/image-20250925132928952.png?size=medium 1.5x, imgs/image-20250925132928952.png?size=large 2x" data-title="imgs/image-20250925132928952.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>strings 一下，根据可打印信息推测</p>
+<p>这可能是一个用于特定硬件的 OTA 远程升级固件包。</p>
+<h2 id="todo-题目名称-勒索病毒攻击" class="heading-element">
+  <a href="#todo-%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-%e5%8b%92%e7%b4%a2%e7%97%85%e6%af%92%e6%94%bb%e5%87%bb" class="heading-mark"></a>[TODO] 题目名称 勒索病毒攻击</h2><p>附件给了一个 <code>勒索事件截图.png</code>，还有一个 <code>车辆OEM厂商重要数据@Hack</code></p>
+<p>PNG 图片如下所示：</p>
+<p><img loading="lazy" src="imgs/image-20250925133301580.png" alt="imgs/image-20250925133301580.png" srcset="imgs/image-20250925133301580.png?size=small, imgs/image-20250925133301580.png?size=medium 1.5x, imgs/image-20250925133301580.png?size=large 2x" data-title="imgs/image-20250925133301580.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>010 打开另一个文件，发现其实是一个加密的 zip 压缩包</p>
+<p><img loading="lazy" src="imgs/image-20250925133326627.png" alt="imgs/image-20250925133326627.png" srcset="imgs/image-20250925133326627.png?size=small, imgs/image-20250925133326627.png?size=medium 1.5x, imgs/image-20250925133326627.png?size=large 2x" data-title="imgs/image-20250925133326627.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>zsteg 扫一下这张 PNG，发现图片 LSB 隐写了一个文件</p>
+<p><img loading="lazy" src="imgs/image-20250925133609217.png" alt="imgs/image-20250925133609217.png" srcset="imgs/image-20250925133609217.png?size=small, imgs/image-20250925133609217.png?size=medium 1.5x, imgs/image-20250925133609217.png?size=large 2x" data-title="imgs/image-20250925133609217.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
 <h2 id="todo-题目名称-autopilot-ghost" class="heading-element">
   <a href="#todo-%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-autopilot-ghost" class="heading-mark"></a>[TODO] 题目名称 Autopilot Ghost</h2><p>附件给了一个流量包，主要是 TCP 和 UDP 流量</p>
 <p><img loading="lazy" src="imgs/image-20250925140233657.png" alt="imgs/image-20250925140233657.png" srcset="imgs/image-20250925140233657.png?size=small, imgs/image-20250925140233657.png?size=medium 1.5x, imgs/image-20250925140233657.png?size=large 2x" data-title="imgs/image-20250925140233657.png" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>

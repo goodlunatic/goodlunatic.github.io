@@ -76,6 +76,7 @@ toc = false
 |             **好故事慢慢来**              |  **8.88 x 💎**  |
 |                 **\*全**                  |  **8.88 x 💎**  |
 |                **Ynyrmm**                 |  **8.88 x 💎**  |
+|               **INFINITE**                |  **8.88 x 💎**  |
 | **[Xunflash](https://www.xunflash.top/)** |  **6.66 x 💎**  |
 |      **[C3ngH](https://c3ngh.top)**       |  **6.66 x 💎**  |
 |                **1uxu4y**                 |  **6.66 x 💎**  |

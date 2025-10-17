@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "CTF-AI安全学习记录/index.md",
+                "file": "2025 第九届工业信息安全技能大赛-典型工业场景锦标赛 Writeup/index.md",
                 "mode": "source",
                 "source": false
               },
@@ -107,7 +107,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "CTF-AI安全学习记录/index.md",
+                "file": "2025 第九届工业信息安全技能大赛-典型工业场景锦标赛 Writeup/index.md",
                 "followCursor": true,
                 "showSearch": false,
                 "searchQuery": ""
@@ -169,6 +169,7 @@
   },
   "active": "bf83ee0a9dfb7d7b",
   "lastOpenFiles": [
+    "CTF-AI安全学习记录/index.md",
     "CTF-Misc Guide/index.md",
     "群友们问的一些来路不明的题/index.md",
     "群友们问的一些来路不明的题/imgs/image-20251016155800543.png",
