@@ -6,7 +6,7 @@
 
 <!--more-->
 
-{{< admonition type=success title="【重要】阅前须知" open=true >}}
+{{< admonition type=success title="阅前须知" open=true >}}
 
 **文章更新周期较长，如有疏漏，欢迎指正**
 

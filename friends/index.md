@@ -3,8 +3,6 @@
 
 <!-- When you set data `friends.yml` in `yourProject/data/` directory, it will be automatically loaded here. -->
 
----
-
 <!-- You can define additional content below for this page. -->
 
 ## [A1natas](https://www.a1natas.com/)
