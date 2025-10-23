@@ -701,10 +701,6 @@ print(flag)
 
 ![](imgs/image-20241229151648420.png)
 
-## 题目名称 真实的CTF(WgpSecTeam)
-
-
-
 
 ## 题目名称 丢失的关键基础设施固件
 
