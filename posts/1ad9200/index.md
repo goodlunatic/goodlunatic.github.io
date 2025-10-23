@@ -18,7 +18,7 @@
 
 {{< /admonition >}}
 
-## 一些奇奇怪怪的经历：
+## 一些奇奇怪怪的经历
 
 1、rockstar 编程语言，在github上面可以找到，然后在本地用pip安装库，把rock文件转换为py文件，运行即可得到flag
 
@@ -80,7 +80,7 @@ ZIP文件头                      UEsDBA
 ```
 
 
-## 各种文件头/尾：
+## 各种文件头/尾
 
 这里要注意，出题人可能会把文件头的小写字母偷偷改成大写，例如：Rar -> RAR
 
@@ -127,7 +127,7 @@ Windows Media (asf)，文件头：3026B2758E66CF11
 M4a，文件头：00000018667479704D3441
 ```
 
-## 各种加密/编码：
+## 各种加密/编码
 
 ### 进制转换
 
@@ -1526,7 +1526,7 @@ out2.show()
 
 详见作者博客中的 **[CTF-数据安全](https://goodlunatic.github.io/posts/c49ae8a/)** 这篇文章
 
-## MIsc——图片题思路：
+## MIsc——图片题思路
 
 > Tips：
 > 
@@ -2829,7 +2829,7 @@ https://github.com/goodlunatic/ISO-IEC-18004-Standard
 #### 离散小波变换（DWT）
 
 
-## Misc——PDF题思路：
+## Misc——PDF题思路
 
 1、直接`binwalk`或者`foremost`提取出隐藏文件
 
@@ -2983,7 +2983,7 @@ word中可能有一段是1倍行距，可能又有一段是1.5倍行距，需要
 01F0  FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF  ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ
 ```
 
-## Misc——txt题思路：
+## Misc——txt题思路
 
 ### 1、 有可能是ntfs，直接用NtfsStreamsEditor2扫描所在文件夹，然后导出可疑文件【如果是压缩包，一定要用winrar解压】
 
@@ -3023,11 +3023,11 @@ python2 decloakify.py cipher.txt passwd.txt
 
 > Tips：如果碰到解密失败的情况，可以试试看在windows下重新复制文本，并在末尾加一个换行符
 
-## Misc——html题思路：
+## Misc——html题思路
 
 1、可能是`wbStego4open`隐写，用`wbStego4open`直接输入密钥decode
 
-## Misc——压缩包思路：
+## Misc——压缩包思路
 
 Tips：压缩包的密码可以是可打印字符(中英文数字+特殊符号)，也可以是不可打印字符
 
@@ -3988,7 +3988,7 @@ if __name__ == "__main__":
 
 例题2-环环相扣
 
-## Misc——视频题思路：
+## Misc——视频题思路
 
 1、视频中的音频存在隐写
 
@@ -4064,7 +4064,7 @@ out.show()
 
 例题-攻防世界 PyHaHa
 
-## Misc——音频题思路：
+## Misc——音频题思路
 
 ### 1、波形图分析：摩斯电码
 
@@ -4454,12 +4454,11 @@ if __name__ == "__main__":
 ```
 
 
-
-## Misc——取证题思路：
+## Misc——取证题思路
 
 详见作者博客中的 **[Misc-Forensics](https://goodlunatic.github.io/posts/761da51/)** 这篇文章
 
-## Git文件泄露：
+## Git文件泄露
 
 1、利用命令git stash show 显示做了哪些改动
 
@@ -4469,7 +4468,7 @@ if __name__ == "__main__":
 
 ### 1.用yandex识图
 
-## Others：
+## Others
 
 ###  字节序
 
