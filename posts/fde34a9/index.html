@@ -1,0 +1,408 @@
+<!doctype html><html itemscope itemtype=http://schema.org/WebPage lang=en><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=2"><meta name=robots content="noodp"><title>2023 楚慧杯网络空间安全实践能力竞赛 Misc Writeup - ⚡Lunatic BLOG⚡</title><meta name=author content="Lunatic"><meta name=description content="2023 楚慧杯网络空间安全实践能力竞赛 Misc Writeup
+"><meta name=keywords content='CTF,Misc,Writeup'><meta itemprop=name content="2023 楚慧杯网络空间安全实践能力竞赛 Misc Writeup"><meta itemprop=description content="2023 楚慧杯网络空间安全实践能力竞赛 Misc Writeup"><meta itemprop=datePublished content="2023-12-18T17:16:57+08:00"><meta itemprop=dateModified content="2023-12-18T17:16:57+08:00"><meta itemprop=wordCount content="683"><meta itemprop=keywords content="CTF,Misc,Writeup"><meta property="og:url" content="https://goodlunatic.github.io/posts/fde34a9/"><meta property="og:site_name" content="⚡Lunatic BLOG⚡"><meta property="og:title" content="2023 楚慧杯网络空间安全实践能力竞赛 Misc Writeup"><meta property="og:description" content="2023 楚慧杯网络空间安全实践能力竞赛 Misc Writeup"><meta property="og:locale" content="en"><meta property="og:type" content="article"><meta property="article:section" content="posts"><meta property="article:published_time" content="2023-12-18T17:16:57+08:00"><meta property="article:modified_time" content="2023-12-18T17:16:57+08:00"><meta property="article:tag" content="CTF"><meta property="article:tag" content="Misc"><meta property="article:tag" content="Writeup"><meta name=twitter:card content="summary"><meta name=twitter:title content="2023 楚慧杯网络空间安全实践能力竞赛 Misc Writeup"><meta name=twitter:description content="2023 楚慧杯网络空间安全实践能力竞赛 Misc Writeup"><meta name=application-name content="FixIt"><meta name=apple-mobile-web-app-title content="FixIt"><meta name=theme-color data-light=#f8f8f8 data-dark=#252627 content="#f8f8f8"><meta name=msapplication-TileColor content="#da532c"><link rel=icon href=https://www.nssctf.cn/files/2024/4/28/7f130a1387.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=canonical type=text/html href=https://goodlunatic.github.io/posts/fde34a9/ title="2023 楚慧杯网络空间安全实践能力竞赛 Misc Writeup - ⚡Lunatic BLOG⚡"><link rel=prev type=text/html href=https://goodlunatic.github.io/posts/00658ee/ title="2020 b01lers Misc image_adjustments 赛题详解"><link rel=next type=text/html href=https://goodlunatic.github.io/posts/5f3fb7a/ title="2023 强网杯全国网络安全挑战赛 Misc Writeup"><link rel=alternate type=text/markdown href=https://goodlunatic.github.io/posts/fde34a9/index.md title="2023 楚慧杯网络空间安全实践能力竞赛 Misc Writeup - ⚡Lunatic BLOG⚡"><link rel=stylesheet href=/css/config.min.css><link rel=stylesheet href=/css/style.min.css><link rel=preload href=/lib/fontawesome-free/all.min.css as=style onload='this.removeAttribute("onload"),this.rel="stylesheet"'><noscript><link rel=stylesheet href=/lib/fontawesome-free/all.min.css></noscript><link rel=preload href=/lib/animate/animate.min.css as=style onload='this.removeAttribute("onload"),this.rel="stylesheet"'><noscript><link rel=stylesheet href=/lib/animate/animate.min.css></noscript><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"2023 楚慧杯网络空间安全实践能力竞赛 Misc Writeup","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/goodlunatic.github.io\/posts\/fde34a9\/"},"genre":"posts","keywords":"CTF, Misc, Writeup","wordcount":683,"url":"https:\/\/goodlunatic.github.io\/posts\/fde34a9\/","datePublished":"2023-12-18T17:16:57+08:00","dateModified":"2023-12-18T17:16:57+08:00","publisher":{"@type":"Organization","name":""},"author":{"@type":"Person","name":"Lunatic"},"description":""}</script><script src=/js/head/color-scheme.min.js></script></head><body data-header-desktop=sticky data-header-mobile=auto><div class=wrapper data-page-style=normal><header class="desktop animate__faster" id=header-desktop><div class=header-wrapper><div class=header-title><a href=/ title="⚡Lunatic BLOG⚡"><span class=header-title-text>⚡Lunatic BLOG⚡</span></a><span class=header-subtitle></span></div><nav><ul class=menu><li class=menu-item><a class=menu-link href=/archives/><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden=true></i> Archives</a></li><li class=menu-item><a class=menu-link href=/categories/><i class="fa-solid fa-folder-tree fa-fw fa-sm" aria-hidden=true></i> Categories</a></li><li class=menu-item><a class=menu-link href=/tags/><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden=true></i> Tags</a></li><li class=menu-item><a class=menu-link href=/friends/><i class="fa-solid fa-chain fa-fw fa-sm" aria-hidden=true></i> Friends</a></li><li class=menu-item><a class=menu-link href=/about/><i class="fa-solid fa-graduation-cap fa-fw fa-sm" aria-hidden=true></i> About</a></li><li class="menu-item delimiter"></li><li class="menu-item theme-switch" title="Switch Theme"><i class="fa-solid fa-adjust fa-fw" aria-hidden=true></i></li></ul></nav></div></header><header class="mobile animate__faster" id=header-mobile><div class=header-container><div class=header-wrapper><div class=header-title><a href=/ title="⚡Lunatic BLOG⚡"><span class=header-title-text>⚡Lunatic BLOG⚡</span></a><span class=header-subtitle></span></div><div class=menu-toggle id=menu-toggle-mobile><span></span><span></span><span></span></div></div><nav><ul class=menu id=menu-mobile><li class=menu-item><a class=menu-link href=/archives/><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden=true></i> Archives</a></li><li class=menu-item><a class=menu-link href=/categories/><i class="fa-solid fa-folder-tree fa-fw fa-sm" aria-hidden=true></i> Categories</a></li><li class=menu-item><a class=menu-link href=/tags/><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden=true></i> Tags</a></li><li class=menu-item><a class=menu-link href=/friends/><i class="fa-solid fa-chain fa-fw fa-sm" aria-hidden=true></i> Friends</a></li><li class=menu-item><a class=menu-link href=/about/><i class="fa-solid fa-graduation-cap fa-fw fa-sm" aria-hidden=true></i> About</a></li><li class="menu-item menu-system"><span class="menu-system-item theme-switch" title="Switch Theme"><i class="fa-solid fa-adjust fa-fw" aria-hidden=true></i></span></li></ul></nav></div></header><main class=fi-container><aside class="aside-collection animate__animated animate__fadeIn animate__faster" aria-label=Collections></aside><article class="page single"><div class=header><h1 class="single-title animate__animated animate__flipInX"><span>2023 楚慧杯网络空间安全实践能力竞赛 Misc Writeup</span></h1></div><div class=post-meta><div class=post-meta-line><span class=post-author><a href=https://goodlunatic.github.io title=Author target=_blank rel="external nofollow noopener noreferrer author" class=author><img class=avatar src=https://www.nssctf.cn/files/2024/4/28/7f130a1387.png alt=Lunatic height=16 width=16>&nbsp;Lunatic</a></span><span class=post-included-in>&nbsp;included in <a href=/categories/writeup/ class=post-category title="Category - Writeup"><i class="fa-regular fa-folder fa-fw" aria-hidden=true></i> Writeup</a></span></div><div class=post-meta-line><span title="published on 2023-12-18 17:16:57"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden=true></i><time datetime=2023-12-18>2023-12-18</time></span>&nbsp;<span title="683 words"><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden=true></i>About 700 words</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden=true></i>4 minutes</span>&nbsp;<span id=busuanzi_container_page_pv class="busuanzi_visitors comment-visitors" data-flag-title="2023 楚慧杯网络空间安全实践能力竞赛 Misc Writeup"><i class="fa-regular fa-eye fa-fw me-1" aria-hidden=true></i><span id=busuanzi_value_page_pv>-</span>&nbsp;views
+</span>&nbsp;</div></div><div class="details toc" id=toc-static data-kept=false><div class="details-summary toc-title"><span>Contents</span>
+<span><i class="details-icon fa-solid fa-angle-right" aria-hidden=true></i></span></div><div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents><ul><li><a href=#题目名称-ez_zip>题目名称 ez_zip</a></li><li><a href=#题目名称-easy取证>题目名称 easy取证</a></li><li><a href=#题目名称-gb2312-80>题目名称 gb2312-80</a></li></ul></nav></div></div><div class=content id=content><p><strong>2023 楚慧杯网络空间安全实践能力竞赛 Misc Writeup</strong></p><blockquote><p>本文中涉及的具体题目附件可以进我的交流群获取，进群详见 <a href=https://goodlunatic.github.io/about/ target=_blank rel="external nofollow noopener noreferrer">About</a></p></blockquote><h2 class=heading-element id=题目名称-ez_zip><span>题目名称 ez_zip</span>
+<a href=#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-ez_zip class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h2><p>解压附件得到一个<code>4096.zip</code>，打开发现有一个<code>4095.zip</code>，因此猜测是压缩包套娃</p><p>直接写个Python脚本解套即可</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=kn>import</span> <span class=nn>zipfile</span>
+</span></span><span class=line><span class=cl><span class=kn>import</span> <span class=nn>os</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>decompress_zip</span><span class=p>(</span><span class=n>archive_file</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=k>with</span> <span class=n>zipfile</span><span class=o>.</span><span class=n>ZipFile</span><span class=p>(</span><span class=n>archive_file</span><span class=p>,</span> <span class=s1>&#39;r&#39;</span><span class=p>)</span> <span class=k>as</span> <span class=n>zip_ref</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=n>zip_ref</span><span class=o>.</span><span class=n>extractall</span><span class=p>(</span><span class=n>path</span><span class=o>=</span><span class=s2>&#34;tmp/&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=n>os</span><span class=o>.</span><span class=n>remove</span><span class=p>(</span><span class=n>archive_file</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=n>os</span><span class=o>.</span><span class=n>system</span><span class=p>(</span><span class=s2>&#34;mv tmp/* .&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=n>os</span><span class=o>.</span><span class=n>rmdir</span><span class=p>(</span><span class=s2>&#34;tmp&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>if</span> <span class=vm>__name__</span> <span class=o>==</span> <span class=s2>&#34;__main__&#34;</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>    <span class=k>for</span> <span class=n>i</span> <span class=ow>in</span> <span class=nb>range</span><span class=p>(</span><span class=mi>4096</span><span class=p>,</span><span class=mi>0</span><span class=p>,</span><span class=o>-</span><span class=mi>1</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>        <span class=n>filename</span> <span class=o>=</span> <span class=sa>f</span><span class=s2>&#34;</span><span class=si>{</span><span class=n>i</span><span class=si>}</span><span class=s2>.zip&#34;</span>
+</span></span><span class=line><span class=cl>        <span class=n>decompress_zip</span><span class=p>(</span><span class=n>filename</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;[+] </span><span class=si>{</span><span class=n>filename</span><span class=si>}</span><span class=s2> 解压成功 =======&gt;&#34;</span><span class=p>)</span></span></span></code></pre></td></tr></table></div></div><p>全部解压完后可以得到一个<code>1.txt</code>，内容如下</p><blockquote><p>+-+++-++ +-+++++- +-+-<ins>&ndash; +-++++&ndash; +-+-+-</ins> +-+++&ndash;+ +&mdash;-+&ndash; ++&ndash;+++- ++&ndash;++++ +&ndash;+++&ndash; ++&ndash;+-+- ++&mdash;+++ <ins>&ndash;</ins>-+ ++&ndash;+-+- <ins>&mdash;+++ +&ndash;+++&ndash; +&ndash;+++&ndash; +&ndash;</ins>&ndash;+ <ins>&ndash;+++- +&ndash;</ins>-+- <ins>&ndash;+&mdash; +&ndash;+++&ndash; <ins>&ndash;+&ndash;+ <ins>&ndash;</ins>&ndash; <ins>&ndash;+++- +&ndash;</ins>-+- <ins>&ndash;+-+- <ins>&mdash;</ins>- <ins>&ndash;+++- <ins>&ndash;+++- +&ndash;</ins>-+- +&ndash;</ins>-</ins> <ins>&ndash;+&ndash;+ +&ndash;++++- +&ndash;+++&ndash; +&ndash;+++&ndash; <ins>&ndash;+-</ins> +&ndash;</ins>-+- +&ndash;</ins>-</ins> +&mdash;&ndash;+-</p></blockquote><p>直接CyberChef转二进制，然后转字符串即可得到flag：<code>DASCTF{10c58258ccf1e7c631e5911ed6acc4ed}</code></p><p><img loading=lazy src=/posts/fde34a9/imgs/image-20241128172227228.png alt=/posts/fde34a9/imgs/image-20241128172227228.png height=1453 width=2551></p><h2 class=heading-element id=题目名称-easy取证><span>题目名称 easy取证</span>
+<a href=#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-easy%e5%8f%96%e8%af%81 class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h2><p>下载附件并解压，得到一个<code>mem.raw</code>内存镜像，直接使用vol2进行内存取证</p><p>在桌面上可以找到一个<code>机密.docx</code>，尝试导出</p><p><img loading=lazy src=/posts/fde34a9/imgs/image-20241128172404555.png alt=/posts/fde34a9/imgs/image-20241128172404555.png height=1529 width=2561></p><p>导出后打开，发现是一个只有空白字符的文档，猜测是<code>SNOW</code>隐写</p><p><img loading=lazy src=/posts/fde34a9/imgs/image-20241128172506750.png alt=/posts/fde34a9/imgs/image-20241128172506750.png height=1032 width=1920></p><p>把所有空白字符复制到<code>TXT</code>文件中，尝试直接使用无密码的SNOW解密，但是发现得不到有效信息</p><p>用<code>mimikatz</code>插件可以提取出用户名和密码</p><p><img loading=lazy src=/posts/fde34a9/imgs/image-20241128172644506.png alt=/posts/fde34a9/imgs/image-20241128172644506.png height=422 width=1776></p><p>使用得到的密码<code>H7Qmw_X+WB6BXDXa</code>解密<code>SNOW</code>隐写即可得到flag：<code>DASCTF{f891eff370a2cbefec49d2a577b552d3}</code></p><p><img loading=lazy src=/posts/fde34a9/imgs/image-20241128172940206.png alt=/posts/fde34a9/imgs/image-20241128172940206.png height=339 width=499></p><h2 class=heading-element id=题目名称-gb2312-80><span>题目名称 gb2312-80</span>
+<a href=#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-gb2312-80 class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h2><p>下载附件并解压，可以得到如下内容</p><p><img loading=lazy src=/posts/fde34a9/imgs/image-20241129110013536.png alt=/posts/fde34a9/imgs/image-20241129110013536.png height=236 width=1261></p><p><code>cipher.txt</code>中的内容如下，每行十六个元素</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>0,0,4080,3072,3072,3072,4032,3680,48,48,48,3120,1632,960,0,0
+</span></span><span class=line><span class=cl>0,0,992,1584,3096,3096,3096,3096,3096,3096,3096,3096,1584,992,0,0
+</span></span><span class=line><span class=cl>0,64,192,448,960,704,1728,3264,3264,6336,8176,192,192,480,0,0
+</span></span><span class=line><span class=cl>0,0,3584,1536,1536,1536,2016,1560,1560,1560,1560,1560,3056,0,0,0
+</span></span><span class=line><span class=cl>0,0,992,1584,3096,3096,3096,3096,3096,3096,3096,3096,1584,992,0,0
+</span></span><span class=line><span class=cl>0,0,960,1632,3120,48,96,448,96,48,48,3120,1632,960,0,0
+</span></span><span class=line><span class=cl>0,0,992,1584,3096,3096,3096,3096,3096,3096,3096,3096,1584,992,0,0
+</span></span><span class=line><span class=cl>0,64,192,448,960,704,1728,3264,3264,6336,8176,192,192,480,0,0
+</span></span><span class=line><span class=cl>0,0,128,896,384,384,384,384,384,384,384,384,384,960,0,0
+</span></span><span class=line><span class=cl>0,64,192,448,960,704,1728,3264,3264,6336,8176,192,192,480,0,0
+</span></span><span class=line><span class=cl>0,0,992,1584,3096,3096,3096,3096,3096,3096,3096,3096,1584,992,0,0
+</span></span><span class=line><span class=cl>0,0,992,1584,3096,3096,3096,3096,3096,3096,3096,3096,1584,992,0,0
+</span></span><span class=line><span class=cl>0,0,992,1584,3096,3096,3096,3096,3096,3096,3096,3096,1584,992,0,0
+</span></span><span class=line><span class=cl>0,0,960,1632,3120,3120,3120,3120,1648,1008,48,3120,1632,960,0,0
+</span></span><span class=line><span class=cl>0,0,992,1584,3096,3096,3096,3096,3096,3096,3096,3096,1584,992,0,0
+</span></span><span class=line><span class=cl>0,0,992,1584,3096,3096,3096,3096,3096,3096,3096,3096,1584,992,0,0
+</span></span><span class=line><span class=cl>0,0,992,1584,3096,3096,3096,3096,3096,3096,3096,3096,1584,992,0,0
+</span></span><span class=line><span class=cl>0,0,960,1632,3120,3120,1632,960,1632,3120,3120,3120,1632,960,0,0
+</span></span><span class=line><span class=cl>0,0,992,1584,3096,3096,3096,3096,3096,3096,3096,3096,1584,992,0,0
+</span></span><span class=line><span class=cl>0,0,992,1584,3096,3096,3096,3096,3096,3096,3096,3096,1584,992,0,0</span></span></code></pre></td></tr></table></div></div><p>然后去网上搜索<code>font_rect</code>，可以找到<a href=https://github.com/pengfexue2/printPlay/blob/master/printPlay.py target=_blank rel="external nofollow noopener noreferrer">这个项目</a>，发现是画点阵图的项目，并且图片大小是16x16的</p><p>正好与附件所给的数据格式相符，因此我们尝试写一个脚本画一下点阵图</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=k>def</span> <span class=nf>draw2pic1</span><span class=p>():</span>
+</span></span><span class=line><span class=cl>    <span class=k>with</span> <span class=nb>open</span><span class=p>(</span><span class=s2>&#34;cipher.txt&#34;</span><span class=p>,</span><span class=s2>&#34;r&#34;</span><span class=p>)</span> <span class=k>as</span> <span class=n>f</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=n>data</span> <span class=o>=</span> <span class=n>f</span><span class=o>.</span><span class=n>read</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>    <span class=n>row_list</span> <span class=o>=</span> <span class=n>data</span><span class=o>.</span><span class=n>split</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>    <span class=k>for</span> <span class=n>row</span> <span class=ow>in</span> <span class=n>row_list</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=n>pixel_data</span> <span class=o>=</span> <span class=p>[]</span>
+</span></span><span class=line><span class=cl>        <span class=n>img</span> <span class=o>=</span> <span class=n>Image</span><span class=o>.</span><span class=n>new</span><span class=p>(</span><span class=n>mode</span><span class=o>=</span><span class=s2>&#34;RGB&#34;</span><span class=p>,</span><span class=n>size</span><span class=o>=</span><span class=p>(</span><span class=mi>16</span><span class=p>,</span><span class=mi>16</span><span class=p>))</span>
+</span></span><span class=line><span class=cl>        <span class=n>data</span> <span class=o>=</span> <span class=n>row</span><span class=o>.</span><span class=n>split</span><span class=p>(</span><span class=s1>&#39;,&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=k>for</span> <span class=n>item</span> <span class=ow>in</span> <span class=n>data</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>            <span class=n>bin_line</span> <span class=o>=</span> <span class=nb>bin</span><span class=p>(</span><span class=nb>int</span><span class=p>(</span><span class=n>item</span><span class=p>))[</span><span class=mi>2</span><span class=p>:]</span><span class=o>.</span><span class=n>rjust</span><span class=p>(</span><span class=mi>16</span><span class=p>,</span><span class=s1>&#39;0&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>            <span class=c1># print(bin_line)</span>
+</span></span><span class=line><span class=cl>            <span class=k>for</span> <span class=n>bin_data</span> <span class=ow>in</span> <span class=n>bin_line</span><span class=p>:</span>                
+</span></span><span class=line><span class=cl>                <span class=k>if</span> <span class=n>bin_data</span> <span class=o>!=</span> <span class=s1>&#39;0&#39;</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                    <span class=n>pixel_data</span><span class=o>.</span><span class=n>append</span><span class=p>((</span><span class=mi>255</span><span class=p>,</span><span class=mi>255</span><span class=p>,</span><span class=mi>255</span><span class=p>))</span>
+</span></span><span class=line><span class=cl>                <span class=k>else</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                    <span class=n>pixel_data</span><span class=o>.</span><span class=n>append</span><span class=p>((</span><span class=mi>0</span><span class=p>,</span><span class=mi>0</span><span class=p>,</span><span class=mi>0</span><span class=p>))</span>
+</span></span><span class=line><span class=cl>        <span class=n>img</span><span class=o>.</span><span class=n>putdata</span><span class=p>(</span><span class=n>pixel_data</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=n>img</span> <span class=o>=</span> <span class=n>img</span><span class=o>.</span><span class=n>resize</span><span class=p>((</span><span class=mi>250</span><span class=p>,</span><span class=mi>250</span><span class=p>))</span> <span class=c1># 调整一下图片大小，便于查看</span>
+</span></span><span class=line><span class=cl>        <span class=n>img</span><span class=o>.</span><span class=n>save</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;./out/</span><span class=si>{</span><span class=n>row</span><span class=si>}</span><span class=s2>.png&#34;</span><span class=p>)</span></span></span></code></pre></td></tr></table></div></div><p>画完后发现一共就16种图像，因此猜测是十六进制的数据</p><p><img loading=lazy src=/posts/fde34a9/imgs/image-20241129110410166.png alt=/posts/fde34a9/imgs/image-20241129110410166.png height=445 width=1377></p><p>我们根据上面的图片找出对应的表，然后提取出十六进制的数据，查看头几个数据就可以发现是个压缩包</p><p>因此我们编写以下脚本把压缩包提取出来</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=k>def</span> <span class=nf>extract_data</span><span class=p>():</span>
+</span></span><span class=line><span class=cl>    <span class=n>table</span> <span class=o>=</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=s1>&#39;0,0,992,1584,3096,3096,3096,3096,3096,3096,3096,3096,1584,992,0,0&#39;</span><span class=p>:</span> <span class=s1>&#39;0&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=s1>&#39;0,0,128,896,384,384,384,384,384,384,384,384,384,960,0,0&#39;</span><span class=p>:</span> <span class=s1>&#39;1&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=s1>&#39;0,0,960,1632,3120,3120,48,48,96,192,384,784,1552,4080,0,0&#39;</span><span class=p>:</span> <span class=s1>&#39;2&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=s1>&#39;0,0,960,1632,3120,48,96,448,96,48,48,3120,1632,960,0,0&#39;</span><span class=p>:</span> <span class=s1>&#39;3&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=s1>&#39;0,64,192,448,960,704,1728,3264,3264,6336,8176,192,192,480,0,0&#39;</span><span class=p>:</span> <span class=s1>&#39;4&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=s1>&#39;0,0,4080,3072,3072,3072,4032,3680,48,48,48,3120,1632,960,0,0&#39;</span><span class=p>:</span> <span class=s1>&#39;5&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=s1>&#39;0,0,960,1632,3120,3072,3520,3680,3120,3120,3120,3120,1632,960,0,0&#39;</span><span class=p>:</span> <span class=s1>&#39;6&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=s1>&#39;0,0,4080,4080,2096,96,192,192,384,384,768,768,768,768,0,0&#39;</span><span class=p>:</span> <span class=s1>&#39;7&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=s1>&#39;0,0,960,1632,3120,3120,1632,960,1632,3120,3120,3120,1632,960,0,0&#39;</span><span class=p>:</span> <span class=s1>&#39;8&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=s1>&#39;0,0,960,1632,3120,3120,3120,3120,1648,1008,48,3120,1632,960,0,0&#39;</span><span class=p>:</span> <span class=s1>&#39;9&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=s1>&#39;0,0,0,0,0,0,1984,3168,96,2016,3168,3168,2008,0,0,0&#39;</span><span class=p>:</span> <span class=s1>&#39;a&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=s1>&#39;0,0,3584,1536,1536,1536,2016,1560,1560,1560,1560,1560,3056,0,0,0&#39;</span><span class=p>:</span> <span class=s1>&#39;b&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=s1>&#39;0,0,0,0,0,0,992,3120,3072,3072,3072,3120,2016,0,0,0&#39;</span><span class=p>:</span> <span class=s1>&#39;c&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=s1>&#39;0,0,224,96,96,96,2016,3168,3168,3168,3168,3168,2000,0,0,0&#39;</span><span class=p>:</span> <span class=s1>&#39;d&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=s1>&#39;0,0,0,0,0,0,992,3120,3120,4080,3072,3120,2016,0,0,0&#39;</span><span class=p>:</span> <span class=s1>&#39;e&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=s1>&#39;0,0,240,408,384,384,2016,384,384,384,384,384,960,0,0,0&#39;</span><span class=p>:</span> <span class=s1>&#39;f&#39;</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=n>hex_data</span> <span class=o>=</span> <span class=s1>&#39;&#39;</span>
+</span></span><span class=line><span class=cl>    <span class=k>with</span> <span class=nb>open</span><span class=p>(</span><span class=s2>&#34;cipher.txt&#34;</span><span class=p>,</span><span class=s2>&#34;r&#34;</span><span class=p>)</span> <span class=k>as</span> <span class=n>f</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=n>data</span> <span class=o>=</span> <span class=n>f</span><span class=o>.</span><span class=n>read</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>    <span class=n>row_list</span> <span class=o>=</span> <span class=n>data</span><span class=o>.</span><span class=n>split</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>    <span class=k>for</span> <span class=n>row</span> <span class=ow>in</span> <span class=n>row_list</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=n>hex_data</span> <span class=o>+=</span> <span class=n>table</span><span class=p>[</span><span class=n>row</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>    <span class=n>zip_data</span> <span class=o>=</span> <span class=nb>bytes</span><span class=o>.</span><span class=n>fromhex</span><span class=p>(</span><span class=n>hex_data</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=k>with</span> <span class=nb>open</span><span class=p>(</span><span class=s2>&#34;out.zip&#34;</span><span class=p>,</span><span class=s2>&#34;wb&#34;</span><span class=p>)</span> <span class=k>as</span> <span class=n>f</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=n>f</span><span class=o>.</span><span class=n>write</span><span class=p>(</span><span class=n>zip_data</span><span class=p>)</span></span></span></code></pre></td></tr></table></div></div><p>压缩包中有以下两个文件</p><p><img loading=lazy src=/posts/fde34a9/imgs/image-20241129110622326.png alt=/posts/fde34a9/imgs/image-20241129110622326.png height=261 width=1488></p><p><code>flag.txt</code>需要密码才能解压，<code>hint.txt</code>的内容如下</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>想必你已经领悟了HZK16的真谛了，请你破解最后的点阵！
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>0000001000000000000000010000000001111111111111100100001000000010100010010010010000101000110010000100101100000100000011000001000001110111111100000000000100000000001000010000100000100001000010000010000100001000001000010000100000111111111110000010000000001000
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>0000100000010000111111111111100000010000000100000001000100010000001000010001000000100101000100000011111100010000011001010001010010100101111111100010010000000100001001000010010000100111111101000010010000000100001111000000010000100100000101000000000000001000
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>0000111111100000000010000010000000001000001000000000111111100000000010000010000000001000001000000000111111100000000000000000010011111111111111100000000100000000000010010010000000001001111100000000100100000000000101010000000000100011000001100100000011111100
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000011000000000000011110000000000001111000000000000011000000000000000000000000000000110000000000000111100000000000011110000000000000110000000000000000000000000
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>0000000000000000000000000000000000000011110000000000000110000000000000011000000000000001100000000000000110000000000000011000000000000001100000000000000110000000000000011000000000000001100000000000000110000000000000111100000000000000000000000000000000000000
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>0000000000000000000000000000000000011110000000000000110000000000000011000000000000001100000000000000110000000000000011000000000000001100000000000000110000000000000011000000000000001100000010000000110000011000000111111111100000000000000000000000000000000000
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>0000000000000000000000000000000000000011111000000000011000110000000011000001100000011000000011000001100000001100000110000000110000011000000011000001100000001100000110000000110000001100000110000000011000110000000000111110000000000000000000000000000000000000
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>0000000000000000000000000000000000111100000111000001100000001000000110000000100000011000000100000000110000010000000011000010000000001100001000000000011001000000000001100100000000000010100000000000001110000000000000010000000000000000000000000000000000000000
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>0000000000000000000000000000000000011111111110000000110000011000000011000000100000001100000000000000110000100000000011111110000000001100001000000000110000000000000011000000000000001100000010000000110000011000000111111111100000000000000000000000000000000000
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>0000000000000000000000000000000000011110001111000000110000011000000011000001100000001100000110000000110000011000000011111111100000001100000110000000110000011000000011000001100000001100000110000000110000011000000111100011110000000000000000000000000000000000
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>0000000000000000000000000000000000111111111110000010000000011000000000000011000000000000011000000000000011000000000000011000000000000011000000000000011000000000000011000000000000011000000010000011000000011000001111111111100000000000000000000000000000000000
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>0000000000000000000000000000000000011110011111000000110000110000000011000110000000001100110000000000110110000000000011111000000000001101110000000000110011100000000011000111000000001100001110000000110000011100000111100001111000000000000000000000000000000000
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>0000000000000000000000000000000000000000100000000000001110000000000000011000000000000001100000000000000110000000000000011000000000000001100000000000000110000000000000011000000000000001100000000000000110000000000000111100000000000000000000000000000000000000
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>0000000000000000000000000000000000000011110000000000011001100000000011000011000000001100000000000000110111000000000011100110000000001100001100000000110000110000000011000011000000001100001100000000011001100000000000111100000000000000000000000000000000000000</span></span></code></pre></td></tr></table></div></div><p>猜测和上面一样，需要画点阵图，因此我们编写以下脚本画一下点阵图</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=k>def</span> <span class=nf>draw2pic2</span><span class=p>():</span>
+</span></span><span class=line><span class=cl>    <span class=k>with</span> <span class=nb>open</span><span class=p>(</span><span class=s2>&#34;hint.txt&#34;</span><span class=p>,</span><span class=s2>&#34;r&#34;</span><span class=p>)</span> <span class=k>as</span> <span class=n>f</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=n>data</span> <span class=o>=</span> <span class=n>f</span><span class=o>.</span><span class=n>read</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>    <span class=n>row_list</span> <span class=o>=</span> <span class=n>data</span><span class=o>.</span><span class=n>split</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>    <span class=k>for</span> <span class=n>idx</span><span class=p>,</span><span class=n>row</span> <span class=ow>in</span> <span class=nb>enumerate</span><span class=p>(</span><span class=n>row_list</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>        <span class=c1># print(row)</span>
+</span></span><span class=line><span class=cl>        <span class=n>pixel_data</span> <span class=o>=</span> <span class=p>[]</span>
+</span></span><span class=line><span class=cl>        <span class=n>img</span> <span class=o>=</span> <span class=n>Image</span><span class=o>.</span><span class=n>new</span><span class=p>(</span><span class=n>mode</span><span class=o>=</span><span class=s2>&#34;RGB&#34;</span><span class=p>,</span><span class=n>size</span><span class=o>=</span><span class=p>(</span><span class=mi>16</span><span class=p>,</span><span class=mi>16</span><span class=p>))</span>
+</span></span><span class=line><span class=cl>        <span class=k>for</span> <span class=n>bin_data</span> <span class=ow>in</span> <span class=n>row</span><span class=p>:</span>                
+</span></span><span class=line><span class=cl>            <span class=k>if</span> <span class=n>bin_data</span> <span class=o>!=</span> <span class=s1>&#39;0&#39;</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                <span class=n>pixel_data</span><span class=o>.</span><span class=n>append</span><span class=p>((</span><span class=mi>255</span><span class=p>,</span><span class=mi>255</span><span class=p>,</span><span class=mi>255</span><span class=p>))</span>
+</span></span><span class=line><span class=cl>            <span class=k>else</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                <span class=n>pixel_data</span><span class=o>.</span><span class=n>append</span><span class=p>((</span><span class=mi>0</span><span class=p>,</span><span class=mi>0</span><span class=p>,</span><span class=mi>0</span><span class=p>))</span>
+</span></span><span class=line><span class=cl>        <span class=n>img</span><span class=o>.</span><span class=n>putdata</span><span class=p>(</span><span class=n>pixel_data</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=n>img</span> <span class=o>=</span> <span class=n>img</span><span class=o>.</span><span class=n>resize</span><span class=p>((</span><span class=mi>250</span><span class=p>,</span><span class=mi>250</span><span class=p>))</span> <span class=c1># 调整一下图片大小，便于查看</span>
+</span></span><span class=line><span class=cl>        <span class=c1># img.show()</span>
+</span></span><span class=line><span class=cl>        <span class=n>img</span><span class=o>.</span><span class=n>save</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;./out1/</span><span class=si>{</span><span class=n>idx</span><span class=si>}</span><span class=s2>.png&#34;</span><span class=p>)</span> </span></span></code></pre></td></tr></table></div></div><p>画完后即可得到解压密码：<code>ILOVEHZK16</code></p><p><img loading=lazy src=/posts/fde34a9/imgs/image-20241129110804498.png alt=/posts/fde34a9/imgs/image-20241129110804498.png height=417 width=1368></p><p>使用得到的密码解压压缩包即可得到flag：<code>DASCTF{842a99305a07e6183830582d1740c1b1}</code></p><p>完整解题脚本如下：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span><span class=lnt>48
+</span><span class=lnt>49
+</span><span class=lnt>50
+</span><span class=lnt>51
+</span><span class=lnt>52
+</span><span class=lnt>53
+</span><span class=lnt>54
+</span><span class=lnt>55
+</span><span class=lnt>56
+</span><span class=lnt>57
+</span><span class=lnt>58
+</span><span class=lnt>59
+</span><span class=lnt>60
+</span><span class=lnt>61
+</span><span class=lnt>62
+</span><span class=lnt>63
+</span><span class=lnt>64
+</span><span class=lnt>65
+</span><span class=lnt>66
+</span><span class=lnt>67
+</span><span class=lnt>68
+</span><span class=lnt>69
+</span><span class=lnt>70
+</span><span class=lnt>71
+</span><span class=lnt>72
+</span><span class=lnt>73
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=kn>from</span> <span class=nn>PIL</span> <span class=kn>import</span> <span class=n>Image</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>draw2pic1</span><span class=p>():</span>
+</span></span><span class=line><span class=cl>    <span class=k>with</span> <span class=nb>open</span><span class=p>(</span><span class=s2>&#34;cipher.txt&#34;</span><span class=p>,</span><span class=s2>&#34;r&#34;</span><span class=p>)</span> <span class=k>as</span> <span class=n>f</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=n>data</span> <span class=o>=</span> <span class=n>f</span><span class=o>.</span><span class=n>read</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>    <span class=n>row_list</span> <span class=o>=</span> <span class=n>data</span><span class=o>.</span><span class=n>split</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>    <span class=k>for</span> <span class=n>row</span> <span class=ow>in</span> <span class=n>row_list</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=n>pixel_data</span> <span class=o>=</span> <span class=p>[]</span>
+</span></span><span class=line><span class=cl>        <span class=n>img</span> <span class=o>=</span> <span class=n>Image</span><span class=o>.</span><span class=n>new</span><span class=p>(</span><span class=n>mode</span><span class=o>=</span><span class=s2>&#34;RGB&#34;</span><span class=p>,</span><span class=n>size</span><span class=o>=</span><span class=p>(</span><span class=mi>16</span><span class=p>,</span><span class=mi>16</span><span class=p>))</span>
+</span></span><span class=line><span class=cl>        <span class=n>data</span> <span class=o>=</span> <span class=n>row</span><span class=o>.</span><span class=n>split</span><span class=p>(</span><span class=s1>&#39;,&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=k>for</span> <span class=n>item</span> <span class=ow>in</span> <span class=n>data</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>            <span class=n>bin_line</span> <span class=o>=</span> <span class=nb>bin</span><span class=p>(</span><span class=nb>int</span><span class=p>(</span><span class=n>item</span><span class=p>))[</span><span class=mi>2</span><span class=p>:]</span><span class=o>.</span><span class=n>rjust</span><span class=p>(</span><span class=mi>16</span><span class=p>,</span><span class=s1>&#39;0&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>            <span class=c1># print(bin_line)</span>
+</span></span><span class=line><span class=cl>            <span class=k>for</span> <span class=n>bin_data</span> <span class=ow>in</span> <span class=n>bin_line</span><span class=p>:</span>                
+</span></span><span class=line><span class=cl>                <span class=k>if</span> <span class=n>bin_data</span> <span class=o>!=</span> <span class=s1>&#39;0&#39;</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                    <span class=n>pixel_data</span><span class=o>.</span><span class=n>append</span><span class=p>((</span><span class=mi>255</span><span class=p>,</span><span class=mi>255</span><span class=p>,</span><span class=mi>255</span><span class=p>))</span>
+</span></span><span class=line><span class=cl>                <span class=k>else</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                    <span class=n>pixel_data</span><span class=o>.</span><span class=n>append</span><span class=p>((</span><span class=mi>0</span><span class=p>,</span><span class=mi>0</span><span class=p>,</span><span class=mi>0</span><span class=p>))</span>
+</span></span><span class=line><span class=cl>        <span class=n>img</span><span class=o>.</span><span class=n>putdata</span><span class=p>(</span><span class=n>pixel_data</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=n>img</span> <span class=o>=</span> <span class=n>img</span><span class=o>.</span><span class=n>resize</span><span class=p>((</span><span class=mi>250</span><span class=p>,</span><span class=mi>250</span><span class=p>))</span> <span class=c1># 调整一下图片大小，便于查看</span>
+</span></span><span class=line><span class=cl>        <span class=n>img</span><span class=o>.</span><span class=n>save</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;./out/</span><span class=si>{</span><span class=n>row</span><span class=si>}</span><span class=s2>.png&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>extract_data</span><span class=p>():</span>
+</span></span><span class=line><span class=cl>    <span class=n>table</span> <span class=o>=</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=s1>&#39;0,0,992,1584,3096,3096,3096,3096,3096,3096,3096,3096,1584,992,0,0&#39;</span><span class=p>:</span> <span class=s1>&#39;0&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=s1>&#39;0,0,128,896,384,384,384,384,384,384,384,384,384,960,0,0&#39;</span><span class=p>:</span> <span class=s1>&#39;1&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=s1>&#39;0,0,960,1632,3120,3120,48,48,96,192,384,784,1552,4080,0,0&#39;</span><span class=p>:</span> <span class=s1>&#39;2&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=s1>&#39;0,0,960,1632,3120,48,96,448,96,48,48,3120,1632,960,0,0&#39;</span><span class=p>:</span> <span class=s1>&#39;3&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=s1>&#39;0,64,192,448,960,704,1728,3264,3264,6336,8176,192,192,480,0,0&#39;</span><span class=p>:</span> <span class=s1>&#39;4&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=s1>&#39;0,0,4080,3072,3072,3072,4032,3680,48,48,48,3120,1632,960,0,0&#39;</span><span class=p>:</span> <span class=s1>&#39;5&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=s1>&#39;0,0,960,1632,3120,3072,3520,3680,3120,3120,3120,3120,1632,960,0,0&#39;</span><span class=p>:</span> <span class=s1>&#39;6&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=s1>&#39;0,0,4080,4080,2096,96,192,192,384,384,768,768,768,768,0,0&#39;</span><span class=p>:</span> <span class=s1>&#39;7&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=s1>&#39;0,0,960,1632,3120,3120,1632,960,1632,3120,3120,3120,1632,960,0,0&#39;</span><span class=p>:</span> <span class=s1>&#39;8&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=s1>&#39;0,0,960,1632,3120,3120,3120,3120,1648,1008,48,3120,1632,960,0,0&#39;</span><span class=p>:</span> <span class=s1>&#39;9&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=s1>&#39;0,0,0,0,0,0,1984,3168,96,2016,3168,3168,2008,0,0,0&#39;</span><span class=p>:</span> <span class=s1>&#39;a&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=s1>&#39;0,0,3584,1536,1536,1536,2016,1560,1560,1560,1560,1560,3056,0,0,0&#39;</span><span class=p>:</span> <span class=s1>&#39;b&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=s1>&#39;0,0,0,0,0,0,992,3120,3072,3072,3072,3120,2016,0,0,0&#39;</span><span class=p>:</span> <span class=s1>&#39;c&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=s1>&#39;0,0,224,96,96,96,2016,3168,3168,3168,3168,3168,2000,0,0,0&#39;</span><span class=p>:</span> <span class=s1>&#39;d&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=s1>&#39;0,0,0,0,0,0,992,3120,3120,4080,3072,3120,2016,0,0,0&#39;</span><span class=p>:</span> <span class=s1>&#39;e&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=s1>&#39;0,0,240,408,384,384,2016,384,384,384,384,384,960,0,0,0&#39;</span><span class=p>:</span> <span class=s1>&#39;f&#39;</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=n>hex_data</span> <span class=o>=</span> <span class=s1>&#39;&#39;</span>
+</span></span><span class=line><span class=cl>    <span class=k>with</span> <span class=nb>open</span><span class=p>(</span><span class=s2>&#34;cipher.txt&#34;</span><span class=p>,</span><span class=s2>&#34;r&#34;</span><span class=p>)</span> <span class=k>as</span> <span class=n>f</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=n>data</span> <span class=o>=</span> <span class=n>f</span><span class=o>.</span><span class=n>read</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>    <span class=n>row_list</span> <span class=o>=</span> <span class=n>data</span><span class=o>.</span><span class=n>split</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>    <span class=k>for</span> <span class=n>row</span> <span class=ow>in</span> <span class=n>row_list</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=n>hex_data</span> <span class=o>+=</span> <span class=n>table</span><span class=p>[</span><span class=n>row</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>    <span class=n>zip_data</span> <span class=o>=</span> <span class=nb>bytes</span><span class=o>.</span><span class=n>fromhex</span><span class=p>(</span><span class=n>hex_data</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=k>with</span> <span class=nb>open</span><span class=p>(</span><span class=s2>&#34;out.zip&#34;</span><span class=p>,</span><span class=s2>&#34;wb&#34;</span><span class=p>)</span> <span class=k>as</span> <span class=n>f</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=n>f</span><span class=o>.</span><span class=n>write</span><span class=p>(</span><span class=n>zip_data</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>draw2pic2</span><span class=p>():</span>
+</span></span><span class=line><span class=cl>    <span class=k>with</span> <span class=nb>open</span><span class=p>(</span><span class=s2>&#34;hint.txt&#34;</span><span class=p>,</span><span class=s2>&#34;r&#34;</span><span class=p>)</span> <span class=k>as</span> <span class=n>f</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=n>data</span> <span class=o>=</span> <span class=n>f</span><span class=o>.</span><span class=n>read</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>    <span class=n>row_list</span> <span class=o>=</span> <span class=n>data</span><span class=o>.</span><span class=n>split</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>    <span class=k>for</span> <span class=n>idx</span><span class=p>,</span><span class=n>row</span> <span class=ow>in</span> <span class=nb>enumerate</span><span class=p>(</span><span class=n>row_list</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>        <span class=c1># print(row)</span>
+</span></span><span class=line><span class=cl>        <span class=n>pixel_data</span> <span class=o>=</span> <span class=p>[]</span>
+</span></span><span class=line><span class=cl>        <span class=n>img</span> <span class=o>=</span> <span class=n>Image</span><span class=o>.</span><span class=n>new</span><span class=p>(</span><span class=n>mode</span><span class=o>=</span><span class=s2>&#34;RGB&#34;</span><span class=p>,</span><span class=n>size</span><span class=o>=</span><span class=p>(</span><span class=mi>16</span><span class=p>,</span><span class=mi>16</span><span class=p>))</span>
+</span></span><span class=line><span class=cl>        <span class=k>for</span> <span class=n>bin_data</span> <span class=ow>in</span> <span class=n>row</span><span class=p>:</span>                
+</span></span><span class=line><span class=cl>            <span class=k>if</span> <span class=n>bin_data</span> <span class=o>!=</span> <span class=s1>&#39;0&#39;</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                <span class=n>pixel_data</span><span class=o>.</span><span class=n>append</span><span class=p>((</span><span class=mi>255</span><span class=p>,</span><span class=mi>255</span><span class=p>,</span><span class=mi>255</span><span class=p>))</span>
+</span></span><span class=line><span class=cl>            <span class=k>else</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                <span class=n>pixel_data</span><span class=o>.</span><span class=n>append</span><span class=p>((</span><span class=mi>0</span><span class=p>,</span><span class=mi>0</span><span class=p>,</span><span class=mi>0</span><span class=p>))</span>
+</span></span><span class=line><span class=cl>        <span class=n>img</span><span class=o>.</span><span class=n>putdata</span><span class=p>(</span><span class=n>pixel_data</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=n>img</span> <span class=o>=</span> <span class=n>img</span><span class=o>.</span><span class=n>resize</span><span class=p>((</span><span class=mi>250</span><span class=p>,</span><span class=mi>250</span><span class=p>))</span> <span class=c1># 调整一下图片大小，便于查看</span>
+</span></span><span class=line><span class=cl>        <span class=c1># img.show()</span>
+</span></span><span class=line><span class=cl>        <span class=n>img</span><span class=o>.</span><span class=n>save</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;./out1/</span><span class=si>{</span><span class=n>idx</span><span class=si>}</span><span class=s2>.png&#34;</span><span class=p>)</span> 
+</span></span><span class=line><span class=cl>    
+</span></span><span class=line><span class=cl><span class=k>if</span> <span class=vm>__name__</span> <span class=o>==</span> <span class=s2>&#34;__main__&#34;</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>    <span class=c1># draw2pic1()</span>
+</span></span><span class=line><span class=cl>    <span class=c1># extract_data()</span>
+</span></span><span class=line><span class=cl>    <span class=c1># draw2pic2()</span></span></span></code></pre></td></tr></table></div></div></div><div class=post-footer id=post-footer><div class=post-info><div class=post-info-line><div class=post-info-mod><span title="Updated on 2023-12-18 17:16:57">Updated on 2023-12-18&nbsp;</span></div></div><div class=post-info-line><div class=post-info-md><span><a href=/posts/fde34a9/index.md title="Read Markdown" class=link-to-markdown>Read Markdown</a></span></div><div class=post-info-share><span><a href=javascript:void(0); title="Share on X" data-sharer=twitter data-url=https://goodlunatic.github.io/posts/fde34a9/ data-title="2023 楚慧杯网络空间安全实践能力竞赛 Misc Writeup" data-hashtags=CTF,Misc,Writeup><i class="fa-brands fa-x-twitter fa-fw" aria-hidden=true></i></a>
+<a href=javascript:void(0); title="Share on Facebook" data-sharer=facebook data-url=https://goodlunatic.github.io/posts/fde34a9/ data-hashtag=CTF><i class="fa-brands fa-facebook-square fa-fw" aria-hidden=true></i></a>
+<a href=javascript:void(0); title="Share on 微博" data-sharer=weibo data-url=https://goodlunatic.github.io/posts/fde34a9/ data-title="2023 楚慧杯网络空间安全实践能力竞赛 Misc Writeup"><i class="fa-brands fa-weibo fa-fw" aria-hidden=true></i></a></span></div></div></div><div class=post-info-more><section class=post-tags><i class="fa-solid fa-tags fa-fw me-1" aria-hidden=true></i><a href=/tags/ctf/ class=post-tag title="Tags - CTF">CTF</a><a href=/tags/misc/ class=post-tag title="Tags - Misc">Misc</a><a href=/tags/writeup/ class=post-tag title="Tags - Writeup">Writeup</a></section><section><span><a href=javascript:void(0); onclick=window.history.back()>Back</a></span>&nbsp;|&nbsp;<span><a href=/>Home</a></span></section></div><div class=post-nav><a href=/posts/00658ee/ class=post-nav-item rel=prev title="2020 B01lers Misc Image_adjustments 赛题详解"><i class="fa-solid fa-angle-left fa-fw" aria-hidden=true></i>2020 B01lers Misc Image_adjustments 赛题详解</a><a href=/posts/5f3fb7a/ class=post-nav-item rel=next title="2023 强网杯全国网络安全挑战赛 Misc Writeup">2023 强网杯全国网络安全挑战赛 Misc Writeup<i class="fa-solid fa-angle-right fa-fw" aria-hidden=true></i></a></div></div></article><aside class=toc id=toc-auto aria-label=Contents><h2 class=toc-title>Contents&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden=true></i></h2><div class=toc-content id=toc-content-auto></div></aside></main><footer class=footer><div class=footer-container><div class="footer-line powered order-1">Powered by <a href=https://gohugo.io/ target=_blank rel="external nofollow noopener noreferrer" title="Hugo 0.152.1">Hugo</a> | Theme - <a href=https://github.com/hugo-fixit/FixIt target=_blank rel=external title="FixIt v0.4.0-alpha.2-20251023040336-063af2cd">FixIt</a></div><div class="footer-line copyright order-2" itemscope itemtype=http://schema.org/CreativeWork><i class="fa-regular fa-copyright fa-fw" aria-hidden=true></i>
+<span itemprop=copyrightYear>2022 - 2025</span><span class=author itemprop=copyrightHolder>
+<a href=https://goodlunatic.github.io target=_blank rel="external nofollow noopener noreferrer">Lunatic</a></span></div><div class="footer-line visitor"><span id=busuanzi_container_site_uv title='Total visitors'><i class="fa-regular fa-user fa-fw me-1" aria-hidden=true></i><span id=busuanzi_value_site_uv><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden=true></i></span></span><span id=busuanzi_container_site_pv class=footer-divider title='Total visits'><i class="fa-regular fa-eye fa-fw me-1" aria-hidden=true></i><span id=busuanzi_value_site_pv><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden=true></i></span></span></div></div></footer></div><div class=widgets><div class="fixed-buttons animate__faster d-none"><div class="fixed-button back-to-top" role=button aria-label="Back to Top"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden=true></i><span class=variant-numeric>0%</span></div></div><div id=mask></div><noscript><div class=noscript-warning>This website works best with JavaScript enabled.</div></noscript></div><link rel=stylesheet href=/lib/pace/themes/blue/pace-theme-minimal.css><script src=/lib/sharer/sharer.min.js async defer></script><script src=https://vercount.one/js async defer></script><script src=/lib/pace/pace.min.js async defer></script><script src=/posts/fde34a9/config/page.js defer></script><script src=/js/theme.min.js defer></script></body></html>

@@ -1,0 +1,1402 @@
+<!doctype html><html itemscope itemtype=http://schema.org/WebPage lang=en><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=2"><meta name=robots content="noodp"><title>如何基于 SrsRAN_4G 搭建 LTE 基站 - ⚡Lunatic BLOG⚡</title><meta name=author content="Lunatic"><meta name=description content="记录一下如何基于 srsRAN_4G 搭建 LTE 基站
+"><meta name=keywords content='Research,Skills'><meta itemprop=name content="如何基于 srsRAN_4G 搭建 LTE 基站"><meta itemprop=description content="记录一下如何基于 srsRAN_4G 搭建 LTE 基站"><meta itemprop=datePublished content="2025-08-03T16:48:15+08:00"><meta itemprop=dateModified content="2025-08-03T16:48:15+08:00"><meta itemprop=wordCount content="4455"><meta itemprop=keywords content="Research,Skills"><meta property="og:url" content="https://goodlunatic.github.io/posts/ed6ecd5/"><meta property="og:site_name" content="⚡Lunatic BLOG⚡"><meta property="og:title" content="如何基于 srsRAN_4G 搭建 LTE 基站"><meta property="og:description" content="记录一下如何基于 srsRAN_4G 搭建 LTE 基站"><meta property="og:locale" content="en"><meta property="og:type" content="article"><meta property="article:section" content="posts"><meta property="article:published_time" content="2025-08-03T16:48:15+08:00"><meta property="article:modified_time" content="2025-08-03T16:48:15+08:00"><meta property="article:tag" content="Research"><meta property="article:tag" content="Skills"><meta name=twitter:card content="summary"><meta name=twitter:title content="如何基于 srsRAN_4G 搭建 LTE 基站"><meta name=twitter:description content="记录一下如何基于 srsRAN_4G 搭建 LTE 基站"><meta name=application-name content="FixIt"><meta name=apple-mobile-web-app-title content="FixIt"><meta name=theme-color data-light=#f8f8f8 data-dark=#252627 content="#f8f8f8"><meta name=msapplication-TileColor content="#da532c"><link rel=icon href=https://www.nssctf.cn/files/2024/4/28/7f130a1387.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=canonical type=text/html href=https://goodlunatic.github.io/posts/ed6ecd5/ title="如何基于 srsRAN_4G 搭建 LTE 基站 - ⚡Lunatic BLOG⚡"><link rel=prev type=text/html href=https://goodlunatic.github.io/posts/4c7a04a/ title=如何给Wireshark添加LTE和NR支持><link rel=next type=text/html href=https://goodlunatic.github.io/posts/0f92e23/ title=CTF-Reverse学习记录><link rel=alternate type=text/markdown href=https://goodlunatic.github.io/posts/ed6ecd5/index.md title="如何基于 srsRAN_4G 搭建 LTE 基站 - ⚡Lunatic BLOG⚡"><link rel=stylesheet href=/css/config.min.css><link rel=stylesheet href=/css/style.min.css><link rel=preload href=/lib/fontawesome-free/all.min.css as=style onload='this.removeAttribute("onload"),this.rel="stylesheet"'><noscript><link rel=stylesheet href=/lib/fontawesome-free/all.min.css></noscript><link rel=preload href=/lib/animate/animate.min.css as=style onload='this.removeAttribute("onload"),this.rel="stylesheet"'><noscript><link rel=stylesheet href=/lib/animate/animate.min.css></noscript><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"如何基于 srsRAN_4G 搭建 LTE 基站","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/goodlunatic.github.io\/posts\/ed6ecd5\/"},"genre":"posts","keywords":"Research, Skills","wordcount":4455,"url":"https:\/\/goodlunatic.github.io\/posts\/ed6ecd5\/","datePublished":"2025-08-03T16:48:15+08:00","dateModified":"2025-08-03T16:48:15+08:00","publisher":{"@type":"Organization","name":""},"author":{"@type":"Person","name":"Lunatic"},"description":""}</script><script src=/js/head/color-scheme.min.js></script></head><body data-header-desktop=sticky data-header-mobile=auto><div class=wrapper data-page-style=normal><header class="desktop animate__faster" id=header-desktop><div class=header-wrapper><div class=header-title><a href=/ title="⚡Lunatic BLOG⚡"><span class=header-title-text>⚡Lunatic BLOG⚡</span></a><span class=header-subtitle></span></div><nav><ul class=menu><li class=menu-item><a class=menu-link href=/archives/><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden=true></i> Archives</a></li><li class=menu-item><a class=menu-link href=/categories/><i class="fa-solid fa-folder-tree fa-fw fa-sm" aria-hidden=true></i> Categories</a></li><li class=menu-item><a class=menu-link href=/tags/><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden=true></i> Tags</a></li><li class=menu-item><a class=menu-link href=/friends/><i class="fa-solid fa-chain fa-fw fa-sm" aria-hidden=true></i> Friends</a></li><li class=menu-item><a class=menu-link href=/about/><i class="fa-solid fa-graduation-cap fa-fw fa-sm" aria-hidden=true></i> About</a></li><li class="menu-item delimiter"></li><li class="menu-item theme-switch" title="Switch Theme"><i class="fa-solid fa-adjust fa-fw" aria-hidden=true></i></li></ul></nav></div></header><header class="mobile animate__faster" id=header-mobile><div class=header-container><div class=header-wrapper><div class=header-title><a href=/ title="⚡Lunatic BLOG⚡"><span class=header-title-text>⚡Lunatic BLOG⚡</span></a><span class=header-subtitle></span></div><div class=menu-toggle id=menu-toggle-mobile><span></span><span></span><span></span></div></div><nav><ul class=menu id=menu-mobile><li class=menu-item><a class=menu-link href=/archives/><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden=true></i> Archives</a></li><li class=menu-item><a class=menu-link href=/categories/><i class="fa-solid fa-folder-tree fa-fw fa-sm" aria-hidden=true></i> Categories</a></li><li class=menu-item><a class=menu-link href=/tags/><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden=true></i> Tags</a></li><li class=menu-item><a class=menu-link href=/friends/><i class="fa-solid fa-chain fa-fw fa-sm" aria-hidden=true></i> Friends</a></li><li class=menu-item><a class=menu-link href=/about/><i class="fa-solid fa-graduation-cap fa-fw fa-sm" aria-hidden=true></i> About</a></li><li class="menu-item menu-system"><span class="menu-system-item theme-switch" title="Switch Theme"><i class="fa-solid fa-adjust fa-fw" aria-hidden=true></i></span></li></ul></nav></div></header><main class=fi-container><aside class="aside-collection animate__animated animate__fadeIn animate__faster" aria-label=Collections></aside><article class="page single"><div class=header><h1 class="single-title animate__animated animate__flipInX"><span>如何基于 SrsRAN_4G 搭建 LTE 基站</span></h1></div><div class=post-meta><div class=post-meta-line><span class=post-author><a href=https://goodlunatic.github.io title=Author target=_blank rel="external nofollow noopener noreferrer author" class=author><img class=avatar src=https://www.nssctf.cn/files/2024/4/28/7f130a1387.png alt=Lunatic height=16 width=16>&nbsp;Lunatic</a></span><span class=post-included-in>&nbsp;included in <a href=/categories/research/ class=post-category title="Category - Research"><i class="fa-regular fa-folder fa-fw" aria-hidden=true></i> Research</a></span></div><div class=post-meta-line><span title="published on 2025-08-03 16:48:15"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden=true></i><time datetime=2025-08-03>2025-08-03</time></span>&nbsp;<span title="4455 words"><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden=true></i>About 4500 words</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden=true></i>21 minutes</span>&nbsp;<span id=busuanzi_container_page_pv class="busuanzi_visitors comment-visitors" data-flag-title="如何基于 SrsRAN_4G 搭建 LTE 基站"><i class="fa-regular fa-eye fa-fw me-1" aria-hidden=true></i><span id=busuanzi_value_page_pv>-</span>&nbsp;views
+</span>&nbsp;</div></div><div class="details toc" id=toc-static data-kept=false><div class="details-summary toc-title"><span>Contents</span>
+<span><i class="details-icon fa-solid fa-angle-right" aria-hidden=true></i></span></div><div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents><ul><li><a href=#安装uhd>安装UHD</a></li><li><a href=#安装srsran_4g>安装srsRAN_4G</a></li><li><a href=#配置srsran_4g>配置srsRAN_4G</a><ul><li><a href=#epcconf>epc.conf</a></li><li><a href=#enbconf>enb.conf</a></li><li><a href=#user_dbcsv>user_db.csv</a></li></ul></li><li><a href=#刷写sim卡并新建apn>刷写SIM卡并新建APN</a></li><li><a href=#运行srsran_4g>运行srsRAN_4G</a></li><li><a href=#常见问题>常见问题</a><ul><li><a href=#grsimwrite-open-error>GRSIMWrite Open Error</a></li><li><a href=#epc读取user_dbcsv失败>EPC读取user_db.csv失败</a></li><li><a href=#ue搜不到小区>UE搜不到小区</a></li><li><a href=#ue可以连接到基站但是上不了网>UE可以连接到基站，但是上不了网</a></li></ul></li><li><a href=#参考链接>参考链接</a></li></ul></nav></div></div><div class=content id=content><p><strong>记录一下如何基于 srsRAN_4G 搭建 LTE 基站</strong></p><p>本文使用的软硬件环境如下：</p><blockquote><p>CPU: Intel i7-14700KF (28) @ 5.500GHz</p><p>USRP: B210</p><p>OS: Ubuntu 20.04.6 LTS x86_64</p><p>UHD: UHD 4.6.0.0</p></blockquote><h2 class=heading-element id=安装uhd><span>安装UHD</span>
+<a href=#%e5%ae%89%e8%a3%85uhd class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h2><p>参考官方链接：<a href=https://files.ettus.com/manual/page_build_guide.html target=_blank rel="external nofollow noopener noreferrer">https://files.ettus.com/manual/page_build_guide.html</a></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># 安装依赖</span>
+</span></span><span class=line><span class=cl>sudo apt-get install autoconf automake build-essential ccache cmake cpufrequtils doxygen ethtool <span class=se>\
+</span></span></span><span class=line><span class=cl><span class=se></span>g++ git inetutils-tools libboost-all-dev libncurses5 libncurses5-dev libusb-1.0-0 libusb-1.0-0-dev <span class=se>\
+</span></span></span><span class=line><span class=cl><span class=se></span>libusb-dev python3-dev python3-mako python3-numpy python3-requests python3-scipy python3-setuptools <span class=se>\
+</span></span></span><span class=line><span class=cl><span class=se></span>python3-ruamel.yaml
+</span></span><span class=line><span class=cl><span class=c1># 下载源码</span>
+</span></span><span class=line><span class=cl>git clone https://github.com/EttusResearch/uhd.git
+</span></span><span class=line><span class=cl><span class=c1># 编译安装</span>
+</span></span><span class=line><span class=cl><span class=nb>cd</span> uhd
+</span></span><span class=line><span class=cl>mkdir build
+</span></span><span class=line><span class=cl><span class=nb>cd</span> build
+</span></span><span class=line><span class=cl>cmake ../
+</span></span><span class=line><span class=cl>make -j<span class=k>$(</span>nproc<span class=k>)</span> <span class=o>&amp;&amp;</span> sudo make install
+</span></span><span class=line><span class=cl><span class=c1># 刷新动态链接库</span>
+</span></span><span class=line><span class=cl>sudo ldconfig
+</span></span><span class=line><span class=cl><span class=c1># 下载镜像并测试连接</span>
+</span></span><span class=line><span class=cl>sudo uhd_images_downloader
+</span></span><span class=line><span class=cl>sudo uhd_usrp_probe</span></span></code></pre></td></tr></table></div></div><h2 class=heading-element id=安装srsran_4g><span>安装srsRAN_4G</span>
+<a href=#%e5%ae%89%e8%a3%85srsran_4g class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># 安装依赖</span>
+</span></span><span class=line><span class=cl>sudo apt-get install libfftw3-dev libmbedtls-dev libboost-program-options-dev libconfig++-dev libsctp-dev
+</span></span><span class=line><span class=cl><span class=c1># 下载源码</span>
+</span></span><span class=line><span class=cl>git clone https://github.com/srsRAN/srsRAN_4G.git
+</span></span><span class=line><span class=cl><span class=c1># 编译安装</span>
+</span></span><span class=line><span class=cl><span class=nb>cd</span> srsRAN_4G
+</span></span><span class=line><span class=cl>mkdir build
+</span></span><span class=line><span class=cl><span class=nb>cd</span> build
+</span></span><span class=line><span class=cl>cmake ../
+</span></span><span class=line><span class=cl>make -j<span class=k>$(</span>nproc<span class=k>)</span></span></span></code></pre></td></tr></table></div></div><h2 class=heading-element id=配置srsran_4g><span>配置srsRAN_4G</span>
+<a href=#%e9%85%8d%e7%bd%aesrsran_4g class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h2><p>经过测试可以正常使用的配置文件如下</p><p>如果找不到UE搜不到小区，就尝试取消注释中“修改点”的代码</p><h3 class=heading-element id=epcconf><span>epc.conf</span>
+<a href=#epcconf class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>  1
+</span><span class=lnt>  2
+</span><span class=lnt>  3
+</span><span class=lnt>  4
+</span><span class=lnt>  5
+</span><span class=lnt>  6
+</span><span class=lnt>  7
+</span><span class=lnt>  8
+</span><span class=lnt>  9
+</span><span class=lnt> 10
+</span><span class=lnt> 11
+</span><span class=lnt> 12
+</span><span class=lnt> 13
+</span><span class=lnt> 14
+</span><span class=lnt> 15
+</span><span class=lnt> 16
+</span><span class=lnt> 17
+</span><span class=lnt> 18
+</span><span class=lnt> 19
+</span><span class=lnt> 20
+</span><span class=lnt> 21
+</span><span class=lnt> 22
+</span><span class=lnt> 23
+</span><span class=lnt> 24
+</span><span class=lnt> 25
+</span><span class=lnt> 26
+</span><span class=lnt> 27
+</span><span class=lnt> 28
+</span><span class=lnt> 29
+</span><span class=lnt> 30
+</span><span class=lnt> 31
+</span><span class=lnt> 32
+</span><span class=lnt> 33
+</span><span class=lnt> 34
+</span><span class=lnt> 35
+</span><span class=lnt> 36
+</span><span class=lnt> 37
+</span><span class=lnt> 38
+</span><span class=lnt> 39
+</span><span class=lnt> 40
+</span><span class=lnt> 41
+</span><span class=lnt> 42
+</span><span class=lnt> 43
+</span><span class=lnt> 44
+</span><span class=lnt> 45
+</span><span class=lnt> 46
+</span><span class=lnt> 47
+</span><span class=lnt> 48
+</span><span class=lnt> 49
+</span><span class=lnt> 50
+</span><span class=lnt> 51
+</span><span class=lnt> 52
+</span><span class=lnt> 53
+</span><span class=lnt> 54
+</span><span class=lnt> 55
+</span><span class=lnt> 56
+</span><span class=lnt> 57
+</span><span class=lnt> 58
+</span><span class=lnt> 59
+</span><span class=lnt> 60
+</span><span class=lnt> 61
+</span><span class=lnt> 62
+</span><span class=lnt> 63
+</span><span class=lnt> 64
+</span><span class=lnt> 65
+</span><span class=lnt> 66
+</span><span class=lnt> 67
+</span><span class=lnt> 68
+</span><span class=lnt> 69
+</span><span class=lnt> 70
+</span><span class=lnt> 71
+</span><span class=lnt> 72
+</span><span class=lnt> 73
+</span><span class=lnt> 74
+</span><span class=lnt> 75
+</span><span class=lnt> 76
+</span><span class=lnt> 77
+</span><span class=lnt> 78
+</span><span class=lnt> 79
+</span><span class=lnt> 80
+</span><span class=lnt> 81
+</span><span class=lnt> 82
+</span><span class=lnt> 83
+</span><span class=lnt> 84
+</span><span class=lnt> 85
+</span><span class=lnt> 86
+</span><span class=lnt> 87
+</span><span class=lnt> 88
+</span><span class=lnt> 89
+</span><span class=lnt> 90
+</span><span class=lnt> 91
+</span><span class=lnt> 92
+</span><span class=lnt> 93
+</span><span class=lnt> 94
+</span><span class=lnt> 95
+</span><span class=lnt> 96
+</span><span class=lnt> 97
+</span><span class=lnt> 98
+</span><span class=lnt> 99
+</span><span class=lnt>100
+</span><span class=lnt>101
+</span><span class=lnt>102
+</span><span class=lnt>103
+</span><span class=lnt>104
+</span><span class=lnt>105
+</span><span class=lnt>106
+</span><span class=lnt>107
+</span><span class=lnt>108
+</span><span class=lnt>109
+</span><span class=lnt>110
+</span><span class=lnt>111
+</span><span class=lnt>112
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl><span class=c>#####################################################################</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#                   srsEPC configuration file</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#####################################################################</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#####################################################################</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># MME configuration</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># mme_code:         8-bit MME code identifies the MME within a group.</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># mme_group:        16-bit MME group identifier.</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># tac:              16-bit Tracking Area Code.</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># mcc:              Mobile Country Code</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># mnc:              Mobile Network Code</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># full_net_name     Display Name of the Network</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># short_net_name    Short Display Name of the Network</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># apn:                  Set Access Point Name (APN)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># mme_bind_addr:    IP bind addr to listen for eNB S1-MME connnections</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># dns_addr:         DNS server address for the UEs</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># encryption_algo:  Preferred encryption algorithm for NAS layer </span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#                   (supported: EEA0 (default), EEA1, EEA2, EEA3)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># integrity_algo:   Preferred integrity protection algorithm for NAS </span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#                   (supported: EIA0 (rejected by most UEs), EIA1 (default), EIA2, EIA3</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># paging_timer:     Value of paging timer in seconds (T3413)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># request_imeisv:   Request UE&#39;s IMEI-SV in security mode command</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># lac:              16-bit Location Area Code.</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#####################################################################</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=p>[</span><span class=l>mme]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=l>mme_code = 0x1a</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=l>mme_group = 0x0001</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=l>tac = 0x0007</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=l>mcc = 001</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=l>mnc = 01</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=l>mme_bind_addr = 127.0.1.100</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=l>apn = srsapn</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=l>dns_addr = 8.8.8.8</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=l>encryption_algo = EEA0</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=l>integrity_algo = EIA1</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=l>paging_timer = 2</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=l>request_imeisv = false</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=l>lac = 0x0006</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#####################################################################</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># HSS configuration</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># db_file:         Location of .csv file that stores UEs information.</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#####################################################################</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=p>[</span><span class=l>hss]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=l>db_file = ../config/user_db.csv</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#####################################################################</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># SP-GW configuration</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># gtpu_bind_addr:   GTP-U bind address.</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># sgi_if_addr:      SGi TUN interface IP address.</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># sgi_if_name:      SGi TUN interface name.</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># max_paging_queue: Maximum packets in paging queue (per UE).</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#####################################################################</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=p>[</span><span class=l>spgw]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=l>gtpu_bind_addr   = 127.0.1.100</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=l>sgi_if_addr      = 172.16.0.1</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=l>sgi_if_name      = srs_spgw_sgi</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=l>max_paging_queue = 100</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>####################################################################</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># PCAP configuration</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># Packets are captured to file in the compact format decoded by </span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># the Wireshark s1ap dissector and with DLT 150. </span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># To use the dissector, edit the preferences for DLT_USER to </span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># add an entry with DLT=150, Payload Protocol=s1ap.</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># enable:   Enable or disable the PCAP.</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># filename: File name where to save the PCAP.</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>####################################################################</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=p>[</span><span class=l>pcap]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=l>enable   = false</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=l>filename = /tmp/epc.pcap</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>####################################################################</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># Log configuration</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># Log levels can be set for individual layers. &#34;all_level&#34; sets log</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># level for all layers unless otherwise configured.</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># Format: e.g. s1ap_level = info</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># In the same way, packet hex dumps can be limited for each level.</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># &#34;all_hex_limit&#34; sets the hex limit for all layers unless otherwise</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># configured.</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># Format: e.g. s1ap_hex_limit = 32</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># Logging layers: nas, s1ap, mme_gtpc, spgw_gtpc, gtpu, spgw, hss, all</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># Logging levels: debug, info, warning, error, none</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># filename: File path to use for log output. Can be set to stdout</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#           to print logs to standard output</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#####################################################################</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=p>[</span><span class=l>log]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=l>all_level = info</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=l>all_hex_limit = 32</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=l>filename = /tmp/epc.log</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#nas_level = debug</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#s1ap_level = debug</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#mme_gtpc_level = debug</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#spgw_gtpc_level = debug</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#gtpu_level = debug</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#spgw_level = debug</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#hss_level = debug</span></span></span></code></pre></td></tr></table></div></div><h3 class=heading-element id=enbconf><span>enb.conf</span>
+<a href=#enbconf class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>  1
+</span><span class=lnt>  2
+</span><span class=lnt>  3
+</span><span class=lnt>  4
+</span><span class=lnt>  5
+</span><span class=lnt>  6
+</span><span class=lnt>  7
+</span><span class=lnt>  8
+</span><span class=lnt>  9
+</span><span class=lnt> 10
+</span><span class=lnt> 11
+</span><span class=lnt> 12
+</span><span class=lnt> 13
+</span><span class=lnt> 14
+</span><span class=lnt> 15
+</span><span class=lnt> 16
+</span><span class=lnt> 17
+</span><span class=lnt> 18
+</span><span class=lnt> 19
+</span><span class=lnt> 20
+</span><span class=lnt> 21
+</span><span class=lnt> 22
+</span><span class=lnt> 23
+</span><span class=lnt> 24
+</span><span class=lnt> 25
+</span><span class=lnt> 26
+</span><span class=lnt> 27
+</span><span class=lnt> 28
+</span><span class=lnt> 29
+</span><span class=lnt> 30
+</span><span class=lnt> 31
+</span><span class=lnt> 32
+</span><span class=lnt> 33
+</span><span class=lnt> 34
+</span><span class=lnt> 35
+</span><span class=lnt> 36
+</span><span class=lnt> 37
+</span><span class=lnt> 38
+</span><span class=lnt> 39
+</span><span class=lnt> 40
+</span><span class=lnt> 41
+</span><span class=lnt> 42
+</span><span class=lnt> 43
+</span><span class=lnt> 44
+</span><span class=lnt> 45
+</span><span class=lnt> 46
+</span><span class=lnt> 47
+</span><span class=lnt> 48
+</span><span class=lnt> 49
+</span><span class=lnt> 50
+</span><span class=lnt> 51
+</span><span class=lnt> 52
+</span><span class=lnt> 53
+</span><span class=lnt> 54
+</span><span class=lnt> 55
+</span><span class=lnt> 56
+</span><span class=lnt> 57
+</span><span class=lnt> 58
+</span><span class=lnt> 59
+</span><span class=lnt> 60
+</span><span class=lnt> 61
+</span><span class=lnt> 62
+</span><span class=lnt> 63
+</span><span class=lnt> 64
+</span><span class=lnt> 65
+</span><span class=lnt> 66
+</span><span class=lnt> 67
+</span><span class=lnt> 68
+</span><span class=lnt> 69
+</span><span class=lnt> 70
+</span><span class=lnt> 71
+</span><span class=lnt> 72
+</span><span class=lnt> 73
+</span><span class=lnt> 74
+</span><span class=lnt> 75
+</span><span class=lnt> 76
+</span><span class=lnt> 77
+</span><span class=lnt> 78
+</span><span class=lnt> 79
+</span><span class=lnt> 80
+</span><span class=lnt> 81
+</span><span class=lnt> 82
+</span><span class=lnt> 83
+</span><span class=lnt> 84
+</span><span class=lnt> 85
+</span><span class=lnt> 86
+</span><span class=lnt> 87
+</span><span class=lnt> 88
+</span><span class=lnt> 89
+</span><span class=lnt> 90
+</span><span class=lnt> 91
+</span><span class=lnt> 92
+</span><span class=lnt> 93
+</span><span class=lnt> 94
+</span><span class=lnt> 95
+</span><span class=lnt> 96
+</span><span class=lnt> 97
+</span><span class=lnt> 98
+</span><span class=lnt> 99
+</span><span class=lnt>100
+</span><span class=lnt>101
+</span><span class=lnt>102
+</span><span class=lnt>103
+</span><span class=lnt>104
+</span><span class=lnt>105
+</span><span class=lnt>106
+</span><span class=lnt>107
+</span><span class=lnt>108
+</span><span class=lnt>109
+</span><span class=lnt>110
+</span><span class=lnt>111
+</span><span class=lnt>112
+</span><span class=lnt>113
+</span><span class=lnt>114
+</span><span class=lnt>115
+</span><span class=lnt>116
+</span><span class=lnt>117
+</span><span class=lnt>118
+</span><span class=lnt>119
+</span><span class=lnt>120
+</span><span class=lnt>121
+</span><span class=lnt>122
+</span><span class=lnt>123
+</span><span class=lnt>124
+</span><span class=lnt>125
+</span><span class=lnt>126
+</span><span class=lnt>127
+</span><span class=lnt>128
+</span><span class=lnt>129
+</span><span class=lnt>130
+</span><span class=lnt>131
+</span><span class=lnt>132
+</span><span class=lnt>133
+</span><span class=lnt>134
+</span><span class=lnt>135
+</span><span class=lnt>136
+</span><span class=lnt>137
+</span><span class=lnt>138
+</span><span class=lnt>139
+</span><span class=lnt>140
+</span><span class=lnt>141
+</span><span class=lnt>142
+</span><span class=lnt>143
+</span><span class=lnt>144
+</span><span class=lnt>145
+</span><span class=lnt>146
+</span><span class=lnt>147
+</span><span class=lnt>148
+</span><span class=lnt>149
+</span><span class=lnt>150
+</span><span class=lnt>151
+</span><span class=lnt>152
+</span><span class=lnt>153
+</span><span class=lnt>154
+</span><span class=lnt>155
+</span><span class=lnt>156
+</span><span class=lnt>157
+</span><span class=lnt>158
+</span><span class=lnt>159
+</span><span class=lnt>160
+</span><span class=lnt>161
+</span><span class=lnt>162
+</span><span class=lnt>163
+</span><span class=lnt>164
+</span><span class=lnt>165
+</span><span class=lnt>166
+</span><span class=lnt>167
+</span><span class=lnt>168
+</span><span class=lnt>169
+</span><span class=lnt>170
+</span><span class=lnt>171
+</span><span class=lnt>172
+</span><span class=lnt>173
+</span><span class=lnt>174
+</span><span class=lnt>175
+</span><span class=lnt>176
+</span><span class=lnt>177
+</span><span class=lnt>178
+</span><span class=lnt>179
+</span><span class=lnt>180
+</span><span class=lnt>181
+</span><span class=lnt>182
+</span><span class=lnt>183
+</span><span class=lnt>184
+</span><span class=lnt>185
+</span><span class=lnt>186
+</span><span class=lnt>187
+</span><span class=lnt>188
+</span><span class=lnt>189
+</span><span class=lnt>190
+</span><span class=lnt>191
+</span><span class=lnt>192
+</span><span class=lnt>193
+</span><span class=lnt>194
+</span><span class=lnt>195
+</span><span class=lnt>196
+</span><span class=lnt>197
+</span><span class=lnt>198
+</span><span class=lnt>199
+</span><span class=lnt>200
+</span><span class=lnt>201
+</span><span class=lnt>202
+</span><span class=lnt>203
+</span><span class=lnt>204
+</span><span class=lnt>205
+</span><span class=lnt>206
+</span><span class=lnt>207
+</span><span class=lnt>208
+</span><span class=lnt>209
+</span><span class=lnt>210
+</span><span class=lnt>211
+</span><span class=lnt>212
+</span><span class=lnt>213
+</span><span class=lnt>214
+</span><span class=lnt>215
+</span><span class=lnt>216
+</span><span class=lnt>217
+</span><span class=lnt>218
+</span><span class=lnt>219
+</span><span class=lnt>220
+</span><span class=lnt>221
+</span><span class=lnt>222
+</span><span class=lnt>223
+</span><span class=lnt>224
+</span><span class=lnt>225
+</span><span class=lnt>226
+</span><span class=lnt>227
+</span><span class=lnt>228
+</span><span class=lnt>229
+</span><span class=lnt>230
+</span><span class=lnt>231
+</span><span class=lnt>232
+</span><span class=lnt>233
+</span><span class=lnt>234
+</span><span class=lnt>235
+</span><span class=lnt>236
+</span><span class=lnt>237
+</span><span class=lnt>238
+</span><span class=lnt>239
+</span><span class=lnt>240
+</span><span class=lnt>241
+</span><span class=lnt>242
+</span><span class=lnt>243
+</span><span class=lnt>244
+</span><span class=lnt>245
+</span><span class=lnt>246
+</span><span class=lnt>247
+</span><span class=lnt>248
+</span><span class=lnt>249
+</span><span class=lnt>250
+</span><span class=lnt>251
+</span><span class=lnt>252
+</span><span class=lnt>253
+</span><span class=lnt>254
+</span><span class=lnt>255
+</span><span class=lnt>256
+</span><span class=lnt>257
+</span><span class=lnt>258
+</span><span class=lnt>259
+</span><span class=lnt>260
+</span><span class=lnt>261
+</span><span class=lnt>262
+</span><span class=lnt>263
+</span><span class=lnt>264
+</span><span class=lnt>265
+</span><span class=lnt>266
+</span><span class=lnt>267
+</span><span class=lnt>268
+</span><span class=lnt>269
+</span><span class=lnt>270
+</span><span class=lnt>271
+</span><span class=lnt>272
+</span><span class=lnt>273
+</span><span class=lnt>274
+</span><span class=lnt>275
+</span><span class=lnt>276
+</span><span class=lnt>277
+</span><span class=lnt>278
+</span><span class=lnt>279
+</span><span class=lnt>280
+</span><span class=lnt>281
+</span><span class=lnt>282
+</span><span class=lnt>283
+</span><span class=lnt>284
+</span><span class=lnt>285
+</span><span class=lnt>286
+</span><span class=lnt>287
+</span><span class=lnt>288
+</span><span class=lnt>289
+</span><span class=lnt>290
+</span><span class=lnt>291
+</span><span class=lnt>292
+</span><span class=lnt>293
+</span><span class=lnt>294
+</span><span class=lnt>295
+</span><span class=lnt>296
+</span><span class=lnt>297
+</span><span class=lnt>298
+</span><span class=lnt>299
+</span><span class=lnt>300
+</span><span class=lnt>301
+</span><span class=lnt>302
+</span><span class=lnt>303
+</span><span class=lnt>304
+</span><span class=lnt>305
+</span><span class=lnt>306
+</span><span class=lnt>307
+</span><span class=lnt>308
+</span><span class=lnt>309
+</span><span class=lnt>310
+</span><span class=lnt>311
+</span><span class=lnt>312
+</span><span class=lnt>313
+</span><span class=lnt>314
+</span><span class=lnt>315
+</span><span class=lnt>316
+</span><span class=lnt>317
+</span><span class=lnt>318
+</span><span class=lnt>319
+</span><span class=lnt>320
+</span><span class=lnt>321
+</span><span class=lnt>322
+</span><span class=lnt>323
+</span><span class=lnt>324
+</span><span class=lnt>325
+</span><span class=lnt>326
+</span><span class=lnt>327
+</span><span class=lnt>328
+</span><span class=lnt>329
+</span><span class=lnt>330
+</span><span class=lnt>331
+</span><span class=lnt>332
+</span><span class=lnt>333
+</span><span class=lnt>334
+</span><span class=lnt>335
+</span><span class=lnt>336
+</span><span class=lnt>337
+</span><span class=lnt>338
+</span><span class=lnt>339
+</span><span class=lnt>340
+</span><span class=lnt>341
+</span><span class=lnt>342
+</span><span class=lnt>343
+</span><span class=lnt>344
+</span><span class=lnt>345
+</span><span class=lnt>346
+</span><span class=lnt>347
+</span><span class=lnt>348
+</span><span class=lnt>349
+</span><span class=lnt>350
+</span><span class=lnt>351
+</span><span class=lnt>352
+</span><span class=lnt>353
+</span><span class=lnt>354
+</span><span class=lnt>355
+</span><span class=lnt>356
+</span><span class=lnt>357
+</span><span class=lnt>358
+</span><span class=lnt>359
+</span><span class=lnt>360
+</span><span class=lnt>361
+</span><span class=lnt>362
+</span><span class=lnt>363
+</span><span class=lnt>364
+</span><span class=lnt>365
+</span><span class=lnt>366
+</span><span class=lnt>367
+</span><span class=lnt>368
+</span><span class=lnt>369
+</span><span class=lnt>370
+</span><span class=lnt>371
+</span><span class=lnt>372
+</span><span class=lnt>373
+</span><span class=lnt>374
+</span><span class=lnt>375
+</span><span class=lnt>376
+</span><span class=lnt>377
+</span><span class=lnt>378
+</span><span class=lnt>379
+</span><span class=lnt>380
+</span><span class=lnt>381
+</span><span class=lnt>382
+</span><span class=lnt>383
+</span><span class=lnt>384
+</span><span class=lnt>385
+</span><span class=lnt>386
+</span><span class=lnt>387
+</span><span class=lnt>388
+</span><span class=lnt>389
+</span><span class=lnt>390
+</span><span class=lnt>391
+</span><span class=lnt>392
+</span><span class=lnt>393
+</span><span class=lnt>394
+</span><span class=lnt>395
+</span><span class=lnt>396
+</span><span class=lnt>397
+</span><span class=lnt>398
+</span><span class=lnt>399
+</span><span class=lnt>400
+</span><span class=lnt>401
+</span><span class=lnt>402
+</span><span class=lnt>403
+</span><span class=lnt>404
+</span><span class=lnt>405
+</span><span class=lnt>406
+</span><span class=lnt>407
+</span><span class=lnt>408
+</span><span class=lnt>409
+</span><span class=lnt>410
+</span><span class=lnt>411
+</span><span class=lnt>412
+</span><span class=lnt>413
+</span><span class=lnt>414
+</span><span class=lnt>415
+</span><span class=lnt>416
+</span><span class=lnt>417
+</span><span class=lnt>418
+</span><span class=lnt>419
+</span><span class=lnt>420
+</span><span class=lnt>421
+</span><span class=lnt>422
+</span><span class=lnt>423
+</span><span class=lnt>424
+</span><span class=lnt>425
+</span><span class=lnt>426
+</span><span class=lnt>427
+</span><span class=lnt>428
+</span><span class=lnt>429
+</span><span class=lnt>430
+</span><span class=lnt>431
+</span><span class=lnt>432
+</span><span class=lnt>433
+</span><span class=lnt>434
+</span><span class=lnt>435
+</span><span class=lnt>436
+</span><span class=lnt>437
+</span><span class=lnt>438
+</span><span class=lnt>439
+</span><span class=lnt>440
+</span><span class=lnt>441
+</span><span class=lnt>442
+</span><span class=lnt>443
+</span><span class=lnt>444
+</span><span class=lnt>445
+</span><span class=lnt>446
+</span><span class=lnt>447
+</span><span class=lnt>448
+</span><span class=lnt>449
+</span><span class=lnt>450
+</span><span class=lnt>451
+</span><span class=lnt>452
+</span><span class=lnt>453
+</span><span class=lnt>454
+</span><span class=lnt>455
+</span><span class=lnt>456
+</span><span class=lnt>457
+</span><span class=lnt>458
+</span><span class=lnt>459
+</span><span class=lnt>460
+</span><span class=lnt>461
+</span><span class=lnt>462
+</span><span class=lnt>463
+</span><span class=lnt>464
+</span><span class=lnt>465
+</span><span class=lnt>466
+</span><span class=lnt>467
+</span><span class=lnt>468
+</span><span class=lnt>469
+</span><span class=lnt>470
+</span><span class=lnt>471
+</span><span class=lnt>472
+</span><span class=lnt>473
+</span><span class=lnt>474
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl><span class=c>#####################################################################</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#                   srsENB configuration file</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#####################################################################</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#####################################################################</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># eNB configuration</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># enb_id:               20-bit eNB identifier.</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># mcc:                  Mobile Country Code</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># mnc:                  Mobile Network Code</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># mme_addr:             IP address of MME for S1 connnection</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># gtp_bind_addr:        Local IP address to bind for GTP connection</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># gtp_advertise_addr:   IP address of eNB to advertise for DL GTP-U Traffic</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># s1c_bind_addr:        Local IP address to bind for S1AP connection</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># s1c_bind_port:        Source port for S1AP connection (0 means any)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># n_prb:                Number of Physical Resource Blocks (6,15,25,50,75,100)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># tm:                   Transmission mode 1-4 (TM1 default)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># nof_ports:            Number of Tx ports (1 port default, set to 2 for TM2/3/4)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#####################################################################</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=p>[</span><span class=l>enb]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=l>enb_id = 0x19B</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=l>mcc = 001</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=l>mnc = 01</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=l>mme_addr = 127.0.1.100</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=l>gtp_bind_addr = 127.0.1.1</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=l>s1c_bind_addr = 127.0.1.1</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=l>s1c_bind_port = 0</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=l>n_prb = 50</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># n_prb = 100 # 修改处1-物理资源块数量</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#tm = 4</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># tm = 1 # 修改处2-传输模式</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#nof_ports = 2</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># nof_ports = 1 # 修改处3-天线端口数量</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#####################################################################</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># eNB configuration files</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># sib_config:  SIB1, SIB2 and SIB3 configuration file </span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># note: When enabling MBMS, use the sib.conf.mbsfn configuration file which includes SIB13</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># rr_config:   Radio Resources configuration file </span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># rb_config:   SRB/DRB configuration file </span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#####################################################################</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=p>[</span><span class=l>enb_files]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=l>sib_config = ../config/sib.conf</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=l>rr_config  = ../config/rr.conf</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=l>rb_config = ../config/rb.conf</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#####################################################################</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># RF configuration</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># dl_earfcn: EARFCN code for DL (only valid if a single cell is configured in rr.conf)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># tx_gain: Transmit gain (dB).</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># rx_gain: Optional receive gain (dB). If disabled, AGC if enabled</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># Optional parameters:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># dl_freq:            Override DL frequency corresponding to dl_earfcn</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># ul_freq:            Override UL frequency corresponding to dl_earfcn (must be set if dl_freq is set)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># device_name:        Device driver family</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#                     Supported options: &#34;auto&#34; (uses first driver found), &#34;UHD&#34;, &#34;bladeRF&#34;, &#34;soapy&#34;, &#34;zmq&#34; or &#34;Sidekiq&#34;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># device_args:        Arguments for the device driver. Options are &#34;auto&#34; or any string.</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#                     Default for UHD: &#34;recv_frame_size=9232,send_frame_size=9232&#34;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#                     Default for bladeRF: &#34;&#34;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># time_adv_nsamples:  Transmission time advance (in number of samples) to compensate for RF delay</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#                     from antenna to timestamp insertion.</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#                     Default &#34;auto&#34;. B210 USRP: 100 samples, bladeRF: 27</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#####################################################################</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=p>[</span><span class=l>rf]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=l>dl_earfcn = 3350</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># dl_earfcn = 500 # 修改处4-下行 LTE 载波的中心频率</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=l>tx_gain = 80</span><span class=w> </span><span class=c># 发射功率</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=l>rx_gain = 40</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># rx_gain = 70 # 修改处5-接收信号的灵敏度</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># device_args = type=b200, clock=external,master_clock_rate=23.04e6 # 修改处7-SDR设备、时钟源、主时钟频率</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#device_name = auto</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># For best performance in 2x2 MIMO and &gt;= 15 MHz use the following device_args settings:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#     USRP B210: num_recv_frames=64,num_send_frames=64</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#     And for 75 PRBs, also append &#34;,master_clock_rate=15.36e6&#34; to the device args</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># For best performance when BW&lt;5 MHz (25 PRB), use the following device_args settings:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#     USRP B210: send_frame_size=512,recv_frame_size=512</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#device_args = auto</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#time_adv_nsamples = auto</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># Example for ZMQ-based operation with TCP transport for I/Q samples</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#device_name = zmq</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#device_args = fail_on_disconnect=true,tx_port=tcp://*:2000,rx_port=tcp://localhost:2001,id=enb,base_srate=23.04e6</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#####################################################################</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># Packet capture configuration</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># MAC-layer packets are captured to a file in the compact format which can</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># be decoded by Wireshark. For decoding, use the UDP dissector and the UDP </span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># heuristic dissection. Edit the preferences (Edit &gt; Preferences &gt; </span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># Protocols &gt; DLT_USER) for DLT_USER to add an entry for DLT=149 with </span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># Protocol=udp. Further, enable the heuristic dissection in UDP under:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># Analyze &gt; Enabled Protocols &gt; MAC-LTE &gt; mac_lte_udp and MAC-NR &gt; mac_nr_udp</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># For more information see: https://wiki.wireshark.org/MAC-LTE</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># Configuring this Wireshark preferences is needed for decoding the MAC PCAP</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># files as well as for the live network capture option.</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># Please note that this setting will by default only capture MAC</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># frames on dedicated channels, and not SIB.  You have to build with</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># WRITE_SIB_PCAP enabled in srsenb/src/stack/mac/mac.cc if you want</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># SIB to be part of the MAC pcap file.</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># S1AP Packets are captured to a file in the compact format which can</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># be decoded by the Wireshark s1ap dissector with DLT 150. </span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># To use the dissector, edit the preferences for DLT_USER to </span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># add an entry with DLT=150, Payload Protocol=s1ap.</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># enable:        Enable MAC layer packet captures (true/false)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># filename:      File path to use for LTE MAC packet captures</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># nr_filename:   File path to use for NR MAC packet captures</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># s1ap_enable:   Enable or disable the PCAP.</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># s1ap_filename: File name where to save the PCAP.</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># mac_net_enable: Enable MAC layer packet captures sent over the network (true/false default: false)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># bind_ip: Bind IP address for MAC network trace (default: &#34;0.0.0.0&#34;)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># bind_port: Bind port for MAC network trace (default: 5687)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># client_ip: Client IP address for MAC network trace (default: &#34;127.0.0.1&#34;)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># client_port Client IP address for MAC network trace (default: 5847)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#####################################################################</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=p>[</span><span class=l>pcap]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#enable = false</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#filename = /tmp/enb_mac.pcap</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#nr_filename = /tmp/enb_mac_nr.pcap</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#s1ap_enable = false</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#s1ap_filename = /tmp/enb_s1ap.pcap</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#mac_net_enable = false</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#bind_ip = 0.0.0.0</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#bind_port = 5687</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#client_ip = 127.0.0.1</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#client_port = 5847</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#####################################################################</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># Log configuration</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># Log levels can be set for individual layers. &#34;all_level&#34; sets log</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># level for all layers unless otherwise configured.</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># Format: e.g. phy_level = info</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># In the same way, packet hex dumps can be limited for each level.</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># &#34;all_hex_limit&#34; sets the hex limit for all layers unless otherwise</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># configured.</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># Format: e.g. phy_hex_limit = 32</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># Logging layers: rf, phy, phy_lib, mac, rlc, pdcp, rrc, gtpu, s1ap, stack, all</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># Logging levels: debug, info, warning, error, none</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># filename: File path to use for log output. Can be set to stdout</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#           to print logs to standard output</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># file_max_size: Maximum file size (in kilobytes). When passed, multiple files are created.</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#                If set to negative, a single log file will be created.</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#####################################################################</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=p>[</span><span class=l>log]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=l>all_level = warning</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=l>all_hex_limit = 32</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=l>filename = /tmp/enb.log</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=l>file_max_size = -1</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=p>[</span><span class=l>gui]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=l>enable = false</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#####################################################################</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># Scheduler configuration options</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># sched_policy:      User MAC scheduling policy (E.g. time_rr, time_pf)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># min_aggr_level:    Optional minimum aggregation level index (l=log2(L) can be 0, 1, 2 or 3)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># max_aggr_level:    Optional maximum aggregation level index (l=log2(L) can be 0, 1, 2 or 3)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># adaptive_aggr_level: Boolean flag to enable/disable adaptive aggregation level based on target BLER</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># pdsch_mcs:         Optional fixed PDSCH MCS (ignores reported CQIs if specified)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># pdsch_max_mcs:     Optional PDSCH MCS limit</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># pusch_mcs:         Optional fixed PUSCH MCS (ignores reported CQIs if specified)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># pusch_max_mcs:     Optional PUSCH MCS limit</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># min_nof_ctrl_symbols: Minimum number of control symbols</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># max_nof_ctrl_symbols: Maximum number of control symbols</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># pucch_multiplex_enable: Allow PUCCH HARQ to collide with PUSCH and other PUCCH</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># pucch_harq_max_rb: Maximum number of RB to be used for PUCCH on the edges of the grid.</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#                    If defined and greater than 0, the scheduler will avoid DL PDCCH allocations if</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#                    PUCCH HARQ falls outside this region</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># target_bler:       Target BLER (in decimal) to achieve via adaptive link</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># max_delta_dl_cqi:  Maximum shift in CQI for adaptive DL link</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># max_delta_ul_snr:  Maximum shift in UL SNR for adaptive UL link</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># adaptive_dl_mcs_step_size: Step size or learning rate used in adaptive DL MCS link</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># adaptive_ul_mcs_step_size: Step size or learning rate used in adaptive UL MCS link</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># min_tpc_tti_interval: Minimum TTI interval between TPCs different than 1</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># ul_snr_avg_alpha:  Exponential Average alpha coefficient used in estimation of UL SNR</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># init_ul_snr_value: Initial UL SNR value used for computing MCS in the first UL grant</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># init_dl_cqi:       DL CQI value used before any CQI report is available to the eNB</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># max_sib_coderate:  Upper bound on SIB and RAR grants coderate</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># pdcch_cqi_offset:  CQI offset in derivation of PDCCH aggregation level</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># nr_pdsch_mcs:      Optional fixed NR PDSCH MCS (ignores reported CQIs if specified)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># nr_pusch_mcs:      Optional fixed NR PUSCH MCS (ignores reported CQIs if specified)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#####################################################################</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=p>[</span><span class=l>scheduler]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#policy     = time_pf</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#policy_args = 2</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#min_aggr_level   = 0</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#max_aggr_level   = 3</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#adaptive_aggr_level = false</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#pdsch_mcs        = -1</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#pdsch_max_mcs    = -1</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#pusch_mcs        = -1</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#pusch_max_mcs    = 16</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#min_nof_ctrl_symbols = 1</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#max_nof_ctrl_symbols = 3</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#pucch_multiplex_enable = false</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#pucch_harq_max_rb = 0</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#target_bler = 0.05</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#max_delta_dl_cqi = 5</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#max_delta_ul_snr = 5</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#adaptive_dl_mcs_step_size = 0.001</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#adaptive_ul_mcs_step_size = 0.001</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#min_tpc_tti_interval = 1</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#ul_snr_avg_alpha=0.05</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#init_ul_snr_value=5</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#init_dl_cqi=5</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#max_sib_coderate=0.3</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#pdcch_cqi_offset=0</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#nr_pdsch_mcs=28</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#nr_pusch_mcs=28</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#####################################################################</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># Slicing configuration</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># enable_eMBB           Enables enhanced mobile broadband (eMBB) slice in the gNodeB</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># enable_URLLC          Enables Ultra Reliable Low Latency Communications (URLLC) slice in the gNodeB</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># enable_MIoT           Enables Massive Internet of Things (MIoT) slice in the gNodeB</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># eMBB_sd               eMBB slice differentiator</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># URLLC_sd              URLLC slice differentiator</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># MIoT_sd               MIoT slice differentiator</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#####################################################################</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=p>[</span><span class=l>slicing]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#enable_eMBB = false</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#enable_URLLC = false</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#enable_MIoT = false</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#eMBB_sd = 1</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#URLLC_sd = 1</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#MIoT_sd = 1</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#####################################################################</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># eMBMS configuration options</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># enable:               Enable MBMS transmission in the eNB</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># m1u_multiaddr:        Multicast address the M1-U socket will register to</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># m1u_if_addr:          Address of the interface the M1-U interface will listen to for multicast packets</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># mcs:                  Modulation and Coding scheme for MBMS traffic</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#####################################################################</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=p>[</span><span class=l>embms]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#enable = false</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#m1u_multiaddr = 239.255.0.1</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#m1u_if_addr = 127.0.1.201</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#mcs = 20</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#####################################################################</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># Channel emulator options:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># enable:            Enable/disable internal Downlink/Uplink channel emulator</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># -- AWGN Generator</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># awgn.enable:       Enable/disable AWGN generator</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># awgn.snr:          Target SNR in dB</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># -- Fading emulator</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># fading.enable:     Enable/disable fading simulator</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># fading.model:      Fading model + maximum doppler (E.g. none, epa5, eva70, etu300, etc)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># -- Delay Emulator     delay(t) = delay_min + (delay_max - delay_min) * (1 + sin(2pi*t/period)) / 2</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#                       Maximum speed [m/s]: (delay_max - delay_min) * pi * 300 / period</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># delay.enable:      Enable/disable delay simulator</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># delay.period_s:    Delay period in seconds</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># delay.init_time_s: Delay initial time in seconds</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># delay.maximum_us:  Maximum delay in microseconds</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># delay.minumum_us:  Minimum delay in microseconds</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># -- Radio-Link Failure (RLF) Emulator</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># rlf.enable:        Enable/disable RLF simulator</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># rlf.t_on_ms:       Time for On state of the channel (ms)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># rlf.t_off_ms:      Time for Off state of the channel (ms)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># -- High Speed Train Doppler model simulator</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># hst.enable:        Enable/disable HST simulator</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># hst.period_s:      HST simulation period in seconds</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># hst.fd_hz:         Doppler frequency in Hz</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># hst.init_time_s:   Initial time in seconds</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#####################################################################</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=p>[</span><span class=l>channel.dl]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#enable        = false</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=p>[</span><span class=l>channel.dl.awgn]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#enable        = false</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#snr            = 30</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=p>[</span><span class=l>channel.dl.fading]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#enable        = false</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#model         = none</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=p>[</span><span class=l>channel.dl.delay]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#enable        = false</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#period_s      = 3600</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#init_time_s   = 0</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#maximum_us    = 100</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#minimum_us    = 10</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=p>[</span><span class=l>channel.dl.rlf]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#enable        = false</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#t_on_ms       = 10000</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#t_off_ms      = 2000</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=p>[</span><span class=l>channel.dl.hst]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#enable        = false</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#period_s      = 7.2</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#fd_hz         = 750.0</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#init_time_s   = 0.0</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=p>[</span><span class=l>channel.ul]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#enable        = false</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=p>[</span><span class=l>channel.ul.awgn]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#enable        = false</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#n0            = -30</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=p>[</span><span class=l>channel.ul.fading]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#enable        = false</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#model         = none</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=p>[</span><span class=l>channel.ul.delay]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#enable        = false</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#period_s      = 3600</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#init_time_s   = 0</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#maximum_us    = 100</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#minimum_us    = 10</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=p>[</span><span class=l>channel.ul.rlf]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#enable        = false</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#t_on_ms       = 10000</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#t_off_ms      = 2000</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=p>[</span><span class=l>channel.ul.hst]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#enable        = false</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#period_s      = 7.2</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#fd_hz         = -750.0</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#init_time_s   = 0.0</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#####################################################################</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># CFR configuration options</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># The CFR module provides crest factor reduction for the transmitted signal.</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># enable:           Enable or disable the CFR. Default: disabled</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># mode:             manual:   CFR threshold is set by cfr_manual_thres (default).</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#                   auto_ema: CFR threshold is adaptive based on the signal PAPR. Power avg. with Exponential Moving Average.</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#                             The time constant of the averaging can be tweaked with the ema_alpha parameter.</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#                   auto_cma: CFR threshold is adaptive based on the signal PAPR. Power avg. with Cumulative Moving Average.</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#                             Use with care, as CMA&#39;s increasingly slow response may be unsuitable for most use cases.</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># strength:         Ratio between amplitude-limited vs unprocessed signal (0 to 1). Default: 1</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># manual_thres:     Fixed manual clipping threshold for CFR manual mode. Default: 0.5</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># auto_target_papr: Signal PAPR target (in dB) in CFR auto modes. output PAPR can be higher due to peak smoothing. Default: 8</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># ema_alpha:        Alpha coefficient for the power average in auto_ema mode. Default: 1/7</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#####################################################################</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=p>[</span><span class=l>cfr]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#enable           = false</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#mode             = manual</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#manual_thres     = 0.5</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#strength         = 1</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#auto_target_papr = 8</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#ema_alpha        = 0.0143</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># E2 Agent configuration options</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># ric_ip:                IP address of the RIC controller</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># ric_port:              Port of the RIC controller</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># ric_bind_ip:           Local IP address to bind for RIC connection</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># ric_bind_port:         Local port to bind for RIC connection</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># max_ric_setup_retries: Maximum amount of retries to setup the RIC connection. If this value is exceeded, an alarm is written to the log. -1 means infinity.</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># ric_connect_timer:     Connection Retry Timer for RIC connection (seconds)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#####################################################################</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=p>[</span><span class=l>e2_agent]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#enable = false</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#ric_ip =  127.0.0.1</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#ric_port = 36421</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#ric_bind_ip =  127.0.0.1</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#ric_bind_port = 36425</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#max_ric_setup_retries = -1</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#ric_connect_timer = 10</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#####################################################################</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># Expert configuration options</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># pusch_max_its:        Maximum number of turbo decoder iterations (default: 4)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># nr_pusch_max_its:     Maximum number of LDPC iterations for NR (Default 10)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># pusch_8bit_decoder:   Use 8-bit for LLR representation and turbo decoder trellis computation (experimental)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># nof_phy_threads:      Selects the number of PHY threads (maximum: 4, minimum: 1, default: 3)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># metrics_period_secs:  Sets the period at which metrics are requested from the eNB</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># metrics_csv_enable:   Write eNB metrics to CSV file.</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># metrics_csv_filename: File path to use for CSV metrics</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># report_json_enable:   Write eNB report to JSON file (default: disabled)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># report_json_filename: Report JSON filename (default: /tmp/enb_report.json)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># report_json_asn1_oct: Prints ASN1 messages encoded as an octet string instead of plain text in the JSON report file</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># alarms_log_enable:    Enable Alarms logging (default: disabled)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># alarms_filename:      Alarms logging filename (default: /tmp/alarms.log)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># tracing_enable:       Write source code tracing information to a file</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># tracing_filename:     File path to use for tracing information</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># tracing_buffcapacity: Maximum capacity in bytes the tracing framework can store</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># stdout_ts_enable:     Prints once per second the timestamp into stdout</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># tx_amplitude:         Transmit amplitude factor (set 0-1 to reduce PAPR)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># rrc_inactivity_timer  Inactivity timeout used to remove UE context from RRC (in milliseconds)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># max_mac_dl_kos:       Maximum number of consecutive KOs in DL before triggering the UE&#39;s release (default: 100)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># max_mac_ul_kos:       Maximum number of consecutive KOs in UL before triggering the UE&#39;s release (default: 100)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># max_prach_offset_us:  Maximum allowed RACH offset (in us)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># nof_prealloc_ues:     Number of UE memory resources to preallocate during eNB initialization for faster UE creation (default: 8)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># rlf_release_timer_ms: Time taken by eNB to release UE context after it detects an RLF</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># eea_pref_list:        Ordered preference list for the selection of encryption algorithm (EEA) (default: EEA0, EEA2, EEA1)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># eia_pref_list:        Ordered preference list for the selection of integrity algorithm (EIA) (default: EIA2, EIA1, EIA0)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># gtpu_tunnel_timeout:  Time that GTPU takes to release indirect forwarding tunnel since the last received GTPU PDU (0 for no timer)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># ts1_reloc_prep_timeout: S1AP TS 36.413 TS1RelocPrep Expiry Timeout value in milliseconds</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># ts1_reloc_overall_timeout: S1AP TS 36.413 TS1RelocOverall Expiry Timeout value in milliseconds</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># rlf_release_timer_ms: Time taken by eNB to release UE context after it detects a RLF</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># rlf_min_ul_snr_estim: SNR threshold in dB below which the enb is notified with RLF ko</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># s1_setup_max_retries: Maximum amount of retries to setup the S1AP connection. If this value is exceeded, an alarm is written to the log. -1 means infinity.</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># s1_connect_timer:     Connection Retry Timer for S1 connection (seconds)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># rx_gain_offset:       RX Gain offset to add to rx_gain to calibrate RSRP readings</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># use_cedron_f_est_alg: Whether to use Cedron algorithm for TA estimation or not (Default: false)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#####################################################################</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=p>[</span><span class=l>expert]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#pusch_max_its        = 8 # These are half iterations</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#nr_pusch_max_its     = 10</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#pusch_8bit_decoder   = false</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#nof_phy_threads      = 3</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#metrics_period_secs  = 1</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#metrics_csv_enable   = false</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#metrics_csv_filename = /tmp/enb_metrics.csv</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#report_json_enable   = true</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#report_json_filename = /tmp/enb_report.json</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#report_json_asn1_oct = false</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#alarms_log_enable    = true</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#alarms_filename      = /tmp/enb_alarms.log</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#tracing_enable       = true</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#tracing_filename     = /tmp/enb_tracing.log</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#tracing_buffcapacity = 1000000</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#stdout_ts_enable     = false</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#tx_amplitude         = 0.6</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#rrc_inactivity_timer = 30000</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#max_mac_dl_kos       = 100</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#max_mac_ul_kos       = 100</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#max_prach_offset_us  = 30</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#nof_prealloc_ues     = 8</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#rlf_release_timer_ms = 4000</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#lcid_padding         = 3</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#eea_pref_list = EEA0, EEA2, EEA1</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#eia_pref_list = EIA2, EIA1, EIA0</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#gtpu_tunnel_timeout = 0</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#extended_cp         = false</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#ts1_reloc_prep_timeout = 10000</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#ts1_reloc_overall_timeout = 10000</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#rlf_release_timer_ms = 4000</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#rlf_min_ul_snr_estim = -2</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#s1_setup_max_retries = -1</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#s1_connect_timer = 10</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#rx_gain_offset = 62</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#mac_prach_bi         = 0</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#use_cedron_f_est_alg = false</span></span></span></code></pre></td></tr></table></div></div><h3 class=heading-element id=user_dbcsv><span>user_db.csv</span>
+<a href=#user_dbcsv class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-csv data-lang=csv><span class=line><span class=cl><span class=s>#                                                                                           </span><span class=p>
+</span></span></span><span class=line><span class=cl><span class=p></span><span class=s># .csv to store UE&#39;s information in HSS                                                     </span><span class=p>
+</span></span></span><span class=line><span class=cl><span class=p></span><span class=s># Kept in the following format: &#34;Name</span><span class=p>,</span><span class=s>Auth</span><span class=p>,</span><span class=s>IMSI</span><span class=p>,</span><span class=s>Key</span><span class=p>,</span><span class=s>OP_Type</span><span class=p>,</span><span class=s>OP/OPc</span><span class=p>,</span><span class=s>AMF</span><span class=p>,</span><span class=s>SQN</span><span class=p>,</span><span class=s>QCI</span><span class=p>,</span><span class=s>IP_alloc&#34;  </span><span class=p>
+</span></span></span><span class=line><span class=cl><span class=p></span><span class=s>#                                                                                           </span><span class=p>
+</span></span></span><span class=line><span class=cl><span class=p></span><span class=s># Name:     Human readable name to help distinguish UE&#39;s. Ignored by the HSS                </span><span class=p>
+</span></span></span><span class=line><span class=cl><span class=p></span><span class=s># Auth:     Authentication algorithm used by the UE. Valid algorithms are XOR               </span><span class=p>
+</span></span></span><span class=line><span class=cl><span class=p></span><span class=s>#           (xor) and MILENAGE (mil)                                                        </span><span class=p>
+</span></span></span><span class=line><span class=cl><span class=p></span><span class=s># IMSI:     UE&#39;s IMSI value                                                                 </span><span class=p>
+</span></span></span><span class=line><span class=cl><span class=p></span><span class=s># Key:      UE&#39;s key</span><span class=p>,</span><span class=s> where other keys are derived from. Stored in hexadecimal              </span><span class=p>
+</span></span></span><span class=line><span class=cl><span class=p></span><span class=s># OP_Type:  Operator&#39;s code type</span><span class=p>,</span><span class=s> either OP or OPc                                          </span><span class=p>
+</span></span></span><span class=line><span class=cl><span class=p></span><span class=s># OP/OPc:   Operator Code/Cyphered Operator Code</span><span class=p>,</span><span class=s> stored in hexadecimal                     </span><span class=p>
+</span></span></span><span class=line><span class=cl><span class=p></span><span class=s># AMF:      Authentication management field</span><span class=p>,</span><span class=s> stored in hexadecimal                          </span><span class=p>
+</span></span></span><span class=line><span class=cl><span class=p></span><span class=s># SQN:      UE&#39;s Sequence number for freshness of the authentication                        </span><span class=p>
+</span></span></span><span class=line><span class=cl><span class=p></span><span class=s># QCI:      QoS Class Identifier for the UE&#39;s default bearer.                               </span><span class=p>
+</span></span></span><span class=line><span class=cl><span class=p></span><span class=s># IP_alloc: IP allocation stratagy for the SPGW.                                            </span><span class=p>
+</span></span></span><span class=line><span class=cl><span class=p></span><span class=s>#           With &#39;dynamic&#39; the SPGW will automatically allocate IPs                         </span><span class=p>
+</span></span></span><span class=line><span class=cl><span class=p></span><span class=s>#           With a valid IPv4 (e.g. &#39;172.16.0.2&#39;) the UE will have a statically assigned IP.</span><span class=p>
+</span></span></span><span class=line><span class=cl><span class=p></span><span class=s>#                                                                                           </span><span class=p>
+</span></span></span><span class=line><span class=cl><span class=p></span><span class=s># Note: Lines starting by &#39;#&#39; are ignored and will be overwritten  </span><span class=p>
+</span></span></span><span class=line><span class=cl><span class=p></span><span class=s># (ue_name)</span><span class=p>,</span><span class=s>(algo)</span><span class=p>,</span><span class=s>(imsi)</span><span class=p>,</span><span class=s>(K)</span><span class=p>,</span><span class=s>(OP/OPc_type)</span><span class=p>,</span><span class=s>(OP/OPc_value)</span><span class=p>,</span><span class=s>(AMF)</span><span class=p>,</span><span class=s>(SQN)</span><span class=p>,</span><span class=s>(QCI)</span><span class=p>,</span><span class=s>(IP_alloc)            </span><span class=p>
+</span></span></span><span class=line><span class=cl><span class=p></span><span class=s>ue1</span><span class=p>,</span><span class=s>mil</span><span class=p>,</span><span class=s>001012345678901</span><span class=p>,</span><span class=s>00112233445566778899aabbccddeeff</span><span class=p>,</span><span class=s>opc</span><span class=p>,</span><span class=s>63bfa50ee6523365ff14c1f45f88737d</span><span class=p>,</span><span class=s>8000</span><span class=p>,</span><span class=s>000000003fc1</span><span class=p>,</span><span class=s>7</span><span class=p>,</span><span class=s>dynamic             </span><span class=p>
+</span></span></span><span class=line><span class=cl><span class=p></span><span class=s>ue2</span><span class=p>,</span><span class=s>mil</span><span class=p>,</span><span class=s>001010123456780</span><span class=p>,</span><span class=s>00112233445566778899aabbccddeeff</span><span class=p>,</span><span class=s>opc</span><span class=p>,</span><span class=s>63bfa50ee6523365ff14c1f45f88737d</span><span class=p>,</span><span class=s>8000</span><span class=p>,</span><span class=s>000000001234</span><span class=p>,</span><span class=s>7</span><span class=p>,</span><span class=s>dynamic</span><span class=p>
+</span></span></span><span class=line><span class=cl><span class=p></span><span class=s>ue3</span><span class=p>,</span><span class=s>mil</span><span class=p>,</span><span class=s>221010123456789</span><span class=p>,</span><span class=s>6874736969202073796d4b2079650a76</span><span class=p>,</span><span class=s>opc</span><span class=p>,</span><span class=s>504f20634f6320504f50206363500a4f</span><span class=p>,</span><span class=s>8000</span><span class=p>,</span><span class=s>000000001404</span><span class=p>,</span><span class=s>7</span><span class=p>,</span><span class=s>dynamic</span></span></span></code></pre></td></tr></table></div></div><h2 class=heading-element id=刷写sim卡并新建apn><span>刷写SIM卡并新建APN</span>
+<a href=#%e5%88%b7%e5%86%99sim%e5%8d%a1%e5%b9%b6%e6%96%b0%e5%bb%baapn class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h2><p>根据 user_db.csv 中的内容（HSS 归属用户服务器数据库），插入写卡器和白卡，用 GRSIMWrite 写入SIM卡信息，即修改下图中红色框框圈起来的字段即可</p><p><img loading=lazy src=/posts/ed6ecd5/imgs/image-20250803165126195.png alt=/posts/ed6ecd5/imgs/image-20250803165126195.png height=1179 width=1664></p><p>然后UE上 设置-移动网络-移动数据-接入点名称(APN)-添加一个名称和APN为srsapn的接入点即可</p><h2 class=heading-element id=运行srsran_4g><span>运行srsRAN_4G</span>
+<a href=#%e8%bf%90%e8%a1%8csrsran_4g class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h2><p>先用以下命令将电脑CPU调整至高性能模式</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>echo &#34;performance&#34; | sudo tee /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor</span></span></code></pre></td></tr></table></div></div><p>启动NAT流量伪装</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl># 启用 Linux 内核的 IP 转发功能
+</span></span><span class=line><span class=cl>echo 1 | sudo tee /proc/sys/net/ipv4/ip_forward 1&gt;/dev/null
+</span></span><span class=line><span class=cl># 配置 NAT 伪装，使得内网设备（172.16.0.0/24）通过主机的 wlo1 接口访问外网时，其源 IP 会被替换为主机的公网 IP，实现共享上网。
+</span></span><span class=line><span class=cl>sudo iptables -t nat -A POSTROUTING -s 172.16.0.0/24 -o wlo1 -j MASQUERADE</span></span></code></pre></td></tr></table></div></div><p>启动核心网和基站</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>sudo ./srsepc/src/srsepc ../config/epc.conf
+</span></span><span class=line><span class=cl>sudo ./srsenb/src/srsenb ../config/enb.conf</span></span></code></pre></td></tr></table></div></div><h2 class=heading-element id=常见问题><span>常见问题</span>
+<a href=#%e5%b8%b8%e8%a7%81%e9%97%ae%e9%a2%98 class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h2><h3 class=heading-element id=grsimwrite-open-error><span>GRSIMWrite Open Error</span>
+<a href=#grsimwrite-open-error class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h3><p>如果出现下面这个报错，说明卡的方向插反了</p><p><img loading=lazy src=/posts/ed6ecd5/imgs/image-20250803165142335.png alt=/posts/ed6ecd5/imgs/image-20250803165142335.png height=216 width=393></p><p>修改方向重新插入SIM卡后即可正常使用</p><h3 class=heading-element id=epc读取user_dbcsv失败><span>EPC读取user_db.csv失败</span>
+<a href=#epc%e8%af%bb%e5%8f%96user_dbcsv%e5%a4%b1%e8%b4%a5 class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=o>(</span>base<span class=o>)</span> <span class=o>[</span>10ms<span class=o>][</span>master<span class=o>][</span>~/workarea/srsRAN_4G/build<span class=o>]</span>$ sudo ./srsepc/src/srsepc ../config/epc.conf
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>Built in Release mode using commit ec29b0c1f on branch master.
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>---  Software Radio Systems EPC  ---
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>Reading configuration file ../config/epc.conf...
+</span></span><span class=line><span class=cl>Error reading user database file ../config/user_db.csv
+</span></span><span class=line><span class=cl>Error initializing HSS</span></span></code></pre></td></tr></table></div></div><p>大概率是csv文件格式问题，检查其中是否有多余的空格，这里放一份可以正常使用的模板</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-csv data-lang=csv><span class=line><span class=cl><span class=s>#                                                                                           </span><span class=p>
+</span></span></span><span class=line><span class=cl><span class=p></span><span class=s># .csv to store UE&#39;s information in HSS                                                     </span><span class=p>
+</span></span></span><span class=line><span class=cl><span class=p></span><span class=s># Kept in the following format: &#34;Name</span><span class=p>,</span><span class=s>Auth</span><span class=p>,</span><span class=s>IMSI</span><span class=p>,</span><span class=s>Key</span><span class=p>,</span><span class=s>OP_Type</span><span class=p>,</span><span class=s>OP/OPc</span><span class=p>,</span><span class=s>AMF</span><span class=p>,</span><span class=s>SQN</span><span class=p>,</span><span class=s>QCI</span><span class=p>,</span><span class=s>IP_alloc&#34;  </span><span class=p>
+</span></span></span><span class=line><span class=cl><span class=p></span><span class=s>#                                                                                           </span><span class=p>
+</span></span></span><span class=line><span class=cl><span class=p></span><span class=s># Name:     Human readable name to help distinguish UE&#39;s. Ignored by the HSS                </span><span class=p>
+</span></span></span><span class=line><span class=cl><span class=p></span><span class=s># Auth:     Authentication algorithm used by the UE. Valid algorithms are XOR               </span><span class=p>
+</span></span></span><span class=line><span class=cl><span class=p></span><span class=s>#           (xor) and MILENAGE (mil)                                                        </span><span class=p>
+</span></span></span><span class=line><span class=cl><span class=p></span><span class=s># IMSI:     UE&#39;s IMSI value                                                                 </span><span class=p>
+</span></span></span><span class=line><span class=cl><span class=p></span><span class=s># Key:      UE&#39;s key</span><span class=p>,</span><span class=s> where other keys are derived from. Stored in hexadecimal              </span><span class=p>
+</span></span></span><span class=line><span class=cl><span class=p></span><span class=s># OP_Type:  Operator&#39;s code type</span><span class=p>,</span><span class=s> either OP or OPc                                          </span><span class=p>
+</span></span></span><span class=line><span class=cl><span class=p></span><span class=s># OP/OPc:   Operator Code/Cyphered Operator Code</span><span class=p>,</span><span class=s> stored in hexadecimal                     </span><span class=p>
+</span></span></span><span class=line><span class=cl><span class=p></span><span class=s># AMF:      Authentication management field</span><span class=p>,</span><span class=s> stored in hexadecimal                          </span><span class=p>
+</span></span></span><span class=line><span class=cl><span class=p></span><span class=s># SQN:      UE&#39;s Sequence number for freshness of the authentication                        </span><span class=p>
+</span></span></span><span class=line><span class=cl><span class=p></span><span class=s># QCI:      QoS Class Identifier for the UE&#39;s default bearer.                               </span><span class=p>
+</span></span></span><span class=line><span class=cl><span class=p></span><span class=s># IP_alloc: IP allocation stratagy for the SPGW.                                            </span><span class=p>
+</span></span></span><span class=line><span class=cl><span class=p></span><span class=s>#           With &#39;dynamic&#39; the SPGW will automatically allocate IPs                         </span><span class=p>
+</span></span></span><span class=line><span class=cl><span class=p></span><span class=s>#           With a valid IPv4 (e.g. &#39;172.16.0.2&#39;) the UE will have a statically assigned IP.</span><span class=p>
+</span></span></span><span class=line><span class=cl><span class=p></span><span class=s>#                                                                                           </span><span class=p>
+</span></span></span><span class=line><span class=cl><span class=p></span><span class=s># Note: Lines starting by &#39;#&#39; are ignored and will be overwritten                           </span><span class=p>
+</span></span></span><span class=line><span class=cl><span class=p></span><span class=s>ue1</span><span class=p>,</span><span class=s>mil</span><span class=p>,</span><span class=s>001012345678901</span><span class=p>,</span><span class=s>00112233445566778899aabbccddeeff</span><span class=p>,</span><span class=s>opc</span><span class=p>,</span><span class=s>63bfa50ee6523365ff14c1f45f88737d</span><span class=p>,</span><span class=s>8000</span><span class=p>,</span><span class=s>000000003fc1</span><span class=p>,</span><span class=s>7</span><span class=p>,</span><span class=s>dynamic</span><span class=p>
+</span></span></span><span class=line><span class=cl><span class=p></span><span class=s>ue2</span><span class=p>,</span><span class=s>mil</span><span class=p>,</span><span class=s>221010123456789</span><span class=p>,</span><span class=s>6874736969202073796d4b2079650a76</span><span class=p>,</span><span class=s>opc</span><span class=p>,</span><span class=s>504f20634f6320504f50206363500a4f</span><span class=p>,</span><span class=s>8000</span><span class=p>,</span><span class=s>000000001404</span><span class=p>,</span><span class=s>7</span><span class=p>,</span><span class=s>dynamic</span></span></span></code></pre></td></tr></table></div></div><h3 class=heading-element id=ue搜不到小区><span>UE搜不到小区</span>
+<a href=#ue%e6%90%9c%e4%b8%8d%e5%88%b0%e5%b0%8f%e5%8c%ba class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h3><ol><li>可以尝试新建一个接入点，只要修改名称和APN为默认的srsapn即可</li><li>打开Cellular-Pro，查看是否锁网锁频段了，点击清除锁定即可</li></ol><h3 class=heading-element id=ue可以连接到基站但是上不了网><span>UE可以连接到基站，但是上不了网</span>
+<a href=#ue%e5%8f%af%e4%bb%a5%e8%bf%9e%e6%8e%a5%e5%88%b0%e5%9f%ba%e7%ab%99%e4%bd%86%e6%98%af%e4%b8%8a%e4%b8%8d%e4%ba%86%e7%bd%91 class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h3><p>原因可能是 srsepc_if_masq.sh 这个脚本运行出错了，导致流量转发失败</p><p>可以尝试用以下命令手动进行流量伪装</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># 删除现有错误规则</span>
+</span></span><span class=line><span class=cl>sudo iptables -t nat -D POSTROUTING -o wlo1 -j MASQUERADE
+</span></span><span class=line><span class=cl><span class=c1># 关闭防火墙</span>
+</span></span><span class=line><span class=cl>sudo systemctl stop firewalld <span class=o>&amp;&amp;</span> sudo ufw disable
+</span></span><span class=line><span class=cl><span class=nb>echo</span> <span class=m>1</span> <span class=p>|</span> sudo tee /proc/sys/net/ipv4/ip_forward 1&gt;/dev/null
+</span></span><span class=line><span class=cl>sudo iptables -t nat -A POSTROUTING -s 172.16.0.0/24 -o wlo1 -j MASQUERADE</span></span></code></pre></td></tr></table></div></div><p>然后检查一下是否配置成功，如果能输出以下内容，则证明流量伪装成功</p><p>这一定要注意，必须是 172.16.0.0/24 的流量，而不能是所有流量</p><p><strong>当出现 wlo1 数据包数量84和总字节数6684不为0的时候即配置成功</strong></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>$ cat /proc/sys/net/ipv4/ip_forward
+</span></span><span class=line><span class=cl><span class=m>1</span>
+</span></span><span class=line><span class=cl><span class=c1># 查看规则是否生效</span>
+</span></span><span class=line><span class=cl>$ sudo iptables -t nat -L POSTROUTING -n -v
+</span></span><span class=line><span class=cl>Chain POSTROUTING <span class=o>(</span>policy ACCEPT <span class=m>17</span> packets, <span class=m>1020</span> bytes<span class=o>)</span>
+</span></span><span class=line><span class=cl> pkts bytes target     prot opt in     out     <span class=nb>source</span>               destination         
+</span></span><span class=line><span class=cl>    <span class=m>0</span>     <span class=m>0</span> MASQUERADE  all  --  *      !docker0  172.17.0.0/16        0.0.0.0/0           
+</span></span><span class=line><span class=cl>    <span class=m>0</span>     <span class=m>0</span> MASQUERADE  all  --  *      !br-436d37bf9f2b  172.19.0.0/16        0.0.0.0/0           
+</span></span><span class=line><span class=cl>    <span class=m>0</span>     <span class=m>0</span> MASQUERADE  all  --  *      !br-0bab004e267a  172.18.0.0/16        0.0.0.0/0           
+</span></span><span class=line><span class=cl>   <span class=m>84</span>  <span class=m>6684</span> MASQUERADE  all  --  *      wlo1    172.16.0.0/24        0.0.0.0/0   </span></span></code></pre></td></tr></table></div></div><p>如果要删除规则可以用下面这个命令</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># 获取规则的行号</span>
+</span></span><span class=line><span class=cl>sudo iptables -t nat -L POSTROUTING -n -v --line-numbers
+</span></span><span class=line><span class=cl><span class=c1># 删除第5行的规则</span>
+</span></span><span class=line><span class=cl>sudo iptables -t nat -D POSTROUTING <span class=m>5</span></span></span></code></pre></td></tr></table></div></div><p>综上所述，可以解决这个问题的命令是</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>sudo ufw disable
+</span></span><span class=line><span class=cl>sudo iptables -t nat -A POSTROUTING -s 172.16.0.0/24 -o wlo1 -j MASQUERADE</span></span></code></pre></td></tr></table></div></div><h2 class=heading-element id=参考链接><span>参考链接</span>
+<a href=#%e5%8f%82%e8%80%83%e9%93%be%e6%8e%a5 class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h2><blockquote><p><a href=https://docs.srsran.com/projects/4g/en/latest/app_notes/source/cots_ue/source/index.html target=_blank rel="external nofollow noopener noreferrer">https://docs.srsran.com/projects/4g/en/latest/app_notes/source/cots_ue/source/index.html</a></p><p><a href=https://yuanze.wang/posts/lte-basestation-with-srslte-and-usrp/ target=_blank rel="external nofollow noopener noreferrer">https://yuanze.wang/posts/lte-basestation-with-srslte-and-usrp/</a></p><p><a href=https://blog.white-alone.com/%E4%BD%BF%E7%94%A8srsLTE%E6%90%AD%E5%BB%BA4G%E5%9F%BA%E7%AB%99%E7%94%A8%E4%BA%8E%E6%97%A5%E5%B8%B8%E6%B5%8B%E8%AF%95/ target=_blank rel="external nofollow noopener noreferrer">https://blog.white-alone.com/%E4%BD%BF%E7%94%A8srsLTE%E6%90%AD%E5%BB%BA4G%E5%9F%BA%E7%AB%99%E7%94%A8%E4%BA%8E%E6%97%A5%E5%B8%B8%E6%B5%8B%E8%AF%95/</a></p></blockquote></div><div class=post-footer id=post-footer><div class=post-info><div class=post-info-line><div class=post-info-mod><span title="Updated on 2025-08-03 16:48:15">Updated on 2025-08-03&nbsp;</span></div></div><div class=post-info-line><div class=post-info-md><span><a href=/posts/ed6ecd5/index.md title="Read Markdown" class=link-to-markdown>Read Markdown</a></span></div><div class=post-info-share><span><a href=javascript:void(0); title="Share on X" data-sharer=twitter data-url=https://goodlunatic.github.io/posts/ed6ecd5/ data-title="如何基于 SrsRAN_4G 搭建 LTE 基站" data-hashtags=Research,Skills><i class="fa-brands fa-x-twitter fa-fw" aria-hidden=true></i></a>
+<a href=javascript:void(0); title="Share on Facebook" data-sharer=facebook data-url=https://goodlunatic.github.io/posts/ed6ecd5/ data-hashtag=Research><i class="fa-brands fa-facebook-square fa-fw" aria-hidden=true></i></a>
+<a href=javascript:void(0); title="Share on 微博" data-sharer=weibo data-url=https://goodlunatic.github.io/posts/ed6ecd5/ data-title="如何基于 SrsRAN_4G 搭建 LTE 基站"><i class="fa-brands fa-weibo fa-fw" aria-hidden=true></i></a></span></div></div></div><div class=post-info-more><section class=post-tags><i class="fa-solid fa-tags fa-fw me-1" aria-hidden=true></i><a href=/tags/research/ class=post-tag title="Tags - Research">Research</a><a href=/tags/skills/ class=post-tag title="Tags - Skills">Skills</a></section><section><span><a href=javascript:void(0); onclick=window.history.back()>Back</a></span>&nbsp;|&nbsp;<span><a href=/>Home</a></span></section></div><div class=post-nav><a href=/posts/4c7a04a/ class=post-nav-item rel=prev title=如何给Wireshark添加LTE和NR支持><i class="fa-solid fa-angle-left fa-fw" aria-hidden=true></i>如何给Wireshark添加LTE和NR支持</a><a href=/posts/0f92e23/ class=post-nav-item rel=next title=CTF-Reverse学习记录>CTF-Reverse学习记录<i class="fa-solid fa-angle-right fa-fw" aria-hidden=true></i></a></div></div></article><aside class=toc id=toc-auto aria-label=Contents><h2 class=toc-title>Contents&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden=true></i></h2><div class=toc-content id=toc-content-auto></div></aside></main><footer class=footer><div class=footer-container><div class="footer-line powered order-1">Powered by <a href=https://gohugo.io/ target=_blank rel="external nofollow noopener noreferrer" title="Hugo 0.152.1">Hugo</a> | Theme - <a href=https://github.com/hugo-fixit/FixIt target=_blank rel=external title="FixIt v0.4.0-alpha.2-20251023040336-063af2cd">FixIt</a></div><div class="footer-line copyright order-2" itemscope itemtype=http://schema.org/CreativeWork><i class="fa-regular fa-copyright fa-fw" aria-hidden=true></i>
+<span itemprop=copyrightYear>2022 - 2025</span><span class=author itemprop=copyrightHolder>
+<a href=https://goodlunatic.github.io target=_blank rel="external nofollow noopener noreferrer">Lunatic</a></span></div><div class="footer-line visitor"><span id=busuanzi_container_site_uv title='Total visitors'><i class="fa-regular fa-user fa-fw me-1" aria-hidden=true></i><span id=busuanzi_value_site_uv><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden=true></i></span></span><span id=busuanzi_container_site_pv class=footer-divider title='Total visits'><i class="fa-regular fa-eye fa-fw me-1" aria-hidden=true></i><span id=busuanzi_value_site_pv><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden=true></i></span></span></div></div></footer></div><div class=widgets><div class="fixed-buttons animate__faster d-none"><div class="fixed-button back-to-top" role=button aria-label="Back to Top"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden=true></i><span class=variant-numeric>0%</span></div></div><div id=mask></div><noscript><div class=noscript-warning>This website works best with JavaScript enabled.</div></noscript></div><link rel=stylesheet href=/lib/pace/themes/blue/pace-theme-minimal.css><script src=/lib/sharer/sharer.min.js async defer></script><script src=https://vercount.one/js async defer></script><script src=/lib/pace/pace.min.js async defer></script><script src=/posts/ed6ecd5/config/page.js defer></script><script src=/js/theme.min.js defer></script></body></html>

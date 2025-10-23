@@ -1,0 +1,1 @@
+window.config={"code":{"copyTitle":"Copy to clipboard","editLockTitle":"Lock editable code block","editUnLockTitle":"Unlock editable code block","editable":true,"maxShownLines":10},"version":"v0.4.0-alpha.2-20251023040336-063af2cd"};

@@ -1,0 +1,234 @@
+<!doctype html><html itemscope itemtype=http://schema.org/WebPage lang=en><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=2"><meta name=robots content="noodp"><title>攻防世界 Misc PyHAHA 题目详解 - ⚡Lunatic BLOG⚡</title><meta name=author content="Lunatic"><meta name=description content="这两天刷题的时候做到了这道比较有意思的题目，于是就打算稍微总结一下。
+"><meta name=keywords content='CTF,Misc'><meta itemprop=name content="攻防世界 Misc pyHAHA 题目详解"><meta itemprop=description content="这两天刷题的时候做到了这道比较有意思的题目，于是就打算稍微总结一下。"><meta itemprop=datePublished content="2024-04-18T16:47:25+08:00"><meta itemprop=dateModified content="2024-04-18T16:47:25+08:00"><meta itemprop=wordCount content="566"><meta itemprop=keywords content="CTF,Misc"><meta property="og:url" content="https://goodlunatic.github.io/posts/bc64ef8/"><meta property="og:site_name" content="⚡Lunatic BLOG⚡"><meta property="og:title" content="攻防世界 Misc pyHAHA 题目详解"><meta property="og:description" content="这两天刷题的时候做到了这道比较有意思的题目，于是就打算稍微总结一下。"><meta property="og:locale" content="en"><meta property="og:type" content="article"><meta property="article:section" content="posts"><meta property="article:published_time" content="2024-04-18T16:47:25+08:00"><meta property="article:modified_time" content="2024-04-18T16:47:25+08:00"><meta property="article:tag" content="CTF"><meta property="article:tag" content="Misc"><meta name=twitter:card content="summary"><meta name=twitter:title content="攻防世界 Misc pyHAHA 题目详解"><meta name=twitter:description content="这两天刷题的时候做到了这道比较有意思的题目，于是就打算稍微总结一下。"><meta name=application-name content="FixIt"><meta name=apple-mobile-web-app-title content="FixIt"><meta name=theme-color data-light=#f8f8f8 data-dark=#252627 content="#f8f8f8"><meta name=msapplication-TileColor content="#da532c"><link rel=icon href=https://www.nssctf.cn/files/2024/4/28/7f130a1387.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=canonical type=text/html href=https://goodlunatic.github.io/posts/bc64ef8/ title="攻防世界 Misc pyHAHA 题目详解 - ⚡Lunatic BLOG⚡"><link rel=prev type=text/html href=https://goodlunatic.github.io/posts/e49ecc5/ title="2023&amp;2024 红明谷初赛 Misc Writeup"><link rel=next type=text/html href=https://goodlunatic.github.io/posts/a907e2b/ title="2024 帕鲁杯 Misc Writeup"><link rel=alternate type=text/markdown href=https://goodlunatic.github.io/posts/bc64ef8/index.md title="攻防世界 Misc pyHAHA 题目详解 - ⚡Lunatic BLOG⚡"><link rel=stylesheet href=/css/config.min.css><link rel=stylesheet href=/css/style.min.css><link rel=preload href=/lib/fontawesome-free/all.min.css as=style onload='this.removeAttribute("onload"),this.rel="stylesheet"'><noscript><link rel=stylesheet href=/lib/fontawesome-free/all.min.css></noscript><link rel=preload href=/lib/animate/animate.min.css as=style onload='this.removeAttribute("onload"),this.rel="stylesheet"'><noscript><link rel=stylesheet href=/lib/animate/animate.min.css></noscript><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"攻防世界 Misc pyHAHA 题目详解","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/goodlunatic.github.io\/posts\/bc64ef8\/"},"genre":"posts","keywords":"CTF, Misc","wordcount":566,"url":"https:\/\/goodlunatic.github.io\/posts\/bc64ef8\/","datePublished":"2024-04-18T16:47:25+08:00","dateModified":"2024-04-18T16:47:25+08:00","publisher":{"@type":"Organization","name":""},"author":{"@type":"Person","name":"Lunatic"},"description":""}</script><script src=/js/head/color-scheme.min.js></script></head><body data-header-desktop=sticky data-header-mobile=auto><div class=wrapper data-page-style=normal><header class="desktop animate__faster" id=header-desktop><div class=header-wrapper><div class=header-title><a href=/ title="⚡Lunatic BLOG⚡"><span class=header-title-text>⚡Lunatic BLOG⚡</span></a><span class=header-subtitle></span></div><nav><ul class=menu><li class=menu-item><a class=menu-link href=/archives/><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden=true></i> Archives</a></li><li class=menu-item><a class=menu-link href=/categories/><i class="fa-solid fa-folder-tree fa-fw fa-sm" aria-hidden=true></i> Categories</a></li><li class=menu-item><a class=menu-link href=/tags/><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden=true></i> Tags</a></li><li class=menu-item><a class=menu-link href=/friends/><i class="fa-solid fa-chain fa-fw fa-sm" aria-hidden=true></i> Friends</a></li><li class=menu-item><a class=menu-link href=/about/><i class="fa-solid fa-graduation-cap fa-fw fa-sm" aria-hidden=true></i> About</a></li><li class="menu-item delimiter"></li><li class="menu-item theme-switch" title="Switch Theme"><i class="fa-solid fa-adjust fa-fw" aria-hidden=true></i></li></ul></nav></div></header><header class="mobile animate__faster" id=header-mobile><div class=header-container><div class=header-wrapper><div class=header-title><a href=/ title="⚡Lunatic BLOG⚡"><span class=header-title-text>⚡Lunatic BLOG⚡</span></a><span class=header-subtitle></span></div><div class=menu-toggle id=menu-toggle-mobile><span></span><span></span><span></span></div></div><nav><ul class=menu id=menu-mobile><li class=menu-item><a class=menu-link href=/archives/><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden=true></i> Archives</a></li><li class=menu-item><a class=menu-link href=/categories/><i class="fa-solid fa-folder-tree fa-fw fa-sm" aria-hidden=true></i> Categories</a></li><li class=menu-item><a class=menu-link href=/tags/><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden=true></i> Tags</a></li><li class=menu-item><a class=menu-link href=/friends/><i class="fa-solid fa-chain fa-fw fa-sm" aria-hidden=true></i> Friends</a></li><li class=menu-item><a class=menu-link href=/about/><i class="fa-solid fa-graduation-cap fa-fw fa-sm" aria-hidden=true></i> About</a></li><li class="menu-item menu-system"><span class="menu-system-item theme-switch" title="Switch Theme"><i class="fa-solid fa-adjust fa-fw" aria-hidden=true></i></span></li></ul></nav></div></header><main class=fi-container><aside class="aside-collection animate__animated animate__fadeIn animate__faster" aria-label=Collections></aside><article class="page single"><div class=header><h1 class="single-title animate__animated animate__flipInX"><span>攻防世界 Misc PyHAHA 题目详解</span></h1></div><div class=post-meta><div class=post-meta-line><span class=post-author><a href=https://goodlunatic.github.io title=Author target=_blank rel="external nofollow noopener noreferrer author" class=author><img class=avatar src=https://www.nssctf.cn/files/2024/4/28/7f130a1387.png alt=Lunatic height=16 width=16>&nbsp;Lunatic</a></span><span class=post-included-in>&nbsp;included in <a href=/categories/ctf/ class=post-category title="Category - CTF"><i class="fa-regular fa-folder fa-fw" aria-hidden=true></i> CTF</a></span></div><div class=post-meta-line><span title="published on 2024-04-18 16:47:25"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden=true></i><time datetime=2024-04-18>2024-04-18</time></span>&nbsp;<span title="566 words"><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden=true></i>About 600 words</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden=true></i>3 minutes</span>&nbsp;<span id=busuanzi_container_page_pv class="busuanzi_visitors comment-visitors" data-flag-title="攻防世界 Misc PyHAHA 题目详解"><i class="fa-regular fa-eye fa-fw me-1" aria-hidden=true></i><span id=busuanzi_value_page_pv>-</span>&nbsp;views
+</span>&nbsp;</div></div><div class=content id=content><p><strong>这两天刷题的时候做到了这道比较有意思的题目，于是就打算稍微总结一下。</strong></p><p><strong>本题考察的知识点：pyc反编译、zip伪加密、DeEgger Embedder、base32隐写、OPT加密算法、二进制数据转图片</strong></p><p><strong>题目附件给了一个后缀为 .pyc 文件，010打开仔细查看数据，发现有倒置的 flag1 和 flag2</strong></p><p><img loading=lazy src=/posts/bc64ef8/imgs/image-20240702164923177.png alt=/posts/bc64ef8/imgs/image-20240702164923177.png height=1600 width=2554></p><p><strong>因此猜测数据杯倒置了，因此我们写个 python 脚本将数据倒置回来</strong></p><p><strong>然后 foremost 一下可以得到一个伪加密的压缩包，压缩包的注释中有 flag1 和 flag2</strong></p><p><img loading=lazy src=/posts/bc64ef8/imgs/image-20240702164936801.png alt=/posts/bc64ef8/imgs/image-20240702164936801.png height=1600 width=2559></p><p><img loading=lazy src=/posts/bc64ef8/imgs/image-20240702164942973.png alt=/posts/bc64ef8/imgs/image-20240702164942973.png height=891 width=1212></p><p><strong>去除伪加密后解压可以得到一个 Dream It Possible.mp3</strong></p><p><strong>在这个 mp3 文件的备注中发现有一串开头为 163key 的奇怪字符</strong></p><p><img loading=lazy src=/posts/bc64ef8/imgs/image-20240702164957787.png alt=/posts/bc64ef8/imgs/image-20240702164957787.png height=920 width=662></p><p><strong>网上查了一下发现是网易云导出 flac 的时候会带有的标记，对解题没有什么用</strong></p><p><strong>看了网上的 wp 后知道了这里需要使用 DeEgger Embedder 提取出隐藏的数据</strong></p><p><img loading=lazy src=/posts/bc64ef8/imgs/image-20240702165009948.png alt=/posts/bc64ef8/imgs/image-20240702165009948.png height=408 width=667></p><p><strong>用上面那个工具可以提取出一大串 base32 编码的字符串，直接解码发现没有得到什么有用的信息</strong></p><p><img loading=lazy src=/posts/bc64ef8/imgs/image-20240702165020066.png alt=/posts/bc64ef8/imgs/image-20240702165020066.png height=1032 width=1877></p><p><strong>因此我们这里尝试 base32 隐写，这里我就偷懒直接使用 PuzzleSolver 一把梭了</strong></p><p><img loading=lazy src=/posts/bc64ef8/imgs/image-20240702165033442.png alt=/posts/bc64ef8/imgs/image-20240702165033442.png height=1113 width=1504></p><p><strong>提取base32隐写的数据可以得到一大串二进制的字符，这里还不知道具体干啥用，转图片也没有发现有用的信息</strong></p><p><strong>因此我们回头分析那个 pyc 文件，直接使用 uncompyle6 就可以反编译出原来的 Python 源码</strong></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>uncompyle6 .<span class=se>\r</span>everse_1_PyHaHa.pyc &gt; decompile.py</span></span></code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=c1># uncompyle6 version 3.9.1</span>
+</span></span><span class=line><span class=cl><span class=c1># Python bytecode version base 2.7 (62211)</span>
+</span></span><span class=line><span class=cl><span class=c1># Decompiled from: Python 3.8.10 (tags/v3.8.10:3d8993a, May  3 2021, 11:48:03) [MSC v.1928 64 bit (AMD64)]</span>
+</span></span><span class=line><span class=cl><span class=c1># Embedded file name: Fl4g.py</span>
+</span></span><span class=line><span class=cl><span class=c1># Compiled at: 2017-07-02 00:15:33</span>
+</span></span><span class=line><span class=cl><span class=kn>from</span> <span class=nn>os</span> <span class=kn>import</span> <span class=n>urandom</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>generate</span><span class=p>(</span><span class=n>m</span><span class=p>,</span> <span class=n>k</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=n>result</span> <span class=o>=</span> <span class=mi>0</span>
+</span></span><span class=line><span class=cl>    <span class=k>for</span> <span class=n>i</span> <span class=ow>in</span> <span class=nb>bin</span><span class=p>(</span><span class=n>m</span> <span class=o>^</span> <span class=n>k</span><span class=p>)[</span><span class=mi>2</span><span class=p>:]:</span>
+</span></span><span class=line><span class=cl>        <span class=n>result</span> <span class=o>=</span> <span class=n>result</span> <span class=o>&lt;&lt;</span> <span class=mi>1</span>
+</span></span><span class=line><span class=cl>        <span class=k>if</span> <span class=nb>int</span><span class=p>(</span><span class=n>i</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>            <span class=n>result</span> <span class=o>=</span> <span class=n>result</span> <span class=o>^</span> <span class=n>m</span> <span class=o>^</span> <span class=n>k</span>
+</span></span><span class=line><span class=cl>        <span class=k>if</span> <span class=n>result</span> <span class=o>&gt;&gt;</span> <span class=mi>256</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>            <span class=n>result</span> <span class=o>=</span> <span class=n>result</span> <span class=o>^</span> <span class=n>P</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=n>result</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>encrypt</span><span class=p>(</span><span class=n>seed</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=n>key</span> <span class=o>=</span> <span class=nb>int</span><span class=p>(</span><span class=n>urandom</span><span class=p>(</span><span class=mi>32</span><span class=p>)</span><span class=o>.</span><span class=n>encode</span><span class=p>(</span><span class=s1>&#39;hex&#39;</span><span class=p>),</span> <span class=mi>16</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=k>while</span> <span class=kc>True</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=k>yield</span> <span class=n>key</span>
+</span></span><span class=line><span class=cl>        <span class=n>key</span> <span class=o>=</span> <span class=n>generate</span><span class=p>(</span><span class=n>key</span><span class=p>,</span> <span class=n>seed</span><span class=p>)</span> <span class=o>+</span> <span class=mi>233333333333</span><span class=n>L</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>convert</span><span class=p>(</span><span class=n>string</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=nb>int</span><span class=p>(</span><span class=n>string</span><span class=o>.</span><span class=n>encode</span><span class=p>(</span><span class=s1>&#39;hex&#39;</span><span class=p>),</span> <span class=mi>16</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>P</span> <span class=o>=</span> <span class=mi>115792089237316195423570985008687907853269984665640564039457584007913129640997</span><span class=n>L</span>
+</span></span><span class=line><span class=cl><span class=n>flag1</span> <span class=o>=</span> <span class=s1>&#39;ThIs_Fl4g_Is_Ri9ht&#39;</span>
+</span></span><span class=line><span class=cl><span class=n>flag2</span> <span class=o>=</span> <span class=s1>&#39;Hey_Fl4g_Is_Not_HeRe&#39;</span>
+</span></span><span class=line><span class=cl><span class=n>key</span> <span class=o>=</span> <span class=nb>int</span><span class=p>(</span><span class=n>urandom</span><span class=p>(</span><span class=mi>32</span><span class=p>)</span><span class=o>.</span><span class=n>encode</span><span class=p>(</span><span class=s1>&#39;hex&#39;</span><span class=p>),</span> <span class=mi>16</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>data</span> <span class=o>=</span> <span class=nb>open</span><span class=p>(</span><span class=s1>&#39;data.txt&#39;</span><span class=p>,</span> <span class=s1>&#39;r&#39;</span><span class=p>)</span><span class=o>.</span><span class=n>read</span><span class=p>()</span>
+</span></span><span class=line><span class=cl><span class=n>result</span> <span class=o>=</span> <span class=n>encrypt</span><span class=p>(</span><span class=n>key</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>encrypt1</span> <span class=o>=</span> <span class=nb>bin</span><span class=p>(</span><span class=nb>int</span><span class=p>(</span><span class=n>data</span><span class=p>,</span> <span class=mi>2</span><span class=p>)</span> <span class=o>^</span> <span class=nb>eval</span><span class=p>(</span><span class=s1>&#39;0x&#39;</span> <span class=o>+</span> <span class=nb>hex</span><span class=p>(</span><span class=n>result</span><span class=o>.</span><span class=n>next</span><span class=p>())[</span><span class=mi>2</span><span class=p>:</span><span class=o>-</span><span class=mi>1</span><span class=p>]</span> <span class=o>*</span> <span class=mi>22</span><span class=p>))[</span><span class=mi>2</span><span class=p>:]</span>
+</span></span><span class=line><span class=cl><span class=n>encrypt2</span> <span class=o>=</span> <span class=nb>hex</span><span class=p>(</span><span class=n>convert</span><span class=p>(</span><span class=n>flag1</span><span class=p>)</span> <span class=o>^</span> <span class=n>result</span><span class=o>.</span><span class=n>next</span><span class=p>())[</span><span class=mi>2</span><span class=p>:</span><span class=o>-</span><span class=mi>1</span><span class=p>]</span>
+</span></span><span class=line><span class=cl><span class=n>encrypt3</span> <span class=o>=</span> <span class=nb>hex</span><span class=p>(</span><span class=n>convert</span><span class=p>(</span><span class=n>flag2</span><span class=p>)</span> <span class=o>^</span> <span class=n>result</span><span class=o>.</span><span class=n>next</span><span class=p>())[</span><span class=mi>2</span><span class=p>:</span><span class=o>-</span><span class=mi>1</span><span class=p>]</span>
+</span></span><span class=line><span class=cl><span class=nb>print</span> <span class=s1>&#39;flag1:&#39;</span><span class=p>,</span> <span class=n>encrypt2</span>
+</span></span><span class=line><span class=cl><span class=nb>print</span> <span class=s1>&#39;flag2:&#39;</span><span class=p>,</span> <span class=n>encrypt3</span>
+</span></span><span class=line><span class=cl><span class=n>f</span> <span class=o>=</span> <span class=nb>open</span><span class=p>(</span><span class=s1>&#39;encrypt.txt&#39;</span><span class=p>,</span> <span class=s1>&#39;w&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>f</span><span class=o>.</span><span class=n>write</span><span class=p>(</span><span class=n>encrypt1</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>f</span><span class=o>.</span><span class=n>close</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># okay decompiling .\reverse_1_PyHaHa.pyc</span></span></span></code></pre></td></tr></table></div></div><p><strong>分析上面的加密，赛后看了 wp 知道了是 OPT 加密（加密原理的具体分析在文末）</strong></p><p><strong>由上述代码可知我们之前得到的二进制数据应该就是上述代码中的 encrypt.txt</strong></p><p><strong>因此我们写一个 Python 脚本去还原出原来的数据，具体脚本如下：</strong></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span><span class=lnt>48
+</span><span class=lnt>49
+</span><span class=lnt>50
+</span><span class=lnt>51
+</span><span class=lnt>52
+</span><span class=lnt>53
+</span><span class=lnt>54
+</span><span class=lnt>55
+</span><span class=lnt>56
+</span><span class=lnt>57
+</span><span class=lnt>58
+</span><span class=lnt>59
+</span><span class=lnt>60
+</span><span class=lnt>61
+</span><span class=lnt>62
+</span><span class=lnt>63
+</span><span class=lnt>64
+</span><span class=lnt>65
+</span><span class=lnt>66
+</span><span class=lnt>67
+</span><span class=lnt>68
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=kn>from</span> <span class=nn>PIL</span> <span class=kn>import</span> <span class=n>Image</span>
+</span></span><span class=line><span class=cl><span class=kn>import</span> <span class=nn>libnum</span>
+</span></span><span class=line><span class=cl><span class=kn>import</span> <span class=nn>os</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>generate</span><span class=p>(</span><span class=n>m</span><span class=p>,</span> <span class=n>k</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=n>result</span> <span class=o>=</span> <span class=mi>0</span>
+</span></span><span class=line><span class=cl>    <span class=k>for</span> <span class=n>i</span> <span class=ow>in</span> <span class=nb>bin</span><span class=p>(</span><span class=n>m</span> <span class=o>^</span> <span class=n>k</span><span class=p>)[</span><span class=mi>2</span><span class=p>:]:</span>
+</span></span><span class=line><span class=cl>        <span class=n>result</span> <span class=o>=</span> <span class=n>result</span> <span class=o>&lt;&lt;</span> <span class=mi>1</span>
+</span></span><span class=line><span class=cl>        <span class=k>if</span> <span class=nb>int</span><span class=p>(</span><span class=n>i</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>            <span class=n>result</span> <span class=o>=</span> <span class=n>result</span> <span class=o>^</span> <span class=n>m</span> <span class=o>^</span> <span class=n>k</span>
+</span></span><span class=line><span class=cl>        <span class=k>if</span> <span class=n>result</span> <span class=o>&gt;&gt;</span> <span class=mi>256</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>            <span class=n>result</span> <span class=o>=</span> <span class=n>result</span> <span class=o>^</span> <span class=n>P</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=n>result</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>draw2pic</span><span class=p>(</span><span class=n>data</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=n>os</span><span class=o>.</span><span class=n>path</span><span class=o>.</span><span class=n>exists</span><span class=p>(</span><span class=s2>&#34;pic_output&#34;</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>        <span class=nb>print</span><span class=p>(</span><span class=s2>&#34;[!] pic_output 目录已存在&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=k>else</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=nb>print</span><span class=p>(</span><span class=s2>&#34;[+] pic_output 目录创建成功&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=n>os</span><span class=o>.</span><span class=n>mkdir</span><span class=p>(</span><span class=s2>&#34;pic_output&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>length</span> <span class=o>=</span> <span class=nb>len</span><span class=p>(</span><span class=n>data</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>dic</span> <span class=o>=</span> <span class=p>{</span><span class=n>X</span><span class=p>:</span> <span class=nb>int</span><span class=p>(</span><span class=n>length</span> <span class=o>/</span> <span class=n>X</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>           <span class=k>for</span> <span class=n>X</span> <span class=ow>in</span> <span class=nb>range</span><span class=p>(</span><span class=mi>1</span><span class=p>,</span> <span class=n>length</span><span class=p>)</span> <span class=k>if</span> <span class=n>length</span> <span class=o>%</span> <span class=n>X</span> <span class=o>==</span> <span class=mi>0</span><span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=k>for</span> <span class=n>item</span> <span class=ow>in</span> <span class=n>dic</span><span class=o>.</span><span class=n>items</span><span class=p>():</span>
+</span></span><span class=line><span class=cl>        <span class=n>pos</span> <span class=o>=</span> <span class=mi>0</span>
+</span></span><span class=line><span class=cl>        <span class=n>img</span> <span class=o>=</span> <span class=n>Image</span><span class=o>.</span><span class=n>new</span><span class=p>(</span><span class=s2>&#34;RGB&#34;</span><span class=p>,</span> <span class=p>(</span><span class=n>item</span><span class=p>[</span><span class=mi>0</span><span class=p>],</span> <span class=n>item</span><span class=p>[</span><span class=mi>1</span><span class=p>]))</span>
+</span></span><span class=line><span class=cl>        <span class=k>for</span> <span class=n>x</span> <span class=ow>in</span> <span class=nb>range</span><span class=p>(</span><span class=n>item</span><span class=p>[</span><span class=mi>0</span><span class=p>]):</span>
+</span></span><span class=line><span class=cl>            <span class=k>for</span> <span class=n>y</span> <span class=ow>in</span> <span class=nb>range</span><span class=p>(</span><span class=n>item</span><span class=p>[</span><span class=mi>1</span><span class=p>]):</span>
+</span></span><span class=line><span class=cl>                <span class=k>if</span> <span class=n>data</span><span class=p>[</span><span class=n>pos</span><span class=p>]</span> <span class=o>==</span> <span class=s1>&#39;0&#39;</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                    <span class=n>img</span><span class=o>.</span><span class=n>putpixel</span><span class=p>([</span><span class=n>x</span><span class=p>,</span> <span class=n>y</span><span class=p>],</span> <span class=p>(</span><span class=mi>0</span><span class=p>,</span> <span class=mi>0</span><span class=p>,</span> <span class=mi>0</span><span class=p>))</span>
+</span></span><span class=line><span class=cl>                <span class=k>else</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                    <span class=n>img</span><span class=o>.</span><span class=n>putpixel</span><span class=p>([</span><span class=n>x</span><span class=p>,</span> <span class=n>y</span><span class=p>],</span> <span class=p>(</span><span class=mi>255</span><span class=p>,</span> <span class=mi>255</span><span class=p>,</span> <span class=mi>255</span><span class=p>))</span>
+</span></span><span class=line><span class=cl>                <span class=n>pos</span> <span class=o>+=</span> <span class=mi>1</span>
+</span></span><span class=line><span class=cl>        <span class=n>img</span><span class=o>.</span><span class=n>save</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;./pic_output/</span><span class=si>{</span><span class=n>item</span><span class=p>[</span><span class=mi>0</span><span class=p>]</span><span class=si>}</span><span class=s2>_</span><span class=si>{</span><span class=n>item</span><span class=p>[</span><span class=mi>1</span><span class=p>]</span><span class=si>}</span><span class=s2>.png&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=nb>print</span><span class=p>(</span>
+</span></span><span class=line><span class=cl>            <span class=sa>f</span><span class=s2>&#34;./pic_output/</span><span class=si>{</span><span class=n>item</span><span class=p>[</span><span class=mi>0</span><span class=p>]</span><span class=si>}</span><span class=s2>_</span><span class=si>{</span><span class=n>item</span><span class=p>[</span><span class=mi>1</span><span class=p>]</span><span class=si>}</span><span class=s2>.png Saved!&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>if</span> <span class=vm>__name__</span> <span class=o>==</span> <span class=s2>&#34;__main__&#34;</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>    <span class=n>P</span> <span class=o>=</span> <span class=mi>115792089237316195423570985008687907853269984665640564039457584007913129640997</span>
+</span></span><span class=line><span class=cl>    <span class=n>flag1</span> <span class=o>=</span> <span class=s1>&#39;ThIs_Fl4g_Is_Ri9ht&#39;</span>
+</span></span><span class=line><span class=cl>    <span class=n>flag2</span> <span class=o>=</span> <span class=s1>&#39;Hey_Fl4g_Is_Not_HeRe&#39;</span>
+</span></span><span class=line><span class=cl>    <span class=n>encrypt2</span> <span class=o>=</span> <span class=mh>0xec8d57d820ad8c586e4be0122b442c871a3d71cd8036c45083d860caf1793ddc</span>
+</span></span><span class=line><span class=cl>    <span class=n>encrypt3</span> <span class=o>=</span> <span class=mh>0xc40a0be335babcfbd8c47aa771f6a2ceca2c8638caa5924da58286d2a942697e</span>
+</span></span><span class=line><span class=cl>    <span class=n>encrypt1</span> <span class=o>=</span> <span class=nb>open</span><span class=p>(</span><span class=s1>&#39;encrypt.txt&#39;</span><span class=p>,</span> <span class=s1>&#39;r&#39;</span><span class=p>)</span><span class=o>.</span><span class=n>read</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>    <span class=n>key2</span> <span class=o>=</span> <span class=n>encrypt2</span> <span class=o>^</span> <span class=n>libnum</span><span class=o>.</span><span class=n>s2n</span><span class=p>(</span><span class=n>flag1</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>key3</span> <span class=o>=</span> <span class=n>encrypt3</span> <span class=o>^</span> <span class=n>libnum</span><span class=o>.</span><span class=n>s2n</span><span class=p>(</span><span class=n>flag2</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=nb>print</span><span class=p>(</span><span class=n>key2</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=nb>print</span><span class=p>(</span><span class=n>key3</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>tmp</span> <span class=o>=</span> <span class=n>key3</span> <span class=o>-</span> <span class=mi>233333333333</span>
+</span></span><span class=line><span class=cl>    <span class=k>for</span> <span class=n>i</span> <span class=ow>in</span> <span class=nb>range</span><span class=p>(</span><span class=mi>0</span><span class=p>,</span> <span class=mi>255</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>        <span class=n>tmp</span> <span class=o>=</span> <span class=n>generate</span><span class=p>(</span><span class=n>tmp</span><span class=p>,</span> <span class=mi>0</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>seed</span> <span class=o>=</span> <span class=n>tmp</span> <span class=o>^</span> <span class=n>key2</span>
+</span></span><span class=line><span class=cl>    <span class=nb>print</span><span class=p>(</span><span class=s1>&#39;Found seed:&#39;</span><span class=p>,</span> <span class=n>seed</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=nb>print</span><span class=p>(</span><span class=s1>&#39;use seed generate key3:&#39;</span><span class=p>,</span> <span class=n>generate</span><span class=p>(</span><span class=n>key2</span><span class=p>,</span> <span class=n>seed</span><span class=p>)</span><span class=o>+</span><span class=mi>233333333333</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>tmp</span> <span class=o>=</span> <span class=n>key2</span> <span class=o>-</span> <span class=mi>233333333333</span>
+</span></span><span class=line><span class=cl>    <span class=k>for</span> <span class=n>i</span> <span class=ow>in</span> <span class=nb>range</span><span class=p>(</span><span class=mi>0</span><span class=p>,</span> <span class=mi>255</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>        <span class=n>tmp</span> <span class=o>=</span> <span class=n>generate</span><span class=p>(</span><span class=n>tmp</span><span class=p>,</span> <span class=mi>0</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>key1</span> <span class=o>=</span> <span class=n>tmp</span> <span class=o>^</span> <span class=n>seed</span>
+</span></span><span class=line><span class=cl>    <span class=nb>print</span><span class=p>(</span><span class=s1>&#39;Found key1:&#39;</span><span class=p>,</span> <span class=n>key1</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=nb>print</span><span class=p>(</span><span class=s1>&#39;use key1 generate key2:&#39;</span><span class=p>,</span> <span class=n>generate</span><span class=p>(</span><span class=n>key1</span><span class=p>,</span> <span class=n>seed</span><span class=p>)</span><span class=o>+</span><span class=mi>233333333333</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>tmp1</span> <span class=o>=</span> <span class=nb>hex</span><span class=p>(</span><span class=nb>int</span><span class=p>(</span><span class=n>encrypt1</span><span class=p>,</span> <span class=mi>2</span><span class=p>))</span>
+</span></span><span class=line><span class=cl>    <span class=n>tmp2</span> <span class=o>=</span> <span class=s1>&#39;0x&#39;</span><span class=o>+</span><span class=nb>hex</span><span class=p>(</span><span class=n>key1</span><span class=p>)[</span><span class=mi>2</span><span class=p>:]</span><span class=o>*</span><span class=mi>22</span>
+</span></span><span class=line><span class=cl>    <span class=n>pic_data</span> <span class=o>=</span> <span class=nb>bin</span><span class=p>(</span><span class=nb>int</span><span class=p>(</span><span class=n>tmp1</span><span class=p>,</span> <span class=mi>16</span><span class=p>)</span> <span class=o>^</span> <span class=nb>int</span><span class=p>(</span><span class=n>tmp2</span><span class=p>,</span> <span class=mi>16</span><span class=p>))[</span><span class=mi>2</span><span class=p>:]</span>
+</span></span><span class=line><span class=cl>    <span class=n>draw2pic</span><span class=p>(</span><span class=n>pic_data</span><span class=p>)</span></span></span></code></pre></td></tr></table></div></div><p><strong>脚本运行后即可得到有 flag 的图片</strong></p><p><img loading=lazy src=/posts/bc64ef8/imgs/image-20240702165053162.png alt=/posts/bc64ef8/imgs/image-20240702165053162.png height=753 width=1354></p><p><strong>OPT(One-Time Pad)（一次性密码本）加密详解</strong></p><p>TODO</p></div><div class=post-footer id=post-footer><div class=post-info><div class=post-info-line><div class=post-info-mod><span title="Updated on 2024-04-18 16:47:25">Updated on 2024-04-18&nbsp;</span></div></div><div class=post-info-line><div class=post-info-md><span><a href=/posts/bc64ef8/index.md title="Read Markdown" class=link-to-markdown>Read Markdown</a></span></div><div class=post-info-share><span><a href=javascript:void(0); title="Share on X" data-sharer=twitter data-url=https://goodlunatic.github.io/posts/bc64ef8/ data-title="攻防世界 Misc PyHAHA 题目详解" data-hashtags=CTF,Misc><i class="fa-brands fa-x-twitter fa-fw" aria-hidden=true></i></a>
+<a href=javascript:void(0); title="Share on Facebook" data-sharer=facebook data-url=https://goodlunatic.github.io/posts/bc64ef8/ data-hashtag=CTF><i class="fa-brands fa-facebook-square fa-fw" aria-hidden=true></i></a>
+<a href=javascript:void(0); title="Share on 微博" data-sharer=weibo data-url=https://goodlunatic.github.io/posts/bc64ef8/ data-title="攻防世界 Misc PyHAHA 题目详解"><i class="fa-brands fa-weibo fa-fw" aria-hidden=true></i></a></span></div></div></div><div class=post-info-more><section class=post-tags><i class="fa-solid fa-tags fa-fw me-1" aria-hidden=true></i><a href=/tags/ctf/ class=post-tag title="Tags - CTF">CTF</a><a href=/tags/misc/ class=post-tag title="Tags - Misc">Misc</a></section><section><span><a href=javascript:void(0); onclick=window.history.back()>Back</a></span>&nbsp;|&nbsp;<span><a href=/>Home</a></span></section></div><div class=post-nav><a href=/posts/e49ecc5/ class=post-nav-item rel=prev title="2023&amp;2024 红明谷初赛 Misc Writeup"><i class="fa-solid fa-angle-left fa-fw" aria-hidden=true></i>2023&amp;2024 红明谷初赛 Misc Writeup</a><a href=/posts/a907e2b/ class=post-nav-item rel=next title="2024 帕鲁杯 Misc Writeup">2024 帕鲁杯 Misc Writeup<i class="fa-solid fa-angle-right fa-fw" aria-hidden=true></i></a></div></div></article><aside class=toc id=toc-auto aria-label=Contents></aside></main><footer class=footer><div class=footer-container><div class="footer-line powered order-1">Powered by <a href=https://gohugo.io/ target=_blank rel="external nofollow noopener noreferrer" title="Hugo 0.152.1">Hugo</a> | Theme - <a href=https://github.com/hugo-fixit/FixIt target=_blank rel=external title="FixIt v0.4.0-alpha.2-20251023040336-063af2cd">FixIt</a></div><div class="footer-line copyright order-2" itemscope itemtype=http://schema.org/CreativeWork><i class="fa-regular fa-copyright fa-fw" aria-hidden=true></i>
+<span itemprop=copyrightYear>2022 - 2025</span><span class=author itemprop=copyrightHolder>
+<a href=https://goodlunatic.github.io target=_blank rel="external nofollow noopener noreferrer">Lunatic</a></span></div><div class="footer-line visitor"><span id=busuanzi_container_site_uv title='Total visitors'><i class="fa-regular fa-user fa-fw me-1" aria-hidden=true></i><span id=busuanzi_value_site_uv><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden=true></i></span></span><span id=busuanzi_container_site_pv class=footer-divider title='Total visits'><i class="fa-regular fa-eye fa-fw me-1" aria-hidden=true></i><span id=busuanzi_value_site_pv><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden=true></i></span></span></div></div></footer></div><div class=widgets><div class="fixed-buttons animate__faster d-none"><div class="fixed-button back-to-top" role=button aria-label="Back to Top"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden=true></i><span class=variant-numeric>0%</span></div></div><div id=mask></div><noscript><div class=noscript-warning>This website works best with JavaScript enabled.</div></noscript></div><link rel=stylesheet href=/lib/pace/themes/blue/pace-theme-minimal.css><script src=/lib/sharer/sharer.min.js async defer></script><script src=https://vercount.one/js async defer></script><script src=/lib/pace/pace.min.js async defer></script><script src=/posts/bc64ef8/config/page.js defer></script><script src=/js/theme.min.js defer></script></body></html>

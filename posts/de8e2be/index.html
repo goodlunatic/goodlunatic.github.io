@@ -1,0 +1,472 @@
+<!doctype html><html itemscope itemtype=http://schema.org/WebPage lang=en><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=2"><meta name=robots content="noodp"><title>2024 强网拟态防御国际精英挑战赛初赛 Misc Writeup - ⚡Lunatic BLOG⚡</title><meta name=author content="Lunatic"><meta name=description content="这比赛虽然有些Misc题比较搞心态，但是不得不说题目质量还是在的
+"><meta name=keywords content='CTF,Misc,Writeup'><meta itemprop=name content="2024 强网拟态防御国际精英挑战赛初赛 Misc Writeup"><meta itemprop=description content="这比赛虽然有些Misc题比较搞心态，但是不得不说题目质量还是在的"><meta itemprop=datePublished content="2025-03-29T23:16:19+08:00"><meta itemprop=dateModified content="2025-03-29T23:16:19+08:00"><meta itemprop=wordCount content="987"><meta itemprop=keywords content="CTF,Misc,Writeup"><meta property="og:url" content="https://goodlunatic.github.io/posts/de8e2be/"><meta property="og:site_name" content="⚡Lunatic BLOG⚡"><meta property="og:title" content="2024 强网拟态防御国际精英挑战赛初赛 Misc Writeup"><meta property="og:description" content="这比赛虽然有些Misc题比较搞心态，但是不得不说题目质量还是在的"><meta property="og:locale" content="en"><meta property="og:type" content="article"><meta property="article:section" content="posts"><meta property="article:published_time" content="2025-03-29T23:16:19+08:00"><meta property="article:modified_time" content="2025-03-29T23:16:19+08:00"><meta property="article:tag" content="CTF"><meta property="article:tag" content="Misc"><meta property="article:tag" content="Writeup"><meta name=twitter:card content="summary"><meta name=twitter:title content="2024 强网拟态防御国际精英挑战赛初赛 Misc Writeup"><meta name=twitter:description content="这比赛虽然有些Misc题比较搞心态，但是不得不说题目质量还是在的"><meta name=application-name content="FixIt"><meta name=apple-mobile-web-app-title content="FixIt"><meta name=theme-color data-light=#f8f8f8 data-dark=#252627 content="#f8f8f8"><meta name=msapplication-TileColor content="#da532c"><link rel=icon href=https://www.nssctf.cn/files/2024/4/28/7f130a1387.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=canonical type=text/html href=https://goodlunatic.github.io/posts/de8e2be/ title="2024 强网拟态防御国际精英挑战赛初赛 Misc Writeup - ⚡Lunatic BLOG⚡"><link rel=prev type=text/html href=https://goodlunatic.github.io/posts/1a285be/ title="2024 网鼎杯网络安全大赛青龙组 Misc Writeup"><link rel=next type=text/html href=https://goodlunatic.github.io/posts/754b8e7/ title="2025 XCTF国际网络攻防联赛-SUCTF分站赛 Misc Writeup"><link rel=alternate type=text/markdown href=https://goodlunatic.github.io/posts/de8e2be/index.md title="2024 强网拟态防御国际精英挑战赛初赛 Misc Writeup - ⚡Lunatic BLOG⚡"><link rel=stylesheet href=/css/config.min.css><link rel=stylesheet href=/css/style.min.css><link rel=preload href=/lib/fontawesome-free/all.min.css as=style onload='this.removeAttribute("onload"),this.rel="stylesheet"'><noscript><link rel=stylesheet href=/lib/fontawesome-free/all.min.css></noscript><link rel=preload href=/lib/animate/animate.min.css as=style onload='this.removeAttribute("onload"),this.rel="stylesheet"'><noscript><link rel=stylesheet href=/lib/animate/animate.min.css></noscript><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"2024 强网拟态防御国际精英挑战赛初赛 Misc Writeup","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/goodlunatic.github.io\/posts\/de8e2be\/"},"genre":"posts","keywords":"CTF, Misc, Writeup","wordcount":987,"url":"https:\/\/goodlunatic.github.io\/posts\/de8e2be\/","datePublished":"2025-03-29T23:16:19+08:00","dateModified":"2025-03-29T23:16:19+08:00","publisher":{"@type":"Organization","name":""},"author":{"@type":"Person","name":"Lunatic"},"description":""}</script><script src=/js/head/color-scheme.min.js></script></head><body data-header-desktop=sticky data-header-mobile=auto><div class=wrapper data-page-style=normal><header class="desktop animate__faster" id=header-desktop><div class=header-wrapper><div class=header-title><a href=/ title="⚡Lunatic BLOG⚡"><span class=header-title-text>⚡Lunatic BLOG⚡</span></a><span class=header-subtitle></span></div><nav><ul class=menu><li class=menu-item><a class=menu-link href=/archives/><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden=true></i> Archives</a></li><li class=menu-item><a class=menu-link href=/categories/><i class="fa-solid fa-folder-tree fa-fw fa-sm" aria-hidden=true></i> Categories</a></li><li class=menu-item><a class=menu-link href=/tags/><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden=true></i> Tags</a></li><li class=menu-item><a class=menu-link href=/friends/><i class="fa-solid fa-chain fa-fw fa-sm" aria-hidden=true></i> Friends</a></li><li class=menu-item><a class=menu-link href=/about/><i class="fa-solid fa-graduation-cap fa-fw fa-sm" aria-hidden=true></i> About</a></li><li class="menu-item delimiter"></li><li class="menu-item theme-switch" title="Switch Theme"><i class="fa-solid fa-adjust fa-fw" aria-hidden=true></i></li></ul></nav></div></header><header class="mobile animate__faster" id=header-mobile><div class=header-container><div class=header-wrapper><div class=header-title><a href=/ title="⚡Lunatic BLOG⚡"><span class=header-title-text>⚡Lunatic BLOG⚡</span></a><span class=header-subtitle></span></div><div class=menu-toggle id=menu-toggle-mobile><span></span><span></span><span></span></div></div><nav><ul class=menu id=menu-mobile><li class=menu-item><a class=menu-link href=/archives/><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden=true></i> Archives</a></li><li class=menu-item><a class=menu-link href=/categories/><i class="fa-solid fa-folder-tree fa-fw fa-sm" aria-hidden=true></i> Categories</a></li><li class=menu-item><a class=menu-link href=/tags/><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden=true></i> Tags</a></li><li class=menu-item><a class=menu-link href=/friends/><i class="fa-solid fa-chain fa-fw fa-sm" aria-hidden=true></i> Friends</a></li><li class=menu-item><a class=menu-link href=/about/><i class="fa-solid fa-graduation-cap fa-fw fa-sm" aria-hidden=true></i> About</a></li><li class="menu-item menu-system"><span class="menu-system-item theme-switch" title="Switch Theme"><i class="fa-solid fa-adjust fa-fw" aria-hidden=true></i></span></li></ul></nav></div></header><main class=fi-container><aside class="aside-collection animate__animated animate__fadeIn animate__faster" aria-label=Collections></aside><article class="page single"><div class=header><h1 class="single-title animate__animated animate__flipInX"><span>2024 强网拟态防御国际精英挑战赛初赛 Misc Writeup</span></h1></div><div class=post-meta><div class=post-meta-line><span class=post-author><a href=https://goodlunatic.github.io title=Author target=_blank rel="external nofollow noopener noreferrer author" class=author><img class=avatar src=https://www.nssctf.cn/files/2024/4/28/7f130a1387.png alt=Lunatic height=16 width=16>&nbsp;Lunatic</a></span><span class=post-included-in>&nbsp;included in <a href=/categories/writeup/ class=post-category title="Category - Writeup"><i class="fa-regular fa-folder fa-fw" aria-hidden=true></i> Writeup</a></span></div><div class=post-meta-line><span title="published on 2025-03-29 23:16:19"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden=true></i><time datetime=2025-03-29>2025-03-29</time></span>&nbsp;<span title="987 words"><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden=true></i>About 1000 words</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden=true></i>5 minutes</span>&nbsp;<span id=busuanzi_container_page_pv class="busuanzi_visitors comment-visitors" data-flag-title="2024 强网拟态防御国际精英挑战赛初赛 Misc Writeup"><i class="fa-regular fa-eye fa-fw me-1" aria-hidden=true></i><span id=busuanzi_value_page_pv>-</span>&nbsp;views
+</span>&nbsp;</div></div><div class="details toc" id=toc-static data-kept=false><div class="details-summary toc-title"><span>Contents</span>
+<span><i class="details-icon fa-solid fa-angle-right" aria-hidden=true></i></span></div><div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents><ul><li><a href=#题目名称-ezflag>题目名称 ezflag</a></li><li><a href=#题目名称-pvz>题目名称 PvZ</a></li><li><a href=#题目名称-find-way-to-read-video>题目名称 Find way to read video</a><ul><li><a href=#解法一根据题目名获取video>解法一：根据题目名获取video</a></li><li><a href=#解法二直接从json中获取flag>解法二：直接从json中获取flag</a></li></ul></li><li><a href=#题目名称-streaming>题目名称 Streaming</a></li><li><a href=#题目名称-input-page-walk>题目名称 Input Page Walk</a></li></ul></nav></div></div><div class=content id=content><p><strong>这比赛虽然有些Misc题比较搞心态，但是不得不说题目质量还是在的</strong></p><table><thead><tr><th style=text-align:center><img loading=lazy src=/posts/de8e2be/imgs/image-20241021155322167.png alt=/posts/de8e2be/imgs/image-20241021155322167.png height=608 width=1080></th></tr></thead><tbody><tr><td style=text-align:center>本文中涉及的具体题目附件可以进我的交流群获取，进群详见 <a href=https://goodlunatic.github.io/about/ target=_blank rel="external nofollow noopener noreferrer">About</a></td></tr></tbody></table><h2 class=heading-element id=题目名称-ezflag><span>题目名称 ezflag</span>
+<a href=#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-ezflag class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h2><p>打开流量包，发现直接传输了一个zip压缩包</p><p><img loading=lazy src=/posts/de8e2be/imgs/image-20241021150156863.png alt=/posts/de8e2be/imgs/image-20241021150156863.png height=1838 width=2940></p><p>因此我们直接把原始的Hex复制到cyberchef中</p><p>然后选择 From Hex 然后下载转换后的压缩包即可</p><blockquote><p>Tips: 这里不推荐用CyberChef的magic功能，要不然转出来的压缩包会提示已损坏</p><p>易损坏的压缩包，需要我们自己去修复文件目录区和文件目录结束区</p><p>其实就是多了一位的错误数据</p></blockquote><p>压缩包解压后可以得到一个flag.zip，010查看发现是一张png图片，改后缀为png即可得到flag</p><p><img loading=lazy src=/posts/de8e2be/imgs/image-20241021150616473.png alt=/posts/de8e2be/imgs/image-20241021150616473.png height=163 width=864></p><p><code>flag{140c7366-c217-4039-af6a-d36c4591a4c8}</code></p><h2 class=heading-element id=题目名称-pvz><span>题目名称 PvZ</span>
+<a href=#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-pvz class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h2><p>解压题目给的压缩包，得到一个名为 <code>key is md5(price)</code> 的文件夹和一个加密的压缩包</p><p>文件夹里有一个txt和一张图片，内容如下</p><blockquote><p>李华的梦想是攒钱买毁灭菇加农炮，可是他总攒不住钱，请帮他理财，算一下他刚开始的这局游戏花了多少钱</p></blockquote><p><img loading=lazy src=/posts/de8e2be/imgs/image-20241021151311421.png alt=/posts/de8e2be/imgs/image-20241021151311421.png height=1440 width=2560></p><p>很明显地提示了压缩包的解压密码，但是让我算是不可能算的，直接写个脚本生成一下MD5，然后爆破即可</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=kn>import</span> <span class=nn>hashlib</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>res</span> <span class=o>=</span> <span class=s1>&#39;&#39;</span>
+</span></span><span class=line><span class=cl><span class=k>for</span> <span class=n>i</span> <span class=ow>in</span> <span class=nb>range</span><span class=p>(</span><span class=mi>10000</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=n>res</span> <span class=o>+=</span> <span class=n>hashlib</span><span class=o>.</span><span class=n>md5</span><span class=p>(</span><span class=nb>str</span><span class=p>(</span><span class=n>i</span><span class=p>)</span><span class=o>.</span><span class=n>encode</span><span class=p>())</span><span class=o>.</span><span class=n>hexdigest</span><span class=p>()</span> <span class=o>+</span> <span class=s1>&#39;</span><span class=se>\n</span><span class=s1>&#39;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>with</span> <span class=nb>open</span><span class=p>(</span><span class=s2>&#34;dic.txt&#34;</span><span class=p>,</span><span class=s1>&#39;w&#39;</span><span class=p>)</span> <span class=k>as</span> <span class=n>f</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>    <span class=n>f</span><span class=o>.</span><span class=n>write</span><span class=p>(</span><span class=n>res</span><span class=p>)</span></span></span></code></pre></td></tr></table></div></div><p><img loading=lazy src=/posts/de8e2be/imgs/image-20241021151748284.png alt=/posts/de8e2be/imgs/image-20241021151748284.png height=457 width=466></p><p>爆破得到压缩包解压密码：217eedd1ba8c592db97d0dbe54c7adfc</p><p>解压后可以得到如下两张图片</p><p><img loading=lazy src=/posts/de8e2be/imgs/image-20241021152745016.png alt=/posts/de8e2be/imgs/image-20241021152745016.png height=277 width=803></p><p>用PS的透视裁剪工具调整图片，然后把前面那个角和三个定位块补上就能得到一张二维码</p><p><img loading=lazy src=/posts/de8e2be/imgs/image-20241021152943211.png alt=/posts/de8e2be/imgs/image-20241021152943211.png height=1048 width=1928></p><p><img loading=lazy src=/posts/de8e2be/imgs/image-20241021153824960.png alt=/posts/de8e2be/imgs/image-20241021153824960.png height=1040 width=1916></p><p><img loading=lazy src=/posts/de8e2be/imgs/image-20241021153837437.png alt=/posts/de8e2be/imgs/image-20241021153837437.png height=980 width=1912></p><p>识别二维码得到如下内容</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>D&#39;`_q^K![YG{VDTveRc10qpnJ+*)G!~f1{d@-}v&lt;)9xqYonsrqj0hPlkdcb(`Hd]#a`_A@VzZY;Qu8NMqKPONGkK-,BGF?cCBA@&#34;&gt;76Z:321U54-21*Non,+*#G&#39;&amp;%$d&#34;y?w_uzsr8vunVrk1ongOe+ihgfeG]#[ZY^W\UZSwWVUNrRQ3IHGLEiCBAFE&gt;=aA:9&gt;765:981Uvu-2+O/.nm+$Hi&#39;~}|B&#34;!~}|u]s9qYonsrqj0hmlkjc)gIedcb[!YX]\UZSwWVUN6LpP2HMFEDhHG@dDCBA:^!~&lt;;:921U/u3,+*Non&amp;%*)(&#39;&amp;}C{cy?}|{zs[q7unVl2ponmleMib(fHG]b[Z~k</span></span></code></pre></td></tr></table></div></div><p>这个时候回头去看图片的名字：M41b0lg3.png</p><p>把M41b0lg3转换为malbolge，上网一搜发现是一种编程语言，直接在线网站运行即可得到flag</p><p><img loading=lazy src=/posts/de8e2be/imgs/image-20241021154255576.png alt=/posts/de8e2be/imgs/image-20241021154255576.png height=976 width=1912></p><p><code>flag{5108a32f-1c7f-4a40-a4fa-fd8982e6eb49}</code></p><h2 class=heading-element id=题目名称-find-way-to-read-video><span>题目名称 Find way to read video</span>
+<a href=#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-find-way-to-read-video class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h2><p>解压题目附件给的压缩包，得到一个bonan7654.txt，内容如下</p><blockquote><p>bonan7654 has put his email template on a public platform.</p></blockquote><p>然后就是要找bonan7654在哪个平台上发东西了，比赛的时候，社工这个人把我心态都搞崩了</p><p>国内外各大平台都搜了就是搜不到，赛后才知道是在gitcode上发的【无语】</p><p><img loading=lazy src=/posts/de8e2be/imgs/image-20241021155911245.png alt=/posts/de8e2be/imgs/image-20241021155911245.png height=942 width=1913></p><p>唉，还是见的东西太少了，通过这次比赛也是让我知道了还有gitcode这个东西。。</p><p>下载这个项目中的README.md，发现是垃圾邮件隐写(spammimic)，找个在线网站解密一下</p><p><img loading=lazy src=/posts/de8e2be/imgs/image-20241021160132194.png alt=/posts/de8e2be/imgs/image-20241021160132194.png height=985 width=1912></p><p>decode后得到如下内容：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>BV1wm2EY2Egx eyJ2IjozLCJuIjoiZjE0ZyIsInMiOiIiLCJoIjoiZjczZDEyZCIsIm0iOjkwLCJrIjo4MSwibWciOjIwMCwia2ciOjEzMCwibCI6NDMsInNsIjoxLCJmaGwiOlsiMjUyZjEwYyIsImFjYWM4NmMiLCJjYTk3ODExIiwiY2QwYWE5OCIsIjAyMWZiNTkiLCIyYzYyNDIzIiwiNGUwNzQwOCIsIjRlMDc0MDgiLCJjYTk3ODExIiwiMmU3ZDJjMCIsIjZiODZiMjciLCIzZjc5YmI3IiwiNGUwNzQwOCIsIjM5NzNlMDIiLCJkNDczNWUzIiwiNGIyMjc3NyIsIjc5MDI2OTkiLCJlN2Y2YzAxIiwiMzk3M2UwMiIsIjRiMjI3NzciLCI0YjIyNzc3IiwiNmI4NmIyNyIsIjJlN2QyYzAiLCIzOTczZTAyIiwiY2E5NzgxMSIsIjNmNzliYjciLCI0ZTA3NDA4IiwiZDQ3MzVlMyIsIjM5NzNlMDIiLCIzZjc5YmI3IiwiM2Y3OWJiNyIsIjI1MmYxMGMiLCIzZjc5YmI3IiwiNmI4NmIyNyIsIjE4YWMzZTciLCI1ZmVjZWI2IiwiNGUwNzQwOCIsIjE4YWMzZTciLCIxOGFjM2U3IiwiMTk1ODFlMiIsIjNmNzliYjciLCJkMTBiMzZhIiwiMDFiYTQ3MSIsIjZlMzQwYjkiLCI2ZTM0MGI5IiwiNmUzNDBiOSIsIjZlMzQwYjkiLCI2ZTM0MGI5IiwiNmUzNDBiOSIsIjZlMzQwYjkiLCI2ZTM0MGI5IiwiNmUzNDBiOSIsIjZlMzQwYjkiLCI2ZTM0MGI5IiwiNmUzNDBiOSIsIjZlMzQwYjkiLCI2ZTM0MGI5IiwiNmUzNDBiOSIsIjZlMzQwYjkiLCI2ZTM0MGI5IiwiNmUzNDBiOSIsIjZlMzQwYjkiLCI2ZTM0MGI5IiwiNmUzNDBiOSIsIjZlMzQwYjkiLCI2ZTM0MGI5IiwiNmUzNDBiOSIsIjZlMzQwYjkiLCI2ZTM0MGI5IiwiNmUzNDBiOSIsIjZlMzQwYjkiLCI2ZTM0MGI5IiwiNmUzNDBiOSIsIjZlMzQwYjkiLCI2ZTM0MGI5IiwiNmUzNDBiOSIsIjZlMzQwYjkiLCI2ZTM0MGI5IiwiNmUzNDBiOSIsIjZlMzQwYjkiLCI2ZTM0MGI5IiwiNzdhZGZjOSIsImRlN2QxYjciLCI0NGJkN2FlIiwiYmI3MjA4YiIsIjgzODkxZDciLCIyYTBhYjczIiwiZmUxZGNkMyIsIjU1OWFlYWQiLCJmMDMxZWZhIl19</span></span></code></pre></td></tr></table></div></div><p>CyberChef解base64可以得到一个json</p><p><img loading=lazy src=/posts/de8e2be/imgs/image-20241021160232969.png alt=/posts/de8e2be/imgs/image-20241021160232969.png height=988 width=1912></p><json-viewer value='"{\n    \"v\": 3,\n    \"n\": \"f14g\",\n    \"s\": \"\",\n    \"h\": \"f73d12d\",\n    \"m\": 90,\n    \"k\": 81,\n    \"mg\": 200,\n    \"kg\": 130,\n    \"l\": 43,\n    \"sl\": 1,\n    \"fhl\": [\n        \"252f10c\",\n        \"acac86c\",\n        \"ca97811\",\n        \"cd0aa98\",\n        \"021fb59\",\n        \"2c62423\",\n        \"4e07408\",\n        \"4e07408\",\n        \"ca97811\",\n        \"2e7d2c0\",\n        \"6b86b27\",\n        \"3f79bb7\",\n        \"4e07408\",\n        \"3973e02\",\n        \"d4735e3\",\n        \"4b22777\",\n        \"7902699\",\n        \"e7f6c01\",\n        \"3973e02\",\n        \"4b22777\",\n        \"4b22777\",\n        \"6b86b27\",\n        \"2e7d2c0\",\n        \"3973e02\",\n        \"ca97811\",\n        \"3f79bb7\",\n        \"4e07408\",\n        \"d4735e3\",\n        \"3973e02\",\n        \"3f79bb7\",\n        \"3f79bb7\",\n        \"252f10c\",\n        \"3f79bb7\",\n        \"6b86b27\",\n        \"18ac3e7\",\n        \"5feceb6\",\n        \"4e07408\",\n        \"18ac3e7\",\n        \"18ac3e7\",\n        \"19581e2\",\n        \"3f79bb7\",\n        \"d10b36a\",\n        \"01ba471\",\n        \"6e340b9\",\n        \"6e340b9\",\n        \"6e340b9\",\n        \"6e340b9\",\n        \"6e340b9\",\n        \"6e340b9\",\n        \"6e340b9\",\n        \"6e340b9\",\n        \"6e340b9\",\n        \"6e340b9\",\n        \"6e340b9\",\n        \"6e340b9\",\n        \"6e340b9\",\n        \"6e340b9\",\n        \"6e340b9\",\n        \"6e340b9\",\n        \"6e340b9\",\n        \"6e340b9\",\n        \"6e340b9\",\n        \"6e340b9\",\n        \"6e340b9\",\n        \"6e340b9\",\n        \"6e340b9\",\n        \"6e340b9\",\n        \"6e340b9\",\n        \"6e340b9\",\n        \"6e340b9\",\n        \"6e340b9\",\n        \"6e340b9\",\n        \"6e340b9\",\n        \"6e340b9\",\n        \"6e340b9\",\n        \"6e340b9\",\n        \"6e340b9\",\n        \"6e340b9\",\n        \"6e340b9\",\n        \"6e340b9\",\n        \"6e340b9\",\n        \"77adfc9\",\n        \"de7d1b7\",\n        \"44bd7ae\",\n        \"bb7208b\",\n        \"83891d7\",\n        \"2a0ab73\",\n        \"fe1dcd3\",\n        \"559aead\",\n        \"f031efa\"\n    ]\n}"' expand-depth=1 boxed copyable='{"copiedText":"Copied","copyText":"Copy"}'></json-viewer><p>在赛后参考了别的师傅的wp后，知道这里处理这段json有两种方法</p><h3 class=heading-element id=解法一根据题目名获取video><span>解法一：根据题目名获取video</span>
+<a href=#%e8%a7%a3%e6%b3%95%e4%b8%80%e6%a0%b9%e6%8d%ae%e9%a2%98%e7%9b%ae%e5%90%8d%e8%8e%b7%e5%8f%96video class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h3><p>根据题目名字的提示：Find way to read video</p><p>可以猜测这段json与video有关，观察到原来那段base64数据前有一段BV开头的字符串：BV1wm2EY2Egx</p><p>搜索这个字符串可以在B站上找到下面这个视频，视频标题：<code>ZjE0Zw==</code> base64解码后可以得到 <code>fl4g</code></p><p><img loading=lazy src=/posts/de8e2be/imgs/image-20241022183235798.png alt=/posts/de8e2be/imgs/image-20241022183235798.png height=982 width=1913></p><p>因此，猜测需要从这些视频里提取flag</p><p>首先，我们需要批量下载这90个视频到本地，爬虫大佬可以自己写脚本爬，这里我就偷懒直接借助插件了</p><p><img loading=lazy src=/posts/de8e2be/imgs/image-20241023171544503.png alt=/posts/de8e2be/imgs/image-20241023171544503.png height=982 width=1913></p><p>油猴插件直接安装这个脚本，然后本地需要先打开 <a href=https://github.com/aria2/aria2 target=_blank rel="external nofollow noopener noreferrer">Aria2</a> 备用</p><p>然后刷新b站视频界面，可以在屏幕左侧看到脚本已启用</p><p><img loading=lazy src=/posts/de8e2be/imgs/image-20241023171835641.png alt=/posts/de8e2be/imgs/image-20241023171835641.png height=983 width=1916></p><p>然后勾上所有的视频，选择 <code>AriaNgGUI</code> 下载即可</p><p><img loading=lazy src=/posts/de8e2be/imgs/image-20241023171925914.png alt=/posts/de8e2be/imgs/image-20241023171925914.png height=1528 width=2560></p><p>我们直接播放视频可以看到前面有几帧是条纹的干扰画面，因此将视频下载到本地后，我们可以先尝试用以下代码分离视频中的所有帧</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=k>def</span> <span class=nf>video2imgs</span><span class=p>(</span><span class=n>video_path</span><span class=p>,</span><span class=n>imgs_dir</span><span class=p>):</span> <span class=c1># 分离视频中的所有帧</span>
+</span></span><span class=line><span class=cl>    <span class=n>cap</span> <span class=o>=</span> <span class=n>cv2</span><span class=o>.</span><span class=n>VideoCapture</span><span class=p>(</span><span class=n>video_path</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=ow>not</span> <span class=n>cap</span><span class=o>.</span><span class=n>isOpened</span><span class=p>():</span>
+</span></span><span class=line><span class=cl>        <span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;[-] 视频读取失败&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=k>return</span>
+</span></span><span class=line><span class=cl>    <span class=n>frames_num</span> <span class=o>=</span> <span class=n>cap</span><span class=o>.</span><span class=n>get</span><span class=p>(</span><span class=mi>7</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;[+] 视频读取成功，总帧数为 </span><span class=si>{</span><span class=n>frames_num</span><span class=si>}</span><span class=s2>&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=ow>not</span> <span class=n>os</span><span class=o>.</span><span class=n>path</span><span class=o>.</span><span class=n>exists</span><span class=p>(</span><span class=n>imgs_dir</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>        <span class=n>os</span><span class=o>.</span><span class=n>mkdir</span><span class=p>(</span><span class=n>imgs_dir</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>frame_cnt</span> <span class=o>=</span> <span class=mi>1</span>
+</span></span><span class=line><span class=cl>    <span class=k>while</span> <span class=kc>True</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=n>ret</span><span class=p>,</span><span class=n>frame</span> <span class=o>=</span> <span class=n>cap</span><span class=o>.</span><span class=n>read</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>        <span class=k>if</span> <span class=ow>not</span> <span class=n>ret</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>            <span class=k>break</span>
+</span></span><span class=line><span class=cl>        <span class=n>img_name</span> <span class=o>=</span> <span class=n>imgs_dir</span><span class=o>+</span><span class=sa>f</span><span class=s2>&#34;</span><span class=si>{</span><span class=n>frame_cnt</span><span class=si>}</span><span class=s2>.png&#34;</span>
+</span></span><span class=line><span class=cl>        <span class=n>cv2</span><span class=o>.</span><span class=n>imwrite</span><span class=p>(</span><span class=n>img_name</span><span class=p>,</span><span class=n>frame</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;[+] 视频第 </span><span class=si>{</span><span class=n>frame_cnt</span><span class=si>}</span><span class=s2> 帧保存成功&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=n>frame_cnt</span> <span class=o>+=</span> <span class=mi>1</span>
+</span></span><span class=line><span class=cl>    <span class=n>cap</span><span class=o>.</span><span class=n>release</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>    <span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;[+] 视频 </span><span class=si>{</span><span class=n>video_path</span><span class=o>.</span><span class=n>split</span><span class=p>(</span><span class=s1>&#39;/&#39;</span><span class=p>)[</span><span class=o>-</span><span class=mi>1</span><span class=p>]</span><span class=si>}</span><span class=s2> 所有帧已读取完毕&#34;</span><span class=p>)</span></span></span></code></pre></td></tr></table></div></div><p>分离出来后可以发现前四帧和最后四帧是干扰项，然后查看后面的图片可以明显看到图像上方有白色的原点，猜测隐写了内容</p><p><img loading=lazy src=/posts/de8e2be/imgs/image-20241023205400995.png alt=/posts/de8e2be/imgs/image-20241023205400995.png height=1031 width=1916></p><p>因此我们尝试提取图像中的的像素，因为所有白色的像素都在第一行，因此我们先分析第一行的225个像素</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=k>def</span> <span class=nf>extract_flag</span><span class=p>(</span><span class=n>video_path</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=c1># 使用cv2读取视频</span>
+</span></span><span class=line><span class=cl>    <span class=n>cap</span> <span class=o>=</span> <span class=n>cv2</span><span class=o>.</span><span class=n>VideoCapture</span><span class=p>(</span><span class=n>video_path</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=c1># frame_width = cap.get(3)</span>
+</span></span><span class=line><span class=cl>    <span class=c1># frame_height = cap.get(4)</span>
+</span></span><span class=line><span class=cl>    <span class=c1># print(frame_width,frame_height)# 224,224</span>
+</span></span><span class=line><span class=cl>    <span class=n>res</span> <span class=o>=</span> <span class=s2>&#34;&#34;</span>
+</span></span><span class=line><span class=cl>    <span class=n>frames_cnt</span> <span class=o>=</span> <span class=mi>1</span>
+</span></span><span class=line><span class=cl>    <span class=k>while</span> <span class=kc>True</span><span class=p>:</span> 
+</span></span><span class=line><span class=cl>        <span class=c1># 读取视频的下一帧，并返回布尔值和当前帧的图像数据</span>
+</span></span><span class=line><span class=cl>        <span class=n>ret</span><span class=p>,</span> <span class=n>frame</span> <span class=o>=</span> <span class=n>cap</span><span class=o>.</span><span class=n>read</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>        <span class=c1># print(frame[0][0][0])</span>
+</span></span><span class=line><span class=cl>        <span class=k>if</span><span class=p>(</span><span class=n>frames_cnt</span> <span class=o>==</span> <span class=mi>5</span><span class=p>):</span><span class=c1># 经过尝试发现flag就藏在每个视频的第 5 帧中</span>
+</span></span><span class=line><span class=cl>            <span class=c1># 自动计算行数，待转换的列数为3，并取出前225个像素R通道的值</span>
+</span></span><span class=line><span class=cl>            <span class=n>pixels</span> <span class=o>=</span> <span class=n>frame</span><span class=o>.</span><span class=n>reshape</span><span class=p>((</span><span class=o>-</span><span class=mi>1</span><span class=p>,</span><span class=mi>3</span><span class=p>))[:</span><span class=mi>224</span><span class=p>][:,</span><span class=mi>0</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>            <span class=k>for</span> <span class=n>i</span> <span class=ow>in</span> <span class=nb>range</span><span class=p>(</span><span class=nb>len</span><span class=p>(</span><span class=n>pixels</span><span class=p>)):</span>
+</span></span><span class=line><span class=cl>                <span class=k>if</span> <span class=n>pixels</span><span class=p>[</span><span class=n>i</span><span class=p>]</span> <span class=o>&gt;</span> <span class=mi>200</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                    <span class=n>pixels</span><span class=p>[</span><span class=n>i</span><span class=p>]</span> <span class=o>=</span> <span class=mi>1</span>
+</span></span><span class=line><span class=cl>                <span class=k>else</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                    <span class=n>pixels</span><span class=p>[</span><span class=n>i</span><span class=p>]</span> <span class=o>=</span> <span class=mi>0</span>
+</span></span><span class=line><span class=cl>            <span class=n>res</span> <span class=o>=</span> <span class=n>decode_pixel</span><span class=p>(</span><span class=n>pixels</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>            <span class=k>break</span>
+</span></span><span class=line><span class=cl>        <span class=n>frames_cnt</span> <span class=o>+=</span> <span class=mi>1</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=n>res</span></span></span></code></pre></td></tr></table></div></div><p>根据<code>flag{</code>头的八位二进制表示，我们可以找到隐写的对应位置</p><p>最后经过尝试，发现flag的每个字符都藏在每个视频第五帧第一行32-40的像素点中</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=k>def</span> <span class=nf>decode_pixel</span><span class=p>(</span><span class=n>pixels</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=s1>&#39;&#39;&#39;
+</span></span></span><span class=line><span class=cl><span class=s1>    f：01100110
+</span></span></span><span class=line><span class=cl><span class=s1>    l：01101100
+</span></span></span><span class=line><span class=cl><span class=s1>    a：01100001
+</span></span></span><span class=line><span class=cl><span class=s1>    g：01100111
+</span></span></span><span class=line><span class=cl><span class=s1>    {：01111011
+</span></span></span><span class=line><span class=cl><span class=s1>    &#39;&#39;&#39;</span>
+</span></span><span class=line><span class=cl>    <span class=n>res</span> <span class=o>=</span> <span class=s2>&#34;&#34;</span>
+</span></span><span class=line><span class=cl>    <span class=k>for</span> <span class=n>i</span> <span class=ow>in</span> <span class=nb>range</span><span class=p>(</span><span class=mi>8</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>        <span class=c1># 经过尝试，发现flag是隐写在24-40这十六个像素中</span>
+</span></span><span class=line><span class=cl>        <span class=n>res</span> <span class=o>+=</span> <span class=nb>str</span><span class=p>(</span><span class=n>pixels</span><span class=p>[</span><span class=mi>32</span><span class=o>+</span><span class=n>i</span><span class=p>])</span>
+</span></span><span class=line><span class=cl>    <span class=n>flag_char</span> <span class=o>=</span> <span class=n>libnum</span><span class=o>.</span><span class=n>b2s</span><span class=p>(</span><span class=n>res</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=n>flag_char</span></span></span></code></pre></td></tr></table></div></div><p>最后，完整的解题代码如下：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span><span class=lnt>48
+</span><span class=lnt>49
+</span><span class=lnt>50
+</span><span class=lnt>51
+</span><span class=lnt>52
+</span><span class=lnt>53
+</span><span class=lnt>54
+</span><span class=lnt>55
+</span><span class=lnt>56
+</span><span class=lnt>57
+</span><span class=lnt>58
+</span><span class=lnt>59
+</span><span class=lnt>60
+</span><span class=lnt>61
+</span><span class=lnt>62
+</span><span class=lnt>63
+</span><span class=lnt>64
+</span><span class=lnt>65
+</span><span class=lnt>66
+</span><span class=lnt>67
+</span><span class=lnt>68
+</span><span class=lnt>69
+</span><span class=lnt>70
+</span><span class=lnt>71
+</span><span class=lnt>72
+</span><span class=lnt>73
+</span><span class=lnt>74
+</span><span class=lnt>75
+</span><span class=lnt>76
+</span><span class=lnt>77
+</span><span class=lnt>78
+</span><span class=lnt>79
+</span><span class=lnt>80
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=kn>import</span> <span class=nn>cv2</span>
+</span></span><span class=line><span class=cl><span class=kn>import</span> <span class=nn>os</span>
+</span></span><span class=line><span class=cl><span class=kn>import</span> <span class=nn>libnum</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>video2imgs</span><span class=p>(</span><span class=n>video_path</span><span class=p>,</span><span class=n>imgs_dir</span><span class=p>):</span> <span class=c1># 分离视频中的所有帧</span>
+</span></span><span class=line><span class=cl>    <span class=n>cap</span> <span class=o>=</span> <span class=n>cv2</span><span class=o>.</span><span class=n>VideoCapture</span><span class=p>(</span><span class=n>video_path</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=ow>not</span> <span class=n>cap</span><span class=o>.</span><span class=n>isOpened</span><span class=p>():</span>
+</span></span><span class=line><span class=cl>        <span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;[-] 视频读取失败&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=k>return</span>
+</span></span><span class=line><span class=cl>    <span class=n>frames_num</span> <span class=o>=</span> <span class=n>cap</span><span class=o>.</span><span class=n>get</span><span class=p>(</span><span class=mi>7</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;[+] 视频读取成功，总帧数为 </span><span class=si>{</span><span class=n>frames_num</span><span class=si>}</span><span class=s2>&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=ow>not</span> <span class=n>os</span><span class=o>.</span><span class=n>path</span><span class=o>.</span><span class=n>exists</span><span class=p>(</span><span class=n>imgs_dir</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>        <span class=n>os</span><span class=o>.</span><span class=n>mkdir</span><span class=p>(</span><span class=n>imgs_dir</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>frame_cnt</span> <span class=o>=</span> <span class=mi>1</span>
+</span></span><span class=line><span class=cl>    <span class=k>while</span> <span class=kc>True</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=n>ret</span><span class=p>,</span><span class=n>frame</span> <span class=o>=</span> <span class=n>cap</span><span class=o>.</span><span class=n>read</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>        <span class=k>if</span> <span class=ow>not</span> <span class=n>ret</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>            <span class=k>break</span>
+</span></span><span class=line><span class=cl>        <span class=n>img_name</span> <span class=o>=</span> <span class=n>imgs_dir</span><span class=o>+</span><span class=sa>f</span><span class=s2>&#34;</span><span class=si>{</span><span class=n>frame_cnt</span><span class=si>}</span><span class=s2>.png&#34;</span>
+</span></span><span class=line><span class=cl>        <span class=n>cv2</span><span class=o>.</span><span class=n>imwrite</span><span class=p>(</span><span class=n>img_name</span><span class=p>,</span><span class=n>frame</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;[+] 视频第 </span><span class=si>{</span><span class=n>frame_cnt</span><span class=si>}</span><span class=s2> 帧保存成功&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=n>frame_cnt</span> <span class=o>+=</span> <span class=mi>1</span>
+</span></span><span class=line><span class=cl>    <span class=n>cap</span><span class=o>.</span><span class=n>release</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>    <span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;[+] 视频 </span><span class=si>{</span><span class=n>video_path</span><span class=o>.</span><span class=n>split</span><span class=p>(</span><span class=s1>&#39;/&#39;</span><span class=p>)[</span><span class=o>-</span><span class=mi>1</span><span class=p>]</span><span class=si>}</span><span class=s2> 所有帧已读取完毕&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>decode_pixel</span><span class=p>(</span><span class=n>pixels</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=s1>&#39;&#39;&#39;
+</span></span></span><span class=line><span class=cl><span class=s1>    f：01100110
+</span></span></span><span class=line><span class=cl><span class=s1>    l：01101100
+</span></span></span><span class=line><span class=cl><span class=s1>    a：01100001
+</span></span></span><span class=line><span class=cl><span class=s1>    g：01100111
+</span></span></span><span class=line><span class=cl><span class=s1>    {：01111011
+</span></span></span><span class=line><span class=cl><span class=s1>    &#39;&#39;&#39;</span>
+</span></span><span class=line><span class=cl>    <span class=n>res</span> <span class=o>=</span> <span class=s2>&#34;&#34;</span>
+</span></span><span class=line><span class=cl>    <span class=k>for</span> <span class=n>i</span> <span class=ow>in</span> <span class=nb>range</span><span class=p>(</span><span class=mi>8</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>        <span class=c1># 经过尝试，发现flag是隐写在24-40这十六个像素中</span>
+</span></span><span class=line><span class=cl>        <span class=n>res</span> <span class=o>+=</span> <span class=nb>str</span><span class=p>(</span><span class=n>pixels</span><span class=p>[</span><span class=mi>32</span><span class=o>+</span><span class=n>i</span><span class=p>])</span>
+</span></span><span class=line><span class=cl>    <span class=n>flag_char</span> <span class=o>=</span> <span class=n>libnum</span><span class=o>.</span><span class=n>b2s</span><span class=p>(</span><span class=n>res</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=n>flag_char</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>extract_flag</span><span class=p>(</span><span class=n>video_path</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=c1># 使用cv2读取视频</span>
+</span></span><span class=line><span class=cl>    <span class=n>cap</span> <span class=o>=</span> <span class=n>cv2</span><span class=o>.</span><span class=n>VideoCapture</span><span class=p>(</span><span class=n>video_path</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=c1># frame_width = cap.get(3)</span>
+</span></span><span class=line><span class=cl>    <span class=c1># frame_height = cap.get(4)</span>
+</span></span><span class=line><span class=cl>    <span class=c1># print(frame_width,frame_height)# 224,224</span>
+</span></span><span class=line><span class=cl>    <span class=n>res</span> <span class=o>=</span> <span class=s2>&#34;&#34;</span>
+</span></span><span class=line><span class=cl>    <span class=n>frames_cnt</span> <span class=o>=</span> <span class=mi>1</span>
+</span></span><span class=line><span class=cl>    <span class=k>while</span> <span class=kc>True</span><span class=p>:</span> 
+</span></span><span class=line><span class=cl>        <span class=c1># 读取视频的下一帧，并返回布尔值和当前帧的图像数据</span>
+</span></span><span class=line><span class=cl>        <span class=n>ret</span><span class=p>,</span> <span class=n>frame</span> <span class=o>=</span> <span class=n>cap</span><span class=o>.</span><span class=n>read</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>        <span class=c1># print(frame[0][0][0])</span>
+</span></span><span class=line><span class=cl>        <span class=k>if</span><span class=p>(</span><span class=n>frames_cnt</span> <span class=o>==</span> <span class=mi>5</span><span class=p>):</span><span class=c1># 经过尝试发现flag就藏在每个视频的第 5 帧中</span>
+</span></span><span class=line><span class=cl>            <span class=c1># 自动计算行数，待转换的列数为3，并取出前225个像素R通道的值</span>
+</span></span><span class=line><span class=cl>            <span class=n>pixels</span> <span class=o>=</span> <span class=n>frame</span><span class=o>.</span><span class=n>reshape</span><span class=p>((</span><span class=o>-</span><span class=mi>1</span><span class=p>,</span><span class=mi>3</span><span class=p>))[:</span><span class=mi>224</span><span class=p>][:,</span><span class=mi>0</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>            <span class=k>for</span> <span class=n>i</span> <span class=ow>in</span> <span class=nb>range</span><span class=p>(</span><span class=nb>len</span><span class=p>(</span><span class=n>pixels</span><span class=p>)):</span>
+</span></span><span class=line><span class=cl>                <span class=k>if</span> <span class=n>pixels</span><span class=p>[</span><span class=n>i</span><span class=p>]</span> <span class=o>&gt;</span> <span class=mi>200</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                    <span class=n>pixels</span><span class=p>[</span><span class=n>i</span><span class=p>]</span> <span class=o>=</span> <span class=mi>1</span>
+</span></span><span class=line><span class=cl>                <span class=k>else</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                    <span class=n>pixels</span><span class=p>[</span><span class=n>i</span><span class=p>]</span> <span class=o>=</span> <span class=mi>0</span>
+</span></span><span class=line><span class=cl>            <span class=n>res</span> <span class=o>=</span> <span class=n>decode_pixel</span><span class=p>(</span><span class=n>pixels</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>            <span class=k>break</span>
+</span></span><span class=line><span class=cl>        <span class=n>frames_cnt</span> <span class=o>+=</span> <span class=mi>1</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=n>res</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>if</span> <span class=vm>__name__</span> <span class=o>==</span> <span class=s2>&#34;__main__&#34;</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>    <span class=n>flag</span> <span class=o>=</span> <span class=p>[</span><span class=sa>b</span><span class=s1>&#39;&#39;</span><span class=p>]</span><span class=o>*</span><span class=mi>100</span>
+</span></span><span class=line><span class=cl>    <span class=nb>dir</span> <span class=o>=</span> <span class=n>os</span><span class=o>.</span><span class=n>listdir</span><span class=p>(</span><span class=s2>&#34;./videos/&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=c1># print(dir)</span>
+</span></span><span class=line><span class=cl>    <span class=c1># output_dir = &#34;./output/&#34;</span>
+</span></span><span class=line><span class=cl>    <span class=c1># if not os.path.exists(output_dir):</span>
+</span></span><span class=line><span class=cl>        <span class=c1># os.mkdir(output_dir)</span>
+</span></span><span class=line><span class=cl>    <span class=k>for</span> <span class=n>item</span> <span class=ow>in</span> <span class=nb>dir</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=n>index</span> <span class=o>=</span> <span class=nb>int</span><span class=p>(</span><span class=n>item</span><span class=o>.</span><span class=n>split</span><span class=p>(</span><span class=s1>&#39;_&#39;</span><span class=p>)[</span><span class=mi>2</span><span class=p>])</span>
+</span></span><span class=line><span class=cl>        <span class=n>video_path</span> <span class=o>=</span> <span class=sa>f</span><span class=s2>&#34;./videos/</span><span class=si>{</span><span class=n>item</span><span class=si>}</span><span class=s2>&#34;</span>
+</span></span><span class=line><span class=cl>        <span class=c1># imgs_dir = f&#34;./output/imgs_{index}/&#34;</span>
+</span></span><span class=line><span class=cl>        <span class=c1># video2imgs(video_path,imgs_dir)</span>
+</span></span><span class=line><span class=cl>        <span class=n>flag</span><span class=p>[</span><span class=n>index</span><span class=p>]</span> <span class=o>=</span> <span class=n>extract_flag</span><span class=p>(</span><span class=n>video_path</span><span class=p>)</span>  
+</span></span><span class=line><span class=cl>    <span class=nb>print</span><span class=p>(</span><span class=sa>b</span><span class=s1>&#39;&#39;</span><span class=o>.</span><span class=n>join</span><span class=p>(</span><span class=n>flag</span><span class=p>))</span></span></span></code></pre></td></tr></table></div></div><p><img loading=lazy src=/posts/de8e2be/imgs/image-20241023172017846.png alt=/posts/de8e2be/imgs/image-20241023172017846.png height=1032 width=1920></p><p><code>flag{833ac1e3-2476-441c-ae32-eefe1d03dd9e}</code></p><h3 class=heading-element id=解法二直接从json中获取flag><span>解法二：直接从json中获取flag</span>
+<a href=#%e8%a7%a3%e6%b3%95%e4%ba%8c%e7%9b%b4%e6%8e%a5%e4%bb%8ejson%e4%b8%ad%e8%8e%b7%e5%8f%96flag class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h3><p>这里主要关注json中的fhl键，发现每个元素都是长度为7的字符串</p><p>然后字符串看起来有点像是某种Hash，然后只截取了其中的一部分</p><p>我这里先尝试了字符f的各种Hash</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>MD5：8fa14cdd754f91cc6554c9e71929cce7
+</span></span><span class=line><span class=cl>SHA-256：252f10c83610ebca1a059c0bae8255eba2f95be4d1d7bcfa89d7248a82d9f111</span></span></code></pre></td></tr></table></div></div><p>然后发现第一个元素刚刚好是字符f的SHA-256的前七位，继续尝试lag{这四个字符的SHA-256</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>f: 252f10c83610ebca1a059c0bae8255eba2f95be4d1d7bcfa89d7248a82d9f111
+</span></span><span class=line><span class=cl>l: acac86c0e609ca906f632b0e2dacccb2b77d22b0621f20ebece1a4835b93f6f0
+</span></span><span class=line><span class=cl>a: ca978112ca1bbdcafac231b39a23dc4da786eff8147c4e72b9807785afee48bb
+</span></span><span class=line><span class=cl>g: cd0aa9856147b6c5b4ff2b7dfee5da20aa38253099ef1b4a64aced233c9afe29
+</span></span><span class=line><span class=cl>{: 021fb596db81e6d02bf3d2586ee3981fe519f275c0ac9ca76bbcf2ebb4097d96</span></span></code></pre></td></tr></table></div></div><p>发现刚刚好全对上了，因此我们接下来直接写个脚本提取flag即可</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=kn>import</span> <span class=nn>hashlib</span>
+</span></span><span class=line><span class=cl><span class=kn>from</span> <span class=nn>string</span> <span class=kn>import</span> <span class=n>printable</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>table</span> <span class=o>=</span> <span class=p>{}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>for</span> <span class=n>item</span> <span class=ow>in</span> <span class=n>printable</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>    <span class=n>hash_data</span> <span class=o>=</span> <span class=n>hashlib</span><span class=o>.</span><span class=n>sha256</span><span class=p>(</span><span class=n>item</span><span class=o>.</span><span class=n>encode</span><span class=p>())</span><span class=o>.</span><span class=n>hexdigest</span><span class=p>()[:</span><span class=mi>7</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>    <span class=n>table</span><span class=p>[</span><span class=n>hash_data</span><span class=p>]</span> <span class=o>=</span> <span class=n>item</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>fhl</span><span class=o>=</span><span class=p>[</span><span class=s2>&#34;252f10c&#34;</span><span class=p>,</span><span class=s2>&#34;acac86c&#34;</span><span class=p>,</span><span class=s2>&#34;ca97811&#34;</span><span class=p>,</span><span class=s2>&#34;cd0aa98&#34;</span><span class=p>,</span><span class=s2>&#34;021fb59&#34;</span><span class=p>,</span><span class=s2>&#34;2c62423&#34;</span><span class=p>,</span><span class=s2>&#34;4e07408&#34;</span><span class=p>,</span><span class=s2>&#34;4e07408&#34;</span><span class=p>,</span><span class=s2>&#34;ca97811&#34;</span><span class=p>,</span><span class=s2>&#34;2e7d2c0&#34;</span><span class=p>,</span><span class=s2>&#34;6b86b27&#34;</span><span class=p>,</span><span class=s2>&#34;3f79bb7&#34;</span><span class=p>,</span><span class=s2>&#34;4e07408&#34;</span><span class=p>,</span><span class=s2>&#34;3973e02&#34;</span><span class=p>,</span><span class=s2>&#34;d4735e3&#34;</span><span class=p>,</span><span class=s2>&#34;4b22777&#34;</span><span class=p>,</span><span class=s2>&#34;7902699&#34;</span><span class=p>,</span><span class=s2>&#34;e7f6c01&#34;</span><span class=p>,</span><span class=s2>&#34;3973e02&#34;</span><span class=p>,</span><span class=s2>&#34;4b22777&#34;</span><span class=p>,</span><span class=s2>&#34;4b22777&#34;</span><span class=p>,</span><span class=s2>&#34;6b86b27&#34;</span><span class=p>,</span><span class=s2>&#34;2e7d2c0&#34;</span><span class=p>,</span><span class=s2>&#34;3973e02&#34;</span><span class=p>,</span><span class=s2>&#34;ca97811&#34;</span><span class=p>,</span><span class=s2>&#34;3f79bb7&#34;</span><span class=p>,</span><span class=s2>&#34;4e07408&#34;</span><span class=p>,</span><span class=s2>&#34;d4735e3&#34;</span><span class=p>,</span><span class=s2>&#34;3973e02&#34;</span><span class=p>,</span><span class=s2>&#34;3f79bb7&#34;</span><span class=p>,</span><span class=s2>&#34;3f79bb7&#34;</span><span class=p>,</span><span class=s2>&#34;252f10c&#34;</span><span class=p>,</span><span class=s2>&#34;3f79bb7&#34;</span><span class=p>,</span><span class=s2>&#34;6b86b27&#34;</span><span class=p>,</span><span class=s2>&#34;18ac3e7&#34;</span><span class=p>,</span><span class=s2>&#34;5feceb6&#34;</span><span class=p>,</span><span class=s2>&#34;4e07408&#34;</span><span class=p>,</span><span class=s2>&#34;18ac3e7&#34;</span><span class=p>,</span><span class=s2>&#34;18ac3e7&#34;</span><span class=p>,</span><span class=s2>&#34;19581e2&#34;</span><span class=p>,</span><span class=s2>&#34;3f79bb7&#34;</span><span class=p>,</span><span class=s2>&#34;d10b36a&#34;</span><span class=p>,</span><span class=s2>&#34;01ba471&#34;</span><span class=p>,</span><span class=s2>&#34;6e340b9&#34;</span><span class=p>,</span><span class=s2>&#34;6e340b9&#34;</span><span class=p>,</span><span class=s2>&#34;6e340b9&#34;</span><span class=p>,</span><span class=s2>&#34;6e340b9&#34;</span><span class=p>,</span><span class=s2>&#34;6e340b9&#34;</span><span class=p>,</span><span class=s2>&#34;6e340b9&#34;</span><span class=p>,</span><span class=s2>&#34;6e340b9&#34;</span><span class=p>,</span><span class=s2>&#34;6e340b9&#34;</span><span class=p>,</span><span class=s2>&#34;6e340b9&#34;</span><span class=p>,</span><span class=s2>&#34;6e340b9&#34;</span><span class=p>,</span><span class=s2>&#34;6e340b9&#34;</span><span class=p>,</span><span class=s2>&#34;6e340b9&#34;</span><span class=p>,</span><span class=s2>&#34;6e340b9&#34;</span><span class=p>,</span><span class=s2>&#34;6e340b9&#34;</span><span class=p>,</span><span class=s2>&#34;6e340b9&#34;</span><span class=p>,</span><span class=s2>&#34;6e340b9&#34;</span><span class=p>,</span><span class=s2>&#34;6e340b9&#34;</span><span class=p>,</span><span class=s2>&#34;6e340b9&#34;</span><span class=p>,</span><span class=s2>&#34;6e340b9&#34;</span><span class=p>,</span><span class=s2>&#34;6e340b9&#34;</span><span class=p>,</span><span class=s2>&#34;6e340b9&#34;</span><span class=p>,</span><span class=s2>&#34;6e340b9&#34;</span><span class=p>,</span><span class=s2>&#34;6e340b9&#34;</span><span class=p>,</span><span class=s2>&#34;6e340b9&#34;</span><span class=p>,</span><span class=s2>&#34;6e340b9&#34;</span><span class=p>,</span><span class=s2>&#34;6e340b9&#34;</span><span class=p>,</span><span class=s2>&#34;6e340b9&#34;</span><span class=p>,</span><span class=s2>&#34;6e340b9&#34;</span><span class=p>,</span><span class=s2>&#34;6e340b9&#34;</span><span class=p>,</span><span class=s2>&#34;6e340b9&#34;</span><span class=p>,</span><span class=s2>&#34;6e340b9&#34;</span><span class=p>,</span><span class=s2>&#34;6e340b9&#34;</span><span class=p>,</span><span class=s2>&#34;6e340b9&#34;</span><span class=p>,</span><span class=s2>&#34;6e340b9&#34;</span><span class=p>,</span><span class=s2>&#34;6e340b9&#34;</span><span class=p>,</span><span class=s2>&#34;6e340b9&#34;</span><span class=p>,</span><span class=s2>&#34;6e340b9&#34;</span><span class=p>,</span><span class=s2>&#34;6e340b9&#34;</span><span class=p>,</span><span class=s2>&#34;77adfc9&#34;</span><span class=p>,</span><span class=s2>&#34;de7d1b7&#34;</span><span class=p>,</span><span class=s2>&#34;44bd7ae&#34;</span><span class=p>,</span><span class=s2>&#34;bb7208b&#34;</span><span class=p>,</span><span class=s2>&#34;83891d7&#34;</span><span class=p>,</span><span class=s2>&#34;2a0ab73&#34;</span><span class=p>,</span><span class=s2>&#34;fe1dcd3&#34;</span><span class=p>,</span><span class=s2>&#34;559aead&#34;</span><span class=p>,</span><span class=s2>&#34;f031efa&#34;</span><span class=p>]</span>
+</span></span><span class=line><span class=cl><span class=n>flag</span> <span class=o>=</span> <span class=s1>&#39;&#39;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>for</span> <span class=n>item</span> <span class=ow>in</span> <span class=n>fhl</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>    <span class=k>try</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=n>flag</span> <span class=o>+=</span> <span class=n>table</span><span class=p>[</span><span class=n>item</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>    <span class=k>except</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;[-] </span><span class=si>{</span><span class=n>item</span><span class=si>}</span><span class=s2>解码失败，可能为不可打印字符！&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nb>print</span><span class=p>(</span><span class=n>flag</span><span class=p>)</span></span></span></code></pre></td></tr></table></div></div><p><img loading=lazy src=/posts/de8e2be/imgs/image-20241021161650367.png alt=/posts/de8e2be/imgs/image-20241021161650367.png height=1033 width=1914></p><p><code>flag{833ac1e3-2476-441c-ae32-eefe1d03dd9e}</code></p><h2 class=heading-element id=题目名称-streaming><span>题目名称 Streaming</span>
+<a href=#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-streaming class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h2><p>下载附件，得到一个流量包和一个未知后缀的数据文件</p><p>发现协议中有RTCP协议，然后尝试追踪UDP流，发现有H.264的字样</p><p><img loading=lazy src=/posts/de8e2be/imgs/image-20241122190444573.png alt=/posts/de8e2be/imgs/image-20241122190444573.png height=1032 width=1917></p><p>因此我们手动修改解码方法</p><p><img loading=lazy src=/posts/de8e2be/imgs/image-20241122190740529.png alt=/posts/de8e2be/imgs/image-20241122190740529.png height=490 width=750></p><p><img loading=lazy src=/posts/de8e2be/imgs/image-20241122190719484.png alt=/posts/de8e2be/imgs/image-20241122190719484.png height=490 width=750></p><p><img loading=lazy src=/posts/de8e2be/imgs/image-20241122190801891.png alt=/posts/de8e2be/imgs/image-20241122190801891.png height=490 width=750></p><p>然后我们去Github上下载<a href=https://github.com/volvet/h264extractor target=_blank rel="external nofollow noopener noreferrer">这个插件</a>，然后放到wireshark安装目录中的plugin目录下即可</p><p>使用插件导出H.264流传输的数据</p><p><img loading=lazy src=/posts/de8e2be/imgs/image-20241122191126086.png alt=/posts/de8e2be/imgs/image-20241122191126086.png height=1025 width=1911></p><p><img loading=lazy src=/posts/de8e2be/imgs/image-20241122191143029.png alt=/posts/de8e2be/imgs/image-20241122191143029.png height=482 width=622></p><p>导出后可以得到一个后缀为.264的文件，直接使用爱奇艺万能播放器打开可以得到第一段flag和一堆FF字符</p><p><img loading=lazy src=/posts/de8e2be/imgs/image-20241122191232867.png alt=/posts/de8e2be/imgs/image-20241122191232867.png height=734 width=1117></p><p>然后提示了flag1不仅仅是flag，联想到之前的那段未知数据，猜测这个也是密钥（算上引号长度刚好为16）</p><p>文本中的FF提示了需要先异或0xFF（别问为啥，问就是Misc手的经验）</p><p><img loading=lazy src=/posts/de8e2be/imgs/image-20241122191404633.png alt=/posts/de8e2be/imgs/image-20241122191404633.png height=984 width=1918></p><p>AES-ECB解密后可以得到一个压缩包，解压后可以得到一个<code>badapple</code>和一个<code>secret</code>文件</p><p>badapple用010打开发现是一张png图片，因此我们改后缀为png，可以得到下图</p><p><img loading=lazy src=/posts/de8e2be/imgs/image-20241122192000961.png alt=/posts/de8e2be/imgs/image-20241122192000961.png height=201 width=400></p><p><img loading=lazy src=/posts/de8e2be/imgs/image-20241122192747633.png alt=/posts/de8e2be/imgs/image-20241122192747633.png height=1024 width=1548></p><p>010打开发现存在<code>IDOT</code>块，赛后知道了是一种特殊的图片文件，苹果和安卓系统上会显示出不同的图片</p><p>可以使用<a href="https://fotoforensics.com/analysis.php?id=49aa281215134389445673fd09e5ebb0f7d6ffe4.8537" target=_blank rel="external nofollow noopener noreferrer">在线网站</a>直接看</p><p><img loading=lazy src=/posts/de8e2be/imgs/image-20241122193003151.png alt=/posts/de8e2be/imgs/image-20241122193003151.png height=707 width=1607></p><p>也可以借助这个<a href=https://github.com/GGN-2015/macos_shadow_tank target=_blank rel="external nofollow noopener noreferrer">开源项目</a>，将图片重命名为<code>merged.png</code>，并放到<code>sample</code>目录下</p><p>运行 <code>preview_macos.py</code> 即可得到第二段flag</p><p><img loading=lazy src=/posts/de8e2be/imgs/image-20241122193158584.png alt=/posts/de8e2be/imgs/image-20241122193158584.png height=201 width=400></p><p>最后再看<code>s4cret</code>这个文件，补上文件头<code>00</code>，并改后缀为.mov</p><p><img loading=lazy src=/posts/de8e2be/imgs/image-20241122193341274.png alt=/posts/de8e2be/imgs/image-20241122193341274.png height=140 width=1115></p><p><img loading=lazy src=/posts/de8e2be/imgs/image-20241122193302414.png alt=/posts/de8e2be/imgs/image-20241122193302414.png height=1024 width=1548></p><p>然后再用播放器打开，发现是由一组黑白帧组成的视频，直接写一个脚本提取黑白帧转二进制即可得到第三段flag</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=kn>import</span> <span class=nn>cv2</span>
+</span></span><span class=line><span class=cl><span class=kn>import</span> <span class=nn>libnum</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>cap</span> <span class=o>=</span> <span class=n>cv2</span><span class=o>.</span><span class=n>VideoCapture</span><span class=p>(</span><span class=s1>&#39;s4cret.mov&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>frame_count</span> <span class=o>=</span> <span class=mi>0</span>
+</span></span><span class=line><span class=cl><span class=n>res</span> <span class=o>=</span> <span class=s1>&#39;&#39;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>while</span> <span class=kc>True</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>    <span class=n>ret</span><span class=p>,</span> <span class=n>frame</span> <span class=o>=</span> <span class=n>cap</span><span class=o>.</span><span class=n>read</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=ow>not</span> <span class=n>ret</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=k>break</span>
+</span></span><span class=line><span class=cl>    <span class=n>pixel</span> <span class=o>=</span> <span class=n>frame</span><span class=o>.</span><span class=n>reshape</span><span class=p>((</span><span class=o>-</span><span class=mi>1</span><span class=p>,</span><span class=mi>3</span><span class=p>))</span> <span class=c1># 将像素化为3列n行的格式</span>
+</span></span><span class=line><span class=cl>    <span class=n>r</span> <span class=o>=</span> <span class=n>pixel</span><span class=p>[</span><span class=mi>0</span><span class=p>][</span><span class=mi>0</span><span class=p>]</span> <span class=c1># 获取第一个像素r通道的数值</span>
+</span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=n>r</span> <span class=o>&gt;</span> <span class=mi>200</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=n>res</span> <span class=o>+=</span> <span class=s1>&#39;0&#39;</span>
+</span></span><span class=line><span class=cl>    <span class=k>else</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=n>res</span> <span class=o>+=</span> <span class=s1>&#39;1&#39;</span>
+</span></span><span class=line><span class=cl><span class=n>cap</span><span class=o>.</span><span class=n>release</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># print(libnum.b2s(res))</span>
+</span></span><span class=line><span class=cl><span class=n>lenth</span> <span class=o>=</span> <span class=nb>len</span><span class=p>(</span><span class=n>res</span><span class=p>)</span> <span class=c1># 259</span>
+</span></span><span class=line><span class=cl><span class=n>res</span> <span class=o>+=</span> <span class=p>(</span><span class=mi>8</span> <span class=o>-</span> <span class=p>(</span><span class=n>lenth</span> <span class=o>%</span> <span class=mi>8</span><span class=p>))</span> <span class=o>*</span> <span class=s1>&#39;0&#39;</span>
+</span></span><span class=line><span class=cl><span class=nb>print</span><span class=p>(</span><span class=n>libnum</span><span class=o>.</span><span class=n>b2s</span><span class=p>(</span><span class=n>res</span><span class=p>))</span>
+</span></span><span class=line><span class=cl><span class=c1># b&#39;the flag3 is -13891ba324da}\xff\xff\xff\xff\xff\xe0&#39;</span></span></span></code></pre></td></tr></table></div></div><p>将三段flag组合即可得到最后的flag：<code>flag{3b3a9c08-88e4-4d65-b59e-13891ba324da}</code></p><h2 class=heading-element id=题目名称-input-page-walk><span>题目名称 Input Page Walk</span>
+<a href=#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-input-page-walk class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h2><p>参考链接：<a href=https://blog.wm-team.cn/index.php/archives/84/#Input+Page+Walk target=_blank rel="external nofollow noopener noreferrer">强网拟态 2024 By W&amp;M - W&amp;M Team</a></p><p>解压附件压缩包，可以得到下面这几个文件</p><p><img loading=lazy src=/posts/de8e2be/imgs/image-20241204222824693.png alt=/posts/de8e2be/imgs/image-20241204222824693.png height=318 width=1155></p><p>因为后缀未知，因此尝试用010打开，发现是<code>webp</code>图片</p><p><img loading=lazy src=/posts/de8e2be/imgs/image-20241204222939434.png alt=/posts/de8e2be/imgs/image-20241204222939434.png height=872 width=1143></p><p>改后缀为<code>webp</code>后可以看到下面这张图片，然后发现五个文件显示的内容是一样的</p><p><img loading=lazy src=/posts/de8e2be/imgs/image-20241204223043046.png alt=/posts/de8e2be/imgs/image-20241204223043046.png height=746 width=1426></p><p>因此猜测重点不在图片上，赛后参考了WM师傅的Writeup后知道了可以用<code>010editor</code>diff一下这几个文件</p><p><img loading=lazy src=/posts/de8e2be/imgs/image-20241204223403680.png alt=/posts/de8e2be/imgs/image-20241204223403680.png height=1032 width=1920></p><p>然后发现<code>0x3B142</code>前面的数据都是一样的，因此我们需要重点关注后面的数据</p><p>把每个文件从<code>0x3B142</code>开始的数据都提取出来，提取出来的数据大小如下</p><p><img loading=lazy src=/posts/de8e2be/imgs/image-20250302213148633.png alt=/posts/de8e2be/imgs/image-20250302213148633.png height=268 width=1026></p><p>然后拉到<code>Kali</code>虚拟机里(这里最好用<code>kali</code>，因为经过测试，发现我WSL2中的Ubuntu20.04是无法准备识别这几个文件的）</p><p><img loading=lazy src=/posts/de8e2be/imgs/image-20250302213331633.png alt=WSL2-Ubuntu20.04 height=279 width=1734></p><p><img loading=lazy src=/posts/de8e2be/imgs/image-20250302213429891.png alt=Kali-Linux height=289 width=1704>
+然后我们使用以下几个命令挂载一下上面文件格式为<code>BTRFS</code>磁盘</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>sudo losetup -fP Cr6cHso43mZM.btr
+</span></span><span class=line><span class=cl>sudo losetup -fP LaQrxw9UCsuj.btr
+</span></span><span class=line><span class=cl>sudo losetup -fP UljsvrCJUkfX.btr
+</span></span><span class=line><span class=cl>sudo losetup -fP mkZEnww8DePD.btr
+</span></span><span class=line><span class=cl>sudo losetup -fP yRvRjpac8Lxo.btr
+</span></span><span class=line><span class=cl>sudo mkdir tmp
+</span></span><span class=line><span class=cl>sudo mount -o degraded /dev/loop1 tmp <span class=c1># 用于强制挂载可能降级（设备丢失或损坏）的Btrfs文件系统</span></span></span></code></pre></td></tr></table></div></div><p><img loading=lazy src=/posts/de8e2be/imgs/image-20250302231559934.png alt=/posts/de8e2be/imgs/image-20250302231559934.png height=1528 width=2560></p><p><img loading=lazy src=/posts/de8e2be/imgs/image-20250302231614957.png alt=/posts/de8e2be/imgs/image-20250302231614957.png height=1528 width=2560></p><p>然后发现有一个<code>roll1</code>的文件以及一些输入法的配置文件</p><p>用010打开<code>roll1</code>没有发现什么有用的信息</p><p><img loading=lazy src=/posts/de8e2be/imgs/image-20250302232013754.png alt=/posts/de8e2be/imgs/image-20250302232013754.png height=1528 width=2560></p><p>然后再翻看输入法的配置文件</p><p><code>README.txt</code>中的内容如下，发现是桃花源记</p><blockquote><p>便舍船，从口入。初极狭，才通人。复行数十步，豁然开朗。土地平旷，屋舍俨然。有良田美池桑竹之属。阡陌交通，鸡犬相闻。其中往来种作，男女衣著，悉如外人。</p></blockquote><p>根据这个输入法的配置文件，猜测对应关系藏在输入法的用户词库中</p><p>我们去网上搜<code>rime</code>输入法，可以搜到一个小狼毫输入法，我们尝试在windows下安装</p><p><img loading=lazy src=/posts/de8e2be/imgs/image-20250302232435573.png alt=/posts/de8e2be/imgs/image-20250302232435573.png height=1460 width=2559></p><p>把配置文件复制到用户文件夹中</p><p><img loading=lazy src=/posts/de8e2be/imgs/image-20250302232414410.png alt=/posts/de8e2be/imgs/image-20250302232414410.png height=1165 width=1721></p><p>然后打开用户词典管理-导出文本码表</p><p><img loading=lazy src=/posts/de8e2be/imgs/image-20250302232548367.png alt=/posts/de8e2be/imgs/image-20250302232548367.png height=556 width=794></p><p>导出后即可得到如下内容</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-gdscript3 data-lang=gdscript3><span class=line><span class=cl><span class=c1># Rime user dictionary export</span>
+</span></span><span class=line><span class=cl><span class=c1>#@/db_name	meow_emoji</span>
+</span></span><span class=line><span class=cl><span class=c1>#@/db_type	userdb</span>
+</span></span><span class=line><span class=cl><span class=c1>#@/rime_version	1.11.2</span>
+</span></span><span class=line><span class=cl><span class=c1>#@/tick	20</span>
+</span></span><span class=line><span class=cl><span class=c1>#@/user_id	364e1e09-5ee6-4cef-8e69-1a6a587b431e</span>
+</span></span><span class=line><span class=cl><span class=err>ｆ</span>	<span class=n>bian</span>	<span class=mi>1</span>
+</span></span><span class=line><span class=cl><span class=mi>２</span><span class=err>－</span>	<span class=n>bu</span>	<span class=mi>1</span>
+</span></span><span class=line><span class=cl><span class=mi>３</span><span class=err>ａ</span>	<span class=n>cai</span> <span class=n>tong</span>	<span class=mi>1</span>
+</span></span><span class=line><span class=cl><span class=err>ｅａ</span>	<span class=n>chu</span> <span class=n>ji</span>	<span class=mi>1</span>
+</span></span><span class=line><span class=cl><span class=err>ｇ</span><span class=p>(</span><span class=mi>９</span>	<span class=n>cong</span> <span class=n>kou</span>	<span class=mi>3</span>
+</span></span><span class=line><span class=cl><span class=err>ｇａ</span>	<span class=n>cong</span> <span class=n>tong</span>	<span class=mi>1</span>
+</span></span><span class=line><span class=cl><span class=err>ａｆｄｄ</span>	<span class=n>fu</span> <span class=n>xing</span>	<span class=mi>1</span>
+</span></span><span class=line><span class=cl><span class=mi>８０８</span><span class=err>ａ</span>	<span class=n>huo</span> <span class=n>ran</span>	<span class=mi>1</span>
+</span></span><span class=line><span class=cl><span class=err>－ｃ</span><span class=mi>８８</span>	<span class=n>kai</span> <span class=n>lang</span>	<span class=mi>1</span>
+</span></span><span class=line><span class=cl><span class=err>ｃｂ</span><span class=mi>６</span><span class=err>ａ</span>	<span class=n>ping</span> <span class=n>kuang</span>	<span class=mi>1</span>
+</span></span><span class=line><span class=cl><span class=err>ｅ－</span>	<span class=n>ren</span>	<span class=mi>2</span>
+</span></span><span class=line><span class=cl><span class=err>ｅ</span>	<span class=n>ru</span>	<span class=mi>1</span>
+</span></span><span class=line><span class=cl><span class=err>ｌａ</span>	<span class=n>she</span> <span class=n>chuan</span>	<span class=mi>1</span>
+</span></span><span class=line><span class=cl><span class=err>－</span><span class=mi>４０８</span>	<span class=n>shu</span> <span class=n>shi</span>	<span class=mi>1</span>
+</span></span><span class=line><span class=cl><span class=mi>０６</span><span class=err>ａ</span><span class=mi>８</span>	<span class=n>tu</span> <span class=n>di</span>	<span class=mi>1</span>
+</span></span><span class=line><span class=cl><span class=mi>８</span><span class=p>)</span> <span class=err>ｌ</span>	<span class=n>wu</span> <span class=n>she</span>	<span class=mi>1</span>
+</span></span><span class=line><span class=cl><span class=mi>１</span>	<span class=n>xia</span>	<span class=mi>1</span></span></span></code></pre></td></tr></table></div></div><p>最后对照这个码表替换一下上面<code>README.txt</code>中的内容即可得到flag：<code>flag{9eea13ae-afdd-4082-808a-c8806a8icb6a8}</code></p><p><img loading=lazy src=/posts/de8e2be/imgs/image-20250302232746556.png alt=/posts/de8e2be/imgs/image-20250302232746556.png height=1462 width=2559></p><p>最后，做完上面的题后，别忘了用以下命令卸载之前挂载的镜像</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>sudo umount /dev/loop1
+</span></span><span class=line><span class=cl>sudo losetup -d /dev/loop0
+</span></span><span class=line><span class=cl>sudo losetup -d /dev/loop1
+</span></span><span class=line><span class=cl>sudo losetup -d /dev/loop2
+</span></span><span class=line><span class=cl>sudo losetup -d /dev/loop3
+</span></span><span class=line><span class=cl>sudo losetup -d /dev/loop4</span></span></code></pre></td></tr></table></div></div></div><div class=post-footer id=post-footer><div class=post-info><div class=post-info-line><div class=post-info-mod><span title="Updated on 2025-03-29 23:16:19">Updated on 2025-03-29&nbsp;</span></div></div><div class=post-info-line><div class=post-info-md><span><a href=/posts/de8e2be/index.md title="Read Markdown" class=link-to-markdown>Read Markdown</a></span></div><div class=post-info-share><span><a href=javascript:void(0); title="Share on X" data-sharer=twitter data-url=https://goodlunatic.github.io/posts/de8e2be/ data-title="2024 强网拟态防御国际精英挑战赛初赛 Misc Writeup" data-hashtags=CTF,Misc,Writeup><i class="fa-brands fa-x-twitter fa-fw" aria-hidden=true></i></a>
+<a href=javascript:void(0); title="Share on Facebook" data-sharer=facebook data-url=https://goodlunatic.github.io/posts/de8e2be/ data-hashtag=CTF><i class="fa-brands fa-facebook-square fa-fw" aria-hidden=true></i></a>
+<a href=javascript:void(0); title="Share on 微博" data-sharer=weibo data-url=https://goodlunatic.github.io/posts/de8e2be/ data-title="2024 强网拟态防御国际精英挑战赛初赛 Misc Writeup"><i class="fa-brands fa-weibo fa-fw" aria-hidden=true></i></a></span></div></div></div><div class=post-info-more><section class=post-tags><i class="fa-solid fa-tags fa-fw me-1" aria-hidden=true></i><a href=/tags/ctf/ class=post-tag title="Tags - CTF">CTF</a><a href=/tags/misc/ class=post-tag title="Tags - Misc">Misc</a><a href=/tags/writeup/ class=post-tag title="Tags - Writeup">Writeup</a></section><section><span><a href=javascript:void(0); onclick=window.history.back()>Back</a></span>&nbsp;|&nbsp;<span><a href=/>Home</a></span></section></div><div class=post-nav><a href=/posts/1a285be/ class=post-nav-item rel=prev title="2024 网鼎杯网络安全大赛青龙组 Misc Writeup"><i class="fa-solid fa-angle-left fa-fw" aria-hidden=true></i>2024 网鼎杯网络安全大赛青龙组 Misc Writeup</a><a href=/posts/754b8e7/ class=post-nav-item rel=next title="2025 XCTF国际网络攻防联赛-SUCTF分站赛 Misc Writeup">2025 XCTF国际网络攻防联赛-SUCTF分站赛 Misc Writeup<i class="fa-solid fa-angle-right fa-fw" aria-hidden=true></i></a></div></div></article><aside class=toc id=toc-auto aria-label=Contents><h2 class=toc-title>Contents&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden=true></i></h2><div class=toc-content id=toc-content-auto></div></aside></main><footer class=footer><div class=footer-container><div class="footer-line powered order-1">Powered by <a href=https://gohugo.io/ target=_blank rel="external nofollow noopener noreferrer" title="Hugo 0.152.1">Hugo</a> | Theme - <a href=https://github.com/hugo-fixit/FixIt target=_blank rel=external title="FixIt v0.4.0-alpha.2-20251023040336-063af2cd">FixIt</a></div><div class="footer-line copyright order-2" itemscope itemtype=http://schema.org/CreativeWork><i class="fa-regular fa-copyright fa-fw" aria-hidden=true></i>
+<span itemprop=copyrightYear>2022 - 2025</span><span class=author itemprop=copyrightHolder>
+<a href=https://goodlunatic.github.io target=_blank rel="external nofollow noopener noreferrer">Lunatic</a></span></div><div class="footer-line visitor"><span id=busuanzi_container_site_uv title='Total visitors'><i class="fa-regular fa-user fa-fw me-1" aria-hidden=true></i><span id=busuanzi_value_site_uv><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden=true></i></span></span><span id=busuanzi_container_site_pv class=footer-divider title='Total visits'><i class="fa-regular fa-eye fa-fw me-1" aria-hidden=true></i><span id=busuanzi_value_site_pv><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden=true></i></span></span></div></div></footer></div><div class=widgets><div class="fixed-buttons animate__faster d-none"><div class="fixed-button back-to-top" role=button aria-label="Back to Top"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden=true></i><span class=variant-numeric>0%</span></div></div><div id=mask></div><noscript><div class=noscript-warning>This website works best with JavaScript enabled.</div></noscript></div><link rel=stylesheet href=/lib/pace/themes/blue/pace-theme-minimal.css><script src=/lib/json-viewer-element/json-viewer-element.umd.js defer></script><script src=/lib/sharer/sharer.min.js async defer></script><script src=https://vercount.one/js async defer></script><script src=/lib/pace/pace.min.js async defer></script><script src=/posts/de8e2be/config/page.js defer></script><script src=/js/theme.min.js defer></script></body></html>

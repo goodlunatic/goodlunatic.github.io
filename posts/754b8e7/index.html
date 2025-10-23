@@ -1,0 +1,468 @@
+<!doctype html><html itemscope itemtype=http://schema.org/WebPage lang=en><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=2"><meta name=robots content="noodp"><title>2025 XCTF国际网络攻防联赛-SUCTF分站赛 Misc Writeup - ⚡Lunatic BLOG⚡</title><meta name=author content="Lunatic"><meta name=description content="2025 XCTF国际网络攻防联赛-SUCTF分站赛 Misc Writeup
+"><meta name=keywords content='CTF,Misc,Writeup'><meta itemprop=name content="2025 XCTF国际网络攻防联赛-SUCTF分站赛 Misc Writeup"><meta itemprop=description content="2025 XCTF国际网络攻防联赛-SUCTF分站赛 Misc Writeup"><meta itemprop=datePublished content="2025-04-01T00:00:40+08:00"><meta itemprop=dateModified content="2025-04-01T00:00:40+08:00"><meta itemprop=wordCount content="1252"><meta itemprop=keywords content="CTF,Misc,Writeup"><meta property="og:url" content="https://goodlunatic.github.io/posts/754b8e7/"><meta property="og:site_name" content="⚡Lunatic BLOG⚡"><meta property="og:title" content="2025 XCTF国际网络攻防联赛-SUCTF分站赛 Misc Writeup"><meta property="og:description" content="2025 XCTF国际网络攻防联赛-SUCTF分站赛 Misc Writeup"><meta property="og:locale" content="en"><meta property="og:type" content="article"><meta property="article:section" content="posts"><meta property="article:published_time" content="2025-04-01T00:00:40+08:00"><meta property="article:modified_time" content="2025-04-01T00:00:40+08:00"><meta property="article:tag" content="CTF"><meta property="article:tag" content="Misc"><meta property="article:tag" content="Writeup"><meta name=twitter:card content="summary"><meta name=twitter:title content="2025 XCTF国际网络攻防联赛-SUCTF分站赛 Misc Writeup"><meta name=twitter:description content="2025 XCTF国际网络攻防联赛-SUCTF分站赛 Misc Writeup"><meta name=application-name content="FixIt"><meta name=apple-mobile-web-app-title content="FixIt"><meta name=theme-color data-light=#f8f8f8 data-dark=#252627 content="#f8f8f8"><meta name=msapplication-TileColor content="#da532c"><link rel=icon href=https://www.nssctf.cn/files/2024/4/28/7f130a1387.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=canonical type=text/html href=https://goodlunatic.github.io/posts/754b8e7/ title="2025 XCTF国际网络攻防联赛-SUCTF分站赛 Misc Writeup - ⚡Lunatic BLOG⚡"><link rel=prev type=text/html href=https://goodlunatic.github.io/posts/de8e2be/ title="2024 强网拟态防御国际精英挑战赛初赛 Misc Writeup"><link rel=next type=text/html href=https://goodlunatic.github.io/posts/f002407/ title="2025 西湖论剑·中国杭州网络安全技能大赛 Misc Writeup"><link rel=alternate type=text/markdown href=https://goodlunatic.github.io/posts/754b8e7/index.md title="2025 XCTF国际网络攻防联赛-SUCTF分站赛 Misc Writeup - ⚡Lunatic BLOG⚡"><link rel=stylesheet href=/css/config.min.css><link rel=stylesheet href=/css/style.min.css><link rel=preload href=/lib/fontawesome-free/all.min.css as=style onload='this.removeAttribute("onload"),this.rel="stylesheet"'><noscript><link rel=stylesheet href=/lib/fontawesome-free/all.min.css></noscript><link rel=preload href=/lib/animate/animate.min.css as=style onload='this.removeAttribute("onload"),this.rel="stylesheet"'><noscript><link rel=stylesheet href=/lib/animate/animate.min.css></noscript><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"2025 XCTF国际网络攻防联赛-SUCTF分站赛 Misc Writeup","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/goodlunatic.github.io\/posts\/754b8e7\/"},"genre":"posts","keywords":"CTF, Misc, Writeup","wordcount":1252,"url":"https:\/\/goodlunatic.github.io\/posts\/754b8e7\/","datePublished":"2025-04-01T00:00:40+08:00","dateModified":"2025-04-01T00:00:40+08:00","publisher":{"@type":"Organization","name":""},"author":{"@type":"Person","name":"Lunatic"},"description":""}</script><script src=/js/head/color-scheme.min.js></script></head><body data-header-desktop=sticky data-header-mobile=auto><div class=wrapper data-page-style=normal><header class="desktop animate__faster" id=header-desktop><div class=header-wrapper><div class=header-title><a href=/ title="⚡Lunatic BLOG⚡"><span class=header-title-text>⚡Lunatic BLOG⚡</span></a><span class=header-subtitle></span></div><nav><ul class=menu><li class=menu-item><a class=menu-link href=/archives/><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden=true></i> Archives</a></li><li class=menu-item><a class=menu-link href=/categories/><i class="fa-solid fa-folder-tree fa-fw fa-sm" aria-hidden=true></i> Categories</a></li><li class=menu-item><a class=menu-link href=/tags/><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden=true></i> Tags</a></li><li class=menu-item><a class=menu-link href=/friends/><i class="fa-solid fa-chain fa-fw fa-sm" aria-hidden=true></i> Friends</a></li><li class=menu-item><a class=menu-link href=/about/><i class="fa-solid fa-graduation-cap fa-fw fa-sm" aria-hidden=true></i> About</a></li><li class="menu-item delimiter"></li><li class="menu-item theme-switch" title="Switch Theme"><i class="fa-solid fa-adjust fa-fw" aria-hidden=true></i></li></ul></nav></div></header><header class="mobile animate__faster" id=header-mobile><div class=header-container><div class=header-wrapper><div class=header-title><a href=/ title="⚡Lunatic BLOG⚡"><span class=header-title-text>⚡Lunatic BLOG⚡</span></a><span class=header-subtitle></span></div><div class=menu-toggle id=menu-toggle-mobile><span></span><span></span><span></span></div></div><nav><ul class=menu id=menu-mobile><li class=menu-item><a class=menu-link href=/archives/><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden=true></i> Archives</a></li><li class=menu-item><a class=menu-link href=/categories/><i class="fa-solid fa-folder-tree fa-fw fa-sm" aria-hidden=true></i> Categories</a></li><li class=menu-item><a class=menu-link href=/tags/><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden=true></i> Tags</a></li><li class=menu-item><a class=menu-link href=/friends/><i class="fa-solid fa-chain fa-fw fa-sm" aria-hidden=true></i> Friends</a></li><li class=menu-item><a class=menu-link href=/about/><i class="fa-solid fa-graduation-cap fa-fw fa-sm" aria-hidden=true></i> About</a></li><li class="menu-item menu-system"><span class="menu-system-item theme-switch" title="Switch Theme"><i class="fa-solid fa-adjust fa-fw" aria-hidden=true></i></span></li></ul></nav></div></header><main class=fi-container><aside class="aside-collection animate__animated animate__fadeIn animate__faster" aria-label=Collections></aside><article class="page single"><div class=header><h1 class="single-title animate__animated animate__flipInX"><span>2025 XCTF国际网络攻防联赛-SUCTF分站赛 Misc Writeup</span></h1></div><div class=post-meta><div class=post-meta-line><span class=post-author><a href=https://goodlunatic.github.io title=Author target=_blank rel="external nofollow noopener noreferrer author" class=author><img class=avatar src=https://www.nssctf.cn/files/2024/4/28/7f130a1387.png alt=Lunatic height=16 width=16>&nbsp;Lunatic</a></span><span class=post-included-in>&nbsp;included in <a href=/categories/writeup/ class=post-category title="Category - Writeup"><i class="fa-regular fa-folder fa-fw" aria-hidden=true></i> Writeup</a></span></div><div class=post-meta-line><span title="published on 2025-04-01 00:00:40"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden=true></i><time datetime=2025-04-01>2025-04-01</time></span>&nbsp;<span title="1252 words"><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden=true></i>About 1300 words</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden=true></i>6 minutes</span>&nbsp;<span id=busuanzi_container_page_pv class="busuanzi_visitors comment-visitors" data-flag-title="2025 XCTF国际网络攻防联赛-SUCTF分站赛 Misc Writeup"><i class="fa-regular fa-eye fa-fw me-1" aria-hidden=true></i><span id=busuanzi_value_page_pv>-</span>&nbsp;views
+</span>&nbsp;</div></div><div class="details toc" id=toc-static data-kept=false><div class="details-summary toc-title"><span>Contents</span>
+<span><i class="details-icon fa-solid fa-angle-right" aria-hidden=true></i></span></div><div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents><ul><li><a href=#题目名称-su_checkin>题目名称 SU_checkin</a></li><li><a href=#题目名称-su_realcheckin>题目名称 SU_RealCheckin</a></li><li><a href=#题目名称-su_forensics>题目名称 SU_forensics</a></li><li><a href=#题目名称-su_ad>题目名称 SU_AD</a></li><li><a href=#题目名称-su_voip>题目名称 SU_VOIP</a></li></ul></nav></div></div><div class=content id=content><p><strong>2025 XCTF国际网络攻防联赛-SUCTF分站赛 Misc Writeup</strong></p><table><thead><tr><th style=text-align:center><img loading=lazy src=/posts/754b8e7/imgs/image-20250119000219739.png alt=/posts/754b8e7/imgs/image-20250119000219739.png height=1080 width=1920><br><br></th></tr></thead><tbody><tr><td style=text-align:center><strong>题目附件下载：https://pan.baidu.com/s/12xlTPFG1QJ9OWIM_f4lKbA?pwd=s44r 提取码: s44r</strong></td></tr></tbody></table><h2 class=heading-element id=题目名称-su_checkin><span>题目名称 SU_checkin</span>
+<a href=#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-su_checkin class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h2><p>附件给了一个流量包，用过滤器过滤一下，发现只有流50的返回值是200</p><p><img loading=lazy src=/posts/754b8e7/imgs/image-20250119000745377.png alt=/posts/754b8e7/imgs/image-20250119000745377.png height=1468 width=1711></p><p>从上面的流量包中可以得到一下几个关键信息，密文、密钥以及加密算法</p><blockquote><p>java.-jar.suctf-0.0.1-SNAPSHOT.jar.&ndash;password=SePassWordLen23SUCT</p><p>algorithm=PBEWithMD5AndDES</p><p>OUTPUT=ElV+bGCnJYHVR8m23GLhprTGY0gHi/tNXBkGBtQusB/zs0uIHHoXMJoYd6oSOoKuFWmAHYrxkbg=</p></blockquote><p>但是仔细观察<code>SePassWordLen23SUCT</code>，发现密钥是不完整的并且提示了密钥长度是23</p><p>因此参考Github上这个<code>PBEWithMD5AndDES</code>解密脚本，爆破一下密钥即可</p><p><a href=https://github.com/binsgit/PBEWithMD5AndDES/blob/master/python/PBEWithMD5AndDES_2.py target=_blank rel="external nofollow noopener noreferrer">https://github.com/binsgit/PBEWithMD5AndDES/blob/master/python/PBEWithMD5AndDES_2.py</a></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span><span class=lnt>48
+</span><span class=lnt>49
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=kn>import</span> <span class=nn>base64</span>
+</span></span><span class=line><span class=cl><span class=kn>import</span> <span class=nn>hashlib</span>
+</span></span><span class=line><span class=cl><span class=kn>import</span> <span class=nn>re</span>
+</span></span><span class=line><span class=cl><span class=kn>import</span> <span class=nn>os</span>
+</span></span><span class=line><span class=cl><span class=kn>from</span> <span class=nn>Crypto.Cipher</span> <span class=kn>import</span> <span class=n>DES</span>
+</span></span><span class=line><span class=cl><span class=kn>from</span> <span class=nn>string</span> <span class=kn>import</span> <span class=n>printable</span>
+</span></span><span class=line><span class=cl><span class=kn>import</span> <span class=nn>itertools</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>get_derived_key</span><span class=p>(</span><span class=n>password</span><span class=p>,</span> <span class=n>salt</span><span class=p>,</span> <span class=n>count</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=n>key</span> <span class=o>=</span> <span class=n>password</span> <span class=o>+</span> <span class=n>salt</span>
+</span></span><span class=line><span class=cl>    <span class=k>for</span> <span class=n>i</span> <span class=ow>in</span> <span class=nb>range</span><span class=p>(</span><span class=n>count</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>        <span class=n>m</span> <span class=o>=</span> <span class=n>hashlib</span><span class=o>.</span><span class=n>md5</span><span class=p>(</span><span class=n>key</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=n>key</span> <span class=o>=</span> <span class=n>m</span><span class=o>.</span><span class=n>digest</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=p>(</span><span class=n>key</span><span class=p>[:</span><span class=mi>8</span><span class=p>],</span> <span class=n>key</span><span class=p>[</span><span class=mi>8</span><span class=p>:])</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>decrypt</span><span class=p>(</span><span class=n>msg</span><span class=p>,</span> <span class=n>password</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=n>msg_bytes</span> <span class=o>=</span> <span class=n>base64</span><span class=o>.</span><span class=n>b64decode</span><span class=p>(</span><span class=n>msg</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>salt</span> <span class=o>=</span> <span class=n>msg_bytes</span><span class=p>[:</span><span class=mi>8</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>    <span class=n>enc_text</span> <span class=o>=</span> <span class=n>msg_bytes</span><span class=p>[</span><span class=mi>8</span><span class=p>:]</span>
+</span></span><span class=line><span class=cl>    <span class=p>(</span><span class=n>dk</span><span class=p>,</span> <span class=n>iv</span><span class=p>)</span> <span class=o>=</span> <span class=n>get_derived_key</span><span class=p>(</span><span class=n>password</span><span class=p>,</span> <span class=n>salt</span><span class=p>,</span> <span class=mi>1000</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>crypter</span> <span class=o>=</span> <span class=n>DES</span><span class=o>.</span><span class=n>new</span><span class=p>(</span><span class=n>dk</span><span class=p>,</span> <span class=n>DES</span><span class=o>.</span><span class=n>MODE_CBC</span><span class=p>,</span> <span class=n>iv</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>text</span> <span class=o>=</span> <span class=n>crypter</span><span class=o>.</span><span class=n>decrypt</span><span class=p>(</span><span class=n>enc_text</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=c1># print(text)</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=n>text</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>encrypt</span><span class=p>(</span><span class=n>msg</span><span class=p>,</span> <span class=n>password</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=n>salt</span> <span class=o>=</span> <span class=n>os</span><span class=o>.</span><span class=n>urandom</span><span class=p>(</span><span class=mi>8</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>pad_num</span> <span class=o>=</span> <span class=mi>8</span> <span class=o>-</span> <span class=p>(</span><span class=nb>len</span><span class=p>(</span><span class=n>msg</span><span class=p>)</span> <span class=o>%</span> <span class=mi>8</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=k>for</span> <span class=n>i</span> <span class=ow>in</span> <span class=nb>range</span><span class=p>(</span><span class=n>pad_num</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>        <span class=n>msg</span> <span class=o>+=</span> <span class=nb>chr</span><span class=p>(</span><span class=n>pad_num</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=p>(</span><span class=n>dk</span><span class=p>,</span> <span class=n>iv</span><span class=p>)</span> <span class=o>=</span> <span class=n>get_derived_key</span><span class=p>(</span><span class=n>password</span><span class=p>,</span> <span class=n>salt</span><span class=p>,</span> <span class=mi>1000</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>crypter</span> <span class=o>=</span> <span class=n>DES</span><span class=o>.</span><span class=n>new</span><span class=p>(</span><span class=n>dk</span><span class=p>,</span> <span class=n>DES</span><span class=o>.</span><span class=n>MODE_CBC</span><span class=p>,</span> <span class=n>iv</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>enc_text</span> <span class=o>=</span> <span class=n>crypter</span><span class=o>.</span><span class=n>encrypt</span><span class=p>(</span><span class=n>msg</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=n>base64</span><span class=o>.</span><span class=n>b64encode</span><span class=p>(</span><span class=n>salt</span> <span class=o>+</span> <span class=n>enc_text</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>main</span><span class=p>():</span>
+</span></span><span class=line><span class=cl>    <span class=n>table</span> <span class=o>=</span> <span class=n>printable</span><span class=p>[:</span><span class=mi>62</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>    <span class=k>for</span> <span class=n>a</span><span class=p>,</span> <span class=n>b</span><span class=p>,</span> <span class=n>c</span> <span class=ow>in</span> <span class=n>itertools</span><span class=o>.</span><span class=n>product</span><span class=p>(</span><span class=n>table</span><span class=p>,</span> <span class=n>repeat</span><span class=o>=</span><span class=mi>3</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>        <span class=n>passwd</span> <span class=o>=</span> <span class=s2>&#34;SePassWordLen23SUCTF</span><span class=si>{}{}{}</span><span class=s2>&#34;</span><span class=o>.</span><span class=n>format</span><span class=p>(</span><span class=n>a</span><span class=p>,</span> <span class=n>b</span><span class=p>,</span> <span class=n>c</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=nb>print</span><span class=p>(</span><span class=n>passwd</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=n>s</span> <span class=o>=</span> <span class=s2>&#34;ElV+bGCnJYHVR8m23GLhprTGY0gHi/tNXBkGBtQusB/zs0uIHHoXMJoYd6oSOoKuFWmAHYrxkbg=&#34;</span>
+</span></span><span class=line><span class=cl>        <span class=n>res</span> <span class=o>=</span> <span class=n>decrypt</span><span class=p>(</span><span class=n>s</span><span class=p>,</span> <span class=n>passwd</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=c1># print(res)</span>
+</span></span><span class=line><span class=cl>        <span class=k>if</span> <span class=s2>&#34;SUCTF&#34;</span> <span class=ow>in</span> <span class=n>res</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>            <span class=nb>print</span><span class=p>(</span><span class=n>passwd</span><span class=p>,</span><span class=n>res</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>            <span class=k>break</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>if</span> <span class=vm>__name__</span> <span class=o>==</span> <span class=s2>&#34;__main__&#34;</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>    <span class=n>main</span><span class=p>()</span></span></span></code></pre></td></tr></table></div></div><p>python2运行以上脚本即可得到密钥和flag：<code>SePassWordLen23SUCTF666 SUCTF{338dbe11-e9f6-4e46-b1e5-eca84fb6af3f}</code></p><p><img loading=lazy src=/posts/754b8e7/imgs/image-20250119000922258.png alt=/posts/754b8e7/imgs/image-20250119000922258.png height=927 width=1734></p><h2 class=heading-element id=题目名称-su_realcheckin><span>题目名称 SU_RealCheckin</span>
+<a href=#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-su_realcheckin class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h2><p>给了个对应表，对应的字母其实就是emoji英文的首字母</p><blockquote><p>hello ctf -> 🏠🦅🍋🍋🍊 🐈🌮🍟</p><p>$flag -> 🐍☂️🐈🌮🍟{🐋🦅🍋🐈🍊🏔️🦅<em>🌮🍊</em>🐍☂️🐈🌮🍟<em>🧶🍊☂️</em>🐈🍎🌃<em>🌈🦅🍎🍋🍋🧶</em>🐬🍎🌃🐈🦅}</p></blockquote><p>签到题，写脚本其实没有手搓快。。。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=n>flag</span> <span class=o>=</span> <span class=s2>&#34;🐍☂🐈🌮🍟{🐋🦅🍋🐈🍊🏔️🦅_🌮🍊_🐍☂️🐈🌮🍟_🧶🍊☂️_🐈🍎🌃_🌈🦅🍎🍋🍋🧶_🐬🍎🌃🐈🦅}&#34;</span>
+</span></span><span class=line><span class=cl><span class=n>dic</span> <span class=o>=</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=s1>&#39;🏠&#39;</span><span class=p>:</span><span class=s1>&#39;h&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=s1>&#39;🦅&#39;</span><span class=p>:</span><span class=s1>&#39;e&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=s1>&#39;🍋&#39;</span><span class=p>:</span><span class=s1>&#39;l&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=s1>&#39;🍊&#39;</span><span class=p>:</span><span class=s1>&#39;o&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=s1>&#39;🐈&#39;</span><span class=p>:</span><span class=s1>&#39;c&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=s1>&#39;🌮&#39;</span><span class=p>:</span><span class=s1>&#39;t&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=s1>&#39;🍟&#39;</span><span class=p>:</span><span class=s1>&#39;f&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=s1>&#39;🐍&#39;</span><span class=p>:</span><span class=s1>&#39;s&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=s1>&#39;☂️&#39;</span><span class=p>:</span><span class=s1>&#39;u&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=s1>&#39;🐋&#39;</span><span class=p>:</span><span class=s1>&#39;w&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=s1>&#39;🏔️&#39;</span><span class=p>:</span><span class=s1>&#39;m&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=s1>&#39;🧶&#39;</span><span class=p>:</span><span class=s1>&#39;y&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=s1>&#39;🌈&#39;</span><span class=p>:</span><span class=s1>&#39;r&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=s1>&#39;🌃&#39;</span><span class=p>:</span><span class=s1>&#39;n&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=s1>&#39;🍎&#39;</span><span class=p>:</span><span class=s1>&#39;a&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=s1>&#39;🐬&#39;</span><span class=p>:</span><span class=s1>&#39;d&#39;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>for</span> <span class=n>item</span> <span class=ow>in</span> <span class=n>flag</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=n>item</span> <span class=o>==</span> <span class=s1>&#39;_&#39;</span> <span class=ow>or</span> <span class=n>item</span> <span class=o>==</span> <span class=s1>&#39;{&#39;</span> <span class=ow>or</span> <span class=n>item</span> <span class=o>==</span> <span class=s1>&#39;}&#39;</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=nb>print</span><span class=p>(</span><span class=n>item</span><span class=p>,</span><span class=n>end</span><span class=o>=</span><span class=s1>&#39;&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=k>else</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=k>try</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>            <span class=nb>print</span><span class=p>(</span><span class=n>dic</span><span class=p>[</span><span class=n>item</span><span class=p>],</span><span class=n>end</span><span class=o>=</span><span class=s1>&#39;&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=k>except</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>            <span class=nb>print</span><span class=p>(</span><span class=s2>&#34; &#34;</span><span class=p>,</span><span class=n>end</span><span class=o>=</span><span class=s1>&#39;&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=c1># s ctf{welco  e_to_s  ctf_yo  _can_really_dance}</span>
+</span></span><span class=line><span class=cl><span class=c1># suctf{welcome_to_suctf_you_can_really_dance}</span></span></span></code></pre></td></tr></table></div></div><h2 class=heading-element id=题目名称-su_forensics><span>题目名称 SU_forensics</span>
+<a href=#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-su_forensics class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h2><p>狗and猫师傅出的题，整体思路是挺好的，质量也很高，就是最后一步的字频爆破，不给提示还是难以联想</p><blockquote><p>题面信息如下：
+bkfish在自己的虚拟机里运行了某些命令之后用"sudo reboot"重启了主机，接着他按照网上清除入侵记录的方法先"rm -rf .bash_history"然后"history -c"删除了所有的命令记录。在现实世界中，消失的东西就找不回来了，但在网络世界里可未必如此，你能找到bkfish消失的秘密吗?</p><p>flag提交格式：全大写的SUCTF{XXXX}</p></blockquote><p>附件直接给了Vmware虚拟机的所有文件，Vmware可以直接打开.vmx文件</p><p>但是进入系统需要密码，系统版本是Ubuntu14.04LTS</p><p><img loading=lazy src=/posts/754b8e7/imgs/image-20250119001410485.png alt=/posts/754b8e7/imgs/image-20250119001410485.png height=2088 width=3840></p><p>可以直接用DiskGenius挂载vmdx虚拟磁盘文件</p><p><img loading=lazy src=/posts/754b8e7/imgs/image-20250119001419039.png alt=/posts/754b8e7/imgs/image-20250119001419039.png height=1371 width=2229></p><p>然后尝试使用DiskGenius的恢复数据功能，可以恢复出被删除的.bash_history</p><p><img loading=lazy src=/posts/754b8e7/imgs/image-20250119001431932.png alt=/posts/754b8e7/imgs/image-20250119001431932.png height=1371 width=2229></p><p>.bash_history内容如下</p><blockquote><p>echo &ldquo;My secret has disappeared from this space and time, and you will never be able to find it.&rdquo;</p><p>curl -s -o /dev/null <a href=https://www.cnblogs.com/cuisha12138/p/18631364 target=_blank rel="external nofollow noopener noreferrer">https://www.cnblogs.com/cuisha12138/p/18631364</a></p><p>sudo reboot</p></blockquote><p>访问里面那个博客园的链接，发现已经被删除了，但是我们可以尝试去网站时光机上找一找</p><p>网站时光机的链接：https://web.archive.org/</p><p>这篇被删除的文章的链接：https://web.archive.org/web/20241225122922/https://www.cnblogs.com/cuisha12138/p/18631364</p><p><img loading=lazy src=/posts/754b8e7/imgs/image-20250119001505099.png alt=/posts/754b8e7/imgs/image-20250119001505099.png height=2046 width=3837></p><p>文章中的图片提示了我们一个Github的仓库：https://github.com/testtttsu/homework</p><p>并且通过提高图片的亮度和对比度我们可以得到解压密码：2phxMo8iUE2bAVvdsBwZ</p><p><img loading=lazy src=/posts/754b8e7/imgs/image-20250119001517907.png alt=/posts/754b8e7/imgs/image-20250119001517907.png height=1266 width=2040></p><p>我们访问上面的那个Github仓库，发现这个分支已经被删除了</p><p><img loading=lazy src=/posts/754b8e7/imgs/image-20250119001526779.png alt=/posts/754b8e7/imgs/image-20250119001526779.png height=1359 width=3836></p><p>但是我们可以从旁边的activity中找到这个被删除的文件</p><p><img loading=lazy src=/posts/754b8e7/imgs/image-20250119001536343.png alt=/posts/754b8e7/imgs/image-20250119001536343.png height=921 width=3831></p><p>然后填上之前得到的解压密码，用仓库中的脚本直接运行即可得到下面这张图片</p><p><img loading=lazy src=/posts/754b8e7/imgs/image-20250119001547085.png alt=/posts/754b8e7/imgs/image-20250119001547085.png height=1296 width=9522></p><p>写了个脚本来分割图片，并统计每种符号出现的次数</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span><span class=lnt>48
+</span><span class=lnt>49
+</span><span class=lnt>50
+</span><span class=lnt>51
+</span><span class=lnt>52
+</span><span class=lnt>53
+</span><span class=lnt>54
+</span><span class=lnt>55
+</span><span class=lnt>56
+</span><span class=lnt>57
+</span><span class=lnt>58
+</span><span class=lnt>59
+</span><span class=lnt>60
+</span><span class=lnt>61
+</span><span class=lnt>62
+</span><span class=lnt>63
+</span><span class=lnt>64
+</span><span class=lnt>65
+</span><span class=lnt>66
+</span><span class=lnt>67
+</span><span class=lnt>68
+</span><span class=lnt>69
+</span><span class=lnt>70
+</span><span class=lnt>71
+</span><span class=lnt>72
+</span><span class=lnt>73
+</span><span class=lnt>74
+</span><span class=lnt>75
+</span><span class=lnt>76
+</span><span class=lnt>77
+</span><span class=lnt>78
+</span><span class=lnt>79
+</span><span class=lnt>80
+</span><span class=lnt>81
+</span><span class=lnt>82
+</span><span class=lnt>83
+</span><span class=lnt>84
+</span><span class=lnt>85
+</span><span class=lnt>86
+</span><span class=lnt>87
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=kn>from</span> <span class=nn>PIL</span> <span class=kn>import</span> <span class=n>Image</span>
+</span></span><span class=line><span class=cl><span class=kn>import</span> <span class=nn>hashlib</span>
+</span></span><span class=line><span class=cl><span class=kn>import</span> <span class=nn>os</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>crop_table</span><span class=p>():</span>
+</span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=n>os</span><span class=o>.</span><span class=n>path</span><span class=o>.</span><span class=n>exists</span><span class=p>(</span><span class=s2>&#34;out&#34;</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>        <span class=nb>print</span><span class=p>(</span><span class=s2>&#34;[+] out 目录已存在&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=k>else</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=n>os</span><span class=o>.</span><span class=n>mkdir</span><span class=p>(</span><span class=s2>&#34;out&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=nb>print</span><span class=p>(</span><span class=s2>&#34;[+] out 目录创建成功&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=n>img</span> <span class=o>=</span> <span class=n>Image</span><span class=o>.</span><span class=n>open</span><span class=p>(</span><span class=s2>&#34;1.png&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>width</span><span class=p>,</span> <span class=n>height</span> <span class=o>=</span> <span class=n>img</span><span class=o>.</span><span class=n>size</span> <span class=c1># 9522, 1296</span>
+</span></span><span class=line><span class=cl>    <span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;图片尺寸: </span><span class=si>{</span><span class=n>width</span><span class=si>}</span><span class=s2>x</span><span class=si>{</span><span class=n>height</span><span class=si>}</span><span class=s2>&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=n>crop_width</span> <span class=o>=</span> <span class=mi>137</span>
+</span></span><span class=line><span class=cl>    <span class=n>crop_height</span> <span class=o>=</span> <span class=mi>107</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=n>cols</span> <span class=o>=</span> <span class=p>(</span><span class=n>width</span> <span class=o>-</span> <span class=mi>0</span><span class=p>)</span> <span class=o>//</span> <span class=n>crop_width</span>
+</span></span><span class=line><span class=cl>    <span class=n>rows</span> <span class=o>=</span> <span class=p>(</span><span class=n>height</span> <span class=o>-</span> <span class=mi>0</span><span class=p>)</span> <span class=o>//</span> <span class=n>crop_height</span>
+</span></span><span class=line><span class=cl>    <span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;可分割的列数: </span><span class=si>{</span><span class=n>cols</span><span class=si>}</span><span class=s2>, 行数: </span><span class=si>{</span><span class=n>rows</span><span class=si>}</span><span class=s2>&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=n>index</span> <span class=o>=</span> <span class=mi>1</span>
+</span></span><span class=line><span class=cl>    <span class=k>for</span> <span class=n>row</span> <span class=ow>in</span> <span class=nb>range</span><span class=p>(</span><span class=n>rows</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>        <span class=k>for</span> <span class=n>col</span> <span class=ow>in</span> <span class=nb>range</span><span class=p>(</span><span class=n>cols</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>            <span class=c1># 计算裁剪区域的坐标</span>
+</span></span><span class=line><span class=cl>            <span class=n>left</span> <span class=o>=</span> <span class=mi>0</span> <span class=o>+</span> <span class=n>col</span> <span class=o>*</span> <span class=p>(</span><span class=n>crop_width</span> <span class=o>+</span> <span class=mi>1</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>            <span class=n>upper</span> <span class=o>=</span> <span class=mi>0</span> <span class=o>+</span> <span class=n>row</span> <span class=o>*</span> <span class=p>(</span><span class=n>crop_height</span> <span class=o>+</span> <span class=mi>1</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>            <span class=n>right</span> <span class=o>=</span> <span class=n>left</span> <span class=o>+</span> <span class=n>crop_width</span>
+</span></span><span class=line><span class=cl>            <span class=n>lower</span> <span class=o>=</span> <span class=n>upper</span> <span class=o>+</span> <span class=n>crop_height</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>            <span class=n>cropped_img</span> <span class=o>=</span> <span class=n>img</span><span class=o>.</span><span class=n>crop</span><span class=p>((</span><span class=n>left</span><span class=p>,</span> <span class=n>upper</span><span class=p>,</span> <span class=n>right</span><span class=p>,</span> <span class=n>lower</span><span class=p>))</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>            <span class=n>cropped_img</span><span class=o>.</span><span class=n>save</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;out/</span><span class=si>{</span><span class=n>index</span><span class=si>}</span><span class=s2>.png&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>            <span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;[+] out/</span><span class=si>{</span><span class=n>index</span><span class=si>}</span><span class=s2>.png 保存成功 (区域: </span><span class=si>{</span><span class=n>left</span><span class=si>}</span><span class=s2>,</span><span class=si>{</span><span class=n>upper</span><span class=si>}</span><span class=s2> -&gt; </span><span class=si>{</span><span class=n>right</span><span class=si>}</span><span class=s2>,</span><span class=si>{</span><span class=n>lower</span><span class=si>}</span><span class=s2>)&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>            <span class=n>index</span> <span class=o>+=</span> <span class=mi>1</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>calculate_md5</span><span class=p>(</span><span class=n>filename</span><span class=p>):</span>  
+</span></span><span class=line><span class=cl>    <span class=c1># 计算文件的 MD5 值  </span>
+</span></span><span class=line><span class=cl>    <span class=n>hasher</span> <span class=o>=</span> <span class=n>hashlib</span><span class=o>.</span><span class=n>md5</span><span class=p>()</span>  
+</span></span><span class=line><span class=cl>    <span class=k>with</span> <span class=nb>open</span><span class=p>(</span><span class=n>filename</span><span class=p>,</span> <span class=s1>&#39;rb&#39;</span><span class=p>)</span> <span class=k>as</span> <span class=n>f</span><span class=p>:</span>  
+</span></span><span class=line><span class=cl>        <span class=k>for</span> <span class=n>chunk</span> <span class=ow>in</span> <span class=nb>iter</span><span class=p>(</span><span class=k>lambda</span><span class=p>:</span> <span class=n>f</span><span class=o>.</span><span class=n>read</span><span class=p>(</span><span class=mi>4096</span><span class=p>),</span> <span class=sa>b</span><span class=s2>&#34;&#34;</span><span class=p>):</span>  
+</span></span><span class=line><span class=cl>            <span class=n>hasher</span><span class=o>.</span><span class=n>update</span><span class=p>(</span><span class=n>chunk</span><span class=p>)</span>  
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=nb>str</span><span class=p>(</span><span class=n>hasher</span><span class=o>.</span><span class=n>hexdigest</span><span class=p>())</span>  
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>if</span> <span class=vm>__name__</span> <span class=o>==</span> <span class=s2>&#34;__main__&#34;</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>    <span class=c1># crop_table()</span>
+</span></span><span class=line><span class=cl>    <span class=n>dic</span> <span class=o>=</span> <span class=p>{}</span>
+</span></span><span class=line><span class=cl>    <span class=k>for</span> <span class=n>i</span> <span class=ow>in</span> <span class=nb>range</span><span class=p>(</span><span class=mi>1</span><span class=p>,</span><span class=mi>829</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>        <span class=n>filename</span> <span class=o>=</span> <span class=sa>f</span><span class=s2>&#34;./out/</span><span class=si>{</span><span class=n>i</span><span class=si>}</span><span class=s2>.png&#34;</span>
+</span></span><span class=line><span class=cl>        <span class=n>tmp_hash</span> <span class=o>=</span> <span class=n>calculate_md5</span><span class=p>(</span><span class=n>filename</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=k>if</span> <span class=n>tmp_hash</span> <span class=ow>not</span> <span class=ow>in</span> <span class=n>dic</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>            <span class=n>dic</span><span class=p>[</span><span class=n>tmp_hash</span><span class=p>]</span> <span class=o>=</span> <span class=mi>1</span>
+</span></span><span class=line><span class=cl>        <span class=k>else</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>            <span class=n>dic</span><span class=p>[</span><span class=n>tmp_hash</span><span class=p>]</span> <span class=o>+=</span> <span class=mi>1</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nb>print</span><span class=p>(</span><span class=n>dic</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=c1># {&#39;a92114d80fb8d9f051267093ff31f652&#39;: 35,</span>
+</span></span><span class=line><span class=cl><span class=c1>#  &#39;643a1412425e02202bc739ed381fc2ce&#39;: 104,</span>
+</span></span><span class=line><span class=cl><span class=c1>#  &#39;c2ba6829d6b89fe4d95f59143f5dab09&#39;: 12,</span>
+</span></span><span class=line><span class=cl><span class=c1>#  &#39;0ea52827f2cd163ec0abd5c138bd8d52&#39;: 24,</span>
+</span></span><span class=line><span class=cl><span class=c1>#  &#39;6cfc1169ffd57fcccf6c9deb2c9b8a81&#39;: 50,</span>
+</span></span><span class=line><span class=cl><span class=c1>#  &#39;a733e9655b25c318db40ee3e4e6fc9b7&#39;: 14,</span>
+</span></span><span class=line><span class=cl><span class=c1>#  &#39;78ea7aa8bad5966f51d34ce68f9bb1a4&#39;: 15,</span>
+</span></span><span class=line><span class=cl><span class=c1>#  &#39;274d11fd91b261ea9a4dfbfcfccc5caf&#39;: 13,</span>
+</span></span><span class=line><span class=cl><span class=c1>#  &#39;0b27aed76fc735518d8400ec44888b17&#39;: 44,</span>
+</span></span><span class=line><span class=cl><span class=c1>#  &#39;345cfeee944eff97baecafc30f998be8&#39;: 13,</span>
+</span></span><span class=line><span class=cl><span class=c1>#  &#39;a54cbc7076fe3385ec19e5844ede06d8&#39;: 16,</span>
+</span></span><span class=line><span class=cl><span class=c1>#  &#39;01288ae944ad4fa589fa7f8c8921c6db&#39;: 19,</span>
+</span></span><span class=line><span class=cl><span class=c1>#  &#39;d3b493d9622e43c2fd0932cbc8eb4242&#39;: 24,</span>
+</span></span><span class=line><span class=cl><span class=c1>#  &#39;09298a31ed656279970cbdb61e220fce&#39;: 13,</span>
+</span></span><span class=line><span class=cl><span class=c1>#  &#39;5650d4328599806e228163b9f3883b76&#39;: 23,</span>
+</span></span><span class=line><span class=cl><span class=c1>#  &#39;902d339e136a450f8dcf5912acf3908b&#39;: 29,</span>
+</span></span><span class=line><span class=cl><span class=c1>#  &#39;ec3995e91d6770d86f31c91fb9f1f18c&#39;: 15,</span>
+</span></span><span class=line><span class=cl><span class=c1>#  &#39;d3405ba0628f6c5a7847172b75c96e24&#39;: 13,</span>
+</span></span><span class=line><span class=cl><span class=c1>#  &#39;97071255bca34a123d21c8077326e849&#39;: 12,</span>
+</span></span><span class=line><span class=cl><span class=c1>#  &#39;463a505a8bde3e32d3215ac582545ade&#39;: 24,</span>
+</span></span><span class=line><span class=cl><span class=c1>#  &#39;2c5eeaa83376135696cdf14ee2e65527&#39;: 17,</span>
+</span></span><span class=line><span class=cl><span class=c1>#  &#39;972487ddb0c7427f86244525c765ceb1&#39;: 21,</span>
+</span></span><span class=line><span class=cl><span class=c1>#  &#39;b656951ad9063e1e714eb5066e355043&#39;: 13,</span>
+</span></span><span class=line><span class=cl><span class=c1>#  &#39;6f891cd850e8e2e75ca95565793730a5&#39;: 28,</span>
+</span></span><span class=line><span class=cl><span class=c1>#  &#39;8b4bc073bc7a2526cf3b197537c8d299&#39;: 12,</span>
+</span></span><span class=line><span class=cl><span class=c1>#  &#39;87b5f6ccfa6d7c9c733b1c665fb138ca&#39;: 14,</span>
+</span></span><span class=line><span class=cl><span class=c1>#  &#39;100dfaec51061f9d69ecbbfa87d0ef3d&#39;: 179,</span>
+</span></span><span class=line><span class=cl><span class=c1>#  &#39;279a7e86da10953b77671a3cacf8b087&#39;: 32}</span></span></span></code></pre></td></tr></table></div></div><p>发现除掉黑色的背景后一共27字符，因此猜测是26个字符+空格</p><p>我们不去管每种字符的对应方式，出现次数最多的字符肯定是空格，因此我们先随意做一个对照表</p><p>然后根据对照表生成图片中表示的密文，具体脚本如下：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span><span class=lnt>48
+</span><span class=lnt>49
+</span><span class=lnt>50
+</span><span class=lnt>51
+</span><span class=lnt>52
+</span><span class=lnt>53
+</span><span class=lnt>54
+</span><span class=lnt>55
+</span><span class=lnt>56
+</span><span class=lnt>57
+</span><span class=lnt>58
+</span><span class=lnt>59
+</span><span class=lnt>60
+</span><span class=lnt>61
+</span><span class=lnt>62
+</span><span class=lnt>63
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=kn>from</span> <span class=nn>PIL</span> <span class=kn>import</span> <span class=n>Image</span>
+</span></span><span class=line><span class=cl><span class=kn>import</span> <span class=nn>hashlib</span>
+</span></span><span class=line><span class=cl><span class=kn>import</span> <span class=nn>os</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>table</span> <span class=o>=</span> <span class=p>{</span><span class=s1>&#39;a92114d80fb8d9f051267093ff31f652&#39;</span><span class=p>:</span> <span class=s1>&#39;A&#39;</span><span class=p>,</span> <span class=s1>&#39;643a1412425e02202bc739ed381fc2ce&#39;</span><span class=p>:</span> <span class=s1>&#39; &#39;</span><span class=p>,</span> <span class=s1>&#39;c2ba6829d6b89fe4d95f59143f5dab09&#39;</span><span class=p>:</span> <span class=s1>&#39;B&#39;</span><span class=p>,</span> <span class=s1>&#39;0ea52827f2cd163ec0abd5c138bd8d52&#39;</span><span class=p>:</span> <span class=s1>&#39;C&#39;</span><span class=p>,</span> <span class=s1>&#39;6cfc1169ffd57fcccf6c9deb2c9b8a81&#39;</span><span class=p>:</span> <span class=s1>&#39;D&#39;</span><span class=p>,</span> <span class=s1>&#39;a733e9655b25c318db40ee3e4e6fc9b7&#39;</span><span class=p>:</span> <span class=s1>&#39;E&#39;</span><span class=p>,</span> <span class=s1>&#39;78ea7aa8bad5966f51d34ce68f9bb1a4&#39;</span><span class=p>:</span> <span class=s1>&#39;F&#39;</span><span class=p>,</span> <span class=s1>&#39;274d11fd91b261ea9a4dfbfcfccc5caf&#39;</span><span class=p>:</span> <span class=s1>&#39;G&#39;</span><span class=p>,</span> <span class=s1>&#39;0b27aed76fc735518d8400ec44888b17&#39;</span><span class=p>:</span> <span class=s1>&#39;H&#39;</span><span class=p>,</span> <span class=s1>&#39;345cfeee944eff97baecafc30f998be8&#39;</span><span class=p>:</span> <span class=s1>&#39;I&#39;</span><span class=p>,</span> <span class=s1>&#39;a54cbc7076fe3385ec19e5844ede06d8&#39;</span><span class=p>:</span> <span class=s1>&#39;J&#39;</span><span class=p>,</span> <span class=s1>&#39;01288ae944ad4fa589fa7f8c8921c6db&#39;</span><span class=p>:</span> <span class=s1>&#39;K&#39;</span><span class=p>,</span> <span class=s1>&#39;d3b493d9622e43c2fd0932cbc8eb4242&#39;</span><span class=p>:</span> <span class=s1>&#39;L&#39;</span><span class=p>,</span> <span class=s1>&#39;09298a31ed656279970cbdb61e220fce&#39;</span><span class=p>:</span> <span class=s1>&#39;M&#39;</span><span class=p>,</span> <span class=s1>&#39;5650d4328599806e228163b9f3883b76&#39;</span><span class=p>:</span> <span class=s1>&#39;N&#39;</span><span class=p>,</span> <span class=s1>&#39;902d339e136a450f8dcf5912acf3908b&#39;</span><span class=p>:</span> <span class=s1>&#39;O&#39;</span><span class=p>,</span> <span class=s1>&#39;ec3995e91d6770d86f31c91fb9f1f18c&#39;</span><span class=p>:</span> <span class=s1>&#39;P&#39;</span><span class=p>,</span> <span class=s1>&#39;d3405ba0628f6c5a7847172b75c96e24&#39;</span><span class=p>:</span> <span class=s1>&#39;Q&#39;</span><span class=p>,</span> <span class=s1>&#39;97071255bca34a123d21c8077326e849&#39;</span><span class=p>:</span> <span class=s1>&#39;R&#39;</span><span class=p>,</span> <span class=s1>&#39;463a505a8bde3e32d3215ac582545ade&#39;</span><span class=p>:</span> <span class=s1>&#39;S&#39;</span><span class=p>,</span> <span class=s1>&#39;2c5eeaa83376135696cdf14ee2e65527&#39;</span><span class=p>:</span> <span class=s1>&#39;T&#39;</span><span class=p>,</span> <span class=s1>&#39;972487ddb0c7427f86244525c765ceb1&#39;</span><span class=p>:</span> <span class=s1>&#39;U&#39;</span><span class=p>,</span> <span class=s1>&#39;b656951ad9063e1e714eb5066e355043&#39;</span><span class=p>:</span> <span class=s1>&#39;V&#39;</span><span class=p>,</span> <span class=s1>&#39;6f891cd850e8e2e75ca95565793730a5&#39;</span><span class=p>:</span> <span class=s1>&#39;W&#39;</span><span class=p>,</span> <span class=s1>&#39;8b4bc073bc7a2526cf3b197537c8d299&#39;</span><span class=p>:</span> <span class=s1>&#39;X&#39;</span><span class=p>,</span> <span class=s1>&#39;87b5f6ccfa6d7c9c733b1c665fb138ca&#39;</span><span class=p>:</span> <span class=s1>&#39;Y&#39;</span><span class=p>,</span> <span class=s1>&#39;279a7e86da10953b77671a3cacf8b087&#39;</span><span class=p>:</span> <span class=s1>&#39;Z&#39;</span><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>calculate_md5</span><span class=p>(</span><span class=n>filename</span><span class=p>):</span>  
+</span></span><span class=line><span class=cl>    <span class=c1># 计算文件的 MD5 值  </span>
+</span></span><span class=line><span class=cl>    <span class=n>hasher</span> <span class=o>=</span> <span class=n>hashlib</span><span class=o>.</span><span class=n>md5</span><span class=p>()</span>  
+</span></span><span class=line><span class=cl>    <span class=k>with</span> <span class=nb>open</span><span class=p>(</span><span class=n>filename</span><span class=p>,</span> <span class=s1>&#39;rb&#39;</span><span class=p>)</span> <span class=k>as</span> <span class=n>f</span><span class=p>:</span>  
+</span></span><span class=line><span class=cl>        <span class=k>for</span> <span class=n>chunk</span> <span class=ow>in</span> <span class=nb>iter</span><span class=p>(</span><span class=k>lambda</span><span class=p>:</span> <span class=n>f</span><span class=o>.</span><span class=n>read</span><span class=p>(</span><span class=mi>4096</span><span class=p>),</span> <span class=sa>b</span><span class=s2>&#34;&#34;</span><span class=p>):</span>  
+</span></span><span class=line><span class=cl>            <span class=n>hasher</span><span class=o>.</span><span class=n>update</span><span class=p>(</span><span class=n>chunk</span><span class=p>)</span>  
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=nb>str</span><span class=p>(</span><span class=n>hasher</span><span class=o>.</span><span class=n>hexdigest</span><span class=p>())</span> 
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>get_text</span><span class=p>():</span>
+</span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=n>os</span><span class=o>.</span><span class=n>path</span><span class=o>.</span><span class=n>exists</span><span class=p>(</span><span class=s2>&#34;out&#34;</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>        <span class=nb>print</span><span class=p>(</span><span class=s2>&#34;[+] out 目录已存在&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=k>else</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=n>os</span><span class=o>.</span><span class=n>mkdir</span><span class=p>(</span><span class=s2>&#34;out&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=nb>print</span><span class=p>(</span><span class=s2>&#34;[+] out 目录创建成功&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=n>img</span> <span class=o>=</span> <span class=n>Image</span><span class=o>.</span><span class=n>open</span><span class=p>(</span><span class=s2>&#34;1.png&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>width</span><span class=p>,</span> <span class=n>height</span> <span class=o>=</span> <span class=n>img</span><span class=o>.</span><span class=n>size</span> <span class=c1># 9522, 1296</span>
+</span></span><span class=line><span class=cl>    <span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;图片尺寸: </span><span class=si>{</span><span class=n>width</span><span class=si>}</span><span class=s2>x</span><span class=si>{</span><span class=n>height</span><span class=si>}</span><span class=s2>&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=n>crop_width</span> <span class=o>=</span> <span class=mi>137</span>
+</span></span><span class=line><span class=cl>    <span class=n>crop_height</span> <span class=o>=</span> <span class=mi>107</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=n>cols</span> <span class=o>=</span> <span class=p>(</span><span class=n>width</span> <span class=o>-</span> <span class=mi>0</span><span class=p>)</span> <span class=o>//</span> <span class=n>crop_width</span>
+</span></span><span class=line><span class=cl>    <span class=n>rows</span> <span class=o>=</span> <span class=p>(</span><span class=n>height</span> <span class=o>-</span> <span class=mi>0</span><span class=p>)</span> <span class=o>//</span> <span class=n>crop_height</span>
+</span></span><span class=line><span class=cl>    <span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;可分割的列数: </span><span class=si>{</span><span class=n>cols</span><span class=si>}</span><span class=s2>, 行数: </span><span class=si>{</span><span class=n>rows</span><span class=si>}</span><span class=s2>&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=n>index</span> <span class=o>=</span> <span class=mi>1</span>
+</span></span><span class=line><span class=cl>    <span class=n>text</span> <span class=o>=</span> <span class=s2>&#34;&#34;</span>
+</span></span><span class=line><span class=cl>    <span class=k>for</span> <span class=n>row</span> <span class=ow>in</span> <span class=nb>range</span><span class=p>(</span><span class=n>rows</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>        <span class=k>for</span> <span class=n>col</span> <span class=ow>in</span> <span class=nb>range</span><span class=p>(</span><span class=n>cols</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>            <span class=c1># 计算裁剪区域的坐标</span>
+</span></span><span class=line><span class=cl>            <span class=n>file_path</span> <span class=o>=</span> <span class=sa>f</span><span class=s2>&#34;out/</span><span class=si>{</span><span class=n>index</span><span class=si>}</span><span class=s2>.png&#34;</span>
+</span></span><span class=line><span class=cl>            <span class=n>left</span> <span class=o>=</span> <span class=mi>0</span> <span class=o>+</span> <span class=n>col</span> <span class=o>*</span> <span class=p>(</span><span class=n>crop_width</span> <span class=o>+</span> <span class=mi>1</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>            <span class=n>upper</span> <span class=o>=</span> <span class=mi>0</span> <span class=o>+</span> <span class=n>row</span> <span class=o>*</span> <span class=p>(</span><span class=n>crop_height</span> <span class=o>+</span> <span class=mi>1</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>            <span class=n>right</span> <span class=o>=</span> <span class=n>left</span> <span class=o>+</span> <span class=n>crop_width</span>
+</span></span><span class=line><span class=cl>            <span class=n>lower</span> <span class=o>=</span> <span class=n>upper</span> <span class=o>+</span> <span class=n>crop_height</span>
+</span></span><span class=line><span class=cl>            <span class=n>cropped_img</span> <span class=o>=</span> <span class=n>img</span><span class=o>.</span><span class=n>crop</span><span class=p>((</span><span class=n>left</span><span class=p>,</span> <span class=n>upper</span><span class=p>,</span> <span class=n>right</span><span class=p>,</span> <span class=n>lower</span><span class=p>))</span>
+</span></span><span class=line><span class=cl>            <span class=n>cropped_img</span><span class=o>.</span><span class=n>save</span><span class=p>(</span><span class=n>file_path</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>            <span class=n>hash_value</span> <span class=o>=</span> <span class=n>calculate_md5</span><span class=p>(</span><span class=n>file_path</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>            <span class=nb>print</span><span class=p>(</span><span class=n>hash_value</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>            <span class=k>if</span> <span class=n>hash_value</span> <span class=o>==</span> <span class=s2>&#34;100dfaec51061f9d69ecbbfa87d0ef3d&#34;</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                <span class=n>text</span> <span class=o>+=</span> <span class=s1>&#39;</span><span class=se>\n</span><span class=s1>&#39;</span>
+</span></span><span class=line><span class=cl>                <span class=k>break</span>
+</span></span><span class=line><span class=cl>            <span class=k>else</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                <span class=n>text</span> <span class=o>+=</span> <span class=n>table</span><span class=p>[</span><span class=n>hash_value</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>            <span class=k>if</span> <span class=n>col</span> <span class=o>==</span> <span class=n>cols</span><span class=o>-</span><span class=mi>1</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                <span class=n>text</span> <span class=o>+=</span> <span class=s1>&#39;</span><span class=se>\n</span><span class=s1>&#39;</span>
+</span></span><span class=line><span class=cl>            <span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;[+] out/</span><span class=si>{</span><span class=n>index</span><span class=si>}</span><span class=s2>.png 保存成功 (区域: </span><span class=si>{</span><span class=n>left</span><span class=si>}</span><span class=s2>,</span><span class=si>{</span><span class=n>upper</span><span class=si>}</span><span class=s2> -&gt; </span><span class=si>{</span><span class=n>right</span><span class=si>}</span><span class=s2>,</span><span class=si>{</span><span class=n>lower</span><span class=si>}</span><span class=s2>)&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>            <span class=n>index</span> <span class=o>+=</span> <span class=mi>1</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=n>text</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>if</span> <span class=vm>__name__</span> <span class=o>==</span> <span class=s2>&#34;__main__&#34;</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>    <span class=n>text</span> <span class=o>=</span> <span class=n>get_text</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>    <span class=nb>print</span><span class=p>(</span><span class=n>text</span><span class=p>)</span></span></span></code></pre></td></tr></table></div></div><p>运行以上脚本后可以得到如下内容</p><blockquote><p>A BCDEF GHIJKL MNOP QHRDST UAVW XDY</p><p>VLHU ZIHEDANDGHU DS WJH XOM OV YAFDST QHLK BAMANDZWDE PAR WOKZ</p><p>ZDR VLHSGDHU FDSTZ QOPHU WO AMONDZJ YK BCDWH IDWDVCN XOCZWZ</p><p>YAK XO HBCAN YK VOONDZJ LHEOLU MK ZONQDST ZDR ICGGNHZ A PHHF</p><p>JALLK DZ XOTTDST BCDEFNK PJDEJ ARHU GHS YOSFZ PDWJ AMCSUASW QAIOL</p><p>UCYIK FDMDWGHL XDSTNHZ AZ BCDROWDE OQHLVNOPZ</p><p>SKYIJ ZDST VOL BCDEF XDTZ QHR MCU DS GHZWVCN WPDNDTJW</p><p>ZDYINH VOR JHNU BCALWG UCEF XCZW MK PDST</p><p>ZWLOST MLDEF BCDG PJASTZ XCYIK VOR QDQDUNK</p><p>TJOZWZ DS YHYOLK IDEFZ CI BCALWG ASU QANCAMNH OSKR XHPHNZ</p><p>IHSZDQH PDGALUZ YAFH WORDE MLHP VOL WJH HQDN BAWALD FDST ASU PLK XAEF</p><p>ANN OCWUAWHU BCHLK AZFHU MK VDQH PAWEJ HRIHLWZ AYAGHU WJH XCUTH</p></blockquote><p>这个东西看起来很眼熟对吧，很容易就能想到quipquip字频爆破</p><p><img loading=lazy src=/posts/754b8e7/imgs/image-20250126122828118.png alt=/posts/754b8e7/imgs/image-20250126122828118.png height=1461 width=2559></p><p>爆破后可以得到如下内容</p><blockquote><p>A QUICK ZEPHYR BLOW VEXING DAFT JIM</p><p>FRED SPECIALIZED IN THE JOB OF MAKING VERY QABALISTIC WAX TOYS</p><p>SIX FRENZIED KINGS VOWED TO ABOLISH MY QUITE PITIFUL JOUSTS</p><p>MAY JO EQUAL MY FOOLISH RECORD BY SOLVING SIX PUZZLES A WEEK</p><p>HARRY IS JOGGING QUICKLY WHICH AXED ZEN MONKS WITH ABUNDANT VAPOR</p><p>DUMPY KIBITZER JINGLES AS QUIXOTIC OVERFLOWS</p><p>NYMPH SING FOR QUICK JIGS VEX BUD IN ZESTFUL TWILIGHT</p><p>SIMPLE FOX HELD QUARTZ DUCK JUST BY WING</p><p>STRONG BRICK QUIZ WHANGS JUMPY FOX VIVIDLY</p><p>GHOSTS IN MEMORY PICKS UP QUARTZ AND VALUABLE ONYX JEWELS</p><p>PENSIVE WIZARDS MAKE TOXIC BREW FOR THE EVIL QATARI KING AND WRY JACK</p><p>ALL OUTDATED QUERY ASKED BY FIVE WATCH EXPERTS AMAZED THE JUDGE</p></blockquote><p>仔细观察这个格式可以想到一个比较经典的Pangram(全字母句子)：The quick brown fox jumps over the lazy dog</p><p>因此把每一行中缺少的那个字母组合起来即可得到最后flag：<code>SUCTF{HAVEFUN}</code></p><h2 class=heading-element id=题目名称-su_ad><span>题目名称 SU_AD</span>
+<a href=#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-su_ad class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h2><p>参考链接：</p><blockquote><p><a href=https://z3n1th1.com/2025/01/suctf2025-writeup/#su_voip target=_blank rel="external nofollow noopener noreferrer">https://z3n1th1.com/2025/01/suctf2025-writeup/#su_voip</a></p><p><a href=https://kcno7cq8euks.feishu.cn/wiki/PKx0w2LrtiVo99k3tEDc0xBnnre target=_blank rel="external nofollow noopener noreferrer">https://kcno7cq8euks.feishu.cn/wiki/PKx0w2LrtiVo99k3tEDc0xBnnre</a></p><p><a href=https://jk64eb0pjs.feishu.cn/docx/O6OUd1iSro8XcpxlpDAc0si5n5e target=_blank rel="external nofollow noopener noreferrer">https://jk64eb0pjs.feishu.cn/docx/O6OUd1iSro8XcpxlpDAc0si5n5e</a></p></blockquote><h2 class=heading-element id=题目名称-su_voip><span>题目名称 SU_VOIP</span>
+<a href=#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-su_voip class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h2></div><div class=post-footer id=post-footer><div class=post-info><div class=post-info-line><div class=post-info-mod><span title="Updated on 2025-04-01 00:00:40">Updated on 2025-04-01&nbsp;</span></div></div><div class=post-info-line><div class=post-info-md><span><a href=/posts/754b8e7/index.md title="Read Markdown" class=link-to-markdown>Read Markdown</a></span></div><div class=post-info-share><span><a href=javascript:void(0); title="Share on X" data-sharer=twitter data-url=https://goodlunatic.github.io/posts/754b8e7/ data-title="2025 XCTF国际网络攻防联赛-SUCTF分站赛 Misc Writeup" data-hashtags=CTF,Misc,Writeup><i class="fa-brands fa-x-twitter fa-fw" aria-hidden=true></i></a>
+<a href=javascript:void(0); title="Share on Facebook" data-sharer=facebook data-url=https://goodlunatic.github.io/posts/754b8e7/ data-hashtag=CTF><i class="fa-brands fa-facebook-square fa-fw" aria-hidden=true></i></a>
+<a href=javascript:void(0); title="Share on 微博" data-sharer=weibo data-url=https://goodlunatic.github.io/posts/754b8e7/ data-title="2025 XCTF国际网络攻防联赛-SUCTF分站赛 Misc Writeup"><i class="fa-brands fa-weibo fa-fw" aria-hidden=true></i></a></span></div></div></div><div class=post-info-more><section class=post-tags><i class="fa-solid fa-tags fa-fw me-1" aria-hidden=true></i><a href=/tags/ctf/ class=post-tag title="Tags - CTF">CTF</a><a href=/tags/misc/ class=post-tag title="Tags - Misc">Misc</a><a href=/tags/writeup/ class=post-tag title="Tags - Writeup">Writeup</a></section><section><span><a href=javascript:void(0); onclick=window.history.back()>Back</a></span>&nbsp;|&nbsp;<span><a href=/>Home</a></span></section></div><div class=post-nav><a href=/posts/de8e2be/ class=post-nav-item rel=prev title="2024 强网拟态防御国际精英挑战赛初赛 Misc Writeup"><i class="fa-solid fa-angle-left fa-fw" aria-hidden=true></i>2024 强网拟态防御国际精英挑战赛初赛 Misc Writeup</a><a href=/posts/f002407/ class=post-nav-item rel=next title="2025 西湖论剑·中国杭州网络安全技能大赛 Misc Writeup">2025 西湖论剑·中国杭州网络安全技能大赛 Misc Writeup<i class="fa-solid fa-angle-right fa-fw" aria-hidden=true></i></a></div></div></article><aside class=toc id=toc-auto aria-label=Contents><h2 class=toc-title>Contents&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden=true></i></h2><div class=toc-content id=toc-content-auto></div></aside></main><footer class=footer><div class=footer-container><div class="footer-line powered order-1">Powered by <a href=https://gohugo.io/ target=_blank rel="external nofollow noopener noreferrer" title="Hugo 0.152.1">Hugo</a> | Theme - <a href=https://github.com/hugo-fixit/FixIt target=_blank rel=external title="FixIt v0.4.0-alpha.2-20251023040336-063af2cd">FixIt</a></div><div class="footer-line copyright order-2" itemscope itemtype=http://schema.org/CreativeWork><i class="fa-regular fa-copyright fa-fw" aria-hidden=true></i>
+<span itemprop=copyrightYear>2022 - 2025</span><span class=author itemprop=copyrightHolder>
+<a href=https://goodlunatic.github.io target=_blank rel="external nofollow noopener noreferrer">Lunatic</a></span></div><div class="footer-line visitor"><span id=busuanzi_container_site_uv title='Total visitors'><i class="fa-regular fa-user fa-fw me-1" aria-hidden=true></i><span id=busuanzi_value_site_uv><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden=true></i></span></span><span id=busuanzi_container_site_pv class=footer-divider title='Total visits'><i class="fa-regular fa-eye fa-fw me-1" aria-hidden=true></i><span id=busuanzi_value_site_pv><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden=true></i></span></span></div></div></footer></div><div class=widgets><div class="fixed-buttons animate__faster d-none"><div class="fixed-button back-to-top" role=button aria-label="Back to Top"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden=true></i><span class=variant-numeric>0%</span></div></div><div id=mask></div><noscript><div class=noscript-warning>This website works best with JavaScript enabled.</div></noscript></div><link rel=stylesheet href=/lib/pace/themes/blue/pace-theme-minimal.css><script src=/lib/sharer/sharer.min.js async defer></script><script src=https://vercount.one/js async defer></script><script src=/lib/pace/pace.min.js async defer></script><script src=/posts/754b8e7/config/page.js defer></script><script src=/js/theme.min.js defer></script></body></html>

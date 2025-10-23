@@ -1,0 +1,624 @@
+<!doctype html><html itemscope itemtype=http://schema.org/WebPage lang=en><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=2"><meta name=robots content="noodp"><title>2024 网鼎杯网络安全大赛青龙组 Misc Writeup - ⚡Lunatic BLOG⚡</title><meta name=author content="Lunatic"><meta name=description content="2024 网鼎杯网络安全大赛青龙组 Misc Writeup
+"><meta name=keywords content='CTF,Misc,Writeup'><meta itemprop=name content="2024 网鼎杯网络安全大赛青龙组 Misc Writeup"><meta itemprop=description content="2024 网鼎杯网络安全大赛青龙组 Misc Writeup"><meta itemprop=datePublished content="2025-03-27T09:56:08+08:00"><meta itemprop=dateModified content="2025-03-27T09:56:08+08:00"><meta itemprop=wordCount content="3614"><meta itemprop=keywords content="CTF,Misc,Writeup"><meta property="og:url" content="https://goodlunatic.github.io/posts/1a285be/"><meta property="og:site_name" content="⚡Lunatic BLOG⚡"><meta property="og:title" content="2024 网鼎杯网络安全大赛青龙组 Misc Writeup"><meta property="og:description" content="2024 网鼎杯网络安全大赛青龙组 Misc Writeup"><meta property="og:locale" content="en"><meta property="og:type" content="article"><meta property="article:section" content="posts"><meta property="article:published_time" content="2025-03-27T09:56:08+08:00"><meta property="article:modified_time" content="2025-03-27T09:56:08+08:00"><meta property="article:tag" content="CTF"><meta property="article:tag" content="Misc"><meta property="article:tag" content="Writeup"><meta name=twitter:card content="summary"><meta name=twitter:title content="2024 网鼎杯网络安全大赛青龙组 Misc Writeup"><meta name=twitter:description content="2024 网鼎杯网络安全大赛青龙组 Misc Writeup"><meta name=application-name content="FixIt"><meta name=apple-mobile-web-app-title content="FixIt"><meta name=theme-color data-light=#f8f8f8 data-dark=#252627 content="#f8f8f8"><meta name=msapplication-TileColor content="#da532c"><link rel=icon href=https://www.nssctf.cn/files/2024/4/28/7f130a1387.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=canonical type=text/html href=https://goodlunatic.github.io/posts/1a285be/ title="2024 网鼎杯网络安全大赛青龙组 Misc Writeup - ⚡Lunatic BLOG⚡"><link rel=prev type=text/html href=https://goodlunatic.github.io/posts/c216d58/ title="2024 浙江省大学生网络与信息安全竞赛 Misc Writeup"><link rel=next type=text/html href=https://goodlunatic.github.io/posts/de8e2be/ title="2024 强网拟态防御国际精英挑战赛初赛 Misc Writeup"><link rel=alternate type=text/markdown href=https://goodlunatic.github.io/posts/1a285be/index.md title="2024 网鼎杯网络安全大赛青龙组 Misc Writeup - ⚡Lunatic BLOG⚡"><link rel=stylesheet href=/css/config.min.css><link rel=stylesheet href=/css/style.min.css><link rel=preload href=/lib/fontawesome-free/all.min.css as=style onload='this.removeAttribute("onload"),this.rel="stylesheet"'><noscript><link rel=stylesheet href=/lib/fontawesome-free/all.min.css></noscript><link rel=preload href=/lib/animate/animate.min.css as=style onload='this.removeAttribute("onload"),this.rel="stylesheet"'><noscript><link rel=stylesheet href=/lib/animate/animate.min.css></noscript><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"2024 网鼎杯网络安全大赛青龙组 Misc Writeup","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/goodlunatic.github.io\/posts\/1a285be\/"},"genre":"posts","keywords":"CTF, Misc, Writeup","wordcount":3614,"url":"https:\/\/goodlunatic.github.io\/posts\/1a285be\/","datePublished":"2025-03-27T09:56:08+08:00","dateModified":"2025-03-27T09:56:08+08:00","publisher":{"@type":"Organization","name":""},"author":{"@type":"Person","name":"Lunatic"},"description":""}</script><script src=/js/head/color-scheme.min.js></script></head><body data-header-desktop=sticky data-header-mobile=auto><div class=wrapper data-page-style=normal><header class="desktop animate__faster" id=header-desktop><div class=header-wrapper><div class=header-title><a href=/ title="⚡Lunatic BLOG⚡"><span class=header-title-text>⚡Lunatic BLOG⚡</span></a><span class=header-subtitle></span></div><nav><ul class=menu><li class=menu-item><a class=menu-link href=/archives/><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden=true></i> Archives</a></li><li class=menu-item><a class=menu-link href=/categories/><i class="fa-solid fa-folder-tree fa-fw fa-sm" aria-hidden=true></i> Categories</a></li><li class=menu-item><a class=menu-link href=/tags/><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden=true></i> Tags</a></li><li class=menu-item><a class=menu-link href=/friends/><i class="fa-solid fa-chain fa-fw fa-sm" aria-hidden=true></i> Friends</a></li><li class=menu-item><a class=menu-link href=/about/><i class="fa-solid fa-graduation-cap fa-fw fa-sm" aria-hidden=true></i> About</a></li><li class="menu-item delimiter"></li><li class="menu-item theme-switch" title="Switch Theme"><i class="fa-solid fa-adjust fa-fw" aria-hidden=true></i></li></ul></nav></div></header><header class="mobile animate__faster" id=header-mobile><div class=header-container><div class=header-wrapper><div class=header-title><a href=/ title="⚡Lunatic BLOG⚡"><span class=header-title-text>⚡Lunatic BLOG⚡</span></a><span class=header-subtitle></span></div><div class=menu-toggle id=menu-toggle-mobile><span></span><span></span><span></span></div></div><nav><ul class=menu id=menu-mobile><li class=menu-item><a class=menu-link href=/archives/><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden=true></i> Archives</a></li><li class=menu-item><a class=menu-link href=/categories/><i class="fa-solid fa-folder-tree fa-fw fa-sm" aria-hidden=true></i> Categories</a></li><li class=menu-item><a class=menu-link href=/tags/><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden=true></i> Tags</a></li><li class=menu-item><a class=menu-link href=/friends/><i class="fa-solid fa-chain fa-fw fa-sm" aria-hidden=true></i> Friends</a></li><li class=menu-item><a class=menu-link href=/about/><i class="fa-solid fa-graduation-cap fa-fw fa-sm" aria-hidden=true></i> About</a></li><li class="menu-item menu-system"><span class="menu-system-item theme-switch" title="Switch Theme"><i class="fa-solid fa-adjust fa-fw" aria-hidden=true></i></span></li></ul></nav></div></header><main class=fi-container><aside class="aside-collection animate__animated animate__fadeIn animate__faster" aria-label=Collections></aside><article class="page single"><div class=header><h1 class="single-title animate__animated animate__flipInX"><span>2024 网鼎杯网络安全大赛青龙组 Misc Writeup</span></h1></div><div class=post-meta><div class=post-meta-line><span class=post-author><a href=https://goodlunatic.github.io title=Author target=_blank rel="external nofollow noopener noreferrer author" class=author><img class=avatar src=https://www.nssctf.cn/files/2024/4/28/7f130a1387.png alt=Lunatic height=16 width=16>&nbsp;Lunatic</a></span><span class=post-included-in>&nbsp;included in <a href=/categories/writeup/ class=post-category title="Category - Writeup"><i class="fa-regular fa-folder fa-fw" aria-hidden=true></i> Writeup</a></span></div><div class=post-meta-line><span title="published on 2025-03-27 09:56:08"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden=true></i><time datetime=2025-03-27>2025-03-27</time></span>&nbsp;<span title="3614 words"><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden=true></i>About 3700 words</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden=true></i>17 minutes</span>&nbsp;<span id=busuanzi_container_page_pv class="busuanzi_visitors comment-visitors" data-flag-title="2024 网鼎杯网络安全大赛青龙组 Misc Writeup"><i class="fa-regular fa-eye fa-fw me-1" aria-hidden=true></i><span id=busuanzi_value_page_pv>-</span>&nbsp;views
+</span>&nbsp;</div></div><div class="details toc" id=toc-static data-kept=false><div class="details-summary toc-title"><span>Contents</span>
+<span><i class="details-icon fa-solid fa-angle-right" aria-hidden=true></i></span></div><div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents><ul><li><a href=#题目名称-misc01>题目名称 Misc01</a></li><li><a href=#题目名称-misc02赛后复现>题目名称 Misc02(赛后复现)</a></li><li><a href=#题目名称-misc03>题目名称 Misc03</a></li><li><a href=#题目名称-misc04>题目名称 Misc04</a></li></ul></nav></div></div><div class=content id=content><p><strong>2024 网鼎杯网络安全大赛青龙组 Misc Writeup</strong></p><p><img loading=lazy src=/posts/1a285be/imgs/image-20241030001333378.png alt=/posts/1a285be/imgs/image-20241030001333378.png height=1393 width=2553></p><blockquote><p>本文中涉及的具体题目附件可以进我的交流群获取，进群详见 <a href=https://goodlunatic.github.io/about/ target=_blank rel="external nofollow noopener noreferrer">About</a></p></blockquote><h2 class=heading-element id=题目名称-misc01><span>题目名称 Misc01</span>
+<a href=#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-misc01 class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h2><p><img loading=lazy src=/posts/1a285be/imgs/image-20241031101152559.png alt=/posts/1a285be/imgs/image-20241031101152559.png height=498 width=1272></p><p>题目附件给了一个<code>MME.cap</code>流量包，wireshark打开查看</p><blockquote><p>附件名字中的<code>MME（Mobility Management Entity）</code>表示<code>移动性管理实体</code></p></blockquote><p>发现流量包中的协议主要有：<code>DIAMETER</code>、<code>S1AP/NAS-EPS</code>、<code>GTPv2</code>、<code>S1AP</code></p><p>问一问GPT，发现 <code>DIAMETER</code>、<code>GTPv2</code> 是比较可能的方向</p><p><img loading=lazy src=/posts/1a285be/imgs/image-20241031102603188.png alt=/posts/1a285be/imgs/image-20241031102603188.png height=464 width=790></p><p>因此我们配合过滤器一个个查看流量包，最终在<code>DIAMETER</code>协议中发现关键信息<code>MME-Location-Information</code></p><p><img loading=lazy src=/posts/1a285be/imgs/image-20241031103005789.png alt=/posts/1a285be/imgs/image-20241031103005789.png height=1528 width=2560></p><p><img loading=lazy src=/posts/1a285be/imgs/image-20241031103245281.png alt=/posts/1a285be/imgs/image-20241031103245281.png height=478 width=835></p><p>最后把该字段中的值<code>MD5</code>加密一下即可得到flag：<code>wdflag{1f717538aeec1322f446a754d0bcf220}</code></p><p><img loading=lazy src=/posts/1a285be/imgs/image-20241031101958348.png alt=/posts/1a285be/imgs/image-20241031101958348.png height=693 width=1186></p><h2 class=heading-element id=题目名称-misc02赛后复现><span>题目名称 Misc02(赛后复现)</span>
+<a href=#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-misc02%e8%b5%9b%e5%90%8e%e5%a4%8d%e7%8e%b0 class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h2><p><img loading=lazy src=/posts/1a285be/imgs/image-20241029215810192.png alt=/posts/1a285be/imgs/image-20241029215810192.png height=525 width=1272></p><p>题目附件给了一个未知后缀的flag文件，strings 查看一下发现是Ubuntu22.04的内存镜像</p><p><img loading=lazy src=/posts/1a285be/imgs/image-20241029232516740.png alt=/posts/1a285be/imgs/image-20241029232516740.png height=927 width=1734></p><p>这里我先尝试了制作vol3的symbols，但是做完后发现也扫不出东西</p><p>如何制作vol3的符号文件可以参考<a href=https://goodlunatic.github.io/posts/761da51/#%E5%88%B6%E4%BD%9C--symbolsvol3--%E7%9A%84%E8%AF%A6%E7%BB%86%E8%BF%87%E7%A8%8B target=_blank rel="external nofollow noopener noreferrer">我的这篇博客</a>以及<a href=https://github.com/goodlunatic/Docker-SymbolsMaker-vol3 target=_blank rel="external nofollow noopener noreferrer">这个项目</a></p><p>我这里还是写了一个Dockerfile来制作符号文件</p><blockquote><p>把 linux-image-unsigned-6.5.0-41-generic-dbgsym_6.5.0-41.41~22.04.2_amd64.ddeb 和 dwarf2json-linux-amd64 放 src 目录中即可</p><p>ddeb的下载链接：http://launchpadlibrarian.net/733303944/linux-image-unsigned-6.5.0-41-generic-dbgsym_6.5.0-41.41~22.04.2_amd64.ddeb</p></blockquote><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-Dockerfile data-lang=Dockerfile><span class=line><span class=cl><span class=k>FROM</span><span class=w> </span><span class=s>ubuntu:22.04</span><span class=err>
+</span></span></span><span class=line><span class=cl><span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span><span class=c># 将环境设置为非交互环境</span><span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span><span class=k>ENV</span> <span class=nv>DEBIAN_FRONTEND</span><span class=o>=</span>noninteractive
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>COPY</span> ./src/ /src/<span class=err>
+</span></span></span><span class=line><span class=cl><span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span><span class=k>RUN</span> sed -i <span class=s1>&#39;s/archive.ubuntu.com/mirrors.ustc.edu.cn/g&#39;</span> /etc/apt/sources.list <span class=se>\
+</span></span></span><span class=line><span class=cl><span class=se></span>    <span class=o>&amp;&amp;</span> sed -i <span class=s1>&#39;s/security.ubuntu.com/mirrors.ustc.edu.cn/g&#39;</span> /etc/apt/sources.list <span class=se>\
+</span></span></span><span class=line><span class=cl><span class=se></span>	<span class=o>&amp;&amp;</span> apt update --no-install-recommends<span class=se>\
+</span></span></span><span class=line><span class=cl><span class=se></span>    <span class=o>&amp;&amp;</span> apt install -y openssh-server gcc-10 dwarfdump build-essential unzip kmod linux-base linux-image-6.5.0-41-generic<span class=se>\
+</span></span></span><span class=line><span class=cl><span class=se></span>    <span class=o>&amp;&amp;</span> mkdir /app <span class=se>\
+</span></span></span><span class=line><span class=cl><span class=se></span>    <span class=o>&amp;&amp;</span> sed -i <span class=s1>&#39;s/\#PermitRootLogin prohibit-password/PermitRootLogin yes/g&#39;</span> /etc/ssh/sshd_config <span class=se>\
+</span></span></span><span class=line><span class=cl><span class=se></span>    <span class=o>&amp;&amp;</span> sed -i <span class=s1>&#39;s/\#PasswordAuthentication yes/PasswordAuthentication yes/g&#39;</span> /etc/ssh/sshd_config <span class=se>\
+</span></span></span><span class=line><span class=cl><span class=se></span>    <span class=o>&amp;&amp;</span> <span class=nb>echo</span> <span class=s1>&#39;root:root&#39;</span> <span class=p>|</span> chpasswd <span class=se>\
+</span></span></span><span class=line><span class=cl><span class=se></span>    <span class=o>&amp;&amp;</span> systemctl <span class=nb>enable</span> ssh <span class=se>\
+</span></span></span><span class=line><span class=cl><span class=se></span>    <span class=o>&amp;&amp;</span> service ssh start<span class=err>
+</span></span></span><span class=line><span class=cl><span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span><span class=k>WORKDIR</span><span class=w> </span><span class=s>/src</span><span class=err>
+</span></span></span><span class=line><span class=cl><span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span><span class=c># 这里的文件名需要根据系统版本进行修改</span><span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span><span class=k>COPY</span> ./src/linux-image-unsigned-6.5.0-41-generic-dbgsym_6.5.0-41.41~22.04.2_amd64.ddeb linux-image-unsigned-6.5.0-41-generic-dbgsym_6.5.0-41.41~22.04.2_amd64.ddeb<span class=err>
+</span></span></span><span class=line><span class=cl><span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span><span class=k>RUN</span> dpkg -i linux-image-unsigned-6.5.0-41-generic-dbgsym_6.5.0-41.41~22.04.2_amd64.ddeb <span class=se>\
+</span></span></span><span class=line><span class=cl><span class=se></span>    <span class=o>&amp;&amp;</span> chmod +x dwarf2json-linux-amd64 <span class=se>\
+</span></span></span><span class=line><span class=cl><span class=se></span>    <span class=c1># 下面这里的文件名需要根据系统版本进行修改</span><span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span>    <span class=o>&amp;&amp;</span> ./dwarf2json-linux-amd64 linux --elf /usr/lib/debug/boot/vmlinux-6.5.0-41-generic &gt; linux-image-6.5.0-41-generic.json<span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span>	<span class=err>
+</span></span></span><span class=line><span class=cl><span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span><span class=k>CMD</span> <span class=p>[</span><span class=s2>&#34;/bin/bash&#34;</span><span class=p>]</span></span></span></code></pre></td></tr></table></div></div><p>符号文件在Docker中制作好后直接SSH连上容器下载到本地</p><p>然后放到 volatility3/volatility3/framework/symbols/linux/ 目录下即可</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>docker build --tag symbols .
+</span></span><span class=line><span class=cl>docker run -p 2022:22 -it symbols /bin/sh
+</span></span><span class=line><span class=cl>service ssh start</span></span></code></pre></td></tr></table></div></div><p><img loading=lazy src=/posts/1a285be/imgs/image-20241029233417750.png alt=/posts/1a285be/imgs/image-20241029233417750.png height=869 width=2559></p><p>做完符号文件后发现也扫不出东西，因此这道题我这里就直接打算用010手动提取了</p><p>首先，我们先用<code>strings</code>看看用户桌面上有什么东西，当然这里也可以直接在<code>010</code>中搜字符串</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>strings flag <span class=p>|</span> grep Desktop</span></span></code></pre></td></tr></table></div></div><p><img loading=lazy src=/posts/1a285be/imgs/image-20241031103755088.png alt=/posts/1a285be/imgs/image-20241031103755088.png height=628 width=1115></p><p>我们确定了用户名以及桌面的路径，便于我们缩小范围，过滤掉无效的干扰数据</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>strings flag <span class=p>|</span> grep /home/ccc/Desktop/</span></span></code></pre></td></tr></table></div></div><p><img loading=lazy src=/posts/1a285be/imgs/image-20241031104039178.png alt=/posts/1a285be/imgs/image-20241031104039178.png height=1032 width=1920></p><p>可以看到扫出来了很多非常关键的信息，桌面上有很多张PNG图片，然后还有同名的TXT文件</p><p>甚至还有内存镜像的vol3符号文件以及制作符号文件的工具（所以我猜测出题人是故意让我们没办法用vol3进行取证）</p><p>然后我们到<code>010</code>中搜索那几张图片的文件名</p><p><img loading=lazy src=/posts/1a285be/imgs/image-20241031104327371.png alt=/posts/1a285be/imgs/image-20241031104327371.png height=1032 width=1920></p><p>发现用了<code>base64 xxx.png > xxx.txt</code>这个命令，把图片数据以base64编码的格式保存到同名txt文件中</p><p>猜测另外几个文件也是同理，因此我们根据PNG的文件头base64编码后的值：<code>iVBORw0KGgo</code></p><p>在010中可以定位到12个位置</p><p><img loading=lazy src=/posts/1a285be/imgs/image-20241029225746077.png alt=/posts/1a285be/imgs/image-20241029225746077.png height=1528 width=2560></p><p>依次查看，发现里面有好多个位置表示的都是同一张图片</p><p>手动提取出Hex数据，注意这里建议提取Hex数据，直接提取右边的字符串可能会有问题（可能有不可打印字符）</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>69 56 42 4F 52 77 30 4B 47 67 6F 41 41 41 41 4E 53 55 68 45 55 67 41 41 41 51 41 41 41 41 45 41 43 41 49 41 41 41 44 54 45 44 38 78 41 41 41 43 76 55 6C 45 51 56 52 34 6E 4F 33 54 4D 51 45 41 49 41 7A 41 4D 4D 43 2F 35 79 46 6A 52 78 4D 46 66 58 70 6E 35 6B 44 56 32 77 36 41 54 51 59 67 7A 51 43 6B 47 59 41 30 41 35 42 6D 41 4E 49 4D 51 4A 6F 42 53 44 4D 41 61 51 59 67 7A 51 43 6B 47 59 41 30 41 35 42 6D 41 4E 49 4D 51 4A 6F 42 53 44 4D 41 61 51 59 67 7A 51 43 6B 47 59 41 30 41 35 42 6D 41 4E 49 4D 51 4A 6F 42 53 44 4D 41 61 51 59 67 7A 51 43 6B 47 59 41 30 41 35 42 6D 41 4E 49 4D 51 4A 6F 42 53 44 4D 41 61 51 59 67 7A 51 43 6B 47 59 41 30 41 35 42 6D 41 4E 49 4D 51 4A 6F 42 53 44 4D 41 61 51 59 67 7A 51 43 6B 47 59 41 30 41 35 42 6D 41 4E 49 4D 51 4A 6F 42 53 44 4D 41 61 51 59 67 7A 51 43 6B 47 59 41 30 41 35 42 6D 41 4E 49 4D 51 4A 6F 42 53 44 4D 41 61 51 59 67 7A 51 43 6B 47 59 41 30 41 35 42 6D 41 4E 49 4D 51 4A 6F 42 53 44 4D 41 61 51 59 67 7A 51 43 6B 47 59 41 30 41 35 42 6D 41 4E 49 4D 51 4A 6F 42 53 44 4D 41 61 51 59 67 7A 51 43 6B 47 59 41 30 41 35 42 6D 41 4E 49 4D 51 4A 6F 42 53 44 4D 41 61 51 59 67 7A 51 43 6B 47 59 41 30 41 35 42 6D 41 4E 49 4D 51 4A 6F 42 53 44 4D 41 61 51 59 67 7A 51 43 6B 47 59 41 30 41 35 42 6D 41 4E 49 4D 51 4A 6F 42 53 44 4D 41 61 51 59 67 7A 51 43 6B 47 59 41 30 41 35 42 6D 41 4E 49 4D 51 4A 6F 42 53 44 4D 41 61 51 59 67 7A 51 43 6B 47 59 41 30 41 35 42 6D 41 4E 49 4D 51 4A 6F 42 53 44 4D 41 61 51 59 67 7A 51 43 6B 47 59 41 30 41 35 42 6D 41 4E 49 4D 51 4A 6F 42 53 44 4D 41 61 51 59 67 7A 51 43 6B 47 59 41 30 41 35 42 6D 41 4E 49 4D 51 4A 6F 42 53 44 4D 41 61 51 59 67 7A 51 43 6B 47 59 41 30 41 35 42 6D 41 4E 49 4D 51 4A 6F 42 53 44 4D 41 61 51 59 67 7A 51 43 6B 47 59 41 30 41 35 42 6D 41 4E 49 4D 51 4A 6F 42 53 44 4D 41 61 51 59 67 7A 51 43 6B 47 59 41 30 41 35 42 6D 41 4E 49 4D 51 4A 6F 42 53 44 4D 41 61 51 59 67 7A 51 43 6B 47 59 41 30 41 35 42 6D 41 4E 49 4D 51 4A 6F 42 53 44 4D 41 61 51 59 67 7A 51 43 6B 47 59 41 30 41 35 42 6D 41 4E 49 4D 51 4A 6F 42 53 44 4D 41 61 51 59 67 7A 51 43 6B 47 59 41 30 41 35 42 6D 41 4E 49 4D 51 4A 6F 42 53 44 4D 41 61 51 59 67 7A 51 43 6B 47 59 41 30 41 35 42 6D 41 4E 49 4D 51 4A 6F 42 53 44 4D 41 61 51 59 67 7A 51 43 6B 47 59 41 30 41 35 42 6D 41 4E 49 4D 51 4A 6F 42 53 44 4D 41 61 51 59 67 7A 51 43 6B 47 59 41 30 41 35 42 6D 41 4E 49 4D 51 4A 6F 42 53 44 4D 41 61 51 59 67 7A 51 43 6B 47 59 41 30 41 35 42 6D 41 4E 49 4D 51 4A 6F 42 53 44 4D 41 61 51 59 67 7A 51 43 6B 47 59 41 30 41 35 42 6D 41 4E 49 4D 51 4A 6F 42 53 44 4D 41 61 51 59 67 7A 51 43 6B 47 59 41 30 41 35 42 6D 41 4E 49 4D 51 4A 6F 42 53 44 4D 41 61 51 59 67 7A 51 43 6B 47 59 41 30 41 35 42 6D 41 4E 49 4D 51 4A 6F 42 53 44 4D 41 61 51 59 67 7A 51 43 6B 47 59 41 30 41 35 42 6D 41 4E 49 4D 51 4A 6F 42 53 44 4D 41 61 51 59 67 7A 51 43 6B 47 59 41 30 41 35 42 6D 41 4E 49 4D 51 4A 6F 42 53 44 4D 41 61 51 59 67 7A 51 43 6B 47 59 41 30 41 35 42 6D 41 4E 49 4D 51 4E 6F 48 71 2B 67 45 2F 51 50 4E 4D 47 49 41 41 41 41 41 53 55 56 4F 52 4B 35 43 59 49 49 3D </span></span></code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>iVBORw0KGgoAAAANSUhEUgAAAQAAAAEACAIAAADTED8xAAACvUlEQVR4nO3TMQEAIAzAMMC/5yFjRxMFfXpn5kDV2w6ATQYgzQCkGYA0A5BmANIMQJoBSDMAaQYgzQCkGYA0A5BmANIMQJoBSDMAaQYgzQCkGYA0A5BmANIMQJoBSDMAaQYgzQCkGYA0A5BmANIMQJoBSDMAaQYgzQCkGYA0A5BmANIMQJoBSDMAaQYgzQCkGYA0A5BmANIMQJoBSDMAaQYgzQCkGYA0A5BmANIMQJoBSDMAaQYgzQCkGYA0A5BmANIMQJoBSDMAaQYgzQCkGYA0A5BmANIMQJoBSDMAaQYgzQCkGYA0A5BmANIMQJoBSDMAaQYgzQCkGYA0A5BmANIMQJoBSDMAaQYgzQCkGYA0A5BmANIMQJoBSDMAaQYgzQCkGYA0A5BmANIMQJoBSDMAaQYgzQCkGYA0A5BmANIMQJoBSDMAaQYgzQCkGYA0A5BmANIMQJoBSDMAaQYgzQCkGYA0A5BmANIMQJoBSDMAaQYgzQCkGYA0A5BmANIMQJoBSDMAaQYgzQCkGYA0A5BmANIMQJoBSDMAaQYgzQCkGYA0A5BmANIMQJoBSDMAaQYgzQCkGYA0A5BmANIMQJoBSDMAaQYgzQCkGYA0A5BmANIMQJoBSDMAaQYgzQCkGYA0A5BmANIMQJoBSDMAaQYgzQCkGYA0A5BmANIMQJoBSDMAaQYgzQCkGYA0A5BmANIMQJoBSDMAaQYgzQCkGYA0A5BmANIMQJoBSDMAaQYgzQCkGYA0A5BmANIMQJoBSDMAaQYgzQCkGYA0A5BmANIMQJoBSDMAaQYgzQCkGYA0A5BmANIMQJoBSDMAaQYgzQCkGYA0A5BmANIMQJoBSDMAaQYgzQCkGYA0A5BmANIMQJoBSDMAaQYgzQCkGYA0A5BmANIMQJoBSDMAaQYgzQCkGYA0A5BmANIMQNoHq+gE/QPNMGIAAAAASUVORK5CYII=</span></span></code></pre></td></tr></table></div></div><p>base64解码后可以得到下面这张空白图片，数据很短，也没什么用</p><p><img loading=lazy src=/posts/1a285be/imgs/image-20241029230202407.png alt=/posts/1a285be/imgs/image-20241029230202407.png height=256 width=256></p><p>然后我们在010中继续往下看，可以把与上面这个图片有重合部分的base64的数据都删掉方便查看</p><p>然后在下图这个位置发现了另一张图片，我尝试给它提取出来
+<img loading=lazy src=/posts/1a285be/imgs/image-20241029230407213.png alt=/posts/1a285be/imgs/image-20241029230407213.png height=1528 width=2560></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>69 56 42 4F 52 77 30 4B 47 67 6F 41 41 41 41 4E 53 55 68 45 55 67 41 41 41 51 41 41 41 41 45 41 43 41 59 41 41 41 42 63 63 71 68 6D 41 41 41 42 47 32 6C 55 57 48 52 59 54 55 77 36 59 32 39 74 4C 6D 46 6B 62 32 4A 6C 4C 6E 68 74 63 41 41 41 41 41 41 41 50 44 39 34 63 47 46 6A 61 32 56 30 49 47 4A 6C 5A 32 6C 75 50 53 4C 76 75 37 38 69 49 47 6C 6B 50 53 4A 58 4E 55 30 77 54 58 42 44 5A 57 68 70 53 48 70 79 5A 56 4E 36 54 6C 52 6A 65 6D 74 6A 4F 57 51 69 50 7A 34 4B 50 48 67 36 65 47 31 77 62 57 56 30 59 53 42 34 62 57 78 75 63 7A 70 34 50 53 4A 68 5A 47 39 69 5A 54 70 75 63 7A 70 74 5A 58 52 68 4C 79 49 67 65 44 70 34 62 58 42 30 61 7A 30 69 57 45 31 51 49 45 4E 76 63 6D 55 67 4E 69 34 77 4C 6A 41 69 50 67 6F 67 50 48 4A 6B 5A 6A 70 53 52 45 59 67 65 47 31 73 62 6E 4D 36 63 6D 52 6D 50 53 4A 6F 64 48 52 77 4F 69 38 76 64 33 64 33 4C 6E 63 7A 4C 6D 39 79 5A 79 38 78 4F 54 6B 35 4C 7A 41 79 4C 7A 49 79 4C 58 4A 6B 5A 69 31 7A 65 57 35 30 59 58 67 74 62 6E 4D 6A 49 6A 34 4B 49 43 41 38 63 6D 52 6D 4F 6B 52 6C 63 32 4E 79 61 58 42 30 61 57 39 75 49 48 4A 6B 5A 6A 70 68 59 6D 39 31 64 44 30 69 49 69 38 2B 43 69 41 38 4C 33 4A 6B 5A 6A 70 53 52 45 59 2B 43 6A 77 76 65 44 70 34 62 58 42 74 5A 58 52 68 50 67 6F 38 50 33 68 77 59 57 4E 72 5A 58 51 67 5A 57 35 6B 50 53 4A 79 49 6A 38 2B 6C 31 76 70 43 67 41 41 49 37 4A 4A 52 45 46 55 65 4A 7A 74 58 55 32 53 56 54 65 79 31 72 56 66 6D 48 67 52 4A 70 36 66 43 63 38 38 4B 67 2F 65 46 75 77 6C 65 41 31 73 6A 2B 6F 6C 77 42 4A 67 45 31 55 39 67 42 46 51 51 4C 67 59 41 42 33 30 65 51 4F 6A 61 6C 32 56 66 76 49 2F 55 2B 66 65 4C 36 4B 6A 38 61 31 7A 70 46 52 4B 79 70 50 4B 50 78 33 2B 76 66 31 37 4F 32 77 70 62 65 6D 51 55 6B 6F 70 48 56 4A 4B 32 37 61 6C 51 7A 6F 63 30 69 46 74 61 64 73 4F 32 2B 47 77 48 64 4B 57 30 6E 5A 49 32 37 64 66 44 79 6B 64 30 69 46 74 57 30 6F 70 62 53 6B 64 44 69 6C 74 4B 61 58 44 64 76 66 37 34 5A 43 6D 2F 33 2F 47 47 57 66 34 34 62 74 44 4F 71 52 30 4F 4B 54 44 33 2F 2B 58 44 69 6D 6C 66 2F 7A 7A 33 65 48 77 54 53 42 38 6B 77 50 35 71 62 38 33 37 64 2F 2F 2B 76 76 76 68 35 51 4F 33 35 34 2B 66 42 4D 4B 2B 66 65 55 55 76 72 48 50 32 2B 4F 2F 72 76 2B 2F 31 50 45 35 66 57 4E 4E 77 6C 6F 63 47 6A 32 47 75 2B 7A 56 78 39 63 2B 75 58 67 78 5A 75 50 64 2F 2B 32 34 4E 74 33 72 52 38 66 58 7A 77 69 4E 58 5A 39 2B 35 6E 64 6C 75 53 67 53 32 5A 53 2B 74 52 61 51 46 7A 2B 65 6D 79 6F 47 63 30 6A 6D 68 35 66 50 41 4C 50 68 53 54 2B 2F 50 55 6E 38 7A 34 68 79 4C 78 71 38 65 7A 33 58 33 35 4D 4B 63 48 57 58 75 75 5A 47 5A 2F 76 39 62 6C 4E 38 50 7A 31 37 65 77 52 4D 4A 35 63 76 52 56 72 61 32 55 61 4B 4B 44 51 76 63 70 59 5A 33 53 57 66 38 65 4F 4B 54 2B 2F 43 69 38 34 6F 50 42 6D 4B 67 41 77 65 50 72 79 76 57 52 7A 5A 68 67 78 54 6C 49 41 72 6F 49 65 50 35 35 63 76 54 58 64 53 43 4D 36 52 72 2F 56 66 2B 38 4A 67 57 68 7A 57 39 4A 48 32 55 75 55 75 53 45 4C 41 4D 6E 4E 50 70 76 51 31 58 44 31 31 79 66 55 38 39 67 46 33 66 75 4E 30 35 38 6E 50 4F 6D 4A 7A 67 75 4D 64 6B 54 42 59 64 76 2B 74 75 4E 37 34 66 4C 36 68 6E 77 6D 50 75 4F 4D 45 73 39 65 66 62 67 </span></span></code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>iVBORw0KGgoAAAANSUhEUgAAAQAAAAEACAYAAABccqhmAAABG2lUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4KPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iWE1QIENvcmUgNi4wLjAiPgogPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4KICA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIi8+CiA8L3JkZjpSREY+CjwveDp4bXBtZXRhPgo8P3hwYWNrZXQgZW5kPSJyIj8+l1vpCgAAI7JJREFUeJztXU2SVTey1rVfmHgRJp6fCc88Kg/eFuwleA1sj+olwBJgE1U9gBFQQLgYAB30eQOjal2VfvI/U+feL6Kj8a1zpFRKypPKPx3+vf17O2wpbemQUkopHVJK27alQzoc0iFtadsO2+GwHdKW0nZI27dfDykd0iFtW0opbSkdDiltKaXDdvf74ZCm/3/GGWf44btDOqR0OKTD3/+XDimlf/zz3eHwTSB8kwP5qb837d//+vvvh5QO354+fBMK+feUUvrHP2+O/rv+/1PE5fWNNwlocGj2Gu+zVx9c+uXgxZuPd/+24Nt3rR8fXzwiNXZ9+5ndluSgS2ZS+tRaQFz+emyoGc0jmh5fPALPhST+/PUn8z4hyLxq8ez3X35MKcHWXuuZGZ/v9blN8Pz17ewRMJ5cvRVra2UaKKDQvcpYZ3SWf8eOKT+/Ci84oPBmKgAwePryvWRzZhgxTlIAroIeP55cvTXdSCM6Rr/Vf+8JgWhzW9JH2UuUuSELAMnNPpvQ1XD11yfU89gF3fuN058nPOmJzguMdkTBYdv+tuN74fL6hnwmPuOMEs9efbg</span></span></code></pre></td></tr></table></div></div><p><img loading=lazy src=/posts/1a285be/imgs/image-20241029230646093.png alt=/posts/1a285be/imgs/image-20241029230646093.png height=1461 width=2550></p><p>base64解码后很明显可以发现图片尾部是不完整的，但是从刚才第一张图片的尝试中</p><p>我们发现图片在内存中是分段存储的，因此我们可以尝试在010中搜索上面base64的尾部数据 <code>tuN74fL6hnwmPuOMEs9efbg</code></p><p><img loading=lazy src=/posts/1a285be/imgs/image-20241029230836196.png alt=/posts/1a285be/imgs/image-20241029230836196.png height=1528 width=2560></p><p>尝试后发现是可以找到后面的数据的，因此我们以此类推，每次拼接后都搜索尾部的数据</p><p>最后将所有的Hex数据都提取出来并解码可以得到</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>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</span></span></code></pre></td></tr></table></div></div><p>base64解码后即可得到下面这张图片</p><p><img loading=lazy src=/posts/1a285be/imgs/image-20241029231156564.png alt=/posts/1a285be/imgs/image-20241029231156564.png height=256 width=256></p><blockquote><p>赛后和别的师傅交流的过程中发现有的师傅说这里直接 <code>foremost</code> 也可以得到这张图片</p><p>虽然是不完整的，但是 <code>zsteg</code> 一下也可以得到下面的 Hint</p><p>感觉这里也算是非预期吧，出题人如果隐写的内容不放在开头，可能就要把图片完整提取出来才行了</p><p>之前睿抗也遇到过这样的情况，也算是给自己提了个醒，以后出题别把隐写的内容放在图片头部(坏笑)</p></blockquote><p>zsteg一下，发现有一个Hint：<code>Y3p_Ke9_1s_?????</code>
+``
+<img loading=lazy src=/posts/1a285be/imgs/image-20241029231245688.png alt=/posts/1a285be/imgs/image-20241029231245688.png height=927 width=1734></p><p>然后我们在回头查看那个内存镜像，尝试一下常用的文件头，看看有没有别的文件</p><p>发现存在 7z 的文件头 <code>37 7A BC AF 27 1C</code> ，内存镜像的末尾藏了一个7z压缩包</p><p><img loading=lazy src=/posts/1a285be/imgs/image-20241029231417659.png alt=/posts/1a285be/imgs/image-20241029231417659.png height=1528 width=2560></p><p>因此我们手动提取出来，然后结合刚才的提示 <code>Y3p_Ke9_1s_?????</code>，猜测是压缩包掩码爆破</p><p>因此我们使用 ARCHPR 爆破上面提取得到的 7z 压缩包</p><p><img loading=lazy src=/posts/1a285be/imgs/image-20241029231555394.png alt=/posts/1a285be/imgs/image-20241029231555394.png height=685 width=698></p><p>爆破后得到压缩包解压密码：<code>Y3p_Ke9_1s_29343</code></p><p><img loading=lazy src=/posts/1a285be/imgs/image-20241029232814005.png alt=/posts/1a285be/imgs/image-20241029232814005.png height=685 width=698></p><p>解压压缩包后得到 <code>flag.txt</code> ，内容如下：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>  1
+</span><span class=lnt>  2
+</span><span class=lnt>  3
+</span><span class=lnt>  4
+</span><span class=lnt>  5
+</span><span class=lnt>  6
+</span><span class=lnt>  7
+</span><span class=lnt>  8
+</span><span class=lnt>  9
+</span><span class=lnt> 10
+</span><span class=lnt> 11
+</span><span class=lnt> 12
+</span><span class=lnt> 13
+</span><span class=lnt> 14
+</span><span class=lnt> 15
+</span><span class=lnt> 16
+</span><span class=lnt> 17
+</span><span class=lnt> 18
+</span><span class=lnt> 19
+</span><span class=lnt> 20
+</span><span class=lnt> 21
+</span><span class=lnt> 22
+</span><span class=lnt> 23
+</span><span class=lnt> 24
+</span><span class=lnt> 25
+</span><span class=lnt> 26
+</span><span class=lnt> 27
+</span><span class=lnt> 28
+</span><span class=lnt> 29
+</span><span class=lnt> 30
+</span><span class=lnt> 31
+</span><span class=lnt> 32
+</span><span class=lnt> 33
+</span><span class=lnt> 34
+</span><span class=lnt> 35
+</span><span class=lnt> 36
+</span><span class=lnt> 37
+</span><span class=lnt> 38
+</span><span class=lnt> 39
+</span><span class=lnt> 40
+</span><span class=lnt> 41
+</span><span class=lnt> 42
+</span><span class=lnt> 43
+</span><span class=lnt> 44
+</span><span class=lnt> 45
+</span><span class=lnt> 46
+</span><span class=lnt> 47
+</span><span class=lnt> 48
+</span><span class=lnt> 49
+</span><span class=lnt> 50
+</span><span class=lnt> 51
+</span><span class=lnt> 52
+</span><span class=lnt> 53
+</span><span class=lnt> 54
+</span><span class=lnt> 55
+</span><span class=lnt> 56
+</span><span class=lnt> 57
+</span><span class=lnt> 58
+</span><span class=lnt> 59
+</span><span class=lnt> 60
+</span><span class=lnt> 61
+</span><span class=lnt> 62
+</span><span class=lnt> 63
+</span><span class=lnt> 64
+</span><span class=lnt> 65
+</span><span class=lnt> 66
+</span><span class=lnt> 67
+</span><span class=lnt> 68
+</span><span class=lnt> 69
+</span><span class=lnt> 70
+</span><span class=lnt> 71
+</span><span class=lnt> 72
+</span><span class=lnt> 73
+</span><span class=lnt> 74
+</span><span class=lnt> 75
+</span><span class=lnt> 76
+</span><span class=lnt> 77
+</span><span class=lnt> 78
+</span><span class=lnt> 79
+</span><span class=lnt> 80
+</span><span class=lnt> 81
+</span><span class=lnt> 82
+</span><span class=lnt> 83
+</span><span class=lnt> 84
+</span><span class=lnt> 85
+</span><span class=lnt> 86
+</span><span class=lnt> 87
+</span><span class=lnt> 88
+</span><span class=lnt> 89
+</span><span class=lnt> 90
+</span><span class=lnt> 91
+</span><span class=lnt> 92
+</span><span class=lnt> 93
+</span><span class=lnt> 94
+</span><span class=lnt> 95
+</span><span class=lnt> 96
+</span><span class=lnt> 97
+</span><span class=lnt> 98
+</span><span class=lnt> 99
+</span><span class=lnt>100
+</span><span class=lnt>101
+</span><span class=lnt>102
+</span><span class=lnt>103
+</span><span class=lnt>104
+</span><span class=lnt>105
+</span><span class=lnt>106
+</span><span class=lnt>107
+</span><span class=lnt>108
+</span><span class=lnt>109
+</span><span class=lnt>110
+</span><span class=lnt>111
+</span><span class=lnt>112
+</span><span class=lnt>113
+</span><span class=lnt>114
+</span><span class=lnt>115
+</span><span class=lnt>116
+</span><span class=lnt>117
+</span><span class=lnt>118
+</span><span class=lnt>119
+</span><span class=lnt>120
+</span><span class=lnt>121
+</span><span class=lnt>122
+</span><span class=lnt>123
+</span><span class=lnt>124
+</span><span class=lnt>125
+</span><span class=lnt>126
+</span><span class=lnt>127
+</span><span class=lnt>128
+</span><span class=lnt>129
+</span><span class=lnt>130
+</span><span class=lnt>131
+</span><span class=lnt>132
+</span><span class=lnt>133
+</span><span class=lnt>134
+</span><span class=lnt>135
+</span><span class=lnt>136
+</span><span class=lnt>137
+</span><span class=lnt>138
+</span><span class=lnt>139
+</span><span class=lnt>140
+</span><span class=lnt>141
+</span><span class=lnt>142
+</span><span class=lnt>143
+</span><span class=lnt>144
+</span><span class=lnt>145
+</span><span class=lnt>146
+</span><span class=lnt>147
+</span><span class=lnt>148
+</span><span class=lnt>149
+</span><span class=lnt>150
+</span><span class=lnt>151
+</span><span class=lnt>152
+</span><span class=lnt>153
+</span><span class=lnt>154
+</span><span class=lnt>155
+</span><span class=lnt>156
+</span><span class=lnt>157
+</span><span class=lnt>158
+</span><span class=lnt>159
+</span><span class=lnt>160
+</span><span class=lnt>161
+</span><span class=lnt>162
+</span><span class=lnt>163
+</span><span class=lnt>164
+</span><span class=lnt>165
+</span><span class=lnt>166
+</span><span class=lnt>167
+</span><span class=lnt>168
+</span><span class=lnt>169
+</span><span class=lnt>170
+</span><span class=lnt>171
+</span><span class=lnt>172
+</span><span class=lnt>173
+</span><span class=lnt>174
+</span><span class=lnt>175
+</span><span class=lnt>176
+</span><span class=lnt>177
+</span><span class=lnt>178
+</span><span class=lnt>179
+</span><span class=lnt>180
+</span><span class=lnt>181
+</span><span class=lnt>182
+</span><span class=lnt>183
+</span><span class=lnt>184
+</span><span class=lnt>185
+</span><span class=lnt>186
+</span><span class=lnt>187
+</span><span class=lnt>188
+</span><span class=lnt>189
+</span><span class=lnt>190
+</span><span class=lnt>191
+</span><span class=lnt>192
+</span><span class=lnt>193
+</span><span class=lnt>194
+</span><span class=lnt>195
+</span><span class=lnt>196
+</span><span class=lnt>197
+</span><span class=lnt>198
+</span><span class=lnt>199
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl> 31         226 PUSH_NULL
+</span></span><span class=line><span class=cl>            228 LOAD_NAME                8 (key_encode)
+</span></span><span class=line><span class=cl>            230 LOAD_NAME                7 (key)
+</span></span><span class=line><span class=cl>            232 PRECALL                  1
+</span></span><span class=line><span class=cl>            236 CALL                     1
+</span></span><span class=line><span class=cl>            246 STORE_NAME               7 (key)
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl> 32         248 PUSH_NULL
+</span></span><span class=line><span class=cl>            250 LOAD_NAME               10 (len)
+</span></span><span class=line><span class=cl>            252 LOAD_NAME                7 (key)
+</span></span><span class=line><span class=cl>            254 PRECALL                  1
+</span></span><span class=line><span class=cl>            258 CALL                     1
+</span></span><span class=line><span class=cl>            268 LOAD_CONST               7 (16)
+</span></span><span class=line><span class=cl>            270 COMPARE_OP               2 (==)
+</span></span><span class=line><span class=cl>            276 POP_JUMP_FORWARD_IF_FALSE    43 (to 364)
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl> 33         278 PUSH_NULL
+</span></span><span class=line><span class=cl>            280 LOAD_NAME                9 (sm4_encode)
+</span></span><span class=line><span class=cl>            282 LOAD_NAME                7 (key)
+</span></span><span class=line><span class=cl>            284 LOAD_NAME                5 (flag)
+</span></span><span class=line><span class=cl>            286 PRECALL                  2
+</span></span><span class=line><span class=cl>            290 CALL                     2
+</span></span><span class=line><span class=cl>            300 LOAD_METHOD             11 (hex)
+</span></span><span class=line><span class=cl>            322 PRECALL                  0
+</span></span><span class=line><span class=cl>            326 CALL                     0
+</span></span><span class=line><span class=cl>            336 STORE_NAME              12 (encrypted_data)
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl> 34         338 PUSH_NULL
+</span></span><span class=line><span class=cl>            340 LOAD_NAME                6 (print)
+</span></span><span class=line><span class=cl>            342 LOAD_NAME               12 (encrypted_data)
+</span></span><span class=line><span class=cl>            344 PRECALL                  1
+</span></span><span class=line><span class=cl>            348 CALL                     1
+</span></span><span class=line><span class=cl>            358 POP_TOP
+</span></span><span class=line><span class=cl>            360 LOAD_CONST               2 (None)
+</span></span><span class=line><span class=cl>            362 RETURN_VALUE
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl> 32     &gt;&gt;  364 LOAD_CONST               2 (None)
+</span></span><span class=line><span class=cl>            366 RETURN_VALUE
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>Disassembly of &lt;code object key_encode at 0x14e048a00, file &#34;make.py&#34;, line 10&gt;:
+</span></span><span class=line><span class=cl> 10           0 RESUME                   0
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl> 11           2 LOAD_GLOBAL              1 (NULL + list)
+</span></span><span class=line><span class=cl>             14 LOAD_FAST                0 (key)
+</span></span><span class=line><span class=cl>             16 PRECALL                  1
+</span></span><span class=line><span class=cl>             20 CALL                     1
+</span></span><span class=line><span class=cl>             30 STORE_FAST               1 (magic_key)
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl> 12          32 LOAD_GLOBAL              3 (NULL + range)
+</span></span><span class=line><span class=cl>             44 LOAD_CONST               1 (1)
+</span></span><span class=line><span class=cl>             46 LOAD_GLOBAL              5 (NULL + len)
+</span></span><span class=line><span class=cl>             58 LOAD_FAST                1 (magic_key)
+</span></span><span class=line><span class=cl>             60 PRECALL                  1
+</span></span><span class=line><span class=cl>             64 CALL                     1
+</span></span><span class=line><span class=cl>             74 PRECALL                  2
+</span></span><span class=line><span class=cl>             78 CALL                     2
+</span></span><span class=line><span class=cl>             88 GET_ITER
+</span></span><span class=line><span class=cl>        &gt;&gt;   90 FOR_ITER               105 (to 302)
+</span></span><span class=line><span class=cl>             92 STORE_FAST               2 (i)
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl> 13          94 LOAD_GLOBAL              7 (NULL + str)
+</span></span><span class=line><span class=cl>            106 LOAD_GLOBAL              9 (NULL + hex)
+</span></span><span class=line><span class=cl>            118 LOAD_GLOBAL             11 (NULL + int)
+</span></span><span class=line><span class=cl>            130 LOAD_CONST               2 (&#39;0x&#39;)
+</span></span><span class=line><span class=cl>            132 LOAD_FAST                1 (magic_key)
+</span></span><span class=line><span class=cl>            134 LOAD_FAST                2 (i)
+</span></span><span class=line><span class=cl>            136 BINARY_SUBSCR
+</span></span><span class=line><span class=cl>            146 BINARY_OP                0 (+)
+</span></span><span class=line><span class=cl>            150 LOAD_CONST               3 (16)
+</span></span><span class=line><span class=cl>            152 PRECALL                  2
+</span></span><span class=line><span class=cl>            156 CALL                     2
+</span></span><span class=line><span class=cl>            166 LOAD_GLOBAL             11 (NULL + int)
+</span></span><span class=line><span class=cl>            178 LOAD_CONST               2 (&#39;0x&#39;)
+</span></span><span class=line><span class=cl>            180 LOAD_FAST                1 (magic_key)
+</span></span><span class=line><span class=cl>            182 LOAD_FAST                2 (i)
+</span></span><span class=line><span class=cl>            184 LOAD_CONST               1 (1)
+</span></span><span class=line><span class=cl>            186 BINARY_OP               10 (-)
+</span></span><span class=line><span class=cl>            190 BINARY_SUBSCR
+</span></span><span class=line><span class=cl>            200 BINARY_OP                0 (+)
+</span></span><span class=line><span class=cl>            204 LOAD_CONST               3 (16)
+</span></span><span class=line><span class=cl>            206 PRECALL                  2
+</span></span><span class=line><span class=cl>            210 CALL                     2
+</span></span><span class=line><span class=cl>            220 BINARY_OP               12 (^)
+</span></span><span class=line><span class=cl>            224 PRECALL                  1
+</span></span><span class=line><span class=cl>            228 CALL                     1
+</span></span><span class=line><span class=cl>            238 PRECALL                  1
+</span></span><span class=line><span class=cl>            242 CALL                     1
+</span></span><span class=line><span class=cl>            252 LOAD_METHOD              6 (replace)
+</span></span><span class=line><span class=cl>            274 LOAD_CONST               2 (&#39;0x&#39;)
+</span></span><span class=line><span class=cl>            276 LOAD_CONST               4 (&#39;&#39;)
+</span></span><span class=line><span class=cl>            278 PRECALL                  2
+</span></span><span class=line><span class=cl>            282 CALL                     2
+</span></span><span class=line><span class=cl>            292 LOAD_FAST                1 (magic_key)
+</span></span><span class=line><span class=cl>            294 LOAD_FAST                2 (i)
+</span></span><span class=line><span class=cl>            296 STORE_SUBSCR
+</span></span><span class=line><span class=cl>            300 JUMP_BACKWARD          106 (to 90)
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl> 15     &gt;&gt;  302 LOAD_GLOBAL              3 (NULL + range)
+</span></span><span class=line><span class=cl>            314 LOAD_CONST               5 (0)
+</span></span><span class=line><span class=cl>            316 LOAD_GLOBAL              5 (NULL + len)
+</span></span><span class=line><span class=cl>            328 LOAD_FAST                0 (key)
+</span></span><span class=line><span class=cl>            330 PRECALL                  1
+</span></span><span class=line><span class=cl>            334 CALL                     1
+</span></span><span class=line><span class=cl>            344 LOAD_CONST               6 (2)
+</span></span><span class=line><span class=cl>            346 PRECALL                  3
+</span></span><span class=line><span class=cl>            350 CALL                     3
+</span></span><span class=line><span class=cl>            360 GET_ITER
+</span></span><span class=line><span class=cl>        &gt;&gt;  362 FOR_ITER               105 (to 574)
+</span></span><span class=line><span class=cl>            364 STORE_FAST               2 (i)
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl> 16         366 LOAD_GLOBAL              7 (NULL + str)
+</span></span><span class=line><span class=cl>            378 LOAD_GLOBAL              9 (NULL + hex)
+</span></span><span class=line><span class=cl>            390 LOAD_GLOBAL             11 (NULL + int)
+</span></span><span class=line><span class=cl>            402 LOAD_CONST               2 (&#39;0x&#39;)
+</span></span><span class=line><span class=cl>            404 LOAD_FAST                1 (magic_key)
+</span></span><span class=line><span class=cl>            406 LOAD_FAST                2 (i)
+</span></span><span class=line><span class=cl>            408 BINARY_SUBSCR
+</span></span><span class=line><span class=cl>            418 BINARY_OP                0 (+)
+</span></span><span class=line><span class=cl>            422 LOAD_CONST               3 (16)
+</span></span><span class=line><span class=cl>            424 PRECALL                  2
+</span></span><span class=line><span class=cl>            428 CALL                     2
+</span></span><span class=line><span class=cl>            438 LOAD_GLOBAL             11 (NULL + int)
+</span></span><span class=line><span class=cl>            450 LOAD_CONST               2 (&#39;0x&#39;)
+</span></span><span class=line><span class=cl>            452 LOAD_FAST                1 (magic_key)
+</span></span><span class=line><span class=cl>            454 LOAD_FAST                2 (i)
+</span></span><span class=line><span class=cl>            456 LOAD_CONST               1 (1)
+</span></span><span class=line><span class=cl>            458 BINARY_OP                0 (+)
+</span></span><span class=line><span class=cl>            462 BINARY_SUBSCR
+</span></span><span class=line><span class=cl>            472 BINARY_OP                0 (+)
+</span></span><span class=line><span class=cl>            476 LOAD_CONST               3 (16)
+</span></span><span class=line><span class=cl>            478 PRECALL                  2
+</span></span><span class=line><span class=cl>            482 CALL                     2
+</span></span><span class=line><span class=cl>            492 BINARY_OP               12 (^)
+</span></span><span class=line><span class=cl>            496 PRECALL                  1
+</span></span><span class=line><span class=cl>            500 CALL                     1
+</span></span><span class=line><span class=cl>            510 PRECALL                  1
+</span></span><span class=line><span class=cl>            514 CALL                     1
+</span></span><span class=line><span class=cl>            524 LOAD_METHOD              6 (replace)
+</span></span><span class=line><span class=cl>            546 LOAD_CONST               2 (&#39;0x&#39;)
+</span></span><span class=line><span class=cl>            548 LOAD_CONST               4 (&#39;&#39;)
+</span></span><span class=line><span class=cl>            550 PRECALL                  2
+</span></span><span class=line><span class=cl>            554 CALL                     2
+</span></span><span class=line><span class=cl>            564 LOAD_FAST                1 (magic_key)
+</span></span><span class=line><span class=cl>            566 LOAD_FAST                2 (i)
+</span></span><span class=line><span class=cl>            568 STORE_SUBSCR
+</span></span><span class=line><span class=cl>            572 JUMP_BACKWARD          106 (to 362)
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl> 18     &gt;&gt;  574 LOAD_CONST               4 (&#39;&#39;)
+</span></span><span class=line><span class=cl>            576 LOAD_METHOD              7 (join)
+</span></span><span class=line><span class=cl>            598 LOAD_FAST                1 (magic_key)
+</span></span><span class=line><span class=cl>            600 PRECALL                  1
+</span></span><span class=line><span class=cl>            604 CALL                     1
+</span></span><span class=line><span class=cl>            614 STORE_FAST               1 (magic_key)
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl> 19         616 LOAD_GLOBAL             17 (NULL + print)
+</span></span><span class=line><span class=cl>            628 LOAD_FAST                1 (magic_key)
+</span></span><span class=line><span class=cl>            630 PRECALL                  1
+</span></span><span class=line><span class=cl>            634 CALL                     1
+</span></span><span class=line><span class=cl>            644 POP_TOP
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl> 20         646 LOAD_GLOBAL              7 (NULL + str)
+</span></span><span class=line><span class=cl>            658 LOAD_GLOBAL              9 (NULL + hex)
+</span></span><span class=line><span class=cl>            670 LOAD_GLOBAL             11 (NULL + int)
+</span></span><span class=line><span class=cl>            682 LOAD_CONST               2 (&#39;0x&#39;)
+</span></span><span class=line><span class=cl>            684 LOAD_FAST                1 (magic_key)
+</span></span><span class=line><span class=cl>            686 BINARY_OP                0 (+)
+</span></span><span class=line><span class=cl>            690 LOAD_CONST               3 (16)
+</span></span><span class=line><span class=cl>            692 PRECALL                  2
+</span></span><span class=line><span class=cl>            696 CALL                     2
+</span></span><span class=line><span class=cl>            706 LOAD_GLOBAL             11 (NULL + int)
+</span></span><span class=line><span class=cl>            718 LOAD_CONST               2 (&#39;0x&#39;)
+</span></span><span class=line><span class=cl>            720 LOAD_FAST                0 (key)
+</span></span><span class=line><span class=cl>            722 BINARY_OP                0 (+)
+</span></span><span class=line><span class=cl>            726 LOAD_CONST               3 (16)
+</span></span><span class=line><span class=cl>            728 PRECALL                  2
+</span></span><span class=line><span class=cl>            732 CALL                     2
+</span></span><span class=line><span class=cl>            742 BINARY_OP               12 (^)
+</span></span><span class=line><span class=cl>            746 PRECALL                  1
+</span></span><span class=line><span class=cl>            750 CALL                     1
+</span></span><span class=line><span class=cl>            760 PRECALL                  1
+</span></span><span class=line><span class=cl>            764 CALL                     1
+</span></span><span class=line><span class=cl>            774 LOAD_METHOD              6 (replace)
+</span></span><span class=line><span class=cl>            796 LOAD_CONST               2 (&#39;0x&#39;)
+</span></span><span class=line><span class=cl>            798 LOAD_CONST               4 (&#39;&#39;)
+</span></span><span class=line><span class=cl>            800 PRECALL                  2
+</span></span><span class=line><span class=cl>            804 CALL                     2
+</span></span><span class=line><span class=cl>            814 STORE_FAST               3 (wdb_key)
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl> 21         816 LOAD_GLOBAL             17 (NULL + print)
+</span></span><span class=line><span class=cl>            828 LOAD_FAST                3 (wdb_key)
+</span></span><span class=line><span class=cl>            830 PRECALL                  1
+</span></span><span class=line><span class=cl>            834 CALL                     1
+</span></span><span class=line><span class=cl>            844 POP_TOP
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl> 22         846 LOAD_FAST                3 (wdb_key)
+</span></span><span class=line><span class=cl>            848 RETURN_VALUE
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>magic_key:7a107ecf29325423
+</span></span><span class=line><span class=cl>encrypted_data:f2c85bd042247896b43345e589e3ad025fba1770e4ac0d274c1f7c2a670830379195aa5547d78bcee7ae649bc3b914da</span></span></code></pre></td></tr></table></div></div><p>发现是python的字节码，内容是加密了密钥然后用SM4算法加密了flag，手搓一个脚本逆向一下密钥</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=k>def</span> <span class=nf>restore</span><span class=p>(</span><span class=n>mk</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=n>magic_key</span> <span class=o>=</span> <span class=p>[</span><span class=n>_</span> <span class=k>for</span> <span class=n>_</span> <span class=ow>in</span> <span class=n>mk</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>    <span class=k>for</span> <span class=n>i</span> <span class=ow>in</span> <span class=nb>range</span><span class=p>(</span><span class=mi>0</span><span class=p>,</span> <span class=nb>len</span><span class=p>(</span><span class=n>mk</span><span class=p>),</span> <span class=mi>2</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>        <span class=n>magic_key</span><span class=p>[</span><span class=n>i</span><span class=p>]</span> <span class=o>=</span> <span class=nb>hex</span><span class=p>(</span><span class=nb>int</span><span class=p>(</span><span class=s2>&#34;0x&#34;</span> <span class=o>+</span> <span class=n>magic_key</span><span class=p>[</span><span class=n>i</span><span class=p>],</span> <span class=mi>16</span><span class=p>)</span> <span class=o>^</span> <span class=nb>int</span><span class=p>(</span><span class=s2>&#34;0x&#34;</span> <span class=o>+</span> <span class=n>magic_key</span><span class=p>[</span><span class=n>i</span> <span class=o>+</span> <span class=mi>1</span><span class=p>],</span> <span class=mi>16</span><span class=p>))</span><span class=o>.</span><span class=n>replace</span><span class=p>(</span><span class=s2>&#34;0x&#34;</span><span class=p>,</span> <span class=s2>&#34;&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    
+</span></span><span class=line><span class=cl>    <span class=k>for</span> <span class=n>i</span> <span class=ow>in</span> <span class=nb>range</span><span class=p>(</span><span class=nb>len</span><span class=p>(</span><span class=n>mk</span><span class=p>)</span> <span class=o>-</span> <span class=mi>1</span><span class=p>,</span> <span class=mi>0</span><span class=p>,</span> <span class=o>-</span><span class=mi>1</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>        <span class=n>magic_key</span><span class=p>[</span><span class=n>i</span><span class=p>]</span> <span class=o>=</span> <span class=nb>hex</span><span class=p>(</span><span class=nb>int</span><span class=p>(</span><span class=s2>&#34;0x&#34;</span> <span class=o>+</span> <span class=n>magic_key</span><span class=p>[</span><span class=n>i</span><span class=p>],</span> <span class=mi>16</span><span class=p>)</span> <span class=o>^</span> <span class=nb>int</span><span class=p>(</span><span class=s2>&#34;0x&#34;</span> <span class=o>+</span> <span class=n>magic_key</span><span class=p>[</span><span class=n>i</span> <span class=o>-</span> <span class=mi>1</span><span class=p>],</span> <span class=mi>16</span><span class=p>))</span><span class=o>.</span><span class=n>replace</span><span class=p>(</span><span class=s2>&#34;0x&#34;</span><span class=p>,</span> <span class=s2>&#34;&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=s2>&#34;&#34;</span><span class=o>.</span><span class=n>join</span><span class=p>(</span><span class=n>magic_key</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>encode_key</span><span class=p>(</span><span class=n>key</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=n>magic_key</span> <span class=o>=</span> <span class=p>[</span><span class=n>_</span> <span class=k>for</span> <span class=n>_</span> <span class=ow>in</span> <span class=n>key</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>    <span class=k>for</span> <span class=n>i</span> <span class=ow>in</span> <span class=nb>range</span><span class=p>(</span><span class=mi>1</span><span class=p>,</span> <span class=nb>len</span><span class=p>(</span><span class=n>key</span><span class=p>)):</span>
+</span></span><span class=line><span class=cl>        <span class=n>magic_key</span><span class=p>[</span><span class=n>i</span><span class=p>]</span> <span class=o>=</span> <span class=nb>hex</span><span class=p>(</span><span class=nb>int</span><span class=p>(</span><span class=s2>&#34;0x&#34;</span> <span class=o>+</span> <span class=n>magic_key</span><span class=p>[</span><span class=n>i</span><span class=p>],</span> <span class=mi>16</span><span class=p>)</span> <span class=o>^</span> <span class=nb>int</span><span class=p>(</span><span class=s2>&#34;0x&#34;</span> <span class=o>+</span> <span class=n>magic_key</span><span class=p>[</span><span class=n>i</span> <span class=o>-</span> <span class=mi>1</span><span class=p>],</span> <span class=mi>16</span><span class=p>))</span><span class=o>.</span><span class=n>replace</span><span class=p>(</span><span class=s2>&#34;0x&#34;</span><span class=p>,</span> <span class=s2>&#34;&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=k>for</span> <span class=n>i</span> <span class=ow>in</span> <span class=nb>range</span><span class=p>(</span><span class=mi>0</span><span class=p>,</span> <span class=nb>len</span><span class=p>(</span><span class=n>key</span><span class=p>),</span> <span class=mi>2</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>        <span class=n>magic_key</span><span class=p>[</span><span class=n>i</span><span class=p>]</span> <span class=o>=</span> <span class=nb>hex</span><span class=p>(</span><span class=nb>int</span><span class=p>(</span><span class=s2>&#34;0x&#34;</span> <span class=o>+</span> <span class=n>magic_key</span><span class=p>[</span><span class=n>i</span><span class=p>],</span> <span class=mi>16</span><span class=p>)</span> <span class=o>^</span> <span class=nb>int</span><span class=p>(</span><span class=s2>&#34;0x&#34;</span> <span class=o>+</span> <span class=n>magic_key</span><span class=p>[</span><span class=n>i</span> <span class=o>+</span> <span class=mi>1</span><span class=p>],</span> <span class=mi>16</span><span class=p>))</span><span class=o>.</span><span class=n>replace</span><span class=p>(</span><span class=s2>&#34;0x&#34;</span><span class=p>,</span> <span class=s2>&#34;&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        
+</span></span><span class=line><span class=cl>    <span class=n>magic_key</span> <span class=o>=</span> <span class=s2>&#34;&#34;</span><span class=o>.</span><span class=n>join</span><span class=p>(</span><span class=n>magic_key</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=n>wdb_key</span> <span class=o>=</span> <span class=nb>hex</span><span class=p>(</span><span class=nb>int</span><span class=p>(</span><span class=s2>&#34;0x&#34;</span> <span class=o>+</span> <span class=n>magic_key</span><span class=p>,</span> <span class=mi>16</span><span class=p>)</span> <span class=o>^</span> <span class=nb>int</span><span class=p>(</span><span class=s2>&#34;0x&#34;</span> <span class=o>+</span> <span class=n>key</span><span class=p>,</span> <span class=mi>16</span><span class=p>))</span><span class=o>.</span><span class=n>replace</span><span class=p>(</span><span class=s2>&#34;0x&#34;</span><span class=p>,</span> <span class=s2>&#34;&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=n>wdb_key</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nb>print</span><span class=p>(</span><span class=n>encode_key</span><span class=p>(</span><span class=n>restore</span><span class=p>(</span><span class=s2>&#34;7a107ecf29325423&#34;</span><span class=p>)))</span></span></span></code></pre></td></tr></table></div></div><p>得到SM4的密钥为：<code>ada1e9136bb16171</code></p><p>最后CyberChef解一个SM4即可得到flag：<code>wdflag{815ad4647b0b181b994eb4b731efa8a0}</code></p><p><img loading=lazy src=/posts/1a285be/imgs/image-20241029232310573.png alt=/posts/1a285be/imgs/image-20241029232310573.png height=1456 width=2552></p><h2 class=heading-element id=题目名称-misc03><span>题目名称 Misc03</span>
+<a href=#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-misc03 class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h2><p><img loading=lazy src=/posts/1a285be/imgs/image-20241029235940524.png alt=/posts/1a285be/imgs/image-20241029235940524.png height=525 width=1274></p><p>题目附件给了一个流量包，翻看流量包发现有<code>upload.php</code>的路由</p><p>并且发现都上传了一句话木马，因此过滤器过滤一下<code>upload.php</code>，然后试一下这几个ip</p><p><img loading=lazy src=/posts/1a285be/imgs/image-20241029235951679.png alt=/posts/1a285be/imgs/image-20241029235951679.png height=518 width=1917></p><p>最后发现 <code>wdflag{39.168.5.60}</code> 是正确的flag</p><h2 class=heading-element id=题目名称-misc04><span>题目名称 Misc04</span>
+<a href=#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-misc04 class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h2><p><img loading=lazy src=/posts/1a285be/imgs/image-20241029235114794.png alt=/posts/1a285be/imgs/image-20241029235114794.png height=498 width=956></p><p>题目附件给了下面这张图片：</p><p><img loading=lazy src=/posts/1a285be/imgs/image-20241029235135379.png alt=/posts/1a285be/imgs/image-20241029235135379.png height=729 width=729></p><p>之前在某个群里好像有看到过类似的，感觉是希尔伯特-皮亚诺曲线</p><p>根据<a href=https://almostgph.github.io/2024/01/08/IrisCTF2024/ target=_blank rel="external nofollow noopener noreferrer">参考链接</a>中的脚本复原一下图片</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=kn>from</span> <span class=nn>PIL</span> <span class=kn>import</span> <span class=n>Image</span>
+</span></span><span class=line><span class=cl><span class=kn>from</span> <span class=nn>tqdm</span> <span class=kn>import</span> <span class=n>tqdm</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>peano</span><span class=p>(</span><span class=n>n</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=n>n</span> <span class=o>==</span> <span class=mi>0</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=p>[[</span><span class=mi>0</span><span class=p>,</span><span class=mi>0</span><span class=p>]]</span>
+</span></span><span class=line><span class=cl>    <span class=k>else</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=n>in_lst</span> <span class=o>=</span> <span class=n>peano</span><span class=p>(</span><span class=n>n</span> <span class=o>-</span> <span class=mi>1</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=n>lst</span> <span class=o>=</span> <span class=n>in_lst</span><span class=o>.</span><span class=n>copy</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>        <span class=n>px</span><span class=p>,</span><span class=n>py</span> <span class=o>=</span> <span class=n>lst</span><span class=p>[</span><span class=o>-</span><span class=mi>1</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>        <span class=n>lst</span><span class=o>.</span><span class=n>extend</span><span class=p>([</span><span class=n>px</span> <span class=o>-</span> <span class=n>i</span><span class=p>[</span><span class=mi>0</span><span class=p>],</span> <span class=n>py</span> <span class=o>+</span> <span class=mi>1</span> <span class=o>+</span> <span class=n>i</span><span class=p>[</span><span class=mi>1</span><span class=p>]]</span> <span class=k>for</span> <span class=n>i</span> <span class=ow>in</span> <span class=n>in_lst</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=n>px</span><span class=p>,</span><span class=n>py</span> <span class=o>=</span> <span class=n>lst</span><span class=p>[</span><span class=o>-</span><span class=mi>1</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>        <span class=n>lst</span><span class=o>.</span><span class=n>extend</span><span class=p>([</span><span class=n>px</span> <span class=o>+</span> <span class=n>i</span><span class=p>[</span><span class=mi>0</span><span class=p>],</span> <span class=n>py</span> <span class=o>+</span> <span class=mi>1</span> <span class=o>+</span> <span class=n>i</span><span class=p>[</span><span class=mi>1</span><span class=p>]]</span> <span class=k>for</span> <span class=n>i</span> <span class=ow>in</span> <span class=n>in_lst</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=n>px</span><span class=p>,</span><span class=n>py</span> <span class=o>=</span> <span class=n>lst</span><span class=p>[</span><span class=o>-</span><span class=mi>1</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>        <span class=n>lst</span><span class=o>.</span><span class=n>extend</span><span class=p>([</span><span class=n>px</span> <span class=o>+</span> <span class=mi>1</span> <span class=o>+</span> <span class=n>i</span><span class=p>[</span><span class=mi>0</span><span class=p>],</span> <span class=n>py</span> <span class=o>-</span> <span class=n>i</span><span class=p>[</span><span class=mi>1</span><span class=p>]]</span> <span class=k>for</span> <span class=n>i</span> <span class=ow>in</span> <span class=n>in_lst</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=n>px</span><span class=p>,</span><span class=n>py</span> <span class=o>=</span> <span class=n>lst</span><span class=p>[</span><span class=o>-</span><span class=mi>1</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>        <span class=n>lst</span><span class=o>.</span><span class=n>extend</span><span class=p>([</span><span class=n>px</span> <span class=o>-</span> <span class=n>i</span><span class=p>[</span><span class=mi>0</span><span class=p>],</span> <span class=n>py</span> <span class=o>-</span> <span class=mi>1</span> <span class=o>-</span> <span class=n>i</span><span class=p>[</span><span class=mi>1</span><span class=p>]]</span> <span class=k>for</span> <span class=n>i</span> <span class=ow>in</span> <span class=n>in_lst</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=n>px</span><span class=p>,</span><span class=n>py</span> <span class=o>=</span> <span class=n>lst</span><span class=p>[</span><span class=o>-</span><span class=mi>1</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>        <span class=n>lst</span><span class=o>.</span><span class=n>extend</span><span class=p>([</span><span class=n>px</span> <span class=o>+</span> <span class=n>i</span><span class=p>[</span><span class=mi>0</span><span class=p>],</span> <span class=n>py</span> <span class=o>-</span> <span class=mi>1</span> <span class=o>-</span> <span class=n>i</span><span class=p>[</span><span class=mi>1</span><span class=p>]]</span> <span class=k>for</span> <span class=n>i</span> <span class=ow>in</span> <span class=n>in_lst</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=n>px</span><span class=p>,</span><span class=n>py</span> <span class=o>=</span> <span class=n>lst</span><span class=p>[</span><span class=o>-</span><span class=mi>1</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>        <span class=n>lst</span><span class=o>.</span><span class=n>extend</span><span class=p>([</span><span class=n>px</span> <span class=o>+</span> <span class=mi>1</span> <span class=o>+</span> <span class=n>i</span><span class=p>[</span><span class=mi>0</span><span class=p>],</span> <span class=n>py</span> <span class=o>+</span> <span class=n>i</span><span class=p>[</span><span class=mi>1</span><span class=p>]]</span> <span class=k>for</span> <span class=n>i</span> <span class=ow>in</span> <span class=n>in_lst</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=n>px</span><span class=p>,</span><span class=n>py</span> <span class=o>=</span> <span class=n>lst</span><span class=p>[</span><span class=o>-</span><span class=mi>1</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>        <span class=n>lst</span><span class=o>.</span><span class=n>extend</span><span class=p>([</span><span class=n>px</span> <span class=o>-</span> <span class=n>i</span><span class=p>[</span><span class=mi>0</span><span class=p>],</span> <span class=n>py</span> <span class=o>+</span> <span class=mi>1</span> <span class=o>+</span> <span class=n>i</span><span class=p>[</span><span class=mi>1</span><span class=p>]]</span> <span class=k>for</span> <span class=n>i</span> <span class=ow>in</span> <span class=n>in_lst</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=n>px</span><span class=p>,</span><span class=n>py</span> <span class=o>=</span> <span class=n>lst</span><span class=p>[</span><span class=o>-</span><span class=mi>1</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>        <span class=n>lst</span><span class=o>.</span><span class=n>extend</span><span class=p>([</span><span class=n>px</span> <span class=o>+</span> <span class=n>i</span><span class=p>[</span><span class=mi>0</span><span class=p>],</span> <span class=n>py</span> <span class=o>+</span> <span class=mi>1</span> <span class=o>+</span> <span class=n>i</span><span class=p>[</span><span class=mi>1</span><span class=p>]]</span> <span class=k>for</span> <span class=n>i</span> <span class=ow>in</span> <span class=n>in_lst</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=n>lst</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>order</span> <span class=o>=</span> <span class=n>peano</span><span class=p>(</span><span class=mi>6</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>img</span> <span class=o>=</span> <span class=n>Image</span><span class=o>.</span><span class=n>open</span><span class=p>(</span><span class=sa>r</span><span class=s2>&#34;C:\Users\ASUSROG\Desktop\chal.png&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>width</span><span class=p>,</span> <span class=n>height</span> <span class=o>=</span> <span class=n>img</span><span class=o>.</span><span class=n>size</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>block_width</span> <span class=o>=</span> <span class=n>width</span> <span class=c1># // 3</span>
+</span></span><span class=line><span class=cl><span class=n>block_height</span> <span class=o>=</span> <span class=n>height</span> <span class=c1># // 3</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>new_image</span> <span class=o>=</span> <span class=n>Image</span><span class=o>.</span><span class=n>new</span><span class=p>(</span><span class=s2>&#34;RGB&#34;</span><span class=p>,</span> <span class=p>(</span><span class=n>width</span><span class=p>,</span> <span class=n>height</span><span class=p>))</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>for</span> <span class=n>i</span><span class=p>,</span> <span class=p>(</span><span class=n>x</span><span class=p>,</span> <span class=n>y</span><span class=p>)</span> <span class=ow>in</span> <span class=n>tqdm</span><span class=p>(</span><span class=nb>enumerate</span><span class=p>(</span><span class=n>order</span><span class=p>)):</span>
+</span></span><span class=line><span class=cl>    <span class=c1># 根据列表顺序获取新的坐标</span>
+</span></span><span class=line><span class=cl>    <span class=n>new_x</span><span class=p>,</span> <span class=n>new_y</span> <span class=o>=</span> <span class=n>i</span> <span class=o>%</span> <span class=n>width</span><span class=p>,</span> <span class=n>i</span> <span class=o>//</span> <span class=n>width</span>
+</span></span><span class=line><span class=cl>    <span class=c1># 获取原图像素</span>
+</span></span><span class=line><span class=cl>    <span class=n>pixel</span> <span class=o>=</span> <span class=n>img</span><span class=o>.</span><span class=n>getpixel</span><span class=p>((</span><span class=n>x</span><span class=p>,</span> <span class=n>height</span> <span class=o>-</span> <span class=mi>1</span> <span class=o>-</span> <span class=n>y</span><span class=p>))</span>
+</span></span><span class=line><span class=cl>    <span class=c1># 在新图像中放置像素</span>
+</span></span><span class=line><span class=cl>    <span class=n>new_image</span><span class=o>.</span><span class=n>putpixel</span><span class=p>((</span><span class=n>new_x</span><span class=p>,</span> <span class=n>new_y</span><span class=p>),</span> <span class=n>pixel</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>new_image</span><span class=o>.</span><span class=n>save</span><span class=p>(</span><span class=s2>&#34;rearranged_image.jpg&#34;</span><span class=p>)</span> </span></span></code></pre></td></tr></table></div></div><p><img loading=lazy src=/posts/1a285be/imgs/image-20241029235437098.jpeg alt=/posts/1a285be/imgs/image-20241029235437098.jpeg height=729 width=729></p><p><img loading=lazy src=/posts/1a285be/imgs/image-20241029235441742.png alt=/posts/1a285be/imgs/image-20241029235441742.png height=729 width=729></p><p>复原后可以得到一个二维码，彩色的可能不好识别，分离一下通道，扫码即可得到flag：</p><p><code>wdflag{4940e8dc-5542-4eee-9243-202ae675d77f}</code></p><p>最后，有兴趣的师傅也可以尝试复原一下下面这张图片(感觉比上面的简单)</p><p>但是感觉可以帮助大家理解原理</p><p><img loading=lazy src=/posts/1a285be/imgs/image-20241029235750598.jpeg alt=/posts/1a285be/imgs/image-20241029235750598.jpeg height=729 width=729></p><p>参考链接：
+<a href=https://zhuanlan.zhihu.com/p/305623626 target=_blank rel="external nofollow noopener noreferrer">https://zhuanlan.zhihu.com/p/305623626</a></p><p><a href=https://almostgph.github.io/2024/01/08/IrisCTF2024/ target=_blank rel="external nofollow noopener noreferrer">https://almostgph.github.io/2024/01/08/IrisCTF2024/</a></p></div><div class=post-footer id=post-footer><div class=post-info><div class=post-info-line><div class=post-info-mod><span title="Updated on 2025-03-27 09:56:08">Updated on 2025-03-27&nbsp;</span></div></div><div class=post-info-line><div class=post-info-md><span><a href=/posts/1a285be/index.md title="Read Markdown" class=link-to-markdown>Read Markdown</a></span></div><div class=post-info-share><span><a href=javascript:void(0); title="Share on X" data-sharer=twitter data-url=https://goodlunatic.github.io/posts/1a285be/ data-title="2024 网鼎杯网络安全大赛青龙组 Misc Writeup" data-hashtags=CTF,Misc,Writeup><i class="fa-brands fa-x-twitter fa-fw" aria-hidden=true></i></a>
+<a href=javascript:void(0); title="Share on Facebook" data-sharer=facebook data-url=https://goodlunatic.github.io/posts/1a285be/ data-hashtag=CTF><i class="fa-brands fa-facebook-square fa-fw" aria-hidden=true></i></a>
+<a href=javascript:void(0); title="Share on 微博" data-sharer=weibo data-url=https://goodlunatic.github.io/posts/1a285be/ data-title="2024 网鼎杯网络安全大赛青龙组 Misc Writeup"><i class="fa-brands fa-weibo fa-fw" aria-hidden=true></i></a></span></div></div></div><div class=post-info-more><section class=post-tags><i class="fa-solid fa-tags fa-fw me-1" aria-hidden=true></i><a href=/tags/ctf/ class=post-tag title="Tags - CTF">CTF</a><a href=/tags/misc/ class=post-tag title="Tags - Misc">Misc</a><a href=/tags/writeup/ class=post-tag title="Tags - Writeup">Writeup</a></section><section><span><a href=javascript:void(0); onclick=window.history.back()>Back</a></span>&nbsp;|&nbsp;<span><a href=/>Home</a></span></section></div><div class=post-nav><a href=/posts/c216d58/ class=post-nav-item rel=prev title="2024 浙江省大学生网络与信息安全竞赛 Misc Writeup"><i class="fa-solid fa-angle-left fa-fw" aria-hidden=true></i>2024 浙江省大学生网络与信息安全竞赛 Misc Writeup</a><a href=/posts/de8e2be/ class=post-nav-item rel=next title="2024 强网拟态防御国际精英挑战赛初赛 Misc Writeup">2024 强网拟态防御国际精英挑战赛初赛 Misc Writeup<i class="fa-solid fa-angle-right fa-fw" aria-hidden=true></i></a></div></div></article><aside class=toc id=toc-auto aria-label=Contents><h2 class=toc-title>Contents&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden=true></i></h2><div class=toc-content id=toc-content-auto></div></aside></main><footer class=footer><div class=footer-container><div class="footer-line powered order-1">Powered by <a href=https://gohugo.io/ target=_blank rel="external nofollow noopener noreferrer" title="Hugo 0.152.1">Hugo</a> | Theme - <a href=https://github.com/hugo-fixit/FixIt target=_blank rel=external title="FixIt v0.4.0-alpha.2-20251023040336-063af2cd">FixIt</a></div><div class="footer-line copyright order-2" itemscope itemtype=http://schema.org/CreativeWork><i class="fa-regular fa-copyright fa-fw" aria-hidden=true></i>
+<span itemprop=copyrightYear>2022 - 2025</span><span class=author itemprop=copyrightHolder>
+<a href=https://goodlunatic.github.io target=_blank rel="external nofollow noopener noreferrer">Lunatic</a></span></div><div class="footer-line visitor"><span id=busuanzi_container_site_uv title='Total visitors'><i class="fa-regular fa-user fa-fw me-1" aria-hidden=true></i><span id=busuanzi_value_site_uv><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden=true></i></span></span><span id=busuanzi_container_site_pv class=footer-divider title='Total visits'><i class="fa-regular fa-eye fa-fw me-1" aria-hidden=true></i><span id=busuanzi_value_site_pv><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden=true></i></span></span></div></div></footer></div><div class=widgets><div class="fixed-buttons animate__faster d-none"><div class="fixed-button back-to-top" role=button aria-label="Back to Top"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden=true></i><span class=variant-numeric>0%</span></div></div><div id=mask></div><noscript><div class=noscript-warning>This website works best with JavaScript enabled.</div></noscript></div><link rel=stylesheet href=/lib/pace/themes/blue/pace-theme-minimal.css><script src=/lib/sharer/sharer.min.js async defer></script><script src=https://vercount.one/js async defer></script><script src=/lib/pace/pace.min.js async defer></script><script src=/posts/1a285be/config/page.js defer></script><script src=/js/theme.min.js defer></script></body></html>

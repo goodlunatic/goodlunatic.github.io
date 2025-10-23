@@ -1,0 +1,429 @@
+<!doctype html><html itemscope itemtype=http://schema.org/WebPage lang=en><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=2"><meta name=robots content="noodp"><title>2022 浙江省大学生网络与信息安全竞赛 Writeup - ⚡Lunatic BLOG⚡</title><meta name=author content="Lunatic"><meta name=description content="菜鸟第一次打省赛，浅浅混了个省三QAQ。。
+"><meta name=keywords content='CTF,Writeup'><meta itemprop=name content="2022 浙江省大学生网络与信息安全竞赛 Writeup"><meta itemprop=description content="菜鸟第一次打省赛，浅浅混了个省三QAQ。。"><meta itemprop=datePublished content="2022-09-18T14:21:02+08:00"><meta itemprop=dateModified content="2022-09-18T14:21:02+08:00"><meta itemprop=wordCount content="729"><meta itemprop=keywords content="CTF,Writeup"><meta property="og:url" content="https://goodlunatic.github.io/posts/3f7db4e/"><meta property="og:site_name" content="⚡Lunatic BLOG⚡"><meta property="og:title" content="2022 浙江省大学生网络与信息安全竞赛 Writeup"><meta property="og:description" content="菜鸟第一次打省赛，浅浅混了个省三QAQ。。"><meta property="og:locale" content="en"><meta property="og:type" content="article"><meta property="article:section" content="posts"><meta property="article:published_time" content="2022-09-18T14:21:02+08:00"><meta property="article:modified_time" content="2022-09-18T14:21:02+08:00"><meta property="article:tag" content="CTF"><meta property="article:tag" content="Writeup"><meta name=twitter:card content="summary"><meta name=twitter:title content="2022 浙江省大学生网络与信息安全竞赛 Writeup"><meta name=twitter:description content="菜鸟第一次打省赛，浅浅混了个省三QAQ。。"><meta name=application-name content="FixIt"><meta name=apple-mobile-web-app-title content="FixIt"><meta name=theme-color data-light=#f8f8f8 data-dark=#252627 content="#f8f8f8"><meta name=msapplication-TileColor content="#da532c"><link rel=icon href=https://www.nssctf.cn/files/2024/4/28/7f130a1387.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=canonical type=text/html href=https://goodlunatic.github.io/posts/3f7db4e/ title="2022 浙江省大学生网络与信息安全竞赛 Writeup - ⚡Lunatic BLOG⚡"><link rel=prev type=text/html href=https://goodlunatic.github.io/about/ title=🎓️About><link rel=next type=text/html href=https://goodlunatic.github.io/posts/d7eced5/ title=CTF-Pwn刷题记录><link rel=alternate type=text/markdown href=https://goodlunatic.github.io/posts/3f7db4e/index.md title="2022 浙江省大学生网络与信息安全竞赛 Writeup - ⚡Lunatic BLOG⚡"><link rel=stylesheet href=/css/config.min.css><link rel=stylesheet href=/css/style.min.css><link rel=preload href=/lib/fontawesome-free/all.min.css as=style onload='this.removeAttribute("onload"),this.rel="stylesheet"'><noscript><link rel=stylesheet href=/lib/fontawesome-free/all.min.css></noscript><link rel=preload href=/lib/animate/animate.min.css as=style onload='this.removeAttribute("onload"),this.rel="stylesheet"'><noscript><link rel=stylesheet href=/lib/animate/animate.min.css></noscript><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"2022 浙江省大学生网络与信息安全竞赛 Writeup","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/goodlunatic.github.io\/posts\/3f7db4e\/"},"genre":"posts","keywords":"CTF, Writeup","wordcount":729,"url":"https:\/\/goodlunatic.github.io\/posts\/3f7db4e\/","datePublished":"2022-09-18T14:21:02+08:00","dateModified":"2022-09-18T14:21:02+08:00","publisher":{"@type":"Organization","name":""},"author":{"@type":"Person","name":"Lunatic"},"description":""}</script><script src=/js/head/color-scheme.min.js></script></head><body data-header-desktop=sticky data-header-mobile=auto><div class=wrapper data-page-style=normal><header class="desktop animate__faster" id=header-desktop><div class=header-wrapper><div class=header-title><a href=/ title="⚡Lunatic BLOG⚡"><span class=header-title-text>⚡Lunatic BLOG⚡</span></a><span class=header-subtitle></span></div><nav><ul class=menu><li class=menu-item><a class=menu-link href=/archives/><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden=true></i> Archives</a></li><li class=menu-item><a class=menu-link href=/categories/><i class="fa-solid fa-folder-tree fa-fw fa-sm" aria-hidden=true></i> Categories</a></li><li class=menu-item><a class=menu-link href=/tags/><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden=true></i> Tags</a></li><li class=menu-item><a class=menu-link href=/friends/><i class="fa-solid fa-chain fa-fw fa-sm" aria-hidden=true></i> Friends</a></li><li class=menu-item><a class=menu-link href=/about/><i class="fa-solid fa-graduation-cap fa-fw fa-sm" aria-hidden=true></i> About</a></li><li class="menu-item delimiter"></li><li class="menu-item theme-switch" title="Switch Theme"><i class="fa-solid fa-adjust fa-fw" aria-hidden=true></i></li></ul></nav></div></header><header class="mobile animate__faster" id=header-mobile><div class=header-container><div class=header-wrapper><div class=header-title><a href=/ title="⚡Lunatic BLOG⚡"><span class=header-title-text>⚡Lunatic BLOG⚡</span></a><span class=header-subtitle></span></div><div class=menu-toggle id=menu-toggle-mobile><span></span><span></span><span></span></div></div><nav><ul class=menu id=menu-mobile><li class=menu-item><a class=menu-link href=/archives/><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden=true></i> Archives</a></li><li class=menu-item><a class=menu-link href=/categories/><i class="fa-solid fa-folder-tree fa-fw fa-sm" aria-hidden=true></i> Categories</a></li><li class=menu-item><a class=menu-link href=/tags/><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden=true></i> Tags</a></li><li class=menu-item><a class=menu-link href=/friends/><i class="fa-solid fa-chain fa-fw fa-sm" aria-hidden=true></i> Friends</a></li><li class=menu-item><a class=menu-link href=/about/><i class="fa-solid fa-graduation-cap fa-fw fa-sm" aria-hidden=true></i> About</a></li><li class="menu-item menu-system"><span class="menu-system-item theme-switch" title="Switch Theme"><i class="fa-solid fa-adjust fa-fw" aria-hidden=true></i></span></li></ul></nav></div></header><main class=fi-container><aside class="aside-collection animate__animated animate__fadeIn animate__faster" aria-label=Collections></aside><article class="page single"><div class=header><h1 class="single-title animate__animated animate__flipInX"><span>2022 浙江省大学生网络与信息安全竞赛 Writeup</span></h1></div><div class=post-meta><div class=post-meta-line><span class=post-author><a href=https://goodlunatic.github.io title=Author target=_blank rel="external nofollow noopener noreferrer author" class=author><img class=avatar src=https://www.nssctf.cn/files/2024/4/28/7f130a1387.png alt=Lunatic height=16 width=16>&nbsp;Lunatic</a></span><span class=post-included-in>&nbsp;included in <a href=/categories/writeup/ class=post-category title="Category - Writeup"><i class="fa-regular fa-folder fa-fw" aria-hidden=true></i> Writeup</a></span></div><div class=post-meta-line><span title="published on 2022-09-18 14:21:02"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden=true></i><time datetime=2022-09-18>2022-09-18</time></span>&nbsp;<span title="729 words"><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden=true></i>About 800 words</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden=true></i>4 minutes</span>&nbsp;<span id=busuanzi_container_page_pv class="busuanzi_visitors comment-visitors" data-flag-title="2022 浙江省大学生网络与信息安全竞赛 Writeup"><i class="fa-regular fa-eye fa-fw me-1" aria-hidden=true></i><span id=busuanzi_value_page_pv>-</span>&nbsp;views
+</span>&nbsp;</div></div><div class="details toc" id=toc-static data-kept=false><div class="details-summary toc-title"><span>Contents</span>
+<span><i class="details-icon fa-solid fa-angle-right" aria-hidden=true></i></span></div><div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents><ul><li><a href=#初赛>初赛</a><ul><li><a href=#misc>Misc</a><ul><li><a href=#题目名称-好怪哦>题目名称 好怪哦</a></li><li><a href=#题目名称-神奇的棋盘>题目名称 神奇的棋盘</a></li><li><a href=#题目名称-segmentflow>题目名称 segmentFlow</a></li></ul></li><li><a href=#reverse>Reverse</a><ul><li><a href=#题目名称-manycheck>题目名称 ManyCheck</a></li></ul></li><li><a href=#web>Web</a><ul><li><a href=#题目名称-nisc_easyweb>题目名称 nisc_easyweb</a></li><li><a href=#题目名称-nisc_学校门户网站>题目名称 nisc_学校门户网站</a></li><li><a href=#题目名称-吃豆人吃豆魂>题目名称 吃豆人吃豆魂</a></li></ul></li></ul></li><li><a href=#决赛>决赛</a><ul><li><a href=#misc-1>Misc</a><ul><li><a href=#题目名称-checkin_gift>题目名称 checkin_gift</a></li><li><a href=#题目名称-m4a>题目名称 m4a</a></li><li><a href=#题目名称-unkn0wndata>题目名称 Unkn0wnData</a></li><li><a href=#题目名称-hard_digital_plate>题目名称 hard_Digital_plate</a></li></ul></li></ul></li></ul></nav></div></div><div class=content id=content><p><strong>菜鸟第一次打省赛，浅浅混了个省三QAQ。。</strong></p><h2 class=heading-element id=初赛><span>初赛</span>
+<a href=#%e5%88%9d%e8%b5%9b class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h2><h3 class=heading-element id=misc><span>Misc</span>
+<a href=#misc class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h3><h4 class=heading-element id=题目名称-好怪哦><span>题目名称 好怪哦</span>
+<a href=#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-%e5%a5%bd%e6%80%aa%e5%93%a6 class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h4><p>下载下来得到一个数据逆置的压缩包，直接用逆置脚本</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=nb>input</span> <span class=o>=</span> <span class=nb>open</span><span class=p>(</span><span class=s1>&#39;fuck.zip&#39;</span><span class=p>,</span> <span class=s1>&#39;rb&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>input_all</span> <span class=o>=</span> <span class=nb>input</span><span class=o>.</span><span class=n>read</span><span class=p>()</span>
+</span></span><span class=line><span class=cl><span class=n>ss</span> <span class=o>=</span> <span class=n>input_all</span><span class=p>[::</span><span class=o>-</span><span class=mi>1</span><span class=p>]</span>
+</span></span><span class=line><span class=cl><span class=n>output</span> <span class=o>=</span> <span class=nb>open</span><span class=p>(</span><span class=s1>&#39;flag.zip&#39;</span><span class=p>,</span> <span class=s1>&#39;wb&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>output</span><span class=o>.</span><span class=n>write</span><span class=p>(</span><span class=n>ss</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=nb>input</span><span class=o>.</span><span class=n>close</span><span class=p>()</span>
+</span></span><span class=line><span class=cl><span class=n>output</span><span class=o>.</span><span class=n>close</span><span class=p>()</span></span></span></code></pre></td></tr></table></div></div><p>然后解压得到一个缺少png文件头的png文件，补上文件头：89 50 4e 47</p><p>打开得到一张CRC有问题的图片，直接上脚本爆破即可拿到flag</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=kn>import</span> <span class=nn>binascii</span>
+</span></span><span class=line><span class=cl><span class=kn>import</span> <span class=nn>struct</span>
+</span></span><span class=line><span class=cl><span class=kn>import</span> <span class=nn>sys</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>file</span> <span class=o>=</span> <span class=nb>input</span><span class=p>(</span><span class=s2>&#34;图片的地址&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>fr</span> <span class=o>=</span> <span class=nb>open</span><span class=p>(</span><span class=n>file</span><span class=p>,</span><span class=s1>&#39;rb&#39;</span><span class=p>)</span><span class=o>.</span><span class=n>read</span><span class=p>()</span>
+</span></span><span class=line><span class=cl><span class=n>data</span> <span class=o>=</span> <span class=nb>bytearray</span><span class=p>(</span><span class=n>fr</span><span class=p>[</span><span class=mh>0x0c</span><span class=p>:</span><span class=mh>0x1d</span><span class=p>])</span>
+</span></span><span class=line><span class=cl><span class=n>crc32key</span> <span class=o>=</span> <span class=nb>eval</span><span class=p>(</span><span class=s1>&#39;0x&#39;</span><span class=o>+</span><span class=nb>str</span><span class=p>(</span><span class=n>binascii</span><span class=o>.</span><span class=n>b2a_hex</span><span class=p>(</span><span class=n>fr</span><span class=p>[</span><span class=mh>0x1d</span><span class=p>:</span><span class=mh>0x21</span><span class=p>]))[</span><span class=mi>2</span><span class=p>:</span><span class=o>-</span><span class=mi>1</span><span class=p>])</span>
+</span></span><span class=line><span class=cl><span class=c1>#原来的代码: crc32key = eval(str(fr[29:33]).replace(&#39;\\x&#39;,&#39;&#39;).replace(&#34;b&#39;&#34;,&#39;0x&#39;).replace(&#34;&#39;&#34;,&#39;&#39;))</span>
+</span></span><span class=line><span class=cl><span class=n>n</span> <span class=o>=</span> <span class=mi>4095</span>
+</span></span><span class=line><span class=cl><span class=k>for</span> <span class=n>w</span> <span class=ow>in</span> <span class=nb>range</span><span class=p>(</span><span class=n>n</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=n>width</span> <span class=o>=</span> <span class=nb>bytearray</span><span class=p>(</span><span class=n>struct</span><span class=o>.</span><span class=n>pack</span><span class=p>(</span><span class=s1>&#39;&gt;i&#39;</span><span class=p>,</span> <span class=n>w</span><span class=p>))</span>
+</span></span><span class=line><span class=cl>    <span class=k>for</span> <span class=n>h</span> <span class=ow>in</span> <span class=nb>range</span><span class=p>(</span><span class=n>n</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>        <span class=n>height</span> <span class=o>=</span> <span class=nb>bytearray</span><span class=p>(</span><span class=n>struct</span><span class=o>.</span><span class=n>pack</span><span class=p>(</span><span class=s1>&#39;&gt;i&#39;</span><span class=p>,</span> <span class=n>h</span><span class=p>))</span>
+</span></span><span class=line><span class=cl>        <span class=k>for</span> <span class=n>x</span> <span class=ow>in</span> <span class=nb>range</span><span class=p>(</span><span class=mi>4</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>            <span class=n>data</span><span class=p>[</span><span class=n>x</span><span class=o>+</span><span class=mi>4</span><span class=p>]</span> <span class=o>=</span> <span class=n>width</span><span class=p>[</span><span class=n>x</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>            <span class=n>data</span><span class=p>[</span><span class=n>x</span><span class=o>+</span><span class=mi>8</span><span class=p>]</span> <span class=o>=</span> <span class=n>height</span><span class=p>[</span><span class=n>x</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>        <span class=n>crc32result</span> <span class=o>=</span> <span class=n>binascii</span><span class=o>.</span><span class=n>crc32</span><span class=p>(</span><span class=n>data</span><span class=p>)</span> <span class=o>&amp;</span> <span class=mh>0xffffffff</span>
+</span></span><span class=line><span class=cl>        <span class=k>if</span> <span class=n>crc32result</span> <span class=o>==</span> <span class=n>crc32key</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>            <span class=nb>print</span><span class=p>(</span><span class=n>width</span><span class=p>,</span><span class=n>height</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>            <span class=n>newpic</span> <span class=o>=</span> <span class=nb>bytearray</span><span class=p>(</span><span class=n>fr</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>            <span class=k>for</span> <span class=n>x</span> <span class=ow>in</span> <span class=nb>range</span><span class=p>(</span><span class=mi>4</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>                <span class=n>newpic</span><span class=p>[</span><span class=n>x</span><span class=o>+</span><span class=mi>16</span><span class=p>]</span> <span class=o>=</span> <span class=n>width</span><span class=p>[</span><span class=n>x</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>                <span class=n>newpic</span><span class=p>[</span><span class=n>x</span><span class=o>+</span><span class=mi>20</span><span class=p>]</span> <span class=o>=</span> <span class=n>height</span><span class=p>[</span><span class=n>x</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>            <span class=n>fw</span> <span class=o>=</span> <span class=nb>open</span><span class=p>(</span><span class=n>file</span><span class=o>+</span><span class=s1>&#39;.png&#39;</span><span class=p>,</span><span class=s1>&#39;wb&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>            <span class=n>fw</span><span class=o>.</span><span class=n>write</span><span class=p>(</span><span class=n>newpic</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>            <span class=n>fw</span><span class=o>.</span><span class=n>close</span>
+</span></span><span class=line><span class=cl>            <span class=n>sys</span><span class=o>.</span><span class=n>exit</span><span class=p>()</span></span></span></code></pre></td></tr></table></div></div><h4 class=heading-element id=题目名称-神奇的棋盘><span>题目名称 神奇的棋盘</span>
+<a href=#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-%e7%a5%9e%e5%a5%87%e7%9a%84%e6%a3%8b%e7%9b%98 class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h4><p>下载解压得到一张棋盘图片和一段棋盘加密后的密码：</p><p><img loading=lazy src=/posts/3f7db4e/imgs/image-20241018142926523.png alt=/posts/3f7db4e/imgs/image-20241018142926523.png height=165 width=134></p><p>这段密码是古典密码中的Polybius密码，直接去除逗号拉入随波逐流解密</p><p>得到密文：agaxxdaggvggvdvadavxdgadvgdvaaddddfxafafdgdvxxdggdggdxddfddxvgxadgvdfxvvaaddxdxxaddvgggxgxxxxgxxggxgdvvvgggagaaaagaaggagdddagagggaggagagaaavaaaxgxgggxggxgxgxxxv</p><p>然后用zsteg跑那个board的图片，得到一串base32，解密得到位移key：</p><p>JRQXG5CLMV4XWWLVONQXS6LEON6Q====</p><p>LastKey{Yusayyds}</p><p>然后用CaptfEncode解ADFGVX密码：</p><p><img loading=lazy src=/posts/3f7db4e/imgs/image-20241018143453096.png alt=/posts/3f7db4e/imgs/image-20241018143453096.png height=693 width=1186></p><p>得到一串十六进制字符串 ，最后直接十六进制转字符串得到flag</p><p><img loading=lazy src=/posts/3f7db4e/imgs/image-20241018143356128.png alt=/posts/3f7db4e/imgs/image-20241018143356128.png height=603 width=1629></p><p>DASCTF{d859c41c530afc1c1ad94abd92f4baf8}</p><h4 class=heading-element id=题目名称-segmentflow><span>题目名称 segmentFlow</span>
+<a href=#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-segmentflow class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h4><p>下载后得到一个压缩包，里面有一个流量文件和七个4字节的文本文件</p><p>使用Github上的CRC爆破脚本进行爆破每个文本文件的CRC值，得到解压密码</p><p><img loading=lazy src=/posts/3f7db4e/imgs/image-20241018143645279.png alt=/posts/3f7db4e/imgs/image-20241018143645279.png height=1320 width=768></p><p><img loading=lazy src=/posts/3f7db4e/imgs/image-20241018143656396.png alt=/posts/3f7db4e/imgs/image-20241018143656396.png height=76 width=744></p><p>用tshark导出数据</p><p>tshark -r segmentFlow.pcapng -Y &ldquo;http.request&rdquo; -T fields -e http.file_data > data1.txt</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span><span class=lnt>9
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=n>f</span> <span class=o>=</span> <span class=nb>open</span><span class=p>(</span><span class=s1>&#39;data.txt&#39;</span><span class=p>,</span><span class=s1>&#39;r&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>data</span><span class=o>=</span><span class=n>f</span><span class=o>.</span><span class=n>read</span><span class=p>()</span>
+</span></span><span class=line><span class=cl><span class=n>data</span><span class=o>=</span><span class=n>data</span><span class=o>.</span><span class=n>split</span><span class=p>(</span><span class=s1>&#39;&amp;sa066b32bfb3e7=&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=c1>#print(data.split(&#39;&amp;sa066b32bfb3e7=&#39;))</span>
+</span></span><span class=line><span class=cl><span class=c1>#以这个字符串为分隔符，后面八位就是我们要的数据</span>
+</span></span><span class=line><span class=cl><span class=k>for</span> <span class=n>i</span> <span class=ow>in</span> <span class=nb>range</span><span class=p>(</span><span class=mi>1</span><span class=p>,</span><span class=nb>len</span><span class=p>(</span><span class=n>data</span><span class=p>)):</span>
+</span></span><span class=line><span class=cl>    <span class=c1>#从第一个到最后一个列表</span>
+</span></span><span class=line><span class=cl>    <span class=nb>print</span><span class=p>(</span><span class=n>data</span><span class=p>[</span><span class=n>i</span><span class=p>][:</span><span class=mi>8</span><span class=p>],</span><span class=n>end</span><span class=o>=</span><span class=s1>&#39;&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=c1>#一个列表元素的前八位</span></span></span></code></pre></td></tr></table></div></div><p>打开压缩包即可得到flag</p><h3 class=heading-element id=reverse><span>Reverse</span>
+<a href=#reverse class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h3><h4 class=heading-element id=题目名称-manycheck><span>题目名称 ManyCheck</span>
+<a href=#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-manycheck class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h4><p>三层验证，前两层拉入ida看或者直接用计算器算出结果：77、55、49</p><p>第三层根据ida里的算法，直接写个for循环就出来了：1198089844</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=c1>#include &lt;bits/stdc++.h&gt;</span>
+</span></span><span class=line><span class=cl><span class=n>using</span> <span class=n>namespace</span> <span class=n>std</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=err>​</span>
+</span></span><span class=line><span class=cl><span class=nb>int</span> <span class=n>main</span><span class=p>()</span>
+</span></span><span class=line><span class=cl><span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>for</span> <span class=p>(</span><span class=nb>int</span> <span class=n>v1</span> <span class=o>=</span> <span class=mi>0</span><span class=p>;</span> <span class=n>v1</span> <span class=o>&lt;=</span> <span class=mi>1718896489</span><span class=p>;</span> <span class=n>v1</span><span class=o>++</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=nb>int</span> <span class=n>v2</span> <span class=o>=</span> <span class=mi>16</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>        <span class=nb>int</span> <span class=n>v3</span> <span class=o>=</span> <span class=p>(</span><span class=n>v1</span> <span class=o>&gt;&gt;</span> <span class=p>(</span><span class=mi>32</span> <span class=o>-</span> <span class=n>v2</span><span class=p>))</span> <span class=o>|</span> <span class=p>(</span><span class=n>v1</span> <span class=o>&lt;&lt;</span> <span class=n>v2</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>        <span class=k>if</span> <span class=p>(</span><span class=n>v3</span> <span class=o>==</span> <span class=mi>1718896489</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>            <span class=n>printf</span><span class=p>(</span><span class=s2>&#34;</span><span class=si>%d</span><span class=s2>&#34;</span><span class=p>,</span> <span class=n>v1</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=mi>0</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span></span></span></code></pre></td></tr></table></div></div><h3 class=heading-element id=web><span>Web</span>
+<a href=#web class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h3><h4 class=heading-element id=题目名称-nisc_easyweb><span>题目名称 nisc_easyweb</span>
+<a href=#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-nisc_easyweb class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h4><p>扫出 /api/record/文件 里面有个发送get请求功能的php,利用hackbar发送get请求即可得到flag</p><h4 class=heading-element id=题目名称-nisc_学校门户网站><span>题目名称 nisc_学校门户网站</span>
+<a href=#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-nisc_%e5%ad%a6%e6%a0%a1%e9%97%a8%e6%88%b7%e7%bd%91%e7%ab%99 class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h4><p>不知道是不是非预期，直接注册然后登录即可得到flag</p><h4 class=heading-element id=题目名称-吃豆人吃豆魂><span>题目名称 吃豆人吃豆魂</span>
+<a href=#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-%e5%90%83%e8%b1%86%e4%ba%ba%e5%90%83%e8%b1%86%e9%ad%82 class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h4><p>进入web开发者工具，找到game的源码，在index.js中有对生命值和分数的定义，修改分数为10000000，再次请求页面，直接弹出flag</p><h2 class=heading-element id=决赛><span>决赛</span>
+<a href=#%e5%86%b3%e8%b5%9b class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h2><h3 class=heading-element id=misc-1><span>Misc</span>
+<a href=#misc-1 class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h3><h4 class=heading-element id=题目名称-checkin_gift><span>题目名称 checkin_gift</span>
+<a href=#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-checkin_gift class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h4><p>下载附件压缩包并解压，得到一张jpg图片，在010中打开</p><p><img loading=lazy src=/posts/3f7db4e/imgs/image-20241030201919026.png alt=/posts/3f7db4e/imgs/image-20241030201919026.png height=1032 width=1920></p><p>发现图片末尾有一段base64编码，解码即可得到flag：<code>DASCTF{e0155eb8a30c9c3cb0e56708da87bcc5}</code></p><h4 class=heading-element id=题目名称-m4a><span>题目名称 m4a</span>
+<a href=#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-m4a class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h4><p>下载附件压缩包并解压，可以得到一个<code>m4a.m4a</code>文件，用VLC打开发现是一个莫斯电码的音频文件</p><p>直接使用AU打开，然后手敲出莫斯电码并解码</p><p><img loading=lazy src=/posts/3f7db4e/imgs/image-20241030202905644.png alt=/posts/3f7db4e/imgs/image-20241030202905644.png height=1032 width=1920></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>-... .- ....- ...-- -... -.-. . ..-. -.-. ..--- ----- ....-</span></span></code></pre></td></tr></table></div></div><p>解码莫斯可以得到：<code>BA43BCEFC204</code></p><p>用010打开m4a文件，根据zip的文件头发现文件末尾藏了一个逆序的zip压缩包
+<img loading=lazy src=/posts/3f7db4e/imgs/image-20241030203155554.png alt=/posts/3f7db4e/imgs/image-20241030203155554.png height=1032 width=1920></p><p>逆序一下文件，把压缩包提取出来，并使用之前得到的密码解压，可以得到<code>atbash.txt</code>，内容如下</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>(+w)v&amp;LdG_FhgKhdFfhgahJfKcgcKdc_eeIJ_gFN</span></span></code></pre></td></tr></table></div></div><p>最后对密文先解码<code>rot47</code>，再<code>atbash</code>解码即可得到flag：<code>DASCTF{5e0f98a95f79829b7a484a54066cb08f}</code></p><p><img loading=lazy src=/posts/3f7db4e/imgs/image-20241030203651062.png alt=/posts/3f7db4e/imgs/image-20241030203651062.png height=817 width=812></p><p><img loading=lazy src=/posts/3f7db4e/imgs/image-20241030203720051.png alt=/posts/3f7db4e/imgs/image-20241030203720051.png height=693 width=1186></p><h4 class=heading-element id=题目名称-unkn0wndata><span>题目名称 Unkn0wnData</span>
+<a href=#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-unkn0wndata class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h4><p>解压附件压缩包，得到一张<code>flag.png</code></p><p><img loading=lazy src=/posts/3f7db4e/imgs/image-20241030203907695.png alt=/posts/3f7db4e/imgs/image-20241030203907695.png height=827 width=1486></p><p>使用<code>zsteg</code>扫一下上面这张图片</p><p><img loading=lazy src=/posts/3f7db4e/imgs/image-20241030203953773.png alt=/posts/3f7db4e/imgs/image-20241030203953773.png height=628 width=1115></p><p>发现图片末尾藏了一段base64编码，然后LSB中也隐写了一个压缩包</p><p>解码上面那段base64可以得到一串emoji表情</p><p><img loading=lazy src=/posts/3f7db4e/imgs/image-20241030204102841.png alt=/posts/3f7db4e/imgs/image-20241030204102841.png height=987 width=1917></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>Where1sKey?
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>🙃💵🌿🎤🚪🌏🐎🥋🚫😆✅🍍🎤🐘🌏ℹ⌨😍🎈✉🤣🛩🍌🚪🍴ℹ☺🚹❓🍴🔬🌪🍵👣🔄☃👌😎👌🔄👌🔪🍌👁🍍🍌🌏🎃🚰🍵🐍🎅✅🍍🦓😎😊🤣🏹🍍💧🔄🔄🤣👁🥋🚫☺🍴😁🚫😇🚰⏩😍🌿💵🦓😇🛩✖🕹🐎📂📂💧🗒🗒</span></span></code></pre></td></tr></table></div></div><p>尝试用<code>zsteg</code>提取出隐写的数据，并用010转换为压缩包并解压</p><p><img loading=lazy src=/posts/3f7db4e/imgs/image-20241030204244598.png alt=/posts/3f7db4e/imgs/image-20241030204244598.png height=124 width=1115></p><p><img loading=lazy src=/posts/3f7db4e/imgs/image-20241030204311073.png alt=/posts/3f7db4e/imgs/image-20241030204311073.png height=1032 width=1920></p><p>解压后可以得到<code>1.txt</code>，内容如下：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span><span class=lnt>48
+</span><span class=lnt>49
+</span><span class=lnt>50
+</span><span class=lnt>51
+</span><span class=lnt>52
+</span><span class=lnt>53
+</span><span class=lnt>54
+</span><span class=lnt>55
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>data:
+</span></span><span class=line><span class=cl>0000100000000000
+</span></span><span class=line><span class=cl>00000c0000000000
+</span></span><span class=line><span class=cl>00000e0000000000
+</span></span><span class=line><span class=cl>00002a0000000000
+</span></span><span class=line><span class=cl>0000100000000000
+</span></span><span class=line><span class=cl>0000040000000000
+</span></span><span class=line><span class=cl>0000080000000000
+</span></span><span class=line><span class=cl>00002a0000000000
+</span></span><span class=line><span class=cl>0000160000000000
+</span></span><span class=line><span class=cl>00000b0000000000
+</span></span><span class=line><span class=cl>00000c0000000000
+</span></span><span class=line><span class=cl>00001c0000000000
+</span></span><span class=line><span class=cl>00002a0000000000
+</span></span><span class=line><span class=cl>00002c0000000000
+</span></span><span class=line><span class=cl>0200340000000000
+</span></span><span class=line><span class=cl>00002a0000000000
+</span></span><span class=line><span class=cl>0200090000000000
+</span></span><span class=line><span class=cl>00000c0000000000
+</span></span><span class=line><span class=cl>0000110000000000
+</span></span><span class=line><span class=cl>0000070000000000
+</span></span><span class=line><span class=cl>0200170000000000
+</span></span><span class=line><span class=cl>00002a0000000000
+</span></span><span class=line><span class=cl>0200170000000000
+</span></span><span class=line><span class=cl>00000b0000000000
+</span></span><span class=line><span class=cl>0000080000000000
+</span></span><span class=line><span class=cl>0000120000000000
+</span></span><span class=line><span class=cl>00002a0000000000
+</span></span><span class=line><span class=cl>0200150000000000
+</span></span><span class=line><span class=cl>0000080000000000
+</span></span><span class=line><span class=cl>0000040000000000
+</span></span><span class=line><span class=cl>00000f0000000000
+</span></span><span class=line><span class=cl>00000a0000000000
+</span></span><span class=line><span class=cl>00002a0000000000
+</span></span><span class=line><span class=cl>02000e0000000000
+</span></span><span class=line><span class=cl>0000080000000000
+</span></span><span class=line><span class=cl>00001c0000000000
+</span></span><span class=line><span class=cl>00000a0000000000
+</span></span><span class=line><span class=cl>00002a0000000000
+</span></span><span class=line><span class=cl>0000040000000000
+</span></span><span class=line><span class=cl>0000110000000000
+</span></span><span class=line><span class=cl>0000070000000000
+</span></span><span class=line><span class=cl>00000f0000000000
+</span></span><span class=line><span class=cl>00002a0000000000
+</span></span><span class=line><span class=cl>0200100000000000
+</span></span><span class=line><span class=cl>0000040000000000
+</span></span><span class=line><span class=cl>00000e0000000000
+</span></span><span class=line><span class=cl>0000080000000000
+</span></span><span class=line><span class=cl>0000080000000000
+</span></span><span class=line><span class=cl>00002a0000000000
+</span></span><span class=line><span class=cl>02000c0000000000
+</span></span><span class=line><span class=cl>0000170000000000
+</span></span><span class=line><span class=cl>02001e0000000000
+</span></span><span class=line><span class=cl>0000070000000000
+</span></span><span class=line><span class=cl>00002a0000000000</span></span></code></pre></td></tr></table></div></div><p>感觉是键盘的数据，因此使用<a href=https://goodlunatic.github.io/posts/5422d65/#%E9%94%AE%E7%9B%98%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90 target=_blank rel="external nofollow noopener noreferrer">USB流量分析</a>中的脚本进行提取</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>mik&lt;DEL&gt;mae&lt;DEL&gt;shiy&lt;DEL&gt;&lt;SPACE&gt;:&lt;DEL&gt;FindT&lt;DEL&gt;Theo&lt;DEL&gt;Realg&lt;DEL&gt;Keyg&lt;DEL&gt;andl&lt;DEL&gt;Makee&lt;DEL&gt;It!d&lt;DEL&gt;
+</span></span><span class=line><span class=cl>mimashi FindTheRealKeyandMakeIt!
+</span></span><span class=line><span class=cl>密码是找到真正的密钥</span></span></code></pre></td></tr></table></div></div><p>这里发现真正的key被<code>&lt;DEL></code>字符删去了，因此我们把删去的字符单独提取出来得到：<code>key:Toggled</code></p><p>最后使用得到的密钥解一个<code>emoji-AES</code>即可得到flag：<code>DASCTF{ad15eecd2978bc5c70597d14985412c4}</code></p><p><img loading=lazy src=/posts/3f7db4e/imgs/image-20241030204901054.png alt=/posts/3f7db4e/imgs/image-20241030204901054.png height=983 width=1910></p><h4 class=heading-element id=题目名称-hard_digital_plate><span>题目名称 hard_Digital_plate</span>
+<a href=#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-hard_digital_plate class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h4><p>下载附件压缩包并解压，可以得到一个<code>hard_Digital_plate.pcapng</code>流量包</p><p>用wireshark打开，发现提示流量包损坏，因此我们使用010打开</p><p>在流量包末尾发现藏了一个zip压缩包，直接用010手动提取出来</p><p><img loading=lazy src=/posts/3f7db4e/imgs/image-20241030200028617.png alt=/posts/3f7db4e/imgs/image-20241030200028617.png height=1032 width=1920></p><p>提出来的压缩包解压后可以得到<code>oursecret.jpg</code>，文件名提示了oursecret隐写</p><p>因此我们需要继续寻找解密的密钥</p><p>打开并翻看流量包，发现有USB流量的特征，赛后知道了是数位板的流量</p><p><img loading=lazy src=/posts/3f7db4e/imgs/image-20241030194738317.png alt=/posts/3f7db4e/imgs/image-20241030194738317.png height=1032 width=1920></p><p>尝试使用 <code>tshark</code> 导出这一字段的数据</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>tshark -r hard_Digital_plate.pcapng -T fields -e usb.capdata <span class=p>|</span> sed <span class=s1>&#39;/^\s*$/d&#39;</span> &gt; out.txt</span></span></code></pre></td></tr></table></div></div><p>导出的部分数据如下所示:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>088076259e38000000000000
+</span></span><span class=line><span class=cl>088074259b38000000000000
+</span></span><span class=line><span class=cl>088072259838000000000000
+</span></span><span class=line><span class=cl>088070259438000000000000
+</span></span><span class=line><span class=cl>08806e259038000000000000
+</span></span><span class=line><span class=cl>08816c258c38f00000000000
+</span></span><span class=line><span class=cl>08816a258838d40100000000
+</span></span><span class=line><span class=cl>088164258038190400000000
+</span></span><span class=line><span class=cl>088161257d38170500000000
+</span></span><span class=line><span class=cl>08815d257a380c0600000000
+</span></span><span class=line><span class=cl>0881592577380e0700000000
+</span></span><span class=line><span class=cl>088155257438110800000000</span></span></code></pre></td></tr></table></div></div><p>经过分析，发现前四位的数据<code>0881</code>是无效的数据，应该表示的是设备的特征</p><p>然后<code>[4:8]</code>的数据表示X坐标，<code>[8:12]</code>的数据表示的是Y坐标，<code>[12:16]</code>的数据则表示压感</p><p>这里要注意的一点就是这里坐标的数据是以小端序存储的，所以需要字节交换</p><p>我这里就直接高字节的数据乘上 <code>0xff</code> 然后加上低字节数据转为十进制坐标了</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=k>with</span> <span class=nb>open</span><span class=p>(</span><span class=s2>&#34;out.txt&#34;</span><span class=p>,</span><span class=s2>&#34;r&#34;</span><span class=p>)</span> <span class=k>as</span> <span class=n>f</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>    <span class=n>lines</span> <span class=o>=</span> <span class=n>f</span><span class=o>.</span><span class=n>readlines</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>draw_pic1</span><span class=p>():</span>
+</span></span><span class=line><span class=cl>    <span class=n>x</span> <span class=o>=</span> <span class=p>[]</span>
+</span></span><span class=line><span class=cl>    <span class=n>y</span> <span class=o>=</span> <span class=p>[]</span>
+</span></span><span class=line><span class=cl>    <span class=k>for</span> <span class=n>line</span> <span class=ow>in</span> <span class=n>lines</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=k>if</span><span class=p>(</span><span class=nb>int</span><span class=p>(</span><span class=n>line</span><span class=p>[</span><span class=mi>12</span><span class=p>:</span><span class=mi>16</span><span class=p>],</span><span class=mi>16</span><span class=p>)</span> <span class=o>!=</span> <span class=mi>0</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>            <span class=n>press_data</span> <span class=o>=</span> <span class=nb>int</span><span class=p>(</span><span class=n>line</span><span class=p>[</span><span class=mi>12</span><span class=p>:</span><span class=mi>16</span><span class=p>],</span><span class=mi>16</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>            <span class=n>x</span><span class=o>.</span><span class=n>append</span><span class=p>(</span><span class=nb>int</span><span class=p>(</span><span class=n>line</span><span class=p>[</span><span class=mi>6</span><span class=p>:</span><span class=mi>8</span><span class=p>],</span><span class=mi>16</span><span class=p>)</span><span class=o>*</span><span class=mh>0xff</span><span class=o>+</span><span class=nb>int</span><span class=p>(</span><span class=n>line</span><span class=p>[</span><span class=mi>4</span><span class=p>:</span><span class=mi>6</span><span class=p>],</span><span class=mi>16</span><span class=p>))</span>
+</span></span><span class=line><span class=cl>            <span class=n>y</span><span class=o>.</span><span class=n>append</span><span class=p>(</span><span class=o>-</span><span class=mi>1</span> <span class=o>*</span> <span class=p>(</span><span class=nb>int</span><span class=p>(</span><span class=n>line</span><span class=p>[</span><span class=mi>10</span><span class=p>:</span><span class=mi>12</span><span class=p>],</span><span class=mi>16</span><span class=p>)</span><span class=o>*</span><span class=mh>0xff</span><span class=o>+</span><span class=nb>int</span><span class=p>(</span><span class=n>line</span><span class=p>[</span><span class=mi>8</span><span class=p>:</span><span class=mi>10</span><span class=p>],</span><span class=mi>16</span><span class=p>)))</span>
+</span></span><span class=line><span class=cl>            
+</span></span><span class=line><span class=cl>    <span class=n>plt</span><span class=o>.</span><span class=n>scatter</span><span class=p>(</span><span class=n>x</span><span class=p>,</span><span class=n>y</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>plt</span><span class=o>.</span><span class=n>grid</span><span class=p>()</span> <span class=c1># 显示网格</span>
+</span></span><span class=line><span class=cl>    <span class=n>plt</span><span class=o>.</span><span class=n>show</span><span class=p>()</span></span></span></code></pre></td></tr></table></div></div><p>根据提取出的数据得到坐标，然后画图可以得到下图</p><p><img loading=lazy src=/posts/3f7db4e/imgs/image-20241030195713156.png alt=/posts/3f7db4e/imgs/image-20241030195713156.png height=1528 width=2560></p><p>得到密钥：<code>kfae5y4wi2shwj81y2kda6ax7x</code></p><p>结合之前得到的<code>oursecret.jpg</code>，我们使用oursecret结合上面的密钥进行解密</p><p><img loading=lazy src=/posts/3f7db4e/imgs/image-20241030200436931.png alt=/posts/3f7db4e/imgs/image-20241030200436931.png height=470 width=641></p><p>可以得到一个flag.txt，提取出来并打开可以得到如下内容：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>U2FsdGVkX18jQgWzhln3pPiVK8gaBxIzhY1JWcFlKiRdBkV/jDmEBxJV9PZmwBJ7MU3IdNf4hWryZLYRLuxA4w==</span></span></code></pre></td></tr></table></div></div><p>感觉是AES解密了，解密需要密钥，因此我们继续寻找解密的密钥</p><p>在<code>oursecret.jpg</code>的exif信息中发现Hint</p><p><img loading=lazy src=/posts/3f7db4e/imgs/image-20241030200555668.png alt=/posts/3f7db4e/imgs/image-20241030200555668.png height=651 width=421></p><p>猜测是需要我们根据压感大小提取先前的数位板数据</p><p>写一个脚本，查看一下数位板的压感数据</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=n>press_lst</span> <span class=o>=</span> <span class=p>[]</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>with</span> <span class=nb>open</span><span class=p>(</span><span class=s2>&#34;out.txt&#34;</span><span class=p>,</span><span class=s2>&#34;r&#34;</span><span class=p>)</span> <span class=k>as</span> <span class=n>f</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>    <span class=n>lines</span> <span class=o>=</span> <span class=n>f</span><span class=o>.</span><span class=n>readlines</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>    
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>draw_pic2</span><span class=p>():</span>
+</span></span><span class=line><span class=cl>    <span class=n>x</span> <span class=o>=</span> <span class=p>[]</span>
+</span></span><span class=line><span class=cl>    <span class=n>y</span> <span class=o>=</span> <span class=p>[]</span>
+</span></span><span class=line><span class=cl>    <span class=k>for</span> <span class=n>line</span> <span class=ow>in</span> <span class=n>lines</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=k>if</span><span class=p>(</span><span class=nb>int</span><span class=p>(</span><span class=n>line</span><span class=p>[</span><span class=mi>12</span><span class=p>:</span><span class=mi>16</span><span class=p>],</span><span class=mi>16</span><span class=p>)</span> <span class=o>!=</span> <span class=mi>0</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>            <span class=n>press_data</span> <span class=o>=</span> <span class=nb>int</span><span class=p>(</span><span class=n>line</span><span class=p>[</span><span class=mi>12</span><span class=p>:</span><span class=mi>16</span><span class=p>],</span><span class=mi>16</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>            <span class=n>press_lst</span><span class=o>.</span><span class=n>append</span><span class=p>(</span><span class=n>press_data</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>            <span class=k>if</span><span class=p>(</span><span class=n>press_data</span> <span class=o>&lt;</span> <span class=mi>65000</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>                <span class=n>x</span><span class=o>.</span><span class=n>append</span><span class=p>(</span><span class=nb>int</span><span class=p>(</span><span class=n>line</span><span class=p>[</span><span class=mi>6</span><span class=p>:</span><span class=mi>8</span><span class=p>],</span><span class=mi>16</span><span class=p>)</span><span class=o>*</span><span class=mh>0xff</span><span class=o>+</span><span class=nb>int</span><span class=p>(</span><span class=n>line</span><span class=p>[</span><span class=mi>4</span><span class=p>:</span><span class=mi>6</span><span class=p>],</span><span class=mi>16</span><span class=p>))</span>
+</span></span><span class=line><span class=cl>                <span class=n>y</span><span class=o>.</span><span class=n>append</span><span class=p>(</span><span class=o>-</span><span class=mi>1</span> <span class=o>*</span> <span class=p>(</span><span class=nb>int</span><span class=p>(</span><span class=n>line</span><span class=p>[</span><span class=mi>10</span><span class=p>:</span><span class=mi>12</span><span class=p>],</span><span class=mi>16</span><span class=p>)</span><span class=o>*</span><span class=mh>0xff</span><span class=o>+</span><span class=nb>int</span><span class=p>(</span><span class=n>line</span><span class=p>[</span><span class=mi>8</span><span class=p>:</span><span class=mi>10</span><span class=p>],</span><span class=mi>16</span><span class=p>)))</span>
+</span></span><span class=line><span class=cl>            
+</span></span><span class=line><span class=cl>    <span class=n>plt</span><span class=o>.</span><span class=n>scatter</span><span class=p>(</span><span class=n>x</span><span class=p>,</span><span class=n>y</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>plt</span><span class=o>.</span><span class=n>grid</span><span class=p>()</span> <span class=c1># 显示网格</span>
+</span></span><span class=line><span class=cl>    <span class=n>plt</span><span class=o>.</span><span class=n>show</span><span class=p>()</span></span></span></code></pre></td></tr></table></div></div><p><img loading=lazy src=/posts/3f7db4e/imgs/image-20241030200845081.png alt=/posts/3f7db4e/imgs/image-20241030200845081.png height=1528 width=2560></p><p>发现有很多<code>65331</code>的数据，因此我们尝试把压感数据低于<code>65000</code>的坐标都提取出来并画图</p><p><img loading=lazy src=/posts/3f7db4e/imgs/image-20241030201221929.png alt=/posts/3f7db4e/imgs/image-20241030201221929.png height=1528 width=2560></p><p>得到AES的密钥：w12kax，最后解密AES即可得到flag：<code>DASCTF{46f7bd763f4f6ec266ed481bc576f7b0}</code></p><p><img loading=lazy src=/posts/3f7db4e/imgs/image-20241030201323495.png alt=/posts/3f7db4e/imgs/image-20241030201323495.png height=693 width=1186></p><p>完整数位板流量解题代码如下：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=kn>import</span> <span class=nn>matplotlib.pyplot</span> <span class=k>as</span> <span class=nn>plt</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>press_lst</span> <span class=o>=</span> <span class=p>[]</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>with</span> <span class=nb>open</span><span class=p>(</span><span class=s2>&#34;out.txt&#34;</span><span class=p>,</span><span class=s2>&#34;r&#34;</span><span class=p>)</span> <span class=k>as</span> <span class=n>f</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>    <span class=n>lines</span> <span class=o>=</span> <span class=n>f</span><span class=o>.</span><span class=n>readlines</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>draw_pic1</span><span class=p>():</span>
+</span></span><span class=line><span class=cl>    <span class=n>x</span> <span class=o>=</span> <span class=p>[]</span>
+</span></span><span class=line><span class=cl>    <span class=n>y</span> <span class=o>=</span> <span class=p>[]</span>
+</span></span><span class=line><span class=cl>    <span class=k>for</span> <span class=n>line</span> <span class=ow>in</span> <span class=n>lines</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=k>if</span><span class=p>(</span><span class=nb>int</span><span class=p>(</span><span class=n>line</span><span class=p>[</span><span class=mi>12</span><span class=p>:</span><span class=mi>16</span><span class=p>],</span><span class=mi>16</span><span class=p>)</span> <span class=o>!=</span> <span class=mi>0</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>            <span class=n>press_data</span> <span class=o>=</span> <span class=nb>int</span><span class=p>(</span><span class=n>line</span><span class=p>[</span><span class=mi>12</span><span class=p>:</span><span class=mi>16</span><span class=p>],</span><span class=mi>16</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>            <span class=n>x</span><span class=o>.</span><span class=n>append</span><span class=p>(</span><span class=nb>int</span><span class=p>(</span><span class=n>line</span><span class=p>[</span><span class=mi>6</span><span class=p>:</span><span class=mi>8</span><span class=p>],</span><span class=mi>16</span><span class=p>)</span><span class=o>*</span><span class=mh>0xff</span><span class=o>+</span><span class=nb>int</span><span class=p>(</span><span class=n>line</span><span class=p>[</span><span class=mi>4</span><span class=p>:</span><span class=mi>6</span><span class=p>],</span><span class=mi>16</span><span class=p>))</span>
+</span></span><span class=line><span class=cl>            <span class=n>y</span><span class=o>.</span><span class=n>append</span><span class=p>(</span><span class=o>-</span><span class=mi>1</span> <span class=o>*</span> <span class=p>(</span><span class=nb>int</span><span class=p>(</span><span class=n>line</span><span class=p>[</span><span class=mi>10</span><span class=p>:</span><span class=mi>12</span><span class=p>],</span><span class=mi>16</span><span class=p>)</span><span class=o>*</span><span class=mh>0xff</span><span class=o>+</span><span class=nb>int</span><span class=p>(</span><span class=n>line</span><span class=p>[</span><span class=mi>8</span><span class=p>:</span><span class=mi>10</span><span class=p>],</span><span class=mi>16</span><span class=p>)))</span>
+</span></span><span class=line><span class=cl>            
+</span></span><span class=line><span class=cl>    <span class=n>plt</span><span class=o>.</span><span class=n>scatter</span><span class=p>(</span><span class=n>x</span><span class=p>,</span><span class=n>y</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>plt</span><span class=o>.</span><span class=n>grid</span><span class=p>()</span> <span class=c1># 显示网格</span>
+</span></span><span class=line><span class=cl>    <span class=n>plt</span><span class=o>.</span><span class=n>show</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>draw_pic2</span><span class=p>():</span>
+</span></span><span class=line><span class=cl>    <span class=n>x</span> <span class=o>=</span> <span class=p>[]</span>
+</span></span><span class=line><span class=cl>    <span class=n>y</span> <span class=o>=</span> <span class=p>[]</span>
+</span></span><span class=line><span class=cl>    <span class=k>for</span> <span class=n>line</span> <span class=ow>in</span> <span class=n>lines</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=k>if</span><span class=p>(</span><span class=nb>int</span><span class=p>(</span><span class=n>line</span><span class=p>[</span><span class=mi>12</span><span class=p>:</span><span class=mi>16</span><span class=p>],</span><span class=mi>16</span><span class=p>)</span> <span class=o>!=</span> <span class=mi>0</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>            <span class=n>press_data</span> <span class=o>=</span> <span class=nb>int</span><span class=p>(</span><span class=n>line</span><span class=p>[</span><span class=mi>12</span><span class=p>:</span><span class=mi>16</span><span class=p>],</span><span class=mi>16</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>            <span class=n>press_lst</span><span class=o>.</span><span class=n>append</span><span class=p>(</span><span class=n>press_data</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>            <span class=k>if</span><span class=p>(</span><span class=n>press_data</span> <span class=o>&lt;</span> <span class=mi>65000</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>                <span class=n>x</span><span class=o>.</span><span class=n>append</span><span class=p>(</span><span class=nb>int</span><span class=p>(</span><span class=n>line</span><span class=p>[</span><span class=mi>6</span><span class=p>:</span><span class=mi>8</span><span class=p>],</span><span class=mi>16</span><span class=p>)</span><span class=o>*</span><span class=mh>0xff</span><span class=o>+</span><span class=nb>int</span><span class=p>(</span><span class=n>line</span><span class=p>[</span><span class=mi>4</span><span class=p>:</span><span class=mi>6</span><span class=p>],</span><span class=mi>16</span><span class=p>))</span>
+</span></span><span class=line><span class=cl>                <span class=n>y</span><span class=o>.</span><span class=n>append</span><span class=p>(</span><span class=o>-</span><span class=mi>1</span> <span class=o>*</span> <span class=p>(</span><span class=nb>int</span><span class=p>(</span><span class=n>line</span><span class=p>[</span><span class=mi>10</span><span class=p>:</span><span class=mi>12</span><span class=p>],</span><span class=mi>16</span><span class=p>)</span><span class=o>*</span><span class=mh>0xff</span><span class=o>+</span><span class=nb>int</span><span class=p>(</span><span class=n>line</span><span class=p>[</span><span class=mi>8</span><span class=p>:</span><span class=mi>10</span><span class=p>],</span><span class=mi>16</span><span class=p>)))</span>
+</span></span><span class=line><span class=cl>            
+</span></span><span class=line><span class=cl>    <span class=n>plt</span><span class=o>.</span><span class=n>scatter</span><span class=p>(</span><span class=n>x</span><span class=p>,</span><span class=n>y</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>plt</span><span class=o>.</span><span class=n>grid</span><span class=p>()</span> <span class=c1># 显示网格</span>
+</span></span><span class=line><span class=cl>    <span class=n>plt</span><span class=o>.</span><span class=n>show</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>    
+</span></span><span class=line><span class=cl><span class=k>if</span> <span class=vm>__name__</span> <span class=o>==</span> <span class=s2>&#34;__main__&#34;</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>    <span class=n>draw_pic1</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>    <span class=n>draw_pic2</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>    <span class=nb>print</span><span class=p>(</span><span class=n>press_lst</span><span class=p>)</span></span></span></code></pre></td></tr></table></div></div></div><div class=post-footer id=post-footer><div class=post-info><div class=post-info-line><div class=post-info-mod><span title="Updated on 2022-09-18 14:21:02">Updated on 2022-09-18&nbsp;</span></div></div><div class=post-info-line><div class=post-info-md><span><a href=/posts/3f7db4e/index.md title="Read Markdown" class=link-to-markdown>Read Markdown</a></span></div><div class=post-info-share><span><a href=javascript:void(0); title="Share on X" data-sharer=twitter data-url=https://goodlunatic.github.io/posts/3f7db4e/ data-title="2022 浙江省大学生网络与信息安全竞赛 Writeup" data-hashtags=CTF,Writeup><i class="fa-brands fa-x-twitter fa-fw" aria-hidden=true></i></a>
+<a href=javascript:void(0); title="Share on Facebook" data-sharer=facebook data-url=https://goodlunatic.github.io/posts/3f7db4e/ data-hashtag=CTF><i class="fa-brands fa-facebook-square fa-fw" aria-hidden=true></i></a>
+<a href=javascript:void(0); title="Share on 微博" data-sharer=weibo data-url=https://goodlunatic.github.io/posts/3f7db4e/ data-title="2022 浙江省大学生网络与信息安全竞赛 Writeup"><i class="fa-brands fa-weibo fa-fw" aria-hidden=true></i></a></span></div></div></div><div class=post-info-more><section class=post-tags><i class="fa-solid fa-tags fa-fw me-1" aria-hidden=true></i><a href=/tags/ctf/ class=post-tag title="Tags - CTF">CTF</a><a href=/tags/writeup/ class=post-tag title="Tags - Writeup">Writeup</a></section><section><span><a href=javascript:void(0); onclick=window.history.back()>Back</a></span>&nbsp;|&nbsp;<span><a href=/>Home</a></span></section></div><div class=post-nav><a href=/posts/d7eced5/ class=post-nav-item rel=next title=CTF-Pwn刷题记录>CTF-Pwn刷题记录<i class="fa-solid fa-angle-right fa-fw" aria-hidden=true></i></a></div></div></article><aside class=toc id=toc-auto aria-label=Contents><h2 class=toc-title>Contents&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden=true></i></h2><div class=toc-content id=toc-content-auto></div></aside></main><footer class=footer><div class=footer-container><div class="footer-line powered order-1">Powered by <a href=https://gohugo.io/ target=_blank rel="external nofollow noopener noreferrer" title="Hugo 0.152.1">Hugo</a> | Theme - <a href=https://github.com/hugo-fixit/FixIt target=_blank rel=external title="FixIt v0.4.0-alpha.2-20251023040336-063af2cd">FixIt</a></div><div class="footer-line copyright order-2" itemscope itemtype=http://schema.org/CreativeWork><i class="fa-regular fa-copyright fa-fw" aria-hidden=true></i>
+<span itemprop=copyrightYear>2022 - 2025</span><span class=author itemprop=copyrightHolder>
+<a href=https://goodlunatic.github.io target=_blank rel="external nofollow noopener noreferrer">Lunatic</a></span></div><div class="footer-line visitor"><span id=busuanzi_container_site_uv title='Total visitors'><i class="fa-regular fa-user fa-fw me-1" aria-hidden=true></i><span id=busuanzi_value_site_uv><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden=true></i></span></span><span id=busuanzi_container_site_pv class=footer-divider title='Total visits'><i class="fa-regular fa-eye fa-fw me-1" aria-hidden=true></i><span id=busuanzi_value_site_pv><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden=true></i></span></span></div></div></footer></div><div class=widgets><div class="fixed-buttons animate__faster d-none"><div class="fixed-button back-to-top" role=button aria-label="Back to Top"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden=true></i><span class=variant-numeric>0%</span></div></div><div id=mask></div><noscript><div class=noscript-warning>This website works best with JavaScript enabled.</div></noscript></div><link rel=stylesheet href=/lib/pace/themes/blue/pace-theme-minimal.css><script src=/lib/sharer/sharer.min.js async defer></script><script src=https://vercount.one/js async defer></script><script src=/lib/pace/pace.min.js async defer></script><script src=/posts/3f7db4e/config/page.js defer></script><script src=/js/theme.min.js defer></script></body></html>

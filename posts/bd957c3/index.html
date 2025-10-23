@@ -1,0 +1,430 @@
+<!doctype html><html itemscope itemtype=http://schema.org/WebPage lang=en><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=2"><meta name=robots content="noodp"><title>2024 长城杯信息安全铁人三项赛 Misc Writeup - ⚡Lunatic BLOG⚡</title><meta name=author content="Lunatic"><meta name=description content="不愧是竞速长城杯，时间这么短，只能说强度很高。
+"><meta name=keywords content='CTF,Misc,Writeup'><meta itemprop=name content="2024 长城杯信息安全铁人三项赛 Misc Writeup"><meta itemprop=description content="不愧是竞速长城杯，时间这么短，只能说强度很高。"><meta itemprop=datePublished content="2024-04-01T19:18:07+08:00"><meta itemprop=dateModified content="2024-04-01T19:18:07+08:00"><meta itemprop=wordCount content="1072"><meta itemprop=keywords content="CTF,Misc,Writeup"><meta property="og:url" content="https://goodlunatic.github.io/posts/bd957c3/"><meta property="og:site_name" content="⚡Lunatic BLOG⚡"><meta property="og:title" content="2024 长城杯信息安全铁人三项赛 Misc Writeup"><meta property="og:description" content="不愧是竞速长城杯，时间这么短，只能说强度很高。"><meta property="og:locale" content="en"><meta property="og:type" content="article"><meta property="article:section" content="posts"><meta property="article:published_time" content="2024-04-01T19:18:07+08:00"><meta property="article:modified_time" content="2024-04-01T19:18:07+08:00"><meta property="article:tag" content="CTF"><meta property="article:tag" content="Misc"><meta property="article:tag" content="Writeup"><meta name=twitter:card content="summary"><meta name=twitter:title content="2024 长城杯信息安全铁人三项赛 Misc Writeup"><meta name=twitter:description content="不愧是竞速长城杯，时间这么短，只能说强度很高。"><meta name=application-name content="FixIt"><meta name=apple-mobile-web-app-title content="FixIt"><meta name=theme-color data-light=#f8f8f8 data-dark=#252627 content="#f8f8f8"><meta name=msapplication-TileColor content="#da532c"><link rel=icon href=https://www.nssctf.cn/files/2024/4/28/7f130a1387.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=canonical type=text/html href=https://goodlunatic.github.io/posts/bd957c3/ title="2024 长城杯信息安全铁人三项赛 Misc Writeup - ⚡Lunatic BLOG⚡"><link rel=prev type=text/html href=https://goodlunatic.github.io/posts/10f4f96/ title="2024 XCTF国际网络攻防联赛-DubheCTF分站赛 Misc Writeup"><link rel=next type=text/html href=https://goodlunatic.github.io/posts/e49ecc5/ title="2023&amp;2024 红明谷初赛 Misc Writeup"><link rel=alternate type=text/markdown href=https://goodlunatic.github.io/posts/bd957c3/index.md title="2024 长城杯信息安全铁人三项赛 Misc Writeup - ⚡Lunatic BLOG⚡"><link rel=stylesheet href=/css/config.min.css><link rel=stylesheet href=/css/style.min.css><link rel=preload href=/lib/fontawesome-free/all.min.css as=style onload='this.removeAttribute("onload"),this.rel="stylesheet"'><noscript><link rel=stylesheet href=/lib/fontawesome-free/all.min.css></noscript><link rel=preload href=/lib/animate/animate.min.css as=style onload='this.removeAttribute("onload"),this.rel="stylesheet"'><noscript><link rel=stylesheet href=/lib/animate/animate.min.css></noscript><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"2024 长城杯信息安全铁人三项赛 Misc Writeup","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/goodlunatic.github.io\/posts\/bd957c3\/"},"genre":"posts","keywords":"CTF, Misc, Writeup","wordcount":1072,"url":"https:\/\/goodlunatic.github.io\/posts\/bd957c3\/","datePublished":"2024-04-01T19:18:07+08:00","dateModified":"2024-04-01T19:18:07+08:00","publisher":{"@type":"Organization","name":""},"author":{"@type":"Person","name":"Lunatic"},"description":""}</script><script src=/js/head/color-scheme.min.js></script></head><body data-header-desktop=sticky data-header-mobile=auto><div class=wrapper data-page-style=normal><header class="desktop animate__faster" id=header-desktop><div class=header-wrapper><div class=header-title><a href=/ title="⚡Lunatic BLOG⚡"><span class=header-title-text>⚡Lunatic BLOG⚡</span></a><span class=header-subtitle></span></div><nav><ul class=menu><li class=menu-item><a class=menu-link href=/archives/><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden=true></i> Archives</a></li><li class=menu-item><a class=menu-link href=/categories/><i class="fa-solid fa-folder-tree fa-fw fa-sm" aria-hidden=true></i> Categories</a></li><li class=menu-item><a class=menu-link href=/tags/><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden=true></i> Tags</a></li><li class=menu-item><a class=menu-link href=/friends/><i class="fa-solid fa-chain fa-fw fa-sm" aria-hidden=true></i> Friends</a></li><li class=menu-item><a class=menu-link href=/about/><i class="fa-solid fa-graduation-cap fa-fw fa-sm" aria-hidden=true></i> About</a></li><li class="menu-item delimiter"></li><li class="menu-item theme-switch" title="Switch Theme"><i class="fa-solid fa-adjust fa-fw" aria-hidden=true></i></li></ul></nav></div></header><header class="mobile animate__faster" id=header-mobile><div class=header-container><div class=header-wrapper><div class=header-title><a href=/ title="⚡Lunatic BLOG⚡"><span class=header-title-text>⚡Lunatic BLOG⚡</span></a><span class=header-subtitle></span></div><div class=menu-toggle id=menu-toggle-mobile><span></span><span></span><span></span></div></div><nav><ul class=menu id=menu-mobile><li class=menu-item><a class=menu-link href=/archives/><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden=true></i> Archives</a></li><li class=menu-item><a class=menu-link href=/categories/><i class="fa-solid fa-folder-tree fa-fw fa-sm" aria-hidden=true></i> Categories</a></li><li class=menu-item><a class=menu-link href=/tags/><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden=true></i> Tags</a></li><li class=menu-item><a class=menu-link href=/friends/><i class="fa-solid fa-chain fa-fw fa-sm" aria-hidden=true></i> Friends</a></li><li class=menu-item><a class=menu-link href=/about/><i class="fa-solid fa-graduation-cap fa-fw fa-sm" aria-hidden=true></i> About</a></li><li class="menu-item menu-system"><span class="menu-system-item theme-switch" title="Switch Theme"><i class="fa-solid fa-adjust fa-fw" aria-hidden=true></i></span></li></ul></nav></div></header><main class=fi-container><aside class="aside-collection animate__animated animate__fadeIn animate__faster" aria-label=Collections></aside><article class="page single"><div class=header><h1 class="single-title animate__animated animate__flipInX"><span>2024 长城杯信息安全铁人三项赛 Misc Writeup</span></h1></div><div class=post-meta><div class=post-meta-line><span class=post-author><a href=https://goodlunatic.github.io title=Author target=_blank rel="external nofollow noopener noreferrer author" class=author><img class=avatar src=https://www.nssctf.cn/files/2024/4/28/7f130a1387.png alt=Lunatic height=16 width=16>&nbsp;Lunatic</a></span><span class=post-included-in>&nbsp;included in <a href=/categories/writeup/ class=post-category title="Category - Writeup"><i class="fa-regular fa-folder fa-fw" aria-hidden=true></i> Writeup</a></span></div><div class=post-meta-line><span title="published on 2024-04-01 19:18:07"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden=true></i><time datetime=2024-04-01>2024-04-01</time></span>&nbsp;<span title="1072 words"><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden=true></i>About 1100 words</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden=true></i>6 minutes</span>&nbsp;<span id=busuanzi_container_page_pv class="busuanzi_visitors comment-visitors" data-flag-title="2024 长城杯信息安全铁人三项赛 Misc Writeup"><i class="fa-regular fa-eye fa-fw me-1" aria-hidden=true></i><span id=busuanzi_value_page_pv>-</span>&nbsp;views
+</span>&nbsp;</div></div><div class="details toc" id=toc-static data-kept=false><div class="details-summary toc-title"><span>Contents</span>
+<span><i class="details-icon fa-solid fa-angle-right" aria-hidden=true></i></span></div><div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents><ul><li><a href=#题目名称-压一压>题目名称 压一压</a></li><li><a href=#题目名称-flow>题目名称 Flow</a></li><li><a href=#题目名称-pcap>题目名称 pcap</a></li><li><a href=#题目名称-clocked>题目名称 clocked</a></li><li><a href=#题目名称-ctfer>题目名称 ctfer</a></li><li><a href=#题目名称-device>题目名称 Device</a></li><li><a href=#题目名称-决赛-zip_guessinteger>题目名称 决赛-zip_guessinteger</a></li><li><a href=#题目名称-rsa>题目名称 RSA</a></li><li><a href=#题目名称-problem>题目名称 problem</a></li></ul></nav></div></div><div class=content id=content><p><strong>不愧是竞速长城杯，时间这么短，只能说强度很高</strong>。</p><blockquote><p>本文中涉及的具体题目附件可以进我的交流群获取，进群详见 <a href=https://goodlunatic.github.io/about/ target=_blank rel="external nofollow noopener noreferrer">About</a></p></blockquote><h2 class=heading-element id=题目名称-压一压><span>题目名称 压一压</span>
+<a href=#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-%e5%8e%8b%e4%b8%80%e5%8e%8b class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h2><p><strong>题目附件给了一个 压一压.zip，然后里面有一个 flag.7z 和一个 pass.txt</strong></p><p><strong>pass.txt 中是一串有一个 ? 的字符串，经过尝试发现是掩码爆破</strong></p><p><strong>试着手动解了几层，发现一共有三种类型的压缩包：7z、rar、zip</strong></p><p><strong>于是写一个 Python 脚本逐层爆破解套即可</strong></p><p><strong>全部解压完以后可以得到一个 flag.txt ，内容如下</strong></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>congratulations ，but did you notice  the &#34;?&#34; ,combine all of them plz.</span></span></code></pre></td></tr></table></div></div><p><strong>由此可知有信息隐藏在了掩码中的?里，于是进一步修改脚本，提取每层密码中的?位置的字符</strong></p><p><strong>全部提取完后，仔细观察发现了 89504e470d0a 这个图片的文件头，使用 CyberChef 转为图片可以得到下图</strong></p><p><img loading=lazy src=/posts/bd957c3/imgs/image-20240429192330945.png alt=image-20240429192330945 height=1304 width=3770></p><p><strong>由这个提示可知，压缩包的后缀隐写了摩斯电码，修改脚本将隐写的数据提取出来，然后解摩斯电码即可得到 flag</strong></p><p><img loading=lazy src=/posts/bd957c3/imgs/image-20240429192345004.png alt=image-20240429192345004 height=927 width=1734></p><p><img loading=lazy src=/posts/bd957c3/imgs/image-20240429192350817.png alt=image-20240429192350817 height=1261 width=3775></p><p><strong>完整的提取脚本如下：</strong></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>  1
+</span><span class=lnt>  2
+</span><span class=lnt>  3
+</span><span class=lnt>  4
+</span><span class=lnt>  5
+</span><span class=lnt>  6
+</span><span class=lnt>  7
+</span><span class=lnt>  8
+</span><span class=lnt>  9
+</span><span class=lnt> 10
+</span><span class=lnt> 11
+</span><span class=lnt> 12
+</span><span class=lnt> 13
+</span><span class=lnt> 14
+</span><span class=lnt> 15
+</span><span class=lnt> 16
+</span><span class=lnt> 17
+</span><span class=lnt> 18
+</span><span class=lnt> 19
+</span><span class=lnt> 20
+</span><span class=lnt> 21
+</span><span class=lnt> 22
+</span><span class=lnt> 23
+</span><span class=lnt> 24
+</span><span class=lnt> 25
+</span><span class=lnt> 26
+</span><span class=lnt> 27
+</span><span class=lnt> 28
+</span><span class=lnt> 29
+</span><span class=lnt> 30
+</span><span class=lnt> 31
+</span><span class=lnt> 32
+</span><span class=lnt> 33
+</span><span class=lnt> 34
+</span><span class=lnt> 35
+</span><span class=lnt> 36
+</span><span class=lnt> 37
+</span><span class=lnt> 38
+</span><span class=lnt> 39
+</span><span class=lnt> 40
+</span><span class=lnt> 41
+</span><span class=lnt> 42
+</span><span class=lnt> 43
+</span><span class=lnt> 44
+</span><span class=lnt> 45
+</span><span class=lnt> 46
+</span><span class=lnt> 47
+</span><span class=lnt> 48
+</span><span class=lnt> 49
+</span><span class=lnt> 50
+</span><span class=lnt> 51
+</span><span class=lnt> 52
+</span><span class=lnt> 53
+</span><span class=lnt> 54
+</span><span class=lnt> 55
+</span><span class=lnt> 56
+</span><span class=lnt> 57
+</span><span class=lnt> 58
+</span><span class=lnt> 59
+</span><span class=lnt> 60
+</span><span class=lnt> 61
+</span><span class=lnt> 62
+</span><span class=lnt> 63
+</span><span class=lnt> 64
+</span><span class=lnt> 65
+</span><span class=lnt> 66
+</span><span class=lnt> 67
+</span><span class=lnt> 68
+</span><span class=lnt> 69
+</span><span class=lnt> 70
+</span><span class=lnt> 71
+</span><span class=lnt> 72
+</span><span class=lnt> 73
+</span><span class=lnt> 74
+</span><span class=lnt> 75
+</span><span class=lnt> 76
+</span><span class=lnt> 77
+</span><span class=lnt> 78
+</span><span class=lnt> 79
+</span><span class=lnt> 80
+</span><span class=lnt> 81
+</span><span class=lnt> 82
+</span><span class=lnt> 83
+</span><span class=lnt> 84
+</span><span class=lnt> 85
+</span><span class=lnt> 86
+</span><span class=lnt> 87
+</span><span class=lnt> 88
+</span><span class=lnt> 89
+</span><span class=lnt> 90
+</span><span class=lnt> 91
+</span><span class=lnt> 92
+</span><span class=lnt> 93
+</span><span class=lnt> 94
+</span><span class=lnt> 95
+</span><span class=lnt> 96
+</span><span class=lnt> 97
+</span><span class=lnt> 98
+</span><span class=lnt> 99
+</span><span class=lnt>100
+</span><span class=lnt>101
+</span><span class=lnt>102
+</span><span class=lnt>103
+</span><span class=lnt>104
+</span><span class=lnt>105
+</span><span class=lnt>106
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=kn>from</span> <span class=nn>string</span> <span class=kn>import</span> <span class=n>printable</span>
+</span></span><span class=line><span class=cl><span class=kn>import</span> <span class=nn>zipfile</span>
+</span></span><span class=line><span class=cl><span class=kn>import</span> <span class=nn>rarfile</span>
+</span></span><span class=line><span class=cl><span class=kn>import</span> <span class=nn>py7zr</span>
+</span></span><span class=line><span class=cl><span class=kn>import</span> <span class=nn>os</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>decompress_7z</span><span class=p>(</span><span class=n>archive_file</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=k>with</span> <span class=n>py7zr</span><span class=o>.</span><span class=n>SevenZipFile</span><span class=p>(</span><span class=n>archive_file</span><span class=p>,</span> <span class=s1>&#39;r&#39;</span><span class=p>)</span> <span class=k>as</span> <span class=n>archive</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=n>file_list</span> <span class=o>=</span> <span class=n>archive</span><span class=o>.</span><span class=n>list</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>        <span class=n>new_archive_file</span> <span class=o>=</span> <span class=n>file_list</span><span class=p>[</span><span class=mi>0</span><span class=p>]</span><span class=o>.</span><span class=n>filename</span>
+</span></span><span class=line><span class=cl>    <span class=n>table</span> <span class=o>=</span> <span class=n>printable</span><span class=p>[:</span><span class=mi>62</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>    <span class=k>with</span> <span class=nb>open</span><span class=p>(</span><span class=s2>&#34;pass.txt&#34;</span><span class=p>,</span> <span class=s1>&#39;r&#39;</span><span class=p>)</span> <span class=k>as</span> <span class=n>f</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=n>part_passwd</span> <span class=o>=</span> <span class=n>f</span><span class=o>.</span><span class=n>read</span><span class=p>()</span><span class=o>.</span><span class=n>strip</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>    <span class=k>for</span> <span class=n>item</span> <span class=ow>in</span> <span class=n>table</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=n>passwd</span> <span class=o>=</span> <span class=n>part_passwd</span><span class=o>.</span><span class=n>replace</span><span class=p>(</span><span class=s2>&#34;?&#34;</span><span class=p>,</span> <span class=n>item</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=k>try</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>            <span class=c1># print(f&#34;正在尝试密码：{passwd}&#34;)</span>
+</span></span><span class=line><span class=cl>            <span class=k>with</span> <span class=n>py7zr</span><span class=o>.</span><span class=n>SevenZipFile</span><span class=p>(</span><span class=n>archive_file</span><span class=p>,</span> <span class=n>mode</span><span class=o>=</span><span class=s1>&#39;r&#39;</span><span class=p>,</span> <span class=n>password</span><span class=o>=</span><span class=n>passwd</span><span class=p>)</span> <span class=k>as</span> <span class=n>archive</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                <span class=n>archive</span><span class=o>.</span><span class=n>extractall</span><span class=p>(</span><span class=s2>&#34;tmp/&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>            <span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;用</span><span class=si>{</span><span class=n>passwd</span><span class=si>}</span><span class=s2>成功解压缩&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>            <span class=n>data</span><span class=o>.</span><span class=n>append</span><span class=p>(</span><span class=n>item</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>            <span class=k>break</span>
+</span></span><span class=line><span class=cl>        <span class=k>except</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>            <span class=k>pass</span>
+</span></span><span class=line><span class=cl>    <span class=n>os</span><span class=o>.</span><span class=n>remove</span><span class=p>(</span><span class=n>archive_file</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>os</span><span class=o>.</span><span class=n>remove</span><span class=p>(</span><span class=s2>&#34;pass.txt&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>os</span><span class=o>.</span><span class=n>system</span><span class=p>(</span><span class=s2>&#34;mv tmp/* .&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>os</span><span class=o>.</span><span class=n>rmdir</span><span class=p>(</span><span class=s2>&#34;tmp&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=n>new_archive_file</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>decompress_rar</span><span class=p>(</span><span class=n>archive_file</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=k>with</span> <span class=n>rarfile</span><span class=o>.</span><span class=n>RarFile</span><span class=p>(</span><span class=n>archive_file</span><span class=p>,</span> <span class=s1>&#39;r&#39;</span><span class=p>)</span> <span class=k>as</span> <span class=n>rar_ref</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=n>file_list</span> <span class=o>=</span> <span class=n>rar_ref</span><span class=o>.</span><span class=n>namelist</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>        <span class=n>new_archive_file</span> <span class=o>=</span> <span class=n>file_list</span><span class=p>[</span><span class=mi>0</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>        <span class=c1># print(new_archive_file)</span>
+</span></span><span class=line><span class=cl>    <span class=n>table</span> <span class=o>=</span> <span class=n>printable</span><span class=p>[:</span><span class=mi>62</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>    <span class=k>with</span> <span class=nb>open</span><span class=p>(</span><span class=s2>&#34;pass.txt&#34;</span><span class=p>,</span> <span class=s1>&#39;r&#39;</span><span class=p>)</span> <span class=k>as</span> <span class=n>f</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=n>part_passwd</span> <span class=o>=</span> <span class=n>f</span><span class=o>.</span><span class=n>read</span><span class=p>()</span><span class=o>.</span><span class=n>strip</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>    <span class=k>for</span> <span class=n>item</span> <span class=ow>in</span> <span class=n>table</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=n>passwd</span> <span class=o>=</span> <span class=n>part_passwd</span><span class=o>.</span><span class=n>replace</span><span class=p>(</span><span class=s2>&#34;?&#34;</span><span class=p>,</span> <span class=n>item</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=k>try</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>            <span class=c1># print(f&#34;正在尝试密码：{passwd}&#34;)</span>
+</span></span><span class=line><span class=cl>            <span class=k>with</span> <span class=n>rarfile</span><span class=o>.</span><span class=n>RarFile</span><span class=p>(</span><span class=n>archive_file</span><span class=p>,</span> <span class=s1>&#39;r&#39;</span><span class=p>)</span> <span class=k>as</span> <span class=n>rar_ref</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                <span class=n>rar_ref</span><span class=o>.</span><span class=n>extractall</span><span class=p>(</span><span class=n>path</span><span class=o>=</span><span class=s2>&#34;tmp/&#34;</span><span class=p>,</span> <span class=n>pwd</span><span class=o>=</span><span class=n>passwd</span><span class=o>.</span><span class=n>encode</span><span class=p>())</span>
+</span></span><span class=line><span class=cl>            <span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;用</span><span class=si>{</span><span class=n>passwd</span><span class=si>}</span><span class=s2>成功解压缩&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>            <span class=n>data</span><span class=o>.</span><span class=n>append</span><span class=p>(</span><span class=n>item</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>            <span class=k>break</span>
+</span></span><span class=line><span class=cl>        <span class=k>except</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>            <span class=k>pass</span>
+</span></span><span class=line><span class=cl>    <span class=n>os</span><span class=o>.</span><span class=n>remove</span><span class=p>(</span><span class=n>archive_file</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>os</span><span class=o>.</span><span class=n>remove</span><span class=p>(</span><span class=s2>&#34;pass.txt&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>os</span><span class=o>.</span><span class=n>system</span><span class=p>(</span><span class=s2>&#34;mv tmp/* .&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>os</span><span class=o>.</span><span class=n>rmdir</span><span class=p>(</span><span class=s2>&#34;tmp&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=n>new_archive_file</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>decompress_zip</span><span class=p>(</span><span class=n>archive_file</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=k>with</span> <span class=n>zipfile</span><span class=o>.</span><span class=n>ZipFile</span><span class=p>(</span><span class=n>archive_file</span><span class=p>,</span> <span class=s1>&#39;r&#39;</span><span class=p>)</span> <span class=k>as</span> <span class=n>zip_ref</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=n>file_list</span> <span class=o>=</span> <span class=n>zip_ref</span><span class=o>.</span><span class=n>namelist</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>        <span class=n>new_archive_file</span> <span class=o>=</span> <span class=n>file_list</span><span class=p>[</span><span class=mi>0</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>    <span class=n>os</span><span class=o>.</span><span class=n>mkdir</span><span class=p>(</span><span class=s2>&#34;tmp&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>table</span> <span class=o>=</span> <span class=n>printable</span><span class=p>[:</span><span class=mi>62</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>    <span class=k>with</span> <span class=nb>open</span><span class=p>(</span><span class=s2>&#34;pass.txt&#34;</span><span class=p>,</span> <span class=s1>&#39;r&#39;</span><span class=p>)</span> <span class=k>as</span> <span class=n>f</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=n>part_passwd</span> <span class=o>=</span> <span class=n>f</span><span class=o>.</span><span class=n>read</span><span class=p>()</span><span class=o>.</span><span class=n>strip</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>    <span class=k>for</span> <span class=n>item</span> <span class=ow>in</span> <span class=n>table</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=n>passwd</span> <span class=o>=</span> <span class=n>part_passwd</span><span class=o>.</span><span class=n>replace</span><span class=p>(</span><span class=s2>&#34;?&#34;</span><span class=p>,</span> <span class=n>item</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=k>try</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>            <span class=c1># print(f&#34;正在尝试密码：{passwd}&#34;)</span>
+</span></span><span class=line><span class=cl>            <span class=k>with</span> <span class=n>zipfile</span><span class=o>.</span><span class=n>ZipFile</span><span class=p>(</span><span class=n>archive_file</span><span class=p>,</span> <span class=s1>&#39;r&#39;</span><span class=p>)</span> <span class=k>as</span> <span class=n>zip_ref</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                <span class=n>zip_ref</span><span class=o>.</span><span class=n>extractall</span><span class=p>(</span><span class=n>path</span><span class=o>=</span><span class=s2>&#34;tmp/&#34;</span><span class=p>,</span> <span class=n>pwd</span><span class=o>=</span><span class=n>passwd</span><span class=o>.</span><span class=n>encode</span><span class=p>())</span>
+</span></span><span class=line><span class=cl>                <span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;用</span><span class=si>{</span><span class=n>passwd</span><span class=si>}</span><span class=s2>成功解压缩&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>                <span class=n>data</span><span class=o>.</span><span class=n>append</span><span class=p>(</span><span class=n>item</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>                <span class=k>break</span>
+</span></span><span class=line><span class=cl>        <span class=k>except</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>            <span class=k>pass</span>
+</span></span><span class=line><span class=cl>    <span class=n>os</span><span class=o>.</span><span class=n>remove</span><span class=p>(</span><span class=n>archive_file</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>os</span><span class=o>.</span><span class=n>remove</span><span class=p>(</span><span class=s2>&#34;pass.txt&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>os</span><span class=o>.</span><span class=n>system</span><span class=p>(</span><span class=s2>&#34;mv tmp/* .&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>os</span><span class=o>.</span><span class=n>rmdir</span><span class=p>(</span><span class=s2>&#34;tmp&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=n>new_archive_file</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>if</span> <span class=vm>__name__</span> <span class=o>==</span> <span class=s2>&#34;__main__&#34;</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>    <span class=n>data</span> <span class=o>=</span> <span class=p>[]</span>
+</span></span><span class=line><span class=cl>    <span class=n>morse_code</span> <span class=o>=</span> <span class=p>[]</span>
+</span></span><span class=line><span class=cl>    <span class=n>archive_file</span> <span class=o>=</span> <span class=s2>&#34;flag.7z&#34;</span>
+</span></span><span class=line><span class=cl>    <span class=c1># archive_file = &#34;flag.zip&#34;</span>
+</span></span><span class=line><span class=cl>    <span class=c1># archive_file = &#34;flag.rar&#34;</span>
+</span></span><span class=line><span class=cl>    <span class=k>while</span> <span class=kc>True</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=k>if</span> <span class=s2>&#34;7z&#34;</span> <span class=ow>in</span> <span class=n>archive_file</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>            <span class=n>archive_file</span> <span class=o>=</span> <span class=n>decompress_7z</span><span class=p>(</span><span class=n>archive_file</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>            <span class=n>morse_code</span><span class=o>.</span><span class=n>append</span><span class=p>(</span><span class=s2>&#34;-&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=k>elif</span> <span class=s2>&#34;rar&#34;</span> <span class=ow>in</span> <span class=n>archive_file</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>            <span class=n>archive_file</span> <span class=o>=</span> <span class=n>decompress_rar</span><span class=p>(</span><span class=n>archive_file</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>            <span class=n>morse_code</span><span class=o>.</span><span class=n>append</span><span class=p>(</span><span class=s2>&#34;/&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=k>elif</span> <span class=s2>&#34;zip&#34;</span> <span class=ow>in</span> <span class=n>archive_file</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>            <span class=n>archive_file</span> <span class=o>=</span> <span class=n>decompress_zip</span><span class=p>(</span><span class=n>archive_file</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>            <span class=n>morse_code</span><span class=o>.</span><span class=n>append</span><span class=p>(</span><span class=s2>&#34;.&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=k>else</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>            <span class=k>break</span>
+</span></span><span class=line><span class=cl><span class=nb>print</span><span class=p>(</span><span class=s2>&#34;掩码隐写内容如下：&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=nb>print</span><span class=p>(</span><span class=s2>&#34;&#34;</span><span class=o>.</span><span class=n>join</span><span class=p>(</span><span class=n>data</span><span class=p>))</span>
+</span></span><span class=line><span class=cl><span class=nb>print</span><span class=p>(</span><span class=s2>&#34;后缀隐写内容如下&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=nb>print</span><span class=p>(</span><span class=s2>&#34;&#34;</span><span class=o>.</span><span class=n>join</span><span class=p>(</span><span class=n>morse_code</span><span class=p>))</span></span></span></code></pre></td></tr></table></div></div><h2 class=heading-element id=题目名称-flow><span>题目名称 Flow</span>
+<a href=#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-flow class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h2><p><strong>题目附件给了一个流量包，打开，拉到最下面，追踪TCP流</strong></p><p><strong>看到一串熟悉的字符串，base32解码即可得到 flag：flag{0ddeff-g9ef9ef0-defffef-mkt25gtf-kf}</strong></p><p><img loading=lazy src=/posts/bd957c3/imgs/image-20240429192414692.png alt=image-20240429192414692 height=2159 width=3835></p><p><img loading=lazy src=/posts/bd957c3/imgs/image-20240429192420246.png alt=image-20240429192420246 height=964 width=2483></p><h2 class=heading-element id=题目名称-pcap><span>题目名称 pcap</span>
+<a href=#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-pcap class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h2><p>题目附件给了一个流量包，打开发现主要是 HTTP 和 TCP 流量</p><p>尝试直接导出 HTTP 对象，筛选一下，发现在里面发现一个 file.zip</p><p>直接导出即可得到一个加密的压缩包</p><p><img loading=lazy src=/posts/bd957c3/imgs/image-20240504201812472.png alt=/posts/bd957c3/imgs/image-20240504201812472.png height=2160 width=3838></p><p>在压缩包的注释中得到 key:66666666，压缩包中还有一个 1.txt</p><p><img loading=lazy src=/posts/bd957c3/imgs/image-20240504201902431.png alt=/posts/bd957c3/imgs/image-20240504201902431.png height=1113 width=2388>
+直接用 010 打开压缩包，尝试修改两个加密位后发现是伪加密</p><p><img loading=lazy src=/posts/bd957c3/imgs/image-20240504202015676.png alt=/posts/bd957c3/imgs/image-20240504202015676.png height=2160 width=3842>
+解压压缩包后可以得到一大串 base64 编码后的字符串，猜测是 base64隐写，这里就偷懒直接用 Puzzle Solver 一把梭了
+<img loading=lazy src=/posts/bd957c3/imgs/image-20240504202147709.png alt=/posts/bd957c3/imgs/image-20240504202147709.png height=1487 width=1504></p><p>解密 base64 隐写后可以得到密文，结合之前得到的 key，经过尝试发现是 DES 加密
+因此我们直接 DES 解密即可得到 flag：flag{2_Hell0_ctf_world_2}</p><p><img loading=lazy src=/posts/bd957c3/imgs/image-20240504201841710.png alt=/posts/bd957c3/imgs/image-20240504201841710.png height=940 width=933></p><h2 class=heading-element id=题目名称-clocked><span>题目名称 clocked</span>
+<a href=#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-clocked class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h2><p><strong>题目附件给了一个压缩包，打开发现缺少了文件头，给它补上 504B0304</strong></p><p><strong>解压后得到了一个 elephant 文件，用010打开发现是一张base64编码后的图片</strong></p><p><strong>用CyberChef解码即可得到以下图片</strong></p><p><img loading=lazy src=/posts/bd957c3/imgs/image-20240429192439225.png alt=image-20240429192439225 height=1520 width=2474></p><p><strong>然后用 cloacked-pixel 解密即可，密钥就是 cloacked-pixel</strong></p><p><img loading=lazy src=/posts/bd957c3/imgs/image-20240429192457047.png alt=image-20240429192457047 height=141 width=1734></p><p><strong>然后用010打开发现是个压缩包，该后缀为 zip 解压即可得到flag</strong></p><p><strong>flag{just_a_demo_picture}</strong></p><p><img loading=lazy src=/posts/bd957c3/imgs/image-20240429192505502.png alt=image-20240429192505502 height=891 width=1854></p><h2 class=heading-element id=题目名称-ctfer><span>题目名称 ctfer</span>
+<a href=#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-ctfer class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h2><p><strong>附件给了一个加密的压缩包，直接用弱密码爆破得到密码是123321</strong></p><p><img loading=lazy src=/posts/bd957c3/imgs/image-20240429192540118.png alt=image-20240429192540118 height=746 width=778></p><p><strong>解压压缩包可以得到一个 ctfer.png 和一个 secret.py</strong></p><p><strong>secret.py 内容如下</strong></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>the password is &#34;Hav1F6n&#34;,plz use it to solve other wav by py.</span></span></code></pre></td></tr></table></div></div><p><strong>根据提示可以知道那个 png 图片中藏了一个 wav 文件</strong></p><p><strong>根据 wav 的文件头手动提取即可</strong></p><p><img loading=lazy src=/posts/bd957c3/imgs/image-20240429192557713.png alt=image-20240429192557713 height=2160 width=3842></p><p><strong>把 wav 文件头前的所有数据都删除，然后用 CyberChef 解码并保存即可</strong></p><p><img loading=lazy src=/posts/bd957c3/imgs/image-20240429192637194.png alt=image-20240429192637194 height=1510 width=2478></p><p><strong>然后用stegpy解密即可得到flag，解密密钥就是 secret.txt 中的 Hav1F6n</strong></p><p><strong>flag{57d69ef29caff0c7ad2fc921ee6c8e06}</strong></p><p><img loading=lazy src=/posts/bd957c3/imgs/image-20240429192646735.png alt=image-20240429192646735 height=309 width=1093></p><h2 class=heading-element id=题目名称-device><span>题目名称 Device</span>
+<a href=#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-device class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h2><p><strong>题目附件给了一个 pcapng 流量包文件，用Wireshark打开发现一堆红条和黑条，因此猜测是加密了</strong></p><p><strong>在没有解密的情况下翻阅流量包，发现有两个可疑文件，server.key 和 keep_going.jpg</strong></p><p><strong>因此尝试将这两个文件导出</strong></p><p><img loading=lazy src=/posts/bd957c3/imgs/image-20240429192659619.png alt=image-20240429192659619 height=1613 width=1711></p><p><strong>图片导出的时候，wireshark直接选择原始数据然后另存为即可</strong></p><p><img loading=lazy src=/posts/bd957c3/imgs/image-20240429192717928.png alt=image-20240429192717928 height=1613 width=1711></p><p><strong>然后在010中打开，把 jpg 文件头前的数据删除改后缀为.jpg即可得到图片</strong></p><p><img loading=lazy src=/posts/bd957c3/imgs/image-20240429192729311.png alt=image-20240429192729311 height=1731 width=2266></p><p><img loading=lazy src=/posts/bd957c3/imgs/image-20240429192737877.png alt=image-20240429192737877 height=1613 width=1711></p><p><strong>发现 server.key 的内容是RSA私钥，因此联系以前做过的题目，感觉是TLS加密</strong></p><p><strong>因此我们打开 编辑->首选项->Protocols->TLS ，并把 server.key 导入</strong></p><p><img loading=lazy src=/posts/bd957c3/imgs/image-20240429192808000.png alt=image-20240429192808000 height=881 width=1041></p><p><strong>点击确认后再查看流量包，发现已经解密了（这里如果无法解密，有可能是Wireshark有问题，可以重新安装一个)</strong></p><p><strong>直接在过滤器中输出 tls 进行过滤，就可以看到解密后出题人的各种操作</strong></p><p><strong>然后在流 3132 中可以看到哥斯拉的代码，然后加密的 key=e45e329feb5d925b</strong></p><p><img loading=lazy src=/posts/bd957c3/imgs/image-20240429192823411.png alt=image-20240429192823411 height=1613 width=1711></p><p><strong>有了加密的 key 之后就可以开始解密后面的操作了，具体的解密原理可以看我流量分析的那篇博客</strong></p><p><strong>然后在流 3149 中发现了 picture_passwd=053700357621</strong></p><p><img loading=lazy src=/posts/bd957c3/imgs/image-20240429192836182.png alt=image-20240429192836182 height=1613 width=1711></p><p><img loading=lazy src=/posts/bd957c3/imgs/image-20240429192844783.png alt=image-20240429192844783 height=2160 width=3851></p><p><img loading=lazy src=/posts/bd957c3/imgs/image-20240429192851920.png alt=image-20240429192851920 height=1529 width=2492></p><p><strong>然后直接用这个密钥 steghide 解密之前提取出来的那张图片即可得到 flag：flag{i_am_4_Sk111ed_H4ck32}</strong></p><p><img loading=lazy src=/posts/bd957c3/imgs/image-20240429192907475.png alt=image-20240429192907475 height=1029 width=2602></p><p><strong>这里还有一个小插曲，就是出题人在test目录下写了一个假的flag，可能有的师傅被这个假flag误导了</strong></p><p><img loading=lazy src=/posts/bd957c3/imgs/image-20240429192918962.png alt=image-20240429192918962 height=2152 width=3830></p><p><img loading=lazy src=/posts/bd957c3/imgs/image-20240429192923692.png alt=image-20240429192923692 height=1530 width=2492></p><p><strong>但是综上所述，只要会解密 TLS 和哥斯拉流量，这道题还是不难的。</strong></p><p><strong>很多师傅分析 Webshell 流量都是用一把梭脚本辅助分析的，之前自己也写过冰蝎的一把梭脚本</strong></p><p><strong>哥斯拉的一把梭脚本就等我之后写完再放上来吧</strong></p><h2 class=heading-element id=题目名称-决赛-zip_guessinteger><span>题目名称 决赛-zip_guessinteger</span>
+<a href=#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-%e5%86%b3%e8%b5%9b-zip_guessinteger class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h2><p>题目附件给了一个加密的压缩包，看到<code>store</code>压缩方法，猜测需要我们使用明文攻击破解</p><p><img loading=lazy src=/posts/bd957c3/imgs/image-20241128095911164.png alt=/posts/bd957c3/imgs/image-20241128095911164.png height=242 width=1249></p><p>然后发现里面那个压缩包的名字很长，甚至远超过了12字符，因此满足压缩包明文攻击的要求</p><p>为了避免<code>.</code>和<code>+</code>这俩符号对明文攻击的影响，我们把里面的压缩包重命名一下</p><p><img loading=lazy src=/posts/bd957c3/imgs/image-20241128100110736.png alt=/posts/bd957c3/imgs/image-20241128100110736.png height=253 width=1388></p><p>然后使用以下命令进行明文攻击</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=nb>echo</span> -n <span class=s2>&#34;breakthroughentry&#34;</span> &gt; plain1.txt
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>bkcrack -C zip_guessinteger-20240524095540-lxuhr4t.zip -c breakthroughentry.zip -p plain1.txt -o <span class=m>30</span>  -x <span class=m>0</span> 504B0304
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>bkcrack -C zip_guessinteger-20240524095540-lxuhr4t.zip -k 003e5ac3 885a9927 00c436d9 -U out.zip <span class=m>123</span></span></span></code></pre></td></tr></table></div></div><p><img loading=lazy src=/posts/bd957c3/imgs/image-20241128100357420.png alt=/posts/bd957c3/imgs/image-20241128100357420.png height=466 width=1063></p><p>然后使用密码<code>123</code>解压压缩包可以得到下面这几个文件</p><p><img loading=lazy src=/posts/bd957c3/imgs/image-20241128100506497.png alt=/posts/bd957c3/imgs/image-20241128100506497.png height=268 width=867></p><p><code>md.txt</code>里内容如下</p><blockquote><p>恭喜你，已经破解了这个zip包。这是成功的第一步。还需要您破解内部的zip包。你可能需要先从研究guessinteger入手哦。期待你的好消息。</p></blockquote><p><code>guessinteger</code> 是个Linux下的可执行文件，但是缺少动态链接库没法直接执行</p><p><img loading=lazy src=/posts/bd957c3/imgs/image-20241128100614178.png alt=/posts/bd957c3/imgs/image-20241128100614178.png height=292 width=1115></p><p>因此我们使用IDA打开，逆向一下，发现就是一个简单的生成明文的程序</p><p><img loading=lazy src=/posts/bd957c3/imgs/image-20241128100753158.png alt=/posts/bd957c3/imgs/image-20241128100753158.png height=1031 width=1916></p><p>我们手写一下生成明文的<code>cpp</code>代码，Linux下编译并运行即可得到明文</p><p><img loading=lazy src=/posts/bd957c3/imgs/image-20241128101000725.png alt=/posts/bd957c3/imgs/image-20241128101000725.png height=195 width=1115></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-c++ data-lang=c++><span class=line><span class=cl><span class=cp>#include&lt;bits/stdc++.h&gt;
+</span></span></span><span class=line><span class=cl><span class=cp></span><span class=k>using</span> <span class=k>namespace</span> <span class=n>std</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kt>int</span> <span class=nf>main</span><span class=p>(){</span>
+</span></span><span class=line><span class=cl>	<span class=n>FILE</span> <span class=o>*</span><span class=n>s</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>	<span class=n>s</span> <span class=o>=</span> <span class=n>fopen</span><span class=p>(</span><span class=s>&#34;breakthroughentry.txt&#34;</span><span class=p>,</span> <span class=s>&#34;wt&#34;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>	<span class=k>if</span> <span class=p>(</span> <span class=n>s</span> <span class=p>)</span>
+</span></span><span class=line><span class=cl>	<span class=p>{</span>
+</span></span><span class=line><span class=cl>		<span class=n>fwrite</span><span class=p>(</span><span class=s>&#34;Hi.boys and girs. Good luck for you!</span><span class=se>\r\n</span><span class=s>&#34;</span><span class=p>,</span> <span class=mi>1uLL</span><span class=p>,</span> <span class=mh>0x26uLL</span><span class=p>,</span> <span class=n>s</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>		<span class=n>fwrite</span><span class=p>(</span>
+</span></span><span class=line><span class=cl>			<span class=s>&#34;but this file contains no flag,you need to try more other methods.</span><span class=se>\r\n</span><span class=s>&#34;</span>
+</span></span><span class=line><span class=cl>			<span class=s>&#34;But this file is a great milestone for your success!</span><span class=se>\r\n</span><span class=s>&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>			<span class=mi>1uLL</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>			<span class=mh>0x7AuLL</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>			<span class=n>s</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>		<span class=n>fwrite</span><span class=p>(</span><span class=s>&#34;best wishes for you.</span><span class=se>\r\n</span><span class=s>&#34;</span><span class=p>,</span> <span class=mi>1uLL</span><span class=p>,</span> <span class=mh>0x16uLL</span><span class=p>,</span> <span class=n>s</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>		<span class=n>printf</span><span class=p>(</span><span class=s>&#34; [%s] file created successfuly</span><span class=se>\r\n</span><span class=s>&#34;</span><span class=p>,</span> <span class=s>&#34;breakthroughentry.txt&#34;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>		<span class=n>fclose</span><span class=p>(</span><span class=n>s</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>	<span class=p>}</span>
+</span></span><span class=line><span class=cl>	<span class=k>return</span> <span class=mi>0</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span></span></span></code></pre></td></tr></table></div></div><p>压缩成压缩包后可以发现CRC校验一致</p><p><img loading=lazy src=/posts/bd957c3/imgs/image-20241128101110873.png alt=/posts/bd957c3/imgs/image-20241128101110873.png height=428 width=1688></p><p>然后我们用010打开那个加密的压缩包，从<code>ushort deVersionMadeBy == 63</code>可以知道出题人是用<code>7z</code>压缩的这个文件</p><p><img loading=lazy src=/posts/bd957c3/imgs/image-20241128101347446.png alt=/posts/bd957c3/imgs/image-20241128101347446.png height=266 width=1148></p><p><img loading=lazy src=/posts/bd957c3/imgs/image-20241128101230015.png alt=/posts/bd957c3/imgs/image-20241128101230015.png height=909 width=1507></p><p>因此我们尝试用<code>7z</code>压缩明文，然后用以下命令进行明文攻击即可</p><p>这里我为了方便，把加密压缩包重命名为<code>flag.zip</code>了</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>bkcrack -C flag.zip -c <span class=s1>&#39;breakthroughentry.txt&#39;</span> -P breakthroughentry.zip -p breakthroughentry.txt
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>bkcrack -C flag.zip -k 04d5c2a8 d6b29a38 09c04226 -U out.zip <span class=m>123</span></span></span></code></pre></td></tr></table></div></div><p><img loading=lazy src=/posts/bd957c3/imgs/image-20241128101633992.png alt=/posts/bd957c3/imgs/image-20241128101633992.png height=403 width=1115></p><p>最后使用密码<code>123</code>解压压缩包即可得到flag：<code>flag{ea4c4090-a512-47ed-a817-8771e1640a63}</code></p><h2 class=heading-element id=题目名称-rsa><span>题目名称 RSA</span>
+<a href=#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-rsa class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=kn>import</span> <span class=nn>gmpy2</span>
+</span></span><span class=line><span class=cl><span class=kn>from</span> <span class=nn>Crypto.Util.number</span> <span class=kn>import</span> <span class=o>*</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>p</span> <span class=o>=</span> <span class=mi>3570689330324393</span>
+</span></span><span class=line><span class=cl><span class=n>q</span> <span class=o>=</span> <span class=mi>8539449885098290729</span>
+</span></span><span class=line><span class=cl><span class=n>e</span> <span class=o>=</span> <span class=mi>17</span>
+</span></span><span class=line><span class=cl><span class=n>c</span> <span class=o>=</span> <span class=mi>11499128260801730440456056246212361</span>
+</span></span><span class=line><span class=cl><span class=n>n</span> <span class=o>=</span> <span class=n>p</span><span class=o>*</span><span class=n>q</span>
+</span></span><span class=line><span class=cl><span class=n>phi</span> <span class=o>=</span> <span class=p>(</span><span class=n>p</span><span class=o>-</span><span class=mi>1</span><span class=p>)</span><span class=o>*</span><span class=p>(</span><span class=n>q</span><span class=o>-</span><span class=mi>1</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>d</span> <span class=o>=</span> <span class=n>gmpy2</span><span class=o>.</span><span class=n>invert</span><span class=p>(</span><span class=n>e</span><span class=p>,</span> <span class=n>phi</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>m</span> <span class=o>=</span> <span class=nb>pow</span><span class=p>(</span><span class=n>c</span><span class=p>,</span> <span class=n>d</span><span class=p>,</span> <span class=n>n</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=c1># print(m)</span>
+</span></span><span class=line><span class=cl><span class=nb>print</span><span class=p>(</span><span class=n>long_to_bytes</span><span class=p>(</span><span class=n>m</span><span class=p>))</span>
+</span></span><span class=line><span class=cl><span class=c1># b&#39;flag{p*q*r*s_&#39;</span></span></span></code></pre></td></tr></table></div></div><p><strong>先用 yafu 对n进行分解</strong></p><p><img loading=lazy src=/posts/bd957c3/imgs/image-20240429192941812.png alt=image-20240429192941812 height=1136 width=2560></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=kn>import</span> <span class=nn>gmpy2</span>
+</span></span><span class=line><span class=cl><span class=kn>from</span> <span class=nn>Crypto.Util.number</span> <span class=kn>import</span> <span class=o>*</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>n</span> <span class=o>=</span> <span class=mh>0xe708251f8e8b616121419de1369f44b4a92f9641b8270ae6c50cef2bb6548de7633176399640a553cc764ab02decfd4cbe45</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>c</span> <span class=o>=</span> <span class=mh>0x8a20cca012e973b2a8ca161bd1e82804714cc75bd1238f8579cc7a5143c8bb955320b8c2811dc98a4547e9f4fe856e039630</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>e</span> <span class=o>=</span> <span class=mh>0x10001</span>
+</span></span><span class=line><span class=cl><span class=n>p</span> <span class=o>=</span> <span class=mi>1235542029039790988583258906019</span>
+</span></span><span class=line><span class=cl><span class=n>q</span> <span class=o>=</span> <span class=mi>1235542029039790988583258906103</span>
+</span></span><span class=line><span class=cl><span class=n>r</span> <span class=o>=</span> <span class=mi>1235542029039790988583258906107</span>
+</span></span><span class=line><span class=cl><span class=n>s</span> <span class=o>=</span> <span class=mi>1235542029039790988583258906163</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>phin</span> <span class=o>=</span> <span class=p>(</span><span class=n>p</span> <span class=o>-</span> <span class=mi>1</span><span class=p>)</span> <span class=o>*</span> <span class=p>(</span><span class=n>q</span> <span class=o>-</span> <span class=mi>1</span><span class=p>)</span> <span class=o>*</span> <span class=p>(</span><span class=n>r</span><span class=o>-</span><span class=mi>1</span><span class=p>)</span> <span class=o>*</span> <span class=p>(</span><span class=n>s</span><span class=o>-</span><span class=mi>1</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>d</span> <span class=o>=</span> <span class=n>gmpy2</span><span class=o>.</span><span class=n>invert</span><span class=p>(</span><span class=n>e</span><span class=p>,</span> <span class=n>phin</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>m</span> <span class=o>=</span> <span class=nb>pow</span><span class=p>(</span><span class=n>c</span><span class=p>,</span> <span class=n>d</span><span class=p>,</span> <span class=n>n</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=nb>print</span><span class=p>(</span><span class=n>long_to_bytes</span><span class=p>(</span><span class=n>m</span><span class=p>))</span>
+</span></span><span class=line><span class=cl><span class=c1># b&#39;32cacb2f994f6b42183a1300d9a3e8d6&#39;</span></span></span></code></pre></td></tr></table></div></div><h2 class=heading-element id=题目名称-problem><span>题目名称 problem</span>
+<a href=#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-problem class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=kn>import</span> <span class=nn>numpy</span> <span class=k>as</span> <span class=nn>np</span>
+</span></span><span class=line><span class=cl><span class=n>b</span> <span class=o>=</span> <span class=p>[</span><span class=mf>365.3380741019429</span><span class=p>,</span> <span class=mf>382.9348279538775</span><span class=p>,</span> <span class=mf>400.42579800048895</span><span class=p>,</span> <span class=mf>417.69442927923313</span><span class=p>,</span> <span class=mf>434.6303893364646</span><span class=p>,</span> <span class=mf>451.1328235950389</span><span class=p>,</span> <span class=mf>467.1129885608525</span><span class=p>,</span> <span class=mf>482.49611309888235</span><span class=p>,</span> <span class=mf>497.2224159317516</span><span class=p>,</span> <span class=mf>511.24728909914063</span><span class=p>,</span> <span class=mf>524.5407330215357</span><span class=p>,</span> <span class=mf>537.0861907152837</span><span class=p>,</span> <span class=mf>548.8789697709385</span><span class=p>,</span> <span class=mf>559.924456152371</span><span class=p>,</span> <span class=mf>570.2363118210399</span><span class=p>,</span> <span class=mf>579.8348106134365</span><span class=p>,</span> <span class=mf>588.7454100986312</span><span class=p>,</span> <span class=mf>596.9975917422082</span><span class=p>,</span> <span class=mf>604.623940363264</span><span class=p>,</span> <span class=mf>611.6593889049138</span><span class=p>,</span> <span class=mf>618.1405346943841</span><span class=p>,</span> <span class=mf>624.1049414214108</span><span class=p>,</span> <span class=mf>629.5903729819167</span><span class=p>,</span> <span class=mf>634.6339513469939</span><span class=p>,</span> <span class=mf>639.2712778511839</span><span class=p>,</span> <span class=mf>643.5355931639111</span><span class=p>,</span> <span class=mf>647.4570665963693</span><span class=p>,</span> <span class=mf>651.062296802938</span><span class=p>,</span> <span class=mf>654.3740761160973</span><span class=p>,</span> <span class=mf>657.4114277566009</span><span class=p>,</span> <span class=mf>660.1898800636891</span><span class=p>,</span> <span class=mf>662.721905822581</span><span class=p>,</span> <span class=mf>665.0174360076303</span><span class=p>,</span> <span class=mf>667.0843591835542</span><span class=p>,</span> <span class=mf>668.9289382235431</span><span class=p>,</span> <span class=mf>670.5561080544453</span><span class=p>,</span> <span class=mf>671.9696524780957</span><span class=p>,</span> <span class=mf>673.1722857205089</span><span class=p>,</span> <span class=mf>674.1656791346916</span><span class=p>,</span> <span class=mf>674.9504738581217</span><span class=p>,</span> <span class=mf>675.5263092044213</span><span class=p>,</span> <span class=mf>675.891880219468</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>     <span class=mf>676.0450227999515</span><span class=p>,</span> <span class=mf>675.9828157869154</span><span class=p>,</span> <span class=mf>675.7016878388554</span><span class=p>,</span> <span class=mf>675.1975206792983</span><span class=p>,</span> <span class=mf>674.4657457122553</span><span class=p>,</span> <span class=mf>673.5014344953479</span><span class=p>,</span> <span class=mf>672.2993835499913</span><span class=p>,</span> <span class=mf>670.854191183101</span><span class=p>,</span> <span class=mf>669.160320557414</span><span class=p>,</span> <span class=mf>667.212141256343</span><span class=p>,</span> <span class=mf>665.0039417550423</span><span class=p>,</span> <span class=mf>662.5299065386313</span><span class=p>,</span> <span class=mf>659.7840521403762</span><span class=p>,</span> <span class=mf>656.7601145259869</span><span class=p>,</span> <span class=mf>653.4513760321006</span><span class=p>,</span> <span class=mf>649.850415511934</span><span class=p>,</span> <span class=mf>645.9487639524807</span><span class=p>,</span> <span class=mf>641.7364532425047</span><span class=p>,</span> <span class=mf>637.2014601736236</span><span class=p>,</span> <span class=mf>632.329070655695</span><span class=p>,</span> <span class=mf>627.1012169780441</span><span class=p>,</span> <span class=mf>621.4958678310563</span><span class=p>,</span> <span class=mf>615.4865699906779</span><span class=p>,</span> <span class=mf>609.0422464759123</span><span class=p>,</span> <span class=mf>602.1273458417706</span><span class=p>,</span> <span class=mf>594.7024119149082</span><span class=p>,</span> <span class=mf>586.725106882277</span><span class=p>,</span> <span class=mf>578.1516794116279</span><span class=p>,</span> <span class=mf>568.9388298736699</span><span class=p>,</span> <span class=mf>559.04589174303</span><span class=p>,</span> <span class=mf>548.437224306799</span><span class=p>,</span> <span class=mf>537.0846965991266</span><span class=p>,</span> <span class=mf>524.9701337618151</span><span class=p>,</span> <span class=mf>512.0875920842229</span><span class=p>,</span> <span class=mf>498.44532620026223</span><span class=p>,</span> <span class=mf>484.06731192301584</span><span class=p>,</span> <span class=mf>468.9941939012366</span><span class=p>,</span> <span class=mf>453.283542943475</span><span class=p>,</span> <span class=mf>437.0093373305306</span><span class=p>,</span> <span class=mf>420.2606273426102</span><span class=p>,</span> <span class=mf>403.1394006941144</span><span class=p>,</span> <span class=mf>385.757733022054</span><span class=p>,</span> <span class=mf>368.23437359601235</span><span class=p>]</span>
+</span></span><span class=line><span class=cl><span class=n>b</span> <span class=o>=</span> <span class=p>[</span><span class=n>i</span><span class=o>*</span><span class=mi>10</span><span class=o>**</span><span class=mi>32</span> <span class=k>for</span> <span class=n>i</span> <span class=ow>in</span> <span class=n>b</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>gravity</span><span class=p>(</span><span class=n>n</span><span class=p>,</span> <span class=n>d</span><span class=o>=</span><span class=mf>0.25</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=n>A</span> <span class=o>=</span> <span class=n>np</span><span class=o>.</span><span class=n>zeros</span><span class=p>([</span><span class=n>n</span><span class=p>,</span> <span class=n>n</span><span class=p>])</span>
+</span></span><span class=line><span class=cl>    <span class=k>for</span> <span class=n>i</span> <span class=ow>in</span> <span class=nb>range</span><span class=p>(</span><span class=n>n</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>        <span class=k>for</span> <span class=n>j</span> <span class=ow>in</span> <span class=nb>range</span><span class=p>(</span><span class=n>n</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>            <span class=n>A</span><span class=p>[</span><span class=n>i</span><span class=p>,</span> <span class=n>j</span><span class=p>]</span> <span class=o>=</span> <span class=n>d</span><span class=o>/</span><span class=n>n</span><span class=o>*</span><span class=p>(</span><span class=n>d</span><span class=o>**</span><span class=mi>2</span><span class=o>+</span><span class=p>((</span><span class=n>i</span><span class=o>-</span><span class=n>j</span><span class=p>)</span><span class=o>/</span><span class=n>n</span><span class=p>)</span><span class=o>**</span><span class=mi>2</span><span class=p>)</span><span class=o>**</span><span class=p>(</span><span class=o>-</span><span class=mf>1.5</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=n>A</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>n</span> <span class=o>=</span> <span class=mi>85</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>A</span> <span class=o>=</span> <span class=n>gravity</span><span class=p>(</span><span class=n>n</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>A</span> <span class=o>=</span> <span class=n>A</span><span class=o>.</span><span class=n>transpose</span><span class=p>()</span>
+</span></span><span class=line><span class=cl><span class=k>for</span> <span class=n>i</span> <span class=ow>in</span> <span class=nb>range</span><span class=p>(</span><span class=n>n</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=k>for</span> <span class=n>j</span> <span class=ow>in</span> <span class=nb>range</span><span class=p>(</span><span class=n>n</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>        <span class=n>A</span><span class=p>[</span><span class=n>i</span><span class=p>,</span> <span class=n>j</span><span class=p>]</span> <span class=o>=</span> <span class=nb>int</span><span class=p>(</span><span class=n>A</span><span class=p>[</span><span class=n>i</span><span class=p>,</span> <span class=n>j</span><span class=p>]</span><span class=o>*</span><span class=mi>10</span><span class=o>**</span><span class=mi>32</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>M</span> <span class=o>=</span> <span class=n>matrix</span><span class=p>(</span><span class=n>ZZ</span><span class=p>,</span> <span class=n>n</span><span class=o>+</span><span class=mi>1</span><span class=p>,</span> <span class=n>n</span><span class=o>+</span><span class=mi>1</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=k>for</span> <span class=n>i</span> <span class=ow>in</span> <span class=nb>range</span><span class=p>(</span><span class=n>n</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=k>for</span> <span class=n>j</span> <span class=ow>in</span> <span class=nb>range</span><span class=p>(</span><span class=n>n</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>        <span class=n>M</span><span class=p>[</span><span class=n>i</span><span class=p>,</span> <span class=n>j</span><span class=p>]</span> <span class=o>=</span> <span class=n>A</span><span class=p>[</span><span class=n>i</span><span class=p>,</span> <span class=n>j</span><span class=p>]</span>
+</span></span><span class=line><span class=cl><span class=k>for</span> <span class=n>i</span> <span class=ow>in</span> <span class=nb>range</span><span class=p>(</span><span class=n>n</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=n>M</span><span class=p>[</span><span class=n>n</span><span class=p>,</span> <span class=n>i</span><span class=p>]</span> <span class=o>=</span> <span class=n>b</span><span class=p>[</span><span class=n>i</span><span class=p>]</span>
+</span></span><span class=line><span class=cl><span class=n>M</span><span class=p>[:</span><span class=o>-</span><span class=mi>1</span><span class=p>,</span> <span class=o>-</span><span class=mi>1</span><span class=p>]</span> <span class=o>=</span> <span class=mi>2</span> <span class=o>^</span> <span class=mi>60</span>
+</span></span><span class=line><span class=cl><span class=n>M</span><span class=p>[</span><span class=o>-</span><span class=mi>1</span><span class=p>,</span> <span class=o>-</span><span class=mi>1</span><span class=p>]</span> <span class=o>=</span> <span class=mi>1</span>
+</span></span><span class=line><span class=cl><span class=n>s</span> <span class=o>=</span> <span class=n>M</span><span class=o>.</span><span class=n>LLL</span><span class=p>()</span>
+</span></span><span class=line><span class=cl><span class=n>X</span> <span class=o>=</span> <span class=n>s</span><span class=o>*</span><span class=n>M</span><span class=o>**-</span><span class=mi>1</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>s</span> <span class=o>=</span> <span class=s1>&#39;&#39;</span>
+</span></span><span class=line><span class=cl><span class=k>for</span> <span class=n>i</span> <span class=ow>in</span> <span class=nb>range</span><span class=p>(</span><span class=n>n</span><span class=o>+</span><span class=mi>1</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=n>X</span><span class=p>[</span><span class=n>i</span><span class=p>,</span> <span class=o>-</span><span class=mi>1</span><span class=p>]</span> <span class=o>==</span> <span class=o>-</span><span class=mi>1</span> <span class=ow>or</span> <span class=n>X</span><span class=p>[</span><span class=n>i</span><span class=p>,</span> <span class=o>-</span><span class=mi>1</span><span class=p>]</span> <span class=o>==</span> <span class=mi>1</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=k>for</span> <span class=n>j</span> <span class=ow>in</span> <span class=nb>range</span><span class=p>(</span><span class=n>n</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>            <span class=n>s</span> <span class=o>+=</span> <span class=nb>chr</span><span class=p>(</span><span class=nb>abs</span><span class=p>(</span><span class=n>X</span><span class=p>[</span><span class=n>i</span><span class=p>,</span> <span class=n>j</span><span class=p>]))</span>
+</span></span><span class=line><span class=cl>        <span class=k>break</span>
+</span></span><span class=line><span class=cl><span class=nb>print</span><span class=p>(</span><span class=n>s</span><span class=p>)</span></span></span></code></pre></td></tr></table></div></div><p><img loading=lazy src=/posts/bd957c3/imgs/image-20240429193008333.png alt=image-20240429193008333 height=1729 width=3765></p></div><div class=post-footer id=post-footer><div class=post-info><div class=post-info-line><div class=post-info-mod><span title="Updated on 2024-04-01 19:18:07">Updated on 2024-04-01&nbsp;</span></div></div><div class=post-info-line><div class=post-info-md><span><a href=/posts/bd957c3/index.md title="Read Markdown" class=link-to-markdown>Read Markdown</a></span></div><div class=post-info-share><span><a href=javascript:void(0); title="Share on X" data-sharer=twitter data-url=https://goodlunatic.github.io/posts/bd957c3/ data-title="2024 长城杯信息安全铁人三项赛 Misc Writeup" data-hashtags=CTF,Misc,Writeup><i class="fa-brands fa-x-twitter fa-fw" aria-hidden=true></i></a>
+<a href=javascript:void(0); title="Share on Facebook" data-sharer=facebook data-url=https://goodlunatic.github.io/posts/bd957c3/ data-hashtag=CTF><i class="fa-brands fa-facebook-square fa-fw" aria-hidden=true></i></a>
+<a href=javascript:void(0); title="Share on 微博" data-sharer=weibo data-url=https://goodlunatic.github.io/posts/bd957c3/ data-title="2024 长城杯信息安全铁人三项赛 Misc Writeup"><i class="fa-brands fa-weibo fa-fw" aria-hidden=true></i></a></span></div></div></div><div class=post-info-more><section class=post-tags><i class="fa-solid fa-tags fa-fw me-1" aria-hidden=true></i><a href=/tags/ctf/ class=post-tag title="Tags - CTF">CTF</a><a href=/tags/misc/ class=post-tag title="Tags - Misc">Misc</a><a href=/tags/writeup/ class=post-tag title="Tags - Writeup">Writeup</a></section><section><span><a href=javascript:void(0); onclick=window.history.back()>Back</a></span>&nbsp;|&nbsp;<span><a href=/>Home</a></span></section></div><div class=post-nav><a href=/posts/10f4f96/ class=post-nav-item rel=prev title="2024 XCTF国际网络攻防联赛-DubheCTF分站赛 Misc Writeup"><i class="fa-solid fa-angle-left fa-fw" aria-hidden=true></i>2024 XCTF国际网络攻防联赛-DubheCTF分站赛 Misc Writeup</a><a href=/posts/e49ecc5/ class=post-nav-item rel=next title="2023&amp;2024 红明谷初赛 Misc Writeup">2023&amp;2024 红明谷初赛 Misc Writeup<i class="fa-solid fa-angle-right fa-fw" aria-hidden=true></i></a></div></div></article><aside class=toc id=toc-auto aria-label=Contents><h2 class=toc-title>Contents&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden=true></i></h2><div class=toc-content id=toc-content-auto></div></aside></main><footer class=footer><div class=footer-container><div class="footer-line powered order-1">Powered by <a href=https://gohugo.io/ target=_blank rel="external nofollow noopener noreferrer" title="Hugo 0.152.1">Hugo</a> | Theme - <a href=https://github.com/hugo-fixit/FixIt target=_blank rel=external title="FixIt v0.4.0-alpha.2-20251023040336-063af2cd">FixIt</a></div><div class="footer-line copyright order-2" itemscope itemtype=http://schema.org/CreativeWork><i class="fa-regular fa-copyright fa-fw" aria-hidden=true></i>
+<span itemprop=copyrightYear>2022 - 2025</span><span class=author itemprop=copyrightHolder>
+<a href=https://goodlunatic.github.io target=_blank rel="external nofollow noopener noreferrer">Lunatic</a></span></div><div class="footer-line visitor"><span id=busuanzi_container_site_uv title='Total visitors'><i class="fa-regular fa-user fa-fw me-1" aria-hidden=true></i><span id=busuanzi_value_site_uv><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden=true></i></span></span><span id=busuanzi_container_site_pv class=footer-divider title='Total visits'><i class="fa-regular fa-eye fa-fw me-1" aria-hidden=true></i><span id=busuanzi_value_site_pv><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden=true></i></span></span></div></div></footer></div><div class=widgets><div class="fixed-buttons animate__faster d-none"><div class="fixed-button back-to-top" role=button aria-label="Back to Top"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden=true></i><span class=variant-numeric>0%</span></div></div><div id=mask></div><noscript><div class=noscript-warning>This website works best with JavaScript enabled.</div></noscript></div><link rel=stylesheet href=/lib/pace/themes/blue/pace-theme-minimal.css><script src=/lib/sharer/sharer.min.js async defer></script><script src=https://vercount.one/js async defer></script><script src=/lib/pace/pace.min.js async defer></script><script src=/posts/bd957c3/config/page.js defer></script><script src=/js/theme.min.js defer></script></body></html>

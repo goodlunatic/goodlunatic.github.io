@@ -1,0 +1,355 @@
+<!doctype html><html itemscope itemtype=http://schema.org/WebPage lang=en><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=2"><meta name=robots content="noodp"><title>2024 NKCTF Misc Writeup - ⚡Lunatic BLOG⚡</title><meta name=author content="Lunatic"><meta name=description content="从这场比赛可以看出自己还是有很多东西需要去学
+感觉 Misc 很大程度上还是看经验，自己见过的东西还是太少了
+"><meta name=keywords content='CTF,Misc,Writeup'><meta itemprop=name content="2024 NKCTF Misc Writeup"><meta itemprop=description content="从这场比赛可以看出自己还是有很多东西需要去学
+感觉 Misc 很大程度上还是看经验，自己见过的东西还是太少了"><meta itemprop=datePublished content="2024-04-30T19:07:38+08:00"><meta itemprop=dateModified content="2025-10-23T17:18:16+08:00"><meta itemprop=wordCount content="690"><meta itemprop=keywords content="CTF,Misc,Writeup"><meta property="og:url" content="https://goodlunatic.github.io/posts/e0d44f3/"><meta property="og:site_name" content="⚡Lunatic BLOG⚡"><meta property="og:title" content="2024 NKCTF Misc Writeup"><meta property="og:description" content="从这场比赛可以看出自己还是有很多东西需要去学
+感觉 Misc 很大程度上还是看经验，自己见过的东西还是太少了"><meta property="og:locale" content="en"><meta property="og:type" content="article"><meta property="article:section" content="posts"><meta property="article:published_time" content="2024-04-30T19:07:38+08:00"><meta property="article:modified_time" content="2025-10-23T17:18:16+08:00"><meta property="article:tag" content="CTF"><meta property="article:tag" content="Misc"><meta property="article:tag" content="Writeup"><meta name=twitter:card content="summary"><meta name=twitter:title content="2024 NKCTF Misc Writeup"><meta name=twitter:description content="从这场比赛可以看出自己还是有很多东西需要去学
+感觉 Misc 很大程度上还是看经验，自己见过的东西还是太少了"><meta name=application-name content="FixIt"><meta name=apple-mobile-web-app-title content="FixIt"><meta name=theme-color data-light=#f8f8f8 data-dark=#252627 content="#f8f8f8"><meta name=msapplication-TileColor content="#da532c"><link rel=icon href=https://www.nssctf.cn/files/2024/4/28/7f130a1387.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=canonical type=text/html href=https://goodlunatic.github.io/posts/e0d44f3/ title="2024 NKCTF Misc Writeup - ⚡Lunatic BLOG⚡"><link rel=prev type=text/html href=https://goodlunatic.github.io/friends/ title=🔗Friends><link rel=next type=text/html href=https://goodlunatic.github.io/posts/9d73413/ title="2024 “天一永安杯”宁波市赛初赛 Misc Writeup"><link rel=alternate type=text/markdown href=https://goodlunatic.github.io/posts/e0d44f3/index.md title="2024 NKCTF Misc Writeup - ⚡Lunatic BLOG⚡"><link rel=stylesheet href=/css/config.min.css><link rel=stylesheet href=/css/style.min.css><link rel=preload href=/lib/fontawesome-free/all.min.css as=style onload='this.removeAttribute("onload"),this.rel="stylesheet"'><noscript><link rel=stylesheet href=/lib/fontawesome-free/all.min.css></noscript><link rel=preload href=/lib/animate/animate.min.css as=style onload='this.removeAttribute("onload"),this.rel="stylesheet"'><noscript><link rel=stylesheet href=/lib/animate/animate.min.css></noscript><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"2024 NKCTF Misc Writeup","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/goodlunatic.github.io\/posts\/e0d44f3\/"},"genre":"posts","keywords":"CTF, Misc, Writeup","wordcount":690,"url":"https:\/\/goodlunatic.github.io\/posts\/e0d44f3\/","datePublished":"2024-04-30T19:07:38+08:00","dateModified":"2025-10-23T17:18:16+08:00","publisher":{"@type":"Organization","name":""},"author":{"@type":"Person","name":"Lunatic"},"description":""}</script><script src=/js/head/color-scheme.min.js></script></head><body data-header-desktop=sticky data-header-mobile=auto><div class=wrapper data-page-style=normal><header class="desktop animate__faster" id=header-desktop><div class=header-wrapper><div class=header-title><a href=/ title="⚡Lunatic BLOG⚡"><span class=header-title-text>⚡Lunatic BLOG⚡</span></a><span class=header-subtitle></span></div><nav><ul class=menu><li class=menu-item><a class=menu-link href=/archives/><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden=true></i> Archives</a></li><li class=menu-item><a class=menu-link href=/categories/><i class="fa-solid fa-folder-tree fa-fw fa-sm" aria-hidden=true></i> Categories</a></li><li class=menu-item><a class=menu-link href=/tags/><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden=true></i> Tags</a></li><li class=menu-item><a class=menu-link href=/friends/><i class="fa-solid fa-chain fa-fw fa-sm" aria-hidden=true></i> Friends</a></li><li class=menu-item><a class=menu-link href=/about/><i class="fa-solid fa-graduation-cap fa-fw fa-sm" aria-hidden=true></i> About</a></li><li class="menu-item delimiter"></li><li class="menu-item theme-switch" title="Switch Theme"><i class="fa-solid fa-adjust fa-fw" aria-hidden=true></i></li></ul></nav></div></header><header class="mobile animate__faster" id=header-mobile><div class=header-container><div class=header-wrapper><div class=header-title><a href=/ title="⚡Lunatic BLOG⚡"><span class=header-title-text>⚡Lunatic BLOG⚡</span></a><span class=header-subtitle></span></div><div class=menu-toggle id=menu-toggle-mobile><span></span><span></span><span></span></div></div><nav><ul class=menu id=menu-mobile><li class=menu-item><a class=menu-link href=/archives/><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden=true></i> Archives</a></li><li class=menu-item><a class=menu-link href=/categories/><i class="fa-solid fa-folder-tree fa-fw fa-sm" aria-hidden=true></i> Categories</a></li><li class=menu-item><a class=menu-link href=/tags/><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden=true></i> Tags</a></li><li class=menu-item><a class=menu-link href=/friends/><i class="fa-solid fa-chain fa-fw fa-sm" aria-hidden=true></i> Friends</a></li><li class=menu-item><a class=menu-link href=/about/><i class="fa-solid fa-graduation-cap fa-fw fa-sm" aria-hidden=true></i> About</a></li><li class="menu-item menu-system"><span class="menu-system-item theme-switch" title="Switch Theme"><i class="fa-solid fa-adjust fa-fw" aria-hidden=true></i></span></li></ul></nav></div></header><main class=fi-container><aside class="aside-collection animate__animated animate__fadeIn animate__faster" aria-label=Collections></aside><article class="page single"><div class=header><h1 class="single-title animate__animated animate__flipInX"><span>2024 NKCTF Misc Writeup</span></h1></div><div class=post-meta><div class=post-meta-line><span class=post-author><a href=https://goodlunatic.github.io title=Author target=_blank rel="external nofollow noopener noreferrer author" class=author><img class=avatar src=https://www.nssctf.cn/files/2024/4/28/7f130a1387.png alt=Lunatic height=16 width=16>&nbsp;Lunatic</a></span><span class=post-included-in>&nbsp;included in <a href=/categories/writeup/ class=post-category title="Category - Writeup"><i class="fa-regular fa-folder fa-fw" aria-hidden=true></i> Writeup</a></span></div><div class=post-meta-line><span title="published on 2024-04-30 19:07:38"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden=true></i><time datetime=2024-04-30>2024-04-30</time></span>&nbsp;<span title="Updated on 2025-10-23 17:18:16"><i class="fa-regular fa-calendar-check fa-fw me-1" aria-hidden=true></i><time datetime=2025-10-23>2025-10-23</time></span>&nbsp;<span title="690 words"><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden=true></i>About 700 words</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden=true></i>4 minutes</span>&nbsp;<span id=busuanzi_container_page_pv class="busuanzi_visitors comment-visitors" data-flag-title="2024 NKCTF Misc Writeup"><i class="fa-regular fa-eye fa-fw me-1" aria-hidden=true></i><span id=busuanzi_value_page_pv>-</span>&nbsp;views
+</span>&nbsp;</div></div><div class="details toc" id=toc-static data-kept=false><div class="details-summary toc-title"><span>Contents</span>
+<span><i class="details-icon fa-solid fa-angle-right" aria-hidden=true></i></span></div><div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents><ul><li><a href=#题目名称-webshell_pro>题目名称 Webshell_pro</a></li><li><a href=#题目名称-minecraftseed>题目名称 Minecraft:SEED</a></li><li><a href=#题目名称-cain_is_hacker>题目名称 cain_is_hacker</a></li><li><a href=#题目名称-1z_f0r3ns1c5>题目名称 1z_F0r3ns1c5</a></li><li><a href=#题目名称-hackmycql>题目名称 HackMyCQL</a></li></ul></nav></div></div><div class=content id=content><p><strong>从这场比赛可以看出自己还是有很多东西需要去学</strong><br><strong>感觉 Misc 很大程度上还是看经验，自己见过的东西还是太少了</strong></p><p><img loading=lazy src=/posts/e0d44f3/imgs/image-20240803101932804.png alt=/posts/e0d44f3/imgs/image-20240803101932804.png height=549 width=1015></p><h2 class=heading-element id=题目名称-webshell_pro><span>题目名称 Webshell_pro</span>
+<a href=#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-webshell_pro class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h2><p>打开流量包，追踪TCP流，可以很明显的看出是一个webshell流量
+用base64解码响应中的数据，一个个试过去，发现存在hint.py和小明的日记.txt
+以及后面才出现的flag.txt
+<img loading=lazy src=/posts/e0d44f3/imgs/image-20240430190843840.png alt=/posts/e0d44f3/imgs/image-20240430190843840.png height=1199 width=2735>
+<img loading=lazy src=/posts/e0d44f3/imgs/image-20240430190854576.png alt=/posts/e0d44f3/imgs/image-20240430190854576.png height=1243 width=2706>
+先base64解码，再去除换行符，最后再base64解码，即可得到请求中shell的加密代码——hint.py
+<img loading=lazy src=/posts/e0d44f3/imgs/image-20240430190909480.png alt=/posts/e0d44f3/imgs/image-20240430190909480.png height=1964 width=3823>
+叫ChatGPT写一个解密的代码，开头加上一个urldecode即可</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=kn>import</span> <span class=nn>base64</span>  
+</span></span><span class=line><span class=cl><span class=kn>import</span> <span class=nn>libnum</span>  
+</span></span><span class=line><span class=cl><span class=kn>from</span> <span class=nn>Crypto.PublicKey</span> <span class=kn>import</span> <span class=n>RSA</span>  
+</span></span><span class=line><span class=cl><span class=kn>from</span> <span class=nn>urllib.parse</span> <span class=kn>import</span> <span class=n>unquote</span>  
+</span></span><span class=line><span class=cl>  
+</span></span><span class=line><span class=cl><span class=n>pubkey_str</span> <span class=o>=</span> <span class=s2>&#34;&#34;&#34;-----BEGIN PUBLIC KEY-----  
+</span></span></span><span class=line><span class=cl><span class=s2>MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCK/qv5P8ixWjoFI2rzF62tm6sDFnRsKsGhVSCuxQIxuehMWQLmv6TPxyTQPefIKufzfUFaca/YHkIVIC19ohmE5X738TtxGbOgiGef4bvd9sU6M42k8vMlCPJp1woDFDOFoBQpr4YzH4ZTR6Ps+HP8VEIJMG5uiLQOLxdKdxi41QIDAQAB  
+</span></span></span><span class=line><span class=cl><span class=s2>-----END PUBLIC KEY-----  
+</span></span></span><span class=line><span class=cl><span class=s2>&#34;&#34;&#34;</span>  
+</span></span><span class=line><span class=cl>  
+</span></span><span class=line><span class=cl><span class=n>prikey_str</span> <span class=o>=</span> <span class=s2>&#34;&#34;&#34;-----BEGIN PRIVATE KEY-----  
+</span></span></span><span class=line><span class=cl><span class=s2>MIICdgIBADANBgkqhkiG9w0BAQEFAASCAmAwggJcAgEAAoGBAIr+q/k/yLFaOgUjavMXra2bqwMWdGwqwaFVIK7FAjG56ExZAua/pM/HJNA958gq5/N9QVpxr9geQhUgLX2iGYTlfvfxO3EZs6CIZ5/hu932xTozjaTy8yUI8mnXCgMUM4WgFCmvhjMfhlNHo+z4c/xUQgkwbm6ItA4vF0p3GLjVAgMBAAECgYBDsqawT5DAUOHRft6oZ+//jsJMTrOFu41ztrKkbPAUqCesh+4R1WXAjY4wnvY1WDCBN5CNLLIo4RPuli2R81HZ4OpZuiHv81sNMccauhrJrioDdbxhxbM7/jQ6M9YajwdNisL5zClXCOs1/y01+9vDiMDk0kX8hiIYlpPKDwjqQQJBAL6Y0fuoJng57GGhdwvN2c656tLDPj9GRi0sfeeMqavRTMz6/qea1LdAuzDhRoS2Wb8ArhOkYns0GMazzc1q428CQQC6sM9OiVR4EV/ewGnBnF+0p3alcYr//Gp1wZ6fKIrFJQpbHTzf27AhKgOJ1qB6A7P/mQS6JvYDPsgrVkPLRnX7AkEAr/xpfyXfB4nsUqWFR3f2UiRmx98RfdlEePeo9YFzNTvX3zkuo9GZ8e8qKNMJiwbYzT0yft59NGeBLQ/eynqUrwJAE6Nxy0Mq/Y5mVVpMRa+babeMBY9SHeeBk22QsBFlt6NT2Y3Tz4CeoH547NEFBJDLKIICO0rJ6kF6cQScERASbQJAZy088sVY6DJtGRLPuysv3NiyfEvikmczCEkDPex4shvFLddwNUlmhzml5pscIie44mBOJ0uX37y+co3q6UoRQg==  
+</span></span></span><span class=line><span class=cl><span class=s2>-----END PRIVATE KEY-----  
+</span></span></span><span class=line><span class=cl><span class=s2>&#34;&#34;&#34;</span>  
+</span></span><span class=line><span class=cl>  
+</span></span><span class=line><span class=cl><span class=n>pubkey</span> <span class=o>=</span> <span class=n>RSA</span><span class=o>.</span><span class=n>import_key</span><span class=p>(</span><span class=n>pubkey_str</span><span class=p>)</span>  
+</span></span><span class=line><span class=cl><span class=n>prikey</span> <span class=o>=</span> <span class=n>RSA</span><span class=o>.</span><span class=n>import_key</span><span class=p>(</span><span class=n>prikey_str</span><span class=p>)</span>  
+</span></span><span class=line><span class=cl><span class=n>n</span> <span class=o>=</span> <span class=n>pubkey</span><span class=o>.</span><span class=n>n</span>  
+</span></span><span class=line><span class=cl>  
+</span></span><span class=line><span class=cl>  
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>dec_replace</span><span class=p>(</span><span class=n>base64_str</span><span class=p>:</span> <span class=nb>str</span><span class=p>):</span>  
+</span></span><span class=line><span class=cl>    <span class=n>base64_str</span> <span class=o>=</span> <span class=n>base64_str</span><span class=o>.</span><span class=n>replace</span><span class=p>(</span><span class=s2>&#34;e5Lg^FM5EQYe5!yF&amp;62%V$UG*B*RfQeM&#34;</span><span class=p>,</span> <span class=s2>&#34;/&#34;</span><span class=p>)</span>  
+</span></span><span class=line><span class=cl>    <span class=n>base64_str</span> <span class=o>=</span> <span class=n>base64_str</span><span class=o>.</span><span class=n>replace</span><span class=p>(</span><span class=s2>&#34;n6&amp;B8G6nE@2tt4UR6h3QBt*5&amp;C&amp;pVu8W&#34;</span><span class=p>,</span> <span class=s2>&#34;+&#34;</span><span class=p>)</span>  
+</span></span><span class=line><span class=cl>    <span class=n>base64_str</span> <span class=o>=</span> <span class=n>base64_str</span><span class=o>.</span><span class=n>replace</span><span class=p>(</span><span class=s2>&#34;JXWUDuLUgwRLKD9fD6&amp;VY2aFeE&amp;r@Ff2&#34;</span><span class=p>,</span> <span class=s2>&#34;=&#34;</span><span class=p>)</span>  
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=n>base64_str</span>  
+</span></span><span class=line><span class=cl>  
+</span></span><span class=line><span class=cl>  
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>decrypt</span><span class=p>(</span><span class=n>cipher_text</span><span class=p>):</span>  
+</span></span><span class=line><span class=cl>    <span class=c1># 使用公钥解密  </span>
+</span></span><span class=line><span class=cl>    <span class=n>plain_text</span> <span class=o>=</span> <span class=sa>b</span><span class=s2>&#34;&#34;</span>  
+</span></span><span class=line><span class=cl>    <span class=n>cipher_text</span> <span class=o>=</span> <span class=n>base64</span><span class=o>.</span><span class=n>b64decode</span><span class=p>(</span><span class=n>dec_replace</span><span class=p>(</span><span class=n>cipher_text</span><span class=p>))</span>  
+</span></span><span class=line><span class=cl>    <span class=k>for</span> <span class=n>i</span> <span class=ow>in</span> <span class=nb>range</span><span class=p>(</span><span class=mi>0</span><span class=p>,</span> <span class=nb>len</span><span class=p>(</span><span class=n>cipher_text</span><span class=p>),</span> <span class=mi>128</span><span class=p>):</span>  
+</span></span><span class=line><span class=cl>        <span class=n>part</span> <span class=o>=</span> <span class=n>cipher_text</span><span class=p>[</span><span class=n>i</span><span class=p>:</span><span class=n>i</span><span class=o>+</span><span class=mi>128</span><span class=p>]</span>  
+</span></span><span class=line><span class=cl>        <span class=n>dec</span> <span class=o>=</span> <span class=n>libnum</span><span class=o>.</span><span class=n>n2s</span><span class=p>(</span><span class=nb>pow</span><span class=p>(</span><span class=n>libnum</span><span class=o>.</span><span class=n>s2n</span><span class=p>(</span><span class=n>part</span><span class=p>),</span> <span class=n>pubkey</span><span class=o>.</span><span class=n>e</span><span class=p>,</span> <span class=n>n</span><span class=p>))</span>  
+</span></span><span class=line><span class=cl>        <span class=n>plain_text</span> <span class=o>+=</span> <span class=n>dec</span>  
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=n>plain_text</span><span class=o>.</span><span class=n>decode</span><span class=p>()</span>  
+</span></span><span class=line><span class=cl>  
+</span></span><span class=line><span class=cl>  
+</span></span><span class=line><span class=cl><span class=k>if</span> <span class=vm>__name__</span> <span class=o>==</span> <span class=s1>&#39;__main__&#39;</span><span class=p>:</span>  
+</span></span><span class=line><span class=cl>    <span class=n>cipher_text</span> <span class=o>=</span> <span class=nb>input</span><span class=p>(</span><span class=s2>&#34;请输入要解密的密文: &#34;</span><span class=p>)</span>  
+</span></span><span class=line><span class=cl>    <span class=n>cipher_text</span> <span class=o>=</span> <span class=n>unquote</span><span class=p>(</span><span class=n>cipher_text</span><span class=p>)</span>  
+</span></span><span class=line><span class=cl>    <span class=n>decrypted_text</span> <span class=o>=</span> <span class=n>decrypt</span><span class=p>(</span><span class=n>cipher_text</span><span class=p>)</span>  
+</span></span><span class=line><span class=cl>    <span class=nb>print</span><span class=p>(</span><span class=s2>&#34;解密后的明文为:&#34;</span><span class=p>,</span> <span class=n>decrypted_text</span><span class=p>)</span></span></span></code></pre></td></tr></table></div></div><p>然后就可以很清楚的知道shell命令都干了啥
+<img loading=lazy src=/posts/e0d44f3/imgs/image-20240430190941256.png alt=/posts/e0d44f3/imgs/image-20240430190941256.png height=1793 width=3810>
+去除换行符然后base64解码小明的日记.txt，可以得到解密的密钥
+<img loading=lazy src=/posts/e0d44f3/imgs/image-20240430190952441.png alt=/posts/e0d44f3/imgs/image-20240430190952441.png height=1335 width=3025>
+然后用这个密钥去AES解密上面得到的密文即可得到flag
+<img loading=lazy src=/posts/e0d44f3/imgs/image-20240430191003341.png alt=/posts/e0d44f3/imgs/image-20240430191003341.png height=1041 width=1782></p><h2 class=heading-element id=题目名称-minecraftseed><span>题目名称 Minecraft:SEED</span>
+<a href=#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-minecraftseed class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h2><p>服务器IP: nkctf-mc-01.shenghuo2.cn / nkctf-mc-02.shenghuo2.cn / nkctf-mc-03.shenghuo2.cn</p><p>装一个 SeedCrackerX 和一个 Wurst 加速飞行跑图</p><p>然后找到5个沉船就行，mod会自己开始爆破seed</p><p><img loading=lazy src=/posts/e0d44f3/imgs/image-20240430191021053.png alt=/posts/e0d44f3/imgs/image-20240430191021053.png height=69 width=631></p><p>Seed: 2150463978431929967</p><p>然后输入/getflag 2150463978431929967即可得到flag</p><p><img loading=lazy src=/posts/e0d44f3/imgs/image-20240430191027459.png alt=/posts/e0d44f3/imgs/image-20240430191027459.png height=65 width=1252></p><h2 class=heading-element id=题目名称-cain_is_hacker><span>题目名称 cain_is_hacker</span>
+<a href=#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-cain_is_hacker class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h2><p>内存取证，经典开头用 vol_all_in_one 梭一把
+<img loading=lazy src=/posts/e0d44f3/imgs/image-20240430191057005.png alt=/posts/e0d44f3/imgs/image-20240430191057005.png height=1600 width=1280></p><p>然后在 filescan 的结果中找到一个h4re.zip，尝试导出
+桌面上那个 raw 文件应该就是题目附件给我们的 raw 文件
+所以这里也没必要导出，当然也是无法导出的
+<img loading=lazy src=/posts/e0d44f3/imgs/image-20240430191104016.png alt=/posts/e0d44f3/imgs/image-20240430191104016.png height=1600 width=2560>
+<img loading=lazy src=/posts/e0d44f3/imgs/image-20240430191107942.png alt=/posts/e0d44f3/imgs/image-20240430191107942.png height=166 width=1280></p><p>解压这个压缩包，得到两个奇怪的文件，查看其中的importfile后可以知道这个是用Encfs加密后的加密卷
+<img loading=lazy src=/posts/e0d44f3/imgs/image-20240430191117376.png alt=/posts/e0d44f3/imgs/image-20240430191117376.png height=291 width=1239>
+<img loading=lazy src=/posts/e0d44f3/imgs/image-20240430191120037.png alt=/posts/e0d44f3/imgs/image-20240430191120037.png height=1600 width=2560></p><p>根据<a href=https://www.cnblogs.com/truthmaster/p/15776610.html target=_blank rel="external nofollow noopener noreferrer">参考文章</a>可知，我们可以在Windows下用 Encfs4win 来挂载这个加密卷<br>但是解密这个加密卷，需要 .encfs6.xml（即文件夹中的importfile)，以及解密的密码<br>因此接下来我们就需要去寻找解密的密码<br>比赛的时候一直在找破解这个密码的方法，找到了一个 CVE-2014-3462，但是没有能用的exp<br>查看 psscan 命令的结果，可以发现存在 StikyNot 进程，这个是Windows自带的便签软件
+<img loading=lazy src=/posts/e0d44f3/imgs/image-20240430191134602.png alt=/posts/e0d44f3/imgs/image-20240430191134602.png height=1600 width=2560></p><p>参考<a href=https://lazzzaro.github.io/2020/06/20/misc-%e5%8f%96%e8%af%81/ target=_blank rel="external nofollow noopener noreferrer">Lazzaro大佬的博客</a>可知<br>StikyNot 的文件会保存在C:\Users\XXX\AppData\Roaming\Microsoft\Sticky Notes\目录下
+<img loading=lazy src=/posts/e0d44f3/imgs/image-20240430191146138.png alt=/posts/e0d44f3/imgs/image-20240430191146138.png height=1531 width=2548></p><p>因此在文件中搜索 Sticky Notes ，发现有一个StickyNotes.snt文件，尝试导出
+<img loading=lazy src=/posts/e0d44f3/imgs/image-20240430191152930.png alt=/posts/e0d44f3/imgs/image-20240430191152930.png height=1600 width=2560></p><p>比赛的时候就是卡在了这里，因为这个文件需要用Windows7的便签或记事本打开，然后Win11下是无法直接查看的
+官方的wp说的是这个东西需要用 WIndows7 的虚拟机打开，这里真的很坑，要专业版的Win7才有
+这里需要将这个.snt文件放到C:\Users\XXX\AppData\Roaming\Microsoft\Sticky Notes\路径下
+最后再打开便签即可看到下面这样的一串字符串
+<img loading=lazy src=/posts/e0d44f3/imgs/image-20240430191201976.png alt=/posts/e0d44f3/imgs/image-20240430191201976.png height=1600 width=2547></p><p>将得到的字符串base58解码后即可得到解密的密码：welcome_to_NkCTF_and_this_is_the_enkey
+然后将importfile重命名为.encfs6.xml然后用Encfs MP直接挂载即可
+<img loading=lazy src=/posts/e0d44f3/imgs/image-20240430191210101.png alt=/posts/e0d44f3/imgs/image-20240430191210101.png height=624 width=1075>
+<img loading=lazy src=/posts/e0d44f3/imgs/image-20240430191213926.png alt=/posts/e0d44f3/imgs/image-20240430191213926.png height=624 width=1075></p><p>挂载后打开挂载的磁盘，得到一个ez.xlsx
+无法使用Excel直接打开，于是我们使用010打开，发现vba字符，因此猜测存在宏
+<img loading=lazy src=/posts/e0d44f3/imgs/image-20240430191221687.png alt=/posts/e0d44f3/imgs/image-20240430191221687.png height=1600 width=2560></p><p>因此我们直接使用olevba分析文件中的vba代码，发现存在base64解码的操作
+<img loading=lazy src=/posts/e0d44f3/imgs/image-20240430191231780.png alt=/posts/e0d44f3/imgs/image-20240430191231780.png height=198 width=1734>
+<img loading=lazy src=/posts/e0d44f3/imgs/image-20240430191234934.png alt=/posts/e0d44f3/imgs/image-20240430191234934.png height=1600 width=2560></p><p>用CyberChef解码后得到一些未知的Hex值
+联系题面猜测这个就是被勒索病毒加密后的flag文件</p><blockquote><p><em>在fault的配合下，cain宝成功入侵了我的电脑，她使用勒索软件加密了flag文件并将其隐藏了起来。当我发现的时候，cain早已将她使用的勒索软件和密钥删除了，但是匆忙下她还是留下了一些信息，你能在内存中获取并解密flag文件吗？</em></p></blockquote><p><img loading=lazy src=/posts/e0d44f3/imgs/image-20240430191254553.png alt=/posts/e0d44f3/imgs/image-20240430191254553.png height=1525 width=2546></p><p>因此，我接下来要去寻找那个勒索病毒的信息，看看是哪种勒索病毒并尝试寻找它的解密方式
+在Console命令的结果中发现hidden-tear.exe文件
+<img loading=lazy src=/posts/e0d44f3/imgs/image-20240430191304205.png alt=/posts/e0d44f3/imgs/image-20240430191304205.png height=1600 width=2560></p><p>网上一搜，发现这个程序就是我们要找的勒索病毒</p><p><img loading=lazy src=/posts/e0d44f3/imgs/image-20240430191315352.png alt=/posts/e0d44f3/imgs/image-20240430191315352.png height=1464 width=2555></p><p>已知它是完全开源的，因此我们在github中搜索，发现它连解密的软件一起开源了<br>但是这个解密软件好像不是很好用，这里贴一个<a href=https://www.bleepingcomputer.com/download/hidden-tear-decrypter/ target=_blank rel="external nofollow noopener noreferrer">更好用的解密软件</a>
+<img loading=lazy src=/posts/e0d44f3/imgs/image-20240430191326585.png alt=/posts/e0d44f3/imgs/image-20240430191326585.png height=1526 width=2554></p><p>运行 HiddenTearDecrypter.exe ，发现解密需要解密密钥
+根据题面可知，密钥被删除了，因此我们需要尝试使用vol的mftparser命令去恢复密钥
+<img loading=lazy src=/posts/e0d44f3/imgs/image-20240430191336367.png alt=/posts/e0d44f3/imgs/image-20240430191336367.png height=435 width=798></p><p>然后在mftparser命令的结果中发现了key，删去空格即可得到恢复密钥：nT0XoHBA2!Uc?
+<img loading=lazy src=/posts/e0d44f3/imgs/image-20240430191343578.png alt=/posts/e0d44f3/imgs/image-20240430191343578.png height=1600 width=2560></p><p>其实这里如果用vol没找到的话，可以使用R-stdio找这个密钥
+个人感觉用R-stdio找起来更方便，直接在$Recycle.bin中翻就行
+<img loading=lazy src=/posts/e0d44f3/imgs/image-20240430191351185.png alt=/posts/e0d44f3/imgs/image-20240430191351185.png height=1600 width=2560></p><p>最后将之前保存的加密文件后缀改为.locked，输入密钥用HiddenTearDecrypter.exe解密即可得到flag
+<img loading=lazy src=/posts/e0d44f3/imgs/image-20240430191358504.png alt=/posts/e0d44f3/imgs/image-20240430191358504.png height=435 width=798>
+NKCTF{C0ngr@tu1atiOns_On_coMpleting_t3e_Fo3eNs1cs_Ch41lenge_I_wi1l_giv4_y0u_A_cain!!!!}</p><h2 class=heading-element id=题目名称-1z_f0r3ns1c5><span>题目名称 1z_F0r3ns1c5</span>
+<a href=#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-1z_f0r3ns1c5 class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h2><p>给了一个1.raw内存镜像文件，直接 all_in_one 脚本开扫</p><p><img loading=lazy src=/posts/e0d44f3/imgs/image-20240430191420441.png alt=/posts/e0d44f3/imgs/image-20240430191420441.png height=1600 width=1280></p><p>查看镜像的环境变量，发现有好多个叫做nowayback的变量</p><p><img loading=lazy src=/posts/e0d44f3/imgs/image-20240430191426322.png alt=/posts/e0d44f3/imgs/image-20240430191426322.png height=1600 width=2560></p><p>随波逐流一键解码（XXencode解密）即可得到第一段flag：nkctf{39c429eb-2faf</p><p><img loading=lazy src=/posts/e0d44f3/imgs/image-20240430191432559.png alt=/posts/e0d44f3/imgs/image-20240430191432559.png height=1233 width=1218></p><p>flag1：nkctf{39c429eb-2faf
+查看pslist命令的结果，发现存在mspaint的进程</p><p><img loading=lazy src=/posts/e0d44f3/imgs/image-20240430191445217.png alt=/posts/e0d44f3/imgs/image-20240430191445217.png height=1600 width=2560></p><p>尝试用memdump命令导出这个进程，导出后一个得到一个dmp文件
+然后就是这里折腾了好久，后来翻来覆去找了好多资料才知道【最后还是通过谷歌识图找到了类似的题目】
+这里需要将导出的进程文件的后缀改成.data，Gimp才能当成raw导入【涨知识了】
+改成.data后直接拖到Gimp中，慢慢调分辨率和位移就可以了（下图使用的分辨率是2560*1600）
+<img loading=lazy src=/posts/e0d44f3/imgs/image-20240430191500026.png alt=/posts/e0d44f3/imgs/image-20240430191500026.png height=1982 width=2988>
+flag2：-49a0-bd24-
+之后在consoles命令的记录中看到出题人git了一个项目的源码
+<img loading=lazy src=/posts/e0d44f3/imgs/image-20240430191513036.png alt=/posts/e0d44f3/imgs/image-20240430191513036.png height=2090 width=3829></p><p>我们这里也将源码 git clone 到本地，查看README发现源码被删了，提示我们恢复源码</p><p><img loading=lazy src=/posts/e0d44f3/imgs/image-20240430191522097.png alt=/posts/e0d44f3/imgs/image-20240430191522097.png height=404 width=2010></p><p>使用 git log 命令查看历史 commit 记录，发现前面有一个 9eb2 开头的版本
+<img loading=lazy src=/posts/e0d44f3/imgs/image-20240430191624918.png alt=/posts/e0d44f3/imgs/image-20240430191624918.png height=377 width=2010></p><p>我们使用 git reset —hard 命令恢复到之前的版本，然后目录下就可以看到源码了
+<img loading=lazy src=/posts/e0d44f3/imgs/image-20240430191634223.png alt=/posts/e0d44f3/imgs/image-20240430191634223.png height=224 width=2010></p><p>根据之前README文件中的提示，我们只能使用 Docker 或者 Python3.7.2 部署这项目
+于是我们这里使用 docker-compose 部署，到源码 docker 目录下运行 docker-compose up 即可
+然后我们访问 8080 端口，可以看到下面这个界面，要求我们输入加密信息并上传字体</p><p><img loading=lazy src=/posts/e0d44f3/imgs/image-20240430191645542.png alt=/posts/e0d44f3/imgs/image-20240430191645542.png height=573 width=975>
+我们随便上传一个 tff 字体文件，然后输入一段文本，网页都会返回一张加密(类似于马赛克)后的图片
+因此结合附件中某段 flag.zip 中的 pass.png，可以猜测题目的意思就是让我们通过马赛克图片还原 pass</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=c1># 源码中的马赛克函数  </span>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>mosaic_img</span><span class=p>(</span><span class=n>img</span><span class=p>,</span> <span class=n>L</span><span class=p>,</span> <span class=n>H</span><span class=p>,</span> <span class=n>R</span><span class=p>,</span> <span class=n>D</span><span class=p>):</span>  
+</span></span><span class=line><span class=cl>    <span class=n>w</span><span class=p>,</span> <span class=n>h</span> <span class=o>=</span> <span class=n>R</span> <span class=o>-</span> <span class=n>L</span><span class=p>,</span> <span class=n>D</span> <span class=o>-</span> <span class=n>H</span>  
+</span></span><span class=line><span class=cl>    <span class=n>a</span> <span class=o>=</span> <span class=p>[</span><span class=mi>0</span><span class=p>,</span> <span class=mi>0</span><span class=p>,</span> <span class=mi>0</span><span class=p>]</span>  
+</span></span><span class=line><span class=cl>    <span class=n>cnt</span> <span class=o>=</span> <span class=mi>0</span>  
+</span></span><span class=line><span class=cl>    <span class=k>for</span> <span class=n>x</span> <span class=ow>in</span> <span class=nb>range</span><span class=p>(</span><span class=n>w</span><span class=p>):</span>  
+</span></span><span class=line><span class=cl>        <span class=k>for</span> <span class=n>y</span> <span class=ow>in</span> <span class=nb>range</span><span class=p>(</span><span class=n>h</span><span class=p>):</span>  
+</span></span><span class=line><span class=cl>            <span class=n>j</span> <span class=o>=</span> <span class=n>img</span><span class=o>.</span><span class=n>getpixel</span><span class=p>((</span><span class=n>L</span><span class=o>+</span><span class=n>x</span><span class=p>,</span> <span class=n>H</span><span class=o>+</span><span class=n>y</span><span class=p>))</span>  
+</span></span><span class=line><span class=cl>            <span class=k>for</span> <span class=n>ch</span> <span class=ow>in</span> <span class=nb>range</span><span class=p>(</span><span class=nb>len</span><span class=p>(</span><span class=n>a</span><span class=p>)):</span>  
+</span></span><span class=line><span class=cl>                <span class=n>a</span><span class=p>[</span><span class=n>ch</span><span class=p>]</span> <span class=o>+=</span> <span class=n>j</span><span class=p>[</span><span class=n>ch</span><span class=p>]</span>  
+</span></span><span class=line><span class=cl>            <span class=n>cnt</span> <span class=o>+=</span> <span class=mi>1</span>  
+</span></span><span class=line><span class=cl>    <span class=n>b</span> <span class=o>=</span> <span class=p>[</span><span class=n>k</span><span class=o>//</span><span class=n>cnt</span> <span class=k>for</span> <span class=n>k</span> <span class=ow>in</span> <span class=n>a</span><span class=p>]</span>  
+</span></span><span class=line><span class=cl>    <span class=n>mosaic</span> <span class=o>=</span> <span class=n>Image</span><span class=o>.</span><span class=n>new</span><span class=p>(</span><span class=s1>&#39;RGB&#39;</span><span class=p>,</span> <span class=p>(</span><span class=n>w</span><span class=p>,</span> <span class=n>h</span><span class=p>),</span> <span class=nb>tuple</span><span class=p>(</span><span class=n>b</span><span class=p>))</span>  
+</span></span><span class=line><span class=cl>    <span class=n>img</span><span class=o>.</span><span class=n>paste</span><span class=p>(</span><span class=n>mosaic</span><span class=p>,</span> <span class=p>(</span><span class=n>L</span><span class=p>,</span> <span class=n>H</span><span class=p>,</span> <span class=n>R</span><span class=p>,</span> <span class=n>D</span><span class=p>))</span></span></span></code></pre></td></tr></table></div></div><p>分析源码中的加密函数可知，这个加密是直接通过图像处理来实现的
+因此我们就需要去找到和出题人一模一样的字体，结合题目附件中 readme.txt 中的信息：
+本鼠鼠的flag总共分为三段捏，flag为nkctf{uuid}形式，另外鼠鼠最喜欢等宽字体了，快快去找吧。
+结合题目中鼠鼠正在 coding 可以联想到 vscode 进程，因此我们就需要去获取出题人 vscode 中的等宽字体
+在 首选项-设置 中打开我们自己的 vscode 的settings.json 可以看到 vscode 配置文件的路径
+C:\Users\XXX\AppData\Roaming\Code\User\settings.json
+我们使用 R-Stdio 来提取镜像中 vscode 的配置文件
+<img loading=lazy src=/posts/e0d44f3/imgs/image-20240430191746373.png alt=/posts/e0d44f3/imgs/image-20240430191746373.png height=2090 width=3833></p><p>恢复完后，配置文件中的内容如下，对比我们自己的 vscode 可以发现 Fira Code 这个非默认的等宽字体</p><json-viewer value='"{  \n    \"editor.fontFamily\": \"&#39;Fira Code&#39;, Consolas, &#39;Comrier New&#39;, monospace\",  \n    \"window.zoomLevel\": 1,  \n    \"security.workspace.trust.untrustedFiles\": \"open\"  \n}"' expand-depth=1 boxed copyable='{"copiedText":"Copied","copyText":"Copy"}'></json-viewer><p>因此我们直接去下载 <a href=https://github.com/tonsky/FiraCode target=_blank rel="external nofollow noopener noreferrer">FiraCode</a> 即可，下载完后选择 FiraCode-Regular.ttf 上传即可
+为了破解这个加密，我们就需要进行打表，获取每个字符加密后的图片
+<img loading=lazy src=/posts/e0d44f3/imgs/image-20240430191836523.png alt=/posts/e0d44f3/imgs/image-20240430191836523.png height=855 width=3140></p><p>从代码逻辑中可以看出，代码没有对前5个字符(pass)和最后一个字符(即上图中字符串末尾的 9)进行加密
+<img loading=lazy src=/posts/e0d44f3/imgs/image-20240430191845508.png alt=/posts/e0d44f3/imgs/image-20240430191845508.png height=1600 width=2560></p><p>因此，我需要在字符串末尾多输入一个 9，然后保存加密后的图片
+<img loading=lazy src=/posts/e0d44f3/imgs/image-20240430191853550.png alt=/posts/e0d44f3/imgs/image-20240430191853550.png height=838 width=3176></p><p>将两张图片放到同一目录下，并分别命名为 table.png 和 pass.png
+然后写脚本切割两张图片，通过计算并比较图片的md5值来获得下一步的密钥：b143a6268e2a233</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span><span class=lnt>48
+</span><span class=lnt>49
+</span><span class=lnt>50
+</span><span class=lnt>51
+</span><span class=lnt>52
+</span><span class=lnt>53
+</span><span class=lnt>54
+</span><span class=lnt>55
+</span><span class=lnt>56
+</span><span class=lnt>57
+</span><span class=lnt>58
+</span><span class=lnt>59
+</span><span class=lnt>60
+</span><span class=lnt>61
+</span><span class=lnt>62
+</span><span class=lnt>63
+</span><span class=lnt>64
+</span><span class=lnt>65
+</span><span class=lnt>66
+</span><span class=lnt>67
+</span><span class=lnt>68
+</span><span class=lnt>69
+</span><span class=lnt>70
+</span><span class=lnt>71
+</span><span class=lnt>72
+</span><span class=lnt>73
+</span><span class=lnt>74
+</span><span class=lnt>75
+</span><span class=lnt>76
+</span><span class=lnt>77
+</span><span class=lnt>78
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=kn>from</span> <span class=nn>PIL</span> <span class=kn>import</span> <span class=n>Image</span>  
+</span></span><span class=line><span class=cl><span class=kn>import</span> <span class=nn>hashlib</span>  
+</span></span><span class=line><span class=cl><span class=kn>import</span> <span class=nn>os</span>  
+</span></span><span class=line><span class=cl>  
+</span></span><span class=line><span class=cl>  
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>calculate_md5</span><span class=p>(</span><span class=n>filename</span><span class=p>):</span>  
+</span></span><span class=line><span class=cl>    <span class=c1># 计算文件的 MD5 值  </span>
+</span></span><span class=line><span class=cl>    <span class=n>hasher</span> <span class=o>=</span> <span class=n>hashlib</span><span class=o>.</span><span class=n>md5</span><span class=p>()</span>  
+</span></span><span class=line><span class=cl>    <span class=k>with</span> <span class=nb>open</span><span class=p>(</span><span class=n>filename</span><span class=p>,</span> <span class=s1>&#39;rb&#39;</span><span class=p>)</span> <span class=k>as</span> <span class=n>f</span><span class=p>:</span>  
+</span></span><span class=line><span class=cl>        <span class=k>for</span> <span class=n>chunk</span> <span class=ow>in</span> <span class=nb>iter</span><span class=p>(</span><span class=k>lambda</span><span class=p>:</span> <span class=n>f</span><span class=o>.</span><span class=n>read</span><span class=p>(</span><span class=mi>4096</span><span class=p>),</span> <span class=sa>b</span><span class=s2>&#34;&#34;</span><span class=p>):</span>  
+</span></span><span class=line><span class=cl>            <span class=n>hasher</span><span class=o>.</span><span class=n>update</span><span class=p>(</span><span class=n>chunk</span><span class=p>)</span>  
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=n>hasher</span><span class=o>.</span><span class=n>hexdigest</span><span class=p>()</span>  
+</span></span><span class=line><span class=cl>  
+</span></span><span class=line><span class=cl>  
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>get_pass</span><span class=p>():</span>  
+</span></span><span class=line><span class=cl>    <span class=n>res</span> <span class=o>=</span> <span class=s1>&#39;&#39;</span>  
+</span></span><span class=line><span class=cl>    <span class=n>dict_images</span> <span class=o>=</span> <span class=n>os</span><span class=o>.</span><span class=n>listdir</span><span class=p>(</span><span class=s2>&#34;table/&#34;</span><span class=p>)</span>  
+</span></span><span class=line><span class=cl>    <span class=k>for</span> <span class=n>i</span> <span class=ow>in</span> <span class=nb>range</span><span class=p>(</span><span class=mi>14</span><span class=p>):</span>  
+</span></span><span class=line><span class=cl>        <span class=n>pass_image_md5</span> <span class=o>=</span> <span class=n>calculate_md5</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;pass/</span><span class=si>{</span><span class=n>i</span><span class=si>}</span><span class=s2>.png&#34;</span><span class=p>)</span>  
+</span></span><span class=line><span class=cl>        <span class=k>for</span> <span class=n>dict_image</span> <span class=ow>in</span> <span class=n>dict_images</span><span class=p>:</span>  
+</span></span><span class=line><span class=cl>            <span class=n>dict_image_md5</span> <span class=o>=</span> <span class=n>calculate_md5</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;table/</span><span class=si>{</span><span class=n>dict_image</span><span class=si>}</span><span class=s2>&#34;</span><span class=p>)</span>  
+</span></span><span class=line><span class=cl>            <span class=k>if</span> <span class=n>pass_image_md5</span> <span class=o>==</span> <span class=n>dict_image_md5</span><span class=p>:</span>  
+</span></span><span class=line><span class=cl>                <span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;</span><span class=si>{</span><span class=n>i</span><span class=si>}</span><span class=s2>.png 与 </span><span class=si>{</span><span class=n>dict_image</span><span class=si>}</span><span class=s2> 相同&#34;</span><span class=p>)</span>  
+</span></span><span class=line><span class=cl>                <span class=n>res</span> <span class=o>+=</span> <span class=nb>chr</span><span class=p>(</span><span class=nb>int</span><span class=p>((</span><span class=n>dict_image</span><span class=o>.</span><span class=n>split</span><span class=p>(</span><span class=s1>&#39;.&#39;</span><span class=p>)[</span><span class=mi>0</span><span class=p>])))</span>  
+</span></span><span class=line><span class=cl>    <span class=nb>print</span><span class=p>(</span><span class=s2>&#34;还原后的pass如下：&#34;</span><span class=p>)</span>  
+</span></span><span class=line><span class=cl>    <span class=nb>print</span><span class=p>(</span><span class=n>res</span><span class=o>+</span><span class=s1>&#39;3&#39;</span><span class=p>)</span>  
+</span></span><span class=line><span class=cl>  
+</span></span><span class=line><span class=cl>  
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>crop_table</span><span class=p>():</span>  
+</span></span><span class=line><span class=cl>    <span class=n>table</span> <span class=o>=</span> <span class=s2>&#34;pass ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz01234567899&#34;</span>  
+</span></span><span class=line><span class=cl>    <span class=c1># print(len(table))  </span>
+</span></span><span class=line><span class=cl>    <span class=n>img</span> <span class=o>=</span> <span class=n>Image</span><span class=o>.</span><span class=n>open</span><span class=p>(</span><span class=s2>&#34;table.png&#34;</span><span class=p>)</span>  
+</span></span><span class=line><span class=cl>    <span class=n>width</span><span class=p>,</span> <span class=n>height</span> <span class=o>=</span> <span class=n>img</span><span class=o>.</span><span class=n>size</span>  
+</span></span><span class=line><span class=cl>    <span class=c1># print(width, height)  </span>
+</span></span><span class=line><span class=cl>    <span class=n>cols</span> <span class=o>=</span> <span class=n>width</span> <span class=o>//</span> <span class=mi>30</span>  
+</span></span><span class=line><span class=cl>  
+</span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=n>os</span><span class=o>.</span><span class=n>path</span><span class=o>.</span><span class=n>exists</span><span class=p>(</span><span class=s2>&#34;table&#34;</span><span class=p>):</span>  
+</span></span><span class=line><span class=cl>        <span class=nb>print</span><span class=p>(</span><span class=s2>&#34;[+] table目录已存在&#34;</span><span class=p>)</span>  
+</span></span><span class=line><span class=cl>        <span class=k>pass</span>  
+</span></span><span class=line><span class=cl>    <span class=k>else</span><span class=p>:</span>  
+</span></span><span class=line><span class=cl>        <span class=n>os</span><span class=o>.</span><span class=n>mkdir</span><span class=p>(</span><span class=s2>&#34;table&#34;</span><span class=p>)</span>  
+</span></span><span class=line><span class=cl>        <span class=nb>print</span><span class=p>(</span><span class=s2>&#34;[+] out目录创建成功&#34;</span><span class=p>)</span>  
+</span></span><span class=line><span class=cl>  
+</span></span><span class=line><span class=cl>    <span class=k>for</span> <span class=n>col</span> <span class=ow>in</span> <span class=nb>range</span><span class=p>(</span><span class=mi>5</span><span class=p>,</span> <span class=n>cols</span><span class=o>-</span><span class=mi>1</span><span class=p>):</span>  
+</span></span><span class=line><span class=cl>        <span class=n>left</span> <span class=o>=</span> <span class=n>col</span><span class=o>*</span><span class=mi>30</span>  
+</span></span><span class=line><span class=cl>        <span class=n>upper</span> <span class=o>=</span> <span class=mi>0</span>  
+</span></span><span class=line><span class=cl>        <span class=n>right</span> <span class=o>=</span> <span class=n>left</span><span class=o>+</span><span class=mi>30</span>  
+</span></span><span class=line><span class=cl>        <span class=n>lower</span> <span class=o>=</span> <span class=mi>60</span>  
+</span></span><span class=line><span class=cl>        <span class=n>cropped_img</span> <span class=o>=</span> <span class=n>img</span><span class=o>.</span><span class=n>crop</span><span class=p>((</span><span class=n>left</span><span class=p>,</span> <span class=n>upper</span><span class=p>,</span> <span class=n>right</span><span class=p>,</span> <span class=n>lower</span><span class=p>))</span>  
+</span></span><span class=line><span class=cl>        <span class=n>cropped_img</span><span class=o>.</span><span class=n>save</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;table/</span><span class=si>{</span><span class=nb>ord</span><span class=p>(</span><span class=n>table</span><span class=p>[</span><span class=n>col</span><span class=p>])</span><span class=si>}</span><span class=s2>.png&#34;</span><span class=p>)</span>  
+</span></span><span class=line><span class=cl>        <span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;table/</span><span class=si>{</span><span class=nb>ord</span><span class=p>(</span><span class=n>table</span><span class=p>[</span><span class=n>col</span><span class=p>])</span><span class=si>}</span><span class=s2>.png保存成功&#34;</span><span class=p>)</span>  
+</span></span><span class=line><span class=cl>  
+</span></span><span class=line><span class=cl>  
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>crop_pass</span><span class=p>():</span>  
+</span></span><span class=line><span class=cl>    <span class=n>img</span> <span class=o>=</span> <span class=n>Image</span><span class=o>.</span><span class=n>open</span><span class=p>(</span><span class=s2>&#34;pass.png&#34;</span><span class=p>)</span>  
+</span></span><span class=line><span class=cl>    <span class=n>width</span><span class=p>,</span> <span class=n>height</span> <span class=o>=</span> <span class=n>img</span><span class=o>.</span><span class=n>size</span>  
+</span></span><span class=line><span class=cl>    <span class=n>cols</span> <span class=o>=</span> <span class=n>width</span> <span class=o>//</span> <span class=mi>30</span>  
+</span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=n>os</span><span class=o>.</span><span class=n>path</span><span class=o>.</span><span class=n>exists</span><span class=p>(</span><span class=s2>&#34;pass&#34;</span><span class=p>):</span>  
+</span></span><span class=line><span class=cl>        <span class=nb>print</span><span class=p>(</span><span class=s2>&#34;[+] pass目录已存在&#34;</span><span class=p>)</span>  
+</span></span><span class=line><span class=cl>        <span class=k>pass</span>  
+</span></span><span class=line><span class=cl>    <span class=k>else</span><span class=p>:</span>  
+</span></span><span class=line><span class=cl>        <span class=n>os</span><span class=o>.</span><span class=n>mkdir</span><span class=p>(</span><span class=s2>&#34;pass&#34;</span><span class=p>)</span>  
+</span></span><span class=line><span class=cl>        <span class=nb>print</span><span class=p>(</span><span class=s2>&#34;[+] pass目录创建成功&#34;</span><span class=p>)</span>  
+</span></span><span class=line><span class=cl>  
+</span></span><span class=line><span class=cl>    <span class=k>for</span> <span class=n>col</span> <span class=ow>in</span> <span class=nb>range</span><span class=p>(</span><span class=mi>5</span><span class=p>,</span> <span class=n>cols</span><span class=o>-</span><span class=mi>1</span><span class=p>):</span>  
+</span></span><span class=line><span class=cl>        <span class=n>left</span> <span class=o>=</span> <span class=n>col</span><span class=o>*</span><span class=mi>30</span>  
+</span></span><span class=line><span class=cl>        <span class=n>upper</span> <span class=o>=</span> <span class=mi>0</span>  
+</span></span><span class=line><span class=cl>        <span class=n>right</span> <span class=o>=</span> <span class=n>left</span><span class=o>+</span><span class=mi>30</span>  
+</span></span><span class=line><span class=cl>        <span class=n>lower</span> <span class=o>=</span> <span class=mi>60</span>  
+</span></span><span class=line><span class=cl>        <span class=n>cropped_img</span> <span class=o>=</span> <span class=n>img</span><span class=o>.</span><span class=n>crop</span><span class=p>((</span><span class=n>left</span><span class=p>,</span> <span class=n>upper</span><span class=p>,</span> <span class=n>right</span><span class=p>,</span> <span class=n>lower</span><span class=p>))</span>  
+</span></span><span class=line><span class=cl>        <span class=n>cropped_img</span><span class=o>.</span><span class=n>save</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;pass/</span><span class=si>{</span><span class=n>col</span><span class=o>-</span><span class=mi>5</span><span class=si>}</span><span class=s2>.png&#34;</span><span class=p>)</span>  
+</span></span><span class=line><span class=cl>        <span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;pass/</span><span class=si>{</span><span class=n>col</span><span class=o>-</span><span class=mi>5</span><span class=si>}</span><span class=s2>.png保存成功&#34;</span><span class=p>)</span>  
+</span></span><span class=line><span class=cl>  
+</span></span><span class=line><span class=cl>  
+</span></span><span class=line><span class=cl><span class=k>if</span> <span class=vm>__name__</span> <span class=o>==</span> <span class=s2>&#34;__main__&#34;</span><span class=p>:</span>  
+</span></span><span class=line><span class=cl>    <span class=n>crop_table</span><span class=p>()</span>  
+</span></span><span class=line><span class=cl>    <span class=n>crop_pass</span><span class=p>()</span>  
+</span></span><span class=line><span class=cl>    <span class=n>get_pass</span><span class=p>()</span></span></span></code></pre></td></tr></table></div></div><p>VeraCrypt 用得到的密钥挂载附件中的 secret 文件即可得到flag3：c4f222879312
+最终的flag：nkctf{39c429eb-2faf-49a0-bd24-c4f222879312}</p><h2 class=heading-element id=题目名称-hackmycql><span>题目名称 HackMyCQL</span>
+<a href=#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-hackmycql class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h2><p>没有火眼、弘连和取证大师【卑微】</p></div><div class=post-footer id=post-footer><div class=post-info><div class=post-info-line><div class=post-info-mod><span title="Updated on 2025-10-23 17:18:16">Updated on 2025-10-23&nbsp;</span></div></div><div class=post-info-line><div class=post-info-md><span><a href=/posts/e0d44f3/index.md title="Read Markdown" class=link-to-markdown>Read Markdown</a></span></div><div class=post-info-share><span><a href=javascript:void(0); title="Share on X" data-sharer=twitter data-url=https://goodlunatic.github.io/posts/e0d44f3/ data-title="2024 NKCTF Misc Writeup" data-hashtags=CTF,Misc,Writeup><i class="fa-brands fa-x-twitter fa-fw" aria-hidden=true></i></a>
+<a href=javascript:void(0); title="Share on Facebook" data-sharer=facebook data-url=https://goodlunatic.github.io/posts/e0d44f3/ data-hashtag=CTF><i class="fa-brands fa-facebook-square fa-fw" aria-hidden=true></i></a>
+<a href=javascript:void(0); title="Share on 微博" data-sharer=weibo data-url=https://goodlunatic.github.io/posts/e0d44f3/ data-title="2024 NKCTF Misc Writeup"><i class="fa-brands fa-weibo fa-fw" aria-hidden=true></i></a></span></div></div></div><div class=post-info-more><section class=post-tags><i class="fa-solid fa-tags fa-fw me-1" aria-hidden=true></i><a href=/tags/ctf/ class=post-tag title="Tags - CTF">CTF</a><a href=/tags/misc/ class=post-tag title="Tags - Misc">Misc</a><a href=/tags/writeup/ class=post-tag title="Tags - Writeup">Writeup</a></section><section><span><a href=javascript:void(0); onclick=window.history.back()>Back</a></span>&nbsp;|&nbsp;<span><a href=/>Home</a></span></section></div><div class=post-nav><a href=/posts/a907e2b/ class=post-nav-item rel=prev title="2024 帕鲁杯 Misc Writeup"><i class="fa-solid fa-angle-left fa-fw" aria-hidden=true></i>2024 帕鲁杯 Misc Writeup</a><a href=/posts/9d73413/ class=post-nav-item rel=next title="2024 “天一永安杯”宁波市赛初赛 Misc Writeup">2024 “天一永安杯”宁波市赛初赛 Misc Writeup<i class="fa-solid fa-angle-right fa-fw" aria-hidden=true></i></a></div></div></article><aside class=toc id=toc-auto aria-label=Contents><h2 class=toc-title>Contents&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden=true></i></h2><div class=toc-content id=toc-content-auto></div></aside></main><footer class=footer><div class=footer-container><div class="footer-line powered order-1">Powered by <a href=https://gohugo.io/ target=_blank rel="external nofollow noopener noreferrer" title="Hugo 0.152.1">Hugo</a> | Theme - <a href=https://github.com/hugo-fixit/FixIt target=_blank rel=external title="FixIt v0.4.0-alpha.2-20251023040336-063af2cd">FixIt</a></div><div class="footer-line copyright order-2" itemscope itemtype=http://schema.org/CreativeWork><i class="fa-regular fa-copyright fa-fw" aria-hidden=true></i>
+<span itemprop=copyrightYear>2022 - 2025</span><span class=author itemprop=copyrightHolder>
+<a href=https://goodlunatic.github.io target=_blank rel="external nofollow noopener noreferrer">Lunatic</a></span></div><div class="footer-line visitor"><span id=busuanzi_container_site_uv title='Total visitors'><i class="fa-regular fa-user fa-fw me-1" aria-hidden=true></i><span id=busuanzi_value_site_uv><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden=true></i></span></span><span id=busuanzi_container_site_pv class=footer-divider title='Total visits'><i class="fa-regular fa-eye fa-fw me-1" aria-hidden=true></i><span id=busuanzi_value_site_pv><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden=true></i></span></span></div></div></footer></div><div class=widgets><div class="fixed-buttons animate__faster d-none"><div class="fixed-button back-to-top" role=button aria-label="Back to Top"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden=true></i><span class=variant-numeric>0%</span></div></div><div id=mask></div><noscript><div class=noscript-warning>This website works best with JavaScript enabled.</div></noscript></div><link rel=stylesheet href=/lib/pace/themes/blue/pace-theme-minimal.css><script src=/lib/json-viewer-element/json-viewer-element.umd.js defer></script><script src=/lib/sharer/sharer.min.js async defer></script><script src=https://vercount.one/js async defer></script><script src=/lib/pace/pace.min.js async defer></script><script src=/posts/e0d44f3/config/page.js defer></script><script src=/js/theme.min.js defer></script></body></html>
