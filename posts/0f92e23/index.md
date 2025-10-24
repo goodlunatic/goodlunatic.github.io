@@ -851,6 +851,6 @@ if __name__ == "__main__":
 
 ---
 
-> Author: [Lunatic](https://goodlunatic.github.io)  
+> 作者: [Lunatic](https://goodlunatic.github.io)  
 > URL: https://goodlunatic.github.io/posts/0f92e23/  
 

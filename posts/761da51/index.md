@@ -1547,6 +1547,6 @@ Windows自带的 Cipher 加密（EFS加密算法）
 
 ---
 
-> Author: [Lunatic](https://goodlunatic.github.io)  
+> 作者: [Lunatic](https://goodlunatic.github.io)  
 > URL: https://goodlunatic.github.io/posts/761da51/  
 

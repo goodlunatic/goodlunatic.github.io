@@ -1006,6 +1006,6 @@ len(dns.qry.name) >65
 
 ---
 
-> Author: [Lunatic](https://goodlunatic.github.io)  
+> 作者: [Lunatic](https://goodlunatic.github.io)  
 > URL: https://goodlunatic.github.io/posts/a7d0d5f/  
 

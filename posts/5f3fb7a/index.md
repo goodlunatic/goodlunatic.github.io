@@ -131,6 +131,6 @@ Linux version 5.4.0-100-generic (buildd@lcy02-amd64-002) (gcc version 9.3.0 (Ubu
 
 ---
 
-> Author: [Lunatic](https://goodlunatic.github.io)  
+> 作者: [Lunatic](https://goodlunatic.github.io)  
 > URL: https://goodlunatic.github.io/posts/5f3fb7a/  
 

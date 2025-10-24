@@ -289,6 +289,6 @@ edtunnel 是一个开源的轻量级反向隧道工具，用于穿越防火墙�
 
 ---
 
-> Author: [Lunatic](https://goodlunatic.github.io)  
+> 作者: [Lunatic](https://goodlunatic.github.io)  
 > URL: https://goodlunatic.github.io/posts/10f4f96/  
 

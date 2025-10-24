@@ -29,6 +29,6 @@ https://docs.srsran.com/projects/4g/en/latest/general/source/4_troubleshooting.h
 
 ---
 
-> Author: [Lunatic](https://goodlunatic.github.io)  
+> 作者: [Lunatic](https://goodlunatic.github.io)  
 > URL: https://goodlunatic.github.io/posts/4c7a04a/  
 

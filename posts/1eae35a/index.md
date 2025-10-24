@@ -143,6 +143,6 @@ CyberChef解码即可得到flag：`flag{2468__TUvn__qwer}`
 
 ---
 
-> Author: [Lunatic](https://goodlunatic.github.io)  
+> 作者: [Lunatic](https://goodlunatic.github.io)  
 > URL: https://goodlunatic.github.io/posts/1eae35a/  
 

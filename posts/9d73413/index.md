@@ -132,6 +132,6 @@ flag{M4idenh3ad_4nd_VHF}
 
 ---
 
-> Author: [Lunatic](https://goodlunatic.github.io)  
+> 作者: [Lunatic](https://goodlunatic.github.io)  
 > URL: https://goodlunatic.github.io/posts/9d73413/  
 

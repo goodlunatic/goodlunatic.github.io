@@ -359,6 +359,6 @@ python3 NTLMRawUnHide.py -i 流量分析.pcapng -o hash.txt
 
 ---
 
-> Author: [Lunatic](https://goodlunatic.github.io)  
+> 作者: [Lunatic](https://goodlunatic.github.io)  
 > URL: https://goodlunatic.github.io/posts/58b2135/  
 

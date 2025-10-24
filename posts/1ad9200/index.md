@@ -4625,6 +4625,6 @@ tar -xzvf file.tar.gz
 
 ---
 
-> Author: [Lunatic](https://goodlunatic.github.io)  
+> 作者: [Lunatic](https://goodlunatic.github.io)  
 > URL: https://goodlunatic.github.io/posts/1ad9200/  
 

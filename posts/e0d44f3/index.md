@@ -342,6 +342,6 @@ VeraCrypt 用得到的密钥挂载附件中的 secret 文件即可得到flag3：
 
 ---
 
-> Author: [Lunatic](https://goodlunatic.github.io)  
+> 作者: [Lunatic](https://goodlunatic.github.io)  
 > URL: https://goodlunatic.github.io/posts/e0d44f3/  
 

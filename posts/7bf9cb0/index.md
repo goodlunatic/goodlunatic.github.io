@@ -553,6 +553,6 @@ java -jar .\BlindWatermark-v0.0.3-windows-x86_64.jar decode -c .\password.png ou
 
 ---
 
-> Author: [Lunatic](https://goodlunatic.github.io)  
+> 作者: [Lunatic](https://goodlunatic.github.io)  
 > URL: https://goodlunatic.github.io/posts/7bf9cb0/  
 

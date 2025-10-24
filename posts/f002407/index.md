@@ -1176,6 +1176,6 @@ b"Hey boy, I'm here to help you, now you'ze one step away from successl let me |
 
 ---
 
-> Author: [Lunatic](https://goodlunatic.github.io)  
+> 作者: [Lunatic](https://goodlunatic.github.io)  
 > URL: https://goodlunatic.github.io/posts/f002407/  
 

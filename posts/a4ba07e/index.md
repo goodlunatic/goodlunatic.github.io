@@ -413,6 +413,6 @@ print(long_to_bytes(m))
 
 ---
 
-> Author: [Lunatic](https://goodlunatic.github.io)  
+> 作者: [Lunatic](https://goodlunatic.github.io)  
 > URL: https://goodlunatic.github.io/posts/a4ba07e/  
 

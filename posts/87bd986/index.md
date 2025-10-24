@@ -239,6 +239,6 @@ print(long_to_bytes(int(data,4)))
 
 ---
 
-> Author: [Lunatic](https://goodlunatic.github.io)  
+> 作者: [Lunatic](https://goodlunatic.github.io)  
 > URL: https://goodlunatic.github.io/posts/87bd986/  
 

@@ -356,6 +356,6 @@ for ($i = 0; $i < $length; $i++) {
 
 ---
 
-> Author: [Lunatic](https://goodlunatic.github.io)  
+> 作者: [Lunatic](https://goodlunatic.github.io)  
 > URL: https://goodlunatic.github.io/posts/69e332a/  
 

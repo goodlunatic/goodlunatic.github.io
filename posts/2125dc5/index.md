@@ -256,6 +256,6 @@ WKCTF{1111_2222_3333_4444_hhhh}
 
 ---
 
-> Author: [Lunatic](https://goodlunatic.github.io)  
+> 作者: [Lunatic](https://goodlunatic.github.io)  
 > URL: https://goodlunatic.github.io/posts/2125dc5/  
 
