@@ -99,8 +99,8 @@
 
 
 
-| <img align="center" alt="img" src="imgs/Wechat.jpg" /> | <img align="center" alt="img" src="imgs/Alipay.jpg"/> |
-| :----------------------------------------------------: | :---------------------------------------------------: |
+| <img align="center" alt="img" src="imgs/Wechat.webp" /> | <img align="center" alt="img" src="imgs/Alipay.webp"/> |
+| :-----------------------------------------------------: | :----------------------------------------------------: |
 
 {{< admonition type=success title="一些题外话" open=true >}}
 
