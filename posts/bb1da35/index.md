@@ -9,8 +9,6 @@
 
 **如果有需要题目附件的师傅，可以进我的[知识星球](https://t.zsxq.com/an6p6)获取附件下载链接**
 
-**进群方式可以参考博客中的 [About](https://goodlunatic.github.io/about/)**
-
 {{< /admonition >}}
 
 ## 题目名称 sunset
