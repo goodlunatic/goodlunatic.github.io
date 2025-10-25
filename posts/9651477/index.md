@@ -5,7 +5,7 @@
 **羡慕能被邀请的学校，啥时候能顺便邀请一下A1natas呢 QAQ**
 <!--more-->
 
-> 本文中涉及的具体题目附件可以进我的交流群获取，进群详见 [About](https://goodlunatic.github.io/about/)
+> 本文中涉及的具体题目附件可以进我的[知识星球](https://t.zsxq.com/an6p6)获取
 
 ## 题目名称 BOMB
 

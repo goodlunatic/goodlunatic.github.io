@@ -3,7 +3,7 @@
 **2025 “天一永安杯”宁波市赛初赛 Misc Writeup**
 <!--more-->
 
-> 本文中涉及的具体题目附件可以进我的交流群获取，进群详见 [About](https://goodlunatic.github.io/about/)
+> 本文中涉及的具体题目附件可以进我的[知识星球](https://t.zsxq.com/an6p6)获取
 
 ## 题目名称 吾的字节
 

@@ -5,7 +5,7 @@
 因此这个愿望只能留给学弟去实现了，之后可能真正能好好打CTF的机会也不多了吧
 <!--more-->
 
-> 本文中涉及的具体题目附件可以进我的交流群获取，进群详见 [About](https://goodlunatic.github.io/about/)
+> 本文中涉及的具体题目附件可以进我的[知识星球](https://t.zsxq.com/an6p6)获取
 
 ## 题目名称 Checkin
 题目附件给了一个压缩包，里面有一个Flag.txt

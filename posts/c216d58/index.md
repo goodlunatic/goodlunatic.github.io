@@ -5,7 +5,7 @@
 
 ![](imgs/image-20241109233010712.png)
 
-> 本文中涉及的具体题目附件可以进我的交流群获取，进群详见 [About](https://goodlunatic.github.io/about/)
+> 本文中涉及的具体题目附件可以进我的[知识星球](https://t.zsxq.com/an6p6)获取
 
 ## 初赛
 ### 题目名称 签到题2
