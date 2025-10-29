@@ -537,7 +537,6 @@ finally {
 C:\shares\enc-ob.ps1
 ```
 
-
 然后再提取并分析这次请求的响应数据
 
 ```xml
@@ -653,9 +652,9 @@ finally {
 
 到此，NTLMv2认证的环节就结束了，接下来进入Kerberos认证的环节
 
-首先我们过滤一下 KRB5 的流量，然后关注 `AS-REQ` 中的用户名和域名
+首先我们过滤一下 KRB5 的流量，然后关注 `AS-REP` 中的用户名和域名
 
-![](imgs/image-20251028195531555.png)
+![](imgs/image-20251029112251667.png)
 
 发现和之前 NTLMv2 爆破用的用户名是同一个，因此猜测密码也是一样的
 
@@ -680,11 +679,13 @@ wireshark中发现有部分字段的高亮从黄色变成蓝色就说明我们�
 
 导致后续我们在尝试解密 SMB2 时，导入 sessionid 和 seesionkey 会报错
 
+并且 wireshark 下方红色小字提示了我们 SessionKey 最多是 16 字节
+
 ![](imgs/image-20251028200820472.png)
 
-赛后和 `@Tr0jAn` 师傅交流后知道了，这里的 SessionKey 只需要填前16字节
+赛后和 `@Tr0jAn` 师傅交流后知道了，这里的 SessionKey 只需要取前16字节即可
 
-猜测这个和SMB2加密的底层原理有关，这里就不赘述了
+猜测这个和SMB2加密的底层原理或者特性有关，这里就不赘述了
 
 tshark导出 SeesionID 的命令如下
 
