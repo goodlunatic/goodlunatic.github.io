@@ -662,7 +662,14 @@ finally {
 
 ![](imgs/image-20251028195835649.png)
 
-wireshark中发现有部分字段的高亮从黄色变成蓝色就说明我们构造成功了
+然后到 wireshark 的 KRB5 协议中导入我们构造好的 keytab 文件
+
+这里要记得勾选上 `Try to decrypt Kerberos blobs` 这个选项
+
+![](imgs/image-20251029161757205.png)
+
+
+应用后点击确定，在wireshark中发现有部分字段的高亮从黄色变成蓝色就说明我们构造成功了
 
 ![](imgs/image-20251028200034252.png)
 
