@@ -1,4 +1,4 @@
-# Misc-Network Traffic Analysis
+# Misc-流量分析
 
 
 **This is a Simple Guide for Network Traffic Analysis.** 
@@ -704,6 +704,9 @@ session_start();
 ?>
 ```
 
+> 大体功能是：POST接收加密数据，随后先进行Base64解码，再判断是否启用OpenSSL扩展，如果启用则使用AES解密，如果没有则使用密钥循环异或解密。Webshell在上传后，会先生成一段代码用于处理执行结果并加密返回给客户端，确保响应流量中的数据也是加密的，随后开始执行攻击者的命令，如果是PHP Webshell，在冰蝎客户端中点开该shell的时候会自动执行一次phpinfo，以上过程在流量中均有体现。
+
+
 #### XOR_base64
 
 异或的情况和哥斯拉的有点像，把密钥的第一位放到最后一位然后解密即可
@@ -716,11 +719,36 @@ session_start();
 
 可能会有两种情况，一种是AES-ECB（没有IV），一种是AES-CBC（有IV）
 
-然后这里如果有IV，IV也可能有以下两种情况
+如果是 AES-ECB，那直接用填入密钥解密即可，这里我们详细讨论一下 AES-CBC 的情况
 
-```
-IV = 0123456789abcdef
-IV = \x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00
+> 这里仅讨论默认PHP Webshell的情况，不同语言或不同Shell情况不同，需分情况对待
+
+冰蝎4.0的默认IV是：`\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00`
+
+首先，需要分析那段PHP Webshell中的一句：`$post=openssl_decrypt($post, "AES128", $key);`
+
+该Shell通过OpenSSL扩展实现AES加解密，而OpenSSL中的AES128通常默认对应AES-128-CBC，而上文那句话里并没有传入IV参数，所以OpenSSL会把所需的IV处理为默认值，也就是全0（16个\x00）
+
+如果在WebShell中传了自定义的IV参数，那么解密时需要将该IV填入，比如：`0123456789abcdef`
+
+照常理来说使用这样默认为16个`\x00`的IV即可正常解密。但传入16个1也可以正常解出`base64_decode()`括号内的内容，如下图所示：
+
+![](imgs/f4413f003bad201ef52b84974e4a5bdb.png)
+
+这要说到AES-CBC的原理：
+
+![](imgs/040733479f1ea54a0871282953df365a.png)
+
+每一个密文块（16位）解密后都要和前一个密文块按位异或，而第一个密文块前没有密文块，所以需要16位的IV来“充当密文块”，而IV的错误只会影响第一个密文块的内容，后面的密文块能否正常解密只和前一个密文块有关。`base64_decode()`括号内的内容并不在第一个密文块里，所以看上去变成了“无论什么IV都可以正确解出密文”
+
+虽然偏移是0（异或0等于没有异或，也就等于没有IV），但依然不能直接使用AES-ECB进行解密，因为相比起ECB，IV是0的CBC从第二个密文块开始依然有异或的过程，所以在Cyberchef里应使用如下参数解密：
+
+```python
+AES Decrypt #仅讨论默认情况
+Key: e45e329feb5d925b (UTF-8)
+IV： \x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00 (Hex)
+Mode：CBC
+Input / Output：Raw (视情况而定)
 ```
 
 反正不管是哪种加密，都可以用CyberChef试一试，看看哪一种可以正常解出来就行

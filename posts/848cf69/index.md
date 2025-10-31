@@ -117,7 +117,7 @@ qemu-system-arm \
 ifconfig eth0 10.10.10.2/24
 ```
 
-![](imgs/image-20241025160447046.png)
+![](../Misc-工控安全/imgs/image-20241025160447046.png)
 
 建立好通讯后，用以下命令把固件中的文件系统传入虚拟机中并解压
 ```
@@ -146,7 +146,7 @@ sudo systemctl stop inetutils-inetd.service
 ```
 
 下图是启动成功的界面
-![](imgs/image-20241025162544581.png)
+![](../Misc-工控安全/imgs/image-20241025162544581.png)
 
 之后是漏洞复现的步骤
 现在宿主机的`/tftpboot` 目录下创建下面两个文件
@@ -205,14 +205,14 @@ print(r)
 
 然后虚拟机运行tddp，宿主机开启监听并运行poc.py即可成功复现
 
-![](imgs/image-20241025173411193.png)
+![](../Misc-工控安全/imgs/image-20241025173411193.png)
 
-![](imgs/image-20241025173312434.png)
+![](../Misc-工控安全/imgs/image-20241025173312434.png)
 
 
 但是我这里虚拟机中tddp的动态链接库有点问题，暂时卡在这里了
 
-![](imgs/image-20241025172358445.png)
+![](../Misc-工控安全/imgs/image-20241025172358445.png)
 
 参考链接：https://paper.seebug.org/879/
 

@@ -1,4 +1,4 @@
-# CTF-ICS Learning Record
+# Misc-工控安全
 
 越来越多的比赛中出现工控相关的赛题，因此打算借这个机会学习一下。
 <!--more-->
