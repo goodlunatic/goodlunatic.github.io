@@ -1413,6 +1413,12 @@ Docker容器保存在`/var/lib/docker/containers/`路径下
 该信息保存在`C:\Windows\System32\Config\SOFTWARE\Mozilla\Mozilla Firefox\CurrentVersion`
 
 
+## 日志取证
+
+### evtx 文件
+
+可以用 windows 自带的事件查看器打开，然后可以重点关注 `Microsoft-Windows-PowerShell%4Operational` 这个文件中ID为4104这个执行远程命令的事件
+
 ## 网站取证
 
 1、直接拿D_safe扫描可疑文件

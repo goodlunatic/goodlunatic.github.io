@@ -11,6 +11,39 @@
 
 > 本文涉及的题目附件： https://pan.baidu.com/s/159nlGf_pcgCC-iePnLeqVg?pwd=uxsy 提取码: uxsy
 
+## 2023 强网杯
+
+### 碟影重重2.0
+
+下载附件得到一个只有TCP流量的流量包
+
+题目需要我们分析流量包找到飞机的飞机速度和飞机的 ICAO CODE
+
+问了GPT得知飞机常见的协议中有ADS-B，然后在网上找到pyModeS这个模块
+
+在 [参考链接](https://gitee.com/wangmin-gf/ads-b) 看到了与tcp.payload中相似的数据
+
+使用 tshark 提取出流量包中的数据，然后使用这个脚本批量解密找speed最快的即可
+
+tshark -r attach.pcapng -T fields -e "tcp.payload" | sed '/^\s*$/d' > tshark.txt
+
+```python
+import pyModeS
+with open("tshark.txt") as f:
+    data = f.readlines()
+    for item in data:
+        # print(item.strip())
+        if len(item.strip()) != 46:
+            continue
+        res = pyModeS.tell(item.strip()[18:46])
+        print("===========================================================================")
+```
+
+Tips：这里的 ICAO CODE 需要大写：79A05E
+
+然后MD5加密一下即可得到：flag{4cf6729b9bc05686a79c1620b0b1967b}
+
+
 ## 2024 强网杯
 
 ### 谍影重重5.0

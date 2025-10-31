@@ -1,4 +1,4 @@
-# [置顶] CTF-Misc Guide
+# [持续更新] CTF-Misc Guide
 
 **最开始接触CTF时，学的最多的就是Misc，各种编码与加密还有各种软件的使用等等**
 
@@ -1050,17 +1050,27 @@ print(secret)
 
 例题1-2023浙江省赛决赛-签到
 
-### 无字天书(whitespace)或者snow隐写
+### 4、whitespace隐写
 
 一个文件打开都是空白字符
 
-whitespace可以使用[在线网站](https://vii5ard.github.io/whitespace/)解密，复制进去直接run即可
+可以使用在线网站解密：https://vii5ard.github.io/whitespace/ 
 
-snow隐写可以下载源码，然后到根目录下运行 `SNOW.EXE -C -p password flag.txt` 命令即可
+全选复制进去，然后直接run即可
 
-> Tips：snow隐写有时候可以不全是空白字符，然后也可以无密码，如果懒得敲命令行可以直接用下面这个工具
+### 5、SNOW隐写
+
+SNOW 隐写工具下载：https://darkside.com.au/snow/
+
+到`snowdos32`工具目录下运行`SNOW.EXE -C -p password flag.txt` 命令即可
+
+SNOW隐写有时候可以不全是空白字符，然后也可以无密码，如果懒得敲命令行可以直接用下面这个工具
 
 ![](imgs/image-20250421200534255.png)
+
+> Tips: 这里要特别注意的一点就是 -C 这个参数，选了这个参数后加密和解密的时候会默认压缩或者解压，就有可能会解密乱码
+
+![](imgs/image-20251031124513229.png)
 
 ### 零宽字符隐写
 
@@ -2103,11 +2113,21 @@ java -jar .\BlindWatermark-v0.0.3-windows-x86_64.jar decode -c .\password.png ou
 https://www.a.tools/Tool.php?Id=100
 ```
 
+#### 25、立体图
+
+看到类似于下面这种图案，可能就是立体图，可以拉到 stegsolve 中遍历偏移量
+
+![](imgs/image-20251031130725174.png)
+
+![](imgs/image-20251031130125322.png)
+
+当然，在理解了原理后也可以自己写个脚本把偏移的像素还原回去
+
 ### PNG思路
 
 #### 1、PNG图片宽高被篡改
 
-010打开图片改宽高即可，17~20字节是宽，21~24字节是高
+010打开图片改宽高即可，17-20字节是宽，21-24字节是高
 
 当然也可以用PuzzleSolver或随波逐流工具直接爆破图片宽高
 
@@ -2983,7 +3003,7 @@ word中可能有一段是1倍行距，可能又有一段是1.5倍行距，需要
 01F0  FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF  ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ
 ```
 
-## Misc——txt题思路
+## Misc——TXT题思路
 
 ### 1、 有可能是ntfs，直接用NtfsStreamsEditor2扫描所在文件夹，然后导出可疑文件【如果是压缩包，一定要用winrar解压】
 
@@ -2991,13 +3011,50 @@ word中可能有一段是1倍行距，可能又有一段是1.5倍行距，需要
 
 ### 3、如果是那种文件夹套文件夹的题目，可以直接把路径粘贴到everything中，让everything一把梭
 
-### 4、无字天书(whitespace)&snow隐写
+### 4、whitespace隐写
 
 一个文件打开都是空白字符
 
-可以使用在线网站解密：https://vii5ard.github.io/whitespace/ 复制进去直接run即可
+可以使用在线网站解密：https://vii5ard.github.io/whitespace/ 
 
-snow隐写，到snowdos32工具目录下运行 SNOW.EXE -C -p password flag.txt 命令即可
+全选复制进去，然后直接run即可
+
+### 5、SNOW隐写
+
+SNOW 隐写工具下载：https://darkside.com.au/snow/
+
+到`snowdos32`工具目录下运行`SNOW.EXE -C -p password flag.txt` 命令即可
+
+SNOW隐写有时候可以不全是空白字符，然后也可以无密码，如果懒得敲命令行可以直接用下面这个工具
+
+![](imgs/image-20250421200534255.png)
+
+> Tips: 这里要特别注意的一点就是 -C 这个参数，选了这个参数后加密和解密的时候会默认压缩或者解压，就有可能会解密乱码
+
+![](imgs/image-20251031124513229.png)
+
+### 零宽字符隐写
+
+可以用在线网站解密，也可以用`PuzzleSolver`解密
+
+![](imgs/image-20250421200734831.png)
+
+```
+# 几个解零宽比较好用的在线网站，也可以下载源码到本地
+https://www.wetools.com/text-cloaking
+https://330k.github.io/misc_tools/unicode_steganography.html
+https://www.mzy0.com/ctftools/zerowidth1/
+https://yuanfux.github.io/zero-width-web/
+```
+
+如果网站默认的字符集解不出来，可以尝试先在vim里查看，看看都有哪些字符
+
+![](imgs/image-20250828223508020.png)
+
+然后再到解码网址上勾选对应字符
+
+![](imgs/image-20250828223608794.png)
+
 
 ### 5、垃圾邮件隐写(spammimic)
 
@@ -3023,7 +3080,7 @@ python2 decloakify.py cipher.txt passwd.txt
 
 > Tips：如果碰到解密失败的情况，可以试试看在windows下重新复制文本，并在末尾加一个换行符
 
-## Misc——html题思路
+## Misc——HTML题思路
 
 1、可能是`wbStego4open`隐写，用`wbStego4open`直接输入密钥decode
 
@@ -4096,15 +4153,19 @@ wav音频文件可能是`silenteye`隐写，可以拿`silenteye`用默认密码�
 
 ![](imgs/image-20250429203026980.png)
 
-### 4、Deepsound隐写
+### 4、Deepsound隐写（可以无密码）
 
-先用 deepsound 打开试一下，如果需要密码说明就是 deepsound 隐写，有密钥直接填入密钥解密即可
+可以先把 wav 音频文件拉入 deepsound 打开，如果下面有显示隐写的文件就是 deepsound 隐写
 
-如果是 deepsound 隐写并且没有密钥，就先用`deepsound2john`脚本获取wav文件的哈希值(注释里有使用方法)，
+![](imgs/image-20251031123014232.png)
 
-然后拉入kali用john爆破hash(如果编码有误，可以先用notepad另存为一下)
+隐写可以无密钥，但是如果提示需要密钥就直接填入密钥解密即可
 
-执行：john 1.txt
+如果是 deepsound 隐写并且密钥未知，可以先用 [deepsound2john](https://github.com/willstruggle/john/blob/master/deepsound2john.py) 脚本获取wav文件的哈希值(注释里有使用方法)
+
+然后拉入kali用john爆破hash（如果编码有误，可以先用notepad另存为一下）
+
+ 得到 hash后执行：john hash.txt
 
 ### 5、SSTV慢扫描电视：
 
