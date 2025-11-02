@@ -1559,27 +1559,52 @@ out2.show()
 
 #### 4、盲水印隐写(可能是一张图片或者两张图片)
 
-可以直接用`PuzzleSolver`处理
-
-**一张图片的情况**
+**单图盲水印**
 
 可以使用`隐形水印工具V1.2`或者`WaterMark`工具来提取水印
 
 ![](imgs/bw1.png)
 
-**两张图片的情况**
+**双图盲水印**
 
-可以直接用`PuzzleSolver`处理
+> 双图盲水印这里有两个项目：
+> 
+> chishaxie/BlindWaterMark：https://github.com/chishaxie/BlindWaterMark
+> 
+> linyacool/blind-watermark（频域盲水印）：https://github.com/linyacool/blind-watermark
+> 
+> 具体用哪个项目根据题目提示，如果不确定的话可以两个都试试看
+> 
+> 当然，出题人可能会直接用项目中的一模一样示例图像出题，熟悉图像可以帮助我们定位是哪种盲水印
 
-也可以下载 [原项目](https://github.com/chishaxie/BlindWaterMark) 处理
+当然这两种都已经被 byxs 集成到 `PuzzleSolver` 里了，可以尝试直接用`PuzzleSolver`处理
+
+如果没有 PuzzlerSolver 的话，也可以下载原始项目提取
+
+普通盲水印：
+
+![](imgs/image-20251102142531985.png)
 
 ```bash
 # 先把要处理的图片拉入BlindWaterMark-master文件夹，然后使用如下命令
+python bwmforpy3.py decode hui.png hui_wm_py3.png wm_out_py3.png
 python bwmforpy3.py decode day1.png day2.png flag.png --oldseed
-# Tips:这里还会出现FFT（傅里叶盲水印）:直接运行CTFD中的FFT.py
+# 这里的 --oldseed 参数的意思是在 Python3 中用 Python2 的随机数生成算法
 ```
 
-> Tips：这里构成盲水印的两张图片不一定要都是 PNG 或者都是 JPG，有时候一张 JPG 一张 PNG，也可以构成 BWM 盲水印隐写
+> Tips：这里构成盲水印的两张图片不一定要都是 PNG 或者都是 JPG，有时候一张 JPG 一张 PNG，或者一张 PNG 一张 BMP，都可以出盲水印
+
+然后第一个项目还有一个特征就是：原图和盲水印后的图像异或会得到下图这种横向蓝色虚线（例题1-2025交通运输行业网络安全大赛 XORkitt）
+
+![](imgs/image-20251102142829703.png)
+
+频域盲水印：
+
+![](imgs/image-20251102142715074.png)
+
+```bash
+python decode.py --original ori.png --image res.png --result extract.png
+```
 
 #### 5、图片的分离和拼接
 
