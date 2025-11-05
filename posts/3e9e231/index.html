@@ -1,0 +1,654 @@
+<!doctype html><html itemscope itemtype=http://schema.org/WebPage lang=zh-CN><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=2"><meta name=robots content="noodp"><title>Misc-区块链安全 - ⚡Lunatic BLOG⚡</title><meta name=author content="Lunatic"><meta name=description content="平常打CTF比赛的时候，时常会遇到区块链类的题目，
+然后好像这几年这个方向也比较火，所以就想着学习一下。
+"><meta name=keywords content='Misc,CTF'><meta itemprop=name content="Misc-区块链安全"><meta itemprop=description content="平常打CTF比赛的时候，时常会遇到区块链类的题目，
+然后好像这几年这个方向也比较火，所以就想着学习一下。"><meta itemprop=datePublished content="2022-12-02T22:40:08+08:00"><meta itemprop=dateModified content="2022-12-02T22:40:08+08:00"><meta itemprop=wordCount content="1294"><meta itemprop=keywords content="Misc,CTF"><meta property="og:url" content="https://goodlunatic.github.io/posts/3e9e231/"><meta property="og:site_name" content="⚡Lunatic BLOG⚡"><meta property="og:title" content="Misc-区块链安全"><meta property="og:description" content="平常打CTF比赛的时候，时常会遇到区块链类的题目，
+然后好像这几年这个方向也比较火，所以就想着学习一下。"><meta property="og:locale" content="zh_CN"><meta property="og:type" content="article"><meta property="article:section" content="posts"><meta property="article:published_time" content="2022-12-02T22:40:08+08:00"><meta property="article:modified_time" content="2022-12-02T22:40:08+08:00"><meta property="article:tag" content="Misc"><meta property="article:tag" content="CTF"><meta name=twitter:card content="summary"><meta name=twitter:title content="Misc-区块链安全"><meta name=twitter:description content="平常打CTF比赛的时候，时常会遇到区块链类的题目，
+然后好像这几年这个方向也比较火，所以就想着学习一下。"><meta name=application-name content="FixIt"><meta name=apple-mobile-web-app-title content="FixIt"><meta name=theme-color data-light=#f8f8f8 data-dark=#252627 content="#f8f8f8"><meta name=msapplication-TileColor content="#da532c"><link rel=icon href=https://www.nssctf.cn/files/2024/4/28/7f130a1387.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=canonical type=text/html href=https://goodlunatic.github.io/posts/3e9e231/ title="Misc-区块链安全 - ⚡Lunatic BLOG⚡"><link rel=prev type=text/html href=https://goodlunatic.github.io/posts/3f7db4e/ title="2022 浙江省大学生网络与信息安全竞赛 Writeup"><link rel=next type=text/html href=https://goodlunatic.github.io/posts/d7eced5/ title=CTF-Pwn刷题记录><link rel=alternate type=text/markdown href=https://goodlunatic.github.io/posts/3e9e231/index.md title="Misc-区块链安全 - ⚡Lunatic BLOG⚡"><link rel=stylesheet href=/css/config.min.css><link rel=stylesheet href=/css/style.min.css><link rel=preload href=/lib/fontawesome-free/all.min.css as=style onload='this.removeAttribute("onload"),this.rel="stylesheet"'><noscript><link rel=stylesheet href=/lib/fontawesome-free/all.min.css></noscript><link rel=preload href=/lib/animate/animate.min.css as=style onload='this.removeAttribute("onload"),this.rel="stylesheet"'><noscript><link rel=stylesheet href=/lib/animate/animate.min.css></noscript><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"Misc-区块链安全","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/goodlunatic.github.io\/posts\/3e9e231\/"},"genre":"posts","keywords":"Misc, CTF","wordcount":1294,"url":"https:\/\/goodlunatic.github.io\/posts\/3e9e231\/","datePublished":"2022-12-02T22:40:08+08:00","dateModified":"2022-12-02T22:40:08+08:00","publisher":{"@type":"Organization","name":""},"author":{"@type":"Person","name":"Lunatic"},"description":""}</script><script src=/js/head/color-scheme.min.js></script></head><body data-header-desktop=sticky data-header-mobile=auto><div class=wrapper data-page-style=normal><header class="desktop animate__faster" id=header-desktop><div class=header-wrapper data-github-corner=left><div class=header-title><a href=/ title="⚡Lunatic BLOG⚡"><span class=header-title-text>⚡Lunatic BLOG⚡</span></a><span class=header-subtitle></span></div><nav><ul class=menu><li class=menu-item><a class=menu-link href=/collections/><i class="fa-solid fa-layer-group fa-fw fa-sm" aria-hidden=true></i> 合集</a></li><li class=menu-item><a class=menu-link href=/archives/><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden=true></i> 归档</a></li><li class=menu-item><a class=menu-link href=/categories/><i class="fa-solid fa-folder-tree fa-fw fa-sm" aria-hidden=true></i> 分类</a></li><li class=menu-item><a class=menu-link href=/tags/><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden=true></i> 标签</a></li><li class=menu-item><a class=menu-link href=/friends/><i class="fa-solid fa-chain fa-fw fa-sm" aria-hidden=true></i> 友链</a></li><li class=menu-item><a class=menu-link href=/about/><i class="fa-solid fa-graduation-cap fa-fw fa-sm" aria-hidden=true></i> 关于</a></li><li class="menu-item delimiter"></li><li class="menu-item search" id=search-desktop><input type=text placeholder=搜索文章标题或内容…… id=search-input-desktop>
+<a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-desktop title=搜索><i class="fa-solid fa-search fa-fw" aria-hidden=true></i>
+</a><a href=javascript:void(0); class="search-button search-clear" id=search-clear-desktop title=清空><i class="fa-solid fa-times-circle fa-fw" aria-hidden=true></i>
+</a><span class="search-button search-loading" id=search-loading-desktop><i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden=true></i></span></li><li class="menu-item theme-switch" title=切换主题><i class="fa-solid fa-adjust fa-fw" aria-hidden=true></i></li></ul></nav></div></header><header class="mobile animate__faster" id=header-mobile><div class=header-container><div class=header-wrapper><div class=header-title><a href=/ title="⚡Lunatic BLOG⚡"><span class=header-title-text>⚡Lunatic BLOG⚡</span></a><span class=header-subtitle></span></div><div class=menu-toggle id=menu-toggle-mobile><span></span><span></span><span></span></div></div><nav><ul class=menu id=menu-mobile><li class=search-wrapper><div class="search mobile" id=search-mobile><input type=text placeholder=搜索文章标题或内容…… id=search-input-mobile>
+<a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-mobile title=搜索><i class="fa-solid fa-search fa-fw" aria-hidden=true></i>
+</a><a href=javascript:void(0); class="search-button search-clear" id=search-clear-mobile title=清空><i class="fa-solid fa-times-circle fa-fw" aria-hidden=true></i>
+</a><span class="search-button search-loading" id=search-loading-mobile><i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden=true></i></span></div><a href=javascript:void(0); class=search-cancel id=search-cancel-mobile>取消</a></li><li class=menu-item><a class=menu-link href=/collections/><i class="fa-solid fa-layer-group fa-fw fa-sm" aria-hidden=true></i> 合集</a></li><li class=menu-item><a class=menu-link href=/archives/><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden=true></i> 归档</a></li><li class=menu-item><a class=menu-link href=/categories/><i class="fa-solid fa-folder-tree fa-fw fa-sm" aria-hidden=true></i> 分类</a></li><li class=menu-item><a class=menu-link href=/tags/><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden=true></i> 标签</a></li><li class=menu-item><a class=menu-link href=/friends/><i class="fa-solid fa-chain fa-fw fa-sm" aria-hidden=true></i> 友链</a></li><li class=menu-item><a class=menu-link href=/about/><i class="fa-solid fa-graduation-cap fa-fw fa-sm" aria-hidden=true></i> 关于</a></li><li class="menu-item menu-system"><span class="menu-system-item theme-switch" title=切换主题><i class="fa-solid fa-adjust fa-fw" aria-hidden=true></i></span></li></ul></nav></div></header><div class="search-dropdown desktop"><div id=search-dropdown-desktop></div></div><div class="search-dropdown mobile"><div id=search-dropdown-mobile></div></div><main class=fi-container><aside class="aside-collection animate__animated animate__fadeIn animate__faster" aria-label=合集><div class="details collection-details open"><div class="details-summary collection-summary"><i class="fa-solid fa-layer-group fa-fw" aria-hidden=true></i>
+<span class=collection-name title=合集>CTF-Misc入门指南</span>
+<span class=collection-count>8</span><i class="details-icon fa-solid fa-angle-right fa-fw" aria-hidden=true></i></div><div class="details-content collection-content"><nav><ul class=collection-list><li class=collection-item><a href=/posts/1ad9200/ title="[持续更新] CTF-Misc Guide">[持续更新] CTF-Misc Guide</a></li><li class=collection-item><a href=/posts/c5bc8a2/ title=Misc-AI安全>Misc-AI安全</a></li><li class=collection-item><a href=/posts/761da51/ title=Misc-数字取证>Misc-数字取证</a></li><li class=collection-item><a href=/posts/5422d65/ title=Misc-流量分析>Misc-流量分析</a></li><li class=collection-item><a href=/posts/c49ae8a/ title=Misc-数据安全>Misc-数据安全</a></li><li class=collection-item><a href=/posts/01ebd40/ title=Misc-工控安全>Misc-工控安全</a></li><li class=collection-item><a href=/posts/442fd1d/ title=MIsc-沙箱逃逸>MIsc-沙箱逃逸</a></li><li class=collection-item><span class=active title=Misc-区块链安全>Misc-区块链安全</span></li></ul><div class=collection-nav-simple><a href=/posts/442fd1d/ class=collection-nav-item rel=prev title=MIsc-沙箱逃逸><i class="fa-solid fa-angle-left fa-fw" aria-hidden=true></i></a><span class=text-secondary>8/8</span><i class="fa-solid fa-angle-right fa-fw collection-nav-item text-secondary" aria-hidden=true></i></div></nav></div></div><div class="details related-details open"><div class="details-summary related-summary"><i class="fa-solid fa-fire fa-fade text-danger fa-fw" aria-hidden=true></i>
+<span class=related-title>相关内容</span><i class="details-icon fa-solid fa-angle-right fa-fw" aria-hidden=true></i></div><div class="details-content related-content"><ul class=related-list><li class=related-item><a href=/posts/3f7db4e/ title="2022 浙江省大学生网络与信息安全竞赛 Writeup">2022 浙江省大学生网络与信息安全竞赛 Writeup</a></li></ul></div></div><div class=aside-custom><a href target=_blank rel=external><img src=/images/zsxq.webp alt="Lunatic Planet QR code" width=100%></a></div></aside><article class="page single"><div class=header><h1 class="single-title animate__animated animate__flipInX"><span title=转载 class=icon-repost><i class="fa-solid fa-share fa-fw" aria-hidden=true></i></span><span>Misc-区块链安全</span></h1></div><div class=post-meta><div class=post-meta-line><span class=post-author><a href=https://goodlunatic.github.io title=作者 target=_blank rel="external nofollow noopener noreferrer author" class=author><img class=avatar src=https://www.nssctf.cn/files/2024/4/28/7f130a1387.png alt=Lunatic height=16 width=16>&nbsp;Lunatic</a></span><span class=post-included-in>&nbsp;收录于 <a href=/categories/ctf/ class=post-category title="分类 - CTF"><i class="fa-regular fa-folder fa-fw" aria-hidden=true></i> CTF</a> 和 <a href=/collections/ctf-misc%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97/ class=post-collection title="合集 - CTF-Misc入门指南"><i class="fa-solid fa-layer-group fa-fw" aria-hidden=true></i> CTF-Misc入门指南</a></span></div><div class=post-meta-line><span title="发布于 2022-12-02 22:40:08"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden=true></i><time datetime=2022-12-02>2022-12-02</time></span>&nbsp;<span title="1294 字"><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden=true></i>约 1300 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden=true></i>预计阅读 7 分钟</span>&nbsp;<span id=busuanzi_container_page_pv class="busuanzi_visitors comment-visitors" data-flag-title=Misc-区块链安全><i class="fa-regular fa-eye fa-fw me-1" aria-hidden=true></i><span id=busuanzi_value_page_pv>-</span>&nbsp;次阅读
+</span>&nbsp;</div></div><div class="details toc" id=toc-static data-kept=false><div class="details-summary toc-title"><span>目录</span>
+<span><i class="details-icon fa-solid fa-angle-right" aria-hidden=true></i></span></div><div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents><ul><li><a href=#前言>前言</a></li><li><a href=#获取以太币>获取以太币</a></li><li><a href=#网络切换>网络切换</a></li><li><a href=#反编译合约>反编译合约</a></li><li><a href=#区块链浏览器>区块链浏览器</a></li><li><a href=#solidity学习记录>Solidity学习记录</a><ul><li><a href=#一合约文件结构剖析>一、合约文件结构剖析：</a><ul><li><a href=#11一个合约文件的结构如下>1.1一个合约文件的结构如下</a></li><li><a href=#12合约的引入import>1.2合约的引入import</a></li><li><a href=#13引入状态变量函数事件函数修改器>1.3引入状态变量、函数、事件、函数修改器</a></li></ul></li><li><a href=#二solidity语言类型>二、Solidity语言类型</a><ul><li><a href=#21常量>2.1常量</a></li><li><a href=#22地址类型>2.2地址类型</a></li><li><a href=#23bool真假值类型>2.3bool真假值类型</a></li><li><a href=#24整型特性与运算>2.4整型特性与运算</a></li><li><a href=#25底层位运算>2.5底层位运算</a></li><li><a href=#26固定长度字节数组byte>2.6固定长度字节数组byte</a></li></ul></li><li><a href=#三数据存储>三、数据存储</a><ul><li><a href=#31string内存原理>3.1String内存原理</a></li></ul></li><li><a href=#四以太坊的本质>四、以太坊的本质</a></li><li><a href=#五使用钱包转移资金>五、使用钱包转移资金</a></li><li><a href=#六智能合约众筹的例子还不是理解的很明白>六、智能合约众筹的例子（还不是理解的很明白）</a></li></ul></li><li><a href=#chainflag刷题记录>Chainflag刷题记录</a></li></ul></nav></div></div><div class=content id=content><p><strong>平常打CTF比赛的时候，时常会遇到区块链类的题目，</strong></p><p><strong>然后好像这几年这个方向也比较火，所以就想着学习一下。</strong></p><h2 class=heading-element id=前言><span>前言</span>
+<a href=#%e5%89%8d%e8%a8%80 class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h2><p>智能合约语言目前以Solidity为主，除此以外，还有Vyper、Mandala和Obsidian等在不同方向改善智能合约的语言</p><p>开发工具推荐使用REMIX：http://remix.ethereum.org/，可以在浏览器中快速部署测试智能合约，不需要在本地安装任何程序，也是以太坊官方推荐的智能合约开发IDE。</p><p>REMIX IDE中的前两个选项就不多说了</p><p>第三个第四个选项是部署和执行，在代码编译完成后，可以在这里部署合约，也可以和已部署的合约进行交互。</p><p>ENVIRONMENT：默认使用JS虚拟机本地模拟一条测试链，如果想要连接测试网，选择Injected Provider。
+ACCOUNT：当前使用的账户，如果是默认的JS虚拟机会分配数个有大量测试币的测试账户，如果 环境是Injected Provider，可以在 MetaMask中切换账户。
+GAS LIMIT：合约的gas上限。
+VALUE：转入多少ETH。
+CONTARCT：一个文件中可能包含多个合约，这里选择具体部署哪一个合约。 At Address：如果合约已经部署，可以在这里输入该合约 的地址进行交互。</p><h2 class=heading-element id=获取以太币><span>获取以太币</span>
+<a href=#%e8%8e%b7%e5%8f%96%e4%bb%a5%e5%a4%aa%e5%b8%81 class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h2><p>可以从这个水龙头中获取以太币（每天可以获取0.2）</p><p><a href=https://goerlifaucet.com/ target=_blank rel="external nofollow noopener noreferrer">https://goerlifaucet.com/</a></p><h2 class=heading-element id=网络切换><span>网络切换</span>
+<a href=#%e7%bd%91%e7%bb%9c%e5%88%87%e6%8d%a2 class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h2><p>可以使用metamask进行网络的切换，切换到你要使用的测试网络</p><h2 class=heading-element id=反编译合约><span>反编译合约</span>
+<a href=#%e5%8f%8d%e7%bc%96%e8%af%91%e5%90%88%e7%ba%a6 class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h2><p>可以使用在线网站：https://ethervm.io/decompile</p><p>可以得到合约反编译出来的代码，以及合约中的函数或变量。</p><h2 class=heading-element id=区块链浏览器><span>区块链浏览器</span>
+<a href=#%e5%8c%ba%e5%9d%97%e9%93%be%e6%b5%8f%e8%a7%88%e5%99%a8 class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h2><p><a href=https://goerli.etherscan.io/ target=_blank rel="external nofollow noopener noreferrer">https://goerli.etherscan.io/</a></p><p>区块链浏览器是专门用来查看链上的各种信息的工具，可以检索的信息包括但不限于：账户地址、合约 地址、交易Hash等。</p><p>通过查询账户地址可以看到当前余额，近期交易等信息。</p><h2 class=heading-element id=solidity学习记录><span>Solidity学习记录</span>
+<a href=#solidity%e5%ad%a6%e4%b9%a0%e8%ae%b0%e5%bd%95 class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h2><h3 class=heading-element id=一合约文件结构剖析><span>一、合约文件结构剖析：</span>
+<a href=#%e4%b8%80%e5%90%88%e7%ba%a6%e6%96%87%e4%bb%b6%e7%bb%93%e6%9e%84%e5%89%96%e6%9e%90 class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h3><h4 class=heading-element id=11一个合约文件的结构如下><span>1.1一个合约文件的结构如下</span>
+<a href=#11%e4%b8%80%e4%b8%aa%e5%90%88%e7%ba%a6%e6%96%87%e4%bb%b6%e7%9a%84%e7%bb%93%e6%9e%84%e5%a6%82%e4%b8%8b class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h4><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>合约文件：
+</span></span><span class=line><span class=cl>	版本申明
+</span></span><span class=line><span class=cl>	import
+</span></span><span class=line><span class=cl>	合约：
+</span></span><span class=line><span class=cl>		状态变量
+</span></span><span class=line><span class=cl>		函数
+</span></span><span class=line><span class=cl>		结构类型
+</span></span><span class=line><span class=cl>		事件
+</span></span><span class=line><span class=cl>		函数修改器
+</span></span><span class=line><span class=cl>	代码注释</span></span></code></pre></td></tr></table></div></div><p>一个完整合约结构的例子</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span><span class=lnt>9
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-solidity data-lang=solidity><span class=line><span class=cl><span class=k>pragma solidity</span> <span class=o>^</span><span class=mi>0</span><span class=p>.</span><span class=mi>4</span><span class=p>.</span><span class=mi>0</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kn>import</span> <span class=s>&#34;&#34;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=cm>/*This is a Contract
+</span></span></span><span class=line><span class=cl><span class=cm>@auth:XXX
+</span></span></span><span class=line><span class=cl><span class=cm>*/</span>
+</span></span><span class=line><span class=cl><span class=kd>contract</span> <span class=nc>Test</span><span class=p>{</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=p>}</span></span></span></code></pre></td></tr></table></div></div><h4 class=heading-element id=12合约的引入import><span>1.2合约的引入import</span>
+<a href=#12%e5%90%88%e7%ba%a6%e7%9a%84%e5%bc%95%e5%85%a5import class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h4><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-solidity data-lang=solidity><span class=line><span class=cl><span class=kn>import</span> <span class=s>&#34;filename.sol&#34;</span></span></span></code></pre></td></tr></table></div></div><h4 class=heading-element id=13引入状态变量函数事件函数修改器><span>1.3引入状态变量、函数、事件、函数修改器</span>
+<a href=#13%e5%bc%95%e5%85%a5%e7%8a%b6%e6%80%81%e5%8f%98%e9%87%8f%e5%87%bd%e6%95%b0%e4%ba%8b%e4%bb%b6%e5%87%bd%e6%95%b0%e4%bf%ae%e6%94%b9%e5%99%a8 class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h4><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-solidity data-lang=solidity><span class=line><span class=cl><span class=k>pragma solidity</span> <span class=o>^</span><span class=mi>0</span><span class=p>.</span><span class=mi>4</span><span class=p>.</span><span class=mi>0</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=kn>import</span> <span class=s>&#34;solidity_for_import.sol&#34;</span><span class=p>;</span><span class=c1>//引入另外一个合约
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=kd>contract</span> <span class=nc>Test</span><span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=c1>//引入状态变量
+</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=kt>uint</span> <span class=n>a</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=c1>//引入函数
+</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=kd>function</span> <span class=nf>setA</span><span class=p>(</span><span class=kt>uint</span> <span class=n>x</span><span class=p>)</span> <span class=k>public</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=n>a</span><span class=o>=</span><span class=n>x</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>        <span class=c1>//调用setA时触发事件Set_A
+</span></span></span><span class=line><span class=cl><span class=c1></span>        <span class=n>emit</span> <span class=n>Set_A</span><span class=p>(</span><span class=n>x</span><span class=p>);</span><span class=c1>//利用web3随时监听我们的事件
+</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=c1>//引入事件
+</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=kd>event</span> <span class=nc>Set_A</span><span class=p>(</span><span class=kt>uint</span> <span class=n>a</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=c1>//定义结构体
+</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=kd>struct</span> <span class=nc>Position</span><span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=kt>int</span> <span class=n>lat</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>        <span class=kt>int</span> <span class=n>lng</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=kt>address</span> <span class=k>public</span> <span class=n>ownerAddr</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=c1>//定义***函数修改器***
+</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=kd>modifier</span> <span class=nf>ownerAddr</span><span class=p>(){</span>
+</span></span><span class=line><span class=cl>        <span class=nb>require</span><span class=p>(</span><span class=nb>msg</span><span class=p>.</span><span class=nb>sender</span><span class=o>==</span><span class=n>ownerAddr</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>        <span class=k>_</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=kd>function</span> <span class=nf>mine</span><span class=p>()</span> <span class=k>public</span> <span class=n>owner</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=n>a</span><span class=o>+=</span><span class=mi>1</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>}</span></span></span></code></pre></td></tr></table></div></div><h3 class=heading-element id=二solidity语言类型><span>二、Solidity语言类型</span>
+<a href=#%e4%ba%8csolidity%e8%af%ad%e8%a8%80%e7%b1%bb%e5%9e%8b class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h3><h4 class=heading-element id=21常量><span>2.1常量</span>
+<a href=#21%e5%b8%b8%e9%87%8f class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h4><ul><li>有理数常量和整型常量</li><li>字符常量</li><li>十六进制常量</li><li>地址常量</li></ul><h4 class=heading-element id=22地址类型><span>2.2地址类型</span>
+<a href=#22%e5%9c%b0%e5%9d%80%e7%b1%bb%e5%9e%8b class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h4><p>address:表示一个账户地址（20B）</p><p>balance表示账户地址的余额</p><p>函数transfer表示地址转移的以太币</p><h4 class=heading-element id=23bool真假值类型><span>2.3bool真假值类型</span>
+<a href=#23bool%e7%9c%9f%e5%81%87%e5%80%bc%e7%b1%bb%e5%9e%8b class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h4><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-solidity data-lang=solidity><span class=line><span class=cl><span class=c1>// SPDX-License-Identifier: SimPL-2.0
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=k>pragma solidity</span> <span class=o>^</span><span class=mi>0</span><span class=p>.</span><span class=mi>8</span><span class=p>.</span><span class=mi>7</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=kd>contract</span> <span class=nc>BooleanTest</span><span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=kt>bool</span> <span class=n>a</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=c1>// view函数修饰符修饰的条件(只读取状态,但不修改状态)
+</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=c1>// 本地运行,不消耗gas
+</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=kd>function</span> <span class=nf>getBool</span><span class=p>()</span> <span class=k>public</span> <span class=k>view</span> <span class=k>returns</span><span class=p>(</span><span class=kt>bool</span><span class=p>){</span>
+</span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=n>a</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=cm>/*
+</span></span></span><span class=line><span class=cl><span class=cm>       function getBool2() public view returns(bool){
+</span></span></span><span class=line><span class=cl><span class=cm>        return !a;//取反
+</span></span></span><span class=line><span class=cl><span class=cm>    }
+</span></span></span><span class=line><span class=cl><span class=cm>    */</span>
+</span></span><span class=line><span class=cl><span class=p>}</span></span></span></code></pre></td></tr></table></div></div><h4 class=heading-element id=24整型特性与运算><span>2.4整型特性与运算</span>
+<a href=#24%e6%95%b4%e5%9e%8b%e7%89%b9%e6%80%a7%e4%b8%8e%e8%bf%90%e7%ae%97 class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h4><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-solidity data-lang=solidity><span class=line><span class=cl><span class=c1>// SPDX-License-Identifier: SimPL-2.0
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=k>pragma solidity</span> <span class=o>^</span><span class=mi>0</span><span class=p>.</span><span class=mi>8</span><span class=p>.</span><span class=mi>7</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=kd>contract</span> <span class=nc>Math</span><span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=kt>uint</span> <span class=n>numa</span><span class=o>=</span><span class=mi>4</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=kt>uint</span> <span class=n>numb</span><span class=o>=</span><span class=mi>2</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=c1>// pure修饰符修饰的条件(不读取且不修改任何状态)
+</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=c1>// 本地运行,不消耗gas
+</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=kd>function</span> <span class=nf>add</span><span class=p>(</span><span class=kt>uint</span> <span class=n>a</span><span class=p>,</span><span class=kt>uint</span> <span class=n>b</span><span class=p>)</span><span class=k>public</span> <span class=k>pure</span> <span class=k>returns</span><span class=p>(</span><span class=kt>uint</span><span class=p>){</span>
+</span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=n>a</span><span class=o>+</span><span class=n>b</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>     <span class=kd>function</span> <span class=nf>jian</span><span class=p>(</span><span class=kt>uint</span> <span class=n>a</span><span class=p>,</span><span class=kt>uint</span> <span class=n>b</span><span class=p>)</span><span class=k>public</span> <span class=k>pure</span> <span class=k>returns</span><span class=p>(</span><span class=kt>uint</span><span class=p>){</span>
+</span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=n>a</span><span class=o>-</span><span class=n>b</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>     <span class=kd>function</span> <span class=nf>cheng</span><span class=p>(</span><span class=kt>uint</span> <span class=n>a</span><span class=p>,</span><span class=kt>uint</span> <span class=n>b</span><span class=p>)</span><span class=k>public</span> <span class=k>pure</span> <span class=k>returns</span><span class=p>(</span><span class=kt>uint</span><span class=p>){</span>
+</span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=n>a</span><span class=o>*</span><span class=n>b</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>     <span class=kd>function</span> <span class=nf>chu</span><span class=p>(</span><span class=kt>uint</span> <span class=n>a</span><span class=p>,</span><span class=kt>uint</span> <span class=n>b</span><span class=p>)</span><span class=k>public</span> <span class=k>pure</span>  <span class=k>returns</span><span class=p>(</span><span class=kt>uint</span><span class=p>){</span>
+</span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=n>a</span><span class=o>/</span><span class=n>b</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>}</span></span></span></code></pre></td></tr></table></div></div><h4 class=heading-element id=25底层位运算><span>2.5底层位运算</span>
+<a href=#25%e5%ba%95%e5%b1%82%e4%bd%8d%e8%bf%90%e7%ae%97 class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h4><p>&</p><p>|</p><p>^</p><p>&#171; 左移</p><p>右移类似</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>1.&amp; 操作数之间转换成二进制之后每位进行与运算操作（同1取1）
+</span></span><span class=line><span class=cl>2.| 操作数之间转换成二进制之后每位进行或运算操作（有1取1）
+</span></span><span class=line><span class=cl>3.~ 操作数转换成二进制之后每位进行取反操作（直接相反）
+</span></span><span class=line><span class=cl>4.^ 操作数之间转换成二进制之后每位进行异或操作（不同取1）
+</span></span><span class=line><span class=cl>5.&lt;&lt;操作数转换成二进制之后每位向左移动x位的操作
+</span></span><span class=line><span class=cl>6.&gt;&gt;操作数转换成二进制之后每位向右移动x位的操作</span></span></code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-solidity data-lang=solidity><span class=line><span class=cl><span class=c1>// SPDX-License-Identifier: SimPL-2.0
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=k>pragma solidity</span> <span class=o>^</span><span class=mi>0</span><span class=p>.</span><span class=mi>8</span><span class=p>.</span><span class=mi>7</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=kd>contract</span> <span class=nc>Math</span><span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=kt>uint</span> <span class=n>a</span><span class=o>=</span><span class=mi>4</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=kt>uint</span> <span class=n>b</span><span class=o>=</span><span class=mi>2</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=kd>function</span> <span class=nf>weiyu</span><span class=p>()</span><span class=k>view</span> <span class=k>public</span> <span class=k>returns</span><span class=p>(</span><span class=kt>uint</span><span class=p>){</span>
+</span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=n>a</span> <span class=o>&amp;</span> <span class=n>b</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>     <span class=kd>function</span> <span class=nf>weihuo</span><span class=p>()</span><span class=k>view</span> <span class=k>public</span> <span class=k>returns</span><span class=p>(</span><span class=kt>uint</span><span class=p>){</span>
+</span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=n>a</span><span class=o>|</span><span class=n>b</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>     <span class=kd>function</span> <span class=nf>weifan</span><span class=p>()</span><span class=k>view</span> <span class=k>public</span> <span class=k>returns</span><span class=p>(</span><span class=kt>uint</span><span class=p>){</span>
+</span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=n>a</span><span class=o>^</span><span class=n>b</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>     <span class=kd>function</span> <span class=nf>zuoyi</span><span class=p>()</span><span class=k>view</span> <span class=k>public</span>  <span class=k>returns</span><span class=p>(</span><span class=kt>uint</span><span class=p>){</span>
+</span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=n>a</span><span class=o>&lt;&lt;</span><span class=n>b</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>      <span class=kd>function</span> <span class=nf>youyi</span><span class=p>()</span><span class=k>view</span> <span class=k>public</span>  <span class=k>returns</span><span class=p>(</span><span class=kt>uint</span><span class=p>){</span>
+</span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=n>a</span><span class=o>&gt;&gt;</span><span class=n>b</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>}</span></span></span></code></pre></td></tr></table></div></div><h4 class=heading-element id=26固定长度字节数组byte><span>2.6固定长度字节数组byte</span>
+<a href=#26%e5%9b%ba%e5%ae%9a%e9%95%bf%e5%ba%a6%e5%ad%97%e8%8a%82%e6%95%b0%e7%bb%84byte class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h4><p>一个byte=8个位（XXXX XXXX）X为0或1，二进制表示
+byte数组为bytes1，bytes2，&mldr;，bytes32，以八个位递增，即是对<strong>位的封装</strong>
+举例
+bytes1=uint8
+bytes2=unit16
+&mldr;
+bytes32=unit256</p><p>使用byte数组的理由：</p><p>1.bytesX可以更好地显示16进制
+举例：bytes1=0x6A，bytes1=（XXXX XXXX）正好四个表示一个16进制，以此类推
+2.bytes数据声明时加入public可以自动生成调用长度的函数，见下</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-solidity data-lang=solidity><span class=line><span class=cl><span class=c1>// SPDX-License-Identifier: SimPL-2.0
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=k>pragma solidity</span> <span class=o>^</span><span class=mi>0</span><span class=p>.</span><span class=mi>8</span><span class=p>.</span><span class=mi>7</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=kd>contract</span> <span class=nc>Math</span><span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=kt>bytes1</span> <span class=k>public</span> <span class=n>num1</span><span class=o>=</span><span class=mh>0x12</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=kt>bytes4</span> <span class=k>public</span> <span class=n>num2</span><span class=o>=</span><span class=mh>0x12121212</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span></span></span></code></pre></td></tr></table></div></div><p>3.bytes内部<strong>自带length</strong>长度函数，而且<strong>长度固定</strong>，而且<strong>长度不可以被修改</strong></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-solidity data-lang=solidity><span class=line><span class=cl><span class=c1>// SPDX-License-Identifier: SimPL-2.0
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=k>pragma solidity</span> <span class=o>^</span><span class=mi>0</span><span class=p>.</span><span class=mi>8</span><span class=p>.</span><span class=mi>7</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=kd>contract</span> <span class=nc>Math</span><span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=kt>bytes1</span> <span class=k>public</span> <span class=n>num1</span><span class=o>=</span><span class=mh>0x12</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=kt>bytes4</span> <span class=k>public</span> <span class=n>num2</span><span class=o>=</span><span class=mh>0x12121212</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=kd>function</span> <span class=nf>getlength1</span><span class=p>()</span><span class=k>public</span> <span class=k>view</span> <span class=k>returns</span><span class=p>(</span><span class=kt>uint8</span><span class=p>){</span>
+</span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=n>num1</span><span class=p>.</span><span class=n>length</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=kd>function</span> <span class=nf>getlength2</span><span class=p>()</span><span class=k>public</span> <span class=k>view</span> <span class=k>returns</span><span class=p>(</span><span class=kt>uint8</span><span class=p>){</span>
+</span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=n>num2</span><span class=p>.</span><span class=n>length</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>}</span></span></span></code></pre></td></tr></table></div></div><p>数组</p><p>Solidity中的数组可以具有编译时固定大小，也可以是动态的。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-solidity data-lang=solidity><span class=line><span class=cl><span class=kt>uint</span><span class=p>[</span><span class=mi>3</span><span class=p>]</span> <span class=kt>fixed</span><span class=p>;</span>  <span class=c1>//array of fixed length 3
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=kt>uint</span><span class=p>[]</span> <span class=n>dynamic</span><span class=p>;</span> <span class=o>//</span><span class=n>a</span> <span class=n>dynamic</span> <span class=n>array</span> <span class=n>has</span> <span class=n>no</span> <span class=kt>fixed</span> <span class=n>size</span><span class=p>,</span> <span class=n>it</span> <span class=n>can</span> <span class=n>keep</span> <span class=n>growing</span></span></span></code></pre></td></tr></table></div></div><p>也可以创建一个结构数组</p><p>Tips：将数组声明为public将自动为其创建getter方法</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-solidity data-lang=solidity><span class=line><span class=cl><span class=n>Voter</span><span class=p>[]</span> <span class=k>public</span> <span class=n>voting</span><span class=p>;</span></span></span></code></pre></td></tr></table></div></div><h3 class=heading-element id=三数据存储><span>三、数据存储</span>
+<a href=#%e4%b8%89%e6%95%b0%e6%8d%ae%e5%ad%98%e5%82%a8 class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h3><h4 class=heading-element id=31string内存原理><span>3.1String内存原理</span>
+<a href=#31string%e5%86%85%e5%ad%98%e5%8e%9f%e7%90%86 class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h4><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-solidity data-lang=solidity><span class=line><span class=cl><span class=c1>// SPDX-License-Identifier: SimPL-2.0
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=k>pragma solidity</span> <span class=o>^</span><span class=mi>0</span><span class=p>.</span><span class=mi>8</span><span class=p>.</span><span class=mi>7</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=kd>contract</span> <span class=nc>DynamicByte</span><span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=kt>string</span> <span class=nb>name</span><span class=o>=</span><span class=s>&#34;xxxx&#34;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>  <span class=kd>function</span> <span class=nf>getLength</span><span class=p>()</span> <span class=k>public</span> <span class=k>view</span> <span class=k>returns</span><span class=p>(</span><span class=kt>uint</span><span class=p>){</span>
+</span></span><span class=line><span class=cl>       <span class=k>return</span> <span class=kt>bytes</span><span class=p>(</span><span class=nb>name</span><span class=p>).</span><span class=n>length</span><span class=p>;</span><span class=c1>//通过byte强制转换获取长度
+</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=p>}</span>
+</span></span><span class=line><span class=cl>  <span class=kd>function</span> <span class=nf>changename</span><span class=p>()</span> <span class=k>public</span> <span class=k>view</span> <span class=k>returns</span><span class=p>(</span><span class=kt>bytes1</span><span class=p>){</span>
+</span></span><span class=line><span class=cl>       <span class=k>return</span> <span class=kt>bytes</span><span class=p>(</span><span class=nb>name</span><span class=p>)[</span><span class=mi>1</span><span class=p>];</span>
+</span></span><span class=line><span class=cl>  <span class=p>}</span>
+</span></span><span class=line><span class=cl>  <span class=kd>function</span> <span class=nf>getName</span><span class=p>()</span> <span class=k>public</span> <span class=k>view</span> <span class=k>returns</span><span class=p>(</span><span class=kt>bytes</span> <span class=k>memory</span><span class=p>){</span>
+</span></span><span class=line><span class=cl>       <span class=k>return</span> <span class=kt>bytes</span><span class=p>(</span><span class=nb>name</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>  <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>}</span></span></span></code></pre></td></tr></table></div></div><h3 class=heading-element id=四以太坊的本质><span>四、以太坊的本质</span>
+<a href=#%e5%9b%9b%e4%bb%a5%e5%a4%aa%e5%9d%8a%e7%9a%84%e6%9c%ac%e8%b4%a8 class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h3><h3 class=heading-element id=五使用钱包转移资金><span>五、使用钱包转移资金</span>
+<a href=#%e4%ba%94%e4%bd%bf%e7%94%a8%e9%92%b1%e5%8c%85%e8%bd%ac%e7%a7%bb%e8%b5%84%e9%87%91 class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h3><p>可以通过payable函数对合约进行充值、转账、默认</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-solidity data-lang=solidity><span class=line><span class=cl><span class=c1>// SPDX-License-Identifier: SimPL-2.0
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=k>pragma solidity</span> <span class=o>^</span><span class=mi>0</span><span class=p>.</span><span class=mi>8</span><span class=p>.</span><span class=mi>7</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=kd>contract</span> <span class=nc>PayableTest</span><span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=kd>function</span> <span class=nf>pay</span><span class=p>()</span> <span class=k>payable</span><span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=c1>//获取账户上的金额
+</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=kd>function</span> <span class=nf>getBalance</span><span class=p>()</span> <span class=k>returns</span><span class=p>(</span><span class=kt>uint</span><span class=p>){</span>
+</span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=kt>address</span><span class=p>(</span><span class=nb>this</span><span class=p>).</span><span class=nb>balance</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>}</span></span></span></code></pre></td></tr></table></div></div><p>地址主要有两个：</p><p>​ 1、合约的地址（this代表合约的地址）</p><p>​ 2、账户的地址</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-solidity data-lang=solidity><span class=line><span class=cl><span class=c1>// SPDX-License-Identifier: SimPL-2.0
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=k>pragma solidity</span> <span class=o>^</span><span class=mi>0</span><span class=p>.</span><span class=mi>4</span><span class=p>.</span><span class=mi>0</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=kd>contract</span> <span class=nc>Transfer</span><span class=p>{</span>
+</span></span><span class=line><span class=cl>     <span class=kd>function</span> <span class=nf>transfer</span><span class=p>()</span> <span class=k>public</span> <span class=k>payable</span><span class=p>{</span>
+</span></span><span class=line><span class=cl>           <span class=kt>address</span> <span class=n>account</span><span class=o>=</span><span class=mh>0x5B38Da6a701c568545dCfcB03FcB875f56beddC4</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>           <span class=n>account</span><span class=p>.</span><span class=nb>transfer</span><span class=p>(</span><span class=nb>msg</span><span class=p>.</span><span class=nb>value</span><span class=p>);</span><span class=c1>//把钱转到account中去
+</span></span></span><span class=line><span class=cl><span class=c1></span>     <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>}</span></span></span></code></pre></td></tr></table></div></div><h3 class=heading-element id=六智能合约众筹的例子还不是理解的很明白><span>六、智能合约众筹的例子（还不是理解的很明白）</span>
+<a href=#%e5%85%ad%e6%99%ba%e8%83%bd%e5%90%88%e7%ba%a6%e4%bc%97%e7%ad%b9%e7%9a%84%e4%be%8b%e5%ad%90%e8%bf%98%e4%b8%8d%e6%98%af%e7%90%86%e8%a7%a3%e7%9a%84%e5%be%88%e6%98%8e%e7%99%bd class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h3><p>该案例涉及两个角色：</p><p>募集资金者（受益者）</p><p>资金投资者（捐赠者）</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-solidity data-lang=solidity><span class=line><span class=cl><span class=c1>// SPDX-License-Identifier: SimPL-2.0
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=k>pragma solidity</span> <span class=o>^</span><span class=mi>0</span><span class=p>.</span><span class=mi>4</span><span class=p>.</span><span class=mi>4</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=kd>contract</span> <span class=nc>zhongchou</span><span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=c1>//对象二：捐赠者
+</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=kd>struct</span> <span class=nc>funder</span><span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=kt>address</span> <span class=n>Funderaddress</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>        <span class=kt>uint</span> <span class=n>Tomoney</span><span class=p>;</span><span class=c1>//捐款金额
+</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>     <span class=c1>//对象一：受益者
+</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=kd>struct</span> <span class=nc>needer</span><span class=p>{</span><span class=c1>//声明受益者的结构体
+</span></span></span><span class=line><span class=cl><span class=c1></span>        <span class=kt>address</span> <span class=n>Neederaddress</span><span class=p>;</span><span class=c1>//声明一个变量地址，方便打钱给受益者
+</span></span></span><span class=line><span class=cl><span class=c1></span>        <span class=kt>uint</span> <span class=n>goal</span><span class=p>;</span><span class=c1>//目标金额
+</span></span></span><span class=line><span class=cl><span class=c1></span>        <span class=kt>uint</span> <span class=n>amout</span><span class=p>;</span><span class=c1>//已经募得金额
+</span></span></span><span class=line><span class=cl><span class=c1></span>        <span class=kt>uint</span> <span class=n>funderAccount</span><span class=p>;</span><span class=c1>//多少捐赠者
+</span></span></span><span class=line><span class=cl><span class=c1></span>        <span class=kd>mapping</span><span class=p>(</span><span class=kt>uint</span><span class=o>=&gt;</span><span class=n>funder</span><span class=p>)</span><span class=n>map</span><span class=p>;</span><span class=c1>//映射，将捐赠者的id与捐赠者绑定在一起，从而能够得知，是谁给当前的受益人捐钱了。
+</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=kt>uint</span> <span class=n>neederAmount</span><span class=p>;</span><span class=c1>//受益人的id数量
+</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=kd>mapping</span><span class=p>(</span><span class=kt>uint</span><span class=o>=&gt;</span><span class=n>needer</span><span class=p>)</span> <span class=n>needmap</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=c1>//行为：
+</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=kd>function</span> <span class=nf>NewNeeder</span><span class=p>(</span><span class=kt>address</span> <span class=n>_Neederaddress</span><span class=p>,</span><span class=kt>uint</span> <span class=n>_goal</span><span class=p>){</span>
+</span></span><span class=line><span class=cl>        <span class=c1>//创建对象,将id号与受益者联系在一起了
+</span></span></span><span class=line><span class=cl><span class=c1></span>        <span class=n>neederAmount</span><span class=o>++</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>        <span class=n>needmap</span><span class=p>[</span><span class=n>neederAmount</span><span class=p>]</span><span class=o>=</span><span class=n>needer</span><span class=p>(</span><span class=n>_Neederaddress</span><span class=p>,</span><span class=n>_goal</span><span class=p>,</span><span class=mi>0</span><span class=p>,</span><span class=mi>0</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=c1>//@param _address 捐赠者的地址，
+</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=c1>//@param    _neederAmount   受益人的id
+</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=kd>function</span> <span class=nf>contribute</span><span class=p>(</span> <span class=kt>address</span> <span class=n>_address</span><span class=p>,</span> <span class=kt>uint</span> <span class=n>_neederAmount</span><span class=p>)</span>  <span class=k>payable</span><span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=c1>//通过id获取到受益人对象
+</span></span></span><span class=line><span class=cl><span class=c1></span>        <span class=n>needer</span> <span class=k>storage</span>  <span class=n>_needer</span> <span class=o>=</span>  <span class=n>needmap</span><span class=p>[</span><span class=n>_neederAmount</span><span class=p>];</span>
+</span></span><span class=line><span class=cl>       <span class=c1>//聚集到的资金增加
+</span></span></span><span class=line><span class=cl><span class=c1></span>        <span class=n>_needer</span><span class=p>.</span><span class=n>amount</span> <span class=o>+=</span>  <span class=nb>msg</span><span class=p>.</span><span class=nb>value</span><span class=p>;</span><span class=c1>//动态获取
+</span></span></span><span class=line><span class=cl><span class=c1></span>        <span class=c1>// 捐赠人数增加
+</span></span></span><span class=line><span class=cl><span class=c1></span>        <span class=n>_needer</span><span class=p>.</span><span class=n>funderAcoount</span><span class=o>++</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>        <span class=c1>//将受益人id与受益人绑定
+</span></span></span><span class=line><span class=cl><span class=c1></span>        <span class=n>_needer</span><span class=p>.</span><span class=n>map</span><span class=p>[</span> <span class=n>_needer</span><span class=p>.</span><span class=n>funderAcoount</span><span class=p>]</span> <span class=o>=</span> <span class=n>funder</span><span class=p>(</span><span class=n>_address</span> <span class=p>,</span>  <span class=nb>msg</span><span class=p>.</span><span class=nb>value</span> <span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=c1>//当募集到的资金满足条件，就会给给受益人的地址转账
+</span></span></span><span class=line><span class=cl><span class=c1></span>   <span class=c1>//@param    _neederAmount   受益人的id
+</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=kd>function</span>   <span class=nf>ISconpelete</span><span class=p>(</span> <span class=kt>uint</span> <span class=n>_neederAmount</span><span class=p>){</span>
+</span></span><span class=line><span class=cl>        <span class=n>needer</span> <span class=k>storage</span>  <span class=n>_needer</span> <span class=o>=</span>  <span class=n>needmap</span><span class=p>[</span><span class=n>_neederAmount</span><span class=p>];</span>
+</span></span><span class=line><span class=cl>        <span class=k>if</span><span class=p>(</span><span class=n>_needer</span><span class=p>.</span><span class=n>amount</span>  <span class=o>&gt;=</span><span class=n>_needer</span><span class=p>.</span><span class=n>goal</span> <span class=p>){</span>
+</span></span><span class=line><span class=cl>            <span class=n>_needer</span><span class=p>.</span><span class=n>Neederaddress</span><span class=p>.</span><span class=nb>transfer</span><span class=p>(</span><span class=n>_needer</span><span class=p>.</span><span class=n>amount</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>}</span></span></span></code></pre></td></tr></table></div></div><h2 class=heading-element id=chainflag刷题记录><span>Chainflag刷题记录</span>
+<a href=#chainflag%e5%88%b7%e9%a2%98%e8%ae%b0%e5%bd%95 class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h2><p>Tips：The challenge contract will be deployed on the Sepolia network</p><p><strong>部署题目</strong></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>kali@LAPTOP-QD91EIJU:/mnt/c/Users/GoodLunatic$ nc chall.chainflag.org <span class=m>10022</span>
+</span></span><span class=line><span class=cl>We design a pretty easy contract challenge. Enjoy it!
+</span></span><span class=line><span class=cl>Your goal is to make isSolved<span class=o>()</span> <span class=k>function</span> returns true!
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>[</span>1<span class=o>]</span> - Create an account which will be used to deploy the challenge contract
+</span></span><span class=line><span class=cl><span class=o>[</span>2<span class=o>]</span> - Deploy the challenge contract using your generated account
+</span></span><span class=line><span class=cl><span class=o>[</span>3<span class=o>]</span> - Get your flag once you meet the requirement
+</span></span><span class=line><span class=cl><span class=o>[</span>4<span class=o>]</span> - Show the contract <span class=nb>source</span> code
+</span></span><span class=line><span class=cl><span class=o>[</span>-<span class=o>]</span> input your choice: <span class=m>1</span>
+</span></span><span class=line><span class=cl><span class=o>[</span>+<span class=o>]</span> deployer account: 0x5BaB25243D74E56affceD7393CDf6aFdc6A9a12F
+</span></span><span class=line><span class=cl><span class=c1>#创建了一个账户，用于部署题目合约</span>
+</span></span><span class=line><span class=cl><span class=o>[</span>+<span class=o>]</span> token: v4.local.pJvCWQxn1SbqGXvnM6RuvXv0F-UyOgi-cTXtIsVl4Rx1hzf1PMqscjCkAoYKgXEXPi2bVBQnohUNIlteHuguOjJb3nY6zJ4OQkFYPwGugyVOPh2tzLR5XGyuEeUkYJyQ-_F5ZmgN8dowE2_rlljYr4rCdKpTpuHRhFkd6u6rE8NzOw
+</span></span><span class=line><span class=cl><span class=c1>#token用于选项2部署题目合约已经选项3获取flag</span>
+</span></span><span class=line><span class=cl><span class=o>[</span>+<span class=o>]</span> please transfer 0.001 <span class=nb>test</span> ether to the deployer account <span class=k>for</span> next step
+</span></span><span class=line><span class=cl><span class=c1>#要先通过metamask向这个账户里发送点测试币，方法见下图（因为有gas费用所以建议稍微多转点）</span>
+</span></span><span class=line><span class=cl>kali@LAPTOP-QD91EIJU:/mnt/c/Users/GoodLunatic$ nc chall.chainflag.org <span class=m>10022</span>
+</span></span><span class=line><span class=cl>We design a pretty easy contract challenge. Enjoy it!
+</span></span><span class=line><span class=cl>Your goal is to make isSolved<span class=o>()</span> <span class=k>function</span> returns true!
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>[</span>1<span class=o>]</span> - Create an account which will be used to deploy the challenge contract
+</span></span><span class=line><span class=cl><span class=o>[</span>2<span class=o>]</span> - Deploy the challenge contract using your generated account
+</span></span><span class=line><span class=cl><span class=o>[</span>3<span class=o>]</span> - Get your flag once you meet the requirement
+</span></span><span class=line><span class=cl><span class=o>[</span>4<span class=o>]</span> - Show the contract <span class=nb>source</span> code
+</span></span><span class=line><span class=cl><span class=o>[</span>-<span class=o>]</span> input your choice: <span class=m>2</span>
+</span></span><span class=line><span class=cl><span class=o>[</span>-<span class=o>]</span> input your token: v4.local.pJvCWQxn1SbqGXvnM6RuvXv0F-UyOgi-cTXtIsVl4Rx1hzf1PMqscjCkAoYKgXEXPi2bVBQnohUNIlteHuguOjJb3nY6zJ4OQkFYPwGugyVOPh2tzLR5XGyuEeUkYJyQ-_F5ZmgN8dowE2_rlljYr4rCdKpTpuHRhFkd6u6rE8NzOw
+</span></span><span class=line><span class=cl><span class=o>[</span>+<span class=o>]</span> contract address: 0x17b96ca2944b1CaA75708d0f2b660D208f2DF1f7
+</span></span><span class=line><span class=cl><span class=c1>#得到了合约的地址，即部署的题目的合约</span>
+</span></span><span class=line><span class=cl><span class=o>[</span>+<span class=o>]</span> transaction hash: 0xe033e37636423b8cd65ea2d15c2e5ffb7e18f6e7b7d03051c90d411e4c3d708f
+</span></span><span class=line><span class=cl><span class=c1>#部署合约的交易hash</span></span></span></code></pre></td></tr></table></div></div><p><img loading=lazy src=C:\Users\GoodLunatic\AppData\Roaming\Typora\typora-user-images\image-20221202115004855.png alt=image-20221202115004855></p><p><strong>在REMIX上编写攻击脚本</strong></p><p>Hint：Your goal is to make isSolved() function returns true!</p><p>获取题目源码（这道题直接给了，如果没给的话就要反编译逆出合约的逻辑）</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-solidity data-lang=solidity><span class=line><span class=cl><span class=n>contracts</span><span class=o>/</span><span class=n>Example</span><span class=p>.</span><span class=n>sol</span>
+</span></span><span class=line><span class=cl><span class=k>pragma solidity</span> <span class=mi>0</span><span class=p>.</span><span class=mi>8</span><span class=p>.</span><span class=mi>7</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kd>contract</span> <span class=nc>Greeter</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=kt>string</span> <span class=n>greeting</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=kd>constructor</span><span class=p>(</span><span class=kt>string</span> <span class=k>memory</span> <span class=n>_greeting</span><span class=p>)</span> <span class=k>public</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=n>greeting</span> <span class=o>=</span> <span class=n>_greeting</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=kd>function</span> <span class=nf>greet</span><span class=p>()</span> <span class=k>public</span> <span class=k>view</span> <span class=k>returns</span> <span class=p>(</span><span class=kt>string</span> <span class=k>memory</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=n>greeting</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=kd>function</span> <span class=nf>setGreeting</span><span class=p>(</span><span class=kt>string</span> <span class=k>memory</span> <span class=n>_greeting</span><span class=p>)</span> <span class=k>public</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=n>greeting</span> <span class=o>=</span> <span class=n>_greeting</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=kd>function</span> <span class=nf>isSolved</span><span class=p>()</span> <span class=k>public</span> <span class=k>view</span> <span class=k>returns</span> <span class=p>(</span><span class=kt>bool</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=kt>string</span> <span class=k>memory</span> <span class=n>expected</span> <span class=o>=</span> <span class=s>&#34;HelloChainFlag&#34;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=nb>keccak256</span><span class=p>(</span><span class=nb>abi</span><span class=p>.</span><span class=nb>encodePacked</span><span class=p>(</span><span class=n>expected</span><span class=p>))</span> <span class=o>==</span> <span class=nb>keccak256</span><span class=p>(</span><span class=nb>abi</span><span class=p>.</span><span class=nb>encodePacked</span><span class=p>(</span><span class=n>greeting</span><span class=p>));</span>
+</span></span><span class=line><span class=cl>        <span class=c1>//即要让expected==greeting==&#34;HelloChainFlag&#34;
+</span></span></span><span class=line><span class=cl><span class=c1></span>        <span class=c1>//solution:调用setGreeting函数来修改greeting的值
+</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>}</span></span></span></code></pre></td></tr></table></div></div><p><strong>exp</strong></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-solidity data-lang=solidity><span class=line><span class=cl><span class=k>pragma solidity</span> <span class=mi>0</span><span class=p>.</span><span class=mi>8</span><span class=p>.</span><span class=mi>7</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=c1>//因为我们的攻击合约需要用到题目合约的函数，所以这里直接照搬题目合约的代码，用来提供定义。
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=kd>contract</span> <span class=nc>Greeter</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=kt>string</span> <span class=n>greeting</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=kd>constructor</span><span class=p>(</span><span class=kt>string</span> <span class=k>memory</span> <span class=n>_greeting</span><span class=p>)</span> <span class=k>public</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=n>greeting</span> <span class=o>=</span> <span class=n>_greeting</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=kd>function</span> <span class=nf>greet</span><span class=p>()</span> <span class=k>public</span> <span class=k>view</span> <span class=k>returns</span> <span class=p>(</span><span class=kt>string</span> <span class=k>memory</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=n>greeting</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=kd>function</span> <span class=nf>setGreeting</span><span class=p>(</span><span class=kt>string</span> <span class=k>memory</span> <span class=n>_greeting</span><span class=p>)</span> <span class=k>public</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=n>greeting</span> <span class=o>=</span> <span class=n>_greeting</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=kd>function</span> <span class=nf>isSolved</span><span class=p>()</span> <span class=k>public</span> <span class=k>view</span> <span class=k>returns</span> <span class=p>(</span><span class=kt>bool</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=kt>string</span> <span class=k>memory</span> <span class=n>expected</span> <span class=o>=</span> <span class=s>&#34;HelloChainFlag&#34;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=nb>keccak256</span><span class=p>(</span><span class=nb>abi</span><span class=p>.</span><span class=nb>encodePacked</span><span class=p>(</span><span class=n>expected</span><span class=p>))</span> <span class=o>==</span> <span class=nb>keccak256</span><span class=p>(</span><span class=nb>abi</span><span class=p>.</span><span class=nb>encodePacked</span><span class=p>(</span><span class=n>greeting</span><span class=p>));</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=kd>contract</span> <span class=nc>exp</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl><span class=c1>//首先要确定需要攻击的合约，因此这里填上之前选项2部署的合约的地址
+</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=kt>address</span> <span class=n>instance_address</span> <span class=o>=</span> <span class=mh>0x17b96ca2944b1CaA75708d0f2b660D208f2DF1f7</span> <span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=c1>//这里把题目合约地址和模块简化一下，后面调用时直接用target就可以了
+</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=n>Greeter</span> <span class=n>target</span> <span class=o>=</span> <span class=n>Greeter</span><span class=p>(</span><span class=n>instance_address</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=kd>constructor</span><span class=p>()</span><span class=k>payable</span><span class=p>{}</span>
+</span></span><span class=line><span class=cl><span class=c1>//在攻击合约里定义一个hack函数，public说明该函数可供外部、子合约、合约内部访问。后面的returns则是定义该函数的返回值类型
+</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=kd>function</span> <span class=nf>hack</span><span class=p>()</span> <span class=k>public</span> <span class=k>returns</span> <span class=p>(</span><span class=kt>bool</span><span class=p>){</span>
+</span></span><span class=line><span class=cl>        <span class=kt>bool</span> <span class=n>answer</span> <span class=o>=</span> <span class=kc>false</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=c1>//定义一个string类型的变量greeting并赋值为&#34;HelloChainFlag&#34;，memory表示数据储存在内存中，并不会储存在链上，可以节省gas。
+</span></span></span><span class=line><span class=cl><span class=c1></span>        <span class=kt>string</span> <span class=k>memory</span> <span class=n>greeting</span> <span class=o>=</span> <span class=s>&#34;HelloChainFlag&#34;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=c1>//调用题目合约的setGreeting函数，并将greeting作为参数传输过去
+</span></span></span><span class=line><span class=cl><span class=c1></span>        <span class=n>target</span><span class=p>.</span><span class=n>setGreeting</span><span class=p>(</span><span class=n>greeting</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=c1>//调用题目合约的isSolved函数，在执行完上一条语句后，题目合约中的expected就会等于greeting，因此isSolved会返回true，达成题目要求。
+</span></span></span><span class=line><span class=cl><span class=c1></span>        <span class=n>answer</span> <span class=o>=</span> <span class=n>target</span><span class=p>.</span><span class=n>isSolved</span><span class=p>();</span>
+</span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=n>answer</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>}</span></span></span></code></pre></td></tr></table></div></div><p>部署好Environment和Account然后选择exp.sol,点击Deploy，支付交互所需的费用，</p><p>然后在下面Deployed Contracts中就可以看到hack按钮，点击hack开始攻击合约了。</p><p>在metamask里支付完以后，稍作等待，再nc那个容器，输入token得到flag</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>nc chall.chainflag.org <span class=m>10022</span>
+</span></span><span class=line><span class=cl>We design a pretty easy contract challenge. Enjoy it!
+</span></span><span class=line><span class=cl>Your goal is to make isSolved<span class=o>()</span> <span class=k>function</span> returns true!
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>[</span>1<span class=o>]</span> - Create an account which will be used to deploy the challenge contract
+</span></span><span class=line><span class=cl><span class=o>[</span>2<span class=o>]</span> - Deploy the challenge contract using your generated account
+</span></span><span class=line><span class=cl><span class=o>[</span>3<span class=o>]</span> - Get your flag once you meet the requirement
+</span></span><span class=line><span class=cl><span class=o>[</span>4<span class=o>]</span> - Show the contract <span class=nb>source</span> code
+</span></span><span class=line><span class=cl><span class=o>[</span>-<span class=o>]</span> input your choice: <span class=m>3</span>
+</span></span><span class=line><span class=cl><span class=o>[</span>-<span class=o>]</span> input your token: v4.local.pJvCWQxn1SbqGXvnM6RuvXv0F-UyOgi-cTXtIsVl4Rx1hzf1PMqscjCkAoYKgXEXPi2bVBQnohUNIlteHuguOjJb3nY6zJ4OQkFYPwGugyVOPh2tzLR5XGyuEeUkYJyQ-_F5ZmgN8dowE2_rlljYr4rCdKpTpuHRhFkd6u6rE8NzOw
+</span></span><span class=line><span class=cl><span class=o>[</span>+<span class=o>]</span> flag: flag<span class=o>{</span>placeholder<span class=o>}</span></span></span></code></pre></td></tr></table></div></div></div><div class=post-footer id=post-footer><div class=post-info><div class=post-info-line><div class=post-info-mod><span title="更新于 2022-12-02 22:40:08">更新于 2022-12-02&nbsp;</span></div></div><div class=post-info-line><div class=post-info-md><span><a href=/posts/3e9e231/index.md title=阅读原始文档 class=link-to-markdown>阅读原始文档</a></span></div><div class=post-info-share><span><a href=javascript:void(0); title="分享到 X" data-sharer=twitter data-url=https://goodlunatic.github.io/posts/3e9e231/ data-title=Misc-区块链安全 data-hashtags=Misc,CTF><i class="fa-brands fa-x-twitter fa-fw" aria-hidden=true></i></a>
+<a href=javascript:void(0); title="分享到 Facebook" data-sharer=facebook data-url=https://goodlunatic.github.io/posts/3e9e231/ data-hashtag=Misc><i class="fa-brands fa-facebook-square fa-fw" aria-hidden=true></i></a>
+<a href=javascript:void(0); title="分享到 微博" data-sharer=weibo data-url=https://goodlunatic.github.io/posts/3e9e231/ data-title=Misc-区块链安全><i class="fa-brands fa-weibo fa-fw" aria-hidden=true></i></a></span></div></div></div><div class=post-info-more><section class=post-tags><i class="fa-solid fa-tags fa-fw me-1" aria-hidden=true></i><a href=/tags/misc/ class=post-tag title="标签 - Misc">Misc</a><a href=/tags/ctf/ class=post-tag title="标签 - CTF">CTF</a></section><section><span><a href=javascript:void(0); onclick=window.history.back()>返回</a></span>&nbsp;|&nbsp;<span><a href=/>主页</a></span></section></div><div class=post-nav><a href=/posts/3f7db4e/ class=post-nav-item rel=prev title="2022 浙江省大学生网络与信息安全竞赛 Writeup"><i class="fa-solid fa-angle-left fa-fw" aria-hidden=true></i>2022 浙江省大学生网络与信息安全竞赛 Writeup</a><a href=/posts/d7eced5/ class=post-nav-item rel=next title=CTF-Pwn刷题记录>CTF-Pwn刷题记录<i class="fa-solid fa-angle-right fa-fw" aria-hidden=true></i></a></div></div></article><aside class=toc id=toc-auto aria-label=目录><h2 class=toc-title>目录&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden=true></i></h2><div class=toc-content id=toc-content-auto></div></aside></main><footer class=footer><div class=footer-container><div class="footer-line powered order-1">由 <a href=https://gohugo.io/ target=_blank rel="external nofollow noopener noreferrer" title="Hugo 0.152.1">Hugo</a> 强力驱动 | 主题 - <a href=https://github.com/hugo-fixit/FixIt target=_blank rel=external title="FixIt v0.4.0-alpha.2-20251023040336-063af2cd">FixIt</a></div><div class="footer-line copyright order-2" itemscope itemtype=http://schema.org/CreativeWork><i class="fa-regular fa-copyright fa-fw" aria-hidden=true></i>
+<span itemprop=copyrightYear>2022 - 2025</span><span class=author itemprop=copyrightHolder>
+<a href=https://goodlunatic.github.io target=_blank rel="external nofollow noopener noreferrer">Lunatic</a></span></div><div class="footer-line visitor"><span id=busuanzi_container_site_uv title=总访客数><i class="fa-regular fa-user fa-fw me-1" aria-hidden=true></i><span id=busuanzi_value_site_uv><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden=true></i></span></span><span id=busuanzi_container_site_pv class=footer-divider title=总访问量><i class="fa-regular fa-eye fa-fw me-1" aria-hidden=true></i><span id=busuanzi_value_site_pv><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden=true></i></span></span></div></div></footer></div><div class=widgets><div class="fixed-buttons animate__faster d-none"><div class="fixed-button back-to-top" role=button aria-label=回到顶部><i class="fa-solid fa-arrow-up fa-fw" aria-hidden=true></i><span class=variant-numeric>0%</span></div></div><a href=https://github.com/goodlunatic title="Visit Lunatic's Github" target=_blank rel="external nofollow" class="github-corner left d-none-mobile"><svg viewBox="0 0 250 250" aria-hidden="true" width="56" height="56"><path d="M0 0 115 115h15l12 27L250 250V0z"/><path d="M128.3 109C113.8 99.7 119 89.6 119 89.6 122 82.7 120.5 78.6 120.5 78.6 119.2 72 123.4 76.3 123.4 76.3 127.3 80.9 125.5 87.3 125.5 87.3 122.9 97.6 130.6 101.9 134.4 103.2" fill="currentColor" style="transform-origin:130px 106px" class="octo-arm"/><path d="M115 115C114.9 115.1 118.7 116.5 119.8 115.4l13.9-13.8C136.9 99.2 139.9 98.4 142.2 98.6 133.8 88 127.5 74.4 143.8 58 148.5 53.4 154 51.2 159.7 51 160.3 49.4 163.2 43.6 171.4 40.1 171.4 40.1 176.1 42.5 178.8 56.2 183.1 58.6 187.2 61.8 190.9 65.4 194.5 69 197.7 73.2 200.1 77.6 213.8 80.2 216.3 84.9 216.3 84.9 212.7 93.1 206.9 96 205.4 96.6 205.1 102.4 203 107.8 198.3 112.5 181.9 128.9 168.3 122.5 157.7 114.1 157.9 116.9 156.7 120.9 152.7 124.9L141 136.5C139.8 137.7 141.6 141.9 141.8 141.8z" fill="currentColor" class="octo-body"/></svg></a><div id=mask></div><noscript><div class=noscript-warning>该网站在启用 JavaScript 的情况下效果最佳。</div></noscript></div><link rel=stylesheet href=/lib/pace/themes/blue/pace-theme-minimal.css><script src=/lib/autocomplete/autocomplete.min.js defer></script><script src=/lib/fuse/fuse.min.js defer></script><script src=/lib/sharer/sharer.min.js async defer></script><script src=/lib/cell-watermark/watermark.min.js defer></script><script src=https://vercount.one/js async defer></script><script src=/lib/pace/pace.min.js async defer></script><script src=/posts/3e9e231/config/page.js defer></script><script src=/js/theme.min.js defer></script></body></html>

