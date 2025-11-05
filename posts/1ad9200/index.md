@@ -149,6 +149,23 @@ for item in data:
 
 例题1-2023 CISCN初赛 Tough_DNS
 
+#### 三进制
+
+这里放一道比较有意思的例题
+
+![](imgs/image-20251105200005373.png)
+
+> 注意到每隔五个手必然是点赞，猜测点赞是分隔符，剩下只有三个符号，可以联想到三进制
+> 
+> flag四个字母的三进制分别是10210 11000 10121 10211，所以 布对应1 剪刀对应2 石头对应0，按规律依次转换即可
+
+```python
+data = "10210 11000 10121 10211 11120 11002 1211 10200 1220 10112 10001 2222 10002 10112 11021 10222 1211 11000 11000 11112 11122".split()
+for item in data:
+    print(chr(int(item,3)),end='')
+# flag{n1c3_RPS_sk1llz}
+```
+
 #### 四进制
 
 ```python
@@ -288,304 +305,6 @@ Tips：十六位其实就是取32位的8-24位
 MD5 加密后的密文都是十六进制字符
 
 可以尝试在[somd5](https://www.somd5.com/)或者[CMD5](https://cmd5.com/)上反查MD5
-
-### emoji-aes加密
-
-密文由一大串emoji表情组成，解密需要密钥
-
-例如已知key：`th1sisKey`，直接使用[在线网站](https://aghorler.github.io/emoji-aes/)解密即可，也可以下载源码然后本地解密
-
-```
-🙃💵🌿🎤🚪🌏🐎🥋🚫😆😍🔬👣🖐🌏😇🥋😇😊🍎🏹👌🌊☃🦓🌏🐅🥋🚨📮🐍🎈📮📂✅🐍⏩⌨🎈😍🌊😇🐍☺💧🥋🍌🎤🍍😇👁🦓😇🍍📮📂🎅😡🍵✖✉🏹⌨🍵🎤😆🍵🚹🏹🍎🚨ℹ☃👑🎤🚪💵😎😀😎🔬💵🦓🏹👉🦓✖😀🐘🔪⌨🎈🥋👌🍌🚹😂✉🍎🍌🏎👌🏹💵👌👁🎃🗒
-```
-
-> 如果题目给了emoji但是没给密钥，可能就是base100编码
-
-### 字频爆破
-
-给一段字符串，看着什么编码都不像然后也没啥规律的，可能是字频爆破
-
-可以尝试用在线网站[quipquip](https://quipqiup.com/)进行词频爆破
-
-> 这个的爆破原理就是，我们平常可读的字符串中，某些字母出现的频率是差不多的
-> 
-> 当我们在解某段密文时不知道具体单表替换的表，也可以尝试直接词频爆破
-
-例题1-2025SUCTF-SU_forensics
-
-### 字频统计
-
-直接用`随波逐流CTF编码工具`统计每个字母出现的次数就行
-
-### 摩斯电码
-
-> 从原理上来说，只要是三种字符构成的编码都有可能是摩斯电码
-
-用 `空格` 或者 `/` 做分隔符，然后字符可以用 `0和1` 或者 `.和-`
-
-下面举几个典型例子：
-
-```
-..-. .-.. .- --.  - .... .. ... ..--.- .. ... ..--.- - . ... - ..--.- ..-. .-.. .- --. 
-```
-
-```bash
-.--/./.-../-.-./---/--/./-/---/-./-.-/-.-./-/..-./--..--/-/...././.--./.-/.../.../.--/---/.-./-../../.../.----/-..../-.../-.--/-/./.../.-./.-/-./-../---/--/.-../-.--/--././-././.-./.-/-/./-../--..-
-```
-
-```
-# C替换为-, P替换为., D替换为空格即可
-CCPPDPCCCDCPDPPCDCPCPDCDPPCPDDCPCPDPCCPDCPPDCPPDPPCCPCDPCCCCDPPPDPPCCPCDCCDCCCCCDPPPCCDPPPDPD
-```
-
-### 栅栏(fence)密码
-
-所谓栅栏密码，就是把要加密的明文分成N个一组，然后把每组的第1个字连起来，形成一段无规律的话。栅栏密码可以分为标准型和W型
-
-可以直接用随波逐流或者[在线网站](https://ctf.bugku.com/tool/railfence)解密
-
-有时候题目提示了栅栏密码，不一定是栅栏密码解密，也有可能是要用栅栏密码加密
-
-举个例子：
-
-> 密文: eXV5d2V4eDV0OHc2ejEwNXt5dTgwNXUzMzl5MjcxNDAydn00OHQ=
-> 
-> base64_deocde: yuywexx5t8w6z105{yu805u339y271402v}48t
-> 
-> W型栅栏加密(偏移量为3): yetz{03728uwx58615y8539210v4tyxw0uuy4}
-> 
-> 凯撒密码: flag{03728bde58615f8539210c4afed0bbf4}
-
-### vigenere(维吉尼亚)密码
-
-1、给了密文和密钥：
-
-可以用`cyberchef`或者[在线网站](https://ctf.bugku.com/tool/vigenere)解密
-
-2、给了密文，没给密钥：
-
-可以尝试用[在线网站](https://www.guballa.de/vigenere-solver)爆破
-
-3、给了密文，没给密钥，但是知道明文的前几位：
-
-可以根据对照表，手搓密钥的前几位，说不定就找到规律直接解出来了
-
-![vigenere](imgs/vigenere.png)
-4、给了密钥字典，直接写脚本爆破
-
-```python
-from pycipher import Vigenere
-
-cipher = "rla xymijgpf ppsoto wq u nncwel ff tfqlgnxwzz sgnlwduzmy vcyg ib bhfbe u tnaxua ff satzmpibf vszqen eyvlatq cnzhk dk hfy mnciuzj ou s yygusfp bl dq e okcvpa hmsz vi wdimyfqqjqubzc hmpmbgxifbgi qs lciyaktb jf clntkspy drywuz wucfm"
-
-with open("keys.txt","r") as f:
-    lines = f.readlines()
-
-for line in lines:
-    key = line.strip()
-    res = Vigenere(key).decipher(cipher)
-    if "PASSWORD" in res:
-        print(f"[+] key: {key}")
-        print(f"[+] res: {res.lower()}")
-```
-
-### 希尔密码
-
-解密网站:http://www.metools.info/code/hillcipher243.html
-
-已知密文和密钥，并且密钥(key)是一个网址，如http://www.verymuch.net
-
-已知密文和密钥，并且密钥是四个数字
-
-```
-密文：ymyvzjtxswwktetpyvpfmvcdgywktetpyvpfuedfnzdjsiujvpwktetpyvnzdjpfkjssvacdgywktetpyvnzdjqtincduedfpfkjssne
-密钥：3 4 19 11
-```
-
-### Rabbit加密
-
-通常题目会提示是用`Rabbit加密`，然后密文通常以`U2FsdGVkX1`开头，其实就是`Salted`加盐了
-
-直接[在线网站](https://www.sojson.com/encrypt_rabbit.html)解密即可
-
-### 云影密码
-
-特征是：密文只由01248组成
-
-用`随波逐流CTF编码工具`解密或者用下面的脚本解密
-
-> 云影密码的原理就是：以0作为分隔符分组，然后把每组数字相加得到一个数字，这个数字对应的就是26字母中的下标
-
-```python
-# 云影密码
-ciphey="8842101220480224404014224202480122"
-enc_list=ciphey.split('0')
-res=[]
-print(enc_list)
-for item in enc_list:
-    sum=0
-    for num in item:
-        sum += int(num)
-    res.append(chr(sum+64))
-print(''.join(res))
-
-```
-
-### 曼彻斯特与差分曼彻斯特编码
-
-
-![](imgs/image-20240529203318823.png)
-
-> 1. 曼彻斯特码：从高到低表示 1，从低到高表示 0
-> 2. 差分曼彻斯特码：在每个时钟周期的起始处（虚线处）有跳变表示 0；无跳变则表示1。
-
-可以直接使用 曼彻斯特编码 转换工具转换
-
-![](imgs/image-20240529203746999.png)
-
-例题1 2016CISCN-传感器1
-
-> 5555555595555A65556AA696AA6666666955
-> 
-> 这是某压力传感器无线数据包解调后但未解码的报文(hex)
-> 
-> 已知其ID为0xFED31F，请继续将报文完整解码，提交hex。
-> 
-> 提示1：曼联
-
-```python
-enc = "5555555595555A65556AA696AA6666666955"
-res = ''
-flag = ''
-flag_final = ''
-for item in enc:
-    # tmp = bin(int(item, 16))[2:].rjust(4, '0')
-    # print(tmp, end=' ')
-    res += str(bin(int(item, 16))[2:].rjust(4, '0'))
-# print(res)
-for i in range(0, len(res), 2):
-    if res[i:i+2] == '01':
-        flag += '1'
-    elif res[i:i+2] == '10':
-        flag += '0'
-# print(flag)
-# 这里需要每8位进行一次反转，要不然无法得到校验ID:0xFED31F
-for i in range(0, len(flag), 8):
-    flag_final += hex(int(flag[i:i+8][::-1], 2))[2:]
-
-print(flag_final.upper())
-# FFFFFED31F645055F9
-```
-
-例题2 2016CISCN-传感器2
-
-> 现有某ID为0xFED31F的压力传感器，已知测得  
-> 压力为45psi时的未解码报文为：5555555595555A65556A5A96AA666666A955  
-> 压力为30psi时的未解码报文为：5555555595555A65556A9AA6AA6666665665  
-> 请给出ID为0xFEB757的传感器在压力为25psi时的解码后报文
-
-和上面那题的思路一样，就是最后多了一步压力位算法和校验位算法猜测
-
-压力位算法：压力每增加5psi压力值增加11
-
-校验位算法：校验值为从ID开始每字节相加的和模256的十六进制值即为校验值
-
-例题3 2017CISCN-传感器1
-
-> 已知ID为0x8893CA58的温度传感器的未解码报文为：3EAAAAA56A69AA55A95995A569AA95565556  
-> 此时有另一个相同型号的传感器，其未解码报文为：3EAAAAA56A69AA556A965A5999596AA95656  
-> 请解出其ID，提交flag{不含0x的hex值}
-
-开头的3E提示了差分曼彻斯特编码，就是根据上图中的跳变位置解码
-
-```python
-# enc = "3EAAAAA56A69AA55A95995A569AA95565556"
-enc = "3EAAAAA56A69AA556A965A5999596AA95656"
-res = ''
-flag = ''
-flag_final = ''
-for item in enc:
-    # tmp = bin(int(item, 16))[2:].rjust(4, '0')
-    # print(tmp, end=' ')
-    res += str(bin(int(item, 16))[2:].rjust(4, '0'))
-print(res)
-for i in range(8, len(res), 2):
-    if res[i:i+2][0] != res[i-1]:
-        flag += '0'
-    else:
-        flag += '1'
-print(hex(int(flag, 2))[2:].upper())
-# 24D8845ABF34119
-# 8845ABF3
-```
-
-例题4 2017CISCN-传感器2
-
-> 已知ID为0x8893CA58的温度传感器未解码报文为：3EAAAAA56A69AA55A95995A569AA95565556  
-> 为伪造该类型传感器的报文ID（其他报文内容不变），请给出ID为0xDEADBEEF的传感器1的报文校验位（解码后hex）
-> 
-> 以及ID为0xBAADA555的传感器2的报文校验位（解码后hex），并组合作为flag提交。  
-> 例如，若传感器1的校验位为0x123456，传感器2的校验位为0xABCDEF，则flag为flag{123456ABCDEF}。
-
-解码步骤和上题一样，就是多考察了一个校验位算法（CRC8）
-
-在最后的结果前面补一个0，然后再计算 CRC8 即可
-
-### 社会主义核心价值观密码
-
-密文由社会主义核心价值观种的词语构成
-
-直接用[在线网站](https://ctf.bugku.com/tool/cvecode)或者`随波逐流CTF编码工具`解密即可
-
-当然也可以写Python脚本调用第三方模块解密
-
-### 音乐符号加密
-
-> Tips：这里要注意，加密的密文一定是以 = 结尾的，有时候需要自己把=加上
-
-eg：♭♯♪‖¶♬♭♭♪♭‖‖♭♭♬‖♫♪‖♩♬‖♬♬♭♭♫‖♩♫‖♬♪♭♭♭‖¶∮‖‖‖‖♩♬‖♬♪‖♩♫♭♭♭♭♭§‖♩♩♭♭♫♭♭♭‖♬♭‖¶§♭♭♯‖♫∮‖♬¶‖¶∮‖♬♫‖♫♬‖♫♫§=
-
-直接用在线网站解密即可：https://www.qqxiuzi.cn/bianma/wenbenjiami.php?s=yinyue
-
-### 敲击码
-
-![敲击码](imgs/敲击码.jpeg)
-```
-5,2   3,1  3,1  3,2 
- W     L    L    M
-```
-
-### 博多码
-
-> 最明显的特征就是五位二进制一组
-
-```
-11011 10101 10101 10101 11111 01110 11011 10101 10111 10101 00111 00111 11111 11001 11011 10000 00111 00001 10110 00111 00111 00111 00111 00111 00111 10000 11111 01101 11011 01010 11111 01001 11011 00001 10111 00111 00001 10101 00001 10000 11111 01101 11011 01010 11111 01001 11011 01010 10110 00111 00001 00111 01010 00001 00001 00111 10011 00001 00001 00001 00001 00001 00001 10011 10111 10011 10111 10011 10111 00111 11111 01001
-```
-
-直接用`随波逐流CTF编码工具`解密即可
-
-例题1-2025宁波市赛-吾的字节
-
-### 格雷码
-
-```python
-def binary_to_gray(binary_str):
-    """将两位二进制转换为两位格雷码"""
-    if len(binary_str) != 2:
-        raise ValueError("输入必须是两位二进制")
-    # 格雷码转换：第一位不变，第二位是第一位和第二位的异或
-    gray = binary_str[0] + str(int(binary_str[0]) ^ int(binary_str[1]))
-    return gray
-```
-
-例题1-2025上海市赛 两个数
-
-### Polybius密码(波利比奥斯方针密码)
-
-类似于`11，22，11，24`这样的
-
-逗号改成空格，拉入随波逐流CTF编码工具直接解密即可
 
 
 ### RC4加密算法
@@ -735,6 +454,311 @@ openssl des3 -d -salt -k th1sisKey -in ./flag.tar.gz -out decrypted_file
 | **SM9** | 非对称加密 | 主密钥/用户密钥 |    可变    |   **可变**   | 取决于安全参数，通常远长于SM2密钥 |
 
 ![](imgs/image-20250819214101200.png)
+
+### emoji-aes加密
+
+密文由一大串emoji表情组成，解密需要密钥
+
+例如已知key：`th1sisKey`，直接使用[在线网站](https://aghorler.github.io/emoji-aes/)解密即可，也可以下载源码然后本地解密
+
+```
+🙃💵🌿🎤🚪🌏🐎🥋🚫😆😍🔬👣🖐🌏😇🥋😇😊🍎🏹👌🌊☃🦓🌏🐅🥋🚨📮🐍🎈📮📂✅🐍⏩⌨🎈😍🌊😇🐍☺💧🥋🍌🎤🍍😇👁🦓😇🍍📮📂🎅😡🍵✖✉🏹⌨🍵🎤😆🍵🚹🏹🍎🚨ℹ☃👑🎤🚪💵😎😀😎🔬💵🦓🏹👉🦓✖😀🐘🔪⌨🎈🥋👌🍌🚹😂✉🍎🍌🏎👌🏹💵👌👁🎃🗒
+```
+
+> 如果题目给了emoji但是没给密钥，可能就是base100编码
+
+### 字频爆破
+
+给一段字符串，看着什么编码都不像然后也没啥规律的，可能是字频爆破
+
+可以尝试用在线网站[quipquip](https://quipqiup.com/)进行词频爆破
+
+> 这个的爆破原理就是，我们平常可读的字符串中，某些字母出现的频率是差不多的
+> 
+> 当我们在解某段密文时不知道具体单表替换的表，也可以尝试直接词频爆破
+
+例题1-2025SUCTF-SU_forensics
+
+### 字频统计
+
+直接用`随波逐流CTF编码工具`统计每个字母出现的次数就行
+
+### 摩斯电码
+
+> 从原理上来说，只要是三种字符构成的编码都有可能是摩斯电码
+
+用 `空格` 或者 `/` 做分隔符，然后字符可以用 `0和1` 或者 `.和-`
+
+下面举几个典型例子：
+
+```
+..-. .-.. .- --.  - .... .. ... ..--.- .. ... ..--.- - . ... - ..--.- ..-. .-.. .- --. 
+```
+
+```bash
+.--/./.-../-.-./---/--/./-/---/-./-.-/-.-./-/..-./--..--/-/...././.--./.-/.../.../.--/---/.-./-../../.../.----/-..../-.../-.--/-/./.../.-./.-/-./-../---/--/.-../-.--/--././-././.-./.-/-/./-../--..-
+```
+
+```
+# C替换为-, P替换为., D替换为空格即可
+CCPPDPCCCDCPDPPCDCPCPDCDPPCPDDCPCPDPCCPDCPPDCPPDPPCCPCDPCCCCDPPPDPPCCPCDCCDCCCCCDPPPCCDPPPDPD
+```
+
+### 栅栏密码(fence)
+
+所谓栅栏密码，就是把要加密的明文分成N个一组，然后把每组的第1个字连起来，形成一段无规律的话。栅栏密码可以分为标准型和W型
+
+可以直接用随波逐流或者[在线网站](https://ctf.bugku.com/tool/railfence)解密
+
+有时候题目提示了栅栏密码，不一定是栅栏密码解密，也有可能是要用栅栏密码加密
+
+举个例子：
+
+> 密文: eXV5d2V4eDV0OHc2ejEwNXt5dTgwNXUzMzl5MjcxNDAydn00OHQ=
+> 
+> base64_deocde: yuywexx5t8w6z105{yu805u339y271402v}48t
+> 
+> W型栅栏加密(偏移量为3): yetz{03728uwx58615y8539210v4tyxw0uuy4}
+> 
+> 凯撒密码: flag{03728bde58615f8539210c4afed0bbf4}
+
+### 维吉尼亚密码(vigenere)
+
+1、给了密文和密钥：
+
+可以用`cyberchef`或者[在线网站](https://ctf.bugku.com/tool/vigenere)解密
+
+2、给了密文，没给密钥：
+
+可以尝试用[在线网站](https://www.guballa.de/vigenere-solver)爆破
+
+3、给了密文，没给密钥，但是知道明文的前几位：
+
+可以根据对照表，手搓密钥的前几位，说不定就找到规律直接解出来了
+
+![vigenere](imgs/vigenere.png)
+4、给了密钥字典，直接写脚本爆破
+
+```python
+from pycipher import Vigenere
+
+cipher = "rla xymijgpf ppsoto wq u nncwel ff tfqlgnxwzz sgnlwduzmy vcyg ib bhfbe u tnaxua ff satzmpibf vszqen eyvlatq cnzhk dk hfy mnciuzj ou s yygusfp bl dq e okcvpa hmsz vi wdimyfqqjqubzc hmpmbgxifbgi qs lciyaktb jf clntkspy drywuz wucfm"
+
+with open("keys.txt","r") as f:
+    lines = f.readlines()
+
+for line in lines:
+    key = line.strip()
+    res = Vigenere(key).decipher(cipher)
+    if "PASSWORD" in res:
+        print(f"[+] key: {key}")
+        print(f"[+] res: {res.lower()}")
+```
+
+### 希尔密码(Hill)
+
+解密网站:http://www.metools.info/code/hillcipher243.html
+
+已知密文和密钥，并且密钥(key)是一个网址，如http://www.verymuch.net
+
+已知密文和密钥，并且密钥是四个数字
+
+```
+密文：ymyvzjtxswwktetpyvpfmvcdgywktetpyvpfuedfnzdjsiujvpwktetpyvnzdjpfkjssvacdgywktetpyvnzdjqtincduedfpfkjssne
+密钥：3 4 19 11
+```
+
+### Rabbit加密
+
+通常题目会提示是用`Rabbit加密`，然后密文通常以`U2FsdGVkX1`开头，解 base64 可以得到`Salted`，这是调用了 `js-crypt` 库加密的特征
+
+可以使用[在线网站](https://www.sojson.com/encrypt_rabbit.html)解密，可以用`PuzzleSolver`中的 PBE 解密
+
+### 云影密码
+
+特征是：密文只由01248组成
+
+用`随波逐流CTF编码工具`解密或者用下面的脚本解密
+
+> 云影密码的原理就是：以0作为分隔符分组，然后把每组数字相加得到一个数字，这个数字对应的就是26字母中的下标
+
+```python
+# 云影密码
+ciphey="8842101220480224404014224202480122"
+enc_list=ciphey.split('0')
+res=[]
+print(enc_list)
+for item in enc_list:
+    sum=0
+    for num in item:
+        sum += int(num)
+    res.append(chr(sum+64))
+print(''.join(res))
+
+```
+
+### 曼彻斯特与差分曼彻斯特编码
+
+
+![](imgs/image-20240529203318823.png)
+
+> 1. 曼彻斯特码：从高到低表示 1，从低到高表示 0
+> 2. 差分曼彻斯特码：在每个时钟周期的起始处（虚线处）有跳变表示 0；无跳变则表示1。
+
+可以直接使用 曼彻斯特编码 转换工具转换
+
+![](imgs/image-20240529203746999.png)
+
+例题1 2016CISCN-传感器1
+
+> 5555555595555A65556AA696AA6666666955
+> 
+> 这是某压力传感器无线数据包解调后但未解码的报文(hex)
+> 
+> 已知其ID为0xFED31F，请继续将报文完整解码，提交hex。
+> 
+> 提示1：曼联
+
+```python
+enc = "5555555595555A65556AA696AA6666666955"
+res = ''
+flag = ''
+flag_final = ''
+for item in enc:
+    # tmp = bin(int(item, 16))[2:].rjust(4, '0')
+    # print(tmp, end=' ')
+    res += str(bin(int(item, 16))[2:].rjust(4, '0'))
+# print(res)
+for i in range(0, len(res), 2):
+    if res[i:i+2] == '01':
+        flag += '1'
+    elif res[i:i+2] == '10':
+        flag += '0'
+# print(flag)
+# 这里需要每8位进行一次反转，要不然无法得到校验ID:0xFED31F
+for i in range(0, len(flag), 8):
+    flag_final += hex(int(flag[i:i+8][::-1], 2))[2:]
+
+print(flag_final.upper())
+# FFFFFED31F645055F9
+```
+
+例题2 2016CISCN-传感器2
+
+> 现有某ID为0xFED31F的压力传感器，已知测得  
+> 
+> 压力为45psi时的未解码报文为：5555555595555A65556A5A96AA666666A955  
+> 
+> 压力为30psi时的未解码报文为：5555555595555A65556A9AA6AA6666665665  
+> 
+> 请给出ID为0xFEB757的传感器在压力为25psi时的解码后报文
+
+和上面那题的思路一样，就是最后多了一步压力位算法和校验位算法猜测
+
+压力位算法：压力每增加5psi压力值增加11
+
+校验位算法：校验值为从ID开始每字节相加的和模256的十六进制值即为校验值
+
+例题3 2017CISCN-传感器1
+
+> 已知ID为0x8893CA58的温度传感器的未解码报文为：3EAAAAA56A69AA55A95995A569AA95565556  
+> 
+> 此时有另一个相同型号的传感器，其未解码报文为：3EAAAAA56A69AA556A965A5999596AA95656  
+> 
+> 请解出其ID，提交flag{不含0x的hex值}
+
+开头的3E提示了差分曼彻斯特编码，就是根据上图中的跳变位置解码
+
+```python
+# enc = "3EAAAAA56A69AA55A95995A569AA95565556"
+enc = "3EAAAAA56A69AA556A965A5999596AA95656"
+res = ''
+flag = ''
+flag_final = ''
+for item in enc:
+    # tmp = bin(int(item, 16))[2:].rjust(4, '0')
+    # print(tmp, end=' ')
+    res += str(bin(int(item, 16))[2:].rjust(4, '0'))
+print(res)
+for i in range(8, len(res), 2):
+    if res[i:i+2][0] != res[i-1]:
+        flag += '0'
+    else:
+        flag += '1'
+print(hex(int(flag, 2))[2:].upper())
+# 24D8845ABF34119
+# 8845ABF3
+```
+
+例题4 2017CISCN-传感器2
+
+> 已知ID为0x8893CA58的温度传感器未解码报文为：3EAAAAA56A69AA55A95995A569AA95565556  
+> 
+> 为伪造该类型传感器的报文ID（其他报文内容不变），请给出ID为0xDEADBEEF的传感器1的报文校验位（解码后hex）
+> 
+> 以及ID为0xBAADA555的传感器2的报文校验位（解码后hex），并组合作为flag提交。  
+> 
+> 例如，若传感器1的校验位为0x123456，传感器2的校验位为0xABCDEF，则flag为flag{123456ABCDEF}。
+
+解码步骤和上题一样，就是多考察了一个校验位算法（CRC8）
+
+在最后的结果前面补一个0，然后再计算 CRC8 即可
+
+### 社会主义核心价值观密码
+
+密文由社会主义核心价值观中的词语构成：`富强民主文明和谐自由平等公正法治爱国敬业诚信友善`
+
+直接用[在线网站](https://ctf.bugku.com/tool/cvecode)或者`随波逐流CTF编码工具`解密即可
+
+当然也可以写Python脚本调用第三方模块解密
+
+### 音乐符号加密
+
+> Tips：这里要注意，加密的密文一定是以 = 结尾的，有时候需要自己把=加上
+
+eg：♭♯♪‖¶♬♭♭♪♭‖‖♭♭♬‖♫♪‖♩♬‖♬♬♭♭♫‖♩♫‖♬♪♭♭♭‖¶∮‖‖‖‖♩♬‖♬♪‖♩♫♭♭♭♭♭§‖♩♩♭♭♫♭♭♭‖♬♭‖¶§♭♭♯‖♫∮‖♬¶‖¶∮‖♬♫‖♫♬‖♫♫§=
+
+直接用在线网站解密即可：https://www.qqxiuzi.cn/bianma/wenbenjiami.php?s=yinyue
+
+### 敲击码
+
+![敲击码](imgs/敲击码.jpeg)
+```
+5,2   3,1  3,1  3,2 
+ W     L    L    M
+```
+
+### 博多码
+
+> 最明显的特征就是五位二进制一组
+
+```
+11011 10101 10101 10101 11111 01110 11011 10101 10111 10101 00111 00111 11111 11001 11011 10000 00111 00001 10110 00111 00111 00111 00111 00111 00111 10000 11111 01101 11011 01010 11111 01001 11011 00001 10111 00111 00001 10101 00001 10000 11111 01101 11011 01010 11111 01001 11011 01010 10110 00111 00001 00111 01010 00001 00001 00111 10011 00001 00001 00001 00001 00001 00001 10011 10111 10011 10111 10011 10111 00111 11111 01001
+```
+
+直接用`随波逐流CTF编码工具`解密即可
+
+例题1-2025宁波市赛-吾的字节
+
+### 格雷码
+
+```python
+def binary_to_gray(binary_str):
+    """将两位二进制转换为两位格雷码"""
+    if len(binary_str) != 2:
+        raise ValueError("输入必须是两位二进制")
+    # 格雷码转换：第一位不变，第二位是第一位和第二位的异或
+    gray = binary_str[0] + str(int(binary_str[0]) ^ int(binary_str[1]))
+    return gray
+```
+
+例题1-2025上海市赛 两个数
+
+### 波利比奥斯方阵密码(Polybius)
+
+类似于`11，22，11，24`这样的
+
+逗号改成空格，拉入随波逐流CTF编码工具直接解密即可
 
 
 ### 埃特巴什码(Atbash)
@@ -1050,7 +1074,7 @@ print(secret)
 
 例题1-2023浙江省赛决赛-签到
 
-### 4、whitespace隐写
+### whitespace隐写
 
 一个文件打开都是空白字符
 
@@ -1058,7 +1082,7 @@ print(secret)
 
 全选复制进去，然后直接run即可
 
-### 5、SNOW隐写
+### SNOW隐写
 
 SNOW 隐写工具下载：https://darkside.com.au/snow/
 
@@ -1307,9 +1331,11 @@ ooo yyy ii w uuu ee iii ee uuu ooo r yyy yyy e
 
 ### 棋盘密码(ADFGVX,ADFGX,Polybius)
 
-![](imgs/image-20241018145022295.png)
+![](imgs/image-20251105212819794.png)
+
 
 直接使用CaptfEncoder或者随波逐流等工具输入密文和密钥解密即可
+
 ![](imgs/image-20241018145101804.png)
 
 ADFGVX密码 默认棋盘：`ph0qg64mea1yl2nofdxkr3cvs5zw7bj9uti8` 默认密钥：`german`
@@ -1447,16 +1473,9 @@ print(ddd)
 
 ![](imgs/image-20250307145735098.png)
 
-### 盲文
+### 垃圾邮件隐写(Spammimic)
 
-![](imgs/image-20250925131554313.png)
-
-![](imgs/image-20250925131524373.png)
-
-### 旗语
-
-![](imgs/image-20250421203306482.png)
-
+特征就是给了一长串垃圾电子邮件，直接用在线网站解密即可：https://www.spammimic.com/
 
 ### Tupper自指公式
 
@@ -1506,23 +1525,34 @@ out2 = img.transpose(Image.FLIP_LEFT_RIGHT)
 out2.show()
 ```
 
+
+### 盲文
+
+![](imgs/image-20250925131554313.png)
+
+![](imgs/image-20250925131524373.png)
+
+### 旗语
+
+![](imgs/image-20250421203306482.png)
+
+
 ### 各种各样的异形文字
 
 > 这一栏目主要搜集了比赛中遇到的一些异形文字，当然如果实在找不到对照表，也可以直接映射到字母上，然后拿quipquip爆破，详细可以参考 2025-SUCTF 的 SU_forensics
 
-#### 原神提瓦特通用文字对照表
+#### 原神提瓦特通用文字
 
 ![](imgs/image-20250823182424652.png)
 
 
-#### 瓦坎达文字对照表
+#### 瓦坎达文字
 
 ![](imgs/image-20250315123245293.png)
 
-#### 喜羊羊与灰太狼-羊文对照表
+#### 喜羊羊与灰太狼-羊文
 
 ![](imgs/image-20250421190228589.png)
-
 
 ## Misc——流量分析题思路
 
