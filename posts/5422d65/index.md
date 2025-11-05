@@ -1250,7 +1250,7 @@ NTLM 认证由以下三种消息构成：
 > 
 > Type3 验证 在质询完成后验证结果
 
-#### NTLM 的完整认证流程：
+#### NTLM 认证的完整流程：
 
 - 第一步 - 协商：认证始于客户端向服务器发送Type 1协商消息，告知服务器它所支持的NTLM协议版本和一系列功能列表。
 
@@ -1266,21 +1266,86 @@ NTLM 认证由以下三种消息构成：
 
 在NTLM认证的Type 3消息中，客户端可能发送六种不同类型的响应，其演变历程体现了微软在安全性上的不断改进：
 
-LM响应：最古老的响应类型，由早期客户端使用，安全性极低。
+- LM响应：最古老的响应类型，由早期客户端使用，安全性极低。
 
-NTLM v1响应：由Windows NT、2000、XP等客户端发送，取代了LM响应。
+- NTLM v1响应：由Windows NT、2000、XP等客户端发送，取代了LM响应。
 
-NTLM v2响应：从Windows NT SP4引入的更安全响应，在现代系统中取代NTLM v1响应。
+- NTLM v2响应：从Windows NT SP4引入的更安全响应，在现代系统中取代NTLM v1响应。
 
-LM v2响应：NTLMv2协议中用于替代LM响应的版本。
+- LM v2响应：NTLMv2协议中用于替代LM响应的版本。
 
-NTLM2会话响应：一种折中方案，在不使用完整NTLMv2认证时，也能增强会话安全性。
+- NTLM2会话响应：一种折中方案，在不使用完整NTLMv2认证时，也能增强会话安全性。
 
-匿名响应：用于建立匿名上下文，不进行真正的身份验证。
+- 匿名响应：用于建立匿名上下文，不进行真正的身份验证。
 
 所有这些响应类型都基于Challenge/Response机制，其根本区别在于使用的加密算法和对Challenge的处理方式不同。
 
+#### Net-NTLM Hash 的格式
 
+> NTLM v1 和 NTLMv2 响应分别对应 Net-NTLM Hash v1 和 Net-NTLM Hash v2
+
+ - Net-NTLM Hash v1：`username::hostname:LM response:NTLM response:challenge`
+
+	状态：已废弃，因存在严重安全缺陷，只要获取到 Net-NTLMv1，即可轻易破解出原始 NTLM Hash，与密码强度无关。
+
+- Net-NTLM Hash v2：`username::domain:challenge:HMAC-MD5:blob`
+
+	状态：当前推荐使用的、更安全的版本。
+
+#### Net-NTLM Hash 的生成流程
+
+1. Net-NTLMv1 的生成（两种方法）
+
+	- 共同前置步骤：
+	
+			获取用户密码的 NT Hash。
+			在 NT Hash 后补 5 个字节的 0，使其变为 21 字节。
+			将这 21 字节分成 3 组（每组 7 字节），并将每组 7 比特数据后添加 1 比特 0，构成 3 个 8 字节的 DES 密钥。
+	
+	- 方法一（未协商会话安全）：
+	
+			使用上面得到的 3 个 DES 密钥，直接对 8 字节的 Server Challenge 进行加密，生成 3 段 8 字节密文，组合成 24 字节的响应。
+	
+	- 方法二（已协商 NTLMv2 会话安全）：
+	
+			拼接 8 字节的 Server Challenge 和 8 字节的 Client Challenge。
+			计算这个 16 字节数据的 MD5 散列值，并取前 8 字节。
+			使用前面得到的 3 个 DES 密钥，分别对这个 8 字节数据进行加密，生成 3 段 8 字节密文，组合成 24 字节的响应。
+
+2. Net-NTLMv2 的生成
+
+	计算 NTLMv2 Hash：
+	
+		将大写用户名（Unicode 编码）与认证目标（Type 3 消息中的 TargetName，如域名，区分大小写）拼接。
+		
+		以用户的 16 字节 NT Hash 为密钥，使用 HMAC-MD5 算法对上述拼接字符串进行加密，得到 16 字节的 NTLMv2 Hash。
+
+	构建 Blob：
+
+		一个包含时间戳、客户端挑战、目标信息等数据的结构。
+
+	计算 NTProofStr：
+
+		将来自 Type 2 消息的 Server Challenge 与步骤 2 构建的 Blob 拼接。
+		
+		以步骤 1 得到的 NTLMv2 Hash 为密钥，使用 HMAC-MD5 算法对拼接后的数据进行加密，得到 16 字节的 NTProofStr。
+
+	生成最终 Response：
+
+		将 NTProofStr 和 Blob 拼接起来，形成最终的响应。
+
+#### LmCompatibilityLevel（LAN 管理器身份验证级别）
+
+> 这个安全策略决定了客户端在 NTLM 认证中 使用哪种响应类型，以及服务器 接受哪种响应类型。不匹配的设置会导致认证失败。
+
+| 级别值                         | 客户端行为（发送什么）                           | 服务器行为（接受什么）              |
+| --------------------------- | ------------------------------------- | ------------------------ |
+| 0 - 发送 LM & NTLM 响应         | 只发送 LM 和 NTLMv1 响应。                   | 接受 LM, NTLM, NTLMv2。     |
+| 1 - 使用 NTLMv2 会话安全          | 发送 LM 和 NTLMv1 响应，但会尝试协商 NTLMv2 会话安全。 | 接受 LM, NTLM, NTLMv2。     |
+| 2 - 仅发送 NTLM 响应             | 只发送 NTLMv1 响应。                        | 接受 LM, NTLM, NTLMv2。     |
+| 3 - 仅发送 NTLMv2 响应           | 只发送 NTLMv2 和 LMv2 响应。                 | 接受 LM, NTLM, NTLMv2。     |
+| 4 - 仅发送 NTLMv2/拒绝 LM        | 只发送 NTLMv2 和 LMv2 响应。                 | 拒绝 LM，只接受 NTLM 和 NTLMv2。 |
+| 5 - 仅发送 NTLMv2/拒绝 LM & NTLM | 只发送 NTLMv2 和 LMv2 响应。                 | 拒绝 LM 和 NTLM，只接受 NTLMv2。 |
 
 NTLMv2流量分析需要的信息，在追踪流中是找不到的，需要我们深入分析具体的每个流量包
 
@@ -1382,10 +1447,988 @@ print(NTproofstring)
 
 例题1-2024数据安全产业人才积分争夺赛 Strangesystem
 
+## kerberos认证流量分析
 
-## kerbores认证流量分析
+### kerberos认证的基本概念
+
+Kerberos 是一种由麻省理工大学提出的网络身份验证协议，其设计目标是通过密钥加密技术为客户端与服务器应用程序提供强身份验证。该协议的认证过程不依赖于主机操作系统的认证机制，也不基于主机地址的信任关系，同时不要求网络中所有主机在物理上的绝对安全，并假设网络数据包可能被任意读取、修改或插入。在此背景下，Kerberos 作为可信任的第三方认证服务，依托传统的密码技术（如共享密钥）来执行身份验证。
+
+在 Kerberos 协议中主要存在三个角色：
+
+一是访问服务的客户端，即用户；
+
+二是提供服务的服务器；
+
+三是密钥分发中心，简称 KDC。
+
+> KDC 通常默认安装在域环境的域控制器上，而客户端和服务器则可以是域内的用户或服务，例如 HTTP 服务或数据库服务。Kerberos 通过 KDC 签发票据来控制客户端是否有权限访问某一服务。
+
+### kerberos认证的完整流程
+
+第一阶段：用户初始认证与 TGT 获取 (AS Exchange)
+
+	1. AS-REQ (认证服务请求)
+	
+		客户端向密钥分发中心(KDC)的认证服务(AS)发送请求。
+		
+		客户端将其密码生成的哈希值作为密钥，加密一个当前时间戳，并将此加密后的时间戳作为认证因子发送给 KDC。
+
+	2. AS-REP (认证服务回复)
+	
+		KDC 从数据库中获取该用户的密码哈希，尝试解密时间戳。如果解密成功且时间戳在允许的时间偏差内，则验证通过。
+		
+		验证成功后，KDC 会创建一个票据授予票据(TGT)。这个 TGT 中包含一个关键结构——特权属性证书(PAC)，PAC 里记录了用户的安全标识符(SID)和所属组信息。
+		
+		KDC 使用自己的密钥(KDC Key)加密整个 TGT，然后将其发送回客户端。
+		
+		客户端收到加密的 TGT，但由于没有 KDC 的密钥，无法解密它，只能安全地保存起来。
+
+第二阶段：申请访问特定服务的票据 (TGS Exchange)
+
+	1. TGS-REQ (票据授予服务请求)
+	
+		当客户端需要访问某个特定服务（如文件共享、邮箱等）时，它会向 KDC 的票据授予服务(TGS)发起请求。
+		
+		请求中包含之前获得的 TGT（仍由 KDC 密钥加密）以及一个使用服务名称等信息生成的认证符。
+	
+	2. TGS-REP (票据授予服务回复)
+	
+		KDC 验证 TGT 的有效性（通过解密并检查其有效性）。
+		
+		关键点：只要 TGT 有效，KDC 就会批准请求，而不会在此阶段判断用户是否有权访问该服务。
+		
+		KDC 会复制 TGT 中的 PAC 数据，并生成一个针对目标服务的服务票据(Service Ticket)。
+		
+		KDC 使用目标服务账户的密码哈希作为密钥来加密这个服务票据，然后将其发送给客户端。
+
+第三阶段：访问服务与最终权限验证 (AP Exchange)
+
+	1. AP-REQ (应用请求)
+	
+		客户端向目标服务程序发起访问请求。
+		
+		请求中提交之前获得的服务票据（由服务密码哈希加密）以及一个新的认证符。
+	
+	2. AP-REP (应用回复) & PAC 验证
+	
+		服务端使用自身的密码哈希来解密服务票据。如果解密成功，则证明票据是真实的KDC颁发的。
+		
+		服务端从解密后的票据中提取出 PAC 信息。
+		
+		为了确定用户的具体访问权限，服务端会将 PAC 发送给 KDC（具体是 KDC 的域控制器），请求查询该用户的最终权限。
+		
+		KDC 解密 PAC，读取其中的用户 SID 和组信息，再结合该服务资源的访问控制列表(ACL)，进行最终的权限判断。
+		
+		KDC 将权限判定结果返回给服务端。
+		
+		服务端根据这个结果决定是批准还是拒绝客户端的访问，从而完成整个认证与授权流程。
+
+> 关于 PAC (特权属性证书) 的补充说明:
+> 
+> PAC 是微软为 Kerberos 协议引入的关键扩展，其核心作用是在票据中嵌入用户的身份标识和组信息，从而解决标准协议无法区分用户权限的问题。为确保其安全性和完整性，PAC 被封装在由 KDC 密钥加密的 TGT 内部，并且其本身附加了分别由 KDC 密钥和服务端密码哈希加密的两个数字签名。在最终的授权阶段，服务端会将这些签名提交给 KDC 进行有效性校验，KDC 在确认 PAC 未被篡改后，才会依据其中的用户信息返回最终的权限判定。
 
 
+### 解密Kerberos认证加密的流量
+
+解密 Kerberos 认证加密的流量，需要制作 keytab 文件，并在 wireshark 中 协议 -> KRB5 导入制作好的 keytab 文件
+
+![](imgs/image-20251105142610867.png)
+
+制作 keytab 文件所需的 Realm(域名) 和 principal(主体名) 可以从 KRB5 的 AS-REP 中获取（这里要特别注意大小写）
+
+因为这里的 salt（加密派生盐值）是 Realm + principal，并且保留了大小写，因此我们直接使用 salt 中的信息即可
+
+![](imgs/image-20251105142832603.png)
+
+然后就可以用下面这几个方法制作 keytab 文件
+
+方法一：可以借助[这个项目](https://github.com/TheRealAdamBurford/Create-KeyTab)生成 keytab 文件
+
+![](imgs/image-20251105142512436.png)
+
+为了预防线下断网的情况，我这里也贴一份这个 ps1 脚本
+
+```powershell
+<#PSScriptInfo
+.VERSION 1.0.2
+.GUID 325f7f9a-87be-42ec-ba96-c5e423718284
+.AUTHOR TRAB
+.COMPANYNAME
+.COPYRIGHT
+.TAGS KeyTab Ktpass Key Tab
+.LICENSEURI https://github.com/TheRealAdamBurford/Create-KeyTab/blob/master/LICENSE
+.PROJECTURI https://github.com/TheRealAdamBurford/Create-KeyTab
+.ICONURI
+.EXTERNALMODULEDEPENDENCIES 
+.REQUIREDSCRIPTS
+.EXTERNALSCRIPTDEPENDENCIES
+.RELEASENOTES
+.PRIVATEDATA
+#>
+
+<# 
+.DESCRIPTION 
+ This scipt will generate off-line keytab files for use with Active Directory (AD). While the script is designed to work independently of AD, this script can be used with a wrapper script that uses Get-ADUser or Get-ADObject to retrieve the UPN of a samaccountname or a list of samaccountnames for use in batch processing of KeyTab creation. More information at https://therealadamburford.github.io/Create-KeyTab/ 
+#> 
+##########################################################
+###
+###      Create-KeyTab.ps1
+###
+###      Created : 2019-10-26
+###      Modified: 2020-10-26
+###
+###      Created By : Adam Burford
+###      Modified By: Adam Burford
+###
+###
+### Notes: Create RC4-HMAC, AES128. AES256 KeyTab file. Does not use AD. 
+### Password, ServicePRincipal/UPN must be set on AD account.
+### Future add may include option AD lookup for Kvno, SPN and UPN.
+###
+### 2019-11-11 - Added custom SALT option
+### 2019-11-11 - Added current Epoch Time Stamp.
+### 2019-11-12 - Added -Append option
+### 2019-11-12 - Added -Quiet and -NoPrompt switches for use in batch mode
+### 2019-11-14 - Added support for UPN format primary/principal (e.g. host/www.domain.com). The principal is split into an array. 
+###              The slash is removed from the SALT calculation.
+###
+### 2019-11-18 - Changed output text. RC4,AES128,AES256
+### 2019-11-18 - Created static nFold output.
+### 2019-11-26 - Added a Get-Password function to mask password prompt input
+### 2020-01-30 - Add Info for posting to https://www.powershellgallery.com
+### 2020-09-15 - Added suggested use of [decimal]::Parse from "https://github.com/matherm-aboehm" to fix timestamp error on localized versions of Windows. Line 535.
+### 2020-10-26 - Add KRB5_NT_SRV_HST to possible PType values
+###
+##########################################################
+### Attribution:
+### https://tools.ietf.org/html/rfc3961
+### https://docs.microsoft.com/en-us/openspecs/windows_protocols/ms-kile/936a4878-9462-4753-aac8-087cd3ca4625?redirectedfrom=MSDN
+### https://github.com/dfinke/powershell-algorithms/blob/master/src/algorithms/math/euclidean-algorithm/euclideanAlgorithm.ps1
+### https://afana.me/archive/2016/12/29/how-mit-keytab-files-store-passwords.aspx/
+### http://www.ioplex.com/utilities/keytab.txt
+
+<#
+.SYNOPSIS
+This script will generate and append version 502 KeyTab files
+
+.DESCRIPTION
+Required Parameters
+
+-Realm     : The Realm for the KeyTab
+-Principal : The Principal for the KeyTab. Case sensative for AES SALT. Default REALM+Principal
+-Password  : 
+
+Optional Parameters
+
+-SALT      : Use a custom SALT
+-File      : KeyTab File Path. Default = CurrentDirectory\login.keytab
+-KVNO      : Default = 1. Exceeding 255 will wrap the KVNO. THe 32bit KVNO field is not implimented.
+-PType     : Default = KRB5_NT_PRINCIPAL
+-RC4       : Generate RC4 Key
+-AES128    : Generate AES128 Key
+-AES256    : Generate AES256 Key - This is default if no Etype switch is set.
+-Append    : Append Key Data to an existing KeyTab file.
+-Quiet     : Suppress Text Output
+-NoPrompt  : Suppress Write KeyTab File Prompt
+
+.EXAMPLE
+.\Create-KeyTab.ps1
+.EXAMPLE
+.\Create-KeyTab.ps1 -AES256 -AES128 -RC4
+.EXAMPLE
+.\Create-KeyTab.ps1 -AES256 -AES128 -Append
+.EXAMPLE
+.\Create-KeyTab.ps1 -AES256 -AES128 -SALT "MY.REALM.COMprincipalname"
+.EXAMPLE
+.\Create-KeyTab.ps1 -Realm "MY.REALM.COM" -Principal "principalname" -Password "Secret" -File "c:\temp\login.keytab"
+
+.NOTES
+Use -QUIET and -NOPROMPT for batch mode processing.
+
+.LINK
+https://www.linkedin.com/in/adamburford
+#>
+param (
+[Parameter(Mandatory=$true,HelpMessage="REALM name will be forced to Upper Case")]$Realm,
+[Parameter(Mandatory=$true,HelpMessage="Principal is case sensative. It must match the principal portion of the UPN",ValueFromPipelineByPropertyName=$true)]$Principal,
+[Parameter(Mandatory=$false)]$Password,
+[Parameter(Mandatory=$false)]$SALT,
+[Parameter(Mandatory=$false)]$File,
+[Parameter(Mandatory=$false,ValueFromPipelineByPropertyName=$true)]$KVNO=1,
+[Parameter(Mandatory=$false)][ValidateSet("KRB5_NT_PRINCIPAL", "KRB5_NT_SRV_INST", "KRB5_NT_SRV_HST", "KRB5_NT_UID")][String[]]$PType="KRB5_NT_PRINCIPAL",
+[Parameter(Mandatory=$false)][Switch]$RC4,
+[Parameter(Mandatory=$false)][Switch]$AES128,
+[Parameter(Mandatory=$false)][Switch]$AES256,
+[Parameter(Mandatory=$false)][Switch]$Append,
+[Parameter(Mandatory=$false)][Switch]$Quiet,
+[Parameter(Mandatory=$false)][Switch]$NoPrompt
+)
+
+function Get-MD4{
+    PARAM(
+        [String]$String,
+        [Byte[]]$bArray,
+        [Switch]$UpperCase
+    )
+    
+    # Author: Larry.Song@outlook.com
+    # https://github.com/LarrysGIT/MD4-powershell
+    # Reference: https://tools.ietf.org/html/rfc1320
+    # MD4('abc'): a448017aaf21d8525fc10ae87aa6729d
+    $Array = [byte[]]@()
+    if($String)
+    {
+        $Array = [byte[]]@($String.ToCharArray() | %{[int]$_})
+    }
+    if($bArray)
+    {
+        $Array = $bArray
+    }
+    # padding 100000*** to length 448, last (64 bits / 8) 8 bytes fill with original length
+    # at least one (512 bits / 8) 64 bytes array
+    $M = New-Object Byte[] (([math]::Floor($Array.Count/64) + 1) * 64)
+    # copy original byte array, start from index 0
+    $Array.CopyTo($M, 0)
+    # padding bits 1000 0000
+    $M[$Array.Count] = 0x80
+    # padding bits 0000 0000 to fill length (448 bits /8) 56 bytes
+    # Default value is 0 when creating a new byte array, so, no action
+    # padding message length to the last 64 bits
+    @([BitConverter]::GetBytes($Array.Count * 8)).CopyTo($M, $M.Count - 8)
+
+    # message digest buffer (A,B,C,D)
+    $A = [Convert]::ToUInt32('0x67452301', 16)
+    $B = [Convert]::ToUInt32('0xefcdab89', 16)
+    $C = [Convert]::ToUInt32('0x98badcfe', 16)
+    $D = [Convert]::ToUInt32('0x10325476', 16)
+    
+    # There is no unsigned number shift in C#, have to define one.
+    Add-Type -TypeDefinition @'
+public class Shift
+{
+  public static uint Left(uint a, int b)
+    {
+        return ((a << b) | (((a >> 1) & 0x7fffffff) >> (32 - b - 1)));
+    }
+}
+'@
+
+    # define 3 auxiliary functions
+    function FF([uint32]$X, [uint32]$Y, [uint32]$Z)
+    {
+        (($X -band $Y) -bor ((-bnot $X) -band $Z))
+    }
+    function GG([uint32]$X, [uint32]$Y, [uint32]$Z)
+    {
+        (($X -band $Y) -bor ($X -band $Z) -bor ($Y -band $Z))
+    }
+    function HH([uint32]$X, [uint32]$Y, [uint32]$Z){
+        ($X -bxor $Y -bxor $Z)
+    }
+    # processing message in one-word blocks
+    for($i = 0; $i -lt $M.Count; $i += 64)
+    {
+        # Save a copy of A/B/C/D
+        $AA = $A
+        $BB = $B
+        $CC = $C
+        $DD = $D
+
+        # Round 1 start
+        $A = [Shift]::Left(($A + (FF -X $B -Y $C -Z $D) + [BitConverter]::ToUInt32($M[($i + 0)..($i + 3)], 0)) -band [uint32]::MaxValue, 3)
+        $D = [Shift]::Left(($D + (FF -X $A -Y $B -Z $C) + [BitConverter]::ToUInt32($M[($i + 4)..($i + 7)], 0)) -band [uint32]::MaxValue, 7)
+        $C = [Shift]::Left(($C + (FF -X $D -Y $A -Z $B) + [BitConverter]::ToUInt32($M[($i + 8)..($i + 11)], 0)) -band [uint32]::MaxValue, 11)
+        $B = [Shift]::Left(($B + (FF -X $C -Y $D -Z $A) + [BitConverter]::ToUInt32($M[($i + 12)..($i + 15)], 0)) -band [uint32]::MaxValue, 19)
+
+        $A = [Shift]::Left(($A + (FF -X $B -Y $C -Z $D) + [BitConverter]::ToUInt32($M[($i + 16)..($i + 19)], 0)) -band [uint32]::MaxValue, 3)
+        $D = [Shift]::Left(($D + (FF -X $A -Y $B -Z $C) + [BitConverter]::ToUInt32($M[($i + 20)..($i + 23)], 0)) -band [uint32]::MaxValue, 7)
+        $C = [Shift]::Left(($C + (FF -X $D -Y $A -Z $B) + [BitConverter]::ToUInt32($M[($i + 24)..($i + 27)], 0)) -band [uint32]::MaxValue, 11)
+        $B = [Shift]::Left(($B + (FF -X $C -Y $D -Z $A) + [BitConverter]::ToUInt32($M[($i + 28)..($i + 31)], 0)) -band [uint32]::MaxValue, 19)
+
+        $A = [Shift]::Left(($A + (FF -X $B -Y $C -Z $D) + [BitConverter]::ToUInt32($M[($i + 32)..($i + 35)], 0)) -band [uint32]::MaxValue, 3)
+        $D = [Shift]::Left(($D + (FF -X $A -Y $B -Z $C) + [BitConverter]::ToUInt32($M[($i + 36)..($i + 39)], 0)) -band [uint32]::MaxValue, 7)
+        $C = [Shift]::Left(($C + (FF -X $D -Y $A -Z $B) + [BitConverter]::ToUInt32($M[($i + 40)..($i + 43)], 0)) -band [uint32]::MaxValue, 11)
+        $B = [Shift]::Left(($B + (FF -X $C -Y $D -Z $A) + [BitConverter]::ToUInt32($M[($i + 44)..($i + 47)], 0)) -band [uint32]::MaxValue, 19)
+
+        $A = [Shift]::Left(($A + (FF -X $B -Y $C -Z $D) + [BitConverter]::ToUInt32($M[($i + 48)..($i + 51)], 0)) -band [uint32]::MaxValue, 3)
+        $D = [Shift]::Left(($D + (FF -X $A -Y $B -Z $C) + [BitConverter]::ToUInt32($M[($i + 52)..($i + 55)], 0)) -band [uint32]::MaxValue, 7)
+        $C = [Shift]::Left(($C + (FF -X $D -Y $A -Z $B) + [BitConverter]::ToUInt32($M[($i + 56)..($i + 59)], 0)) -band [uint32]::MaxValue, 11)
+        $B = [Shift]::Left(($B + (FF -X $C -Y $D -Z $A) + [BitConverter]::ToUInt32($M[($i + 60)..($i + 63)], 0)) -band [uint32]::MaxValue, 19)
+        # Round 1 end
+        # Round 2 start
+        $A = [Shift]::Left(($A + (GG -X $B -Y $C -Z $D) + [BitConverter]::ToUInt32($M[($i + 0)..($i + 3)], 0) + 0x5A827999) -band [uint32]::MaxValue, 3)
+        $D = [Shift]::Left(($D + (GG -X $A -Y $B -Z $C) + [BitConverter]::ToUInt32($M[($i + 16)..($i + 19)], 0) + 0x5A827999) -band [uint32]::MaxValue, 5)
+        $C = [Shift]::Left(($C + (GG -X $D -Y $A -Z $B) + [BitConverter]::ToUInt32($M[($i + 32)..($i + 35)], 0) + 0x5A827999) -band [uint32]::MaxValue, 9)
+        $B = [Shift]::Left(($B + (GG -X $C -Y $D -Z $A) + [BitConverter]::ToUInt32($M[($i + 48)..($i + 51)], 0) + 0x5A827999) -band [uint32]::MaxValue, 13)
+
+        $A = [Shift]::Left(($A + (GG -X $B -Y $C -Z $D) + [BitConverter]::ToUInt32($M[($i + 4)..($i + 7)], 0) + 0x5A827999) -band [uint32]::MaxValue, 3)
+        $D = [Shift]::Left(($D + (GG -X $A -Y $B -Z $C) + [BitConverter]::ToUInt32($M[($i + 20)..($i + 23)], 0) + 0x5A827999) -band [uint32]::MaxValue, 5)
+        $C = [Shift]::Left(($C + (GG -X $D -Y $A -Z $B) + [BitConverter]::ToUInt32($M[($i + 36)..($i + 39)], 0) + 0x5A827999) -band [uint32]::MaxValue, 9)
+        $B = [Shift]::Left(($B + (GG -X $C -Y $D -Z $A) + [BitConverter]::ToUInt32($M[($i + 52)..($i + 55)], 0) + 0x5A827999) -band [uint32]::MaxValue, 13)
+
+        $A = [Shift]::Left(($A + (GG -X $B -Y $C -Z $D) + [BitConverter]::ToUInt32($M[($i + 8)..($i + 11)], 0) + 0x5A827999) -band [uint32]::MaxValue, 3)
+        $D = [Shift]::Left(($D + (GG -X $A -Y $B -Z $C) + [BitConverter]::ToUInt32($M[($i + 24)..($i + 27)], 0) + 0x5A827999) -band [uint32]::MaxValue, 5)
+        $C = [Shift]::Left(($C + (GG -X $D -Y $A -Z $B) + [BitConverter]::ToUInt32($M[($i + 40)..($i + 43)], 0) + 0x5A827999) -band [uint32]::MaxValue, 9)
+        $B = [Shift]::Left(($B + (GG -X $C -Y $D -Z $A) + [BitConverter]::ToUInt32($M[($i + 56)..($i + 59)], 0) + 0x5A827999) -band [uint32]::MaxValue, 13)
+
+        $A = [Shift]::Left(($A + (GG -X $B -Y $C -Z $D) + [BitConverter]::ToUInt32($M[($i + 12)..($i + 15)], 0) + 0x5A827999) -band [uint32]::MaxValue, 3)
+        $D = [Shift]::Left(($D + (GG -X $A -Y $B -Z $C) + [BitConverter]::ToUInt32($M[($i + 28)..($i + 31)], 0) + 0x5A827999) -band [uint32]::MaxValue, 5)
+        $C = [Shift]::Left(($C + (GG -X $D -Y $A -Z $B) + [BitConverter]::ToUInt32($M[($i + 44)..($i + 47)], 0) + 0x5A827999) -band [uint32]::MaxValue, 9)
+        $B = [Shift]::Left(($B + (GG -X $C -Y $D -Z $A) + [BitConverter]::ToUInt32($M[($i + 60)..($i + 63)], 0) + 0x5A827999) -band [uint32]::MaxValue, 13)
+        # Round 2 end
+        # Round 3 start
+        $A = [Shift]::Left(($A + (HH -X $B -Y $C -Z $D) + [BitConverter]::ToUInt32($M[($i + 0)..($i + 3)], 0) + 0x6ED9EBA1) -band [uint32]::MaxValue, 3)
+        $D = [Shift]::Left(($D + (HH -X $A -Y $B -Z $C) + [BitConverter]::ToUInt32($M[($i + 32)..($i + 35)], 0) + 0x6ED9EBA1) -band [uint32]::MaxValue, 9)
+        $C = [Shift]::Left(($C + (HH -X $D -Y $A -Z $B) + [BitConverter]::ToUInt32($M[($i + 16)..($i + 19)], 0) + 0x6ED9EBA1) -band [uint32]::MaxValue, 11)
+        $B = [Shift]::Left(($B + (HH -X $C -Y $D -Z $A) + [BitConverter]::ToUInt32($M[($i + 48)..($i + 51)], 0) + 0x6ED9EBA1) -band [uint32]::MaxValue, 15)
+
+        $A = [Shift]::Left(($A + (HH -X $B -Y $C -Z $D) + [BitConverter]::ToUInt32($M[($i + 8)..($i + 11)], 0) + 0x6ED9EBA1) -band [uint32]::MaxValue, 3)
+        $D = [Shift]::Left(($D + (HH -X $A -Y $B -Z $C) + [BitConverter]::ToUInt32($M[($i + 40)..($i + 43)], 0) + 0x6ED9EBA1) -band [uint32]::MaxValue, 9)
+        $C = [Shift]::Left(($C + (HH -X $D -Y $A -Z $B) + [BitConverter]::ToUInt32($M[($i + 24)..($i + 27)], 0) + 0x6ED9EBA1) -band [uint32]::MaxValue, 11)
+        $B = [Shift]::Left(($B + (HH -X $C -Y $D -Z $A) + [BitConverter]::ToUInt32($M[($i + 56)..($i + 59)], 0) + 0x6ED9EBA1) -band [uint32]::MaxValue, 15)
+
+        $A = [Shift]::Left(($A + (HH -X $B -Y $C -Z $D) + [BitConverter]::ToUInt32($M[($i + 4)..($i + 7)], 0) + 0x6ED9EBA1) -band [uint32]::MaxValue, 3)
+        $D = [Shift]::Left(($D + (HH -X $A -Y $B -Z $C) + [BitConverter]::ToUInt32($M[($i + 36)..($i + 39)], 0) + 0x6ED9EBA1) -band [uint32]::MaxValue, 9)
+        $C = [Shift]::Left(($C + (HH -X $D -Y $A -Z $B) + [BitConverter]::ToUInt32($M[($i + 20)..($i + 23)], 0) + 0x6ED9EBA1) -band [uint32]::MaxValue, 11)
+        $B = [Shift]::Left(($B + (HH -X $C -Y $D -Z $A) + [BitConverter]::ToUInt32($M[($i + 52)..($i + 55)], 0) + 0x6ED9EBA1) -band [uint32]::MaxValue, 15)
+
+        $A = [Shift]::Left(($A + (HH -X $B -Y $C -Z $D) + [BitConverter]::ToUInt32($M[($i + 12)..($i + 15)], 0) + 0x6ED9EBA1) -band [uint32]::MaxValue, 3)
+        $D = [Shift]::Left(($D + (HH -X $A -Y $B -Z $C) + [BitConverter]::ToUInt32($M[($i + 44)..($i + 47)], 0) + 0x6ED9EBA1) -band [uint32]::MaxValue, 9)
+        $C = [Shift]::Left(($C + (HH -X $D -Y $A -Z $B) + [BitConverter]::ToUInt32($M[($i + 28)..($i + 31)], 0) + 0x6ED9EBA1) -band [uint32]::MaxValue, 11)
+        $B = [Shift]::Left(($B + (HH -X $C -Y $D -Z $A) + [BitConverter]::ToUInt32($M[($i + 60)..($i + 63)], 0) + 0x6ED9EBA1) -band [uint32]::MaxValue, 15)
+        # Round 3 end
+        # Increment start
+        $A = ($A + $AA) -band [uint32]::MaxValue
+        $B = ($B + $BB) -band [uint32]::MaxValue
+        $C = ($C + $CC) -band [uint32]::MaxValue
+        $D = ($D + $DD) -band [uint32]::MaxValue
+        # Increment end
+    }
+    # Output start
+    $A = ('{0:x8}' -f $A) -ireplace '^(\w{2})(\w{2})(\w{2})(\w{2})$', '$4$3$2$1'
+    $B = ('{0:x8}' -f $B) -ireplace '^(\w{2})(\w{2})(\w{2})(\w{2})$', '$4$3$2$1'
+    $C = ('{0:x8}' -f $C) -ireplace '^(\w{2})(\w{2})(\w{2})(\w{2})$', '$4$3$2$1'
+    $D = ('{0:x8}' -f $D) -ireplace '^(\w{2})(\w{2})(\w{2})(\w{2})$', '$4$3$2$1'
+    # Output end
+
+    if($UpperCase)
+    {
+        return "$A$B$C$D".ToUpper()
+    }
+    else
+    {
+        return "$A$B$C$D"
+    }
+}
+
+function Get-PBKDF2 {
+param (
+[Parameter(Mandatory=$true)]$PasswordString,
+[Parameter(Mandatory=$true)]$SALT,
+[Parameter(Mandatory=$true)][ValidateSet("16", "32")][String[]]$KeySize
+)
+
+### Set Key Size
+switch($KeySize){
+"16"{
+    [int] $size = 16
+    break;
+    }
+"32"{
+    [int] $size = 32
+    break;
+     }
+default{}
+}
+
+[byte[]] $password = [Text.Encoding]::UTF8.GetBytes($PasswordString)
+[byte[]] $saltBytes = [Text.Encoding]::UTF8.GetBytes($SALT)
+
+#PBKDF2 IterationCount=4096
+$deriveBytes = new-Object Security.Cryptography.Rfc2898DeriveBytes($password, $saltBytes, 4096)
+
+<#
+$hexStringSALT = Get-HexStringFromByteArray -Data $deriveBytes.Salt    
+Write-Host "SALT (HEX):"$hexStringSALT -ForegroundColor Yellow
+#>
+
+return $deriveBytes.GetBytes($size)
+}
+
+function Encrypt-AES {
+param (
+[Parameter(Mandatory=$true)]$KeyData,
+[Parameter(Mandatory=$true)]$IVData,
+[Parameter(Mandatory=$true)]$Data
+)
+
+### AES 128-CTS
+# KeySize = 16
+# AESKey = Encrypt-AES -KeyData PBKdf2 -IVData IV -Data NFoldText
+
+### AES 256-CTS
+# KeySize = 32
+# K1 = Encrypt-AES -KeyData PBKdf2 -IVData IV -Data NFoldText
+# K2 = Encrypt-AES -KeyData PBKdf2 -IVData IV -Data K1
+# AESKey = K1 + K2
+
+# Create AES Object
+    $Aes = $null
+    $encryptor = $null
+    $memStream = $null
+    $cryptoStream = $null
+    $AESKey = $null
+    
+    $Aes = New-Object System.Security.Cryptography.AesManaged
+    $Aes.Mode = [System.Security.Cryptography.CipherMode]::CBC
+    $Aes.Padding = [System.Security.Cryptography.PaddingMode]::None
+    $Aes.BlockSize = 128
+
+    $encryptor = $Aes.CreateEncryptor($key,$IV)
+    $memStream = new-Object IO.MemoryStream
+
+    [byte[]] $AESKey = @()
+    $cryptoStream = New-Object System.Security.Cryptography.CryptoStream($memStream, $encryptor, [System.Security.Cryptography.CryptoStreamMode]::Write)
+    $cryptoStream.Write($Data, 0, $Data.Length)
+    $CryptoStream.FlushFinalBlock()
+    $cryptoStream.Close()
+
+    $AESKey = $memStream.ToArray()
+    $memStream.Close()
+    $Aes.Dispose()
+
+    return $AESKey
+}
+
+function Get-AES128Key {
+param (
+[Parameter(Mandatory=$true)]$PasswordString,
+[Parameter(Mandatory=$true)]$SALT=""
+)
+
+[byte[]] $PBKDF2 = Get-PBKDF2 -PasswordString $passwordString -SALT $SALT -KeySize 16
+#[byte[]] $nFolded = (Get-NFold-Bytes -Data ([Text.Encoding]::ASCII.GetBytes("kerberos")) -KeySize 16)
+[byte[]] $nFolded = @(107,101,114,98,101,114,111,115,123,155,91,43,147,19,43,147)
+[byte[]] $Key = $PBKDF2
+[byte[]] $IV =  @(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
+
+$AES128Key = Encrypt-AES -KeyData $key -IVData $IV -Data $nFolded
+return $(Get-HexStringFromByteArray -Data $AES128Key)
+}
+
+function Get-AES256Key {
+param (
+[Parameter(Mandatory=$true)]$PasswordString,
+[Parameter(Mandatory=$true)]$SALT=""
+)
+
+[byte[]] $PBKDF2 = Get-PBKDF2 -PasswordString $passwordString -SALT $SALT -KeySize 32
+#[byte[]] $nFolded = (Get-NFold-Bytes -Data ([Text.Encoding]::ASCII.GetBytes("kerberos")) -KeySize 16)
+[byte[]] $nFolded = @(107,101,114,98,101,114,111,115,123,155,91,43,147,19,43,147)
+[byte[]] $Key = $PBKDF2
+[byte[]] $IV =  @(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
+
+$k1 = Encrypt-AES -KeyData $key -IVData $IV -Data $nFolded
+$k2 = Encrypt-AES -KeyData $key -IVData $IV -Data $k1
+
+$AES256Key = $k1 + $k2
+return $(Get-HexStringFromByteArray -Data $AES256Key)
+}
+
+function Get-HexStringFromByteArray{
+param (
+[Parameter(Mandatory=$true,Position=0)][byte[]]$Data
+)
+$hexString = $null
+
+        $sb = New-Object System.Text.StringBuilder ($Data.Length * 2)
+        foreach($b in $Data)
+        {
+            $sb.AppendFormat("{0:x2}", $b) |Out-Null
+        }
+        $hexString = $sb.ToString().ToUpper([CultureInfo]::InvariantCulture)
+
+return $hexString
+}
+
+function Get-ByteArrayFromHexString{
+param 
+(
+[Parameter(Mandatory=$true)][String]$HexString
+)
+        $i = 0;
+        $bytes = @()
+        while($i -lt $HexString.Length)
+        {
+            $chars = $HexString.SubString($i, 2)
+            $b = [Convert]::ToByte($chars, 16)
+            $bytes += $b
+            $i = $i+2
+        }
+return $bytes
+}
+
+function Get-BytesBigEndian {
+param (
+[Parameter(Mandatory=$true)]$Value,
+[Parameter(Mandatory=$true)][ValidateSet("16", "32")][String[]]$BitSize
+)
+
+### Set Key Type
+[byte[]] $bytes = @()
+switch($BitSize){
+"16"{
+    $bytes = [BitCOnverter]::GetBytes([int16]$Value)
+    if([BitCOnverter]::IsLittleEndian){
+    [Array]::Reverse($bytes)
+    }
+    break;
+    }
+"32"{
+    $bytes = [BitCOnverter]::GetBytes([int32]$Value)
+    if([BitCOnverter]::IsLittleEndian){
+    [Array]::Reverse($bytes)
+    }
+    break;
+     }
+default{}
+}
+
+return $bytes
+}
+
+function Get-PrincipalType {
+param (
+[Parameter(Mandatory=$true)][ValidateSet("KRB5_NT_PRINCIPAL", "KRB5_NT_SRV_INST", "KRB5_NT_SRV_HST", "KRB5_NT_UID")][String[]]$PrincipalType
+)
+
+[byte[]] $nameType = @()
+
+switch($PrincipalType){
+"KRB5_NT_PRINCIPAL"{$nameType = @(00,00,00,01);break}
+"KRB5_NT_SRV_INST"{$nameType = @(00,00,00,02);break}
+"KRB5_NT_SRV_HST"{$nameType = @(00,00,00,03);break}
+"KRB5_NT_UID"{$nameType = @(00,00,00,05);break}
+default{$nameType = @(00,00,00,01);break}
+}
+
+return $nameType
+}
+
+function Create-KeyTabEntry {
+param (
+[Parameter(Mandatory=$true)]$PasswordString,
+[Parameter(Mandatory=$true)]$RealmString,
+[Parameter(Mandatory=$true)]$Components,
+[Parameter(Mandatory=$false)]$SALT="",
+[Parameter(Mandatory=$false)]$KVNO=1,
+[Parameter(Mandatory=$true)][ValidateSet("KRB5_NT_PRINCIPAL", "KRB5_NT_SRV_INST", "KRB5_NT_SRV_HST", "KRB5_NT_UID")][String[]]$PrincipalType,
+[Parameter(Mandatory=$true)][ValidateSet("RC4", "AES128", "AES256")][String[]]$EncryptionKeyType
+)
+
+### Key Types: RC4 0x17 (23), AES128  0x11 (17), AES256  0x12 (18)
+
+### Set Key Type
+[byte[]] $keyType = @()
+[byte[]] $sizeKeyBlock = @()
+
+switch($EncryptionKeyType){
+"RC4"{
+       $keyType = @(00,23)
+       $sizeKey = 16
+       $sizeKeyBlock = @(00,16)
+       ### Create RC4-HMAC Key. Unicode is required for MD4 hash input.
+       [byte[]]$password = [Text.Encoding]::Unicode.GetBytes($passwordString)
+       $keyBlock = Get-MD4 -bArray $password -UpperCase
+       break
+       }
+"AES128"{
+        $keyType = @(00,17)
+        $sizeKey = 16
+        $sizeKeyBlock = @(00,16)
+        #$keyBlock = Get-AES128Key -PasswordString $passwordString -Realm $RealmString -Principal $PrincipalString -SALT $SALT
+        $keyBlock = Get-AES128Key -PasswordString $passwordString -SALT $SALT
+        break
+        }
+"AES256"{
+        $keyType = @(00,18)
+        $sizeKey = 32
+        $sizeKeyBlock = @(00,32)
+        #$keyBlock = Get-AES256Key -PasswordString $passwordString -Realm $RealmString -Principal $PrincipalString -SALT $SALT
+        $keyBlock = Get-AES256Key -PasswordString $passwordString -SALT $SALT
+        break
+        }
+default{}
+}
+
+### Set Principal Type
+[byte[]] $nameType = @()
+switch($PrincipalType){
+"KRB5_NT_PRINCIPAL"{$nameType = @(00,00,00,01);break}
+"KRB5_NT_SRV_INST"{$nameType = @(00,00,00,02);break}
+"KRB5_NT_SRV_HST"{$nameType = @(00,00,00,03);break}
+"KRB5_NT_UID"{$nameType = @(00,00,00,05);break}
+default{$nameType = @(00,00,00,01);break}
+}
+
+### KVNO larger than 255 requires 32bit KVNO field at the end of the record
+$vno = @()
+
+if($kvno -le 255){
+$vno = @([byte]$kvno)
+} else {
+$vno = @(00)
+}
+
+[byte[]]$numComponents = Get-BytesBigEndian -BitSize 16 -Value $components.Count
+
+### To Set TimeStamp To Jan 1, 1970 - [byte[]]$timeStamp = @(0,0,0,0)
+### [byte[]]$timeStamp = Get-BytesBigEndian -BitSize 32 -Value ([int]([Math]::Truncate((Get-Date(Get-Date).ToUniversalTime() -UFormat %s))))
+### 15 September 2020 Updated
+### https://github.com/matherm-aboehm suggested use of [decimal]::Parse to fix timestamp error on localized versions of Windows.
+[byte[]]$timeStamp = Get-BytesBigEndian -BitSize 32 -Value ([int]([Math]::Truncate([decimal]::Parse((Get-Date(Get-Date).ToUniversalTime() -UFormat %s)))))
+
+### Data size information for KeyEntry
+# num_components bytes   = 2
+# realm bytes            = variable (2 bytes) + length
+# components array bytes = varable (2 bytes) + length for each component. Component count should be typically 1 or 2.
+# name type bytes        = 4
+# timestamp bytes        = 4
+# kvno bytes             = 1 or 4
+# Key Type bytes         = 2
+# Key bytes              = 2 + 16 or 32 "RC4 and AES128 are 16 Byte Keys. AES 256 is 32"
+
+$sizeRealm  = Get-BytesBigEndian -Value ([Text.Encoding]::UTF8.GetByteCount($realmString)) -BitSize 16
+[Int32]$sizeKeyTabEntry = 2 #NumComponentsSize
+$sizeKeyTabEntry += 2 #RealmLength Byte Count 
+$sizeKeyTabEntry += ([Text.Encoding]::UTF8.GetByteCount($realmString))
+    foreach($principal in $Components){
+    $sizePrincipal = ([Text.Encoding]::UTF8.GetByteCount($principal))
+    $sizeKeyTabEntry += $sizePrincipal + 2
+    }
+$sizeKeyTabEntry += 4 #NameType
+$sizeKeyTabEntry += 4 #TimeStamp
+$sizeKeyTabEntry += 1 #KVNO 8bit
+$sizeKeyTabEntry += 2 #KeyType
+$sizeKeyTabEntry += 2 #Key Length Count
+$sizeKeyTabEntry += $sizeKey
+
+$sizeTotal = Get-BytesBigEndian -Value $sizeKeyTabEntry -BitSize 32
+
+[byte[]] $keytabEntry = @()
+$keytabEntry += $sizeTotal
+$keytabEntry += $numComponents
+$keytabEntry += $sizeRealm
+$keytabEntry += [byte[]][Text.Encoding]::UTF8.GetBytes($realmString)
+    foreach($principal in $Components){
+    $sizePrincipal = Get-BytesBigEndian -Value ([Text.Encoding]::UTF8.GetByteCount($principal)) -BitSize 16
+    $keytabEntry += $sizePrincipal
+    $keytabEntry += [byte[]][Text.Encoding]::UTF8.GetBytes($principal)
+    }
+$keytabEntry += $nameType
+$keytabEntry += $timeStamp
+$keytabEntry += $vno
+$keytabEntry += $keyType
+$keytabEntry += $sizeKeyBlock
+$keytabEntry += Get-ByteArrayFromHexString -HexString $keyBlock
+
+$keytabEntryObject = [PsCustomObject]@{
+        Size           = $sizeKeyTabEntry
+        NumComponents  = $numComponents
+        Realm          = [byte[]][Text.Encoding]::UTF8.GetBytes($realmString)
+        Components     = $components
+        NameType       = $nameType
+        TimeStamp      = $timeStamp
+        KeyType        = $keyType
+        KeyBlock       = $keyBlock
+        KeytabEntry    = $keytabEntry
+    }
+return $keytabEntryObject
+}
+
+Function Get-Password {
+
+        $passwordSecure = Read-Host -Prompt "Enter Password" -AsSecureString
+        $passwordBSTR = [System.Runtime.InteropServices.Marshal]::SecureStringToBSTR($passwordSecure)
+        $password = [System.Runtime.InteropServices.Marshal]::PtrToStringAuto($passwordBSTR)
+
+
+return $password
+}
+
+
+if ([string]::IsNullOrEmpty($Password)){$Password = $(Get-Password)}
+
+if ([string]::IsNullOrEmpty($File)){$File=$(Get-Location).Path+'\login.keytab'}
+
+if($Quiet) {
+$Script:Silent = $true
+} else {
+$Script:Silent = $false
+}
+
+### Force Realm to UPPERCASE
+$Realm = $Realm.ToUpper()
+
+### The Components array splits the primary/principal.
+$PrincipalArray = @()
+$PrincipalArray = $Principal.Split(',')
+### Check For Custom SALT
+if([string]::IsNullOrEmpty($SALT) -eq $true) {
+$SALT = $Realm
+for($i=0;$i -lt $PrincipalArray.Count;$i++){
+$SALT += $($PrincipalArray[$i].Replace('/',""))
+}
+
+}
+### Finish spliting principal into component parts. PrincipalArray should have at most 2 elements. Testing with Java based tools, 
+### the keytab entry can only support one UPN. The components portion of the keytab entry appears to only be for spliting
+### a UPN in an SPN format. e.g. HOST/user@dev.home
+$PrincipalText = $Principal
+$Principal = $Principal.Replace('/',",")
+$PrincipalArray = @()
+$PrincipalArray = $Principal.Split(',')
+
+[byte[]] $keyTabVersion = @(05,02)
+[byte[]] $keyTabEntries = @()
+
+### Set Default Encryption to AES256 if none of the E-Type switches are set
+if(!$RC4 -and !$AES128 -and !$AES256){
+$AES256 = $true
+}
+
+### Truncate KVNO
+[Byte[]] $KVNO = [Byte[]](Get-BytesBigEndian -BitSize 32 -Value $KVNO)
+[int16] $KVNO = [int]$KVNO[3]
+
+### Create KeyTab Entries for selected E-Types RC4/AES128/AES256 supported
+$keytabEntry = $null
+if($RC4 -eq $true){
+$keytabEntry = Create-KeyTabEntry `
+-realmString $Realm -Components $PrincipalArray -passwordString $Password `
+-PrincipalType $PType -EncryptionKeyType RC4 -KVNO $KVNO
+$keyTabEntries += $keytabEntry.KeytabEntry
+if($Script:Silent -eq $false){ Write-Host "RC4:"$keytabEntry.KeyBlock -ForegroundColor Cyan}
+}
+$keytabEntry = $null
+if($AES128 -eq $true){
+$keytabEntry = Create-KeyTabEntry `
+-realmString $Realm -Components $PrincipalArray -passwordString $Password `
+-PrincipalType $PType -EncryptionKeyType AES128 -KVNO $KVNO -SALT $SALT
+$keyTabEntries += $keytabEntry.KeytabEntry
+if($Script:Silent -eq $false){ Write-Host "AES128:"$keytabEntry.KeyBlock -ForegroundColor Cyan}
+}
+$keytabEntry = $null
+if($AES256 -eq $true){
+$keytabEntry = Create-KeyTabEntry `
+-realmString $Realm -Components $PrincipalArray -passwordString $Password `
+-PrincipalType $PType -EncryptionKeyType AES256 -KVNO $KVNO -SALT $SALT
+$keyTabEntries += $keytabEntry.KeytabEntry
+if($Script:Silent -eq $false){ Write-Host "AES256:"$keytabEntry.KeyBlock -ForegroundColor Cyan}
+}
+
+if($Script:Silent -eq $false){
+Write-Host $("Principal Type:").PadLeft(15)$PType -ForegroundColor Green
+Write-Host $("Realm:").PadLeft(15)$Realm -ForegroundColor Green
+Write-Host $("User Name:").PadLeft(15)$PrincipalText -ForegroundColor Green
+Write-Host $("SALT:").PadLeft(15)$SALT -ForegroundColor Green
+Write-Host $("Keytab File:").PadLeft(15)$File -ForegroundColor Green
+Write-Host $("Append File:").PadLeft(15)$Append -ForegroundColor Green
+Write-Host ""
+}
+
+if(!$NoPrompt){
+Write-Host "Press Enter to Write KeyTab File /Ctrl+C to quit..." -ForegroundColor Yellow -NoNewline
+[void](Read-Host)
+Write-Host ""
+}
+
+if($Append -eq $true){
+$fileBytes = @()
+    if([System.IO.File]::Exists($File)){
+    $fileBytes += [System.IO.File]::ReadAllBytes($File) + $keyTabEntries
+    [System.IO.File]::WriteAllBytes($File,$fileBytes)
+    } else {
+    $fileBytes = @()
+    $fileBytes += $keyTabVersion
+    $fileBytes += $keyTabEntries
+    [System.IO.File]::WriteAllBytes($File,$fileBytes)
+    }
+} else {
+$fileBytes = @()
+$fileBytes += $keyTabVersion
+$fileBytes += $keyTabEntries
+[System.IO.File]::WriteAllBytes($File,$fileBytes)
+}
+```
+
+方法二：基于impacket生成 keytab
+
+参考文章：
+
+1. https://medium.com/tenable-techblog/decrypt-encrypted-stub-data-in-wireshark-deb132c076e7
+
+2. https://dirkjanm.io/active-directory-forest-trusts-part-two-trust-transitivity/#debugging-kerberos-the-easy-way
+
+
+```python
+from struct import unpack, pack
+from impacket.structure import Structure
+import binascii
+import sys
+
+# Keytab structure from http://www.ioplex.com/utilities/keytab.txt
+  # keytab {
+  #     uint16_t file_format_version;                    /* 0x502 */
+  #     keytab_entry entries[*];
+  # };
+
+  # keytab_entry {
+  #     int32_t size;
+  #     uint16_t num_components;    /* sub 1 if version 0x501 */
+  #     counted_octet_string realm;
+  #     counted_octet_string components[num_components];
+  #     uint32_t name_type;   /* not present if version 0x501 */
+  #     uint32_t timestamp;
+  #     uint8_t vno8;
+  #     keyblock key;
+  #     uint32_t vno; /* only present if >= 4 bytes left in entry */
+  # };
+
+  # counted_octet_string {
+  #     uint16_t length;
+  #     uint8_t data[length];
+  # };
+
+  # keyblock {
+  #     uint16_t type;
+  #     counted_octet_string;
+  # };
+
+class KeyTab(Structure):
+    structure = (
+        ('file_format_version','H=517'),
+        ('keytab_entry', ':')
+    )
+    def fromString(self, data):
+        self.entries = []
+        Structure.fromString(self, data)
+        data = self['keytab_entry']
+        while len(data) != 0:
+            ktentry = KeyTabEntry(data)
+
+            data = data[len(ktentry.getData()):]
+            self.entries.append(ktentry)
+
+    def getData(self):
+        self['keytab_entry'] = b''.join([entry.getData() for entry in self.entries])
+        data = Structure.getData(self)
+        return data
+
+class OctetString(Structure):
+    structure = (
+        ('len', '>H-value'),
+        ('value', ':')
+    )
+
+class KeyTabContentRest(Structure):
+    structure = (
+        ('name_type', '>I=1'),
+        ('timestamp', '>I=0'),
+        ('vno8', 'B=2'),
+        ('keytype', '>H'),
+        ('keylen', '>H-key'),
+        ('key', ':')
+    )
+
+class KeyTabContent(Structure):
+    structure = (
+        ('num_components', '>h'),
+        ('realmlen', '>h-realm'),
+        ('realm', ':'),
+        ('components', ':'),
+        ('restdata',':')
+    )
+    def fromString(self, data):
+        self.components = []
+        Structure.fromString(self, data)
+        data = self['components']
+        for i in range(self['num_components']):
+            ktentry = OctetString(data)
+
+            data = data[ktentry['len']+2:]
+            self.components.append(ktentry)
+        self.restfields = KeyTabContentRest(data)
+
+    def getData(self):
+        self['num_components'] = len(self.components)
+        # We modify the data field to be able to use the
+        # parent class parsing
+        self['components'] = b''.join([component.getData() for component in self.components])
+        self['restdata'] = self.restfields.getData()
+        data = Structure.getData(self)
+        return data
+
+class KeyTabEntry(Structure):
+    structure = (
+        ('size','>I-content'),
+        ('content',':', KeyTabContent)
+    )
+
+# Add your own keys here!
+# Keys are tuples in the form (keytype, 'hexencodedkey')
+# Common keytypes for Windows:
+# 23: RC4
+# 18: AES-256
+# 17: AES-128
+# Wireshark takes any number of keys in the keytab, so feel free to add
+# krbtgt keys, service keys, trust keys etc
+keys = [
+    (23, 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'),
+    (18, 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'),
+    (17, 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'),
+    (18, 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'),
+    (23, 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa')
+]
+
+nkt = KeyTab()
+nkt.entries = []
+
+for key in keys:
+    ktcr = KeyTabContentRest()
+    ktcr['keytype'] = key[0]
+    ktcr['key'] = binascii.unhexlify(key[1])
+    nktcontent = KeyTabContent()
+    nktcontent.restfields = ktcr
+    # The realm here doesn't matter for wireshark but does of course for a real keytab
+    nktcontent['realm'] = b'TESTSEGMENT.LOCAL'
+    krbtgt = OctetString()
+    krbtgt['value'] = 'krbtgt'
+    nktcontent.components = [krbtgt]
+    nktentry = KeyTabEntry()
+    nktentry['content'] = nktcontent
+    nkt.entries.append(nktentry)
+
+data = nkt.getData()
+if len(sys.argv) < 2:
+    print('Usage: keytab.py <outputfile>')
+    print('Keys should be written to the source manually')
+else:
+    with open(sys.argv[1], 'wb') as outfile:
+        outfile.write(data)
+```
+
+方法三：在 Linux 下使用 ktutil 命令制作 keytab
+
+参考文章：https://tipi-hack.github.io/2023/01/22/insomnihack-teaser-autopsy.html#the-dcerpc-decryption-problem
+
+```bash
+$ ktutil
+ktutil:  addent -p adm-drp@inscorp.com -k 1 -key -e rc4-hmac
+Key for adm-drp@inscorp.com (hex): 5c4dbe6a8a44446f8d2899ff08ea14f2
+ktutil:  wkt ins.keytab
+ktutil:  q
+```
 
 例题1-[2025 华为杯中国研究生网络安全创新大赛实网对抗赛 EZ_ATEXEC](https://goodlunatic.github.io/posts/02298dd/)
 
@@ -1395,6 +2438,15 @@ print(NTproofstring)
 
 ## AD域流量分析
 
+### DCE/RPC 协议
+
+按照 NTLM/Kerberos 解密的流程，解密出来后查看即可，就是这里要注意 wireshark 版本要在 4.0.6 以上，要不然会解码不完整
+
+![](imgs/image-20251105145452260.png)
+
+然后可以依次到 TaskSchedulerService 的数据包中把完整的数据复制出来
+
+![](imgs/image-20251105145456622.png)
 
 例题1-[2025 华为杯中国研究生网络安全创新大赛实网对抗赛 EZ_ATEXEC](https://goodlunatic.github.io/posts/02298dd/)
 
@@ -1402,6 +2454,21 @@ print(NTproofstring)
 
 例题3-[2024 SUCTF SU_AD](https://z3n1th1.com/2025/01/suctf2025-writeup/#su_ad)
 
+## RTP流量分析
+
+RTP 协议一般用于电话流量当中，可以根据流量中传输数据的特征来判断
+
+![](imgs/image-20251105143329850.png)
+
+我们需要先在启用的协议里勾选RTP-UDP，然后右键Decode As，改成RTP
+
+然后到 电话-RTP-RTP流 中去听电话传输的内容即可，如果传的流比较多，可以用 [rtpbreak](https://github.com/foreni-packages/rtpbreak) 批量提取出来
+
+例题1-BUUOJ VOIP
+
+例题2-2025 SUCTF EZ_VOIP
+
+例题3-2025 强网杯 谍影重重6.0
 
 ## 工控流量分析
 
@@ -1446,11 +2513,17 @@ Modbus 流量主要有三类：Modbus/RTU、Modbus/ASCII、Modbus/TCP
 ![](imgs/image-20240430142133329.png)
 flag{TheModbusProtocolIsFunny!}
 ### S7comm 协议分析
+
 > 西门子设备的工控协议，基于 COTP 实现，是COTP的上层协议
+> 
 > 主要有三种类型：Job(1)、Ack_Data(3)/Ack(2)、Userdata(7)
+> 
 > Job：下发任务/指令
+> 
 > Ack_Data：带有返回数据
+> 
 > Ack：单纯确认，含有数据
+> 
 > Userdata：用户自定义数据区，也包含功能指令
 
 #### 例题1 2020ICSC湖州站—工控协议数据分析
@@ -1498,8 +2571,42 @@ tshark -r 1.pcap -T fields -e s7comm.resp.data | uniq
 ![](imgs/image-20240430135813366.png)
 然后直接把明文传输的数据 base64 解码即可
 ![](imgs/image-20240430135958048.png)
-flag{hncome66!}
+
+`flag{hncome66!}`
+
+### IEC60870_ASDU协议
+
+> IEC60870_ASDU协议是电力系统中的一种协议
+
+可能会把关键信息藏在 IOA 参数中
+
+
+### TPKT协议
+
+用以下命令提取下 TPKT 协议中传输的数据
+
+```bash
+tshark -r S7Vegenere.pcapng -Y '_ws.col.protocol == "TPKT"' -T fields -e 'data.data'
+```
+
+如果上面这个命令提取出来的数据不完整，可以用以下这个命令直接去提取 TCP 中传输的数据
+
+```bash
+tshark -r 工业控制协议流量分析2.pcap -T fields -Y '!(tcp.payload == 4d:4d:53:5f:50:41:59:4c:4f:41:44:5f:4e:4f:52:4d:41:4c)' -e tcp.payload > out.txt
+```
+
+
+### DNP 3.0协议
+
+用以下命令提取一下传输的数据
+
+```bash
+tshark -r dnp3.pcapng -T fields -e 'dnp3.al.octet_string'
+```
+
+
 ## 蓝牙流量分析
+
 ### OBEX协议
 
 过滤器中输入`OBEX`，然后导出传输的压缩包，然后再在搜索中输入`PIN Code`选择分组列表和字符串即可找到解压密码

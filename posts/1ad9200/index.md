@@ -3195,12 +3195,14 @@ ZIP文件结构：[https://pkware.cachefly.net/webdocs/casestudies/APPNOTE.TXT](
 
 **Main block**
 
-| HEX 数据    | 描述              | 010Editor 模板数据      |
-| ----------- | ----------------- | ----------------------- |
+| HEX 数据      | 描述           | 010Editor 模板数据          |
+| ----------- | ------------ | ----------------------- |
 | 33 92 B5 E5 | 全部块的 CRC32 值 | uint32 HEAD_CRC         |
-| 0A          | 块大小            | struct uleb128 HeadSize |
-| 01          | 块类型            | struct uleb128 HeadType |
-| 05          | 阻止标志          | struct uleb128 HeadFlag |
+| 0A          | 块大小          | struct uleb128 HeadSize |
+| 01          | 块类型          | struct uleb128 HeadType |
+| 05          | 阻止标志         | struct uleb128 HeadFlag |
+
+> 当 RAR 压缩包添加了注释时，会出现 CMT 这个参数
 
 **File Header**
 

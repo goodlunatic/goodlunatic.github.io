@@ -7,7 +7,7 @@
 赛后在 `@Tr0jAn` 和 `@疏狂` 两位师傅的帮助下顺利解出了这道题，在此感谢一下二位师傅
 <!--more-->
 
-## 题目名称 EZ_ATEXEC_new
+## 题目名称 EZ_ATEXEC
 
 > 参考链接：
 > 
@@ -18,6 +18,8 @@
 附件给了一个 pcapng 流量包，翻看一下发现有 DCERPC 协议中有 NTLMv2 认证的流量
 
 ![](imgs/image-20251028192547505.png)
+
+### NTLM 认证部分
 
 直接用 `NTLMRawUnHide.py` 导出哈希值并尝试用 hashcat 爆破
 
@@ -652,9 +654,11 @@ finally {
 
 到此，NTLMv2认证的环节就结束了，接下来进入Kerberos认证的环节
 
+### Kerberos 认证部分
+
 首先我们过滤一下 KRB5 的流量，然后关注 `AS-REP` 中的用户名和域名
 
-![](imgs/image-20251029112251667.png)
+![](imgs/image-20251103210103250.png)
 
 发现和之前 NTLMv2 爆破用的用户名是同一个，因此猜测密码也是一样的
 
