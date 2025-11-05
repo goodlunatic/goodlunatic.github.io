@@ -18,7 +18,7 @@
 |          **QQ：MTI5MDAxODcxNA==**          |         **Email：goodlunatic0@gmail.com**         |
 | **Github：https://github.com/goodlunatic** | **bilibili：https://space.bilibili.com/431131926** |
 
-# **🏆 Awards**
+# **🏆 Selected Awards**
 
 - **National Second Prize, China Collegiate Cybersecurity Competition (CISCN), 2024**
 - **First Prize, CISCN Southeast China Regional Tournament 2024**
