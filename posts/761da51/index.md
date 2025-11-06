@@ -5,6 +5,20 @@
 
 <!--more-->
 
+## 常见的非预期
+
+取证题如果出题人不够谨慎，很容易出现非预期
+
+因此做取证题前可以尝试在 010 或者 Linux 直接搜索关键字符串，比如下面这行
+
+```bash
+strings mem.raw | grep 'flag{'
+# 如果是 Windows 的话可以用下面这个命令，因为 Windows 下的默认字符集是 utf16-le
+strings -e l memory.dmp | grep 'flag{'
+```
+
+另一种非预期就是直接把进程导出，然后用 GIMP 直接调出屏幕上的内容
+
 ## 使用的系统和环境
 
 ```bash
@@ -113,6 +127,8 @@ vol.py -f 1.vmem --profile=Win7SP1x64 editbox
 vol.py -f 1.vmem --profile=Win7SP1x64 notepad
 # 获取屏幕截图
 vol.py -f 1.vmem --profile=Win7SP1x64 screenshot --dump-dir=./
+# 导出 windows 窗口信息
+vol.py -f 1.vmem --profile=Win7SP1x64 windows
 # 查看剪贴板信息
 vol.py -f 1.vmem --profile=Win7SP1x64 clipboard
 # 查看剪贴板信详细内容
@@ -165,15 +181,21 @@ vol3.py -f dacong.raw windows.pslist
 vol3.py -f dacong.raw windows.pstree
 ```
 
-**一些特殊进程**
+#### 一些特殊进程
 
 便签：StikyNot.exe （.snt 文件路径在C:\Users\XXX\AppData\Roaming\Microsoft\Sticky Notes\）【这个文件需要用Win7的便签或者记事本打开】
 
 画图：mspaint.exe（这个进程可以用 `memdump -p <PID> --dump-dir=./` 导出 dmp 文件，然后改后缀为.data拖入Gimp中调整位移和分辨率，例：2024 NKCTF）
 
+> 当然这个导出进程然后用 GIMP 调的方法不仅限于 mspaint 这进程，别的进程也一样可以用
+> 
+> 在进行这个操作前如果已知屏幕分辨率的话会方便很多
+> 
+> 因此我们可以先用 screenshot 命令导出截图，里面可能有分辨率的信息
+
 联系人：wab.exe （.contact 文件）
 
-**一些特殊文件**
+#### 一些特殊文件
 
 evtx - Windows系统日志
 
