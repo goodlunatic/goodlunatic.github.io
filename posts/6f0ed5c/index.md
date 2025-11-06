@@ -323,6 +323,8 @@
 **因此对于日常的生活就有点疏于记录了，太久没写作文感觉自己的文笔也确实退化不少**
 {{< /admonition >}}
 
+
+
 ---
 
 > 作者: [Lunatic](https://goodlunatic.github.io)  
