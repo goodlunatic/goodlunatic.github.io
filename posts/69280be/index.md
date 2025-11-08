@@ -21,7 +21,7 @@ ys~xdg/m@]mjkz@vl@z~lf>b
 
 `flag{x0r_Brute_is_easy!}`
 
-## 题目名称 add
+## 题目名称 一只小猫 / add
 
 解压附件压缩包，得到以下两张图片
 

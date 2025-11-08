@@ -1327,6 +1327,35 @@ ooo yyy ii w uuu ee iii ee uuu ooo r yyy yyy e
 
 ![](imgs/image-20241113151902536.png)
 
+附：转换脚本
+
+```python
+qwerty_lower = r"""qwertyuiop[]{}-=_+\asdfghjkl;'zxcvbnm,./"""
+dvorak_lower = r"""',.pyfgcrl/=?+[]{}|aoeuidhtns-;qjkxbmwvz"""
+
+qwerty_upper = r"""QWERTYUIOP[]{}-=_+\ASDFGHJKL;'ZXCVBNM,./"""
+dvorak_upper = r""""<>PYFGCRL/=?+[]{}|AOEUIDHTNS_:QJKXBMWVZ"""
+
+# 构建映射字典
+d2q = str.maketrans(dvorak_lower + dvorak_upper,qwerty_lower + qwerty_upper)
+q2d = str.maketrans(qwerty_lower + qwerty_upper,dvorak_lower + dvorak_upper)
+
+def dvorak_to_qwerty(text: str) -> str:
+    return text.translate(d2q)
+
+def qwerty_to_dvorak(text: str) -> str:
+    return text.translate(q2d)
+
+if __name__ == "__main__":
+    text = "EAOJYU?TRX>{XPFABY{8{24+"
+    print(dvorak_to_qwerty(text)) # DASCTF{KOBE_BRYANT_8_24}
+    print(qwerty_to_dvorak(text))
+```
+
+当然，也可以用随波逐流解密
+
+![](imgs/image-20251108135158677.png)
+
 例题-2023台州市赛初赛-Black Mamba
 
 ### 棋盘密码(ADFGVX,ADFGX,Polybius)

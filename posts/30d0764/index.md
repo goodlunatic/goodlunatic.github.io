@@ -1,4 +1,4 @@
-# 2025 “天一永安杯”宁波市赛初赛 Misc Writeup
+# 2025 “天一永安杯”宁波市网络安全大赛 Misc Writeup
 
 **2025 “天一永安杯”宁波市赛初赛 Misc Writeup**
 <!--more-->
