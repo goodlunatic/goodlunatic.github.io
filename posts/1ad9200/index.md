@@ -4227,33 +4227,13 @@ out.show()
 
 ## Misc——音频题思路
 
-### 1、波形图分析：摩斯电码
+### 通用思路
 
-### 2、频谱图分析(有时要调高最高频率)：
+#### 1、波形图分析：摩斯电码
 
-### 3、Silenteye隐写
+#### 2、频谱图分析(有时要调高最高频率)：
 
-wav音频文件可能是`silenteye`隐写，可以拿`silenteye`用默认密码解密试试看
-
-当然如果已知密钥的话就用密钥去解密
-
-![](imgs/image-20250429203026980.png)
-
-### 4、Deepsound隐写（可以无密码）
-
-可以先把 wav 音频文件拉入 deepsound 打开，如果下面有显示隐写的文件就是 deepsound 隐写
-
-![](imgs/image-20251031123014232.png)
-
-隐写可以无密钥，但是如果提示需要密钥就直接填入密钥解密即可
-
-如果是 deepsound 隐写并且密钥未知，可以先用 [deepsound2john](https://github.com/willstruggle/john/blob/master/deepsound2john.py) 脚本获取wav文件的哈希值(注释里有使用方法)
-
-然后拉入kali用john爆破hash（如果编码有误，可以先用notepad另存为一下）
-
- 得到 hash后执行：john hash.txt
-
-### 5、SSTV慢扫描电视：
+#### 3、SSTV慢扫描电视：
 
 **SSTV识别可以直接用这个项目里的脚本：https://github.com/colaclanth/sstv**
 
@@ -4267,7 +4247,7 @@ sstv -d flag.wav
 
 ![](imgs/image-20241108232143418.png)
 
-#### Windows中使用RX-SSTV
+##### Windows中使用RX-SSTV
 
 使用前还要安装虚拟声卡 Virtual Audio Cable
 
@@ -4279,9 +4259,9 @@ sstv -d flag.wav
 4.退出RX-SSTV前要注意把默认的输入/输出设备改回原来的参数
 ```
 
-#### 拉入kali用qsstv（有时候要用到反向和反相）
+##### 拉入kali用qsstv（有时候要用到反向和反相）
 
-### 6、电话音分析(DTMF)
+#### 4、电话音分析(DTMF)
 
 用在线网站解码:http://www.dialabc.com/sound/detect/
 
@@ -4297,7 +4277,51 @@ sstv -d flag.wav
 
 > Tips：如果音频中看不出来可以尝试在Au中把音频增幅，要求能看到两条白线
 
-### 7、wav可能是业余无线电文件：
+### MP3思路
+
+#### 1、mp3stego隐写(可以无密码)
+
+使用前需要先把要处理的文件放到 mp3stego 目录下
+
+```bash
+# Encode
+encode -E data.txt -P pass sound.wav sound.mp3    
+data.txt里面放要隐写的txt信息 pass是解密时需要的密码
+# Decode
+decode -X -P pass sound.mp3   
+-X 是提取出隐写的文件
+pass是解密时需要的密码 
+sound.mp3是待处理的MP3文件
+# mp3stego可以使用无密码进行隐写
+# 如果需要密码解密，但是没有密码，可以试试看音频中歌曲的名字（比如Canon）
+```
+
+
+
+### WAV思路
+#### 1、Silenteye隐写
+
+wav音频文件可能是`silenteye`隐写，可以拿`silenteye`用默认密码解密试试看
+
+当然如果已知密钥的话就用密钥去解密
+
+![](imgs/image-20250429203026980.png)
+
+#### 2、Deepsound隐写（可以无密码）
+
+可以先把 wav 音频文件拉入 deepsound 打开，如果下面有显示隐写的文件就是 deepsound 隐写
+
+![](imgs/image-20251031123014232.png)
+
+隐写可以无密钥，但是如果提示需要密钥就直接填入密钥解密即可
+
+如果是 deepsound 隐写并且密钥未知，可以先用 [deepsound2john](https://github.com/willstruggle/john/blob/master/deepsound2john.py) 脚本获取wav文件的哈希值(注释里有使用方法)
+
+然后拉入kali用john爆破hash（如果编码有误，可以先用notepad另存为一下）
+
+ 得到 hash后执行：john hash.txt
+
+#### 3、业余无线电数据：
 
 先用sox把wav转为raw：
 
@@ -4307,7 +4331,7 @@ sox -t wav latlong.wav -esigned-integer -b16 -r 22050 -t raw latlong.raw
 
 multimon-ng -t raw -a AFSK1200 latlong.raw 
 
-### 8、WAV可能是steghide隐写(可以无密码)
+#### 4、steghide隐写(可以无密码)
 
 ```bash
 #如果密码已经知道了
@@ -4336,28 +4360,11 @@ done
 stegseek filename rockyou.txt
 ```
 
-### 9、MP3可能是mp3stego隐写(可以无密码)
-
-使用前需要先把要处理的文件放到 mp3stego 目录下
-
-```bash
-# Encode
-encode -E data.txt -P pass sound.wav sound.mp3    
-data.txt里面放要隐写的txt信息 pass是解密时需要的密码
-# Decode
-decode -X -P pass sound.mp3   
--X 是提取出隐写的文件
-pass是解密时需要的密码 
-sound.mp3是待处理的MP3文件
-# mp3stego可以使用无密码进行隐写
-# 如果需要密码解密，但是没有密码，可以试试看音频中歌曲的名字（比如Canon）
-```
-
-### 10、WAV还可能是OpenPuff隐写（有密码）
+#### 5、OpenPuff隐写（有密码）
 
 直接用OpenPuff.exe解密即可
 
-### 11、stegpy隐写
+#### 6、stegpy隐写
 
 [ stegpy 开源地址](https://github.com/izcoser/stegpy) 下载好后直接用WSL输入以下命令并输入密码解密即可
 
@@ -4367,11 +4374,11 @@ sound.mp3是待处理的MP3文件
 stegpy 1.wav -p
 ```
 
-### 12、DeEgger Embedder隐写
+#### 7、DeEgger Embedder隐写
 
 可以直接使用 DeEgger Embedder 工具 extract files
 
-### 13、提取WAV中LSB隐写的数据
+#### 8、提取WAV中LSB隐写的数据
 
 ```python
 import wave
@@ -4397,7 +4404,7 @@ print(libnum.b2s(res))
 # 7avpassword:NO996!=
 ```
 
-### 14、分析WAV左右声道的差值
+#### 9、分析WAV左右声道的差值
 
 ```python
 # 导入模块wavfile
@@ -4428,7 +4435,7 @@ with open('res.txt', 'w') as f:
     f.write(res)
 ```
 
-### 15、使用脚本提取WAV数据进行分析
+#### 10、使用脚本提取WAV数据进行分析
 
 ```python
 # 2023 DASCTFxCBCTF
@@ -4494,7 +4501,7 @@ if __name__ == '__main__':
     # DASCTF{Wh1stling_t0_Convey_informat1on!!!}
 ```
 
-### 16、提取两个WAV音频中的浮点集并分析
+#### 11、提取两个WAV音频中的浮点集并分析
 
 例题1-2024极客大挑战-音乐大师
 
@@ -4519,7 +4526,7 @@ print(libnum.b2s(flag))
 # b'SYC{wav_LSB_but_You_can_get_M3_Coll!}'
 ```
 
-### 17、频率映射到字符
+#### 12、频率映射到字符
 
 ```python
 import numpy as np
@@ -4618,6 +4625,22 @@ if __name__ == "__main__":
     func()
 ```
 
+### MIDI 思路
+
+#### velato编程语言
+
+项目地址：https://velato.net/
+
+例题1-2020祥云杯 带音乐家
+
+例题2-2022 0xGame Week4 听首音乐？
+
+### OGG思路
+
+
+
+
+例题1-2025CATCTF 寻找miku
 
 ## Misc——取证题思路
 
