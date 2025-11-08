@@ -2184,6 +2184,169 @@ def func6():
 
 `flag{86d2dde9219ec3954c1317e84cf16991}`
 
+
+## [SOLVED] 题目名称 Sakura
+
+> 这道题的成功解出离不开`@八神`的帮助，在此感谢一下`八神`
+
+> 题目附件： https://pan.baidu.com/s/1qQ94akilsReXwJeAgjltjg?pwd=s9dh 提取码: s9dh
+
+>题面信息如下：
+>
+> This is my favorite Sakura photo, There is also a secret hidden in it. I need to make a backup.
+
+题目附件给了一个`secret.pcapng`的流量包文件，打开发现主要是USBMS流量（U盘流量）
+
+![](imgs/image-20250321192933723.png)
+
+然后翻看一下流量包发现其中分段传输了一张很大的PNG图片，因此尝试写个Python提取出图片的数据
+
+```python
+import subprocess
+import os
+import json
+
+tshark_path = r"tshark"
+file_path = "secret.pcapng"
+output = ""
+command = [
+	tshark_path,  # 使用完整的 tshark 路径
+	'-r', file_path,  # 读取指定的 pcapng 文件
+	'-Y', 'frame.len == 65563',  # 过滤出 HTTP 数据包
+	'-T', 'jsonraw',  # 输出为 JSON 格式
+]
+result = subprocess.run(
+    command, check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+json_output = json.loads(result.stdout)
+# print(json.dumps(json_output, indent=4))  # 这个输出是用来调试的，可以移除
+
+# 遍历 JSON 数据并提取字段
+for packet in json_output:
+    layers = packet.get('_source', {}).get('layers', {})
+    
+    data = layers.get('frame_raw', ['None'])[0]
+    # print(data[54:100])
+    output += data[54:]
+
+pic_data = bytes.fromhex(output)
+with open("output.png", "wb") as f:
+    f.write(pic_data)
+```
+
+图片最后一段的数据需要手动提取一下，把所有图片数据都提取出来后可以得到下图
+
+![](imgs/image-20250321193130917.png)
+
+图片的像素看起来很复杂，尝试了`zsteg`和`stegsolve`，没有得到什么有效的信息
+
+也尝试了单图盲水印，也是没有得到什么有用的信息
+
+拿工具统计了一下像素的频次，发现纯黑色和纯红色的像素异常的多
+
+![](imgs/image-20250901004253430.png)
+
+写了个脚本输出了一下这两个像素的分布
+
+```python
+from PIL import Image
+
+def func1():
+    img = Image.open("output.png")
+    w,h = img.size
+    # print(w,h) # 1400 788
+    img1 = Image.new("RGB",(w,h),(255,255,255))
+    for y in range(h):
+        for x in range(w):
+            r,g,b = img.getpixel((x,y))
+            if (r,g,b) == (0,0,0):
+                img1.putpixel((x,y),(0,0,0))
+    img1.show()
+                
+    
+if __name__ == '__main__':
+    func1()
+```
+
+![](imgs/image-20250901004452560.png)
+
+![](imgs/image-20250901004423770.png)
+
+后来在`@八神`的提示下，发现了这个图片其实是通过 黑色像素`(0,0,0)`的位置 来对每行的像素进行重置
+
+我们用 PS 打开这张图片，仔细观察可以发现每行的黑色像素是等间距的，并且每行黑色像素的总数是可以被图像的宽度整除的
+
+然后每个黑色像素前的像素，颜色渐变的规律都肉眼可见的差不多
+
+![](imgs/image-20251108200545376.png)
+
+如果上面这样不够明显的话，我们也可以写个脚本把黑色像素单独列出来
+
+![](imgs/image-20251108201253905.png)
+
+```python
+from PIL import Image
+
+def func1():
+    img = Image.open("output.png")
+    w,h = img.size
+    # print(w,h) # 1400 788
+    img1 = Image.new("RGB",(w,h),(255,255,255))
+    for y in range(h):
+        for x in range(w):
+            r,g,b = img.getpixel((x,y))
+            if (r,g,b) == (0,0,0):
+                img1.putpixel((x,y),(0,0,0))
+    img1.save("black.png")
+                
+    
+if __name__ == '__main__':
+    func1()
+```
+
+因此我们知道规律后，写个脚本复原图片即可得到最后的 flag：`DASCTF{f23abaccd869182c3cd9fb1f84f97ef7}`
+
+![](imgs/image-20251108201823485.png)
+
+```python
+from PIL import Image
+import numpy as np
+
+
+def func():
+    img = np.array(Image.open('output.png'))
+    # print(img.shape) # (788, 1400, 3)
+    h,w = img.shape[:2]
+    res = np.zeros_like(img)
+    for y in range(h):
+        # 检测当前行中哪些像素是纯黑色 [0, 0, 0]
+        # np.all(..., axis=1) 表示在RGB通道维度上检查所有值是否都满足条件
+        # black是一个布尔数组，长度为1400（列数），True表示该位置的像素是黑色
+        black = np.all(img[y] == [0, 0, 0], axis=1)
+        # 找到当前行中第一个黑色像素的位置
+        # np.where(black)[0] 返回所有黑色像素的索引，[0] 取第一个黑色像素的索引
+        cycle = np.where(black)[0][0] + 1
+        index_groups = []
+        # 其实就是根据黑色像素确定周期，然后根据周期分组
+        for i in range(cycle): 
+            group = list(range(i,w,cycle))
+            index_groups.append(group)
+            
+        indices = []
+        for group in index_groups:
+            # 使用extend将每个子列表的元素逐个添加
+            indices.extend(group)  
+
+        # 按照新的索引顺序重新排列当前行的像素
+        # img[row, indices] 使用索引数组来选取像素，并赋值给结果图像的对应行
+        res[y] = img[y, indices]
+        
+    res_img = Image.fromarray(res)
+    res_img.save('flag.png')
+        
+if __name__ == '__main__':
+    func()
+```
+
 ## 题目名称 像素流量（2025 上海市赛初赛）
 
 > 本题是 `2025上海市大学生网络安全竞赛暨磐石行动初赛` Misc 方向的一道 0 解题
@@ -2504,91 +2667,6 @@ if __name__ == "__main__":
 ![](imgs/image-20241230185454044.jpeg)
 
 已经知道答案，但是不知道这个`evidence2`被出题人藏哪了，感觉是内幕题。。
-
-## 题目名称 Sakura
-
-题目附件： https://pan.baidu.com/s/1qQ94akilsReXwJeAgjltjg?pwd=s9dh 提取码: s9dh
-
-题面信息如下：
-
-> This is my favorite Sakura photo, There is also a secret hidden in it. I need to make a backup.
-
-题目附件给了一个`secret.pcapng`的流量包文件，打开发现主要是USBMS流量（U盘流量）
-
-![](imgs/image-20250321192933723.png)
-
-然后翻看一下流量包发现其中分段传输了一张很大的PNG图片，因此尝试写个Python提取出图片的数据
-
-```python
-import subprocess
-import os
-import json
-
-tshark_path = r"tshark"
-file_path = "secret.pcapng"
-output = ""
-command = [
-	tshark_path,  # 使用完整的 tshark 路径
-	'-r', file_path,  # 读取指定的 pcapng 文件
-	'-Y', 'frame.len == 65563',  # 过滤出 HTTP 数据包
-	'-T', 'jsonraw',  # 输出为 JSON 格式
-]
-result = subprocess.run(
-    command, check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
-json_output = json.loads(result.stdout)
-# print(json.dumps(json_output, indent=4))  # 这个输出是用来调试的，可以移除
-
-# 遍历 JSON 数据并提取字段
-for packet in json_output:
-    layers = packet.get('_source', {}).get('layers', {})
-    
-    data = layers.get('frame_raw', ['None'])[0]
-    # print(data[54:100])
-    output += data[54:]
-
-pic_data = bytes.fromhex(output)
-with open("output.png", "wb") as f:
-    f.write(pic_data)
-```
-
-图片最后一段的数据需要手动提取一下，把所有图片数据都提取出来后可以得到下图
-
-![](imgs/image-20250321193130917.png)
-
-图片的像素看起来很复杂，尝试了`zsteg`和`stegsolve`，没有得到什么有效的信息
-
-也尝试了单图盲水印，也是没有得到什么有用的信息
-
-拿工具统计了一下像素的频次，发现纯黑色和纯红色的像素异常的多
-
-![](imgs/image-20250901004253430.png)
-
-写了个脚本输出了一下这两个像素的分布
-
-```python
-from PIL import Image
-
-def func1():
-    img = Image.open("output.png")
-    w,h = img.size
-    # print(w,h) # 1400 788
-    img1 = Image.new("RGB",(w,h),(255,255,255))
-    for y in range(h):
-        for x in range(w):
-            r,g,b = img.getpixel((x,y))
-            if (r,g,b) == (0,0,0):
-                img1.putpixel((x,y),(0,0,0))
-    img1.show()
-                
-    
-if __name__ == '__main__':
-    func1()
-```
-
-![](imgs/image-20250901004452560.png)
-
-![](imgs/image-20250901004423770.png)
-
 
 ## 题目名称 dd
 
