@@ -3310,6 +3310,92 @@ if __name__ == '__main__':
     func()
 ```
 
+## 题目名称 wkm的保险箱（2025 广西网络与信息安全职业技能竞赛）
+
+题目附件： https://pan.baidu.com/s/1jtahaVSjh-GpGkK5We7hHA?pwd=syms 提取码: syms
+
+题面信息如下：
+
+> wkm在把他珍贵的数据藏在了加密容器中，你能找到吗?
+
+题目附件给了一个 `Memorandum.pcapng` 流量包和一个 `Encrypted_Container.bmp`
+
+![](imgs/image-20251114213516699.png)
+
+打开流量包翻看一下，发现是USB键盘流量，我这里就直接用CTF-NetA梭了
+
+![](imgs/image-20251114213721973.png)
+
+键盘流量分析的结果中可以看到出题人是先输入了密钥，然后又删除了
+
+因此真正的密钥是：`alfeixcnwozptwez`
+
+然后我们用010打开那张BMP图片，发现末尾藏了一个rar压缩包
+
+![](imgs/image-20251114214609930.png)
+
+手动提取出来，解压后可以得到`broken_data.png`和`hint.txt`
+
+![](imgs/image-20251114214827071.png)
+
+然后在hint.txt中发现有零宽字符
+
+![](imgs/image-20251114214813737.png)
+
+提取并解密零宽后可以得到如下内容
+
+![](imgs/image-20251114214939618.png)
+
+> wkm told me that a few columns seem to be missing on its left side, but how can I find this missing data?
+> 
+> something might need to be widened
+
+然后发现这个`Encrypted_Container.bmp`最右侧有一些奇怪的像素，并且bmp图像的高度和那张broken_data.png的高度是一样的
+
+![](imgs/image-20251114215801510.png)
+
+因此根据题目提示，猜测可能是要我们提取bmp中右边的哪几列异常像素补到png图片的左侧
+
+并且结合题目提示和之前得到的那个密钥，猜测从像素点中可能可以提取出来一个VeraCrypt加密容器
+
+
+## 题目名称 hacker cat your picture（2022 川渝网络与信息安全职业技能竞赛）
+
+题目附件： https://pan.baidu.com/s/1pTUv4bM-qniBsxSIaYlc3g?pwd=tds7 提取码: tds7
+
+附件给了一个流量包，追踪TCP流，在流142中可以得到一个rar压缩包
+
+![](imgs/image-20251114220342255.png)
+
+手动提取出来，发现是加密的，解压需要密码
+
+![](imgs/image-20251114220450084.png)
+
+在流量包中发现有很多登录的请求，请求中带有尝试的密码，流66是最后一次登录
+
+![](imgs/f45c0188fcc0b5bb99e4bb3dd286cbe3.png)
+
+经过尝试发现，压缩包的解压密码就是：`admin888`
+
+解压后可以得到下面这张 `DASCTF.png`
+
+![](imgs/image-20251114224218647.png)
+
+尝试用stegsolve打开这张图片，发现RGB的 `plane0` 和 `plane1` 都有可疑的信息
+
+在TCP流150中发现有两个txt文件：`enc.txt`和`hack.txt`
+
+![](imgs/image-20251114220915171.png)
+
+然后继续看流151和流152
+
+![](imgs/image-20251114221014302.png)
+
+![](imgs/image-20251114221020381.png)
+
+流152中的内容感觉是Aronld变换的参数
+
+
 
 
 ---

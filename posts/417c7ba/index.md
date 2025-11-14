@@ -928,7 +928,7 @@ web_password=XXXXXXXXX
 修改好以后执行以下命令启动即可
 
 ```bash
-nohup ./v_linux_amd64 > vshell.log 2>&1 
+nohup ./v_linux_amd64 > vshell.log 2>&1 &
 ```
 
 然后访问 VPS_IP:8082 端口并输入我们设置的用户名密码，即可进入到 vshell 的控制台
