@@ -4019,7 +4019,7 @@ as text: ���
 
 例题1-2025TGCTF-ez_zip
 
-### 11、把加密的压缩包篡改成伪加密的情况
+### 11、把加密的压缩包篡改成未加密的情况
 
 解决方案：将加密位修改回来即可
 
@@ -4148,6 +4148,27 @@ if __name__ == "__main__":
 例题1-2024ISCC-时间刺客
 
 例题2-环环相扣
+
+### rar压缩包NTFS数据流隐写
+
+看到rar压缩包，可以用010打开看看，可能会存在NTFS数据流隐写
+
+![](imgs/image-20251117200339111.png)
+
+有两种方法去提取这种数据
+
+第一种方法就是直接用新版的7zip去打开提取
+
+![](imgs/image-20251117200040072.png)
+
+第二种就是用winrar解压后，用NtfsStreansEdutior工具提取
+
+![](imgs/image-20251117200017615.png)
+
+
+例题1-2023四川省网络与信息安全技能大赛 密码在这
+
+例题2-2025浙江省赛 easySteg0
 
 ## Misc——视频题思路
 
@@ -4635,9 +4656,150 @@ if __name__ == "__main__":
 
 例题2-2022 0xGame Week4 听首音乐？
 
+#### 从十六进制中恢复MIDI文件
+
+```python
+from midiutil import MIDIFile
+from typing import List, Dict
+
+def create_midi_from_events(
+    events: List[str],
+    output_file: str = "output.mid",
+    tempo: int = 120,
+    time_increment: float = 0.5,
+    channel: int = 0,
+    base_velocity: int = 90,
+    track_name: str = "Generated Track"
+) -> Dict[str, any]:
+    """
+    将MIDI事件列表转换为MIDI文件
+
+    Args:
+        events: MIDI事件列表，格式为 ["status:note:velocity", ...]
+        output_file: 输出MIDI文件路径
+        tempo: 曲速 (BPM)
+        time_increment: 每个事件的时间间隔（拍）
+        channel: MIDI通道 (0-15)
+        base_velocity: 默认力度 (0-127)
+        track_name: 音轨名称
+
+    Returns:
+        Dict: 包含生成结果的统计信息
+    """
+
+    # 参数验证
+    if not events:
+        raise ValueError("事件列表不能为空")
+
+    if not (0 <= channel <= 15):
+        raise ValueError("通道必须在0-15范围内")
+
+    if not (0 <= base_velocity <= 127):
+        raise ValueError("力度必须在0-127范围内")
+
+    if tempo <= 0:
+        raise ValueError("曲速必须大于0")
+
+    if time_increment <= 0:
+        raise ValueError("时间增量必须大于0")
+
+    # 创建MIDI文件
+    midi = MIDIFile(1)
+    track = 0
+    start_time = 0
+
+    # 添加音轨信息和速度
+    midi.addTrackName(track, start_time, track_name)
+    midi.addTempo(track, start_time, tempo)
+
+    # 用于记录当前按下的音符及其开始时间
+    active_notes = {}
+    current_time = 0.0
+
+    # 统计信息
+    stats = {
+        'total_events': len(events),
+        'note_on_events': 0,
+        'note_off_events': 0,
+        'notes_played': 0,
+        'invalid_events': 0,
+        'orphaned_notes': 0
+    }
+
+    # 处理每个MIDI事件
+    for i, event in enumerate(events):
+        # 解析事件
+        parts = event.split(':')
+        if len(parts) != 3:
+            stats['invalid_events'] += 1
+            continue
+
+        status_hex, note_hex, velocity_hex = parts
+
+        try:
+            # 解析十六进制值
+            status = int(status_hex, 16)
+            note = int(note_hex, 16)
+            velocity = int(velocity_hex, 16)
+
+            # 验证数值范围
+            if not (0 <= note <= 127) or not (0 <= velocity <= 127):
+                stats['invalid_events'] += 1
+                continue
+
+            # Note On 事件 (0x90 且 velocity > 0)
+            if status == 0x90 and velocity > 0:
+                active_notes[note] = current_time
+                stats['note_on_events'] += 1
+
+            # Note Off 事件 (0x80 或 0x90 且 velocity = 0)
+            elif (status == 0x80) or (status == 0x90 and velocity == 0):
+                if note in active_notes:
+                    start_time = active_notes[note]
+                    duration = current_time - start_time
+
+                    # 添加音符到MIDI文件
+                    if duration > 0:
+                        midi.addNote(track, channel, note, start_time, duration, base_velocity)
+                        stats['notes_played'] += 1
+
+                    del active_notes[note]
+                stats['note_off_events'] += 1
+
+        except ValueError:
+            stats['invalid_events'] += 1
+            continue
+
+        # 更新时间
+        current_time += time_increment
+
+    # 处理未结束的音符（在最后时间点结束）
+    for note, start_time in active_notes.items():
+        duration = current_time - start_time
+        if duration > 0:
+            midi.addNote(track, channel, note, start_time, duration, base_velocity)
+            stats['notes_played'] += 1
+        stats['orphaned_notes'] += 1
+
+    # 保存MIDI文件
+    try:
+        with open(output_file, "wb") as f:
+            midi.writeFile(f)
+        stats['output_file'] = output_file
+        stats['total_duration'] = current_time
+        stats['success'] = True
+    except Exception as e:
+        stats['success'] = False
+        stats['error'] = str(e)
+
+    return stats
+```
+
+
+
 ### OGG思路
 
-
+可以尝试binwalk一下，可能OGG文件后面藏了些其他数据，比如ISO镜像。。
 
 
 例题1-2025CATCTF 寻找miku
