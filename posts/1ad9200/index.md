@@ -4149,7 +4149,7 @@ if __name__ == "__main__":
 
 例题2-环环相扣
 
-### rar压缩包NTFS数据流隐写
+### 13、rar压缩包NTFS数据流隐写
 
 看到rar压缩包，可以用010打开看看，可能会存在NTFS数据流隐写
 
@@ -4648,6 +4648,10 @@ if __name__ == "__main__":
 
 ### MIDI 思路
 
+#### 直接用audacity打开可以看到字符
+
+![](imgs/image-20251117213142553.png)
+
 #### velato编程语言
 
 项目地址：https://velato.net/
@@ -4659,142 +4663,88 @@ if __name__ == "__main__":
 #### 从十六进制中恢复MIDI文件
 
 ```python
+# encoding: utf-8
+
 from midiutil import MIDIFile
-from typing import List, Dict
 
-def create_midi_from_events(
-    events: List[str],
-    output_file: str = "output.mid",
-    tempo: int = 120,
-    time_increment: float = 0.5,
-    channel: int = 0,
-    base_velocity: int = 90,
-    track_name: str = "Generated Track"
-) -> Dict[str, any]:
-    """
-    将MIDI事件列表转换为MIDI文件
-
-    Args:
-        events: MIDI事件列表，格式为 ["status:note:velocity", ...]
-        output_file: 输出MIDI文件路径
-        tempo: 曲速 (BPM)
-        time_increment: 每个事件的时间间隔（拍）
-        channel: MIDI通道 (0-15)
-        base_velocity: 默认力度 (0-127)
-        track_name: 音轨名称
-
-    Returns:
-        Dict: 包含生成结果的统计信息
-    """
-
-    # 参数验证
-    if not events:
-        raise ValueError("事件列表不能为空")
-
-    if not (0 <= channel <= 15):
-        raise ValueError("通道必须在0-15范围内")
-
-    if not (0 <= base_velocity <= 127):
-        raise ValueError("力度必须在0-127范围内")
-
-    if tempo <= 0:
-        raise ValueError("曲速必须大于0")
-
-    if time_increment <= 0:
-        raise ValueError("时间增量必须大于0")
-
-    # 创建MIDI文件
+def txt_to_midi(input_txt, output_midi, tempo=120, time_step=0.5):
     midi = MIDIFile(1)
     track = 0
-    start_time = 0
+    channel = 0
+    base_velocity = 90
 
-    # 添加音轨信息和速度
-    midi.addTrackName(track, start_time, track_name)
-    midi.addTempo(track, start_time, tempo)
+    midi.addTrackName(track, 0, "Track")
+    midi.addTempo(track, 0, tempo)
 
-    # 用于记录当前按下的音符及其开始时间
-    active_notes = {}
     current_time = 0.0
+    active_notes = {}
 
-    # 统计信息
-    stats = {
-        'total_events': len(events),
-        'note_on_events': 0,
-        'note_off_events': 0,
-        'notes_played': 0,
-        'invalid_events': 0,
-        'orphaned_notes': 0
-    }
+    with open(input_txt, "r") as f:
+        lines = f.read().splitlines()
 
-    # 处理每个MIDI事件
-    for i, event in enumerate(events):
-        # 解析事件
-        parts = event.split(':')
-        if len(parts) != 3:
-            stats['invalid_events'] += 1
+    for line in lines:
+        if len(line) != 6:
             continue
 
-        status_hex, note_hex, velocity_hex = parts
+        status = int(line[0:2], 16) # 状态
+        note   = int(line[2:4], 16) # 音符号
+        vel    = int(line[4:6], 16) # 力度
 
-        try:
-            # 解析十六进制值
-            status = int(status_hex, 16)
-            note = int(note_hex, 16)
-            velocity = int(velocity_hex, 16)
+        # Note On
+        if status == 0x90 and vel > 0:
+            active_notes[note] = current_time
 
-            # 验证数值范围
-            if not (0 <= note <= 127) or not (0 <= velocity <= 127):
-                stats['invalid_events'] += 1
-                continue
+        # Note Off (either 80 xx 00 or 90 xx 00)
+        elif vel == 0:
+            if note in active_notes:
+                start = active_notes[note]
+                duration = current_time - start
+                midi.addNote(track, channel, note, start, duration, base_velocity)
+                del active_notes[note]
 
-            # Note On 事件 (0x90 且 velocity > 0)
-            if status == 0x90 and velocity > 0:
-                active_notes[note] = current_time
-                stats['note_on_events'] += 1
+        current_time += time_step
 
-            # Note Off 事件 (0x80 或 0x90 且 velocity = 0)
-            elif (status == 0x80) or (status == 0x90 and velocity == 0):
-                if note in active_notes:
-                    start_time = active_notes[note]
-                    duration = current_time - start_time
+    # Close any unclosed notes
+    for note, start in active_notes.items():
+        duration = current_time - start
+        midi.addNote(track, channel, note, start, duration, base_velocity)
 
-                    # 添加音符到MIDI文件
-                    if duration > 0:
-                        midi.addNote(track, channel, note, start_time, duration, base_velocity)
-                        stats['notes_played'] += 1
+    # Write midi file
+    with open(output_midi, "wb") as f:
+        midi.writeFile(f)
 
-                    del active_notes[note]
-                stats['note_off_events'] += 1
+    print(f"[+] 已生成 {output_midi}")
 
-        except ValueError:
-            stats['invalid_events'] += 1
-            continue
-
-        # 更新时间
-        current_time += time_increment
-
-    # 处理未结束的音符（在最后时间点结束）
-    for note, start_time in active_notes.items():
-        duration = current_time - start_time
-        if duration > 0:
-            midi.addNote(track, channel, note, start_time, duration, base_velocity)
-            stats['notes_played'] += 1
-        stats['orphaned_notes'] += 1
-
-    # 保存MIDI文件
-    try:
-        with open(output_file, "wb") as f:
-            midi.writeFile(f)
-        stats['output_file'] = output_file
-        stats['total_duration'] = current_time
-        stats['success'] = True
-    except Exception as e:
-        stats['success'] = False
-        stats['error'] = str(e)
-
-    return stats
+# 调用函数
+# txt_to_midi("1.txt", "1.mid")
+txt_to_midi("2.txt", "2.mid")
 ```
 
+#### LSB隐写
+
+```python
+import mido
+
+def extract_lsb_from_midi(midi_path):
+    mid = mido.MidiFile(midi_path)
+    binary_data = []
+
+    for track in mid.tracks:
+        for msg in track:
+            if msg.type == 'note_on':
+                velocity = msg.velocity
+                lsb = velocity & 1
+                binary_data.append(str(lsb))
+
+    binary_str = ''.join(binary_data)
+    bytes_list = [int(binary_str[i:i + 8], 2) for i in range(0, len(binary_str), 8)]
+    m = bytes(bytes_list)
+    return m
+
+
+m = extract_lsb_from_midi('hide.mid')
+print(m)
+```
 
 
 ### OGG思路
