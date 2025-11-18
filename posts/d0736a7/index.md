@@ -2498,9 +2498,9 @@ base64解码上面那段内容可以得到：`88cf333dd92ff4d0ceff266d366dbec335
 
 ## 题目名称 one (2024 古剑山)
 
-题目附件： https://pan.baidu.com/s/1iSL1P1Z1Oa8WB0tXRWjSmg?pwd=vc66 提取码: vc66
+题目附件1： https://pan.baidu.com/s/1iSL1P1Z1Oa8WB0tXRWjSmg?pwd=vc66 提取码: vc66
 
-题目附件给了一个`cnc.txt`，内容是10000行每行114个字符的十六进制数据
+题目附件给了一个`enc.txt`，内容是10000行每行114个字符的十六进制数据
 
 部分内容如下：
 
@@ -2517,7 +2517,40 @@ b318450ba8c7c8cd618ea3c4d396a2e99c3d99fe150218f2ff484003ed13e205ebe61b6108970ff5
 bc3cf1722bf8f617acc85ba7169649ecd70c7e9575c05ef04cde5bd8eb79120a756e1a7755acb17da63fe76286759b68f646178c8a01fac142
 ```
 
-发现每行长度都一样，然后结合one联想到可能是一个密钥加密的，一开始猜测是OPT或者MPT但是发现做不出来
+发现每行长度都一样，然后结合one联想到可能是一个密钥加密的，一开始猜测是OTP或者MTP但是发现做不出来
+
+参考链接：
+
+2023 SICTF-MingTianPao：[https://blog.csdn.net/m0_74345946/article/details/132888341](https://blog.csdn.net/m0_74345946/article/details/132888341)
+
+BUUOJ-2018AFCTF：[https://blog.csdn.net/m0_63303407/article/details/127193042](https://blog.csdn.net/m0_63303407/article/details/127193042)
+
+流密码-MTP:https://lazzzaro.github.io/2020/11/07/crypto-%E6%B5%81%E5%AF%86%E7%A0%81/
+
+然后同一个考点最近又在另一场比赛中出现了，同一个考点但是附件给的数据不同
+
+题目附件2： https://pan.baidu.com/s/1PVGA72YAW733a82sk6xZKg?pwd=fasa 提取码: fasa
+
+![](imgs/0958679cabfa36609d69e6abe40f6354.png)
+
+这是是给了500行的数据，格式如下，每行是86个字符
+
+并且这次题面还给了一个提示：`什么加密算法只需要一个字符`
+
+```
+480716e1b5fc7ebf86bbfe7db4acbc0cd6d9877d94511f07d30f1f8857af969540945e33ddd1f57dda39a7
+4117e47f41024fbc13af2b76d1eb53b7a5b647d472cc7294459309e997f0b03366ab5762f8d606e08fc5e4
+e2513665811c74bab216caf579216b65df62f6b3c9b94b1d626069b2a4d071f2a478f91a5dd04ecc7de6e1
+4f780cadc8e73e28ce75aa74d56d0856ffed82011598b668a93fa46baceca4c9f31ef22e13778f5f6da147
+a2dccb5759a9133ada16f39f21ad1e328a6ff2031073bc44a7541c2dd14ee85b44e5d47012894cac478767
+883401baafc8043789ebe0b18dc9f7b2c7e74966e7ab87f85e3b5462f64a655bc7c894cb87c0b97a06af8c
+be54dc587c6ae77c188fbd96bb583daf5a008ec0ea740810315ab6a953d436fe1c82362b2a443ef237a07b
+73fc5171c08b965ad030c7051da45e7fadc0023ae635c1d65d48b74ed402c9937b23294f35697b189380af
+1ef2730a7d4af9055bf32946f8f25c0a797ff32d5babc559f769e8a1f698b67c6526f890c664825c841087
+8ce185ac027f4d1e29efb8f6246375809108591b695c0b6ff7fea03dbc234461e865d4c62c316f7d2b305a
+d4feca0a0777c9ea1dd6578a2011ffa904ba2badaa2dc92c3c8b9bb83f22c262f2ae3ae4ad2d8e79263a9c
+```
+
 
 ## 题目名称 pingping (2024 蓝桥杯全国总决赛) 
 
