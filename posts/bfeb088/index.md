@@ -3,6 +3,8 @@
 **2025 台州市网络安全大赛 Misc Writeup**
 <!--more-->
 
+> 本文中涉及的具体题目附件可以进我的[知识星球](https://t.zsxq.com/an6p6)获取
+
 ## 题目名称 pic
 
 ![](imgs/image-20251106150729346.png)
