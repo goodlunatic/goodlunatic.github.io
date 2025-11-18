@@ -4660,65 +4660,192 @@ if __name__ == "__main__":
 
 例题2-2022 0xGame Week4 听首音乐？
 
-#### 从十六进制中恢复MIDI文件
+#### 从流量中提取MIDI文件
+
+![](imgs/image-20251118154114092.png)
+
+这里恢复的时候要注意结合发送数据的时间戳
+
+Midi数据(一共三字节)：第一字节代表事件(note on/note off)，第二字节代表音符，第三字节代表力度
+
+然后这里还有可能通过 Midi 音符的排列传输二维码
 
 ```python
-# encoding: utf-8
+import numpy as np
+from PIL import Image
+import mido
 
-from midiutil import MIDIFile
+PPQ = 480  # 每四分音符的 tick 数
+BPM = 120.0  # 节拍速度
+MIN_DURATION_MS = 120.0  # 音符最小持续时间（毫秒）
 
-def txt_to_midi(input_txt, output_midi, tempo=120, time_step=0.5):
-    midi = MIDIFile(1)
-    track = 0
-    channel = 0
-    base_velocity = 90
+def parse_midi_events(input_file):
+    with open(input_file, "r") as f:
+        data = f.read()
 
-    midi.addTrackName(track, 0, "Track")
-    midi.addTempo(track, 0, tempo)
-
-    current_time = 0.0
-    active_notes = {}
-
-    with open(input_txt, "r") as f:
-        lines = f.read().splitlines()
+    lines = data.splitlines()
+    # print(lines) # 1722159321.608646000\t904064
+    events = []
 
     for line in lines:
-        if len(line) != 6:
+        parts = line.split("\t")
+        ts_str, hexdata = parts
+        ts = float(ts_str)  # 时间戳
+        b = bytes.fromhex(hexdata)
+        status, note, velocity = b[0], b[1], b[2]
+        if 0x90 <= status <= 0x9F and velocity > 0:
+            events.append((ts, "note_on", note, velocity))
+        elif 0x80 <= status <= 0x8F or (0x90 <= status <= 0x9F and velocity == 0):
+            events.append((ts, "note_off", note, velocity))
+
+    return events
+
+def group_rows(events):
+    rows = []
+    current = []
+    prev = None
+
+    # 只使用 note_on 事件来分组行
+    note_on_events = [ev for ev in events if ev[1] == "note_on"]
+    
+    for ts, event_type, note, velocity in note_on_events:
+        # 如果大于阈值0.01s，就是下一行的数据
+        if prev is not None and ts - prev > 0.01:
+            rows.append(current)
+            current = []
+        current.append(note)  # 同一行的都加入
+        prev = ts
+        
+    rows.append(current)  # 添加一整行的数据
+    return rows
+
+def render_matrix(rows):
+    note_set = set()  # 利用集合去重
+    for row in rows:
+        for n in row:
+            note_set.add(n)
+
+    # print(note_set)
+    all_notes = sorted(note_set)  # 从小到大排序
+    # print(all_notes)
+    note_to_idx = {}  # 音符对应到列
+    for i, note in enumerate(all_notes):
+        note_to_idx[note] = i
+
+    H = len(rows)
+    W = len(all_notes)
+    matrix = np.zeros((H, W), dtype=np.uint8)
+
+    for y, row in enumerate(rows):  # 填充矩阵
+        for n in row:
+            col = note_to_idx[n]
+            matrix[y, col] = 1
+
+    return matrix
+
+def save_png(matrix, out_img):
+    # 矩阵中大于 0 的置为 0（黑色），等于 0 的置为 255（白色）
+    img = Image.fromarray(np.where(matrix > 0, 0, 255).astype("uint8"))
+    H, W = matrix.shape
+    img = img.resize((W * 20, H * 20), Image.NEAREST)  # 放大二维码
+    img.save(out_img)
+    print(f"[+] 图像已保存：{out_img}")
+
+def enforce_min_note_duration(events):
+    # 按需延长 Note Off 的时间，保证音符不少于 MIN_DURATION_MS
+    min_duration = MIN_DURATION_MS / 1000.0
+    active_notes = {}  # 记录活跃的 note_on 事件
+    processed_events = []
+    
+    for event in events:
+        ts, event_type, note, velocity = event
+        if event_type == "note_on":
+            key = note
+            active_notes[key] = (ts, event_type, note, velocity)
+            processed_events.append(event)
+        elif event_type == "note_off":
+            key = note
+            if key in active_notes:
+                start_ts, _, _, _ = active_notes[key]
+                min_end = start_ts + min_duration
+                # 如果持续时间太短，延长 Note Off 的时间戳
+                if ts < min_end:
+                    new_event = (min_end, event_type, note, velocity)
+                    processed_events.append(new_event)
+                else:
+                    processed_events.append(event)
+                del active_notes[key]
+            else:
+                processed_events.append(event)
+    
+    # 对处理后的事件按时间戳排序
+    processed_events.sort(key=lambda x: x[0])
+    return processed_events
+
+def build_midi(events, output_midi):
+    # 确保所有音符都有最小持续时间
+    processed_events = enforce_min_note_duration(events)
+    
+    # 创建 MIDI 文件
+    mid = mido.MidiFile(ticks_per_beat=PPQ)
+    track = mido.MidiTrack()
+    mid.tracks.append(track)
+    
+    # 设置曲速
+    tempo_us = int(mido.bpm2tempo(BPM))
+    track.append(mido.MetaMessage("set_tempo", tempo=tempo_us, time=0))
+    
+    # 将事件转换为MIDI消息
+    prev_time = 0.0
+    start_time = processed_events[0][0] if processed_events else 0
+    
+    for event in processed_events:
+        ts, event_type, note, velocity = event
+        rel_time = ts - start_time
+        
+        # 计算与前一个事件的时间差（秒）
+        delta = max(0.0, rel_time - prev_time)
+        
+        # 将秒转换为 MIDI tick 数
+        ticks = int(round(mido.second2tick(delta, PPQ, tempo_us)))
+        
+        # 创建MIDI消息
+        if event_type == "note_on":
+            msg = mido.Message("note_on", note=note, velocity=velocity, time=ticks)
+        elif event_type == "note_off":
+            msg = mido.Message("note_off", note=note, velocity=velocity, time=ticks)
+        else:
             continue
+            
+        track.append(msg)
+        prev_time = rel_time
+    
+    track.append(mido.MetaMessage("end_of_track", time=0))
+    mid.save(output_midi)
+    print(f"[+] MIDI 文件已保存：{output_midi}（共 {len(processed_events)} 个事件）")
 
-        status = int(line[0:2], 16) # 状态
-        note   = int(line[2:4], 16) # 音符号
-        vel    = int(line[4:6], 16) # 力度
-
-        # Note On
-        if status == 0x90 and vel > 0:
-            active_notes[note] = current_time
-
-        # Note Off (either 80 xx 00 or 90 xx 00)
-        elif vel == 0:
-            if note in active_notes:
-                start = active_notes[note]
-                duration = current_time - start
-                midi.addNote(track, channel, note, start, duration, base_velocity)
-                del active_notes[note]
-
-        current_time += time_step
-
-    # Close any unclosed notes
-    for note, start in active_notes.items():
-        duration = current_time - start
-        midi.addNote(track, channel, note, start, duration, base_velocity)
-
-    # Write midi file
-    with open(output_midi, "wb") as f:
-        midi.writeFile(f)
-
-    print(f"[+] 已生成 {output_midi}")
-
-# 调用函数
-# txt_to_midi("1.txt", "1.mid")
-txt_to_midi("2.txt", "2.mid")
+if __name__ == "__main__":
+    input_data = "1.txt"
+    out_img = "1.png"
+    out_midi = "1.mid"
+    
+    events = parse_midi_events(input_data)
+    print(f"[+] 提取到 {len(events)} 个 MIDI 事件")
+    
+    build_midi(events, out_midi)
+    
+    # 生成图像（只使用 note_on 事件）
+    note_on_events = [ev for ev in events if ev[1] == "note_on"]
+    print(f"[+] 其中 {len(note_on_events)} 个 NOTE ON 事件")
+    
+    rows = group_rows(events)
+    print(f"[+] 分成 {len(rows)} 行")
+    
+    matrix = render_matrix(rows)
+    save_png(matrix, out_img)
 ```
+
+例题1-2025浙江省赛 小小作曲家
 
 #### LSB隐写
 
@@ -4758,43 +4885,223 @@ print(m)
 
 详见作者博客中的 **[Misc-Forensics](https://goodlunatic.github.io/posts/761da51/)** 这篇文章
 
-## Git文件泄露
+## Misc——OSINT社工题思路
 
-1、利用命令git stash show 显示做了哪些改动
+### 1、用谷歌/必应/yandex识图
 
-2、利用命令git stash apply导出改动之前的文件
+### 2、使用百度地图查看实景地图
 
-## OSINT
+### 3、有时候会给你个图片哈希，让选手去找原图
 
-### 1.用yandex识图
+### 4、给个 Git 提交的哈希，让选手去 Github 找提交的具体内容
+
 
 ## Others
 
+### Hashcat的使用
+
+可以输入`hashcat --help`查看帮助菜单
+
+#### 哈希对照表
+
+可以在官网的这个文档查看：https://hashcat.net/wiki/doku.php?id=example_hashes
+
+#### 爆破参数
+
+```bash
+-a                       指定爆破模式
+-m                       指定哈希类型
+-o                       将输出结果储存到指定文件
+--force                  忽略警告
+--show                   仅显示破解的hash密码和对应的明文
+--remove                 从源文件中删除破解成功的hash
+-1                       自定义字符集  -1 ?l?u?d     # 字符集1包含大小写字母和数字
+-2                       自定义字符集  -2 0123asd    ?2={0123asd}
+-3                       自定义字符集  -3 0123asd    ?3={0123asd}
+-i                       启用增量破解模式
+--increment-min          设置密码最小长度
+--increment-max          设置密码最大长度
+```
+
+爆破模式
+
+```bash
+# 比较常用的就0和3
+0 | Straight（字典破解）
+1 | Combination（组合破解）
+3 | Brute-force（掩码暴力破解）
+6 | Hybrid Wordlist + Mask（字典+掩码破解）
+7 | Hybrid Mask + Wordlist（掩码+字典破解）
+```
+
+掩码设置
+
+```
+l | abcdefghijklmnopqrstuvwxyz          小写字母
+u | ABCDEFGHIJKLMNOPQRSTUVWXYZ          大写字母
+d | 0123456789                  	    纯数字
+h | 0123456789abcdef                    常见小写字母和数字
+H | 0123456789ABCDEF                    常见大写字母和数字
+s |  !"#$%&'()*+,-./:;<=>?@[\]^_`{|}~   特殊字符
+a | ?l?u?d?s                            键盘上所有可见的字符
+b | 0x00 - 0xff                         字节类型
+```
+
+常用哈希类型
+
+```bash
+0     | MD5
+100   | SHA1
+1000  | NTLM
+3000  | LM-Hash
+1400  | SHA256
+1700  | SHA512
+17200 | PKZIP (Compressed)
+17220 | PKZIP (Compressed Multi-File)
+11600 | 7-zip
+13000 | RAR-5
+```
+
+#### 比赛中使用的一些例子
+
+> **INFO: All hashes found as potfile and/or empty entries! Use --show to display them.**
+> 
+> 出现这条信息说明已经有爆破这条hash的记录，可以直接用--show参数查看
+
+```bash
+# 7位小写字母的MD5爆破
+hashcat -a 3 -m 0 --force '7a47c6db227df60a6d67245d7d8063f3' '?l?l?l?l?l?l?l'
+
+# 1-8位纯数字MD5爆破
+hashcat -a 3 -m 0 --force '4488cec2aea535179e085367d8a17d75' --increment --increment-min 1 --increment-max 8 '?d?d?d?d?d?d?d?d'
+
+# 自定义字符集MD5爆破
+hashcat --custom-charset1 '?d?l?u' -a 3 -m 100 '55872a8639ad1b6516de29de7c33a16de511697d' '?1?1?1?1?1?1?1?1'
+
+hashcat -a 3 -m 0 -1 '123456abcdf!@+-' 9054fa315ce16f7f0955b4af06d1aa1b --increment --increment-min 1 --increment-max 8 ?1?1?1?1?1?1?1?1
+
+hashcat -a 3 -m 0 -1 '?d?u?l?s' 'd37fc9ee39dd45a7717e3e3e9415f65d' --increment --increment-min 1 --increment-max 8 '?1?1?1?1?1?1?1?1'
+
+# 字典爆破
+hashcat -a 0 ede900ac1424436b55dc3c9f20cb97a8 rockyou.txt
+
+# 字典组合爆破
+hashcat -a 1 25f9e794323b453885f5181f1b624d0b pwd1.txt pwd2.txt
+
+# 字典+掩码爆破
+hashcat64.exe -a 6 9dc9d5ed5031367d42543763423c24ee password.txt ?l?l?l?l?l
+
+# Mysql4.1/5的PASSWORD函数
+hashcat -a 3 -m 300 --force 6BB4837EB74329105EE4568DDA7DC67ED2CA2AD9 ?d?d?d?d?d?d
+# mssql
+hashcat -a 3 -m 132 --force 0x01008c8006c224f71f6bf0036f78d863c3c4ff53f8c3c48edafb ?l?l?l?l?l?d?d?d
+
+
+# SHA1字母加数字爆破
+hashcat --custom-charset1 ?d?l?u -a 3 -m 100 f865b53623b121fd34ee5426c792e5c33af8c227 ?1?1?1?1?1?1?1?1
+
+# sha512crypt $6$, SHA512 (Unix)破解
+# 可以cat /etc/shadow获取
+hashcat -a 3 -m 1800 --force $6$mxuA5cdy$XZRk0CvnPFqOgVopqiPEFAFK72SogKVwwwp7gWaUOb7b6tVwfCpcSUsCEk64ktLLYmzyew/xd0O0hPG/yrm2X. ?l?l?l?l
+# 不用整理用户名，使用--username
+hashcat -a 3 -m 1800 --force qiyou:$6$QDq75ki3$jsKm7qTDHz/xBob0kF1Lp170Cgg0i5Tslf3JW/sm9k9Q916mBTyilU3PoOsbRdxV8TAmzvdgNjrCuhfg3jKMY1 ?l?l?l?l?l --username
+
+# Windows NT-hash，LM-hash破解
+# 可以用saminside获取NT-hash,LM-hash的值
+NT-hash:
+hashcat -a 3 -m 1000 209C6174DA490CAEB422F3FA5A7AE634 ?l?l?l?l?l
+LM-hash:
+hashcat -a 3 -m 3000 F0D412BD764FFE81AAD3B435B51404EE ?l?l?l?l?l
+
+#w ordpress密码hash破解
+# 具体加密脚本在./wp-includes/class-phpass.php的HashPassword函数
+hashcat -a 3 -m 400 --force $P$BYEYcHEj3vDhV1lwGBv6rpxurKOEWY/ ?d?d?d?d?d?d
+
+# discuz用户密码hash破解
+# 其密码加密方式为 md5(md5($pass).$salt)
+hashcat -a 3 -m 2611 --force 14e1b600b1fd579f47433b88e8d85291: ?d?d?d?d?d?d
+
+# 爆破WIFI密码
+# 首先先把我们的握手包转化为hccapx格式，现在最新版的hashcat只支持hccapx格式了
+官方在线转化https://hashcat.net/cap2hccapx/
+hashcat -a 3 -m 2500 1.hccapx 1391040?d?d?d?d
+```
+
+#### 结合 john 生成哈希并爆破
+
+这种情况下，我们可以把要破解密码的文件拉入 Kali-Linux
+
+先使用 Kali-Linux 中自带的 john the ripper 生成哈希值，然后再使用 hashcat 爆破
+
+##### zip2john
+
+```bash
+# 在kali中执行以下命令
+zip2john 1.zip
+# 然后使用hashcat爆破
+hashcat -a 3 -m 13600 $zip2$*0*3*0*554bb43ff71cb0cac76326f292119dfd*ff23*5*24b28885ee*d4fe362bb1e91319ab53*$/zip2$ --force ?d?d?d?d?d?d
+# 当然我们也可以先把 hash 保存到 hash.txt 中再爆破
+```
+
+##### rar2john
+
+```bash
+# 在kali中执行以下命令
+rar2john 1.rar
+# 然后使用hashcat爆破
+hashcat -a 0 -m 13000 $rar5$16$befa0045561624e61f9492af87a701c0$15$163434f0a694efb4188db76470987ff4$8$6b5337dc1af48050 rockyou.txt
+# 当然我们也可以先把 hash 保存到 hash.txt 中再爆破
+```
+
+##### office2john
+
+```bash
+# 在kali中执行以下命令
+office2john 1.docx
+# 然后使用hashcat爆破
+hashcat -a 3 -m 9600 $office$*2013*100000*256*16*e4a3eb62e8d3576f861f9eded75e0525*9eeb35f0849a7800d48113440b4bbb9c*577f8d8b2e1c5f60fed76e62327b38d28f25230f6c7dfd66588d9ca8097aabb9 --force ?d?d?d?d?d?d
+# 当然我们也可以先把 hash 保存到 hash.txt 中再爆破
+```
+
+##### deepsound2john
+```bash
+# 在kali中执行以下命令
+deepsound2john 1.wav
+# 然后使用john或者hashcat爆破
+# 当然我们也可以先把 hash 保存到 hash.txt 中再爆破
+john hash.txt
+```
+
+例题1-2024ISCC 重隐
+
 ###  字节序
 
-**字节的排列方式有两个通用规则:**
+**字节的排列方式有两个通用规则**
 
 ```
 大端序（Big-Endian）将数据的低位字节存放在内存的高位地址，高位字节存放在低位地址。这种排列方式与数据用字节表示时的书写顺序一致，符合人类的阅读习惯。
 小端序（Little-Endian），将一个多位数的低位放在较小的地址处，高位放在较大的地址处，则称小端序。小端序与人类的阅读习惯相反，但更符合计算机读取内存的方式，因为CPU读取内存中的数据时，是从低地址向高地址方向进行读取的。
 ```
 
-**例子：**
-
-```
-整型数值168496141 需要4个字节
-对应的16进制表示是0X0A0B0C0D
-大端序：
-0x0A 0x0B 0x0C 0x0D
-小端序：
-0x0D 0x0C 0xB 0xA
-```
-
-### 为何要有字节序
+**为什么要有字节序**
 
 ```
 因为计算机电路先处理低位字节，效率比较高，因为计算都是从低位开始的。所以，计算机的内部处理都是小端字节序。在计算机内部，小端序被广泛应用于现代 CPU 内部存储数据；而在其他场景，比如网络传输和文件存储则使用大端序。
 ```
+
+**例子：**
+
+```
+zip压缩包的文件头是：504B0304
+大端序：0x504B0304
+小端序：0x04034B50
+```
+
+#### 字节序的转换
+
+数据量小的话可以直接用 CyberChef 转换
+
+![](imgs/image-20251118155942412.png)
 
 **使用Python中的struct模块来处理大小端序**
 

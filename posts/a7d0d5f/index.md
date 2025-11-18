@@ -611,7 +611,7 @@ if __name__ == "__main__":
 
 但是解密需要密钥，经过尝试发现这个密钥可以使用 john 爆破 Hash 值得到
 
-Hash值的生成可以使用网上的deepsound2join.py脚本：
+Hash值的生成可以使用网上的deepsound2john.py脚本：
 
 ```python
 import logging
