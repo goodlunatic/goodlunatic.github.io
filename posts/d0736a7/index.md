@@ -3465,7 +3465,7 @@ if __name__ == '__main__':
 
 目前得到的两段密文：
 
-> OuzOzRy2XCH17sNCDownEpwIPjZ3HSfJ/EY48+FqM+nXQ5497BFOwA==
+> OuzOzRy2XCH17sNCDownEpwIPjZ3HSfJ/EY48+FqM+nXQ5497BFowA==
 > 
 > XhyDfF1j53ZPe3J8wtfp+1G4b2M4verNcvANyQLpLmZN+fDOyGa3h6kmerc84xb40mFVdJex/hw+Vm9gqy/Bbw==
 
@@ -3480,6 +3480,14 @@ if __name__ == '__main__':
 | id  |                     path                     |             password             |
 | :-: | :------------------------------------------: | :------------------------------: |
 |  1  | /storage/emulated/0/Pictures/g-a-l-f.gpj.aze | AVb8oli7E1rDBDoYma5MrhlDbFPTBWHo |
+
+发现上面的key是八字节的，因此尝试DES解密，发现在不知道IV的情况下也能解出部分可读的内容
+
+![](imgs/image-20251120222939922.png)
+
+![](imgs/image-20251120223003919.png)
+
+![](imgs/image-20251120223105228.png)
 
 ## 题目名称 未知
 
