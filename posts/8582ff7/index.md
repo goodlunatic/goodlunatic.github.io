@@ -662,6 +662,37 @@ if __name__ == '__main__':
 ```
 
 
+然后除了以上预期的解法以外，`@脉冲星`师傅还有一种非预期的解法
+
+首先就是提取音频的数据，然后把双声道的低8位数据转为字节连起来并导出
+
+```python
+from scipy.io import wavfile
+
+def solve():
+    sample_rate, data = wavfile.read("flag.wav")
+    data1 = []
+    data2 = []
+    res = []
+    
+    for item in data:
+        data1.append(int(item[0] & 0xFF))
+        data2.append(int(item[1] & 0xFF))
+
+    res.extend(data1)
+    res.extend(data2)
+    print(res[:100])
+    with open('out.data','wb') as f:
+        f.write(bytes(res))
+
+
+if __name__ == "__main__":
+    solve()
+```
+
+然后把导出的.data文件拉入GIMP调整位移和宽高，这样也能得到图片和其中的flag，而且这样做甚至比预期解看的更清晰
+
+![](imgs/image-20251120194823275.png)
 
 ---
 
