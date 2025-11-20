@@ -486,7 +486,181 @@ if __name__ == "__main__":
 
 ![](imgs/image-20251118112601443.png)
 
+
 ## 题目名称 Really Good Binaural Audio
+
+> 题面信息：
+> 
+> Tell me when you sight the sound.
+
+附件给了一个 `flag.wav` 的音频文件，我们用 Audacity 打开，在频谱图中可以看到表示题目名称的字符串
+
+![](imgs/image-20251120100737325.png)
+
+我们可以先写个脚本来查看一下这个音频的基本信息
+
+```python
+import wave
+
+def get_info():
+    with wave.open("flag.wav",'rb') as wf:
+        n_channels = wf.getnchannels()
+        samplewidth_bytes = wf.getsampwidth()
+        bits_per_sample = samplewidth_bytes * 8
+        framerate = wf.getframerate()
+        n_frames = wf.getnframes()
+        duration = n_frames / framerate
+    print(f"通道数: {n_channels}")
+    print(f"每个采样的字节数: {samplewidth_bytes}")
+    print(f"每个采样的位数: {bits_per_sample}")
+    print(f"采样率: {framerate}")
+    print(f"总帧数: {n_frames}")
+    print(f"时长(秒): {duration}")
+    # 通道数: 2
+    # 每个采样的字节数: 2
+    # 每个采样的位数: 16
+    # 采样率: 22050
+    # 总帧数: 3884905
+    # 时长(秒): 176.18616780045352
+```
+
+发现是双声道，采样的精度是 16bit，因此每个采样点双声道就包含 32bit 的数据
+
+总的采样点数为3884905，分解一下可以得到 3884905 = 5 x 761 x 1021
+
+把题目名中每个单词的首字母连起来可以得到`RGBA`这个提示，猜测是要我们把这些数据转为 RGBA 像素
+
+并且频谱图中也提示了我们：左声道是 RG，右声道则是 BA
+
+因为是 RGBA 图像，并且我们之前分析得到每个采样点双声道包含 32bit 的数据
+
+因此猜测 RGBA 每个通道就都是 8bit 的数据，但是图像的宽高是什么呢？
+
+我们可以写个脚本来查看一下具体的数据
+
+```python
+from scipy.io import wavfile
+
+def func1():
+    sample_rate, data = wavfile.read("flag.wav")
+    for idx,[l,r] in enumerate(data[:100]):
+        if idx % 5 == 0:
+            print(f"{'='*50}")
+        r, g = (l >> 8) & 0xFF, l & 0xFF
+        b, a = (r >> 8) & 0xFF, r & 0xFF
+        l, r = int(l), int(r)
+        r, g, b, a = int(r), int(g), int(b), int(a)
+        print(f"{l,r} -> {(r,g,b,a)}")
+```
+
+![](imgs/image-20251120162701292.png)
+
+仔细观察我们就会发现，这个像素点的分布大致是以5个像素点的数据为一组的
+
+因此我们从之前的总采样点数：3884905 = 5 x 761 x 1021，就可以判断图像宽高就是 1021 x 761 或者 761 x 1021
+
+我们写个脚本提取一下数据，然后转为RGBA像素点
+
+```python
+from PIL import Image
+from scipy.io import wavfile
+
+def solve():
+    sample_rate, data = wavfile.read("flag.wav")
+    img = Image.new('RGBA', (1021, 761))
+
+    for y in range(761):
+        for x in range(1021):
+            i = (x + y * 1021) * 5 # 5个采样点一组
+            left_val = data[i][0]  # 左声道的数据
+            right_val = data[i][1] # 右声道的数据
+            r, g = (left_val >> 8) & 0xFF, left_val & 0xFF    # 高 8 位 -> R，低 8 位 -> G
+            b, a = (right_val >> 8) & 0xFF, right_val & 0xFF  # 高 8 位 -> B，低 8 位 -> A
+            r, g, b, a = int(r), int(g), int(b), int(a) # np.int16 转为 int 类型
+            img.putpixel((x, y), (r, g, b, a))
+
+    img.show()
+    img.save('flag.png')
+```
+
+运行以上脚本后即可得到下图，flag 可能有点模糊，不过硬看也能看出来
+
+![](imgs/image-20251120163729490.png)
+
+如果想要更清晰的 flag，可以到 stegsolve 中调整一下
+
+![](imgs/image-20251120163838903.png)
+
+`DASCTF{A_1s_for_Audio_1n_RGBA}`
+
+当然，这里如果没注意到像素分布是 5 个一组，这题也是可以做的，就是出来的图像可能会有点变形
+
+```python
+from PIL import Image
+from scipy.io import wavfile
+
+def solve():
+    sample_rate, data = wavfile.read("flag.wav")
+    img = Image.new('RGBA', (5105, 761))
+    for y in range(761):
+        for x in range(5105):
+            i = x + y * 5105
+            left_val = data[i][0]  # 左声道的数据
+            right_val = data[i][1] # 右声道的数据
+            r, g = (left_val >> 8) & 0xFF, left_val & 0xFF    # 高 8 位 -> R，低 8 位 -> G
+            b, a = (right_val >> 8) & 0xFF, right_val & 0xFF  # 高 8 位 -> B，低 8 位 -> A
+            r, g, b, a = int(r), int(g), int(b), int(a) # np.int16 转为 int 类型
+            img.putpixel((x, y), (r, g, b, a))
+
+    img.show()
+    img.save('flag.png')
+```
+
+![](imgs/image-20251120164514457.png)
+
+![](imgs/image-20251120164619429.png)
+
+
+附：完整解题脚本
+
+```python
+from PIL import Image
+from scipy.io import wavfile
+
+def func1():
+    sample_rate, data = wavfile.read("flag.wav")
+    for idx,[l,r] in enumerate(data[:100]):
+        if idx % 5 == 0:
+            print(f"{'='*50}")
+        r, g = (l >> 8) & 0xFF, l & 0xFF
+        b, a = (r >> 8) & 0xFF, r & 0xFF
+        l, r = int(l), int(r)
+        r, g, b, a = int(r), int(g), int(b), int(a)
+        print(f"{l,r} -> {(r,g,b,a)}")
+
+def solve():
+    sample_rate, data = wavfile.read("flag.wav")
+    img = Image.new('RGBA', (1021, 761))
+
+    for y in range(761):
+        for x in range(1021):
+            i = (x + y * 1021) * 5 # 5个采样点一组
+            left_val = data[i][0]  # 左声道的数据
+            right_val = data[i][1] # 右声道的数据
+            r, g = (left_val >> 8) & 0xFF, left_val & 0xFF    # 高 8 位 -> R，低 8 位 -> G
+            b, a = (right_val >> 8) & 0xFF, right_val & 0xFF  # 高 8 位 -> B，低 8 位 -> A
+            r, g, b, a = int(r), int(g), int(b), int(a) # np.int16 转为 int 类型
+            img.putpixel((x, y), (r, g, b, a))
+
+    img.show()
+    img.save('flag.png')
+
+
+if __name__ == '__main__':
+    func1()
+    solve()
+```
+
 
 
 ---
