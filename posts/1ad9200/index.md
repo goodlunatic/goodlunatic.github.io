@@ -3829,13 +3829,13 @@ bkcrack -C png4.zip -c 2.png -p png_header -o 0
 bkcrack -C png4.zip -c flag.txt -k e0be8d5d 70bb3140 7e983fff -U out.zip 123
 ```
 
-##### 3)利用压缩包格式破解
+##### 3)利用ZIP格式破解
 
 将flag.txt压缩成flag.zip(无加密，压缩方法任意)，在外面再套一层zip(zipcrypto + store)时适用
 
 > 将一个名为flag.txt的文件打包成ZIP压缩包后，发现文件名称会出现在内层压缩包文件头中，且偏移固定为30
 > 
-> 且默认情况下，flag.zip也会作为该压缩包的名称（如果出题人修改了内层压缩包名称那就很惨了）
+> 且默认情况下，flag.zip也会作为该压缩包的名称（但如果出题人修改了压缩包的名字，就不能这样攻击了）
 > 
 > 然后再在外层套一个满足明文攻击条件的压缩包，这样的情况也可被明文攻击
 > 
@@ -3847,7 +3847,7 @@ bkcrack -C png4.zip -c flag.txt -k e0be8d5d 70bb3140 7e983fff -U out.zip 123
 > 
 > 满足12字节的要求
 > 
-> （这些是内层压缩包的固定格式）
+> 然后这些都是内层压缩包的固定格式
 
 ![](imgs/2a2a99168773b0112f23f77f5a3067d8.png)
 
