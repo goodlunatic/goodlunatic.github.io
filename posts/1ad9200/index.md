@@ -4399,46 +4399,100 @@ stegpy 1.wav -p
 
 可以直接使用 DeEgger Embedder 工具 extract files
 
-#### 8、提取WAV中LSB隐写的数据
+#### 8、写脚本提取音频数据并分析
+
+> 这种情况下就要求选手对音频数据有更深一步的理解
+> 
+> 需要自己手动写脚本去提取音频的原始数据并进行分析
+> 
+> 然后这里通常会用到下面这几个模块
+
+```python
+import wave
+import wavio
+import scipy.io.wavfile as wavfile
+import soundfile
+import librosa
+
+# 1. scipy.io.wavfile
+samplerate, data = wavfile.read('audio.wav')  # 返回np.int16整数数据
+
+# 2. soundfile  
+data, samplerate = soundfile.read('audio.wav')  # 可以指定数据类型
+
+# 3. librosa
+data, samplerate = librosa.load('audio.wav', sr=None)  # 返回浮点数，可重采样
+```
+
+在进行处理前可以先用下面这个脚本看看基础参数
+
+```python
+import wave
+
+def get_info(wav_file):
+    with wave.open(wav_file,'rb') as wf:
+        n_channels = wf.getnchannels()
+        samplewidth_bytes = wf.getsampwidth()
+        bits_per_sample = samplewidth_bytes * 8
+        framerate = wf.getframerate()
+        n_frames = wf.getnframes()
+        duration = n_frames / framerate
+    print(f"通道数: {n_channels}")
+    print(f"每个采样的字节数: {samplewidth_bytes}")
+    print(f"每个采样的位数: {bits_per_sample}")
+    print(f"采样率: {framerate}")
+    print(f"总帧数: {n_frames}")
+    print(f"时长(秒): {duration}")
+    # 通道数: 2
+    # 每个采样的字节数: 2
+    # 每个采样的位数: 16
+    # 采样率: 44100
+    # 总帧数: 6804591
+    # 时长(秒): 154.2991156462585
+```
+
+##### 提取WAV中LSB隐写的数据
 
 ```python
 import wave
 import libnum
 
-wav = wave.open('996.wav', 'r')
-
-# 读取前1000帧的音频数据并将其转换为十六进制字符串
-# readframes()返回的是字节数据，.hex()将其转换为十六进制表示
-frames_data = wav.readframes(1000).hex()
-res = ''
-
-# 遍历十六进制数据，每次处理4个字符(2字节)
-# 因为WAV文件通常使用16位(2字节)采样
-for i in range(0, len(frames_data), 4):
-    data = frames_data[i:i+4]
-    # 将数据从小端序转换为大端序，因为WAV文件使用小端序存储数据
-    data_rev = int(data[2:] + data[:2], 16)
-    # 使用位与运算(&)获取最低有效位(LSB)
-    res += str(data_rev & 1)
-    
-print(libnum.b2s(res))
-# 7avpassword:NO996!=
+def extract_lsb(wav_file):
+    res = ""
+    with wave.open(wav_file, 'rb') as wf:
+        sample_width = wf.getsampwidth() # # 获取每个采样的字节数
+        n_frames = wf.getnframes()
+        frame_data = wf.readframes(n_frames)  # 读取2000个采样点需要的字节
+        # print(type(frame_data)) # <class 'bytes'>
+        
+        if sample_width == 2:  # 16位采样，每2个字节组成一个采样点
+            for i in range(0, n_frames, 2):
+                # 将数据从小端序转换为大端序，因为WAV文件使用小端序存储数据
+                sample = frame_data[i] | (frame_data[i+1] << 8)
+                res += str(sample & 1)
+        else:  # 8位采样
+            for i in range(min(len(frame_data), 1000)):
+                res += str(frame_data[i] & 1)
+                
+    print("[+] 二进制字符串长度:", len(res))
+    print("[+] 提取出的 LSB 信息:", libnum.b2s(res)[:100])
+    #  7avpassword:NO996!
 ```
 
-#### 9、分析WAV左右声道的差值
+例题1-2022 CISCN 华南分区赛 Ste9ano9raphy 6inary
+
+##### 提取并分析WAV左右声道的差值
 
 ```python
-# 导入模块wavfile
 import scipy.io.wavfile as wavfile
-# 读取音频文件的采样率和数据
-sample_rate, data = wavfile.read("1.wav")
+
+sample_rate, data = wavfile.read("1.wav") # 读取音频文件的采样率和数据
 # print(sample_rate, data)
 # 创建两个列表来存储左右两声道的数据
 left = []
 right = []
 
 for item in data:
-    # print(item)
     # 第一列的数据是左声道，第二列是右声道
     left.append(item[0])
     right.append(item[1])
@@ -4456,7 +4510,7 @@ with open('res.txt', 'w') as f:
     f.write(res)
 ```
 
-#### 10、使用脚本提取WAV数据进行分析
+##### 使用脚本提取WAV数据进行分析
 
 ```python
 # 2023 DASCTFxCBCTF
@@ -4522,7 +4576,7 @@ if __name__ == '__main__':
     # DASCTF{Wh1stling_t0_Convey_informat1on!!!}
 ```
 
-#### 11、提取两个WAV音频中的浮点集并分析
+##### 提取两个WAV音频中的浮点集并分析
 
 例题1-2024极客大挑战-音乐大师
 
@@ -4547,7 +4601,49 @@ print(libnum.b2s(flag))
 # b'SYC{wav_LSB_but_You_can_get_M3_Coll!}'
 ```
 
-#### 12、频率映射到字符
+##### 提取音频数据并转为图片
+
+```python
+from PIL import Image
+from scipy.io import wavfile
+
+def func1():
+    sample_rate, data = wavfile.read("flag.wav")
+    for idx,[l,r] in enumerate(data[:100]):
+        if idx % 5 == 0:
+            print(f"{'='*50}")
+        r, g = (l >> 8) & 0xFF, l & 0xFF
+        b, a = (r >> 8) & 0xFF, r & 0xFF
+        l, r = int(l), int(r)
+        r, g, b, a = int(r), int(g), int(b), int(a)
+        print(f"{l,r} -> {(r,g,b,a)}")
+
+def solve():
+    sample_rate, data = wavfile.read("flag.wav")
+    img = Image.new('RGBA', (1021, 761))
+
+    for y in range(761):
+        for x in range(1021):
+            i = (x + y * 1021) * 5 # 5个采样点一组
+            left_val = data[i][0]  # 左声道的数据
+            right_val = data[i][1] # 右声道的数据
+            r, g = (left_val >> 8) & 0xFF, left_val & 0xFF    # 高 8 位 -> R，低 8 位 -> G
+            b, a = (right_val >> 8) & 0xFF, right_val & 0xFF  # 高 8 位 -> B，低 8 位 -> A
+            r, g, b, a = int(r), int(g), int(b), int(a) # np.int16 转为 int 类型
+            img.putpixel((x, y), (r, g, b, a))
+
+    img.show()
+    img.save('flag.png')
+
+
+if __name__ == '__main__':
+    func1()
+    solve()
+```
+
+例题1-2025 浙江省赛-Really Good Binaural Audio
+
+##### 音频频率映射到字符
 
 ```python
 import numpy as np
