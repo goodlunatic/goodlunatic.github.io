@@ -2935,19 +2935,33 @@ https://github.com/goodlunatic/ISO-IEC-18004-Standard
 
 ## Misc——PDF题思路
 
-1、直接`binwalk`或者`foremost`提取出隐藏文件
+### 1、binwalk/foremost或者010手动提取出隐藏文件
 
-2、可能是`wbStego4open`隐写，用`wbStego4open`输入密钥直接decode
+### 2、wbStego4open隐写
 
-3、PDF中可能携带了什么文件，可以在`firefox`或者别的PDF软件中打开并提取
+直接用`wbStego4open`打开然后输入密钥decode
 
-4、PDF中可能有透明的文字，直接全选复制然后粘贴到记事本中查看即可
+### 3、PDF中携带了附件
 
-5、使用`DeEgger Embedder`工具`extract files`
+可以在`firefox`或者别的PDF软件中打开并提取
 
-6、使用PS打开，里面可能有多个图层(例题1-2024古剑山-jpg)
+### 4、PDF中写了透明或者白色的文字
 
-7、若PDF加密，可以尝试使用`pdfcrack`爆破一下密码（Ubuntu下可以直接 apt install）
+直接打开全选复制，然后粘贴到记事本中查看即可
+
+### 5、使用DeEgger Embedder工具extract files
+
+### 6、PDF存在多个图层的情况
+
+直接用PS打开，然后查看隐藏的图层
+
+例题1-2024古剑山-jpg
+
+### 7、弱密码加密的PDF
+
+可以直接用 Forensic PasswareKit 爆破
+
+也可以在Linux下安装 pdfcrack 爆破(sudo apt install pdfcrack)
 
 ```bash
 pdfcrack -f enc.pdf -w rockyou.txt
@@ -2970,23 +2984,19 @@ msoffcrypto-tool encrypted.docx decrypted.docx -p Passw0rd
 
 解密完成后010打开就能判断出准确的文件类型了
 
-### 新版本的文件类型(docx/xlsx/pptx)
+### 新版 MS-Office 2007
 
-#### Excel文件：.xls .xlsx
+#### docx文件
 
-1、拉入010或者记事本，查找flag
+##### 0、可能有透明或者白色的文字，全选复制出来，或者直接清除样式
 
-2、取消隐藏先前隐藏的行和列
+##### 1、WPS或者Word打开显示隐藏文字的功能，可能会有隐藏文字
 
-3、条件格式里设置突出显示某些单元格(黑白后可能会有图案)
+![](imgs/image-20251122124407348.png)
 
-4、要先将数据按照行列排序后再进行处理
+##### 2、直接改后缀为.zip解压，然后查看有无关键信息
 
-#### Word文件：.doc .docx
-
-1、直接foremost出隐藏文件
-
-2、与宏有关系的各种攻击与隐写
+##### 3、与宏有关系的各种攻击与隐写
 
 ```bash
 分析word中的宏需要用到这样一个工具：oletools
@@ -2996,19 +3006,75 @@ doc格式可以不需要文档密码直接提取其中的vba宏代码
 olevba .\attachment.doc > test.txt
 ```
 
-3、利用行距来隐写（例：ISCC2023-汤姆历险记）
+##### 4、利用行距来隐写（例：ISCC2023-汤姆历险记）
 
 ```
 word中可能有一段是1倍行距，可能又有一段是1.5倍行距，需要根据不同行距敲出摩斯电码（单倍转为.多倍转为-空行转为空格或者分隔符）
 ```
 
-4、docx中有emf和oleobject
+##### 5、docx中有emf和oleobject
 
-```
-可以直接双击word中那个emf图标，激活相关内容(如音频文件)然后再进一步分析
-```
+可以打开后双击那个emf图标，激活相关内容(如音频文件)然后再进一步提取并分析
 
-### MS-Office97-2003
+当然也可以直接从oleobject中提取文件并分析
+
+##### 6、把关键内容隐写在自定义字体中
+
+###### 直接给了otf文件的情况：
+
+首先安装给的otf字体文件，注意要记下字体名称
+
+如果不确定字体名称的话，可以尝试再次安装，会有弹窗告诉你具体的字体名
+
+![](imgs/image-20251122130354235.png)
+
+然后根据题目提示找到关键的字符
+
+![](imgs/image-20251122130550194.png)
+
+> 如果想要卸载某个字体文件，可以 Win+I 打开设置搜索字体选项，然后卸载对应的字体即可 
+
+###### 给了odttf文件的情况
+
+首先把docx文件改后缀为.zip并解压，然后找到 `/word/fontTable.xml`
+
+获取里面的字体的 fontkey，并把odttf文件重命名为 `{fontkey}.ttf`
+
+![](imgs/image-20251122133148248.png)
+
+然后用这个项目把odttf文件转为ttf文件：https://github.com/somanchiu/odttf2ttf
+
+最后用这个在线网站预览ttf文件即可得到flag：https://fontdrop.info/#/?darkmode=true
+
+当然也可以使用 fontforge 这个项目查看：https://github.com/fontforge/fontforge
+
+例题1-2022HNCTF calligraphy
+
+#### pptx
+
+1、可能有透明或者白色的文字，全选复制出来，或者直接清除样式
+
+2、直接改后缀为.zip解压，然后查看有无关键信息
+
+3、关键信息可能藏在的PPTX评论或者批注中
+
+例题1-2024CISCN初赛 神秘文件
+
+#### xlsx文件
+
+1、可能有透明或者白色的文字，全选复制出来，或者直接清除样式
+
+2、直接改后缀为.zip解压，然后查看有无关键信息
+
+3、可能会有隐藏的行和列，直接取消隐藏先前隐藏的行和列
+
+4、条件格式里设置突出显示某些单元格(黑白后可能会有图案)
+
+这个直接根据条件格式查找，然后找到后设置为黑色底色，可能就会有个二维码
+
+5、要先将数据按照行列排序后再进行处理
+
+### 旧版 MS-Office 97-2003
 
 #### OLEHeader修复
 
