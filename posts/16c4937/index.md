@@ -63,6 +63,6 @@ stegsolve 中翻看了一下发现 RGB 的 Plane1 有明显的隐写痕迹
 
 ---
 
-> 作者: <no value>  
+> 作者: [Lunatic](https://goodlunatic.github.io)  
 > URL: https://goodlunatic.github.io/posts/16c4937/  
 
