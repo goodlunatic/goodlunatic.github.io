@@ -2709,6 +2709,162 @@ base64解码上面那段内容可以得到：`88cf333dd92ff4d0ceff266d366dbec335
 补上文件头，然后爆破宽高即可得到剩下的 flag
 
 
+## 题目名称 itch+years
+
+题目附件给了一个 7z 压缩包，手动解压几个发现是 7z套娃，并且发现里面的文件名都是 6 位大小写字母
+
+![](imgs/image-20250901102648422.png)
+
+
+于是写了个脚本解套，发现 txt 中的内容一共有以下七种情况
+
+```python
+import py7zr
+import os
+import shutil
+
+def decompress_7z(archive_file):
+    global res  # 声明使用全局变量
+    global name_res
+    # 确保tmp目录存在且为空
+    if os.path.exists("tmp"):
+        shutil.rmtree("tmp")
+    os.makedirs("tmp", exist_ok=True)
+    
+    new_archive_file = None
+    txt_filename = None
+    
+    try:
+        with py7zr.SevenZipFile(archive_file, 'r') as archive:
+            file_list = archive.list()
+            for file in file_list:
+                if file.filename.endswith('.7z'):
+                    name_res.append(file.filename.split('.')[0])
+                    new_archive_file = file.filename
+                elif file.filename.endswith('.txt'):
+                    txt_filename = file.filename
+                    name_res.append(file.filename.split('.')[0])
+        # 解压文件
+        with py7zr.SevenZipFile(archive_file, mode='r') as archive:
+            archive.extractall("tmp/")
+        
+        print(f"[+] {archive_file} 解压成功")
+        
+        # 读取txt文件内容
+        if txt_filename and os.path.exists(f"./tmp/{txt_filename}"):
+            with open(f"./tmp/{txt_filename}", 'r') as f:
+                data = f.read().strip()
+                if data == 'Come on!':
+                    res += "a"
+                elif data == 'Go ahead!':
+                    res += "b"
+                elif data == 'Go for it.':
+                    res += "c"
+                elif data == 'Keep it up.':
+                    res += "d"
+                elif data == 'You can do it.':
+                    res += "e"
+                elif data == 'Cheer up!':
+                    res += "f"
+                elif data == 'Hang in there!':
+                    res += "g"
+                else:
+                    print(f"未知的内容: {data}")
+        
+        # 移动文件到当前目录
+        for filename in os.listdir("tmp"):
+            src = os.path.join("tmp", filename)
+            dst = os.path.join(".", filename)
+            if os.path.exists(dst):
+                os.remove(dst)
+            shutil.move(src, dst)
+        
+        # 清理
+        shutil.rmtree("tmp")
+        os.remove(archive_file)
+        
+        return new_archive_file
+        
+    except Exception as e:
+        print(f"解压 {archive_file} 时出错: {e}")
+        # 清理临时文件
+        if os.path.exists("tmp"):
+            shutil.rmtree("tmp")
+        return None
+
+if __name__ == "__main__":
+    res = ""  # 初始化全局变量
+    name_res = []
+    archive_file = "flag.7z"
+    
+    while True:
+        if archive_file and archive_file.endswith('.7z') and os.path.exists(archive_file):
+            archive_file = decompress_7z(archive_file)
+            if archive_file is None:
+                break
+        else:
+            break
+    
+    print(res)
+    print(name_res)
+```
+
+结合题目名的意思七年之痒，猜测最后的 flag 肯定和数字七有关了，尝试了转七进制但是依旧无果
+
+```python
+from itertools import permutations
+from Crypto.Util.number import long_to_bytes
+
+def func_decode(raw, character_base):
+    raw_long = 0
+    for c in raw:
+        for i in range(len(character_base)):
+            if c == character_base[i]:
+                raw_long = raw_long * 7 + i
+                break  # 找到匹配后跳出内层循环
+        else:
+            continue
+    # print(f"Raw long: {raw_long}")
+    return long_to_bytes(raw_long)
+
+def func_burp(raw):
+    character_base = ['a', 'b', 'c', 'd', 'e', 'f', 'g']
+    
+    for perm in permutations(character_base):
+        # print(f"Testing permutation: {perm}")
+        try:
+            result = func_decode(raw, perm)
+            result_str = result
+            if b'flag' in result_str or b'CTF' in result_str:
+                print(f"Decoded result: {result_str}")
+                
+        except Exception as e:
+            print(f"Error with permutation {perm}: {e}")
+
+if __name__ == "__main__":
+    raw = "bcffaccccgdbcgeeecbbgafeebdbaededbebbdagdedfbbgbaedaagbggffeggcgccbefedbgfbggdbccgecadcaaeecbbaabe"
+    func_burp(raw)
+```
+
+
+然后这里在`@默`师傅的帮助下，发现部分7z压缩包在文件尾前插入了部分数据，并且结合文件头猜测可能是切片后的webp图像数据。
+
+![](imgs/image-20250919093819453.png)
+
+但是要提取出完整的 webp 数据，需要分析出每段数据具体的分布规律，目前还没找到
+
+## 题目名称 Chaos and Torus 
+
+> 题目附件： https://pan.baidu.com/s/11NwSPtcUEqk81m1-45Mr3g?pwd=2ihu 提取码: 2ihu 
+
+附件给了一个 cat.gif，gif 的内容表达的是 Aronld 变换，尝试分帧，发现一共有 70 帧
+
+![](imgs/image-20250916103500592.png)
+
+然后尝试提取了一下每帧的帧间隔和偏移量，但是没有发现什么有用的信息
+
+![](imgs/image-20250916103747949.png)
+
 ## 题目名称 one (2024 古剑山)
 
 题目附件1： https://pan.baidu.com/s/1iSL1P1Z1Oa8WB0tXRWjSmg?pwd=vc66 提取码: vc66
@@ -2956,150 +3112,6 @@ if __name__ == "__main__":
 cookies.zip中的内容如下：
 
 ![](imgs/image-20250825183448035.png)
-
-## 题目名称 itch+years
-
-题目附件给了一个 7z 压缩包，手动解压几个发现是 7z套娃，并且发现里面的文件名都是 6 位大小写字母
-
-![](imgs/image-20250901102648422.png)
-
-
-于是写了个脚本解套，发现 txt 中的内容一共有以下七种情况
-
-```python
-import py7zr
-import os
-import shutil
-
-def decompress_7z(archive_file):
-    global res  # 声明使用全局变量
-    global name_res
-    # 确保tmp目录存在且为空
-    if os.path.exists("tmp"):
-        shutil.rmtree("tmp")
-    os.makedirs("tmp", exist_ok=True)
-    
-    new_archive_file = None
-    txt_filename = None
-    
-    try:
-        with py7zr.SevenZipFile(archive_file, 'r') as archive:
-            file_list = archive.list()
-            for file in file_list:
-                if file.filename.endswith('.7z'):
-                    name_res.append(file.filename.split('.')[0])
-                    new_archive_file = file.filename
-                elif file.filename.endswith('.txt'):
-                    txt_filename = file.filename
-                    name_res.append(file.filename.split('.')[0])
-        # 解压文件
-        with py7zr.SevenZipFile(archive_file, mode='r') as archive:
-            archive.extractall("tmp/")
-        
-        print(f"[+] {archive_file} 解压成功")
-        
-        # 读取txt文件内容
-        if txt_filename and os.path.exists(f"./tmp/{txt_filename}"):
-            with open(f"./tmp/{txt_filename}", 'r') as f:
-                data = f.read().strip()
-                if data == 'Come on!':
-                    res += "a"
-                elif data == 'Go ahead!':
-                    res += "b"
-                elif data == 'Go for it.':
-                    res += "c"
-                elif data == 'Keep it up.':
-                    res += "d"
-                elif data == 'You can do it.':
-                    res += "e"
-                elif data == 'Cheer up!':
-                    res += "f"
-                elif data == 'Hang in there!':
-                    res += "g"
-                else:
-                    print(f"未知的内容: {data}")
-        
-        # 移动文件到当前目录
-        for filename in os.listdir("tmp"):
-            src = os.path.join("tmp", filename)
-            dst = os.path.join(".", filename)
-            if os.path.exists(dst):
-                os.remove(dst)
-            shutil.move(src, dst)
-        
-        # 清理
-        shutil.rmtree("tmp")
-        os.remove(archive_file)
-        
-        return new_archive_file
-        
-    except Exception as e:
-        print(f"解压 {archive_file} 时出错: {e}")
-        # 清理临时文件
-        if os.path.exists("tmp"):
-            shutil.rmtree("tmp")
-        return None
-
-if __name__ == "__main__":
-    res = ""  # 初始化全局变量
-    name_res = []
-    archive_file = "flag.7z"
-    
-    while True:
-        if archive_file and archive_file.endswith('.7z') and os.path.exists(archive_file):
-            archive_file = decompress_7z(archive_file)
-            if archive_file is None:
-                break
-        else:
-            break
-    
-    print(res)
-    print(name_res)
-```
-
-结合题目名的意思七年之痒，猜测最后的 flag 肯定和数字七有关了，尝试了转七进制但是依旧无果
-
-```python
-from itertools import permutations
-from Crypto.Util.number import long_to_bytes
-
-def func_decode(raw, character_base):
-    raw_long = 0
-    for c in raw:
-        for i in range(len(character_base)):
-            if c == character_base[i]:
-                raw_long = raw_long * 7 + i
-                break  # 找到匹配后跳出内层循环
-        else:
-            continue
-    # print(f"Raw long: {raw_long}")
-    return long_to_bytes(raw_long)
-
-def func_burp(raw):
-    character_base = ['a', 'b', 'c', 'd', 'e', 'f', 'g']
-    
-    for perm in permutations(character_base):
-        # print(f"Testing permutation: {perm}")
-        try:
-            result = func_decode(raw, perm)
-            result_str = result
-            if b'flag' in result_str or b'CTF' in result_str:
-                print(f"Decoded result: {result_str}")
-                
-        except Exception as e:
-            print(f"Error with permutation {perm}: {e}")
-
-if __name__ == "__main__":
-    raw = "bcffaccccgdbcgeeecbbgafeebdbaededbebbdagdedfbbgbaedaagbggffeggcgccbefedbgfbggdbccgecadcaaeecbbaabe"
-    func_burp(raw)
-```
-
-
-然后这里在`@默`师傅的帮助下，发现部分7z压缩包在文件尾前插入了部分数据，并且结合文件头猜测可能是切片后的webp图像数据。
-
-![](imgs/image-20250919093819453.png)
-
-但是要提取出完整的 webp 数据，需要分析出每段数据具体的分布规律，目前还没找到
 
 
 ## 题目名称 魔法少女的消失术
@@ -3429,17 +3441,6 @@ if __name__ == '__main__':
 9F 22 73 79 59 6E 74 25
 ```
 
-## 题目名称 Chaos and Torus 
-
-> 题目附件： https://pan.baidu.com/s/11NwSPtcUEqk81m1-45Mr3g?pwd=2ihu 提取码: 2ihu 
-
-附件给了一个 cat.gif，gif 的内容表达的是 Aronld 变换，尝试分帧，发现一共有 70 帧
-
-![](imgs/image-20250916103500592.png)
-
-然后尝试提取了一下每帧的帧间隔和偏移量，但是没有发现什么有用的信息
-
-![](imgs/image-20250916103747949.png)
 
 ## 题目名称 MIW
 
@@ -3648,6 +3649,53 @@ if __name__ == '__main__':
 ![](imgs/image-20251114221020381.png)
 
 流152中的内容感觉是Aronld变换的参数
+
+## 题目名称 降维打击（2025铸剑杯初赛）
+
+题目附件： https://pan.baidu.com/s/1Q0uxTQl8dDCt2mqRGdVuQg?pwd=45kr 提取码: 45kr
+
+题面信息：
+
+> 人类文明是否已被质子监听？自蒸汽革命，电气革命，信息革命以来，我们貌似没有再经历大的革命来推进发现。弱小和无知不是生存的障碍，傲慢才是，愿人工智能的到来能够带领我们开启新纪元，解救被降维打击的子民。尝试通过窥探维度边界找到质子隐藏的flag
+
+附件给了如下这张 PNG 图片：
+
+![](imgs/image-20251125110104618.png)
+
+010 打开发现末尾还藏了另一张 PNG，尝试手动提取出来
+
+![](imgs/image-20251125110142263.png)
+
+![](imgs/image-20251125110251794.png)
+
+根据图片特征，发现考察的是 `光栅` 这个知识点
+
+我们可以直接用这个项目爆破一下：https://github.com/AabyssZG/Raster-Terminator
+
+手动过滤干扰的图片后，可以得到下面这三张带有提示的图片
+
+![](imgs/image-20251125110537613.png)
+
+![](imgs/image-20251125110600692.png)
+
+![](imgs/image-20251125110608546.png)
+
+三张图片中的文字信息汇总如下：
+
+```
+Snowflakes are all 1.26 dimensions. Why are you a surface
+deawddss
+
+How can we break through the boundaries of dimensions
+wwdssdww
+
+dwawwdsdwdssasd
+ddwwasawwdddsss
+```
+
+根据提示中`维度`这个关键词，对原图尝试了立体图，但是并没有发现什么有用的信息
+
+看立体图用这个网站会比较方便：https://piellardj.github.io/stereogram-solver/
 
 
 ---
