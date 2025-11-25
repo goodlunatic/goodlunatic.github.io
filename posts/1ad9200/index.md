@@ -2197,7 +2197,7 @@ java -jar .\BlindWatermark-v0.0.3-windows-x86_64.jar decode -c .\password.png ou
 https://www.a.tools/Tool.php?Id=100
 ```
 
-#### 25、立体图
+#### 25、立体图(stereogram)
 
 看到类似于下面这种图案，可能就是立体图，可以拉到 stegsolve 中遍历偏移量
 
@@ -2206,6 +2206,9 @@ https://www.a.tools/Tool.php?Id=100
 ![](imgs/image-20251031130125322.png)
 
 当然，在理解了原理后也可以自己写个脚本把偏移的像素还原回去
+
+除此之外，也可以直接用在线网站看：https://piellardj.github.io/stereogram-solver/
+
 
 ### PNG思路
 
