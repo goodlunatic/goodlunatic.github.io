@@ -2209,6 +2209,13 @@ https://www.a.tools/Tool.php?Id=100
 
 除此之外，也可以直接用在线网站看：https://piellardj.github.io/stereogram-solver/
 
+#### 26、图片马赛克消除
+
+可以使用 Depix 这个项目：
+
+https://github.com/spipm/Depixelization_poc
+
+例题1-2024楚慧杯 PixMatrix
 
 ### PNG思路
 
@@ -2969,6 +2976,63 @@ https://github.com/goodlunatic/ISO-IEC-18004-Standard
 ```bash
 pdfcrack -f enc.pdf -w rockyou.txt
 ```
+
+### 8、PDF交叉引用隐写数据
+
+利用交叉引用数据的偏移量隐写二进制数据
+
+```python
+import libnum
+
+data = '''0000000000 65535 f 
+0000000100 00000 n 
+0000000110 00000 n 
+0000000130 00000 n 
+0000000140 00000 n 
+0000000160 00000 n 
+0000000180 00000 n 
+0000000190 00000 n 
+0000000210 00000 n 
+0000000220 00000 n 
+0000000230 00000 n 
+0000000250 00000 n 
+0000000260 00000 n 
+0000000270 00000 n 
+0000000290 00000 n 
+0000000300 00000 n 
+0000000320 00000 n 
+. . .
+0000000330 00000 n 
+0000000340 00000 n 
+0000000360 00000 n 
+0000000370 00000 n 
+0000004300 00000 n 
+0000004310 00000 n 
+0000004320 00000 n 
+0000004330 00000 n 
+0000004340 00000 n 
+0000004350 00000 n 
+0000004360 00000 n 
+0000004370 00000 n 
+'''.splitlines()
+
+res = ""
+offset = [int(line.split()[0]) for line in data]
+
+for i in range(1, len(offset)):
+    size = int(offset[i]) - int(offset[i - 1])
+    if size == 10:
+        res += '0'
+    else:
+        res += '1'
+
+print(res)
+flag = libnum.b2s(res)
+print(flag)
+# b'\x01ZJUCTF{PDF_0ff5e7_c4N_H1D3_m3ss4g3}\x00'
+```
+
+例题1-2025ZJUCTF
 
 ## Misc——MS-Office题思路
 
