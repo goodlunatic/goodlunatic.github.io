@@ -461,7 +461,7 @@ print(encode_key(restore("7a107ecf29325423")))
 
 ![](imgs/image-20241029235135379.png)
 
-之前在某个群里好像有看到过类似的，感觉是希尔伯特-皮亚诺曲线
+之前在某个群里好像有看到过类似的，感觉是皮亚诺曲线
 
 根据[参考链接](https://almostgph.github.io/2024/01/08/IrisCTF2024/)中的脚本复原一下图片
 
@@ -495,7 +495,7 @@ def peano(n):
 
 order = peano(6)
 
-img = Image.open(r"C:\Users\ASUSROG\Desktop\chal.png")
+img = Image.open("")
 
 width, height = img.size
 

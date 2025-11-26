@@ -2217,6 +2217,145 @@ https://github.com/spipm/Depixelization_poc
 
 例题1-2024楚慧杯 PixMatrix
 
+#### 27、填满空间的曲线
+
+参考文章：https://zhuanlan.zhihu.com/p/7306200306
+
+##### 皮亚诺曲线（Peano Curve）
+
+> 皮亚诺曲线的最小单元是 3x3 的正方形
+
+![](imgs/Peano.gif)
+
+```python
+from PIL import Image
+from tqdm import tqdm
+
+def peano(n):
+    if n == 0:
+        return [[0,0]]
+    else:
+        in_lst = peano(n - 1)
+        lst = in_lst.copy()
+        px,py = lst[-1]
+        lst.extend([px - i[0], py + 1 + i[1]] for i in in_lst)
+        px,py = lst[-1]
+        lst.extend([px + i[0], py + 1 + i[1]] for i in in_lst)
+        px,py = lst[-1]
+        lst.extend([px + 1 + i[0], py - i[1]] for i in in_lst)
+        px,py = lst[-1]
+        lst.extend([px - i[0], py - 1 - i[1]] for i in in_lst)
+        px,py = lst[-1]
+        lst.extend([px + i[0], py - 1 - i[1]] for i in in_lst)
+        px,py = lst[-1]
+        lst.extend([px + 1 + i[0], py + i[1]] for i in in_lst)
+        px,py = lst[-1]
+        lst.extend([px - i[0], py + 1 + i[1]] for i in in_lst)
+        px,py = lst[-1]
+        lst.extend([px + i[0], py + 1 + i[1]] for i in in_lst)
+        return lst
+
+order = peano(6)
+
+img = Image.open("")
+
+width, height = img.size
+
+block_width = width # // 3
+block_height = height # // 3
+
+new_image = Image.new("RGB", (width, height))
+
+for i, (x, y) in tqdm(enumerate(order)):
+    # 根据列表顺序获取新的坐标
+    new_x, new_y = i % width, i // width
+    # 获取原图像素
+    pixel = img.getpixel((x, height - 1 - y))
+    # 在新图像中放置像素
+    new_image.putpixel((new_x, new_y), pixel)
+
+new_image.save("rearranged_image.jpg")
+```
+
+例题1-2025 irisCTF The Peano Scramble
+
+例题2-2024网鼎杯青龙组 Misc04
+
+##### 希尔伯特曲线（Hilbert Curve）
+
+> 希尔伯特曲线的最小单元是 2x2 的正方形
+
+![](imgs/Hilbert.gif)
+
+```python
+from PIL import Image
+
+rules = {
+        'X': 'XF+YFY+FX-F-XFXFX-FYFY+',
+        'Y': '-XFXF+YFYFY+F+YF-XFX-FY'
+}
+
+deltaa = 90
+forward_len = 1
+
+def lindenmayer(n):
+    axiom = "X"
+    for _ in range(n):
+        axiom = ''.join(rules.get(c, c) for c in axiom)
+    return axiom
+
+def turtle_to_points(cmd):
+    x, y = 0, 0
+    angle = 0  # 0=右, 90=上, 180=左, 270=下
+    points = [(x, y)]
+    
+    for c in cmd:
+        if c == 'F':  # 前进
+            if angle == 0:      x += 1
+            elif angle == 90:   y += 1
+            elif angle == 180:  x -= 1
+            elif angle == 270:  y -= 1
+            points.append((x, y))
+        elif c == '+':  # 左转
+            angle = (angle + 90) % 360
+        elif c == '-':  # 右转
+            angle = (angle - 90) % 360
+    
+    return points
+
+
+def get_order(n):
+    cmd = lindenmayer(n)
+    return turtle_to_points(cmd)
+
+
+def decrypt_image(encrypted_path, output_path, n):
+    encrypted_img = Image.open(encrypted_path).convert("RGB")
+    width, height = encrypted_img.size
+    order = get_order(n)
+    print(order[:20])
+    decrypted_img = Image.new("RGB", (width, height))
+    pixels = list(encrypted_img.getdata())
+
+    for i, (x, y) in enumerate(order):
+        if i >= len(pixels):
+            break
+        decrypted_img.putpixel((x, height - 1 - y), pixels[i])
+    
+    decrypted_img.save(output_path)
+    print(f"[+] 解密完成！图像已保存至: {output_path}")
+
+
+if __name__ == "__main__":
+    decrypt_image("enc.png", "flag.png", 6)
+```
+
+例题1-2021强网杯 Threebody
+
+例题2-2025铸剑杯 降维打击
+
+
+
 ### PNG思路
 
 #### 1、PNG图片宽高被篡改
