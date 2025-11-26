@@ -2227,6 +2227,8 @@ https://github.com/spipm/Depixelization_poc
 
 ![](imgs/Peano.gif)
 
+脚本一：
+
 ```python
 from PIL import Image
 from tqdm import tqdm
@@ -2277,22 +2279,14 @@ for i, (x, y) in tqdm(enumerate(order)):
 new_image.save("rearranged_image.jpg")
 ```
 
-例题1-2025 irisCTF The Peano Scramble
-
-例题2-2024网鼎杯青龙组 Misc04
-
-##### 希尔伯特曲线（Hilbert Curve）
-
-> 希尔伯特曲线的最小单元是 2x2 的正方形
-
-![](imgs/Hilbert.gif)
+脚本二：
 
 ```python
 from PIL import Image
 
 rules = {
-        'X': 'XF+YFY+FX-F-XFXFX-FYFY+',
-        'Y': '-XFXF+YFYFY+F+YF-XFX-FY'
+    'X': 'XF+YFY+FX-F-XFXFX-FYFY+',
+    'Y': '-XFXF+YFYFY+F+YF-XFX-FY'
 }
 
 deltaa = 90
@@ -2303,6 +2297,7 @@ def lindenmayer(n):
     for _ in range(n):
         axiom = ''.join(rules.get(c, c) for c in axiom)
     return axiom
+
 
 def turtle_to_points(cmd):
     x, y = 0, 0
@@ -2324,7 +2319,7 @@ def turtle_to_points(cmd):
     return points
 
 
-def get_order(n):
+def peano(n):
     cmd = lindenmayer(n)
     return turtle_to_points(cmd)
 
@@ -2332,8 +2327,8 @@ def get_order(n):
 def decrypt_image(encrypted_path, output_path, n):
     encrypted_img = Image.open(encrypted_path).convert("RGB")
     width, height = encrypted_img.size
-    order = get_order(n)
-    print(order[:20])
+    order = peano(n)
+    print(order[:40])
     decrypted_img = Image.new("RGB", (width, height))
     pixels = list(encrypted_img.getdata())
 
@@ -2350,11 +2345,20 @@ if __name__ == "__main__":
     decrypt_image("enc.png", "flag.png", 6)
 ```
 
+
+例题1-2025 irisCTF The Peano Scramble
+
+例题2-2024网鼎杯青龙组 Misc04
+
+例题3-2025铸剑杯 降维打击
+
+##### 希尔伯特曲线（Hilbert Curve）
+
+> 希尔伯特曲线的最小单元是 2x2 的正方形
+
+![](imgs/Hilbert.gif)
+
 例题1-2021强网杯 Threebody
-
-例题2-2025铸剑杯 降维打击
-
-
 
 ### PNG思路
 

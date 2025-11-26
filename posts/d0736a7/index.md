@@ -2559,6 +2559,134 @@ if __name__ == "__main__":
 ![](imgs/image-20251120194646626.png)
 
 
+## [SOLVED] 题目名称 降维打击（2025铸剑杯初赛）
+
+题目附件： https://pan.baidu.com/s/1Q0uxTQl8dDCt2mqRGdVuQg?pwd=45kr 提取码: 45kr
+
+题面信息：
+
+> 人类文明是否已被质子监听？自蒸汽革命，电气革命，信息革命以来，我们貌似没有再经历大的革命来推进发现。弱小和无知不是生存的障碍，傲慢才是，愿人工智能的到来能够带领我们开启新纪元，解救被降维打击的子民。尝试通过窥探维度边界找到质子隐藏的flag
+
+附件给了如下这张 PNG 图片：
+
+![](imgs/image-20251125110104618.png)
+
+010 打开发现末尾还藏了另一张 PNG，尝试手动提取出来
+
+![](imgs/image-20251125110142263.png)
+
+![](imgs/image-20251125110251794.png)
+
+根据图片特征，发现考察的是 `光栅` 这个知识点
+
+我们可以直接用这个项目爆破一下：https://github.com/AabyssZG/Raster-Terminator
+
+手动过滤干扰的图片后，可以得到下面这三张带有提示的图片
+
+![](imgs/image-20251125110537613.png)
+
+![](imgs/image-20251125110600692.png)
+
+![](imgs/image-20251125110608546.png)
+
+三张图片中的文字信息汇总如下：
+
+```
+Snowflakes are all 1.26 dimensions. Why are you a surface
+dwawddss
+
+How can we break through the boundaries of dimensions
+wwdssdww
+
+dwawwdsdwdssasd
+ddwwasawwdddsss
+```
+
+第一句话说雪花是1.26维，这里的雪花应该指的是科赫雪花，属于分型几何的内容
+
+然后再结合asdw这种方向键的提示，猜测考察的是皮亚诺曲线或者希尔伯特曲线了
+
+因为根据豪斯多夫维度，皮亚诺曲线和希尔伯特曲线是二维的
+
+经过尝试发现使用`dwawddss`这个顺序画出来的图作为最小单元，提取像素并复原可以得到一个二维码
+
+![](imgs/image-20251126185522840.png)
+
+因为这个最小单元的大小是3x3的正方形，所以这里用到的就是皮亚诺曲线
+
+![](imgs/image-20251126190750023.png)
+ 
+![](imgs/image-20251126185315099.png)
+
+![](imgs/image-20251126185425719.png)
+
+扫码即可得到flag: `flag{b9f98204ff63b60d41b30f2a028c96c5}`
+
+附：完整的结题脚本
+
+```python
+from PIL import Image
+
+rules = {
+    'X': 'XF+YFY+FX-F-XFXFX-FYFY+',
+    'Y': '-XFXF+YFYFY+F+YF-XFX-FY'
+}
+
+deltaa = 90
+forward_len = 1
+
+def lindenmayer(n):
+    axiom = "X"
+    for _ in range(n):
+        axiom = ''.join(rules.get(c, c) for c in axiom)
+    return axiom
+
+
+def turtle_to_points(cmd):
+    x, y = 0, 0
+    angle = 0  # 0=右, 90=上, 180=左, 270=下
+    points = [(x, y)]
+    
+    for c in cmd:
+        if c == 'F':  # 前进
+            if angle == 0:      x += 1
+            elif angle == 90:   y += 1
+            elif angle == 180:  x -= 1
+            elif angle == 270:  y -= 1
+            points.append((x, y))
+        elif c == '+':  # 左转
+            angle = (angle + 90) % 360
+        elif c == '-':  # 右转
+            angle = (angle - 90) % 360
+    
+    return points
+
+
+def peano(n):
+    cmd = lindenmayer(n)
+    return turtle_to_points(cmd)
+
+
+def decrypt_image(encrypted_path, output_path, n):
+    encrypted_img = Image.open(encrypted_path).convert("RGB")
+    width, height = encrypted_img.size
+    order = peano(n)
+    print(order[:40])
+    decrypted_img = Image.new("RGB", (width, height))
+    pixels = list(encrypted_img.getdata())
+
+    for i, (x, y) in enumerate(order):
+        if i >= len(pixels):
+            break
+        decrypted_img.putpixel((x, height - 1 - y), pixels[i])
+    
+    decrypted_img.save(output_path)
+    print(f"[+] 解密完成！图像已保存至: {output_path}")
+
+
+if __name__ == "__main__":
+    decrypt_image("enc.png", "flag.png", 6)
+```
 
 ## 题目名称 像素流量（2025 上海市赛初赛）
 
@@ -3650,52 +3778,9 @@ if __name__ == '__main__':
 
 流152中的内容感觉是Aronld变换的参数
 
-## 题目名称 降维打击（2025铸剑杯初赛）
 
-题目附件： https://pan.baidu.com/s/1Q0uxTQl8dDCt2mqRGdVuQg?pwd=45kr 提取码: 45kr
 
-题面信息：
 
-> 人类文明是否已被质子监听？自蒸汽革命，电气革命，信息革命以来，我们貌似没有再经历大的革命来推进发现。弱小和无知不是生存的障碍，傲慢才是，愿人工智能的到来能够带领我们开启新纪元，解救被降维打击的子民。尝试通过窥探维度边界找到质子隐藏的flag
-
-附件给了如下这张 PNG 图片：
-
-![](imgs/image-20251125110104618.png)
-
-010 打开发现末尾还藏了另一张 PNG，尝试手动提取出来
-
-![](imgs/image-20251125110142263.png)
-
-![](imgs/image-20251125110251794.png)
-
-根据图片特征，发现考察的是 `光栅` 这个知识点
-
-我们可以直接用这个项目爆破一下：https://github.com/AabyssZG/Raster-Terminator
-
-手动过滤干扰的图片后，可以得到下面这三张带有提示的图片
-
-![](imgs/image-20251125110537613.png)
-
-![](imgs/image-20251125110600692.png)
-
-![](imgs/image-20251125110608546.png)
-
-三张图片中的文字信息汇总如下：
-
-```
-Snowflakes are all 1.26 dimensions. Why are you a surface
-deawddss
-
-How can we break through the boundaries of dimensions
-wwdssdww
-
-dwawwdsdwdssasd
-ddwwasawwdddsss
-```
-
-根据提示中`维度`这个关键词，对原图尝试了立体图，但是并没有发现什么有用的信息
-
-看立体图用这个网站会比较方便：https://piellardj.github.io/stereogram-solver/
 
 
 ---
