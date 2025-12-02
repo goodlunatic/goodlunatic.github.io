@@ -811,7 +811,148 @@ print(plaintext)
 
 ## 题目名称 返璞归真
 
+附件给了如下内容，并且压缩包注释中有提示：`hashisk3y`
+
+![](imgs/image-20251202113803229.png)
+
+经过尝试，发现这个压缩包是个伪加密，直接用 010 修改加密位后解压即可
+
+![](imgs/image-20251202113856481.png)
+
+解压后可以得到下面这张 JPG
+
+![](imgs/image-20251202113927398.png)
+
+010 打开，发现末尾有一张 BMP
+
+![](imgs/image-20251202113949145.png)
+
+手动提取出来，发现是个 paperback
+
+2025 L3HCTF 出过这个考点，参考链接：
+
+https://mp.weixin.qq.com/s/p-WAzu9XO2vONeDbY5bmLg
+
+![](imgs/image-20251202114050659.png)
+
+因此我们下载这个软件，然后把其中的信息读取出来即可
+
+paperback：http://www.ollydbg.de/Paperbak/
+
+![](imgs/image-20251202114712228.png)
+
+使用这个软件读取那个 bmp 后可以得到一个 wow.txt，内容如下：
+
+```
+jNX+xu2QKBm23AUlwClt+3xDkQcJGjM=
+```
+
+然后结合之前压缩包注释中的提示：`hashisk3y`
+
+我们把之间的那张JPG删去末尾BMP的数据后 MD5 一下
+
+```bash
+$ md5sum image.jpg
+001a62ee54d1c28a8b769ab5499011cb  image.jpg
+```
+
+然后把这个作为密钥解个 RC4 即可得到 flag：
+
+`flag{examp13_f0r_r3a11}`
+
+![](imgs/image-20251202115247932.png)
+
 ## 题目名称 猫咪电台
+
+> 题目描述：
+> 
+> Meow~ 欢迎来到猫咪电台！
+> 
+> 提交时请添加flag{}
+
+附件给了如下内容：
+
+![](imgs/image-20251202112359930.png)
+
+其中PNG 文件存在 LSB 隐写，就是需要把顺序调整为 BRG
+
+![](imgs/image-20251202112428441.png)
+
+发现是隐写了一张 PNG，提取出来可以得到如下图片
+
+![](imgs/image-20251202112605641.png)
+
+```
+flag part0： ==gNWRWTFRjY4IGV4sGczg0QzAFUyQTQ
+```
+
+![](imgs/image-20251202112643155.png)
+
+```
+Ci4l10~
+```
+
+然后去看那个 wav 文件，010打开发现末尾藏了一个 zip
+
+![](imgs/image-20251202113025136.png)
+
+手动提取出来，发现解压需要密码，猜测密码要从 wav 文件中获取
+
+删去末尾的 zip 的数据后，我们 file 看一下 wav 的基本信息
+
+```bash
+┌──(kali㉿kali)-[~/Desktop]
+└─$ file 11.wav
+11.wav: RIFF (little-endian) data, WAVE audio, Microsoft PCM, 16 bit, mono 8000 Hz
+```
+
+然后尝试用Audacity导入原始数据
+
+![](imgs/image-20251202112750784.png)
+
+![](imgs/image-20251202112757480.png)
+
+发现有两条很清晰的频率，猜测是RTTY，因此尝试拉到kali中用minimodem解码
+
+> 频率分离（Mark 和 Space）：
+> 
+> RTTY使用两种频率来代表两种不同的信号状态：Mark 和 Space。
+> 
+> Mark频率（通常为较低频率）对应“1”。
+> 
+> Space频率（通常为较高频率）对应“0”。
+> 
+> 在传输时，信号会在这两种频率之间切换，形成一个类似于“0”和“1”的二进制模式。
+
+```bash
+┌──(kali㉿kali)-[~/Desktop]
+└─$ minimodem -f out.wav -M 2560 -S 2720 45.45 --baudot
+
+### CARRIER 45.45 @ 2560.0 Hz ###
+CQ CQ CQ DE CATHUB
+THIS IS CAT RADIO HUB MEOW MEOW MEOW
+WHISKERS THE CAT IS BROADCASTING
+PURRRRRRR PURRRRRRR PURRRRRRR
+FLAG PART1: R77YM30W1SFUN
+PASS IS 450KTFQY1D4KX8JB
+MEOW MEOW MEOW
+SKSK
+
+### NOCARRIER ndata=284 confidence=6.970 ampl=0.431 bps=43.05 (5.3% slow) ###
+```
+
+使用`450KTFQY1D4KX8JB`作为密码解压可以得到一个2.wav
+
+还是一样，我们先 file 看一下音频的基本信息
+
+```bash
+$ file 2.wav
+2.wav: MBWF/RF64 audio, stereo 2400000 Hz
+```
+
+
+
+
 
 
 
