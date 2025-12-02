@@ -950,7 +950,11 @@ $ file 2.wav
 2.wav: MBWF/RF64 audio, stereo 2400000 Hz
 ```
 
+采样率非常高，猜测是 SDR(软件定义无线电) 捕获的无线信号数据
 
+因此我们尝试使用 SDR# (SDRSharp) 进行解析
+
+ SDR# (SDRSharp) ：https://airspy.com/download/
 
 
 
