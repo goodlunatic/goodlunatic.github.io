@@ -2360,6 +2360,26 @@ if __name__ == "__main__":
 
 例题1-2021强网杯 Threebody
 
+#### 28、Dicom文件
+
+是 X 光图像，后缀为.dcm
+
+可以使用MicroDicom打开
+
+例题 1-2023 红明谷初赛 - X光的秘密
+
+#### 29、backpaper
+
+类似于下面这种的点阵图
+
+![](imgs/image-20251202151805370.png)
+
+直接用下载软件读取即可：http://www.ollydbg.de/Paperbak/
+
+例题1-2025 L3HCTF - BackPaper
+
+例题2-2025 强网拟态决赛 - 返璞归真
+
 ### PNG思路
 
 #### 1、PNG图片宽高被篡改
@@ -2947,7 +2967,9 @@ if __name__ == "__main__":
 
 webp文件用电脑自带的图片看可能会有点问题，建议用浏览器打开这种文件
 
-webp可能是动图，可以用下面这个脚本分离webp中的每帧图片
+#### 可能是动图
+
+可以用下面这个脚本分离webp中的每帧图片
 
 ```python
 from PIL import Image
@@ -2958,6 +2980,9 @@ for i in range(n_frame):
     img.seek(i)
     img.save(f'img/{i}.png')
 ```
+
+#### 转为PNG后解 stegpy 隐写
+
 
 ### BPG图像文件
 
@@ -4448,6 +4473,70 @@ if __name__ == "__main__":
 
 例题2-2025浙江省赛 easySteg0
 
+### 14、通过pkzip的哈希值恢复zip的原始内容
+
+在已知解压密码或者三段密钥的情况下
+
+我们可以通过 pkzip 的哈希值恢复 zip 的原始内容
+
+其实考察的是 zipcrypto 压缩算法的原理
+
+```python
+# 已知三段密钥
+key0 = 0xb47e923c
+key1 = 0x5aeb49a7
+key2 = 0xa3cd7af0
+
+# 初始化 CRC 表
+crc_table = [0] * 256
+for i in range(256):
+    c = i
+    for _ in range(8):
+        if c & 1:
+            c = (0xEDB88320 ^ (c >> 1)) & 0xFFFFFFFF
+        else:
+            c = (c >> 1) & 0xFFFFFFFF
+    crc_table[i] = c
+
+
+def crc32(old_crc, c):
+    return (crc_table[(old_crc ^ c) & 0xFF] ^ (old_crc >> 8)) & 0xFFFFFFFF
+
+
+def update_keys(p):
+    global key0, key1, key2
+
+    key0 = crc32(key0, p)
+    key1 = (key1 + (key0 & 0xFF)) & 0xFFFFFFFF
+    key1 = (key1 * 134775813 + 1) & 0xFFFFFFFF
+    key2 = crc32(key2, (key1 >> 24) & 0xFF)
+
+
+def decrypt_byte():
+    temp = (key2 | 3) & 0xFFFFFFFF
+    return ((temp * (temp ^ 1)) >> 8) & 0xFF
+
+
+def decrypt(ciphertext):
+    plain = bytearray()
+    for byte in ciphertext:
+        k = decrypt_byte()
+        p = byte ^ k
+        update_keys(p)
+        plain.append(p)
+    return plain
+
+encrypted = bytes.fromhex("c8358ce9e6858f166753637de145d0c841cee9efd7cf2008d13e551dd584b69cae5895c7df45f32fdfb51d0c0d273820239896d3e6")  # 示例输入
+plaintext = decrypt(encrypted)
+print(plaintext)
+
+# bytearray(b'\xcf\xecP\x1f\x89\x9e\x83q1"\xa4\x04flag{W0ww_th3_C@ske7|s_Tre4sur3_unl0cke9}')
+```
+
+例题1-2025 buckeyeCTF-zip2john2zip
+
+例题2-2025 强网拟态决赛-标准的绝密压缩
+
 ## Misc——视频题思路
 
 1、视频中的音频存在隐写
@@ -4575,6 +4664,16 @@ sstv -d flag.wav
 ![](imgs/image-20241229102346611.png)
 
 > Tips：如果音频中看不出来可以尝试在Au中把音频增幅，要求能看到两条白线
+
+#### 5、lyra编码压缩
+
+使用开源项目解码即可：https://github.com/google/lyra
+
+例题 1- 2024 ISCC 有人让我给你带个话
+
+例题2-2024 羊城杯初赛 1z_misc 
+
+
 
 ### MP3思路
 
