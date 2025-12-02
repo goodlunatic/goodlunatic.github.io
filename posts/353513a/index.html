@@ -1,0 +1,573 @@
+<!doctype html><html itemscope itemtype=http://schema.org/WebPage lang=zh-CN><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=2"><meta name=robots content="noodp"><title>2025 强网拟态防御国际精英挑战赛线下总决赛 Misc Writeup - ⚡Lunatic BLOG⚡</title><meta name=author content="Lunatic"><meta name=description content="跟天枢Dubhe一起打了一下，这场Misc赛题也还算比较有意思
+"><meta name=keywords content='CTF,Misc,Writeup'><meta itemprop=name content="2025 强网拟态防御国际精英挑战赛线下总决赛 Misc Writeup"><meta itemprop=description content="跟天枢Dubhe一起打了一下，这场Misc赛题也还算比较有意思"><meta itemprop=datePublished content="2025-12-02T10:09:35+08:00"><meta itemprop=dateModified content="2025-12-02T10:09:35+08:00"><meta itemprop=wordCount content="2076"><meta itemprop=keywords content="CTF,Misc,Writeup"><meta property="og:url" content="https://goodlunatic.github.io/posts/353513a/"><meta property="og:site_name" content="⚡Lunatic BLOG⚡"><meta property="og:title" content="2025 强网拟态防御国际精英挑战赛线下总决赛 Misc Writeup"><meta property="og:description" content="跟天枢Dubhe一起打了一下，这场Misc赛题也还算比较有意思"><meta property="og:locale" content="zh_CN"><meta property="og:type" content="article"><meta property="article:section" content="posts"><meta property="article:published_time" content="2025-12-02T10:09:35+08:00"><meta property="article:modified_time" content="2025-12-02T10:09:35+08:00"><meta property="article:tag" content="CTF"><meta property="article:tag" content="Misc"><meta property="article:tag" content="Writeup"><meta name=twitter:card content="summary"><meta name=twitter:title content="2025 强网拟态防御国际精英挑战赛线下总决赛 Misc Writeup"><meta name=twitter:description content="跟天枢Dubhe一起打了一下，这场Misc赛题也还算比较有意思"><meta name=application-name content="FixIt"><meta name=apple-mobile-web-app-title content="FixIt"><meta name=theme-color data-light=#f8f8f8 data-dark=#252627 content="#f8f8f8"><meta name=msapplication-TileColor content="#da532c"><link rel=icon href=https://www.nssctf.cn/files/2024/4/28/7f130a1387.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=canonical type=text/html href=https://goodlunatic.github.io/posts/353513a/ title="2025 强网拟态防御国际精英挑战赛线下总决赛 Misc Writeup - ⚡Lunatic BLOG⚡"><link rel=prev type=text/html href=https://goodlunatic.github.io/posts/417c7ba/ title=CTF-渗透测试><link rel=next type=text/html href=https://goodlunatic.github.io/posts/d0736a7/ title='CTF-Misc "雅"题共赏'><link rel=alternate type=text/markdown href=https://goodlunatic.github.io/posts/353513a/index.md title="2025 强网拟态防御国际精英挑战赛线下总决赛 Misc Writeup - ⚡Lunatic BLOG⚡"><link rel=stylesheet href=/css/config.min.css><link rel=stylesheet href=/css/style.min.css><link rel=preload href=/lib/fontawesome-free/all.min.css as=style onload='this.removeAttribute("onload"),this.rel="stylesheet"'><noscript><link rel=stylesheet href=/lib/fontawesome-free/all.min.css></noscript><link rel=preload href=/lib/animate/animate.min.css as=style onload='this.removeAttribute("onload"),this.rel="stylesheet"'><noscript><link rel=stylesheet href=/lib/animate/animate.min.css></noscript><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"2025 强网拟态防御国际精英挑战赛线下总决赛 Misc Writeup","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/goodlunatic.github.io\/posts\/353513a\/"},"image":["https:\/\/www.nssctf.cn\/files\/2025\/8\/21\/8ce6223a1a.png"],"genre":"posts","keywords":"CTF, Misc, Writeup","wordcount":2076,"url":"https:\/\/goodlunatic.github.io\/posts\/353513a\/","datePublished":"2025-12-02T10:09:35+08:00","dateModified":"2025-12-02T10:09:35+08:00","publisher":{"@type":"Organization","name":""},"author":{"@type":"Person","name":"Lunatic"},"description":""}</script><script src=/js/head/color-scheme.min.js></script></head><body data-header-desktop=sticky data-header-mobile=auto><div class=wrapper data-page-style=normal><header class="desktop animate__faster" id=header-desktop><div class=header-wrapper data-github-corner=left><div class=header-title><a href=/ title="⚡Lunatic BLOG⚡"><span class=header-title-text>⚡Lunatic BLOG⚡</span></a><span class=header-subtitle></span></div><nav><ul class=menu><li class=menu-item><a class=menu-link href=/collections/><i class="fa-solid fa-layer-group fa-fw fa-sm" aria-hidden=true></i> 合集</a></li><li class=menu-item><a class=menu-link href=/archives/><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden=true></i> 归档</a></li><li class=menu-item><a class=menu-link href=/categories/><i class="fa-solid fa-folder-tree fa-fw fa-sm" aria-hidden=true></i> 分类</a></li><li class=menu-item><a class=menu-link href=/tags/><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden=true></i> 标签</a></li><li class=menu-item><a class=menu-link href=/friends/><i class="fa-solid fa-chain fa-fw fa-sm" aria-hidden=true></i> 友链</a></li><li class=menu-item><a class=menu-link href=/about/><i class="fa-solid fa-graduation-cap fa-fw fa-sm" aria-hidden=true></i> 关于</a></li><li class="menu-item delimiter"></li><li class="menu-item search" id=search-desktop><input type=text placeholder=搜索文章标题或内容…… id=search-input-desktop>
+<a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-desktop title=搜索><i class="fa-solid fa-search fa-fw" aria-hidden=true></i>
+</a><a href=javascript:void(0); class="search-button search-clear" id=search-clear-desktop title=清空><i class="fa-solid fa-times-circle fa-fw" aria-hidden=true></i>
+</a><span class="search-button search-loading" id=search-loading-desktop><i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden=true></i></span></li><li class="menu-item theme-switch" title=切换主题><i class="fa-solid fa-adjust fa-fw" aria-hidden=true></i></li></ul></nav></div></header><header class="mobile animate__faster" id=header-mobile><div class=header-container><div class=header-wrapper><div class=header-title><a href=/ title="⚡Lunatic BLOG⚡"><span class=header-title-text>⚡Lunatic BLOG⚡</span></a><span class=header-subtitle></span></div><div class=menu-toggle id=menu-toggle-mobile><span></span><span></span><span></span></div></div><nav><ul class=menu id=menu-mobile><li class=search-wrapper><div class="search mobile" id=search-mobile><input type=text placeholder=搜索文章标题或内容…… id=search-input-mobile>
+<a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-mobile title=搜索><i class="fa-solid fa-search fa-fw" aria-hidden=true></i>
+</a><a href=javascript:void(0); class="search-button search-clear" id=search-clear-mobile title=清空><i class="fa-solid fa-times-circle fa-fw" aria-hidden=true></i>
+</a><span class="search-button search-loading" id=search-loading-mobile><i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden=true></i></span></div><a href=javascript:void(0); class=search-cancel id=search-cancel-mobile>取消</a></li><li class=menu-item><a class=menu-link href=/collections/><i class="fa-solid fa-layer-group fa-fw fa-sm" aria-hidden=true></i> 合集</a></li><li class=menu-item><a class=menu-link href=/archives/><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden=true></i> 归档</a></li><li class=menu-item><a class=menu-link href=/categories/><i class="fa-solid fa-folder-tree fa-fw fa-sm" aria-hidden=true></i> 分类</a></li><li class=menu-item><a class=menu-link href=/tags/><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden=true></i> 标签</a></li><li class=menu-item><a class=menu-link href=/friends/><i class="fa-solid fa-chain fa-fw fa-sm" aria-hidden=true></i> 友链</a></li><li class=menu-item><a class=menu-link href=/about/><i class="fa-solid fa-graduation-cap fa-fw fa-sm" aria-hidden=true></i> 关于</a></li><li class="menu-item menu-system"><span class="menu-system-item theme-switch" title=切换主题><i class="fa-solid fa-adjust fa-fw" aria-hidden=true></i></span></li></ul></nav></div></header><div class="search-dropdown desktop"><div id=search-dropdown-desktop></div></div><div class="search-dropdown mobile"><div id=search-dropdown-mobile></div></div><main class=fi-container><aside class="aside-collection animate__animated animate__fadeIn animate__faster" aria-label=合集><div class="details related-details open"><div class="details-summary related-summary"><i class="fa-solid fa-fire fa-fade text-danger fa-fw" aria-hidden=true></i>
+<span class=related-title>相关内容</span><i class="details-icon fa-solid fa-angle-right fa-fw" aria-hidden=true></i></div><div class="details-content related-content"><ul class=related-list><li class=related-item><a href=/posts/8582ff7/ title="2025 浙江省大学生网络与信息安全竞赛 Misc Writeup">2025 浙江省大学生网络与信息安全竞赛 Misc Writeup</a></li><li class=related-item><a href=/posts/bfeb088/ title="2025 台州市网络安全大赛 Misc Writeup">2025 台州市网络安全大赛 Misc Writeup</a></li><li class=related-item><a href=/posts/02298dd/ title="2025 华为杯中国研究生网络安全创新大赛实网对抗赛 EZ_ATEXEC 详解">2025 华为杯中国研究生网络安全创新大赛实网对抗赛 EZ_ATEXEC 详解</a></li><li class=related-item><a href=/posts/16c4937/ title="2025 振兴杯江西省网络安全大赛 Misc Writeup">2025 振兴杯江西省网络安全大赛 Misc Writeup</a></li><li class=related-item><a href=/posts/49bdad5/ title="2025 第九届工业信息安全技能大赛-典型工业场景锦标赛 Misc Writeup">2025 第九届工业信息安全技能大赛-典型工业场景锦标赛 Misc Writeup</a></li></ul></div></div><div class=aside-custom><a href target=_blank rel=external><img src=/images/zsxq.webp alt="Lunatic Planet QR code" width=100%></a></div></aside><article class="page single"><div class=header><h1 class="single-title animate__animated animate__flipInX"><span>2025 强网拟态防御国际精英挑战赛线下总决赛 Misc Writeup</span></h1></div><div class=post-meta><div class=post-meta-line><span class=post-author><a href=https://goodlunatic.github.io title=作者 target=_blank rel="external nofollow noopener noreferrer author" class=author><img class=avatar src=https://www.nssctf.cn/files/2024/4/28/7f130a1387.png alt=Lunatic height=16 width=16>&nbsp;Lunatic</a></span><span class=post-included-in>&nbsp;收录于 <a href=/categories/writeup/ class=post-category title="分类 - Writeup"><i class="fa-regular fa-folder fa-fw" aria-hidden=true></i> Writeup</a></span></div><div class=post-meta-line><span title="发布于 2025-12-02 10:09:35"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden=true></i><time datetime=2025-12-02>2025-12-02</time></span>&nbsp;<span title="2076 字"><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden=true></i>约 2100 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden=true></i>预计阅读 10 分钟</span>&nbsp;<span id=busuanzi_container_page_pv class="busuanzi_visitors comment-visitors" data-flag-title="2025 强网拟态防御国际精英挑战赛线下总决赛 Misc Writeup"><i class="fa-regular fa-eye fa-fw me-1" aria-hidden=true></i><span id=busuanzi_value_page_pv>-</span>&nbsp;次阅读
+</span>&nbsp;</div></div><div class="details toc" id=toc-static data-kept=false><div class="details-summary toc-title"><span>目录</span>
+<span><i class="details-icon fa-solid fa-angle-right" aria-hidden=true></i></span></div><div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents><ul><li><a href=#题目名称-泄漏的时间与电码>题目名称 泄漏的时间与电码</a></li><li><a href=#题目名称-标准的绝密压缩>题目名称 标准的绝密压缩</a></li><li><a href=#题目名称-返璞归真>题目名称 返璞归真</a></li><li><a href=#题目名称-猫咪电台>题目名称 猫咪电台</a></li></ul></nav></div></div><div class=content id=content><p><strong>跟天枢Dubhe一起打了一下，这场Misc赛题也还算比较有意思</strong></p><table><thead><tr><th style=text-align:center><img loading=lazy src=/posts/353513a/imgs/image-20251202101114142.png alt=/posts/353513a/imgs/image-20251202101114142.png height=608 width=1080></th></tr></thead><tbody><tr><td style=text-align:center>题目附件：本文中涉及的具体题目附件可以进我的<a href=https://t.zsxq.com/an6p6 target=_blank rel="external nofollow noopener noreferrer">知识星球</a>获取</td></tr></tbody></table><h2 class=heading-element id=题目名称-泄漏的时间与电码><span>题目名称 泄漏的时间与电码</span>
+<a href=#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-%e6%b3%84%e6%bc%8f%e7%9a%84%e6%97%b6%e9%97%b4%e4%b8%8e%e7%94%b5%e7%a0%81 class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h2><blockquote><p>题目描述：</p><p>你苦苦寻觅的东西或许就藏在他最显眼的地方</p><p>hint1：ModR/M</p></blockquote><h2 class=heading-element id=题目名称-标准的绝密压缩><span>题目名称 标准的绝密压缩</span>
+<a href=#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-%e6%a0%87%e5%87%86%e7%9a%84%e7%bb%9d%e5%af%86%e5%8e%8b%e7%bc%a9 class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h2><blockquote><p>题目描述：</p><p>近日我司捕获到了一段神秘流量，据分析里面似乎传输了些隐秘数据……</p></blockquote><p>翻看流量追踪TCP流，发现其中传输了一些图片的十六进制数据</p><p><img loading=lazy src=/posts/353513a/imgs/image-20251202101738231.png alt=/posts/353513a/imgs/image-20251202101738231.png height=1520 width=2599></p><p>尝试手动提取出来，发现提出来的图片宽高都是 100x100</p><p>然后用 pngcheck 检查，发现图片都是是有问题的</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=o>(</span>base<span class=o>)</span> ➜  Downloads pngcheck -v download.png
+</span></span><span class=line><span class=cl>File: download.png <span class=o>(</span><span class=m>705</span> bytes<span class=o>)</span>
+</span></span><span class=line><span class=cl>  chunk IHDR at offset 0x0000c, length <span class=m>13</span>
+</span></span><span class=line><span class=cl>    <span class=m>100</span> x <span class=m>100</span> image, 24-bit RGB, non-interlaced
+</span></span><span class=line><span class=cl>  chunk IDAT at offset 0x00025, length <span class=m>648</span>
+</span></span><span class=line><span class=cl>    zlib: deflated, 32K window, default compression
+</span></span><span class=line><span class=cl>    invalid row-filter <span class=nb>type</span> <span class=o>(</span>85<span class=o>)</span>
+</span></span><span class=line><span class=cl>ERRORS DETECTED in download.png</span></span></code></pre></td></tr></table></div></div><p>经过尝试，发现是图片IDAT块隐写</p><p>手动提取出IDAT块的数据，然后补上789c即可用CyberChef解压出隐写的数据</p><p><img loading=lazy src=/posts/353513a/imgs/image-20251202101811878.png alt=/posts/353513a/imgs/image-20251202101811878.png height=1044 width=2788></p><p>按顺序把所有PNG图片中隐写的数据提取出来，可以得到如下几段对话：</p><blockquote><p>Connection established. Hey, you online? It’s been a while since we last talked.</p><p>Yeah, I’m here. Busy as always. Feels like the days are getting shorter.</p></blockquote><blockquote><p>Tell me about it. I barely have time to sleep lately. Between maintenance logs and incident reports, I’m drowning.</p><p>Sounds rough. I’ve been buried in audits myself. Every time I finish one, another pops up.</p></blockquote><blockquote><p>Classic. Sometimes I wonder if the machines are easier to deal with than the people.</p><p>No kidding. At least machines don’t ask pointless questions.</p></blockquote><blockquote><p>True. Anyway, before I forget—how’s that side project you were working on? The one you wouldn’t shut up about months ago.</p><p>Still alive… barely. Progress is slow, but steady. You know me—I don’t give up easily.</p></blockquote><blockquote><p>Good. I hope it pays off one day.</p><p>Thanks. Alright… I’m guessing you didn’t ping me just to chat?</p></blockquote><blockquote><p>Well, half of it was. It’s been a while. But yes—I do have something for you today. Before sending the core cipher, I’ll transmit an encrypted archive first. It contains a sample text and the decryption rules.</p><p>Okay. What’s special about this sample text?</p></blockquote><blockquote><p>And… inside the sample text, I used my favorite Herobrine legend—you know the one I always bring up.</p><p>Of course I know. The hidden original text from that weird old site, right?</p></blockquote><blockquote><p>What can I say—old habits die hard. Anyway, the important part: the sample packet and the core cipher are encrypted with the same password.</p><p>Got it. So if I can decrypt the sample, the real one should be straightforward.</p></blockquote><blockquote><p>Exactly. Send the sample when ready.</p><p>I’m ready. Go ahead.</p></blockquote><blockquote><p>UEsDBBQAAQAIABtFeFu1Ii0dcwAAAHwAAAAJAAAAcnVsZXMudHh07XuRBFDbojGKhAz59VaKEpwD6/rKaZnqUxf+NMH0rybWrAMPewZ/yGyLrMKQjNIcEbPAxjmP5oTh8fP77Vi1wnFwzN37BmrQ9SCkC27FC/xeqbgw/HWcDpgzsEoiNpqT9ZThrbAScyg5syfJmNactjelNVBLAwQUAAEACACGOXhbpdvG1ysBAAAVAgAACgAAAHNhbXBsZS50eHTA1fy4cMLZwZkTI1mEk88yOXy9rmbTbCNBQOo9hqKQPK6vjZVo9aCtTVflmkKYGV99+51qXbinmG7WGik5UvLJk9MKRosThBCDMHrmjibOCzjzNELwEgEyX8DjqJkSc8pIFwj+oRM3bb4i0GtRxbwqgsxCtgwiKdCVoXVdetN7RKLIQ7DD+Huv/ZptNdd0yRNHis9LEA3loB+IHZ+dK7IknqPh4lYF8JwAjx5/wwp0YAM6Bcec7uAvk6B5t1pEztm1rLl8TjniVz5/bBUTo1LjUXnar/pnm1NvE9EAuxz/s6b+O8/ew7/A4ItdNJGzDudh6YULfiV3pCTXFIbR4GCe4LwkohWZIlAjysA+zLRrgkTDoB10vWdNGdfoBAlLRoUdZ95mS7X5/bXV41BLAQI/ABQAAQAIABtFeFu1Ii0dcwAAAHwAAAAJACQAAAAAAAAAIAAAAAAAAABydWxlcy50eHQKACAAAAAAAAEAGABIv3f82lzcAQAAAAAAAAAAAAAAAAAAAABQSwECPwAUAAEACACGOXhbpdvG1ysBAAAVAgAACgAkAAAAAAAAACAAAACaAAAAc2FtcGxlLnR4dAoAIAAAAAAAAQAYAFP0sZjOXNwBAAAAAAAAAAAAAAAAAAAAAFBLBQYAAAAAAgACALcAAADtAQAAAAA=</p><p>got it. Decrypting… yeah, it works.</p></blockquote><blockquote><p>Good. That means the channel is stable.</p><p>Alright. Whenever you’re ready, send the real thing.</p></blockquote><blockquote><p>The core cipher will be transmitted through our secret channel.You remember how to decrypt it, right?</p><p>Of course. I’ve got the procedure ready. Start when you’re ready.</p></blockquote><blockquote><p>TCP流32开始分段用 AES-ECB 加密传输zip压缩包</p><p>Done. Core cipher fully received.Integrity verified—no corruption.</p></blockquote><blockquote><p>TCP 流34</p><p>Same to you. And hey… nice talking again.</p></blockquote><blockquote><p>TCP 流36</p><p>Agreed. Take care.</p></blockquote><blockquote><p>TCP 流155：Good. Keep things quiet for the next few days.</p><p>TCP 流156：Yeah. Let’s not wait so long next time.</p><p>TCP 流157：You too.</p></blockquote><p>但是发现从TCP流32开始就是用了另外一种加密的方式传输数据了</p><p><img loading=lazy src=/posts/353513a/imgs/image-20251202102049847.png alt=/posts/353513a/imgs/image-20251202102049847.png height=836 width=1078></p><p>根据对话中的内容，应该是要我们从传输的加密压缩包中获得解密的规则</p><p>根据提示，猜测是要我们找到sample.txt，然后去明文攻击</p><p>结合对话中提到的<code>Herobrine legend</code>和<code>weird old site</code>可以在网上找到sample.txt：</p><blockquote><p>It has been reported that some victims of torture, during the act, would retreat into a fantasy world from which they could not WAKE UP. In this catatonic state, the victim lived in a world just like their normal one, except they weren&rsquo;t being tortured. The only way that they realized they needed to WAKE UP was a note they found in their fantasy world. It would tell them about their condition, and tell them to WAKE UP. Even then, it would often take months until they were ready to discard their fantasy world and PLEASE WAKE UP.</p></blockquote><p>010打开发现加密的标志位为0x3F，猜测是用7z压缩的</p><p><img loading=lazy src=/posts/353513a/imgs/image-20251202102248763.png alt=/posts/353513a/imgs/image-20251202102248763.png height=1441 width=2177></p><p>因此我们用7z压缩一下明文，然后开始明文攻击</p><p><img loading=lazy src=/posts/353513a/imgs/image-20251202102304156.png alt=/posts/353513a/imgs/image-20251202102304156.png height=685 width=698></p><p>得到三段密钥：b47e923c 5aeb49a7 a3cd7af0</p><p>解压后可以得到 rules.txt，内容如下：</p><blockquote><p>1.you need to calc the md5 of port to decrypt the core data.</p><p>2.The cipher I put in the zip, in segments, has been deflated.</p></blockquote><p>然后根据rule.txt中的提示，把端口号MD5一下可以得到AES的密钥</p><p>解AES-ECB可以得到一个加密的压缩包</p><p><img loading=lazy src=/posts/353513a/imgs/image-20251202102332925.png alt=/posts/353513a/imgs/image-20251202102332925.png height=1180 width=2794></p><p>但是压缩包里只有一个4字节的txt，因此我们可以直接CRC爆破得到其中的内容</p><p><img loading=lazy src=/posts/353513a/imgs/image-20251202102350436.png alt=/posts/353513a/imgs/image-20251202102350436.png height=416 width=1402></p><p>尝试手动解了几个，发现都是一样的规律</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>(base) ➜  crc32 git:(main) python crc32.py reverse 0xCF60023F
+</span></span><span class=line><span class=cl>4 bytes: {0x53, 0x29, 0x00, 0x00}
+</span></span><span class=line><span class=cl>(base) ➜  crc32 git:(main) python crc32.py reverse 0x61D8A4F3
+</span></span><span class=line><span class=cl>4 bytes: {0xcb, 0xae, 0x02, 0x00}
+</span></span><span class=line><span class=cl>(base) ➜  crc32 git:(main) python crc32.py reverse 0xB15F099F
+</span></span><span class=line><span class=cl>4 bytes: {0xcb, 0x2c, 0x00, 0x00}</span></span></code></pre></td></tr></table></div></div><p>rule.txt中提示了分段传输，并且 deflate 压缩了，因此尝试手动补zlib头解了几个</p><p><img loading=lazy src=/posts/353513a/imgs/image-20251202102418851.png alt=/posts/353513a/imgs/image-20251202102418851.png height=966 width=1966></p><p><img loading=lazy src=/posts/353513a/imgs/image-20251202102457557.png alt=/posts/353513a/imgs/image-20251202102457557.png height=1044 width=2014></p><p>写了个批量提取 CRC 的脚本，运行后发现一共有 80 个压缩包：30012-30091</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span><span class=lnt>48
+</span><span class=lnt>49
+</span><span class=lnt>50
+</span><span class=lnt>51
+</span><span class=lnt>52
+</span><span class=lnt>53
+</span><span class=lnt>54
+</span><span class=lnt>55
+</span><span class=lnt>56
+</span><span class=lnt>57
+</span><span class=lnt>58
+</span><span class=lnt>59
+</span><span class=lnt>60
+</span><span class=lnt>61
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=kn>import</span> <span class=nn>subprocess</span>
+</span></span><span class=line><span class=cl><span class=kn>from</span> <span class=nn>Crypto.Cipher</span> <span class=kn>import</span> <span class=n>AES</span>
+</span></span><span class=line><span class=cl><span class=kn>from</span> <span class=nn>Crypto.Util.Padding</span> <span class=kn>import</span> <span class=n>unpad</span>
+</span></span><span class=line><span class=cl><span class=kn>import</span> <span class=nn>hashlib</span>
+</span></span><span class=line><span class=cl><span class=kn>import</span> <span class=nn>zipfile</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>md5</span><span class=p>(</span><span class=n>data</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=n>hashlib</span><span class=o>.</span><span class=n>md5</span><span class=p>(</span><span class=n>data</span><span class=p>)</span><span class=o>.</span><span class=n>hexdigest</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>aes_ecb_decrypt</span><span class=p>(</span><span class=n>ciphertext</span><span class=p>,</span> <span class=n>key</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=nb>len</span><span class=p>(</span><span class=n>ciphertext</span><span class=p>)</span> <span class=o>%</span> <span class=mi>16</span> <span class=o>!=</span> <span class=mi>0</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=n>ciphertext</span> <span class=o>=</span> <span class=n>ciphertext</span><span class=o>.</span><span class=n>ljust</span><span class=p>((</span><span class=nb>len</span><span class=p>(</span><span class=n>ciphertext</span><span class=p>)</span> <span class=o>+</span> <span class=mi>15</span><span class=p>)</span> <span class=o>//</span> <span class=mi>16</span> <span class=o>*</span> <span class=mi>16</span><span class=p>,</span> <span class=sa>b</span><span class=s1>&#39;</span><span class=se>\x00</span><span class=s1>&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>cipher</span> <span class=o>=</span> <span class=n>AES</span><span class=o>.</span><span class=n>new</span><span class=p>(</span><span class=n>key</span><span class=p>,</span> <span class=n>AES</span><span class=o>.</span><span class=n>MODE_ECB</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>decrypted</span> <span class=o>=</span> <span class=n>cipher</span><span class=o>.</span><span class=n>decrypt</span><span class=p>(</span><span class=n>ciphertext</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=n>decrypted</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>main</span><span class=p>():</span>
+</span></span><span class=line><span class=cl>    <span class=n>file_path</span> <span class=o>=</span> <span class=s2>&#34;capture.pcapng&#34;</span>
+</span></span><span class=line><span class=cl>    <span class=n>crc_list</span> <span class=o>=</span> <span class=p>[]</span>
+</span></span><span class=line><span class=cl>    
+</span></span><span class=line><span class=cl>    <span class=k>for</span> <span class=n>src_port</span> <span class=ow>in</span> <span class=nb>range</span><span class=p>(</span><span class=mi>30012</span><span class=p>,</span> <span class=mi>30092</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>        <span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;[+] Processing source port: </span><span class=si>{</span><span class=n>src_port</span><span class=si>}</span><span class=s2>&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=n>aes_key</span> <span class=o>=</span> <span class=n>md5</span><span class=p>(</span><span class=nb>str</span><span class=p>(</span><span class=n>src_port</span><span class=p>)</span><span class=o>.</span><span class=n>encode</span><span class=p>())</span>
+</span></span><span class=line><span class=cl>        <span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;[+] aes_key: </span><span class=si>{</span><span class=n>aes_key</span><span class=si>}</span><span class=s2>&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=n>filter_str</span> <span class=o>=</span> <span class=sa>f</span><span class=s2>&#34;tcp.srcport == </span><span class=si>{</span><span class=n>src_port</span><span class=si>}</span><span class=s2>&#34;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>        <span class=n>command</span> <span class=o>=</span> <span class=p>[</span>
+</span></span><span class=line><span class=cl>            <span class=s2>&#34;tshark&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=s1>&#39;-r&#39;</span><span class=p>,</span> <span class=n>file_path</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=s1>&#39;-T&#39;</span><span class=p>,</span> <span class=s1>&#39;fields&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=s1>&#39;-Y&#39;</span><span class=p>,</span> <span class=n>filter_str</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=s1>&#39;-e&#39;</span><span class=p>,</span> <span class=s1>&#39;tcp.payload&#39;</span>
+</span></span><span class=line><span class=cl>        <span class=p>]</span>
+</span></span><span class=line><span class=cl>        <span class=c1># print(f&#34;[+] cmd: {command}&#34;)</span>
+</span></span><span class=line><span class=cl>        <span class=n>result</span> <span class=o>=</span> <span class=n>subprocess</span><span class=o>.</span><span class=n>run</span><span class=p>(</span><span class=n>command</span><span class=p>,</span> <span class=n>stdout</span><span class=o>=</span><span class=n>subprocess</span><span class=o>.</span><span class=n>PIPE</span><span class=p>,</span> <span class=n>stderr</span><span class=o>=</span><span class=n>subprocess</span><span class=o>.</span><span class=n>PIPE</span><span class=p>,</span> <span class=n>text</span><span class=o>=</span><span class=kc>True</span><span class=p>)</span>   
+</span></span><span class=line><span class=cl>        <span class=n>output</span> <span class=o>=</span> <span class=n>result</span><span class=o>.</span><span class=n>stdout</span><span class=o>.</span><span class=n>split</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>        <span class=k>if</span> <span class=ow>not</span> <span class=n>output</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>            <span class=k>continue</span>
+</span></span><span class=line><span class=cl>            
+</span></span><span class=line><span class=cl>        <span class=n>hex_data</span> <span class=o>=</span> <span class=s2>&#34;&#34;</span><span class=o>.</span><span class=n>join</span><span class=p>(</span><span class=n>output</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=c1># print(f&#34;[+] hex_data: {hex_data}&#34;)</span>
+</span></span><span class=line><span class=cl>        <span class=n>zip_data</span> <span class=o>=</span> <span class=n>aes_ecb_decrypt</span><span class=p>(</span><span class=nb>bytes</span><span class=o>.</span><span class=n>fromhex</span><span class=p>(</span><span class=n>hex_data</span><span class=p>),</span> <span class=n>aes_key</span><span class=o>.</span><span class=n>encode</span><span class=p>())</span>
+</span></span><span class=line><span class=cl>        <span class=c1># print(zip_data)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>        <span class=n>zip_filename</span> <span class=o>=</span> <span class=sa>f</span><span class=s2>&#34;</span><span class=si>{</span><span class=n>src_port</span><span class=si>}</span><span class=s2>.zip&#34;</span>
+</span></span><span class=line><span class=cl>        <span class=k>with</span> <span class=nb>open</span><span class=p>(</span><span class=n>zip_filename</span><span class=p>,</span> <span class=s1>&#39;wb&#39;</span><span class=p>)</span> <span class=k>as</span> <span class=n>f</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>            <span class=n>f</span><span class=o>.</span><span class=n>write</span><span class=p>(</span><span class=n>zip_data</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=k>try</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>            <span class=k>with</span> <span class=n>zipfile</span><span class=o>.</span><span class=n>ZipFile</span><span class=p>(</span><span class=n>zip_filename</span><span class=p>,</span> <span class=s1>&#39;r&#39;</span><span class=p>)</span> <span class=k>as</span> <span class=n>zf</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                <span class=n>file_list</span> <span class=o>=</span> <span class=n>zf</span><span class=o>.</span><span class=n>namelist</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>                <span class=k>if</span> <span class=n>file_list</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                    <span class=n>target_file</span> <span class=o>=</span> <span class=n>file_list</span><span class=p>[</span><span class=mi>0</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>                    <span class=n>info</span> <span class=o>=</span> <span class=n>zf</span><span class=o>.</span><span class=n>getinfo</span><span class=p>(</span><span class=n>target_file</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>                    <span class=n>crc_list</span><span class=o>.</span><span class=n>append</span><span class=p>(</span><span class=nb>hex</span><span class=p>(</span><span class=n>info</span><span class=o>.</span><span class=n>CRC</span><span class=p>))</span>
+</span></span><span class=line><span class=cl>        <span class=k>except</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>            <span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;</span><span class=se>\033</span><span class=s2>[1;31m[-] Failed to process zip for port </span><span class=si>{</span><span class=n>src_port</span><span class=si>}</span><span class=se>\033</span><span class=s2>[0m&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    
+</span></span><span class=line><span class=cl>    <span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;CRC32 list: </span><span class=si>{</span><span class=n>crc_list</span><span class=si>}</span><span class=s2>&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>if</span> <span class=vm>__name__</span> <span class=o>==</span> <span class=s2>&#34;__main__&#34;</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>    <span class=n>main</span><span class=p>()</span></span></span></code></pre></td></tr></table></div></div><p>然后写个脚本批量爆破 CRC</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>  1
+</span><span class=lnt>  2
+</span><span class=lnt>  3
+</span><span class=lnt>  4
+</span><span class=lnt>  5
+</span><span class=lnt>  6
+</span><span class=lnt>  7
+</span><span class=lnt>  8
+</span><span class=lnt>  9
+</span><span class=lnt> 10
+</span><span class=lnt> 11
+</span><span class=lnt> 12
+</span><span class=lnt> 13
+</span><span class=lnt> 14
+</span><span class=lnt> 15
+</span><span class=lnt> 16
+</span><span class=lnt> 17
+</span><span class=lnt> 18
+</span><span class=lnt> 19
+</span><span class=lnt> 20
+</span><span class=lnt> 21
+</span><span class=lnt> 22
+</span><span class=lnt> 23
+</span><span class=lnt> 24
+</span><span class=lnt> 25
+</span><span class=lnt> 26
+</span><span class=lnt> 27
+</span><span class=lnt> 28
+</span><span class=lnt> 29
+</span><span class=lnt> 30
+</span><span class=lnt> 31
+</span><span class=lnt> 32
+</span><span class=lnt> 33
+</span><span class=lnt> 34
+</span><span class=lnt> 35
+</span><span class=lnt> 36
+</span><span class=lnt> 37
+</span><span class=lnt> 38
+</span><span class=lnt> 39
+</span><span class=lnt> 40
+</span><span class=lnt> 41
+</span><span class=lnt> 42
+</span><span class=lnt> 43
+</span><span class=lnt> 44
+</span><span class=lnt> 45
+</span><span class=lnt> 46
+</span><span class=lnt> 47
+</span><span class=lnt> 48
+</span><span class=lnt> 49
+</span><span class=lnt> 50
+</span><span class=lnt> 51
+</span><span class=lnt> 52
+</span><span class=lnt> 53
+</span><span class=lnt> 54
+</span><span class=lnt> 55
+</span><span class=lnt> 56
+</span><span class=lnt> 57
+</span><span class=lnt> 58
+</span><span class=lnt> 59
+</span><span class=lnt> 60
+</span><span class=lnt> 61
+</span><span class=lnt> 62
+</span><span class=lnt> 63
+</span><span class=lnt> 64
+</span><span class=lnt> 65
+</span><span class=lnt> 66
+</span><span class=lnt> 67
+</span><span class=lnt> 68
+</span><span class=lnt> 69
+</span><span class=lnt> 70
+</span><span class=lnt> 71
+</span><span class=lnt> 72
+</span><span class=lnt> 73
+</span><span class=lnt> 74
+</span><span class=lnt> 75
+</span><span class=lnt> 76
+</span><span class=lnt> 77
+</span><span class=lnt> 78
+</span><span class=lnt> 79
+</span><span class=lnt> 80
+</span><span class=lnt> 81
+</span><span class=lnt> 82
+</span><span class=lnt> 83
+</span><span class=lnt> 84
+</span><span class=lnt> 85
+</span><span class=lnt> 86
+</span><span class=lnt> 87
+</span><span class=lnt> 88
+</span><span class=lnt> 89
+</span><span class=lnt> 90
+</span><span class=lnt> 91
+</span><span class=lnt> 92
+</span><span class=lnt> 93
+</span><span class=lnt> 94
+</span><span class=lnt> 95
+</span><span class=lnt> 96
+</span><span class=lnt> 97
+</span><span class=lnt> 98
+</span><span class=lnt> 99
+</span><span class=lnt>100
+</span><span class=lnt>101
+</span><span class=lnt>102
+</span><span class=lnt>103
+</span><span class=lnt>104
+</span><span class=lnt>105
+</span><span class=lnt>106
+</span><span class=lnt>107
+</span><span class=lnt>108
+</span><span class=lnt>109
+</span><span class=lnt>110
+</span><span class=lnt>111
+</span><span class=lnt>112
+</span><span class=lnt>113
+</span><span class=lnt>114
+</span><span class=lnt>115
+</span><span class=lnt>116
+</span><span class=lnt>117
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=kn>import</span> <span class=nn>binascii</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>class</span> <span class=nc>CRC32Reverse</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>    <span class=k>def</span> <span class=fm>__init__</span><span class=p>(</span><span class=bp>self</span><span class=p>,</span> <span class=n>crc32</span><span class=p>,</span> <span class=n>length</span><span class=p>,</span> <span class=n>tbl</span><span class=o>=</span><span class=nb>bytes</span><span class=p>(</span><span class=nb>range</span><span class=p>(</span><span class=mi>256</span><span class=p>)),</span> <span class=n>poly</span><span class=o>=</span><span class=mh>0xEDB88320</span><span class=p>,</span> <span class=n>accum</span><span class=o>=</span><span class=mi>0</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>        <span class=bp>self</span><span class=o>.</span><span class=n>char_set</span> <span class=o>=</span> <span class=nb>set</span><span class=p>(</span><span class=n>tbl</span><span class=p>)</span>  <span class=c1># 支持所有字节</span>
+</span></span><span class=line><span class=cl>        <span class=bp>self</span><span class=o>.</span><span class=n>crc32</span> <span class=o>=</span> <span class=n>crc32</span>
+</span></span><span class=line><span class=cl>        <span class=bp>self</span><span class=o>.</span><span class=n>length</span> <span class=o>=</span> <span class=n>length</span>
+</span></span><span class=line><span class=cl>        <span class=bp>self</span><span class=o>.</span><span class=n>poly</span> <span class=o>=</span> <span class=n>poly</span>
+</span></span><span class=line><span class=cl>        <span class=bp>self</span><span class=o>.</span><span class=n>accum</span> <span class=o>=</span> <span class=n>accum</span>
+</span></span><span class=line><span class=cl>        <span class=bp>self</span><span class=o>.</span><span class=n>table</span> <span class=o>=</span> <span class=p>[]</span>
+</span></span><span class=line><span class=cl>        <span class=bp>self</span><span class=o>.</span><span class=n>table_reverse</span> <span class=o>=</span> <span class=p>[]</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=k>def</span> <span class=nf>init_tables</span><span class=p>(</span><span class=bp>self</span><span class=p>,</span> <span class=n>poly</span><span class=p>,</span> <span class=n>reverse</span><span class=o>=</span><span class=kc>True</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>        <span class=s2>&#34;&#34;&#34;构建 CRC32 表及其反向查找表&#34;&#34;&#34;</span>
+</span></span><span class=line><span class=cl>        <span class=c1># CRC32 表构建</span>
+</span></span><span class=line><span class=cl>        <span class=k>for</span> <span class=n>i</span> <span class=ow>in</span> <span class=nb>range</span><span class=p>(</span><span class=mi>256</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>            <span class=k>for</span> <span class=n>j</span> <span class=ow>in</span> <span class=nb>range</span><span class=p>(</span><span class=mi>8</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>                <span class=k>if</span> <span class=n>i</span> <span class=o>&amp;</span> <span class=mi>1</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                    <span class=n>i</span> <span class=o>&gt;&gt;=</span> <span class=mi>1</span>
+</span></span><span class=line><span class=cl>                    <span class=n>i</span> <span class=o>^=</span> <span class=n>poly</span>
+</span></span><span class=line><span class=cl>                <span class=k>else</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                    <span class=n>i</span> <span class=o>&gt;&gt;=</span> <span class=mi>1</span>
+</span></span><span class=line><span class=cl>            <span class=bp>self</span><span class=o>.</span><span class=n>table</span><span class=o>.</span><span class=n>append</span><span class=p>(</span><span class=n>i</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>        <span class=k>assert</span> <span class=nb>len</span><span class=p>(</span><span class=bp>self</span><span class=o>.</span><span class=n>table</span><span class=p>)</span> <span class=o>==</span> <span class=mi>256</span><span class=p>,</span> <span class=s2>&#34;CRC32 表的大小错误&#34;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>        <span class=c1># 构建反向查找表</span>
+</span></span><span class=line><span class=cl>        <span class=k>if</span> <span class=n>reverse</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>            <span class=k>for</span> <span class=n>i</span> <span class=ow>in</span> <span class=nb>range</span><span class=p>(</span><span class=mi>256</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>                <span class=n>found</span> <span class=o>=</span> <span class=p>[</span><span class=n>j</span> <span class=k>for</span> <span class=n>j</span> <span class=ow>in</span> <span class=nb>range</span><span class=p>(</span><span class=mi>256</span><span class=p>)</span> <span class=k>if</span> <span class=bp>self</span><span class=o>.</span><span class=n>table</span><span class=p>[</span><span class=n>j</span><span class=p>]</span> <span class=o>&gt;&gt;</span> <span class=mi>24</span> <span class=o>==</span> <span class=n>i</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>                <span class=bp>self</span><span class=o>.</span><span class=n>table_reverse</span><span class=o>.</span><span class=n>append</span><span class=p>(</span><span class=nb>tuple</span><span class=p>(</span><span class=n>found</span><span class=p>))</span>
+</span></span><span class=line><span class=cl>            
+</span></span><span class=line><span class=cl>            <span class=k>assert</span> <span class=nb>len</span><span class=p>(</span><span class=bp>self</span><span class=o>.</span><span class=n>table_reverse</span><span class=p>)</span> <span class=o>==</span> <span class=mi>256</span><span class=p>,</span> <span class=s2>&#34;反向查找表的大小错误&#34;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=k>def</span> <span class=nf>calc</span><span class=p>(</span><span class=bp>self</span><span class=p>,</span> <span class=n>data</span><span class=p>,</span> <span class=n>accum</span><span class=o>=</span><span class=mi>0</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>        <span class=s2>&#34;&#34;&#34;计算 CRC32 校验值&#34;&#34;&#34;</span>
+</span></span><span class=line><span class=cl>        <span class=n>accum</span> <span class=o>=</span> <span class=o>~</span><span class=n>accum</span>
+</span></span><span class=line><span class=cl>        <span class=k>for</span> <span class=n>b</span> <span class=ow>in</span> <span class=n>data</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>            <span class=n>accum</span> <span class=o>=</span> <span class=bp>self</span><span class=o>.</span><span class=n>table</span><span class=p>[(</span><span class=n>accum</span> <span class=o>^</span> <span class=n>b</span><span class=p>)</span> <span class=o>&amp;</span> <span class=mh>0xFF</span><span class=p>]</span> <span class=o>^</span> <span class=p>((</span><span class=n>accum</span> <span class=o>&gt;&gt;</span> <span class=mi>8</span><span class=p>)</span> <span class=o>&amp;</span> <span class=mh>0x00FFFFFF</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=n>accum</span> <span class=o>=</span> <span class=o>~</span><span class=n>accum</span>
+</span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=n>accum</span> <span class=o>&amp;</span> <span class=mh>0xFFFFFFFF</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=k>def</span> <span class=nf>find_reverse</span><span class=p>(</span><span class=bp>self</span><span class=p>,</span> <span class=n>desired</span><span class=p>,</span> <span class=n>accum</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>        <span class=s2>&#34;&#34;&#34;查找反向字节序列&#34;&#34;&#34;</span>
+</span></span><span class=line><span class=cl>        <span class=n>solutions</span> <span class=o>=</span> <span class=nb>set</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>        <span class=n>accum</span> <span class=o>=</span> <span class=o>~</span><span class=n>accum</span>
+</span></span><span class=line><span class=cl>        <span class=n>stack</span> <span class=o>=</span> <span class=p>[(</span><span class=o>~</span><span class=n>desired</span><span class=p>,)]</span>
+</span></span><span class=line><span class=cl>        
+</span></span><span class=line><span class=cl>        <span class=k>while</span> <span class=n>stack</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>            <span class=n>node</span> <span class=o>=</span> <span class=n>stack</span><span class=o>.</span><span class=n>pop</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>            <span class=k>for</span> <span class=n>j</span> <span class=ow>in</span> <span class=bp>self</span><span class=o>.</span><span class=n>table_reverse</span><span class=p>[(</span><span class=n>node</span><span class=p>[</span><span class=mi>0</span><span class=p>]</span> <span class=o>&gt;&gt;</span> <span class=mi>24</span><span class=p>)</span> <span class=o>&amp;</span> <span class=mh>0xFF</span><span class=p>]:</span>
+</span></span><span class=line><span class=cl>                <span class=k>if</span> <span class=nb>len</span><span class=p>(</span><span class=n>node</span><span class=p>)</span> <span class=o>==</span> <span class=mi>4</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                    <span class=n>a</span> <span class=o>=</span> <span class=n>accum</span>
+</span></span><span class=line><span class=cl>                    <span class=n>data</span> <span class=o>=</span> <span class=p>[]</span>
+</span></span><span class=line><span class=cl>                    <span class=n>node</span> <span class=o>=</span> <span class=n>node</span><span class=p>[</span><span class=mi>1</span><span class=p>:]</span> <span class=o>+</span> <span class=p>(</span><span class=n>j</span><span class=p>,)</span>
+</span></span><span class=line><span class=cl>                    <span class=k>for</span> <span class=n>i</span> <span class=ow>in</span> <span class=nb>range</span><span class=p>(</span><span class=mi>3</span><span class=p>,</span> <span class=o>-</span><span class=mi>1</span><span class=p>,</span> <span class=o>-</span><span class=mi>1</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>                        <span class=n>data</span><span class=o>.</span><span class=n>append</span><span class=p>((</span><span class=n>a</span> <span class=o>^</span> <span class=n>node</span><span class=p>[</span><span class=n>i</span><span class=p>])</span> <span class=o>&amp;</span> <span class=mh>0xFF</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>                        <span class=n>a</span> <span class=o>&gt;&gt;=</span> <span class=mi>8</span>
+</span></span><span class=line><span class=cl>                        <span class=n>a</span> <span class=o>^=</span> <span class=bp>self</span><span class=o>.</span><span class=n>table</span><span class=p>[</span><span class=n>node</span><span class=p>[</span><span class=n>i</span><span class=p>]]</span>
+</span></span><span class=line><span class=cl>                    <span class=n>solutions</span><span class=o>.</span><span class=n>add</span><span class=p>(</span><span class=nb>tuple</span><span class=p>(</span><span class=n>data</span><span class=p>))</span>
+</span></span><span class=line><span class=cl>                <span class=k>else</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                    <span class=n>stack</span><span class=o>.</span><span class=n>append</span><span class=p>(((</span><span class=n>node</span><span class=p>[</span><span class=mi>0</span><span class=p>]</span> <span class=o>^</span> <span class=bp>self</span><span class=o>.</span><span class=n>table</span><span class=p>[</span><span class=n>j</span><span class=p>])</span> <span class=o>&lt;&lt;</span> <span class=mi>8</span><span class=p>,)</span> <span class=o>+</span> <span class=n>node</span><span class=p>[</span><span class=mi>1</span><span class=p>:]</span> <span class=o>+</span> <span class=p>(</span><span class=n>j</span><span class=p>,))</span>
+</span></span><span class=line><span class=cl>        
+</span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=n>solutions</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=k>def</span> <span class=nf>dfs</span><span class=p>(</span><span class=bp>self</span><span class=p>,</span> <span class=n>length</span><span class=p>,</span> <span class=n>outlist</span><span class=o>=</span><span class=p>[</span><span class=sa>b</span><span class=s1>&#39;&#39;</span><span class=p>]):</span>
+</span></span><span class=line><span class=cl>        <span class=s2>&#34;&#34;&#34;深度优先搜索生成字节序列&#34;&#34;&#34;</span>
+</span></span><span class=line><span class=cl>        <span class=k>if</span> <span class=n>length</span> <span class=o>==</span> <span class=mi>0</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>            <span class=k>return</span> <span class=n>outlist</span>
+</span></span><span class=line><span class=cl>        <span class=n>tmp_list</span> <span class=o>=</span> <span class=p>[</span><span class=n>item</span> <span class=o>+</span> <span class=nb>bytes</span><span class=p>([</span><span class=n>x</span><span class=p>])</span> <span class=k>for</span> <span class=n>item</span> <span class=ow>in</span> <span class=n>outlist</span> <span class=k>for</span> <span class=n>x</span> <span class=ow>in</span> <span class=bp>self</span><span class=o>.</span><span class=n>char_set</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=bp>self</span><span class=o>.</span><span class=n>dfs</span><span class=p>(</span><span class=n>length</span> <span class=o>-</span> <span class=mi>1</span><span class=p>,</span> <span class=n>tmp_list</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=k>def</span> <span class=nf>run_reverse</span><span class=p>(</span><span class=bp>self</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>        <span class=s2>&#34;&#34;&#34;执行 CRC32 反向查找&#34;&#34;&#34;</span>
+</span></span><span class=line><span class=cl>        <span class=bp>self</span><span class=o>.</span><span class=n>init_tables</span><span class=p>(</span><span class=bp>self</span><span class=o>.</span><span class=n>poly</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>        <span class=n>desired</span> <span class=o>=</span> <span class=bp>self</span><span class=o>.</span><span class=n>crc32</span>
+</span></span><span class=line><span class=cl>        <span class=n>accum</span> <span class=o>=</span> <span class=bp>self</span><span class=o>.</span><span class=n>accum</span>
+</span></span><span class=line><span class=cl>        <span class=n>result_list</span> <span class=o>=</span> <span class=p>[]</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>        <span class=c1># 处理至少为 4 字节的情况</span>
+</span></span><span class=line><span class=cl>        <span class=k>if</span> <span class=bp>self</span><span class=o>.</span><span class=n>length</span> <span class=o>&gt;=</span> <span class=mi>4</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>            <span class=n>patches</span> <span class=o>=</span> <span class=bp>self</span><span class=o>.</span><span class=n>find_reverse</span><span class=p>(</span><span class=n>desired</span><span class=p>,</span> <span class=n>accum</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>            <span class=k>for</span> <span class=n>patch</span> <span class=ow>in</span> <span class=n>patches</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                <span class=n>checksum</span> <span class=o>=</span> <span class=bp>self</span><span class=o>.</span><span class=n>calc</span><span class=p>(</span><span class=n>patch</span><span class=p>,</span> <span class=n>accum</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>                <span class=c1># print(f&#34;verification checksum: 0x{checksum:08x} ({&#39;OK&#39; if checksum == desired else &#39;ERROR&#39;})&#34;)</span>
+</span></span><span class=line><span class=cl>            <span class=k>for</span> <span class=n>item</span> <span class=ow>in</span> <span class=bp>self</span><span class=o>.</span><span class=n>dfs</span><span class=p>(</span><span class=bp>self</span><span class=o>.</span><span class=n>length</span> <span class=o>-</span> <span class=mi>4</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>                <span class=n>patch</span> <span class=o>=</span> <span class=nb>list</span><span class=p>(</span><span class=n>item</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>                <span class=n>patches</span> <span class=o>=</span> <span class=bp>self</span><span class=o>.</span><span class=n>find_reverse</span><span class=p>(</span><span class=n>desired</span><span class=p>,</span> <span class=bp>self</span><span class=o>.</span><span class=n>calc</span><span class=p>(</span><span class=n>patch</span><span class=p>,</span> <span class=n>accum</span><span class=p>))</span>
+</span></span><span class=line><span class=cl>                <span class=k>for</span> <span class=n>last_4_bytes</span> <span class=ow>in</span> <span class=n>patches</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                    <span class=n>patch</span><span class=o>.</span><span class=n>extend</span><span class=p>(</span><span class=n>last_4_bytes</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>                    <span class=n>checksum</span> <span class=o>=</span> <span class=bp>self</span><span class=o>.</span><span class=n>calc</span><span class=p>(</span><span class=n>patch</span><span class=p>,</span> <span class=n>accum</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>                    <span class=k>if</span> <span class=n>checksum</span> <span class=o>==</span> <span class=n>desired</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                        <span class=n>result_list</span><span class=o>.</span><span class=n>append</span><span class=p>(</span><span class=nb>bytes</span><span class=p>(</span><span class=n>patch</span><span class=p>))</span>  <span class=c1># 添加符合条件的字节序列</span>
+</span></span><span class=line><span class=cl>        <span class=k>else</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>            <span class=k>for</span> <span class=n>item</span> <span class=ow>in</span> <span class=bp>self</span><span class=o>.</span><span class=n>dfs</span><span class=p>(</span><span class=bp>self</span><span class=o>.</span><span class=n>length</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>                <span class=k>if</span> <span class=bp>self</span><span class=o>.</span><span class=n>calc</span><span class=p>(</span><span class=n>item</span><span class=p>)</span> <span class=o>==</span> <span class=n>desired</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                    <span class=n>result_list</span><span class=o>.</span><span class=n>append</span><span class=p>(</span><span class=nb>bytes</span><span class=p>(</span><span class=n>item</span><span class=p>))</span>  <span class=c1># 添加符合条件的字节序列</span>
+</span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=n>result_list</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>crc32_reverse</span><span class=p>(</span><span class=n>crc32</span><span class=p>,</span> <span class=n>length</span><span class=p>,</span> <span class=n>char_set</span><span class=o>=</span><span class=nb>bytes</span><span class=p>(</span><span class=nb>range</span><span class=p>(</span><span class=mi>256</span><span class=p>)),</span> <span class=n>poly</span><span class=o>=</span><span class=mh>0xEDB88320</span><span class=p>,</span> <span class=n>accum</span><span class=o>=</span><span class=mi>0</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=n>obj</span> <span class=o>=</span> <span class=n>CRC32Reverse</span><span class=p>(</span><span class=n>crc32</span><span class=p>,</span> <span class=n>length</span><span class=p>,</span> <span class=n>char_set</span><span class=p>,</span> <span class=n>poly</span><span class=p>,</span> <span class=n>accum</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=n>obj</span><span class=o>.</span><span class=n>run_reverse</span><span class=p>()</span>  <span class=c1># 返回所有结果</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>crc32</span><span class=p>(</span><span class=n>s</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=n>binascii</span><span class=o>.</span><span class=n>crc32</span><span class=p>(</span><span class=n>s</span><span class=p>)</span> <span class=o>&amp;</span> <span class=mh>0xFFFFFFFF</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>if</span> <span class=vm>__name__</span> <span class=o>==</span> <span class=s2>&#34;__main__&#34;</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>    <span class=n>crc_values</span>  <span class=o>=</span><span class=p>[</span><span class=mh>0xcf60023f</span><span class=p>,</span> <span class=mh>0x61d8a4f3</span><span class=p>,</span> <span class=mh>0xb15f099f</span><span class=p>,</span> <span class=mh>0xb93935f3</span><span class=p>,</span> <span class=mh>0x56263d91</span><span class=p>,</span> <span class=mh>0x7c9a17</span><span class=p>,</span> <span class=mh>0x324af895</span><span class=p>,</span> <span class=mh>0x64105f13</span><span class=p>,</span> <span class=mh>0x7aae1d0a</span><span class=p>,</span> <span class=mh>0x616c6729</span><span class=p>,</span> <span class=mh>0x2b51c9d4</span><span class=p>,</span> <span class=mh>0xb6e26299</span><span class=p>,</span> <span class=mh>0xdff453c4</span><span class=p>,</span> <span class=mh>0x9331116d</span><span class=p>,</span> <span class=mh>0x324af895</span><span class=p>,</span> <span class=mh>0x7c9a17</span><span class=p>,</span> <span class=mh>0x7e2361b8</span><span class=p>,</span> <span class=mh>0x7c65dfe1</span><span class=p>,</span> <span class=mh>0x9e4be534</span><span class=p>,</span> <span class=mh>0x324af895</span><span class=p>,</span> <span class=mh>0x821fc2f0</span><span class=p>,</span> <span class=mh>0x78e8a353</span><span class=p>,</span> <span class=mh>0xac828282</span><span class=p>,</span> <span class=mh>0x9e4be534</span><span class=p>,</span> <span class=mh>0x6504596</span><span class=p>,</span> <span class=mh>0xcaa8f9df</span><span class=p>,</span> <span class=mh>0x64dc7498</span><span class=p>,</span> <span class=mh>0x779f2fbd</span><span class=p>,</span> <span class=mh>0x7b27b1d3</span><span class=p>,</span> <span class=mh>0xcb9596dc</span><span class=p>,</span> <span class=mh>0xaab6455d</span><span class=p>,</span> <span class=mh>0xb72008ae</span><span class=p>,</span> <span class=mh>0xb3ad741c</span><span class=p>,</span> <span class=mh>0xa10773ef</span><span class=p>,</span> <span class=mh>0x2b9de25f</span><span class=p>,</span> <span class=mh>0x9b04f3b1</span><span class=p>,</span> <span class=mh>0x48f88f87</span><span class=p>,</span> <span class=mh>0xac828282</span><span class=p>,</span> <span class=mh>0x821fc2f0</span><span class=p>,</span> <span class=mh>0x6a2254af</span><span class=p>,</span> <span class=mh>0xcaa8f9df</span><span class=p>,</span> <span class=mh>0x3e3e4d70</span><span class=p>,</span> <span class=mh>0x7b91940</span><span class=p>,</span> <span class=mh>0x3c78f329</span><span class=p>,</span> <span class=mh>0xe435b9ad</span><span class=p>,</span> <span class=mh>0x6847643</span><span class=p>,</span> <span class=mh>0x2c944a83</span><span class=p>,</span> <span class=mh>0xc4a9dcdc</span><span class=p>,</span> <span class=mh>0x9c0d5b6d</span><span class=p>,</span> <span class=mh>0xa341cdb6</span><span class=p>,</span> <span class=mh>0x358f7bc2</span><span class=p>,</span> <span class=mh>0x13f3eab9</span><span class=p>,</span> <span class=mh>0x6193621d</span><span class=p>,</span> <span class=mh>0x159ed4a</span><span class=p>,</span> <span class=mh>0x69a680c1</span><span class=p>,</span> <span class=mh>0x4fb4a8</span><span class=p>,</span> <span class=mh>0x70968761</span><span class=p>,</span> <span class=mh>0x2f60fc5</span><span class=p>,</span> <span class=mh>0x3937e5ac</span><span class=p>,</span> <span class=mh>0x9b04f3b1</span><span class=p>,</span> <span class=mh>0x1d26fc6f</span><span class=p>,</span> <span class=mh>0x95fad386</span><span class=p>,</span> <span class=mh>0x3937e5ac</span><span class=p>,</span> <span class=mh>0x37c9c59b</span><span class=p>,</span> <span class=mh>0xa341cdb6</span><span class=p>,</span> <span class=mh>0xeb09f3ad</span><span class=p>,</span> <span class=mh>0xa448656a</span><span class=p>,</span> <span class=mh>0xab742f6a</span><span class=p>,</span> <span class=mh>0x2090af1</span><span class=p>,</span> <span class=mh>0xe435b9ad</span><span class=p>,</span> <span class=mh>0xb26f1e2b</span><span class=p>,</span> <span class=mh>0xecd468a4</span><span class=p>,</span> <span class=mh>0x26cc20e7</span><span class=p>,</span> <span class=mh>0x1ea22801</span><span class=p>,</span> <span class=mh>0x64dc7498</span><span class=p>,</span> <span class=mh>0x638602f4</span><span class=p>,</span> <span class=mh>0x26b4c8b6</span><span class=p>,</span> <span class=mh>0x61d8a4f3</span><span class=p>,</span> <span class=mh>0xb15f099f</span><span class=p>,</span> <span class=mh>0x88a078ba</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=c1># print(len(crc_list))</span>
+</span></span><span class=line><span class=cl>    <span class=n>res</span> <span class=o>=</span> <span class=sa>b</span><span class=s2>&#34;&#34;</span>
+</span></span><span class=line><span class=cl>    <span class=k>for</span> <span class=n>item</span> <span class=ow>in</span> <span class=n>crc_values</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=n>res</span> <span class=o>+=</span> <span class=n>crc32_reverse</span><span class=p>(</span><span class=n>item</span><span class=p>,</span> <span class=mi>4</span><span class=p>)[</span><span class=mi>0</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>    <span class=nb>print</span><span class=p>(</span><span class=n>res</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=k>with</span> <span class=nb>open</span><span class=p>(</span><span class=s2>&#34;res.bin&#34;</span><span class=p>,</span><span class=s1>&#39;wb&#39;</span><span class=p>)</span> <span class=k>as</span> <span class=n>f</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=n>f</span><span class=o>.</span><span class=n>write</span><span class=p>(</span><span class=n>res</span><span class=p>)</span></span></span></code></pre></td></tr></table></div></div><blockquote><p>就是这里要注意最后一个压缩包中的 txt 是 3 字节，需要单独处理一下</p></blockquote><p>所有CRC 爆破结果合起来的内容如下</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>53 29 00 00 CB AE 02 00 CB 2C 00 00 53 31 04 00
+</span></span><span class=line><span class=cl>D3 32 04 00 D3 32 02 00 D3 32 00 00 D3 32 06 00
+</span></span><span class=line><span class=cl>33 D5 02 00 33 B2 04 00 D3 32 01 00 33 34 06 00
+</span></span><span class=line><span class=cl>33 4D 04 00 33 4F 03 00 D3 32 00 00 D3 32 02 00
+</span></span><span class=line><span class=cl>33 D3 02 00 33 D0 02 00 33 36 05 00 D3 32 00 00
+</span></span><span class=line><span class=cl>33 31 04 00 33 D6 02 00 4B B6 00 00 33 36 05 00
+</span></span><span class=line><span class=cl>B3 48 06 00 4B B5 04 00 4B 35 03 00 B3 30 05 00
+</span></span><span class=line><span class=cl>B3 48 03 00 33 34 03 00 33 33 07 00 33 35 06 00
+</span></span><span class=line><span class=cl>33 33 06 00 33 4F 01 00 4B 35 04 00 33 31 05 00
+</span></span><span class=line><span class=cl>4B 31 00 00 4B B6 00 00 33 31 04 00 4B 4E 05 00
+</span></span><span class=line><span class=cl>4B B5 04 00 4B 4D 03 00 4B 31 07 00 4B 4E 03 00
+</span></span><span class=line><span class=cl>33 32 00 00 33 B0 00 00 4B 31 04 00 33 4E 05 00
+</span></span><span class=line><span class=cl>33 35 05 00 33 4C 01 00 4B 31 05 00 B3 30 01 00
+</span></span><span class=line><span class=cl>4B 32 03 00 B3 4C 06 00 4B 4C 05 00 33 B5 00 00
+</span></span><span class=line><span class=cl>B3 34 05 00 4B 36 07 00 4B 49 03 00 33 31 05 00
+</span></span><span class=line><span class=cl>4B 33 06 00 33 4A 03 00 4B 49 03 00 4B 32 05 00
+</span></span><span class=line><span class=cl>33 4C 01 00 33 48 06 00 33 48 01 00 33 32 07 00
+</span></span><span class=line><span class=cl>33 B6 00 00 33 32 00 00 33 32 06 00 B3 B4 00 00
+</span></span><span class=line><span class=cl>B3 34 03 00 4B 31 06 00 4B 35 03 00 D3 52 01 00
+</span></span><span class=line><span class=cl>D3 2F 00 00 CB AE 02 00 CB 2C 00 00 53 01 00</span></span></code></pre></td></tr></table></div></div><p>把上面的数据按每4字节一组解压，可以得到一个zip的hash</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=kn>import</span> <span class=nn>zlib</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>hex_data</span> <span class=o>=</span> <span class=s2>&#34;53290000CBAE0200CB2C000053310400D3320400D3320200D3320000D332060033D5020033B20400D332010033340600334D0400334F0300D3320000D332020033D3020033D0020033360500D33200003331040033D602004BB6000033360500B34806004BB504004B350300B3300500B348030033340300333307003335060033330600334F01004B350400333105004B3100004BB60000333104004B4E05004BB504004B4D03004B3107004B4E03003332000033B000004B310400334E050033350500334C01004B310500B33001004B320300B34C06004B4C050033B50000B33405004B3607004B490300333105004B330600334A03004B4903004B320500334C010033480600334801003332070033B600003332000033320600B3B40000B33403004B3106004B350300D3520100D32F0000CBAE0200CB2C0000530100&#34;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>data</span> <span class=o>=</span> <span class=nb>bytes</span><span class=o>.</span><span class=n>fromhex</span><span class=p>(</span><span class=n>hex_data</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>chunks</span> <span class=o>=</span> <span class=p>[</span><span class=n>data</span><span class=p>[</span><span class=n>i</span><span class=p>:</span><span class=n>i</span><span class=o>+</span><span class=mi>4</span><span class=p>]</span> <span class=k>for</span> <span class=n>i</span> <span class=ow>in</span> <span class=nb>range</span><span class=p>(</span><span class=mi>0</span><span class=p>,</span> <span class=nb>len</span><span class=p>(</span><span class=n>data</span><span class=p>),</span> <span class=mi>4</span><span class=p>)]</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>out</span> <span class=o>=</span> <span class=sa>b</span><span class=s2>&#34;&#34;</span>
+</span></span><span class=line><span class=cl><span class=k>for</span> <span class=n>c</span> <span class=ow>in</span> <span class=n>chunks</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>    <span class=k>try</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=n>out</span> <span class=o>+=</span> <span class=n>zlib</span><span class=o>.</span><span class=n>decompress</span><span class=p>(</span><span class=n>c</span><span class=p>,</span> <span class=o>-</span><span class=n>zlib</span><span class=o>.</span><span class=n>MAX_WBITS</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=k>except</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=nb>print</span><span class=p>(</span><span class=s2>&#34;bad chunk:&#34;</span><span class=p>,</span> <span class=n>c</span><span class=o>.</span><span class=n>hex</span><span class=p>())</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nb>print</span><span class=p>(</span><span class=n>out</span><span class=o>.</span><span class=n>decode</span><span class=p>())</span>
+</span></span><span class=line><span class=cl><span class=c1># $pkzip$1*1*2*0*35*29*4135a7f*0*26*0*35*0413*c8358ce9e6858f166753637de145d0c841cee9efd7cf2008d13e551dd584b69cae5895c7df45f32fdfb51d0c0d273820239896d3e6*$/pkzip$</span></span></span></code></pre></td></tr></table></div></div><p>尝试用hashcat爆破，发现还真能爆出来密码：&amp;HGTr'</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>hashcat -m <span class=m>17225</span> -a <span class=m>3</span> hash.txt --increment --increment-min <span class=m>1</span> --increment-max <span class=m>8</span> <span class=s1>&#39;?a?a?a?a?a?a?a?a&#39;</span> --show
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nv>$pkzip$1</span>*1*2*0*35*29*4135a7f*0*26*0*35*0413*c8358ce9e6858f166753637de145d0c841cee9efd7cf2008d13e551dd584b69cae5895c7df45f32fdfb51d0c0d273820239896d3e6*$/pkzip$:<span class=p>&amp;</span>HGTr<span class=se>\&#39;</span></span></span></code></pre></td></tr></table></div></div><p>the sample packet and the core cipher are encrypted with the same password.</p><p>对话中的这句话是最后这一步的突破点</p><p>因此我们现在手头有的数据如下：</p><p>1、两个压缩包的三段密钥</p><p>2、最终那个压缩包的hash值</p><p>参考2025 buckeyeCTF-zip2john2zip:</p><p><a href=https://github.com/cscosu/buckeyectf-2025-public/blob/master/forensics/zip2john2zip/solve/solve.py target=_blank rel="external nofollow noopener noreferrer">https://github.com/cscosu/buckeyectf-2025-public/blob/master/forensics/zip2john2zip/solve/solve.py</a></p><p>直接利用已知的三段密钥和hash里的密文即可恢复出压缩包中原始的明文</p><p>具体的原理可以参考zipcrypto算法的实现</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span><span class=lnt>48
+</span><span class=lnt>49
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=c1># 已知三段密钥</span>
+</span></span><span class=line><span class=cl><span class=n>key0</span> <span class=o>=</span> <span class=mh>0xb47e923c</span>
+</span></span><span class=line><span class=cl><span class=n>key1</span> <span class=o>=</span> <span class=mh>0x5aeb49a7</span>
+</span></span><span class=line><span class=cl><span class=n>key2</span> <span class=o>=</span> <span class=mh>0xa3cd7af0</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 初始化 CRC 表</span>
+</span></span><span class=line><span class=cl><span class=n>crc_table</span> <span class=o>=</span> <span class=p>[</span><span class=mi>0</span><span class=p>]</span> <span class=o>*</span> <span class=mi>256</span>
+</span></span><span class=line><span class=cl><span class=k>for</span> <span class=n>i</span> <span class=ow>in</span> <span class=nb>range</span><span class=p>(</span><span class=mi>256</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=n>c</span> <span class=o>=</span> <span class=n>i</span>
+</span></span><span class=line><span class=cl>    <span class=k>for</span> <span class=n>_</span> <span class=ow>in</span> <span class=nb>range</span><span class=p>(</span><span class=mi>8</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>        <span class=k>if</span> <span class=n>c</span> <span class=o>&amp;</span> <span class=mi>1</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>            <span class=n>c</span> <span class=o>=</span> <span class=p>(</span><span class=mh>0xEDB88320</span> <span class=o>^</span> <span class=p>(</span><span class=n>c</span> <span class=o>&gt;&gt;</span> <span class=mi>1</span><span class=p>))</span> <span class=o>&amp;</span> <span class=mh>0xFFFFFFFF</span>
+</span></span><span class=line><span class=cl>        <span class=k>else</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>            <span class=n>c</span> <span class=o>=</span> <span class=p>(</span><span class=n>c</span> <span class=o>&gt;&gt;</span> <span class=mi>1</span><span class=p>)</span> <span class=o>&amp;</span> <span class=mh>0xFFFFFFFF</span>
+</span></span><span class=line><span class=cl>    <span class=n>crc_table</span><span class=p>[</span><span class=n>i</span><span class=p>]</span> <span class=o>=</span> <span class=n>c</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>crc32</span><span class=p>(</span><span class=n>old_crc</span><span class=p>,</span> <span class=n>c</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=p>(</span><span class=n>crc_table</span><span class=p>[(</span><span class=n>old_crc</span> <span class=o>^</span> <span class=n>c</span><span class=p>)</span> <span class=o>&amp;</span> <span class=mh>0xFF</span><span class=p>]</span> <span class=o>^</span> <span class=p>(</span><span class=n>old_crc</span> <span class=o>&gt;&gt;</span> <span class=mi>8</span><span class=p>))</span> <span class=o>&amp;</span> <span class=mh>0xFFFFFFFF</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>update_keys</span><span class=p>(</span><span class=n>p</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=k>global</span> <span class=n>key0</span><span class=p>,</span> <span class=n>key1</span><span class=p>,</span> <span class=n>key2</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=n>key0</span> <span class=o>=</span> <span class=n>crc32</span><span class=p>(</span><span class=n>key0</span><span class=p>,</span> <span class=n>p</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>key1</span> <span class=o>=</span> <span class=p>(</span><span class=n>key1</span> <span class=o>+</span> <span class=p>(</span><span class=n>key0</span> <span class=o>&amp;</span> <span class=mh>0xFF</span><span class=p>))</span> <span class=o>&amp;</span> <span class=mh>0xFFFFFFFF</span>
+</span></span><span class=line><span class=cl>    <span class=n>key1</span> <span class=o>=</span> <span class=p>(</span><span class=n>key1</span> <span class=o>*</span> <span class=mi>134775813</span> <span class=o>+</span> <span class=mi>1</span><span class=p>)</span> <span class=o>&amp;</span> <span class=mh>0xFFFFFFFF</span>
+</span></span><span class=line><span class=cl>    <span class=n>key2</span> <span class=o>=</span> <span class=n>crc32</span><span class=p>(</span><span class=n>key2</span><span class=p>,</span> <span class=p>(</span><span class=n>key1</span> <span class=o>&gt;&gt;</span> <span class=mi>24</span><span class=p>)</span> <span class=o>&amp;</span> <span class=mh>0xFF</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>decrypt_byte</span><span class=p>():</span>
+</span></span><span class=line><span class=cl>    <span class=n>temp</span> <span class=o>=</span> <span class=p>(</span><span class=n>key2</span> <span class=o>|</span> <span class=mi>3</span><span class=p>)</span> <span class=o>&amp;</span> <span class=mh>0xFFFFFFFF</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=p>((</span><span class=n>temp</span> <span class=o>*</span> <span class=p>(</span><span class=n>temp</span> <span class=o>^</span> <span class=mi>1</span><span class=p>))</span> <span class=o>&gt;&gt;</span> <span class=mi>8</span><span class=p>)</span> <span class=o>&amp;</span> <span class=mh>0xFF</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>decrypt</span><span class=p>(</span><span class=n>ciphertext</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=n>plain</span> <span class=o>=</span> <span class=nb>bytearray</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>    <span class=k>for</span> <span class=n>byte</span> <span class=ow>in</span> <span class=n>ciphertext</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=n>k</span> <span class=o>=</span> <span class=n>decrypt_byte</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>        <span class=n>p</span> <span class=o>=</span> <span class=n>byte</span> <span class=o>^</span> <span class=n>k</span>
+</span></span><span class=line><span class=cl>        <span class=n>update_keys</span><span class=p>(</span><span class=n>p</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=n>plain</span><span class=o>.</span><span class=n>append</span><span class=p>(</span><span class=n>p</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=n>plain</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>encrypted</span> <span class=o>=</span> <span class=nb>bytes</span><span class=o>.</span><span class=n>fromhex</span><span class=p>(</span><span class=s2>&#34;c8358ce9e6858f166753637de145d0c841cee9efd7cf2008d13e551dd584b69cae5895c7df45f32fdfb51d0c0d273820239896d3e6&#34;</span><span class=p>)</span>  <span class=c1># 示例输入</span>
+</span></span><span class=line><span class=cl><span class=n>plaintext</span> <span class=o>=</span> <span class=n>decrypt</span><span class=p>(</span><span class=n>encrypted</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=nb>print</span><span class=p>(</span><span class=n>plaintext</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># bytearray(b&#39;\xcf\xecP\x1f\x89\x9e\x83q1&#34;\xa4\x04flag{W0ww_th3_C@ske7|s_Tre4sur3_unl0cke9}&#39;)</span></span></span></code></pre></td></tr></table></div></div><p><code>flag{W0ww_th3_C@ske7|s_Tre4sur3_unl0cke9}</code></p><h2 class=heading-element id=题目名称-返璞归真><span>题目名称 返璞归真</span>
+<a href=#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-%e8%bf%94%e7%92%9e%e5%bd%92%e7%9c%9f class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h2><h2 class=heading-element id=题目名称-猫咪电台><span>题目名称 猫咪电台</span>
+<a href=#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-%e7%8c%ab%e5%92%aa%e7%94%b5%e5%8f%b0 class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h2></div><div class=post-footer id=post-footer><div class=post-info><div class=post-info-line><div class=post-info-mod><span title="更新于 2025-12-02 10:09:35">更新于 2025-12-02&nbsp;</span></div></div><div class=post-info-line><div class=post-info-md><span><a href=/posts/353513a/index.md title=阅读原始文档 class=link-to-markdown>阅读原始文档</a></span></div><div class=post-info-share><span><a href=javascript:void(0); title="分享到 X" data-sharer=twitter data-url=https://goodlunatic.github.io/posts/353513a/ data-title="2025 强网拟态防御国际精英挑战赛线下总决赛 Misc Writeup" data-hashtags=CTF,Misc,Writeup><i class="fa-brands fa-x-twitter fa-fw" aria-hidden=true></i></a>
+<a href=javascript:void(0); title="分享到 Facebook" data-sharer=facebook data-url=https://goodlunatic.github.io/posts/353513a/ data-hashtag=CTF><i class="fa-brands fa-facebook-square fa-fw" aria-hidden=true></i></a>
+<a href=javascript:void(0); title="分享到 微博" data-sharer=weibo data-url=https://goodlunatic.github.io/posts/353513a/ data-title="2025 强网拟态防御国际精英挑战赛线下总决赛 Misc Writeup"><i class="fa-brands fa-weibo fa-fw" aria-hidden=true></i></a></span></div></div></div><div class=post-info-more><section class=post-tags><i class="fa-solid fa-tags fa-fw me-1" aria-hidden=true></i><a href=/tags/ctf/ class=post-tag title="标签 - CTF">CTF</a><a href=/tags/misc/ class=post-tag title="标签 - Misc">Misc</a><a href=/tags/writeup/ class=post-tag title="标签 - Writeup">Writeup</a></section><section><span><a href=javascript:void(0); onclick=window.history.back()>返回</a></span>&nbsp;|&nbsp;<span><a href=/>主页</a></span></section></div><div class=post-nav><a href=/posts/417c7ba/ class=post-nav-item rel=prev title=CTF-渗透测试><i class="fa-solid fa-angle-left fa-fw" aria-hidden=true></i>CTF-渗透测试</a><a href=/posts/d0736a7/ class=post-nav-item rel=next title='CTF-Misc "雅"题共赏'>CTF-Misc "雅"题共赏<i class="fa-solid fa-angle-right fa-fw" aria-hidden=true></i></a></div></div><div id=comments><div id=giscus class=comment><script src=https://giscus.app/client.js data-repo=goodlunatic/goodlunatic.github.io data-repo-id=R_kgDOQHqgBw data-category=Announcements data-category-id=DIC_kwDOQHqgB84Cw_4D data-mapping=pathname data-strict=0 data-theme=preferred_color_scheme data-reactions-enabled=1 data-emit-metadata=0 data-input-position=bottom data-lang=zh-CN data-loading=lazy crossorigin=anonymous async defer></script></div><noscript>Please enable JavaScript to view the comments powered by <a href=https://giscus.app/ rel="external nofollow noopener noreferrer">giscus</a>.</noscript></div></article><aside class=toc id=toc-auto aria-label=目录><h2 class=toc-title>目录&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden=true></i></h2><div class=toc-content id=toc-content-auto></div></aside></main><footer class=footer><div class=footer-container><div class="footer-line powered order-1">由 <a href=https://gohugo.io/ target=_blank rel="external nofollow noopener noreferrer" title="Hugo 0.152.1">Hugo</a> 强力驱动 | 主题 - <a href=https://github.com/hugo-fixit/FixIt target=_blank rel=external title="FixIt v0.4.0-alpha.2-20251023040336-063af2cd">FixIt</a></div><div class="footer-line copyright order-2" itemscope itemtype=http://schema.org/CreativeWork><i class="fa-regular fa-copyright fa-fw" aria-hidden=true></i>
+<span itemprop=copyrightYear>2022 - 2025</span><span class=author itemprop=copyrightHolder>
+<a href=https://goodlunatic.github.io target=_blank rel="external nofollow noopener noreferrer">Lunatic</a></span></div><div class="footer-line visitor"><span id=busuanzi_container_site_uv title=总访客数><i class="fa-regular fa-user fa-fw me-1" aria-hidden=true></i><span id=busuanzi_value_site_uv><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden=true></i></span></span><span id=busuanzi_container_site_pv class=footer-divider title=总访问量><i class="fa-regular fa-eye fa-fw me-1" aria-hidden=true></i><span id=busuanzi_value_site_pv><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden=true></i></span></span></div></div></footer></div><div class=widgets><div class="fixed-buttons animate__faster d-none"><div class="fixed-button back-to-top" role=button aria-label=回到顶部><i class="fa-solid fa-arrow-up fa-fw" aria-hidden=true></i><span class=variant-numeric>0%</span></div><div class="fixed-button view-comments d-none" role=button aria-label=查看评论><i class="fa-solid fa-comment fa-fw" aria-hidden=true></i></div></div><a href=https://github.com/goodlunatic title="Visit Lunatic's Github" target=_blank rel="external nofollow" class="github-corner left d-none-mobile"><svg viewBox="0 0 250 250" aria-hidden="true" width="56" height="56"><path d="M0 0 115 115h15l12 27L250 250V0z"/><path d="M128.3 109C113.8 99.7 119 89.6 119 89.6 122 82.7 120.5 78.6 120.5 78.6 119.2 72 123.4 76.3 123.4 76.3 127.3 80.9 125.5 87.3 125.5 87.3 122.9 97.6 130.6 101.9 134.4 103.2" fill="currentColor" style="transform-origin:130px 106px" class="octo-arm"/><path d="M115 115C114.9 115.1 118.7 116.5 119.8 115.4l13.9-13.8C136.9 99.2 139.9 98.4 142.2 98.6 133.8 88 127.5 74.4 143.8 58 148.5 53.4 154 51.2 159.7 51 160.3 49.4 163.2 43.6 171.4 40.1 171.4 40.1 176.1 42.5 178.8 56.2 183.1 58.6 187.2 61.8 190.9 65.4 194.5 69 197.7 73.2 200.1 77.6 213.8 80.2 216.3 84.9 216.3 84.9 212.7 93.1 206.9 96 205.4 96.6 205.1 102.4 203 107.8 198.3 112.5 181.9 128.9 168.3 122.5 157.7 114.1 157.9 116.9 156.7 120.9 152.7 124.9L141 136.5C139.8 137.7 141.6 141.9 141.8 141.8z" fill="currentColor" class="octo-body"/></svg></a><div id=mask></div><noscript><div class=noscript-warning>该网站在启用 JavaScript 的情况下效果最佳。</div></noscript></div><link rel=stylesheet href=/lib/pace/themes/blue/pace-theme-minimal.css><script src=/lib/autocomplete/autocomplete.min.js defer></script><script src=/lib/fuse/fuse.min.js defer></script><script src=/lib/sharer/sharer.min.js async defer></script><script src=/lib/cell-watermark/watermark.min.js defer></script><script src=https://vercount.one/js async defer></script><script src=/lib/pace/pace.min.js async defer></script><script src=/posts/353513a/config/page.js defer></script><script src=/js/theme.min.js defer></script></body></html>
