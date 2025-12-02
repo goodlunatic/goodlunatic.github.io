@@ -14,9 +14,314 @@
 > 
 > hint1：ModR/M
 
+附件给了如下几个文件
+
+![](imgs/image-20251202104428687.png)
+
+chal 是一个 elf 可执行文件
+
+chal.py 中的内容如下：
+
+```python
+import time
+import random
+import sys
+
+class SecureTypewriter:
+    def __init__(self):
+        self.lfsr = 0x92 
+        self.time_unit = 0.005  
+        self.jitter = 0.001
+        self.base_overhead = 10
+        self.branch_penalty = 30 
+    def step_lfsr(self):
+        bit = ((self.lfsr >> 0) ^ (self.lfsr >> 2) ^ (self.lfsr >> 3) ^ (self.lfsr >> 4)) & 1
+        self.lfsr = (self.lfsr >> 1) | (bit << 7)
+        return self.lfsr
+
+    def scramble(self, val):
+        return ((val * 0x1F) + 0x55) & 0xFF
+
+    def process_char(self, char):
+        c = ord(char)
+        
+        k = self.step_lfsr()
+        
+        val = c ^ k
+        
+        base_ops = self.scramble(val)
+        
+        current_ops = self.base_overhead + base_ops
+        
+        if base_ops % 2 != 0:
+            current_ops += self.branch_penalty
+            
+        real_duration = current_ops * self.time_unit
+        
+        noise = random.uniform(-self.jitter, self.jitter)
+        total_time = max(0, real_duration + noise)
+        
+        return total_time
+
+    def process_text(self, text):
+        timings = []
+        for char in text:
+            elapsed = self.process_char(char)
+            timings.append(elapsed)
+        return timings
+
+if __name__ == "__main__":
+    try:
+        with open("flag.txt", "r") as f:
+            content = f.read().strip()
+    except FileNotFoundError:
+        print("Error: flag.txt not found.")
+        sys.exit(1)
+        
+    machine = SecureTypewriter()
+    print(f"Processing {len(content)} characters with SecureTypewriter v2.0...")
+    
+    logs = machine.process_text(content)
+    
+    with open("timing.log", "w") as f:
+        for t in logs:
+            f.write(f"{t:.6f}\n")
+            
+    print("Processing complete. Timing data saved to timing.log")
+```
+
+timing.log 中的内容如下：
+
+```
+1.110270
+0.924169
+1.139244
+0.670085
+0.915054
+1.154452
+0.224613
+0.329060
+0.774615
+0.279617
+0.954166
+0.430143
+0.414914
+1.224826
+1.310686
+1.265828
+0.110950
+1.225669
+1.404647
+0.575287
+1.455927
+0.975492
+0.305642
+0.835893
+1.245893
+0.569651
+1.060266
+0.149129
+0.844243
+1.294104
+0.079101
+0.914897
+1.025389
+0.270495
+0.225577
+0.654189
+1.385665
+0.755860
+0.450597
+0.950750
+0.839268
+1.015624
+0.895000
+0.794687
+1.064966
+1.200042
+0.559413
+0.980588
+0.525959
+0.514992
+0.629261
+0.489585
+1.089786
+0.880690
+1.374392
+0.789075
+0.814771
+1.455273
+1.050996
+0.234891
+1.074220
+0.099300
+1.319762
+0.935773
+0.454985
+0.425895
+0.704892
+1.095786
+1.165433
+1.295589
+0.749113
+0.885320
+1.244904
+0.659642
+0.635889
+0.435427
+0.520476
+0.870549
+0.890145
+1.125522
+1.064915
+0.399210
+0.865873
+```
+
+发现是测信道攻击的相关内容
+
+猜测需要根据这个 python 脚本和这个 log 恢复 flag.txt 中的内容
+
+攻击的代码不复杂，直接遛一遛 GPT 就能恢复
+
+```python
+TIME_UNIT = 0.005
+BASE_OVERHEAD = 10
+BRANCH_PENALTY = 30
+LFSR_INIT = 0x92
 
 
+def step_lfsr(lfsr):
+    bit = ((lfsr >> 0) ^ (lfsr >> 2) ^ (lfsr >> 3) ^ (lfsr >> 4)) & 1
+    lfsr = (lfsr >> 1) | (bit << 7)
+    return lfsr
 
+
+def scramble_inv(base_ops):
+    return ((base_ops - 0x55) * 0xDF) & 0xFF
+
+
+def is_printable_like(ch_val):
+    if 32 <= ch_val <= 126:
+        return True
+    return False
+
+
+def recover_char_from_time(t, lfsr):
+    ops = round(t / TIME_UNIT)
+    x = ops - BASE_OVERHEAD
+
+    candidates = []
+
+    base_ops_no_branch = x
+    if 0 <= base_ops_no_branch <= 255 and base_ops_no_branch % 2 == 0:
+        val = scramble_inv(base_ops_no_branch)
+        c_val = val ^ lfsr
+        if is_printable_like(c_val):
+            candidates.append(chr(c_val))
+
+    base_ops_branch = x - BRANCH_PENALTY
+    if 0 <= base_ops_branch <= 255 and base_ops_branch % 2 == 1:
+        val = scramble_inv(base_ops_branch)
+        c_val = val ^ lfsr
+        if is_printable_like(c_val):
+            candidates.append(chr(c_val))
+
+    raw_candidates = []
+    if 0 <= base_ops_no_branch <= 255 and base_ops_no_branch % 2 == 0:
+        val = scramble_inv(base_ops_no_branch)
+        raw_candidates.append(chr(val ^ lfsr))
+    if 0 <= base_ops_branch <= 255 and base_ops_branch % 2 == 1:
+        val = scramble_inv(base_ops_branch)
+        raw_candidates.append(chr(val ^ lfsr))
+
+    if raw_candidates:
+        return raw_candidates[0]
+
+    return "?"
+
+
+def recover_flag_from_log(path):
+    with open(path, "r") as f:
+        timings = [float(line.strip()) for line in f if line.strip()]
+
+    lfsr = LFSR_INIT
+    chars = []
+
+    for t in timings:
+        lfsr = step_lfsr(lfsr)
+        ch = recover_char_from_time(t, lfsr)
+        chars.append(ch)
+
+    return "".join(chars)
+
+
+if __name__ == "__main__":
+    flag = recover_flag_from_log("timing.log")
+    print(flag)
+
+# h i j k l m n
+# 8 9 0 / - _ =
+# a b c d e f g
+# v w x y z { }
+# o p q r s t u
+# 1 2 3 4 5 6 7
+```
+
+运行以上代码后可以得到下面这个表
+
+```
+h i j k l m n
+8 9 0 / - _ =
+a b c d e f g
+v w x y z { }
+o p q r s t u
+1 2 3 4 5 6 7
+```
+
+然后我们去关注那个 elf 可执行文件，发现是python 打包的
+
+尝试解包并反编译后发现和 python 脚本中的代码逻辑是一样的
+
+所以猜测并不是要我们去逆向，结合题目给的提示去 Google
+
+可以搜到下面这个项目：https://github.com/woodruffw/steg86
+
+![](imgs/image-20251202110048114.png)
+
+我们安装一下，然后提取一下隐写的信息
+
+```python
+cargo install steg86
+steg86 extract chal > out.txt
+```
+
+提取后可以得到如下内容：
+
+```
+326a31306c206b6b6868203a332024206a686820346820326b32682024336a203468336b206a323068206a6a366c206b6b6c6c206c6c6b205e6a206b6b24686820306a6a202f7a203a3620356b24206a6a206a
+```
+
+用 CyberChef 解一下 Hex
+
+```
+2j10l kkhh :3 $ jhh 4h 2k2h $3j 4h3k j20h jj6l kkll llk ^j kk$hh 0jj /z :6 5k$ jj j
+```
+
+![](imgs/image-20251202110520882.png)
+
+熟悉 vim 编辑器的师傅看到上面的内容应该会很熟悉
+
+尤其是看到 `hjkl` 这四个字母
+
+```bash
+python 1.py > table.txt
+vim table.txt
+```
+
+我们在 vim 编辑器中按顺序输入hex 解码得到的内容即可得到 flag
+
+`flag{y0u-are_amaz1ng}`
 
 ## 题目名称 标准的绝密压缩
 
