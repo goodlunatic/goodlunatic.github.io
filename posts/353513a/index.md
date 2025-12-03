@@ -941,6 +941,8 @@ SKSK
 ### NOCARRIER ndata=284 confidence=6.970 ampl=0.431 bps=43.05 (5.3% slow) ###
 ```
 
+得到 `FLAG PART1: R77YM30W1SFUN`
+
 使用`450KTFQY1D4KX8JB`作为密码解压可以得到一个2.wav
 
 还是一样，我们先 file 看一下音频的基本信息
@@ -952,11 +954,25 @@ $ file 2.wav
 
 采样率非常高，猜测是 SDR(软件定义无线电) 捕获的无线信号数据
 
-因此我们尝试使用 SDR# (SDRSharp) 进行解析
+因此我们尝试使用 SDR# (SDRSharp) 进行解析，发现在300kHz处存在SSTV信号
 
  SDR# (SDRSharp) ：https://airspy.com/download/
 
+我这里也还没调出来，就先放一张别的师傅调出来的图吧
 
+![](imgs/image-20251203101312826.png)
+
+
+![](imgs/image-20251203101345157.png)
+
+
+从而得到`2nd part _C4T9L1V3S`
+
+综上，最后的flag：`flag{Ci4l10~R77YM30W1SFUN_C4T9L1V3S}`
+
+当然，这题的最后一步也可以写个脚本处理，详细可以参考下面这篇文章：
+
+https://0ran9e.fun/2025/11/30/qwnt/wp/
 
 
 
