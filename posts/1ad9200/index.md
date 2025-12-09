@@ -5701,6 +5701,16 @@ tar -xzvf file.tar.gz
 
 ![](imgs/image-20241113181609346.png)
 
+### kdbx文件
+
+这种类型的文件可以用`keepass`打开，如果需要密码的话，可以用 `PasswareKit` 或者 `john the ripper` 爆破
+
+例题1-2022DASCTF Apr X FATE 防疫挑战赛 熟悉的猫
+
+例题2-2024羊城杯 不一样的数据库
+
+
+
 
 
 ---
