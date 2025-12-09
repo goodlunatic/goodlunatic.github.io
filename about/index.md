@@ -5,7 +5,7 @@
 
 **ID：Lunatic (Sometimes use Citanul)**
 
-**CTF@Misc | Master’s Student in BUPT-SCSS | 4th Captain of [A1natas Team](https://www.a1natas.com/)**
+**CTF@Misc | 天枢Dubhe | 4th Captain of [A1natas Team](https://www.a1natas.com/)**
 
 **Current Research Interest：Mobile Internet Security | Cellular Network Security | ...**
 
