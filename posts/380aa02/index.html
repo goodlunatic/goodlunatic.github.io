@@ -1,0 +1,467 @@
+<!doctype html><html itemscope itemtype=http://schema.org/WebPage lang=zh-CN><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=2"><meta name=robots content="noodp"><title>2025 古剑山全国大学生网络攻防大赛 Misc Writeup - ⚡Lunatic BLOG⚡</title><meta name=author content="Lunatic"><meta name=description content="2025 古剑山全国大学生网络攻防大赛 Misc Writeup
+"><meta name=keywords content='CTF,Misc,Writeup'><meta itemprop=name content="2025 古剑山全国大学生网络攻防大赛 Misc Writeup"><meta itemprop=description content="2025 古剑山全国大学生网络攻防大赛 Misc Writeup"><meta itemprop=datePublished content="2025-12-11T10:26:43+08:00"><meta itemprop=dateModified content="2025-12-11T10:26:43+08:00"><meta itemprop=wordCount content="813"><meta itemprop=keywords content="CTF,Misc,Writeup"><meta property="og:url" content="https://goodlunatic.github.io/posts/380aa02/"><meta property="og:site_name" content="⚡Lunatic BLOG⚡"><meta property="og:title" content="2025 古剑山全国大学生网络攻防大赛 Misc Writeup"><meta property="og:description" content="2025 古剑山全国大学生网络攻防大赛 Misc Writeup"><meta property="og:locale" content="zh_CN"><meta property="og:type" content="article"><meta property="article:section" content="posts"><meta property="article:published_time" content="2025-12-11T10:26:43+08:00"><meta property="article:modified_time" content="2025-12-11T10:26:43+08:00"><meta property="article:tag" content="CTF"><meta property="article:tag" content="Misc"><meta property="article:tag" content="Writeup"><meta name=twitter:card content="summary"><meta name=twitter:title content="2025 古剑山全国大学生网络攻防大赛 Misc Writeup"><meta name=twitter:description content="2025 古剑山全国大学生网络攻防大赛 Misc Writeup"><meta name=application-name content="FixIt"><meta name=apple-mobile-web-app-title content="FixIt"><meta name=theme-color data-light=#f8f8f8 data-dark=#252627 content="#f8f8f8"><meta name=msapplication-TileColor content="#da532c"><link rel=icon href=https://www.nssctf.cn/files/2024/4/28/7f130a1387.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=canonical type=text/html href=https://goodlunatic.github.io/posts/380aa02/ title="2025 古剑山全国大学生网络攻防大赛 Misc Writeup - ⚡Lunatic BLOG⚡"><link rel=prev type=text/html href=https://goodlunatic.github.io/posts/353513a/ title="2025 强网拟态防御国际精英挑战赛线下总决赛 Misc Writeup"><link rel=next type=text/html href=https://goodlunatic.github.io/posts/d0736a7/ title='CTF-Misc "雅"题共赏'><link rel=alternate type=text/markdown href=https://goodlunatic.github.io/posts/380aa02/index.md title="2025 古剑山全国大学生网络攻防大赛 Misc Writeup - ⚡Lunatic BLOG⚡"><link rel=stylesheet href=/css/config.min.css><link rel=stylesheet href=/css/style.min.css><link rel=preload href=/lib/fontawesome-free/all.min.css as=style onload='this.removeAttribute("onload"),this.rel="stylesheet"'><noscript><link rel=stylesheet href=/lib/fontawesome-free/all.min.css></noscript><link rel=preload href=/lib/animate/animate.min.css as=style onload='this.removeAttribute("onload"),this.rel="stylesheet"'><noscript><link rel=stylesheet href=/lib/animate/animate.min.css></noscript><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"2025 古剑山全国大学生网络攻防大赛 Misc Writeup","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/goodlunatic.github.io\/posts\/380aa02\/"},"image":["https:\/\/www.nssctf.cn\/files\/2025\/8\/21\/8ce6223a1a.png"],"genre":"posts","keywords":"CTF, Misc, Writeup","wordcount":813,"url":"https:\/\/goodlunatic.github.io\/posts\/380aa02\/","datePublished":"2025-12-11T10:26:43+08:00","dateModified":"2025-12-11T10:26:43+08:00","publisher":{"@type":"Organization","name":""},"author":{"@type":"Person","name":"Lunatic"},"description":""}</script><script src=/js/head/color-scheme.min.js></script></head><body data-header-desktop=sticky data-header-mobile=auto><div class=wrapper data-page-style=normal><header class="desktop animate__faster" id=header-desktop><div class=header-wrapper data-github-corner=left><div class=header-title><a href=/ title="⚡Lunatic BLOG⚡"><span class=header-title-text>⚡Lunatic BLOG⚡</span></a><span class=header-subtitle></span></div><nav><ul class=menu><li class=menu-item><a class=menu-link href=/collections/><i class="fa-solid fa-layer-group fa-fw fa-sm" aria-hidden=true></i> 合集</a></li><li class=menu-item><a class=menu-link href=/archives/><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden=true></i> 归档</a></li><li class=menu-item><a class=menu-link href=/categories/><i class="fa-solid fa-folder-tree fa-fw fa-sm" aria-hidden=true></i> 分类</a></li><li class=menu-item><a class=menu-link href=/tags/><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden=true></i> 标签</a></li><li class=menu-item><a class=menu-link href=/friends/><i class="fa-solid fa-chain fa-fw fa-sm" aria-hidden=true></i> 友链</a></li><li class=menu-item><a class=menu-link href=/about/><i class="fa-solid fa-graduation-cap fa-fw fa-sm" aria-hidden=true></i> 关于</a></li><li class="menu-item delimiter"></li><li class="menu-item search" id=search-desktop><input type=text placeholder=搜索文章标题或内容…… id=search-input-desktop>
+<a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-desktop title=搜索><i class="fa-solid fa-search fa-fw" aria-hidden=true></i>
+</a><a href=javascript:void(0); class="search-button search-clear" id=search-clear-desktop title=清空><i class="fa-solid fa-times-circle fa-fw" aria-hidden=true></i>
+</a><span class="search-button search-loading" id=search-loading-desktop><i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden=true></i></span></li><li class="menu-item theme-switch" title=切换主题><i class="fa-solid fa-adjust fa-fw" aria-hidden=true></i></li></ul></nav></div></header><header class="mobile animate__faster" id=header-mobile><div class=header-container><div class=header-wrapper><div class=header-title><a href=/ title="⚡Lunatic BLOG⚡"><span class=header-title-text>⚡Lunatic BLOG⚡</span></a><span class=header-subtitle></span></div><div class=menu-toggle id=menu-toggle-mobile><span></span><span></span><span></span></div></div><nav><ul class=menu id=menu-mobile><li class=search-wrapper><div class="search mobile" id=search-mobile><input type=text placeholder=搜索文章标题或内容…… id=search-input-mobile>
+<a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-mobile title=搜索><i class="fa-solid fa-search fa-fw" aria-hidden=true></i>
+</a><a href=javascript:void(0); class="search-button search-clear" id=search-clear-mobile title=清空><i class="fa-solid fa-times-circle fa-fw" aria-hidden=true></i>
+</a><span class="search-button search-loading" id=search-loading-mobile><i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden=true></i></span></div><a href=javascript:void(0); class=search-cancel id=search-cancel-mobile>取消</a></li><li class=menu-item><a class=menu-link href=/collections/><i class="fa-solid fa-layer-group fa-fw fa-sm" aria-hidden=true></i> 合集</a></li><li class=menu-item><a class=menu-link href=/archives/><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden=true></i> 归档</a></li><li class=menu-item><a class=menu-link href=/categories/><i class="fa-solid fa-folder-tree fa-fw fa-sm" aria-hidden=true></i> 分类</a></li><li class=menu-item><a class=menu-link href=/tags/><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden=true></i> 标签</a></li><li class=menu-item><a class=menu-link href=/friends/><i class="fa-solid fa-chain fa-fw fa-sm" aria-hidden=true></i> 友链</a></li><li class=menu-item><a class=menu-link href=/about/><i class="fa-solid fa-graduation-cap fa-fw fa-sm" aria-hidden=true></i> 关于</a></li><li class="menu-item menu-system"><span class="menu-system-item theme-switch" title=切换主题><i class="fa-solid fa-adjust fa-fw" aria-hidden=true></i></span></li></ul></nav></div></header><div class="search-dropdown desktop"><div id=search-dropdown-desktop></div></div><div class="search-dropdown mobile"><div id=search-dropdown-mobile></div></div><main class=fi-container><aside class="aside-collection animate__animated animate__fadeIn animate__faster" aria-label=合集><div class="details related-details open"><div class="details-summary related-summary"><i class="fa-solid fa-fire fa-fade text-danger fa-fw" aria-hidden=true></i>
+<span class=related-title>相关内容</span><i class="details-icon fa-solid fa-angle-right fa-fw" aria-hidden=true></i></div><div class="details-content related-content"><ul class=related-list><li class=related-item><a href=/posts/353513a/ title="2025 强网拟态防御国际精英挑战赛线下总决赛 Misc Writeup">2025 强网拟态防御国际精英挑战赛线下总决赛 Misc Writeup</a></li><li class=related-item><a href=/posts/8582ff7/ title="2025 浙江省大学生网络与信息安全竞赛 Misc Writeup">2025 浙江省大学生网络与信息安全竞赛 Misc Writeup</a></li><li class=related-item><a href=/posts/bfeb088/ title="2025 台州市网络安全大赛 Misc Writeup">2025 台州市网络安全大赛 Misc Writeup</a></li><li class=related-item><a href=/posts/02298dd/ title="2025 华为杯中国研究生网络安全创新大赛实网对抗赛 EZ_ATEXEC 详解">2025 华为杯中国研究生网络安全创新大赛实网对抗赛 EZ_ATEXEC 详解</a></li><li class=related-item><a href=/posts/16c4937/ title="2025 振兴杯江西省网络安全大赛 Misc Writeup">2025 振兴杯江西省网络安全大赛 Misc Writeup</a></li></ul></div></div><div class=aside-custom><a href target=_blank rel=external><img src=/images/zsxq.webp alt="Lunatic Planet QR code" width=100%></a></div></aside><article class="page single"><div class=header><h1 class="single-title animate__animated animate__flipInX"><span>2025 古剑山全国大学生网络攻防大赛 Misc Writeup</span></h1></div><div class=post-meta><div class=post-meta-line><span class=post-author><a href=https://goodlunatic.github.io title=作者 target=_blank rel="external nofollow noopener noreferrer author" class=author><img class=avatar src=https://www.nssctf.cn/files/2024/4/28/7f130a1387.png alt=Lunatic height=16 width=16>&nbsp;Lunatic</a></span><span class=post-included-in>&nbsp;收录于 <a href=/categories/writeup/ class=post-category title="分类 - Writeup"><i class="fa-regular fa-folder fa-fw" aria-hidden=true></i> Writeup</a></span></div><div class=post-meta-line><span title="发布于 2025-12-11 10:26:43"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden=true></i><time datetime=2025-12-11>2025-12-11</time></span>&nbsp;<span title="813 字"><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden=true></i>约 900 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden=true></i>预计阅读 4 分钟</span>&nbsp;<span id=busuanzi_container_page_pv class="busuanzi_visitors comment-visitors" data-flag-title="2025 古剑山全国大学生网络攻防大赛 Misc Writeup"><i class="fa-regular fa-eye fa-fw me-1" aria-hidden=true></i><span id=busuanzi_value_page_pv>-</span>&nbsp;次阅读
+</span>&nbsp;</div></div><div class="details toc" id=toc-static data-kept=false><div class="details-summary toc-title"><span>目录</span>
+<span><i class="details-icon fa-solid fa-angle-right" aria-hidden=true></i></span></div><div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents><ul><li><a href=#题目名称-水果>题目名称 水果</a></li><li><a href=#题目名称-sudoku>题目名称 sudoku</a></li><li><a href=#题目名称-hundred>题目名称 hundred</a></li><li><a href=#题目名称-secret-communication>题目名称 secret communication</a></li><li><a href=#题目名称-ezwav>题目名称 ezwav</a></li></ul></nav></div></div><div class=content id=content><p><strong>2025 古剑山全国大学生网络攻防大赛 Misc Writeup</strong></p><table><thead><tr><th style=text-align:center><img loading=lazy src=/posts/380aa02/imgs/image-20251211102947194.png alt=/posts/380aa02/imgs/image-20251211102947194.png height=607 width=1080></th></tr></thead><tbody><tr><td style=text-align:center>本文中涉及的具体题目附件可以进我的 <a href=https://t.zsxq.com/an6p6 target=_blank rel="external nofollow noopener noreferrer">知识星球</a> 获取</td></tr></tbody></table><h2 class=heading-element id=题目名称-水果><span>题目名称 水果</span>
+<a href=#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-%e6%b0%b4%e6%9e%9c class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h2><p><img loading=lazy src=/posts/380aa02/imgs/image-20251211103304419.png alt=/posts/380aa02/imgs/image-20251211103304419.png height=496 width=830></p><p>附件给了下面这张 JPG 图片</p><p><img loading=lazy src=/posts/380aa02/imgs/image-20251211103514692.png alt=/posts/380aa02/imgs/image-20251211103514692.png height=1190 width=1904></p><p>010 打开，发现末尾有个 zip</p><p><img loading=lazy src=/posts/380aa02/imgs/image-20251211103601102.png alt=/posts/380aa02/imgs/image-20251211103601102.png height=1836 width=2810></p><p>手动提取出来并解压，可以得到一个<code>oursecret.txt</code>，内容如下：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>5L2g6L+Z6Iu55p6c5oCO5LmI6L+Z5LmI5aSnCuWkp+S4quWEv+aJjeWAvOmSseS9oOimgeS4jeimgQrov5nmoYPlrZDmgI7kuYjov5nkuYjnoawK56Gs5piv5Zug5Li65paw6bKc5L2g6KaB6L2v55qE6L+Y5piv57Ov55qECui/meilv+eTnOiDveWQg+WQl+eci+i1t+adpeacieeCueS4jeeGnwrkuI3nhp/nmoTopb/nk5zmgI7kuYjlj6/og73kvaDov5nlsLHmmK/nrYnnnYDlkIPnlJznmoQK5L2g6L+Z5p+a5a2Q6L+Z5LmI5bCPCuWwj+W3p+eahOaJjeWlveWQg+S9oOimgeWkp+S4queahOi/mOaYr+WlveWQg+eahArov5nmqZnlrZDmgI7kuYjov5nkuYjphbgK6YW45omN5piv5q2j5a6X55qE5qmZ5a2Q5L2g6KaB5piv55Sc55qE5Y675Yir5a6255yLCui/memmmeiVieacieeCueW8rwrlvK/nmoTpppnolYnmm7TnlJzkvaDkuI3mh4IK5L2g6L+Z5qKo5a2Q5piv5LiN5piv5pyJ54K556GsCuehrOaYr+WboOS4uuaWsOmynOWQg+edgOacieWPo+aEnwrov5nokaHokITmgI7kuYjov5nkuYjlsI8K5bCP55qE6JGh6JCE5pu05rWT57yp55Sc5ZGz</span></span></code></pre></td></tr></table></div></div><p>base64解码一下可以得到 16 行不同的字符串</p><p><img loading=lazy src=/posts/380aa02/imgs/image-20251211103720099.png alt=/posts/380aa02/imgs/image-20251211103720099.png height=1752 width=2792></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>你这苹果怎么这么大
+</span></span><span class=line><span class=cl>大个儿才值钱你要不要
+</span></span><span class=line><span class=cl>这桃子怎么这么硬
+</span></span><span class=line><span class=cl>硬是因为新鲜你要软的还是糯的
+</span></span><span class=line><span class=cl>这西瓜能吃吗看起来有点不熟
+</span></span><span class=line><span class=cl>不熟的西瓜怎么可能你这就是等着吃甜的
+</span></span><span class=line><span class=cl>你这柚子这么小
+</span></span><span class=line><span class=cl>小巧的才好吃你要大个的还是好吃的
+</span></span><span class=line><span class=cl>这橙子怎么这么酸
+</span></span><span class=line><span class=cl>酸才是正宗的橙子你要是甜的去别家看
+</span></span><span class=line><span class=cl>这香蕉有点弯
+</span></span><span class=line><span class=cl>弯的香蕉更甜你不懂
+</span></span><span class=line><span class=cl>你这梨子是不是有点硬
+</span></span><span class=line><span class=cl>硬是因为新鲜吃着有口感
+</span></span><span class=line><span class=cl>这葡萄怎么这么小
+</span></span><span class=line><span class=cl>小的葡萄更浓缩甜味</span></span></code></pre></td></tr></table></div></div><p>然后根据上面文件名的提示，以及压缩包末尾多余数据的特征，应该还有 oursecret 隐写</p><p><img loading=lazy src=/posts/380aa02/imgs/image-20251211104935883.png alt=/posts/380aa02/imgs/image-20251211104935883.png height=1836 width=2810></p><p>经过尝试发现解密的密钥就是水果的拼音：<code>shuiguo</code></p><p><img loading=lazy src=/posts/380aa02/imgs/image-20251211104902148.png alt=/posts/380aa02/imgs/image-20251211104902148.png height=536 width=724></p><p>解密后可以得到一个 flag.txt，内容如下：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span><span class=lnt>48
+</span><span class=lnt>49
+</span><span class=lnt>50
+</span><span class=lnt>51
+</span><span class=lnt>52
+</span><span class=lnt>53
+</span><span class=lnt>54
+</span><span class=lnt>55
+</span><span class=lnt>56
+</span><span class=lnt>57
+</span><span class=lnt>58
+</span><span class=lnt>59
+</span><span class=lnt>60
+</span><span class=lnt>61
+</span><span class=lnt>62
+</span><span class=lnt>63
+</span><span class=lnt>64
+</span><span class=lnt>65
+</span><span class=lnt>66
+</span><span class=lnt>67
+</span><span class=lnt>68
+</span><span class=lnt>69
+</span><span class=lnt>70
+</span><span class=lnt>71
+</span><span class=lnt>72
+</span><span class=lnt>73
+</span><span class=lnt>74
+</span><span class=lnt>75
+</span><span class=lnt>76
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>你这柚子这么小
+</span></span><span class=line><span class=cl>你这柚子这么小
+</span></span><span class=line><span class=cl>你这柚子这么小
+</span></span><span class=line><span class=cl>你这梨子是不是有点硬
+</span></span><span class=line><span class=cl>你这柚子这么小
+</span></span><span class=line><span class=cl>大个儿才值钱你要不要
+</span></span><span class=line><span class=cl>你这柚子这么小
+</span></span><span class=line><span class=cl>小巧的才好吃你要大个的还是好吃的
+</span></span><span class=line><span class=cl>小巧的才好吃你要大个的还是好吃的
+</span></span><span class=line><span class=cl>弯的香蕉更甜你不懂
+</span></span><span class=line><span class=cl>硬是因为新鲜你要软的还是糯的
+</span></span><span class=line><span class=cl>硬是因为新鲜你要软的还是糯的
+</span></span><span class=line><span class=cl>你这柚子这么小
+</span></span><span class=line><span class=cl>不熟的西瓜怎么可能你这就是等着吃甜的
+</span></span><span class=line><span class=cl>硬是因为新鲜你要软的还是糯的
+</span></span><span class=line><span class=cl>这桃子怎么这么硬
+</span></span><span class=line><span class=cl>硬是因为新鲜你要软的还是糯的
+</span></span><span class=line><span class=cl>不熟的西瓜怎么可能你这就是等着吃甜的
+</span></span><span class=line><span class=cl>硬是因为新鲜你要软的还是糯的
+</span></span><span class=line><span class=cl>酸才是正宗的橙子你要是甜的去别家看
+</span></span><span class=line><span class=cl>硬是因为新鲜你要软的还是糯的
+</span></span><span class=line><span class=cl>你这柚子这么小
+</span></span><span class=line><span class=cl>硬是因为新鲜你要软的还是糯的
+</span></span><span class=line><span class=cl>你这苹果怎么这么大
+</span></span><span class=line><span class=cl>你这柚子这么小
+</span></span><span class=line><span class=cl>大个儿才值钱你要不要
+</span></span><span class=line><span class=cl>硬是因为新鲜你要软的还是糯的
+</span></span><span class=line><span class=cl>小巧的才好吃你要大个的还是好吃的
+</span></span><span class=line><span class=cl>硬是因为新鲜你要软的还是糯的
+</span></span><span class=line><span class=cl>酸才是正宗的橙子你要是甜的去别家看
+</span></span><span class=line><span class=cl>你这柚子这么小
+</span></span><span class=line><span class=cl>这西瓜能吃吗看起来有点不熟
+</span></span><span class=line><span class=cl>你这柚子这么小
+</span></span><span class=line><span class=cl>这桃子怎么这么硬
+</span></span><span class=line><span class=cl>你这柚子这么小
+</span></span><span class=line><span class=cl>硬是因为新鲜你要软的还是糯的
+</span></span><span class=line><span class=cl>硬是因为新鲜你要软的还是糯的
+</span></span><span class=line><span class=cl>你这柚子这么小
+</span></span><span class=line><span class=cl>硬是因为新鲜你要软的还是糯的
+</span></span><span class=line><span class=cl>酸才是正宗的橙子你要是甜的去别家看
+</span></span><span class=line><span class=cl>你这柚子这么小
+</span></span><span class=line><span class=cl>这桃子怎么这么硬
+</span></span><span class=line><span class=cl>硬是因为新鲜你要软的还是糯的
+</span></span><span class=line><span class=cl>你这柚子这么小
+</span></span><span class=line><span class=cl>硬是因为新鲜你要软的还是糯的
+</span></span><span class=line><span class=cl>小巧的才好吃你要大个的还是好吃的
+</span></span><span class=line><span class=cl>硬是因为新鲜你要软的还是糯的
+</span></span><span class=line><span class=cl>这西瓜能吃吗看起来有点不熟
+</span></span><span class=line><span class=cl>你这柚子这么小
+</span></span><span class=line><span class=cl>硬是因为新鲜你要软的还是糯的
+</span></span><span class=line><span class=cl>你这柚子这么小
+</span></span><span class=line><span class=cl>这西瓜能吃吗看起来有点不熟
+</span></span><span class=line><span class=cl>硬是因为新鲜你要软的还是糯的
+</span></span><span class=line><span class=cl>这西瓜能吃吗看起来有点不熟
+</span></span><span class=line><span class=cl>你这柚子这么小
+</span></span><span class=line><span class=cl>不熟的西瓜怎么可能你这就是等着吃甜的
+</span></span><span class=line><span class=cl>你这柚子这么小
+</span></span><span class=line><span class=cl>硬是因为新鲜你要软的还是糯的
+</span></span><span class=line><span class=cl>硬是因为新鲜你要软的还是糯的
+</span></span><span class=line><span class=cl>你这柚子这么小
+</span></span><span class=line><span class=cl>硬是因为新鲜你要软的还是糯的
+</span></span><span class=line><span class=cl>小巧的才好吃你要大个的还是好吃的
+</span></span><span class=line><span class=cl>你这柚子这么小
+</span></span><span class=line><span class=cl>大个儿才值钱你要不要
+</span></span><span class=line><span class=cl>硬是因为新鲜你要软的还是糯的
+</span></span><span class=line><span class=cl>小巧的才好吃你要大个的还是好吃的
+</span></span><span class=line><span class=cl>硬是因为新鲜你要软的还是糯的
+</span></span><span class=line><span class=cl>这桃子怎么这么硬
+</span></span><span class=line><span class=cl>你这柚子这么小
+</span></span><span class=line><span class=cl>硬是因为新鲜你要软的还是糯的
+</span></span><span class=line><span class=cl>硬是因为新鲜你要软的还是糯的
+</span></span><span class=line><span class=cl>你这柚子这么小
+</span></span><span class=line><span class=cl>硬是因为新鲜你要软的还是糯的
+</span></span><span class=line><span class=cl>这桃子怎么这么硬
+</span></span><span class=line><span class=cl>小巧的才好吃你要大个的还是好吃的
+</span></span><span class=line><span class=cl>硬是因为新鲜吃着有口感</span></span></code></pre></td></tr></table></div></div><p>根据密文的格式猜测，前面得到的 16 行数据是对应到十六进制的 0-f</p><p>因此我们写个脚本解码一下即可得到最后的 flag：</p><p><code>flag{3e25960a79dbc69b674cd4ec67a72c62}</code></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=n>table</span> <span class=o>=</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=s2>&#34;你这苹果怎么这么大&#34;</span><span class=p>:</span> <span class=s1>&#39;0&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=s2>&#34;大个儿才值钱你要不要&#34;</span><span class=p>:</span> <span class=s1>&#39;1&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=s2>&#34;这桃子怎么这么硬&#34;</span><span class=p>:</span> <span class=s1>&#39;2&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=s2>&#34;硬是因为新鲜你要软的还是糯的&#34;</span><span class=p>:</span> <span class=s1>&#39;3&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=s2>&#34;这西瓜能吃吗看起来有点不熟&#34;</span><span class=p>:</span> <span class=s1>&#39;4&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=s2>&#34;不熟的西瓜怎么可能你这就是等着吃甜的&#34;</span><span class=p>:</span> <span class=s1>&#39;5&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=s2>&#34;你这柚子这么小&#34;</span><span class=p>:</span> <span class=s1>&#39;6&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=s2>&#34;小巧的才好吃你要大个的还是好吃的&#34;</span><span class=p>:</span> <span class=s1>&#39;7&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=s2>&#34;这橙子怎么这么酸&#34;</span><span class=p>:</span> <span class=s1>&#39;8&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=s2>&#34;酸才是正宗的橙子你要是甜的去别家看&#34;</span><span class=p>:</span> <span class=s1>&#39;9&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=s2>&#34;这香蕉有点弯&#34;</span><span class=p>:</span> <span class=s1>&#39;a&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=s2>&#34;弯的香蕉更甜你不懂&#34;</span><span class=p>:</span> <span class=s1>&#39;b&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=s2>&#34;你这梨子是不是有点硬&#34;</span><span class=p>:</span> <span class=s1>&#39;c&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=s2>&#34;硬是因为新鲜吃着有口感&#34;</span><span class=p>:</span> <span class=s1>&#39;d&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=s2>&#34;这葡萄怎么这么小&#34;</span><span class=p>:</span> <span class=s1>&#39;e&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=s2>&#34;小的葡萄更浓缩甜味&#34;</span><span class=p>:</span> <span class=s1>&#39;f&#39;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>with</span> <span class=nb>open</span><span class=p>(</span><span class=s1>&#39;flag.txt&#39;</span><span class=p>,</span><span class=s1>&#39;r&#39;</span><span class=p>)</span> <span class=k>as</span> <span class=n>f</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>    <span class=n>data</span> <span class=o>=</span> <span class=n>f</span><span class=o>.</span><span class=n>read</span><span class=p>()</span><span class=o>.</span><span class=n>split</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>res</span> <span class=o>=</span> <span class=s1>&#39;&#39;</span>
+</span></span><span class=line><span class=cl><span class=k>for</span> <span class=n>item</span> <span class=ow>in</span> <span class=n>data</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>    <span class=n>res</span> <span class=o>+=</span> <span class=n>table</span><span class=p>[</span><span class=n>item</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nb>print</span><span class=p>(</span><span class=n>res</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=nb>print</span><span class=p>(</span><span class=nb>bytes</span><span class=o>.</span><span class=n>fromhex</span><span class=p>(</span><span class=n>res</span><span class=p>))</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 666c61677b33653235393630613739646263363962363734636434656336376137326336327d</span>
+</span></span><span class=line><span class=cl><span class=c1># b&#39;flag{3e25960a79dbc69b674cd4ec67a72c62}&#39;</span></span></span></code></pre></td></tr></table></div></div><h2 class=heading-element id=题目名称-sudoku><span>题目名称 sudoku</span>
+<a href=#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-sudoku class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h2><p><img loading=lazy src=/posts/380aa02/imgs/image-20251211103325907.png alt=/posts/380aa02/imgs/image-20251211103325907.png height=502 width=832></p><p>参考 2023 年古剑山的那道数独：</p><p><a href=https://www.cnblogs.com/xiaoqi-ctf/p/17889281.html target=_blank rel="external nofollow noopener noreferrer">https://www.cnblogs.com/xiaoqi-ctf/p/17889281.html</a></p><p>出题人竟然连 flag 都不改：<code>flag{4e4d6c332b6fe62a63afe56171fd3725}</code></p><h2 class=heading-element id=题目名称-hundred><span>题目名称 hundred</span>
+<a href=#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-hundred class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h2><p><img loading=lazy src=/posts/380aa02/imgs/image-20251211103337062.png alt=/posts/380aa02/imgs/image-20251211103337062.png height=492 width=830></p><p>附件给了一个<code>attachment</code>，010 打开发现是个数据逆置后的 zip</p><p><img loading=lazy src=/posts/380aa02/imgs/image-20251211110321461.png alt=/posts/380aa02/imgs/image-20251211110321461.png height=1836 width=2810></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=k>with</span> <span class=nb>open</span><span class=p>(</span><span class=s1>&#39;attachment&#39;</span><span class=p>,</span><span class=s1>&#39;rb&#39;</span><span class=p>)</span> <span class=k>as</span> <span class=n>f</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>    <span class=n>data</span> <span class=o>=</span> <span class=n>f</span><span class=o>.</span><span class=n>read</span><span class=p>()[::</span><span class=o>-</span><span class=mi>1</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>with</span> <span class=nb>open</span><span class=p>(</span><span class=s1>&#39;1.zip&#39;</span><span class=p>,</span><span class=s1>&#39;wb&#39;</span><span class=p>)</span> <span class=k>as</span> <span class=n>f</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>    <span class=n>f</span><span class=o>.</span><span class=n>write</span><span class=p>(</span><span class=n>data</span><span class=p>)</span></span></span></code></pre></td></tr></table></div></div><p>利用以上脚本还原后解压，可以得到<code>joke.txt</code>还有<code>flag2</code></p><p><code>joke.txt</code> 中的内容如下：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>知识点不够，增加体积来凑</span></span></code></pre></td></tr></table></div></div><p>010 打开 flag2，发现又是个数据逆置后的 zip</p><p><img loading=lazy src=/posts/380aa02/imgs/image-20251211110703096.png alt=/posts/380aa02/imgs/image-20251211110703096.png height=1836 width=2810></p><p>用之前的脚本恢复后发现里面还是个数据逆置的 zip，猜测是套娃</p><p>因此我们写个脚本解套即可</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span><span class=lnt>48
+</span><span class=lnt>49
+</span><span class=lnt>50
+</span><span class=lnt>51
+</span><span class=lnt>52
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=kn>import</span> <span class=nn>os</span>
+</span></span><span class=line><span class=cl><span class=kn>import</span> <span class=nn>zipfile</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>reverse_bytes_file</span><span class=p>(</span><span class=n>input_file</span><span class=p>,</span> <span class=n>output_file</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=k>with</span> <span class=nb>open</span><span class=p>(</span><span class=n>input_file</span><span class=p>,</span> <span class=s2>&#34;rb&#34;</span><span class=p>)</span> <span class=k>as</span> <span class=n>f</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=n>data</span> <span class=o>=</span> <span class=n>f</span><span class=o>.</span><span class=n>read</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>    <span class=n>reversed_data</span> <span class=o>=</span> <span class=n>data</span><span class=p>[::</span><span class=o>-</span><span class=mi>1</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>    <span class=k>with</span> <span class=nb>open</span><span class=p>(</span><span class=n>output_file</span><span class=p>,</span> <span class=s2>&#34;wb&#34;</span><span class=p>)</span> <span class=k>as</span> <span class=n>f</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=n>f</span><span class=o>.</span><span class=n>write</span><span class=p>(</span><span class=n>reversed_data</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;[+] 逆序完成: </span><span class=si>{</span><span class=n>output_file</span><span class=si>}</span><span class=s2>&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>try_unzip</span><span class=p>(</span><span class=n>zip_path</span><span class=p>,</span> <span class=n>extract_dir</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=k>try</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=k>with</span> <span class=n>zipfile</span><span class=o>.</span><span class=n>ZipFile</span><span class=p>(</span><span class=n>zip_path</span><span class=p>,</span> <span class=s1>&#39;r&#39;</span><span class=p>)</span> <span class=k>as</span> <span class=n>zip_ref</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>            <span class=n>zip_ref</span><span class=o>.</span><span class=n>extractall</span><span class=p>(</span><span class=n>extract_dir</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;[+] 解压成功: </span><span class=si>{</span><span class=n>zip_path</span><span class=si>}</span><span class=s2>&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=kc>True</span>
+</span></span><span class=line><span class=cl>    <span class=k>except</span> <span class=ne>Exception</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;[!] 解压失败: </span><span class=si>{</span><span class=n>zip_path</span><span class=si>}</span><span class=s2>&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=kc>False</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>process_layer</span><span class=p>(</span><span class=n>start_file</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=n>current_file</span> <span class=o>=</span> <span class=n>start_file</span>
+</span></span><span class=line><span class=cl>    <span class=n>layer</span> <span class=o>=</span> <span class=mi>2</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=k>while</span> <span class=kc>True</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=n>reversed_file</span> <span class=o>=</span> <span class=sa>f</span><span class=s2>&#34;layer</span><span class=si>{</span><span class=n>layer</span><span class=si>}</span><span class=s2>_restored.zip&#34;</span>
+</span></span><span class=line><span class=cl>        <span class=n>extract_dir</span> <span class=o>=</span> <span class=sa>f</span><span class=s2>&#34;layer</span><span class=si>{</span><span class=n>layer</span><span class=si>}</span><span class=s2>_unzipped&#34;</span>
+</span></span><span class=line><span class=cl>        <span class=n>reverse_bytes_file</span><span class=p>(</span><span class=n>current_file</span><span class=p>,</span> <span class=n>reversed_file</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=n>ok</span> <span class=o>=</span> <span class=n>try_unzip</span><span class=p>(</span><span class=n>reversed_file</span><span class=p>,</span> <span class=n>extract_dir</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=k>if</span> <span class=ow>not</span> <span class=n>ok</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>            <span class=nb>print</span><span class=p>(</span><span class=s2>&#34;[!] 无法继续解压，可能不是逆序压缩包。&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>            <span class=k>break</span>
+</span></span><span class=line><span class=cl>        <span class=n>next_files</span> <span class=o>=</span> <span class=n>os</span><span class=o>.</span><span class=n>listdir</span><span class=p>(</span><span class=n>extract_dir</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;[+] 解压内容: </span><span class=si>{</span><span class=n>next_files</span><span class=si>}</span><span class=s2>&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=n>next_file</span> <span class=o>=</span> <span class=kc>None</span>
+</span></span><span class=line><span class=cl>        <span class=k>for</span> <span class=n>f</span> <span class=ow>in</span> <span class=n>next_files</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>            <span class=k>if</span> <span class=s1>&#39;flag&#39;</span> <span class=ow>in</span> <span class=n>f</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                <span class=n>next_file</span> <span class=o>=</span> <span class=n>os</span><span class=o>.</span><span class=n>path</span><span class=o>.</span><span class=n>join</span><span class=p>(</span><span class=n>extract_dir</span><span class=p>,</span> <span class=n>f</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>                <span class=k>break</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>        <span class=k>if</span> <span class=ow>not</span> <span class=n>next_file</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>            <span class=nb>print</span><span class=p>(</span><span class=s2>&#34;[+] 没找到下一级需要逆序的 flag 文件，任务结束。&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>            <span class=k>break</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>        <span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;[+] 下一层文件: </span><span class=si>{</span><span class=n>next_file</span><span class=si>}</span><span class=s2>&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=n>current_file</span> <span class=o>=</span> <span class=n>next_file</span>
+</span></span><span class=line><span class=cl>        <span class=n>layer</span> <span class=o>+=</span> <span class=mi>1</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>if</span> <span class=vm>__name__</span> <span class=o>==</span> <span class=s2>&#34;__main__&#34;</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>    <span class=n>process_layer</span><span class=p>(</span><span class=s2>&#34;flag2&#34;</span><span class=p>)</span></span></span></code></pre></td></tr></table></div></div><p>发现一共套了 99 层，解套后可以得到<code>hint.txt</code>和<code>enc.txt</code></p><p><code>hint.txt</code>中的内容如下：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>digits lowercase lowercase lowercase lowercase lowercase uppercase uppercase !uppercase uppercase I_am_here lowercase digits digits uppercase !digits !digits !digits !digits !digits </span></span></code></pre></td></tr></table></div></div><p><code>enc.txt</code>中的内容如下：</p><p><img loading=lazy src=/posts/380aa02/imgs/image-20251211111508182.png alt=/posts/380aa02/imgs/image-20251211111508182.png height=1836 width=2810></p><p>猜测是需要我们根据 <code>hint.txt</code> 中规定的格式去 <code>enc.txt</code> 中匹配指定的内容</p><p>其中 <code>I_am_here</code> 代表的应该就是我们要获取的 flag</p><p>因此写个脚本匹配一下即可</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=kn>import</span> <span class=nn>re</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>extract_matching_strings</span><span class=p>(</span><span class=n>filename</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=n>pattern</span> <span class=o>=</span> <span class=p>(</span>
+</span></span><span class=line><span class=cl>        <span class=sa>r</span><span class=s1>&#39;\d&#39;</span>                    <span class=c1># digits</span>
+</span></span><span class=line><span class=cl>        <span class=sa>r</span><span class=s1>&#39;[a-z]</span><span class=si>{5}</span><span class=s1>&#39;</span>              <span class=c1># lowercase lowercase lowercase lowercase lowercase</span>
+</span></span><span class=line><span class=cl>        <span class=sa>r</span><span class=s1>&#39;[A-Z]</span><span class=si>{2}</span><span class=s1>&#39;</span>              <span class=c1># uppercase uppercase</span>
+</span></span><span class=line><span class=cl>        <span class=sa>r</span><span class=s1>&#39;[^A-Z]&#39;</span>                <span class=c1># !uppercase</span>
+</span></span><span class=line><span class=cl>        <span class=sa>r</span><span class=s1>&#39;[A-Z]&#39;</span>                 <span class=c1># uppercase</span>
+</span></span><span class=line><span class=cl>        <span class=sa>r</span><span class=s1>&#39;([a-zA-Z0-9_]+)&#39;</span>       <span class=c1># I_am_here（flag - 任意字母、数字、下划线组成的字符串）</span>
+</span></span><span class=line><span class=cl>        <span class=sa>r</span><span class=s1>&#39;[a-z]&#39;</span>                 <span class=c1># lowercase</span>
+</span></span><span class=line><span class=cl>        <span class=sa>r</span><span class=s1>&#39;\d</span><span class=si>{2}</span><span class=s1>&#39;</span>                 <span class=c1># digits digits</span>
+</span></span><span class=line><span class=cl>        <span class=sa>r</span><span class=s1>&#39;[A-Z]&#39;</span>                 <span class=c1># uppercase</span>
+</span></span><span class=line><span class=cl>        <span class=sa>r</span><span class=s1>&#39;[^\d]</span><span class=si>{5}</span><span class=s1>&#39;</span>              <span class=c1># !digits !digits !digits !digits !digits</span>
+</span></span><span class=line><span class=cl>    <span class=p>)</span>
+</span></span><span class=line><span class=cl>    
+</span></span><span class=line><span class=cl>    <span class=n>encodings</span> <span class=o>=</span> <span class=p>[</span><span class=s1>&#39;utf-8&#39;</span><span class=p>,</span> <span class=s1>&#39;latin-1&#39;</span><span class=p>,</span> <span class=s1>&#39;gbk&#39;</span><span class=p>,</span> <span class=s1>&#39;gb2312&#39;</span><span class=p>,</span> <span class=s1>&#39;cp1252&#39;</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>    <span class=n>content</span> <span class=o>=</span> <span class=kc>None</span>
+</span></span><span class=line><span class=cl>    
+</span></span><span class=line><span class=cl>    <span class=k>for</span> <span class=n>encoding</span> <span class=ow>in</span> <span class=n>encodings</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=k>try</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>            <span class=k>with</span> <span class=nb>open</span><span class=p>(</span><span class=n>filename</span><span class=p>,</span> <span class=s1>&#39;r&#39;</span><span class=p>,</span> <span class=n>encoding</span><span class=o>=</span><span class=n>encoding</span><span class=p>)</span> <span class=k>as</span> <span class=n>f</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                <span class=n>content</span> <span class=o>=</span> <span class=n>f</span><span class=o>.</span><span class=n>read</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>            <span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;使用编码: </span><span class=si>{</span><span class=n>encoding</span><span class=si>}</span><span class=s2>&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>            <span class=k>break</span>
+</span></span><span class=line><span class=cl>        <span class=k>except</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>            <span class=k>continue</span>
+</span></span><span class=line><span class=cl>    
+</span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=n>content</span> <span class=ow>is</span> <span class=kc>None</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=nb>print</span><span class=p>(</span><span class=s2>&#34;无法用任何编码方式读取文件&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=p>[]</span>
+</span></span><span class=line><span class=cl>    
+</span></span><span class=line><span class=cl>    <span class=c1># 查找所有匹配</span>
+</span></span><span class=line><span class=cl>    <span class=n>matches</span> <span class=o>=</span> <span class=n>re</span><span class=o>.</span><span class=n>findall</span><span class=p>(</span><span class=n>pattern</span><span class=p>,</span> <span class=n>content</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=nb>print</span><span class=p>(</span><span class=n>matches</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>res</span> <span class=o>=</span> <span class=s1>&#39;&#39;</span><span class=o>.</span><span class=n>join</span><span class=p>(</span><span class=n>matches</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=nb>print</span><span class=p>(</span><span class=n>res</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=n>matches</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>if</span> <span class=vm>__name__</span> <span class=o>==</span> <span class=s2>&#34;__main__&#34;</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>    <span class=n>results</span> <span class=o>=</span> <span class=n>extract_matching_strings</span><span class=p>(</span><span class=s1>&#39;enc.txt&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=c1># 使用编码: latin-1</span>
+</span></span><span class=line><span class=cl>    <span class=c1># [&#39;T&#39;, &#39;V&#39;, &#39;p&#39;, &#39;X&#39;, &#39;R&#39;, &#39;0&#39;, &#39;N&#39;, &#39;a&#39;, &#39;M&#39;, &#39;z&#39;, &#39;N&#39;, &#39;H&#39;, &#39;N&#39;, &#39;D&#39;, &#39;J&#39;, &#39;H&#39;, &#39;R&#39;, &#39;0&#39;, &#39;9&#39;, &#39;K&#39;, &#39;V&#39;, &#39;k&#39;, &#39;h&#39;, &#39;F&#39;, &#39;W&#39;, &#39;V&#39;, &#39;R&#39;, &#39;N&#39;, &#39;T&#39;, &#39;l&#39;, &#39;R&#39;, &#39;D&#39;, &#39;T&#39;, &#39;U&#39;, &#39;0&#39;, &#39;z&#39;, &#39;V&#39;, &#39;0&#39;, &#39;1&#39;, &#39;Z&#39;, &#39;V&#39;, &#39;E&#39;, &#39;J&#39;, &#39;N&#39;, &#39;R&#39;, &#39;l&#39;, &#39;J&#39;, &#39;X&#39;, &#39;Q&#39;, &#39;1&#39;, &#39;l&#39;, &#39;K&#39;, &#39;V&#39;, &#39;U&#39;, &#39;1&#39;, &#39;R&#39;, &#39;M&#39;, &#39;1&#39;, &#39;R&#39;, &#39;P&#39;, &#39;W&#39;, &#39;T&#39;, &#39;N&#39;, &#39;H&#39;, &#39;R&#39;, &#39;1&#39;, &#39;k&#39;, &#39;0&#39;, &#39;V&#39;, &#39;E&#39;, &#39;V&#39;, &#39;Z&#39;, &#39;U&#39;, &#39;l&#39;, &#39;J&#39;, &#39;N&#39;, &#39;T&#39;, &#39;T&#39;, &#39;N&#39;, &#39;Y&#39;, &#39;M&#39;, &#39;j&#39;, &#39;0&#39;, &#39;9&#39;, &#39;P&#39;, &#39;Q&#39;]</span>
+</span></span><span class=line><span class=cl>    <span class=c1># TVpXR0NaMzNHNDJHR09KVkhFWVRNTlRDTU0zV01ZVEJNRlJXQ1lKVU1RM1RPWTNHR1k0VEVZUlJNTTNYMj09PQ</span></span></span></code></pre></td></tr></table></div></div><p>最后将得到的内容用 CyberChef 解码一下即可得到最后的 flag：</p><p><code>flag{74c959166bc7fbaacaa4d77cf692b1c7}</code></p><p><img loading=lazy src=/posts/380aa02/imgs/image-20251211112545269.png alt=/posts/380aa02/imgs/image-20251211112545269.png height=1038 width=2796></p><h2 class=heading-element id=题目名称-secret-communication><span>题目名称 secret communication</span>
+<a href=#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-secret-communication class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h2><p><img loading=lazy src=/posts/380aa02/imgs/image-20251211103416774.png alt=/posts/380aa02/imgs/image-20251211103416774.png height=518 width=832></p><h2 class=heading-element id=题目名称-ezwav><span>题目名称 ezwav</span>
+<a href=#%e9%a2%98%e7%9b%ae%e5%90%8d%e7%a7%b0-ezwav class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h2><p><img loading=lazy src=/posts/380aa02/imgs/image-20251211103357595.png alt=/posts/380aa02/imgs/image-20251211103357595.png height=504 width=830></p></div><div class=post-footer id=post-footer><div class=post-info><div class=post-info-line><div class=post-info-mod><span title="更新于 2025-12-11 10:26:43">更新于 2025-12-11&nbsp;</span></div></div><div class=post-info-line><div class=post-info-md><span><a href=/posts/380aa02/index.md title=阅读原始文档 class=link-to-markdown>阅读原始文档</a></span></div><div class=post-info-share><span><a href=javascript:void(0); title="分享到 X" data-sharer=twitter data-url=https://goodlunatic.github.io/posts/380aa02/ data-title="2025 古剑山全国大学生网络攻防大赛 Misc Writeup" data-hashtags=CTF,Misc,Writeup><i class="fa-brands fa-x-twitter fa-fw" aria-hidden=true></i></a>
+<a href=javascript:void(0); title="分享到 Facebook" data-sharer=facebook data-url=https://goodlunatic.github.io/posts/380aa02/ data-hashtag=CTF><i class="fa-brands fa-facebook-square fa-fw" aria-hidden=true></i></a>
+<a href=javascript:void(0); title="分享到 微博" data-sharer=weibo data-url=https://goodlunatic.github.io/posts/380aa02/ data-title="2025 古剑山全国大学生网络攻防大赛 Misc Writeup"><i class="fa-brands fa-weibo fa-fw" aria-hidden=true></i></a></span></div></div></div><div class=post-info-more><section class=post-tags><i class="fa-solid fa-tags fa-fw me-1" aria-hidden=true></i><a href=/tags/ctf/ class=post-tag title="标签 - CTF">CTF</a><a href=/tags/misc/ class=post-tag title="标签 - Misc">Misc</a><a href=/tags/writeup/ class=post-tag title="标签 - Writeup">Writeup</a></section><section><span><a href=javascript:void(0); onclick=window.history.back()>返回</a></span>&nbsp;|&nbsp;<span><a href=/>主页</a></span></section></div><div class=post-nav><a href=/posts/353513a/ class=post-nav-item rel=prev title="2025 强网拟态防御国际精英挑战赛线下总决赛 Misc Writeup"><i class="fa-solid fa-angle-left fa-fw" aria-hidden=true></i>2025 强网拟态防御国际精英挑战赛线下总决赛 Misc Writeup</a><a href=/posts/d0736a7/ class=post-nav-item rel=next title='CTF-Misc "雅"题共赏'>CTF-Misc "雅"题共赏<i class="fa-solid fa-angle-right fa-fw" aria-hidden=true></i></a></div></div><div id=comments><div id=giscus class=comment><script src=https://giscus.app/client.js data-repo=goodlunatic/goodlunatic.github.io data-repo-id=R_kgDOQHqgBw data-category=Announcements data-category-id=DIC_kwDOQHqgB84Cw_4D data-mapping=pathname data-strict=0 data-theme=preferred_color_scheme data-reactions-enabled=1 data-emit-metadata=0 data-input-position=bottom data-lang=zh-CN data-loading=lazy crossorigin=anonymous async defer></script></div><noscript>Please enable JavaScript to view the comments powered by <a href=https://giscus.app/ rel="external nofollow noopener noreferrer">giscus</a>.</noscript></div></article><aside class=toc id=toc-auto aria-label=目录><h2 class=toc-title>目录&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden=true></i></h2><div class=toc-content id=toc-content-auto></div></aside></main><footer class=footer><div class=footer-container><div class="footer-line powered order-1">由 <a href=https://gohugo.io/ target=_blank rel="external nofollow noopener noreferrer" title="Hugo 0.152.1">Hugo</a> 强力驱动 | 主题 - <a href=https://github.com/hugo-fixit/FixIt target=_blank rel=external title="FixIt v0.4.0-alpha.2-20251023040336-063af2cd">FixIt</a></div><div class="footer-line copyright order-2" itemscope itemtype=http://schema.org/CreativeWork><i class="fa-regular fa-copyright fa-fw" aria-hidden=true></i>
+<span itemprop=copyrightYear>2022 - 2025</span><span class=author itemprop=copyrightHolder>
+<a href=https://goodlunatic.github.io target=_blank rel="external nofollow noopener noreferrer">Lunatic</a></span></div><div class="footer-line visitor"><span id=busuanzi_container_site_uv title=总访客数><i class="fa-regular fa-user fa-fw me-1" aria-hidden=true></i><span id=busuanzi_value_site_uv><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden=true></i></span></span><span id=busuanzi_container_site_pv class=footer-divider title=总访问量><i class="fa-regular fa-eye fa-fw me-1" aria-hidden=true></i><span id=busuanzi_value_site_pv><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden=true></i></span></span></div></div></footer></div><div class=widgets><div class="fixed-buttons animate__faster d-none"><div class="fixed-button back-to-top" role=button aria-label=回到顶部><i class="fa-solid fa-arrow-up fa-fw" aria-hidden=true></i><span class=variant-numeric>0%</span></div><div class="fixed-button view-comments d-none" role=button aria-label=查看评论><i class="fa-solid fa-comment fa-fw" aria-hidden=true></i></div></div><a href=https://github.com/goodlunatic title="Visit Lunatic's Github" target=_blank rel="external nofollow" class="github-corner left d-none-mobile"><svg viewBox="0 0 250 250" aria-hidden="true" width="56" height="56"><path d="M0 0 115 115h15l12 27L250 250V0z"/><path d="M128.3 109C113.8 99.7 119 89.6 119 89.6 122 82.7 120.5 78.6 120.5 78.6 119.2 72 123.4 76.3 123.4 76.3 127.3 80.9 125.5 87.3 125.5 87.3 122.9 97.6 130.6 101.9 134.4 103.2" fill="currentColor" style="transform-origin:130px 106px" class="octo-arm"/><path d="M115 115C114.9 115.1 118.7 116.5 119.8 115.4l13.9-13.8C136.9 99.2 139.9 98.4 142.2 98.6 133.8 88 127.5 74.4 143.8 58 148.5 53.4 154 51.2 159.7 51 160.3 49.4 163.2 43.6 171.4 40.1 171.4 40.1 176.1 42.5 178.8 56.2 183.1 58.6 187.2 61.8 190.9 65.4 194.5 69 197.7 73.2 200.1 77.6 213.8 80.2 216.3 84.9 216.3 84.9 212.7 93.1 206.9 96 205.4 96.6 205.1 102.4 203 107.8 198.3 112.5 181.9 128.9 168.3 122.5 157.7 114.1 157.9 116.9 156.7 120.9 152.7 124.9L141 136.5C139.8 137.7 141.6 141.9 141.8 141.8z" fill="currentColor" class="octo-body"/></svg></a><div id=mask></div><noscript><div class=noscript-warning>该网站在启用 JavaScript 的情况下效果最佳。</div></noscript></div><link rel=stylesheet href=/lib/pace/themes/blue/pace-theme-minimal.css><script src=/lib/autocomplete/autocomplete.min.js defer></script><script src=/lib/fuse/fuse.min.js defer></script><script src=/lib/sharer/sharer.min.js async defer></script><script src=/lib/cell-watermark/watermark.min.js defer></script><script src=https://vercount.one/js async defer></script><script src=/lib/pace/pace.min.js async defer></script><script src=/posts/380aa02/config/page.js defer></script><script src=/js/theme.min.js defer></script></body></html>
