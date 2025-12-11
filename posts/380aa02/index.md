@@ -350,6 +350,31 @@ if __name__ == "__main__":
 
 ![](imgs/image-20251211103416774.png)
 
+附件给了一个`secret`文件，010 打开发现是个 zip
+
+![](imgs/image-20251211131510232.png)
+
+我们改后缀为 .zip 后打开，发现里面有个`secret.pcapng`
+
+并且是`Store+Zipcrypto`，很明显提示了我们需要明文攻击
+
+![](imgs/image-20251211131557276.png)
+
+因为 pcapng 文件偏移量为 6 的地方有 12 字节的固定数据，如下所示
+
+![](imgs/image-20251211131848340.png)
+
+![](imgs/254087d1dc26e240e4b0ccae52b8d9af.png)
+
+解压后可以得到 `secret.pacpng`
+
+打开翻看发现主要是 HTTP 流量，并且大多都是 404 或者 403 的
+
+![](imgs/image-20251211132158548.png)
+
+![](imgs/image-20251211132210963.png)
+
+
 
 
 ## 题目名称 ezwav
