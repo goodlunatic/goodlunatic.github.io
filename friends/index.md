@@ -32,6 +32,7 @@
 | <img src="https://ch0en3.github.io/images/avatar.jpg" width="150pxpx" height="150pxpx"> | **[ch0en3](https://ch0en3.github.io) - Pwn [@星盟安全](https://www.xmcve.com/)** | <img src="https://www.nssctf.cn/files/2024/12/2/ceaca7b7bf.jpeg" width="150pxpx" height="150pxpx"> |     **[yichen](https://www.yuque.com/hxfqg9) - 全栈佬**      |
 | <img src="https://www.nssctf.cn/files/2025/12/15/33756e1b6c.jpeg" width="150pxpx" height="150pxpx"> | **[Alexander](https://www.cnblogs.com/alexander17) - Misc<br>努力成为一个成功的musc手** | <img src="https://baozongwi.xyz/images/acvtar.jpg" width="150pxpx" height="150pxpx"> | **[baozongwi](https://baozongwi.xyz/) - 包师傅 [@SU](https://su-team.cn/)**<br>**Hacking the future** |
 | <img src="https://www.nssctf.cn/files/2024/11/10/8d59621379.jpeg" width="150pxpx" height="150pxpx"> |             **[秋雨渐冷](https://yiqing.asia/)**             | <img src="https://avatars.githubusercontent.com/u/73370907?v=4" width="150pxpx" height="150pxpx"> |             **[s1rius](https://s1rius.space/)**              |
+| <img src="https://www.nssctf.cn/files/2025/12/16/02c6edaa0b.jpeg" width="150pxpx" height="150pxpx"> |            **[小转风](http://index.ctfwiki.cn/)**            |                                                              |                                                              |
 
 
 
