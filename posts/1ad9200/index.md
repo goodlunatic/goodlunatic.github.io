@@ -4694,7 +4694,90 @@ sound.mp3是待处理的MP3文件
 # 如果需要密码解密，但是没有密码，可以试试看音频中歌曲的名字（比如Canon）
 ```
 
+#### MP3数据块中某些字段隐写
 
+参考链接：http://jzcheng.cn/archives/146.html
+
+具体的原理分析思路可以参考：[例题2-星球朋友们问的题 Copyright隐写](https://goodlunatic.github.io/posts/bb1da35/#%E9%A2%98%E7%9B%AE%E5%90%8D%E7%A7%B0-copyright%E9%9A%90%E5%86%99)
+
+copyright字段隐写
+
+```python
+import libnum
+
+st = 0x0F05A4  # 起始
+ed = 0xC125A3  # 结束
+res = ''
+
+files = open('1.mp3', 'rb')   # 以二进制打开文件
+i = st
+
+while i < ed:  # 结束位置
+    files.seek(i+2, 0)  # 指针跳转到 0的位置加上i 的位置
+    padding_data = files.read(1)[0]  # 读取一个字节
+    padding_bit = (padding_data >> 1) & 1  # 该字节
+    files.seek(i+3, 0)  # 指针跳转到 0的位置加上i 的位置
+    copyright_data = files.read(1)[0]  # 读取一个字节
+    steg_bit = (copyright_data >> 3) & 1
+    res += str(steg_bit)
+    if padding_bit == 0:
+        i += 1044 # 视具体情况修改
+    else:
+        i += 1045 # 视具体情况修改
+
+
+print(f"len(res) = {len(res)}")
+print(f"len(res) / 8 = {len(res) / 8}")
+res = res.ljust((len(res) + 7) // 8 * 8, '0')  # 在右侧补0到8的倍数
+print(res[:350])
+print(libnum.b2s(res).decode())
+
+# len(res) = 11172
+# len(res) / 8 = 1396.5
+# 01100110011011000110000101100111011110110110001000110011011001000011011101100010011001010110010000110101001011010110010100111000011001000110000100101101001101000110010000111001011000110010110100111000001101000011100001100011001011010110010100110101011001000011001100110011001100100110010000110110001100110110001001100011011001000111110100000000000000        
+# flag{b3d7bed5-e8da-4d9c-848c-e5d332d63bcd}
+```
+
+private字段隐写
+
+```python
+import libnum
+
+st = 0x0399D0  # 起始
+ed = 0x294C6A  # 结束
+res = ''
+
+files = open('2.mp3', 'rb')   # 以二进制打开文件
+i = st
+
+while i < ed:  # 结束位置
+    files.seek(i+2, 0)  # 指针跳转到 0的位置加上i 的位置
+    target_data = files.read(1)[0]
+    # print(hex(target_data))
+    padding_bit = (target_data >> 1) & 1  # 该字节
+    steg_bit = target_data & 1
+    res += str(steg_bit)
+    if padding_bit == 0:
+        i += 417 # 视具体情况修改
+    else:
+        i += 418 # 视具体情况修改
+
+
+print(f"len(res) = {len(res)}")
+print(f"len(res) / 8 = {len(res) / 8}")
+res = res.ljust((len(res) + 7) // 8 * 8, '0')  # 在右侧补0到8的倍数
+print(res[:350])
+print(libnum.b2s(res).decode())
+
+# len(res) = 5911
+# len(res) / 8 = 738.875
+# 01100110011011000110000101100111011110110011000001101011001101000101111101011001010011110111010101011111010100110110010101100101011011010101111101110011001100000101111101100011011011000011001101110110011001010111001001011111011101000011000001011111011001100110100101101110011001000101111101100110001100010110000101100111001000010111110100000000000000
+# flag{0k4_YOu_Seem_s0_cl3ver_t0_find_f1ag!}
+```
+
+例题1-攻防世界 nice_bgm
+
+例题2-星球朋友们问的题 Copyright隐写
 
 ### WAV思路
 #### 1、Silenteye隐写
