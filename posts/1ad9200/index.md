@@ -2845,6 +2845,10 @@ if __name__ == '__main__':
 
 直接用`silenteye`打开输入密钥decode即可，默认密钥是`silenteye`，可以填入自己的密钥
 
+#### 4、steghide隐写
+
+用 `steghide` 解密或者直接用 `stegseek` 爆破
+
 ### GIF思路
 
 做GIF图像的相关的隐写题之前，我们首先需要对GIF图像大概的参数又一定的了解
