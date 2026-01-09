@@ -2925,6 +2925,436 @@ print(libnum.b2s(res))
 `flag{85ba0da24572f7123afc4b08f4d2ae37`
 
 
+
+## 题目名称 最后的 R.G!B?
+
+题面信息如下:
+
+> 有人说这届题目太简单，其实我也这么觉得
+> 
+> 只好说声抱歉
+> 
+> tips: 经历过原题的 ldx 们都知道：(a => a.reduce((o, v, i) => i % 2 ? (o[a[i-1]] = v, o) : o, {}))('R.G!B?'.split(''))
+
+附件给了下面这张 png
+
+![](imgs/image-20260109155245678.png)
+
+首先我们看题目给出的提示 ：`(a => a.reduce((o, v, i) => i % 2 ? (o[a[i-1]] = v, o) : o, {}))('R.G!B?'.split(''))`
+
+这是一串 js 代码，整个表达式执行后会返回：`{'R':'.','G':'!','B':'?'}`
+
+看到 `.!?` 这三个符号，如果经验比较丰富的话很容易就可以联想到 `Short Ook!`
+
+然后通过打印部分图片的像素值可以发现，并不是直接通过 像素值->ASCII 的方式隐写的，因此猜测是 LSB 隐写的方式
+
+经过尝试发现，其实原理就是 RGB 的 LSB 分别控制对应的符号，如果是 1 就代表有，0 就是没有
+
+如果这个描述难以理解的话，我们可以直接看下面的代码：
+
+```python
+def func1():
+    img = Image.open("rgb.png")
+    w, h = img.size
+    short_ook = ""
+
+    # 1. 提取 LSB (Bit 0) 并映射为 Short Ook!
+    # R -> . G -> ! B -> ?
+    
+    for y in range(h):
+        for x in range(w):
+            r, g, b, a = img.getpixel((x, y))
+            # 检查 R, G, B 的第 0 位
+            if r & 1: short_ook += '.'
+            if g & 1: short_ook += '!'
+            if b & 1: short_ook += '?'
+
+    print(f"[+] 提取出的 Short Ook! 的长度: {len(short_ook)}")
+    print(short_ook)
+```
+
+但是提取出来后找个在线网站解码 `Short Ook!` 发现结果是空的
+
+这里考差了一个知识点就是 `Short Ook!` 和 `brainfuck` 一样，都是可以在内存中把结果删除的，并且二者是可以相互转换的
+
+因此这里我们可以找个在线网站先把 `Short Ook!` 转为 `brainfuck` ，然后用我博客里的脚本跑出内存中被删去的内容
+
+当然也可以让 AI 直接写个脚本一步到位，详细原理请参考：https://en.wikipedia.org/wiki/Brainfuck
+
+```python
+def func1():
+    img = Image.open("rgb.png")
+    w, h = img.size
+    short_ook = ""
+
+    # 1. 提取 LSB (Bit 0) 并映射为 Short Ook!
+    # R -> . G -> ! B -> ?
+    
+    for y in range(h):
+        for x in range(w):
+            r, g, b, a = img.getpixel((x, y))
+            # 检查 R, G, B 的第 0 位
+            if r & 1: short_ook += '.'
+            if g & 1: short_ook += '!'
+            if b & 1: short_ook += '?'
+
+    print(f"[+] 提取出的 Short Ook! 的长度: {len(short_ook)}")
+    print(short_ook)
+
+    # 2. 将 Short Ook! 转换为 Brainfuck
+    ook_map = {
+        ".?": ">", 
+        "?.": "<", 
+        "..": "+", 
+        "!!": "-", 
+        "!.": ".", 
+        ".!": ",", 
+        "!?": "[", 
+        "?!": "]", 
+        "??": "]"  # 题目中的特殊变体
+    }
+
+    bf_code = ""
+    i = 0
+    while i < len(short_ook) - 1:
+        pair = short_ook[i:i+2]
+        if pair in ook_map:
+            bf_code += ook_map[pair]
+            i += 2
+        else:
+            i += 1
+            
+    print(f"\n[+] 转换后的 Brainfuck 的长度: {len(bf_code)}")
+    print(bf_code)
+
+    # 3. 自实现 Brainfuck 解释器
+    # 监控内存清零操作 [-]，在清零前读取数据
+
+    tape = [0] * 30000
+    ptr = 0
+    code_ptr = 0
+    bracket_map = {}
+    loop_stack = []
+
+    # 预处理跳转表
+    for idx, char in enumerate(bf_code):
+        if char == '[':
+            loop_stack.append(idx)
+        elif char == ']':
+            if loop_stack:
+                start = loop_stack.pop()
+                bracket_map[start] = idx
+                bracket_map[idx] = start
+
+    extracted_res = ""
+    steps = 0
+    max_steps = 1000000 # 防止死循环
+
+    while code_ptr < len(bf_code) and steps < max_steps:
+        # 如果当前指令是 '[' 且后面紧跟着 '-' 和 ']'，即 "[-]" (清零操作)
+        # 这通常意味着当前的 tape[ptr] 里的值是刚刚计算完的临时变量
+        if bf_code[code_ptr:code_ptr+3] == '[-]':
+            val = tape[ptr]
+            # 如果这个值是可打印字符，就把它记录下来
+            if val != 0 and 32 <= val <= 126:
+                extracted_res += chr(val)
+
+        cmd = bf_code[code_ptr]
+
+        if cmd == '>':
+            ptr += 1
+        elif cmd == '<':
+            ptr -= 1
+        elif cmd == '+':
+            tape[ptr] = (tape[ptr] + 1) % 256
+        elif cmd == '-':
+            tape[ptr] = (tape[ptr] - 1) % 256
+        elif cmd == '.':
+            # 正常的输出指令 (Bit 0 代码里没有这个，所以才需要 Hook)
+            pass 
+        elif cmd == ',':
+            pass
+        elif cmd == '[':
+            if tape[ptr] == 0:
+                code_ptr = bracket_map.get(code_ptr, code_ptr)
+        elif cmd == ']':
+            if tape[ptr] != 0:
+                code_ptr = bracket_map.get(code_ptr, code_ptr)
+        
+        code_ptr += 1
+        steps += 1
+
+    print(f"\n[+] 提取结果: {extracted_res}")  
+
+# [+] 提取出的 Short Ook! 的长度: 792
+
+# .?..............!?!!?................??!?.......!?!!?!.?....................!?!!?......................??!?.................!?!!?!.?....................!?!!?......................??!?.................!?!!?!.?..............!?!!?................??!?.....!?!!?!.?....................!?!!?......................??!?.....................!?!!?!.?..............!?!!?................??!?.................!?!!?!.?....................!?!!?......................??!?...!?!!?!.?..................!?!!?....................??!?.............................!?!!?!.?....................!?!!?......................??!?...........!?!!?!.?....................!?!!?......................??!?...............................!?!!?!.?..................!?!!?....................??!?.............................!?!!?!
+
+# [+] 转换后的 Brainfuck 的长度: 396
+
+# >+++++++[-<+++++++>]<+++[-]>++++++++++[-<++++++++++>]<++++++++[-]>++++++++++[-<++++++++++>]<++++++++[-]>+++++++[-<+++++++>]<++[-]>++++++++++[-<++++++++++>]<++++++++++[-]>+++++++[-<+++++++>]<++++++++[-]>++++++++++[-<++++++++++>]<+[-]>+++++++++[-<+++++++++>]<++++++++++++++[-]>++++++++++[-<++++++++++>]<+++++[-]>++++++++++[-<++++++++++>]<+++++++++++++++[-]>+++++++++[-<+++++++++>]<++++++++++++++[-]
+
+# [+] 提取结果: 4ll3n9e_is_
+```
+
+运行以上脚本后即可得到部分 flag：`4ll3n9e_is_`
+
+然后我们再用 stegsolve 去看 alpha 通道的数据
+
+![](imgs/image-20260109160546386.png)
+
+发现 alpha 通道的 LSB 分别非常的可疑，提取一下可以得到提示：`No Game No Life.`
+
+![](imgs/image-20260109160652438.png)
+
+这里其实就比较脑洞了，这里的 Game 指的是：`Conway's Game of Life`
+
+![](imgs/image-20260109160801365.png)
+
+然后发现上面部分像素的分布很像一个正方形，猜测经过这个 Game 的变化后出来应该是个 QRcode
+
+因此我们写个脚本提取一下 alpha 通道的 LSB，并让 AI 写个这个 Game 的转换脚本
+
+```python
+def func2():
+    pixel_list = []
+    a_list = []
+    img = Image.open("rgb.png")    
+    w,h = img.size
+    for y in range(h):
+        for x in range(w):
+            r, g, b, a = img.getpixel((x, y))
+            a_list.append(str(a&1))
+
+    bin_data = "".join(a_list)
+
+    # 转换为32x32网格
+    grid = np.array([int(bit) for bit in bin_data[:1024]]).reshape(32, 32)
+
+    # 一次康威生命游戏迭代
+    new_grid = np.zeros((32, 32), dtype=int)
+    for i in range(32):
+        for j in range(32):
+            neighbors = sum(
+                grid[i+di][j+dj] for di in (-1,0,1) for dj in (-1,0,1)
+                if not (di == dj == 0) and 0 <= i+di < 32 and 0 <= j+dj < 32
+            )
+            if grid[i][j]:
+                new_grid[i][j] = 1 if neighbors in (2,3) else 0
+            else:
+                new_grid[i][j] = 1 if neighbors == 3 else 0
+
+    # 生成二维码
+    img = Image.new('RGB', (32, 32)) 
+    pixels = img.load()
+
+    for i in range(32):
+        for j in range(32):
+            if new_grid[i][j] == 1:
+                pixels[j, i] = (0, 0, 0)      # 黑色
+            else:
+                pixels[j, i] = (255, 255, 255) # 白色
+
+    # 放大到320x320，便于扫码
+    img = img.resize((320, 320), Image.NEAREST)
+    img.save("output.png")
+    img.show()
+```
+
+运行以上脚本后即可得到下面这张 QRcode
+
+![](imgs/image-20260109161041893.png)
+
+扫码得到：`flag{th1s_ch`
+
+然后我们继续去看这张 png，010 打开发现有两个 IDAT 块
+
+并且尝试把第二个 IDAT 块删除后，发现图片显示内容，因此猜测这个 IDAT 块隐写数据了
+
+![](imgs/image-20260109161336605.png)
+
+手动提取出来解码一下，发现是藏了另一张 png
+
+![](imgs/image-20260109161525012.png)
+
+两张图片的长宽是一样的，经过尝试发现用 stegsolve 把两张图片的像素 xor 后可以得到一个 npiet
+
+![](imgs/image-20260109161655770.png)
+
+保存后用在线网站解一下即可得到第三段 flag：`h4rd_af_:(}`
+
+![](imgs/image-20260109161737649.png)
+
+综合以上三段flag，本题最后的 flag 为：`flag{th1s_ch4ll3n9e_is_h4rd_af_:(}`
+
+附：完整解题脚本
+
+```python
+#  题目名称: 最后的R.G!B?
+
+import numpy as np
+from PIL import Image
+
+def func1():
+    img = Image.open("rgb.png")
+    w, h = img.size
+    short_ook = ""
+
+    # 1. 提取 LSB (Bit 0) 并映射为 Short Ook!
+    # R -> . G -> ! B -> ?
+    
+    for y in range(h):
+        for x in range(w):
+            r, g, b, a = img.getpixel((x, y))
+            # 检查 R, G, B 的第 0 位
+            if r & 1: short_ook += '.'
+            if g & 1: short_ook += '!'
+            if b & 1: short_ook += '?'
+
+    print(f"[+] 提取出的 Short Ook! 的长度: {len(short_ook)}")
+    print(short_ook)
+
+    # 2. 将 Short Ook! 转换为 Brainfuck
+    ook_map = {
+        ".?": ">", 
+        "?.": "<", 
+        "..": "+", 
+        "!!": "-", 
+        "!.": ".", 
+        ".!": ",", 
+        "!?": "[", 
+        "?!": "]", 
+        "??": "]"  # 题目中的特殊变体
+    }
+
+    bf_code = ""
+    i = 0
+    while i < len(short_ook) - 1:
+        pair = short_ook[i:i+2]
+        if pair in ook_map:
+            bf_code += ook_map[pair]
+            i += 2
+        else:
+            i += 1
+            
+    print(f"\n[+] 转换后的 Brainfuck 的长度: {len(bf_code)}")
+    print(bf_code)
+
+    # 3. 自实现 Brainfuck 解释器
+    # 监控内存清零操作 [-]，在清零前读取数据
+
+    tape = [0] * 30000
+    ptr = 0
+    code_ptr = 0
+    bracket_map = {}
+    loop_stack = []
+
+    # 预处理跳转表
+    for idx, char in enumerate(bf_code):
+        if char == '[':
+            loop_stack.append(idx)
+        elif char == ']':
+            if loop_stack:
+                start = loop_stack.pop()
+                bracket_map[start] = idx
+                bracket_map[idx] = start
+
+    extracted_res = ""
+    steps = 0
+    max_steps = 1000000 # 防止死循环
+
+    while code_ptr < len(bf_code) and steps < max_steps:
+        # 如果当前指令是 '[' 且后面紧跟着 '-' 和 ']'，即 "[-]" (清零操作)
+        # 这通常意味着当前的 tape[ptr] 里的值是刚刚计算完的临时变量
+        if bf_code[code_ptr:code_ptr+3] == '[-]':
+            val = tape[ptr]
+            # 如果这个值是可打印字符，就把它记录下来
+            if val != 0 and 32 <= val <= 126:
+                extracted_res += chr(val)
+
+        cmd = bf_code[code_ptr]
+
+        if cmd == '>':
+            ptr += 1
+        elif cmd == '<':
+            ptr -= 1
+        elif cmd == '+':
+            tape[ptr] = (tape[ptr] + 1) % 256
+        elif cmd == '-':
+            tape[ptr] = (tape[ptr] - 1) % 256
+        elif cmd == '.':
+            # 正常的输出指令 (Bit 0 代码里没有这个，所以才需要 Hook)
+            pass 
+        elif cmd == ',':
+            pass
+        elif cmd == '[':
+            if tape[ptr] == 0:
+                code_ptr = bracket_map.get(code_ptr, code_ptr)
+        elif cmd == ']':
+            if tape[ptr] != 0:
+                code_ptr = bracket_map.get(code_ptr, code_ptr)
+        
+        code_ptr += 1
+        steps += 1
+
+    print(f"\n[+] 提取结果: {extracted_res}")
+
+def func2():
+    pixel_list = []
+    a_list = []
+    img = Image.open("rgb.png")    
+    w,h = img.size
+    for y in range(h):
+        for x in range(w):
+            r, g, b, a = img.getpixel((x, y))
+            a_list.append(str(a&1))
+
+    bin_data = "".join(a_list)
+
+    # 转换为32x32网格
+    grid = np.array([int(bit) for bit in bin_data[:1024]]).reshape(32, 32)
+
+    # 一次康威生命游戏迭代
+    new_grid = np.zeros((32, 32), dtype=int)
+    for i in range(32):
+        for j in range(32):
+            neighbors = sum(
+                grid[i+di][j+dj] for di in (-1,0,1) for dj in (-1,0,1)
+                if not (di == dj == 0) and 0 <= i+di < 32 and 0 <= j+dj < 32
+            )
+            if grid[i][j]:
+                new_grid[i][j] = 1 if neighbors in (2,3) else 0
+            else:
+                new_grid[i][j] = 1 if neighbors == 3 else 0
+
+    # 生成二维码
+    img = Image.new('RGB', (32, 32)) 
+    pixels = img.load()
+
+    for i in range(32):
+        for j in range(32):
+            if new_grid[i][j] == 1:
+                pixels[j, i] = (0, 0, 0)      # 黑色
+            else:
+                pixels[j, i] = (255, 255, 255) # 白色
+
+    # 放大到320x320，便于扫码
+    img = img.resize((320, 320), Image.NEAREST)
+    img.save("output.png")
+    img.show()
+
+
+if __name__ == "__main__":
+    func1()
+    func2()
+```
+
+
+
+
+
+
+
 ---
 
 > 作者: [Lunatic](https://goodlunatic.github.io)  
