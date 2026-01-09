@@ -386,7 +386,7 @@ tshark -r secret.pcapng -T fields -Y 'http' -e 'http.request.method' > out.txt
 
 ![](imgs/image-20260109170319948.png)
 
-最后再用 quipqiup 进行字频爆破即可得到最后的 flag：`flag{7h3_d34d_r3m4in_s1l3nt_wh1l3_w3_w0rk}`
+最后再用 quipqiup 爆破单表替换密码即可得到最后的 flag：`flag{7h3_d34d_r3m4in_s1l3nt_wh1l3_w3_w0rk}`
 
 ```
 The operation is proceeding as planned. The package is in place, but we need to move quickly. Remember, the access code is only valid for 24 hours, so don’t waste time. The flag you’re looking for is hidden in the backup server. Use the secondary route to avoid detection. 

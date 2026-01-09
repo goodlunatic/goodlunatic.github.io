@@ -373,7 +373,7 @@ if __name__ == "__main__":
 > ANN OCWUAWHU BCHLK AZFHU MK VDQH PAWEJ HRIHLWZ AYAGHU WJH XCUTH
 > 
 
-这个东西看起来很眼熟对吧，很容易就能想到quipquip字频爆破
+这个东西看起来很眼熟对吧，很容易就能想到用quipqiup爆破单表替换密码
 
 ![](imgs/image-20250126122828118.png)
 
