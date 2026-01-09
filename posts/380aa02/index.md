@@ -374,7 +374,29 @@ if __name__ == "__main__":
 
 ![](imgs/image-20251211132210963.png)
 
+后来在和 `@2hi5hu` 师傅交流下，发现这里数据其实是隐写在请求方法 `http.request.method` 这个字段中
 
+因此我们可以用 tshark 提取出来
+
+```bash
+tshark -r secret.pcapng -T fields -Y 'http' -e 'http.request.method' > out.txt
+```
+
+然后用 CyberChef 转换一下
+
+![](imgs/image-20260109170319948.png)
+
+最后再用 quipqiup 进行字频爆破即可得到最后的 flag：`flag{7h3_d34d_r3m4in_s1l3nt_wh1l3_w3_w0rk}`
+
+```
+The operation is proceeding as planned. The package is in place, but we need to move quickly. Remember, the access code is only valid for 24 hours, so don’t waste time. The flag you’re looking for is hidden in the backup server. Use the secondary route to avoid detection. 
+
+flag{7h3_d34d_r3m4in_s1l3nt_wh1l3_w3_w0rk} 
+
+Also, make sure the logs are cleared once the job is done. We can’t afford any traces. Let me know once you've retrieved it.
+```
+
+![](imgs/image-20260109170416537.png)
 
 
 ## 题目名称 ezwav
