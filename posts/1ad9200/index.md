@@ -18,7 +18,6 @@
 
 {{< /admonition >}}
 
-## 一些奇奇怪怪的经历
 
 1、rockstar 编程语言，在github上面可以找到，然后在本地用pip安装库，把rock文件转换为py文件，运行即可得到flag
 
@@ -1906,6 +1905,10 @@ print(res)
 #### 18、Arnold猫脸变换
 
 参考链接：https://1cepeak.cn/post/arnold/
+
+参考项目1：https://github.com/Alexander17-yang/Anrold-break
+
+参考项目2：https://github.com/aristorechina/arnold_decoder
 
 如果已经得到了`shuffle_times`、`a`和`b`，然后直接使用下面这个脚本恢复即可
 
