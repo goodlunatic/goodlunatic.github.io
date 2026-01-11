@@ -458,18 +458,6 @@ if __name__ == "__main__":
 
 ![](imgs/image-20260111152812608.png)
 
-## 题目名称 time
-
-> What time is it?（flag 为全小写）
-
-题目附件给了个elf可执行文件
-
-远程交互题，大概意思就是给你base64，解码出来是张带有时间的图片，需要在2秒内告诉远程，图片中显示的是几点
-
-题目本身不难，就是根据题意写脚本+明文攻击
-
-比赛已结束，我这里无法复现，感兴趣的师傅可以参考 [这篇文章](https://bili33.top/posts/CTF-PCB2025-Preliminary-Round-Writeup/#time-Solved)
-
 ## 题目名称 PunkFace
 
 > look。
@@ -645,6 +633,18 @@ with open("output", "wb") as f:
 
 ![](imgs/image-20260111162109683.png)
 
+
+## 题目名称 time
+
+> What time is it?（flag 为全小写）
+
+题目附件给了个elf可执行文件
+
+远程交互题，大概意思就是给你base64，解码出来是张带有时间的图片，需要在2秒内告诉远程，图片中显示的是几点
+
+题目本身不难，就是根据题意写脚本+明文攻击
+
+比赛已结束，我这里无法复现，感兴趣的师傅可以参考 [这篇文章](https://bili33.top/posts/CTF-PCB2025-Preliminary-Round-Writeup/#time-Solved)
 
 
 
