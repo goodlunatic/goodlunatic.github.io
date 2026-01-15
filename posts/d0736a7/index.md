@@ -13,6 +13,691 @@
 
 {{< /admonition >}}
 
+## 八神系列（Misc进阶必刷题）
+
+### [SOLVED] 题目名称 Chaos and Torus
+
+> 题目附件： https://pan.baidu.com/s/11NwSPtcUEqk81m1-45Mr3g?pwd=2ihu 提取码: 2ihu 
+
+附件给了一个 cat.gif，gif 的内容表达的是 Aronld 变换，尝试分帧，发现一共有 70 帧
+
+![](imgs/image-20250916103500592.png)
+
+然后尝试提取了一下每帧的帧间隔和偏移量，但是没有发现什么有用的信息
+
+![](imgs/image-20250916103747949.png)
+
+后来在`@八神`师傅的帮助下，知道了这道题考察的是 [Arnold's cat map](https://en.wikipedia.org/wiki/Arnold%27s_cat_map)
+
+具体原理参考：https://en.wikipedia.org/wiki/Arnold%27s_cat_map
+
+这一混沌映射有多种可能的算法，但由于题目已经给出整个变换序列
+
+因此我们可以只对前两帧的图像进行分析，从而列方程求解出变换的参数
+
+> 举个例子，假如第一帧中有两个像素，（1, 1）和（1, 2）
+> 
+> 经过一次变换后，在第二帧中的位置变成了（3, 2）和（4, 3）
+> 
+> 根据变换的原理，我们可以列如下方程
+> 
+> $X_{n+1} = a*X_n + b*Y_n$ 和 $Y_{n+1} = c*X_n + d*Y_n$
+> 
+> 代入具体坐标后，就可以求解得到 a, b, c, d 的具体值
+
+但是这题采用的实际上就是wikipedia页面中的范例Python代码所使用的参数
+
+Arnold's cat map 的特征之一是经过多次线性变换后，变换结果会回归初始图像
+
+我们可以用PS打开看一下每一帧的图像，发现每帧其实只有中间那个`71x71`的正方形区域在变换
+
+![](imgs/image-20260114222517171.png)
+
+因此我们可以写个简单的脚本，来测试一下这个图像变换的循环节是多少
+
+```python
+from PIL import Image
+from numpy import array, meshgrid
+
+# 获取第一帧图像中的猫脸部分
+img = Image.open('cat.gif').convert('RGB').crop((40, 33, 111, 104))
+# 将PIL图像转换为numpy数组
+img = array(img) 
+N = img.shape[0]
+
+# 创建坐标网格，返回两个从0到N-1的数组
+x, y = meshgrid(range(N), range(N))
+# 定义坐标映射规则
+xmap = (2 * x + y) % N
+ymap = (x + y) % N
+
+for i in range(N + 1):
+    Image.fromarray(img).save(f'./test_{i}.png')
+    # 根据映射规则重新排列图像像素
+    img = img[xmap, ymap] 
+```
+
+发现第70次线性变换时变回了原始图像
+
+![](imgs/image-20260114223502915.png)
+
+然后题目这里其实给出了整个变换序列，并把整个序列的图像合成到了一张GIF里
+
+但是有些图像可能并非原始图像经变换得到的，所以这里就要求选手去复原每一帧的原始图像
+
+我们可以基于上述脚本，写个脚本把所有动画帧中的混沌映射图像都变换回原始图像
+
+```python
+from PIL import Image, ImageSequence
+from numpy import array, meshgrid
+
+def cat(input_img, times):
+    img = array(input_img)
+    N = img.shape[0]
+
+    x, y = meshgrid(range(N), range(N))
+    xmap = (2 * x + y) % N
+    ymap = (x + y) % N
+
+    for i in range(times):
+        img = img[xmap, ymap]
+    result = Image.fromarray(img)
+    return result
+
+img = Image.open('cat.gif')
+for i in range(70):
+    # ImageSequence.Iterator(img): 将GIF图像转换为可迭代的图像序列
+    tmp = ImageSequence.Iterator(img)[i].convert('RGB').crop((40, 33, 111, 104))
+    tmp = cat(tmp, 70-i) # 第i帧图像，恢复需要变换 70-i 次
+    tmp.save(f'./out_{i}.png')
+```
+
+然后去看恢复出来的图像，可以发现部分图像的左下角有字符
+
+![](imgs/image-20260114224829795.png)
+
+| ![](imgs/image-20260114224311463.png) | ![](imgs/image-20260114224652107.png) | ![](imgs/image-20260114224722544.png) |
+| :-----------------------------------: | :-----------------------------------: | :-----------------------------------: |
+
+依次把所有字符连起来即可得到flag: `DASCTF{Vladimir_Arnold_has_a_little_cat}`
+
+
+### [SOLVED] 题目名称 the year we were 16（2025黑龙江省赛）
+
+> 题目附件：https://pan.baidu.com/s/1S-dm0upCi3cHwLEp0f-FPQ?pwd=i8hw 提取码: i8hw
+
+#### 常规解
+
+题目附件给了一张文本头部数据被篡改后的 BMP 图片，010 打开提示报错
+
+![](imgs/image-20250922225747582.png)
+
+当我们把模板中的这两个参数修正后，虽然 010 还提示报错，但是BMP 图片已经能正常显示了
+
+![](imgs/image-20250922225844125.png)
+
+然后我们拿 stegsolve 打开，一个 Plane 一个 Plane 地查看，发现以下几个平面存在隐写的信息
+
+
+| ![](imgs/image-20250922230025465.png) | ![](imgs/image-20250922230125118.png) | ![](imgs/image-20250922230140137.png) |
+| :-----------------------------------: | :-----------------------------------: | :-----------------------------------: |
+
+
+因此我们把这几个平面上对应的信息提取出来，即可得到最后的 flag：`DASCTF{RGB_five_six_five_takes_you_back_to_old_live}`
+
+![](imgs/image-20250922230235662.png)
+
+#### 原理详解(感谢八神)
+
+010打开发现文件头中的biBitCount和biCompression均为0，这很明显不正常，因此需要修复文件头。
+
+biBitCount是Bitmap位图每个像素所占的位数，有1、4、8、16、24、32等
+
+biCompression指定位图是否压缩，包括BI_RGB BI_RLE8 BI_RLE4 BI_BITFIELDS等情况。
+
+接下来给出两种方式判断缺失的位图属性。
+
+**方法一：**
+
+由于图像的宽高没有被更改，可以从010里读取出宽为256，高为192
+
+![](imgs/image-20260115154831564.png)
+
+那么全图像素数量为256x192=49152，而除去文件头后整个文件大小为 98370-54=98316 字节
+
+两者之商约为2，说明每像素对应2字节16位，因此该图为16位的位图文件，biBitCount为16，然后遍历尝试biCompression即可
+
+**方法二**
+
+该方法需要对Bitmap位图有所了解，注意到文件头后的12个字节是 00 F8 00 00 E0 07 00 00 1F 00 00 00
+
+这是16-bit rgb565 little-endian 格式位图的特征掩码
+
+事实上，若将其每四个字节按小端序转为二进制数
+
+将分别得到 `1111100000000000`、`0000011111100000、`0000000000011111`
+
+![](imgs/image-20260115155229930.png)
+
+这正是 rgb565 le 格式中三个颜色分量对应的掩码，因此可以判断biBitCount为16，biCompression为rgb565对应的3
+
+然后我们从图片中的文字：`Little-endian SIxteen-bits BMP` 把大写字母连起来可以得到提示：`LSB`
+
+当然按照上面的方法用 stegsolve 打开也能看出LSB隐写的痕迹
+
+接下来处理16位rgb565le格式的LSB隐写，对于此类格式，每个像素的RGB分量合计占据16个bit(2字节)
+
+按照R5G6B5的顺序排列后再以小端序存储，即 GGGBBBBB RRRRRGGG 的形式
+
+容易看出，RGB三个分量的取值范围分别是0-0x1F、0-0x3F、0-0x1F
+
+在渲染时，会将其放大到 0-0xFF，例如对R分量，有 R = R \* 0xFF / 0x1F
+
+因此，实际渲染结果的颜色值最末位是计算得到的，无法携带隐藏信息
+
+实际有意义的“末位”应为每个颜色分量存储值的末位，即GG**G**BBBB**B** RRRR**R**GGG
+
+实际上，也就是换算后的 RRRR**R**RRR GGGGG**G**GG BBBB**B**BBB 加粗的这三位
+
+知道了原理后，我们写个脚本提取LSB隐写的数据即可，这里要注意的一点就是BMP文件是倒着存储像素数据的
+
+```python
+import libnum
+
+def extract_lsb(byte_data):
+    bin_data = bin(int.from_bytes(byte_data, 'big'))[2:].zfill(16)
+    lsb_bit = bin_data[12] + bin_data[2] + bin_data[7]
+    return lsb_bit
+
+with open('16.bmp', 'rb') as f:
+    data = f.read()[-512:] # 读取BMP第一行的像素数据
+
+lsb_data = ''
+flag = ''
+for i in range(0,512,2):
+    lsb_data += extract_lsb(data[i: i+2])
+
+print(libnum.b2s(lsb_data))
+# b'DASCTF{RGB_five_six_five_takes_you_back_to_old_live}'
+```
+
+
+根据上面的分析，也可以用 stegsolve 工具直接从渲染后的图像中得到隐写信息(也就解释了常规解中为啥要选那几个平面)
+
+
+### [SOLVED] 题目名称 Really Good Binaural Audio（2025 浙江省赛决赛）
+
+> 这道题在 `@八神` 师傅的帮助下成功解出，在这里感谢一下`@八神`
+
+题目附件： https://pan.baidu.com/s/1GEwoipItgy4NDaadnA2Wkw?pwd=nvm3 提取码: nvm3
+
+> 题面信息：
+> 
+> Tell me when you sight the sound.
+
+附件给了一个 `flag.wav` 的音频文件，我们用 Audacity 打开，在频谱图中可以看到表示题目名称的字符串
+
+![](imgs/image-20251120100737325.png)
+
+我们可以先写个脚本来查看一下这个音频的基本信息
+
+```python
+import wave
+
+def get_info():
+    with wave.open("flag.wav",'rb') as wf:
+        n_channels = wf.getnchannels()
+        samplewidth_bytes = wf.getsampwidth()
+        bits_per_sample = samplewidth_bytes * 8
+        framerate = wf.getframerate()
+        n_frames = wf.getnframes()
+        duration = n_frames / framerate
+    print(f"通道数: {n_channels}")
+    print(f"每个采样的字节数: {samplewidth_bytes}")
+    print(f"每个采样的位数: {bits_per_sample}")
+    print(f"采样率: {framerate}")
+    print(f"总帧数: {n_frames}")
+    print(f"时长(秒): {duration}")
+    # 通道数: 2
+    # 每个采样的字节数: 2
+    # 每个采样的位数: 16
+    # 采样率: 22050
+    # 总帧数: 3884905
+    # 时长(秒): 176.18616780045352
+```
+
+发现是双声道，采样的精度是 16bit，因此每个采样点双声道就包含 32bit 的数据
+
+总的采样点数为3884905，分解一下可以得到 3884905 = 5 x 761 x 1021
+
+把题目名中每个单词的首字母连起来可以得到`RGBA`这个提示，猜测是要我们把这些数据转为 RGBA 像素
+
+并且频谱图中也提示了我们：左声道是 RG，右声道则是 BA
+
+因为是 RGBA 图像，并且我们之前分析得到每个采样点双声道包含 32bit 的数据
+
+因此猜测 RGBA 每个通道就都是 8bit 的数据，但是图像的宽高是什么呢？
+
+我们可以写个脚本来查看一下具体的数据
+
+```python
+from scipy.io import wavfile
+
+def func1():
+    sample_rate, data = wavfile.read("flag.wav")
+    for idx,[l,r] in enumerate(data[:100]):
+        if idx % 5 == 0:
+            print(f"{'='*50}")
+        r, g = (l >> 8) & 0xFF, l & 0xFF
+        b, a = (r >> 8) & 0xFF, r & 0xFF
+        l, r = int(l), int(r)
+        r, g, b, a = int(r), int(g), int(b), int(a)
+        print(f"{l,r} -> {(r,g,b,a)}")
+```
+
+![](imgs/image-20251120162701292.png)
+
+仔细观察我们就会发现，这个像素点的分布大致是以5个像素点的数据为一组的
+
+因此我们从之前的总采样点数：3884905 = 5 x 761 x 1021，就可以判断图像宽高就是 1021 x 761 或者 761 x 1021
+
+我们写个脚本提取一下数据，然后转为RGBA像素点
+
+```python
+from PIL import Image
+from scipy.io import wavfile
+
+def solve():
+    sample_rate, data = wavfile.read("flag.wav")
+    img = Image.new('RGBA', (1021, 761))
+
+    for y in range(761):
+        for x in range(1021):
+            i = (x + y * 1021) * 5 # 5个采样点一组
+            left_val = data[i][0]  # 左声道的数据
+            right_val = data[i][1] # 右声道的数据
+            r, g = (left_val >> 8) & 0xFF, left_val & 0xFF    # 高 8 位 -> R，低 8 位 -> G
+            b, a = (right_val >> 8) & 0xFF, right_val & 0xFF  # 高 8 位 -> B，低 8 位 -> A
+            r, g, b, a = int(r), int(g), int(b), int(a) # np.int16 转为 int 类型
+            img.putpixel((x, y), (r, g, b, a))
+
+    img.show()
+    img.save('flag.png')
+```
+
+运行以上脚本后即可得到下图，flag 可能有点模糊，不过硬看也能看出来
+
+![](imgs/image-20251120163729490.png)
+
+如果想要更清晰的 flag，可以到 stegsolve 中调整一下
+
+![](imgs/image-20251120163838903.png)
+
+`DASCTF{A_1s_for_Audio_1n_RGBA}`
+
+当然，这里如果没注意到像素分布是 5 个一组，这题也是可以做的，就是出来的图像可能会有点变形
+
+```python
+from PIL import Image
+from scipy.io import wavfile
+
+def solve():
+    sample_rate, data = wavfile.read("flag.wav")
+    img = Image.new('RGBA', (5105, 761))
+    for y in range(761):
+        for x in range(5105):
+            i = x + y * 5105
+            left_val = data[i][0]  # 左声道的数据
+            right_val = data[i][1] # 右声道的数据
+            r, g = (left_val >> 8) & 0xFF, left_val & 0xFF    # 高 8 位 -> R，低 8 位 -> G
+            b, a = (right_val >> 8) & 0xFF, right_val & 0xFF  # 高 8 位 -> B，低 8 位 -> A
+            r, g, b, a = int(r), int(g), int(b), int(a) # np.int16 转为 int 类型
+            img.putpixel((x, y), (r, g, b, a))
+
+    img.show()
+    img.save('flag.png')
+```
+
+![](imgs/image-20251120164514457.png)
+
+![](imgs/image-20251120164619429.png)
+
+
+附：完整解题脚本
+
+```python
+from PIL import Image
+from scipy.io import wavfile
+
+def func1():
+    sample_rate, data = wavfile.read("flag.wav")
+    for idx,[l,r] in enumerate(data[:100]):
+        if idx % 5 == 0:
+            print(f"{'='*50}")
+        r, g = (l >> 8) & 0xFF, l & 0xFF
+        b, a = (r >> 8) & 0xFF, r & 0xFF
+        l, r = int(l), int(r)
+        r, g, b, a = int(r), int(g), int(b), int(a)
+        print(f"{l,r} -> {(r,g,b,a)}")
+
+def solve():
+    sample_rate, data = wavfile.read("flag.wav")
+    img = Image.new('RGBA', (1021, 761))
+
+    for y in range(761):
+        for x in range(1021):
+            i = (x + y * 1021) * 5 # 5个采样点一组
+            left_val = data[i][0]  # 左声道的数据
+            right_val = data[i][1] # 右声道的数据
+            r, g = (left_val >> 8) & 0xFF, left_val & 0xFF    # 高 8 位 -> R，低 8 位 -> G
+            b, a = (right_val >> 8) & 0xFF, right_val & 0xFF  # 高 8 位 -> B，低 8 位 -> A
+            r, g, b, a = int(r), int(g), int(b), int(a) # np.int16 转为 int 类型
+            img.putpixel((x, y), (r, g, b, a))
+
+    img.show()
+    img.save('flag.png')
+
+
+if __name__ == '__main__':
+    func1()
+    solve()
+```
+
+然后除了以上预期的解法以外，`@脉冲星`师傅还有一种非预期的解法
+
+首先就是提取音频的数据，然后把双声道的低8位数据转为字节连起来并导出
+
+```python
+from scipy.io import wavfile
+
+def solve():
+    sample_rate, data = wavfile.read("flag.wav")
+    data1 = []
+    data2 = []
+    res = []
+    
+    for item in data:
+        data1.append(int(item[0] & 0xFF))
+        data2.append(int(item[1] & 0xFF))
+
+    res.extend(data1)
+    res.extend(data2)
+    print(res[:100])
+    with open('out.data','wb') as f:
+        f.write(bytes(res))
+
+
+if __name__ == "__main__":
+    solve()
+```
+
+然后把导出的.data文件拉入GIMP调整位移和宽高，这样也能得到图片和其中的flag，而且这样做甚至比预期解看的更清晰
+
+![](imgs/image-20251120194646626.png)
+
+
+### [SOLVED] 题目名称 Just Not Good
+
+> 题目附件： https://pan.baidu.com/s/12j_kEm7Vw0PETvJ8GSiC8g?pwd=u7q6 提取码: u7q6
+
+#### 常规解
+
+解压附件压缩包可以得到一个`file`，但是打开发现有PNG的文件头，但改后缀为`.png`后图片无法正常显示
+
+![](imgs/image-20250411202213509.png)
+
+![](imgs/image-20250411202232465.png)
+
+在010中打开图片，发现PNG头还在，但是尾部已经损坏了，并且发现里面由一大串`02 1A 00 00`
+
+因此猜测是异或了`02 1A 00 00`，因此我们用CyberChef异或一下
+
+![](imgs/image-20250411202350469.png)
+
+异或完后下载到本地，再用010打开，PNG头坏了也没事
+
+尝试foremost一下，发现可以得到下图
+
+![](imgs/image-20250411202508050.jpeg)
+
+其实我们在010中爆搜也能找到JPG的头，因此也可以手动提取
+
+![](imgs/image-20250411202601189.png)
+
+得到上述图片后，用010改一下图片的高度，即可得到部分 flag：
+
+`ASCTF{fab6ce57e3131f1635b0`
+
+`c953debe67ac165f}`
+
+![](imgs/image-20250411202746950.png)
+
+![](imgs/image-20250411202652827.png)
+
+还剩下几个字符不知道，尝试回去看剩下的数据，发现剩下的数据其实是个 PNG 图片
+
+补上文件头，然后爆破宽高即可得到剩下的 flag
+
+#### 原理详解(感谢八神)
+
+前面异或的步骤是一样的，我们重点看异或后的数据
+
+文件头为`\8BJNG`，第一个chunk为JHDR，后续可以看到bKGD、sRGB、IDAT、JDAT和IEND等chunk，说明这很可能是一个基于PNG结构的扩展格式。
+
+实际上可以查到，这是MNG图像格式规范的子集，[JNG (JPEG Network Graphics)格式](http://www.libpng.org/pub/mng/spec/jng.html)。
+
+> 由于MNG和JNG格式均未得到推广，很少有图像查看器和编辑器支持该格式
+> 
+> 如Xnview等软件支持查看JNG格式，但直接打开并不能得到有效信息
+> 
+> Google和百度前两页能够搜索到的在线转换工具或ImageMagick也无法完整转换该图像
+> 
+> 此外，JDAT chunk实际上包含了一个完整的JPG格式图像数据。
+
+为了还原图像内容，首先参照上面的JNG格式规范对JHDR chunk进行分析：
+
+> 00 00 00 10 长度位 
+> 
+> 4A 48 44 52 标志位 
+> 
+> 00 00 03 F9 宽度 
+> 
+> 00 00 03 00 高度 
+> 
+> 0E 色彩类型，14对应Color-alpha，即带Alpha通道的彩色 08 采样深度，8对应8-bit 
+> 
+> 08 00 压缩方法和交错方法，与上一行一样都是JPG数据部分的参数 
+> 
+> 01 Alpha透明通道的采样深度，1对应1-bit 
+> 
+> 00 表示Alpha透明通道数据为PNG的IDAT格式 
+> 
+> 00 00 Alpha透明通道的扫描线和交错方法，基本上只能是0，不重要
+> 
+> 37 07 D9 95 CRC校验位
+
+这是一个带透明通道的彩色JNG图像，其彩色部分储存在JDAT chunk中的JPEG格式图像数据里
+
+透明通道数据储存在IDAT chunk中的PNG格式数据块里，分别还原两个部分即可得到完整图像信息
+
+第一部分图像的提取，可以参考上面的常规解，用foremost或者010手动提取都可以
+
+接下来要处理Alpha透明通道，根据之前的分析，已知透明通道数据以PNG的IDAT chunk模式存储，且位深度为1，宽高与JNG图像的宽高一致。
+
+那么至少有两种方法可以得到透明通道信息：
+
+一是根据已知宽高、色深（1）、色彩类型（灰度）构造PNG文件头和IHDR chunk，将其转为灰度图像处理
+
+另一种是直接读取IDAT块的数据并重构扫描线。第一种实现比较简单，这里说一下第二种
+
+根据PNG格式规范，IDAT块中包含的是zlib压缩数据，图像信息以扫描线形式构成，图像每行对应一条扫描线
+
+每条扫描线的数据开头8位是过滤函数信息，接下来按从左到右的顺序记录每个像素信息，最后补齐为8的倍数
+
+对于本题，色深为1，图像宽度为1017，则每行扫描线占据数据长度：8 + 1 * 1017 + 7(补齐) = 1032 bit = 129 byte
+
+IDAT chunk中的zlib压缩数据解压后长度应为：129 * 1023 byte
+
+这是可以验证的，因此也可以由解压后数据反推出透明通道内容
+
+对于1 bit深度的透明通道，1对应完全透明（即8 bit色深下的A通道255），0对应完全不透明（即8 bit色深下的A通道0）
+
+把透明通道内容和之前得到的图像内容合成在一起即可得到完整图像
+
+并且注意到JNG图像里的bKGD chunk，内容为：00 FF 00 FF 00 FF
+
+根据规范，bKGD chunk储存背景色，每16 bit对应一个颜色通道，色深较小的情况下高位用0补齐
+
+因此这里的背景色实际上是#FFFFFF，也就是白色。
+
+合成透明通道时可以把完全透明的部分置为白色，也可以添加透明通道并保存为PNG等支持透明通道的格式，这里采取后一种做法
+
+
+### [TODO] 题目名称 itch years
+
+题目附件给了一个 7z 压缩包，手动解压几个发现是 7z套娃，并且发现里面的文件名都是 6 位大小写字母
+
+![](imgs/image-20250901102648422.png)
+
+
+于是写了个脚本解套，发现 txt 中的内容一共有以下七种情况
+
+```python
+import py7zr
+import os
+import shutil
+
+def decompress_7z(archive_file):
+    global res  # 声明使用全局变量
+    global name_res
+    # 确保tmp目录存在且为空
+    if os.path.exists("tmp"):
+        shutil.rmtree("tmp")
+    os.makedirs("tmp", exist_ok=True)
+    
+    new_archive_file = None
+    txt_filename = None
+    
+    try:
+        with py7zr.SevenZipFile(archive_file, 'r') as archive:
+            file_list = archive.list()
+            for file in file_list:
+                if file.filename.endswith('.7z'):
+                    name_res.append(file.filename.split('.')[0])
+                    new_archive_file = file.filename
+                elif file.filename.endswith('.txt'):
+                    txt_filename = file.filename
+                    name_res.append(file.filename.split('.')[0])
+        # 解压文件
+        with py7zr.SevenZipFile(archive_file, mode='r') as archive:
+            archive.extractall("tmp/")
+        
+        print(f"[+] {archive_file} 解压成功")
+        
+        # 读取txt文件内容
+        if txt_filename and os.path.exists(f"./tmp/{txt_filename}"):
+            with open(f"./tmp/{txt_filename}", 'r') as f:
+                data = f.read().strip()
+                if data == 'Come on!':
+                    res += "a"
+                elif data == 'Go ahead!':
+                    res += "b"
+                elif data == 'Go for it.':
+                    res += "c"
+                elif data == 'Keep it up.':
+                    res += "d"
+                elif data == 'You can do it.':
+                    res += "e"
+                elif data == 'Cheer up!':
+                    res += "f"
+                elif data == 'Hang in there!':
+                    res += "g"
+                else:
+                    print(f"未知的内容: {data}")
+        
+        # 移动文件到当前目录
+        for filename in os.listdir("tmp"):
+            src = os.path.join("tmp", filename)
+            dst = os.path.join(".", filename)
+            if os.path.exists(dst):
+                os.remove(dst)
+            shutil.move(src, dst)
+        
+        # 清理
+        shutil.rmtree("tmp")
+        os.remove(archive_file)
+        
+        return new_archive_file
+        
+    except Exception as e:
+        print(f"解压 {archive_file} 时出错: {e}")
+        # 清理临时文件
+        if os.path.exists("tmp"):
+            shutil.rmtree("tmp")
+        return None
+
+if __name__ == "__main__":
+    res = ""  # 初始化全局变量
+    name_res = []
+    archive_file = "flag.7z"
+    
+    while True:
+        if archive_file and archive_file.endswith('.7z') and os.path.exists(archive_file):
+            archive_file = decompress_7z(archive_file)
+            if archive_file is None:
+                break
+        else:
+            break
+    
+    print(res)
+    print(name_res)
+```
+
+结合题目名的意思七年之痒，猜测最后的 flag 肯定和数字七有关了，尝试了转七进制但是依旧无果
+
+```python
+from itertools import permutations
+from Crypto.Util.number import long_to_bytes
+
+def func_decode(raw, character_base):
+    raw_long = 0
+    for c in raw:
+        for i in range(len(character_base)):
+            if c == character_base[i]:
+                raw_long = raw_long * 7 + i
+                break  # 找到匹配后跳出内层循环
+        else:
+            continue
+    # print(f"Raw long: {raw_long}")
+    return long_to_bytes(raw_long)
+
+def func_burp(raw):
+    character_base = ['a', 'b', 'c', 'd', 'e', 'f', 'g']
+    
+    for perm in permutations(character_base):
+        # print(f"Testing permutation: {perm}")
+        try:
+            result = func_decode(raw, perm)
+            result_str = result
+            if b'flag' in result_str or b'CTF' in result_str:
+                print(f"Decoded result: {result_str}")
+                
+        except Exception as e:
+            print(f"Error with permutation {perm}: {e}")
+
+if __name__ == "__main__":
+    raw = "bcffaccccgdbcgeeecbbgafeebdbaededbebbdagdedfbbgbaedaagbggffeggcgccbefedbgfbggdbccgecadcaaeecbbaabe"
+    func_burp(raw)
+```
+
+
+然后这里在`@默`师傅的帮助下，发现部分7z压缩包在文件尾前插入了部分数据，并且结合文件头猜测可能是切片后的webp图像数据。
+
+![](imgs/image-20250919093819453.png)
+
+但是要提取出完整的 webp 数据，需要分析出每段数据具体的分布规律，目前还没找到
+
+
 ## [SOLVED] 题目名称 nothing (2024 蓝桥杯全国总决赛)
 
 > 题目附件： https://pan.baidu.com/s/1eGIfajRXx3uqjlk54CaZ1g?pwd=ax6g 提取码: ax6g
@@ -2348,216 +3033,6 @@ if __name__ == '__main__':
 ```
 
 
-## [SOLVED] 题目名称 Really Good Binaural Audio（2025 浙江省赛决赛）
-
-> 这道题在 `@八神` 师傅的帮助下成功解出，在这里感谢一下`@八神`
-
-题目附件： https://pan.baidu.com/s/1GEwoipItgy4NDaadnA2Wkw?pwd=nvm3 提取码: nvm3
-
-> 题面信息：
-> 
-> Tell me when you sight the sound.
-
-附件给了一个 `flag.wav` 的音频文件，我们用 Audacity 打开，在频谱图中可以看到表示题目名称的字符串
-
-![](imgs/image-20251120100737325.png)
-
-我们可以先写个脚本来查看一下这个音频的基本信息
-
-```python
-import wave
-
-def get_info():
-    with wave.open("flag.wav",'rb') as wf:
-        n_channels = wf.getnchannels()
-        samplewidth_bytes = wf.getsampwidth()
-        bits_per_sample = samplewidth_bytes * 8
-        framerate = wf.getframerate()
-        n_frames = wf.getnframes()
-        duration = n_frames / framerate
-    print(f"通道数: {n_channels}")
-    print(f"每个采样的字节数: {samplewidth_bytes}")
-    print(f"每个采样的位数: {bits_per_sample}")
-    print(f"采样率: {framerate}")
-    print(f"总帧数: {n_frames}")
-    print(f"时长(秒): {duration}")
-    # 通道数: 2
-    # 每个采样的字节数: 2
-    # 每个采样的位数: 16
-    # 采样率: 22050
-    # 总帧数: 3884905
-    # 时长(秒): 176.18616780045352
-```
-
-发现是双声道，采样的精度是 16bit，因此每个采样点双声道就包含 32bit 的数据
-
-总的采样点数为3884905，分解一下可以得到 3884905 = 5 x 761 x 1021
-
-把题目名中每个单词的首字母连起来可以得到`RGBA`这个提示，猜测是要我们把这些数据转为 RGBA 像素
-
-并且频谱图中也提示了我们：左声道是 RG，右声道则是 BA
-
-因为是 RGBA 图像，并且我们之前分析得到每个采样点双声道包含 32bit 的数据
-
-因此猜测 RGBA 每个通道就都是 8bit 的数据，但是图像的宽高是什么呢？
-
-我们可以写个脚本来查看一下具体的数据
-
-```python
-from scipy.io import wavfile
-
-def func1():
-    sample_rate, data = wavfile.read("flag.wav")
-    for idx,[l,r] in enumerate(data[:100]):
-        if idx % 5 == 0:
-            print(f"{'='*50}")
-        r, g = (l >> 8) & 0xFF, l & 0xFF
-        b, a = (r >> 8) & 0xFF, r & 0xFF
-        l, r = int(l), int(r)
-        r, g, b, a = int(r), int(g), int(b), int(a)
-        print(f"{l,r} -> {(r,g,b,a)}")
-```
-
-![](imgs/image-20251120162701292.png)
-
-仔细观察我们就会发现，这个像素点的分布大致是以5个像素点的数据为一组的
-
-因此我们从之前的总采样点数：3884905 = 5 x 761 x 1021，就可以判断图像宽高就是 1021 x 761 或者 761 x 1021
-
-我们写个脚本提取一下数据，然后转为RGBA像素点
-
-```python
-from PIL import Image
-from scipy.io import wavfile
-
-def solve():
-    sample_rate, data = wavfile.read("flag.wav")
-    img = Image.new('RGBA', (1021, 761))
-
-    for y in range(761):
-        for x in range(1021):
-            i = (x + y * 1021) * 5 # 5个采样点一组
-            left_val = data[i][0]  # 左声道的数据
-            right_val = data[i][1] # 右声道的数据
-            r, g = (left_val >> 8) & 0xFF, left_val & 0xFF    # 高 8 位 -> R，低 8 位 -> G
-            b, a = (right_val >> 8) & 0xFF, right_val & 0xFF  # 高 8 位 -> B，低 8 位 -> A
-            r, g, b, a = int(r), int(g), int(b), int(a) # np.int16 转为 int 类型
-            img.putpixel((x, y), (r, g, b, a))
-
-    img.show()
-    img.save('flag.png')
-```
-
-运行以上脚本后即可得到下图，flag 可能有点模糊，不过硬看也能看出来
-
-![](imgs/image-20251120163729490.png)
-
-如果想要更清晰的 flag，可以到 stegsolve 中调整一下
-
-![](imgs/image-20251120163838903.png)
-
-`DASCTF{A_1s_for_Audio_1n_RGBA}`
-
-当然，这里如果没注意到像素分布是 5 个一组，这题也是可以做的，就是出来的图像可能会有点变形
-
-```python
-from PIL import Image
-from scipy.io import wavfile
-
-def solve():
-    sample_rate, data = wavfile.read("flag.wav")
-    img = Image.new('RGBA', (5105, 761))
-    for y in range(761):
-        for x in range(5105):
-            i = x + y * 5105
-            left_val = data[i][0]  # 左声道的数据
-            right_val = data[i][1] # 右声道的数据
-            r, g = (left_val >> 8) & 0xFF, left_val & 0xFF    # 高 8 位 -> R，低 8 位 -> G
-            b, a = (right_val >> 8) & 0xFF, right_val & 0xFF  # 高 8 位 -> B，低 8 位 -> A
-            r, g, b, a = int(r), int(g), int(b), int(a) # np.int16 转为 int 类型
-            img.putpixel((x, y), (r, g, b, a))
-
-    img.show()
-    img.save('flag.png')
-```
-
-![](imgs/image-20251120164514457.png)
-
-![](imgs/image-20251120164619429.png)
-
-
-附：完整解题脚本
-
-```python
-from PIL import Image
-from scipy.io import wavfile
-
-def func1():
-    sample_rate, data = wavfile.read("flag.wav")
-    for idx,[l,r] in enumerate(data[:100]):
-        if idx % 5 == 0:
-            print(f"{'='*50}")
-        r, g = (l >> 8) & 0xFF, l & 0xFF
-        b, a = (r >> 8) & 0xFF, r & 0xFF
-        l, r = int(l), int(r)
-        r, g, b, a = int(r), int(g), int(b), int(a)
-        print(f"{l,r} -> {(r,g,b,a)}")
-
-def solve():
-    sample_rate, data = wavfile.read("flag.wav")
-    img = Image.new('RGBA', (1021, 761))
-
-    for y in range(761):
-        for x in range(1021):
-            i = (x + y * 1021) * 5 # 5个采样点一组
-            left_val = data[i][0]  # 左声道的数据
-            right_val = data[i][1] # 右声道的数据
-            r, g = (left_val >> 8) & 0xFF, left_val & 0xFF    # 高 8 位 -> R，低 8 位 -> G
-            b, a = (right_val >> 8) & 0xFF, right_val & 0xFF  # 高 8 位 -> B，低 8 位 -> A
-            r, g, b, a = int(r), int(g), int(b), int(a) # np.int16 转为 int 类型
-            img.putpixel((x, y), (r, g, b, a))
-
-    img.show()
-    img.save('flag.png')
-
-
-if __name__ == '__main__':
-    func1()
-    solve()
-```
-
-然后除了以上预期的解法以外，`@脉冲星`师傅还有一种非预期的解法
-
-首先就是提取音频的数据，然后把双声道的低8位数据转为字节连起来并导出
-
-```python
-from scipy.io import wavfile
-
-def solve():
-    sample_rate, data = wavfile.read("flag.wav")
-    data1 = []
-    data2 = []
-    res = []
-    
-    for item in data:
-        data1.append(int(item[0] & 0xFF))
-        data2.append(int(item[1] & 0xFF))
-
-    res.extend(data1)
-    res.extend(data2)
-    print(res[:100])
-    with open('out.data','wb') as f:
-        f.write(bytes(res))
-
-
-if __name__ == "__main__":
-    solve()
-```
-
-然后把导出的.data文件拉入GIMP调整位移和宽高，这样也能得到图片和其中的flag，而且这样做甚至比预期解看的更清晰
-
-![](imgs/image-20251120194646626.png)
-
 
 ## [SOLVED] 题目名称 降维打击（2025铸剑杯初赛）
 
@@ -2835,205 +3310,6 @@ base64解码上面那段内容可以得到：`88cf333dd92ff4d0ceff266d366dbec335
 
 但是发现这段长度为 56 字节的数据并不是压缩包的解压密码
 
-
-
-
-## 题目名称 Just Not Good
-
-> 题目附件： https://pan.baidu.com/s/12j_kEm7Vw0PETvJ8GSiC8g?pwd=u7q6 提取码: u7q6
-
-解压附件压缩包可以得到一个`file`，但是打开发现有PNG的文件头，但改后缀为`.png`后图片无法正常显示
-
-![](imgs/image-20250411202213509.png)
-
-![](imgs/image-20250411202232465.png)
-
-在010中打开图片，发现PNG头还在，但是尾部已经损坏了，并且发现里面由一大串`02 1A 00 00`
-
-因此猜测是异或了`02 1A 00 00`，因此我们用CyberChef异或一下
-
-![](imgs/image-20250411202350469.png)
-
-异或完后下载到本地，再用010打开，PNG头坏了也没事
-
-尝试foremost一下，发现可以得到下图
-
-![](imgs/image-20250411202508050.jpeg)
-
-其实我们在010中爆搜也能找到JPG的头，因此也可以手动提取
-
-![](imgs/image-20250411202601189.png)
-
-得到上述图片后，用010改一下图片的高度，即可得到部分 flag：
-
-`ASCTF{fab6ce57e3131f1635b0`
-
-`c953debe67ac165f}`
-
-![](imgs/image-20250411202746950.png)
-
-![](imgs/image-20250411202652827.png)
-
-还剩下几个字符不知道，尝试回去看剩下的数据，发现剩下的数据其实是个 PNG 图片
-
-补上文件头，然后爆破宽高即可得到剩下的 flag
-
-
-## 题目名称 itch+years
-
-题目附件给了一个 7z 压缩包，手动解压几个发现是 7z套娃，并且发现里面的文件名都是 6 位大小写字母
-
-![](imgs/image-20250901102648422.png)
-
-
-于是写了个脚本解套，发现 txt 中的内容一共有以下七种情况
-
-```python
-import py7zr
-import os
-import shutil
-
-def decompress_7z(archive_file):
-    global res  # 声明使用全局变量
-    global name_res
-    # 确保tmp目录存在且为空
-    if os.path.exists("tmp"):
-        shutil.rmtree("tmp")
-    os.makedirs("tmp", exist_ok=True)
-    
-    new_archive_file = None
-    txt_filename = None
-    
-    try:
-        with py7zr.SevenZipFile(archive_file, 'r') as archive:
-            file_list = archive.list()
-            for file in file_list:
-                if file.filename.endswith('.7z'):
-                    name_res.append(file.filename.split('.')[0])
-                    new_archive_file = file.filename
-                elif file.filename.endswith('.txt'):
-                    txt_filename = file.filename
-                    name_res.append(file.filename.split('.')[0])
-        # 解压文件
-        with py7zr.SevenZipFile(archive_file, mode='r') as archive:
-            archive.extractall("tmp/")
-        
-        print(f"[+] {archive_file} 解压成功")
-        
-        # 读取txt文件内容
-        if txt_filename and os.path.exists(f"./tmp/{txt_filename}"):
-            with open(f"./tmp/{txt_filename}", 'r') as f:
-                data = f.read().strip()
-                if data == 'Come on!':
-                    res += "a"
-                elif data == 'Go ahead!':
-                    res += "b"
-                elif data == 'Go for it.':
-                    res += "c"
-                elif data == 'Keep it up.':
-                    res += "d"
-                elif data == 'You can do it.':
-                    res += "e"
-                elif data == 'Cheer up!':
-                    res += "f"
-                elif data == 'Hang in there!':
-                    res += "g"
-                else:
-                    print(f"未知的内容: {data}")
-        
-        # 移动文件到当前目录
-        for filename in os.listdir("tmp"):
-            src = os.path.join("tmp", filename)
-            dst = os.path.join(".", filename)
-            if os.path.exists(dst):
-                os.remove(dst)
-            shutil.move(src, dst)
-        
-        # 清理
-        shutil.rmtree("tmp")
-        os.remove(archive_file)
-        
-        return new_archive_file
-        
-    except Exception as e:
-        print(f"解压 {archive_file} 时出错: {e}")
-        # 清理临时文件
-        if os.path.exists("tmp"):
-            shutil.rmtree("tmp")
-        return None
-
-if __name__ == "__main__":
-    res = ""  # 初始化全局变量
-    name_res = []
-    archive_file = "flag.7z"
-    
-    while True:
-        if archive_file and archive_file.endswith('.7z') and os.path.exists(archive_file):
-            archive_file = decompress_7z(archive_file)
-            if archive_file is None:
-                break
-        else:
-            break
-    
-    print(res)
-    print(name_res)
-```
-
-结合题目名的意思七年之痒，猜测最后的 flag 肯定和数字七有关了，尝试了转七进制但是依旧无果
-
-```python
-from itertools import permutations
-from Crypto.Util.number import long_to_bytes
-
-def func_decode(raw, character_base):
-    raw_long = 0
-    for c in raw:
-        for i in range(len(character_base)):
-            if c == character_base[i]:
-                raw_long = raw_long * 7 + i
-                break  # 找到匹配后跳出内层循环
-        else:
-            continue
-    # print(f"Raw long: {raw_long}")
-    return long_to_bytes(raw_long)
-
-def func_burp(raw):
-    character_base = ['a', 'b', 'c', 'd', 'e', 'f', 'g']
-    
-    for perm in permutations(character_base):
-        # print(f"Testing permutation: {perm}")
-        try:
-            result = func_decode(raw, perm)
-            result_str = result
-            if b'flag' in result_str or b'CTF' in result_str:
-                print(f"Decoded result: {result_str}")
-                
-        except Exception as e:
-            print(f"Error with permutation {perm}: {e}")
-
-if __name__ == "__main__":
-    raw = "bcffaccccgdbcgeeecbbgafeebdbaededbebbdagdedfbbgbaedaagbggffeggcgccbefedbgfbggdbccgecadcaaeecbbaabe"
-    func_burp(raw)
-```
-
-
-然后这里在`@默`师傅的帮助下，发现部分7z压缩包在文件尾前插入了部分数据，并且结合文件头猜测可能是切片后的webp图像数据。
-
-![](imgs/image-20250919093819453.png)
-
-但是要提取出完整的 webp 数据，需要分析出每段数据具体的分布规律，目前还没找到
-
-## 题目名称 Chaos and Torus 
-
-> 题目附件： https://pan.baidu.com/s/11NwSPtcUEqk81m1-45Mr3g?pwd=2ihu 提取码: 2ihu 
-
-附件给了一个 cat.gif，gif 的内容表达的是 Aronld 变换，尝试分帧，发现一共有 70 帧
-
-![](imgs/image-20250916103500592.png)
-
-然后尝试提取了一下每帧的帧间隔和偏移量，但是没有发现什么有用的信息
-
-![](imgs/image-20250916103747949.png)
 
 ## 题目名称 one (2024 古剑山)
 
