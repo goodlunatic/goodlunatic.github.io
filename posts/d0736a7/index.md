@@ -464,7 +464,7 @@ if __name__ == "__main__":
 
 ![](imgs/image-20250411202601189.png)
 
-得到上述图片后，用010改一下图片的高度，即可得到部分 flag：
+得到上述图片后，用010改一下图片的高度，可以得到部分 flag：
 
 `ASCTF{fab6ce57e3131f1635b0`
 
@@ -474,9 +474,11 @@ if __name__ == "__main__":
 
 ![](imgs/image-20250411202652827.png)
 
-还剩下几个字符不知道，尝试回去看剩下的数据，发现剩下的数据其实是个 PNG 图片
+还剩下几个字符不知道，尝试回去看剩下的数据，发现剩下的数据里有PNG的IDAT数据
 
-补上文件头，然后爆破宽高即可得到剩下的 flag
+听别的师傅说只要补上文件头然后爆破一下宽高就能得到剩下的部分，但是这里我没成功，如果有师傅成功了欢迎联系我
+
+第二部分这里我是用了下面原理详解中写脚本去解析IDAT块数据这个方法
 
 #### 原理详解(感谢八神)
 
@@ -516,42 +518,167 @@ if __name__ == "__main__":
 > 
 > 37 07 D9 95 CRC校验位
 
-这是一个带透明通道的彩色JNG图像，其彩色部分储存在JDAT chunk中的JPEG格式图像数据里
+综合上述分析，这是一个带透明通道的彩色JNG图像，其彩色部分储存在JDAT chunk中的JPEG格式图像数据里
 
-透明通道数据储存在IDAT chunk中的PNG格式数据块里，分别还原两个部分即可得到完整图像信息
+透明通道数据储存在IDAT chunk中的PNG格式数据块里，分别还原两个部分即可得到完整图像信息（JNG是同时有JDAT和IDAT的）
 
 第一部分图像的提取，可以参考上面的常规解，用foremost或者010手动提取都可以
 
-接下来要处理Alpha透明通道，根据之前的分析，已知透明通道数据以PNG的IDAT chunk模式存储，且位深度为1，宽高与JNG图像的宽高一致。
+就是这里要注意，图像的高度被篡改了(可以用TweakPNG工具检测)，包含两个地方（JHDR chunk 和 JPG图像的 SOFx chunk）
 
-那么至少有两种方法可以得到透明通道信息：
+![](imgs/image-20260115205533777.png)
 
-一是根据已知宽高、色深（1）、色彩类型（灰度）构造PNG文件头和IHDR chunk，将其转为灰度图像处理
+因此我们可以写个脚本爆破得到图像高度，不考虑图像的宽度是因为提取出来的JPG是可以正常显示的
 
-另一种是直接读取IDAT块的数据并重构扫描线。第一种实现比较简单，这里说一下第二种
+```python
+def burp_heighe(data):
+    for i in range(0xFFFF):
+        # >i 大端序有符号帧数
+        # print(struct.pack('>i', i))
+        stream = data[12:20] + struct.pack('>i', i) + data[24:32]
+        crc32_value = binascii.crc32(stream).to_bytes(4, 'big')
+        # print(crc32_value)
+        # print(data[32:36])
+        if crc32_value == data[32:36]:
+            print(f"[+] CRC32爆破成功, 图像高度为: {i} ({struct.pack('>i', i).hex()})")
+            break
+    # [+] CRC32爆破成功, 图像高度为: 1023 (000003ff)
+
+def fix_height(data):
+    # JHDR chunk
+    data = data.replace(b'\x00\x00\x03\xF9\x00\x00\x03\x00', b'\x00\x00\x03\xF9\x00\x00\x03\xFF')
+    # SOFx chunk
+    data = data.replace(b'\x03\x00\x03\xF9', b'\x03\xFF\x03\xF9')
+    with open('fixed.jng', 'wb') as f:
+        f.write(data)
+    print(f"[+] 图像高度修复完成, 保存至 fixed.jng")
+
+def extract_jpg(jng_file):
+    with open(jng_file, 'rb') as f:
+        data = f.read()
+    jpg_data = data.split(b'\x4A\x44\x41\x54')[1].split(b'\x00\x00\x00\x00\x49\x45\xAE\x42')[0]
+    with open('extracted.jpg', 'wb') as f:
+        f.write(jpg_data)
+    print(f"[+] JPG图像提取完成, 保存至 extracted.jpg")
+```
+
+接下来要处理Alpha透明通道，根据之前的分析，已知透明通道数据以PNG的IDAT chunk模式存储，且位深度为1，宽高与JNG图像的宽高一致
+
+因此这里至少有两种方法可以得到透明通道信息：
+
+第一种是根据已知宽高、色深（1）、色彩类型（灰度）构造PNG文件头和IHDR chunk，将其转为灰度图像处理
+
+第二种是直接读取IDAT块的数据并重构扫描线，以下详细说一下这第二种方法
 
 根据PNG格式规范，IDAT块中包含的是zlib压缩数据，图像信息以扫描线形式构成，图像每行对应一条扫描线
 
-每条扫描线的数据开头8位是过滤函数信息，接下来按从左到右的顺序记录每个像素信息，最后补齐为8的倍数
+每条扫描线的数据开头8位(1字节)是过滤函数信息，接下来按从左到右的顺序记录每个像素信息，最后补齐为8的倍数
 
-对于本题，色深为1，图像宽度为1017，则每行扫描线占据数据长度：8 + 1 * 1017 + 7(补齐) = 1032 bit = 129 byte
+那么对于本题，色深为1，图像宽度为1017，则每行扫描线占据数据长度：`8 + 1 * 1017 + 7(Padding) = 1032 bit = 129 byte`
 
-IDAT chunk中的zlib压缩数据解压后长度应为：129 * 1023 byte
+所以IDAT chunk中的zlib压缩数据解压后长度应为：129 * 1023 byte
 
-这是可以验证的，因此也可以由解压后数据反推出透明通道内容
+这是可以验证的，因此其实我们也可以由解压后数据长度反推出透明通道内容
 
-对于1 bit深度的透明通道，1对应完全透明（即8 bit色深下的A通道255），0对应完全不透明（即8 bit色深下的A通道0）
+对于1 bit深度的透明通道，1对应完全透明（即8 bit色深下A通道的255），0对应完全不透明（即8 bit色深下A通道的0）
 
 把透明通道内容和之前得到的图像内容合成在一起即可得到完整图像
 
-并且注意到JNG图像里的bKGD chunk，内容为：00 FF 00 FF 00 FF
+并且我们还注意到JNG图像里的bKGD chunk，内容为：00 FF 00 FF 00 FF
 
-根据规范，bKGD chunk储存背景色，每16 bit对应一个颜色通道，色深较小的情况下高位用0补齐
+根据规范，bKGD chunk储存背景色，每16 bit(2字节)对应一个颜色通道，色深较小的情况下高位用0补齐
 
-因此这里的背景色实际上是#FFFFFF，也就是白色。
+因此这里的背景色实际上是#FFFFFF，RGB的表示为(255, 255, 255)，也就是纯白色背景
 
 合成透明通道时可以把完全透明的部分置为白色，也可以添加透明通道并保存为PNG等支持透明通道的格式，这里采取后一种做法
 
+最后的解题脚本如下：
+
+```python
+import zlib
+import struct
+import binascii
+from PIL import Image
+
+def xor_decode():
+    with open('file','rb') as f:
+        data = f.read()
+
+    newdata = b''
+    key = b'\x02\x1a\x00\x00'
+    for i in range(len(data)):
+        newdata += bytes([data[i] ^ key[i % len(key)]])
+
+    return newdata
+
+def burp_heighe(data):
+    for i in range(0xFFFF):
+        # >i 大端序有符号帧数
+        # print(struct.pack('>i', i))
+        stream = data[12:20] + struct.pack('>i', i) + data[24:32]
+        crc32_value = binascii.crc32(stream).to_bytes(4, 'big')
+        # print(crc32_value)
+        # print(data[32:36])
+        if crc32_value == data[32:36]:
+            print(f"[+] CRC32爆破成功, 图像高度为: {i} ({struct.pack('>i', i).hex()})")
+            break
+    # [+] CRC32爆破成功, 图像高度为: 1023 (000003ff)
+
+def fix_height(data):
+    # JHDR chunk
+    data = data.replace(b'\x00\x00\x03\xF9\x00\x00\x03\x00', b'\x00\x00\x03\xF9\x00\x00\x03\xFF')
+    # SOFx chunk
+    data = data.replace(b'\x03\x00\x03\xF9', b'\x03\xFF\x03\xF9')
+    with open('fixed.jng', 'wb') as f:
+        f.write(data)
+    print(f"[+] 图像高度修复完成, 保存至 fixed.jng")
+
+def extract_jpg(jng_file):
+    with open(jng_file, 'rb') as f:
+        data = f.read()
+    jpg_data = data.split(b'\x4A\x44\x41\x54')[1].split(b'\x00\x00\x00\x00\x49\x45\xAE\x42')[0]
+    with open('extracted.jpg', 'wb') as f:
+        f.write(jpg_data)
+    print(f"[+] JPG图像提取完成, 保存至 extracted.jpg")
+
+def jng2png(data):
+    zlibdata = data.split(b'IDAT')[1].split(b'\x4A\x44\x41\x54')[0]
+    zlibdata = zlibdata[:-8] # 去掉IDAT chunk的CRC32
+    alphadata = zlib.decompress(zlibdata)
+    jpg = Image.open('extracted.jpg')
+    img1 = Image.new('RGBA', jpg.size)
+    img2 = Image.new('L', jpg.size)
+    for y in range(jpg.size[1]):
+        for x in range(jpg.size[0]):
+            # 提取透明度
+            # 每行扫描线占据数据长度为 129 字节 (1 字节滤波器 + 128 字节 alpha 数据)
+            # x // 8 计算当前像素在第几个字节中, 因为是1位/像素，8个像素 = 1个字节
+            # x % 8 计算像素在字节中的位位置（0-7）
+            alpha = (alphadata[y * 129 + x // 8 + 1] >> (7 - x % 8) & 1) * 255
+            img1.putpixel((x, y), tuple(list(jpg.getpixel((x, y))) + [alpha]))
+            img2.putpixel((x, y), 255) if alpha == 255 else img2.putpixel((x, y), 0)
+    img1.save('combine.png')
+    img2.save('alpha_mask.png')
+
+if __name__ == '__main__':
+    new_data = xor_decode()
+    # burp_heighe(new_data) # 1023 (000003ff)
+    # fix_height(new_data)
+    # extract_jpg('fixed.jng')
+    jng2png(new_data)
+```
+
+运行以上脚本后即可恢复出完整图像，为了方便识别我也导出了一个灰度图
+
+因为是黑色背景+透明文字，所以我们最好在浅色背景的看图软件中打开，或者直接PS打开也行
+
+![](imgs/image-20260115205914877.png)
+
+![](imgs/image-20260115210003815.png)
+
+综上，最后的flag为：`DASCTF{fab6c57e311163b0c93dee6ac65e8ce3}`
+
+> 出题人还是太坏了，原图还用透明的框框给你遮掉几个之前JPG中的字符
 
 ### [TODO] 题目名称 itch years
 
