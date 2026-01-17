@@ -572,6 +572,580 @@ for i in range(len(data)):
     # flag{Y0u_Kn0w_H0w_t0_D3bug!!!!!}
 ```
 
+### Flowers
+
+去花指令
+
+```c++
+int __fastcall main(int argc, const char **argv, const char **envp)
+{
+  int v3; // kr00_4
+  unsigned int i_1; // [rsp+30h] [rbp-10h]
+  int k; // [rsp+34h] [rbp-Ch]
+  int j; // [rsp+38h] [rbp-8h]
+  unsigned int i; // [rsp+3Ch] [rbp-4h]
+
+  _main(argc, argv, envp);
+  printf("you may need to remove junk code\n");
+  printf("flag start with flag{\n");
+  scanf("%s", input);
+  if ( (len(input) & 3) != 0 )
+  {
+    i_1 = 4 - (int)len(input) % 4;
+    for ( i = 0; i < i_1; ++i )
+      *(_WORD *)&input[strlen(input)] = 35;
+  }
+  v3 = len(input);
+  for ( j = 0; j < v3 / 4; ++j )
+    ((void (__fastcall *)(char *, void *))enc)(&input[8 * j], &_data_start__);
+  if ( (unsigned int)len(input) == 48 )
+  {
+    for ( k = 0; k <= 47; ++k )
+    {
+      if ( input[k] != ans[k] )
+        goto LABEL_14;
+    }
+    printf("right\n");
+    return 0;
+  }
+  else
+  {
+LABEL_14:
+    printf("wrong\n");
+    return 0;
+  }
+}
+```
+
+```c++
+__int64 __fastcall enc(unsigned int *v, _DWORD *key)
+{
+  __int64 result; // rax
+  int i; // [rsp+10h] [rbp-10h]
+  unsigned int r; // [rsp+14h] [rbp-Ch]
+  unsigned int l; // [rsp+18h] [rbp-8h]
+  int sum; // [rsp+1Ch] [rbp-4h]
+
+  sum = 0;
+  l = *v;
+  result = v[1];
+  r = v[1];
+  for ( i = 0; i <= 31; ++i )
+  {
+	// 其实就是标准的TEA加密，改了个delta
+    l += (r + sum) ^ (16 * r + *key) ^ ((r >> 5) + key[1]);
+    sum += 0x114514;                            // delta = 0x114514
+    result = (l + sum) ^ (16 * l + key[2]) ^ ((l >> 5) + key[3]);
+    r += result;
+  }
+  return result;
+}
+```
+
+发现是个 TEA 加密，delta = 0x114514，对照着写个解密脚本即可
+
+```c++
+#include <stdio.h>
+#include <cstdint>
+using namespace std;
+
+void teaDecrypt(uint32_t *v, uint32_t *k)
+{
+	uint32_t sum = 0, v0 = v[0], v1 = v[1];
+	uint32_t delta = 0x114514;
+	sum = delta * 32;
+	for (int i = 0; i < 32; i++)
+	{
+		v1 -= ((v0 << 4) + k[2]) ^ (v0 + sum) ^ ((v0 >> 5) + k[3]);
+		sum -= delta;
+		v0 -= ((v1 << 4) + k[0]) ^ (v1 + sum) ^ ((v1 >> 5) + k[1]);
+	}
+	v[0] = v0;
+	v[1] = v1;
+}
+unsigned char ans[64] = {
+	0xA5, 0x15, 0xA2, 0x47, 0x31, 0x1C, 0x8F, 0xDB, 0x13, 0xBF, 0x6A,
+	0x91, 0x2F, 0x12, 0x25, 0xDE, 0x49, 0x26, 0xF5, 0x66, 0x55, 0x0E,
+	0x9B, 0x4E, 0xDF, 0x19, 0x52, 0x3D, 0x88, 0x63, 0xB6, 0xCF, 0xDF,
+	0x19, 0x52, 0x3D, 0x88, 0x63, 0xB6, 0xCF, 0xDF, 0x19, 0x52, 0x3D,
+	0x88, 0x63, 0xB6, 0xCF, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
+int main()
+{
+	uint32_t key[4] = {0x01234567, 0x89ABCDEF, 0xFEDCBA98, 0x76543210};
+	for (int i = 0; i < 64; i += 8){
+		teaDecrypt((uint32_t *)(ans + i), key);
+	}
+	for (int i = 0; i < 64; i++){
+		printf("%c", ans[i]);
+	}	
+	return 0;
+}
+// flag{aCupOf_FlowerTea}
+```
+
+### base
+
+IDA打开
+
+```c++
+__int64 __fastcall main(int argc, char **argv)
+{
+  const char *encoded_message; // [rsp+20h] [rbp-20h]
+  const char *encoded_user_alphabet; // [rsp+28h] [rbp-18h]
+  char *user_plaintext; // [rsp+30h] [rbp-10h]
+  char *user_alphabet; // [rsp+38h] [rbp-8h]
+
+  _main();
+  if ( argc != 3 )
+  {
+    printf(&Format, *argv);
+    printf(&Format_, *argv);
+    return 1;
+  }
+  user_alphabet = argv[1];
+  user_plaintext = argv[2];
+  printf(&Format__0, user_alphabet);
+  printf(&Format__1, user_plaintext);
+  if ( strlen(user_alphabet) != 64 )
+  {
+    puts_0(&Buffer);
+    return 1;
+  }
+  encoded_user_alphabet = base58_encode_str(user_alphabet);
+  if ( !encoded_user_alphabet )
+  {
+    puts_0(&Buffer_);
+    return 1;
+  }
+  puts_0(&Buffer__0);
+  if ( !strcmp(encoded_user_alphabet, _data_start__) )// "2wvnsjrESxyfytuhEwqChbLLZRtA4VLhf5HgrKNRR3jYZGgyd1XHEhypTQ8b546txjJx7wHgJaJw2mBxbDtS8dCS"
+  {
+    puts_0(&Buffer__1);
+    puts_0(&Buffer__2);
+    encoded_message = base64_encode(user_plaintext, user_alphabet);
+    if ( !encoded_message )
+    {
+      puts_0(&Buffer__3);
+      return 1;
+    }
+    printf(&Format__2, encoded_message);
+    puts_0(&Buffer__4);
+    if ( !strcmp(encoded_message, CORRECT_ENCODED_MESSAGE) )// "zMXHz3TuBdrPC18XB0bZzx0="
+    {
+      puts_0(&Buffer__5);
+      puts_0(asc_140005320);
+    }
+    else
+    {
+      puts_0(&Buffer__6);
+      puts_0(asc_140005370);
+      printf(asc_14000539E, CORRECT_ENCODED_MESSAGE);// "zMXHz3TuBdrPC18XB0bZzx0="
+    }
+  }
+  else
+  {
+    puts_0(&Buffer__7);
+    puts_0(asc_1400053D8);
+    printf(asc_140005418, _data_start__);       // "2wvnsjrESxyfytuhEwqChbLLZRtA4VLhf5HgrKNRR3jYZGgyd1XHEhypTQ8b546txjJx7wHgJaJw2mBxbDtS8dCS"
+    printf(asc_140005440, encoded_user_alphabet);
+  }
+  return 0;
+}
+```
+
+发现其实就是base58编码了一个自定义的base64表，直接CyberChef解一下就行
+
+![](imgs/image-20260117171830837.png)
+
+![](imgs/image-20260117171858146.png)
+
+### rc4
+
+IDA打开发现是RC4加密，因为是同步流密码，加密和解密的逻辑是一样的
+
+我们可以直接写个脚本解密
+
+```c++
+#include <stdio.h>
+#include <string.h>
+
+#define SBOX_LEN 256
+
+void rc4_init(unsigned char *s, const unsigned char *key, size_t keylen)
+{
+    int i, j = 0;
+    unsigned char k[SBOX_LEN];
+
+    for (i = 0; i < SBOX_LEN; ++i)
+    {
+        s[i] = i;
+        k[i] = key[i % keylen];
+    }
+    for (i = 0; i < SBOX_LEN; ++i)
+    {
+        j = (k[i] + s[i] + j) % SBOX_LEN;
+        unsigned char tmp = s[i];
+        s[i] = s[j];
+        s[j] = tmp;
+    }
+}
+
+// RC4 伪随机生成算法 (PRGA)
+void rc4_crypt(unsigned char *s, unsigned char *data, size_t datalen)
+{
+    int i=0, j=0, t;
+    size_t k;
+    for (k = 0; k < datalen; ++k)
+    {
+        i = (i + 1) % SBOX_LEN;
+        j = (s[i] + j) % SBOX_LEN;
+
+        unsigned char tmp = s[i];
+        s[i] = s[j];
+        s[j] = tmp;
+
+        t = (s[i] + s[j]) % SBOX_LEN;
+        data[k] = (unsigned char)(data[k] ^ s[t] ^ (unsigned char)k);
+    }
+}
+
+int main()
+{
+    unsigned char s[SBOX_LEN];
+    unsigned char key[] = "ohhhRC4";
+    unsigned char data[28]; // 明文
+    unsigned char cipher[] = {
+        0xf7, 0x5f, 0x7a, 0xc1, 0x5d, 0x34, 0xdb, 0xd6,
+        0x2f, 0xd8, 0x75, 0x2d, 0xde, 0xe1, 0xda, 0x68,
+        0xe0, 0x57, 0x9b, 0x4a, 0xce, 0xea, 0x07, 0xf9,
+        0x5e, 0x79, 0x5e}; // 密文
+    size_t datalen = 27;
+
+    for (int i = 0; i < 27; i++)
+    {
+        data[i] = cipher[i];
+    }
+
+    rc4_init(s, key, strlen((char *)key));
+    rc4_crypt(s, data, datalen);
+    for (int i = 0; i < datalen; i++) {   
+        printf("%c", data[i]);   
+    }
+    return 0;
+}
+// flag{S0NNE_Rc4_l$_c13@nged}
+```
+
+除了用脚本解密以外，还可以下断点动调，先在加密前下个断点dump出密文
+
+然后把输入 Patching - change byte 成密文，再在加密后下个断点读取RC4解密后的明文即可
+
+> 这里要注意的一点就是 Patching - change byte 一次只能 Patching 16 字节
+> 
+> 这里的密文是27字节，因此需要分成两次Patch
+
+### UPX
+
+upx魔改壳，把特征码删除了，对照着加壳后的exe恢复特征码，然后upx脱壳即可
+
+![](imgs/image-20260117205257704.png)
+
+![](imgs/image-20260117205347838.png)
+
+```c++
+__int64 __fastcall main()
+{
+  char part[48]; // [rsp+20h] [rbp-60h] BYREF
+  char enc[33]; // [rsp+50h] [rbp-30h] BYREF
+  int len_part; // [rsp+74h] [rbp-Ch]
+  int len_enc; // [rsp+78h] [rbp-8h]
+  int i; // [rsp+7Ch] [rbp-4h]
+
+  _main();
+  strcpy(enc, "fkyd{YNek_SD_AB@ars_OKT}");
+  enc[25] = 0;
+  *(_WORD *)&enc[26] = 0;
+  *(_DWORD *)&enc[28] = 0;
+  enc[32] = 0;
+  len_enc = strlen(enc);
+  enc[len_enc] = 0;
+  puts_0("input the flag");
+  scanf("%s", part);
+  len_part = strlen(part);
+  part[len_part] = 0;
+  for ( i = 0; part[i] != 125; ++i )
+  {
+    if ( part[i] > 64 && part[i] <= 90 )
+      part[i] = (part[i] - 65 + i + 26) % 26 + 65;
+    if ( part[i] > 96 && part[i] <= 122 )
+      part[i] = (part[i] - 97 - i + 26) % 26 + 97;
+  }
+  if ( !strcmp(part, enc) )
+    puts_0("Congratulations!");
+  else
+    puts_0("Wrong!");
+  return 0;
+}
+```
+
+
+发现是个变异凯撒，直接写个脚本解密即可
+
+```c++
+#include <stdio.h>
+#include <string.h>
+
+int main()
+{
+
+    char enc[33] = "fkyd{YNek_SD_AB@ars_OKT}";
+    for (int i = 0; i < 32; i++)
+    {
+        if (enc[i] > '@' && enc[i] <= 'Z')
+            enc[i] = (enc[i] - 65 - i + 26) % 26 + 65;
+        if (enc[i] > '`' && enc[i] <= 'z')
+            enc[i] = (enc[i] - 97 + i + 26) % 26 + 97;
+    }
+    printf("%s\n", enc);
+    return 0;
+}
+// flag{THls_IS_NN@qik_UPX}
+```
+
+> 这里除了用010修复特征码以外，还可以用XVolkolak脱壳
+> 
+> 或者用x64dbg手动脱壳
+
+
+### CPPReverse
+
+c++逆向，但是给了PDB文件，直接用IDA打开exe并导入PDB
+
+主函数如下所示
+
+```c++
+int __fastcall main(int argc, const char **argv, const char **envp)
+{
+  std::ostream *v3; // rax
+  std::ostream *v5; // rax
+  unsigned __int64 lenth; // rax
+  const std::_String_iterator<std::_String_val<std::_Simple_types<char> > > *v7; // rax
+  std::string *v8; // rax
+  std::ostream *v9; // rax
+  std::string *v10; // rax
+  EncryptClass *v11; // rax
+  const std::_String_iterator<std::_String_val<std::_Simple_types<char> > > *v12; // rax
+  std::ostream *v13; // rax
+  bool format_flag; // [rsp+28h] [rbp-190h]
+  EncryptClass *v15; // [rsp+40h] [rbp-178h]
+  EncryptClass *v16; // [rsp+48h] [rbp-170h]
+  std::string *_Left; // [rsp+58h] [rbp-160h]
+  std::string *_Right; // [rsp+60h] [rbp-158h]
+  const std::_String_iterator<std::_String_val<std::_Simple_types<char> > > *end_idx; // [rsp+68h] [rbp-150h]
+  const std::_String_iterator<std::_String_val<std::_Simple_types<char> > > *v20; // [rsp+98h] [rbp-120h]
+  std::_String_iterator<std::_String_val<std::_Simple_types<char> > > v21; // [rsp+A0h] [rbp-118h] BYREF
+  std::_String_iterator<std::_String_val<std::_Simple_types<char> > > v22; // [rsp+A8h] [rbp-110h] BYREF
+  std::_String_iterator<std::_String_val<std::_Simple_types<char> > > v23; // [rsp+B0h] [rbp-108h] BYREF
+  std::_String_iterator<std::_String_val<std::_Simple_types<char> > > v24; // [rsp+B8h] [rbp-100h] BYREF
+  std::string v25; // [rsp+C0h] [rbp-F8h] BYREF
+  std::string v26; // [rsp+E0h] [rbp-D8h] BYREF
+  std::string v27; // [rsp+100h] [rbp-B8h] BYREF
+  std::string v28; // [rsp+120h] [rbp-98h] BYREF
+  std::string Input; // [rsp+140h] [rbp-78h] BYREF
+  std::string ImpStr; // [rsp+160h] [rbp-58h] BYREF
+  std::string Result; // [rsp+180h] [rbp-38h] BYREF
+
+  std::string::string(&Input);
+  std::operator<<<std::char_traits<char>>(std::cout, "Please input your flag:");
+  std::operator>><char>(std::cin, &Input);
+  if ( std::string::size(&Input) >= 6 )
+  {
+    _Left = std::string::substr(&Input, &v25, 0, 5u);// 通过substr()截取前5个字符
+    format_flag = std::operator!=<char>(_Left, "flag{") || *std::string::back(&Input) != '}';// 比较前5个字符和最后一个字符
+    std::string::~string(&v25);
+    if ( format_flag )
+    {
+      v5 = std::operator<<<std::char_traits<char>>(std::cout, "Wrong format.");
+      std::ostream::operator<<(v5, std::endl<char,std::char_traits<char>>);
+      system("pause");
+      std::string::~string(&Input);
+      return 0;
+    }
+    else
+    {
+      std::string::string(&ImpStr);             // 新定义一个ImpStr
+      lenth = std::string::size(&Input);
+      _Right = std::string::substr(&Input, &v26, 5u, lenth - 6);// 获取flag{}包裹的字符
+      std::string::operator=(&ImpStr, _Right);  // 赋值给ImpStr
+      std::string::~string(&v26);
+      end_idx = std::string::end(&ImpStr, &v21);
+      v7 = std::string::begin(&ImpStr, &v22);
+      std::reverse<std::_String_iterator<std::_String_val<std::_Simple_types<char>>>>(
+        (const std::_String_iterator<std::_String_val<std::_Simple_types<char> > >)v7->_Ptr,
+        (const std::_String_iterator<std::_String_val<std::_Simple_types<char> > >)end_idx->_Ptr);
+      std::string::string(&v27, &ImpStr);       // 利用reverse函数将字符串反转
+      if ( CheckValidInput(v8) )
+      {
+        v15 = (EncryptClass *)operator new(0x18u);
+        if ( v15 )
+        {
+          std::unique_ptr<std::_Facet_base>::__autoclassinit2(v15, 0x18u);
+          std::string::string(&v28, &ImpStr);
+          EncryptClass::EncryptClass(v15, v10); // 将字符串转为vector数组
+          v16 = v11;
+        }
+        else
+        {
+          v16 = 0;
+        }
+        EncryptClass::Encrypt(v16, &Result);    // 调用加密函数
+        v20 = std::string::end(&Result, &v23);
+        v12 = std::string::begin(&Result, &v24);
+        std::reverse<std::_String_iterator<std::_String_val<std::_Simple_types<char>>>>(// 再次调用reverse()
+          (const std::_String_iterator<std::_String_val<std::_Simple_types<char> > >)v12->_Ptr,
+          (const std::_String_iterator<std::_String_val<std::_Simple_types<char> > >)v20->_Ptr);
+        if ( std::operator==<char>(&Result, &EncFlag) )
+          v13 = std::operator<<<std::char_traits<char>>(std::cout, "Congratulation!You input a correct flag.");
+        else
+          v13 = std::operator<<<std::char_traits<char>>(std::cout, "Oooops.You input a wrong flag.");
+        std::ostream::operator<<(v13, std::endl<char,std::char_traits<char>>);
+        system("pause");
+        std::string::~string(&Result);
+        std::string::~string(&ImpStr);
+        std::string::~string(&Input);
+        return 0;
+      }
+      else
+      {
+        v9 = std::operator<<<std::char_traits<char>>(std::cout, "The string must be in hexadecimal format.");
+        std::ostream::operator<<(v9, std::endl<char,std::char_traits<char>>);
+        system("pause");
+        std::string::~string(&ImpStr);
+        std::string::~string(&Input);
+        return 0;
+      }
+    }
+  }
+  else
+  {
+    v3 = std::operator<<<std::char_traits<char>>(std::cout, "Wrong length.");
+    std::ostream::operator<<(v3, std::endl<char,std::char_traits<char>>);
+    system("pause");
+    std::string::~string(&Input);
+    return 0;
+  }
+}
+```
+
+虽然Encflag是动态加载的，但是直接在Encflag上找交叉引用可以定位到这个函数
+
+直接得到我们需要的密文
+
+```c++
+int dynamic_initializer_for__EncFlag__()
+{
+  std::string::string(&EncFlag, "EE1A9B5AFA59AF28DE5D594F8FB990B1D1345590");
+  return atexit(dynamic_atexit_destructor_for__EncFlag__);
+}
+```
+
+EncryptClass如下
+
+```c++
+void __fastcall EncryptClass::EncryptClass(EncryptClass *this, std::string *Input)
+{
+  std::string *v2; // rax
+  std::string v3; // [rsp+30h] [rbp-28h] BYREF
+
+  std::vector<unsigned char>::vector<unsigned char>(&this->Data);
+  std::string::string(&v3, Input);
+  EncryptClass::StringToVecData(this, v2);      // 将字符串2个为一组转成十六进制整数，添加到vector数组中
+  std::string::~string(Input);
+}
+```
+
+关键加密代码如下
+
+```c++
+EncryptClass *__fastcall EncryptClass::Encrypt(EncryptClass *this, std::string *p_Result)
+{
+  unsigned __int8 *v2; // rcx
+  int i; // [rsp+20h] [rbp-38h]
+  unsigned __int8 *v5; // [rsp+28h] [rbp-30h]
+  unsigned __int8 *v6; // [rsp+30h] [rbp-28h]
+
+  for ( i = 0; i < std::vector<unsigned char>::size(&this->Data); ++i )
+  {
+    v5 = std::vector<unsigned char>::operator[](&this->Data, i);
+    *v5 += i + 7;                               // data[i] += i + 7;
+    if ( i > 0 )
+    {
+      v6 = std::vector<unsigned char>::operator[](&this->Data, i);
+      *v6 ^= *std::vector<unsigned char>::operator[](&this->Data, i - 1) - 1;// data[i] ^= data[i-1] - 1;
+    }
+    if ( !(i % 2) )
+    {
+      v2 = std::vector<unsigned char>::operator[](&this->Data, i);
+      *v2 ^= 7u;                                // data[i] ^= 7;
+    }
+  }
+  EncryptClass::VecDataToString(this, p_Result);
+  return (EncryptClass *)p_Result;
+}
+```
+
+对照着加密代码逆向还原即可，就是要注意这里有两个reverse函数
+
+```c++
+#include <iostream>
+#include <string>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+int main()
+{
+    string Encflag = "EE1A9B5AFA59AF28DE5D594F8FB990B1D1345590";
+    reverse(Encflag.begin(), Encflag.end());
+    vector<uint8_t> data;
+
+    for (int i = 0; i < Encflag.length(); i += 2)
+    {
+        // 从字符串 Encflag 中取出从位置 i 开始的 2 个字符，将其视为十六进制（hex）数字，并转换为对应的十进制整数（int 类型）
+        data.push_back(stoi(Encflag.substr(i, 2), nullptr, 16));
+    }
+
+    string flag;
+    for (int i = data.size() - 1; i >= 0; i--)
+    {
+        if (i % 2 == 0)
+        {
+            data[i] ^= 7;
+        }
+        if (i > 0)
+        {
+            data[i] ^= data[i - 1] - 1;
+        }
+        data[i] -= i + 7;
+    }
+    for (int i = 0; i < data.size(); i++)
+    {
+        char Buf[20] = {};
+        sprintf(Buf, "%02X", data[i]);
+        flag += Buf;
+    }
+    reverse(flag.begin(), flag.end());
+    printf("flag{%s}\n", flag.c_str());
+}
+// flag{4350505F526576657253655F4578705F55705570}
+```
+
+
+
+
+
 
 
 ---

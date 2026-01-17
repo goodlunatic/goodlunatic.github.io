@@ -640,6 +640,8 @@ Label:
 
 ### upx
 
+#### 常规的UPX
+
 一种压缩壳，可以尝试直接用upx脱壳
 
 ```bash
@@ -649,7 +651,14 @@ upx: https://github.com/upx/upx
 upx -d re.exe
 ```
 
-也可以尝试手动脱upx
+#### 魔改UPX
+
+1、010修复特征码后再用upx脱壳（可以对照着正常加壳的exe看）
+
+2、用XVolkolak脱壳
+
+3、x64dbg手动脱壳
+
 
 ## Python逆向
 
