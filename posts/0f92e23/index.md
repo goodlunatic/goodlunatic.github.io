@@ -94,19 +94,19 @@ Options → Strings → Default 8-bit
 
 一些常用的寄存器：
 
-| **32位 (x86)** | **64位 (x64)** | **用途**                           |
-| ------------- | ------------- | -------------------------------- |
-| **EAX**       | **RAX**       | 累加器（Accumulator），算术运算、函数返回值      |
-| **EBX**       | **RBX**       | 基址寄存器（Base），常用于存储指针              |
-| **ECX**       | **RCX**       | 计数器（Counter），LOOP指令、字符串操作        |
-| **EDX**       | **RDX**       | 数据寄存器（Data），辅助EAX（如MUL/DIV）      |
-| **ESI**       | **RSI**       | 源索引（Source Index），字符串/内存操作       |
-| **EDI**       | **RDI**       | 目标索引（Destination Index），字符串/内存操作 |
-| **ESP**       | **RSP**       | 栈指针（Stack Pointer），指向当前栈顶        |
-| **EBP**       | **RBP**       | 基址指针（Base Pointer），函数栈帧          |
-|               |               |                                  |
-| **EIP**       | **RIP**       | 存储下一条要执行的指令地址                    |
-| **EFLAGS**    | **RFLAGS**    | 存储 CPU 状态标志（如 ZF, CF, SF 等）      |
+| 16位   | **32位 (x86)** | **64位 (x64)** | **用途**                           |
+| ----- | ------------- | ------------- | -------------------------------- |
+| AX    | **EAX**       | **RAX**       | 累加器（Accumulator），算术运算、函数返回值      |
+| BX    | **EBX**       | **RBX**       | 基址寄存器（Base），常用于存储指针              |
+| CX    | **ECX**       | **RCX**       | 计数器（Counter），LOOP指令、字符串操作        |
+| DX    | **EDX**       | **RDX**       | 数据寄存器（Data），辅助EAX（如MUL/DIV）      |
+| SI    | **ESI**       | **RSI**       | 源索引（Source Index），字符串/内存操作       |
+| DI    | **EDI**       | **RDI**       | 目标索引（Destination Index），字符串/内存操作 |
+| SP    | **ESP**       | **RSP**       | 栈指针（Stack Pointer），指向当前栈顶        |
+| BE    | **EBP**       | **RBP**       | 基址指针（Base Pointer），函数栈帧          |
+|       |               |               |                                  |
+| IP    | **EIP**       | **RIP**       | 存储下一条要执行的指令地址                    |
+| FLAGS | **EFLAGS**    | **RFLAGS**    | 存储 CPU 状态标志（如 ZF, CF, SF 等）      |
 
 ## 常见的编码与加密
 

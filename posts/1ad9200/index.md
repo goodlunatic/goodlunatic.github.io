@@ -1710,15 +1710,15 @@ out2.show()
 
 ## Misc——流量分析题思路
 
-详见作者博客中的 **[Network Traffic Analysis](https://goodlunatic.github.io/posts/5422d65/)** 这篇文章
+详见作者博客中的 **[Misc-流量分析](https://goodlunatic.github.io/posts/5422d65/)** 这篇文章
 
 ## Misc——工控题思路
 
-详见作者博客中的 **[CTF-ICS Learning Record](https://goodlunatic.github.io/posts/01ebd40/)** 这篇文章
+详见作者博客中的 **[Misc-工控安全](https://goodlunatic.github.io/posts/01ebd40/)** 这篇文章
 
 ## Misc——数据安全题思路
 
-详见作者博客中的 **[CTF-数据安全](https://goodlunatic.github.io/posts/c49ae8a/)** 这篇文章
+详见作者博客中的 **[Misc-数据安全](https://goodlunatic.github.io/posts/c49ae8a/)** 这篇文章
 
 ## MIsc——图片题思路
 
@@ -2888,7 +2888,7 @@ JPG图片的`jsteg隐写`可以直接用下面这个工具一把梭
 
 > BMP图片通道排列顺序是BGR
 
-#### 1、bmp宽高爆破：
+#### 1、bmp宽高爆破
 
 删除文件头，并保存为文件名.data，然后用GIMP打开修改宽高（这个比较方便）
 
