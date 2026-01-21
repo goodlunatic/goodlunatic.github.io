@@ -7,6 +7,17 @@
 
 ## IDA使用基础
 
+### IDA相关配置
+
+1、修改为老版本的快捷键
+
+options -> shortcuts，取消勾选 use new shortcuts 即可
+
+2、修改 opcode byte 的数量
+
+options -> general -> Number of opcode bytes，输入10即可
+
+
 ### 常用快捷键
 
 |    快捷键    |         功能         |
@@ -23,11 +34,13 @@
 |     /     |        添加注释        |
 |     N     |       修改变量名        |
 |     D     |      代码解析成数据       |
-|     C     |      数据解析成代码       |
+|     C     |   数据解析成代码(重新定义)    |
 |     G     |     跳转到指定地址查看      |
 |     H     |      转换为十进制数       |
+|     P     |        生成函数        |
 |     Q     |      转换为十六进制数      |
 |     R     |       转换为字符        |
+|     U     |        取消定义        |
 |     X     |     查看函数的交叉引用      |
 |     Y     |     指定当前函数的命名      |
 | Shift+F12 |      打开字符串窗口       |
@@ -47,6 +60,68 @@ Options → Strings → Default 8-bit
 如果修改后中文没有正常显示，可以尝试点击反编译后的变量按F5重新反编译
 
 ![](imgs/image-20250816214008432.png)
+
+### ida-python的使用
+
+1、修改变量的值
+
+下断点，动调到要修改变量的地方，获取变量的地址
+
+然后参考以下脚本修改一下地址以及要修改的值
+
+
+```python
+import ida_bytes
+import ida_dbg
+
+INPUT_ADDR = 0x7FF6500A1040
+
+CIPHERTEXT = bytes([
+    0x57, 0xC6, 0x50, 0x75, 0x24, 0x8C, 0x55, 0x37,
+    0x23, 0xE1, 0x7F, 0x71, 0xE2, 0x17, 0x49, 0xA7,
+    0x3F, 0xD5, 0x1B, 0x68, 0xE2, 0xBA, 0xF3, 0xD1,
+    0xC6, 0xF4, 0x2D, 0x48, 0x0B, 0xFD, 0xC0, 0x90,
+    0xC4, 0xEA, 0xF3, 0xBD, 0xC7, 0x57, 0x5C, 0xEA
+])
+
+def patch_input():
+    ok = ida_bytes.put_bytes(INPUT_ADDR, CIPHERTEXT)
+
+patch_input()
+
+```
+
+写好脚本后，IDA左上角 -> File -> Script command 粘贴进去，选择 Python 然后 run 即可
+
+1、多次循环修改变量的值
+
+比如逆序 DES加密 中每一次的keys
+
+下断点到 keys 所在的那一行，然后这里要注意 `在程序运行到这一行之前就要布置好脚本`
+
+否则，第一次就会被跳过，可能导致 DES 解密出来的第一块是错的
+
+右键断点 -> Edit breakpoint -> Condition右侧的三个点 -> 粘贴脚本 -> 选择Python后点击OK即可
+
+```python
+import ida_bytes
+import ida_dbg
+
+KEYS_BASE = 0x00007FF6500A10C0
+ROUNDS = 16
+STRIDE = 8  
+
+def reverse_keys():
+    size = ROUNDS * STRIDE
+    buf = ida_bytes.get_bytes(KEYS_BASE, size)
+    blocks = [buf[i*STRIDE:(i+1)*STRIDE] for i in range(ROUNDS)]
+    blocks.reverse()
+    newbuf = b"".join(blocks)
+    ok = ida_bytes.put_bytes(KEYS_BASE, newbuf)
+
+reverse_keys()
+```
+
 
 例题-BUU-内涵的软件
 
@@ -154,6 +229,119 @@ int __fastcall base64_encode(char *Str2, char *Str)
 
 ### RC4加密算法
 
+RC4因为是同步流密码，加密和解密的逻辑和过程是一样的
+
+因此往往可以提取密文后，动调Patch到输入里直接用源程序解密
+
+##### Python版
+
+```python
+key = list('RC4_1s_4w3s0m3')
+content = [0xA7, 0x1A, 0x68, 0xEC, 0xD8, 0x27, 0x11, 0xCC, 0x8C, 0x9B, 0x16, 0x15, 0x5C, 0xD2, 0x67, 0x3E, 0x82, 0xAD,
+           0xCE, 0x75, 0xD4, 0xBC, 0x57, 0x56, 0xC2, 0x8A, 0x52, 0xB8, 0x6B, 0xD6, 0xCC, 0xF8, 0xA4, 0xBA, 0x72, 0x2F,
+           0xE0, 0x57, 0x15, 0xB9, 0x24, 0x11]
+rc4number = 256
+s = [0] * rc4number
+flag = ''
+
+def rc4_init(s, key, rc4number):
+    for i in range(rc4number):
+        s[i] = i
+    j = 0
+    for i in range(rc4number):
+        j = (j + s[i] + ord(key[i % len(key)])) % rc4number
+        s[i],s[j] = s[j],s[i]
+
+def rc4_endecode(s, content, rc4number):
+    i = 0
+    j = 0
+    for k in range(len(content)):
+        i = (i + 1) % rc4number
+        j = (j + s[i]) % rc4number
+        s[i],s[j] = s[j],s[i]
+        t = (s[i] + s[j]) % rc4number
+        content[k] = chr(content[k] ^ s[t])
+    content = ''.join(content)
+    print(content)
+
+rc4_init(s, key, rc4number)
+rc4_endecode(s, content, rc4number)
+```
+
+##### C++版
+
+```c++
+#include <stdio.h>
+#include <string.h>
+
+#define SBOX_LEN 256
+
+void rc4_init(unsigned char *s, const unsigned char *key, size_t keylen)
+{
+    int i, j = 0;
+    unsigned char k[SBOX_LEN];
+
+    for (i = 0; i < SBOX_LEN; ++i)
+    {
+        s[i] = i;
+        k[i] = key[i % keylen];
+    }
+    for (i = 0; i < SBOX_LEN; ++i)
+    {
+        j = (k[i] + s[i] + j) % SBOX_LEN;
+        unsigned char tmp = s[i];
+        s[i] = s[j];
+        s[j] = tmp;
+    }
+}
+
+// RC4 伪随机生成算法 (PRGA)
+void rc4_crypt(unsigned char *s, unsigned char *data, size_t datalen)
+{
+    int i=0, j=0, t;
+    size_t k;
+    for (k = 0; k < datalen; ++k)
+    {
+        i = (i + 1) % SBOX_LEN;
+        j = (s[i] + j) % SBOX_LEN;
+
+        unsigned char tmp = s[i];
+        s[i] = s[j];
+        s[j] = tmp;
+
+        t = (s[i] + s[j]) % SBOX_LEN;
+        data[k] = (unsigned char)(data[k] ^ s[t] ^ (unsigned char)k);
+    }
+}
+
+int main()
+{
+    unsigned char s[SBOX_LEN];
+    unsigned char key[] = "ohhhRC4";
+    unsigned char data[28]; // 明文
+    unsigned char cipher[] = {
+        0xf7, 0x5f, 0x7a, 0xc1, 0x5d, 0x34, 0xdb, 0xd6,
+        0x2f, 0xd8, 0x75, 0x2d, 0xde, 0xe1, 0xda, 0x68,
+        0xe0, 0x57, 0x9b, 0x4a, 0xce, 0xea, 0x07, 0xf9,
+        0x5e, 0x79, 0x5e}; // 密文
+    size_t datalen = 27;
+
+    for (int i = 0; i < 27; i++)
+    {
+        data[i] = cipher[i];
+    }
+
+    rc4_init(s, key, strlen((char *)key));
+    rc4_crypt(s, data, datalen);
+    for (int i = 0; i < datalen; i++) {   
+        printf("%c", data[i]);   
+    }
+    return 0;
+}
+// flag{S0NNE_Rc4_l$_c13@nged}
+```
+
+
 ### TEA系列加密算法
 
 #### TEA 
@@ -187,39 +375,144 @@ void decrypt(unsigned int* v, unsigned int* key) {
 
 解密脚本
 
+**C语言版**
+
 ```c++
-#include<stdio.h>
-int main(){
-    int n;//pw的个数
-	unsigned int pw[]={};//可改
-	unsigned int v0;
-	unsigned int v1;
-	unsigned int sum;
-    unsigned int key[4]={1,2,3,4};//可改
-	for(int i=0;i<n/2;i++)
-	{
-		v0=pw[2*i];
-		v1=pw[2*i+1];
-		sum=-32*0x61C88647;
-		for(int i=0;i<32;i++)
-		{
-			v1 -= ((v0 >> 5) + key[3] )^ (16 * v0 + key[2]) ^ (sum + v0);//容易魔改	
-			v0 -= ((v1 >> 5) + key[1]) ^ (16 * v1 + key[0]) ^ (sum + v1);
-			sum += 0x61C88647;//容易魔改
-		}
-		for (int j = 0; j<=3; j++)
-		{
-			printf("%c", (v0 >> (j * 8)) & 0xFF);
-		}
-		for (int j = 0; j<=3; j++)
-		{
-			printf("%c", (v1 >> (j * 8)) & 0xFF);
-		}
-	}
+#include <stdio.h>
+int main()
+{
+    int n;                  // pw的个数
+    unsigned int pw[] = {}; // 可改
+    unsigned int v0;
+    unsigned int v1;
+    unsigned int sum;
+    unsigned int key[4] = {1, 2, 3, 4}; // 可改
+    for (int i = 0; i < n / 2; i++)
+    {
+        v0 = pw[2 * i];
+        v1 = pw[2 * i + 1];
+        sum = -32 * 0x61C88647;
+        for (int i = 0; i < 32; i++)
+        {
+            v1 -= ((v0 >> 5) + key[3]) ^ (16 * v0 + key[2]) ^ (sum + v0); // 容易魔改
+            v0 -= ((v1 >> 5) + key[1]) ^ (16 * v1 + key[0]) ^ (sum + v1);
+            sum += 0x61C88647; // 容易魔改
+        }
+        for (int j = 0; j <= 3; j++)
+        {
+            printf("%c", (v0 >> (j * 8)) & 0xFF);
+        }
+        for (int j = 0; j <= 3; j++)
+        {
+            printf("%c", (v1 >> (j * 8)) & 0xFF);
+        }
+    }
 }
 ```
 
-比赛中用到的一些代码
+```c++
+#include <stdio.h>
+#include <string.h>
+#include <stdint.h>
+
+int main()
+{
+    uint32_t A, B, sum;
+    uint32_t key[] = {0x12345678, 0xABCDEF01, 0x11451419, 0x19198101};
+    uint32_t enc[] = {0xF05D46E8, 0x4785FFEF, 0xF401BF82, 0xE5FCC60A, 0xBE70045D, 0x20788733, 0x933BA369};
+    int chunk_num = (sizeof(enc) + 3) >> 2;
+    for (int i = chunk_num - 2; i >= 0; i--)
+    {
+        A = enc[i];
+        B = enc[i + 1];
+        sum = 0 - 32 * 0x61C88647;
+        for (int j = 0; j < 32; j++)
+        {
+            sum += 0x61C88647;
+            B += ((A << 6) + key[2]) ^ (sum + A + 20) ^ ((A >> 9) + key[3]);
+            A += ((B << 6) + key[0]) ^ (sum + B + 11) ^ ((B >> 9) + key[1]);
+        }
+        enc[i] = A;
+        enc[i + 1] = B;
+    }
+    for (int i = 0; i < 7; i++)
+    {
+        for (int j = 0; j < 4; j++)
+        {
+            printf("%c", enc[i] >> (j * 8) & 0xFF);
+        }
+    }
+}
+// flag{OH_I_L0VE_D3inK_Te4!!!}
+```
+
+**Python版**
+
+```python
+ans = [
+    94, 49, 141, 165, 142, 18, 244, 41, 247, 57, 51, 48, 210, 166, 164, 221, 1, 184, 186, 224, 188, 181, 172, 167
+]
+
+def get_tea_key(key):
+    for i in range(len(ans)):
+        ans[i] ^= ord(key[i % len(key)])
+
+    # 准备 TEA 密钥，需要128位（16字节）的密钥
+    key_bytes = [ord(c) for c in key]
+    key_bytes = (key_bytes*16)[:16] # 扩展到 16 字节
+    # print(key_bytes)
+
+    key_array = []
+    # 16字节的密钥数组转换为4个32位整数
+    for i in range(4):
+        key_array.append((key_bytes[i*4] << 24) | (key_bytes[i*4+1] << 16) | (key_bytes[i*4+2] << 8) | key_bytes[i*4+3])
+    # print([hex(item) for item in key_array])
+    return key_array
+
+def tea_decrypt(v0, v1, k):
+    delta = 0x9E3779B9
+    sum = (delta * 32) & 0xFFFFFFFF
+    
+    for _ in range(32):
+        v1 = (v1 - (((v0 << 4) + k[2]) ^ (v0 + sum) ^ ((v0 >> 5) + k[3]))) & 0xFFFFFFFF
+        v0 = (v0 - (((v1 << 4) + k[0]) ^ (v1 + sum) ^ ((v1 >> 5) + k[1]))) & 0xFFFFFFFF
+        sum = (sum - delta) & 0xFFFFFFFF
+    
+    return v0, v1
+
+if __name__ == "__main__":
+    key = "K0meji_K0ishi"
+    key_array = get_tea_key(key)
+    # print(key_array)
+
+    flag = []
+    for i in range(0,len(ans),8):
+        # 大端序读取，每次读取8个字节（64位）
+        v0 = (ans[i] << 24) | (ans[i+1] << 16) | (ans[i+2] << 8) | ans[i+3]
+        v1 = (ans[i+4] << 24) | (ans[i+5] << 16) | (ans[i+6] << 8) | ans[i+7]
+        v0, v1 = tea_decrypt(v0, v1, key_array)
+        # 大端序写回
+        flag.extend([
+            (v0 >> 24) & 0xFF,
+            (v0 >> 16) & 0xFF,
+            (v0 >> 8) & 0xFF,
+            v0 & 0xFF,
+            (v1 >> 24) & 0xFF,
+            (v1 >> 16) & 0xFF,
+            (v1 >> 8) & 0xFF,
+            v1 & 0xFF,
+        ])
+
+    flag[0] ^= 0x12
+    flag[1] ^= 0x34
+    flag[2] ^= 0x56
+    flag[3] ^= 0x78
+    print(bytes(flag))
+    # b'flag{JS_l5_verY_dyn@mIC}'
+```
+
+
+##### 比赛中用到的一些代码
 
 处理原始字节数据版本
 
@@ -576,7 +869,7 @@ int main()
 
 ## 常见的混淆
 
-### 花指令
+		### 花指令
 
 #### 永恒跳转
 
@@ -685,6 +978,7 @@ python ~/CTF/Reverse/pyinstxtractor/pyinstxtractor.py pyc.exe
 https://tool.lu/pyc/
 https://www.lddgo.net/string/pyc-compile-decompile
 https://www.toolkk.com/tools/pyc-decomplie
+https://pylingual.io/
 ```
 
 第二中方法就是用本地工具进行反编译，这里有以下三个常用的反编译工具：
