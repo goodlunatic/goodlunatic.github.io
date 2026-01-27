@@ -285,17 +285,17 @@ from scipy.io import wavfile
 
 def func1():
     sample_rate, data = wavfile.read("flag.wav")
-    for idx,[l,r] in enumerate(data[:100]):
+    for idx,[left_val,right_val] in enumerate(data[:100]):
         if idx % 5 == 0:
             print(f"{'='*50}")
-        r, g = (l >> 8) & 0xFF, l & 0xFF
-        b, a = (r >> 8) & 0xFF, r & 0xFF
-        l, r = int(l), int(r)
+        r, g = (left_val >> 8) & 0xFF, left_val & 0xFF
+        b, a = (right_val >> 8) & 0xFF, right_val & 0xFF
+        left_val, right_val = int(left_val), int(right_val)
         r, g, b, a = int(r), int(g), int(b), int(a)
-        print(f"{l,r} -> {(r,g,b,a)}")
+        print(f"{left_val,right_val} -> {(r,g,b,a)}")
 ```
 
-![](imgs/image-20251120162701292.png)
+![](imgs/image-20260127193350805.png)
 
 仔细观察我们就会发现，这个像素点的分布大致是以5个像素点的数据为一组的
 
