@@ -20,15 +20,6 @@
 
 {{< /admonition >}}
 
-
-1、rockstar 编程语言，在github上面可以找到，然后在本地用pip安装库，把rock文件转换为py文件，运行即可得到flag
-
-2、给你一个.exe安装包文件，flag藏在安装之前的一大串协议中
-
-3、实在做不出来的时候，可以把flag的格式转其他的编码和题目中的信息比对找规律
-
-4、给你一个gpx文件，在线网站https://www.gpsvisualizer.com/map_input解密，然后地名的首字母连起来就是flag
-
 ## CTF中的常用关键词
 
 ```python
@@ -5586,6 +5577,16 @@ print(m)
 
 
 ## Others
+
+### 一些奇奇怪怪的经历
+
+1、rockstar 编程语言，在github上面可以找到，然后在本地用pip安装库，把rock文件转换为py文件，运行即可得到flag
+
+2、给你一个.exe安装包文件，flag藏在安装之前的一大串协议中
+
+3、实在做不出来的时候，可以把flag的格式转其他的编码和题目中的信息比对找规律
+
+4、给你一个gpx文件，在线网站https://www.gpsvisualizer.com/map_input解密，然后地名的首字母连起来就是flag
 
 ### Hashcat的使用
 

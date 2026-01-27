@@ -227,49 +227,46 @@ tshark -r 13.pcapng -Y '(usb.src == "2.8.2") && (frame.len == 75)' -T fields -e 
 因此我们可以尝试画出所有左扳机按下时，左摇杆的移动轨迹图
 
 ```python
-from matplotlib import pyplot as plt
+import matplotlib.pyplot as plt
+from itertools import groupby
+import os, struct, numpy
 
+cmd = 'tshark -r D:/Temp/13.pcapng -Y "usb.src == 2.8.2 and usb.dst == host and frame.len == 75" -T fields -e usb.capdata'
+data = os.popen(cmd).readlines()
 
-def func1():
-    mouse_x, mouse_y = 0, 0
-    trajectory = []
-    plot_count = 0
+draw, x, y = [False], [0], [0]
+for line in data:
+    rt = int.from_bytes(bytes.fromhex(line[16:20]), 'little')
+    draw.append(rt > 100)
+    rsx, rsy = struct.unpack('<hh', bytes.fromhex(line[20:28]))
+    x.append(x[-1] + rsx)
+    y.append(y[-1] + rsy)
 
-    with open("data.txt", "r") as f:
-        lines = f.read().split()
+fig, axes = plt.subplots(3, 7, figsize=(21, 9))
+axes = axes.flatten()
 
-    for line in lines:
-        left_trigger = int(line[16:18], 16)  # 左扳机值
-        left_x_offset = int(line[20:24], 16)  # X的偏移量
-        left_y_offset = int(line[24:28], 16)  # Y的偏移量
-        right_trigger = int(line[18:20], 16) # 右扳机值
-        mouse_x += left_x_offset
-        mouse_y += left_y_offset
-        if left_trigger == 255:
-            trajectory.append((mouse_x, mouse_y))
-        elif left_trigger == 0 and trajectory:
-            plot_trajectory(trajectory, plot_count)
-            plot_count += 1
-            trajectory = []
+segment_idx = 0
+for is_true, group in groupby(zip(draw, x, y), key=lambda g: g[0]):
+    if is_true:
+        points = list(group)
+        xs, ys = zip(*[(p[1], p[2]) for p in points])
 
-def plot_trajectory(trajectory, plot_id):
-    x = [point[0] for point in trajectory]
-    y = [-point[1] for point in trajectory]
+        min_x, max_x = min(xs), max(xs)
+        min_y, max_y = min(ys), max(ys)
 
-    plt.figure(figsize=(8, 6))
-    plt.plot(x, y, 'b-', marker='o', markersize=3)  # 蓝色线条+圆点标记
-    plt.title(f"Mouse Trajectory (Trigger Press #{plot_id + 1})")
-    plt.xlabel("X Position")
-    plt.ylabel("Y Position")
-    plt.axis('equal')  # 保持纵横比一致
-    plt.savefig(f"trajectory_{plot_id}.png")  # 保存为PNG
-    plt.close()  # 关闭当前图形，避免内存泄漏
+        xs_norm = [(x - min_x) / (max_x - min_x) for x in xs]
+        ys_norm = [(y - min_y) / (max_y - min_y) for y in ys]
 
-if __name__ == "__main__":
-    func1()
+        ax = axes[segment_idx]
+        ax.scatter(xs_norm, ys_norm, s=1, alpha=0.7)
+        ax.grid(True, alpha=0.3)
+
+        segment_idx += 1
+        if segment_idx >= 21:
+            break
+
+plt.show()
 ```
-
-> 这里的脚本还有点问题，待改进
 
 运行以上脚本画出轨迹图后即可得到最后的flag：`DASCTF{you_are_shouba_master}`
 

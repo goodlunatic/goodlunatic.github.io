@@ -169,7 +169,15 @@ if __name__ == "__main__":
 
 ![](imgs/image-20251118111440827.png)
 
-发现是个倒置的二维码，但是很明显这样是没法扫描的，因此我们可以写个脚本把它保存到图片中
+发现是个倒置的二维码，可以用 stegsolve 转成黑白，然后扫码
+
+![](imgs/image-20260127191703239.png)
+
+扫码即可得到如下内容：
+
+> dac765079a6eb04a6a2a89a601c40c5f8e7c08e5f1b37bac6016e1c63f193d10
+
+如果上面这样不好扫，我们也可以写个脚本把它保存到图片中
 
 ```python
 import numpy as np
@@ -543,17 +551,17 @@ from scipy.io import wavfile
 
 def func1():
     sample_rate, data = wavfile.read("flag.wav")
-    for idx,[l,r] in enumerate(data[:100]):
+    for idx,[left_val,right_val] in enumerate(data[:100]):
         if idx % 5 == 0:
             print(f"{'='*50}")
-        r, g = (l >> 8) & 0xFF, l & 0xFF
-        b, a = (r >> 8) & 0xFF, r & 0xFF
-        l, r = int(l), int(r)
+        r, g = (left_val >> 8) & 0xFF, left_val & 0xFF
+        b, a = (right_val >> 8) & 0xFF, right_val & 0xFF
+        left_val, right_val = int(left_val), int(right_val)
         r, g, b, a = int(r), int(g), int(b), int(a)
-        print(f"{l,r} -> {(r,g,b,a)}")
+        print(f"{left_val,right_val} -> {(r,g,b,a)}")
 ```
 
-![](imgs/image-20251120162701292.png)
+![](imgs/image-20260127193350805.png)
 
 仔细观察我们就会发现，这个像素点的分布大致是以5个像素点的数据为一组的
 
