@@ -211,7 +211,7 @@ print(f'[+] 最后的结果为：{"".join(new_output)}')
 因此我们需要把被删除的字符也还原出来
 
 
-### 鼠标流量
+### 鼠标流量分析
 
 > 键盘流量的数据常见的长度为4字节、6字节、7字节、8字节
 
@@ -287,7 +287,7 @@ if __name__ == "__main__":
 ```
 
 
-### 数位板流量分析：
+### 数位板流量分析
 
 [例题1-2022浙江省赛决赛-hard_Digital_plate](https://goodlunatic.github.io/posts/3f7db4e/#%E9%A2%98%E7%9B%AE%E5%90%8D%E7%A7%B0-hard_digital_plate)
 
@@ -358,6 +358,53 @@ if __name__ == "__main__":
     draw_pic1()
     # draw_pic2()
 ```
+
+### xbox手柄流量分析
+
+```python
+import matplotlib.pyplot as plt
+from itertools import groupby
+import os, struct, numpy
+
+cmd = 'tshark -r D:/Temp/13.pcapng -Y "usb.src == 2.8.2 and usb.dst == host and frame.len == 75" -T fields -e usb.capdata'
+data = os.popen(cmd).readlines()
+
+draw, x, y = [False], [0], [0]
+for line in data:
+    rt = int.from_bytes(bytes.fromhex(line[16:20]), 'little')
+    draw.append(rt > 100)
+    rsx, rsy = struct.unpack('<hh', bytes.fromhex(line[20:28]))
+    x.append(x[-1] + rsx)
+    y.append(y[-1] + rsy)
+
+fig, axes = plt.subplots(3, 7, figsize=(21, 9))
+axes = axes.flatten()
+
+segment_idx = 0
+for is_true, group in groupby(zip(draw, x, y), key=lambda g: g[0]):
+    if is_true:
+        points = list(group)
+        xs, ys = zip(*[(p[1], p[2]) for p in points])
+
+        min_x, max_x = min(xs), max(xs)
+        min_y, max_y = min(ys), max(ys)
+
+        xs_norm = [(x - min_x) / (max_x - min_x) for x in xs]
+        ys_norm = [(y - min_y) / (max_y - min_y) for y in ys]
+
+        ax = axes[segment_idx]
+        ax.scatter(xs_norm, ys_norm, s=1, alpha=0.7)
+        ax.grid(True, alpha=0.3)
+
+        segment_idx += 1
+        if segment_idx >= 21:
+            break
+
+plt.show()
+```
+
+
+例题1-DASCTF 2024最后一战 手把天尊
 
 ## SQL注入流量分析
 
@@ -2893,7 +2940,7 @@ tshark -r dec.pcapng -T fields -e btatt.value -Y 'btatt.opcode == 0x52' | sed '/
 
 然后CyberChef将得到的十六进制数据转换一下即可得到flag：`flag{9ba3973652c0ee073652c0ee0c76ca6cb36441bd40}`
 
-## 邮件(STMP)流量分析
+## 邮件流量分析
 
 可以试试看导出对象-导出IMF-导出文件的后缀是eml（可以使用网易邮箱大师打开）
 

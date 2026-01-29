@@ -1247,6 +1247,17 @@ https://yuanfux.github.io/zero-width-web/
 ISCC{NWQOUNDXJLKWNWN}
 ```
 
+
+### 恩尼格玛密码机
+
+参考链接：
+
+https://zh.wikipedia.org/wiki/%E6%81%A9%E5%B0%BC%E6%A0%BC%E7%8E%9B%E5%AF%86%E7%A0%81%E6%9C%BA
+
+可以使用在线网站解密：https://www.dcode.fr/enigma-machine-cipher
+
+例题1-ezpng
+
 ### Quote-Printable编码
 
 类似于下面这样的编码，直接使用 [在线网站](https://try8.cn/tool/code/qp) 或`随波逐流CTF编码工具`解密即可
