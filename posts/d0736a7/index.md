@@ -3576,7 +3576,6 @@ Submit flag with 32-bit lower case MD5 value
 因此我们可以用这个项目一张一张解过去，也可以写个脚本批量提取
 
 ```python
-
 import re
 import sys
 import json
@@ -4437,6 +4436,22 @@ if __name__ == '__main__':
 
 流152中的内容感觉是Aronld变换的参数
 
+## 题目名称 ezwav（2025 古剑山）
+
+> 题目附件：https://pan.baidu.com/s/1hLiaYRVft-c5ki3L5mq6vQ?pwd=k993 提取码: k993
+
+![](imgs/image-20260131150605322.png)
+
+题目附件给了一个wav，但是经过各种尝试，发现都得不到什么有效的信息
+
+
+## 题目名称 CBCisMagic
+
+> 题目附件：https://pan.baidu.com/s/1GLDprv5gEW6xGaTer4Sf2Q?pwd=k3f6 提取码: k3f6
+
+附件给了7张PNG，分别是res0-res6
+
+![](imgs/image-20260131151018388.png)
 
 
 
