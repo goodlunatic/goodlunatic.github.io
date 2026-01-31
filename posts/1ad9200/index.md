@@ -1934,7 +1934,9 @@ Tips:在PS中按F8就可以看到每个像素点的具体坐标了
 
 也可以把项目保存到本地离线使用：https://github.com/oakes/PixelJihad
 
-或者自己写个脚本解密
+或者自己写个脚本批量提取空密码的情况
+
+下面这个脚本如果是有密钥的情况，解出来的是SJCL密文，还需要进一步解密
 
 ```python
 import re
@@ -2051,6 +2053,127 @@ def main():
     
 if __name__ == "__main__":
     main()
+```
+
+也可以写个JS脚本解有密钥的情况
+
+```js
+// mkdir steg-decode && cd steg-decode
+// npm init -y
+// npm i pngjs sjcl
+"use strict";
+
+const fs = require("fs");
+const path = require("path");
+const { PNG } = require("pngjs");
+const sjcl = require("sjcl");
+
+const MAX_MESSAGE_SIZE = 1000;
+
+/* ===== Bit helpers ===== */
+function getBit(number, location) {
+  return ((number >> location) & 1);
+}
+function setBit(number, location, bit) {
+  return (number & ~(1 << location)) | (bit << location);
+}
+
+/* ===== Location picker (same as your browser JS) ===== */
+function getNextLocation(history, hashWords, total) {
+  const pos = history.length;
+  let loc = Math.abs(hashWords[pos % hashWords.length] * (pos + 1)) % total;
+  while (true) {
+    if (loc >= total) {
+      loc = 0;
+    } else if (history.indexOf(loc) >= 0) {
+      loc++;
+    } else if ((loc + 1) % 4 === 0) { // alpha channel
+      loc++;
+    } else {
+      history.push(loc);
+      return loc;
+    }
+  }
+}
+
+function getNumberFromBits(bytes, history, hashWords) {
+  let number = 0, pos = 0;
+  while (pos < 16) {
+    const loc = getNextLocation(history, hashWords, bytes.length);
+    const bit = getBit(bytes[loc], 0);
+    number = setBit(number, pos, bit);
+    pos++;
+  }
+  return number;
+}
+
+function decodeMessage(colors, hashWords) {
+  const history = [];
+  const messageSize = getNumberFromBits(colors, history, hashWords);
+
+  // same early exits
+  if ((messageSize + 1) * 16 > colors.length * 0.75) return "";
+  if (messageSize === 0 || messageSize > MAX_MESSAGE_SIZE) return "";
+
+  const message = [];
+  for (let i = 0; i < messageSize; i++) {
+    const code = getNumberFromBits(colors, history, hashWords);
+    message.push(String.fromCharCode(code));
+  }
+  return message.join("");
+}
+
+/* ===== Main ===== */
+async function main() {
+  const imgPath = "test.png"; // 修改为待解密的图片路径
+  const password = "password"; // 加密的密钥
+
+  const buf = fs.readFileSync(imgPath);
+  const png = PNG.sync.read(buf); // {width,height,data:Buffer(RGBA)}
+  const colors = png.data;        // Buffer length = w*h*4
+
+  // IMPORTANT: mimic your browser code: sjcl.hash.sha256.hash(password)
+  const hashWords = sjcl.hash.sha256.hash(password);
+
+  const jsonStr = decodeMessage(colors, hashWords);
+  if (!jsonStr) {
+    console.error("[!] Empty / not found / wrong password (location hash mismatch).");
+    process.exit(2);
+  }
+
+  // Try parse JSON
+  let obj;
+  try {
+    obj = JSON.parse(jsonStr);
+  } catch (e) {
+    console.error("[!] Decoded payload is not valid JSON. Here is the raw string:");
+    console.log(jsonStr);
+    process.exit(3);
+  }
+
+  // Decrypt if necessary (SJCL ciphertext has obj.ct)
+  if (obj && obj.ct) {
+    try {
+      const plaintext = sjcl.decrypt(password, jsonStr);
+      console.log(plaintext);
+    } catch (e) {
+      console.error("[!] SJCL decrypt failed: wrong password or corrupted payload.");
+      // show the ciphertext JSON for debugging
+      console.log(jsonStr);
+      process.exit(4);
+    }
+  } else if (obj && typeof obj.text !== "undefined") {
+    console.log(obj.text);
+  } else {
+    // still JSON but not the expected schema
+    console.log(jsonStr);
+  }
+}
+
+main().catch((e) => {
+  console.error("[!] Fatal:", e);
+  process.exit(99);
+});
 ```
 
 #### 11、隐写文本可能藏在原图片和隐写文件的中间
