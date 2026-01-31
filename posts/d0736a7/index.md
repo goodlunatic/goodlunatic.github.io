@@ -3487,7 +3487,6 @@ base64解码上面那段内容可以得到：`88cf333dd92ff4d0ceff266d366dbec335
 
 解压后即可得到最后的flag：`flag{br1LL14nt!_n0w_0n_t0_th3_n3xt}`
 
-
 ## [SOLVED] 题目名称 ezpng
 
 > 题目附件： https://pan.baidu.com/s/1TfkbCACGFVLp6cWSlskP8g?pwd=jbgi 提取码: jbgi
@@ -3557,6 +3556,144 @@ Submit flag with 32-bit lower case MD5 value
 安装好`z3-solver`，填入对应参数运行脚本即可得到第六个随机数：`0.49362619640064587`
 
 因此最后的flag为：`flag{be04b098a3d3f178a3350d5d47b0abee}`
+
+## [SOLVED] 题目名称 dd（2021 CTFSHOW红包题）
+
+> 题目附件： https://pan.baidu.com/s/1dprb5uPFR310ofJU6xFKrA?pwd=a1e5 提取码: a1e5
+
+附件给了一张dd.png，用exiftool看一下发现是apng
+
+![](imgs/image-20250825182425564.png)
+
+用 apngdis_gui 跑一下，分割后可以得到28张PNG图片
+
+尝试用zsteg、stegsolve、盲水印提取工具分析了一下得到的PNG图片，没有得到有效的信息
+
+后来在`@元亨利贞`师傅的帮助下，知道了这里的28张PNG都是用了空密码的PixelJihad隐写
+
+![](imgs/image-20260131143544251.png)
+
+因此我们可以用这个项目一张一张解过去，也可以写个脚本批量提取
+
+```python
+
+import re
+import sys
+import json
+from pathlib import Path
+from PIL import Image
+import hashlib
+import struct
+
+MAX_MESSAGE_SIZE = 1000
+
+def sha256_words_int32(password: str):
+    """
+    Mimic sjcl.hash.sha256.hash(password) output words:
+    sjcl returns 8 x 32-bit words (signed) in big-endian order.
+    """
+    digest = hashlib.sha256(password.encode("utf-8")).digest()  # 32 bytes
+    words = []
+    for i in range(0, 32, 4):
+        # big-endian unsigned 32-bit
+        (u,) = struct.unpack(">I", digest[i:i+4])
+        # convert to signed int32 like JS bitArray words can be negative
+        if u >= 0x80000000:
+            u = u - 0x100000000
+        words.append(u)
+    return words  # len=8
+
+def get_next_location(pos, used, hash_words, total):
+    """
+    Replicate JS getNextLocation(history, hash, total):
+      pos = history.length
+      loc = abs(hash[pos % hash.length] * (pos + 1)) % total
+      loop:
+        if loc >= total: loc=0
+        else if used[loc]: loc++
+        else if ((loc+1)%4===0): loc++
+        else: mark used, push history, return loc
+    """
+    loc = abs(hash_words[pos % len(hash_words)] * (pos + 1)) % total
+    while True:
+        if loc >= total:
+            loc = 0
+        elif used[loc]:
+            loc += 1
+        elif ((loc + 1) % 4) == 0:  # alpha channel
+            loc += 1
+        else:
+            used[loc] = True
+            return loc, pos + 1
+
+def get_number_from_bits(colors, hash_words, used, pos):
+    """
+    Replicate JS getNumberFromBits(bytes, history, hash):
+    read 16 LSB bits using getNextLocation, construct number via setBit(number, bitpos, bit)
+    where bitpos increases 0..15 (LSB-first).
+    """
+    number = 0
+    bitpos = 0
+    total = len(colors)
+    while bitpos < 16:
+        loc, pos = get_next_location(pos, used, hash_words, total)
+        bit = colors[loc] & 1
+        number = (number & ~(1 << bitpos)) | (bit << bitpos)
+        bitpos += 1
+    return number, pos
+
+def decode_message_from_rgba_bytes(colors, password=""):
+    hash_words = sha256_words_int32(password)
+    total = len(colors)
+    used = bytearray(total)  # 0/1
+    pos = 0
+
+    # message size (2 bytes)
+    msg_size, pos = get_number_from_bits(colors, hash_words, used, pos)
+
+    # JS early exits
+    if ((msg_size + 1) * 16) > (total * 0.75):
+        return ""
+    if msg_size == 0 or msg_size > MAX_MESSAGE_SIZE:
+        return ""
+
+    # read msg_size chars (each char is 2 bytes => 16 bits)
+    chars = []
+    for _ in range(msg_size):
+        code, pos = get_number_from_bits(colors, hash_words, used, pos)
+        try:
+            chars.append(chr(code))
+        except ValueError:
+            # invalid unicode codepoint => treat as fail
+            return ""
+    return "".join(chars)
+
+def frame_sort_key(p: Path):
+    m = re.search(r"(\d+)", p.stem)
+    return int(m.group(1)) if m else 10**9
+
+def main():
+    # 默认匹配：apngframe01-apngframe28.png
+    # 你也可以运行：python decode_frames.py "apngframe*.png"
+    pattern = sys.argv[1] if len(sys.argv) > 1 else "apngframe*.png"
+    files = sorted(Path(".").glob(pattern), key=frame_sort_key)
+
+    res = ""
+    for fp in files:
+        img = Image.open(fp).convert("RGBA")
+        colors = img.tobytes()  # RGBA bytes, length = w*h*4
+        json_msg = decode_message_from_rgba_bytes(colors, password="")  # 空密码
+        msg = json.loads(json_msg)["text"]
+        print(f"[+] {fp.name} : {msg}")
+        res += msg
+    print(f"\n所有图像解码后的内容为:\n{res}")
+    # flag{Zhe94Kou0}，加群：815558405
+    
+if __name__ == "__main__":
+    main()
+```
+
+运行以上脚本即可得到最后的flag：`flag{Zhe94Kou0}`
 
 ## 题目名称 one (2024 古剑山)
 
@@ -3762,18 +3899,6 @@ if __name__ == "__main__":
 ![](imgs/image-20241230185454044.jpeg)
 
 已经知道答案，但是不知道这个`evidence2`被出题人藏哪了，感觉是内幕题。。
-
-## 题目名称 dd
-
-> 题目附件： https://pan.baidu.com/s/1dprb5uPFR310ofJU6xFKrA?pwd=a1e5 提取码: a1e5
-
-附件给了一张dd.png，用exiftool看一下发现是apng
-
-![](imgs/image-20250825182425564.png)
-
-用 apngdis_gui 跑一下，分割后可以得到28张PNG图片
-
-尝试用zsteg、stegsolve、盲水印提取工具分析了一下得到的PNG图片，没有得到有效的信息
 
 
 ## 题目名称 魔法少女的消失术

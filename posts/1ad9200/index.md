@@ -1928,9 +1928,130 @@ Tips:在PS中按F8就可以看到每个像素点的具体坐标了
 
 ![](imgs/image-20241120172043964.png)
 
-#### 10、pixeljihad（有密码）
+#### 10、PixelJihad（可以无密码）
 
 直接使用在线网站解密即可：[PixelJihad (sekao.net)](https://sekao.net/pixeljihad/)
+
+也可以把项目保存到本地离线使用：https://github.com/oakes/PixelJihad
+
+或者自己写个脚本解密
+
+```python
+import re
+import sys
+import json
+from pathlib import Path
+from PIL import Image
+import hashlib
+import struct
+
+MAX_MESSAGE_SIZE = 1000
+
+def sha256_words_int32(password: str):
+    """
+    Mimic sjcl.hash.sha256.hash(password) output words:
+    sjcl returns 8 x 32-bit words (signed) in big-endian order.
+    """
+    digest = hashlib.sha256(password.encode("utf-8")).digest()  # 32 bytes
+    words = []
+    for i in range(0, 32, 4):
+        # big-endian unsigned 32-bit
+        (u,) = struct.unpack(">I", digest[i:i+4])
+        # convert to signed int32 like JS bitArray words can be negative
+        if u >= 0x80000000:
+            u = u - 0x100000000
+        words.append(u)
+    return words  # len=8
+
+def get_next_location(pos, used, hash_words, total):
+    """
+    Replicate JS getNextLocation(history, hash, total):
+      pos = history.length
+      loc = abs(hash[pos % hash.length] * (pos + 1)) % total
+      loop:
+        if loc >= total: loc=0
+        else if used[loc]: loc++
+        else if ((loc+1)%4===0): loc++
+        else: mark used, push history, return loc
+    """
+    loc = abs(hash_words[pos % len(hash_words)] * (pos + 1)) % total
+    while True:
+        if loc >= total:
+            loc = 0
+        elif used[loc]:
+            loc += 1
+        elif ((loc + 1) % 4) == 0:  # alpha channel
+            loc += 1
+        else:
+            used[loc] = True
+            return loc, pos + 1
+
+def get_number_from_bits(colors, hash_words, used, pos):
+    """
+    Replicate JS getNumberFromBits(bytes, history, hash):
+    read 16 LSB bits using getNextLocation, construct number via setBit(number, bitpos, bit)
+    where bitpos increases 0..15 (LSB-first).
+    """
+    number = 0
+    bitpos = 0
+    total = len(colors)
+    while bitpos < 16:
+        loc, pos = get_next_location(pos, used, hash_words, total)
+        bit = colors[loc] & 1
+        number = (number & ~(1 << bitpos)) | (bit << bitpos)
+        bitpos += 1
+    return number, pos
+
+def decode_message_from_rgba_bytes(colors, password=""):
+    hash_words = sha256_words_int32(password)
+    total = len(colors)
+    used = bytearray(total)  # 0/1
+    pos = 0
+
+    # message size (2 bytes)
+    msg_size, pos = get_number_from_bits(colors, hash_words, used, pos)
+
+    # JS early exits
+    if ((msg_size + 1) * 16) > (total * 0.75):
+        return ""
+    if msg_size == 0 or msg_size > MAX_MESSAGE_SIZE:
+        return ""
+
+    # read msg_size chars (each char is 2 bytes => 16 bits)
+    chars = []
+    for _ in range(msg_size):
+        code, pos = get_number_from_bits(colors, hash_words, used, pos)
+        try:
+            chars.append(chr(code))
+        except ValueError:
+            # invalid unicode codepoint => treat as fail
+            return ""
+    return "".join(chars)
+
+def frame_sort_key(p: Path):
+    m = re.search(r"(\d+)", p.stem)
+    return int(m.group(1)) if m else 10**9
+
+def main():
+    # 默认匹配：apngframe01-apngframe28.png
+    # 你也可以运行：python decode_frames.py "apngframe*.png"
+    pattern = sys.argv[1] if len(sys.argv) > 1 else "apngframe*.png"
+    files = sorted(Path(".").glob(pattern), key=frame_sort_key)
+
+    res = ""
+    for fp in files:
+        img = Image.open(fp).convert("RGBA")
+        colors = img.tobytes()  # RGBA bytes, length = w*h*4
+        json_msg = decode_message_from_rgba_bytes(colors, password="")  # 空密码
+        msg = json.loads(json_msg)["text"]
+        print(f"[+] {fp.name} : {msg}")
+        res += msg
+    print(f"\n所有图像解码后的内容为:\n{res}")
+    # flag{Zhe94Kou0}，加群：815558405
+    
+if __name__ == "__main__":
+    main()
+```
 
 #### 11、隐写文本可能藏在原图片和隐写文件的中间
 
