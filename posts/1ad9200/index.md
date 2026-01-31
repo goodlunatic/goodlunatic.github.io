@@ -369,6 +369,7 @@ if not found_key:
 ### AES加密算法
 
 可以尝试用`CyberChef`或者在线网站解密：
+
 ```
 https://tool.lmeee.com/jiami/aes
 https://www.sojson.com/encrypt_aes.html
@@ -389,15 +390,13 @@ https://the-x.cn/cryptography/aes.aspx
 
 #### AES-ECB(不需要IV)
 
-如果 `key` 不足16字节可以尝试在后面补0
+如果 `key` 不足16字节可以尝试在后面 Padding `\x00`
 
 #### AES-CBC(需要IV)
 
-> Tips: CBC模式下key的长度必须是16bytes的整数倍，但是IV不一定
-
 ![](imgs/image-20241116212331838.png)
 
-密钥不足16字节时需要padding补齐16字节
+密钥不足16字节的整数倍时需要 Padding 补齐16字节的整数倍
 
 可以使用能自动补齐的在线网站解密 https://www.sojson.com/encrypt_aes.html
 
@@ -407,7 +406,7 @@ https://the-x.cn/cryptography/aes.aspx
 
 ![](imgs/aes2.png)
 
-如何使用openssl进行加解密
+如何使用openssl进行AES的加解密
 
 ```bash
 # ==================== 加密命令 ====================
@@ -434,6 +433,35 @@ openssl des3 -d -salt -k th1sisKey -in ./flag.tar.gz -out decrypted_file
 #     -in 输入文件
 #     -out 输出文件
 ```
+
+也可以写脚本解密
+
+```python
+from Crypto.Cipher import AES
+from Crypto.Util.Padding import *
+
+def decrypt_aes_cbc(ciphertext_hex, key_hex, iv_hex):
+    ciphertext = bytes.fromhex(ciphertext_hex)
+    key = bytes.fromhex(key_hex)
+    iv = bytes.fromhex(iv_hex)
+    cipher = AES.new(key, AES.MODE_CBC, iv)
+    decrypted = unpad(cipher.decrypt(ciphertext), AES.block_size)
+    
+    return decrypted
+
+def encrypt_aes_cbc(plaintext, key_hex, iv_hex):
+    if isinstance(plaintext, str):
+        plaintext = plaintext.encode('utf-8')
+    
+    key = bytes.fromhex(key_hex)
+    iv = bytes.fromhex(iv_hex)
+    cipher = AES.new(key, AES.MODE_CBC, iv)
+    padded_data = pad(plaintext, AES.block_size)
+    ciphertext = cipher.encrypt(padded_data)
+    
+    return ciphertext
+```
+
 
 ### 国密(SM)系列加密算法
 

@@ -676,11 +676,10 @@ enable = false
 #           With 'dynamic' the SPGW will automatically allocate IPs                         
 #           With a valid IPv4 (e.g. '172.16.0.2') the UE will have a statically assigned IP.
 #                                                                                           
-# Note: Lines starting by '#' are ignored and will be overwritten  
-# (ue_name),(algo),(imsi),(K),(OP/OPc_type),(OP/OPc_value),(AMF),(SQN),(QCI),(IP_alloc)            
-ue1,mil,001012345678901,00112233445566778899aabbccddeeff,opc,63bfa50ee6523365ff14c1f45f88737d,8000,000000003fc1,7,dynamic             
-ue2,mil,001010123456780,00112233445566778899aabbccddeeff,opc,63bfa50ee6523365ff14c1f45f88737d,8000,000000001234,7,dynamic
-ue3,mil,221010123456789,6874736969202073796d4b2079650a76,opc,504f20634f6320504f50206363500a4f,8000,000000001404,7,dynamic
+
+# Note: Lines starting by '#' are ignored and will be overwritten
+ue1,mil,001012345678901,00112233445566778899aabbccddeeff,opc,63bfa50ee6523365ff14c1f45f88737d,8000,000000003fc1,7,dynamic
+ue2,mil,221010123456789,6874736969202073796d4b2079650a76,opc,504f20634f6320504f50206363500a4f,8000,000000001404,7,dynamic
 ```
 
 ## 刷写SIM卡并新建APN
