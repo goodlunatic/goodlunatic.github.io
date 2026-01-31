@@ -3567,6 +3567,8 @@ Submit flag with 32-bit lower case MD5 value
 
 用 apngdis_gui 跑一下，分割后可以得到28张PNG图片
 
+![](imgs/image-20260131194112125.png)
+
 尝试用zsteg、stegsolve、盲水印提取工具分析了一下得到的PNG图片，没有得到有效的信息
 
 后来在`@元亨利贞`师傅的帮助下，知道了这里的28张PNG都是用了空密码的PixelJihad隐写
@@ -4444,14 +4446,53 @@ if __name__ == '__main__':
 
 题目附件给了一个wav，但是经过各种尝试，发现都得不到什么有效的信息
 
-
 ## 题目名称 CBCisMagic
 
 > 题目附件：https://pan.baidu.com/s/1GLDprv5gEW6xGaTer4Sf2Q?pwd=k3f6 提取码: k3f6
 
-附件给了7张PNG，分别是res0-res6
+附件给了一个rar压缩包，解压后可以得到7张PNG，分别是res0-res6
 
 ![](imgs/image-20260131151018388.png)
+
+然后图片中的内容也是`AES_CBC.key:WelcomeToDASCTF0`这种字符串
+
+密钥最后一位也是0-6，对应图片的名称，并且长度刚刚好是16字节，猜测肯定是AES-CBC的密钥了
+
+因为附件给的是rar，我们尝试拿010打开发现有NTFS的内容
+
+![](imgs/image-20260131194240937.png)
+
+直接用7z打开，可以得到一个`res0.png:iv0.txt`，内容如下：
+
+![](imgs/image-20260131194413518.png)
+
+> 88ee19fcec5d39221a788f898fa906ad
+
+也可以用`NtfsStreamsEditor2`提取
+
+![](imgs/image-20260131194952591.png)
+
+然后010打开png，发现末尾有多余数据
+
+![](imgs/image-20260131195551342.png)
+
+
+| ![](imgs/image-20260131200534269.png) | ![](imgs/image-20260131200626299.png) |
+| ------------------------------------- | ------------------------------------- |
+| ![](imgs/image-20260131200712698.png) | ![](imgs/image-20260131200722531.png) |
+| ![](imgs/image-20260131200747635.png) | ![](imgs/image-20260131200804464.png) |
+
+仔细观察可以发现，末尾多余数据的开头中，还有可疑的十六进制值
+
+并且这个十六进制值出现的次数刚刚好就是这个值，这个是AES加密中的`PKCS#7`Padding规则
+
+因此猜测这里多余的数据就是密文，但是把数据逆置了
+
+
+
+
+
+
 
 
 
