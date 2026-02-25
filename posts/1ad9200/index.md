@@ -59,8 +59,8 @@ for item in search_items:
         print(f"[+] Found {item.decode()} match: {matched_text[:50]}...")
 ```
 
-```python
-# 各种常用关键字的bash64编码
+```
+# 各种常用关键字的base64编码
 flag                          Zmxh
 F14g                          RjE0
 DASCTF                        REFTQ1RGe
@@ -76,7 +76,7 @@ ZIP文件头                      UEsDBA
 
 这里要注意，出题人可能会把文件头的小写字母偷偷改成大写，例如：Rar -> RAR
 
-```python
+```
 zip 文件头：50 4B 03 04 14 00 08 00
 rar 文件头：52 61 72 21 (Rar!)               文件尾：C4 3D 7B 00 40 07 00
 7z  文件头：37 7A BC AF 27 1C
