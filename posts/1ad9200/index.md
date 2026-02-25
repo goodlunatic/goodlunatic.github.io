@@ -3457,15 +3457,27 @@ with open('flag.zip', 'wb') as f:
 
 我们平常见的最多的二维码就是QRcode，但是实际上还有很多不同类型的二维码，这里就简单举几个例子：
 
+**Aztec code：**
+
 ![AztecCode](imgs/image-20250421205934212.png)
+
+**DataMatrix：**
 
 ![DataMatrix](imgs/image-20250421210022191.png)
 
+**GridMatrix：**
+
 ![GridMatrix](imgs/image-20250421210051456.png)
+
+**MaxiCode：**
 
 ![MaxiCode](imgs/image-20250912223855981.png)
 
+**DotCode：**
+
 ![DotCode](imgs/image-20250912224010642.png)
+
+**汉信码：**
 
 ![汉信码](imgs/image-20250421210117218.png)
 
@@ -3473,11 +3485,13 @@ with open('flag.zip', 'wb') as f:
 > 
 > 有时候题目会把这块定位块反过来
 
+**PDF417 Code：**
+
 ![PDF417code](imgs/image-20250421210137589.png)
 
-这里要注意的是，出题人可能会把图片反相导致无法直接扫描
-
-因此我们可以先将二维码拉入`StegSolve`或者`PS`进行反相处理，再扫描
+> PDF417 Code 这里要注意的是，出题人可能会把图片反相导致无法直接扫描 
+> 
+> 因此我们可以先将二维码拉入`StegSolve`或者`PS`进行反相处理，再扫描
 
 #### QRcode 二维码标准的一些考点
 
@@ -3542,7 +3556,15 @@ https://github.com/goodlunatic/ISO-IEC-18004-Standard
 
 例题1-2024古剑山-jpg
 
-### 7、弱密码加密的PDF
+### 7、增量式的PDF
+
+foremost原PDF后可以得到一个新的PDF
+
+打开即可得到关键信息
+
+例题1-2026 HGAME REDACTED
+
+### 8、弱密码加密的PDF
 
 可以直接用 Forensic PasswareKit 爆破
 
@@ -3552,7 +3574,7 @@ https://github.com/goodlunatic/ISO-IEC-18004-Standard
 pdfcrack -f enc.pdf -w rockyou.txt
 ```
 
-### 8、PDF交叉引用隐写数据
+### 9、PDF交叉引用隐写数据
 
 利用交叉引用数据的偏移量隐写二进制数据
 
@@ -3651,7 +3673,8 @@ olevba .\attachment.doc > test.txt
 ##### 4、利用行距来隐写（例：ISCC2023-汤姆历险记）
 
 ```
-word中可能有一段是1倍行距，可能又有一段是1.5倍行距，需要根据不同行距敲出摩斯电码（单倍转为.多倍转为-空行转为空格或者分隔符）
+word中可能有一段是1倍行距，可能又有一段是1.5倍行距
+需要根据不同行距敲出摩斯电码（单倍转为.多倍转为-空行转为空格或者分隔符）
 ```
 
 ##### 5、docx中有emf和oleobject
@@ -3797,11 +3820,13 @@ word中可能有一段是1倍行距，可能又有一段是1.5倍行距，需要
 
 ## Misc——TXT题思路
 
-### 1、 有可能是ntfs，直接用NtfsStreamsEditor2扫描所在文件夹，然后导出可疑文件【如果是压缩包，一定要用winrar解压】
+### 1、wbStego4open隐写
 
-### 2、可能是wbStego4open隐写，用wbStego4open直接decode(可能有密钥)
+用wbStego4open直接decode(可能有密钥)
 
-### 3、如果是那种文件夹套文件夹的题目，可以直接把路径粘贴到everything中，让everything一把梭
+### 3、文件夹/目录套娃
+
+可以直接把路径粘贴到everything中，让everything一把梭
 
 ### 4、whitespace隐写
 
@@ -3847,8 +3872,46 @@ https://yuanfux.github.io/zero-width-web/
 
 ![](imgs/image-20250828223608794.png)
 
-
 ### 5、垃圾邮件隐写(spammimic)
+
+```
+Dear Professional ; Especially for you - this cutting-edge 
+intelligence ! If you no longer wish to receive our 
+publications simply reply with a Subject: of "REMOVE" 
+and you will immediately be removed from our club . 
+This mail is being sent in compliance with Senate bill 
+2216 ; Title 9 ; Section 303 ! This is not multi-level 
+marketing ! Why work for somebody else when you can 
+become rich inside 83 MONTHS ! Have you ever noticed 
+people love convenience and how long the line-ups are 
+at bank machines . Well, now is your chance to capitalize 
+on this . WE will help YOU turn your business into 
+an E-BUSINESS plus SELL MORE ! You are guaranteed to 
+succeed because we take all the risk ! But don't believe 
+us . Ms Anderson who resides in Delaware tried us and 
+says "My only problem now is where to park all my cars" 
+. This offer is 100% legal ! Because the Internet operates 
+on "Internet time" you must hurry . Sign up a friend 
+and you get half off ! Thank-you for your serious consideration 
+of our offer ! Dear E-Commerce professional , This 
+letter was specially selected to be sent to you . We 
+will comply with all removal requests . This mail is 
+being sent in compliance with Senate bill 1625 ; Title 
+4 ; Section 309 ! This is a ligitimate business proposal 
+. Why work for somebody else when you can become rich 
+as few as 54 months . Have you ever noticed most everyone 
+has a cellphone and most everyone has a cellphone ! 
+Well, now is your chance to capitalize on this ! WE 
+will help YOU turn your business into an E-BUSINESS 
+plus turn your business into an E-BUSINESS . You can 
+begin at absolutely no cost to you ! But don't believe 
+us . Ms Simpson who resides in Louisiana tried us and 
+says "I've been poor and I've been rich - rich is better" 
+! We are licensed to operate in all states . Do not 
+delay - order today ! Sign up a friend and you'll get 
+a discount of 50% . Thank-you for your serious consideration 
+of our offer . 
+```
 
 例题1-2024强网拟态初赛-PvZ
 
