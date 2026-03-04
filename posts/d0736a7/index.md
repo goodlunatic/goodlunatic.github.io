@@ -3753,12 +3753,11 @@ if __name__ == "__main__":
 
 运行以上脚本即可得到最后的flag：`flag{Zhe94Kou0}`
 
-
-## [SOLVED]题目名称 魔法少女的消失术
+## [SOLVED] 题目名称 魔法少女的消失术(2021 DASCTF Oct X 吉林工师)
 
 > 题目附件： https://pan.baidu.com/s/1m7JegAUuTKKc30xUKSMwzQ?pwd=7kw9 提取码: 7kw9
 
-本题在`@秋雨渐冷`师傅的帮助下成功解出
+> 这是本场比赛Misc方向的一道0解题，本题最终在`@秋雨渐冷`师傅的帮助下成功解出
 
 题目附件给了一个 `encode.mat` 和 `original.jpg`
 
@@ -4086,6 +4085,66 @@ if __name__ == "__main__":
 运行以上脚本后即可提取得到如下图片
 
 ![](imgs/image-20260303165540544.png)
+
+当然如果本地有matlab的话，也可以直接对照 `encode.m` 写个matlab的脚本提取水印
+
+```
+clc; clear;
+
+alpha = 80;
+I0 = im2double(imread('original.jpg'));
+I1 = im2double(imread('fixed.png'));
+S = load('encode.mat');
+M = S.M;
+N = S.N;
+
+[H, W, C] = size(I0);
+G = real((fft2(I1) - fft2(I0)) / alpha);
+TH = G(1:H/2, :, :);
+
+R = zeros(H/2, W, C);
+for i = 1:H/2
+    for j = 1:W
+        R(M(i), N(j), :) = TH(i, j, :);
+    end
+end
+
+R = R - min(R(:));
+R = R / max(R(:));
+if C == 3
+    gray = 0.2989 * R(:,:,1) + 0.5870 * R(:,:,2) + 0.1140 * R(:,:,3);
+else
+    gray = R;
+end
+
+t = otsu_threshold_basic(gray);
+bw = gray >= t;
+imwrite(bw, 'extracted_watermark_bw.png');
+
+function t = otsu_threshold_basic(I)
+I = double(I);
+I = I(:);
+I = I(~isnan(I));
+I(I < 0) = 0;
+I(I > 1) = 1;
+
+nbins = 256;
+edges = linspace(0, 1, nbins + 1);
+counts = histcounts(I, edges);
+p = counts / max(sum(counts), 1);
+
+omega = cumsum(p);
+bins = (0:nbins-1) / (nbins-1);
+mu = cumsum(p .* bins);
+mu_t = mu(end);
+
+sigma_b2 = (mu_t * omega - mu).^2 ./ max(omega .* (1 - omega), eps);
+[~, idx] = max(sigma_b2);
+t = bins(idx);
+end
+```
+
+![](imgs/image-20260304104308849.png)
 
 一眼 `datamatrix`，直接在线网站扫码即可得到最后的flag
 
