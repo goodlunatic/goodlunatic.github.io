@@ -6135,72 +6135,176 @@ zip压缩包的文件头是：504B0304
 
 #### 字节序的转换
 
-数据量小的话可以直接用 CyberChef 转换
+1、数据量小的话可以直接用 CyberChef 转换
 
 ![](imgs/image-20251118155942412.png)
 
-**使用Python中的struct模块来处理大小端序**
+2、使用Python中的struct模块来处理大小端序
+
+**基本语法**
+
+```python
+struct.unpack(format, buffer)
+# format: 指定字节数据的排列顺序和数据类型（例如：整数、浮点数、字符串等）
+# buffer: 一个字节类对象（如 bytes、bytearray），包含了你要解包的二进制数据
+# 返回值: 一个元组（tuple），包含了根据格式解析出来的 Python 对象
+```
+
+**格式字符串**
+
+格式字符串由两部分组成：字节顺序/大小和对齐方式（可选）和数据类型。
+
+**字节顺序**
+
+默认情况下，数据的解析方式取决于你的操作系统（本地化）。如果是在网络传输或跨平台读写文件，**强烈建议指定顺序**，否则可能会出现数据错乱。
+
+| 字符  |         字节顺序          | 大小  |  对齐方式  |
+| :-: | :-------------------: | :-: | :----: |
+| `@` |          本机           | 本机  | 本机（默认） |
+| `=` |          本机           | 标准  |   无    |
+| `<` | **小端**（Little-endian） | 标准  |   无    |
+| `>` |  **大端**（Big-endian）   | 标准  |   无    |
+| `!` |     **网络序**（即大端）      | 标准  |   无    |
+
+-   **小端（<）**：低位字节存储在内存的低地址处（例如：Intel x86架构）。
+-   **大端（>）**：高位字节存储在内存的低地址处（例如：网络协议）。
+
+**数据类型**
+
+| 格式  |         C 类型         | Python 类型 | 标准大小（字节） |
+| :-: | :------------------: | :-------: | :------: |
+| `x` |         填充字节         |     无     |    1     |
+| `c` |        `char`        | 长度为1的字节串  |    1     |
+| `b` |    `signed char`     |    整数     |    1     |
+| `B` |   `unsigned char`    |    整数     |    1     |
+| `?` |       `_Bool`        |   bool    |    1     |
+| `h` |       `short`        |    整数     |    2     |
+| `H` |   `unsigned short`   |    整数     |    2     |
+| `i` |        `int`         |    整数     |    4     |
+| `I` |    `unsigned int`    |    整数     |    4     |
+| `l` |        `long`        |    整数     |    4     |
+| `L` |   `unsigned long`    |    整数     |    4     |
+| `q` |     `long long`      |    整数     |    8     |
+| `Q` | `unsigned long long` |    整数     |    8     |
+| `f` |       `float`        |    浮点数    |    4     |
+| `d` |       `double`       |    浮点数    |    8     |
+| `s` |       `char[]`       |    字节串    | 长度由数字指定  |
+| `p` | `char[]` (Pascal风格)  |    字节串    | 长度由数字指定  |
+**使用示例**
 
 ```python
 import struct
 
-def display_binary(data):
-    #将字节数据转化为十六进制表示形式
-    # return ' '.join(['{:02x}'.format(byte) for byte in data])
-    return ' '.join([f"{byte:02x}" for byte in data])
+data = b'\x01\x00\x00\x00\xe8\x03\x00\x00'
 
-# 定义要打包的数据
-int_data = 10240099
-float_data = 123.456
+# '<ii' 表示：小端顺序，两个整数
+result = struct.unpack('<ii', data)
 
-# 使用默认端序（小端序）打包
-packed_int_little = struct.pack('I', int_data)
-packed_float_little = struct.pack('f', float_data)
-
-# 使用大端序打包
-packed_int_big = struct.pack('>I', int_data)
-packed_float_big = struct.pack('>f', float_data)
-
-# 打印打包的结果,display_binary()是以十六进制的形式显示
-print("Packed data (Little Endian):")
-print(packed_int_little)
-print("Int:", display_binary(packed_int_little))
-print(packed_float_little)
-print("Float:", display_binary(packed_float_little))
-
-print("\nPacked data (Big Endian):")
-print(packed_int_big)
-print("Int:", display_binary(packed_int_big))
-print(packed_float_big)
-print("Float:", display_binary(packed_float_big))
-
-# 解包数据,由于返回的是一个元组，所以需要[0]
-unpacked_int_little = struct.unpack('I', packed_int_little)[0]
-unpacked_float_little = struct.unpack('f', packed_float_little)[0]
-
-unpacked_int_big = struct.unpack('>I', packed_int_big)[0]
-unpacked_float_big = struct.unpack('>f', packed_float_big)[0]
-
-# 打印解包的结果
-print("\nUnpacked data (Little Endian):")
-print("Int:", unpacked_int_little)
-print("Float:", unpacked_float_little)
-
-print("\nUnpacked data (Big Endian):")
-print("Int:", unpacked_int_big)
-print("Float:", unpacked_float_big)
-
-# 验证打包和解包是否保持数据的完整性(float类型的数据先打包再解包后可能会有误差)
-assert int_data == unpacked_int_little
-# assert float_data == unpacked_float_little
-
-assert int_data == unpacked_int_big
-# assert float_data == unpacked_float_big
-
-print("\nData integrity maintained!")
+print(result)
+# (1, 1000)
 ```
 
-**十六进制数据大小端序转换**
+```python
+import struct
+
+# 假设数据组成：1个int (4字节) + 1个unsigned short (2字节) + 1个float (4字节)
+# 实际总长 10 字节，但为了对齐有时需要处理填充字节。这里假设紧凑排列。
+data = b'\x01\x00\x00\x00\x02\x00\x00\x00\x40\x49\x0f\xda'
+int_val, short_val, float_val = struct.unpack('<iHf', data[:10])
+print(f"整数: {int_val}, 无符号短整: {short_val}, 浮点数: {float_val}")
+# 整数: 1, 无符号短整: 2, 浮点数: 786432.0
+```
+
+```python
+import struct
+
+# 假设数据：一个整数 (4字节) + 一个固定长度5字节的字符串 + 一个整数
+data = b'\x0a\x00\x00\x00Hello\xe8\x03\x00\x00'
+
+# 'i5si' 解析：小端整数，5个字符的字节串，小端整数
+num1, str_bytes, num2 = struct.unpack('<i5si', data)
+
+print(num1)        # 10
+print(str_bytes)   # b'Hello'
+print(str_bytes.decode('utf-8')) # Hello
+print(num2)        # 1000
+```
+
+```python
+import struct
+
+def hex_dump(data):
+    """字节转十六进制字符串"""
+    return ' '.join(f"{b:02x}" for b in data)
+
+def demo_struct():
+    # 测试数据
+    int_val = 10240099
+    float_val = 123.456
+    # 定义端序
+    endians = [('小端序', '<'), ('大端序', '>')]
+    
+    for name, code in endians:
+        print(f"\n{'='*40}")
+        print(f"{name}:")
+        print(f"{'='*40}")
+        
+        # 打包
+        packed_int = struct.pack(f'{code}I', int_val)
+        packed_float = struct.pack(f'{code}f', float_val)
+        
+        # 显示结果
+        print(f"整数: {int_val}")
+        print(f"打包后: {packed_int}")
+        print(f"十六进制: {hex_dump(packed_int)}")
+        
+        print(f"\n浮点数: {float_val}")
+        print(f"打包后: {packed_float}")
+        print(f"十六进制: {hex_dump(packed_float)}")
+        
+        # 解包验证
+        unpacked_int = struct.unpack(f'{code}I', packed_int)[0]
+        unpacked_float = struct.unpack(f'{code}f', packed_float)[0]
+        
+        print(f"\n解包验证:")
+        print(f"整数解包: {unpacked_int}")
+        print(f"浮点解包: {unpacked_float:.3f}")
+
+if __name__ == "__main__":
+    demo_struct()
+
+# ========================================
+# 小端序:
+# ========================================
+# 整数: 10240099
+# 打包后: b'c@\x9c\x00'
+# 十六进制: 63 40 9c 00
+
+# 浮点数: 123.456
+# 打包后: b'y\xe9\xf6B'
+# 十六进制: 79 e9 f6 42
+
+# 解包验证:
+# 整数解包: 10240099
+# 浮点解包: 123.456
+
+# ========================================
+# 大端序:
+# ========================================
+# 整数: 10240099
+# 打包后: b'\x00\x9c@c'
+# 十六进制: 00 9c 40 63
+
+# 浮点数: 123.456
+# 打包后: b'B\xf6\xe9y'
+# 十六进制: 42 f6 e9 79
+
+# 解包验证:
+# 整数解包: 10240099
+# 浮点解包: 123.456
+```
+
+**使用Python实现大小端序转换**
 
 ```python
 hex_data = """0x00006c66 0x00006761 0x0000617b 0x00006168 0x00005f21 0x00006f79 0x00005f75 0x00006f66 0x00006e75 0x00005f64 0x00007469 0x00007d21 0x00000000 """
@@ -6213,20 +6317,35 @@ def swap_endianness(hex_string):
     swapped_hex = '0x' + swapped_hex
     return swapped_hex
 
-
 def solved():
     flag = ""
     # hex_data = input("请输入待转换的数据\n")
     hex_list = hex_data.split()
     for hex_num in hex_list:
         swapped_hex = swap_endianness(hex_num)
-        print(swapped_hex)
-        flag += bytes.fromhex(swapped_hex[2:]).decode()
-    print(flag)
-
+        print(swapped_hex,end=' ')
 
 if __name__ == "__main__":
     solved()
+# 0x666c0000 0x61670000 0x7b610000 0x68610000 0x215f0000 0x796f0000 0x755f0000 0x666f0000 0x756e0000 0x645f0000 0x69740000 0x217d0000 0x00000000
+```
+
+```python
+hex_data = """0x00006c66 0x00006761 0x0000617b 0x00006168 0x00005f21 0x00006f79 0x00005f75 0x00006f66 0x00006e75 0x00005f64 0x00007469 0x00007d21 0x00000000"""
+
+def solved():
+    flag = b""
+    hex_list = hex_data.split()
+    
+    for hex_num in hex_list:
+        value = int(hex_num, 16)
+        flag += value.to_bytes(2, 'little') # 参数是字节长度和字节序
+    
+    print(flag)
+
+if __name__ == "__main__":
+    solved()
+# b'flag{aha!_you_found_it!}\x00\x00'
 ```
 
 ### Linux tar命令

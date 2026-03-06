@@ -1083,7 +1083,8 @@ print(libnum.b2s(res))
 > 
 > 至此，这道题也是圆满结束了，最后还是再次感谢`@Aura` `@zysgmzb` `@八神`这几位师傅的帮助
 
-### [TODO] 题目名称 CBCisMagic
+
+### [SOLVED] 题目名称 CBCisMagic
 
 > 题目附件：https://pan.baidu.com/s/1GLDprv5gEW6xGaTer4Sf2Q?pwd=k3f6 提取码: k3f6
 
@@ -1123,7 +1124,186 @@ print(libnum.b2s(res))
 
 并且这个十六进制值出现的次数刚刚好就是这个值，这个是AES加密中的`PKCS#7`Padding规则
 
-因此猜测这里多余的数据就是密文，但是把数据逆置了
+后来在`@八神`师傅的帮助下，知道了本题这里应该如何处理，如下图所示
+
+![](imgs/image-20260305151810468.png)
+
+我们把 `res0.png` 作为明文放到cyberchef中进行AES-CBC**加密( 这里要注意是加密! )**
+
+密钥是 `WelcomeToDASCTF0`，偏移量IV是之前得到的 `88ee19fcec5d39221a788f898fa906ad`
+
+加密后我们可以得到另一张PNG图片，但是在cyberchef中是没法直接渲染出来的
+
+其实我们仔细看上图中加密得到的结果，可以发现PNG的第一个chunk不是`IHDR`而是`yusa`，猜测是出题人精心构造的
+
+因此我们把加密得到的结果保存到本地，拿010打开查看
+
+![](imgs/image-20260305152242175.png)
+
+发现其实就是多了这个名为 `yusa` 的 chunk，我们直接删除即可让这张PNG图片正常显示
+
+![](imgs/image-20260305152415181.png)
+
+很明显，我们得到了flag开头的第一部分，但是当我们尝试用同个IV去加密剩下的图片的时候
+
+发现加密出来的结果是有问题的，无法和这张图片一样得到flag，我们回头去看NTFS流提取出来的`res0.png_iv0.txt`
+
+`iv0`提示了我们这个IV只适用于res0这张PNG，剩下几张图片的IV需要我们通过别的方法去获取，但是加密的方法是一样的
+
+我们可以捋一下当前手头有的数据：`明文图片` + `AES-CBC加密的密钥` + `密文图片的前16字节中的12字节(yusa块的长度目前未知)`
+
+从AES-CBC加密算法的原理上我们知道，IV直接影响的是密文的第一个块(16字节)，后续块会随着第一个块的变动而改变
+
+> C1 = E(P1 ⊕ IV)
+> 
+> C2 = E(P2 ⊕ C1)
+> 
+> C3 = E(P3 ⊕ C2)
+> 
+> ...
+> 
+> ⊕符号表示异或
+
+并且偏移量IV、明文P1、密文C1三者存在如下关系：
+
+> C1​ = E​(P1 ⊕ IV)
+> 
+> D​(C1​) = P1 ⊕ IV
+> 
+> E表示加密，D表示解密
+
+因此我们可以推出 `IV = D(C1) ⊕ P1​`，具体的计算脚本如下
+
+```python
+from Crypto.Cipher import AES
+from pwn import *
+
+
+def recover_iv(key: bytes, p1: bytes, c1: bytes) -> bytes:
+    # IV = D(C1) ⊕ P1​
+    aes = AES.new(key, AES.MODE_ECB)
+    dk_c1 = aes.decrypt(c1)
+    iv = xor(dk_c1, p1)
+    return iv
+```
+
+也就是说我们只要知道明文和密文的前16字节以及密钥，就能够反向计算出偏移量IV
+
+到这里，我们也就基本理解了本题考察的核心内容，就是要我们去计算这个IV
+
+而我们现在遇到的唯一问题就是yusa块的长度还是未知的，所以我们就需要去分析这个yusa块是如何构造的
+
+我们从题目给选手的第一张图片 `res0.png` 入手，发现PNG数据加上后面PKCS#7填充数据的长度为10672
+
+![](imgs/image-20260306110803826.png)
+
+因为是Padding过的，所以这个长度肯定是16的倍数
+
+然后我们再去对应到加密后的密文 `enc0.png`
+
+![](imgs/image-20260306111111095.png)
+
+我们可以发现 `PNG文件头的8字节(89504E470D0A1A0A)` + `yusa块的减去crc的4字节后` 的长度刚刚好等于10672
+
+同时，我们也可以尝试把这部分内容直接拿去AES-CBC解密一下
+
+![](imgs/image-20260306142032379.png)
+
+发现解密出来的内容刚刚好就是PNG的数据（CyberChef这里自动去除了Padding的数据）
+
+因此我们可以退出yusa块的长度为 `PNG数据长度` + `Padding数据的长度` - `16`
+
+这里的16代表 `PNG文件头` + `表示yusa块长度的4字节` + `表示块类型的四字节`
+
+然后我们看第一张图片加密后的密文，发现yusa块的长度刚刚好就是10656 = 10672 - 16
+
+![](imgs/image-20260305154942336.png)
+
+至此我们就知道了如何计算yusa块的长度，从而可以根据密钥、第一块明文P1、第一块密文C1去计算得到偏移量IV
+
+得到偏移量IV后，我们AES-CBC加密原图并去除yusa块后即可得到包含flag的PNG图片
+
+最终的解题脚本如下：
+
+```python
+import struct
+from pwn import *
+from Crypto.Cipher import AES
+
+PNG_SIG = b"\x89PNG\r\n\x1a\n"
+PNG_TAIL = bytes.fromhex("49454E44AE426082")  # IEND(4) + CRC(4)
+
+def cal_iv(key, p1, c1):
+    # IV = D(C1) ⊕ P1​
+    aes = AES.new(key, AES.MODE_ECB)
+    dk_c1 = aes.decrypt(c1)
+    iv = xor(dk_c1, p1)
+    return iv
+
+def cal_yusa_len(png_file):
+    with open(png_file, "rb") as f:
+        data = f.read()
+    png_data = data.split(PNG_TAIL)[0] + PNG_TAIL
+    png_padding_len = len(png_data) + (16 - (len(png_data) % 16))
+    yusa_len = png_padding_len - 16
+    return yusa_len
+
+def solve():
+    for i in range(7):
+        key = f"WelcomeToDASCTF{i}".encode()
+        png_file = f"res{i}.png"
+        # 计算yusa_len
+        yusa_len = cal_yusa_len(png_file)
+        c1 = PNG_SIG + struct.pack(">I", yusa_len) + b"yusa"
+        with open(png_file, "rb") as f:
+            filedata = f.read()
+        p1 = filedata[:16]
+        # 计算IV
+        iv = cal_iv(key, p1, c1)
+        print(f"[+] {png_file}: yusa_len = {yusa_len} \033[32mIV: {iv.hex()}\033[0m")
+        # 加密PNG
+        aes_cbc = AES.new(key, AES.MODE_CBC, iv)
+        enc_data = aes_cbc.encrypt(filedata)
+        enc_file = f"enc_{i}.png"
+        with open(enc_file, "wb") as f:
+            f.write(enc_data)
+        print(f"[+] Encrypted {png_file} to {enc_file}")
+        # 去除yusa块恢复PNG
+        skip_len = 12 + yusa_len
+        flag_data = PNG_SIG + enc_data[8 + skip_len:]
+        with open(f"flag_{i}.png", "wb") as f:  
+            f.write(flag_data)
+        print(f"[+] Extracted flag_{i}.png from {enc_file}")
+
+if __name__ == "__main__":
+    solve()
+
+# [+] res0.png: yusa_len = 10656 IV: 88ee19fcec5d39221a788f898fa906ad
+# [+] Encrypted res0.png to enc_0.png
+# [+] Extracted flag_0.png from enc_0.png
+# [+] res1.png: yusa_len = 10320 IV: 6989624c5ae715dc9e688d7fac4fc990
+# [+] Encrypted res1.png to enc_1.png
+# [+] Extracted flag_1.png from enc_1.png
+# [+] res2.png: yusa_len = 10576 IV: 19f62d04643e69c4e0b3c83e6a2fea17
+# [+] Encrypted res2.png to enc_2.png
+# [+] Extracted flag_2.png from enc_2.png
+# [+] res3.png: yusa_len = 10608 IV: 6a88ad2a5b0f18313151418ad261efb2
+# [+] Encrypted res3.png to enc_3.png
+# [+] Extracted flag_3.png from enc_3.png
+# [+] res4.png: yusa_len = 10528 IV: 9c9b85d779cc8b6b7fd68ec07282f754
+# [+] Encrypted res4.png to enc_4.png
+# [+] Extracted flag_4.png from enc_4.png
+# [+] res5.png: yusa_len = 10528 IV: d7deae8840e395be2f702a8a5029abfd
+# [+] Encrypted res5.png to enc_5.png
+# [+] Extracted flag_5.png from enc_5.png
+# [+] res6.png: yusa_len = 10688 IV: 1cfc357e8327ac07aa81e0432e6e9914
+# [+] Encrypted res6.png to enc_6.png
+# [+] Extracted flag_6.png from enc_6.png
+```
+
+运行以上脚本后即可得到最后的flag：`DASCTF{Omae_wa_dareda_Ore_no_naka_no_ore}`
+
+![](imgs/image-20260306151410720.png)
 
 ### [TODO] 题目名称 All your base
 
@@ -1136,9 +1316,6 @@ print(libnum.b2s(res))
 exiftool看一下图片的信息，发现其实是APNG格式的图片
 
 ![](imgs/image-20260131222120798.png)
-
-
-
 
 
 ### [TODO] 题目名称 itch years
