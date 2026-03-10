@@ -361,12 +361,102 @@ if __name__ == "__main__":
 
 ### xbox手柄流量分析
 
+脚本一：
+
+```python
+import os.path
+import string
+import struct
+import math
+from matplotlib import pyplot as plt
+
+
+# 解析手柄数据包
+def parse_gamepad_data(data):
+    # 获取左右扳机状态（字节4和字节5）
+    left_trigger = data[8]
+    right_trigger = data[9]
+
+    # 解析左操纵杆位置（字节6到字节9）
+    # 左操纵杆 X轴 (字节6, 7) 和 Y轴 (字节8, 9)
+    left_stick_x = struct.unpack('<h', bytes(data[10:12]))[0]  # 小端模式
+    left_stick_y = struct.unpack('<h', bytes(data[12:14]))[0]  # 小端模式
+    print(left_stick_x, left_stick_y)
+    # 解析右操纵杆位置（字节10到字节13）
+    # 右操纵杆 X轴 (字节10, 11) 和 Y轴 (字节12, 13)
+    right_stick_x = struct.unpack('<h', bytes(data[14:16]))[0]  # 小端模式
+    right_stick_y = struct.unpack('<h', bytes(data[16:18]))[0]  # 小端模式
+    return left_trigger, left_stick_x, left_stick_y, right_stick_x, right_stick_y
+
+
+def extract_visible_chars(byte_data):
+    # 获取所有可打印字符
+    printable_chars = string.printable.encode()  # 获取可打印字符的字节形式
+    # 从字节数据中筛选出可打印字符
+    visible_chars = bytes([byte for byte in byte_data if byte in printable_chars])
+    return visible_chars
+
+
+# 初始化鼠标坐标
+mouse_x, mouse_y = 0, 0
+
+# 用于记录鼠标轨迹的坐标
+trajectory_x = [mouse_x]
+trajectory_y = [mouse_y]
+n = 0
+s = 0
+current_direction = None  # 当前方向
+direction_factor = 0  # 当前方向的系数
+
+if not os.path.exists("./1"):
+    os.makedirs("./1")
+
+with open("13.txt", 'rb') as txt:
+    lines = txt.read().splitlines()
+    for line in lines:
+        print(len(line))
+        if len(line) < 100:
+            continue
+        line = extract_visible_chars(line)
+        line_bytes = bytes.fromhex(str(line)[2:-1])  # 先解码为字符串，再从十六进制转换为字节
+        s += 1
+        # 解析数据
+        left_trigger, left_stick_x, left_stick_y, right_stick_x, right_stick_y = parse_gamepad_data(line_bytes)
+
+        # 更新鼠标坐标
+        mouse_x += left_stick_x
+        mouse_y +=  left_stick_y
+
+        # 记录当前位置
+        if left_trigger >250:
+            trajectory_x.append(mouse_x)
+            trajectory_y.append(mouse_y)
+        elif left_trigger == 0:
+            s = 0
+            if len(trajectory_x) > 0:
+                plt.figure(figsize=(10, 8))
+                plt.plot(trajectory_x, trajectory_y, marker='o', color='b', markersize=3)
+                plt.title("Mouse Movement Trajectory from Gamepad Right Stick with Nonlinear Mapping")
+                plt.xlabel("X Position")
+                plt.ylabel("Y Position")
+                plt.grid(True)
+                plt.axis('equal')
+                # plt.show()
+                plt.savefig(f"./1/{n}.png")
+                plt.close()
+                n += 1
+            trajectory_x = []
+            trajectory_y = []
+```
+
+脚本二：
+
 ```python
 import matplotlib.pyplot as plt
 from itertools import groupby
 import os, struct, numpy
 
-cmd = 'tshark -r D:/Temp/13.pcapng -Y "usb.src == 2.8.2 and usb.dst == host and frame.len == 75" -T fields -e usb.capdata'
+cmd = 'tshark -r 13.pcapng -Y "usb.src == 2.8.2 and usb.dst == host and frame.len == 75" -T fields -e usb.capdata'
 data = os.popen(cmd).readlines()
 
 draw, x, y = [False], [0], [0]
@@ -402,7 +492,6 @@ for is_true, group in groupby(zip(draw, x, y), key=lambda g: g[0]):
 
 plt.show()
 ```
-
 
 例题1-DASCTF 2024最后一战 手把天尊
 

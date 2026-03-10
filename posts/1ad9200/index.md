@@ -3014,13 +3014,21 @@ Tips：这里有时候也可以不用补文件尾
 
 一张后缀为.png的图片，还可能是apng格式的
 
-可以用exiftool看一下，apng格式是支持动图的，我们可以用`apngdis_gui`将每一帧分离出来
+**考点一：可以用exiftool看一下，apng格式是支持动图的，我们可以用`apngdis_gui`将每一帧分离出来**
 
 然后每一帧图片里可能藏了二维码或者有盲水印，或者每张图片的时间间隔转ASCII码就是flag
 
 例题1-2021 GKCTF 你知道apng吗
 
 例题2-2022 HGAME Week4摆烂
+
+**考点二：apng中的每张图片可能都用了某种隐写**
+
+例题1-2021CTFSHOW红包题-dd
+
+**考点三：把关键信息藏在apng的PLTE调色板数据中**
+
+例题1-All your base
 
 #### 6、CVE-2023-28303 截图工具漏洞
 
@@ -3067,6 +3075,11 @@ stegpy 1.png -p
 
 #### 11、关键信息藏在图片每个被篡改的IDAT块长度中
 
+#### 12、隐写的内容藏在PLTE调色板数据中
+
+例题1-2025HKCERT-listen wish
+
+例题2-All your base
 
 ### JPG思路
 
@@ -4051,6 +4064,22 @@ ZIP文件结构：[https://pkware.cachefly.net/webdocs/casestudies/APPNOTE.TXT](
 | 03          | 块大小          | struct uleb128 HeadSize |
 | 05          | 块类型          | struct uleb128 HeadType |
 | 04 00       | 阻止标志        | struct uleb128 HeadFlag |
+
+### 7-Zip文件结构
+
+参考链接：
+
+https://raw.githubusercontent.com/ip7z/7zip/main/DOC/7zFormat.txt
+
+https://d.7-zip.org/recover.html
+
+https://www.cnblogs.com/shuidao/p/3293583.html
+
+https://blog.neilpang.com/7z%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F%E5%8F%8A%E5%85%B6%E6%BA%90%E7%A0%81%E7%9A%84%E5%88%86%E6%9E%90%E5%9B%9B/
+
+https://blog.neilpang.com/7z%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F%E5%8F%8A%E5%85%B6%E6%BA%90%E7%A0%81%E7%9A%84%E5%88%86%E6%9E%90%E4%BA%94/
+
+例题1-itch years
 
 ### 1、压缩包伪加密
 

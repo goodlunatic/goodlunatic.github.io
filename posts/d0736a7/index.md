@@ -1305,7 +1305,7 @@ if __name__ == "__main__":
 
 ![](imgs/image-20260306151410720.png)
 
-### [TODO] 题目名称 All your base
+### [SOLVED] 题目名称 All your base
 
 > 题目附件：https://pan.baidu.com/s/1kVo08oloct25dR_ZUFfNfw?pwd=hj37 提取码: hj37
 
@@ -1317,150 +1317,76 @@ exiftool看一下图片的信息，发现其实是APNG格式的图片
 
 ![](imgs/image-20260131222120798.png)
 
+后来`@八神`师傅提示了`进制转换`这个考点，尝试直接把附件丢给 `GPT-5.3-Codex`
 
-### [TODO] 题目名称 itch years
+![](imgs/c18f19350e55eab77d600ae4ab4a65bf.png)
 
-题目附件给了一个 7z 压缩包，手动解压几个发现是 7z套娃，并且发现里面的文件名都是 6 位大小写字母
-
-![](imgs/image-20250901102648422.png)
-
-于是写了个脚本解套，发现 txt 中的内容一共有以下七种情况
+没想到花了二十几分钟就直接梭了，并且解题思路十分清晰，AI写的解题脚本如下：
 
 ```python
-import py7zr
-import os
-import shutil
+from pathlib import Path
+from PIL import Image
 
-def decompress_7z(archive_file):
-    global res  # 声明使用全局变量
-    global name_res
-    # 确保tmp目录存在且为空
-    if os.path.exists("tmp"):
-        shutil.rmtree("tmp")
-    os.makedirs("tmp", exist_ok=True)
-    
-    new_archive_file = None
-    txt_filename = None
-    
-    try:
-        with py7zr.SevenZipFile(archive_file, 'r') as archive:
-            file_list = archive.list()
-            for file in file_list:
-                if file.filename.endswith('.7z'):
-                    name_res.append(file.filename.split('.')[0])
-                    new_archive_file = file.filename
-                elif file.filename.endswith('.txt'):
-                    txt_filename = file.filename
-                    name_res.append(file.filename.split('.')[0])
-        # 解压文件
-        with py7zr.SevenZipFile(archive_file, mode='r') as archive:
-            archive.extractall("tmp/")
-        
-        print(f"[+] {archive_file} 解压成功")
-        
-        # 读取txt文件内容
-        if txt_filename and os.path.exists(f"./tmp/{txt_filename}"):
-            with open(f"./tmp/{txt_filename}", 'r') as f:
-                data = f.read().strip()
-                if data == 'Come on!':
-                    res += "a"
-                elif data == 'Go ahead!':
-                    res += "b"
-                elif data == 'Go for it.':
-                    res += "c"
-                elif data == 'Keep it up.':
-                    res += "d"
-                elif data == 'You can do it.':
-                    res += "e"
-                elif data == 'Cheer up!':
-                    res += "f"
-                elif data == 'Hang in there!':
-                    res += "g"
-                else:
-                    print(f"未知的内容: {data}")
-        
-        # 移动文件到当前目录
-        for filename in os.listdir("tmp"):
-            src = os.path.join("tmp", filename)
-            dst = os.path.join(".", filename)
-            if os.path.exists(dst):
-                os.remove(dst)
-            shutil.move(src, dst)
-        
-        # 清理
-        shutil.rmtree("tmp")
-        os.remove(archive_file)
-        
-        return new_archive_file
-        
-    except Exception as e:
-        print(f"解压 {archive_file} 时出错: {e}")
-        # 清理临时文件
-        if os.path.exists("tmp"):
-            shutil.rmtree("tmp")
-        return None
+def read_plte(path: Path):
+    data = path.read_bytes()
+    off = 8  # skip PNG signature
+    while off < len(data):
+        length = int.from_bytes(data[off : off + 4], "big")
+        ctype = data[off + 4 : off + 8]
+        chunk = data[off + 8 : off + 8 + length]
+        if ctype == b"PLTE":
+            return [tuple(chunk[i : i + 3]) for i in range(0, len(chunk), 3)]
+        off += 12 + length
+    raise ValueError(f"No PLTE found in {path}")
+
+def decode_one_apng(png_path: Path) -> bytes:
+    palette = read_plte(png_path)
+    color_to_index = {rgb: i for i, rgb in enumerate(palette)}
+    base = len(palette)
+
+    im = Image.open(png_path)
+    digits = []
+    for i in range(im.n_frames):
+        im.seek(i)
+        rgb = im.getpixel((0, 0))  # every frame is a solid color
+        digits.append(color_to_index[rgb])
+
+    # digits are big-endian base-N
+    n = 0
+    for d in digits:
+        n = n * base + d
+
+    if n == 0:
+        return b"\x00"
+    return n.to_bytes((n.bit_length() + 7) // 8, "big")
+
+def main():
+    out = bytearray()
+
+    for d in range(10):
+        png = Path(f"{d}.png")
+        if not png.exists():
+            raise FileNotFoundError(f"Missing {png}")
+        chunk = decode_one_apng(png)
+        out.extend(chunk)
+        print(f"[+] {png}: {len(chunk)} bytes")
+
+    out_path = Path("decoded.rar")
+    out_path.write_bytes(bytes(out))
+    print(f"[+] wrote {out_path} ({len(out)} bytes)")
 
 if __name__ == "__main__":
-    res = ""  # 初始化全局变量
-    name_res = []
-    archive_file = "flag.7z"
-    
-    while True:
-        if archive_file and archive_file.endswith('.7z') and os.path.exists(archive_file):
-            archive_file = decompress_7z(archive_file)
-            if archive_file is None:
-                break
-        else:
-            break
-    
-    print(res)
-    print(name_res)
+    main()
 ```
 
-结合题目名的意思七年之痒，猜测最后的 flag 肯定和数字七有关了，尝试了转七进制但是依旧无果
+运行以上脚本可以得到一个rar，解压后可以得到一张JPG，010打开拉到末尾即可得到最后的flag
 
-```python
-from itertools import permutations
-from Crypto.Util.number import long_to_bytes
+`DASCTF{All_y0ur_b4se_arrrre_belong_2_US}`
 
-def func_decode(raw, character_base):
-    raw_long = 0
-    for c in raw:
-        for i in range(len(character_base)):
-            if c == character_base[i]:
-                raw_long = raw_long * 7 + i
-                break  # 找到匹配后跳出内层循环
-        else:
-            continue
-    # print(f"Raw long: {raw_long}")
-    return long_to_bytes(raw_long)
-
-def func_burp(raw):
-    character_base = ['a', 'b', 'c', 'd', 'e', 'f', 'g']
-    
-    for perm in permutations(character_base):
-        # print(f"Testing permutation: {perm}")
-        try:
-            result = func_decode(raw, perm)
-            result_str = result
-            if b'flag' in result_str or b'CTF' in result_str:
-                print(f"Decoded result: {result_str}")
-                
-        except Exception as e:
-            print(f"Error with permutation {perm}: {e}")
-
-if __name__ == "__main__":
-    raw = "bcffaccccgdbcgeeecbbgafeebdbaededbebbdagdedfbbgbaedaagbggffeggcgccbefedbgfbggdbccgecadcaaeecbbaabe"
-    func_burp(raw)
-```
+![](imgs/image-20260308000816345.png)
 
 
-然后这里在`@默`师傅的帮助下，发现部分7z压缩包在文件尾前插入了部分数据，并且结合文件头猜测可能是切片后的webp图像数据。
-
-![](imgs/image-20250919093819453.png)
-
-但是要提取出完整的 webp 数据，需要分析出每段数据具体的分布规律，目前还没找到
-
+![](imgs/image-20260308000833795.png)
 
 ## [SOLVED] 题目名称 nothing (2024 蓝桥杯全国总决赛)
 
@@ -4330,7 +4256,7 @@ end
 ![](imgs/image-20260303165705819.png)
 
 
-## 题目名称 one (2024 古剑山)
+## [无法验证] 题目名称 one (2024 古剑山)
 
 题目附件1： https://pan.baidu.com/s/1iSL1P1Z1Oa8WB0tXRWjSmg?pwd=vc66 提取码: vc66
 
@@ -4385,6 +4311,11 @@ be54dc587c6ae77c188fbd96bb583daf5a008ec0ea740810315ab6a953d436fe1c82362b2a443ef2
 d4feca0a0777c9ea1dd6578a2011ffa904ba2badaa2dc92c3c8b9bb83f22c262f2ae3ae4ad2d8e79263a9c
 ```
 
+某天，在AI的帮助下发现这两道题给的附件都唯独缺失了 `0x6c` 这个字节(在 0x00-0xff 的范围下)
+
+结合两道题的题目名称，猜测最终的flag可能是：`flag{l}`
+
+因为 `chr(0x6c) = l` ，但是比赛已经结束，也无法验证这个答案是否正确
 
 ## 题目名称 pingping (2024 蓝桥杯全国总决赛) 
 

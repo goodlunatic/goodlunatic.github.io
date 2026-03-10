@@ -191,7 +191,7 @@ for a in ascii_lowercase:
 
 ![](imgs/image-20250509095239523.png)
 
-因此这个就是游戏手柄的流量，和平常分析USB流量一样，先用tshark导出传输的数据
+结合题目描述，猜测是XBOX游戏手柄的流量，和平常分析USB流量一样，先用tshark导出传输的数据
 
 ```bash
 tshark -r 13.pcapng -Y '(usb.src == "2.8.2") && (frame.len == 75)' -T fields -e usb.capdata > data.txt
@@ -199,39 +199,122 @@ tshark -r 13.pcapng -Y '(usb.src == "2.8.2") && (frame.len == 75)' -T fields -e 
 
 ![](imgs/image-20250509115049942.png)
 
-然后我们尝试根据数据的特征，去分析其中的规律
+然后我们尝试根据数据的特征，去分析其中的规律，具体可以参考 [赛后官方WP](https://www.yuque.com/chuangfeimeiyigeren/eeii37/oxv3gaim7fr89ed2?sessionid=-1256592792)
 
 参考链接：https://blog.csdn.net/weixin_51914644/article/details/136098281
 
-![](imgs/image-20250509115708599.png)
-
-发现前八字节中只有第三字节的数据是单调递增且每次固定加一的，因此不是我们想要的数据
-
-然后发现再变化的数据主要就下图中的这几个位置
-
-![](imgs/image-20250509205422432.png)
+> 13.txt中的流量分成两种，一种是长的48字节的手柄数据， 一种是小于20字节的其他usb数据，需要先将流量处理一下，针对手柄数据分析。python处理的时候，将字符串格式解析成字节流格式，注意字节流的一个字节，对应字符串四个字节的内容（unicode编码）
+> 
+> 手柄流量可以参考以下Xbox控制器USB实现与数据格式_stm32 xinput-CSDN博客虽然不是完全相同,但是基本差不多, 特别是trigger和操纵杆的部分基本一致,可以直接判断以后提取出来,基于这些这题就可以解出来了
+> 
+> 手柄流量的重点基本就是两个trigger,和两个摇杆. trigger分左右，每一个各占一个字节，最大0xff，在分析流量的时候，按照时间维度分析，找变化的部分,看变化规律, 可以看出第九个字节,是间歇性的递增随后递减,最大0xff, 比较符合trigger的按键规律
 
 
-从上面的参考链接中我们知道，手柄的关键数据主要就四个：左扳机、右扳机、左摇杆、右摇杆
+> 11-14字节一直在变化,判断可能是坐标, 此外一直无规律变化的还有40-41字节和44-45字节, 其他的字节要么不变,要么就是每个包加一,很容易判断和用户的关联性不大.
 
-看了[赛后官方WP](https://www.yuque.com/chuangfeimeiyigeren/eeii37/oxv3gaim7fr89ed2?sessionid=-1256592792)后知道，第9字节是左扳机的数据（按下去后数值会变大，最大到0xff），第10字节是右扳机的数据
 
-然后第11-14字节是左摇杆的数据，第15-18字节是右摇杆的数据，xy的偏移量分别占其中的两字节
+> 根据上面那篇博客,操纵杆的流量也分左右,各占四个字节,分别是两个字节x轴,两个字节y轴,占4个字节的随机变化的流量也就只有11-14那一部分, 就可以推断出字节9是左扳机流量,字节11-14是左摇杆流量,也可以猜出字节10是右扳机流量,字节15-18是右摇杆流量.
+> 
+> 根据流量画图即可,注意摇杆流量是摇杆对于中心的偏移,是一个有符号整数,根据这个偏移算坐标然后绘制就行
+> 
+> 最后画出来的图建议还是根据trigger按住的次数一次一次绘制单个字母
 
-![](imgs/image-20250509210325161.png)
+这里贴一份官方的脚本
 
-知道了具体数据的位置后，后续的步骤就和鼠标流量分析一样了，通过偏移量计算坐标然后画图
+```python
+import os.path
+import string
+import struct
+import math
+from matplotlib import pyplot as plt
 
-根据数据特征可以看出来这里右摇杆其实是不动的，只有左摇杆在移动
 
-因此我们可以尝试画出所有左扳机按下时，左摇杆的移动轨迹图
+# 解析手柄数据包
+def parse_gamepad_data(data):
+    # 获取左右扳机状态（字节4和字节5）
+    left_trigger = data[8]
+    right_trigger = data[9]
+
+    # 解析左操纵杆位置（字节6到字节9）
+    # 左操纵杆 X轴 (字节6, 7) 和 Y轴 (字节8, 9)
+    left_stick_x = struct.unpack('<h', bytes(data[10:12]))[0]  # 小端模式
+    left_stick_y = struct.unpack('<h', bytes(data[12:14]))[0]  # 小端模式
+    print(left_stick_x, left_stick_y)
+    # 解析右操纵杆位置（字节10到字节13）
+    # 右操纵杆 X轴 (字节10, 11) 和 Y轴 (字节12, 13)
+    right_stick_x = struct.unpack('<h', bytes(data[14:16]))[0]  # 小端模式
+    right_stick_y = struct.unpack('<h', bytes(data[16:18]))[0]  # 小端模式
+    return left_trigger, left_stick_x, left_stick_y, right_stick_x, right_stick_y
+
+
+def extract_visible_chars(byte_data):
+    # 获取所有可打印字符
+    printable_chars = string.printable.encode()  # 获取可打印字符的字节形式
+    # 从字节数据中筛选出可打印字符
+    visible_chars = bytes([byte for byte in byte_data if byte in printable_chars])
+    return visible_chars
+
+
+# 初始化鼠标坐标
+mouse_x, mouse_y = 0, 0
+
+# 用于记录鼠标轨迹的坐标
+trajectory_x = [mouse_x]
+trajectory_y = [mouse_y]
+n = 0
+s = 0
+current_direction = None  # 当前方向
+direction_factor = 0  # 当前方向的系数
+
+if not os.path.exists("./1"):
+    os.makedirs("./1")
+
+with open("13.txt", 'rb') as txt:
+    lines = txt.read().splitlines()
+    for line in lines:
+        print(len(line))
+        if len(line) < 100:
+            continue
+        line = extract_visible_chars(line)
+        line_bytes = bytes.fromhex(str(line)[2:-1])  # 先解码为字符串，再从十六进制转换为字节
+        s += 1
+        # 解析数据
+        left_trigger, left_stick_x, left_stick_y, right_stick_x, right_stick_y = parse_gamepad_data(line_bytes)
+
+        # 更新鼠标坐标
+        mouse_x += left_stick_x
+        mouse_y +=  left_stick_y
+
+        # 记录当前位置
+        if left_trigger >250:
+            trajectory_x.append(mouse_x)
+            trajectory_y.append(mouse_y)
+        elif left_trigger == 0:
+            s = 0
+            if len(trajectory_x) > 0:
+                plt.figure(figsize=(10, 8))
+                plt.plot(trajectory_x, trajectory_y, marker='o', color='b', markersize=3)
+                plt.title("Mouse Movement Trajectory from Gamepad Right Stick with Nonlinear Mapping")
+                plt.xlabel("X Position")
+                plt.ylabel("Y Position")
+                plt.grid(True)
+                plt.axis('equal')
+                # plt.show()
+                plt.savefig(f"./1/{n}.png")
+                plt.close()
+                n += 1
+            trajectory_x = []
+            trajectory_y = []
+```
+
+以下是 `@DemonStarAlgol` 师傅提供的脚本
 
 ```python
 import matplotlib.pyplot as plt
 from itertools import groupby
 import os, struct, numpy
 
-cmd = 'tshark -r D:/Temp/13.pcapng -Y "usb.src == 2.8.2 and usb.dst == host and frame.len == 75" -T fields -e usb.capdata'
+cmd = 'tshark -r 13.pcapng -Y "usb.src == 2.8.2 and usb.dst == host and frame.len == 75" -T fields -e usb.capdata'
 data = os.popen(cmd).readlines()
 
 draw, x, y = [False], [0], [0]
@@ -270,6 +353,7 @@ plt.show()
 
 运行以上脚本画出轨迹图后即可得到最后的flag：`DASCTF{you_are_shouba_master}`
 
+![](imgs/image-20260309100458551.png)
 
 ---
 
