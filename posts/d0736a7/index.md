@@ -1305,6 +1305,383 @@ if __name__ == "__main__":
 
 ![](imgs/image-20260306151410720.png)
 
+
+### [SOLVED] 题目名称 itch years
+
+> 题目附件：https://pan.baidu.com/s/1PuNoMv0weLYr22pvqvT2KQ?pwd=5n6a 提取码: 5n6a
+
+题目附件给了一个 7z 压缩包，手动解压几个发现是 7z套娃，并且发现里面的文件名都是 6 位大小写字母
+
+![](imgs/image-20250901102648422.png)
+
+于是写了个脚本解套，发现 txt 中的内容一共有以下七种情况
+
+```python
+import py7zr
+import os
+import shutil
+
+def decompress_7z(archive_file):
+    global res  # 声明使用全局变量
+    global name_res
+    # 确保tmp目录存在且为空
+    if os.path.exists("tmp"):
+        shutil.rmtree("tmp")
+    os.makedirs("tmp", exist_ok=True)
+    
+    new_archive_file = None
+    txt_filename = None
+    
+    try:
+        with py7zr.SevenZipFile(archive_file, 'r') as archive:
+            file_list = archive.list()
+            for file in file_list:
+                if file.filename.endswith('.7z'):
+                    name_res.append(file.filename.split('.')[0])
+                    new_archive_file = file.filename
+                elif file.filename.endswith('.txt'):
+                    txt_filename = file.filename
+                    name_res.append(file.filename.split('.')[0])
+        # 解压文件
+        with py7zr.SevenZipFile(archive_file, mode='r') as archive:
+            archive.extractall("tmp/")
+        
+        print(f"[+] {archive_file} 解压成功")
+        
+        # 读取txt文件内容
+        if txt_filename and os.path.exists(f"./tmp/{txt_filename}"):
+            with open(f"./tmp/{txt_filename}", 'r') as f:
+                data = f.read().strip()
+                if data == 'Come on!':
+                    res += "a"
+                elif data == 'Go ahead!':
+                    res += "b"
+                elif data == 'Go for it.':
+                    res += "c"
+                elif data == 'Keep it up.':
+                    res += "d"
+                elif data == 'You can do it.':
+                    res += "e"
+                elif data == 'Cheer up!':
+                    res += "f"
+                elif data == 'Hang in there!':
+                    res += "g"
+                else:
+                    print(f"未知的内容: {data}")
+        
+        # 移动文件到当前目录
+        for filename in os.listdir("tmp"):
+            src = os.path.join("tmp", filename)
+            dst = os.path.join(".", filename)
+            if os.path.exists(dst):
+                os.remove(dst)
+            shutil.move(src, dst)
+        
+        # 清理
+        shutil.rmtree("tmp")
+        os.remove(archive_file)
+        
+        return new_archive_file
+        
+    except Exception as e:
+        print(f"解压 {archive_file} 时出错: {e}")
+        # 清理临时文件
+        if os.path.exists("tmp"):
+            shutil.rmtree("tmp")
+        return None
+
+if __name__ == "__main__":
+    res = ""  # 初始化全局变量
+    name_res = []
+    archive_file = "flag.7z"
+    
+    while True:
+        if archive_file and archive_file.endswith('.7z') and os.path.exists(archive_file):
+            archive_file = decompress_7z(archive_file)
+            if archive_file is None:
+                break
+        else:
+            break
+    
+    print(res)
+    print(name_res)
+```
+
+结合题目名的意思七年之痒，猜测最后的 flag 肯定和数字七有关了，尝试了转七进制但是依旧无果
+
+```python
+from itertools import permutations
+from Crypto.Util.number import long_to_bytes
+
+def func_decode(raw, character_base):
+    raw_long = 0
+    for c in raw:
+        for i in range(len(character_base)):
+            if c == character_base[i]:
+                raw_long = raw_long * 7 + i
+                break  # 找到匹配后跳出内层循环
+        else:
+            continue
+    # print(f"Raw long: {raw_long}")
+    return long_to_bytes(raw_long)
+
+def func_burp(raw):
+    character_base = ['a', 'b', 'c', 'd', 'e', 'f', 'g']
+    
+    for perm in permutations(character_base):
+        # print(f"Testing permutation: {perm}")
+        try:
+            result = func_decode(raw, perm)
+            result_str = result
+            if b'flag' in result_str or b'CTF' in result_str:
+                print(f"Decoded result: {result_str}")
+                
+        except Exception as e:
+            print(f"Error with permutation {perm}: {e}")
+
+if __name__ == "__main__":
+    raw = "bcffaccccgdbcgeeecbbgafeebdbaededbebbdagdedfbbgbaedaagbggffeggcgccbefedbgfbggdbccgecadcaaeecbbaabe"
+    func_burp(raw)
+```
+
+后来在`@默`师傅的帮助下，发现部分7z压缩包在尾文件头之前插入了部分数据，并且结合文件头猜测可能是切片后的webp图像数据。
+
+![](imgs/image-20250919093819453.png)
+
+但是要提取出完整的 webp 数据，需要分析出每段数据具体的分布规律
+
+后来在`@八神`师傅的帮助下，知道了这里要去具体分析7z压缩包的文件格式
+
+在网上可以找到下面这三篇参考文章
+
+https://www.cnblogs.com/shuidao/p/3293583.html
+
+https://blog.neilpang.com/7z%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F%E5%8F%8A%E5%85%B6%E6%BA%90%E7%A0%81%E7%9A%84%E5%88%86%E6%9E%90%E5%9B%9B/
+
+https://blog.neilpang.com/7z%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F%E5%8F%8A%E5%85%B6%E6%BA%90%E7%A0%81%E7%9A%84%E5%88%86%E6%9E%90%E4%BA%94/
+
+以及官方的参考文档：
+
+https://raw.githubusercontent.com/ip7z/7zip/main/DOC/7zFormat.txt
+
+https://d.7-zip.org/recover.html
+
+首先我们要关注的就是7z压缩包的整体结构，参考第一篇文章
+
+我们可以知道，7z的文件结构基本上分为三部分：前文件头(SignatureHeader)、压缩数据、尾文件头
+
+其中 前文件头(SignatureHeader) 是32字节定长的，具体包含的信息如下：
+
+```c++
+// sigHead
+BYTE kSignature[6] = {'7', 'z', 0xBC, 0xAF, 0x27, 0x1C}; // 6字节的固定头
+ArchiveVersion // 2字节的版本号，如果是0和2，就表示版本是0.2
+{
+    BYTE Major; // 主版本号
+    BYTE Minor; // 次版本号
+};
+
+// StartHeader
+StartHeader
+{
+    REAL_UINT64 NextHeaderOffset; // 尾文件头与前文件头的距离, 这个距离不算前面这32个字节头
+    REAL_UINT64 NextHeaderSize; // 尾文件头的大小
+    UINT32 NextHeaderCRC;
+}
+```
+
+发现前文件头记录的信息并不是很全，因此我们继续看尾文件头
+
+参考第二篇文章，我们知道待压缩的所有文件压缩后会生成n个packedStream，然后按顺序存储在7z的文件主体中
+
+```c++
+NumFolders;
+Folders[NumFolders]
+{
+    NumCoders;
+    CodersInfo[NumCoders]
+    {
+        ID;
+        NumInStreams;               // 表示这个coder所接受的输入流的个数, 一般是1个
+        NumOutStreams;              // 表示这个coder的输出流个数, 一般是1个.
+        PropertiesSize;             // 一个int值, 表示后面Properties的字节长度
+        Properties[PropertiesSize]; // 字节数组, 表示这个coder的一些设置信息
+    }
+    NumBindPairs;               // 表示bindpair的个数，bindpair表示输入流和输出流的绑定关系
+    BindPairsInfo[NumBindPairs] // bindpair的数组, 记录每一个bindpair
+    {
+        InIndex;  // 输入index
+        OutIndex; // 绑定对应的输出index
+    }
+    PackedIndices; // 这表示这个folder最终输出的packstream在所有packstream中的序号
+}
+UnPackSize[Folders][Folders.NumOutstreams]; // 这是一个二维数组, 记录每个Folder对应的输出流的个数
+CRCs[NumFolders];                           // 这是一个记录CRC的数组, 7z目前没有使用这一个字段.
+```
+
+但是这一步，我们其实不用考虑 `表示压缩后数据大小的字节`在文件中的具体位置
+
+我们可以直接用 `py7zr` 这个模块来对7z进行解析，从而得到7z中每个条目压缩后的大小
+
+```python
+with py7zr.SevenZipFile(archive_path, "r") as archive:
+    for file_info in archive.list():
+        # compressed是每个条目的压缩后大小
+        if file_info.compressed:
+            compressed_sum += file_info.compressed
+```
+
+然后我们从上面的第三篇参考文章中可以知道，7z的尾文件头有两种存储方式：
+
+- 第一种是把尾文件头的内容直接写在后面， 不做任何处理
+
+- 第二种就是把原始的尾文件头信息用lzma算法再压缩一次
+
+因此我们要针对第二种存储方式，把尾文件头中压缩数据的大小也计算出来
+
+再加上之前各个条目压缩后的大小，就是所有正常压缩数据的大小
+
+这部分具体的内容详见上面那两个官方的文档
+
+其实我们也可以借助010的模板功能，方便地看到具体的字段名及对应的数值
+
+比如下图中的 `packsizes = 116` 就是我们要获取的，尾文件头中压缩数据的大小
+
+![](imgs/image-20260307231618859.png)
+
+正常数据区末尾到尾文件头的头信息之间的数据，就是我们需要提取的冗余数据
+
+其实只要知道了这道题的考点后，也可以直接让AI一把梭了
+
+![](imgs/292ce3c22041b514d1cf2cfd49617af3.png)
+
+AI提供的脚本如下：
+
+```python
+import shutil
+import struct
+import subprocess
+from pathlib import Path
+
+BASE = Path(__file__).resolve().parent
+ARCHIVE = BASE / "flag.7z"
+WORK = BASE / "_solve_work"
+OUT_WEBP = BASE / "recovered.webp"
+
+def run(cmd, cwd=None):
+    return subprocess.check_output(cmd, cwd=cwd, text=True, errors="ignore")
+
+def read_uint64_7z(buf, i):
+    first = buf[i]
+    i += 1
+    mask = 0x80
+    value = 0
+    for n in range(8):
+        if first & mask == 0:
+            value |= (first & (mask - 1)) << (8 * n)
+            return value, i
+        value |= buf[i] << (8 * n)
+        i += 1
+        mask >>= 1
+    return value, i
+
+def packed_sum_by_7z(path):
+    out = run(["7z", "l", "-slt", str(path)])
+    s = 0
+    for line in out.splitlines():
+        if line.startswith("Packed Size = "):
+            v = line.split("=", 1)[1].strip()
+            if v.isdigit():
+                s += int(v)
+    return s
+
+def extra_chunk(path):
+    b = path.read_bytes()
+    off = struct.unpack("<Q", b[12:20])[0]
+    nsz = struct.unpack("<Q", b[20:28])[0]
+    nh = b[32 + off : 32 + off + nsz]
+
+    if nh and nh[0] == 0x17:
+        i = 1
+        if nh[i] != 0x06:
+            return b""
+        i += 1
+        pack_pos, i = read_uint64_7z(nh, i)
+        num_streams, i = read_uint64_7z(nh, i)
+        if nh[i] != 0x09:
+            return b""
+        i += 1
+        packed_header_size = 0
+        for _ in range(num_streams):
+            x, i = read_uint64_7z(nh, i)
+            packed_header_size += x
+        data_end = 32 + pack_pos + packed_header_size
+        start = data_end
+        end = 32 + off
+    else:
+        packed_sum = packed_sum_by_7z(path)
+        start = 32 + packed_sum
+        end = 32 + off
+
+    if end > start:
+        return b[start:end]
+    return b""
+
+def extract_nested_chain():
+    if WORK.exists():
+        shutil.rmtree(WORK)
+    WORK.mkdir(parents=True, exist_ok=True)
+
+    files = [ARCHIVE]
+    cur = ARCHIVE
+    level = 0
+
+    while True:
+        out_dir = WORK / f"lvl_{level}"
+        out_dir.mkdir(parents=True, exist_ok=True)
+        subprocess.check_call(
+            ["7z", "x", "-y", str(cur), f"-o{out_dir}"],
+            stdout=subprocess.DEVNULL,
+            stderr=subprocess.DEVNULL,
+        )
+
+        next_7z = sorted(out_dir.glob("*.7z"))
+        if not next_7z:
+            break
+        cur = next_7z[0]
+        files.append(cur)
+        level += 1
+
+    return files
+
+def main():
+    if not ARCHIVE.exists():
+        raise SystemExit(f"Missing: {ARCHIVE}")
+
+    chain = extract_nested_chain()
+    chunks = []
+    for f in chain:
+        c = extra_chunk(f)
+        if c:
+            chunks.append(c)
+
+    data = b"".join(chunks[::-1])
+    OUT_WEBP.write_bytes(data)
+
+    print(f"[+] levels: {len(chain)-1}")
+    print(f"[+] chunks: {len(chunks)}")
+    print(f"[+] wrote: {OUT_WEBP}")
+
+if __name__ == "__main__":
+    main()
+```
+
+运行以上脚本即可提取得到最后的flag：
+
+`DASCTF{7-Zip_1s_a_fil3_archiver_wi7h_a_High_Compressi0n_Rati0}`
+
+![](imgs/image-20260307224059835.png)
+
 ### [SOLVED] 题目名称 All your base
 
 > 题目附件：https://pan.baidu.com/s/1kVo08oloct25dR_ZUFfNfw?pwd=hj37 提取码: hj37
