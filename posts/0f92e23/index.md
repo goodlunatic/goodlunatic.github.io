@@ -1155,6 +1155,27 @@ if __name__ == "__main__":
 
 ## 固件逆向
 
+### Android OTA 包
+
+改后缀为.zip后解压 OTA 包，拿到 system.new.dat.br、system.transfer.list
+
+用 bandizip 解压 system.new.dat.br 得到 system.new.dat
+
+用 [sdat2img](https://github.com/xpirt/sdat2img/blob/master/sdat2img.py) 把 system.new.dat + transfer.list 还原成 system.img
+
+```bash
+python sdat2img.py system.transfer.list system.new.dat system.img
+```
+
+解压 system.img 并提取出需要的apk
+
+```bash
+mkdir extract && cd extract && 7z x ../system.img
+```
+
+用 jadx 反编译提取得到的apk
+
+
 
 
 ---

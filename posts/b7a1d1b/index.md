@@ -2079,6 +2079,13 @@ print(bytes(enc))
 
 ### begin
 
+考察IDA的基础用法，flag被分成了三段
+
+`flag{Mak3_aN_3Ff0rt_tO_5eArcH_F0r_th3_f14g_C0Rpse}`
+
+
+
+
 
 
 
