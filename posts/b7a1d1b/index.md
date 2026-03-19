@@ -2073,6 +2073,173 @@ print(bytes(enc))
 
 ### BrokenData
 
+本题主要考察了MD5和AES，然后套了一个循环和奇偶块分别用不同的密钥加密
+
+核心加密逻辑如下：
+
+```python
+from Crypto.Cipher import AES
+
+BlockNumMap = [1, 4, 6, 9, 11, 6, 3, 2, 3, 1, 7, 1, 2]
+
+def aes_encrypt_block(key16: bytes, block16: bytes) -> bytes:
+    return AES.new(key16, AES.MODE_ECB).encrypt(block16)
+
+def enc_func_readable(plain: bytes, key32: bytes) -> bytes:
+    out = bytearray()
+    plain_pos = 0
+    pad_byte = plain[5]
+
+    for i in range(13):
+        take_len = BlockNumMap[i]
+
+        # 取真实数据
+        part = plain[plain_pos:plain_pos + take_len]
+
+        # 不足 16 字节时，用 plain[5] 补齐
+        block = part + bytes([pad_byte]) * (16 - take_len)
+
+        # 奇偶块交替 key
+        if i % 2 == 1:
+            enc = aes_encrypt_block(key32[:16], block)
+        else:
+            enc = aes_encrypt_block(key32[16:], block)
+
+        out.extend(enc)
+        plain_pos += take_len
+
+    return bytes(out)
+```
+
+并且由于第二段密钥是用flag的第10位替换模板串中的3个位置
+
+```c++
+int main(void)
+{
+    char key_template[24] = "%es_&ou_fou**_ke%";
+    uint8_t key[32] = {0};
+    char input[100] = {0};
+    uint8_t cipher[208] = {0};
+
+    printf("Input the flag: ");
+    scanf("%99s", input);
+
+    size_t input_length = strlen(input);
+
+    if (input_length != 56)
+    {
+        printf("Wrong length.\n");
+        system("pause");
+        return 0;
+    }
+
+    // 第一把 16 字节 key：原模板串的 MD5
+    md5_func(key_template, 17, key);
+
+    // 用输入的第 11 个字符替换模板串中的 3 个位置
+    key_template[0]  = input[10];
+    key_template[4]  = input[10];
+    key_template[16] = input[10];
+
+    // 第二把 16 字节 key：替换后的模板串的 MD5
+    md5_func(key_template, 17, key + 16);
+
+    // 用两把 key 按自定义规则加密整个输入
+    enc_func(input, key, cipher);
+
+    // 和程序内置的正确密文比较
+    if (memcmp(Buf1_, cipher, 208) == 0)
+        printf("Correct.\n");
+    else
+        printf("Wrong.\n");
+
+    system("pause");
+    return 0;
+}
+```
+
+因此我们需要爆破这个字符来得到第二段密钥，最终的解题代码如下：
+
+> 不过如果观察的够仔细的话，也可以一眼猜出来用来替换的字符是y
+
+```python
+from hashlib import md5
+from Crypto.Cipher import AES
+
+BlockNumMap = [
+    0x00000001, 0x00000004, 0x00000006, 0x00000009, 0x0000000B,
+    0x00000006, 0x00000003, 0x00000002, 0x00000003, 0x00000001,
+    0x00000007, 0x00000001, 0x00000002
+]
+
+EncFlag = bytes([
+    0x81, 0x6D, 0xF2, 0xDA, 0x3B, 0x09, 0xCF, 0x85, 0xBC, 0x3F, 0xDC, 0x25, 0xED, 0x45, 0x52, 0xAF,
+    0x3A, 0xDD, 0x51, 0x69, 0x6B, 0x5E, 0x97, 0x2E, 0xF6, 0xF4, 0x2B, 0x3F, 0xC9, 0x01, 0xBC, 0xFB,
+    0xD1, 0xA5, 0x58, 0x8E, 0x1F, 0xE6, 0xB8, 0x36, 0xA7, 0x1E, 0xA1, 0x9D, 0x3E, 0x42, 0x52, 0x6C,
+    0x91, 0xFD, 0xDE, 0xDC, 0x1B, 0xD2, 0x88, 0x3C, 0x89, 0x48, 0x19, 0x57, 0x2F, 0x30, 0x03, 0x3D,
+    0x02, 0x32, 0x8E, 0xFC, 0x3C, 0x5B, 0x8A, 0x47, 0xCA, 0xB4, 0x3E, 0xD3, 0x8E, 0x05, 0x5D, 0xCD,
+    0x8D, 0xE7, 0xFC, 0x29, 0xCA, 0xBA, 0xDE, 0x9E, 0x6C, 0x3B, 0x96, 0x92, 0x0B, 0x54, 0x7F, 0xC6,
+    0x71, 0x4D, 0x2A, 0x82, 0x8F, 0x42, 0x0C, 0x54, 0x2C, 0x84, 0xF8, 0x67, 0x34, 0x7E, 0xC8, 0x77,
+    0xE1, 0x1B, 0x7F, 0xDB, 0x8B, 0x87, 0x97, 0x01, 0x01, 0x63, 0x14, 0x05, 0x4D, 0xBF, 0xCC, 0x10,
+    0x52, 0x49, 0x87, 0xBC, 0x5E, 0x16, 0xEA, 0x0F, 0x7D, 0xF5, 0x75, 0x8D, 0x05, 0xB0, 0x43, 0xF2,
+    0x57, 0xFD, 0x7E, 0x40, 0xFE, 0xB4, 0x5C, 0xA8, 0xC0, 0x63, 0x8B, 0x08, 0x80, 0xE6, 0x2B, 0x4D,
+    0x41, 0x77, 0x71, 0x07, 0xFC, 0x71, 0xFE, 0x21, 0x77, 0x07, 0x8B, 0xE2, 0x7D, 0x9E, 0xB6, 0x04,
+    0x64, 0x0D, 0xBD, 0xE1, 0x59, 0x10, 0x5F, 0xA7, 0x80, 0x08, 0xAB, 0x96, 0x3C, 0x34, 0xC6, 0xBB,
+    0x81, 0x0D, 0xE4, 0xFA, 0x53, 0x99, 0x22, 0xC1, 0xC9, 0xA7, 0xE9, 0x39, 0x75, 0x10, 0xDA, 0xA4
+])
+
+
+def aes_decrypt_block(key16: bytes, block16: bytes) -> bytes:
+    cipher = AES.new(key16, AES.MODE_ECB)
+    return cipher.decrypt(block16)
+
+
+def decrypt(input_data: bytes, key32: bytes) -> bytes:
+    out = bytearray()
+
+    for i in range(13):
+        block_num = BlockNumMap[i]
+        block = input_data[i * 16:(i + 1) * 16]
+
+        if i % 2:
+            dec = aes_decrypt_block(key32[:16], block)
+        else:
+            dec = aes_decrypt_block(key32[16:], block)
+
+        out.extend(dec[:block_num]) # extend能一次添加一段字节，append一次只能添加一字节
+
+    return bytes(out)
+
+
+def is_visible_ascii(data: bytes) -> bool:
+    return all(32 <= b < 126 for b in data)
+
+
+def main():
+    for c in range(32, 127):
+        keystr = bytearray(b"%es_&ou_fou**_ke%")
+        key = bytearray(32)
+        key[:16] = md5(bytes(keystr)).digest() # 前16位
+
+        keystr[0] = c
+        keystr[4] = c
+        keystr[16] = c
+
+        key[16:] = md5(bytes(keystr)).digest() # 后16位
+
+        flag = decrypt(EncFlag, bytes(key))
+
+        if len(flag) == 56 and is_visible_ascii(flag):
+            print("candidate char:", chr(c))
+            print(flag.decode("ascii"))
+            break
+
+
+if __name__ == "__main__":
+    main()
+# candidate char: Y
+# flag{Wow!_You_restored_the_data_and_this_is_your_reward}
+```
 
 ## 2024 NewStarCTF
 

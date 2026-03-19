@@ -858,13 +858,67 @@ int main()
 ```
 
 
-### MD5
+### MD5摘要算法
+
+```c++
+void md5(const uint8_t *msg, uint64_t len, uint8_t out[16]) {
+    uint32_t A = 0x67452301; // 特征：初始常量
+    uint32_t B = 0xEFCDAB89;
+    uint32_t C = 0x98BADCFE;
+    uint32_t D = 0x10325476;
+
+    // padding
+    padded = pad_message_md5(msg, len);
+
+    for each 64-byte block M:
+        a = A; b = B; c = C; d = D;
+
+        for i in 0..63:
+            if i < 16:
+                f = (b & c) | (~b & d);
+                g = i;
+            else if i < 32:
+                f = (d & b) | (~d & c);
+                g = (5*i + 1) % 16;
+            else if i < 48:
+                f = b ^ c ^ d;
+                g = (3*i + 5) % 16;
+            else:
+                f = c ^ (b | ~d);
+                g = (7*i) % 16;
+
+            temp = d;
+            d = c;
+            c = b;
+            b = b + rol(a + f + K[i] + M[g], s[i]);
+            a = temp;
+
+        A += a;
+        B += b;
+        C += c;
+        D += d;
+
+    write_le32(out + 0,  A);
+    write_le32(out + 4,  B);
+    write_le32(out + 8,  C);
+    write_le32(out + 12, D);
+}
+```
+
+### AES加密算法
+
+
+
+
 
 ### SMC
 
 > SMC，即Self Modifying Code，动态代码加密技术，指通过修改代码或数据，阻止别人直接静态分析，然后在动态运行程序时对代码进行解密，达到程序正常运行的效果。
 > 
 > SMC一般有俩种破解方法，第一种是找到对代码或数据加密的函数后通过idapython写解密脚本。第二种是动态调试到SMC解密结束的地方dump出来。
+
+
+
 
 
 
