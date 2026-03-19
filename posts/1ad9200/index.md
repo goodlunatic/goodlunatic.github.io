@@ -119,6 +119,17 @@ Windows Media (asf)，文件头：3026B2758E66CF11
 M4a，文件头：00000018667479704D3441
 ```
 
+如果遇到出题人篡改了文件头，从而导致无法判断是啥文件的情况，可以尝试下面这两个命令
+
+```bash
+# Linux自带的用来判断文件类型的命令
+file filename
+# Google出的基于rust和AI快速识别文件类型
+# https://github.com/google/magika
+pip install magika
+magika filename
+```
+
 ## 各种加密/编码
 
 ### 进制转换

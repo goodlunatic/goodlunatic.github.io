@@ -9,7 +9,7 @@
 
 **Current Research Interest：Mobile Internet Security | Cellular Network Security | ...**
 
-> **Hi there! I’m a master's student in BUPT, College of Cyberspace Security, class of 2025(advised by Assoc. Prof. Junsong Fu). During my undergraduate studies, I played CTF competitions and was the 4th captain of the A1natas Team from Zhejiang Normal University, advised by Prof. Hao Peng and Dr. Ming Zhong, where I specialized in Misc challenges. I'm an enthusiast of Steganography and Forensics, and I’ve also competed with union teams like Mini-Venom(ChaMD5) and XMCVE-Polaris(星盟安全). But Nowadays, I hack purely out of my own curiosity and passion.**
+> **Hi there! I’m a master's student in BUPT, College of Cyberspace Security (advised by Assoc. Prof. Junsong Fu). During my undergraduate studies, I played CTF competitions and was the 4th captain of the A1natas Team from Zhejiang Normal University, advised by Prof. Hao Peng and Dr. Ming Zhong, where I specialized in Misc challenges. I'm an enthusiast of Steganography and Forensics, and I’ve also competed with union teams like Mini-Venom(ChaMD5) and XMCVE-Polaris(星盟安全). But Nowadays, I hack purely out of my own curiosity and passion.**
 
 # **💬 Contact Me**
 
@@ -55,6 +55,7 @@
 |                **Yskm**                | **20.00 x 💎** |
 |              **李上网来**              | **19.00 x 💎** |
 |                 **1**                 | **18.88 x 💎** |
+| **Somokel** | **18.80 x 💎** |
 |                **biu**                | **16.16 x 💎** |
 |              **WALL·E**              | **15.00 x 💎** |
 |                 **一**                 | **11.11 x 💎** |
