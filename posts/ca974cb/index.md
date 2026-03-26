@@ -9,6 +9,8 @@
 
 ## 系统环境配置
 
+### 安卓服务端配置
+
 安卓设备：Pixel7 Pro（Rooted）
 
 > 原来的版本是安卓14，但是好像安卓14在使用Frida的时候会显示Timeout
@@ -28,6 +30,21 @@ Root的教程可以参考这篇文章：https://zhuanlan.zhihu.com/p/647937696
 > 这里安装Magisk的时候要注意安装新版的，要不然后面安装别的模块会显示 `unzip error`
 > 
 > 新版Magisk仓库：https://github.com/topjohnwu/Magisk
+
+### Windows客户端配置
+
+```bash
+pip install frida-tools
+frida --version
+# 把相同版本的 frida-server 传到手机
+adb push .\frida-server-17.8.3-android-arm64 /data/local/tmp/
+adb shell
+cd /data/local/tmp/ && chmod 777 *
+# 端口转发
+adb forward tcp:27042 tcp:27042
+# frida-ps -Uai
+```
+
 
 配置完环境后，就可以开始学习Frida了，我这里主要参考的是Github上的[Frida-Labs](https://github.com/DERE-ad2001/Frida-Labs/)
 
