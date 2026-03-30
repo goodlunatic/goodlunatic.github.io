@@ -1101,6 +1101,20 @@ Unity 游戏的主逻辑一般都保存在 dll 文件中，因此我们需要下
 
 ## 安卓逆向
 
+### adb相关
+
+```bash
+# 查看当前连接的设备
+adb devices
+# 获取shell
+adb shell
+# 启用adb无线远程调试
+# 首先手机上打开无线调试
+# 然后电脑输入以下命令即可
+adb pair <IP>:<Port>
+adb connect <IP>:<Port>
+```
+
 ### Frida相关
 
 #### 系统环境配置

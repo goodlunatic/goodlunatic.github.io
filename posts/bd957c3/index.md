@@ -190,7 +190,7 @@ print("".join(morse_code))
 
 ![image-20240429192439225](imgs/image-20240429192439225.png)
 
-**然后用 cloacked-pixel 解密即可，密钥就是 cloacked-pixel**
+**然后用 cloacked-pixel 解密即可，密钥就是 elephant**
 
 ![image-20240429192457047](imgs/image-20240429192457047.png)
 
