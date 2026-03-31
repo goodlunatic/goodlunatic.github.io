@@ -1152,15 +1152,217 @@ adb shell
 cd /data/local/tmp/ && chmod 777 *
 # 端口转发
 adb forward tcp:27042 tcp:27042
-# frida-ps -Uai
+frida-ps -Uai
+```
+
+##### 安卓设备启动Frida
+
+```bash
+adb shell
+su
+./data/local/tmp/frida-server 2>&1 > /data/local/tmp/frida.log &
+tail -f /data/local/tmp/frida.log
 ```
 
 
 配置完环境后，就可以开始学习Frida了，我这里主要参考的是Github上的[Frida-Labs](https://github.com/DERE-ad2001/Frida-Labs/)
 
-#### Frida-Labs
+#### Frida使用教程
 
-##### Frida-0x1
+```powershell
+PS C:\Users\User01> frida -h
+usage: frida [options] target
+
+positional arguments:
+  args                  extra arguments and/or target
+
+options:
+  -h, --help            show this help message and exit
+  -D ID, --device ID    connect to device with the given ID
+  -U, --usb             connect to USB device
+  -R, --remote          connect to remote frida-server
+  -H HOST, --host HOST  connect to remote frida-server on HOST
+  --certificate CERTIFICATE
+                        speak TLS with HOST, expecting CERTIFICATE
+  --origin ORIGIN       connect to remote server with “Origin” header set to ORIGIN
+  --token TOKEN         authenticate with HOST using TOKEN
+  --keepalive-interval INTERVAL
+                        set keepalive interval in seconds, or 0 to disable (defaults to -1 to auto-select based on
+                        transport)
+  --p2p                 establish a peer-to-peer connection with target
+  --stun-server ADDRESS
+                        set STUN server ADDRESS to use with --p2p
+  --relay address,username,password,turn-{udp,tcp,tls}
+                        add relay to use with --p2p
+  -f TARGET, --file TARGET
+                        spawn FILE
+  -F, --attach-frontmost
+                        attach to frontmost application
+  -n NAME, --attach-name NAME
+                        attach to NAME
+  -N IDENTIFIER, --attach-identifier IDENTIFIER
+                        attach to IDENTIFIER
+  -p PID, --attach-pid PID
+                        attach to PID
+  -W PATTERN, --await PATTERN
+                        await spawn matching PATTERN
+  --stdio {inherit,pipe}
+                        stdio behavior when spawning (defaults to “inherit”)
+  --aux option          set aux option when spawning, such as “uid=(int)42” (supported types are: string, bool, int)
+  --realm {native,emulated}
+                        realm to attach in
+  --runtime {qjs,v8}    script runtime to use
+  --debug               enable the Node.js compatible script debugger
+  --squelch-crash       if enabled, will not dump crash report to console
+  -O FILE, --options-file FILE
+                        text file containing additional command line options
+  --version             show program's version number and exit
+  -l SCRIPT, --load SCRIPT
+                        load SCRIPT
+  -P PARAMETERS_JSON, --parameters PARAMETERS_JSON
+                        parameters as JSON, same as Gadget
+  -C USER_CMODULE, --cmodule USER_CMODULE
+                        load CMODULE
+  --toolchain {any,internal,external}
+                        CModule toolchain to use when compiling from source code
+  -c CODESHARE_URI, --codeshare CODESHARE_URI
+                        load CODESHARE_URI
+  -e CODE, --eval CODE  evaluate CODE
+  -q                    quiet mode (no prompt) and quit after -l and -e
+  -t TIMEOUT, --timeout TIMEOUT
+                        seconds to wait before terminating in quiet mode (or 'inf' to run forever)
+  --pause               leave main thread paused after spawning program
+  -o LOGFILE, --output LOGFILE
+                        output to log file
+  --eternalize          eternalize the script before exit
+  --exit-on-error       exit with code 1 after encountering any exception in the SCRIPT
+  --kill-on-exit        kill the spawned program when Frida exits
+  --auto-perform        wrap entered code with Java.perform
+  --auto-reload         Enable auto reload of provided scripts and c module (on by default, will be required in the
+                        future)
+  --no-auto-reload      Disable auto reload of provided scripts and c modul
+  
+-f # spawn，启动时就注入
+```
+
+##### Hook的三种常见写法
+
+```js
+// 1. 观察型（最常用）—— 只看数据，不改行为
+method.implementation = function(x) {
+    var res = this.method(x); // 调用原方法
+    console.log(x, res);
+    return res;               // 原样返回
+}
+
+// 2. 篡改入参 —— 修改传入的参数
+method.implementation = function(x) {
+    return this.method(999);  // 强制传入 999
+}
+
+// 3. 篡改返回值 —— 不管原方法结果，强制返回指定值
+method.implementation = function(x) {
+    this.method(x);           // 可以调用也可以不调用
+    return true;              // 强制返回 true
+}
+// 方法有重载时，需要用 `.overload()` 指定参数类型：
+// 如果 VVVV 有多个重载版本，需要明确指定参数类型
+VVVVV.VVVV.overload("int", "int").implementation = function(x, y) {
+    return this.VVVV(x, y);
+}
+```
+
+#### Frida+Objection实现动态分析
+
+```bash
+# PC安装Objection
+pip install objection
+# 手机开启监听
+./frida-server -l 0.0.0.0:8888 # -l 监听所有网卡的 8888 端口（默认是 127.0.0.1:27042）
+# PC连接目标app
+# -h: 手机的IP
+# -p: 手机的端口
+# -g：目标app的包名
+# explore: 进入交互式命令行界面
+objection -N -h 192.168.1.103 -p 8888 -g com.kanxue.pediy1 explore
+# Hook指定方法
+# android hooking watch class_method: Hook 一个 Java 方法
+# com.kanxue.pediy1.VVVVV.VVVV: 完整方法路径：包名.类名.方法名
+# --dump-args: 打印方法的入参
+# --dump-backtrace: 打印调用堆栈
+# --dump-return: 打印方法的返回值
+android hooking watch class_method com.kanxue.pediy1.VVVVV.VVVV --dump-args --dump-backtrace --dump-return
+
+
+```
+
+
+
+#### 实战练习
+
+##### 看雪上的三道例题
+
+参考链接：https://bbs.kanxue.com/thread-260550.htm
+
+###### pediy1
+
+```js
+function main(){
+    // Java.perform()：等 Android Java 虚拟机准备好之后，再执行里面的逻辑
+    Java.perform(function(){
+        // Java.use("完整类名") —— 获取指定 Java 类的"包装对象"
+        // 通过这个包装对象可以：
+        // 1. Hook 实例方法 / 静态方法
+        // 2. 调用静态方法
+        // 3. 访问静态字段
+        var VVVVV = Java.use("com.kanxue.pediy1.VVVVV");
+        // 访问类中的方法 VVVV
+        // .implementation 是 Frida 的关键字，表示"替换这个方法的具体实现"
+        // 赋值之后，每次 App 调用 VVVVV.VVVV(x, y) 时，都会执行我们写的函数，而不是原来的逻辑
+        VVVVV.VVVV.implementation = function(x,y){
+            // 此处的 this 指向调用该方法的 Java 对象实例（即 VVVVV 的某个实例）
+            // this.VVVV(x, y) —— 调用原始方法，获取原本的返回值
+            // 如果不调用这行，原方法的逻辑就被完全跳过了（相当于直接替换）
+            // 这里先拿到结果，再打印，最后原样返回，属于"观察型 Hook"，不影响原有逻辑
+            var res = this.VVVV(x,y);
+            console.log("x,y,res",x,y,res);
+            // 必须 return，否则原方法的调用方会收到 undefined
+            // 这里原样返回 res，保持 App 行为不变
+            return res;
+        }
+    })
+}
+
+// setImmediate(main) 会在 Frida 脚本加载完成后，立即异步执行 main 函数
+// 相当于 "等脚本环境初始化好了，马上跑 main"
+// 比直接调用 main() 更安全，避免环境未就绪时报错
+setImmediate(main)
+```
+
+```js
+function main(){
+    Java.perform(function(){
+        var VVVVV_Class = Java.use('com.kanxue.pediy1.VVVVV');
+        console.log("VVVVV_Class:",VVVVV_Class);
+        VVVVV_Class.eeeee.implementation = function(x){
+            var res = this.eeeee(x);
+            console.log("eeeee Hooked! x,res:",x,res);
+            return res;
+        }
+        var ByteString = Java.use("com.android.okhttp.okio.ByteString");
+        console.log(ByteString);
+        var pSign = Java.use("java.lang.String").$new("6f452303f18605510aac694b0f5736beebf110bf").getBytes();
+        console.log(ByteString)
+    })
+
+}
+
+setImmediate(main)
+```
+
+##### Frida-Labs
+
+###### Frida-0x1
 
 这里主要就是学习一下 Frida Hook 脚本的编写
 

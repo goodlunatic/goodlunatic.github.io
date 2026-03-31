@@ -1,18 +1,18 @@
 <!doctype html><html itemscope itemtype=http://schema.org/WebPage lang=zh-CN><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=2"><meta name=robots content="noodp"><title>CTF-逆向工程 - ⚡Lunatic BLOG⚡</title><meta name=author content="Lunatic"><meta name=description content="未来的研究方向里有好多要用到逆向工程的地方
 感觉是绕不开逆向了，因此打算猛猛突击一下
 "><meta name=keywords content='CTF,Reverse'><meta itemprop=name content="CTF-逆向工程"><meta itemprop=description content="未来的研究方向里有好多要用到逆向工程的地方
-感觉是绕不开逆向了，因此打算猛猛突击一下"><meta itemprop=datePublished content="2026-03-27T14:15:38+08:00"><meta itemprop=dateModified content="2026-03-27T14:15:38+08:00"><meta itemprop=wordCount content="5337"><meta itemprop=keywords content="CTF,Reverse"><meta property="og:url" content="https://goodlunatic.github.io/posts/0f92e23/"><meta property="og:site_name" content="⚡Lunatic BLOG⚡"><meta property="og:title" content="CTF-逆向工程"><meta property="og:description" content="未来的研究方向里有好多要用到逆向工程的地方
+感觉是绕不开逆向了，因此打算猛猛突击一下"><meta itemprop=datePublished content="2026-03-27T14:15:38+08:00"><meta itemprop=dateModified content="2026-03-27T14:15:38+08:00"><meta itemprop=wordCount content="6191"><meta itemprop=keywords content="CTF,Reverse"><meta property="og:url" content="https://goodlunatic.github.io/posts/0f92e23/"><meta property="og:site_name" content="⚡Lunatic BLOG⚡"><meta property="og:title" content="CTF-逆向工程"><meta property="og:description" content="未来的研究方向里有好多要用到逆向工程的地方
 感觉是绕不开逆向了，因此打算猛猛突击一下"><meta property="og:locale" content="zh_CN"><meta property="og:type" content="article"><meta property="article:section" content="posts"><meta property="article:published_time" content="2026-03-27T14:15:38+08:00"><meta property="article:modified_time" content="2026-03-27T14:15:38+08:00"><meta property="article:tag" content="CTF"><meta property="article:tag" content="Reverse"><meta name=twitter:card content="summary"><meta name=twitter:title content="CTF-逆向工程"><meta name=twitter:description content="未来的研究方向里有好多要用到逆向工程的地方
-感觉是绕不开逆向了，因此打算猛猛突击一下"><meta name=application-name content="FixIt"><meta name=apple-mobile-web-app-title content="FixIt"><meta name=theme-color data-light=#f8f8f8 data-dark=#252627 content="#f8f8f8"><meta name=msapplication-TileColor content="#da532c"><link rel=icon href=https://www.nssctf.cn/files/2024/4/28/7f130a1387.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=canonical type=text/html href=https://goodlunatic.github.io/posts/0f92e23/ title="CTF-逆向工程 - ⚡Lunatic BLOG⚡"><link rel=prev type=text/html href=https://goodlunatic.github.io/posts/b7a1d1b/ title=CTF-Reverse刷题记录><link rel=next type=text/html href=https://goodlunatic.github.io/posts/59dcb62/ title="2026 楚慧杯湖北省网络与数据安全实践能力竞赛 Misc Writeup"><link rel=alternate type=text/markdown href=https://goodlunatic.github.io/posts/0f92e23/index.md title="CTF-逆向工程 - ⚡Lunatic BLOG⚡"><link rel=stylesheet href=/css/config.min.css><link rel=stylesheet href=/css/style.min.css><link rel=preload href=/lib/fontawesome-free/all.min.css as=style onload='this.removeAttribute("onload"),this.rel="stylesheet"'><noscript><link rel=stylesheet href=/lib/fontawesome-free/all.min.css></noscript><link rel=preload href=/lib/animate/animate.min.css as=style onload='this.removeAttribute("onload"),this.rel="stylesheet"'><noscript><link rel=stylesheet href=/lib/animate/animate.min.css></noscript><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"CTF-逆向工程","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/goodlunatic.github.io\/posts\/0f92e23\/"},"image":["https:\/\/www.nssctf.cn\/files\/2025\/8\/21\/8ce6223a1a.png"],"genre":"posts","keywords":"CTF, Reverse","wordcount":5337,"url":"https:\/\/goodlunatic.github.io\/posts\/0f92e23\/","datePublished":"2026-03-27T14:15:38+08:00","dateModified":"2026-03-27T14:15:38+08:00","publisher":{"@type":"Organization","name":""},"author":{"@type":"Person","name":"Lunatic"},"description":""}</script><script src=/js/head/color-scheme.min.js></script></head><body data-header-desktop=sticky data-header-mobile=auto><div class=wrapper data-page-style=normal><header class="desktop animate__faster" id=header-desktop><div class=header-wrapper data-github-corner=left><div class=header-title><a href=/ title="⚡Lunatic BLOG⚡"><span class=header-title-text>⚡Lunatic BLOG⚡</span></a><span class=header-subtitle></span></div><nav><ul class=menu><li class=menu-item><a class=menu-link href=/collections/><i class="fa-solid fa-layer-group fa-fw fa-sm" aria-hidden=true></i> 合集</a></li><li class=menu-item><a class=menu-link href=/archives/><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden=true></i> 归档</a></li><li class=menu-item><a class=menu-link href=/categories/><i class="fa-solid fa-folder-tree fa-fw fa-sm" aria-hidden=true></i> 分类</a></li><li class=menu-item><a class=menu-link href=/tags/><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden=true></i> 标签</a></li><li class=menu-item><a class=menu-link href=/friends/><i class="fa-solid fa-chain fa-fw fa-sm" aria-hidden=true></i> 友链</a></li><li class=menu-item><a class=menu-link href=/about/><i class="fa-solid fa-graduation-cap fa-fw fa-sm" aria-hidden=true></i> 关于</a></li><li class="menu-item delimiter"></li><li class="menu-item search" id=search-desktop><input type=text placeholder=搜索文章标题或内容…… id=search-input-desktop>
+感觉是绕不开逆向了，因此打算猛猛突击一下"><meta name=application-name content="FixIt"><meta name=apple-mobile-web-app-title content="FixIt"><meta name=theme-color data-light=#f8f8f8 data-dark=#252627 content="#f8f8f8"><meta name=msapplication-TileColor content="#da532c"><link rel=icon href=https://www.nssctf.cn/files/2024/4/28/7f130a1387.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=canonical type=text/html href=https://goodlunatic.github.io/posts/0f92e23/ title="CTF-逆向工程 - ⚡Lunatic BLOG⚡"><link rel=prev type=text/html href=https://goodlunatic.github.io/posts/b7a1d1b/ title=CTF-Reverse刷题记录><link rel=next type=text/html href=https://goodlunatic.github.io/posts/59dcb62/ title="2026 楚慧杯湖北省网络与数据安全实践能力竞赛 Misc Writeup"><link rel=alternate type=text/markdown href=https://goodlunatic.github.io/posts/0f92e23/index.md title="CTF-逆向工程 - ⚡Lunatic BLOG⚡"><link rel=stylesheet href=/css/config.min.css><link rel=stylesheet href=/css/style.min.css><link rel=preload href=/lib/fontawesome-free/all.min.css as=style onload='this.removeAttribute("onload"),this.rel="stylesheet"'><noscript><link rel=stylesheet href=/lib/fontawesome-free/all.min.css></noscript><link rel=preload href=/lib/animate/animate.min.css as=style onload='this.removeAttribute("onload"),this.rel="stylesheet"'><noscript><link rel=stylesheet href=/lib/animate/animate.min.css></noscript><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"CTF-逆向工程","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/goodlunatic.github.io\/posts\/0f92e23\/"},"image":["https:\/\/www.nssctf.cn\/files\/2025\/8\/21\/8ce6223a1a.png"],"genre":"posts","keywords":"CTF, Reverse","wordcount":6191,"url":"https:\/\/goodlunatic.github.io\/posts\/0f92e23\/","datePublished":"2026-03-27T14:15:38+08:00","dateModified":"2026-03-27T14:15:38+08:00","publisher":{"@type":"Organization","name":""},"author":{"@type":"Person","name":"Lunatic"},"description":""}</script><script src=/js/head/color-scheme.min.js></script></head><body data-header-desktop=sticky data-header-mobile=auto><div class=wrapper data-page-style=normal><header class="desktop animate__faster" id=header-desktop><div class=header-wrapper data-github-corner=left><div class=header-title><a href=/ title="⚡Lunatic BLOG⚡"><span class=header-title-text>⚡Lunatic BLOG⚡</span></a><span class=header-subtitle></span></div><nav><ul class=menu><li class=menu-item><a class=menu-link href=/collections/><i class="fa-solid fa-layer-group fa-fw fa-sm" aria-hidden=true></i> 合集</a></li><li class=menu-item><a class=menu-link href=/archives/><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden=true></i> 归档</a></li><li class=menu-item><a class=menu-link href=/categories/><i class="fa-solid fa-folder-tree fa-fw fa-sm" aria-hidden=true></i> 分类</a></li><li class=menu-item><a class=menu-link href=/tags/><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden=true></i> 标签</a></li><li class=menu-item><a class=menu-link href=/friends/><i class="fa-solid fa-chain fa-fw fa-sm" aria-hidden=true></i> 友链</a></li><li class=menu-item><a class=menu-link href=/about/><i class="fa-solid fa-graduation-cap fa-fw fa-sm" aria-hidden=true></i> 关于</a></li><li class="menu-item delimiter"></li><li class="menu-item search" id=search-desktop><input type=text placeholder=搜索文章标题或内容…… id=search-input-desktop>
 <a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-desktop title=搜索><i class="fa-solid fa-search fa-fw" aria-hidden=true></i>
 </a><a href=javascript:void(0); class="search-button search-clear" id=search-clear-desktop title=清空><i class="fa-solid fa-times-circle fa-fw" aria-hidden=true></i>
 </a><span class="search-button search-loading" id=search-loading-desktop><i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden=true></i></span></li><li class="menu-item theme-switch" title=切换主题><i class="fa-solid fa-adjust fa-fw" aria-hidden=true></i></li></ul></nav></div></header><header class="mobile animate__faster" id=header-mobile><div class=header-container><div class=header-wrapper><div class=header-title><a href=/ title="⚡Lunatic BLOG⚡"><span class=header-title-text>⚡Lunatic BLOG⚡</span></a><span class=header-subtitle></span></div><div class=menu-toggle id=menu-toggle-mobile><span></span><span></span><span></span></div></div><nav><ul class=menu id=menu-mobile><li class=search-wrapper><div class="search mobile" id=search-mobile><input type=text placeholder=搜索文章标题或内容…… id=search-input-mobile>
 <a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-mobile title=搜索><i class="fa-solid fa-search fa-fw" aria-hidden=true></i>
 </a><a href=javascript:void(0); class="search-button search-clear" id=search-clear-mobile title=清空><i class="fa-solid fa-times-circle fa-fw" aria-hidden=true></i>
 </a><span class="search-button search-loading" id=search-loading-mobile><i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden=true></i></span></div><a href=javascript:void(0); class=search-cancel id=search-cancel-mobile>取消</a></li><li class=menu-item><a class=menu-link href=/collections/><i class="fa-solid fa-layer-group fa-fw fa-sm" aria-hidden=true></i> 合集</a></li><li class=menu-item><a class=menu-link href=/archives/><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden=true></i> 归档</a></li><li class=menu-item><a class=menu-link href=/categories/><i class="fa-solid fa-folder-tree fa-fw fa-sm" aria-hidden=true></i> 分类</a></li><li class=menu-item><a class=menu-link href=/tags/><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden=true></i> 标签</a></li><li class=menu-item><a class=menu-link href=/friends/><i class="fa-solid fa-chain fa-fw fa-sm" aria-hidden=true></i> 友链</a></li><li class=menu-item><a class=menu-link href=/about/><i class="fa-solid fa-graduation-cap fa-fw fa-sm" aria-hidden=true></i> 关于</a></li><li class="menu-item menu-system"><span class="menu-system-item theme-switch" title=切换主题><i class="fa-solid fa-adjust fa-fw" aria-hidden=true></i></span></li></ul></nav></div></header><div class="search-dropdown desktop"><div id=search-dropdown-desktop></div></div><div class="search-dropdown mobile"><div id=search-dropdown-mobile></div></div><main class=fi-container><aside class="aside-collection animate__animated animate__fadeIn animate__faster" aria-label=合集><div class="details related-details open"><div class="details-summary related-summary"><i class="fa-solid fa-fire fa-fade text-danger fa-fw" aria-hidden=true></i>
-<span class=related-title>相关内容</span><i class="details-icon fa-solid fa-angle-right fa-fw" aria-hidden=true></i></div><div class="details-content related-content"><ul class=related-list><li class=related-item><a href=/posts/1ad9200/ title="[持续更新] CTF-Misc Guide">[持续更新] CTF-Misc Guide</a></li><li class=related-item><a href=/posts/b7a1d1b/ title=CTF-Reverse刷题记录>CTF-Reverse刷题记录</a></li><li class=related-item><a href=/posts/d0736a7/ title='CTF-Misc "雅"题共赏'>CTF-Misc "雅"题共赏</a></li><li class=related-item><a href=/posts/bb1da35/ title=星球朋友们问的一些来路不明的题>星球朋友们问的一些来路不明的题</a></li><li class=related-item><a href=/posts/8bf5633/ title="2025 鹏城杯联邦网络靶场协同攻防演练 Misc Writeup">2025 鹏城杯联邦网络靶场协同攻防演练 Misc Writeup</a></li></ul></div></div><div class=aside-custom><a href target=_blank rel=external><img src=/images/zsxq.webp alt="Lunatic Planet QR code" width=100%></a></div></aside><article class="page single"><div class=header><h1 class="single-title animate__animated animate__flipInX"><span>CTF-逆向工程</span></h1></div><div class=post-meta><div class=post-meta-line><span class=post-author><a href=https://goodlunatic.github.io title=作者 target=_blank rel="external nofollow noopener noreferrer author" class=author><img class=avatar src=https://www.nssctf.cn/files/2024/4/28/7f130a1387.png alt=Lunatic height=16 width=16>&nbsp;Lunatic</a></span><span class=post-included-in>&nbsp;收录于 <a href=/categories/ctf/ class=post-category title="分类 - CTF"><i class="fa-regular fa-folder fa-fw" aria-hidden=true></i> CTF</a></span></div><div class=post-meta-line><span title="发布于 2026-03-27 14:15:38"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden=true></i><time datetime=2026-03-27>2026-03-27</time></span>&nbsp;<span title="5337 字"><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden=true></i>约 5400 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden=true></i>预计阅读 26 分钟</span>&nbsp;<span id=busuanzi_container_page_pv class="busuanzi_visitors comment-visitors" data-flag-title=CTF-逆向工程><i class="fa-regular fa-eye fa-fw me-1" aria-hidden=true></i><span id=busuanzi_value_page_pv>-</span>&nbsp;次阅读
+<span class=related-title>相关内容</span><i class="details-icon fa-solid fa-angle-right fa-fw" aria-hidden=true></i></div><div class="details-content related-content"><ul class=related-list><li class=related-item><a href=/posts/1ad9200/ title="[持续更新] CTF-Misc Guide">[持续更新] CTF-Misc Guide</a></li><li class=related-item><a href=/posts/b7a1d1b/ title=CTF-Reverse刷题记录>CTF-Reverse刷题记录</a></li><li class=related-item><a href=/posts/d0736a7/ title='CTF-Misc "雅"题共赏'>CTF-Misc "雅"题共赏</a></li><li class=related-item><a href=/posts/bb1da35/ title=星球朋友们问的一些来路不明的题>星球朋友们问的一些来路不明的题</a></li><li class=related-item><a href=/posts/8bf5633/ title="2025 鹏城杯联邦网络靶场协同攻防演练 Misc Writeup">2025 鹏城杯联邦网络靶场协同攻防演练 Misc Writeup</a></li></ul></div></div><div class=aside-custom><a href target=_blank rel=external><img src=/images/zsxq.webp alt="Lunatic Planet QR code" width=100%></a></div></aside><article class="page single"><div class=header><h1 class="single-title animate__animated animate__flipInX"><span>CTF-逆向工程</span></h1></div><div class=post-meta><div class=post-meta-line><span class=post-author><a href=https://goodlunatic.github.io title=作者 target=_blank rel="external nofollow noopener noreferrer author" class=author><img class=avatar src=https://www.nssctf.cn/files/2024/4/28/7f130a1387.png alt=Lunatic height=16 width=16>&nbsp;Lunatic</a></span><span class=post-included-in>&nbsp;收录于 <a href=/categories/ctf/ class=post-category title="分类 - CTF"><i class="fa-regular fa-folder fa-fw" aria-hidden=true></i> CTF</a></span></div><div class=post-meta-line><span title="发布于 2026-03-27 14:15:38"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden=true></i><time datetime=2026-03-27>2026-03-27</time></span>&nbsp;<span title="6191 字"><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden=true></i>约 6200 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden=true></i>预计阅读 30 分钟</span>&nbsp;<span id=busuanzi_container_page_pv class="busuanzi_visitors comment-visitors" data-flag-title=CTF-逆向工程><i class="fa-regular fa-eye fa-fw me-1" aria-hidden=true></i><span id=busuanzi_value_page_pv>-</span>&nbsp;次阅读
 </span>&nbsp;</div></div><div class="details toc" id=toc-static data-kept=false><div class="details-summary toc-title"><span>目录</span>
-<span><i class="details-icon fa-solid fa-angle-right" aria-hidden=true></i></span></div><div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents><ul><li><a href=#ida使用基础>IDA使用基础</a><ul><li><a href=#ida相关配置>IDA相关配置</a></li><li><a href=#常用快捷键>常用快捷键</a></li><li><a href=#正常显示中文字符串>正常显示中文字符串</a></li><li><a href=#ida-python的使用>ida-python的使用</a></li></ul></li><li><a href=#逆向中常见的数据类型>逆向中常见的数据类型</a></li><li><a href=#汇编基础>汇编基础</a></li><li><a href=#常见的编码与加密>常见的编码与加密</a><ul><li><a href=#base64>base64</a></li><li><a href=#rc4加密算法>RC4加密算法</a><ul><li><ul><li><a href=#python版>Python版</a></li><li><a href=#c版>C++版</a></li></ul></li></ul></li><li><a href=#tea系列加密算法>TEA系列加密算法</a><ul><li><a href=#tea>TEA</a><ul><li><a href=#比赛中用到的一些代码>比赛中用到的一些代码</a></li></ul></li><li><a href=#xtea>XTEA</a></li><li><a href=#xxtea>XXTEA</a></li></ul></li><li><a href=#md5摘要算法>MD5摘要算法</a></li><li><a href=#aes加密算法>AES加密算法</a></li><li><a href=#smc>SMC</a></li></ul></li><li><a href=#常见的混淆>常见的混淆</a><ul><li><ul><li><a href=#永恒跳转>永恒跳转</a></li><li><a href=#jnz和jz互补跳转>jnz和jz互补跳转</a></li></ul></li><li><a href=#控制流平坦化>控制流平坦化</a><ul><li><a href=#ollvm>OLLVM</a></li></ul></li></ul></li><li><a href=#常见的壳>常见的壳</a><ul><li><a href=#upx>upx</a><ul><li><a href=#常规的upx>常规的UPX</a></li><li><a href=#魔改upx>魔改UPX</a></li></ul></li></ul></li><li><a href=#python逆向>Python逆向</a></li><li><a href=#游戏逆向>游戏逆向</a><ul><li><a href=#unity引擎逆向>Unity引擎逆向</a></li><li><a href=#虚幻引擎逆向>虚幻引擎逆向</a></li></ul></li><li><a href=#安卓逆向>安卓逆向</a><ul><li><a href=#adb相关>adb相关</a></li><li><a href=#frida相关>Frida相关</a><ul><li><a href=#系统环境配置>系统环境配置</a><ul><li><a href=#安卓服务端配置>安卓服务端配置</a></li><li><a href=#windows客户端配置>Windows客户端配置</a></li></ul></li><li><a href=#frida-labs>Frida-Labs</a><ul><li><a href=#frida-0x1>Frida-0x1</a></li></ul></li></ul></li></ul></li><li><a href=#常用的一些逆向工具>常用的一些逆向工具</a><ul><li><a href=#z3-约束求解器>Z3 约束求解器</a></li></ul></li><li><a href=#固件逆向>固件逆向</a><ul><li><a href=#android-ota-包>Android OTA 包</a></li></ul></li></ul></nav></div></div><div class=content id=content><p><strong>未来的研究方向里有好多要用到逆向工程的地方</strong></p><p><strong>感觉是绕不开逆向了，因此打算猛猛突击一下</strong></p><h2 class=heading-element id=ida使用基础><span>IDA使用基础</span>
+<span><i class="details-icon fa-solid fa-angle-right" aria-hidden=true></i></span></div><div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents><ul><li><a href=#ida使用基础>IDA使用基础</a><ul><li><a href=#ida相关配置>IDA相关配置</a></li><li><a href=#常用快捷键>常用快捷键</a></li><li><a href=#正常显示中文字符串>正常显示中文字符串</a></li><li><a href=#ida-python的使用>ida-python的使用</a></li></ul></li><li><a href=#逆向中常见的数据类型>逆向中常见的数据类型</a></li><li><a href=#汇编基础>汇编基础</a></li><li><a href=#常见的编码与加密>常见的编码与加密</a><ul><li><a href=#base64>base64</a></li><li><a href=#rc4加密算法>RC4加密算法</a><ul><li><ul><li><a href=#python版>Python版</a></li><li><a href=#c版>C++版</a></li></ul></li></ul></li><li><a href=#tea系列加密算法>TEA系列加密算法</a><ul><li><a href=#tea>TEA</a><ul><li><a href=#比赛中用到的一些代码>比赛中用到的一些代码</a></li></ul></li><li><a href=#xtea>XTEA</a></li><li><a href=#xxtea>XXTEA</a></li></ul></li><li><a href=#md5摘要算法>MD5摘要算法</a></li><li><a href=#aes加密算法>AES加密算法</a></li><li><a href=#smc>SMC</a></li></ul></li><li><a href=#常见的混淆>常见的混淆</a><ul><li><ul><li><a href=#永恒跳转>永恒跳转</a></li><li><a href=#jnz和jz互补跳转>jnz和jz互补跳转</a></li></ul></li><li><a href=#控制流平坦化>控制流平坦化</a><ul><li><a href=#ollvm>OLLVM</a></li></ul></li></ul></li><li><a href=#常见的壳>常见的壳</a><ul><li><a href=#upx>upx</a><ul><li><a href=#常规的upx>常规的UPX</a></li><li><a href=#魔改upx>魔改UPX</a></li></ul></li></ul></li><li><a href=#python逆向>Python逆向</a></li><li><a href=#游戏逆向>游戏逆向</a><ul><li><a href=#unity引擎逆向>Unity引擎逆向</a></li><li><a href=#虚幻引擎逆向>虚幻引擎逆向</a></li></ul></li><li><a href=#安卓逆向>安卓逆向</a><ul><li><a href=#adb相关>adb相关</a></li><li><a href=#frida相关>Frida相关</a><ul><li><a href=#系统环境配置>系统环境配置</a><ul><li><a href=#安卓服务端配置>安卓服务端配置</a></li><li><a href=#windows客户端配置>Windows客户端配置</a></li><li><a href=#安卓设备启动frida>安卓设备启动Frida</a></li></ul></li><li><a href=#frida使用教程>Frida使用教程</a><ul><li><a href=#hook的三种常见写法>Hook的三种常见写法</a></li></ul></li><li><a href=#fridaobjection实现动态分析>Frida+Objection实现动态分析</a></li><li><a href=#实战练习>实战练习</a><ul><li><a href=#看雪上的三道例题>看雪上的三道例题</a><ul><li><a href=#pediy1>pediy1</a></li></ul></li><li><a href=#frida-labs>Frida-Labs</a><ul><li><a href=#frida-0x1>Frida-0x1</a></li></ul></li></ul></li></ul></li></ul></li><li><a href=#常用的一些逆向工具>常用的一些逆向工具</a><ul><li><a href=#z3-约束求解器>Z3 约束求解器</a></li></ul></li><li><a href=#固件逆向>固件逆向</a><ul><li><a href=#android-ota-包>Android OTA 包</a></li></ul></li></ul></nav></div></div><div class=content id=content><p><strong>未来的研究方向里有好多要用到逆向工程的地方</strong></p><p><strong>感觉是绕不开逆向了，因此打算猛猛突击一下</strong></p><h2 class=heading-element id=ida使用基础><span>IDA使用基础</span>
 <a href=#ida%e4%bd%bf%e7%94%a8%e5%9f%ba%e7%a1%80 class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h2><h3 class=heading-element id=ida相关配置><span>IDA相关配置</span>
 <a href=#ida%e7%9b%b8%e5%85%b3%e9%85%8d%e7%bd%ae class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h3><p>1、修改为老版本的快捷键</p><p>options -> shortcuts，取消勾选 use new shortcuts 即可</p><p>2、修改 opcode byte 的数量</p><p>options -> general -> Number of opcode bytes，输入10即可</p><h3 class=heading-element id=常用快捷键><span>常用快捷键</span>
 <a href=#%e5%b8%b8%e7%94%a8%e5%bf%ab%e6%8d%b7%e9%94%ae class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h3><table><thead><tr><th style=text-align:center>快捷键</th><th style=text-align:center>功能</th></tr></thead><tbody><tr><td style=text-align:center>F2</td><td style=text-align:center>添加断点</td></tr><tr><td style=text-align:center>F4</td><td style=text-align:center>开始运行</td></tr><tr><td style=text-align:center>F5</td><td style=text-align:center>反编译成伪代码</td></tr><tr><td style=text-align:center>F7</td><td style=text-align:center>进入函数</td></tr><tr><td style=text-align:center>F8</td><td style=text-align:center>单步调试</td></tr><tr><td style=text-align:center>F9</td><td style=text-align:center>运行到下一个断点</td></tr><tr><td style=text-align:center>Space</td><td style=text-align:center>切换反汇编窗口(列表视图&图形视图)</td></tr><tr><td style=text-align:center>Tab</td><td style=text-align:center>返回栈视图</td></tr><tr><td style=text-align:center>ESC</td><td style=text-align:center>跳转到返回前的地址</td></tr><tr><td style=text-align:center>/</td><td style=text-align:center>添加注释</td></tr><tr><td style=text-align:center>N</td><td style=text-align:center>修改变量名</td></tr><tr><td style=text-align:center>A</td><td style=text-align:center>转化为字符串</td></tr><tr><td style=text-align:center>D</td><td style=text-align:center>代码解析成数据</td></tr><tr><td style=text-align:center>C</td><td style=text-align:center>数据解析成代码(重新定义)</td></tr><tr><td style=text-align:center>G</td><td style=text-align:center>跳转到指定地址查看</td></tr><tr><td style=text-align:center>H</td><td style=text-align:center>转换为十进制数</td></tr><tr><td style=text-align:center>P</td><td style=text-align:center>生成函数</td></tr><tr><td style=text-align:center>Q</td><td style=text-align:center>转换为十六进制数</td></tr><tr><td style=text-align:center>R</td><td style=text-align:center>转换为字符</td></tr><tr><td style=text-align:center>U</td><td style=text-align:center>取消定义</td></tr><tr><td style=text-align:center>X</td><td style=text-align:center>查看函数的交叉引用</td></tr><tr><td style=text-align:center>Y</td><td style=text-align:center>指定当前函数的命名</td></tr><tr><td style=text-align:center>Shift+F12</td><td style=text-align:center>打开字符串窗口</td></tr><tr><td style=text-align:center>Shift+E</td><td style=text-align:center>批量复制数据为字符串或者c数组格式</td></tr></tbody></table><h3 class=heading-element id=正常显示中文字符串><span>正常显示中文字符串</span>
@@ -1474,9 +1474,338 @@
 </span></span><span class=line><span class=cl><span class=nb>cd</span> /data/local/tmp/ <span class=o>&amp;&amp;</span> chmod <span class=m>777</span> *
 </span></span><span class=line><span class=cl><span class=c1># 端口转发</span>
 </span></span><span class=line><span class=cl>adb forward tcp:27042 tcp:27042
-</span></span><span class=line><span class=cl><span class=c1># frida-ps -Uai</span></span></span></code></pre></td></tr></table></div></div><p>配置完环境后，就可以开始学习Frida了，我这里主要参考的是Github上的<a href=https://github.com/DERE-ad2001/Frida-Labs/ target=_blank rel="external nofollow noopener noreferrer">Frida-Labs</a></p><h4 class=heading-element id=frida-labs><span>Frida-Labs</span>
-<a href=#frida-labs class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h4><h5 class=heading-element id=frida-0x1><span>Frida-0x1</span>
-<a href=#frida-0x1 class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h5><p>这里主要就是学习一下 Frida Hook 脚本的编写</p><p>脚本的基本格式如下：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></span><span class=line><span class=cl>frida-ps -Uai</span></span></code></pre></td></tr></table></div></div><h5 class=heading-element id=安卓设备启动frida><span>安卓设备启动Frida</span>
+<a href=#%e5%ae%89%e5%8d%93%e8%ae%be%e5%a4%87%e5%90%af%e5%8a%a8frida class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h5><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>adb shell
+</span></span><span class=line><span class=cl>su
+</span></span><span class=line><span class=cl>./data/local/tmp/frida-server 2&gt;<span class=p>&amp;</span><span class=m>1</span> &gt; /data/local/tmp/frida.log <span class=p>&amp;</span>
+</span></span><span class=line><span class=cl>tail -f /data/local/tmp/frida.log</span></span></code></pre></td></tr></table></div></div><p>配置完环境后，就可以开始学习Frida了，我这里主要参考的是Github上的<a href=https://github.com/DERE-ad2001/Frida-Labs/ target=_blank rel="external nofollow noopener noreferrer">Frida-Labs</a></p><h4 class=heading-element id=frida使用教程><span>Frida使用教程</span>
+<a href=#frida%e4%bd%bf%e7%94%a8%e6%95%99%e7%a8%8b class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h4><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span><span class=lnt>48
+</span><span class=lnt>49
+</span><span class=lnt>50
+</span><span class=lnt>51
+</span><span class=lnt>52
+</span><span class=lnt>53
+</span><span class=lnt>54
+</span><span class=lnt>55
+</span><span class=lnt>56
+</span><span class=lnt>57
+</span><span class=lnt>58
+</span><span class=lnt>59
+</span><span class=lnt>60
+</span><span class=lnt>61
+</span><span class=lnt>62
+</span><span class=lnt>63
+</span><span class=lnt>64
+</span><span class=lnt>65
+</span><span class=lnt>66
+</span><span class=lnt>67
+</span><span class=lnt>68
+</span><span class=lnt>69
+</span><span class=lnt>70
+</span><span class=lnt>71
+</span><span class=lnt>72
+</span><span class=lnt>73
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-powershell data-lang=powershell><span class=line><span class=cl><span class=nb>PS </span><span class=n>C:</span><span class=p>\</span><span class=n>Users</span><span class=p>\</span><span class=n>User01</span><span class=p>&gt;</span> <span class=n>frida</span> <span class=n>-h</span>
+</span></span><span class=line><span class=cl><span class=n>usage</span><span class=err>:</span> <span class=n>frida</span> <span class=p>[</span><span class=no>options</span><span class=p>]</span> <span class=n>target</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>positional</span> <span class=n>arguments</span><span class=err>:</span>
+</span></span><span class=line><span class=cl>  <span class=n>args</span>                  <span class=n>extra</span> <span class=n>arguments</span> <span class=n>and</span><span class=p>/</span><span class=n>or</span> <span class=n>target</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>options</span><span class=err>:</span>
+</span></span><span class=line><span class=cl>  <span class=n>-h</span><span class=p>,</span> <span class=p>-</span><span class=n>-help</span>            <span class=n>show</span> <span class=n>this</span> <span class=n>help</span> <span class=n>message</span> <span class=n>and</span> <span class=n>exit</span>
+</span></span><span class=line><span class=cl>  <span class=n>-D</span> <span class=n>ID</span><span class=p>,</span> <span class=p>-</span><span class=n>-device</span> <span class=n>ID</span>    <span class=n>connect</span> <span class=n>to</span> <span class=n>device</span> <span class=n>with</span> <span class=n>the</span> <span class=n>given</span> <span class=n>ID</span>
+</span></span><span class=line><span class=cl>  <span class=n>-U</span><span class=p>,</span> <span class=p>-</span><span class=n>-usb</span>             <span class=n>connect</span> <span class=n>to</span> <span class=n>USB</span> <span class=n>device</span>
+</span></span><span class=line><span class=cl>  <span class=n>-R</span><span class=p>,</span> <span class=p>-</span><span class=n>-remote</span>          <span class=n>connect</span> <span class=n>to</span> <span class=n>remote</span> <span class=nb>frida-server</span>
+</span></span><span class=line><span class=cl>  <span class=n>-H</span> <span class=n>HOST</span><span class=p>,</span> <span class=p>-</span><span class=n>-host</span> <span class=n>HOST</span>  <span class=n>connect</span> <span class=n>to</span> <span class=n>remote</span> <span class=nb>frida-server</span> <span class=n>on</span> <span class=n>HOST</span>
+</span></span><span class=line><span class=cl>  <span class=p>-</span><span class=n>-certificate</span> <span class=n>CERTIFICATE</span>
+</span></span><span class=line><span class=cl>                        <span class=n>speak</span> <span class=n>TLS</span> <span class=n>with</span> <span class=n>HOST</span><span class=p>,</span> <span class=n>expecting</span> <span class=n>CERTIFICATE</span>
+</span></span><span class=line><span class=cl>  <span class=p>-</span><span class=n>-origin</span> <span class=n>ORIGIN</span>       <span class=n>connect</span> <span class=n>to</span> <span class=n>remote</span> <span class=n>server</span> <span class=n>with</span> <span class=err>“</span><span class=n>Origin</span><span class=err>”</span> <span class=n>header</span> <span class=nb>set </span><span class=n>to</span> <span class=n>ORIGIN</span>
+</span></span><span class=line><span class=cl>  <span class=p>-</span><span class=n>-token</span> <span class=n>TOKEN</span>         <span class=n>authenticate</span> <span class=n>with</span> <span class=n>HOST</span> <span class=n>using</span> <span class=n>TOKEN</span>
+</span></span><span class=line><span class=cl>  <span class=p>-</span><span class=n>-keepalive-interval</span> <span class=n>INTERVAL</span>
+</span></span><span class=line><span class=cl>                        <span class=nb>set </span><span class=n>keepalive</span> <span class=n>interval</span> <span class=k>in</span> <span class=n>seconds</span><span class=p>,</span> <span class=n>or</span> <span class=mf>0</span> <span class=n>to</span> <span class=n>disable</span> <span class=p>(</span><span class=n>defaults</span> <span class=n>to</span> <span class=mf>-1</span> <span class=n>to</span> <span class=nb>auto-select</span> <span class=n>based</span> <span class=n>on</span>
+</span></span><span class=line><span class=cl>                        <span class=n>transport</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>  <span class=p>-</span><span class=n>-p2p</span>                 <span class=n>establish</span> <span class=n>a</span> <span class=nb>peer-to</span><span class=n>-peer</span> <span class=n>connection</span> <span class=n>with</span> <span class=n>target</span>
+</span></span><span class=line><span class=cl>  <span class=p>-</span><span class=n>-stun-server</span> <span class=n>ADDRESS</span>
+</span></span><span class=line><span class=cl>                        <span class=nb>set </span><span class=n>STUN</span> <span class=n>server</span> <span class=n>ADDRESS</span> <span class=n>to</span> <span class=n>use</span> <span class=n>with</span> <span class=p>-</span><span class=n>-p2p</span>
+</span></span><span class=line><span class=cl>  <span class=p>-</span><span class=n>-relay</span> <span class=n>address</span><span class=p>,</span><span class=n>username</span><span class=p>,</span><span class=n>password</span><span class=p>,</span><span class=n>turn</span><span class=p>-{</span><span class=n>udp</span><span class=p>,</span><span class=n>tcp</span><span class=p>,</span><span class=n>tls</span><span class=p>}</span>
+</span></span><span class=line><span class=cl>                        <span class=n>add</span> <span class=n>relay</span> <span class=n>to</span> <span class=n>use</span> <span class=n>with</span> <span class=p>-</span><span class=n>-p2p</span>
+</span></span><span class=line><span class=cl>  <span class=o>-f</span> <span class=n>TARGET</span><span class=p>,</span> <span class=p>-</span><span class=o>-file</span> <span class=n>TARGET</span>
+</span></span><span class=line><span class=cl>                        <span class=n>spawn</span> <span class=n>FILE</span>
+</span></span><span class=line><span class=cl>  <span class=o>-F</span><span class=p>,</span> <span class=p>-</span><span class=n>-attach-frontmost</span>
+</span></span><span class=line><span class=cl>                        <span class=n>attach</span> <span class=n>to</span> <span class=n>frontmost</span> <span class=n>application</span>
+</span></span><span class=line><span class=cl>  <span class=n>-n</span> <span class=n>NAME</span><span class=p>,</span> <span class=p>-</span><span class=n>-attach-name</span> <span class=n>NAME</span>
+</span></span><span class=line><span class=cl>                        <span class=n>attach</span> <span class=n>to</span> <span class=n>NAME</span>
+</span></span><span class=line><span class=cl>  <span class=n>-N</span> <span class=n>IDENTIFIER</span><span class=p>,</span> <span class=p>-</span><span class=n>-attach-identifier</span> <span class=n>IDENTIFIER</span>
+</span></span><span class=line><span class=cl>                        <span class=n>attach</span> <span class=n>to</span> <span class=n>IDENTIFIER</span>
+</span></span><span class=line><span class=cl>  <span class=n>-p</span> <span class=n>PID</span><span class=p>,</span> <span class=p>-</span><span class=n>-attach-pid</span> <span class=n>PID</span>
+</span></span><span class=line><span class=cl>                        <span class=n>attach</span> <span class=n>to</span> <span class=n>PID</span>
+</span></span><span class=line><span class=cl>  <span class=n>-W</span> <span class=n>PATTERN</span><span class=p>,</span> <span class=p>-</span><span class=n>-await</span> <span class=n>PATTERN</span>
+</span></span><span class=line><span class=cl>                        <span class=n>await</span> <span class=n>spawn</span> <span class=n>matching</span> <span class=n>PATTERN</span>
+</span></span><span class=line><span class=cl>  <span class=p>-</span><span class=n>-stdio</span> <span class=p>{</span><span class=n>inherit</span><span class=p>,</span><span class=n>pipe</span><span class=p>}</span>
+</span></span><span class=line><span class=cl>                        <span class=n>stdio</span> <span class=n>behavior</span> <span class=n>when</span> <span class=n>spawning</span> <span class=p>(</span><span class=n>defaults</span> <span class=n>to</span> <span class=err>“</span><span class=n>inherit</span><span class=err>”</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>  <span class=p>-</span><span class=n>-aux</span> <span class=n>option</span>          <span class=nb>set </span><span class=n>aux</span> <span class=n>option</span> <span class=n>when</span> <span class=n>spawning</span><span class=p>,</span> <span class=n>such</span> <span class=n>as</span> <span class=err>“</span><span class=n>uid</span><span class=p>=(</span><span class=n>int</span><span class=p>)</span><span class=mf>42</span><span class=err>”</span> <span class=p>(</span><span class=n>supported</span> <span class=n>types</span> <span class=n>are</span><span class=err>:</span> <span class=n>string</span><span class=p>,</span> <span class=n>bool</span><span class=p>,</span> <span class=n>int</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>  <span class=p>-</span><span class=n>-realm</span> <span class=p>{</span><span class=n>native</span><span class=p>,</span><span class=n>emulated</span><span class=p>}</span>
+</span></span><span class=line><span class=cl>                        <span class=n>realm</span> <span class=n>to</span> <span class=n>attach</span> <span class=k>in</span>
+</span></span><span class=line><span class=cl>  <span class=p>-</span><span class=n>-runtime</span> <span class=p>{</span><span class=n>qjs</span><span class=p>,</span><span class=n>v8</span><span class=p>}</span>    <span class=n>script</span> <span class=n>runtime</span> <span class=n>to</span> <span class=n>use</span>
+</span></span><span class=line><span class=cl>  <span class=p>-</span><span class=n>-debug</span>               <span class=n>enable</span> <span class=n>the</span> <span class=n>Node</span><span class=p>.</span><span class=py>js</span> <span class=n>compatible</span> <span class=n>script</span> <span class=n>debugger</span>
+</span></span><span class=line><span class=cl>  <span class=p>-</span><span class=n>-squelch-crash</span>       <span class=k>if</span> <span class=n>enabled</span><span class=p>,</span> <span class=n>will</span> <span class=n>not</span> <span class=n>dump</span> <span class=n>crash</span> <span class=n>report</span> <span class=n>to</span> <span class=n>console</span>
+</span></span><span class=line><span class=cl>  <span class=n>-O</span> <span class=n>FILE</span><span class=p>,</span> <span class=p>-</span><span class=n>-options</span><span class=o>-file</span> <span class=n>FILE</span>
+</span></span><span class=line><span class=cl>                        <span class=n>text</span> <span class=n>file</span> <span class=n>containing</span> <span class=n>additional</span> <span class=n>command</span> <span class=n>line</span> <span class=n>options</span>
+</span></span><span class=line><span class=cl>  <span class=p>-</span><span class=n>-version</span>             <span class=n>show</span> <span class=n>program</span><span class=s1>&#39;s version number and exit
+</span></span></span><span class=line><span class=cl><span class=s1>  -l SCRIPT, --load SCRIPT
+</span></span></span><span class=line><span class=cl><span class=s1>                        load SCRIPT
+</span></span></span><span class=line><span class=cl><span class=s1>  -P PARAMETERS_JSON, --parameters PARAMETERS_JSON
+</span></span></span><span class=line><span class=cl><span class=s1>                        parameters as JSON, same as Gadget
+</span></span></span><span class=line><span class=cl><span class=s1>  -C USER_CMODULE, --cmodule USER_CMODULE
+</span></span></span><span class=line><span class=cl><span class=s1>                        load CMODULE
+</span></span></span><span class=line><span class=cl><span class=s1>  --toolchain {any,internal,external}
+</span></span></span><span class=line><span class=cl><span class=s1>                        CModule toolchain to use when compiling from source code
+</span></span></span><span class=line><span class=cl><span class=s1>  -c CODESHARE_URI, --codeshare CODESHARE_URI
+</span></span></span><span class=line><span class=cl><span class=s1>                        load CODESHARE_URI
+</span></span></span><span class=line><span class=cl><span class=s1>  -e CODE, --eval CODE  evaluate CODE
+</span></span></span><span class=line><span class=cl><span class=s1>  -q                    quiet mode (no prompt) and quit after -l and -e
+</span></span></span><span class=line><span class=cl><span class=s1>  -t TIMEOUT, --timeout TIMEOUT
+</span></span></span><span class=line><span class=cl><span class=s1>                        seconds to wait before terminating in quiet mode (or &#39;</span><span class=n>inf</span><span class=err>&#39;</span> <span class=n>to</span> <span class=n>run</span> <span class=n>forever</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>  <span class=p>-</span><span class=n>-pause</span>               <span class=n>leave</span> <span class=n>main</span> <span class=n>thread</span> <span class=n>paused</span> <span class=n>after</span> <span class=n>spawning</span> <span class=n>program</span>
+</span></span><span class=line><span class=cl>  <span class=n>-o</span> <span class=n>LOGFILE</span><span class=p>,</span> <span class=p>-</span><span class=n>-output</span> <span class=n>LOGFILE</span>
+</span></span><span class=line><span class=cl>                        <span class=n>output</span> <span class=n>to</span> <span class=n>log</span> <span class=n>file</span>
+</span></span><span class=line><span class=cl>  <span class=p>-</span><span class=n>-eternalize</span>          <span class=n>eternalize</span> <span class=n>the</span> <span class=n>script</span> <span class=n>before</span> <span class=n>exit</span>
+</span></span><span class=line><span class=cl>  <span class=p>-</span><span class=n>-exit-on-error</span>       <span class=n>exit</span> <span class=n>with</span> <span class=n>code</span> <span class=mf>1</span> <span class=n>after</span> <span class=n>encountering</span> <span class=n>any</span> <span class=n>exception</span> <span class=k>in</span> <span class=n>the</span> <span class=n>SCRIPT</span>
+</span></span><span class=line><span class=cl>  <span class=p>-</span><span class=n>-kill-on-exit</span>        <span class=nb>kill </span><span class=n>the</span> <span class=n>spawned</span> <span class=n>program</span> <span class=n>when</span> <span class=n>Frida</span> <span class=n>exits</span>
+</span></span><span class=line><span class=cl>  <span class=p>-</span><span class=n>-auto-perform</span>        <span class=n>wrap</span> <span class=n>entered</span> <span class=n>code</span> <span class=n>with</span> <span class=n>Java</span><span class=p>.</span><span class=py>perform</span>
+</span></span><span class=line><span class=cl>  <span class=p>-</span><span class=n>-auto-reload</span>         <span class=n>Enable</span> <span class=n>auto</span> <span class=n>reload</span> <span class=n>of</span> <span class=n>provided</span> <span class=n>scripts</span> <span class=n>and</span> <span class=n>c</span> <span class=n>module</span> <span class=p>(</span><span class=n>on</span> <span class=n>by</span> <span class=k>default</span><span class=p>,</span> <span class=n>will</span> <span class=n>be</span> <span class=n>required</span> <span class=k>in</span> <span class=n>the</span>
+</span></span><span class=line><span class=cl>                        <span class=n>future</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>  <span class=p>-</span><span class=n>-no-auto-reload</span>      <span class=n>Disable</span> <span class=n>auto</span> <span class=n>reload</span> <span class=n>of</span> <span class=n>provided</span> <span class=n>scripts</span> <span class=n>and</span> <span class=n>c</span> <span class=n>modul</span>
+</span></span><span class=line><span class=cl>  
+</span></span><span class=line><span class=cl><span class=o>-f</span> <span class=c># spawn，启动时就注入</span></span></span></code></pre></td></tr></table></div></div><h5 class=heading-element id=hook的三种常见写法><span>Hook的三种常见写法</span>
+<a href=#hook%e7%9a%84%e4%b8%89%e7%a7%8d%e5%b8%b8%e8%a7%81%e5%86%99%e6%b3%95 class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h5><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=line><span class=cl><span class=c1>// 1. 观察型（最常用）—— 只看数据，不改行为
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=nx>method</span><span class=p>.</span><span class=nx>implementation</span> <span class=o>=</span> <span class=kd>function</span><span class=p>(</span><span class=nx>x</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=kd>var</span> <span class=nx>res</span> <span class=o>=</span> <span class=k>this</span><span class=p>.</span><span class=nx>method</span><span class=p>(</span><span class=nx>x</span><span class=p>);</span> <span class=c1>// 调用原方法
+</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>x</span><span class=p>,</span> <span class=nx>res</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=nx>res</span><span class=p>;</span>               <span class=c1>// 原样返回
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>// 2. 篡改入参 —— 修改传入的参数
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=nx>method</span><span class=p>.</span><span class=nx>implementation</span> <span class=o>=</span> <span class=kd>function</span><span class=p>(</span><span class=nx>x</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=k>this</span><span class=p>.</span><span class=nx>method</span><span class=p>(</span><span class=mi>999</span><span class=p>);</span>  <span class=c1>// 强制传入 999
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>// 3. 篡改返回值 —— 不管原方法结果，强制返回指定值
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=nx>method</span><span class=p>.</span><span class=nx>implementation</span> <span class=o>=</span> <span class=kd>function</span><span class=p>(</span><span class=nx>x</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>this</span><span class=p>.</span><span class=nx>method</span><span class=p>(</span><span class=nx>x</span><span class=p>);</span>           <span class=c1>// 可以调用也可以不调用
+</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=k>return</span> <span class=kc>true</span><span class=p>;</span>              <span class=c1>// 强制返回 true
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=c1>// 方法有重载时，需要用 `.overload()` 指定参数类型：
+</span></span></span><span class=line><span class=cl><span class=c1>// 如果 VVVV 有多个重载版本，需要明确指定参数类型
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=nx>VVVVV</span><span class=p>.</span><span class=nx>VVVV</span><span class=p>.</span><span class=nx>overload</span><span class=p>(</span><span class=s2>&#34;int&#34;</span><span class=p>,</span> <span class=s2>&#34;int&#34;</span><span class=p>).</span><span class=nx>implementation</span> <span class=o>=</span> <span class=kd>function</span><span class=p>(</span><span class=nx>x</span><span class=p>,</span> <span class=nx>y</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=k>this</span><span class=p>.</span><span class=nx>VVVV</span><span class=p>(</span><span class=nx>x</span><span class=p>,</span> <span class=nx>y</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=p>}</span></span></span></code></pre></td></tr></table></div></div><h4 class=heading-element id=fridaobjection实现动态分析><span>Frida+Objection实现动态分析</span>
+<a href=#fridaobjection%e5%ae%9e%e7%8e%b0%e5%8a%a8%e6%80%81%e5%88%86%e6%9e%90 class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h4><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># PC安装Objection</span>
+</span></span><span class=line><span class=cl>pip install objection
+</span></span><span class=line><span class=cl><span class=c1># 手机开启监听</span>
+</span></span><span class=line><span class=cl>./frida-server -l 0.0.0.0:8888 <span class=c1># -l 监听所有网卡的 8888 端口（默认是 127.0.0.1:27042）</span>
+</span></span><span class=line><span class=cl><span class=c1># PC连接目标app</span>
+</span></span><span class=line><span class=cl><span class=c1># -h: 手机的IP</span>
+</span></span><span class=line><span class=cl><span class=c1># -p: 手机的端口</span>
+</span></span><span class=line><span class=cl><span class=c1># -g：目标app的包名</span>
+</span></span><span class=line><span class=cl><span class=c1># explore: 进入交互式命令行界面</span>
+</span></span><span class=line><span class=cl>objection -N -h 192.168.1.103 -p <span class=m>8888</span> -g com.kanxue.pediy1 explore
+</span></span><span class=line><span class=cl><span class=c1># Hook指定方法</span>
+</span></span><span class=line><span class=cl><span class=c1># android hooking watch class_method: Hook 一个 Java 方法</span>
+</span></span><span class=line><span class=cl><span class=c1># com.kanxue.pediy1.VVVVV.VVVV: 完整方法路径：包名.类名.方法名</span>
+</span></span><span class=line><span class=cl><span class=c1># --dump-args: 打印方法的入参</span>
+</span></span><span class=line><span class=cl><span class=c1># --dump-backtrace: 打印调用堆栈</span>
+</span></span><span class=line><span class=cl><span class=c1># --dump-return: 打印方法的返回值</span>
+</span></span><span class=line><span class=cl>android hooking watch class_method com.kanxue.pediy1.VVVVV.VVVV --dump-args --dump-backtrace --dump-return</span></span></code></pre></td></tr></table></div></div><h4 class=heading-element id=实战练习><span>实战练习</span>
+<a href=#%e5%ae%9e%e6%88%98%e7%bb%83%e4%b9%a0 class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h4><h5 class=heading-element id=看雪上的三道例题><span>看雪上的三道例题</span>
+<a href=#%e7%9c%8b%e9%9b%aa%e4%b8%8a%e7%9a%84%e4%b8%89%e9%81%93%e4%be%8b%e9%a2%98 class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h5><p>参考链接：https://bbs.kanxue.com/thread-260550.htm</p><h6 class=heading-element id=pediy1><span>pediy1</span>
+<a href=#pediy1 class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h6><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=line><span class=cl><span class=kd>function</span> <span class=nx>main</span><span class=p>(){</span>
+</span></span><span class=line><span class=cl>    <span class=c1>// Java.perform()：等 Android Java 虚拟机准备好之后，再执行里面的逻辑
+</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=nx>Java</span><span class=p>.</span><span class=nx>perform</span><span class=p>(</span><span class=kd>function</span><span class=p>(){</span>
+</span></span><span class=line><span class=cl>        <span class=c1>// Java.use(&#34;完整类名&#34;) —— 获取指定 Java 类的&#34;包装对象&#34;
+</span></span></span><span class=line><span class=cl><span class=c1></span>        <span class=c1>// 通过这个包装对象可以：
+</span></span></span><span class=line><span class=cl><span class=c1></span>        <span class=c1>// 1. Hook 实例方法 / 静态方法
+</span></span></span><span class=line><span class=cl><span class=c1></span>        <span class=c1>// 2. 调用静态方法
+</span></span></span><span class=line><span class=cl><span class=c1></span>        <span class=c1>// 3. 访问静态字段
+</span></span></span><span class=line><span class=cl><span class=c1></span>        <span class=kd>var</span> <span class=nx>VVVVV</span> <span class=o>=</span> <span class=nx>Java</span><span class=p>.</span><span class=nx>use</span><span class=p>(</span><span class=s2>&#34;com.kanxue.pediy1.VVVVV&#34;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>        <span class=c1>// 访问类中的方法 VVVV
+</span></span></span><span class=line><span class=cl><span class=c1></span>        <span class=c1>// .implementation 是 Frida 的关键字，表示&#34;替换这个方法的具体实现&#34;
+</span></span></span><span class=line><span class=cl><span class=c1></span>        <span class=c1>// 赋值之后，每次 App 调用 VVVVV.VVVV(x, y) 时，都会执行我们写的函数，而不是原来的逻辑
+</span></span></span><span class=line><span class=cl><span class=c1></span>        <span class=nx>VVVVV</span><span class=p>.</span><span class=nx>VVVV</span><span class=p>.</span><span class=nx>implementation</span> <span class=o>=</span> <span class=kd>function</span><span class=p>(</span><span class=nx>x</span><span class=p>,</span><span class=nx>y</span><span class=p>){</span>
+</span></span><span class=line><span class=cl>            <span class=c1>// 此处的 this 指向调用该方法的 Java 对象实例（即 VVVVV 的某个实例）
+</span></span></span><span class=line><span class=cl><span class=c1></span>            <span class=c1>// this.VVVV(x, y) —— 调用原始方法，获取原本的返回值
+</span></span></span><span class=line><span class=cl><span class=c1></span>            <span class=c1>// 如果不调用这行，原方法的逻辑就被完全跳过了（相当于直接替换）
+</span></span></span><span class=line><span class=cl><span class=c1></span>            <span class=c1>// 这里先拿到结果，再打印，最后原样返回，属于&#34;观察型 Hook&#34;，不影响原有逻辑
+</span></span></span><span class=line><span class=cl><span class=c1></span>            <span class=kd>var</span> <span class=nx>res</span> <span class=o>=</span> <span class=k>this</span><span class=p>.</span><span class=nx>VVVV</span><span class=p>(</span><span class=nx>x</span><span class=p>,</span><span class=nx>y</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>            <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=s2>&#34;x,y,res&#34;</span><span class=p>,</span><span class=nx>x</span><span class=p>,</span><span class=nx>y</span><span class=p>,</span><span class=nx>res</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>            <span class=c1>// 必须 return，否则原方法的调用方会收到 undefined
+</span></span></span><span class=line><span class=cl><span class=c1></span>            <span class=c1>// 这里原样返回 res，保持 App 行为不变
+</span></span></span><span class=line><span class=cl><span class=c1></span>            <span class=k>return</span> <span class=nx>res</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=p>})</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>// setImmediate(main) 会在 Frida 脚本加载完成后，立即异步执行 main 函数
+</span></span></span><span class=line><span class=cl><span class=c1>// 相当于 &#34;等脚本环境初始化好了，马上跑 main&#34;
+</span></span></span><span class=line><span class=cl><span class=c1>// 比直接调用 main() 更安全，避免环境未就绪时报错
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=nx>setImmediate</span><span class=p>(</span><span class=nx>main</span><span class=p>)</span></span></span></code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=line><span class=cl><span class=kd>function</span> <span class=nx>main</span><span class=p>(){</span>
+</span></span><span class=line><span class=cl>    <span class=nx>Java</span><span class=p>.</span><span class=nx>perform</span><span class=p>(</span><span class=kd>function</span><span class=p>(){</span>
+</span></span><span class=line><span class=cl>        <span class=kd>var</span> <span class=nx>VVVVV_Class</span> <span class=o>=</span> <span class=nx>Java</span><span class=p>.</span><span class=nx>use</span><span class=p>(</span><span class=s1>&#39;com.kanxue.pediy1.VVVVV&#39;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>        <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=s2>&#34;VVVVV_Class:&#34;</span><span class=p>,</span><span class=nx>VVVVV_Class</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>        <span class=nx>VVVVV_Class</span><span class=p>.</span><span class=nx>eeeee</span><span class=p>.</span><span class=nx>implementation</span> <span class=o>=</span> <span class=kd>function</span><span class=p>(</span><span class=nx>x</span><span class=p>){</span>
+</span></span><span class=line><span class=cl>            <span class=kd>var</span> <span class=nx>res</span> <span class=o>=</span> <span class=k>this</span><span class=p>.</span><span class=nx>eeeee</span><span class=p>(</span><span class=nx>x</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>            <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=s2>&#34;eeeee Hooked! x,res:&#34;</span><span class=p>,</span><span class=nx>x</span><span class=p>,</span><span class=nx>res</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>            <span class=k>return</span> <span class=nx>res</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span>
+</span></span><span class=line><span class=cl>        <span class=kd>var</span> <span class=nx>ByteString</span> <span class=o>=</span> <span class=nx>Java</span><span class=p>.</span><span class=nx>use</span><span class=p>(</span><span class=s2>&#34;com.android.okhttp.okio.ByteString&#34;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>        <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>ByteString</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>        <span class=kd>var</span> <span class=nx>pSign</span> <span class=o>=</span> <span class=nx>Java</span><span class=p>.</span><span class=nx>use</span><span class=p>(</span><span class=s2>&#34;java.lang.String&#34;</span><span class=p>).</span><span class=nx>$new</span><span class=p>(</span><span class=s2>&#34;6f452303f18605510aac694b0f5736beebf110bf&#34;</span><span class=p>).</span><span class=nx>getBytes</span><span class=p>();</span>
+</span></span><span class=line><span class=cl>        <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>ByteString</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=p>})</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nx>setImmediate</span><span class=p>(</span><span class=nx>main</span><span class=p>)</span></span></span></code></pre></td></tr></table></div></div><h5 class=heading-element id=frida-labs><span>Frida-Labs</span>
+<a href=#frida-labs class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h5><h6 class=heading-element id=frida-0x1><span>Frida-0x1</span>
+<a href=#frida-0x1 class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h6><p>这里主要就是学习一下 Frida Hook 脚本的编写</p><p>脚本的基本格式如下：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
 </span><span class=lnt>3
 </span><span class=lnt>4
