@@ -20,8 +20,13 @@ options -> general -> Number of opcode bytes，输入10即可
 
 ### 常用快捷键
 
+参考链接：
+
+https://eps1l0h.github.io/2022/11/02/idapro%E5%BF%AB%E6%8D%B7%E9%94%AE/
+
 |    快捷键    |         功能         |
 | :-------: | :----------------: |
+| Shift+F12 |      打开字符串窗口       |
 |    F2     |        添加断点        |
 |    F4     |        开始运行        |
 |    F5     |      反编译成伪代码       |
@@ -33,13 +38,15 @@ options -> general -> Number of opcode bytes，输入10即可
 |    ESC    |     跳转到返回前的地址      |
 |     /     |        添加注释        |
 |     N     |       修改变量名        |
-|     A     |       转化为字符串       |
 |     D     |      代码解析成数据       |
 |     C     |   数据解析成代码(重新定义)    |
 |     G     |     跳转到指定地址查看      |
+|     A     |       转化为字符串       |
+|     B     |      转换为二进制数       |
 |     H     |      转换为十进制数       |
-|     P     |        生成函数        |
 |     Q     |      转换为十六进制数      |
+|    \*     |       转换为数组        |
+|     P     |        创建函数        |
 |     R     |       转换为字符        |
 |     U     |        取消定义        |
 |     X     |     查看函数的交叉引用      |
@@ -1101,6 +1108,10 @@ Unity 游戏的主逻辑一般都保存在 dll 文件中，因此我们需要下
 
 ## 安卓逆向
 
+参考链接：
+
+https://eps1l0h.github.io/2025/03/22/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91%E5%88%9D%E6%8E%A2/
+
 ### adb相关
 
 ```bash
@@ -1245,6 +1256,43 @@ options:
 -f # spawn，启动时就注入
 ```
 
+##### 两种启动模式
+
+Spawn模式
+
+> 将启动App的权利交由Frida来控制，即使目标App已经启动，在使用Frida注入程序时还是会重新启动App
+
+```bash
+frida -U -f 进程名 -l hook.js
+```
+
+attach模式
+
+> 模式	在目标App已经启动的情况下，Frida通过ptrace注入程序从而执行Hook的操作
+
+```bash
+frida -U 进程名 -l hook.js
+```
+
+##### Frida的基础语法
+
+|          API           |              功能               |
+| :--------------------: | :---------------------------: |
+|  Java.use(className)   | 获取指定的Java类并使其在JavaScript代码中可用 |
+| Java.perform(callback) |      确保回调函数在Java的主线程上执行       |
+|                        |                               |
+
+```js
+// Hook基础框架
+function main() {
+    Java.perform(function() {
+        hookTest1();
+    });
+}
+setImmediate(main);
+```
+
+
 ##### Hook的三种常见写法
 
 ```js
@@ -1265,12 +1313,37 @@ method.implementation = function(x) {
     this.method(x);           // 可以调用也可以不调用
     return true;              // 强制返回 true
 }
-// 方法有重载时，需要用 `.overload()` 指定参数类型：
+// 方法有重载时，需要用 .overload() 指定参数类型：
 // 如果 VVVV 有多个重载版本，需要明确指定参数类型
 VVVVV.VVVV.overload("int", "int").implementation = function(x, y) {
     return this.VVVV(x, y);
 }
 ```
+
+##### Hook脚本递归死循环的问题
+
+> 问题出在是否使用 this 上
+
+```js
+// 正确的写法：不会递归死循环
+var App = Java.use("com.example.App");
+
+App.checkLogin.implementation = function(x) {
+    var res = this.checkLogin(x);  // this.method = 原始方法，直接走 native
+    console.log(res);
+    return res;
+};
+
+// 错误的写法：会造成递归死循环
+var App = Java.use("com.example.App");
+
+App.checkLogin.implementation = function(x) {
+    var res = App.checkLogin(x);  // ← 调用的还是被 hook 的方法！
+    console.log(res);
+    return res;
+};
+```
+
 
 #### Frida+Objection实现动态分析
 
@@ -1292,8 +1365,6 @@ objection -N -h 192.168.1.103 -p 8888 -g com.kanxue.pediy1 explore
 # --dump-backtrace: 打印调用堆栈
 # --dump-return: 打印方法的返回值
 android hooking watch class_method com.kanxue.pediy1.VVVVV.VVVV --dump-args --dump-backtrace --dump-return
-
-
 ```
 
 
@@ -1532,6 +1603,18 @@ if __name__ == "__main__":
 ```
 
 ## 固件逆向
+
+参考链接：
+
+https://eps1l0h.github.io/2024/04/18/%E8%B7%AF%E7%94%B1%E5%99%A8%E6%BC%8F%E6%B4%9E%E6%8C%96%E6%8E%98%E5%88%9D%E6%8E%A2/
+
+### Squashfs文件系统
+
+直接用binwalk提取
+
+```bash
+binwalk -Me firmware.bin
+```
 
 ### Android OTA 包
 
