@@ -1583,10 +1583,57 @@ setImmediate(main);
 
 ###### Frida-0x6
 
+和之前一样，需要主动调用 `MainActivity` 中的 `get_flag` 方法
 
+但是这里还需要传入一个Checker，并给里面的两个参数还需要等于指定值
+
+因此我们使用 `Java.choose` 找到 `MainActivity` 的实例，并新建一个 `Checker` 实例并赋值
+
+最后调用 `MainActivity.get_flag` 传入 `Checker` 实例即可
+
+```js
+function hook_6() {
+    Java.choose("com.ad2001.frida0x6.MainActivity", {
+        onMatch:function(instance) {
+            var Checker = Java.use("com.ad2001.frida0x6.Checker");
+            var Checker_obj = Checker.$new();
+            Checker_obj.num1.value = 1234;
+            Checker_obj.num2.value = 4321;
+            instance.get_flag(Checker_obj);
+        },
+        onComplete:function() {
+        }
+    });
+}
+
+function main() {
+    Java.performNow(function () {
+        hook_6();
+    });
+}
+setImmediate(main);
+```
 
 ###### Frida-0x7
+
+Checker类自己写好了构造器，直接传入参数新建实例即可
+
+```js
+function hook_7() {
+    Java.choose("com.ad2001.frida0x7.MainActivity", {
+        onMatch:function(instance) {
+            var Checker = Java.use("com.ad2001.frida0x7.Checker");
+            var Checker_obj = Checker.$new(513,513);
+            instance.flag(Checker_obj);
+        },
+        onComplete:function() {
+        }
+    });
+}
+```
 ###### Frida-0x8
+
+
 ###### Frida-0x9
 
 ###### Frida-0xA
