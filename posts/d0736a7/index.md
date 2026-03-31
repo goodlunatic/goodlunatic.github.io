@@ -5232,7 +5232,31 @@ if __name__ == '__main__':
 
 题目附件给了一个wav，但是经过各种尝试，发现都得不到什么有效的信息
 
+## 题目名称 Solomon
 
+> 题目附件：https://pan.baidu.com/s/1cvJKDeLigAD3ibpkC5FlAQ?pwd=2jhg 提取码: 2jhg
+
+附件给了一张 `file.png`，如下所示：
+
+![](imgs/image-20260331224216648.png)
+
+白色框框画出了 `Solomon` 的字样，然后剩下的格子里有 `1-10` 的数字，不知道是啥意思
+
+`StegSolve` 打开查看，发现绿色通道 Plane0 存在LSB隐写的痕迹
+
+![](imgs/image-20260331224408934.png)
+
+仔细观察像素的分布可以发现是按列来进行LSB隐写的
+
+![](imgs/image-20260331224521244.png)
+
+用StegSolve提取隐写的数据，可以得到一个zip压缩包的数据
+
+仔细观察发现有类似 `Content_Type.xml` 和 `workbook.xml` 的字符串
+
+因此猜测这个zip应该是个xlsx文件，但是提取出来后发现这个文件是损坏的
+
+> 拿AI跑了一下，AI说可能和 `Reed–Solomon error correction` 有关
 
 
 
