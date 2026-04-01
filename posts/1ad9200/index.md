@@ -1299,11 +1299,45 @@ https://zh.wikipedia.org/wiki/%E6%81%A9%E5%B0%BC%E6%A0%BC%E7%8E%9B%E5%AF%86%E7%A
 
 ### Quote-Printable编码
 
-类似于下面这样的编码，直接使用 [在线网站](https://try8.cn/tool/code/qp) 或`随波逐流CTF编码工具`解密即可
+形如下面这样的编码，用 [在线网站](https://try8.cn/tool/code/qp) 、`随波逐流CTF编码工具`或者下面这个脚本解密都可以
 
-```
-flag{ichunqiu_=E6=8A=80=E6=9C=AF=E6=9C=89=E6=B8=A9=E5=BA=A6}
-flag{ichunqiu_技术有温度}
+```python
+import quopri
+
+# 例子1
+enc_bytes_example1 = b'''flag{ichunqiu_=E6=8A=80=E6=9C=AF=E6=9C=89=E6=B8=A9=E5=BA=A6}'''
+
+# 例子2
+enc_bytes_example2 = b'''PK=03=04=14=00=00=00=08=00Vo=C7V>k=16u=16=00=00=00=14=00=00=00=08=00=00=00h=
+int.txt=CB=C8=CC+=B1J=C9=8F/=8D=CF=C9=CCN=8D=AF=A8=A8=E0=E5=02=00PK=03=04
+=00=00=00=00=00=F5Q=C7V=8En=8Bv=00=01=00=00=00=01=00=00=08=00=00=00flag.zip=
+PK=03=04=14=00	=00c=00=9CQ=C7VVN?=E3D=00=00=00&=00=00=00=08=00=0B=00flag.tx=
+t=01=99=07=00=01=00AE=03=08=00=BE=C37=08xi=11=E3=82C=FE5=CC=B2Fz=94=A1t_=08=
+=06ZN=9D=9C=FE-=8A{F=D8"=C5=D5=E1c=AAR.=18d=E0=8D=91=E5=95=CA=8FnYG(=C1=D5=
+=CC=B8=BB|W=DC=CC=E4=7FQ:5=CEPK=07=08VN?=E3D=00=00=00&=00=00=00PK=01=02=1F=
+=00=14=00	=00c=00=9CQ=C7VVN?=E3D=00=00=00&=00=00=00=08=00/=00=00=00=00=00=
+=00=00 =00=00=00=00=00=00=00flag.txt
+=00 =00=00=00=00=00=01=00=18=00@=11N=93=E5=98=D9=01@=11N=93=E5=98=D9=01`*B=
+=93=E5=98=D9=01=01=99=07=00=01=00AE=03=08=00PK=05=06=00=00=00=00=01=00=01=
+=00e=00=00=00=85=00=00=00=00=00PK=01=02=1F=00=14=00	=00=08=00Vo=C7V>k=16u=
+=16=00=00=00=14=00=00=00=08=00$=00=00=00=00=00=00=00 =00=00=00=00=00=00=00h=
+int.txt
+=00 =00=00=00=00=00=01=00=18=000=BD=C5=1E=05=99=D9=01@=A0=92=19=E6=98=D9=01=
+=00X=84=19=E6=98=D9=01PK=01=02=1F=00
+=00	=00=00=00=F5Q=C7V=8En=8Bv=00=01=00=00=00=01=00=00=08=00$=00=00=00=00=00=
+=00=00 =00=00=00<=00=00=00flag.zip
+=00 =00=00=00=00=00=01=00=18=00@=F5=CA=F5=E5=98=D9=01=E0=93=C8=F5=E5=98=D9=
+=01=E0=93=C8=F5=E5=98=D9=01PK=05=06=00=00=00=00=02=00=02=00=B4=00=00=00b=01=
+=00=00=00=00'''
+
+dec_bytes = quopri.decodestring(enc_bytes_example1)
+print(dec_bytes.decode('utf-8'))
+# flag{ichunqiu_技术有温度}
+
+dec_bytes = quopri.decodestring(enc_bytes_example2)
+print(dec_bytes)
+with open('out.zip', "wb") as f:
+    f.write(dec_bytes)
 ```
 
 ### Unicode编码
