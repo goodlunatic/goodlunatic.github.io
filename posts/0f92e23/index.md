@@ -1633,6 +1633,78 @@ function hook_7() {
 ```
 ###### Frida-0x8
 
+```java
+package com.ad2001.frida0x8;
+
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
+import androidx.appcompat.app.AppCompatActivity;
+import com.ad2001.frida0x8.databinding.ActivityMainBinding;
+
+/* loaded from: classes4.dex */
+public class MainActivity extends AppCompatActivity {
+    private ActivityMainBinding binding;
+    Button btn;
+    EditText edt;
+
+    public native int cmpstr(String str);
+
+    static {
+        System.loadLibrary("frida0x8");
+    }
+
+    @Override // androidx.fragment.app.FragmentActivity, androidx.activity.ComponentActivity, androidx.core.app.ComponentActivity, android.app.Activity
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        ActivityMainBinding inflate = ActivityMainBinding.inflate(getLayoutInflater());
+        this.binding = inflate;
+        setContentView(inflate.getRoot());
+        this.edt = (EditText) findViewById(R.id.editTextText);
+        Button button = (Button) findViewById(R.id.button);
+        this.btn = button;
+        button.setOnClickListener(new View.OnClickListener() { // from class: com.ad2001.frida0x8.MainActivity.1
+            @Override // android.view.View.OnClickListener
+            public void onClick(View v) {
+                String ip = MainActivity.this.edt.getText().toString();
+                int res = MainActivity.this.cmpstr(ip);
+                if (res == 1) {
+                    Toast.makeText(MainActivity.this, "YEY YOU GOT THE FLAG " + ip, 1).show();
+                } else {
+                    Toast.makeText(MainActivity.this, "TRY AGAIN", 1).show();
+                }
+            }
+        });
+    }
+}
+```
+
+加密函数 `cmpstr()`在so里，解压apk后，拿IDA打开so
+
+```c++
+bool __fastcall Java_com_ad2001_frida0x8_MainActivity_cmpstr(__int64 a1, __int64 a2, __int64 a3)
+{
+  int v4; // [xsp+20h] [xbp-C0h]
+  int i; // [xsp+24h] [xbp-BCh]
+  char *s1; // [xsp+30h] [xbp-B0h]
+  char s2[100]; // [xsp+74h] [xbp-6Ch] BYREF
+  __int64 v10; // [xsp+D8h] [xbp-8h]
+
+  v10 = *(_QWORD *)(_ReadStatusReg(TPIDR_EL0) + 40);
+  s1 = (char *)_JNIEnv::GetStringUTFChars();
+  for ( i = 0; i < __strlen_chk("GSJEB|OBUJWF`MBOE~", 0xFFFFFFFFFFFFFFFFLL); ++i )
+    s2[i] = aGsjebObujwfMbo[i] - 1;
+  s2[__strlen_chk("GSJEB|OBUJWF`MBOE~", 0xFFFFFFFFFFFFFFFFLL)] = 0;
+  v4 = strcmp(s1, s2);
+  __android_log_print(3, "input ", "%s", s1);
+  __android_log_print(3, "Password", "%s", s2);
+  _JNIEnv::ReleaseStringUTFChars(a1, a3, (__int64)s1);
+  _ReadStatusReg(TPIDR_EL0);
+  return v4 == 0;
+}
+```
 
 
 

@@ -1766,7 +1766,7 @@ if __name__ == "__main__":
 ![](imgs/image-20260308000833795.png)
 
 
-## 题目名称 Solomon
+### 题目名称 Solomon
 
 > 题目附件：https://pan.baidu.com/s/1cvJKDeLigAD3ibpkC5FlAQ?pwd=2jhg 提取码: 2jhg
 
