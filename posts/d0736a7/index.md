@@ -4660,6 +4660,71 @@ end
 
 ![](imgs/image-20260303165705819.png)
 
+## [SOLVED] 题目名称 MIW
+
+> 题目附件： https://pan.baidu.com/s/1tAq558vRuyap_P4ZDS4F9g?pwd=3bue 提取码: 3bue
+
+题目附件给了一个 npbk 文件（夜神模拟器的磁盘文件）
+
+由于我这电脑上没有安装夜神模拟器，所以就只能用常规方法先进行取证
+
+首先用 7z 先解压，可以得到一个 vmdk 文件，然后这时候我们就可以用 DiskGenius 挂载了
+
+挂载后尝试恢复删除的文件，可以得到如下关键信息：
+
+![](imgs/image-20250918095108633.png)
+
+发现有个 flag.jpg 和 g-a-l-f-gpj.aze，然后发现 flag.jpg 也是可以直接提取出来的
+
+![](imgs/image-20250918095247548.png)
+
+并且还可以在 PNG 目录中发现如下这张图片：
+
+![](imgs/image-20250918095345468.png)
+
+目前得到的两段密文：
+
+> OuzOzRy2XCH17sNCDownEpwIPjZ3HSfJ/EY48+FqM+nXQ5497BFowA==
+> 
+> XhyDfF1j53ZPe3J8wtfp+1G4b2M4verNcvANyQLpLmZN+fDOyGa3h6kmerc84xb40mFVdJex/hw+Vm9gqy/Bbw==
+
+然后在 `@李上网来` 师傅的帮助下，用夜神模拟器打开镜像，在机主信息中发现了密钥：`0nEup6O7`
+
+> 模拟器备份还原：打开模拟器助手 -> 多开管理 -> 导入npbk备份 -> 启动模拟器
+
+![](imgs/image-20260408214855998.png)
+
+并且用 DiskGenius 挂载，可以在 `/data/com.amaze.filemanager/database` 中得到几个 db 文件
+
+![](imgs/image-20250926094926413.png)
+
+| id  |                     path                     |             password             |
+| :-: | :------------------------------------------: | :------------------------------: |
+|  1  | /storage/emulated/0/Pictures/g-a-l-f.gpj.aze | AVb8oli7E1rDBDoYma5MrhlDbFPTBWHo |
+
+> 这里其实是用password去AES加密flag.jpg，从而得到g-a-l-f.gpj.aze
+
+发现上面的key是八字节的，因此尝试DES解密，发现在不知道IV的情况下也能解出部分可读的内容
+
+![](imgs/image-20251120222939922.png)
+
+![](imgs/image-20251120223003919.png)
+
+![](imgs/image-20251120223105228.png)
+
+后来在`@Z`师傅的帮助下知道了镜像里有个`top.zip`，解压后发现是mysql数据库文件
+
+![](imgs/image-20260408221525738.png)
+对这三个数据库文件进行恢复，在`MySQL5.7.26\data`目录下创建一个my_info文件夹，将这三个文件放进去
+
+然后查数据库的表即可得到这一串字符串：`5CpjOcpR`
+
+经过尝试发现这个是DES-CBC加密的IV
+
+
+![](imgs/image-20260408222011102.png)
+
+DES-CBC解密即可得到最后的flag：`flag{287c0074f93c6f6bc1fc99fea87aae5c}`
 
 ## [无法验证] 题目名称 one (2024 古剑山)
 
@@ -5042,55 +5107,6 @@ if __name__ == '__main__':
 9D 76 70 74 64 7A 77 70 33 29 76 47 74 21 4C 74
 9F 22 73 79 59 6E 74 25
 ```
-
-
-## 题目名称 MIW
-
-> 题目附件： https://pan.baidu.com/s/1tAq558vRuyap_P4ZDS4F9g?pwd=3bue 提取码: 3bue
-
-题目附件给了一个 npbk 文件（夜神模拟器的磁盘文件）
-
-由于我这电脑上没有安装夜神模拟器，所以就只能用常规方法先进行取证
-
-首先用 7z 先解压，可以得到一个 vmdk 文件，然后这时候我们就可以用 DiskGenius 挂载了
-
-挂载后尝试恢复删除的文件，可以得到如下关键信息：
-
-![](imgs/image-20250918095108633.png)
-
-发现有个 flag.jpg 和 g-a-l-f-gpj.aze，然后发现 flag.jpg 也是可以直接提取出来的
-
-![](imgs/image-20250918095247548.png)
-
-并且还可以在 PNG 目录中发现如下这张图片：
-
-![](imgs/image-20250918095345468.png)
-
-目前得到的两段密文：
-
-> OuzOzRy2XCH17sNCDownEpwIPjZ3HSfJ/EY48+FqM+nXQ5497BFowA==
-> 
-> XhyDfF1j53ZPe3J8wtfp+1G4b2M4verNcvANyQLpLmZN+fDOyGa3h6kmerc84xb40mFVdJex/hw+Vm9gqy/Bbw==
-
-然后在 `@李上网来` 师傅的帮助下，用夜神模拟器打开镜像，在机主信息中发现了密钥：`0nEup6O7`
-
-![](imgs/image-20250926094626574.png)
-
-并且用 DiskGenius 挂载，可以在 `/data/com.amaze.filemanager/database` 中得到几个 db 文件
-
-![](imgs/image-20250926094926413.png)
-
-| id  |                     path                     |             password             |
-| :-: | :------------------------------------------: | :------------------------------: |
-|  1  | /storage/emulated/0/Pictures/g-a-l-f.gpj.aze | AVb8oli7E1rDBDoYma5MrhlDbFPTBWHo |
-
-发现上面的key是八字节的，因此尝试DES解密，发现在不知道IV的情况下也能解出部分可读的内容
-
-![](imgs/image-20251120222939922.png)
-
-![](imgs/image-20251120223003919.png)
-
-![](imgs/image-20251120223105228.png)
 
 ## 题目名称 未知
 
