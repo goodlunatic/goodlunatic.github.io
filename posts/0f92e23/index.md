@@ -1158,7 +1158,7 @@ Root的教程可以参考这篇文章：https://zhuanlan.zhihu.com/p/647937696
 pip install frida-tools
 frida --version
 # 把相同版本的 frida-server 传到手机
-adb push .\frida-server-17.8.3-android-arm64 /data/local/tmp/
+adb push .\frida-server-16.7.19-android-arm64 /data/local/tmp/
 adb shell
 cd /data/local/tmp/ && chmod 777 *
 # 端口转发
@@ -1175,10 +1175,18 @@ su
 tail -f /data/local/tmp/frida.log
 ```
 
-
 配置完环境后，就可以开始学习Frida了，我这里主要参考的是Github上的[Frida-Labs](https://github.com/DERE-ad2001/Frida-Labs/)
 
 #### Frida使用教程
+
+我这里使用的Frida版本如下：
+
+> frida-tools: 12.3.0
+> 
+> frida: 16.7.19
+> 
+> 推荐使用16的版本，因为17很多API都变了而且有很多BUG，不太好用
+
 
 ```powershell
 PS C:\Users\User01> frida -h
