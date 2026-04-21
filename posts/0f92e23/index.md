@@ -1280,6 +1280,7 @@ attach模式
 
 ```bash
 frida -U 进程名 -l hook.js
+frida -U -n "Frida 0x5" -l 5.js
 ```
 
 ##### Frida的基础语法
