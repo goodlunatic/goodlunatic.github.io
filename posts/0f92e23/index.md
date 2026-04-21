@@ -1433,14 +1433,14 @@ Interceptor.attach(targetAddress, {
 
 **FRIDA_VERSION < 17:**
 
-|           API名称           |                                                           功能                                                           |
-| :-----------------------: | :--------------------------------------------------------------------------------------------------------------------: |
-| Module.enumerateExports() |                 该 API 用于枚举指定模块中的所有导出符号(exports)。这些导出函数会在 Java 层被应用调用。它接收一个参数,即你要枚举导出的模块(共享库或可执行文件)的名称。                 |
-| Module.getExportByName()  |         Module.getExportByName(modulename, exportName) 用于从指定模块(共享库)中获取指定名称的导出符号地址。如果你不知道你的导出符号在哪个库中,可以传入 null。         |
-| Module.findExportByName() | 它的功能和 Module.getExportByName() 一样,区别仅在于:当找不到导出符号时,Module.getExportByName() 会抛出异常,而 Module.findExportByName() 则返回 null。 |
-|  Module.getBaseAddress()  |     有时上述 API 无法正常工作,我们可以使用 Module.getBaseAddress(),该 API 会返回指定模块的基地址。如果想要获取某个特定函数的地址,只需再加上偏移量即可。偏移量可以通过 Ghidra 获得      |
-| Module.enumerateImports() |                        和 Module.enumerateExports() 类似,Module.enumerateImports() 可以列出一个模块的所有导入。                         |
-|                           |                                                                                                                        |
+|           API名称           |                                                           功能                                                           |                                             例子                                              |
+| :-----------------------: | :--------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------: |
+| Module.enumerateExports() |                 该 API 用于枚举指定模块中的所有导出符号(exports)。这些导出函数会在 Java 层被应用调用。它接收一个参数,即你要枚举导出的模块(共享库或可执行文件)的名称。                 |                          Module.enumerateExports("libfrida0x8.so")                          |
+| Module.getExportByName()  |         Module.getExportByName(modulename, exportName) 用于从指定模块(共享库)中获取指定名称的导出符号地址。如果你不知道你的导出符号在哪个库中,可以传入 null。         | Module.getExportByName("libfrida0x8.so","Java_com_ad2001_frida0x8_MainActivity_cmpstr")<br> |
+| Module.findExportByName() | 它的功能和 Module.getExportByName() 一样,区别仅在于:当找不到导出符号时,Module.getExportByName() 会抛出异常,而 Module.findExportByName() 则返回 null。 |  Module.findExportByName("libfrida0x8.so","Java_com_ad2001_frida0x8_MainActivity_cmpstr")   |
+|  Module.getBaseAddress()  |     有时上述 API 无法正常工作,我们可以使用 Module.getBaseAddress(),该 API 会返回指定模块的基地址。如果想要获取某个特定函数的地址,只需再加上偏移量即可。偏移量可以通过 Ghidra 获得      |                           Module.getBaseAddress("libfrida0x8.so")                           |
+| Module.enumerateImports() |                        和 Module.enumerateExports() 类似,Module.enumerateImports() 可以列出一个模块的所有导入。                         |                          Module.enumerateImports("libfrida0x8.so")                          |
+|                           |                                                                                                                        |                                                                                             |
 
 
 #### Frida+Objection实现动态分析
@@ -1875,9 +1875,111 @@ Process.attachModuleObserver({
 
 ###### Frida-0x9
 
+Hook原生函数 `check_flag()`，然后把返回值修改为1337即可
+
+```js
+function hook_9() {
+    var check_addr = Module.enumerateExports("liba0x9.so")[0]["address"];
+    console.log(check_addr);
+    Interceptor.attach(check_addr,{
+        onEnter: function(args){
+            console.log("check_func called");
+        },
+        onLeave: function(retval){
+            retval.replace(1337);
+        }
+    })
+}
+
+function main() {
+    Java.performNow(function () {
+        hook_9();
+    });
+}
+setImmediate(main);
+
+```
+
+
 ###### Frida-0xA
 
+主动调用原生函数 `get_flag()` ，并且传入两个和为3的参数即可
+
+```js
+__int64 __fastcall get_flag(__int64 result, int a2)
+{
+  int i; // [xsp+Ch] [xbp-44h]
+  char v3[20]; // [xsp+34h] [xbp-1Ch] BYREF
+  __int64 v4; // [xsp+48h] [xbp-8h]
+
+  v4 = *(_QWORD *)(_ReadStatusReg(TPIDR_EL0) + 40);
+  if ( (_DWORD)result + a2 == 3 )
+  {
+    for ( i = 0; i < __strlen_chk("FPE>9q8A>BK-)20A-#Y", 0xFFFFFFFFFFFFFFFFLL); ++i )
+      v3[i] = aFpe9q8aBk20aY[i] + 2 * i;
+    v3[19] = 0;
+    result = __android_log_print(3, "FLAG", "Decrypted Flag: %s", v3);
+  }
+  _ReadStatusReg(TPIDR_EL0);
+  return result;
+}
+```
+
+先在 adb 中开启 logcat 监听
+
+```bash
+pidof -s com.ad2001.frida0xa
+logcat --pid=19660
+```
+
+`frida -U -f com.ad2001.frida0xa` 后终端输入如下内容
+
+```js
+var funcAddr = Module.findBaseAddress("libfrida0xa.so").add(0x1DD60);
+var get_flag = new NativeFunction(funcAddr , 'void', ['long', 'int']);
+get_flag(2, 1);
+```
+
+或者 `frida -U -f com.ad2001.frida0xa -l 1.js`
+
+```js
+function hook_A() {
+    var funcAddr = Module.findBaseAddress("libfrida0xa.so").add(0x1DD60);
+    var get_flag = new NativeFunction(funcAddr , 'void', ['long', 'int']);
+    get_flag(2, 1);
+}
+
+function main() {
+    Java.performNow(function () {
+        hook_A();
+    });
+}
+setImmediate(main);
+```
+
+然后在 logcat 中即可得到 flag
+
+![](imgs/image-20260421234448806.png)
+
 ###### Frida-0xB
+
+和之前一样，关键逻辑在so文件里，因此我们IDA反编译so文件，发现存在花指令
+
+```c++
+.text:0000000000015220 ; __unwind {
+.text:0000000000015220                 SUB             SP, SP, #0x60
+.text:0000000000015224                 STP             X29, X30, [SP,#0x50+var_s0]
+.text:0000000000015228                 ADD             X29, SP, #0x50
+.text:000000000001522C                 STUR            X0, [X29,#var_18]
+.text:0000000000015230                 STUR            X1, [X29,#var_20]
+.text:0000000000015234                 MOV             W8, #0xDEADBEEF
+.text:000000000001523C                 STUR            W8, [X29,#var_24]
+.text:0000000000015240                 LDUR            W8, [X29,#var_24]
+.text:0000000000015244                 SUBS            W8, W8, #0x539
+.text:0000000000015248                 B.NE            loc_1532C
+.text:000000000001524C                 B               loc_15250
+```
+
 
 
 
