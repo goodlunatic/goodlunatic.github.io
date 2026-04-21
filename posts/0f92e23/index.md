@@ -1112,6 +1112,44 @@ Unity 游戏的主逻辑一般都保存在 dll 文件中，因此我们需要下
 
 https://eps1l0h.github.io/2025/03/22/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91%E5%88%9D%E6%8E%A2/
 
+### 一些工具
+
+#### logcat
+
+打印目标app的日志
+
+```bash
+# 第一步：获取目标应用的 PID
+adb shell pidof com.example.myapp
+
+# 第二步：用 PID 过滤日志
+adb logcat --pid=12345
+
+# 一行命令搞定
+adb logcat --pid=$(adb shell pidof -s com.example.myapp)
+```
+
+常用的参数
+
+```bash
+# 清空日志缓冲区
+adb logcat -c
+
+# 输出到文件
+adb logcat > app.log
+
+# 指定日志格式
+adb logcat -v time        # 带时间戳
+adb logcat -v threadtime  # 带时间+线程（最推荐）
+
+# 限制每行最大字节数（防止日志截断）
+adb logcat -v threadtime -d | head -100
+
+# 查看历史日志后退出（不持续监听）
+adb logcat -d
+```
+
+
 ### adb相关
 
 ```bash
@@ -1177,11 +1215,11 @@ tail -f /data/local/tmp/frida.log
 
 配置完环境后，就可以开始学习Frida了，我这里主要参考的是Github上的[Frida-Labs](https://github.com/DERE-ad2001/Frida-Labs/)
 
-#### Frida使用教程
+#### Frida基础知识
 
 我这里使用的Frida版本如下：
 
-> frida-tools: 12.3.0
+> frida-tools: 13.7.1
 > 
 > frida: 16.7.19
 > 
@@ -1279,11 +1317,18 @@ attach模式
 > 模式	在目标App已经启动的情况下，Frida通过ptrace注入程序从而执行Hook的操作
 
 ```bash
-frida -U 进程名 -l hook.js
-frida -U -n "Frida 0x5" -l 5.js
+# 按进程名attach
+frida -U -n com.example.myapp
+# 按包名attach
+frida -U -n com.example.myapp -l hook.js
+# 按PID来attach
+# 先查 PID
+adb shell pidof com.example.myapp
+# 再 attach
+frida -U -p 12345
 ```
 
-##### Frida的基础语法
+##### Frida的基本语法
 
 |                API                |                       功能                       |
 | :-------------------------------: | :--------------------------------------------: |
@@ -1302,7 +1347,6 @@ function main() {
 }
 setImmediate(main);
 ```
-
 
 ##### Hook的三种常见写法
 
@@ -1355,6 +1399,49 @@ App.checkLogin.implementation = function(x) {
 };
 ```
 
+##### Hook原生函数
+
+参考链接：
+
+https://github.com/DERE-ad2001/Frida-Labs/blob/main/Frida%200x8/Solution/Solution.md
+
+要 Hook 原生函数,可以使用 `Interceptor` API，基础模板如下：
+
+```js
+// Interceptor.attach:将回调函数挂到指定函数地址上。targetAddress 应当是我们想要 Hook 的原生函数的地址
+Interceptor.attach(targetAddress, {
+// onEnter:当被 Hook 的函数进入时触发此回调,通过 args 可访问函数的参数
+    onEnter: function (args) {
+        console.log('Entering ' + functionName);
+        // Modify or log arguments if needed
+    },
+    // onLeave:当被 Hook 的函数即将返回时触发此回调,通过 retval 可访问返回值
+    onLeave: function (retval) {
+        console.log('Leaving ' + functionName);
+        // Modify or log return value if needed
+    }
+});
+```
+
+用于获取指定函数地址的一些API
+
+> Tips：
+> 
+> Exports 指的是一个库对外提供、供其他模块使用的函数或变量,就像我们在 Python、C 等语言中日常使用的那些函数一样。
+> 
+> Imports 则是我们的应用从其他库中导入的函数或变量,例如我们的应用会导入 libc.so 来调用标准函数 strcmp。
+
+**FRIDA_VERSION < 17:**
+
+|           API名称           |                                                           功能                                                           |
+| :-----------------------: | :--------------------------------------------------------------------------------------------------------------------: |
+| Module.enumerateExports() |                 该 API 用于枚举指定模块中的所有导出符号(exports)。这些导出函数会在 Java 层被应用调用。它接收一个参数,即你要枚举导出的模块(共享库或可执行文件)的名称。                 |
+| Module.getExportByName()  |         Module.getExportByName(modulename, exportName) 用于从指定模块(共享库)中获取指定名称的导出符号地址。如果你不知道你的导出符号在哪个库中,可以传入 null。         |
+| Module.findExportByName() | 它的功能和 Module.getExportByName() 一样,区别仅在于:当找不到导出符号时,Module.getExportByName() 会抛出异常,而 Module.findExportByName() 则返回 null。 |
+|  Module.getBaseAddress()  |     有时上述 API 无法正常工作,我们可以使用 Module.getBaseAddress(),该 API 会返回指定模块的基地址。如果想要获取某个特定函数的地址,只需再加上偏移量即可。偏移量可以通过 Ghidra 获得      |
+| Module.enumerateImports() |                        和 Module.enumerateExports() 类似,Module.enumerateImports() 可以列出一个模块的所有导入。                         |
+|                           |                                                                                                                        |
+
 
 #### Frida+Objection实现动态分析
 
@@ -1377,8 +1464,6 @@ objection -N -h 192.168.1.103 -p 8888 -g com.kanxue.pediy1 explore
 # --dump-return: 打印方法的返回值
 android hooking watch class_method com.kanxue.pediy1.VVVVV.VVVV --dump-args --dump-backtrace --dump-return
 ```
-
-
 
 #### 实战练习
 
@@ -1485,6 +1570,7 @@ function hook_1() {
 
 function hook_2() {
     var utils = Java.use("com.ad2001.frida0x1.MainActivity");
+    // 重载方法
     utils.check.overload('int', 'int').implementation = function (a, b) {
         console.log("check() is hooked");
         this.check(4, 12);
@@ -1642,6 +1728,8 @@ function hook_7() {
 ```
 ###### Frida-0x8
 
+本题涉及到了 Hook 原生类中的函数
+
 ```java
 package com.ad2001.frida0x8;
 
@@ -1715,8 +1803,75 @@ bool __fastcall Java_com_ad2001_frida0x8_MainActivity_cmpstr(__int64 a1, __int64
 }
 ```
 
+发现这里把Password也在日志信息里打印了，因此我们可以直接logcat获取
 
+```bash
+# 用以下命令打印目标应用的日志
+adb logcat --pid=$(adb shell pidof -s com.ad2001.frida0x8)
+```
 
+![](imgs/image-20260421103826512.png)
+
+除此之外，我们还发现里面调用了strcmp函数，其中第二个参数就是Password
+
+因此我们也可以Hook这个strcmp函数
+
+**FRIDA_VERSION < 17：**
+
+```js
+function hook_8() {
+    var strcmp_adr = Module.findExportByName("libc.so", "strcmp");
+    Interceptor.attach(strcmp_adr, {
+        onEnter: function (args) {
+            var arg0 = Memory.readUtf8String(args[0]); // first argument
+            var flag = Memory.readUtf8String(args[1]); // second argument
+            if (arg0.includes("123")) {
+
+                console.log("Hookin the strcmp function");
+                console.log("Input " + arg0);
+                console.log("The flag is "+ flag);
+
+            }
+        },
+        onLeave: function (retval) {
+            // Modify or log return value if needed
+        }
+    });
+}
+
+function main() {
+    Java.performNow(function () {
+        hook_8();
+    });
+}
+setImmediate(main);
+
+// Input 123
+// The flag is FRIDA{NATIVE_LAND}
+```
+
+**FRIDA_VERSION >= 17:**
+
+```js
+Process.attachModuleObserver({
+    onAdded: function (module) {
+        if (module.name === "libfrida0x8.so") {
+            var strcmp_adr = module.getExportByName("strcmp");
+            Interceptor.attach(strcmp_adr, {
+                onEnter: function (args) {
+                    if (args[0].isNull() || args[1].isNull()) return;
+                    var str1 = args[0].readCString();
+                    var str2 = args[1].readCString();
+                    if (str1 === "Hello") {
+                        console.log(" Our Input: " + str1 + "  Secret: " + str2);
+                    }
+                }
+            });
+        }
+    },
+    onRemoved: function (module) {}
+});
+```
 
 ###### Frida-0x9
 
