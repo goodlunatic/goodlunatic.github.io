@@ -559,19 +559,26 @@ try {
 ARM架构下的hook脚本：
 
 ```js
-var adr = Module.findBaseAddress("libfrida0xb.so").add(0x15248);  // b.ne 指令的地址
-Memory.protect(adr, 0x1000, "rwx");
-var writer = new Arm64Writer(adr);  // ARM64 写入器对象
-var target = Module.findBaseAddress("libfrida0xb.so").add(0x1524c);  // 下一条指令 b LAB_00115250 的地址
-
-try {
-  writer.putBImm(target);   // 在 b.ne 的位置写入 <b target> 指令
-  
-  writer.flush();
-  console.log(`Branch instruction inserted at ${adr}`);
-} finally {
-  writer.dispose();
+function hook_B() {
+    var addr = Module.findBaseAddress("libfrida0xb.so").add(0x15248);
+    Memory.protect(addr, 0x1000, "rwx");
+    var writer = new Arm64Writer(addr);
+    var target = Module.findBaseAddress("libfrida0xb.so").add(0x1524c);
+    try {
+        writer.putBImm(target);   // 在 b.ne 的位置写入 <b target> 指令
+        writer.flush();
+    } finally {
+        writer.dispose();
+    }
 }
+
+
+function main() {
+    Java.performNow(function () {
+        hook_B();
+    });
+}
+setImmediate(main);
 ```
 
 **FRIDA_VERSION >= 17:**
@@ -598,7 +605,7 @@ Process.attachModuleObserver({
 最后用logcat监听日志，然后运行frida脚本即可得到flag
 
 ```bash
-logcat | grep -i "FLAG"
+logcat | grep "FLAG"
 ```
 
 
