@@ -3,6 +3,605 @@
 **科研和项目中经常要用到逆向相关的知识，于是准备猛猛刷题，猛猛学逆向**
 <!--more-->
 
+## 专题系列
+
+### 安卓逆向
+
+#### Frida相关
+
+##### Frida-Labs
+
+###### Frida-0x1
+
+这里主要就是学习一下 Frida Hook 脚本的编写
+
+脚本的基本格式如下：
+
+```javascript
+Java.perform(function() {
+  var <class_reference> = Java.use("<package_name>.<class>");
+  <class_reference>.<method_to_hook>.implementation = function(<args>) {
+    /*
+      OUR OWN IMPLEMENTATION OF THE METHOD
+    */
+  }
+})
+```
+
+程序的包名可以连上ADB后用`frida-ps -Uai`获取
+
+![](imgs/image-20250517004732875.png)
+
+jadx反编译一下apk，程序的逻辑很简单，就是比较用户的输入和随机生成的值
+
+![](imgs/image-20250517004906369.png)
+
+这里有两种Hook方式，分别是Hook`get_random()`和`check()`这两个函数
+
+```javascript
+function hook_1() {
+    var utils = Java.use('com.ad2001.frida0x1.MainActivity');
+    utils.get_random.implementation = function () {
+        console.log("get_random() is hooked");
+        var res = this.get_random();
+        console.log("The return value is " + res);
+        console.log("The value to bypass the check " + (res * 2 + 4));
+        return res;
+    }
+}
+
+function hook_2() {
+    var utils = Java.use("com.ad2001.frida0x1.MainActivity");
+    // 重载方法
+    utils.check.overload('int', 'int').implementation = function (a, b) {
+        console.log("check() is hooked");
+        this.check(4, 12);
+    }
+}
+
+function main() {
+    Java.perform(function () {
+        // hook_1();
+        hook_2();
+    });
+}
+setImmediate(main);
+```
+
+###### Frida-0x2
+
+发现代码里写了 `get_flag()`，但是没有调用，因此我们主动调用一下即可
+
+就是这里要注意，使用frida运行hook代码后，可能会hook不到
+
+**我们修改一下hook脚本再保存即可，加个空格或者不修改直接 `Ctrl+S`**
+
+```js
+function hook_2() {
+    var utils = Java.use('com.ad2001.frida0x2.MainActivity');
+    utils.get_flag(4919);
+}
+```
+
+###### Frida-0x3
+
+修改 Checker类 的 code变量 的值为512即可
+
+```js
+function hook_3() {
+    console.log("hook_3() is called");
+    var Checker = Java.use('com.ad2001.frida0x3.Checker');
+    Checker.code.value = 512;
+}
+```
+
+###### Frida-0x4
+
+主动调用从dex中动态加载的方法，使用`$new()`创建一个实例即可
+
+```js
+function hook_4() {
+    console.log("hook_4() is called");
+    var Check = Java.use('com.ad2001.frida0x4.Check');
+    var check_obj = Check.$new();
+    var res = check_obj.get_flag(1337);
+    console.log(res);
+}
+```
+###### Frida-0x5
+
+> 直接使用 Frida 创建 `MainActivity` 或任何 Android 组件的实例可能会很棘手，这是由于 Android 的生命周期和线程规则所导致的。Android 组件（如 `Activity` 的子类）依赖应用程序的 context 才能正常运行，而在 Frida 中你可能缺少必要的 context。
+> 
+> Android UI 组件通常需要在一个关联了 `Looper` 的特定线程上运行。如果你在处理 UI 相关的任务，请确保你在一个已激活 `Looper` 的 main thread 上操作。
+> 
+> `Activity` 是 Android 应用程序更大的 lifecycle 的一部分。创建 `MainActivity` 的实例可能需要 app 处于特定状态，而通过 Frida 来管理整个 lifecycle 并不是一件简单的事。
+> 
+> 总之，直接为 `MainActivity` 创建实例并不是一个好主意。
+
+> 那么解决方案是什么呢？
+> 
+> 当一个 Android 应用启动时，系统会自动创建一个 `MainActivity` 的实例（或者是在 `AndroidManifest.xml` 文件中指定的 launcher activity）。`MainActivity` 实例的创建是 Android 应用 lifecycle 的一部分。因此我们可以直接使用 Frida 来获取 `MainActivity` 已有的实例，然后调用 `flag()` 方法来获取我们想要的 flag。
+
+在 Frida 中，对一个已有实例调用方法是很容易实现的。为此我们将使用两个 API：
+
+- `Java.performNow`：用于在 Java runtime 上下文中执行代码的函数。
+- `Java.choose`：在运行时枚举指定 Java 类（作为第一个参数传入）的所有实例。
+
+```js
+function hook_5() {
+    // 使用 Java.choose 在运行时查找 MainActivity 的已有实例
+    Java.choose('com.ad2001.frida0x5.MainActivity', {
+        
+        // 每找到一个实例就会触发一次 onMatch
+        onMatch: function (instance) {
+            console.log("Instance found"); // 打印找到实例的提示
+            instance.flag(1337);           // 用找到的实例直接调用 flag() 方法，传入参数 1337
+        },
+        
+        // 枚举完成后触发，这里不需要做任何处理，留空即可
+        onComplete: function () { }
+    });
+}
+
+function main() {
+    // 使用 Java.performNow 在 Java runtime 上下文中立即执行代码
+    // 与 Java.perform 的区别是：performNow 不需要等待 JS runtime 准备好
+    Java.performNow(function () {
+        hook_5();
+    });
+}
+
+// 确保脚本注入完成后再执行 main，避免时序问题
+setImmediate(main);
+```
+
+- **hook 方法**（等别人来调用）→ 用 `Java.perform`
+- **主动调用实例方法**（我去找实例来执行）→ 用 `Java.performNow`
+
+###### Frida-0x6
+
+和之前一样，需要主动调用 `MainActivity` 中的 `get_flag` 方法
+
+但是这里还需要传入一个Checker，并给里面的两个参数还需要等于指定值
+
+因此我们使用 `Java.choose` 找到 `MainActivity` 的实例，并新建一个 `Checker` 实例并赋值
+
+最后调用 `MainActivity.get_flag` 传入 `Checker` 实例即可
+
+```js
+function hook_6() {
+    Java.choose("com.ad2001.frida0x6.MainActivity", {
+        onMatch:function(instance) {
+            var Checker = Java.use("com.ad2001.frida0x6.Checker");
+            var Checker_obj = Checker.$new();
+            Checker_obj.num1.value = 1234;
+            Checker_obj.num2.value = 4321;
+            instance.get_flag(Checker_obj);
+        },
+        onComplete:function() {
+        }
+    });
+}
+
+function main() {
+    Java.performNow(function () {
+        hook_6();
+    });
+}
+setImmediate(main);
+```
+
+###### Frida-0x7
+
+Checker类自己写好了构造器，直接传入参数新建实例即可
+
+```js
+function hook_7() {
+    Java.choose("com.ad2001.frida0x7.MainActivity", {
+        onMatch:function(instance) {
+            var Checker = Java.use("com.ad2001.frida0x7.Checker");
+            var Checker_obj = Checker.$new(513,513);
+            instance.flag(Checker_obj);
+        },
+        onComplete:function() {
+        }
+    });
+}
+```
+###### Frida-0x8
+
+本题涉及到了 Hook 原生类中的函数
+
+```java
+package com.ad2001.frida0x8;
+
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
+import androidx.appcompat.app.AppCompatActivity;
+import com.ad2001.frida0x8.databinding.ActivityMainBinding;
+
+/* loaded from: classes4.dex */
+public class MainActivity extends AppCompatActivity {
+    private ActivityMainBinding binding;
+    Button btn;
+    EditText edt;
+
+    public native int cmpstr(String str);
+
+    static {
+        System.loadLibrary("frida0x8");
+    }
+
+    @Override // androidx.fragment.app.FragmentActivity, androidx.activity.ComponentActivity, androidx.core.app.ComponentActivity, android.app.Activity
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        ActivityMainBinding inflate = ActivityMainBinding.inflate(getLayoutInflater());
+        this.binding = inflate;
+        setContentView(inflate.getRoot());
+        this.edt = (EditText) findViewById(R.id.editTextText);
+        Button button = (Button) findViewById(R.id.button);
+        this.btn = button;
+        button.setOnClickListener(new View.OnClickListener() { // from class: com.ad2001.frida0x8.MainActivity.1
+            @Override // android.view.View.OnClickListener
+            public void onClick(View v) {
+                String ip = MainActivity.this.edt.getText().toString();
+                int res = MainActivity.this.cmpstr(ip);
+                if (res == 1) {
+                    Toast.makeText(MainActivity.this, "YEY YOU GOT THE FLAG " + ip, 1).show();
+                } else {
+                    Toast.makeText(MainActivity.this, "TRY AGAIN", 1).show();
+                }
+            }
+        });
+    }
+}
+```
+
+加密函数 `cmpstr()`在so里，解压apk后，拿IDA打开so
+
+```c++
+bool __fastcall Java_com_ad2001_frida0x8_MainActivity_cmpstr(__int64 a1, __int64 a2, __int64 a3)
+{
+  int v4; // [xsp+20h] [xbp-C0h]
+  int i; // [xsp+24h] [xbp-BCh]
+  char *s1; // [xsp+30h] [xbp-B0h]
+  char s2[100]; // [xsp+74h] [xbp-6Ch] BYREF
+  __int64 v10; // [xsp+D8h] [xbp-8h]
+
+  v10 = *(_QWORD *)(_ReadStatusReg(TPIDR_EL0) + 40);
+  s1 = (char *)_JNIEnv::GetStringUTFChars();
+  for ( i = 0; i < __strlen_chk("GSJEB|OBUJWF`MBOE~", 0xFFFFFFFFFFFFFFFFLL); ++i )
+    s2[i] = aGsjebObujwfMbo[i] - 1;
+  s2[__strlen_chk("GSJEB|OBUJWF`MBOE~", 0xFFFFFFFFFFFFFFFFLL)] = 0;
+  v4 = strcmp(s1, s2);
+  __android_log_print(3, "input ", "%s", s1);
+  __android_log_print(3, "Password", "%s", s2);
+  _JNIEnv::ReleaseStringUTFChars(a1, a3, (__int64)s1);
+  _ReadStatusReg(TPIDR_EL0);
+  return v4 == 0;
+}
+```
+
+发现这里把Password也在日志信息里打印了，因此我们可以直接logcat获取
+
+```bash
+# 用以下命令打印目标应用的日志
+adb logcat --pid=$(adb shell pidof -s com.ad2001.frida0x8)
+```
+
+![](imgs/image-20260421103826512.png)
+
+除此之外，我们还发现里面调用了strcmp函数，其中第二个参数就是Password
+
+因此我们也可以Hook这个strcmp函数
+
+**FRIDA_VERSION < 17：**
+
+```js
+function hook_8() {
+    var strcmp_adr = Module.findExportByName("libc.so", "strcmp");
+    Interceptor.attach(strcmp_adr, {
+        onEnter: function (args) {
+            var arg0 = Memory.readUtf8String(args[0]); // first argument
+            var flag = Memory.readUtf8String(args[1]); // second argument
+            if (arg0.includes("123")) {
+
+                console.log("Hookin the strcmp function");
+                console.log("Input " + arg0);
+                console.log("The flag is "+ flag);
+
+            }
+        },
+        onLeave: function (retval) {
+            // Modify or log return value if needed
+        }
+    });
+}
+
+function main() {
+    Java.performNow(function () {
+        hook_8();
+    });
+}
+setImmediate(main);
+
+// Input 123
+// The flag is FRIDA{NATIVE_LAND}
+```
+
+**FRIDA_VERSION >= 17:**
+
+```js
+Process.attachModuleObserver({
+    onAdded: function (module) {
+        if (module.name === "libfrida0x8.so") {
+            var strcmp_adr = module.getExportByName("strcmp");
+            Interceptor.attach(strcmp_adr, {
+                onEnter: function (args) {
+                    if (args[0].isNull() || args[1].isNull()) return;
+                    var str1 = args[0].readCString();
+                    var str2 = args[1].readCString();
+                    if (str1 === "Hello") {
+                        console.log(" Our Input: " + str1 + "  Secret: " + str2);
+                    }
+                }
+            });
+        }
+    },
+    onRemoved: function (module) {}
+});
+```
+
+###### Frida-0x9
+
+Hook原生函数 `check_flag()`，然后把返回值修改为1337即可
+
+```js
+function hook_9() {
+    var check_addr = Module.enumerateExports("liba0x9.so")[0]["address"];
+    console.log(check_addr);
+    Interceptor.attach(check_addr,{
+        onEnter: function(args){
+            console.log("check_func called");
+        },
+        onLeave: function(retval){
+            retval.replace(1337);
+        }
+    })
+}
+
+function main() {
+    Java.performNow(function () {
+        hook_9();
+    });
+}
+setImmediate(main);
+
+```
+
+
+###### Frida-0xA
+
+主动调用原生函数 `get_flag()` ，并且传入两个和为3的参数即可
+
+```js
+__int64 __fastcall get_flag(__int64 result, int a2)
+{
+  int i; // [xsp+Ch] [xbp-44h]
+  char v3[20]; // [xsp+34h] [xbp-1Ch] BYREF
+  __int64 v4; // [xsp+48h] [xbp-8h]
+
+  v4 = *(_QWORD *)(_ReadStatusReg(TPIDR_EL0) + 40);
+  if ( (_DWORD)result + a2 == 3 )
+  {
+    for ( i = 0; i < __strlen_chk("FPE>9q8A>BK-)20A-#Y", 0xFFFFFFFFFFFFFFFFLL); ++i )
+      v3[i] = aFpe9q8aBk20aY[i] + 2 * i;
+    v3[19] = 0;
+    result = __android_log_print(3, "FLAG", "Decrypted Flag: %s", v3);
+  }
+  _ReadStatusReg(TPIDR_EL0);
+  return result;
+}
+```
+
+先在 adb 中开启 logcat 监听
+
+```bash
+pidof -s com.ad2001.frida0xa
+logcat --pid=19660
+```
+
+`frida -U -f com.ad2001.frida0xa` 后终端输入如下内容
+
+```js
+var funcAddr = Module.findBaseAddress("libfrida0xa.so").add(0x1DD60);
+var get_flag = new NativeFunction(funcAddr , 'void', ['long', 'int']);
+get_flag(2, 1);
+```
+
+或者 `frida -U -f com.ad2001.frida0xa -l 1.js`
+
+```js
+function hook_A() {
+    var funcAddr = Module.findBaseAddress("libfrida0xa.so").add(0x1DD60);
+    var get_flag = new NativeFunction(funcAddr , 'void', ['long', 'int']);
+    get_flag(2, 1);
+}
+
+function main() {
+    Java.performNow(function () {
+        hook_A();
+    });
+}
+setImmediate(main);
+```
+
+然后在 logcat 中即可得到 flag
+
+![](imgs/image-20260421234448806.png)
+
+###### Frida-0xB
+
+参考链接：
+https://github.com/DERE-ad2001/Frida-Labs/blob/main/Frida%200x8/Solution/Solution.md
+
+和之前一样，关键逻辑在so文件里，因此我们用IDA反编译so文件
+
+发现F5反编译后得到的 `get_flag()` 函数是空的，但是汇编中有如下内容：
+
+> 注意我这里反汇编的是arm架构下的so
+
+```c++
+.text:0000000000015220 ; __unwind {
+.text:0000000000015220                 SUB             SP, SP, #0x60
+.text:0000000000015224                 STP             X29, X30, [SP,#0x50+var_s0]
+.text:0000000000015228                 ADD             X29, SP, #0x50
+.text:000000000001522C                 STUR            X0, [X29,#var_18]
+.text:0000000000015230                 STUR            X1, [X29,#var_20]
+.text:0000000000015234                 MOV             W8, #0xDEADBEEF
+.text:000000000001523C                 STUR            W8, [X29,#var_24]
+.text:0000000000015240                 LDUR            W8, [X29,#var_24]
+.text:0000000000015244                 SUBS            W8, W8, #0x539
+.text:0000000000015248                 B.NE            loc_1532C
+.text:000000000001524C                 B               loc_15250
+```
+
+> 如果是x86架构下的so，得到的是如下内容
+
+```c++
+.text:00000000000170B0                                   ; __unwind {
+.text:00000000000170B0 000 55                            push    rbp
+.text:00000000000170B1 008 48 89 E5                      mov     rbp, rsp
+.text:00000000000170B4 008 48 83 EC 50                   sub     rsp, 50h
+.text:00000000000170B8 058 48 89 7D E8                   mov     [rbp+var_18], rdi
+.text:00000000000170BC 058 48 89 75 E0                   mov     [rbp+var_20], rsi
+.text:00000000000170C0 058 C7 45 DC EF BE AD DE          mov     [rbp+var_24], 0DEADBEEFh
+.text:00000000000170C7 058 81 7D DC 39 05 00 00          cmp     [rbp+var_24], 539h
+.text:00000000000170CE 058 0F 85 D2 00 00 00             jnz     loc_171A6
+```
+
+两个汇编大致的意思都一样，就是给一个值复制 `0xdeadbeef`，然后与 `0x539` 比较，如果相等就跳转
+
+但是这里很明显不会相等，因此永远不会跳转，所以反编译后出来的函数是空的
+
+但是我们可以在 ghidra 中关闭这项优化让它显示这段反编译代码：`Edit` -> `Tools Option` -> `Analysis` -> `Eliminate unreachable code`
+
+关闭以后就可以得到如下反编译后的代码
+
+```c++
+void Java_com_ad2001_frida0xb_MainActivity_getFlag(void)
+
+{
+  uint uVar1;
+  void *pvVar2;
+  uint local_18;
+  
+  if (false) {
+    uVar1 = __strlen_chk("j~ehmWbmxezisdmogi~Q",0xffffffff);
+    pvVar2 = operator.new[](uVar1 + 1);
+    for (local_18 = 0; local_18 < uVar1; local_18 = local_18 + 1) {
+      *(byte *)((int)pvVar2 + local_18) = "j~ehmWbmxezisdmogi~Q"[local_18] ^ 0x2c;
+    }
+    *(undefined1 *)((int)pvVar2 + local_18) = 0;
+    __android_log_print(3,"FLAG :",&DAT_0001687e,pvVar2);
+    if (pvVar2 != (void *)0x0) {
+      operator.delete[](pvVar2);
+    }
+  }
+  return;
+}
+```
+
+这里我们就可以使用 `X86Writer` 或 `Arm64Writer` 去修改 `jnz` -> `nop` 或 `B.NE` -> `B` 
+
+具体的使用方法可以参考官方文档：
+
+[https://frida.re/docs/javascript-api/#x86writer](https://frida.re/docs/javascript-api/#x86writer)
+
+[https://frida.re/docs/javascript-api/#arm64writer](https://frida.re/docs/javascript-api/#arm64writer)
+
+但是当前目标写入的位置在`.text`段，但是这个段默认是没有写的权限的，因此我们直接修改会导致程序崩溃
+
+这里就可以使用 `Memory.protect()` 去修改这一段内存区域的保护属性
+
+这部分的内容详见上面的参考链接
+
+x86架构下的hook脚本：
+
+> 我们可以用ghidra中的`0x20e2a`地址减去基址`0x00010000`来得到偏移。
+> 
+> 然后再把这个偏移加回模块基址，就能得到jnz指令的真实地址。
+
+```js
+var jnz = Module.getBaseAddress("libfrida0xb.so").add(0x20e2a - 0x00010000);
+Memory.protect(jnz, 0x1000, "rwx");
+var writer = new X86Writer(jnz);
+try {
+  // 当使用新指令覆盖旧指令时，必须保证新指令的长度足以覆盖旧指令的长度
+  // 因为原jnz指令的长度为6，所以这里要 PutNop() 六次
+  writer.putNop()
+  writer.putNop()
+  writer.putNop()
+  writer.putNop()
+  writer.putNop()
+  writer.putNop()
+
+  writer.flush(); // 将修改刷新到内存
+
+} finally {
+  writer.dispose(); // 释放 X86Writer 占用的资源
+}
+```
+
+ARM架构下的hook脚本：
+
+```js
+var adr = Module.findBaseAddress("libfrida0xb.so").add(0x15248);  // b.ne 指令的地址
+Memory.protect(adr, 0x1000, "rwx");
+var writer = new Arm64Writer(adr);  // ARM64 写入器对象
+var target = Module.findBaseAddress("libfrida0xb.so").add(0x1524c);  // 下一条指令 b LAB_00115250 的地址
+
+try {
+  writer.putBImm(target);   // 在 b.ne 的位置写入 <b target> 指令
+  
+  writer.flush();
+  console.log(`Branch instruction inserted at ${adr}`);
+} finally {
+  writer.dispose();
+}
+```
+
+**FRIDA_VERSION >= 17:**
+
+```js
+Process.attachModuleObserver({
+    onAdded: function(module) {
+        if (module.name === "libfrida0xb.so") {
+            console.log(`Found libfrida0xb.so at: ${module.base}`);
+            const targetAddress = module.base.add(0x15248);
+
+            Memory.patchCode(targetAddress, 4, (code) => {
+                const cw = new Arm64Writer(code, { pc: targetAddress });
+                cw.putNop();
+                cw.flush();
+                console.log(`Instruction at ${targetAddress} successfully patched with NOP!`);
+            });
+        }
+    },
+    onRemoved: function(module) {}
+});
+```
+
+最后用logcat监听日志，然后运行frida脚本即可得到flag
+
+```bash
+logcat | grep -i "FLAG"
+```
+
+
 ## 2025 ?CTF
 
 ### 8086ASM

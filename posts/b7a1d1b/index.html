@@ -1,14 +1,734 @@
 <!doctype html><html itemscope itemtype=http://schema.org/WebPage lang=zh-CN><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=2"><meta name=robots content="noodp"><title>CTF-Reverse刷题记录 - ⚡Lunatic BLOG⚡</title><meta name=author content="Lunatic"><meta name=description content="科研和项目中经常要用到逆向相关的知识，于是准备猛猛刷题，猛猛学逆向
-"><meta name=keywords content='CTF,Reverse'><meta itemprop=name content="CTF-Reverse刷题记录"><meta itemprop=description content="科研和项目中经常要用到逆向相关的知识，于是准备猛猛刷题，猛猛学逆向"><meta itemprop=datePublished content="2026-01-15T21:46:22+08:00"><meta itemprop=dateModified content="2026-01-15T21:46:22+08:00"><meta itemprop=wordCount content="14590"><meta itemprop=keywords content="CTF,Reverse"><meta property="og:url" content="https://goodlunatic.github.io/posts/b7a1d1b/"><meta property="og:site_name" content="⚡Lunatic BLOG⚡"><meta property="og:title" content="CTF-Reverse刷题记录"><meta property="og:description" content="科研和项目中经常要用到逆向相关的知识，于是准备猛猛刷题，猛猛学逆向"><meta property="og:locale" content="zh_CN"><meta property="og:type" content="article"><meta property="article:section" content="posts"><meta property="article:published_time" content="2026-01-15T21:46:22+08:00"><meta property="article:modified_time" content="2026-01-15T21:46:22+08:00"><meta property="article:tag" content="CTF"><meta property="article:tag" content="Reverse"><meta name=twitter:card content="summary"><meta name=twitter:title content="CTF-Reverse刷题记录"><meta name=twitter:description content="科研和项目中经常要用到逆向相关的知识，于是准备猛猛刷题，猛猛学逆向"><meta name=application-name content="FixIt"><meta name=apple-mobile-web-app-title content="FixIt"><meta name=theme-color data-light=#f8f8f8 data-dark=#252627 content="#f8f8f8"><meta name=msapplication-TileColor content="#da532c"><link rel=icon href=https://www.nssctf.cn/files/2024/4/28/7f130a1387.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=canonical type=text/html href=https://goodlunatic.github.io/posts/b7a1d1b/ title="CTF-Reverse刷题记录 - ⚡Lunatic BLOG⚡"><link rel=prev type=text/html href=https://goodlunatic.github.io/posts/911b6a0/ title="[持续更新] 记录各种app关闭广告和推荐的方法"><link rel=next type=text/html href=https://goodlunatic.github.io/posts/59dcb62/ title="2026 楚慧杯湖北省网络与数据安全实践能力竞赛 Misc Writeup"><link rel=alternate type=text/markdown href=https://goodlunatic.github.io/posts/b7a1d1b/index.md title="CTF-Reverse刷题记录 - ⚡Lunatic BLOG⚡"><link rel=stylesheet href=/css/config.min.css><link rel=stylesheet href=/css/style.min.css><link rel=preload href=/lib/fontawesome-free/all.min.css as=style onload='this.removeAttribute("onload"),this.rel="stylesheet"'><noscript><link rel=stylesheet href=/lib/fontawesome-free/all.min.css></noscript><link rel=preload href=/lib/animate/animate.min.css as=style onload='this.removeAttribute("onload"),this.rel="stylesheet"'><noscript><link rel=stylesheet href=/lib/animate/animate.min.css></noscript><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"CTF-Reverse刷题记录","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/goodlunatic.github.io\/posts\/b7a1d1b\/"},"image":["https:\/\/www.nssctf.cn\/files\/2025\/8\/21\/8ce6223a1a.png"],"genre":"posts","keywords":"CTF, Reverse","wordcount":14590,"url":"https:\/\/goodlunatic.github.io\/posts\/b7a1d1b\/","datePublished":"2026-01-15T21:46:22+08:00","dateModified":"2026-01-15T21:46:22+08:00","publisher":{"@type":"Organization","name":""},"author":{"@type":"Person","name":"Lunatic"},"description":""}</script><script src=/js/head/color-scheme.min.js></script></head><body data-header-desktop=sticky data-header-mobile=auto><div class=wrapper data-page-style=normal><header class="desktop animate__faster" id=header-desktop><div class=header-wrapper data-github-corner=left><div class=header-title><a href=/ title="⚡Lunatic BLOG⚡"><span class=header-title-text>⚡Lunatic BLOG⚡</span></a><span class=header-subtitle></span></div><nav><ul class=menu><li class=menu-item><a class=menu-link href=/collections/><i class="fa-solid fa-layer-group fa-fw fa-sm" aria-hidden=true></i> 合集</a></li><li class=menu-item><a class=menu-link href=/archives/><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden=true></i> 归档</a></li><li class=menu-item><a class=menu-link href=/categories/><i class="fa-solid fa-folder-tree fa-fw fa-sm" aria-hidden=true></i> 分类</a></li><li class=menu-item><a class=menu-link href=/tags/><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden=true></i> 标签</a></li><li class=menu-item><a class=menu-link href=/friends/><i class="fa-solid fa-chain fa-fw fa-sm" aria-hidden=true></i> 友链</a></li><li class=menu-item><a class=menu-link href=/about/><i class="fa-solid fa-graduation-cap fa-fw fa-sm" aria-hidden=true></i> 关于</a></li><li class="menu-item delimiter"></li><li class="menu-item search" id=search-desktop><input type=text placeholder=搜索文章标题或内容…… id=search-input-desktop>
+"><meta name=keywords content='CTF,Reverse'><meta itemprop=name content="CTF-Reverse刷题记录"><meta itemprop=description content="科研和项目中经常要用到逆向相关的知识，于是准备猛猛刷题，猛猛学逆向"><meta itemprop=datePublished content="2026-01-15T21:46:22+08:00"><meta itemprop=dateModified content="2026-01-15T21:46:22+08:00"><meta itemprop=wordCount content="16295"><meta itemprop=keywords content="CTF,Reverse"><meta property="og:url" content="https://goodlunatic.github.io/posts/b7a1d1b/"><meta property="og:site_name" content="⚡Lunatic BLOG⚡"><meta property="og:title" content="CTF-Reverse刷题记录"><meta property="og:description" content="科研和项目中经常要用到逆向相关的知识，于是准备猛猛刷题，猛猛学逆向"><meta property="og:locale" content="zh_CN"><meta property="og:type" content="article"><meta property="article:section" content="posts"><meta property="article:published_time" content="2026-01-15T21:46:22+08:00"><meta property="article:modified_time" content="2026-01-15T21:46:22+08:00"><meta property="article:tag" content="CTF"><meta property="article:tag" content="Reverse"><meta name=twitter:card content="summary"><meta name=twitter:title content="CTF-Reverse刷题记录"><meta name=twitter:description content="科研和项目中经常要用到逆向相关的知识，于是准备猛猛刷题，猛猛学逆向"><meta name=application-name content="FixIt"><meta name=apple-mobile-web-app-title content="FixIt"><meta name=theme-color data-light=#f8f8f8 data-dark=#252627 content="#f8f8f8"><meta name=msapplication-TileColor content="#da532c"><link rel=icon href=https://www.nssctf.cn/files/2024/4/28/7f130a1387.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=canonical type=text/html href=https://goodlunatic.github.io/posts/b7a1d1b/ title="CTF-Reverse刷题记录 - ⚡Lunatic BLOG⚡"><link rel=prev type=text/html href=https://goodlunatic.github.io/posts/911b6a0/ title="[持续更新] 记录各种app关闭广告和推荐的方法"><link rel=next type=text/html href=https://goodlunatic.github.io/posts/59dcb62/ title="2026 楚慧杯湖北省网络与数据安全实践能力竞赛 Misc Writeup"><link rel=alternate type=text/markdown href=https://goodlunatic.github.io/posts/b7a1d1b/index.md title="CTF-Reverse刷题记录 - ⚡Lunatic BLOG⚡"><link rel=stylesheet href=/css/config.min.css><link rel=stylesheet href=/css/style.min.css><link rel=preload href=/lib/fontawesome-free/all.min.css as=style onload='this.removeAttribute("onload"),this.rel="stylesheet"'><noscript><link rel=stylesheet href=/lib/fontawesome-free/all.min.css></noscript><link rel=preload href=/lib/animate/animate.min.css as=style onload='this.removeAttribute("onload"),this.rel="stylesheet"'><noscript><link rel=stylesheet href=/lib/animate/animate.min.css></noscript><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"CTF-Reverse刷题记录","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/goodlunatic.github.io\/posts\/b7a1d1b\/"},"image":["https:\/\/www.nssctf.cn\/files\/2025\/8\/21\/8ce6223a1a.png"],"genre":"posts","keywords":"CTF, Reverse","wordcount":16295,"url":"https:\/\/goodlunatic.github.io\/posts\/b7a1d1b\/","datePublished":"2026-01-15T21:46:22+08:00","dateModified":"2026-01-15T21:46:22+08:00","publisher":{"@type":"Organization","name":""},"author":{"@type":"Person","name":"Lunatic"},"description":""}</script><script src=/js/head/color-scheme.min.js></script></head><body data-header-desktop=sticky data-header-mobile=auto><div class=wrapper data-page-style=normal><header class="desktop animate__faster" id=header-desktop><div class=header-wrapper data-github-corner=left><div class=header-title><a href=/ title="⚡Lunatic BLOG⚡"><span class=header-title-text>⚡Lunatic BLOG⚡</span></a><span class=header-subtitle></span></div><nav><ul class=menu><li class=menu-item><a class=menu-link href=/collections/><i class="fa-solid fa-layer-group fa-fw fa-sm" aria-hidden=true></i> 合集</a></li><li class=menu-item><a class=menu-link href=/archives/><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden=true></i> 归档</a></li><li class=menu-item><a class=menu-link href=/categories/><i class="fa-solid fa-folder-tree fa-fw fa-sm" aria-hidden=true></i> 分类</a></li><li class=menu-item><a class=menu-link href=/tags/><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden=true></i> 标签</a></li><li class=menu-item><a class=menu-link href=/friends/><i class="fa-solid fa-chain fa-fw fa-sm" aria-hidden=true></i> 友链</a></li><li class=menu-item><a class=menu-link href=/about/><i class="fa-solid fa-graduation-cap fa-fw fa-sm" aria-hidden=true></i> 关于</a></li><li class="menu-item delimiter"></li><li class="menu-item search" id=search-desktop><input type=text placeholder=搜索文章标题或内容…… id=search-input-desktop>
 <a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-desktop title=搜索><i class="fa-solid fa-search fa-fw" aria-hidden=true></i>
 </a><a href=javascript:void(0); class="search-button search-clear" id=search-clear-desktop title=清空><i class="fa-solid fa-times-circle fa-fw" aria-hidden=true></i>
 </a><span class="search-button search-loading" id=search-loading-desktop><i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden=true></i></span></li><li class="menu-item theme-switch" title=切换主题><i class="fa-solid fa-adjust fa-fw" aria-hidden=true></i></li></ul></nav></div></header><header class="mobile animate__faster" id=header-mobile><div class=header-container><div class=header-wrapper><div class=header-title><a href=/ title="⚡Lunatic BLOG⚡"><span class=header-title-text>⚡Lunatic BLOG⚡</span></a><span class=header-subtitle></span></div><div class=menu-toggle id=menu-toggle-mobile><span></span><span></span><span></span></div></div><nav><ul class=menu id=menu-mobile><li class=search-wrapper><div class="search mobile" id=search-mobile><input type=text placeholder=搜索文章标题或内容…… id=search-input-mobile>
 <a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-mobile title=搜索><i class="fa-solid fa-search fa-fw" aria-hidden=true></i>
 </a><a href=javascript:void(0); class="search-button search-clear" id=search-clear-mobile title=清空><i class="fa-solid fa-times-circle fa-fw" aria-hidden=true></i>
 </a><span class="search-button search-loading" id=search-loading-mobile><i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden=true></i></span></div><a href=javascript:void(0); class=search-cancel id=search-cancel-mobile>取消</a></li><li class=menu-item><a class=menu-link href=/collections/><i class="fa-solid fa-layer-group fa-fw fa-sm" aria-hidden=true></i> 合集</a></li><li class=menu-item><a class=menu-link href=/archives/><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden=true></i> 归档</a></li><li class=menu-item><a class=menu-link href=/categories/><i class="fa-solid fa-folder-tree fa-fw fa-sm" aria-hidden=true></i> 分类</a></li><li class=menu-item><a class=menu-link href=/tags/><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden=true></i> 标签</a></li><li class=menu-item><a class=menu-link href=/friends/><i class="fa-solid fa-chain fa-fw fa-sm" aria-hidden=true></i> 友链</a></li><li class=menu-item><a class=menu-link href=/about/><i class="fa-solid fa-graduation-cap fa-fw fa-sm" aria-hidden=true></i> 关于</a></li><li class="menu-item menu-system"><span class="menu-system-item theme-switch" title=切换主题><i class="fa-solid fa-adjust fa-fw" aria-hidden=true></i></span></li></ul></nav></div></header><div class="search-dropdown desktop"><div id=search-dropdown-desktop></div></div><div class="search-dropdown mobile"><div id=search-dropdown-mobile></div></div><main class=fi-container><aside class="aside-collection animate__animated animate__fadeIn animate__faster" aria-label=合集><div class="details related-details open"><div class="details-summary related-summary"><i class="fa-solid fa-fire fa-fade text-danger fa-fw" aria-hidden=true></i>
-<span class=related-title>相关内容</span><i class="details-icon fa-solid fa-angle-right fa-fw" aria-hidden=true></i></div><div class="details-content related-content"><ul class=related-list><li class=related-item><a href=/posts/8bf5633/ title="2025 鹏城杯联邦网络靶场协同攻防演练 Misc Writeup">2025 鹏城杯联邦网络靶场协同攻防演练 Misc Writeup</a></li><li class=related-item><a href=/posts/380aa02/ title="2025 古剑山全国大学生网络攻防大赛 Misc Writeup">2025 古剑山全国大学生网络攻防大赛 Misc Writeup</a></li><li class=related-item><a href=/posts/353513a/ title="2025 强网拟态防御国际精英挑战赛线下总决赛 Misc Writeup">2025 强网拟态防御国际精英挑战赛线下总决赛 Misc Writeup</a></li><li class=related-item><a href=/posts/417c7ba/ title=CTF-渗透测试>CTF-渗透测试</a></li><li class=related-item><a href=/posts/8582ff7/ title="2025 浙江省大学生网络与信息安全竞赛 Misc Writeup">2025 浙江省大学生网络与信息安全竞赛 Misc Writeup</a></li></ul></div></div><div class=aside-custom><a href target=_blank rel=external><img src=/images/zsxq.webp alt="Lunatic Planet QR code" width=100%></a></div></aside><article class="page single"><div class=header><h1 class="single-title animate__animated animate__flipInX"><span>CTF-Reverse刷题记录</span></h1></div><div class=post-meta><div class=post-meta-line><span class=post-author><a href=https://goodlunatic.github.io title=作者 target=_blank rel="external nofollow noopener noreferrer author" class=author><img class=avatar src=https://www.nssctf.cn/files/2024/4/28/7f130a1387.png alt=Lunatic height=16 width=16>&nbsp;Lunatic</a></span><span class=post-included-in>&nbsp;收录于 <a href=/categories/ctf/ class=post-category title="分类 - CTF"><i class="fa-regular fa-folder fa-fw" aria-hidden=true></i> CTF</a></span></div><div class=post-meta-line><span title="发布于 2026-01-15 21:46:22"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden=true></i><time datetime=2026-01-15>2026-01-15</time></span>&nbsp;<span title="14590 字"><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden=true></i>约 14600 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden=true></i>预计阅读 69 分钟</span>&nbsp;<span id=busuanzi_container_page_pv class="busuanzi_visitors comment-visitors" data-flag-title=CTF-Reverse刷题记录><i class="fa-regular fa-eye fa-fw me-1" aria-hidden=true></i><span id=busuanzi_value_page_pv>-</span>&nbsp;次阅读
+<span class=related-title>相关内容</span><i class="details-icon fa-solid fa-angle-right fa-fw" aria-hidden=true></i></div><div class="details-content related-content"><ul class=related-list><li class=related-item><a href=/posts/8bf5633/ title="2025 鹏城杯联邦网络靶场协同攻防演练 Misc Writeup">2025 鹏城杯联邦网络靶场协同攻防演练 Misc Writeup</a></li><li class=related-item><a href=/posts/380aa02/ title="2025 古剑山全国大学生网络攻防大赛 Misc Writeup">2025 古剑山全国大学生网络攻防大赛 Misc Writeup</a></li><li class=related-item><a href=/posts/353513a/ title="2025 强网拟态防御国际精英挑战赛线下总决赛 Misc Writeup">2025 强网拟态防御国际精英挑战赛线下总决赛 Misc Writeup</a></li><li class=related-item><a href=/posts/417c7ba/ title=CTF-渗透测试>CTF-渗透测试</a></li><li class=related-item><a href=/posts/8582ff7/ title="2025 浙江省大学生网络与信息安全竞赛 Misc Writeup">2025 浙江省大学生网络与信息安全竞赛 Misc Writeup</a></li></ul></div></div><div class=aside-custom><a href target=_blank rel=external><img src=/images/zsxq.webp alt="Lunatic Planet QR code" width=100%></a></div></aside><article class="page single"><div class=header><h1 class="single-title animate__animated animate__flipInX"><span>CTF-Reverse刷题记录</span></h1></div><div class=post-meta><div class=post-meta-line><span class=post-author><a href=https://goodlunatic.github.io title=作者 target=_blank rel="external nofollow noopener noreferrer author" class=author><img class=avatar src=https://www.nssctf.cn/files/2024/4/28/7f130a1387.png alt=Lunatic height=16 width=16>&nbsp;Lunatic</a></span><span class=post-included-in>&nbsp;收录于 <a href=/categories/ctf/ class=post-category title="分类 - CTF"><i class="fa-regular fa-folder fa-fw" aria-hidden=true></i> CTF</a></span></div><div class=post-meta-line><span title="发布于 2026-01-15 21:46:22"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden=true></i><time datetime=2026-01-15>2026-01-15</time></span>&nbsp;<span title="16295 字"><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden=true></i>约 16300 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden=true></i>预计阅读 77 分钟</span>&nbsp;<span id=busuanzi_container_page_pv class="busuanzi_visitors comment-visitors" data-flag-title=CTF-Reverse刷题记录><i class="fa-regular fa-eye fa-fw me-1" aria-hidden=true></i><span id=busuanzi_value_page_pv>-</span>&nbsp;次阅读
 </span>&nbsp;</div></div><div class="details toc" id=toc-static data-kept=false><div class="details-summary toc-title"><span>目录</span>
-<span><i class="details-icon fa-solid fa-angle-right" aria-hidden=true></i></span></div><div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents><ul><li><a href=#2025-ctf>2025 ?CTF</a><ul><li><a href=#8086asm>8086ASM</a></li><li><a href=#jvav>jvav</a></li><li><a href=#rand>rand</a></li><li><a href=#ezcalculate>ezCalculate</a></li><li><a href=#ezcsharp>ezCSharp</a></li><li><a href=#plzdebugme>PlzDebugMe</a></li><li><a href=#flowers>Flowers</a></li><li><a href=#base>base</a></li><li><a href=#rc4>rc4</a></li><li><a href=#upx>UPX</a></li><li><a href=#cppreverse>CPPReverse</a></li><li><a href=#do-you-like-to-drink-tea>Do you like to drink Tea?</a></li><li><a href=#pyc>Pyc</a></li><li><a href=#螺旋密码机>螺旋密码机</a></li><li><a href=#wtf>wtf</a></li><li><a href=#strangeenc>strangeEnc</a></li><li><a href=#ezmath>ezmath</a></li><li><a href=#trap>Trap</a></li><li><a href=#brokendata>BrokenData</a></li></ul></li><li><a href=#2024-newstarctf>2024 NewStarCTF</a><ul><li><a href=#begin>begin</a></li></ul></li><li><a href=#2021-绿城杯>2021 绿城杯</a><ul><li><a href=#easy_re>easy_re</a></li><li><a href=#抛石机>抛石机</a></li><li><a href=#babyvxworks>babyvxworks</a></li></ul></li></ul></nav></div></div><div class=content id=content><p><strong>科研和项目中经常要用到逆向相关的知识，于是准备猛猛刷题，猛猛学逆向</strong></p><h2 class=heading-element id=2025-ctf><span>2025 ?CTF</span>
+<span><i class="details-icon fa-solid fa-angle-right" aria-hidden=true></i></span></div><div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents><ul><li><a href=#专题系列>专题系列</a><ul><li><a href=#安卓逆向>安卓逆向</a><ul><li><a href=#frida相关>Frida相关</a><ul><li><a href=#frida-labs>Frida-Labs</a><ul><li><a href=#frida-0x1>Frida-0x1</a></li><li><a href=#frida-0x2>Frida-0x2</a></li><li><a href=#frida-0x3>Frida-0x3</a></li><li><a href=#frida-0x4>Frida-0x4</a></li><li><a href=#frida-0x5>Frida-0x5</a></li><li><a href=#frida-0x6>Frida-0x6</a></li><li><a href=#frida-0x7>Frida-0x7</a></li><li><a href=#frida-0x8>Frida-0x8</a></li><li><a href=#frida-0x9>Frida-0x9</a></li><li><a href=#frida-0xa>Frida-0xA</a></li><li><a href=#frida-0xb>Frida-0xB</a></li></ul></li></ul></li></ul></li></ul></li><li><a href=#2025-ctf>2025 ?CTF</a><ul><li><a href=#8086asm>8086ASM</a></li><li><a href=#jvav>jvav</a></li><li><a href=#rand>rand</a></li><li><a href=#ezcalculate>ezCalculate</a></li><li><a href=#ezcsharp>ezCSharp</a></li><li><a href=#plzdebugme>PlzDebugMe</a></li><li><a href=#flowers>Flowers</a></li><li><a href=#base>base</a></li><li><a href=#rc4>rc4</a></li><li><a href=#upx>UPX</a></li><li><a href=#cppreverse>CPPReverse</a></li><li><a href=#do-you-like-to-drink-tea>Do you like to drink Tea?</a></li><li><a href=#pyc>Pyc</a></li><li><a href=#螺旋密码机>螺旋密码机</a></li><li><a href=#wtf>wtf</a></li><li><a href=#strangeenc>strangeEnc</a></li><li><a href=#ezmath>ezmath</a></li><li><a href=#trap>Trap</a></li><li><a href=#brokendata>BrokenData</a></li></ul></li><li><a href=#2024-newstarctf>2024 NewStarCTF</a><ul><li><a href=#begin>begin</a></li></ul></li><li><a href=#2021-绿城杯>2021 绿城杯</a><ul><li><a href=#easy_re>easy_re</a></li><li><a href=#抛石机>抛石机</a></li><li><a href=#babyvxworks>babyvxworks</a></li></ul></li></ul></nav></div></div><div class=content id=content><p><strong>科研和项目中经常要用到逆向相关的知识，于是准备猛猛刷题，猛猛学逆向</strong></p><h2 class=heading-element id=专题系列><span>专题系列</span>
+<a href=#%e4%b8%93%e9%a2%98%e7%b3%bb%e5%88%97 class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h2><h3 class=heading-element id=安卓逆向><span>安卓逆向</span>
+<a href=#%e5%ae%89%e5%8d%93%e9%80%86%e5%90%91 class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h3><h4 class=heading-element id=frida相关><span>Frida相关</span>
+<a href=#frida%e7%9b%b8%e5%85%b3 class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h4><h5 class=heading-element id=frida-labs><span>Frida-Labs</span>
+<a href=#frida-labs class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h5><h6 class=heading-element id=frida-0x1><span>Frida-0x1</span>
+<a href=#frida-0x1 class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h6><p>这里主要就是学习一下 Frida Hook 脚本的编写</p><p>脚本的基本格式如下：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=nx>Java</span><span class=p>.</span><span class=nx>perform</span><span class=p>(</span><span class=kd>function</span><span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=kd>var</span> <span class=o>&lt;</span><span class=nx>class_reference</span><span class=o>&gt;</span> <span class=o>=</span> <span class=nx>Java</span><span class=p>.</span><span class=nx>use</span><span class=p>(</span><span class=s2>&#34;&lt;package_name&gt;.&lt;class&gt;&#34;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>  <span class=o>&lt;</span><span class=nx>class_reference</span><span class=o>&gt;</span><span class=p>.</span><span class=o>&lt;</span><span class=nx>method_to_hook</span><span class=o>&gt;</span><span class=p>.</span><span class=nx>implementation</span> <span class=o>=</span> <span class=kd>function</span><span class=p>(</span><span class=o>&lt;</span><span class=nx>args</span><span class=o>&gt;</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=cm>/*
+</span></span></span><span class=line><span class=cl><span class=cm>      OUR OWN IMPLEMENTATION OF THE METHOD
+</span></span></span><span class=line><span class=cl><span class=cm>    */</span>
+</span></span><span class=line><span class=cl>  <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>})</span></span></span></code></pre></td></tr></table></div></div><p>程序的包名可以连上ADB后用<code>frida-ps -Uai</code>获取</p><p><img loading=lazy src=/posts/b7a1d1b/imgs/image-20250517004732875.png alt=/posts/b7a1d1b/imgs/image-20250517004732875.png height=656 width=1404></p><p>jadx反编译一下apk，程序的逻辑很简单，就是比较用户的输入和随机生成的值</p><p><img loading=lazy src=/posts/b7a1d1b/imgs/image-20250517004906369.png alt=/posts/b7a1d1b/imgs/image-20250517004906369.png height=1836 width=2804></p><p>这里有两种Hook方式，分别是Hook<code>get_random()</code>和<code>check()</code>这两个函数</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=kd>function</span> <span class=nx>hook_1</span><span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=kd>var</span> <span class=nx>utils</span> <span class=o>=</span> <span class=nx>Java</span><span class=p>.</span><span class=nx>use</span><span class=p>(</span><span class=s1>&#39;com.ad2001.frida0x1.MainActivity&#39;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=nx>utils</span><span class=p>.</span><span class=nx>get_random</span><span class=p>.</span><span class=nx>implementation</span> <span class=o>=</span> <span class=kd>function</span> <span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=s2>&#34;get_random() is hooked&#34;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>        <span class=kd>var</span> <span class=nx>res</span> <span class=o>=</span> <span class=k>this</span><span class=p>.</span><span class=nx>get_random</span><span class=p>();</span>
+</span></span><span class=line><span class=cl>        <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=s2>&#34;The return value is &#34;</span> <span class=o>+</span> <span class=nx>res</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>        <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=s2>&#34;The value to bypass the check &#34;</span> <span class=o>+</span> <span class=p>(</span><span class=nx>res</span> <span class=o>*</span> <span class=mi>2</span> <span class=o>+</span> <span class=mi>4</span><span class=p>));</span>
+</span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=nx>res</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kd>function</span> <span class=nx>hook_2</span><span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=kd>var</span> <span class=nx>utils</span> <span class=o>=</span> <span class=nx>Java</span><span class=p>.</span><span class=nx>use</span><span class=p>(</span><span class=s2>&#34;com.ad2001.frida0x1.MainActivity&#34;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=c1>// 重载方法
+</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=nx>utils</span><span class=p>.</span><span class=nx>check</span><span class=p>.</span><span class=nx>overload</span><span class=p>(</span><span class=s1>&#39;int&#39;</span><span class=p>,</span> <span class=s1>&#39;int&#39;</span><span class=p>).</span><span class=nx>implementation</span> <span class=o>=</span> <span class=kd>function</span> <span class=p>(</span><span class=nx>a</span><span class=p>,</span> <span class=nx>b</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=s2>&#34;check() is hooked&#34;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>        <span class=k>this</span><span class=p>.</span><span class=nx>check</span><span class=p>(</span><span class=mi>4</span><span class=p>,</span> <span class=mi>12</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kd>function</span> <span class=nx>main</span><span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nx>Java</span><span class=p>.</span><span class=nx>perform</span><span class=p>(</span><span class=kd>function</span> <span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=c1>// hook_1();
+</span></span></span><span class=line><span class=cl><span class=c1></span>        <span class=nx>hook_2</span><span class=p>();</span>
+</span></span><span class=line><span class=cl>    <span class=p>});</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=nx>setImmediate</span><span class=p>(</span><span class=nx>main</span><span class=p>);</span></span></span></code></pre></td></tr></table></div></div><h6 class=heading-element id=frida-0x2><span>Frida-0x2</span>
+<a href=#frida-0x2 class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h6><p>发现代码里写了 <code>get_flag()</code>，但是没有调用，因此我们主动调用一下即可</p><p>就是这里要注意，使用frida运行hook代码后，可能会hook不到</p><p><strong>我们修改一下hook脚本再保存即可，加个空格或者不修改直接 <code>Ctrl+S</code></strong></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=line><span class=cl><span class=kd>function</span> <span class=nx>hook_2</span><span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=kd>var</span> <span class=nx>utils</span> <span class=o>=</span> <span class=nx>Java</span><span class=p>.</span><span class=nx>use</span><span class=p>(</span><span class=s1>&#39;com.ad2001.frida0x2.MainActivity&#39;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=nx>utils</span><span class=p>.</span><span class=nx>get_flag</span><span class=p>(</span><span class=mi>4919</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=p>}</span></span></span></code></pre></td></tr></table></div></div><h6 class=heading-element id=frida-0x3><span>Frida-0x3</span>
+<a href=#frida-0x3 class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h6><p>修改 Checker类 的 code变量 的值为512即可</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=line><span class=cl><span class=kd>function</span> <span class=nx>hook_3</span><span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=s2>&#34;hook_3() is called&#34;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=kd>var</span> <span class=nx>Checker</span> <span class=o>=</span> <span class=nx>Java</span><span class=p>.</span><span class=nx>use</span><span class=p>(</span><span class=s1>&#39;com.ad2001.frida0x3.Checker&#39;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=nx>Checker</span><span class=p>.</span><span class=nx>code</span><span class=p>.</span><span class=nx>value</span> <span class=o>=</span> <span class=mi>512</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span></span></span></code></pre></td></tr></table></div></div><h6 class=heading-element id=frida-0x4><span>Frida-0x4</span>
+<a href=#frida-0x4 class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h6><p>主动调用从dex中动态加载的方法，使用<code>$new()</code>创建一个实例即可</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=line><span class=cl><span class=kd>function</span> <span class=nx>hook_4</span><span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=s2>&#34;hook_4() is called&#34;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=kd>var</span> <span class=nx>Check</span> <span class=o>=</span> <span class=nx>Java</span><span class=p>.</span><span class=nx>use</span><span class=p>(</span><span class=s1>&#39;com.ad2001.frida0x4.Check&#39;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=kd>var</span> <span class=nx>check_obj</span> <span class=o>=</span> <span class=nx>Check</span><span class=p>.</span><span class=nx>$new</span><span class=p>();</span>
+</span></span><span class=line><span class=cl>    <span class=kd>var</span> <span class=nx>res</span> <span class=o>=</span> <span class=nx>check_obj</span><span class=p>.</span><span class=nx>get_flag</span><span class=p>(</span><span class=mi>1337</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>res</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=p>}</span></span></span></code></pre></td></tr></table></div></div><h6 class=heading-element id=frida-0x5><span>Frida-0x5</span>
+<a href=#frida-0x5 class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h6><blockquote><p>直接使用 Frida 创建 <code>MainActivity</code> 或任何 Android 组件的实例可能会很棘手，这是由于 Android 的生命周期和线程规则所导致的。Android 组件（如 <code>Activity</code> 的子类）依赖应用程序的 context 才能正常运行，而在 Frida 中你可能缺少必要的 context。</p><p>Android UI 组件通常需要在一个关联了 <code>Looper</code> 的特定线程上运行。如果你在处理 UI 相关的任务，请确保你在一个已激活 <code>Looper</code> 的 main thread 上操作。</p><p><code>Activity</code> 是 Android 应用程序更大的 lifecycle 的一部分。创建 <code>MainActivity</code> 的实例可能需要 app 处于特定状态，而通过 Frida 来管理整个 lifecycle 并不是一件简单的事。</p><p>总之，直接为 <code>MainActivity</code> 创建实例并不是一个好主意。</p></blockquote><blockquote><p>那么解决方案是什么呢？</p><p>当一个 Android 应用启动时，系统会自动创建一个 <code>MainActivity</code> 的实例（或者是在 <code>AndroidManifest.xml</code> 文件中指定的 launcher activity）。<code>MainActivity</code> 实例的创建是 Android 应用 lifecycle 的一部分。因此我们可以直接使用 Frida 来获取 <code>MainActivity</code> 已有的实例，然后调用 <code>flag()</code> 方法来获取我们想要的 flag。</p></blockquote><p>在 Frida 中，对一个已有实例调用方法是很容易实现的。为此我们将使用两个 API：</p><ul><li><code>Java.performNow</code>：用于在 Java runtime 上下文中执行代码的函数。</li><li><code>Java.choose</code>：在运行时枚举指定 Java 类（作为第一个参数传入）的所有实例。</li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=line><span class=cl><span class=kd>function</span> <span class=nx>hook_5</span><span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=c1>// 使用 Java.choose 在运行时查找 MainActivity 的已有实例
+</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=nx>Java</span><span class=p>.</span><span class=nx>choose</span><span class=p>(</span><span class=s1>&#39;com.ad2001.frida0x5.MainActivity&#39;</span><span class=p>,</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        
+</span></span><span class=line><span class=cl>        <span class=c1>// 每找到一个实例就会触发一次 onMatch
+</span></span></span><span class=line><span class=cl><span class=c1></span>        <span class=nx>onMatch</span><span class=o>:</span> <span class=kd>function</span> <span class=p>(</span><span class=nx>instance</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=s2>&#34;Instance found&#34;</span><span class=p>);</span> <span class=c1>// 打印找到实例的提示
+</span></span></span><span class=line><span class=cl><span class=c1></span>            <span class=nx>instance</span><span class=p>.</span><span class=nx>flag</span><span class=p>(</span><span class=mi>1337</span><span class=p>);</span>           <span class=c1>// 用找到的实例直接调用 flag() 方法，传入参数 1337
+</span></span></span><span class=line><span class=cl><span class=c1></span>        <span class=p>},</span>
+</span></span><span class=line><span class=cl>        
+</span></span><span class=line><span class=cl>        <span class=c1>// 枚举完成后触发，这里不需要做任何处理，留空即可
+</span></span></span><span class=line><span class=cl><span class=c1></span>        <span class=nx>onComplete</span><span class=o>:</span> <span class=kd>function</span> <span class=p>()</span> <span class=p>{</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=p>});</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kd>function</span> <span class=nx>main</span><span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=c1>// 使用 Java.performNow 在 Java runtime 上下文中立即执行代码
+</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=c1>// 与 Java.perform 的区别是：performNow 不需要等待 JS runtime 准备好
+</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=nx>Java</span><span class=p>.</span><span class=nx>performNow</span><span class=p>(</span><span class=kd>function</span> <span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=nx>hook_5</span><span class=p>();</span>
+</span></span><span class=line><span class=cl>    <span class=p>});</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>// 确保脚本注入完成后再执行 main，避免时序问题
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=nx>setImmediate</span><span class=p>(</span><span class=nx>main</span><span class=p>);</span></span></span></code></pre></td></tr></table></div></div><ul><li><strong>hook 方法</strong>（等别人来调用）→ 用 <code>Java.perform</code></li><li><strong>主动调用实例方法</strong>（我去找实例来执行）→ 用 <code>Java.performNow</code></li></ul><h6 class=heading-element id=frida-0x6><span>Frida-0x6</span>
+<a href=#frida-0x6 class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h6><p>和之前一样，需要主动调用 <code>MainActivity</code> 中的 <code>get_flag</code> 方法</p><p>但是这里还需要传入一个Checker，并给里面的两个参数还需要等于指定值</p><p>因此我们使用 <code>Java.choose</code> 找到 <code>MainActivity</code> 的实例，并新建一个 <code>Checker</code> 实例并赋值</p><p>最后调用 <code>MainActivity.get_flag</code> 传入 <code>Checker</code> 实例即可</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=line><span class=cl><span class=kd>function</span> <span class=nx>hook_6</span><span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nx>Java</span><span class=p>.</span><span class=nx>choose</span><span class=p>(</span><span class=s2>&#34;com.ad2001.frida0x6.MainActivity&#34;</span><span class=p>,</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=nx>onMatch</span><span class=o>:</span><span class=kd>function</span><span class=p>(</span><span class=nx>instance</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=kd>var</span> <span class=nx>Checker</span> <span class=o>=</span> <span class=nx>Java</span><span class=p>.</span><span class=nx>use</span><span class=p>(</span><span class=s2>&#34;com.ad2001.frida0x6.Checker&#34;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>            <span class=kd>var</span> <span class=nx>Checker_obj</span> <span class=o>=</span> <span class=nx>Checker</span><span class=p>.</span><span class=nx>$new</span><span class=p>();</span>
+</span></span><span class=line><span class=cl>            <span class=nx>Checker_obj</span><span class=p>.</span><span class=nx>num1</span><span class=p>.</span><span class=nx>value</span> <span class=o>=</span> <span class=mi>1234</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>            <span class=nx>Checker_obj</span><span class=p>.</span><span class=nx>num2</span><span class=p>.</span><span class=nx>value</span> <span class=o>=</span> <span class=mi>4321</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>            <span class=nx>instance</span><span class=p>.</span><span class=nx>get_flag</span><span class=p>(</span><span class=nx>Checker_obj</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>        <span class=p>},</span>
+</span></span><span class=line><span class=cl>        <span class=nx>onComplete</span><span class=o>:</span><span class=kd>function</span><span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=p>});</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kd>function</span> <span class=nx>main</span><span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nx>Java</span><span class=p>.</span><span class=nx>performNow</span><span class=p>(</span><span class=kd>function</span> <span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=nx>hook_6</span><span class=p>();</span>
+</span></span><span class=line><span class=cl>    <span class=p>});</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=nx>setImmediate</span><span class=p>(</span><span class=nx>main</span><span class=p>);</span></span></span></code></pre></td></tr></table></div></div><h6 class=heading-element id=frida-0x7><span>Frida-0x7</span>
+<a href=#frida-0x7 class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h6><p>Checker类自己写好了构造器，直接传入参数新建实例即可</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=line><span class=cl><span class=kd>function</span> <span class=nx>hook_7</span><span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nx>Java</span><span class=p>.</span><span class=nx>choose</span><span class=p>(</span><span class=s2>&#34;com.ad2001.frida0x7.MainActivity&#34;</span><span class=p>,</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=nx>onMatch</span><span class=o>:</span><span class=kd>function</span><span class=p>(</span><span class=nx>instance</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=kd>var</span> <span class=nx>Checker</span> <span class=o>=</span> <span class=nx>Java</span><span class=p>.</span><span class=nx>use</span><span class=p>(</span><span class=s2>&#34;com.ad2001.frida0x7.Checker&#34;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>            <span class=kd>var</span> <span class=nx>Checker_obj</span> <span class=o>=</span> <span class=nx>Checker</span><span class=p>.</span><span class=nx>$new</span><span class=p>(</span><span class=mi>513</span><span class=p>,</span><span class=mi>513</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>            <span class=nx>instance</span><span class=p>.</span><span class=nx>flag</span><span class=p>(</span><span class=nx>Checker_obj</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>        <span class=p>},</span>
+</span></span><span class=line><span class=cl>        <span class=nx>onComplete</span><span class=o>:</span><span class=kd>function</span><span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=p>});</span>
+</span></span><span class=line><span class=cl><span class=p>}</span></span></span></code></pre></td></tr></table></div></div><h6 class=heading-element id=frida-0x8><span>Frida-0x8</span>
+<a href=#frida-0x8 class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h6><p>本题涉及到了 Hook 原生类中的函数</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=line><span class=cl><span class=kn>package</span><span class=w> </span><span class=nn>com.ad2001.frida0x8</span><span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=kn>import</span><span class=w> </span><span class=nn>android.os.Bundle</span><span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=kn>import</span><span class=w> </span><span class=nn>android.view.View</span><span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=kn>import</span><span class=w> </span><span class=nn>android.widget.Button</span><span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=kn>import</span><span class=w> </span><span class=nn>android.widget.EditText</span><span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=kn>import</span><span class=w> </span><span class=nn>android.widget.Toast</span><span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=kn>import</span><span class=w> </span><span class=nn>androidx.appcompat.app.AppCompatActivity</span><span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=kn>import</span><span class=w> </span><span class=nn>com.ad2001.frida0x8.databinding.ActivityMainBinding</span><span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=cm>/* loaded from: classes4.dex */</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=kd>public</span><span class=w> </span><span class=kd>class</span> <span class=nc>MainActivity</span><span class=w> </span><span class=kd>extends</span><span class=w> </span><span class=n>AppCompatActivity</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=kd>private</span><span class=w> </span><span class=n>ActivityMainBinding</span><span class=w> </span><span class=n>binding</span><span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=n>Button</span><span class=w> </span><span class=n>btn</span><span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=n>EditText</span><span class=w> </span><span class=n>edt</span><span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=kd>public</span><span class=w> </span><span class=kd>native</span><span class=w> </span><span class=kt>int</span><span class=w> </span><span class=nf>cmpstr</span><span class=p>(</span><span class=n>String</span><span class=w> </span><span class=n>str</span><span class=p>);</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=kd>static</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=n>System</span><span class=p>.</span><span class=na>loadLibrary</span><span class=p>(</span><span class=s>&#34;frida0x8&#34;</span><span class=p>);</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=p>}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nd>@Override</span><span class=w> </span><span class=c1>// androidx.fragment.app.FragmentActivity, androidx.activity.ComponentActivity, androidx.core.app.ComponentActivity, android.app.Activity</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=kd>protected</span><span class=w> </span><span class=kt>void</span><span class=w> </span><span class=nf>onCreate</span><span class=p>(</span><span class=n>Bundle</span><span class=w> </span><span class=n>savedInstanceState</span><span class=p>)</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=kd>super</span><span class=p>.</span><span class=na>onCreate</span><span class=p>(</span><span class=n>savedInstanceState</span><span class=p>);</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=n>ActivityMainBinding</span><span class=w> </span><span class=n>inflate</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=n>ActivityMainBinding</span><span class=p>.</span><span class=na>inflate</span><span class=p>(</span><span class=n>getLayoutInflater</span><span class=p>());</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=k>this</span><span class=p>.</span><span class=na>binding</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=n>inflate</span><span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=n>setContentView</span><span class=p>(</span><span class=n>inflate</span><span class=p>.</span><span class=na>getRoot</span><span class=p>());</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=k>this</span><span class=p>.</span><span class=na>edt</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=p>(</span><span class=n>EditText</span><span class=p>)</span><span class=w> </span><span class=n>findViewById</span><span class=p>(</span><span class=n>R</span><span class=p>.</span><span class=na>id</span><span class=p>.</span><span class=na>editTextText</span><span class=p>);</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=n>Button</span><span class=w> </span><span class=n>button</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=p>(</span><span class=n>Button</span><span class=p>)</span><span class=w> </span><span class=n>findViewById</span><span class=p>(</span><span class=n>R</span><span class=p>.</span><span class=na>id</span><span class=p>.</span><span class=na>button</span><span class=p>);</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=k>this</span><span class=p>.</span><span class=na>btn</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=n>button</span><span class=p>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=n>button</span><span class=p>.</span><span class=na>setOnClickListener</span><span class=p>(</span><span class=k>new</span><span class=w> </span><span class=n>View</span><span class=p>.</span><span class=na>OnClickListener</span><span class=p>()</span><span class=w> </span><span class=p>{</span><span class=w> </span><span class=c1>// from class: com.ad2001.frida0x8.MainActivity.1</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>            </span><span class=nd>@Override</span><span class=w> </span><span class=c1>// android.view.View.OnClickListener</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>            </span><span class=kd>public</span><span class=w> </span><span class=kt>void</span><span class=w> </span><span class=nf>onClick</span><span class=p>(</span><span class=n>View</span><span class=w> </span><span class=n>v</span><span class=p>)</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>                </span><span class=n>String</span><span class=w> </span><span class=n>ip</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=n>MainActivity</span><span class=p>.</span><span class=na>this</span><span class=p>.</span><span class=na>edt</span><span class=p>.</span><span class=na>getText</span><span class=p>().</span><span class=na>toString</span><span class=p>();</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>                </span><span class=kt>int</span><span class=w> </span><span class=n>res</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=n>MainActivity</span><span class=p>.</span><span class=na>this</span><span class=p>.</span><span class=na>cmpstr</span><span class=p>(</span><span class=n>ip</span><span class=p>);</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>                </span><span class=k>if</span><span class=w> </span><span class=p>(</span><span class=n>res</span><span class=w> </span><span class=o>==</span><span class=w> </span><span class=n>1</span><span class=p>)</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>                    </span><span class=n>Toast</span><span class=p>.</span><span class=na>makeText</span><span class=p>(</span><span class=n>MainActivity</span><span class=p>.</span><span class=na>this</span><span class=p>,</span><span class=w> </span><span class=s>&#34;YEY YOU GOT THE FLAG &#34;</span><span class=w> </span><span class=o>+</span><span class=w> </span><span class=n>ip</span><span class=p>,</span><span class=w> </span><span class=n>1</span><span class=p>).</span><span class=na>show</span><span class=p>();</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>                </span><span class=p>}</span><span class=w> </span><span class=k>else</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>                    </span><span class=n>Toast</span><span class=p>.</span><span class=na>makeText</span><span class=p>(</span><span class=n>MainActivity</span><span class=p>.</span><span class=na>this</span><span class=p>,</span><span class=w> </span><span class=s>&#34;TRY AGAIN&#34;</span><span class=p>,</span><span class=w> </span><span class=n>1</span><span class=p>).</span><span class=na>show</span><span class=p>();</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>                </span><span class=p>}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>            </span><span class=p>}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=p>});</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=p>}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=p>}</span></span></span></code></pre></td></tr></table></div></div><p>加密函数 <code>cmpstr()</code>在so里，解压apk后，拿IDA打开so</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-c++ data-lang=c++><span class=line><span class=cl><span class=kt>bool</span> <span class=kr>__fastcall</span> <span class=nf>Java_com_ad2001_frida0x8_MainActivity_cmpstr</span><span class=p>(</span><span class=kr>__int64</span> <span class=n>a1</span><span class=p>,</span> <span class=kr>__int64</span> <span class=n>a2</span><span class=p>,</span> <span class=kr>__int64</span> <span class=n>a3</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=kt>int</span> <span class=n>v4</span><span class=p>;</span> <span class=c1>// [xsp+20h] [xbp-C0h]
+</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=kt>int</span> <span class=n>i</span><span class=p>;</span> <span class=c1>// [xsp+24h] [xbp-BCh]
+</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=kt>char</span> <span class=o>*</span><span class=n>s1</span><span class=p>;</span> <span class=c1>// [xsp+30h] [xbp-B0h]
+</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=kt>char</span> <span class=n>s2</span><span class=p>[</span><span class=mi>100</span><span class=p>];</span> <span class=c1>// [xsp+74h] [xbp-6Ch] BYREF
+</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=kr>__int64</span> <span class=n>v10</span><span class=p>;</span> <span class=c1>// [xsp+D8h] [xbp-8h]
+</span></span></span><span class=line><span class=cl><span class=c1></span>
+</span></span><span class=line><span class=cl>  <span class=n>v10</span> <span class=o>=</span> <span class=o>*</span><span class=p>(</span><span class=n>_QWORD</span> <span class=o>*</span><span class=p>)(</span><span class=n>_ReadStatusReg</span><span class=p>(</span><span class=n>TPIDR_EL0</span><span class=p>)</span> <span class=o>+</span> <span class=mi>40</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>  <span class=n>s1</span> <span class=o>=</span> <span class=p>(</span><span class=kt>char</span> <span class=o>*</span><span class=p>)</span><span class=n>_JNIEnv</span><span class=o>::</span><span class=n>GetStringUTFChars</span><span class=p>();</span>
+</span></span><span class=line><span class=cl>  <span class=k>for</span> <span class=p>(</span> <span class=n>i</span> <span class=o>=</span> <span class=mi>0</span><span class=p>;</span> <span class=n>i</span> <span class=o>&lt;</span> <span class=n>__strlen_chk</span><span class=p>(</span><span class=s>&#34;GSJEB|OBUJWF`MBOE~&#34;</span><span class=p>,</span> <span class=mh>0xFFFFFFFFFFFFFFFFLL</span><span class=p>);</span> <span class=o>++</span><span class=n>i</span> <span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>s2</span><span class=p>[</span><span class=n>i</span><span class=p>]</span> <span class=o>=</span> <span class=n>aGsjebObujwfMbo</span><span class=p>[</span><span class=n>i</span><span class=p>]</span> <span class=o>-</span> <span class=mi>1</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>  <span class=n>s2</span><span class=p>[</span><span class=n>__strlen_chk</span><span class=p>(</span><span class=s>&#34;GSJEB|OBUJWF`MBOE~&#34;</span><span class=p>,</span> <span class=mh>0xFFFFFFFFFFFFFFFFLL</span><span class=p>)]</span> <span class=o>=</span> <span class=mi>0</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>  <span class=n>v4</span> <span class=o>=</span> <span class=n>strcmp</span><span class=p>(</span><span class=n>s1</span><span class=p>,</span> <span class=n>s2</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>  <span class=n>__android_log_print</span><span class=p>(</span><span class=mi>3</span><span class=p>,</span> <span class=s>&#34;input &#34;</span><span class=p>,</span> <span class=s>&#34;%s&#34;</span><span class=p>,</span> <span class=n>s1</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>  <span class=n>__android_log_print</span><span class=p>(</span><span class=mi>3</span><span class=p>,</span> <span class=s>&#34;Password&#34;</span><span class=p>,</span> <span class=s>&#34;%s&#34;</span><span class=p>,</span> <span class=n>s2</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>  <span class=n>_JNIEnv</span><span class=o>::</span><span class=n>ReleaseStringUTFChars</span><span class=p>(</span><span class=n>a1</span><span class=p>,</span> <span class=n>a3</span><span class=p>,</span> <span class=p>(</span><span class=kr>__int64</span><span class=p>)</span><span class=n>s1</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>  <span class=n>_ReadStatusReg</span><span class=p>(</span><span class=n>TPIDR_EL0</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>  <span class=k>return</span> <span class=n>v4</span> <span class=o>==</span> <span class=mi>0</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span></span></span></code></pre></td></tr></table></div></div><p>发现这里把Password也在日志信息里打印了，因此我们可以直接logcat获取</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># 用以下命令打印目标应用的日志</span>
+</span></span><span class=line><span class=cl>adb logcat --pid<span class=o>=</span><span class=k>$(</span>adb shell pidof -s com.ad2001.frida0x8<span class=k>)</span></span></span></code></pre></td></tr></table></div></div><p><img loading=lazy src=/posts/b7a1d1b/imgs/image-20260421103826512.png alt=/posts/b7a1d1b/imgs/image-20260421103826512.png height=552 width=1256></p><p>除此之外，我们还发现里面调用了strcmp函数，其中第二个参数就是Password</p><p>因此我们也可以Hook这个strcmp函数</p><p><strong>FRIDA_VERSION &lt; 17：</strong></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=line><span class=cl><span class=kd>function</span> <span class=nx>hook_8</span><span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=kd>var</span> <span class=nx>strcmp_adr</span> <span class=o>=</span> <span class=nx>Module</span><span class=p>.</span><span class=nx>findExportByName</span><span class=p>(</span><span class=s2>&#34;libc.so&#34;</span><span class=p>,</span> <span class=s2>&#34;strcmp&#34;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=nx>Interceptor</span><span class=p>.</span><span class=nx>attach</span><span class=p>(</span><span class=nx>strcmp_adr</span><span class=p>,</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=nx>onEnter</span><span class=o>:</span> <span class=kd>function</span> <span class=p>(</span><span class=nx>args</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=kd>var</span> <span class=nx>arg0</span> <span class=o>=</span> <span class=nx>Memory</span><span class=p>.</span><span class=nx>readUtf8String</span><span class=p>(</span><span class=nx>args</span><span class=p>[</span><span class=mi>0</span><span class=p>]);</span> <span class=c1>// first argument
+</span></span></span><span class=line><span class=cl><span class=c1></span>            <span class=kd>var</span> <span class=nx>flag</span> <span class=o>=</span> <span class=nx>Memory</span><span class=p>.</span><span class=nx>readUtf8String</span><span class=p>(</span><span class=nx>args</span><span class=p>[</span><span class=mi>1</span><span class=p>]);</span> <span class=c1>// second argument
+</span></span></span><span class=line><span class=cl><span class=c1></span>            <span class=k>if</span> <span class=p>(</span><span class=nx>arg0</span><span class=p>.</span><span class=nx>includes</span><span class=p>(</span><span class=s2>&#34;123&#34;</span><span class=p>))</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>                <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=s2>&#34;Hookin the strcmp function&#34;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>                <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=s2>&#34;Input &#34;</span> <span class=o>+</span> <span class=nx>arg0</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>                <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=s2>&#34;The flag is &#34;</span><span class=o>+</span> <span class=nx>flag</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>            <span class=p>}</span>
+</span></span><span class=line><span class=cl>        <span class=p>},</span>
+</span></span><span class=line><span class=cl>        <span class=nx>onLeave</span><span class=o>:</span> <span class=kd>function</span> <span class=p>(</span><span class=nx>retval</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=c1>// Modify or log return value if needed
+</span></span></span><span class=line><span class=cl><span class=c1></span>        <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=p>});</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kd>function</span> <span class=nx>main</span><span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nx>Java</span><span class=p>.</span><span class=nx>performNow</span><span class=p>(</span><span class=kd>function</span> <span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=nx>hook_8</span><span class=p>();</span>
+</span></span><span class=line><span class=cl>    <span class=p>});</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=nx>setImmediate</span><span class=p>(</span><span class=nx>main</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>// Input 123
+</span></span></span><span class=line><span class=cl><span class=c1>// The flag is FRIDA{NATIVE_LAND}
+</span></span></span></code></pre></td></tr></table></div></div><p><strong>FRIDA_VERSION >= 17:</strong></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=line><span class=cl><span class=nx>Process</span><span class=p>.</span><span class=nx>attachModuleObserver</span><span class=p>({</span>
+</span></span><span class=line><span class=cl>    <span class=nx>onAdded</span><span class=o>:</span> <span class=kd>function</span> <span class=p>(</span><span class=nx>module</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=k>if</span> <span class=p>(</span><span class=nx>module</span><span class=p>.</span><span class=nx>name</span> <span class=o>===</span> <span class=s2>&#34;libfrida0x8.so&#34;</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=kd>var</span> <span class=nx>strcmp_adr</span> <span class=o>=</span> <span class=nx>module</span><span class=p>.</span><span class=nx>getExportByName</span><span class=p>(</span><span class=s2>&#34;strcmp&#34;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>            <span class=nx>Interceptor</span><span class=p>.</span><span class=nx>attach</span><span class=p>(</span><span class=nx>strcmp_adr</span><span class=p>,</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>                <span class=nx>onEnter</span><span class=o>:</span> <span class=kd>function</span> <span class=p>(</span><span class=nx>args</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>                    <span class=k>if</span> <span class=p>(</span><span class=nx>args</span><span class=p>[</span><span class=mi>0</span><span class=p>].</span><span class=nx>isNull</span><span class=p>()</span> <span class=o>||</span> <span class=nx>args</span><span class=p>[</span><span class=mi>1</span><span class=p>].</span><span class=nx>isNull</span><span class=p>())</span> <span class=k>return</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>                    <span class=kd>var</span> <span class=nx>str1</span> <span class=o>=</span> <span class=nx>args</span><span class=p>[</span><span class=mi>0</span><span class=p>].</span><span class=nx>readCString</span><span class=p>();</span>
+</span></span><span class=line><span class=cl>                    <span class=kd>var</span> <span class=nx>str2</span> <span class=o>=</span> <span class=nx>args</span><span class=p>[</span><span class=mi>1</span><span class=p>].</span><span class=nx>readCString</span><span class=p>();</span>
+</span></span><span class=line><span class=cl>                    <span class=k>if</span> <span class=p>(</span><span class=nx>str1</span> <span class=o>===</span> <span class=s2>&#34;Hello&#34;</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>                        <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=s2>&#34; Our Input: &#34;</span> <span class=o>+</span> <span class=nx>str1</span> <span class=o>+</span> <span class=s2>&#34;  Secret: &#34;</span> <span class=o>+</span> <span class=nx>str2</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>                    <span class=p>}</span>
+</span></span><span class=line><span class=cl>                <span class=p>}</span>
+</span></span><span class=line><span class=cl>            <span class=p>});</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=p>},</span>
+</span></span><span class=line><span class=cl>    <span class=nx>onRemoved</span><span class=o>:</span> <span class=kd>function</span> <span class=p>(</span><span class=nx>module</span><span class=p>)</span> <span class=p>{}</span>
+</span></span><span class=line><span class=cl><span class=p>});</span></span></span></code></pre></td></tr></table></div></div><h6 class=heading-element id=frida-0x9><span>Frida-0x9</span>
+<a href=#frida-0x9 class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h6><p>Hook原生函数 <code>check_flag()</code>，然后把返回值修改为1337即可</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=line><span class=cl><span class=kd>function</span> <span class=nx>hook_9</span><span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=kd>var</span> <span class=nx>check_addr</span> <span class=o>=</span> <span class=nx>Module</span><span class=p>.</span><span class=nx>enumerateExports</span><span class=p>(</span><span class=s2>&#34;liba0x9.so&#34;</span><span class=p>)[</span><span class=mi>0</span><span class=p>][</span><span class=s2>&#34;address&#34;</span><span class=p>];</span>
+</span></span><span class=line><span class=cl>    <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>check_addr</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=nx>Interceptor</span><span class=p>.</span><span class=nx>attach</span><span class=p>(</span><span class=nx>check_addr</span><span class=p>,{</span>
+</span></span><span class=line><span class=cl>        <span class=nx>onEnter</span><span class=o>:</span> <span class=kd>function</span><span class=p>(</span><span class=nx>args</span><span class=p>){</span>
+</span></span><span class=line><span class=cl>            <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=s2>&#34;check_func called&#34;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>        <span class=p>},</span>
+</span></span><span class=line><span class=cl>        <span class=nx>onLeave</span><span class=o>:</span> <span class=kd>function</span><span class=p>(</span><span class=nx>retval</span><span class=p>){</span>
+</span></span><span class=line><span class=cl>            <span class=nx>retval</span><span class=p>.</span><span class=nx>replace</span><span class=p>(</span><span class=mi>1337</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=p>})</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kd>function</span> <span class=nx>main</span><span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nx>Java</span><span class=p>.</span><span class=nx>performNow</span><span class=p>(</span><span class=kd>function</span> <span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=nx>hook_9</span><span class=p>();</span>
+</span></span><span class=line><span class=cl>    <span class=p>});</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=nx>setImmediate</span><span class=p>(</span><span class=nx>main</span><span class=p>);</span></span></span></code></pre></td></tr></table></div></div><h6 class=heading-element id=frida-0xa><span>Frida-0xA</span>
+<a href=#frida-0xa class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h6><p>主动调用原生函数 <code>get_flag()</code> ，并且传入两个和为3的参数即可</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=line><span class=cl><span class=nx>__int64</span> <span class=nx>__fastcall</span> <span class=nx>get_flag</span><span class=p>(</span><span class=nx>__int64</span> <span class=nx>result</span><span class=p>,</span> <span class=kr>int</span> <span class=nx>a2</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=kr>int</span> <span class=nx>i</span><span class=p>;</span> <span class=c1>// [xsp+Ch] [xbp-44h]
+</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=kr>char</span> <span class=nx>v3</span><span class=p>[</span><span class=mi>20</span><span class=p>];</span> <span class=c1>// [xsp+34h] [xbp-1Ch] BYREF
+</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=nx>__int64</span> <span class=nx>v4</span><span class=p>;</span> <span class=c1>// [xsp+48h] [xbp-8h]
+</span></span></span><span class=line><span class=cl><span class=c1></span>
+</span></span><span class=line><span class=cl>  <span class=nx>v4</span> <span class=o>=</span> <span class=o>*</span><span class=p>(</span><span class=nx>_QWORD</span> <span class=o>*</span><span class=p>)(</span><span class=nx>_ReadStatusReg</span><span class=p>(</span><span class=nx>TPIDR_EL0</span><span class=p>)</span> <span class=o>+</span> <span class=mi>40</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>  <span class=k>if</span> <span class=p>(</span> <span class=p>(</span><span class=nx>_DWORD</span><span class=p>)</span><span class=nx>result</span> <span class=o>+</span> <span class=nx>a2</span> <span class=o>==</span> <span class=mi>3</span> <span class=p>)</span>
+</span></span><span class=line><span class=cl>  <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>for</span> <span class=p>(</span> <span class=nx>i</span> <span class=o>=</span> <span class=mi>0</span><span class=p>;</span> <span class=nx>i</span> <span class=o>&lt;</span> <span class=nx>__strlen_chk</span><span class=p>(</span><span class=s2>&#34;FPE&gt;9q8A&gt;BK-)20A-#Y&#34;</span><span class=p>,</span> <span class=mh>0xFFFFFFFFFFFFFFFF</span><span class=nx>LL</span><span class=p>);</span> <span class=o>++</span><span class=nx>i</span> <span class=p>)</span>
+</span></span><span class=line><span class=cl>      <span class=nx>v3</span><span class=p>[</span><span class=nx>i</span><span class=p>]</span> <span class=o>=</span> <span class=nx>aFpe9q8aBk20aY</span><span class=p>[</span><span class=nx>i</span><span class=p>]</span> <span class=o>+</span> <span class=mi>2</span> <span class=o>*</span> <span class=nx>i</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=nx>v3</span><span class=p>[</span><span class=mi>19</span><span class=p>]</span> <span class=o>=</span> <span class=mi>0</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=nx>result</span> <span class=o>=</span> <span class=nx>__android_log_print</span><span class=p>(</span><span class=mi>3</span><span class=p>,</span> <span class=s2>&#34;FLAG&#34;</span><span class=p>,</span> <span class=s2>&#34;Decrypted Flag: %s&#34;</span><span class=p>,</span> <span class=nx>v3</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>  <span class=p>}</span>
+</span></span><span class=line><span class=cl>  <span class=nx>_ReadStatusReg</span><span class=p>(</span><span class=nx>TPIDR_EL0</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>  <span class=k>return</span> <span class=nx>result</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span></span></span></code></pre></td></tr></table></div></div><p>先在 adb 中开启 logcat 监听</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>pidof -s com.ad2001.frida0xa
+</span></span><span class=line><span class=cl>logcat --pid<span class=o>=</span><span class=m>19660</span></span></span></code></pre></td></tr></table></div></div><p><code>frida -U -f com.ad2001.frida0xa</code> 后终端输入如下内容</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=line><span class=cl><span class=kd>var</span> <span class=nx>funcAddr</span> <span class=o>=</span> <span class=nx>Module</span><span class=p>.</span><span class=nx>findBaseAddress</span><span class=p>(</span><span class=s2>&#34;libfrida0xa.so&#34;</span><span class=p>).</span><span class=nx>add</span><span class=p>(</span><span class=mh>0x1DD60</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=kd>var</span> <span class=nx>get_flag</span> <span class=o>=</span> <span class=k>new</span> <span class=nx>NativeFunction</span><span class=p>(</span><span class=nx>funcAddr</span> <span class=p>,</span> <span class=s1>&#39;void&#39;</span><span class=p>,</span> <span class=p>[</span><span class=s1>&#39;long&#39;</span><span class=p>,</span> <span class=s1>&#39;int&#39;</span><span class=p>]);</span>
+</span></span><span class=line><span class=cl><span class=nx>get_flag</span><span class=p>(</span><span class=mi>2</span><span class=p>,</span> <span class=mi>1</span><span class=p>);</span></span></span></code></pre></td></tr></table></div></div><p>或者 <code>frida -U -f com.ad2001.frida0xa -l 1.js</code></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=line><span class=cl><span class=kd>function</span> <span class=nx>hook_A</span><span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=kd>var</span> <span class=nx>funcAddr</span> <span class=o>=</span> <span class=nx>Module</span><span class=p>.</span><span class=nx>findBaseAddress</span><span class=p>(</span><span class=s2>&#34;libfrida0xa.so&#34;</span><span class=p>).</span><span class=nx>add</span><span class=p>(</span><span class=mh>0x1DD60</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=kd>var</span> <span class=nx>get_flag</span> <span class=o>=</span> <span class=k>new</span> <span class=nx>NativeFunction</span><span class=p>(</span><span class=nx>funcAddr</span> <span class=p>,</span> <span class=s1>&#39;void&#39;</span><span class=p>,</span> <span class=p>[</span><span class=s1>&#39;long&#39;</span><span class=p>,</span> <span class=s1>&#39;int&#39;</span><span class=p>]);</span>
+</span></span><span class=line><span class=cl>    <span class=nx>get_flag</span><span class=p>(</span><span class=mi>2</span><span class=p>,</span> <span class=mi>1</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kd>function</span> <span class=nx>main</span><span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nx>Java</span><span class=p>.</span><span class=nx>performNow</span><span class=p>(</span><span class=kd>function</span> <span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=nx>hook_A</span><span class=p>();</span>
+</span></span><span class=line><span class=cl>    <span class=p>});</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=nx>setImmediate</span><span class=p>(</span><span class=nx>main</span><span class=p>);</span></span></span></code></pre></td></tr></table></div></div><p>然后在 logcat 中即可得到 flag</p><p><img loading=lazy src=/posts/b7a1d1b/imgs/image-20260421234448806.png alt=/posts/b7a1d1b/imgs/image-20260421234448806.png height=242 width=1400></p><h6 class=heading-element id=frida-0xb><span>Frida-0xB</span>
+<a href=#frida-0xb class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h6><p>参考链接：
+<a href=https://github.com/DERE-ad2001/Frida-Labs/blob/main/Frida%200x8/Solution/Solution.md target=_blank rel="external nofollow noopener noreferrer">https://github.com/DERE-ad2001/Frida-Labs/blob/main/Frida%200x8/Solution/Solution.md</a></p><p>和之前一样，关键逻辑在so文件里，因此我们用IDA反编译so文件</p><p>发现F5反编译后得到的 <code>get_flag()</code> 函数是空的，但是汇编中有如下内容：</p><blockquote><p>注意我这里反汇编的是arm架构下的so</p></blockquote><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-c++ data-lang=c++><span class=line><span class=cl><span class=p>.</span><span class=nl>text</span><span class=p>:</span><span class=mo>0000000000015220</span> <span class=p>;</span> <span class=n>__unwind</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl><span class=p>.</span><span class=nl>text</span><span class=p>:</span><span class=mo>0000000000015220</span>                 <span class=n>SUB</span>             <span class=n>SP</span><span class=p>,</span> <span class=n>SP</span><span class=p>,</span> <span class=err>#</span><span class=mh>0x60</span>
+</span></span><span class=line><span class=cl><span class=p>.</span><span class=nl>text</span><span class=p>:</span><span class=mo>0000000000015224</span>                 <span class=n>STP</span>             <span class=n>X29</span><span class=p>,</span> <span class=n>X30</span><span class=p>,</span> <span class=p>[</span><span class=n>SP</span><span class=p>,</span><span class=err>#</span><span class=mh>0x50</span><span class=o>+</span><span class=n>var_s0</span><span class=p>]</span>
+</span></span><span class=line><span class=cl><span class=p>.</span><span class=nl>text</span><span class=p>:</span><span class=mo>000000000001522</span><span class=mi>8</span>                 <span class=n>ADD</span>             <span class=n>X29</span><span class=p>,</span> <span class=n>SP</span><span class=p>,</span> <span class=err>#</span><span class=mh>0x50</span>
+</span></span><span class=line><span class=cl><span class=p>.</span><span class=nl>text</span><span class=p>:</span><span class=mo>000000000001522</span><span class=n>C</span>                 <span class=n>STUR</span>            <span class=n>X0</span><span class=p>,</span> <span class=p>[</span><span class=n>X29</span><span class=p>,</span><span class=err>#</span><span class=n>var_18</span><span class=p>]</span>
+</span></span><span class=line><span class=cl><span class=p>.</span><span class=nl>text</span><span class=p>:</span><span class=mo>0000000000015230</span>                 <span class=n>STUR</span>            <span class=n>X1</span><span class=p>,</span> <span class=p>[</span><span class=n>X29</span><span class=p>,</span><span class=err>#</span><span class=n>var_20</span><span class=p>]</span>
+</span></span><span class=line><span class=cl><span class=p>.</span><span class=nl>text</span><span class=p>:</span><span class=mo>0000000000015234</span>                 <span class=n>MOV</span>             <span class=n>W8</span><span class=p>,</span> <span class=err>#</span><span class=mh>0xDEADBEEF</span>
+</span></span><span class=line><span class=cl><span class=p>.</span><span class=nl>text</span><span class=p>:</span><span class=mo>000000000001523</span><span class=n>C</span>                 <span class=n>STUR</span>            <span class=n>W8</span><span class=p>,</span> <span class=p>[</span><span class=n>X29</span><span class=p>,</span><span class=err>#</span><span class=n>var_24</span><span class=p>]</span>
+</span></span><span class=line><span class=cl><span class=p>.</span><span class=nl>text</span><span class=p>:</span><span class=mo>0000000000015240</span>                 <span class=n>LDUR</span>            <span class=n>W8</span><span class=p>,</span> <span class=p>[</span><span class=n>X29</span><span class=p>,</span><span class=err>#</span><span class=n>var_24</span><span class=p>]</span>
+</span></span><span class=line><span class=cl><span class=p>.</span><span class=nl>text</span><span class=p>:</span><span class=mo>0000000000015244</span>                 <span class=n>SUBS</span>            <span class=n>W8</span><span class=p>,</span> <span class=n>W8</span><span class=p>,</span> <span class=err>#</span><span class=mh>0x539</span>
+</span></span><span class=line><span class=cl><span class=p>.</span><span class=nl>text</span><span class=p>:</span><span class=mo>000000000001524</span><span class=mi>8</span>                 <span class=n>B</span><span class=p>.</span><span class=n>NE</span>            <span class=n>loc_1532C</span>
+</span></span><span class=line><span class=cl><span class=p>.</span><span class=nl>text</span><span class=p>:</span><span class=mo>000000000001524</span><span class=n>C</span>                 <span class=n>B</span>               <span class=n>loc_15250</span></span></span></code></pre></td></tr></table></div></div><blockquote><p>如果是x86架构下的so，得到的是如下内容</p></blockquote><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span><span class=lnt>9
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-c++ data-lang=c++><span class=line><span class=cl><span class=p>.</span><span class=nl>text</span><span class=p>:</span><span class=mo>00000000000170</span><span class=n>B0</span>                                   <span class=p>;</span> <span class=n>__unwind</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl><span class=p>.</span><span class=nl>text</span><span class=p>:</span><span class=mo>00000000000170</span><span class=n>B0</span> <span class=mo>000</span> <span class=mi>55</span>                            <span class=n>push</span>    <span class=n>rbp</span>
+</span></span><span class=line><span class=cl><span class=p>.</span><span class=nl>text</span><span class=p>:</span><span class=mo>00000000000170</span><span class=n>B1</span> <span class=mo>00</span><span class=mi>8</span> <span class=mi>48</span> <span class=mi>89</span> <span class=n>E5</span>                      <span class=n>mov</span>     <span class=n>rbp</span><span class=p>,</span> <span class=n>rsp</span>
+</span></span><span class=line><span class=cl><span class=p>.</span><span class=nl>text</span><span class=p>:</span><span class=mo>00000000000170</span><span class=n>B4</span> <span class=mo>00</span><span class=mi>8</span> <span class=mi>48</span> <span class=mi>83</span> <span class=n>EC</span> <span class=mi>50</span>                   <span class=n>sub</span>     <span class=n>rsp</span><span class=p>,</span> <span class=mi>50</span><span class=n>h</span>
+</span></span><span class=line><span class=cl><span class=p>.</span><span class=nl>text</span><span class=p>:</span><span class=mo>00000000000170</span><span class=n>B8</span> <span class=mo>05</span><span class=mi>8</span> <span class=mi>48</span> <span class=mi>89</span> <span class=mi>7</span><span class=n>D</span> <span class=n>E8</span>                   <span class=n>mov</span>     <span class=p>[</span><span class=n>rbp</span><span class=o>+</span><span class=n>var_18</span><span class=p>],</span> <span class=n>rdi</span>
+</span></span><span class=line><span class=cl><span class=p>.</span><span class=nl>text</span><span class=p>:</span><span class=mo>00000000000170</span><span class=n>BC</span> <span class=mo>05</span><span class=mi>8</span> <span class=mi>48</span> <span class=mi>89</span> <span class=mi>75</span> <span class=n>E0</span>                   <span class=n>mov</span>     <span class=p>[</span><span class=n>rbp</span><span class=o>+</span><span class=n>var_20</span><span class=p>],</span> <span class=n>rsi</span>
+</span></span><span class=line><span class=cl><span class=p>.</span><span class=nl>text</span><span class=p>:</span><span class=mo>00000000000170</span><span class=n>C0</span> <span class=mo>05</span><span class=mi>8</span> <span class=n>C7</span> <span class=mi>45</span> <span class=n>DC</span> <span class=n>EF</span> <span class=n>BE</span> <span class=n>AD</span> <span class=n>DE</span>          <span class=n>mov</span>     <span class=p>[</span><span class=n>rbp</span><span class=o>+</span><span class=n>var_24</span><span class=p>],</span> <span class=mi>0</span><span class=n>DEADBEEFh</span>
+</span></span><span class=line><span class=cl><span class=p>.</span><span class=nl>text</span><span class=p>:</span><span class=mo>00000000000170</span><span class=n>C7</span> <span class=mo>05</span><span class=mi>8</span> <span class=mi>81</span> <span class=mi>7</span><span class=n>D</span> <span class=n>DC</span> <span class=mi>39</span> <span class=mo>05</span> <span class=mo>00</span> <span class=mo>00</span>          <span class=n>cmp</span>     <span class=p>[</span><span class=n>rbp</span><span class=o>+</span><span class=n>var_24</span><span class=p>],</span> <span class=mi>539</span><span class=n>h</span>
+</span></span><span class=line><span class=cl><span class=p>.</span><span class=nl>text</span><span class=p>:</span><span class=mo>00000000000170</span><span class=n>CE</span> <span class=mo>05</span><span class=mi>8</span> <span class=mf>0F</span> <span class=mi>85</span> <span class=n>D2</span> <span class=mo>00</span> <span class=mo>00</span> <span class=mo>00</span>             <span class=n>jnz</span>     <span class=n>loc_171A6</span></span></span></code></pre></td></tr></table></div></div><p>两个汇编大致的意思都一样，就是给一个值复制 <code>0xdeadbeef</code>，然后与 <code>0x539</code> 比较，如果相等就跳转</p><p>但是这里很明显不会相等，因此永远不会跳转，所以反编译后出来的函数是空的</p><p>但是我们可以在 ghidra 中关闭这项优化让它显示这段反编译代码：<code>Edit</code> -> <code>Tools Option</code> -> <code>Analysis</code> -> <code>Eliminate unreachable code</code></p><p>关闭以后就可以得到如下反编译后的代码</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-c++ data-lang=c++><span class=line><span class=cl><span class=kt>void</span> <span class=nf>Java_com_ad2001_frida0xb_MainActivity_getFlag</span><span class=p>(</span><span class=kt>void</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=n>uint</span> <span class=n>uVar1</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>  <span class=kt>void</span> <span class=o>*</span><span class=n>pvVar2</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>  <span class=n>uint</span> <span class=n>local_18</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>  
+</span></span><span class=line><span class=cl>  <span class=k>if</span> <span class=p>(</span><span class=nb>false</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=n>uVar1</span> <span class=o>=</span> <span class=n>__strlen_chk</span><span class=p>(</span><span class=s>&#34;j~ehmWbmxezisdmogi~Q&#34;</span><span class=p>,</span><span class=mh>0xffffffff</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=n>pvVar2</span> <span class=o>=</span> <span class=k>operator</span><span class=p>.</span><span class=k>new</span><span class=p>[](</span><span class=n>uVar1</span> <span class=o>+</span> <span class=mi>1</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=k>for</span> <span class=p>(</span><span class=n>local_18</span> <span class=o>=</span> <span class=mi>0</span><span class=p>;</span> <span class=n>local_18</span> <span class=o>&lt;</span> <span class=n>uVar1</span><span class=p>;</span> <span class=n>local_18</span> <span class=o>=</span> <span class=n>local_18</span> <span class=o>+</span> <span class=mi>1</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>      <span class=o>*</span><span class=p>(</span><span class=n>byte</span> <span class=o>*</span><span class=p>)((</span><span class=kt>int</span><span class=p>)</span><span class=n>pvVar2</span> <span class=o>+</span> <span class=n>local_18</span><span class=p>)</span> <span class=o>=</span> <span class=s>&#34;j~ehmWbmxezisdmogi~Q&#34;</span><span class=p>[</span><span class=n>local_18</span><span class=p>]</span> <span class=o>^</span> <span class=mh>0x2c</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=o>*</span><span class=p>(</span><span class=n>undefined1</span> <span class=o>*</span><span class=p>)((</span><span class=kt>int</span><span class=p>)</span><span class=n>pvVar2</span> <span class=o>+</span> <span class=n>local_18</span><span class=p>)</span> <span class=o>=</span> <span class=mi>0</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=n>__android_log_print</span><span class=p>(</span><span class=mi>3</span><span class=p>,</span><span class=s>&#34;FLAG :&#34;</span><span class=p>,</span><span class=o>&amp;</span><span class=n>DAT_0001687e</span><span class=p>,</span><span class=n>pvVar2</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=p>(</span><span class=n>pvVar2</span> <span class=o>!=</span> <span class=p>(</span><span class=kt>void</span> <span class=o>*</span><span class=p>)</span><span class=mh>0x0</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>      <span class=k>operator</span><span class=p>.</span><span class=k>delete</span><span class=p>[](</span><span class=n>pvVar2</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>  <span class=p>}</span>
+</span></span><span class=line><span class=cl>  <span class=k>return</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span></span></span></code></pre></td></tr></table></div></div><p>这里我们就可以使用 <code>X86Writer</code> 或 <code>Arm64Writer</code> 去修改 <code>jnz</code> -> <code>nop</code> 或 <code>B.NE</code> -> <code>B</code></p><p>具体的使用方法可以参考官方文档：</p><p><a href=https://frida.re/docs/javascript-api/#x86writer target=_blank rel="external nofollow noopener noreferrer">https://frida.re/docs/javascript-api/#x86writer</a></p><p><a href=https://frida.re/docs/javascript-api/#arm64writer target=_blank rel="external nofollow noopener noreferrer">https://frida.re/docs/javascript-api/#arm64writer</a></p><p>但是当前目标写入的位置在<code>.text</code>段，但是这个段默认是没有写的权限的，因此我们直接修改会导致程序崩溃</p><p>这里就可以使用 <code>Memory.protect()</code> 去修改这一段内存区域的保护属性</p><p>这部分的内容详见上面的参考链接</p><p>x86架构下的hook脚本：</p><blockquote><p>我们可以用ghidra中的<code>0x20e2a</code>地址减去基址<code>0x00010000</code>来得到偏移。</p><p>然后再把这个偏移加回模块基址，就能得到jnz指令的真实地址。</p></blockquote><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=line><span class=cl><span class=kd>var</span> <span class=nx>jnz</span> <span class=o>=</span> <span class=nx>Module</span><span class=p>.</span><span class=nx>getBaseAddress</span><span class=p>(</span><span class=s2>&#34;libfrida0xb.so&#34;</span><span class=p>).</span><span class=nx>add</span><span class=p>(</span><span class=mh>0x20e2a</span> <span class=o>-</span> <span class=mh>0x00010000</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=nx>Memory</span><span class=p>.</span><span class=nx>protect</span><span class=p>(</span><span class=nx>jnz</span><span class=p>,</span> <span class=mh>0x1000</span><span class=p>,</span> <span class=s2>&#34;rwx&#34;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=kd>var</span> <span class=nx>writer</span> <span class=o>=</span> <span class=k>new</span> <span class=nx>X86Writer</span><span class=p>(</span><span class=nx>jnz</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=k>try</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=c1>// 当使用新指令覆盖旧指令时，必须保证新指令的长度足以覆盖旧指令的长度
+</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=c1>// 因为原jnz指令的长度为6，所以这里要 PutNop() 六次
+</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=nx>writer</span><span class=p>.</span><span class=nx>putNop</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>  <span class=nx>writer</span><span class=p>.</span><span class=nx>putNop</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>  <span class=nx>writer</span><span class=p>.</span><span class=nx>putNop</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>  <span class=nx>writer</span><span class=p>.</span><span class=nx>putNop</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>  <span class=nx>writer</span><span class=p>.</span><span class=nx>putNop</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>  <span class=nx>writer</span><span class=p>.</span><span class=nx>putNop</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=nx>writer</span><span class=p>.</span><span class=nx>flush</span><span class=p>();</span> <span class=c1>// 将修改刷新到内存
+</span></span></span><span class=line><span class=cl><span class=c1></span>
+</span></span><span class=line><span class=cl><span class=p>}</span> <span class=k>finally</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=nx>writer</span><span class=p>.</span><span class=nx>dispose</span><span class=p>();</span> <span class=c1>// 释放 X86Writer 占用的资源
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=p>}</span></span></span></code></pre></td></tr></table></div></div><p>ARM架构下的hook脚本：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=line><span class=cl><span class=kd>var</span> <span class=nx>adr</span> <span class=o>=</span> <span class=nx>Module</span><span class=p>.</span><span class=nx>findBaseAddress</span><span class=p>(</span><span class=s2>&#34;libfrida0xb.so&#34;</span><span class=p>).</span><span class=nx>add</span><span class=p>(</span><span class=mh>0x15248</span><span class=p>);</span>  <span class=c1>// b.ne 指令的地址
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=nx>Memory</span><span class=p>.</span><span class=nx>protect</span><span class=p>(</span><span class=nx>adr</span><span class=p>,</span> <span class=mh>0x1000</span><span class=p>,</span> <span class=s2>&#34;rwx&#34;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=kd>var</span> <span class=nx>writer</span> <span class=o>=</span> <span class=k>new</span> <span class=nx>Arm64Writer</span><span class=p>(</span><span class=nx>adr</span><span class=p>);</span>  <span class=c1>// ARM64 写入器对象
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=kd>var</span> <span class=nx>target</span> <span class=o>=</span> <span class=nx>Module</span><span class=p>.</span><span class=nx>findBaseAddress</span><span class=p>(</span><span class=s2>&#34;libfrida0xb.so&#34;</span><span class=p>).</span><span class=nx>add</span><span class=p>(</span><span class=mh>0x1524c</span><span class=p>);</span>  <span class=c1>// 下一条指令 b LAB_00115250 的地址
+</span></span></span><span class=line><span class=cl><span class=c1></span>
+</span></span><span class=line><span class=cl><span class=k>try</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=nx>writer</span><span class=p>.</span><span class=nx>putBImm</span><span class=p>(</span><span class=nx>target</span><span class=p>);</span>   <span class=c1>// 在 b.ne 的位置写入 &lt;b target&gt; 指令
+</span></span></span><span class=line><span class=cl><span class=c1></span>  
+</span></span><span class=line><span class=cl>  <span class=nx>writer</span><span class=p>.</span><span class=nx>flush</span><span class=p>();</span>
+</span></span><span class=line><span class=cl>  <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=sb>`Branch instruction inserted at </span><span class=si>${</span><span class=nx>adr</span><span class=si>}</span><span class=sb>`</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=p>}</span> <span class=k>finally</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=nx>writer</span><span class=p>.</span><span class=nx>dispose</span><span class=p>();</span>
+</span></span><span class=line><span class=cl><span class=p>}</span></span></span></code></pre></td></tr></table></div></div><p><strong>FRIDA_VERSION >= 17:</strong></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=line><span class=cl><span class=nx>Process</span><span class=p>.</span><span class=nx>attachModuleObserver</span><span class=p>({</span>
+</span></span><span class=line><span class=cl>    <span class=nx>onAdded</span><span class=o>:</span> <span class=kd>function</span><span class=p>(</span><span class=nx>module</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=k>if</span> <span class=p>(</span><span class=nx>module</span><span class=p>.</span><span class=nx>name</span> <span class=o>===</span> <span class=s2>&#34;libfrida0xb.so&#34;</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=sb>`Found libfrida0xb.so at: </span><span class=si>${</span><span class=nx>module</span><span class=p>.</span><span class=nx>base</span><span class=si>}</span><span class=sb>`</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>            <span class=kr>const</span> <span class=nx>targetAddress</span> <span class=o>=</span> <span class=nx>module</span><span class=p>.</span><span class=nx>base</span><span class=p>.</span><span class=nx>add</span><span class=p>(</span><span class=mh>0x15248</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>            <span class=nx>Memory</span><span class=p>.</span><span class=nx>patchCode</span><span class=p>(</span><span class=nx>targetAddress</span><span class=p>,</span> <span class=mi>4</span><span class=p>,</span> <span class=p>(</span><span class=nx>code</span><span class=p>)</span> <span class=p>=&gt;</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>                <span class=kr>const</span> <span class=nx>cw</span> <span class=o>=</span> <span class=k>new</span> <span class=nx>Arm64Writer</span><span class=p>(</span><span class=nx>code</span><span class=p>,</span> <span class=p>{</span> <span class=nx>pc</span><span class=o>:</span> <span class=nx>targetAddress</span> <span class=p>});</span>
+</span></span><span class=line><span class=cl>                <span class=nx>cw</span><span class=p>.</span><span class=nx>putNop</span><span class=p>();</span>
+</span></span><span class=line><span class=cl>                <span class=nx>cw</span><span class=p>.</span><span class=nx>flush</span><span class=p>();</span>
+</span></span><span class=line><span class=cl>                <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=sb>`Instruction at </span><span class=si>${</span><span class=nx>targetAddress</span><span class=si>}</span><span class=sb> successfully patched with NOP!`</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>            <span class=p>});</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=p>},</span>
+</span></span><span class=line><span class=cl>    <span class=nx>onRemoved</span><span class=o>:</span> <span class=kd>function</span><span class=p>(</span><span class=nx>module</span><span class=p>)</span> <span class=p>{}</span>
+</span></span><span class=line><span class=cl><span class=p>});</span></span></span></code></pre></td></tr></table></div></div><p>最后用logcat监听日志，然后运行frida脚本即可得到flag</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>logcat <span class=p>|</span> grep -i <span class=s2>&#34;FLAG&#34;</span></span></span></code></pre></td></tr></table></div></div><h2 class=heading-element id=2025-ctf><span>2025 ?CTF</span>
 <a href=#2025-ctf class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h2><h3 class=heading-element id=8086asm><span>8086ASM</span>
 <a href=#8086asm class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h3><p>题目附件如下， 我在关键部分加了点注释</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
 </span><span class=lnt> 2
