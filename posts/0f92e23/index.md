@@ -1444,9 +1444,10 @@ Interceptor.attach(targetAddress, {
 
 ##### 其他的一些常用API
 
-|      API名称       |      功能       |                 例子                 |
-| :--------------: | :-----------: | :--------------------------------: |
-| Memory.protect() | 修改一段内存区域的保护属性 | Memory.protect(jnz, 0x1000, "rwx") |
+|            API名称             |             功能             |                 例子                 |
+| :--------------------------: | :------------------------: | :--------------------------------: |
+| Java.enumerateClassLoaders() | 遍历 JVM 中所有已存在的 ClassLoader |                                    |
+|       Memory.protect()       |       修改一段内存区域的保护属性        | Memory.protect(jnz, 0x1000, "rwx") |
 
 
 #### Frida+Objection实现动态分析
@@ -1554,8 +1555,14 @@ setImmediate(main);
 
 ###### 第二关
 
+> 因为 DexClassLoader 是 App 运行时动态创建的，在脚本加载阶段它还不存在
+> 
+> 所以我们这里要先去堆中找已有的实例
 
 
+```js
+
+```
 
 
 ###### 第三关
