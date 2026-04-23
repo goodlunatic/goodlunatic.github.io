@@ -1193,7 +1193,7 @@ Root的教程可以参考这篇文章：https://zhuanlan.zhihu.com/p/647937696
 ##### Windows客户端配置
 
 ```bash
-pip install frida-tools
+pip install frida-tools==16.7.19 frida==13.7.1
 frida --version
 # 把相同版本的 frida-server 传到手机
 adb push .\frida-server-16.7.19-android-arm64 /data/local/tmp/
@@ -1477,61 +1477,91 @@ android hooking watch class_method com.kanxue.pediy1.VVVVV.VVVV --dump-args --du
 
 参考链接：https://bbs.kanxue.com/thread-260550.htm
 
-###### pediy1
+###### 第一关
 
 ```js
 function main(){
-    // Java.perform()：等 Android Java 虚拟机准备好之后，再执行里面的逻辑
     Java.perform(function(){
-        // Java.use("完整类名") —— 获取指定 Java 类的"包装对象"
-        // 通过这个包装对象可以：
-        // 1. Hook 实例方法 / 静态方法
-        // 2. 调用静态方法
-        // 3. 访问静态字段
+        // 获取目标类的包装对象（可用于 Hook 方法、调用静态方法、访问静态字段）
         var VVVVV = Java.use("com.kanxue.pediy1.VVVVV");
-        // 访问类中的方法 VVVV
-        // .implementation 是 Frida 的关键字，表示"替换这个方法的具体实现"
-        // 赋值之后，每次 App 调用 VVVVV.VVVV(x, y) 时，都会执行我们写的函数，而不是原来的逻辑
-        VVVVV.VVVV.implementation = function(x,y){
-            // 此处的 this 指向调用该方法的 Java 对象实例（即 VVVVV 的某个实例）
-            // this.VVVV(x, y) —— 调用原始方法，获取原本的返回值
-            // 如果不调用这行，原方法的逻辑就被完全跳过了（相当于直接替换）
-            // 这里先拿到结果，再打印，最后原样返回，属于"观察型 Hook"，不影响原有逻辑
-            var res = this.VVVV(x,y);
-            console.log("x,y,res",x,y,res);
-            // 必须 return，否则原方法的调用方会收到 undefined
-            // 这里原样返回 res，保持 App 行为不变
-            return res;
+
+        // 替换 VVVV 方法的实现（观察型 Hook，不影响原有逻辑）
+        VVVVV.VVVV.implementation = function(x, y){
+            var res = this.VVVV(x, y); // 调用原始方法
+            console.log("x,y,res", x, y, res);
+            return res; // 必须 return，否则调用方收到 undefined
         }
     })
 }
 
-// setImmediate(main) 会在 Frida 脚本加载完成后，立即异步执行 main 函数
-// 相当于 "等脚本环境初始化好了，马上跑 main"
-// 比直接调用 main() 更安全，避免环境未就绪时报错
+// 脚本加载完成后立即异步执行 main，比直接调用更安全
 setImmediate(main)
 ```
 
 ```js
-function main(){
-    Java.perform(function(){
-        var VVVVV_Class = Java.use('com.kanxue.pediy1.VVVVV');
-        console.log("VVVVV_Class:",VVVVV_Class);
-        VVVVV_Class.eeeee.implementation = function(x){
-            var res = this.eeeee(x);
-            console.log("eeeee Hooked! x,res:",x,res);
-            return res;
-        }
-        var ByteString = Java.use("com.android.okhttp.okio.ByteString");
-        console.log(ByteString);
-        var pSign = Java.use("java.lang.String").$new("6f452303f18605510aac694b0f5736beebf110bf").getBytes();
-        console.log(ByteString)
-    })
-
+function hook_1() {
+    var VVVVV = Java.use("com.kanxue.pediy1.VVVVV");
+    Java.openClassFile("/data/local/tmp/r0gson.dex").load();
+    const gosn = Java.use("com.r0ysue.gson.Gson");
+    VVVVV.eeeee.implementation = function (x) {
+        var res = this.eeeee(x);
+        // console.log("x,res", x, res);
+        console.log("x,res", x, gosn.$new().toJson(res));
+        return res;
+    }
 }
 
-setImmediate(main)
+function hook_2() {
+    var VVVVV = Java.use("com.kanxue.pediy1.VVVVV");
+    var ByteString = Java.use("com.android.okhttp.okio.ByteString");
+    var pSign = Java.use("java.lang.String").$new("6f452303f18605510aac694b0f5736beebf110bf").getBytes();
+    console.log("pSign", pSign);
+    // console.log("pSign_hex", ByteString.of(pSign).hex());
+    for (var i = 9999; i < 100000; i++) {
+        var v = Java.use("java.lang.String").$new(String(i));
+        var vSign = VVVVV.eeeee(v);
+        console.log("[+] ", i, ":", vSign);
+        // byte[] 是 Java 引用类型，== 比较的是内存地址而非内容，需转成字符串基本类型后才能用 == 正确比较值。
+        if (ByteString.of(vSign).hex() == ByteString.of(pSign).hex()) {
+            console.log("[+] find it! ", i);
+            break;
+        }
+    }
+}
+
+function hook_3() {
+    var VVVVV = Java.use("com.kanxue.pediy1.VVVVV");
+    Java.openClassFile("/data/local/tmp/r0gson.dex").load();
+    const gosn = Java.use("com.r0ysue.gson.Gson");
+    VVVVV.eeeee.implementation = function (x) {
+        var res = this.eeeee(x);
+        console.log("[+] 输入的内容: x,res", x, gosn.$new().toJson(res));
+        // 创建一个 Java byte[] 数组, 'byte' 用来指定元素类型
+        var value = Java.array('byte', [54, 102, 52, 53, 50, 51, 48, 51, 102, 49, 56, 54, 48, 53, 53, 49, 48, 97, 97, 99, 54, 57, 52, 98, 48, 102, 53, 55, 51, 54, 98, 101, 101, 98, 102, 49, 49, 48, 98, 102])
+        console.log("[+] 修改后的内容: v", gosn.$new().toJson(value));
+        return value;
+    }
+}
+
+function main() {
+    Java.perform(function () {
+        hook_3();
+    });
+}
+
+setImmediate(main);
 ```
+
+###### 第二关
+
+
+
+
+
+###### 第三关
+
+
+
 
 
 
