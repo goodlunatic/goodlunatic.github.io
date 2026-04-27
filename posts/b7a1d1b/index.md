@@ -1004,14 +1004,16 @@ void __fastcall __noreturn detect_frida_loop(void *a1)
 ```js
 function hookstrcmp(){
     var strcmp_addr = Module.findExportByName("libc.so", "strcmp");
+    console.log("strcmp_addr:", strcmp_addr);
     Interceptor.attach(strcmp_addr, {
         onEnter: function (args) {
+            this.isREJECT = false;
             var arg0 = Memory.readUtf8String(args[0]); // first argument
             var arg1 = Memory.readUtf8String(args[1]); // second argument
             if (arg1.includes("REJECT")) {
                 console.log("Hookin the target strcmp function");
+                this.isREJECT = true;
             }
-            this.isREJECT = true;
         },
         onLeave: function (retval) {
             if (this.isREJECT) {    
@@ -1025,17 +1027,21 @@ function hookstrcmp(){
 
 解决了这个问题后，后续的过程就和之前一样了，直接爆破
 
+> 使用的时候先在命令行输入 `hookstrcmp();`，然后再输入 `hookDex(st,ed)` 即可
+
 ```js
 function hookstrcmp(){
     var strcmp_addr = Module.findExportByName("libc.so", "strcmp");
+    console.log("strcmp_addr:", strcmp_addr);
     Interceptor.attach(strcmp_addr, {
         onEnter: function (args) {
+            this.isREJECT = false;
             var arg0 = Memory.readUtf8String(args[0]); // first argument
             var arg1 = Memory.readUtf8String(args[1]); // second argument
             if (arg1.includes("REJECT")) {
                 console.log("Hookin the target strcmp function");
+                this.isREJECT = true;
             }
-            this.isREJECT = true;
         },
         onLeave: function (retval) {
             if (this.isREJECT) {    
@@ -1045,7 +1051,6 @@ function hookstrcmp(){
         }
     });
 }
-
 
 function hookDex(st,ed) {
     Java.perform(function () {
