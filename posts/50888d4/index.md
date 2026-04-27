@@ -161,6 +161,12 @@ https://github.com/nousresearch/hermes-agent
 
 个人认为Hermes和openclaw最大的区别就是：Hermes会自己改进学习后保存为skills
 
+Hermes中文社区：https://hermesagent.org.cn/docs/
+
+Hermes官方文档：https://hermes-agent.nousresearch.com/docs
+
+
+
 
 
 
