@@ -308,11 +308,9 @@ function hook_8() {
             var arg0 = Memory.readUtf8String(args[0]); // first argument
             var flag = Memory.readUtf8String(args[1]); // second argument
             if (arg0.includes("123")) {
-
                 console.log("Hookin the strcmp function");
                 console.log("Input " + arg0);
                 console.log("The flag is "+ flag);
-
             }
         },
         onLeave: function (retval) {
@@ -606,6 +604,516 @@ Process.attachModuleObserver({
 
 ```bash
 logcat | grep "FLAG"
+```
+
+#### 看雪上的三道例题
+
+参考链接：https://bbs.kanxue.com/thread-260550.htm
+
+##### 第一关
+
+```js
+function main(){
+    Java.perform(function(){
+        // 获取目标类的包装对象（可用于 Hook 方法、调用静态方法、访问静态字段）
+        var VVVVV = Java.use("com.kanxue.pediy1.VVVVV");
+
+        // 替换 VVVV 方法的实现（观察型 Hook，不影响原有逻辑）
+        VVVVV.VVVV.implementation = function(x, y){
+            var res = this.VVVV(x, y); // 调用原始方法
+            console.log("x,y,res", x, y, res);
+            return res; // 必须 return，否则调用方收到 undefined
+        }
+    })
+}
+
+// 脚本加载完成后立即异步执行 main，比直接调用更安全
+setImmediate(main)
+```
+
+```js
+function hook_1() {
+    var VVVVV = Java.use("com.kanxue.pediy1.VVVVV");
+    Java.openClassFile("/data/local/tmp/r0gson.dex").load();
+    const gosn = Java.use("com.r0ysue.gson.Gson");
+    VVVVV.eeeee.implementation = function (x) {
+        var res = this.eeeee(x);
+        // console.log("x,res", x, res);
+        console.log("x,res", x, gosn.$new().toJson(res));
+        return res;
+    }
+}
+
+function hook_2() {
+    var VVVVV = Java.use("com.kanxue.pediy1.VVVVV");
+    var ByteString = Java.use("com.android.okhttp.okio.ByteString");
+    var pSign = Java.use("java.lang.String").$new("6f452303f18605510aac694b0f5736beebf110bf").getBytes();
+    console.log("pSign", pSign);
+    // console.log("pSign_hex", ByteString.of(pSign).hex());
+    for (var i = 9999; i < 100000; i++) {
+        var v = Java.use("java.lang.String").$new(String(i));
+        var vSign = VVVVV.eeeee(v);
+        console.log("[+] ", i, ":", vSign);
+        // byte[] 是 Java 引用类型，== 比较的是内存地址而非内容，需转成字符串基本类型后才能用 == 正确比较值。
+        if (ByteString.of(vSign).hex() == ByteString.of(pSign).hex()) {
+            console.log("[+] find it! ", i);
+            break;
+        }
+    }
+}
+
+function hook_3() {
+    var VVVVV = Java.use("com.kanxue.pediy1.VVVVV");
+    Java.openClassFile("/data/local/tmp/r0gson.dex").load();
+    const gosn = Java.use("com.r0ysue.gson.Gson");
+    VVVVV.eeeee.implementation = function (x) {
+        var res = this.eeeee(x);
+        console.log("[+] 输入的内容: x,res", x, gosn.$new().toJson(res));
+        // 创建一个 Java byte[] 数组, 'byte' 用来指定元素类型
+        var value = Java.array('byte', [54, 102, 52, 53, 50, 51, 48, 51, 102, 49, 56, 54, 48, 53, 53, 49, 48, 97, 97, 99, 54, 57, 52, 98, 48, 102, 53, 55, 51, 54, 98, 101, 101, 98, 102, 49, 49, 48, 98, 102])
+        console.log("[+] 修改后的内容: v", gosn.$new().toJson(value));
+        return value;
+    }
+}
+
+function main() {
+    Java.perform(function () {
+        hook_3();
+    });
+}
+
+setImmediate(main);
+```
+
+##### 第二关
+
+> 因为 DexClassLoader 是 App 运行时动态创建的，在脚本加载阶段它还不存在
+> 
+> 所以我们这里要先去堆中找已有的实例
+
+```js
+function hookDex(st,ed) {
+    Java.perform(function () {
+        // 从堆中找到 MainActivity 实例，主动触发 loadDexClass()
+        // 目的：让 App 加载目标 dex，使 VVVVV 类进入内存
+        Java.choose("com.kanxue.pediy1.MainActivity", {
+            onMatch: function (instance) {
+                console.log("found instance:", instance);
+                console.log("invoke loadDexClass!", instance.loadDexClass());
+            },
+            onComplete() { }
+        });
+        // 从堆中找到 DexClassLoader 实例，替换全局 ClassLoader
+        // 使 Java.use() 能够找到动态加载的类
+        Java.choose("dalvik.system.DexClassLoader", {
+            onMatch: function (loader) {
+                Java.classFactory.loader = loader;
+                console.log("the Loader:", Java.classFactory.loader);
+            },
+            onComplete: function () { }
+        });
+
+        // 获取动态加载的目标类
+        var VVVVV_Class = Java.use("com.kanxue.pediy1.VVVVV");
+        console.log("VVVVV_Class:", VVVVV_Class);
+        // 创建 Java String 和 ByteString 对象，准备暴力枚举
+        // ByteString 是 okhttp 提供的工具类，用于将 byte[] 转成十六进制字符串
+        // 目的：byte[] 不能直接用 == 比较内容，转成 hex 字符串后才能比较
+        var JavaString = Java.use("java.lang.String");
+        var ByteString = Java.use("com.android.okhttp.okio.ByteString");
+        var pSign = JavaString.$new("7c133979c8fc45943815792c0288300687cf0a16").getBytes();
+        var pSign_hex = ByteString.of(pSign).hex();
+        console.log("pSign:", pSign);
+        console.log("pSign_hex:", pSign_hex);
+
+        // 暴力枚举 10000 ~ 100000，逐个调用 eeeee() 计算 hash
+        for (var i = st; i < ed; i++) {
+            // 将数字转成 Java String 作为入参
+            var v = JavaString.$new(String(i));
+            // 调用目标类的 eeeee 方法，计算当前数字的 hash
+            var vSign = VVVVV_Class.eeeee(v);
+            var vSign_hex = ByteString.of(vSign).hex();
+            console.log("[+]", i, ":", vSign_hex);
+            if (vSign_hex == pSign_hex) {
+                console.log("Found! i=" + i);
+                break;
+            }
+        }
+    });
+}
+// hookDex(60000,70000);
+// Found! i=66999
+```
+
+> 因为这里直接从10000爆破到99999会爆内存，所以我改成了外部传入范围的方式
+
+爆破可以得到答案66999，，但是当我们尝试到app中验证的时候，发现并不对
+
+于是我们再回头去看jadx反编译出来的代码
+
+```java
+package com.kanxue.pediy1;
+
+import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.TextView;
+import androidx.appcompat.app.AppCompatActivity;
+import dalvik.system.DexClassLoader;
+import java.io.File;
+import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+
+/* JADX INFO: loaded from: classes.dex */
+public class MainActivity extends AppCompatActivity {
+    TextView message_tv;
+    EditText password_et;
+    EditText username_et;
+
+    public native int stringFromJNI(String str);
+
+    static {
+        System.loadLibrary("native-lib");
+    }
+
+    @Override // androidx.appcompat.app.AppCompatActivity, androidx.fragment.app.FragmentActivity, androidx.activity.ComponentActivity, androidx.core.app.ComponentActivity, android.app.Activity
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        findViewById(R.id.button).setOnClickListener(new View.OnClickListener() { // from class: com.kanxue.pediy1.MainActivity.1
+            @Override // android.view.View.OnClickListener
+            public void onClick(View v) {
+                MainActivity.this.loadDexClass();
+            }
+        });
+    }
+
+    /* JADX INFO: Access modifiers changed from: private */
+    public void loadDexClass() {
+        File cacheFile = FileUtils.getCacheDir(getApplicationContext());
+        String internalPath = cacheFile.getAbsolutePath() + File.separator + "classes.dex";
+        Log.i("assets", "loadDexClass:internalPath is " + internalPath);
+        File desFile = new File(internalPath);
+        try {
+            desFile.createNewFile();
+            FileUtils.copyFiles(this, "classes.dex", desFile);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        DexClassLoader dexClassLoader = new DexClassLoader(internalPath, cacheFile.getAbsolutePath(), null, getClassLoader());
+        try {
+            Class VVVVV_class = dexClassLoader.loadClass("com.kanxue.pediy1.VVVVV");
+            this.password_et = (EditText) findViewById(R.id.editText2);
+            this.username_et = (EditText) findViewById(R.id.editText);
+            this.message_tv = (TextView) findViewById(R.id.textView);
+            String str = this.username_et.getText().toString() + this.password_et.getText().toString();
+            boolean result = false;
+            try {
+                try {
+                    try {
+                        Method publicStaticFunc_method = VVVVV_class.getDeclaredMethod("VVVV", String.class);
+                        result = ((Boolean) publicStaticFunc_method.invoke(this, String.valueOf(stringFromJNI(str)))).booleanValue();
+                    } catch (InvocationTargetException e2) {
+                        e2.printStackTrace();
+                    }
+                } catch (IllegalAccessException e3) {
+                    e3.printStackTrace();
+                }
+            } catch (NoSuchMethodException e4) {
+                e4.printStackTrace();
+            }
+            if (result) {
+                this.message_tv.setText("恭喜您，成功了！flag is " + str);
+                return;
+            }
+            this.message_tv.setText("请继续加油 ~ ");
+        } catch (Exception e5) {
+            e5.printStackTrace();
+        }
+    }
+}
+```
+
+发现是通过原生类中的`stringFromJNI`函数传入我们输入的值的，于是我们提取出so文件并用IDA反编译
+
+```c++
+__int64 Java_com_kanxue_pediy1_MainActivity_stringFromJNI()
+{
+  char *s; // [xsp+20h] [xbp-30h]
+  int v2; // [xsp+44h] [xbp-Ch] BYREF
+  __int64 v3; // [xsp+48h] [xbp-8h]
+
+  v3 = *(_QWORD *)(_ReadStatusReg(TPIDR_EL0) + 40);
+  s = (char *)_JNIEnv::GetStringUTFChars();
+  sscanf(s, "%d", &v2);
+  return (unsigned int)(v2 + 1);
+}
+```
+
+发现这个函数的返回值会在输出的基础上加1，所以这道题最后的正确答案应该是`66999 - 1 = 66998`
+
+##### 第三关
+
+IDA打开so反编译一下，发现有`detect_frida_loop`这个检测frida的函数
+
+```c++
+void __fastcall __noreturn detect_frida_loop(void *a1)
+{
+  __pid_t v1; // w0
+  char s1[8]; // [xsp+54h] [xbp-19Ch] BYREF
+  int v3; // [xsp+5Ch] [xbp-194h]
+  int i; // [xsp+60h] [xbp-190h]
+  int fd; // [xsp+64h] [xbp-18Ch]
+  struct sockaddr addr; // [xsp+68h] [xbp-188h] BYREF
+  void *v7; // [xsp+78h] [xbp-178h]
+  __int64 v8; // [xsp+80h] [xbp-170h]
+  size_t n; // [xsp+88h] [xbp-168h]
+  int c; // [xsp+94h] [xbp-15Ch]
+  __int64 v11; // [xsp+98h] [xbp-158h]
+  void *s; // [xsp+A0h] [xbp-150h]
+  __int64 v13; // [xsp+A8h] [xbp-148h]
+  __int64 v14; // [xsp+B0h] [xbp-140h]
+  size_t v15; // [xsp+B8h] [xbp-138h]
+  int v16; // [xsp+C4h] [xbp-12Ch]
+  __int64 v17; // [xsp+C8h] [xbp-128h]
+  void *v18; // [xsp+D0h] [xbp-120h]
+  __int64 v19; // [xsp+D8h] [xbp-118h]
+  int v20; // [xsp+E4h] [xbp-10Ch]
+  __int64 v21; // [xsp+E8h] [xbp-108h]
+  __int64 v22; // [xsp+F0h] [xbp-100h]
+  void *v23; // [xsp+F8h] [xbp-F8h]
+  int v24; // [xsp+100h] [xbp-F0h]
+  int v25; // [xsp+104h] [xbp-ECh]
+  __int64 v26; // [xsp+108h] [xbp-E8h]
+  int v27; // [xsp+114h] [xbp-DCh]
+  __int64 v28; // [xsp+118h] [xbp-D8h]
+  __int64 v29; // [xsp+120h] [xbp-D0h]
+  void *v30; // [xsp+128h] [xbp-C8h]
+  int v31; // [xsp+130h] [xbp-C0h]
+  int v32; // [xsp+134h] [xbp-BCh]
+  __int64 v33; // [xsp+138h] [xbp-B8h]
+  __int64 v34; // [xsp+140h] [xbp-B0h]
+  const char *v35; // [xsp+148h] [xbp-A8h]
+  int v36; // [xsp+150h] [xbp-A0h]
+  int v37; // [xsp+154h] [xbp-9Ch]
+  __int64 v38; // [xsp+158h] [xbp-98h]
+  int v39; // [xsp+164h] [xbp-8Ch]
+  __int64 v40; // [xsp+168h] [xbp-88h]
+  __int64 v41; // [xsp+170h] [xbp-80h]
+  const char *v42; // [xsp+178h] [xbp-78h]
+  int v43; // [xsp+180h] [xbp-70h]
+  int v44; // [xsp+184h] [xbp-6Ch]
+  __int64 v45; // [xsp+188h] [xbp-68h]
+  __int64 v46; // [xsp+190h] [xbp-60h]
+  char *v47; // [xsp+198h] [xbp-58h]
+  int v48; // [xsp+1A4h] [xbp-4Ch]
+  __int64 v49; // [xsp+1A8h] [xbp-48h]
+  __int64 v50; // [xsp+1B0h] [xbp-40h]
+  int v51; // [xsp+1BCh] [xbp-34h]
+  __int64 v52; // [xsp+1C0h] [xbp-30h]
+  __int64 v53; // [xsp+1C8h] [xbp-28h]
+  char *v54; // [xsp+1D0h] [xbp-20h]
+  int v55; // [xsp+1DCh] [xbp-14h]
+
+  v7 = a1;
+  s = &addr;
+  v11 = 16;
+  c = 0;
+  n = 16;
+  v8 = 16;
+  v13 = __memset_chk(&addr, 0, 16, 16);
+  addr.sa_family = 2;
+  inet_aton("0.0.0.0", (struct in_addr *)&addr.sa_data[2]);
+  while ( 1 )
+  {
+    for ( i = 1; i <= 65533; ++i )
+    {
+      fd = socket(2, 1, 0);
+      *(_WORD *)addr.sa_data = bswap32((unsigned __int16)i) >> 16;
+      if ( connect(fd, &addr, 0x10u) != -1 )
+      {
+        v18 = s1;
+        v17 = 7;
+        v16 = 0;
+        v15 = 7;
+        v14 = 7;
+        v19 = __memset_chk(s1, 0, 7, 7);
+        v24 = fd;
+        v23 = &unk_14A2;
+        v22 = -1;
+        v21 = 1;
+        v20 = 0;
+        v31 = fd;
+        v30 = &unk_14A2;
+        v29 = -1;
+        v28 = 1;
+        v27 = 0;
+        v26 = 0;
+        v25 = 0;
+        sendto(fd, &unk_14A2, 1u, 0, 0, 0);
+        v36 = fd;
+        v35 = "AUTH\r\n";
+        v34 = -1;
+        v33 = 6;
+        v32 = 0;
+        v43 = fd;
+        v42 = "AUTH\r\n";
+        v41 = -1;
+        v40 = 6;
+        v39 = 0;
+        v38 = 0;
+        v37 = 0;
+        sendto(fd, "AUTH\r\n", 6u, 0, 0, 0);
+        usleep(0x1F4u);
+        v48 = fd;
+        v47 = s1;
+        v46 = 7;
+        v45 = 6;
+        v44 = 64;
+        v55 = fd;
+        v54 = s1;
+        v53 = 7;
+        v52 = 6;
+        v51 = 64;
+        v50 = 0;
+        v49 = 0;
+        v3 = recvfrom(fd, s1, 6u, 64, 0, 0);
+        if ( v3 != -1 )
+        {
+          if ( !strcmp(s1, "REJECT") )
+          {
+            v1 = getpid();
+            kill(v1, 9);
+          }
+          else
+          {
+            __android_log_print(4, "pediy", "not FOUND FRIDA SERVER");
+          }
+        }
+      }
+      close(fd);
+    }
+  }
+}
+```
+
+并且发现判断用的函数是`strcmp()`，因此我们可以直接hook这个函数并修改返回值
+
+```js
+function hookstrcmp(){
+    var strcmp_addr = Module.findExportByName("libc.so", "strcmp");
+    Interceptor.attach(strcmp_addr, {
+        onEnter: function (args) {
+            var arg0 = Memory.readUtf8String(args[0]); // first argument
+            var arg1 = Memory.readUtf8String(args[1]); // second argument
+            if (arg1.includes("REJECT")) {
+                console.log("Hookin the target strcmp function");
+            }
+            this.isREJECT = true;
+        },
+        onLeave: function (retval) {
+            if (this.isREJECT) {    
+                retval.replace(0x1);
+                console.log("strcmp returned:", retval);
+            }
+        }
+    });
+}
+```
+
+解决了这个问题后，后续的过程就和之前一样了，直接爆破
+
+```js
+function hookstrcmp(){
+    var strcmp_addr = Module.findExportByName("libc.so", "strcmp");
+    Interceptor.attach(strcmp_addr, {
+        onEnter: function (args) {
+            var arg0 = Memory.readUtf8String(args[0]); // first argument
+            var arg1 = Memory.readUtf8String(args[1]); // second argument
+            if (arg1.includes("REJECT")) {
+                console.log("Hookin the target strcmp function");
+            }
+            this.isREJECT = true;
+        },
+        onLeave: function (retval) {
+            if (this.isREJECT) {    
+                retval.replace(0x1);
+                console.log("strcmp returned:", retval);
+            }
+        }
+    });
+}
+
+
+function hookDex(st,ed) {
+    Java.perform(function () {
+        // 从堆中找到 MainActivity 实例，主动触发 loadDexClass()
+        // 目的：让 App 加载目标 dex，使 VVVVV 类进入内存
+        Java.choose("com.kanxue.pediy1.MainActivity", {
+            onMatch: function (instance) {
+                console.log("found instance:", instance);
+                console.log("invoke loadDexClass!", instance.loadDexClass());
+            },
+            onComplete() { }
+        });
+        // 从堆中找到 DexClassLoader 实例，替换全局 ClassLoader
+        // 使 Java.use() 能够找到动态加载的类
+        Java.choose("dalvik.system.DexClassLoader", {
+            onMatch: function (loader) {
+                Java.classFactory.loader = loader;
+                console.log("the Loader:", Java.classFactory.loader);
+            },
+            onComplete: function () { }
+        });
+
+        // 获取动态加载的目标类
+        var VVVVV_Class = Java.use("com.kanxue.pediy1.VVVVV");
+        console.log("VVVVV_Class:", VVVVV_Class);
+        // 创建 Java String 和 ByteString 对象，准备暴力枚举
+        // ByteString 是 okhttp 提供的工具类，用于将 byte[] 转成十六进制字符串
+        // 目的：byte[] 不能直接用 == 比较内容，转成 hex 字符串后才能比较
+        var JavaString = Java.use("java.lang.String");
+        var ByteString = Java.use("com.android.okhttp.okio.ByteString");
+        var pSign = JavaString.$new("971b82e071392d8293e57b39fc5056c731517d4e").getBytes();
+        var pSign_hex = ByteString.of(pSign).hex();
+        console.log("pSign:", pSign);
+        console.log("pSign_hex:", pSign_hex);
+
+        // 暴力枚举 10000 ~ 100000，逐个调用 eeeee() 计算 hash
+        for (var i = st; i < ed; i++) {
+            // 将数字转成 Java String 作为入参
+            var v = JavaString.$new(String(i));
+            // 调用目标类的 eeeee 方法，计算当前数字的 hash
+            var vSign = VVVVV_Class.eeeee(v);
+            var vSign_hex = ByteString.of(vSign).hex();
+            console.log("[+]", i, ":", vSign_hex);
+            if (vSign_hex == pSign_hex) {
+                console.log("Found! i=" + i);
+                break;
+            }
+        }
+    });
+}
+```
+
+最后的结果也是和第二题一样，需要在爆破得到的结果上再-1：`99998`
+
+因为原生类中的`stringFromJNI`函数会再返回值上+1
+
+```c++
+__int64 Java_com_kanxue_pediy1_MainActivity_stringFromJNI()
+{
+  char *s; // [xsp+20h] [xbp-30h]
+  int v2; // [xsp+44h] [xbp-Ch] BYREF
+  __int64 v3; // [xsp+48h] [xbp-8h]
+
+  v3 = *(_QWORD *)(_ReadStatusReg(TPIDR_EL0) + 40);
+  s = (char *)_JNIEnv::GetStringUTFChars();
+  sscanf(s, "%d", &v2);
+  return (unsigned int)(v2 + 1);
+}
 ```
 
 
