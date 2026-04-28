@@ -1,6 +1,6 @@
 # AI相关内容的学习
 
-**与时俱进，还得是学习一下AI相关内容的学习**
+**与时俱进，还得是学习一下AI的相关内容**
 <!--more-->
 
 参考链接：https://www.huasheng.ai/orange-books/
