@@ -166,6 +166,49 @@ Hermes中文社区：https://hermesagent.org.cn/docs/
 Hermes官方文档：https://hermes-agent.nousresearch.com/docs
 
 
+## API中转站搭建
+
+### CLi Proxy API
+
+项目地址：https://github.com/router-for-me/CLIProxyAPI
+
+搭建方法很简单，可以直接去 releases 中下载可执行文件，然后运行即可
+
+注意运行前可以去 config.yaml 中修改一下用户名和密码
+
+### sub2api
+
+项目地址：https://github.com/Wei-Shaw/sub2api
+
+建议使用docker进行部署
+
+```bash
+# 创建部署目录
+mkdir -p sub2api-deploy && cd sub2api-deploy
+# 下载并运行部署准备脚本
+curl -sSL https://raw.githubusercontent.com/Wei-Shaw/sub2api/main/deploy/docker-deploy.sh | bash
+# 启动服务
+docker compose up -d
+# 查看日志
+docker compose logs -f sub2api
+# 更新项目
+docker compose -f docker-compose.yml pull
+docker compose -f docker-compose.yml up -d
+```
+
+因为这个项目第一次启动的时候会把默认的账号密码输出到 docker 日志中
+
+因此我们需要用以下命令到 docker 日志中获取初始账号密码
+
+```bash
+# 查看日志
+docker compose logs -f sub2api
+```
+
+
+然后如果是在国内的VPS上部署，记得要在IP管理中添加代理
+
+注意，sub2api中添加的账号，每一个都要单独设置分组，并且使用前不要忘了给用户余额先进行充值
 
 
 
