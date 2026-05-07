@@ -1162,9 +1162,11 @@ adb shell
 # 然后电脑输入以下命令即可
 adb pair <IP>:<Port>
 adb connect <IP>:<Port>
+# 查看当前设备的架构
+adb shell getprop ro.product.cpu.abi # arm64-v8a
 ```
 
-### Frida相关
+### Frida-Hook框架(可以用于Java层和so层)
 
 #### 系统环境配置
 
@@ -1471,6 +1473,24 @@ objection -N -h 192.168.1.103 -p 8888 -g com.kanxue.pediy1 explore
 # --dump-return: 打印方法的返回值
 android hooking watch class_method com.kanxue.pediy1.VVVVV.VVVV --dump-args --dump-backtrace --dump-return
 ```
+
+### Xposed-Hook框架
+
+
+
+
+### 小肩膀逆向课程
+
+
+#### smali插桩
+
+
+#### jeb动态调试
+
+
+
+
+
 
 
 
