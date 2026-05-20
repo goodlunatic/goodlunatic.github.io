@@ -1,6 +1,6 @@
-# 如何基于 SrsRAN_4G 搭建 LTE 基站
+# 使用 USRP 设备搭建 4G-LTE 基站
 
-**记录一下如何基于 srsRAN_4G 搭建 LTE 基站**
+**记录一下如何使用 USRP 设备基于 srsRAN_4G 搭建 4G-LTE 基站**
 <!--more-->
 
 本文使用的软硬件环境如下：
