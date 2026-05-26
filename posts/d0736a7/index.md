@@ -5311,7 +5311,11 @@ if __name__ == '__main__':
 
 ## 题目名称 X的宝藏（2026 ISCC破阵夺旗赛0解题）
 
-> 题目附件：https://pan.baidu.com/s/1Pjck51gmCykgo3WeIpOTyA?pwd=cn9v 提取码: cn9v
+> 题目附件：https://pan.baidu.com/s/1icuVHQtk78AD6vsBu2nlDw?pwd=yr4y 提取码: yr4y
+> 
+> 本题的附件是动态附件，每位选手的附件和flag不同，我这里收集了一些选手的附件
+> 
+> 因为最终的flag肯定是可打印字符，多个样本有助于我们缩小范围
 
 | ![](imgs/292853320ec36cc2204a388ffb6d5942.png) |
 | :--------------------------------------------: |
@@ -5332,8 +5336,6 @@ if __name__ == '__main__':
 
 还可以得到一个加密的 `游子.rar`
 
-
-
 `游子.rar` 的解压密码是：`贰O壹玖-零伍-零柒`，解压后可以得到下面这张 `游子.png`
 
 ![](imgs/image-20260520111232768.png)
@@ -5342,11 +5344,19 @@ if __name__ == '__main__':
 
 ![](imgs/image-20260520111342047.png)
 
+在 `贰O壹玖-零伍-零柒.json` 中，`12:00:00` 到 `12:19:00` 的 `bpm` 异常固定为 23，对这些行计算 `chr(key - bpm)`，得到前半段的flag：
+
+`FLAG=ISCC{xjInW9gszD`
 
 
 ## 题目名称 触不可及2.0（2026 ISCC破阵夺旗赛0解题）
 
-> 题目附件：https://pan.baidu.com/s/1UzmcnMkOIouzohOwCozKkA?pwd=afva 提取码: afva
+> 题目附件：https://pan.baidu.com/s/1-NvGP9duWAAUqOyH-H6LKQ?pwd=wibr 提取码: wibr
+> 
+> 本题的附件是动态附件，每位选手的附件和flag不同，我这里收集了一些选手的附件
+> 
+> 因为最终的flag肯定是可打印字符，多个样本有助于我们缩小范围
+
 
 |               2025年的题面                |                    2026年的题面                    |
 | :-----------------------------------: | :--------------------------------------------: |

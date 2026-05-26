@@ -62,9 +62,9 @@ airodump-ng -c 11 --bssid xx:xx:xx:xx:xx:xx -w hack wlan0mon
 
 # -c 11	     	         强制网卡只监听信道 11，不跳频。必须与目标 AP 的信道一致
 # --bssid		         过滤只显示该 BSSID 的 AP 及其客户端，忽略其他网络
-# 44:F7:70:C3:7A:E7	     目标 AP 的 MAC	
-# -w hack	输出文件前缀	生成 hack-01.cap、hack-01.csv 等文件
-# wlan0mon	网卡接口名	处于监听模式的无线网卡
+# xx:xx:xx:xx:xx:xx	     目标 AP 的 MAC	
+# -w hack	             输出文件前缀，生成 hack-01.cap、hack-01.csv 等文件
+# wlan0mon	             网卡接口名，处于监听模式的无线网卡
 ```
 
 可以监听到它当前是有设备连接的
