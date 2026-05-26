@@ -1,4 +1,4 @@
-# 使用Kali Linux和外置网卡捕获并爆破WPA2握手包
+# 使用Kali-Linux和外置网卡捕获并爆破WPA2握手包
 
 **很早就想复现的一个实验，最近刚刚好想起来**
 <!--more-->
@@ -7,11 +7,11 @@
 
 宿主机: Windows10
 
-GPU：RTX4070TI
+GPU：NVDIA GeForce RTX 4070TI
 
 虚拟机软件：VMware Workstation 17 Pro
 
-虚拟机镜像：Kali-linux 2025.3
+虚拟机镜像：kali-linux 2025.3
 
 外置无线网卡：NT-AX1800M(USB3.0-WiFi6免驱版)
 
